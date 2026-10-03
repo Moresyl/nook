@@ -75,6 +75,7 @@ const bridge: Bridge = {
   editMessage: (input) => invoke('editMessage', input),
   activateThread: (id) => invoke('activateThread', id),
   startTemporaryChat: () => invoke('startTemporaryChat'),
+  reorderBranch: (input) => invoke('reorderBranch', input),
   submit: (request) => invoke('submit', request),
   stop: (id) => invoke('stop', id),
   pendingApprovals: () => invoke('pendingApprovals'),

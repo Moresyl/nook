@@ -1,6 +1,14 @@
+import { z } from 'zod';
 import type { Thread } from './workspace';
 
 export type ConversationBranch = { thread: Thread; depth: number; parentId?: string; parentMissing: boolean; cycleRoot: boolean };
+export const branchReorderSchema = z.object({ threadId: z.string().min(1).max(128).refine((value) => !value.includes('\0'), 'Identifiers cannot contain NUL characters'), direction: z.enum(['up', 'down', 'reset']) }).strict();
+export type BranchReorder = z.infer<typeof branchReorderSchema>;
+
+export function conversationBranchPeers(nodes: ConversationBranch[], threadId: string): ConversationBranch[] {
+  const selected = nodes.find((node) => node.thread.id === threadId);
+  return selected ? nodes.filter((node) => node.parentId === selected.parentId) : [];
+}
 
 export function conversationBranches(threads: Thread[], currentThreadId: string): ConversationBranch[] {
   if (threads.length > 10_000) throw new Error('Conversation history exceeds the 10,000 conversation limit.');
@@ -38,6 +46,9 @@ export function conversationBranches(threads: Thread[], currentThreadId: string)
     if (parent === undefined) roots.push(thread);
     else { const siblings = descendants.get(parent) ?? []; siblings.push(thread); descendants.set(parent, siblings); }
   }
+  const siblingOrder = (left: Thread, right: Thread) => (left.branchOrder ?? 10_000) - (right.branchOrder ?? 10_000) || order(left, right);
+  roots.sort(siblingOrder);
+  for (const siblings of descendants.values()) siblings.sort(siblingOrder);
   const stack = roots.reverse().map((thread) => ({ thread, depth: 0 })); const result: ConversationBranch[] = [];
   while (stack.length) {
     const { thread, depth } = stack.pop()!;

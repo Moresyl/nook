@@ -14,15 +14,15 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 185, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
+  const desktop = { variant: 'packaged executable', checks: 188, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
   return {
     audit, desktop, surfaces: { ...desktop, checks: 4 },
-    branches: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true },
+    branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 185, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: 188, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -57,7 +57,7 @@ describe('release version and notes', () => {
 describe('Windows release execution evidence', () => {
   it('accepts matching complete runtime and actual distribution evidence', () => {
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
-    const future = proof(); future.desktop.checks = 186; future.installer.checks = 186; future.branches.suiteChecks = 186; future.temporary.suiteChecks = 186;
+    const future = proof(); future.desktop.checks = 189; future.installer.checks = 189; future.branches.suiteChecks = 189; future.temporary.suiteChecks = 189;
     expect(() => verifyRuntimeProof(future)).not.toThrow();
   });
   it('rejects missing or malformed executable/archive/wrapper hashes', () => {
@@ -83,7 +83,7 @@ describe('Windows release execution evidence', () => {
   });
   it('rejects incomplete desktop/settings/portable checks and different portable body', () => {
     const cases = Array.from({ length: 11 }, proof);
-    cases[0].desktop.checks = 184; cases[1].desktop.checks = Number.NaN; cases[2].surfaces.checks = 3;
+    cases[0].desktop.checks = 187; cases[1].desktop.checks = Number.NaN; cases[2].surfaces.checks = 3;
     cases[3].portable.checks = 6; cases[4].portable.launches = [{}]; cases[5].portable.runtimeErrors = ['Failure'];
     cases[6].portable.childExecutableSha256 = otherHash; cases[7].portableAudit.executableSha256 = otherHash;
     cases[8].portableAudit.archiveSha256 = hash; cases[9].portableAudit.unresolvedAssets = ['Font']; cases[10].portableAudit.unresolvedDistribution = ['Plugin'];
@@ -96,6 +96,12 @@ describe('Windows release execution evidence', () => {
     cases[0].branches.checks = 5; cases[1].branches.verificationRun = 'focused branch-navigation suite';
     cases[2].branches.suiteChecks = 178; cases[3].branches.modelRequests = 1; cases[4].branches.ambiguousHistoryRecoveryVerified = false;
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('branch-navigation verification');
+  });
+  it('rejects missing or failed manual order, write-recovery and ordered-backup/restart evidence', () => {
+    for (const key of ['manualOrderingVerified', 'orderingFailureRecoveryVerified', 'orderingBackupRestartVerified'] as const) {
+      const failed = proof(); failed.branches[key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('branch-navigation verification');
+      const absent = proof(); delete (absent.branches as Partial<ReleaseProof['branches']>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('branch-navigation verification');
+    }
   });
   it('rejects missing, focused, stale or incomplete temporary-chat privacy and restart evidence', () => {
     const missing = proof(); delete (missing as Partial<ReleaseProof>).temporary;

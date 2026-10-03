@@ -9,6 +9,7 @@ import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Works
 import { WorkspaceVault } from './services/vault';
 import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
+import { reorderConversationBranch } from './services/branch-order';
 import { parsePersistentWorkspace } from '../contracts/temporary-conversations';
 import { HttpModelGateway } from './services/model-gateway';
 import { ProviderSettings } from './services/provider-settings';
@@ -202,6 +203,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   editMessage: (raw) => messageEdits.edit(raw),
   activateThread: (raw) => composerDrafts.activate(raw),
   startTemporaryChat: () => startTemporaryChat(vault),
+  reorderBranch: (raw) => reorderConversationBranch(vault, raw),
   submit: (request) => engine.start(request),
   stop: (id) => engine.stop(idSchema.parse(id)),
   pendingApprovals: () => engine.pendingApprovals(),
@@ -213,6 +215,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       const index = draft.threads.findIndex((item) => item.id === thread.id);
       if (index < 0) throw new Error('This conversation no longer exists.');
       if (thread.temporary !== draft.threads[index].temporary) throw new Error('The storage mode of an existing conversation cannot be changed.');
+      if (thread.branchOrder !== draft.threads[index].branchOrder) throw new Error('The branch order changed. Refresh the conversation before changing its details.');
       draft.threads[index] = { ...thread, updatedAt: Date.now() };
     });
   },
@@ -229,7 +232,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       const original = draft.threads.find((thread) => thread.id === id);
       const index = original?.messages.findIndex((message) => message.id === messageId) ?? -1;
       if (!original || index < 0) throw new Error('The selected message no longer exists.');
-      draft.threads.push({ ...structuredClone(original), id: randomUUID(), title: `${original.title.slice(0, 140)} · 分支`, pinned: false, archived: false, createdAt: Date.now(), updatedAt: Date.now(), messages: original.messages.slice(0, index + 1), forkedFrom: { threadId: id, messageId, kind: 'branch' } });
+      const branch = { ...structuredClone(original), id: randomUUID(), title: `${original.title.slice(0, 140)} · 分支`, pinned: false, archived: false, createdAt: Date.now(), updatedAt: Date.now(), messages: original.messages.slice(0, index + 1), forkedFrom: { threadId: id, messageId, kind: 'branch' as const } };
+      delete branch.branchOrder; draft.threads.push(branch);
     });
   },
   chooseProject: async () => {

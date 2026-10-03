@@ -314,7 +314,7 @@ try {
     assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_BRANCHES_ONLY) {
     const result = await verifyConversationBranches({ page, application, getApplication: () => application, endpoint, directory, screenshots, verified, waitForBridge, restart: async (beforeLaunch) => { await application.close(); await beforeLaunch?.(); return launch(); }, modelRequests: () => calls.length }); page = result.page; branchNavigationResult = result.result;
-    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 9); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_CHAT_NAVIGATION_ONLY) {
     const result = await verifyChatNavigation({ page, application, getApplication: () => application, endpoint, directory, screenshots, fixture: chatNavigationProviders, verified, waitForBridge, restart: async (beforeLaunch) => { await application.close(); await beforeLaunch?.(); return launch(); } }); page = result.page; chatNavigationResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);

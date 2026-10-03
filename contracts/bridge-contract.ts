@@ -12,6 +12,7 @@ import type { DesktopState } from './desktop-integration';
 import type { AssistantBundle } from './assistant-profiles';
 import type { PromptTemplate } from './prompt-templates';
 import type { MessageDraft, MessageEdit } from './message-edits';
+import type { BranchReorder } from './conversation-branches';
 
 export type RunEvent = { threadId: string; messageId: string; delta?: string; activity?: ToolActivity; invocation?: ModelInvocation; approval?: ApprovalRequest; approvalResolved?: string; message?: import('./workspace').Message; state?: Workspace; error?: string };
 export type { FileEntry } from './projects';
@@ -56,6 +57,7 @@ export type Bridge = {
   editMessage(input: MessageEdit): Promise<Workspace>;
   activateThread(id?: string): Promise<void>;
   startTemporaryChat(): Promise<Workspace>;
+  reorderBranch(input: BranchReorder): Promise<Workspace>;
   submit(request: SubmitRequest): Promise<{ threadId: string }>;
   stop(threadId: string): Promise<void>;
   pendingApprovals(): Promise<ApprovalRequest[]>;

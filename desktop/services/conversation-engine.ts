@@ -77,8 +77,11 @@ export class ConversationEngine {
         }
       }
       thread = { ...thread, messages: thread.messages.slice(0, index) };
-      if (request.replay.action === 'edit') thread = { ...thread, id: randomUUID(), title: `${thread.title.slice(0, 140)} · 编辑`, pinned: false, archived: false, createdAt: now, updatedAt: now,
-        forkedFrom: { threadId: request.threadId!, messageId: request.replay.messageId, kind: 'edit' } };
+      if (request.replay.action === 'edit') {
+        thread = { ...thread, id: randomUUID(), title: `${thread.title.slice(0, 140)} · 编辑`, pinned: false, archived: false, createdAt: now, updatedAt: now,
+          forkedFrom: { threadId: request.threadId!, messageId: request.replay.messageId, kind: 'edit' } };
+        delete thread.branchOrder;
+      }
     }
     thread ??= {
       id: randomUUID(), title: request.text.slice(0, 48), projectId: request.projectId,
@@ -128,7 +131,12 @@ export class ConversationEngine {
           if (request.replay.action === 'edit') draft.messageDrafts = draft.messageDrafts.filter((item) => item.threadId !== original.id || item.messageId !== request.replay!.messageId);
         }
         const index = draft.threads.findIndex((item) => item.id === next.id);
-        if (index < 0) draft.threads.push(next); else draft.threads[index] = next;
+        if (index < 0) draft.threads.push(next);
+        else {
+          if (draft.threads[index].branchOrder === undefined) delete next.branchOrder;
+          else next.branchOrder = draft.threads[index].branchOrder;
+          draft.threads[index] = next;
+        }
         if (request.composerRevision) {
           const count = draft.composerDrafts.length;
           draft.composerDrafts = draft.composerDrafts.filter((item) => item.threadId !== request.threadId || createHash('sha256').update(composerContent(item)).digest('hex') !== request.composerRevision);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { conversationBranches } from '../contracts/conversation-branches';
+import { conversationBranchPeers, conversationBranches } from '../contracts/conversation-branches';
 import { sampleThread } from './fixtures';
 import type { Thread } from '../contracts/workspace';
 
@@ -48,5 +48,21 @@ describe('complete conversation branch navigation', () => {
   it('rejects oversized or ambiguous histories without exposing message content', () => {
     const thread = sampleThread({ title: 'PRIVATE_HISTORY' }); expect(() => conversationBranches([thread, thread], 'thread')).toThrow('duplicate conversation IDs');
     expect(() => conversationBranches(Array.from({ length: 10_001 }, () => thread), 'thread')).toThrow('10,000 conversation limit');
+  });
+  it('orders complete sibling subtrees explicitly while keeping default chronological order for new paths', () => {
+    const threads = [sampleThread({ id: 'root', branchOrder: 9 }), branch('early', 'root', { createdAt: 2, branchOrder: 1 }), branch('late', 'root', { createdAt: 4, branchOrder: 0 }), branch('leaf', 'late', { createdAt: 5 }), branch('new', 'root', { createdAt: 0 })];
+    const before = structuredClone(threads);
+    expect(shape(threads, 'leaf').map((node) => node.id)).toEqual(['root', 'late', 'leaf', 'early', 'new']);
+    expect(shape([...threads].reverse(), 'root')).toEqual(shape(threads, 'leaf')); expect(threads).toEqual(before);
+    const peers = conversationBranchPeers(conversationBranches(threads, 'root'), 'late'); expect(peers.map((node) => node.thread.id)).toEqual(['late', 'early', 'new']); expect(peers[0].thread).toBe(threads[2]);
+    expect(conversationBranchPeers(conversationBranches(threads, 'root'), 'root').map((node) => node.thread.id)).toEqual(['root']); expect(conversationBranchPeers([], 'missing')).toEqual([]);
+  });
+  it('orders surviving roots sharing a deleted parent and breaks tied explicit order by time and stable ID', () => {
+    const threads = [branch('a', 'deleted', { branchOrder: 1, createdAt: 2 }), branch('b', 'deleted', { branchOrder: 1, createdAt: 2 }), branch('c', 'deleted', { branchOrder: 0, createdAt: 3 })];
+    expect(shape(threads, 'a').map((node) => node.id)).toEqual(['c', 'a', 'b']); expect(conversationBranchPeers(conversationBranches(threads, 'b'), 'a')).toHaveLength(3);
+  });
+  it('retains the chronological cycle cut even when manual order favors a newer cycle member', () => {
+    const threads = [branch('a', 'b', { createdAt: 1, branchOrder: 99 }), branch('b', 'a', { createdAt: 2, branchOrder: 0 }), branch('first', 'a', { createdAt: 3, branchOrder: 1 }), branch('last', 'a', { createdAt: 4, branchOrder: 2 })];
+    expect(shape(threads, 'last').map(({ id, cycleRoot }) => ({ id, cycleRoot }))).toEqual([{ id: 'a', cycleRoot: true }, { id: 'b', cycleRoot: false }, { id: 'first', cycleRoot: false }, { id: 'last', cycleRoot: false }]);
   });
 });
