@@ -1,0 +1,380 @@
+{
+  "verifiedAt": "2026-10-03T19:51:03.053Z",
+  "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 630,
+  "unitFiles": 62,
+  "serviceTests": 8,
+  "focusedContentAndBinaryTests": 20,
+  "focusedNativeChecks": 6,
+  "desktopChecks": 206,
+  "binaryModelRequests": 0,
+  "coverage": {
+    "lines": {
+      "total": 2938,
+      "covered": 2917,
+      "skipped": 0,
+      "pct": 99.28
+    },
+    "statements": {
+      "total": 5019,
+      "covered": 4864,
+      "skipped": 0,
+      "pct": 96.91
+    },
+    "functions": {
+      "total": 1119,
+      "covered": 1087,
+      "skipped": 0,
+      "pct": 97.14
+    },
+    "branches": {
+      "total": 3577,
+      "covered": 3370,
+      "skipped": 0,
+      "pct": 94.21
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "binaryCoverage": {
+    "D:\\GR\\qiyao-mcp-binary\\contracts\\mcp-binary.ts": {
+      "lines": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 5,
+        "covered": 5,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao-mcp-binary\\desktop\\services\\mcp-binary-files.ts": {
+      "lines": {
+        "total": 25,
+        "covered": 25,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 5,
+        "covered": 5,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 34,
+        "covered": 34,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 13,
+        "covered": 13,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "policyTests": 35,
+  "policyCoverage": {
+    "lines": {
+      "total": 60,
+      "covered": 60,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 77,
+      "covered": 77,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 20,
+      "covered": 20,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 127,
+      "covered": 127,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "source": [
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "db5908d93ed3067c89cebbcf09ca24455b40269a864bffb6eb87e226b5b509a8"
+    },
+    {
+      "path": "contracts/extensions.ts",
+      "sha256": "718ec02d425332696f517a5defefa7a19cd1019a896205f48b780993cfb20828"
+    },
+    {
+      "path": "contracts/mcp-binary.ts",
+      "sha256": "af43fe430721f7a4bad2ee563c1e65895a89148883d260a39eee3d4ae86795b4"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "0f6730071e7f1e19fb54c3bf98c245b3bf10a304465a4c1c986f2745e725b921"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "b779230ebac01e17decba390211f75a3c3fc7b7e4723449164daf8303d51c388"
+    },
+    {
+      "path": "desktop/services/mcp-content.ts",
+      "sha256": "688601bddaaa23be57ee25baf18cd7c7bda1d3343ad33633cc72b4759a1d6d9c"
+    },
+    {
+      "path": "desktop/services/mcp-binary-files.ts",
+      "sha256": "56e8ad6cf2b34a4e6f7374975d7318a5853c6778afc894019b6b08e37d20c7a6"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "6ebf792df54027c3254affa47f951260569dfa0fb5c9bd1e7593e2d70288e308"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "590fb43def0ce438bb71e5c46e7493f4bd035b55c369d96275ec7ce04be01a7a"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "04c22a84d80fdfb29785bb7b5e751d9f4ff571fd1e5b7ef1467b44423c4ad22e"
+    },
+    {
+      "path": "scripts/verify-mcp-binary-files.mjs",
+      "sha256": "14c3f37267eda67e16c989a326880a2b6da97dba86ecc5c5f9833c22ba8fcd23"
+    },
+    {
+      "path": "verification/mcp-content.test.ts",
+      "sha256": "701aa53bf24aee446ad049cb9dd2645762ac9ad5ec3535290d3c4184e87c760d"
+    },
+    {
+      "path": "verification/mcp-binary-files.test.ts",
+      "sha256": "f48dbbfa0bf9f18e962db5bd27589051baf14aeb0b1a6ce8a3cf79a0b3eed19b"
+    },
+    {
+      "path": "verification/mcp-binary-fixture-data.mjs",
+      "sha256": "f1b46157e49f12b91c33deda374e60390e686a6cde38072f78dea907095128c6"
+    },
+    {
+      "path": "verification/mcp-binary-fixture.mjs",
+      "sha256": "08de6b58d7af32c3d14a73dc6dbc1e85d81eb3345e65781df0723cb302c2caa9"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "7fd3315b6a91a3d1a50f8e2db0618a8b9f11e076183f7595344e1e89285719c6"
+    },
+    {
+      "path": "workbench/components/attachments.tsx",
+      "sha256": "d3741d7e99e77cccf2a07fc0f69190290e8fa838ea563ebf3bfb8378c4afb590"
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "ed198e2a9adb7e3d0f7e04f59c49b0bb44d4e4e6304922395dbe278c43890ee3"
+    },
+    {
+      "path": "workbench/pages/mcp-content-browser.tsx",
+      "sha256": "81a8fee42d5b447bb73876a28bb7918fa73ae33846483a6c51bfbdd276aa64fb"
+    }
+  ],
+  "records": [
+    {
+      "key": "desktop",
+      "path": "verification/electron-result.json",
+      "sha256": "27db31f0076fb8c6b6ff26cb2e6dd2383d8802618a023762b90a0a8ce0bbf556",
+      "bytes": 50183
+    },
+    {
+      "key": "binary",
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "e7a4d4fbaf48e759baba5f8027416aea95d4fef915f34f7cb72f381cffb1423d",
+      "bytes": 1770
+    },
+    {
+      "key": "subscriptions",
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "438c0f2855244926320f78ac3bfa34ca315e02ac2b30e4e5d96c131243bc8a30",
+      "bytes": 795
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "363e21fa93379918ebd9e7fdab4edc7d794d3d50a6db174551824441d254d96f",
+      "bytes": 2126
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "b1dbc64ed4d77c4726a308da759316a925e99d78d472178b6d1e9d40bc34f387",
+      "bytes": 11675
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "4e4756759c42dae17205fb8d0a54a95b66b09d6d517ddfe3b76bfa0480e8814f",
+      "bytes": 1832
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "124-mcp-binary-image-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "33bedb1e70d7b99c8961f19ba7f2ffb516b91ac8c0eee69b14118d762b39b5f5",
+      "individuallyReviewed": true,
+      "observation": "The normalized fixture image and its size/normalization notice are visible in the nested light preview. The underlying MCP settings remain behind the native modal.",
+      "path": "verification/screenshots/124-mcp-binary-image-light.png",
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "125-mcp-binary-image-dark-zoom-100.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "097400ae7604ee4e140046d68d8961ef98d41402073e5c888eec3cf34b9a3861",
+      "individuallyReviewed": true,
+      "observation": "The actual dark image preview retains visible title/footer and the focused Done button at its specified zoom. The normalized fixture image is visible and content remains within the minimum window.",
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-100.png",
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "125-mcp-binary-image-dark-zoom-125.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "d4b811f34fc20a05264e3ce35f796eaf8674d304d47065293ff02a907aab44a1",
+      "individuallyReviewed": true,
+      "observation": "The actual dark image preview retains visible title/footer and the focused Done button at its specified zoom. The normalized fixture image is visible and content remains within the minimum window.",
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-125.png",
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "125-mcp-binary-image-dark-zoom-150.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "386f53aaebda8c3fa03b473b13e6b97211097b130bf8a66af4b1841addc6b036",
+      "individuallyReviewed": true,
+      "observation": "The actual dark image preview retains visible title/footer and the focused Done button at its specified zoom. The normalized fixture image is visible and content remains within the minimum window.",
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-150.png",
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "workflow": {
+    "verifiedAt": "2026-10-03T19:40:17.7048067Z",
+    "workflowStructureVerified": true,
+    "installerScriptSyntaxVerified": true,
+    "nativeCommandBlocksParsed": 9,
+    "installedMinimumChecks": 206,
+    "freshRuntimeRecordsBeforeChecks": true
+  },
+  "logs": [
+    {
+      "name": "mcp-binary-full-coverage-recheck.log",
+      "sha256": "ffb6b6444f937fef336e2eed13ad2fb892d3f46d1dc6f09096a58612fcde35f2",
+      "bytes": 4387
+    },
+    {
+      "name": "mcp-binary-policy.log",
+      "sha256": "45cf76a887adc43c113a4f4d3286fbc17250df8733ac3e8baaa564a9fc8183dd",
+      "bytes": 895
+    },
+    {
+      "name": "mcp-binary-complete-typecheck.log",
+      "sha256": "efbfd1f0de90a063b8a331c134585e6adb3082067c7cfa35cdf807729dae9c3f",
+      "bytes": 82
+    },
+    {
+      "name": "mcp-binary-modal-build.log",
+      "sha256": "a4baf7dcf966450b804407289310815fa23df1c7ede9f6f0e177dae4d92c30a8",
+      "bytes": 22546
+    },
+    {
+      "name": "mcp-binary-modal-native-recheck.log",
+      "sha256": "26382864bf49fd43e15babfe39128612da54864421ee84842f236b9ce583f002",
+      "bytes": 1340
+    },
+    {
+      "name": "mcp-binary-complete-source.log",
+      "sha256": "d5b91d762b67e8e6713d97b246a426a6d3d0312ded3e76ab65ba40020cbafe56",
+      "bytes": 30901
+    }
+  ],
+  "negativeLogs": [
+    {
+      "name": "mcp-binary-native.log",
+      "bytes": 2894,
+      "sha256": "bd3b446598541e5cda6c7c93d4a06a6226970fc4d7e5c9d118422746c25788b7"
+    },
+    {
+      "name": "mcp-binary-native-recheck.log",
+      "bytes": 2979,
+      "sha256": "abce9e96603166d3bc6df5e4ab224aee8aa82bb2d78a68f1a7ff95d41def0e5b"
+    },
+    {
+      "name": "mcp-binary-native-listener-recheck.log",
+      "bytes": 3073,
+      "sha256": "40f0503a61600f31048ce051bc72f559675500c091fe2f9ecdf1b1d7bf366ce7"
+    },
+    {
+      "name": "mcp-binary-full-coverage.log",
+      "bytes": 1545,
+      "sha256": "79d43511213441b131d98a9543c6287faa97385b6f7d25b05f89af80e961e7e2"
+    }
+  ],
+  "scope": "Validated resource/prompt snapshots retain canonical bounded base64 for explicit UI file actions; approved model tools receive text and metadata without binary data. Actual stdio files pass the real bounded attachment worker, normalized JPEG preview, corrupt-image sanitization/retry, original-byte Unicode exports, cancellation, zero-byte and SVG export-only handling. Actual delayed stdio and completed worker results cannot replace another selected tab. Native nested Escape originally closed the parent settings too; stopping cancel-event propagation now retains it at all three dark minimum-window zoom levels. Node worker exit clears message listeners, so the isolated delay fixture captures and later invokes the actual registered callbacks with the actual worker result, without replacing parsing. Normal restart retains the original draft/configuration and omits transient file content from saved state. Complete source acceptance passes 630 unit checks and all 206 desktop checks with normal close; four current full-source image captures are individually reviewed. The release policy and installer now require the new six-check evidence and at least 206 complete checks; their 35 tests cover all policy lines/branches/functions/statements. Earlier fixture-release, nested-Escape and stale future-count test failures remain negative evidence. Original legal bytes are unchanged. New package, current installed/portable body, complete hosted acceptance and remaining full-scope delivery are pending; no release is claimed."
+}

@@ -135,7 +135,7 @@
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
     "proof": "verification/mcp-resource-subscriptions-review-result.json"
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -382,13 +382,13 @@
     "proofFile": "verification/recovery-distribution-result.json"
   },
   "sourceVerification": {
-    "verifiedAt": "2026-10-03T17:54:40.759Z",
-    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
-    "unitTests": 616,
-    "unitFiles": 61,
-    "desktopChecks": 200,
+    "verifiedAt": "2026-10-03T19:51:03.053Z",
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "unitTests": 630,
+    "unitFiles": 62,
+    "desktopChecks": 206,
     "normalCloseVerified": true,
-    "proof": "verification/mcp-resource-subscriptions-review-result.json"
+    "proof": "verification/mcp-binary-files-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -669,11 +669,13 @@
     "proof": "verification/hosted-project-terminal-failure-result.json"
   },
   "previousSourceVerification": {
-    "desktopChecks": 179,
-    "branchChecks": 6,
-    "ambiguousHistoryRecoveryVerified": true,
+    "verifiedAt": "2026-10-03T17:54:40.759Z",
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "unitTests": 616,
+    "unitFiles": 61,
+    "desktopChecks": 200,
     "normalCloseVerified": true,
-    "proofFile": "verification/branch-recovery-review-result.json"
+    "proof": "verification/mcp-resource-subscriptions-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -736,5 +738,15 @@
         "pct": 100
       }
     }
+  },
+  "mcpBinaryFiles": {
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "sourceVerified": true,
+    "packagedVerified": false,
+    "hostedVerified": false,
+    "sourceChecks": 206,
+    "focusedChecks": 6,
+    "modelRequests": 0,
+    "proof": "verification/mcp-binary-files-review-result.json"
   }
 }

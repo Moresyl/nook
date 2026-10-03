@@ -12,6 +12,7 @@
 - 对话分支可调整同层顺序或恢复时间顺序，完整子路径一起移动。排序跨分页保留选择，随普通历史、完整备份和重启保存；临时路径的排序仍只保留在内存。
 - 同一问题可并行比较 2–4 个已配置模型，保留相同完整上下文、附件和助手／项目说明。回复可分别停止、失败或继续，当前草稿保留，普通组随历史与完整备份保存，临时组随应用退出清除。
 - MCP 资源可显式订阅更新，自动刷新所选资源的只读预览，并手动加入草稿。支持中文资源模板、逐项取消和连接能力提示；断开或重启后停止订阅，已有草稿保留。
+- MCP 资源和提示词中的二进制文件可显式导出原始字节；常见图片可通过受限工作线程预览规范化副本，SVG 和音频仅导出。空文件、取消与失败重试保持独立，手动用于对话只加入文本。
 - 提供 PDF／Office／OpenDocument 文本提取、图片输入及预览，资料集、关键词与语义／混合检索，以及回复来源片段。聊天内容支持公式、代码高亮和 Mermaid 图表。
 - 项目工作台包含可展开文件树、本地代码编辑器、未保存草稿、Git 审阅／暂存／提交及真实终端。分析和执行模式展示工具过程，文件修改和命令分别确认。
 - 提供助手配置导入导出、变量提示模板、自动任务、MCP 工具／资源／提示及 OAuth、本地技能、隔离插件、统一命令搜索、聊天正文查找、系统托盘和全局唤起快捷键。
@@ -22,6 +23,7 @@
 - 统一为栖曜 Qiyao 名称、独立图标、应用标识与 Windows 元数据。主工作台及隔离插件面板统一使用原始 OFL Inter 字体，保留指定参考中的非字体样式和数学字体。
 - 配置的密钥在本地加密，并绑定连接目标；共享备份不包含密钥。插件按声明的能力与项目范围授权，文件、命令及远程工具调用保留具体操作预览。
 - 完整保留原始开源许可证、依赖法律文档及安装器组件来源。流水线检查编译后的旧身份／已移除字体引用、原始文件字节和同一应用体的运行记录，发布文件附对应源码与 SHA-256。
+- MCP 二进制输入限制单项 2 MB、单次 12 项／合计 12 MB，验证规范编码和文件元数据。模型读取结果只含文本与文件元数据，图片预览和导出操作不会自动调用模型。
 
 ### 修复与完善
 
@@ -31,6 +33,7 @@
 - 并行启动时已保存的流式检查点会逐条通知界面，恢复被早期状态更新盖掉的部分文本；新增比较入口后仍保留原有发送按钮尺寸。
 - 延迟返回的启动通知采用最新已保存状态，避免旧全量快照再次覆盖其他模型已经保存的部分回复。
 - 持续资源更新按顺序读取并及时显示每次完成的结果，避免通知密集时预览一直为空；刷新期间仍可手动使用已显示内容，不会自动发送模型请求。
+- 图片预览按 Escape 只关闭最上层弹窗，保留底层设置；切换 MCP 资源或分类后，延迟读取与图片结果不会替换当前预览。
 - 修正隔离插件面板对已移除字体的引用和文件匹配，实际加载与主工作台一致的 Inter 可变字重。
 - 项目目录采用完整分页，避免旧清单截断；短窗口在 100%／125%／150% 缩放下保留聊天操作、可见标题以及代码／终端的使用空间。
 - Windows 便携启动器使用完整原生文件提取和扩展路径，保留长路径文档，并在正常退出后清理临时提取目录。安装版卸载保留用户数据。
@@ -43,6 +46,6 @@
 
 ### English
 
-First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. MCP resource subscriptions refresh literal previews during continuous updates and allow explicit draft insertion without model requests. Includes complete JSON/gzip backup and opt-in desktop entry controls.
+First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. MCP resource subscriptions refresh literal previews during continuous updates and allow explicit draft insertion without model requests. Includes complete JSON/gzip backup and opt-in desktop entry controls. MCP resource/prompt binaries support explicit original-byte export and bounded normalized image previews, including empty-file/cancel handling; approved model reads retain metadata only. Delayed results respect selection changes, and nested Escape preserves the parent settings dialog.
 
 Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves original comparison labels after changing models, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
