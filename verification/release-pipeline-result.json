@@ -96,34 +96,34 @@
     }
   },
   "unit": {
-    "tests": 532,
-    "files": 54,
-    "durationSeconds": 48.95,
+    "tests": 616,
+    "files": 61,
+    "durationSeconds": 19.68,
     "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
-        "total": 2745,
-        "covered": 2721,
+        "total": 2897,
+        "covered": 2873,
         "skipped": 0,
-        "pct": 99.12
+        "pct": 99.17
       },
       "statements": {
-        "total": 4723,
-        "covered": 4563,
+        "total": 4964,
+        "covered": 4803,
         "skipped": 0,
-        "pct": 96.61
+        "pct": 96.75
       },
       "functions": {
-        "total": 1037,
-        "covered": 1008,
+        "total": 1106,
+        "covered": 1074,
         "skipped": 0,
-        "pct": 97.2
+        "pct": 97.1
       },
       "branches": {
-        "total": 3380,
-        "covered": 3165,
+        "total": 3546,
+        "covered": 3328,
         "skipped": 0,
-        "pct": 93.63
+        "pct": 93.85
       },
       "branchesTrue": {
         "total": 0,
@@ -131,9 +131,11 @@
         "skipped": 0,
         "pct": 100
       }
-    }
+    },
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "proof": "verification/mcp-resource-subscriptions-review-result.json"
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -346,6 +348,22 @@
     }
   ],
   "packagedVerification": {
+    "verifiedAt": "2026-10-03T18:44:33.632Z",
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "desktopChecks": 200,
+    "installedChecks": 200,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "strictReleasePolicyVerified": true,
+    "applicationHashes": {
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    },
+    "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
+  },
+  "previousPackagedVerification": {
     "desktopChecks": 179,
     "installedChecks": 179,
     "surfaceChecks": 4,
@@ -362,19 +380,6 @@
     "portableChecks": 7,
     "userDataRetained": true,
     "proofFile": "verification/recovery-distribution-result.json"
-  },
-  "previousPackagedVerification": {
-    "desktopChecks": 178,
-    "surfaceChecks": 4,
-    "branchChecks": 5,
-    "verificationRun": "complete desktop suite",
-    "suiteChecks": 178,
-    "normalCloseVerified": true,
-    "runtimeErrors": [],
-    "modelRequestsDuringBranchNavigation": 0,
-    "executableSha256": "60eba72ebe4d50e8097ed86a218ad80bbe26e9b8ad3af066cd3e555ec55b9dce",
-    "archiveSha256": "036075658b5d2b1a63944f269df20c3d5d5406c9008bed14d7f65eb0dcfb5d63",
-    "removedFontReferencesVerified": true
   },
   "sourceVerification": {
     "verifiedAt": "2026-10-03T17:54:40.759Z",
@@ -494,6 +499,12 @@
       "sourceCommit": "60ce797dfabc8ba7f47514183fda4cd43d7f652a",
       "conclusion": "failure",
       "proof": "verification/hosted-temporary-failure-result.json"
+    },
+    {
+      "runId": 37143206703,
+      "sourceCommit": "e92e66390706d1c7336a255b785038d4d8412a0b",
+      "conclusion": "failure",
+      "proof": "verification/hosted-mcp-comparison-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -538,7 +549,7 @@
     "latestHostedAttemptRunId": 37129058455,
     "latestHostedAttemptConclusion": "failure"
   },
-  "workflowStructureVerifiedAt": "2026-10-03T13:54:50.5912652Z",
+  "workflowStructureVerifiedAt": "2026-10-03T18:02:46.1936953Z",
   "comparisonOrigins": {
     "verifiedAt": "2026-10-03T14:49:01.847Z",
     "codeCommit": "f70aca84b29d27b058724f2b44ee50a2d6da77a2",
@@ -637,19 +648,19 @@
     },
     "proof": "verification/hosted-directory-fixture-result.json",
     "hostedVerified": false,
-    "latestHostedRunId": 37136953200,
+    "latestHostedRunId": 37143206703,
     "hostedFixturePreparationPassed": true,
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37136953200,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37136953200",
-    "sourceCommit": "60ce797dfabc8ba7f47514183fda4cd43d7f652a",
+    "runId": 37143206703,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37143206703",
+    "sourceCommit": "e92e66390706d1c7336a255b785038d4d8412a0b",
     "conclusion": "failure",
-    "unitTestsPassed": 597,
-    "packagedChecksBeforeFailure": 184,
+    "unitTestsPassed": 616,
+    "packagedChecksBeforeFailure": 189,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-temporary-failure-result.json"
+    "proof": "verification/hosted-mcp-comparison-failure-result.json"
   },
   "previousSourceVerification": {
     "desktopChecks": 179,
@@ -661,12 +672,63 @@
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
     "sourceVerified": true,
-    "packagedVerified": false,
+    "packagedVerified": true,
     "hostedVerified": false,
     "sourceChecks": 200,
     "focusedChecks": 6,
     "modelRequests": 0,
     "previewTests": 5,
-    "proof": "verification/mcp-resource-subscriptions-review-result.json"
+    "proof": "verification/mcp-resource-subscriptions-review-result.json",
+    "packagedVerifiedAt": "2026-10-03T18:44:33.632Z",
+    "packagedChecks": 200,
+    "installedChecks": 200,
+    "matchingRuntimeRecords": 10,
+    "installedCapturesReviewed": 4,
+    "applicationHashes": {
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    },
+    "distributionProof": "verification/mcp-resource-subscriptions-distribution-result.json",
+    "latestHostedRunId": 37143206703
+  },
+  "previousUnitVerification": {
+    "tests": 532,
+    "files": 54,
+    "durationSeconds": 48.95,
+    "unchangedTestDeadlineMs": 5000,
+    "coverage": {
+      "lines": {
+        "total": 2745,
+        "covered": 2721,
+        "skipped": 0,
+        "pct": 99.12
+      },
+      "statements": {
+        "total": 4723,
+        "covered": 4563,
+        "skipped": 0,
+        "pct": 96.61
+      },
+      "functions": {
+        "total": 1037,
+        "covered": 1008,
+        "skipped": 0,
+        "pct": 97.2
+      },
+      "branches": {
+        "total": 3380,
+        "covered": 3165,
+        "skipped": 0,
+        "pct": 93.63
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
   }
 }

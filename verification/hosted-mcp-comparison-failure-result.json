@@ -1,0 +1,202 @@
+{
+  "verifiedAt": "2026-10-03T19:04:38.721Z",
+  "runId": 37143206703,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37143206703",
+  "sourceCommit": "e92e66390706d1c7336a255b785038d4d8412a0b",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T18:10:29Z",
+  "artifact": {
+    "id": 11281068947,
+    "name": "windows-verification-37143206703-1",
+    "bytes": 8325838,
+    "digest": "sha256:14c4b1da53585e6cf53136d1790c4b8898ce696866d53da12ddbca3a130ba538",
+    "directory": "E:/QiyaoPipelineAudits/cc9c7dc62ee745d49bf08195a3862085"
+  },
+  "hostedTestsPassed": 616,
+  "hostedTestFiles": 61,
+  "typecheckPassed": true,
+  "fixturePreparationPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "packagedDesktopChecksPassedBeforeFailure": 189,
+  "failure": {
+    "source": "scripts/verify-model-comparisons.mjs:31:11",
+    "phase": "first comparison group partial text in both readonly previews",
+    "originalDeadlineMs": 10000,
+    "expected": "every comparison textarea includes PARTIAL",
+    "causeEstablished": false,
+    "lastPollCaptured": false,
+    "backendStateAtDeadlineCaptured": false,
+    "sequentialPostFailureDiagnostic": {
+      "capturedAt": 1791052779537,
+      "requests": [
+        {
+          "connection": "a",
+          "model": "one",
+          "messages": 4
+        },
+        {
+          "connection": "b",
+          "model": "two",
+          "messages": 4
+        }
+      ],
+      "visible": [
+        {
+          "text": "one: PARTIAL",
+          "status": "生成中"
+        },
+        {
+          "text": "two: PARTIAL",
+          "status": "生成中"
+        }
+      ],
+      "threads": [
+        {
+          "id": "fe1c1a69-658e-4005-b403-784001960b87",
+          "comparison": {
+            "groupId": "5187f7dd-f1ef-466e-b150-a59b1d632fe5",
+            "index": 0,
+            "contextLength": 2
+          },
+          "messages": 4,
+          "original": {
+            "id": "dbfbb92b-32fd-4965-83b7-1518bc164a73",
+            "status": "running",
+            "characters": 12,
+            "tail": "one: PARTIAL"
+          }
+        },
+        {
+          "id": "b2836a78-3dea-494f-b78b-d304f83bdaea",
+          "comparison": {
+            "groupId": "5187f7dd-f1ef-466e-b150-a59b1d632fe5",
+            "index": 1,
+            "contextLength": 2
+          },
+          "messages": 4,
+          "original": {
+            "id": "a4c1a531-4d6b-430f-aa96-afac20a1b1fe",
+            "status": "running",
+            "characters": 0,
+            "tail": ""
+          }
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 1280,
+    "height": 840,
+    "sha256": "5f4720a0d8351bb8d3eaec4e0b94cb246e1af3e8c2345e4739cf35447fe37399",
+    "individuallyReviewed": true,
+    "observation": "Both readonly previews show their PARTIAL text and running status after failure. This later image does not establish the visible or backend state at the original deadline."
+  },
+  "bodyHashes": {
+    "executableSha256": "dabd1fc1f5b3ac07df309d0d4dc861c78f693655159b65d3080f1efcf41b97dd",
+    "archiveSha256": "4eaf9daca6609ea1cd8f50015617349d4bcdb9898bd440836f0cfc6d7ee172ba"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "present": true,
+      "sha256": "9a4703621877826654a814941a04c66c9a091a585c575503cc99951e403f663a",
+      "verifiedAt": "2026-10-03T18:22:11.090Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "freshTenRecordResetVerified": true,
+  "completeRuntimeProofRejected": true,
+  "rejection": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "exactCommitPolicySha256": "aa7bca7de83de2addadc78ea1135f8e6c32057f89e73113d84fa235200e4d54b",
+  "source": [
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "65f4760b7bca57e15c4acfa287ca9d023f1e5113903e47ca729dc1508b5c9671"
+    },
+    {
+      "path": "verification/model-comparison-fixture.mjs",
+      "sha256": "e3fc919915fa99f10be8ce95d1d1638a882f20286af0f68261d515c5bc3e89c3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "26e2e640405e910377a1b3fb5d1496eb5cd25e3f6135f4e40b24ec30e0d6766e"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "aa7bca7de83de2addadc78ea1135f8e6c32057f89e73113d84fa235200e4d54b"
+    },
+    {
+      "path": "workbench/workbench.tsx",
+      "sha256": "cb510b8706e90bb6354aff93f56e4c806f0b20d3853399f00316b4993effea74"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "435fdc28870c2ee0c115f59a63ecf0f7fed7f30be67ebb61ac048c5355eac301"
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-mcp-subscriptions-full.log",
+      "sha256": "837b346bea2200a06e5fa07334db3524bcb9295239619ea7034a706f4e01cebf",
+      "bytes": 262507
+    },
+    {
+      "name": "github-mcp-subscriptions-failed.log",
+      "sha256": "a720fb0e2f6609676bd9f5b95129b2cd6a1f97b52574bd8280e4c872b7355d38",
+      "bytes": 73438
+    }
+  ],
+  "subscriptionChecksReached": false,
+  "settingsVerified": false,
+  "portableVerified": false,
+  "installedVerified": false,
+  "hostedRuntimeVerified": false,
+  "publicationVerified": false,
+  "scope": "This exact hosted source passes 616 unit checks and 189 unpacked desktop checks, including the original temporary-conversation checks, before the unchanged 10-second comparison partial-text wait fails. Its cause remains unestablished. Backend capture occurs before a separate visible capture; the 0-character second backend reply and later visible PARTIAL cannot establish simultaneous disagreement or a root cause. The later screenshot is not deadline evidence. Only the audit of the current remote EXE/ASAR is among the ten required records; the remaining nine are absent and incomplete proof is rejected by both collection and the frozen exact-commit policy. Older non-required records do not establish current completion. New subscription checks, settings, portable and installed verification were not reached. No complete hosted acceptance or release is claimed."
+}

@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-03T18:48:44.827Z",
+  "codeCommit": "68e65254d7b90a671e118cdb8622327ba7428ca5",
+  "source": {
+    "path": "scripts/verify-portable.mjs",
+    "sha256": "aa4b0014b5452c6c408a39c0d8abbd4fd761f454cd511c7d468f32e148bee728",
+    "originalSha256": "657afe70482e3c4e67b616d0d4009ae6b597c9fba37aba93fbb1964fc65646bd"
+  },
+  "initialFailure": {
+    "passedChecks": 3,
+    "source": "scripts/verify-portable.mjs:166:22",
+    "phase": "requested native close acknowledgement",
+    "retainedDirectory": "C:/Users/18468/AppData/Local/Temp/qiyao-portable-D2Gg76",
+    "normalWrapperExitAtFailureCaptured": false,
+    "extractionCleanupAtFailureCaptured": false,
+    "causeEstablished": false
+  },
+  "changedCheck": {
+    "requiresLivePageBeforeClose": true,
+    "acceptsOnlyExactClosedTargetErrorAfterRequestedClose": true,
+    "rendererCrashFailsVerification": true,
+    "originalWrapperExitDeadlineMs": 10000,
+    "originalExitCodeRequired": 0,
+    "extractionCleanupStillRequired": true,
+    "persistenceAndSecondLaunchStillRequired": true
+  },
+  "recheck": {
+    "checks": 7,
+    "actualLaunches": 2,
+    "normalCloseVerified": true,
+    "longPathCleanupVerified": true,
+    "pathLengths": [
+      274,
+      274
+    ],
+    "unpackedFilesVerified": 188,
+    "runtimeErrors": [],
+    "closedTargetBranchObserved": false
+  },
+  "applicationHashes": {
+    "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+    "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+    "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+  },
+  "logs": [
+    {
+      "name": "mcp-resource-updates-portable.log",
+      "sha256": "a709ff4be8b8e18caa8be29a96303a25976db01ef12c5b32782cf346309ec05b",
+      "bytes": 1109
+    },
+    {
+      "name": "mcp-resource-updates-portable-recheck.log",
+      "sha256": "91619decb6a82e94c872ae0e4f8cb9bfa27b55820eb2158ef7d1c8b875e97a69",
+      "bytes": 955
+    }
+  ],
+  "scope": "The initial portable run passes three checks then page.evaluate reports a closed target while requesting window close. It does not record the wrapper exit or cleanup at that failure, so that run remains failed and the exact original cause is not established. The verifier now requires a live page before dispatch, allows only the exact closed-target error after the request, detects renderer crashes, and retains the original 10-second wrapper deadline, zero exit, extraction removal, persisted notes/project restoration, original files, second launch and unchanged registration/shortcuts. The seven-check recheck passes twice on the unchanged current application body. No forced closed-target branch or synthetic fault coverage is claimed."
+}

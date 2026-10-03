@@ -1,0 +1,261 @@
+{
+  "verifiedAt": "2026-10-03T18:44:33.632Z",
+  "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+  "sourceProof": "verification/mcp-resource-subscriptions-review-result.json",
+  "strictReleasePolicyVerified": true,
+  "desktopChecks": 200,
+  "installedChecks": 200,
+  "subscriptionChecks": 6,
+  "subscriptionModelRequests": 0,
+  "continuousPreviewProgressVerified": true,
+  "explicitDraftInsertionVerified": true,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "branchChecks": 9,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "originalUnpackedFilesVerified": 188,
+  "portablePathLengths": [
+    274,
+    274
+  ],
+  "originalBootstrapPlugins": [
+    {
+      "variant": "installer",
+      "plugins": 6,
+      "sha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b"
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5,
+      "sha256": "a84cd782c3e34ee7aefc7699e55496a8aebcf0531fdb01c1ad2b00cd07470fac"
+    },
+    {
+      "variant": "portable",
+      "plugins": 2,
+      "sha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    }
+  ],
+  "applicationHashes": {
+    "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+    "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+    "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+    "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+  },
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "ca0d5799315a78a30ce098ff69b6b28a475027a375446b33529a1c2615189f82",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "59a37b1d46c3537742532a45774abce319188447ef0003c339a1650d59adbdfc",
+      "bytes": 48509
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "1ab79a8325f64bab48c6f151d9a431155c1c04f56ad5b1e2cab9fcb080e558d9",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "34a06a4488a29d3e7c0e14ab3da34dfb06c01f81f21fed8943f2d85403a75810",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "77338c980c890963674342e7475a344a7a3eb41910ccc27b8827c690c0ddbc46",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "2226e11c53c8e96ba2e42c33c4c5b17404536add405c4443d8ae3e14b5d74a1c",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "b21b7725da115d129faab820ec78fe8bc884f45e7f42f05d51ea4acf10feb5c8",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "3f8154261bc36093867dd6090164bea76b735ffa330495a5f475df14bd10c190",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "987cea66bce993d81ff56f31cd12e05e4244af8563cb07b142c5e3516fe578c2",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "5f45de1d0aba13e14be98cad2dd8e9dc2a78a2718a7afd560e3ce1ab62c20181",
+      "bytes": 766
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "8d902149f23e03341e4275a1a856e3b5e0131cd8f8f2d5be67d2d16f4f72e229",
+      "bytes": 48509,
+      "variant": "unpacked application",
+      "checks": 200
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "938bc5ff6ec1a46480524e397cbd71d07f918dec50a1df289b6ec37ea7f63890",
+      "bytes": 916,
+      "variant": "unpacked application",
+      "checks": 6
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "9eedc29e28bf16c309dc5a7fad4127212ca103800fba024a76402aabaaa2a097",
+      "bytes": 2247,
+      "variant": "unpacked application",
+      "checks": 6
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "7b4128e86a9a86ce5834ed8adea4be008a1a027c9261b645e5e5ee812c4e8f74",
+      "bytes": 11796,
+      "variant": "unpacked application",
+      "checks": 9
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "d3cec4ecaf067cd172f680735f4d34289b1ae38ed89ee2af1ec7a39c7f2e119d",
+      "bytes": 1953,
+      "variant": "unpacked application",
+      "checks": 6
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "1ab79a8325f64bab48c6f151d9a431155c1c04f56ad5b1e2cab9fcb080e558d9",
+      "bytes": 1295,
+      "variant": "unpacked application",
+      "checks": 4
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/122-mcp-subscription-live-light.png",
+      "sha256": "ed4e104f399d11a0cbef41c3d8ce975c377628f4d64e9d3731d464cab246fa5f",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-100.png",
+      "sha256": "6ce90eb289b04bbaf5cc5999c0fd6601f7e000f83b9e12acdd20df353cd3d376",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-125.png",
+      "sha256": "0c3d548e7a0920746c773c4b54d26336ca5d82f2627023125988ec864ca6151e",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-150.png",
+      "sha256": "6b3896a99f670e77b564ebdb9ce45a16be949ad54722ce8b2faaf035cb460ca9",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
+      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
+      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
+      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
+    }
+  ],
+  "logs": [
+    {
+      "name": "mcp-resource-updates-package.log",
+      "sha256": "0d83972afc6281281fe86ec19a5db2d6c90f4f2670e28a5342c1aa73f35034c3",
+      "bytes": 28266
+    },
+    {
+      "name": "mcp-resource-updates-package-audit.log",
+      "sha256": "3fd4be75bee2fc689fa926d2701a2956737420792498e3b32a9b98b3c2495d49",
+      "bytes": 187
+    },
+    {
+      "name": "mcp-resource-updates-packaged-desktop.log",
+      "sha256": "a1264785257e4ae9f9dd1c938e429b9943ce328efab95d718dfb07a58cb6c3dd",
+      "bytes": 29561
+    },
+    {
+      "name": "mcp-resource-updates-packaged-settings.log",
+      "sha256": "cd08051791cab1d1a4ffc527acbf3bcc1acd317758895862820ef14154758162",
+      "bytes": 666
+    },
+    {
+      "name": "mcp-resource-updates-bootstrap.log",
+      "sha256": "11e793d8440112bd6cda76ad8c327c13424e186fba5175223c77da54c672e581",
+      "bytes": 268
+    },
+    {
+      "name": "mcp-resource-updates-portable-recheck.log",
+      "sha256": "91619decb6a82e94c872ae0e4f8cb9bfa27b55820eb2158ef7d1c8b875e97a69",
+      "bytes": 955
+    },
+    {
+      "name": "mcp-resource-updates-installer.log",
+      "sha256": "c40a7fc8f88adbf00fc9c20ba6b145178773f02cbb36b8e93f8b652995210839",
+      "bytes": 30024
+    },
+    {
+      "name": "mcp-resource-updates-runtime-proof.log",
+      "sha256": "0faaf8da54b1197baa55f2b3de3e87fd57848810f4ae6ec2ab336848f7325747",
+      "bytes": 108
+    }
+  ],
+  "hostedVerified": false,
+  "scope": "The rebuilt Windows body passes all 200 checks on the unpacked and actual installed runtimes, each including six real stdio subscription checks with zero model requests and explicit draft insertion during continuous preview updates. Original comparison, branch, temporary, settings, original bootstrap plugins, long-path portable launches/all unpacked files, current-user Unicode-path installation/shortcuts and data-retaining uninstall remain verified on this body. Six unpacked raw records were archived before the installed run overwrote their shared outputs. All ten current required records satisfy strict same-body policy; all four actual installed subscription captures were individually inspected. The original LGPL/COPYING/font license hashes remain unchanged. Hosted verification and the remaining complete capability/UI/physical delivery scope remain separate required work; no release is claimed."
+}
