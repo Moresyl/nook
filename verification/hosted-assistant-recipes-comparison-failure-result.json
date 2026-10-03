@@ -1,0 +1,231 @@
+{
+  "verifiedAt": "2026-10-03T23:41:55.365Z",
+  "codeCommit": "c938cd62ca99d0b3e7919d673e829ba8cdafd541",
+  "runId": 37159904540,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37159904540",
+  "conclusion": "failure",
+  "unitTests": 638,
+  "unitFiles": 62,
+  "passedDesktopChecks": 189,
+  "artifact": {
+    "id": 11287444953,
+    "name": "windows-verification-37159904540-1",
+    "bytes": 8382120,
+    "digest": "sha256:63780137f50a2f28f618f892c33a75f33a6bb828e5be305aa7abfb48ce321fc1"
+  },
+  "actualBody": {
+    "executableSha256": "2477885c9b5b03084e5a3c35579be9c79373962cca09158bc7cea2a2d28ce293",
+    "archiveSha256": "4c5108dfa522f1488d82398f15c14851a4e59ae565fbafd242f7445ed650fb17",
+    "auditSha256": "92ecff5aca550ef4655ef417aee9236d6ab0ee870411730d8889aa1ce1057c48"
+  },
+  "firstResponse": {
+    "waitStartedAt": 1791069582760,
+    "completedAt": 1791069597920,
+    "unchangedResponseDeadlineMs": 30000,
+    "diagnostic": {
+      "installedAt": 1791069582758,
+      "clicks": [
+        {
+          "at": 1791069582852,
+          "trusted": true
+        }
+      ],
+      "samples": 149,
+      "lastPoll": {
+        "at": 1791069597863,
+        "sendButtonPresent": false,
+        "sendButtonDisabled": null,
+        "responses": [
+          {
+            "text": "",
+            "status": "生成中"
+          },
+          {
+            "text": "two: PARTIAL",
+            "status": "生成中"
+          }
+        ]
+      }
+    },
+    "elapsedMs": 15160
+  },
+  "partialResponse": {
+    "capturedAt": 1791069625972,
+    "waitStartedAt": 1791069597994,
+    "waitFailedAt": 1791069609694,
+    "unchangedDeadlineMs": 10000,
+    "lastPoll": {
+      "polledAt": 1791069609187,
+      "sequence": 27,
+      "matched": false,
+      "count": 2,
+      "visible": [
+        {
+          "characters": 0,
+          "tail": "",
+          "status": "生成中"
+        },
+        {
+          "characters": 0,
+          "tail": "",
+          "status": "生成中"
+        }
+      ]
+    },
+    "backendCaptureStartedAt": 1791069609811,
+    "backendCaptureCompletedAt": 1791069625969,
+    "requestTimeline": [
+      {
+        "receivedAt": 1791069591452,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791069591453
+      },
+      {
+        "receivedAt": 1791069596682,
+        "connection": "b",
+        "model": "two",
+        "messages": 4,
+        "partialSentAt": 1791069596683
+      }
+    ],
+    "requests": [
+      {
+        "connection": "a",
+        "model": "one",
+        "messages": 4
+      },
+      {
+        "connection": "b",
+        "model": "two",
+        "messages": 4
+      }
+    ],
+    "visible": [
+      {
+        "text": "one: PARTIAL",
+        "status": "生成中"
+      },
+      {
+        "text": "two: PARTIAL",
+        "status": "生成中"
+      }
+    ],
+    "threads": [
+      {
+        "id": "e648c1f0-daec-4772-a9f5-e46de662568c",
+        "comparison": {
+          "groupId": "a0aec929-047d-480a-8689-75d743b57e69",
+          "index": 0,
+          "contextLength": 2
+        },
+        "messages": 4,
+        "original": {
+          "id": "3289fb48-46fe-469b-9c5b-206a0918bc4a",
+          "status": "running",
+          "characters": 12,
+          "tail": "one: PARTIAL"
+        }
+      },
+      {
+        "id": "70127bfc-6d96-49ac-998d-e8434f99df14",
+        "comparison": {
+          "groupId": "a0aec929-047d-480a-8689-75d743b57e69",
+          "index": 1,
+          "contextLength": 2
+        },
+        "messages": 4,
+        "original": {
+          "id": "7e472656-61bd-4eb8-abaa-dec1d6be0538",
+          "status": "running",
+          "characters": 12,
+          "tail": "two: PARTIAL"
+        }
+      }
+    ]
+  },
+  "firstVisibleThenEmptyObserved": true,
+  "backendCaptureElapsedMs": 16158,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "92ecff5aca550ef4655ef417aee9236d6ab0ee870411730d8889aa1ce1057c48"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "5cb87548395bbc1965cafdf93d837a049f658ef4dd6831f8b326a0fe6db2398c",
+    "prior206CohortRejected": true,
+    "rejection": "Complete desktop, surface and portable verification is required"
+  },
+  "screenshot": {
+    "name": "failure.png",
+    "sha256": "2cd797abd42fb6dd5b22b1ddba45a015ba2de780f63ef9072e2387b32fc4d63c",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "The later light comparison screenshot shows both original model labels, two PARTIAL texts and running controls inside the complete dialog. Its later capture does not establish simultaneous partial visibility within the unchanged ten-second wait."
+  },
+  "logs": [
+    {
+      "name": "github-assistant-recipes-full.log",
+      "sha256": "697b3c71cfdfb97e49d29f31f844df6bd5920b9211e96b70c6badb7c02737b09",
+      "bytes": 274248
+    },
+    {
+      "name": "github-assistant-recipes-failed.log",
+      "sha256": "625fc13e983eb00001046fcab8edb50ee18abceac292bcf74d46cf753acff2e4",
+      "bytes": 82087
+    }
+  ],
+  "scope": "This exact source passes 638 unit checks, type/build/package gates and 189 desktop checks. The original first-response control wait passes in about 15 seconds with one trusted click. Its final DOM sample already contains the second partial reply, but a later sample in the unchanged ten-second simultaneous-partial wait has both textareas empty. Both actual fixture partials were sent before that wait began and neither fixture completed. Later backend capture and screenshot contain both partials. These observations establish loss of previously sampled visible text while the replies are running; the precise producer of the intervening update still requires reproduction. The last backend capture also takes about 16 seconds. No resource sample at the comparison deadline is available, so memory is not established as the cause. The recipe, subscription, binary and later settings/portable/installed/full-proof gates are not reached. Only the fresh application audit remains among the ten required records, and collection rejects missing records. The exact strengthened source policy rejects its committed historical 206-check cohort. No complete hosted acceptance or publication is claimed."
+}

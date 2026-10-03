@@ -1,0 +1,287 @@
+{
+  "verifiedAt": "2026-10-03T23:46:00.892Z",
+  "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
+  "verificationCommit": "c938cd62ca99d0b3e7919d673e829ba8cdafd541",
+  "sourceProof": {
+    "path": "verification/assistant-recipes-review-result.json",
+    "sha256": "7f08c31ec2611a5dced35992926d6662ed18f2e5ec81681c8a3cd6fa2d21b409"
+  },
+  "unitTests": 638,
+  "unitFiles": 62,
+  "unpackedChecks": 210,
+  "installedChecks": 210,
+  "recipeChecks": 4,
+  "recipeModelRequests": 0,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "requiredRecordCount": 10,
+  "matchingRuntimeProofVerified": true,
+  "packagedVerified": true,
+  "actualInstallationVerified": true,
+  "hostedVerified": false,
+  "normalCloseVerified": true,
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "c2ff5e584033c4d30986e9a7a811f7bc1f5e5c1b340075060a791ae0d431edfd",
+      "bytes": 52064
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "81e208e0654508fa282a32906061ace88b80dde6dc877d67ab0005c2b25f2e92",
+      "bytes": 1295
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "626fe2f72d24590a116989ba5feb7642a0e3c4d6e244256f1de2286521e24d25",
+      "bytes": 11796
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "e251632702a968fab257c87fd8d9364e7b459e65e89f237ed0aaf8418b850186",
+      "bytes": 1953
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "9a982404ebb6f50af5dbd1ac62039d51cccd2428378000b02712db113724feb0",
+      "bytes": 2247
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "2215a7a5955acfdf38259692159f1b70d48d2daefbeca54654693ac371064f03",
+      "bytes": 916
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "sha256": "26bd4ffaca00d1f1b5cbeb57cd91a8d91f4931e512cfdb342c0716a2af358408",
+      "bytes": 1891
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "sha256": "c940d4c3365c3885538852925d6d648bd505af9ad0f64ef75195d6042b845a56",
+      "bytes": 1798
+    }
+  ],
+  "installedRecords": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "960b2e5444aaaf6a53b3fa6d630554bfc8df090852d170d9f9c084012c70c879",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "07d695cbfa667559698c4fb3a28a32ca0d74b32c5338e72cfef8535c45058073",
+      "bytes": 52064
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "81e208e0654508fa282a32906061ace88b80dde6dc877d67ab0005c2b25f2e92",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "ea67d61e3f8cc90875f3bda60814403f12c91a885c5d744445ab4e7b6c91917a",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "d9ba3ed1da64bfd4b320b45881bed62dffee47aa387f6f01478186cfb4537523",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "e37dde4dbc09e3befb316b0c4ce436770b5650b6ee688ddb67a4532a68a56119",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "a5ac61a38c5f2cea6c9f017abe54fd23b14850e926cfd7c16f0d6d3c70a78c83",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "3ac988c0d161397ad5fedda5639910228487d9c855f2c401827d158fab84c7bf",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "05830f0e3f2877e1aa4c486751ae0da7b43d4b087bba3ea679ebb7995a3eef37",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "5ac353103398a9531eae56bdc131153eaaca9de0b4a4285b2f368413e5a40698",
+      "bytes": 766
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "126-assistant-recipe-editor-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "b334fd4964d9b5d9209b06e57e797269e0408cf1d917d09d543662eaf5eacfbd",
+      "individuallyReviewed": true,
+      "observation": "The light editor shows the selected linked assistant, exact template text, labels and visible cancel/save footer controls.",
+      "path": "verification/screenshots/126-assistant-recipe-editor-light.png",
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "126-assistant-recipe-parameters-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "46811b65f967b4847985830ea722182e67e1c1bb29610c43e3b0d54cc6815b78",
+      "individuallyReviewed": true,
+      "observation": "The light parameter editor shows the literal prototype-key default, required switch, editable choices, focused default textarea and visible footer controls.",
+      "path": "verification/screenshots/126-assistant-recipe-parameters-light.png",
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-100.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "659aa1269e2df7864eac4f73e556120c3e0bab21d1308ee9fc5876334e20ef10",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-100.png",
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-125.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "4513a20e4f2842ee0307c32432d66fcc51a5a96b6213d6141f710a42f7ae9667",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-125.png",
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-150.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "6a8ef51a6a1eedac8f96c00c7347a6da4d7da628c49a638862ca01d239e4908f",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-150.png",
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "5dda2141cc311bd5f4038d4d938ee82d0bed0427da7c31b4865c40ce5562c9d0"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485551005,
+      "sha256": "b7180f92fb97a567c1cd0755ce411e627f23cff950df69e1cca609814e3a10b6"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237872006,
+      "sha256": "b12c924e6752ae35344c1e1035dacb5fb38b13e60ca3e2e0cde2267e85d0c860"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306613376,
+      "sha256": "f7159f597b29c3ac5eed70cf1a800d1830ba166a2b33c8cde3c8a09b4a3654c8"
+    }
+  ],
+  "installer": {
+    "registrationVerified": true,
+    "archiveSha256": "b7180f92fb97a567c1cd0755ce411e627f23cff950df69e1cca609814e3a10b6",
+    "executableSha256": "5dda2141cc311bd5f4038d4d938ee82d0bed0427da7c31b4865c40ce5562c9d0",
+    "checks": 210,
+    "uninstalled": true,
+    "normalCloseVerified": true,
+    "scope": "Actual current-user silent install into an owned Unicode path, complete installed-runtime regression, original package hashes, shortcut metadata and silent uninstall with fresh data sentinels. Native wizard interaction remains a separate check.",
+    "userDataRetained": true,
+    "version": "0.1.0-alpha.1",
+    "installerSha256": "b12c924e6752ae35344c1e1035dacb5fb38b13e60ca3e2e0cde2267e85d0c860",
+    "shortcutsVerified": true,
+    "verifiedAt": "2026-10-03T23:39:56.4123669Z"
+  },
+  "portable": {
+    "checks": 7,
+    "normalLaunches": 2,
+    "longPathCleanupVerified": true
+  },
+  "logs": [
+    {
+      "name": "assistant-recipes-package.log",
+      "bytes": 28266,
+      "sha256": "1d259ca9466157e464a5bb2250004ea0658aab53071997ad331c9fd2ac4ab68f"
+    },
+    {
+      "name": "assistant-recipes-package-audit.log",
+      "bytes": 298,
+      "sha256": "950659b5a1892cd634b92f4a5940f8950c43013dcdaf9e65e62aa2910a6cdc2b"
+    },
+    {
+      "name": "assistant-recipes-packaged-desktop.log",
+      "bytes": 34146,
+      "sha256": "0ccc1698a9a039559ac7b7bda9dce17dedb57c845bb32dd2a5f2f66535fc99da"
+    },
+    {
+      "name": "assistant-recipes-packaged-settings.log",
+      "bytes": 763,
+      "sha256": "89c07df38e57011541bb1cee999ea901683b3623f87c2b03695abc9ff8899b38"
+    },
+    {
+      "name": "assistant-recipes-bootstrap.log",
+      "bytes": 375,
+      "sha256": "f97956a67de78f8a83a6738a53e834788d2339fbd1ac746cbed6fe93c055e1e9"
+    },
+    {
+      "name": "assistant-recipes-portable.log",
+      "bytes": 1054,
+      "sha256": "38bdf02f9bab81258f63458cf4a1c39c70baa0198288eaa8ca3292634a2599ba"
+    },
+    {
+      "name": "assistant-recipes-installer.log",
+      "bytes": 34569,
+      "sha256": "43d502a01669249980c3b0bf16c722a77c2d61e876694b6139b1c4a402ca85fc"
+    },
+    {
+      "name": "assistant-recipes-runtime-proof.log",
+      "bytes": 108,
+      "sha256": "6bb05e17670b752f9fa763a73702ec676392d1b7aa36dac12135b91987f10bf6"
+    }
+  ],
+  "scope": "The unchanged assistant-recipe source passes complete 210-check unpacked and actual installed desktop suites, including four recipe checks with zero model requests. Eight exact unpacked records are preserved before the installed suite overwrites common records. Five current installed recipe captures are individually reviewed. Four settings checks, seven portable checks with two real long-path launches, original bootstrap input inventories, actual current-user Unicode-path installation, shortcuts and data-retaining uninstall all pass. All ten required records satisfy current strict matching-body policy, and all four actual distributable hashes match those records. Earlier cropped/incomplete UI captures remain negative source evidence. Complete hosted acceptance, remaining capability/UI/physical work and publication remain pending.",
+  "negativeWorktreeBuild": {
+    "name": "assistant-recipes-package-worktree-boundary-before-fix.log",
+    "sha256": "dc2afaea3c0749667bd871012eb1db31598a34596d280b8a3c7406c84f49e2ae",
+    "scope": "The isolated worktree used a junction to canonical dependencies; its bundled-license asset boundary check rejected those external paths. Building in the canonical project retains the original guard and validates the actual declared asset paths."
+  }
+}

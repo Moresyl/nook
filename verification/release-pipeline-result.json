@@ -42,8 +42,8 @@
     "Exact bilingual release-note/source verification and tagged pipeline publication"
   ],
   "typecheckExitCode": 0,
-  "installedScriptExecutionVerified": false,
-  "scope": "Current assistant-recipe source passes 638 unit tests in 62 files and 210 complete desktop checks with normal close; five current full-run captures are reviewed. The strengthened policy requires the four recipe checks and at least 210 complete desktop checks. Earlier 206-check distribution and hosted results remain historical evidence for their own source/body. New-body distribution, complete hosted acceptance, remaining capability/UI work and exact tagged publication remain pending.",
+  "installedScriptExecutionVerified": true,
+  "scope": "The unchanged assistant-recipe source passes complete 210-check unpacked and actual installed desktop suites, including four recipe checks with zero model requests. Eight exact unpacked records are preserved before the installed suite overwrites common records. Five current installed recipe captures are individually reviewed. Four settings checks, seven portable checks with two real long-path launches, original bootstrap input inventories, actual current-user Unicode-path installation, shortcuts and data-retaining uninstall all pass. All ten required records satisfy current strict matching-body policy, and all four actual distributable hashes match those records. Earlier cropped/incomplete UI captures remain negative source evidence. Complete hosted acceptance, remaining capability/UI/physical work and publication remain pending.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -135,7 +135,7 @@
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "proof": "verification/mcp-binary-files-review-result.json"
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -669,15 +669,15 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37152624644,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37152624644",
-    "sourceCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
+    "runId": 37159904540,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37159904540",
+    "sourceCommit": "c938cd62ca99d0b3e7919d673e829ba8cdafd541",
     "conclusion": "failure",
-    "unitTestsPassed": 630,
+    "unitTestsPassed": 638,
     "packagedChecksBeforeFailure": 189,
-    "terminalBindingVerified": true,
+    "visiblePartialRegressionObserved": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-comparison-first-response-failure-result.json"
+    "proof": "verification/hosted-assistant-recipes-comparison-failure-result.json"
   },
   "previousSourceVerification": {
     "verifiedAt": "2026-10-03T19:51:03.053Z",
@@ -777,17 +777,23 @@
   },
   "currentHostedRuntimeProofVerified": false,
   "historicalWorkflowRunVerified": true,
-  "previousVerificationScope": "Current local distribution acceptance passes 206 unpacked and installed desktop checks, four surface checks, seven portable checks, original bootstrap plugins, data-retaining uninstall and ten strict matching-body records. Current source unit acceptance is 630 tests in 62 files. Historical hosted success remains attached to its own source and body hashes; the latest hosted failures and current attempts do not establish complete acceptance of this binary-resource body. Full capability/UI/physical delivery, exact tagged source/checksums and publication remain pending.",
+  "previousVerificationScope": "Current assistant-recipe source passes 638 unit tests in 62 files and 210 complete desktop checks with normal close; five current full-run captures are reviewed. The strengthened policy requires the four recipe checks and at least 210 complete desktop checks. Earlier 206-check distribution and hosted results remain historical evidence for their own source/body. New-body distribution, complete hosted acceptance, remaining capability/UI work and exact tagged publication remain pending.",
   "previousCurrentRuntimeProofVerified": true,
   "assistantRecipes": {
     "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
     "sourceVerified": true,
-    "packagedVerified": false,
+    "packagedVerified": true,
     "hostedVerified": false,
     "sourceChecks": 210,
     "focusedChecks": 4,
     "modelRequests": 0,
-    "proof": "verification/assistant-recipes-review-result.json"
+    "proof": "verification/assistant-recipes-review-result.json",
+    "distributionProof": "verification/assistant-recipes-distribution-result.json",
+    "unpackedChecks": 210,
+    "installedChecks": 210,
+    "matchingRuntimeRecords": 10,
+    "installedCapturesReviewed": 5,
+    "latestHostedRunId": 37159904540
   },
   "latestTemporaryDiagnosticWorkflow": {
     "runId": 37155970153,
