@@ -1,0 +1,105 @@
+{
+  "verifiedAt": "2026-10-03T08:49:24.389Z",
+  "sourceCommit": "6af1287aed4444668b2a9a227b1289542e60ae72",
+  "scope": "Complete local recovery-guard Windows distribution verification: actual 179-check unpacked and installed desktop runs, four settings checks, original bootstrap components, two portable long-path lifecycle runs, current-user Unicode-path installation/shortcut registration and data-preserving silent uninstall. All results match this executable/ASAR and current wrappers. Hosted release and remaining capability/UI acceptance remain pending; no physical picker or wizard interaction is claimed.",
+  "desktopChecks": 179,
+  "installedChecks": 179,
+  "surfaceChecks": 4,
+  "branchChecks": 6,
+  "ambiguousHistoryRecoveryVerified": true,
+  "normalCloseVerified": true,
+  "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
+  "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433",
+  "productFiles": 233,
+  "unpackedFiles": 188,
+  "dependencyVersions": 381,
+  "retainedDocuments": 401,
+  "distributionComponents": 5,
+  "distributionFiles": 20,
+  "removedUiFontReferencesVerified": true,
+  "oldProductIdentityMatches": [],
+  "portableChecks": 7,
+  "portableLaunches": 2,
+  "longDocumentPaths": [
+    298,
+    298
+  ],
+  "longPathCleanupVerified": true,
+  "registrationVerified": true,
+  "shortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "runtimeErrors": [],
+  "originalLegalFiles": [
+    {
+      "file": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "originalBytesRetained": true
+    },
+    {
+      "file": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "originalBytesRetained": true
+    },
+    {
+      "file": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "originalBytesRetained": true
+    }
+  ],
+  "releasePolicyVerified": true,
+  "artifacts": [
+    {
+      "file": "Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "0f0543cd2accb053092a1eb93d4b7d93bd05c00d5a9305f4a84535a7161f95d1",
+      "bytes": 237866220
+    },
+    {
+      "file": "Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "1334cb68e786fe5f6f9ec33eac8b2ff00ff825193e13e18d01dc92452a154ea8",
+      "bytes": 306599356
+    }
+  ],
+  "proofFiles": [
+    {
+      "file": "verification/package-audit-result.json",
+      "sha256": "755db33c7e267c0366fca3b2ca9ee96f49b825535936dad846c4e6343cf1f198"
+    },
+    {
+      "file": "verification/packaged-result.json",
+      "sha256": "d8a072c1868abbc6e7e5e5671e245fe90f6b6782c41b833dc5caf43a4f00863f"
+    },
+    {
+      "file": "verification/surfaces-packaged-result.json",
+      "sha256": "e300e690da7f83738b7281d72625b2c51a6fa0e01aeead523be5399fea1ea664"
+    },
+    {
+      "file": "verification/conversation-branches-packaged-result.json",
+      "sha256": "d32944f4a2e269c58b69e22b3bd9fe076ec9af3846fcff86ae6e64198067578d"
+    },
+    {
+      "file": "verification/portable-result.json",
+      "sha256": "5966fb1f0f23c13df519a4841af0463d9b77c36d7272f61fd65949171f357b2e"
+    },
+    {
+      "file": "verification/portable-package-audit-result.json",
+      "sha256": "ef0f932ee97248c0656088a51660dd0a6923cd79cf2b5487683b630a2f6c7373"
+    },
+    {
+      "file": "verification/distribution-bootstrap-result.json",
+      "sha256": "8342475b5a5817d7ff87b9cf1e74419bbd03a16d1b27fab5bd6df85bcb04abab"
+    },
+    {
+      "file": "verification/pipeline-installer-result.json",
+      "sha256": "d6d13478be863b57ab86e7e921fa948a80372b00a7eb8f6c497bdb13a7bb1059"
+    },
+    {
+      "file": "verification/installed-package-audit-result.json",
+      "sha256": "5735410d5cc98b241b20d1aa26f6b86526a04785891be606a7cc62e831056edc"
+    },
+    {
+      "file": "verification/shell-integration-result.json",
+      "sha256": "716aa4c7129e12c89a5a6e8e995447149d5d976cad99907ec31b7814acee82c9"
+    }
+  ]
+}

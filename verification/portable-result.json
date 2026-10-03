@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-03T04:00:46.168Z",
+  "verifiedAt": "2026-10-03T08:13:07.221Z",
   "version": "0.1.0-alpha.1",
   "variant": "actual Windows portable wrapper",
   "checks": 7,
@@ -12,23 +12,23 @@
     "the restarted portable wrapper also exits normally and cleans its extraction",
     "portable operation preserves its executable, existing installation registration and shortcuts"
   ],
-  "wrapperSha256": "cbc3cac1af593743b17d3cb29d70b0b11691353dcbd6b40007fecd9e50e040ec",
-  "childExecutableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "wrapperSha256": "1334cb68e786fe5f6f9ec33eac8b2ff00ff825193e13e18d01dc92452a154ea8",
+  "childExecutableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
   "launches": [
     {
-      "wrapperStartedAt": 1791000022188,
-      "applicationObservedAt": 1791000030821,
-      "longDocumentPathLength": 295,
-      "applicationReadyAt": 1791000030927
+      "wrapperStartedAt": 1791015169465,
+      "applicationObservedAt": 1791015175358,
+      "longDocumentPathLength": 298,
+      "applicationReadyAt": 1791015175418
     },
     {
-      "wrapperStartedAt": 1791000036377,
-      "applicationObservedAt": 1791000044875,
-      "longDocumentPathLength": 295,
-      "applicationReadyAt": 1791000044914
+      "wrapperStartedAt": 1791015180164,
+      "applicationObservedAt": 1791015185750,
+      "longDocumentPathLength": 298,
+      "applicationReadyAt": 1791015185785
     }
   ],
-  "unpackedFilesVerified": 261,
+  "unpackedFilesVerified": 188,
   "longPathCleanupVerified": true,
   "runtimeErrors": [],
   "scope": "Actual x64 portable wrapper, isolated data and temporary directories, Chinese/space path and exact forwarded Unicode arguments, complete extracted-package hashes and all unpacked-asset names/bytes including a retained document beyond MAX_PATH, real native PTY, cleanup of a stale long-path document before restart, two normal lifecycle exits, retained data and extraction cleanup. Cold extraction is measured separately with a 120-second budget; Electron startup retains 30 seconds. Default data location, native dialogs, other platforms and public release remain separate gates."

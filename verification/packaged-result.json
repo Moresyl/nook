@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-03T04:06:08.893Z",
+  "verifiedAt": "2026-10-03T08:18:57.088Z",
   "variant": "packaged executable",
-  "checks": 173,
+  "checks": 179,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -142,8 +142,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84173876,
-    "compressedBytes": 240176,
+    "expandedBytes": 84173882,
+    "compressedBytes": 240194,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -402,57 +402,57 @@
         "controls": [
           {
             "label": "打开命令面板",
-            "left": 418,
-            "right": 446,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "查找当前聊天",
-            "left": 448,
-            "right": 476,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "置顶聊天",
-            "left": 478,
-            "right": 506,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "导出聊天",
-            "left": 508,
-            "right": 536,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "归档聊天",
-            "left": 538,
-            "right": 566,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "删除聊天",
-            "left": 568,
+            "left": 572,
             "right": 596,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "预览 BODY_SCOPE_EXCLUDED.txt",
@@ -539,57 +539,57 @@
         "controls": [
           {
             "label": "打开命令面板",
-            "left": 316.66668701171875,
-            "right": 344.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "查找当前聊天",
-            "left": 346.66668701171875,
-            "right": 374.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "置顶聊天",
-            "left": 376.66668701171875,
-            "right": 404.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "导出聊天",
-            "left": 406.66668701171875,
-            "right": 434.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "归档聊天",
-            "left": 436.66668701171875,
-            "right": 464.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "删除聊天",
-            "left": 466.66668701171875,
+            "left": 470.66668701171875,
             "right": 494.66668701171875,
-            "top": 40,
-            "bottom": 68,
-            "width": 28,
-            "height": 28
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
           },
           {
             "label": "预览 BODY_SCOPE_EXCLUDED.txt",
@@ -683,6 +683,100 @@
     "screenshotMethod": "Complete native Electron BrowserWindow.capturePage with exact content-size assertions",
     "scope": "Current-chat message-only literal find; native keyboard, pointer and captured-pointer rail navigation; reference 26-by-2-pixel markers and one-rem edge fades; exact original UTF-16 offsets, inline Markdown spans, Unicode/metacharacters and actual code overflow; command context/focus, no-send history/draft/attachment retention; real held HTTP streaming and manual reading position; actual normal close/restart and dark 760x540 layout at 100/125/150 percent zoom. Maximum-scale, full accessibility, cross-platform and richer graphical branch navigation remain separate work."
   },
+  "pluginFonts": [
+    {
+      "theme": "light",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "richContentScope": "Native streamed inline/display/fenced math with local reference fonts and accessible MathML; reference light/dark syntax colors including PowerShell; exact copy through a clipboard fixture; isolated readonly flowchart, sequence and class diagrams; SVG geometry/path preservation, theme/minimum-window layout and manual-scroll retention; inert hostile directives/HTML/remote math commands and complete malformed/oversized source recovery. Content substitutions are persisted through the bridge and reloaded.",
   "screenshots": [
     "01-home-light.png",
@@ -790,9 +884,463 @@
     "104-chat-find-code-light.png",
     "105-chat-find-dark-zoom-100.png",
     "105-chat-find-dark-zoom-125.png",
-    "105-chat-find-dark-zoom-150.png"
+    "105-chat-find-dark-zoom-150.png",
+    "106-branch-navigation-light.png",
+    "107-branch-navigation-error-light.png",
+    "108-branch-navigation-dark-zoom-100.png",
+    "108-branch-navigation-dark-zoom-125.png",
+    "108-branch-navigation-dark-zoom-150.png",
+    "109-branch-header-dark-zoom-150.png",
+    "110-branch-header-with-parent-light-zoom-150.png",
+    "111-branch-navigation-ambiguous-dark.png"
   ],
+  "branchNavigation": {
+    "checks": 6,
+    "familyThreadsInitially": 205,
+    "survivingThreads": 203,
+    "pageSize": 200,
+    "ambiguousHistoryRecoveryVerified": true,
+    "modelRequests": 0,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "header": {
+          "top": 1,
+          "bottom": 62
+        },
+        "footer": {
+          "top": 472,
+          "bottom": 521
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 500,
+            "right": 528,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 536,
+            "right": 564,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 572,
+            "right": 600,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 608,
+            "right": 636,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 644,
+            "right": 672,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 680,
+            "right": 708,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 716,
+            "right": 744,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "header": {
+          "top": 0.800000011920929,
+          "bottom": 57.599999248981476
+        },
+        "footer": {
+          "top": 359.6000061035156,
+          "bottom": 408.00000762939453
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 416,
+            "right": 440,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 572,
+            "right": 596,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "header": {
+          "top": 0.6666666865348816,
+          "bottom": 57.3333346247673
+        },
+        "footer": {
+          "top": 287.3333435058594,
+          "bottom": 335.3333435058594
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 314.66668701171875,
+            "right": 338.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 470.66668701171875,
+            "right": 494.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      }
+    ],
+    "parentHeaderLayout": [
+      {
+        "zoom": 1,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 464,
+            "right": 492,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 500,
+            "right": 528,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 536,
+            "right": 564,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 572,
+            "right": 600,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 608,
+            "right": 636,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 644,
+            "right": 672,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 680,
+            "right": 708,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 716,
+            "right": 744,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.25,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 390,
+            "right": 414,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 416,
+            "right": 440,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 572,
+            "right": 596,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.5,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 288.66668701171875,
+            "right": 312.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 314.66668701171875,
+            "right": 338.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 470.66668701171875,
+            "right": 494.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      }
+    ],
+    "screenshots": [
+      "106-branch-navigation-light.png",
+      "107-branch-navigation-error-light.png",
+      "108-branch-navigation-dark-zoom-100.png",
+      "108-branch-navigation-dark-zoom-125.png",
+      "108-branch-navigation-dark-zoom-150.png",
+      "109-branch-header-dark-zoom-150.png",
+      "110-branch-header-with-parent-light-zoom-150.png",
+      "111-branch-navigation-ambiguous-dark.png"
+    ],
+    "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
+  },
   "normalCloseVerified": true,
-  "executableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
-  "archiveSha256": "522ea40e6af9481129716c526eed465a2a1b4841fb83d5ec3b6a1e5c0fa758c4"
+  "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
+  "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433"
 }

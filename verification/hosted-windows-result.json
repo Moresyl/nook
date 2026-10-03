@@ -1,0 +1,117 @@
+{
+  "runId": 37108566329,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37108566329",
+  "sourceCommit": "6af1287aed4444668b2a9a227b1289542e60ae72",
+  "conclusion": "success",
+  "verifiedAt": "2026-10-03T08:49:24.443Z",
+  "completedAt": "2026-10-03T08:32:11Z",
+  "typecheckVerified": true,
+  "unitTestsPassed": 532,
+  "unitTestFiles": 54,
+  "unitDurationSeconds": 52.39,
+  "unitCoverage": {
+    "lines": {
+      "total": 2745,
+      "covered": 2721,
+      "skipped": 0,
+      "pct": 99.12
+    },
+    "statements": {
+      "total": 4723,
+      "covered": 4563,
+      "skipped": 0,
+      "pct": 96.61
+    },
+    "functions": {
+      "total": 1037,
+      "covered": 1008,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3380,
+      "covered": 3165,
+      "skipped": 0,
+      "pct": 93.63
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "releaseNoticesVerified": true,
+  "buildAndPackageAuditVerified": true,
+  "completePackagedDesktopChecks": 179,
+  "completeInstalledDesktopChecks": 179,
+  "surfaceChecks": 4,
+  "branchChecks": 6,
+  "ambiguousHistoryRecoveryVerified": true,
+  "branchVerificationRun": "complete desktop suite",
+  "branchSuiteChecks": 179,
+  "modelRequestsDuringBranchNavigation": 0,
+  "portableChecks": 7,
+  "portableLaunches": 2,
+  "longDocumentPaths": [
+    292,
+    292
+  ],
+  "longPathCleanupVerified": true,
+  "unpackedFilesVerified": 188,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "installerRegistrationVerified": true,
+  "installerShortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "executableSha256": "51336eaa74428f2695e83add26eb32b885def5ef733218a3f07f1e3d5532a654",
+  "archiveSha256": "b969b9db5dc601cd5df3d498f1cc891af5f293a3221a2fa40de14e25ec2cb9d1",
+  "installerSha256": "11ec2278bf0df0cf9cfe0dab6b846ea1dde6a5945d62cd207e8bba8df6486224",
+  "portableSha256": "52c7052bc3192b4d9f2988f0459ac45fe9018a78e28ab466c839bf687d9ea31b",
+  "originalDependencyLegalDocuments": 401,
+  "removedUiFontReferencesVerified": true,
+  "releasePolicyVerified": true,
+  "artifact": {
+    "id": 11269476314,
+    "name": "windows-verification-37108566329-1",
+    "bytes": 7637180
+  },
+  "publicationVerified": false,
+  "taggedSourcePreparationVerified": false,
+  "scope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work.",
+  "proofFiles": [
+    {
+      "file": "verification/package-audit-result.json",
+      "sha256": "2cc3bb83c16b9e67d1925749bd600e45155837e281897fcb421ca0b254b5dce7"
+    },
+    {
+      "file": "verification/packaged-result.json",
+      "sha256": "1b852e9fd9d65ef689d98d31aff567c1d5d5c18097f5ab9909ca097fe990874e"
+    },
+    {
+      "file": "verification/surfaces-packaged-result.json",
+      "sha256": "552d4025be63cda598fed2c231ae2dc0c6da5818c7a930a8ebd848f7f7f0f7a8"
+    },
+    {
+      "file": "verification/conversation-branches-packaged-result.json",
+      "sha256": "14e1f6c8f13910e5606769b7f4b8dd19d7c8c8189193b18221fc99fbea2f702f"
+    },
+    {
+      "file": "verification/portable-result.json",
+      "sha256": "4cc14c40fba34941ba64e59dbb83d69b6192db0d945dbea5edc0e76b76517b46"
+    },
+    {
+      "file": "verification/portable-package-audit-result.json",
+      "sha256": "bb3e2c123b44d7af1508b7a25f5bc5bf4df6f2e5542f94756838a971859b90a5"
+    },
+    {
+      "file": "verification/distribution-bootstrap-result.json",
+      "sha256": "1f440e7fe16879bdc4e3eec5459b93640017a92e966b5633b070737b2aa08569"
+    },
+    {
+      "file": "verification/pipeline-installer-result.json",
+      "sha256": "66bfa5ef8a41bc4984279dbe6564ab77b2f298d364f661dfef53a7916b35332c"
+    }
+  ]
+}

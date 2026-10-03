@@ -32,20 +32,18 @@
       "pct": "Unknown"
     }
   },
-  "verifiedAt": "2026-10-03T08:03:22.728Z",
+  "verifiedAt": "2026-10-03T08:49:24.443Z",
   "installerScriptSyntaxVerified": true,
   "nativeCommandBlocksParsed": 8,
   "version": "0.1.0-alpha.1",
   "publicationVerified": false,
   "remaining": [
-    "Complete packaged/installed/portable verification for the recovery-guard body",
-    "Successful complete hosted verification",
     "Remaining capability/UI and physical wizard/picker acceptance",
     "Exact bilingual release-note/source verification and tagged pipeline publication"
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Duplicate-ID compatibility recovery in the actual source app. Schema-valid persisted duplicate thread IDs previously crashed branch rendering; the dialog now shows a redacted recoverable error while leaving every workspace byte and owner draft intact. Complete normal restart with the original valid file restores all 203 paths. Packaged/installed/portable and complete hosted proofs must be rebuilt for this renderer.",
+  "scope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work.",
   "focusedPolicyTests": 24,
   "implementationFiles": [
     {
@@ -69,7 +67,7 @@
       "sha256": "595754cbbb5e219198c3b57627b7bd8c82330b4a2e81ad61d61f41f7fbfd4389"
     }
   ],
-  "workflowRunVerified": false,
+  "workflowRunVerified": true,
   "focusedTemplateTests": 10,
   "templateCoverage": {
     "lines": {
@@ -135,7 +133,7 @@
       }
     }
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -144,22 +142,121 @@
     "sourceHistoryResult": "source-history-result.json"
   },
   "hostedVerification": {
-    "runId": 37105863055,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37105863055",
-    "sourceCommit": "f0ff7998505dd539a490e8bb91a91b98d73972b4",
-    "conclusion": "failure",
-    "typecheckUnitCoverageNoticesVerified": true,
-    "buildAndPackageAuditVerified": true,
-    "desktopChecksBeforeFailure": 25,
-    "failedStep": "Verify the complete packaged desktop and settings",
-    "failure": "The stop-plugin approval remains visible/enabled with the slow invocation still awaiting approval. Playwright stops after scrolling and times out at click; no renderer or filesystem product error was recorded. The original cause remains unestablished; no test/product deadline or approval assertion has been weakened.",
-    "failedCapture": {
-      "sha256": "c44c3b1855a20d657b92090e4c6601ea0bbbe5bc913b1568bf9e386ac8a46825",
-      "width": 1280,
-      "height": 840,
-      "individuallyReviewed": true
+    "runId": 37108566329,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37108566329",
+    "sourceCommit": "6af1287aed4444668b2a9a227b1289542e60ae72",
+    "conclusion": "success",
+    "verifiedAt": "2026-10-03T08:49:24.443Z",
+    "completedAt": "2026-10-03T08:32:11Z",
+    "typecheckVerified": true,
+    "unitTestsPassed": 532,
+    "unitTestFiles": 54,
+    "unitDurationSeconds": 52.39,
+    "unitCoverage": {
+      "lines": {
+        "total": 2745,
+        "covered": 2721,
+        "skipped": 0,
+        "pct": 99.12
+      },
+      "statements": {
+        "total": 4723,
+        "covered": 4563,
+        "skipped": 0,
+        "pct": 96.61
+      },
+      "functions": {
+        "total": 1037,
+        "covered": 1008,
+        "skipped": 0,
+        "pct": 97.2
+      },
+      "branches": {
+        "total": 3380,
+        "covered": 3165,
+        "skipped": 0,
+        "pct": 93.63
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
     },
-    "nextStep": "Complete hosted verification of the recovery-guard body"
+    "releaseNoticesVerified": true,
+    "buildAndPackageAuditVerified": true,
+    "completePackagedDesktopChecks": 179,
+    "completeInstalledDesktopChecks": 179,
+    "surfaceChecks": 4,
+    "branchChecks": 6,
+    "ambiguousHistoryRecoveryVerified": true,
+    "branchVerificationRun": "complete desktop suite",
+    "branchSuiteChecks": 179,
+    "modelRequestsDuringBranchNavigation": 0,
+    "portableChecks": 7,
+    "portableLaunches": 2,
+    "longDocumentPaths": [
+      292,
+      292
+    ],
+    "longPathCleanupVerified": true,
+    "unpackedFilesVerified": 188,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "installerRegistrationVerified": true,
+    "installerShortcutsVerified": true,
+    "uninstalled": true,
+    "userDataRetained": true,
+    "executableSha256": "51336eaa74428f2695e83add26eb32b885def5ef733218a3f07f1e3d5532a654",
+    "archiveSha256": "b969b9db5dc601cd5df3d498f1cc891af5f293a3221a2fa40de14e25ec2cb9d1",
+    "installerSha256": "11ec2278bf0df0cf9cfe0dab6b846ea1dde6a5945d62cd207e8bba8df6486224",
+    "portableSha256": "52c7052bc3192b4d9f2988f0459ac45fe9018a78e28ab466c839bf687d9ea31b",
+    "originalDependencyLegalDocuments": 401,
+    "removedUiFontReferencesVerified": true,
+    "releasePolicyVerified": true,
+    "artifact": {
+      "id": 11269476314,
+      "name": "windows-verification-37108566329-1",
+      "bytes": 7637180
+    },
+    "publicationVerified": false,
+    "taggedSourcePreparationVerified": false,
+    "scope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work.",
+    "proofFiles": [
+      {
+        "file": "verification/package-audit-result.json",
+        "sha256": "2cc3bb83c16b9e67d1925749bd600e45155837e281897fcb421ca0b254b5dce7"
+      },
+      {
+        "file": "verification/packaged-result.json",
+        "sha256": "1b852e9fd9d65ef689d98d31aff567c1d5d5c18097f5ab9909ca097fe990874e"
+      },
+      {
+        "file": "verification/surfaces-packaged-result.json",
+        "sha256": "552d4025be63cda598fed2c231ae2dc0c6da5818c7a930a8ebd848f7f7f0f7a8"
+      },
+      {
+        "file": "verification/conversation-branches-packaged-result.json",
+        "sha256": "14e1f6c8f13910e5606769b7f4b8dd19d7c8c8189193b18221fc99fbea2f702f"
+      },
+      {
+        "file": "verification/portable-result.json",
+        "sha256": "4cc14c40fba34941ba64e59dbb83d69b6192db0d945dbea5edc0e76b76517b46"
+      },
+      {
+        "file": "verification/portable-package-audit-result.json",
+        "sha256": "bb3e2c123b44d7af1508b7a25f5bc5bf4df6f2e5542f94756838a971859b90a5"
+      },
+      {
+        "file": "verification/distribution-bootstrap-result.json",
+        "sha256": "1f440e7fe16879bdc4e3eec5459b93640017a92e966b5633b070737b2aa08569"
+      },
+      {
+        "file": "verification/pipeline-installer-result.json",
+        "sha256": "66bfa5ef8a41bc4984279dbe6564ab77b2f298d364f661dfef53a7916b35332c"
+      }
+    ]
   },
   "previousHostedVerification": {
     "runId": 37099119289,
@@ -228,12 +325,43 @@
       "failedStep": "Verify the complete packaged desktop and settings",
       "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
       "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
+    },
+    {
+      "runId": 37105863055,
+      "url": "https://github.com/Moresyl/qiyao/actions/runs/37105863055",
+      "sourceCommit": "f0ff7998505dd539a490e8bb91a91b98d73972b4",
+      "conclusion": "failure",
+      "typecheckUnitCoverageNoticesVerified": true,
+      "buildAndPackageAuditVerified": true,
+      "desktopChecksBeforeFailure": 25,
+      "failedStep": "Verify the complete packaged desktop and settings",
+      "failure": "The stop-plugin approval remains visible/enabled with the slow invocation still awaiting approval. Playwright stops after scrolling and times out at click; no renderer or filesystem product error was recorded. The original cause remains unestablished; no test/product deadline or approval assertion has been weakened.",
+      "failedCapture": {
+        "sha256": "c44c3b1855a20d657b92090e4c6601ea0bbbe5bc913b1568bf9e386ac8a46825",
+        "width": 1280,
+        "height": 840,
+        "individuallyReviewed": true
+      },
+      "nextStep": "Complete hosted verification of the recovery-guard body"
     }
   ],
   "packagedVerification": {
-    "status": "Pending complete verification for the recovery-guard renderer",
-    "requiredDesktopChecks": 179,
-    "requiredBranchChecks": 6
+    "desktopChecks": 179,
+    "installedChecks": 179,
+    "surfaceChecks": 4,
+    "branchChecks": 6,
+    "verificationRun": "complete desktop suite",
+    "suiteChecks": 179,
+    "ambiguousHistoryRecoveryVerified": true,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "modelRequestsDuringBranchNavigation": 0,
+    "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
+    "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433",
+    "removedFontReferencesVerified": true,
+    "portableChecks": 7,
+    "userDataRetained": true,
+    "proofFile": "verification/recovery-distribution-result.json"
   },
   "previousPackagedVerification": {
     "desktopChecks": 178,

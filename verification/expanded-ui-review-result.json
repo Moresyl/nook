@@ -1,0 +1,412 @@
+{
+  "verifiedAt": "2026-10-03T08:30:51.771Z",
+  "sourceCommit": "6af1287aed4444668b2a9a227b1289542e60ae72",
+  "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
+  "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433",
+  "desktopChecks": 179,
+  "installedChecks": 179,
+  "surfaceChecks": 4,
+  "screenshotsReviewed": 48,
+  "scope": "Current hash-matched packaged/installed Inter body: 48 individually inspected extension/provider/knowledge/backup/task/assistant/template/revision/edit/command/desktop-setting captures. Shared neutral surfaces, 22px controls, fixed modal headers/footers, focus outlines, readonly previews, inline/toast errors and dark 760x540 scrolling fit their tested frames. This extends the earlier chat/project/settings and current branch reviews. It does not establish every possible control-state/content-length combination, assistive technology, maximum UI scale or physical Windows picker/wizard interaction.",
+  "surfaces": [
+    "MCP settings/resource/prompt/OAuth and skills",
+    "Isolated Inter plugin panels",
+    "Rich content and diagram error fallback",
+    "Gemini and Azure forms/model budgets",
+    "Document/image previews",
+    "Knowledge collection/search/indexing/source previews",
+    "Workspace backups",
+    "Automation list/once/Cron/history/error",
+    "Assistant transfer/preview/retry",
+    "Prompt list/edit/literal expansion/retry",
+    "Reply-version preview and per-message conflict/save errors",
+    "Command palette/plugin preview/errors/keyboard help",
+    "Desktop tray/hotkey settings and retained-error prompts"
+  ],
+  "screenshots": [
+    {
+      "file": "16-mcp-settings.png",
+      "sha256": "dc9b610c892955acafe85d78da111f647d399b94ec955dce3bee424b312ae803",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:13:53.893Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "20-mcp-resource.png",
+      "sha256": "58bc1d1c08d1e5014e956b6f61791c43bbc615bd535607b2f75930c2bcebe8e8",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:13:56.236Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "21-mcp-prompt.png",
+      "sha256": "f95575cad1956e3d9ff123cf33c192d92c4ad377b4b3571e29cee48ff8b1abb4",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:13:56.663Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "18-skill-settings.png",
+      "sha256": "2ace78df003ed394c23f3c772fd83328ff9c378ff37ea151c81d0d2593982170",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:01.730Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "24-mcp-resource-dark.png",
+      "sha256": "51f2051fe52e69692b37634d74ec4a9ab8ae642cec8ce85e9216fc2f3ffe14ce",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:00.030Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "25-mcp-prompt-dark-narrow.png",
+      "sha256": "8fb9b95eb8619f1f9154e16cfee9de53af417eeedbedf6327e5c95d19c49950b",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:00.464Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "26-mcp-oauth-dark-narrow.png",
+      "sha256": "e3b8e6a5d3f3db17ba7eec7337cc48c0ede519f0114d3021c4ef6789066fa404",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:00.693Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "27-plugin-panel-light.png",
+      "sha256": "74dea7ff44194ab16ae37fd2c263155a4de928dcf0c2617ada0cc24d36341659",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:04.005Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "28-plugin-panel-dark-narrow.png",
+      "sha256": "4e49a26ac2a0206ed14eefbe058bc30a9d488f18082d444b9801f9c38a5b4ed2",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:04.619Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "33-rich-content-light.png",
+      "sha256": "d349577338b37cf1ffd12b99027ce1c5c55f8a5e0b677d5a9b5a5afa44394dab",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:46.017Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "35-rich-content-error-narrow.png",
+      "sha256": "86168f4783a59cc0fadd87146d21b701a008f650ee59637e42eb64ecb715fdf5",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:47.615Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "38-native-provider-gemini.png",
+      "sha256": "8193533f9239ad75e365e28252ae9232985f484497357b44db4f2314ed491a35",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:48.594Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "41-native-provider-deployment-chat.png",
+      "sha256": "0d92cfced36fa36f02a5f40a8742bb46129b75ab3048d22ab442dba65c04c271",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:54.177Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "42-native-provider-dark-narrow.png",
+      "sha256": "2a0da15b1552aa9780b9677dde25cf41f8010522d5bcdcd64d8246ce93b224c4",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:55.959Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "46-model-capacity-dark-narrow.png",
+      "sha256": "ad70e138985c9b02a6a33c2446ecb0546bf95be38ce6c7589ee3f54d05c2cfb4",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:14:56.117Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "47-document-preview-light.png",
+      "sha256": "0862f9c658ddff452f551b365f0e7aace0b25a97409179eab9c301e3d5dfd16d",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:14:58.201Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "50-image-preview-dark-narrow.png",
+      "sha256": "d73bb76d989e94dd1dffaf0cd9a54ed7f18e6d74065ed9b3a01147ad426c4072",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:04.005Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "51-knowledge-library-light.png",
+      "sha256": "a2e58b897ac594f176293338e3528fd36ce6e4417691e73758668d25a9c3a40c",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:05.749Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "55-knowledge-source-dark-narrow.png",
+      "sha256": "3aab2f6949dd768d1a6a459d25e38b878d9969b09b93519d7539206e09df9c3d",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:12.568Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "53-knowledge-index-progress.png",
+      "sha256": "96f27ecf9593cd3bc53ffc154bd9453538b7bef9b44b640861c4ddc92e3931b4",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:06.698Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "56-knowledge-library-dark-narrow.png",
+      "sha256": "7445bb67bb19bbf03a1cd305d5bdb0cf681b71e3b83e952283a8dfb198765777",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:12.896Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "57-knowledge-settings-dark-narrow.png",
+      "sha256": "556b2d1c9d056b4c1779cd6e6dc9224363c7ca0939cb90e707b9e4fc3fa11a0e",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:13.086Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "59-backup-settings-dark-narrow.png",
+      "sha256": "832367a8d0fcbb665f797c1976d6b4405f67412bc2e62e7b30ba7b0ea7eaf2b0",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:16:29.681Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "61-automation-list-light.png",
+      "sha256": "593ba4abba308cf72a3146bd4746560c52fb5870522f30f8a59ab6954cc89a89",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:16.364Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "62-automation-once-form-light.png",
+      "sha256": "0ba10d2c9cacd5c34c1aa2dcec38785f4e9e108ac4ebe91641fd3eba22eab1aa",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:19.333Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "63-automation-history-light.png",
+      "sha256": "e3f193f2654060ebd0b79741c2547852969f3042be35b4e9ec4bf906e3f9d35b",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:18.951Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "64-automation-cron-dark-narrow.png",
+      "sha256": "34834a775d87e3062784e4e24c70eb2b1b0e62c55d5e1366019e3907075bf28a",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:24.279Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "70-assistant-transfer-light.png",
+      "sha256": "822e7850ecff90ef0408ed7e95dabfe816192f09b96b5e2754d956f0421dcad9",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:34.254Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "71-assistant-import-preview-light.png",
+      "sha256": "5834b87e9f3e0f1efa636b92bcbef5fada893bf98cd12c3fae3ccfefbccff9de",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:34.561Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "72-assistant-import-error-dark-narrow.png",
+      "sha256": "1ddbfa9571fc6aad78de3c68b3846699c89ad8992a00008b411fbbf83cfefd64",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:35.321Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "73-assistant-transfer-dark-narrow.png",
+      "sha256": "29651b928d4dd7f03c2b7b12ed65da848cbf4a0b37a3c0c604df89aa3eb9041c",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:35.649Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "74-prompt-templates-light.png",
+      "sha256": "0a88685b4afa61626b9121c865c276bda5c413973b28819e172c5a6c0cc2dad1",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:38.729Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "75-prompt-template-editor-light.png",
+      "sha256": "f668febd3b964839e8bcf478d5e7ddc37706922a06b080d5d799c0b911efd0dd",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:38.121Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "76-prompt-template-preview-light.png",
+      "sha256": "fa21b880772d2bcaeb452db352c84a2ee674bd07aa37368a3f0fb7087b5615c8",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:38.935Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "77-prompt-template-error-dark-narrow.png",
+      "sha256": "efa884e0e50c6f5e99f0ede6b2dfb0711bdbd09b6f80700a8a52567e9f560549",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:41.251Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "78-prompt-templates-dark-narrow.png",
+      "sha256": "60cc05d4381cf04d2440f4d1e035b996a60f8481788dba95a3c7f8ca5d328b1b",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:41.511Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "79-reply-versions-light.png",
+      "sha256": "bb525119cf31f40434c15dc78fc2f489ef954ecbae90021b10db5dc8f0ded83d",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:44.240Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "82-reply-version-preview-dark-narrow.png",
+      "sha256": "00d2eb45b479d7762bdcca3020dd497100dbafdc41508efb128deafaddb9b67a",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:48.440Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "85-message-draft-conflict-dark-narrow.png",
+      "sha256": "78929d5c93726c944ed98579ae4035eb9826f5634ba408a044481e368e0cca75",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:56.622Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "86-message-edit-save-error-dark-narrow.png",
+      "sha256": "8a80105a43d8da96243ba85d3732e4ab074b58991f3c8e5b218c61ed797229b8",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:16:00.384Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "87-command-palette-light.png",
+      "sha256": "2fbdda52bd22633dcd861b0e857f4826fd08edf408f0597c2b9c39927bd72bba",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:16:05.036Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "88-plugin-command-preview-light.png",
+      "sha256": "b9eea6f4cae306f93ce768f295f73497120136ec1d43a315676640fadd432ac3",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:16:08.772Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "89-command-palette-error-dark-narrow.png",
+      "sha256": "93625f71de1059f023593dc161faedf42481a01a183fdec89ffd14db80d882bf",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:16:11.996Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "90-command-shortcuts-dark-narrow.png",
+      "sha256": "ea1931822ce3828d4b7c4bbda25ebd118ab56fd493c5eda7d9e915fe1700f78f",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:16:12.323Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "66-desktop-settings-light.png",
+      "sha256": "91ed0b616d77b493e82aac217945b674e1dd552165d7f232ccd0f2b0b591a4b0",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:28.051Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "67-desktop-settings-dark-narrow.png",
+      "sha256": "7b120218c4a6608d9775afa653bad1e6d7c74e28f0e6ffc44c28eb4496325fa6",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:31.720Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "68-desktop-error-dark-narrow.png",
+      "sha256": "2f9ae8fccb253db763153468c4f6cb5ea1e09004c7b5c51f0cfe8251bfd7050b",
+      "width": 760,
+      "height": 540,
+      "capturedFileModifiedAt": "2026-10-03T08:15:31.973Z",
+      "individuallyReviewed": true
+    },
+    {
+      "file": "69-desktop-error-light.png",
+      "sha256": "a4eaa5b13834b8eb6bccf8f2555d80f23053f23a3777ff80617809ae94ae8f77",
+      "width": 1280,
+      "height": 840,
+      "capturedFileModifiedAt": "2026-10-03T08:15:32.392Z",
+      "individuallyReviewed": true
+    }
+  ]
+}
