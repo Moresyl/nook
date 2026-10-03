@@ -75,8 +75,15 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     await waitForBridge(page, async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals.some((terminal) => terminal.output.includes('PS ')); }, projectId);
   } catch (error) {
     console.error('Project terminal startup diagnostics', JSON.stringify(await page.evaluate(async (id) => ({ at: Date.now(), lastPoll: globalThis.qiyaoTreePromptPoll, current: (await window.qiyao.terminalList(id)).map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }), projectId).catch((failure) => ({ diagnosticError: String(failure) }))));
+    console.error('Project terminal process diagnostics', JSON.stringify(await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot()').catch(() => ({ diagnosticError: 'Main-process diagnostics unavailable' }))));
     throw error;
   } finally { await page.evaluate(() => { delete globalThis.qiyaoTreePromptPoll; }).catch(() => {}); }
+  const terminalTiming = await application.evaluateMain('globalThis.qiyaoPtyDiagnostics?.at(-1)');
+  assert.ok(Number.isInteger(terminalTiming?.pid) && terminalTiming.pid > 0); assert.ok(terminalTiming.chunks > 0); assert.ok(terminalTiming.firstDataAt >= terminalTiming.registeredAt); assert.ok(terminalTiming.lastDataAt >= terminalTiming.firstDataAt);
+  console.log('Project terminal process timing', JSON.stringify(terminalTiming));
+  const processSnapshot = await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot()');
+  assert.ok(processSnapshot.mainMemory.rss > 0); assert.ok(processSnapshot.systemMemory.free > 0 && processSnapshot.systemMemory.total >= processSnapshot.systemMemory.free); assert.ok(processSnapshot.applicationProcesses.some((process) => process.type === 'Browser'));
+  console.log('Project terminal process snapshot', JSON.stringify(processSnapshot));
   await page.getByRole('button', { name: '定位当前文件', exact: true }).click();
   const geometry = await page.evaluate(() => { const terminal = document.querySelector('.project-terminal').getBoundingClientRect(); const editor = document.querySelector('.editor-canvas').getBoundingClientRect(); return { top: terminal.top, bottom: terminal.bottom, height: terminal.height, editor: editor.height, windowHeight: innerHeight }; }); assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.windowHeight && geometry.height >= 100 && geometry.editor >= 60, JSON.stringify(geometry)); await page.screenshot({ path: join(screenshots, '96-project-tree-dark-narrow.png') });
   const rowsBeforeHide = await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')]));

@@ -314,6 +314,33 @@ async function launch() {
   `);
   await application.evaluateMain("globalThis.qiyaoCloseEvents=[]; const recordClose=(event,extra={})=>{ const item={event,at:Date.now(),...extra}; globalThis.qiyaoCloseEvents.push(item); console.error('QIYAO_TEST_CLOSE',JSON.stringify(item)); }; for(const event of ['before-quit','will-quit','window-all-closed']) require('electron').app.on(event,()=>recordClose(event)); for(const w of require('electron').BrowserWindow.getAllWindows()) { w.on('close',event=>recordClose('window-close',{prevented:event.defaultPrevented})); w.on('closed',()=>recordClose('window-closed')); const send=w.webContents.send.bind(w.webContents); w.webContents.send=(channel,...args)=>{ if(channel==='qiyao:before-close') recordClose('draft-flush-requested'); return send(channel,...args); }; }");
   await page.getByLabel('消息', { exact: true }).waitFor();
+  await application.evaluateMain(`
+    globalThis.qiyaoPtyDiagnostics = [];
+    const terminalPrototype = require('node-pty/lib/terminal').Terminal.prototype;
+    const dataDescriptor = Object.getOwnPropertyDescriptor(terminalPrototype, 'onData');
+    const exitDescriptor = Object.getOwnPropertyDescriptor(terminalPrototype, 'onExit');
+    const observedTerminals = new WeakMap();
+    const observedTerminal = terminal => {
+      let record = observedTerminals.get(terminal);
+      if (!record) {
+        record = { registeredAt: Date.now(), pid: terminal.pid, processName: String(terminal.process).slice(-160), cols: terminal.cols, rows: terminal.rows, chunks: 0, characters: 0 };
+        observedTerminals.set(terminal, record); globalThis.qiyaoPtyDiagnostics.push(record);
+        if (globalThis.qiyaoPtyDiagnostics.length > 32) globalThis.qiyaoPtyDiagnostics.shift();
+      }
+      return record;
+    };
+    Object.defineProperty(terminalPrototype, 'onData', { ...dataDescriptor, get() {
+      const register = dataDescriptor.get.call(this); const record = observedTerminal(this);
+      return listener => register(data => { record.firstDataAt ??= Date.now(); record.lastDataAt = Date.now(); record.chunks++; record.characters += data.length; listener(data); });
+    } });
+    Object.defineProperty(terminalPrototype, 'onExit', { ...exitDescriptor, get() {
+      const register = exitDescriptor.get.call(this); const record = observedTerminal(this);
+      return listener => register(event => { record.exitedAt = Date.now(); record.exitCode = event.exitCode; listener(event); });
+    } });
+    globalThis.qiyaoTerminalProcessSnapshot = () => ({ capturedAt: Date.now(), terminals: globalThis.qiyaoPtyDiagnostics.slice(-16), mainMemory: process.memoryUsage(),
+      systemMemory: { free: require('node:os').freemem(), total: require('node:os').totalmem() },
+      applicationProcesses: require('electron').app.getAppMetrics().slice(-16).map(item => ({ pid: item.pid, type: item.type, cpu: item.cpu, memory: item.memory })) });
+  `);
   return page;
 }
 let suiteCompleted = false;
