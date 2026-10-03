@@ -515,6 +515,12 @@
       "sourceCommit": "60380aebfcf0ef6fa71df69ac6ce7c1c7adee332",
       "conclusion": "failure",
       "proof": "verification/hosted-mcp-binary-diagnostic-failure-result.json"
+    },
+    {
+      "runId": 37152624644,
+      "sourceCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
+      "conclusion": "failure",
+      "proof": "verification/hosted-comparison-first-response-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -658,20 +664,20 @@
     },
     "proof": "verification/hosted-directory-fixture-result.json",
     "hostedVerified": false,
-    "latestHostedRunId": 37151024409,
+    "latestHostedRunId": 37152624644,
     "hostedFixturePreparationPassed": true,
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37151024409,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37151024409",
-    "sourceCommit": "60380aebfcf0ef6fa71df69ac6ce7c1c7adee332",
+    "runId": 37152624644,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37152624644",
+    "sourceCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
     "conclusion": "failure",
     "unitTestsPassed": 630,
-    "packagedChecksBeforeFailure": 164,
-    "originalPowerShellPromptWaitPassed": true,
+    "packagedChecksBeforeFailure": 189,
+    "terminalBindingVerified": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-mcp-binary-diagnostic-failure-result.json"
+    "proof": "verification/hosted-comparison-first-response-failure-result.json"
   },
   "previousSourceVerification": {
     "verifiedAt": "2026-10-03T17:54:40.759Z",
@@ -755,7 +761,7 @@
     "focusedChecks": 6,
     "modelRequests": 0,
     "proof": "verification/mcp-binary-files-review-result.json",
-    "latestHostedRunId": 37151024409,
+    "latestHostedRunId": 37152624644,
     "packagedVerifiedAt": "2026-10-03T20:58:30.183Z",
     "packagedChecks": 206,
     "installedChecks": 206,
