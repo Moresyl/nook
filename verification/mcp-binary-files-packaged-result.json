@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-10-03T20:56:48.878Z",
+  "variant": "packaged executable",
+  "executableSha256": "55402e6ce4b4472d8c8863180efa5f3885335b020316e38370f0a4400f067d91",
+  "archiveSha256": "6114157492a706bb67ac754c48df62827e1ab3c9f54beb0b2387e8f19b0b4013",
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "complete desktop suite",
+  "suiteChecks": 206,
+  "checks": 6,
+  "binaryModelRequests": 0,
+  "realWorkerPreviewVerified": true,
+  "exactOriginalExportVerified": true,
+  "emptyAndUnsupportedExportVerified": true,
+  "promptBinaryTextOnlyVerified": true,
+  "staleSelectionVerified": true,
+  "zoomKeyboardVerified": true,
+  "restartDraftRetainedVerified": true,
+  "layout": [
+    {
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "headerTop": 1,
+      "footerBottom": 521,
+      "overflow": false
+    },
+    {
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "headerTop": 0.800000011920929,
+      "footerBottom": 412.00000762939453,
+      "overflow": false
+    },
+    {
+      "zoom": 1.5,
+      "width": 507,
+      "height": 360,
+      "headerTop": 0.6666666865348816,
+      "footerBottom": 339.3333435058594,
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    "124-mcp-binary-image-light.png",
+    "125-mcp-binary-image-dark-zoom-100.png",
+    "125-mcp-binary-image-dark-zoom-125.png",
+    "125-mcp-binary-image-dark-zoom-150.png"
+  ],
+  "scope": "Actual stdio resource/prompt binaries, actual bounded worker PNG normalization/corrupt failure/retry, original-byte Unicode exports, cancellation/zero-byte/SVG export-only handling, explicit text insertion, real delayed resource/worker completion selection protection, nested preview keyboard/Escape at three dark zoom levels and normal restart. Native save-picker responses are isolated fixtures; physical picker interaction and live external servers remain separate."
+}

@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work.",
+  "scope": "Current local distribution acceptance passes 206 unpacked and installed desktop checks, four surface checks, seven portable checks, original bootstrap plugins, data-retaining uninstall and ten strict matching-body records. Current source unit acceptance is 630 tests in 62 files. Historical hosted success remains attached to its own source and body hashes; the latest hosted failures and current attempts do not establish complete acceptance of this binary-resource body. Full capability/UI/physical delivery, exact tagged source/checksums and publication remain pending.",
   "focusedPolicyTests": 24,
   "implementationFiles": [
     {
@@ -67,7 +67,7 @@
       "sha256": "595754cbbb5e219198c3b57627b7bd8c82330b4a2e81ad61d61f41f7fbfd4389"
     }
   ],
-  "workflowRunVerified": true,
+  "workflowRunVerified": false,
   "focusedTemplateTests": 10,
   "templateCoverage": {
     "lines": {
@@ -96,34 +96,34 @@
     }
   },
   "unit": {
-    "tests": 616,
-    "files": 61,
-    "durationSeconds": 19.68,
+    "tests": 630,
+    "files": 62,
+    "durationSeconds": 21.21,
     "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
-        "total": 2897,
-        "covered": 2873,
+        "total": 2938,
+        "covered": 2917,
         "skipped": 0,
-        "pct": 99.17
+        "pct": 99.28
       },
       "statements": {
-        "total": 4964,
-        "covered": 4803,
+        "total": 5019,
+        "covered": 4864,
         "skipped": 0,
-        "pct": 96.75
+        "pct": 96.91
       },
       "functions": {
-        "total": 1106,
-        "covered": 1074,
+        "total": 1119,
+        "covered": 1087,
         "skipped": 0,
-        "pct": 97.1
+        "pct": 97.14
       },
       "branches": {
-        "total": 3546,
-        "covered": 3328,
+        "total": 3577,
+        "covered": 3370,
         "skipped": 0,
-        "pct": 93.85
+        "pct": 94.21
       },
       "branchesTrue": {
         "total": 0,
@@ -132,10 +132,10 @@
         "pct": 100
       }
     },
-    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
-    "proof": "verification/mcp-resource-subscriptions-review-result.json"
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "proof": "verification/mcp-binary-files-review-result.json"
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -348,6 +348,22 @@
     }
   ],
   "packagedVerification": {
+    "verifiedAt": "2026-10-03T20:58:30.183Z",
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "desktopChecks": 206,
+    "installedChecks": 206,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "strictReleasePolicyVerified": true,
+    "applicationHashes": {
+      "executableSha256": "55402e6ce4b4472d8c8863180efa5f3885335b020316e38370f0a4400f067d91",
+      "archiveSha256": "6114157492a706bb67ac754c48df62827e1ab3c9f54beb0b2387e8f19b0b4013",
+      "installerSha256": "d28dd1b2149b07679505c43c7cdc066a71ef316859d304b1862674f5e64e9495",
+      "portableSha256": "13084a23256b051b5b65d9e7a25dd3a3383d131abd0ffd0bb8883efc89e4dbd9"
+    },
+    "proof": "verification/mcp-binary-files-distribution-result.json"
+  },
+  "previousPackagedVerification": {
     "verifiedAt": "2026-10-03T18:44:33.632Z",
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
     "desktopChecks": 200,
@@ -362,24 +378,6 @@
       "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
     },
     "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
-  },
-  "previousPackagedVerification": {
-    "desktopChecks": 179,
-    "installedChecks": 179,
-    "surfaceChecks": 4,
-    "branchChecks": 6,
-    "verificationRun": "complete desktop suite",
-    "suiteChecks": 179,
-    "ambiguousHistoryRecoveryVerified": true,
-    "normalCloseVerified": true,
-    "runtimeErrors": [],
-    "modelRequestsDuringBranchNavigation": 0,
-    "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
-    "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433",
-    "removedFontReferencesVerified": true,
-    "portableChecks": 7,
-    "userDataRetained": true,
-    "proofFile": "verification/recovery-distribution-result.json"
   },
   "sourceVerification": {
     "verifiedAt": "2026-10-03T19:51:03.053Z",
@@ -709,34 +707,34 @@
     "latestHostedRunId": 37146925190
   },
   "previousUnitVerification": {
-    "tests": 532,
-    "files": 54,
-    "durationSeconds": 48.95,
+    "tests": 616,
+    "files": 61,
+    "durationSeconds": 19.68,
     "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
-        "total": 2745,
-        "covered": 2721,
+        "total": 2897,
+        "covered": 2873,
         "skipped": 0,
-        "pct": 99.12
+        "pct": 99.17
       },
       "statements": {
-        "total": 4723,
-        "covered": 4563,
+        "total": 4964,
+        "covered": 4803,
         "skipped": 0,
-        "pct": 96.61
+        "pct": 96.75
       },
       "functions": {
-        "total": 1037,
-        "covered": 1008,
+        "total": 1106,
+        "covered": 1074,
         "skipped": 0,
-        "pct": 97.2
+        "pct": 97.1
       },
       "branches": {
-        "total": 3380,
-        "covered": 3165,
+        "total": 3546,
+        "covered": 3328,
         "skipped": 0,
-        "pct": 93.63
+        "pct": 93.85
       },
       "branchesTrue": {
         "total": 0,
@@ -744,18 +742,34 @@
         "skipped": 0,
         "pct": 100
       }
-    }
+    },
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "proof": "verification/mcp-resource-subscriptions-review-result.json"
   },
   "mcpBinaryFiles": {
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "sourceVerified": true,
-    "packagedVerified": false,
+    "packagedVerified": true,
     "hostedVerified": false,
     "sourceChecks": 206,
     "focusedChecks": 6,
     "modelRequests": 0,
     "proof": "verification/mcp-binary-files-review-result.json",
-    "latestHostedRunId": 37151024409
+    "latestHostedRunId": 37151024409,
+    "packagedVerifiedAt": "2026-10-03T20:58:30.183Z",
+    "packagedChecks": 206,
+    "installedChecks": 206,
+    "matchingRuntimeRecords": 10,
+    "installedCapturesReviewed": 4,
+    "applicationHashes": {
+      "executableSha256": "55402e6ce4b4472d8c8863180efa5f3885335b020316e38370f0a4400f067d91",
+      "archiveSha256": "6114157492a706bb67ac754c48df62827e1ab3c9f54beb0b2387e8f19b0b4013",
+      "installerSha256": "d28dd1b2149b07679505c43c7cdc066a71ef316859d304b1862674f5e64e9495",
+      "portableSha256": "13084a23256b051b5b65d9e7a25dd3a3383d131abd0ffd0bb8883efc89e4dbd9"
+    },
+    "distributionProof": "verification/mcp-binary-files-distribution-result.json"
   },
-  "currentHostedRuntimeProofVerified": false
+  "currentHostedRuntimeProofVerified": false,
+  "historicalWorkflowRunVerified": true,
+  "previousVerificationScope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work."
 }

@@ -1,0 +1,292 @@
+{
+  "verifiedAt": "2026-10-03T20:58:30.183Z",
+  "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+  "verificationCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
+  "sourceProof": "verification/mcp-binary-files-review-result.json",
+  "strictReleasePolicyVerified": true,
+  "desktopChecks": 206,
+  "installedChecks": 206,
+  "binaryChecks": 6,
+  "binaryModelRequests": 0,
+  "subscriptionChecks": 6,
+  "subscriptionModelRequests": 0,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "branchChecks": 9,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "originalUnpackedFilesVerified": 188,
+  "portablePathLengths": [
+    274,
+    274
+  ],
+  "originalBootstrapPlugins": [
+    {
+      "variant": "installer",
+      "plugins": 6,
+      "sha256": "d28dd1b2149b07679505c43c7cdc066a71ef316859d304b1862674f5e64e9495"
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5,
+      "sha256": "bc67d6682735b225c404f7c92f0351f50cf5831db0201720c73f16414f6f3dd1"
+    },
+    {
+      "variant": "portable",
+      "plugins": 2,
+      "sha256": "13084a23256b051b5b65d9e7a25dd3a3383d131abd0ffd0bb8883efc89e4dbd9"
+    }
+  ],
+  "applicationHashes": {
+    "executableSha256": "55402e6ce4b4472d8c8863180efa5f3885335b020316e38370f0a4400f067d91",
+    "archiveSha256": "6114157492a706bb67ac754c48df62827e1ab3c9f54beb0b2387e8f19b0b4013",
+    "installerSha256": "d28dd1b2149b07679505c43c7cdc066a71ef316859d304b1862674f5e64e9495",
+    "portableSha256": "13084a23256b051b5b65d9e7a25dd3a3383d131abd0ffd0bb8883efc89e4dbd9"
+  },
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "771d53535f8194270480d840398517d81b6651e4eb33f9b990dbffa83fa9981a",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "9b100f358a110de6e51f8c31ef02a88cd24d37ebc1747bbf2205ae396705a1a9",
+      "bytes": 50304
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "a70d1d5cc55dd5965f82fc8ab67acd8d129a04218de29f2785d49ebbace77d93",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "04737aeee8805a625c94579e030ae6878b5c39f18f8df1c3ee39ce076b88e8da",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "f48c040b781411c2f1cb20f1320a3c2b45792d338c2b4fc29640d3154e6ee40c",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "80dd3aca20cf9921d53223c486657d03c4597ab9000c39bfd301ea38a9a50d8b",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "e0fd662c85c9cbc304aa38df1037a2a7650be3a036f1db7a04bc426e3ed8e2a8",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "0434d0cf8b993a1871840da987b7a80f14cb4809d92d120a1a68a84dac603076",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "3b35db926b59fdb50e03bbe21d560531d995f493d81cf9045be266048de58f82",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "8dce830bc2bae7f1a2598407640aed6e20e0f4d2881223f50d169d9608169610",
+      "bytes": 766
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "cbfb638d9231497c4fdad5177f89c0df30dbe24ea553e7af22d117caacae371b",
+      "bytes": 50304,
+      "checks": 206
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "a70d1d5cc55dd5965f82fc8ab67acd8d129a04218de29f2785d49ebbace77d93",
+      "bytes": 1295,
+      "checks": 4
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "0ddc05ec781b93b36aa6e9e024e3e7bc5a4bd4cbed28ea885ef5b0323fed28e9",
+      "bytes": 11796,
+      "checks": 9
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "acf8ca850339b56bf9aa2a7b872ad023b2a31efb910e855dcd813125072b0c18",
+      "bytes": 1953,
+      "checks": 6
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "b82caf37c4baf7e519e209c3b81443cccd06d65d8d711a2f3e583d18af4841a9",
+      "bytes": 2247,
+      "checks": 6
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "a236e4be009d7ab9a5df8d18802646077f05015356893a3d8d6bbc9b116f80cb",
+      "bytes": 916,
+      "checks": 6
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "sha256": "632531f0e99513bab14b38ac59e24d851a6534d0e8ae2c014754ba47a0c4b268",
+      "bytes": 1891,
+      "checks": 6
+    }
+  ],
+  "installedBinaryRecord": {
+    "sha256": "2685222679a3cbf834c1aa7d95ad072c94676f23bd408390d55bb3690e9dac97",
+    "bytes": 1891
+  },
+  "screenshots": [
+    {
+      "path": "verification/screenshots/124-mcp-binary-image-light.png",
+      "sha256": "33bedb1e70d7b99c8961f19ba7f2ffb516b91ac8c0eee69b14118d762b39b5f5",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable"
+    },
+    {
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-100.png",
+      "sha256": "097400ae7604ee4e140046d68d8961ef98d41402073e5c888eec3cf34b9a3861",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable"
+    },
+    {
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-125.png",
+      "sha256": "d4b811f34fc20a05264e3ce35f796eaf8674d304d47065293ff02a907aab44a1",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable"
+    },
+    {
+      "path": "verification/screenshots/125-mcp-binary-image-dark-zoom-150.png",
+      "sha256": "386f53aaebda8c3fa03b473b13e6b97211097b130bf8a66af4b1841addc6b036",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable"
+    }
+  ],
+  "projectTerminalSnapshots": [
+    {
+      "variant": "unpacked application",
+      "capturedAt": 1791059534260,
+      "moduleSources": {
+        "defaultTerminalPath": "D:\\GR\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+        "applicationTerminalPath": "D:\\GR\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+        "sameModule": false
+      },
+      "terminal": {
+        "registeredAt": 1791059533859,
+        "pid": 107580,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 3,
+        "characters": 267,
+        "firstDataAt": 1791059533867,
+        "lastDataAt": 1791059534057
+      }
+    },
+    {
+      "variant": "actual installed application",
+      "capturedAt": 1791060495254,
+      "moduleSources": {
+        "defaultTerminalPath": "D:\\GR\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+        "applicationTerminalPath": "C:\\Users\\18468\\AppData\\Local\\QiyaoInstallerAudit-23aac27c65ef40e49e70f016a99418e9\\安装 栖曜\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+        "sameModule": false
+      },
+      "terminal": {
+        "registeredAt": 1791060494869,
+        "pid": 61644,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 2,
+        "characters": 342,
+        "firstDataAt": 1791060494877,
+        "lastDataAt": 1791060495060
+      }
+    }
+  ],
+  "logs": [
+    {
+      "name": "mcp-binary-package.log",
+      "sha256": "a7d90d51b1e05a0b3d6fb7e9dcae4bd7c23bdbac91b43ed6427e4d0ecc284999",
+      "bytes": 28266
+    },
+    {
+      "name": "mcp-binary-package-audit.log",
+      "sha256": "3fd4be75bee2fc689fa926d2701a2956737420792498e3b32a9b98b3c2495d49",
+      "bytes": 187
+    },
+    {
+      "name": "mcp-binary-packaged-desktop-recheck.log",
+      "sha256": "0d9159d42b8d7eb2b3e4ef0bc1144da5bfa7fc9ea0835acdc300c845d0509d3d",
+      "bytes": 32638
+    },
+    {
+      "name": "mcp-binary-packaged-settings.log",
+      "sha256": "cd08051791cab1d1a4ffc527acbf3bcc1acd317758895862820ef14154758162",
+      "bytes": 666
+    },
+    {
+      "name": "mcp-binary-bootstrap.log",
+      "sha256": "11e793d8440112bd6cda76ad8c327c13424e186fba5175223c77da54c672e581",
+      "bytes": 268
+    },
+    {
+      "name": "mcp-binary-portable.log",
+      "sha256": "307a33f5301717ce5f97bfb8dbe50b20ecf328fa247be1ea9a04178551595da8",
+      "bytes": 955
+    },
+    {
+      "name": "mcp-binary-installer.log",
+      "sha256": "fe77a5d357e29f28fe9d9e2f7d8e275547eccae048d3b1fe7378fd217123e63c",
+      "bytes": 33158
+    },
+    {
+      "name": "mcp-binary-runtime-proof.log",
+      "sha256": "8c66664c6faed20605e70d8db3683c62775ce549a7f79eb69a923f7921f838ae",
+      "bytes": 108
+    }
+  ],
+  "hostedVerified": false,
+  "scope": "The new binary-resource application body passes all 206 checks on unpacked and actual installed runtimes, including six real stdio binary checks with zero model requests, real bounded image worker, exact original-byte export, stale-result protection, nested Escape and restart. Subscription, comparison, branch, temporary, settings, original bootstrap plugins, long-path portable launches/all unpacked files, Unicode current-user installation/shortcuts and data-retaining uninstall also pass. Seven unpacked raw records were archived before installer output replaced shared files. Ten current required records satisfy strict matching-body policy. Four actual installed binary captures were individually inspected. Original legal bytes are unchanged. Isolated picker fixtures do not establish physical picker interaction. The earlier failed full run and hosted failures remain retained; hosted complete acceptance and the remaining full-scope delivery are pending, with no release claimed."
+}
