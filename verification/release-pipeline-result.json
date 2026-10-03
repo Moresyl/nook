@@ -540,5 +540,35 @@
     "sourceProof": "verification/model-comparison-origin-review-result.json",
     "packagedVerified": false,
     "hostedVerified": false
+  },
+  "comparisonStateNotifications": {
+    "verifiedAt": "2026-10-03T15:32:49.255Z",
+    "codeCommit": "3f93f50a4d936dccc21f2c4d48323b72ecbbdfe7",
+    "sourceVerified": true,
+    "unitTests": 594,
+    "sourceDesktopChecks": 194,
+    "comparisonChecks": 6,
+    "comparisonModelRequests": 11,
+    "reviewedSourceCaptures": 9,
+    "releasePolicyTests": 30,
+    "matchingRuntimeRecordsRequired": 10,
+    "originalModelIdentityVerified": true,
+    "sourceProof": "verification/model-comparison-queued-state-review-result.json",
+    "packagedVerified": true,
+    "hostedVerified": false,
+    "packagedVerifiedAt": "2026-10-03T16:00:09.918Z",
+    "packagedDesktopChecks": 194,
+    "installedDesktopChecks": 194,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "reviewedInstalledCaptures": 9,
+    "matchingRuntimeRecordsVerified": 10,
+    "applicationHashes": {
+      "executableSha256": "b478320f8f2a5777f65ea86fa60553a3cb7bfd6661a7e74a8b129b532d58d77d",
+      "archiveSha256": "de18f8ff320e5b0c537941630af61f0b08d29dd5f0712725901c59d8ad644b27",
+      "installerSha256": "d9f46fb9a173e64947b6cf8e8d442f363b70c9f9df2244d4bc9bea7b8cc53d5d",
+      "portableSha256": "e829ecd5a517881dcfdede4d91fcbb05fa8f58e445b175e9b1663bcc2965cc51"
+    },
+    "distributionProof": "verification/model-comparison-queued-state-distribution-result.json"
   }
 }

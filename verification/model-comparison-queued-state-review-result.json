@@ -1,0 +1,372 @@
+{
+  "verifiedAt": "2026-10-03T15:32:49.255Z",
+  "codeCommit": "3f93f50a4d936dccc21f2c4d48323b72ecbbdfe7",
+  "sourceVerified": true,
+  "unitTests": 594,
+  "unitFiles": 58,
+  "meaningfulComparisonTests": 19,
+  "coreCoverage": {
+    "lines": {
+      "total": 2841,
+      "covered": 2817,
+      "skipped": 0,
+      "pct": 99.15
+    },
+    "statements": {
+      "total": 4882,
+      "covered": 4721,
+      "skipped": 0,
+      "pct": 96.7
+    },
+    "functions": {
+      "total": 1085,
+      "covered": 1055,
+      "skipped": 0,
+      "pct": 97.23
+    },
+    "branches": {
+      "total": 3500,
+      "covered": 3285,
+      "skipped": 0,
+      "pct": 93.85
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "comparisonContractCoverage": {
+    "lines": {
+      "total": 12,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 9,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 23,
+      "covered": 23,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 13,
+      "covered": 13,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "releasePolicyTests": 30,
+  "releasePolicyCoverage": {
+    "lines": {
+      "total": 52,
+      "covered": 52,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 64,
+      "covered": 64,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 15,
+      "covered": 15,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 113,
+      "covered": 113,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "desktopChecks": 194,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "branchChecks": 9,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "source": [
+    {
+      "path": "contracts/model-comparisons.ts",
+      "sha256": "463b644ee794cd8af23a1cbb65a3cc651d81a772ae633879a1da1c660e6fcad8"
+    },
+    {
+      "path": "contracts/workspace.ts",
+      "sha256": "d251c9bd67290a1af499a2b057d4bb86d8f20ca6becf40ace7e399e8bfa2e3ee"
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "5bdfdb18015bb231fb495a94557fc82aae4255a907f8e6e3f5eb3d34f5298e29"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "299d56aa3ef3ad41658f3a74cd223221ae6fad47a37480f2309608b91b428692"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "b7a6870770790dcdb3b7f6466e7a3333955615e75dfe12a48c7c6d46d01e9a8c"
+    },
+    {
+      "path": "desktop/services/conversation-archive.ts",
+      "sha256": "be44a124392f0c9d47a25bb8c186252d6228edd706c46002aa27b3c52ea4141b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "435fdc28870c2ee0c115f59a63ecf0f7fed7f30be67ebb61ac048c5355eac301"
+    },
+    {
+      "path": "workbench/components/model-comparison.tsx",
+      "sha256": "d4b8fd82acfcd76b29524c4dcb1f30e15baf7a9ff604e3f83f7152cfaf94ee73"
+    },
+    {
+      "path": "workbench/components/composer.tsx",
+      "sha256": "e6328a2eec890d1827c6d950d7e7cda736fc93d5698f82f76efbbbf5a8bc30fa"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "cd1e55b35b0a96fb9974b4c872658da213899d54146b92de3c034b4255b6ea4e"
+    },
+    {
+      "path": "workbench/workbench.tsx",
+      "sha256": "cb510b8706e90bb6354aff93f56e4c806f0b20d3853399f00316b4993effea74"
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "sha256": "528b66ddf468203f882348678431c205115dbc013742241ad0832c17c6a405ce"
+    },
+    {
+      "path": "verification/model-comparison-fixture.mjs",
+      "sha256": "e3fc919915fa99f10be8ce95d1d1638a882f20286af0f68261d515c5bc3e89c3"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "65f4760b7bca57e15c4acfa287ca9d023f1e5113903e47ca729dc1508b5c9671"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "6ba6c20df94db4a5672b073b32a494cf66c00ef15a652fc4ee8c382f7f5172e7"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "0f98dedf01e1955e4c0a8a518a51fc4bf78dd775ddbf952b83dbd65aa8497865"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "1f223e9fb86c3bcf8b774df888bd7777104a1396e4b15e234a640a6193082cef"
+    },
+    {
+      "path": "scripts/runtime-proof.mjs",
+      "sha256": "6b11ce26c64f3c2ac3ba688769ba8ccdcbae16e76f21b9e90d4c3ad369db286f"
+    },
+    {
+      "path": "scripts/verify-runtime-proof.mjs",
+      "sha256": "7a8a432ae10252629ee7d01df9c12ce0034f1685bcc37a799b8cb34d382d9d33"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "fe719e1e3aa76fcbec5a906d398e50dbf10e64d63f30eae826f4a762d65d2a01"
+    },
+    {
+      "path": ".github/workflows/windows.yml",
+      "sha256": "f8a6de5e3f6f938e22374ce2f4e1ccb82d1a0b9f8c72876464f1dad42e5ac78b"
+    }
+  ],
+  "compiledMainSha256": "93a2a69a981f6d0c315b528c41dfca9aec60a2b45bc5b7eaac52f12650c2fa13",
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "desktop",
+      "path": "verification/electron-result.json",
+      "sha256": "41b8394d9fb803ddef098a9fc44f67a36aec220b9595ca2a7c59388d98e82e66"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "000476ea0956f3350dcbf8d57f8eb0a9b9c6d53072e11fc017b7e2f0204619c7"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "fe84da63a50e09734f4bf1494eed6f7bf6d8d32e012efcea9f12f3cf008d63f6"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "46f924003c37197f1f9f23f7294b8784beb344a07b03a33a075f8dd2248a5ea5"
+    }
+  ],
+  "logs": [
+    {
+      "name": "model-comparison-queued-state-full-coverage.log",
+      "sha256": "85802dc5b0580c94ce445455ad8f31abbd9fe0390fa3609344c2095f17c97c69",
+      "bytes": 4299
+    },
+    {
+      "name": "model-comparison-origin-policy-coverage.log",
+      "sha256": "dd71a53d2b20325cd553d6d01a08130b2594a6fd596bd5ad1a690a3cecc0567f",
+      "bytes": 884
+    },
+    {
+      "name": "model-comparison-queued-state-typecheck.log",
+      "sha256": "351216499d4f071ec40adca7ff15ce9991e6648517c79af77f0c944654e0baf6",
+      "bytes": 71
+    },
+    {
+      "name": "model-comparison-queued-state-build.log",
+      "sha256": "4b8ce0f4793272ee4e64eb29431112ca5daab7f79c71633f4521df931a418482",
+      "bytes": 22499
+    },
+    {
+      "name": "model-comparison-queued-state-native.log",
+      "sha256": "d7e565d08045c291fc690390c3de2c4c178847e2444d2554f195cb6c60851d6e",
+      "bytes": 1412
+    },
+    {
+      "name": "model-comparison-queued-state-complete-source.log",
+      "sha256": "ea6e311665ca63974ace00e3e7565e2ecd6956c4ae6ca73e2206d17b88a35955",
+      "bytes": 28585
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/117-model-comparison-config-light.png",
+      "sha256": "f60452ce075b1dd0874439dd8158e0d9f8027f296cf22ceb3c79a4ea338bd356",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/118-model-comparison-stream-light.png",
+      "sha256": "fb87c3b00d873aa8818944e021af3be1c0c20ca8980467757d874e59ec17c664",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/119-model-comparison-save-error-light.png",
+      "sha256": "fa8c68d5bbb58ec08fda1ccc7172071d37a362043e89547dde948bd7f7e774bc",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-100.png",
+      "sha256": "4ced1c23bbb1514e09d574977abb86c98e0094bed0b662aa0cbb344d29f9216a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-100.png",
+      "sha256": "c08b10bdd0a159827f1ec025ee99eec1700f104fd1d1db73244d35eb72c0be69",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-125.png",
+      "sha256": "127cc4962a8f607d649cc37b6cc9b962d766dadd6f014e7ecfb267e2c9fb5fb7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-125.png",
+      "sha256": "c849bd2535dd1fba3548488c334ca75f711d0a2281a2bd05640773f36e68aadc",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-150.png",
+      "sha256": "3a7dae11a1b171953f416d50222eb840b1d32a3b05f500629d105913980b440b",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-150.png",
+      "sha256": "fd03f89a15e166b7f92efef500f0f7fa790d04095e3a02620e9f712308be653a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "reproducedProductFixes": [
+    "Delayed initial-save notifications now use the latest durable state; a held second startup callback cannot replace the first saved partial reply.",
+    "Original comparison provider/model now come from the original reply invocation, after changing both connection and model during actual continuation and backup/restart.",
+    "Durable streamed checkpoints notify each message after parallel-start snapshots; comparison creation no longer reloads whole renderer state.",
+    "The comparison composer entry preserves the existing exact 32-pixel send-button size."
+  ],
+  "qaFixtureCorrections": [
+    "Unique footer close locator.",
+    "Fresh source timestamp places the fixture in the existing recent-100 list.",
+    "Continuation completion waits for the new message pair and actual request, rather than an earlier reply containing PARTIAL.",
+    "Native captures wait for a visible dialog and settled animation frames."
+  ],
+  "preservedFailureLogs": [
+    "model-comparison-queued-state-before-fix.log",
+    "model-comparison-queued-state-after-fix.log",
+    "model-comparison-queued-state-before-fix.log",
+    "model-comparisons-native-recheck.log",
+    "model-comparisons-checkpoint-before-fix.log",
+    "model-comparisons-complete-source.log",
+    "model-comparisons-complete-source-recheck.log",
+    "model-comparisons-complete-source-final.log"
+  ],
+  "distributionVerified": false,
+  "hostedVerified": false,
+  "hostedOriginalCauseEstablished": false,
+  "delayedSnapshotRegressionReproduced": true,
+  "scope": "The delayed startup callback regression is proven locally; the original hosted 90c cause remains unestablished. Committed source, exact 594-test coverage log and 194-check complete development desktop with normal close. Six comparison checks use eleven real isolated HTTP requests, held simultaneous streams, actual service failure and selective stop, real filesystem EIO/retry, selected continuation, independent drafts, actual JSON/gzip restore and normal restart. All nine current complete-run captures were individually inspected, and original provider/model identity remains fixed after actual continuation switches to the other connection/model and after backup/restart. Live cloud model quality and physical native dialogs remain separate; distribution and hosted completion are not claimed."
+}

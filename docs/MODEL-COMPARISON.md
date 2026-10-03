@@ -1,6 +1,10 @@
 # 并行模型比较
 
+包含原始模型标注和最新状态通知两项修复的新 Windows 本体，已完成本机分发验收：应用包及实际安装版各通过完整 194 项回归并正常退出，四项设置、七项便携、中文路径安装、快捷方式和卸载保留数据通过。十份实际记录匹配同一应用，九张当前安装版比较截图已逐张检查，见 [最新分发证据](../verification/model-comparison-queued-state-distribution-result.json)。新本体的远端验收仍待完成；下面各轮记录保留其独立提交与校验值。
+
 本轮验收见 [源码记录](../verification/model-comparison-review-result.json) 与 [本机分发记录](../verification/model-comparison-distribution-result.json)。远端及完整项目交付另见 [发布流程](RELEASE.md)。
+
+后续来源标注修复的独立源码证据见 [原始来源验收](../verification/model-comparison-origin-review-result.json)；最新状态通知修复见 [当前源码验收](../verification/model-comparison-queued-state-review-result.json)。各份记录保留自己的代码提交和应用校验值。
 
 最新状态通知修复通过 594 项／58 个文件单元测试、类型检查、构建、六项专项桌面检查和完整 194 项源码桌面回归并正常退出；九张当前完整回归截图已逐张检查。新增检查实际延迟第二条流的旧启动快照，确认它不能覆盖第一条流已经保存的部分文本；修复前失败，修复后通过。状态事件发送时现在读取最新已保存状态。新本体的分发与远端验收正在进行；初版远端通过 189 项后失败，原因尚未成立，详见 [远端比较失败记录](CI-MODEL-COMPARISON.md)。
 
