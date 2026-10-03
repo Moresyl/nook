@@ -1,0 +1,163 @@
+{
+  "verifiedAt": "2026-10-03T19:37:47.755Z",
+  "runId": 37146925190,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37146925190",
+  "sourceCommit": "f91070961fd3a05aba205c917eb80dfdc4718277",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T19:10:21Z",
+  "artifact": {
+    "id": 11282177925,
+    "name": "windows-verification-37146925190-1",
+    "bytes": 6072484,
+    "digest": "sha256:fcb6eb6a6ea507b06d7994d17f94c8eb18ce86c8384b47153f5eb2029c4a52ae",
+    "directory": "E:\\QiyaoPipelineAudits\\a10622d30d324fb7bca675975026af5f\\windows-verification-37146925190-1"
+  },
+  "hostedTestsPassed": 616,
+  "hostedTestFiles": 61,
+  "typecheckPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "packagedDesktopChecksPassedBeforeFailure": 164,
+  "failure": {
+    "source": "scripts/verify-project-tree.mjs:75:5",
+    "originalDeadlineMs": 10000,
+    "expected": "at least one project terminal output includes PS followed by a space",
+    "causeEstablished": false,
+    "lastPollCaptured": true,
+    "diagnostic": {
+      "at": 1791055678255,
+      "lastPoll": {
+        "at": 1791055677940,
+        "terminals": [
+          {
+            "id": "eaadf135-4845-42f6-94da-1e0497cb820c",
+            "projectId": "c904e550-2733-42e4-ae0e-a842edbd6b23",
+            "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-1bfe97b0cfc84c0f90ae5f582a8e9e70\\qiyao-electron-OEQDEy\\文件树 项目",
+            "shell": "powershell.exe",
+            "status": "running",
+            "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007",
+            "sequence": 4
+          }
+        ]
+      },
+      "current": [
+        {
+          "id": "eaadf135-4845-42f6-94da-1e0497cb820c",
+          "projectId": "c904e550-2733-42e4-ae0e-a842edbd6b23",
+          "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-1bfe97b0cfc84c0f90ae5f582a8e9e70\\qiyao-electron-OEQDEy\\文件树 项目",
+          "shell": "powershell.exe",
+          "status": "running",
+          "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007",
+          "sequence": 4
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 760,
+    "height": 540,
+    "sha256": "ac2e1e604a78432d7072decfa663aa435a7474fc81b7fb07dde8492d34638547",
+    "individuallyReviewed": true,
+    "observation": "The dark minimum-window project view retains its tree and unsaved editor text. The PowerShell terminal tab is open and its output area is blank after failure."
+  },
+  "bodyHashes": {
+    "executableSha256": "dabd1fc1f5b3ac07df309d0d4dc861c78f693655159b65d3080f1efcf41b97dd",
+    "archiveSha256": "4eaf9daca6609ea1cd8f50015617349d4bcdb9898bd440836f0cfc6d7ee172ba"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "present": true,
+      "sha256": "0e649d92141400af2c66b8846e97376fceeab456788702f08672cf14aee57b3a",
+      "verifiedAt": "2026-10-03T19:21:06.695Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "freshTenRecordResetVerified": true,
+  "completeRuntimeProofRejected": true,
+  "rejection": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "exactCommitPolicySha256": "aa7bca7de83de2addadc78ea1135f8e6c32057f89e73113d84fa235200e4d54b",
+  "source": [
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "0f98dedf01e1955e4c0a8a518a51fc4bf78dd775ddbf952b83dbd65aa8497865"
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "98d54ad83deffbb062d710192594bf1a21e3b3dd0346a4f33a2e11c6295c84f6"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "26e2e640405e910377a1b3fb5d1496eb5cd25e3f6135f4e40b24ec30e0d6766e"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "aa7bca7de83de2addadc78ea1135f8e6c32057f89e73113d84fa235200e4d54b"
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-comparison-last-poll-full.log",
+      "bytes": 281131,
+      "sha256": "f7fbb5588bbe341c4de703a13e074d96c329c7c086cdf3eb2a176d71faa6afc6"
+    },
+    {
+      "name": "github-comparison-last-poll-failed.log",
+      "bytes": 77991,
+      "sha256": "fa88061f1bd682ac346033db522cdfa39f6b0049f2e12ca0ca84f90706bf5c11"
+    }
+  ],
+  "comparisonChecksReached": false,
+  "subscriptionChecksReached": false,
+  "settingsVerified": false,
+  "portableVerified": false,
+  "installedVerified": false,
+  "hostedRuntimeVerified": false,
+  "publicationVerified": false,
+  "scope": "The exact source passes 616 hosted unit checks and 164 desktop checks, then its original ten-second real PowerShell prompt check fails. Both the last recorded poll and the later current state show a running terminal with four output chunks containing control sequences/title updates but no expected PS prompt. The cause remains unestablished; the existing shell already uses NoLogo and NoProfile. The post-failure dark screenshot retains the unsaved editor and blank terminal. The comparison diagnostics were not reached, so this run cannot confirm a comparison fix or failure. Only the fresh audit is among the ten required runtime records, and collection plus frozen exact-source release policy reject incomplete proof. No settings, portable, installed, complete hosted or publication result is claimed."
+}

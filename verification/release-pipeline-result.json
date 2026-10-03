@@ -505,6 +505,12 @@
       "sourceCommit": "e92e66390706d1c7336a255b785038d4d8412a0b",
       "conclusion": "failure",
       "proof": "verification/hosted-mcp-comparison-failure-result.json"
+    },
+    {
+      "runId": 37146925190,
+      "sourceCommit": "f91070961fd3a05aba205c917eb80dfdc4718277",
+      "conclusion": "failure",
+      "proof": "verification/hosted-project-terminal-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -648,19 +654,19 @@
     },
     "proof": "verification/hosted-directory-fixture-result.json",
     "hostedVerified": false,
-    "latestHostedRunId": 37143206703,
+    "latestHostedRunId": 37146925190,
     "hostedFixturePreparationPassed": true,
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37143206703,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37143206703",
-    "sourceCommit": "e92e66390706d1c7336a255b785038d4d8412a0b",
+    "runId": 37146925190,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37146925190",
+    "sourceCommit": "f91070961fd3a05aba205c917eb80dfdc4718277",
     "conclusion": "failure",
     "unitTestsPassed": 616,
-    "packagedChecksBeforeFailure": 189,
+    "packagedChecksBeforeFailure": 164,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-mcp-comparison-failure-result.json"
+    "proof": "verification/hosted-project-terminal-failure-result.json"
   },
   "previousSourceVerification": {
     "desktopChecks": 179,
@@ -691,7 +697,7 @@
       "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
     },
     "distributionProof": "verification/mcp-resource-subscriptions-distribution-result.json",
-    "latestHostedRunId": 37143206703
+    "latestHostedRunId": 37146925190
   },
   "previousUnitVerification": {
     "tests": 532,
