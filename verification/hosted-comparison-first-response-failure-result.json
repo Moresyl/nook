@@ -1,0 +1,240 @@
+{
+  "verifiedAt": "2026-10-03T21:29:25.390Z",
+  "runId": 37152624644,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37152624644",
+  "sourceCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T20:44:34Z",
+  "artifact": {
+    "id": 11285093097,
+    "name": "windows-verification-37152624644-1",
+    "bytes": 8366056,
+    "digest": "sha256:a3445061a4561e2b78d331bc1eb3dcf3c108ef90dedab8d77f817648515f6cf0",
+    "directory": "E:\\QiyaoPipelineAudits\\mcp-binary-first-response-221a055cdac64b828b4044e691c0bb50"
+  },
+  "hostedTestsPassed": 630,
+  "hostedTestFiles": 62,
+  "typecheckPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "packagedDesktopChecksPassedBeforeFailure": 189,
+  "terminalBindingHostedVerified": true,
+  "terminalTiming": {
+    "registeredAt": 1791061292176,
+    "pid": 2860,
+    "processName": "xterm-256color",
+    "cols": 80,
+    "rows": 12,
+    "chunks": 4,
+    "characters": 348,
+    "firstDataAt": 1791061292223,
+    "lastDataAt": 1791061299404
+  },
+  "terminalSnapshot": {
+    "capturedAt": 1791061299785,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791061292176,
+        "pid": 2860,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 4,
+        "characters": 348,
+        "firstDataAt": 1791061292223,
+        "lastDataAt": 1791061299404
+      }
+    ],
+    "mainMemory": {
+      "rss": 1056174080,
+      "heapTotal": 899960832,
+      "heapUsed": 885767884,
+      "external": 4306352,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 2870992896,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 7744,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 40.510017,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 1031448,
+          "peakWorkingSetSize": 2269700,
+          "privateBytes": 1024624
+        }
+      },
+      {
+        "pid": 3784,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 1.117657,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 64792,
+          "peakWorkingSetSize": 95584,
+          "privateBytes": 17228
+        }
+      },
+      {
+        "pid": 7412,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.057449,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 46520,
+          "peakWorkingSetSize": 49908,
+          "privateBytes": 11584
+        }
+      },
+      {
+        "pid": 8456,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 11.505954,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 1233984,
+          "peakWorkingSetSize": 1272952,
+          "privateBytes": 1197516
+        }
+      }
+    ]
+  },
+  "failure": {
+    "source": "scripts/verify-model-comparisons.mjs:58:144",
+    "phase": "first reply control after submit",
+    "originalResponseDeadlineMs": 30000,
+    "originalPartialStreamWaitReached": false,
+    "submissionEventCaptured": false,
+    "backendComparisonStateCaptured": false,
+    "deadlineRequestTimelineCaptured": false,
+    "causeEstablished": false
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 1280,
+    "height": 840,
+    "sha256": "cb7f2a3c06c3e184cf78d29ba7fc5f7cafd845d53978248ead3ad57a7a289efa",
+    "individuallyReviewed": true,
+    "observation": "The post-failure light comparison configuration remains visible with the question, attachment, both connections/models and dim controls/send button; response areas are absent. It is a later screenshot, not a deadline DOM or backend snapshot."
+  },
+  "bodyHashes": {
+    "executableSha256": "e8e206169f42d148b795d80219dd403b27c53073103b1abc57a0fe428bda5b78",
+    "archiveSha256": "4a2f3f78d02ab9ba10ec8a47805537b0cf6c5a9637d4997cac8317b9bccb4123"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "present": true,
+      "sha256": "b771e1d55a1eb8e41420f8fd04e636c46349637d9305a5a59822c83ee9cdc41c",
+      "verifiedAt": "2026-10-03T20:54:57.135Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "freshTenRecordResetVerified": true,
+  "completeRuntimeProofRejected": true,
+  "rejection": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "exactCommitPolicySha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292",
+  "source": [
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "c8addbbcd2256c89c3a8423490da2b671a22caaed5e1eeac9105f34a6189202f"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "7ab755f6dffb4726f5022e8c36d52ba0309a983a7a89ccfa2962d67dcac7328e"
+    },
+    {
+      "path": "workbench/components/model-comparison.tsx",
+      "sha256": "d4b8fd82acfcd76b29524c4dcb1f30e15baf7a9ff604e3f83f7152cfaf94ee73"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292"
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-mcp-binary-module-full.log",
+      "bytes": 277474,
+      "sha256": "9d9ed58842e4d0799f53ae074e2581cfef59fe1b79891f9593e7153157fcb3b3"
+    },
+    {
+      "name": "github-mcp-binary-module-failed.log",
+      "bytes": 88595,
+      "sha256": "4479cb92f25543b69f39f1328a0bc1063c2d5b7ba13d96866323d662ee137576"
+    }
+  ],
+  "subscriptionChecksReached": false,
+  "binaryChecksReached": false,
+  "settingsVerified": false,
+  "portableVerified": false,
+  "installedVerified": false,
+  "hostedRuntimeVerified": false,
+  "publicationVerified": false,
+  "scope": "The exact source passes 630 hosted unit tests, build/audit and 189 desktop checks. The corrected PTY observer is validated remotely by distinct module paths, actual PID/output timing and the original successful prompt/commands. The first comparison reply control then fails its original 30-second visibility wait, before the ten-second PARTIAL wait and its diagnostics. No submit event, comparison backend snapshot or deadline request timeline is captured, so its cause remains unknown. The individually reviewed later screenshot shows a dim configuration form with no reply area and cannot establish deadline state. Only the fresh audit exists among ten required records, and the collector plus exact-source frozen policy reject incomplete proof. Existing local full 206-check distribution remains tied to its own body; later hosted gates and publication are not claimed."
+}

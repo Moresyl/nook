@@ -1,0 +1,206 @@
+{
+  "verifiedAt": "2026-10-03T21:40:20.556Z",
+  "codeCommit": "65486370f1fa065c2b2f7f981b1ce29414a1e2ef",
+  "source": [
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "be9143640994f8f6fc082db28576d8ec05a2ffa2cefdd248d30b45002a1c0b7c"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "7ab755f6dffb4726f5022e8c36d52ba0309a983a7a89ccfa2962d67dcac7328e"
+    }
+  ],
+  "previousHostedFailure": "verification/hosted-comparison-first-response-failure-result.json",
+  "originalFirstResponseDeadlineMs": 30000,
+  "originalPartialStreamDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "nativeSubmitClickObserved": true,
+  "timing": {
+    "waitStartedAt": 1791063162248,
+    "completedAt": 1791063167723,
+    "unchangedResponseDeadlineMs": 30000,
+    "diagnostic": {
+      "installedAt": 1791063162249,
+      "clicks": [
+        {
+          "at": 1791063162294,
+          "trusted": true
+        }
+      ],
+      "samples": 54,
+      "lastPoll": {
+        "at": 1791063167654,
+        "sendButtonPresent": false,
+        "sendButtonDisabled": null,
+        "responses": [
+          {
+            "text": "",
+            "status": "生成中"
+          },
+          {
+            "text": "",
+            "status": "生成中"
+          }
+        ]
+      }
+    }
+  },
+  "completeDesktopChecks": 206,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "comparisonRecord": {
+    "verifiedAt": "2026-10-03T21:37:06.785Z",
+    "variant": "development executable",
+    "executableSha256": null,
+    "archiveSha256": null,
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "verificationRun": "complete desktop suite",
+    "suiteChecks": 206,
+    "checks": 6,
+    "comparisonModelRequests": 11,
+    "parallelStreamsVerified": true,
+    "independentFailureStopVerified": true,
+    "atomicSaveRetryVerified": true,
+    "backupsRestartVerified": true,
+    "temporaryExclusionVerified": true,
+    "originalDraftRetainedVerified": true,
+    "originalModelIdentityVerified": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "headerTop": 1,
+        "footerBottom": 521,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "headerTop": 0.800000011920929,
+        "footerBottom": 412.00000762939453,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "headerTop": 0.6666666865348816,
+        "footerBottom": 339.3333435058594,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "117-model-comparison-config-light.png",
+      "118-model-comparison-stream-light.png",
+      "119-model-comparison-save-error-light.png",
+      "120-model-comparison-config-dark-zoom-100.png",
+      "121-model-comparison-results-dark-zoom-100.png",
+      "120-model-comparison-config-dark-zoom-125.png",
+      "121-model-comparison-results-dark-zoom-125.png",
+      "120-model-comparison-config-dark-zoom-150.png",
+      "121-model-comparison-results-dark-zoom-150.png"
+    ],
+    "scope": "Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate."
+  },
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "50170e966ada1955906a5f9a5454fd2461d98a70e277ada188b59dfb8ae70cc3"
+    },
+    {
+      "path": "verification/automations-result.json",
+      "bytes": 674,
+      "sha256": "d987f24940bf4cbeb2cdde1651f7e1f9f4c442e1d20b206162be300e2e7b51bc"
+    },
+    {
+      "path": "verification/backups-result.json",
+      "bytes": 1997,
+      "sha256": "5303623256782055a1b0113021835ea69f50591bc8d88d6904e1d6249c71aa56"
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "bytes": 10591,
+      "sha256": "a4cbd836607c155da9d27c5ad72946c34567ef9a713adec8ee0050da47070910"
+    },
+    {
+      "path": "verification/commands-result.json",
+      "bytes": 873,
+      "sha256": "11894b66d6e75ccef1d49e56421ce34f0b98a71338eae2b4da26c41acbc63a8a"
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "bytes": 11675,
+      "sha256": "3b3b790331b798b1d27da4c0755122399cc3e2ac24b85db46770b5dffeaedc51"
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "1cebd4e45c38d187c11a661fbc8478ce76c8d1348c59c55d934d377a067b9c2a"
+    },
+    {
+      "path": "verification/electron-result.json",
+      "bytes": 50183,
+      "sha256": "0a6b17e33421477bb9c288601fa0b6e0400f5afd5818f9b3f3cca28e58221d62"
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "bytes": 781,
+      "sha256": "48fe0c60299587bc930cdf86a4dc3ca2821bfc9533335277de47d3a02d03c9c1"
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "bytes": 1770,
+      "sha256": "6f4d2b9274798b6128064bbf88ca779e4179039241731d90a0b71b0e502c7c4e"
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "bytes": 795,
+      "sha256": "fcabde15bbdc433bd4cc3d0bed8c367811f96e638f34dae3f65204c5c3a981b4"
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "bytes": 768,
+      "sha256": "2b3530283face6735a9b70bcdb5bb9252ea017eb06ae0cf778d2d2ad7e82181c"
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "bytes": 2126,
+      "sha256": "30daf2c282616576ecee7e7f2837f007189c9582fa1cdefdb00c8c99008ff940"
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "bytes": 3552,
+      "sha256": "60d575d9b2e8e67b42b1d608b13fe2c578e219b6610a4ea5ebf16b4d76716de3"
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "507503bd041bc9390d72da0ce23c0fdc9dc9345380c19f336f2b609a6f5d4bf3"
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "12e1e9e555b16f3044c9f8eb37dc82cf3e1cb71b074705d065c33594bac3a07a"
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "bytes": 1832,
+      "sha256": "a1e0f60481691d5281ce43590ecad0e44fef68669a02642c5d317f44d6c412c2"
+    }
+  ],
+  "log": {
+    "name": "comparison-first-response-native.log",
+    "bytes": 33024,
+    "sha256": "59c8eeb0b81343b617ab1031712d54b853e1c477275b85c28b837530c1f3b4fb"
+  },
+  "failureDiagnosticBranchObserved": false,
+  "hostedVerified": false,
+  "scope": "QA records one trusted native submit click, the original first-response control wait and a bounded 100-ms DOM poll, then retains the original partial-stream assertions and all eleven real HTTP comparison requests. The complete 206-check source suite closes normally; first reply controls appear about 5.5 seconds after this local submit. The new failure catch retains request/timeline snapshots at failure and separately timed later backend/resources, without claiming them simultaneous. Its failure branch is not exercised by this successful run and the hosted first-response cause remains unknown. The complete run was selected because the intended focused invocation used an unrecognized environment flag; it is reported as a full run, with all seventeen fresh raw records archived separately. Their previous tracked complete source records are restored byte-for-byte so earlier source proofs remain intact. No current hosted completion or publication is claimed."
+}
