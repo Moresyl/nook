@@ -1,0 +1,98 @@
+{
+  "verifiedAt": "2026-10-03T11:59:11.281Z",
+  "runId": 37117740635,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37117740635",
+  "sourceCommit": "8cab07d6e81e86655a867d3bdfa19a102dedf78b",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 11272926847,
+    "name": "windows-verification-37117740635-1",
+    "bytes": 7869455,
+    "directory": "E:/QiyaoPipelineAudits/f6776558457e4b228863a13438dc366e"
+  },
+  "unitTests": 545,
+  "unitFiles": 55,
+  "successfulPackagedChecks": 185,
+  "successfulSettingsChecks": 4,
+  "successfulBranchChecks": 6,
+  "successfulTemporaryChecks": 6,
+  "successfulPortableChecks": 7,
+  "portableLaunches": 2,
+  "longDocumentPaths": [
+    292,
+    292
+  ],
+  "executableSha256": "62a88ee9a66c80f0de7465633e46ed4ce620147eb6e02fd217d4393b3c10fdc3",
+  "archiveSha256": "8330f698fc35a3a56f7a3eb4eb1f2c0f83a15ef56327e62eb3da6200b2c3783b",
+  "installedChecksBeforeFailure": 165,
+  "failure": "Owned application restart after the project-workspace native zoom check timed out waiting for a browser page event at the unchanged 30000 ms deadline.",
+  "newProcessDiagnosticsAvailable": false,
+  "failureScreenshotAvailable": false,
+  "originalCauseEstablished": false,
+  "retainedDesktopFixture": "C:/Users/runneradmin/AppData/Local/QiyaoPipeline-f823d6e55047451397d538dd9e483ea6/qiyao-electron-aFXLMi",
+  "retainedInstallerFixture": "C:/Users/runneradmin/AppData/Local/QiyaoInstallerAudit-6569ac2608444cd98ca1383ead3bdecf",
+  "staleUploadedInstallerRecord": {
+    "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+    "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+  },
+  "exactCommitReleasePolicyRejectedMixedProof": true,
+  "releasePolicyFile": {
+    "path": "scripts/release-policy.mjs",
+    "commit": "8cab07d6e81e86655a867d3bdfa19a102dedf78b",
+    "sha256": "35d016ecab86deb7a09edcbdb303f230718dc04e3c3a57f5f03ea5a5a58a410c"
+  },
+  "logs": [
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\github-8cab-complete.log",
+      "sha256": "b52eeca230d5a593d973db3014e66eb2a212dfc0e9b7c801eac61d23da1213a4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\github-8cab-failed.log",
+      "sha256": "ad09efb1da3c461a84cd67a9dce939e2d1d0851b4e2e22dc6336d5dae9d918ff"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\github-8cab-status.json",
+      "sha256": "ece5c3fc9224dd954c3920ecb244b1e621f1325aa7f53da8b540bdc1c77b86f9"
+    }
+  ],
+  "proofFiles": [
+    {
+      "path": "verification/package-audit-result.json",
+      "sha256": "9cfea907a8903095e42b97c6cb4370fce605138ad17cbff6b286c8fc9eec5f05"
+    },
+    {
+      "path": "verification/packaged-result.json",
+      "sha256": "079bd1a8d46eaa5f7c5783dd3abf979157f91c41ea9b9563818b4223168e69d9"
+    },
+    {
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "b5121e0a2091168b2f337222d99a606d7115b1575dbac8154b975b75e87b572c"
+    },
+    {
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "2b0200a318bf9d1a7de9714f62f7a1d7cd4b8ee3c6b517f5241e0318b81738c6"
+    },
+    {
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "b96ff6c746719b7902b1ae99beebc00db9f82c3a0eca9f19caa2b7ecce2a187b"
+    },
+    {
+      "path": "verification/portable-result.json",
+      "sha256": "b018ef5c57814d9fda56503915a47c2769b32e76f03b356be083c7bbcacb3479"
+    },
+    {
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "a48d0ffe157c0fbb8f8938e7bc7b29511b27a157317d0fe4ade1c956de6c1586"
+    },
+    {
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "c302c01b446ae50ac4d7b36384b32cf9035f0103301e232a90a350878a5e8636"
+    },
+    {
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "232b1273ce8e91c9882ef860e82e16c1d1aaa2afa35ba80b5cb3b6a5c60d4710"
+    }
+  ],
+  "publicationVerified": false,
+  "scope": "Downloaded actual same-body unpacked/settings/temporary/branch/portable proof passes its recorded assertions, but installed verification fails after 165 checks. The upload retains an older installer record with different application hashes; the exact 8cab policy rejects the combined nine records. The original restart failure has no current-process diagnostic or screenshot, so no product cause/fix or complete hosted success is claimed."
+}

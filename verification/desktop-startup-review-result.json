@@ -1,0 +1,100 @@
+{
+  "verifiedAt": "2026-10-03T12:08:12.022Z",
+  "productCodeCommit": "0a586ec5e97acc4bd98223a834cf677d7b83ce36",
+  "hostedFailureProof": "verification/hosted-startup-failure-result.json",
+  "originalHostedFailureCauseEstablished": false,
+  "typecheckPassed": true,
+  "unitTests": 571,
+  "unitFiles": 57,
+  "pageDiscoveryTests": 7,
+  "pageDiscoveryCoverage": {
+    "statements": {
+      "covered": 14,
+      "total": 14,
+      "pct": 100
+    },
+    "branches": {
+      "covered": 13,
+      "total": 13,
+      "pct": 100
+    },
+    "functions": {
+      "covered": 4,
+      "total": 4,
+      "pct": 100
+    },
+    "lines": {
+      "covered": 9,
+      "total": 9,
+      "pct": 100
+    }
+  },
+  "originalPageDeadlineMs": 30000,
+  "originalPortablePageDeadlineMs": 10000,
+  "originalPortableApplicationDeadlineMs": 30000,
+  "unpackedBodyChecksBeforeHarnessChange": 188,
+  "installedBodyChecksAfterHarnessChange": 188,
+  "sameProductBodyVerified": true,
+  "portableChecks": 7,
+  "portablePathLengths": [
+    274,
+    274
+  ],
+  "portableOriginalFilesVerified": 188,
+  "strictDistributionProof": "verification/branch-order-distribution-result.json",
+  "harness": [
+    {
+      "path": "scripts/desktop-page.mjs",
+      "sha256": "2899f8d38f90cbb8011b37de7bafac88f85ba0efa410a872b96184ff8b199157"
+    },
+    {
+      "path": "scripts/desktop-page.d.mts",
+      "sha256": "d915943debfb92898191ce12ebb4993a0cb891db07033274f99a6ceceb1cb0db"
+    },
+    {
+      "path": "verification/desktop-page.test.ts",
+      "sha256": "6e6b0826c4f41a9dd3c946ad8d1e2dcb166f2bb55b14d93a822f971e9c8467ea"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "0796009380dc83394109f1f2ac5977512096ac13b18022caaae69d97ae4473d1"
+    },
+    {
+      "path": "scripts/verify-portable.mjs",
+      "sha256": "657afe70482e3c4e67b616d0d4009ae6b597c9fba37aba93fbb1964fc65646bd"
+    }
+  ],
+  "logs": [
+    {
+      "privateLog": "desktop-startup-typecheck.log",
+      "sha256": "351216499d4f071ec40adca7ff15ce9991e6648517c79af77f0c944654e0baf6",
+      "bytes": 71
+    },
+    {
+      "privateLog": "desktop-startup-full-coverage.log",
+      "sha256": "6800b5be119d6eeafa0a82a9878a59dee66ea2dbbc3dcf04755f1052836405c5",
+      "bytes": 4301
+    },
+    {
+      "privateLog": "desktop-page-coverage.log",
+      "sha256": "5197a1ca990f3296975b23c71ad658455cbf225ca06c1f8dff810cc82e01bbfb",
+      "bytes": 873
+    },
+    {
+      "privateLog": "branch-order-portable.log",
+      "sha256": "72a4a80383df4b9d08c8524ef646e192501626d910e432ef2d0aa2f1aa832dbc",
+      "bytes": 809
+    },
+    {
+      "privateLog": "branch-order-portable-recheck.log",
+      "sha256": "d1d4eb5b366937238a8a1e6b6d72faa3bb05a07f38ecc771130fccbc7018eb30",
+      "bytes": 955
+    },
+    {
+      "privateLog": "branch-order-installed.log",
+      "sha256": "888df14bd31b889e2ccec536260bc3aee5af937d6b2f0cbd0793cf1749a20df2",
+      "bytes": 27636
+    }
+  ],
+  "scope": "Independent page-discovery tests cover event-before-subscription, later navigation of an existing blank target, closed-target replacement, owned process exit and original deadlines. This is a tested harness improvement with new-process diagnostics, not an established root-cause fix for the hosted failure. Actual portable and complete installed runs exercise the new discovery code on the unchanged product body. Original short-root portable precondition failure and its owned directory are retained; only the test extraction root changed to exercise the original packaged file beyond MAX_PATH. Hosted success and physical desktop acceptance are not claimed."
+}

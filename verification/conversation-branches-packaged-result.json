@@ -1,13 +1,16 @@
 {
-  "verifiedAt": "2026-10-03T10:00:06.218Z",
+  "verifiedAt": "2026-10-03T12:00:13.350Z",
   "variant": "packaged executable",
-  "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
-  "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4",
+  "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+  "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "verificationRun": "complete desktop suite",
-  "suiteChecks": 185,
-  "checks": 6,
+  "suiteChecks": 188,
+  "checks": 9,
+  "manualOrderingVerified": true,
+  "orderingFailureRecoveryVerified": true,
+  "orderingBackupRestartVerified": true,
   "familyThreadsInitially": 205,
   "survivingThreads": 203,
   "pageSize": 200,
@@ -441,6 +444,11 @@
     }
   ],
   "screenshots": [
+    "114-branch-order-light.png",
+    "115-branch-order-error-light.png",
+    "116-branch-order-dark-zoom-100.png",
+    "116-branch-order-dark-zoom-125.png",
+    "116-branch-order-dark-zoom-150.png",
     "106-branch-navigation-light.png",
     "107-branch-navigation-error-light.png",
     "108-branch-navigation-dark-zoom-100.png",
@@ -450,5 +458,5 @@
     "110-branch-header-with-parent-light-zoom-150.png",
     "111-branch-navigation-ambiguous-dark.png"
   ],
-  "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
+  "scope": "Manual sibling ordering with complete subtree/page-boundary selection, stale-client rejection, actual save failure/retry, preserved history/drafts/attachments, gzip restore/restart and dark minimum-window order controls/keyboard. Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
 }

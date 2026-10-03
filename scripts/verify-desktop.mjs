@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { waitForDesktopPage } from './desktop-page.mjs';
 import { execFile, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { promisify } from 'node:util';
@@ -229,6 +230,7 @@ async function waitForCheckpoint(content) {
   throw new Error('The running response was not checkpointed to disk.');
 }
 async function launch() {
+  application = undefined; currentPage = undefined;
   const startedAt = Date.now();
   const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
@@ -244,7 +246,6 @@ async function launch() {
       if (match) { clearTimeout(timeout); resolve(match[1]); }
     });
   });
-  const browser = await chromium.connectOverCDP(debuggerUrl);
   const nodeUrl = diagnostics.match(/Debugger listening on (ws:\/\/[^\s]+)/)?.[1];
   assert.ok(nodeUrl, 'The test process must expose its own main-process debugger.');
   async function evaluateMain(expression) {
@@ -261,8 +262,17 @@ async function launch() {
       });
     } finally { socket.close(); }
   }
-  const context = browser.contexts()[0];
-  const page = context.pages().find((item) => !item.url().startsWith('qiyao-plugin:')) ?? await context.waitForEvent('page');
+  let browser; let page;
+  try {
+    browser = await chromium.connectOverCDP(debuggerUrl);
+    page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
+  } catch (error) {
+    const main = await evaluateMain("({ready:require('electron').app.isReady(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,url:window.webContents.getURL(),visible:window.isVisible(),destroyed:window.isDestroyed()}))})").catch(() => undefined);
+    console.error('Desktop page startup diagnostics', { pid: child.pid, elapsedMs: Date.now() - startedAt, exitCode: child.exitCode, signalCode: child.signalCode, pages: browser?.contexts().flatMap((context) => context.pages().map((page) => ({ url: page.url(), closed: page.isClosed() }))), main }, diagnostics.slice(-4000).replace(/ws:\/\/[^\s]+/g, '[test debugger]'));
+    if (child.exitCode === null && child.signalCode === null) child.kill();
+    await browser?.close().catch(() => {});
+    throw error;
+  }
   currentPage = page;
   application = { evaluateMain, resize: (width, height) => evaluateMain(`require('electron').BrowserWindow.getAllWindows().find(w => w.webContents.getURL().startsWith('qiyao://app/')).setSize(${width}, ${height})`), close: async ({ quit = false } = {}) => {
     if (child.exitCode === null) {

@@ -1,0 +1,160 @@
+{
+  "verifiedAt": "2026-10-03T12:08:12.022Z",
+  "codeCommit": "0a586ec5e97acc4bd98223a834cf677d7b83ce36",
+  "variant": "packaged executable",
+  "strictReleasePolicyVerified": true,
+  "applicationHashes": {
+    "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+    "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae",
+    "installerSha256": "b69d7250020a5b35e1440bb174c2881cfd9c5e6ffdafac812d87a99fa3b64fd8",
+    "portableSha256": "a89ac66d420d98b45cbb36878594ab80580c970243467562e8b7ead94b1949a5"
+  },
+  "desktopChecks": 188,
+  "installedChecks": 188,
+  "surfaceChecks": 4,
+  "branchChecks": 9,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "portableChecks": 7,
+  "originalUnpackedFilesVerified": 188,
+  "originalBootstrapPlugins": [
+    {
+      "variant": "installer",
+      "plugins": 6,
+      "sha256": "b69d7250020a5b35e1440bb174c2881cfd9c5e6ffdafac812d87a99fa3b64fd8"
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5,
+      "sha256": "bc67d6682735b225c404f7c92f0351f50cf5831db0201720c73f16414f6f3dd1"
+    },
+    {
+      "variant": "portable",
+      "plugins": 2,
+      "sha256": "a89ac66d420d98b45cbb36878594ab80580c970243467562e8b7ead94b1949a5"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "ac5a9aeaef38b1a295da4f934dc1a75b686051433007d5bfb9a727e5eabe8f70",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "267af02d5f0a519808437fac2ca48c2d7cfd752ae18d71c2b601c84489c50c70",
+      "bytes": 45920
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "1f9ce2e7cb482d676e3730b2e860c1fbfe8cbf549485b95a0977dbb9e46a4e58",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "a0467318749692842f849c4720d6c3f4874f20fc855f0f2aab84c99419f59bb9",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "c0cd75ae0940e7c5026b59fb6d777702a7b0344e436ccbb3314876c967fcf6a5",
+      "bytes": 1953
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "d4eed027cabd2473c2b8716e4929aff2e863286af3fdc0e3c9fec648976bf072",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "db035adcce665256cb3b6929de087877584a3dac0ee8c81d5d64f672845e11ed",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "f5ed9a2d42fe614821e5e439b52b3661e1e4b2dcb85534312864877058d843f1",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "1dea4a87245af08c7e1ed3c48b943d21ff9e0d191f82c01b5902eebf8ad791b7",
+      "bytes": 766
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/114-branch-order-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "adeca9f6dced496045ca659d4c0a2703b8309d9b00dba1a7aa39cb6815063226",
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    },
+    {
+      "path": "verification/screenshots/115-branch-order-error-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "0c46acab0a65795f08f92c890d2d14878caa279d75ce665767ed6d4013bf54d5",
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    },
+    {
+      "path": "verification/screenshots/116-branch-order-dark-zoom-100.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "56ea72b231607ec43ab26fe28017f0b1c508c2a564a776da6c386a29e5c0b263",
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    },
+    {
+      "path": "verification/screenshots/116-branch-order-dark-zoom-125.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "2f223e31f9be57415ff590350ea99f22e13688a7734eb7501ee2ac1b23d856d6",
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    },
+    {
+      "path": "verification/screenshots/116-branch-order-dark-zoom-150.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "dbe0c41b194c22efa449e9fe5f987b2e28150131c8547266f933570120e11cf6",
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    }
+  ],
+  "scope": "Current rebuilt unsigned Windows application: full 188-check unpacked and actual installed desktop, nine branch-order/recovery checks, six temporary-chat checks, four settings checks, original bootstrap plugins, two real portable launches with 274-character original package documents and long-path cleanup, current-user Unicode-path install, shortcuts and uninstall retaining fresh profile sentinels. All nine actual records satisfy the unchanged strict release policy against the same EXE/ASAR hashes. Five current installed ordering captures were individually reviewed. Page-discovery harness changed after the unpacked run and was exercised by the portable and complete installed runs; product body was unchanged. Hosted verification, remaining delivery capabilities and physical wizard/picker acceptance remain separate."
+}

@@ -8,6 +8,7 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'nod
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { chromium } from 'playwright';
+import { waitForDesktopPage } from './desktop-page.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 assert.equal(process.platform, 'win32', 'Portable-wrapper verification requires Windows');
@@ -17,7 +18,7 @@ assert.ok(space.bavail * space.bsize >= 1_000_000_000, 'Portable verification re
 const directory = await mkdtemp(join(scratchRoot, 'qiyao-portable-'));
 // Exercise long packaged assets while keeping the bootstrap executable's own
 // path below MAX_PATH; the asset length is asserted in each real launch.
-const extractionRoot = join(directory, `temporary-${'a'.repeat(32)}`);
+const extractionRoot = join(directory, `temporary-${'a'.repeat(Math.max(32, 128 - directory.length - 'temporary-'.length - 1))}`);
 const data = join(directory, 'data');
 const project = join(directory, 'project');
 const portableDirectory = join(directory, '免安装 栖曜');
@@ -144,15 +145,15 @@ async function launch() {
   const scope = relative(extractionRoot, extraction);
   assert.ok(scope && scope !== '..' && !scope.startsWith(`..${sep}`) && !isAbsolute(scope), 'Portable child must belong to the isolated extraction directory');
   const longDocument = join(extraction, 'resources', 'app.asar.unpacked', 'node_modules', 'node-pty', 'deps', 'winpty', 'misc', 'Font-Report-June2016', 'Windows10SetFontBugginess.txt');
+  timing.longDocumentPathLength = longDocument.length;
   assert.ok(longDocument.length > 260, 'Portable cleanup must exercise an actual packaged document beyond MAX_PATH');
   assert.ok((await readFile(longDocument)).length > 0, 'The long-path packaged document must be retained and readable');
-  timing.longDocumentPathLength = longDocument.length;
   assert.equal(main.portableFile, executable); assert.equal(main.portableDirectory, portableDirectory); assert.equal(main.data, data);
   assert.ok(main.arguments.includes(marker), 'Portable wrapper must forward an exact quoted Unicode argument');
   application.endpoint = endpoint; application.extraction = extraction; application.main = main;
   application.browser = await chromium.connectOverCDP(endpoints.browser, { timeout: 10_000 });
   const context = application.browser.contexts()[0];
-  const page = context.pages().find((item) => item.url().startsWith('qiyao://app/')) ?? await context.waitForEvent('page', { timeout: 10_000 });
+  const page = await waitForDesktopPage(context, { timeoutMs: 10_000, hasExited: () => child.exitCode !== null || child.signalCode !== null });
   page.on('pageerror', (error) => errors.push(String(error)));
   await waitUntil(() => page.evaluate(() => Boolean(window.qiyao)), 'Portable preload bridge did not become ready');
   timing.applicationReadyAt = Date.now();
