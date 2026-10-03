@@ -155,6 +155,7 @@ async function launch() {
   const context = application.browser.contexts()[0];
   const page = await waitForDesktopPage(context, { timeoutMs: 10_000, hasExited: () => child.exitCode !== null || child.signalCode !== null });
   page.on('pageerror', (error) => errors.push(String(error)));
+  page.on('crash', () => errors.push('The portable renderer crashed.'));
   await waitUntil(() => page.evaluate(() => Boolean(window.qiyao)), 'Portable preload bridge did not become ready');
   timing.applicationReadyAt = Date.now();
   assert.ok(timing.applicationReadyAt - timing.applicationObservedAt <= 30_000, 'Portable Electron startup exceeded its original budget');
@@ -163,7 +164,12 @@ async function launch() {
 }
 async function close() {
   const current = application;
-  await current.page.evaluate(() => window.qiyao.windowAction('close'));
+  assert.equal(current.page.isClosed(), false, 'The portable page must be live before requesting normal close');
+  try { await current.page.evaluate(() => window.qiyao.windowAction('close')); }
+  catch (error) {
+    if (!current.page.isClosed() || !(error instanceof Error) || !/^page\.evaluate: Target page, context or browser has been closed(?:\r?\n|$)/.test(error.message)) throw error;
+    console.log('Portable page closed before acknowledging the requested close; normal wrapper exit and extraction cleanup remain required.');
+  }
   const exit = await Promise.race([current.exited, new Promise((_, reject) => {
     const timer = setTimeout(() => reject(new Error('Portable wrapper did not exit normally')), 10_000);
     current.exited.then(() => clearTimeout(timer));
