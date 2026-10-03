@@ -1,0 +1,93 @@
+{
+  "verifiedAt": "2026-10-03T05:13:10.230Z",
+  "canonicalDirectory": "D:\\GR\\qiyao",
+  "repository": "https://github.com/Moresyl/qiyao",
+  "visibilityAtVerification": "PRIVATE",
+  "verifiedInitialCommit": "8ef0326bf099fe7714bc96276c42a84f561e1cb5",
+  "initialCommitCount": 1,
+  "initialTrackedFiles": 822,
+  "initialReachableObjects": 865,
+  "inheritedHistory": false,
+  "removedAssetOrPrivateArtifactMatches": [],
+  "originalLegalHashes": {
+    "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+    "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "licenses/fonts/Inter-OFL.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+  },
+  "initialPushVerified": true,
+  "hostedRun": {
+    "id": 37098410537,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37098410537",
+    "attempts": [
+      {
+        "attempt": 1,
+        "conclusion": "failure",
+        "passedTests": 513,
+        "failedTests": 2,
+        "failures": [
+          "PDF document unit-test deadline",
+          "automatic-task runner polling window"
+        ]
+      },
+      {
+        "attempt": 2,
+        "conclusion": "failure",
+        "passedTests": 514,
+        "failedTests": 1,
+        "failures": [
+          "actual 2,005-entry fixture construction/read unit-test deadline",
+          "subsequent nonempty-directory cleanup error"
+        ]
+      }
+    ]
+  },
+  "fixtureChanges": [
+    "Actual runner-entry callbacks replace the separate one-second polling assertions",
+    "Real PDF parser initialization is verified in fixture setup",
+    "All 2,005 real directory entries are constructed in fixture setup and removed after the directory test"
+  ],
+  "defaultUnitDeadlineMs": 5000,
+  "defaultFixtureDeadlineMs": 10000,
+  "productionWorkerDeadlineMs": 30000,
+  "localRegression": {
+    "tests": 515,
+    "files": 52,
+    "workers": 1,
+    "durationSeconds": 33.49,
+    "typecheckExitCode": 0,
+    "releaseNoticesExitCode": 0,
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "scope": "Initial independent commit and configured private remote are verified. Original upstream attribution and full legal documents remain. Removed binary assets and private old history are absent from all reachable initial objects. The two failed hosted attempts are retained; no successful hosted verification or release is claimed. Product implementations and deadlines are unchanged by fixture preparation."
+}

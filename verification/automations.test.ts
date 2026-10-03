@@ -82,10 +82,12 @@ describe('persistent automatic tasks', () => {
     expect(next).toBeGreaterThan(now()); expect((next - first) % 60_000).toBe(0); expect(vault.snapshot().automations[0].runs).toHaveLength(1);
   });
   it('limits active jobs to two and dispatches older due plans first when a slot becomes free', async () => {
-    const seen: string[] = []; const { service, vault, advance, now } = await setup(async (task, signal, onThread) => { seen.push(task.name); return held(task, signal, onThread); });
+    const seen: string[] = []; let secondStarted!: () => void; let thirdStarted!: () => void;
+    const second = new Promise<void>((resolve) => { secondStarted = resolve; }); const third = new Promise<void>((resolve) => { thirdStarted = resolve; });
+    const { service, vault, advance, now } = await setup(async (task, signal, onThread) => { seen.push(task.name); if (seen.length === 2) secondStarted(); if (seen.length === 3) thirdStarted(); return held(task, signal, onThread); });
     const late = task({ name: 'Late', enabled: true, schedule: { kind: 'once', at: now() + 3000 } }); const early = task({ name: 'Early', enabled: true, schedule: { kind: 'once', at: now() + 1000 } }); const middle = task({ name: 'Middle', enabled: true, schedule: { kind: 'once', at: now() + 2000 } });
-    for (const input of [late, early, middle]) await service.save(input); advance(3000); service.wake(); await vi.waitFor(() => expect(seen).toHaveLength(2)); expect(seen).toEqual(['Early', 'Middle']);
-    await expect(service.runNow(late.id)).rejects.toThrow('Two automatic'); await service.stop(early.id); service.wake(); await vi.waitFor(() => expect(seen).toEqual(['Early', 'Middle', 'Late']));
+    for (const input of [late, early, middle]) await service.save(input); advance(3000); service.wake(); await second; expect(seen).toEqual(['Early', 'Middle']);
+    await expect(service.runNow(late.id)).rejects.toThrow('Two automatic'); await service.stop(early.id); service.wake(); await third; expect(seen).toEqual(['Early', 'Middle', 'Late']);
     await service.stop(middle.id); await service.stop(late.id); expect(vault.snapshot().automations.every((item) => item.runs.length === 1)).toBe(true);
   });
   it('records redacted errors, permits a fresh retry, and isolates notification and renderer errors', async () => {

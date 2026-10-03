@@ -1,7 +1,7 @@
 import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { directoryRequestSchema, PROJECT_DIRECTORY_PAGE_SIZE } from '../contracts/projects';
 import { projectDirectory, projectEntries } from '../desktop/services/project-files';
 
@@ -32,25 +32,31 @@ describe('revision-bound project directory pages', () => {
     await expect(projectDirectory(root, { path: 'missing' })).rejects.toThrow();
     await expect(projectDirectory(root, { offset: 1 })).rejects.toThrow('revision');
   });
-  it('retains all entries beyond the former 2000-file cutoff and pages through every sorted entry once', async () => {
-    const root = await directory();
-    const names = Array.from({ length: 2003 }, (_, index) => `file-${String(index).padStart(4, '0')}.txt`);
-    for (let index = 0; index < names.length; index += 32) await Promise.all(names.slice(index, index + 32).map((name) => writeFile(join(root, name), '')));
-    await mkdir(join(root, 'z-directory')); await mkdir(join(root, 'a-directory'));
-    const all = await projectEntries(root, ''); expect(all).toHaveLength(2005);
-    const first = await projectDirectory(root, {});
-    expect(first.entries).toHaveLength(PROJECT_DIRECTORY_PAGE_SIZE);
-    expect(first.entries.slice(0, 2).map((entry) => entry.name)).toEqual(['a-directory', 'z-directory']);
-    expect(first.nextOffset).toBe(PROJECT_DIRECTORY_PAGE_SIZE);
-    const found = [...first.entries]; let next = first.nextOffset;
-    while (next !== null) {
-      const page = await projectDirectory(root, { offset: next, revision: first.revision });
-      expect(page.entries.length).toBeLessThanOrEqual(PROJECT_DIRECTORY_PAGE_SIZE);
-      expect(page.total).toBe(2005); expect(page.revision).toBe(first.revision);
-      found.push(...page.entries); next = page.nextOffset;
-    }
-    expect(found).toEqual(all); expect(new Set(found.map((entry) => entry.relativePath)).size).toBe(2005);
-    expect((await projectDirectory(root, { offset: 3000, revision: first.revision })).entries).toEqual([]);
+  describe('complete directory pagination', () => {
+    let root: string;
+    beforeAll(async () => {
+      root = await mkdtemp(join(tmpdir(), 'qiyao-directory-pages-'));
+      const names = Array.from({ length: 2003 }, (_, index) => `file-${String(index).padStart(4, '0')}.txt`);
+      for (let index = 0; index < names.length; index += 32) await Promise.all(names.slice(index, index + 32).map((name) => writeFile(join(root, name), '')));
+      await mkdir(join(root, 'z-directory')); await mkdir(join(root, 'a-directory'));
+    });
+    afterAll(async () => { if (root) await rm(root, { recursive: true, force: true }); });
+    it('retains all entries beyond the former 2000-file cutoff and pages through every sorted entry once', async () => {
+      const all = await projectEntries(root, ''); expect(all).toHaveLength(2005);
+      const first = await projectDirectory(root, {});
+      expect(first.entries).toHaveLength(PROJECT_DIRECTORY_PAGE_SIZE);
+      expect(first.entries.slice(0, 2).map((entry) => entry.name)).toEqual(['a-directory', 'z-directory']);
+      expect(first.nextOffset).toBe(PROJECT_DIRECTORY_PAGE_SIZE);
+      const found = [...first.entries]; let next = first.nextOffset;
+      while (next !== null) {
+        const page = await projectDirectory(root, { offset: next, revision: first.revision });
+        expect(page.entries.length).toBeLessThanOrEqual(PROJECT_DIRECTORY_PAGE_SIZE);
+        expect(page.total).toBe(2005); expect(page.revision).toBe(first.revision);
+        found.push(...page.entries); next = page.nextOffset;
+      }
+      expect(found).toEqual(all); expect(new Set(found.map((entry) => entry.relativePath)).size).toBe(2005);
+      expect((await projectDirectory(root, { offset: 3000, revision: first.revision })).entries).toEqual([]);
+    });
   });
   it('rejects stale pages after listing changes, permits refreshed pages and leaves file contents untouched', async () => {
     const root = await directory(); await writeFile(join(root, 'original.txt'), 'ORIGINAL');

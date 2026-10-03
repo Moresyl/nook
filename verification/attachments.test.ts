@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { zipSync, strToU8 } from 'fflate';
 import { parseOffice, type OfficeParserAST } from 'officeparser';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { attachmentImageUrl, attachmentInputsSchema, attachmentSchema, type Attachment } from '../contracts/attachments';
 import { composerRevision } from '../contracts/composer';
 import { parseAttachment } from '../desktop/services/attachment-parser';
@@ -31,6 +31,11 @@ const message = (files: Attachment[], content = 'Review files') => ({ id: 'user'
 async function image() { return parseAttachment(input('image.png', await imageBytes())); }
 
 describe('attachment ingestion', () => {
+  beforeAll(async () => {
+    const bootstrap = await parseAttachment(input('parser-bootstrap.pdf', documentBytes('pdf')));
+    expect(bootstrap.content).toContain('Document evidence'); expect(bootstrap.content).toContain('42');
+    vi.mocked(parseOffice).mockClear();
+  });
   it.each(['pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf'])('extracts actual %s document text and preserves source details', async (format) => {
     const bytes = documentBytes(format); const file = await parseAttachment(input(`document.${format}`, bytes));
     expect(file.content).toContain('Document evidence'); expect(file.content).toContain('42'); expect(file.source).toEqual({ format, bytes: bytes.length }); expect(file.image).toBeUndefined();
