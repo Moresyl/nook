@@ -18,16 +18,16 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 206, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
+  const desktop = { variant: 'packaged executable', checks: 210, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
   return {
-    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true } }, surfaces: { ...desktop, checks: 4 },
+    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
     comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 206, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: 210, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -148,6 +148,27 @@ describe('Windows release execution evidence', () => {
       const invalid = proof(); (invalid.desktop.mcpBinaryFiles as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP binary-file');
     }
     const previous = proof(); previous.desktop.checks = 200; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
+  it('rejects the previous complete 206-check body even with matching installation and suite counts', () => {
+    const previous = proof(); previous.desktop.checks = 206; previous.installer.checks = 206;
+    previous.branches.suiteChecks = 206; previous.temporary.suiteChecks = 206; previous.comparisons.suiteChecks = 206;
+    expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
+  it('rejects absent, partial, excessive, requesting or incomplete assistant-recipe evidence', () => {
+    const missing = proof(); delete missing.desktop.assistantRecipes; expect(() => verifyRuntimeProof(missing)).toThrow('assistant-recipe');
+    for (const count of [3, 5, Number.NaN]) {
+      const partial = proof(); partial.desktop.assistantRecipes!.checks = count; expect(() => verifyRuntimeProof(partial)).toThrow('assistant-recipe');
+    }
+    for (const count of [1, -1, Number.NaN, undefined]) {
+      const sending = proof(); (sending.desktop.assistantRecipes as unknown as Record<string, unknown>).recipeModelRequests = count; expect(() => verifyRuntimeProof(sending)).toThrow('assistant-recipe');
+    }
+  });
+  it('requires exact boolean proof for recipe binding, parameters, removal recovery, zoom, backup and the retained draft', () => {
+    for (const key of ['assistantBindingVerified', 'defaultOptionalChoicesVerified', 'deletedAssistantRecoveryVerified', 'zoomKeyboardVerified', 'backupRestartVerified', 'originalDraftRetained'] as const) {
+      const failed = proof(); failed.desktop.assistantRecipes![key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('assistant-recipe');
+      const absent = proof(); delete (absent.desktop.assistantRecipes as Partial<NonNullable<ReleaseProof['desktop']['assistantRecipes']>>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('assistant-recipe');
+      const invalid = proof(); (invalid.desktop.assistantRecipes as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('assistant-recipe');
+    }
   });
   it('rejects absent cleanup proof and untested or incomplete long-path launches', () => {
     const cases = [proof(), proof(), proof(), proof(), proof(), proof()];

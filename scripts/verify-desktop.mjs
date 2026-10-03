@@ -29,6 +29,7 @@ import { automationProviderFixture } from '../verification/automation-provider-f
 import { verifyDesktopIntegration } from './verify-desktop-integration.mjs';
 import { verifyAssistantProfiles } from './verify-assistant-profiles.mjs';
 import { verifyPromptTemplates } from './verify-prompt-templates.mjs';
+import { verifyAssistantRecipes } from './verify-assistant-recipes.mjs';
 import { verifyReplyVersions } from './verify-reply-versions.mjs';
 import { verifyMessageEdits } from './verify-message-edits.mjs';
 import { verifyCommands } from './verify-commands.mjs';
@@ -354,10 +355,14 @@ let temporaryConversationsResult;
 let modelComparisonsResult;
 let mcpResourceSubscriptionsResult;
 let mcpBinaryFilesResult;
+let assistantRecipesResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_MCP_BINARY_ONLY) {
+  if (process.env.QIYAO_TEST_RECIPES_ONLY) {
+    const result = await verifyAssistantRecipes({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; assistantRecipesResult = result.result;
+    assert.equal(count, 4); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.QIYAO_TEST_MCP_BINARY_ONLY) {
     const result = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = result.page; mcpBinaryFilesResult = result.result;
     assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_MCP_SUBSCRIPTIONS_ONLY) {
@@ -924,6 +929,7 @@ try {
   const mcpSubscriptionsRun = await verifyMcpResourceSubscriptions({ page, application, getApplication: () => application, root, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpSubscriptionsRun.page; mcpResourceSubscriptionsResult = mcpSubscriptionsRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const mcpBinaryRun = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpBinaryRun.page; mcpBinaryFilesResult = mcpBinaryRun.result;
+  const recipeRun = await verifyAssistantRecipes({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = recipeRun.page; assistantRecipesResult = recipeRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const data = await readFile(join(directory, 'workspace.json'), 'utf8');
   assert.ok(data.includes('验证资料'));
@@ -940,6 +946,7 @@ try {
   if (fullResult && branchNavigationResult) { fullResult.branchNavigation = branchNavigationResult; fullResult.screenshots.push(...branchNavigationResult.screenshots); }
   if (fullResult && temporaryConversationsResult) { fullResult.temporaryConversations = temporaryConversationsResult; fullResult.screenshots.push(...temporaryConversationsResult.screenshots); }
   if (fullResult && mcpBinaryFilesResult) fullResult.screenshots.push(...mcpBinaryFilesResult.screenshots);
+  if (fullResult && assistantRecipesResult) { fullResult.assistantRecipes = assistantRecipesResult; fullResult.screenshots.push(...assistantRecipesResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -981,6 +988,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'mcp-binary-files-packaged-result.json' : 'mcp-binary-files-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused MCP binary-file suite' }), ...mcpBinaryFilesResult }, null, 2));
     console.log(`Verified ${mcpBinaryFilesResult.checks} MCP binary-file checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && assistantRecipesResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'assistant-recipes-packaged-result.json' : 'assistant-recipes-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused assistant-recipe suite' }), ...assistantRecipesResult }, null, 2));
+    console.log(`Verified ${assistantRecipesResult.checks} assistant-recipe checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && surfaceResult) {
     assert.deepEqual(errors, []);

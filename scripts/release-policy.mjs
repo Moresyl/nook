@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, branches, tempora
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 206 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 210 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const subscriptions = desktop.mcpResourceSubscriptions;
@@ -55,6 +55,10 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, branches, tempora
   const binary = desktop.mcpBinaryFiles;
   if (!binary || binary.checks !== 6 || binary.binaryModelRequests !== 0 || !['realWorkerPreviewVerified', 'exactOriginalExportVerified', 'emptyAndUnsupportedExportVerified', 'promptBinaryTextOnlyVerified', 'staleSelectionVerified', 'zoomKeyboardVerified', 'restartDraftRetainedVerified'].every((key) => binary[key] === true)) {
     throw new Error('Complete MCP binary-file verification is required');
+  }
+  const recipes = desktop.assistantRecipes;
+  if (!recipes || recipes.checks !== 4 || recipes.recipeModelRequests !== 0 || !['assistantBindingVerified', 'defaultOptionalChoicesVerified', 'deletedAssistantRecoveryVerified', 'zoomKeyboardVerified', 'backupRestartVerified', 'originalDraftRetained'].every((key) => recipes[key] === true)) {
+    throw new Error('Complete assistant-recipe verification is required');
   }
   if (branches.checks !== 9 || !branches.ambiguousHistoryRecoveryVerified || !branches.manualOrderingVerified || !branches.orderingFailureRecoveryVerified || !branches.orderingBackupRestartVerified || branches.verificationRun !== 'complete desktop suite' || branches.suiteChecks !== desktop.checks || branches.modelRequests !== 0) {
     throw new Error('Complete no-request branch-navigation verification is required');
