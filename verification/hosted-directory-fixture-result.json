@@ -1,0 +1,215 @@
+{
+  "verifiedAt": "2026-10-03T16:27:58.861Z",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37135402356",
+  "sourceCommit": "859b32ede117348eb0f1df62ac92992976fa5b2c",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T16:02:44Z",
+  "artifact": {
+    "id": 11278303059,
+    "name": "windows-verification-37135402356-1",
+    "bytes": 152093,
+    "digest": "sha256:f689cf9772a0c7af5b42bc9ce1d531e6430e1d4d7317f0e6887450da088c7aae",
+    "directory": "E:/QiyaoPipelineAudits/9006a2c2a4e84518a4ece65d67e13237"
+  },
+  "hostedTestsPassed": 593,
+  "hostedTestsSkipped": 1,
+  "hostedTestsTotal": 594,
+  "buildAndRuntimeStarted": false,
+  "failure": {
+    "source": "verification/project-directory.test.ts:37:5",
+    "phase": "beforeAll real 2003-file fixture preparation",
+    "originalHookTimeoutMs": 10000,
+    "cleanupError": "ENOTEMPTY",
+    "cleanupCauseEstablished": false
+  },
+  "inheritedRecordsMatchLocalBody": true,
+  "inheritedRecordsSatisfyExactCommitPolicy": true,
+  "inheritedRecordsPredateHostedRun": true,
+  "hostedRuntimeVerified": false,
+  "inheritedBodyHashes": {
+    "executableSha256": "b478320f8f2a5777f65ea86fa60553a3cb7bfd6661a7e74a8b129b532d58d77d",
+    "archiveSha256": "de18f8ff320e5b0c537941630af61f0b08d29dd5f0712725901c59d8ad644b27"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "092af13bdc8081220d49a68fd03339013e64fc0af993452f55867d9c5f9df672",
+      "verifiedAt": "2026-10-03T15:38:02.125Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "c0eb68a97b985d129ac497f3fc94490706fd44f577d9be7d554cb449daf86780",
+      "verifiedAt": "2026-10-03T15:57:42.947Z"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "89ff317a875c5423f2634413c20a6b081580cbb1ddf191ea4d09ab02c3b799e4",
+      "verifiedAt": "2026-10-03T15:47:29.281Z"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "adecb80f77f559eac605e8a90521a9767d406bd03a99462cc4111a39552a2837",
+      "verifiedAt": "2026-10-03T15:57:45.895Z"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "c5a6b969c1fa85ed08c04dea2f7cef3d8182d51ad4585f8a664127523d4d1fb0",
+      "verifiedAt": "2026-10-03T15:57:46.471Z"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "ebbc0de813f2aa1ea977bdffbc7ee4b94325505c8825c6764aca210b781eecef",
+      "verifiedAt": "2026-10-03T15:57:44.721Z"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "85b17b66a810b78425aebc6996a1bab12a6c1a902a067d971f3be9cf276e4fac",
+      "verifiedAt": "2026-10-03T15:47:50.591Z"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "59c784043bda3548d4fe2c08b73634628beb1a3ddae21f53cf51e567a84914f6",
+      "verifiedAt": "2026-10-03T15:47:41.936Z"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "9b7dbd8ace2cdbfea850971f3333732ba339d08a91069ed9cdd293a81ff1e6e4",
+      "verifiedAt": "2026-10-03T15:47:31.233Z"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "5c48065542315908985de5946516fb4bb9e0a0883ac714503e4ac4bb8e08e0bc",
+      "verifiedAt": "2026-10-03T15:57:52.5368631Z"
+    }
+  ],
+  "failedLog": {
+    "name": "github-859-failed.log",
+    "sha256": "649a174cdbdab9968c0b30d2cb069c2cdd46225803295b72f833a06d001289b1",
+    "bytes": 30596
+  },
+  "exactCommitPolicySha256": "1f223e9fb86c3bcf8b774df888bd7777104a1396e4b15e234a640a6193082cef",
+  "fix": {
+    "codeCommit": "bb1b3ccf36fce89d4b801d30f0ce3dfb6b873f0d",
+    "source": [
+      {
+        "path": ".github/workflows/windows.yml",
+        "sha256": "a0dc596a06fd755cc6c722f66152c9451c2d7879343e7469d2e0207518bf3a3e"
+      },
+      {
+        "path": "scripts/runtime-proof.mjs",
+        "sha256": "55ec2269bf0b22ed0042fd468ad8c3869e6d113b3199555a7c6a52c999c4db33"
+      },
+      {
+        "path": "scripts/runtime-proof.d.mts",
+        "sha256": "72606d521601c63ef01c7252570b0491b65fa8f874d18e1b50f3cc81e3060f36"
+      },
+      {
+        "path": "scripts/reset-runtime-proof.mjs",
+        "sha256": "a880c2e140a2438d8af232607ea29938762c63960c9c5e8e7d1b4f259307f5cc"
+      },
+      {
+        "path": "verification/project-directory.test.ts",
+        "sha256": "8d297bab0a886e197f9196e8610ffd82d45f097463adb745c5e48d6a3d60b3ca"
+      },
+      {
+        "path": "verification/runtime-proof-reset.test.ts",
+        "sha256": "83d418648225b76e300f14eff4f691426ac3677c500a9f71caaae272180d97ab"
+      }
+    ],
+    "unitTests": 597,
+    "unitFiles": 59,
+    "focusedFixtureAndPolicyTests": 38,
+    "focusedPolicyTests": 33,
+    "policyCoverage": {
+      "lines": {
+        "total": 54,
+        "covered": 54,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 69,
+        "covered": 69,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 18,
+        "covered": 18,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 115,
+        "covered": 115,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "typecheckPassed": true,
+    "realFixtureFiles": 2003,
+    "realFixtureDirectories": 2,
+    "fixturePreparationBudgetMs": 30000,
+    "unchangedPerTestDeadlineMs": 5000,
+    "allPendingWritesSettledBeforeCleanup": true,
+    "pipelineResetsInheritedTenRecords": true,
+    "local194BodyStillMatchesPolicy": true,
+    "workflow": {
+      "verifiedAt": "2026-10-03T16:23:44.1463933Z",
+      "workflowStructureVerified": true,
+      "installerScriptSyntaxVerified": true,
+      "nativeCommandBlocksParsed": 9,
+      "freshRuntimeRecordsBeforeChecks": true
+    },
+    "logs": [
+      {
+        "name": "hosted-directory-fixture-focused.log",
+        "bytes": 206,
+        "sha256": "19fc6e4265c21333c42157d0f7763dd1e7a2e7837f3733abe19782f6e37bf0cd"
+      },
+      {
+        "name": "hosted-directory-fixture-full-coverage.log",
+        "bytes": 4300,
+        "sha256": "21432f9b036c1b2ec3f9288ccecb1aee5e3a552716eb042a6043b2462731202e"
+      },
+      {
+        "name": "hosted-directory-fixture-typecheck.log",
+        "bytes": 71,
+        "sha256": "351216499d4f071ec40adca7ff15ce9991e6648517c79af77f0c944654e0baf6"
+      },
+      {
+        "name": "hosted-directory-fixture-policy.log",
+        "bytes": 884,
+        "sha256": "1fe43133ad9d6f7e5467ed721b7b2ad989845e732bd33eeff1aa1d65a4af4675"
+      },
+      {
+        "name": "hosted-directory-fixture-workflow.log",
+        "bytes": 74,
+        "sha256": "25d671ea8cd6e9144efd9887d57c2f3f24b003ee058c460056ba84b9364229b8"
+      },
+      {
+        "name": "hosted-directory-fixture-retained-body.log",
+        "bytes": 108,
+        "sha256": "4cad34f8a49fcb15be361ba264d693ea0f386d8378f6d60f99cf397fe4975424"
+      }
+    ],
+    "hostedVerified": false
+  },
+  "scope": "The hosted unit fixture times out before its pagination test executes; cleanup reports ENOTEMPTY, but the exact cleanup cause was not captured. No hosted build or runtime verification started. All ten artifact records predate the job and match the already verified local body; they satisfy the exact-commit hash policy but cannot establish hosted completion. Fixture preparation now has a separate 30-second budget, retains all 2003 real files/two directories and the unchanged 5-second actual pagination-test deadline, and settles each in-flight batch before teardown. GitHub Actions removes precisely the ten inherited generated runtime records before checking so skipped stages cannot upload them as current results. The CI-only reset refuses ordinary local invocation, preserves other source evidence, and its filesystem/error checks plus release policy reach 100% coverage. The product source/body is unchanged; no new product build or hosted acceptance is claimed."
+}

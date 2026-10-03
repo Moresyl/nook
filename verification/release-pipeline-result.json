@@ -480,6 +480,11 @@
       "sourceCommit": "90c27b876e4c45fdab4bb349b4acf2d01206541b",
       "conclusion": "failure",
       "proof": "verification/hosted-comparison-failure-result.json"
+    },
+    {
+      "sourceCommit": "859b32ede117348eb0f1df62ac92992976fa5b2c",
+      "conclusion": "failure",
+      "proof": "verification/hosted-directory-fixture-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -569,6 +574,58 @@
       "installerSha256": "d9f46fb9a173e64947b6cf8e8d442f363b70c9f9df2244d4bc9bea7b8cc53d5d",
       "portableSha256": "e829ecd5a517881dcfdede4d91fcbb05fa8f58e445b175e9b1663bcc2965cc51"
     },
-    "distributionProof": "verification/model-comparison-queued-state-distribution-result.json"
+    "distributionProof": "verification/model-comparison-queued-state-distribution-result.json",
+    "latestHostedAttemptConclusion": "failure"
+  },
+  "freshRuntimeRecords": {
+    "verifiedAt": "2026-10-03T16:27:58.861Z",
+    "codeCommit": "bb1b3ccf36fce89d4b801d30f0ce3dfb6b873f0d",
+    "unitTests": 597,
+    "focusedPolicyTests": 33,
+    "fixtureFiles": 2003,
+    "fixturePreparationBudgetMs": 30000,
+    "unchangedPerTestDeadlineMs": 5000,
+    "matchingRecords": 10,
+    "policyCoverage": {
+      "lines": {
+        "total": 54,
+        "covered": 54,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 69,
+        "covered": 69,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 18,
+        "covered": 18,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 115,
+        "covered": 115,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "workflow": {
+      "verifiedAt": "2026-10-03T16:23:44.1463933Z",
+      "workflowStructureVerified": true,
+      "installerScriptSyntaxVerified": true,
+      "nativeCommandBlocksParsed": 9,
+      "freshRuntimeRecordsBeforeChecks": true
+    },
+    "proof": "verification/hosted-directory-fixture-result.json",
+    "hostedVerified": false
   }
 }
