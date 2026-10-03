@@ -51,11 +51,45 @@ export async function verifyModelComparisons({ page, application, getApplication
     } finally { await page.evaluate(() => { delete window.__qiyaoComparisonPartialPoll; }).catch(() => {}); }
   }
   const sourceBefore = await page.evaluate(() => window.qiyao.load()); const originalDraft = sourceBefore.composerDrafts.find((draft) => draft.threadId === sourceId);
+  async function submitFirstGroup() {
+    await page.evaluate(() => {
+      const diagnostic = { installedAt: Date.now(), clicks: [], samples: 0, lastPoll: null };
+      const onClick = (event) => { const button = event.target.closest?.('button'); if (button?.textContent?.trim() === '发送并比较') diagnostic.clicks.push({ at: Date.now(), trusted: event.isTrusted }); };
+      document.addEventListener('click', onClick, true);
+      const timer = setInterval(() => {
+        const button = Array.from(document.querySelectorAll('button')).find((item) => item.textContent?.trim() === '发送并比较');
+        diagnostic.samples += 1; diagnostic.lastPoll = { at: Date.now(), sendButtonPresent: Boolean(button), sendButtonDisabled: button?.disabled ?? null,
+          responses: Array.from(document.querySelectorAll('.comparison-result')).slice(0, 4).map((item) => ({ text: item.querySelector('textarea')?.value.slice(0, 128), status: item.querySelector('.field-hint')?.textContent })) };
+      }, 100);
+      window.__qiyaoComparisonSetup = { diagnostic, clear: () => { clearInterval(timer); document.removeEventListener('click', onClick, true); } };
+    });
+    const waitStartedAt = Date.now();
+    try {
+      await dialog().getByRole('button', { name: '发送并比较', exact: true }).click();
+      await dialog().getByLabel('回复 1', { exact: true }).waitFor();
+      const diagnostic = await page.evaluate(() => window.__qiyaoComparisonSetup.diagnostic);
+      assert.equal(diagnostic.clicks.length, 1); assert.equal(diagnostic.clicks[0].trusted, true);
+      console.log('Comparison first-response timing', JSON.stringify({ waitStartedAt, completedAt: Date.now(), unchangedResponseDeadlineMs: 30000, diagnostic }));
+    } catch (error) {
+      const waitFailedAt = Date.now();
+      const requestTimelineAtFailure = structuredClone(fixture.timeline.slice(-16));
+      const requestsAtFailure = fixture.requests.slice(-16).map(({ connection, model, messages }) => ({ connection, model, messages: messages.length }));
+      const diagnostic = await page.evaluate(() => window.__qiyaoComparisonSetup.diagnostic).catch(() => null);
+      const backendCaptureStartedAt = Date.now();
+      const backend = await page.evaluate(async () => { const state = await window.qiyao.load(); return { threads: state.threads.length, notes: state.notes.length,
+        noteCharacters: state.notes.reduce((sum, note) => sum + note.content.length, 0), comparisons: state.threads.filter((thread) => thread.comparison).slice(-16).map((thread) => ({ id: thread.id, comparison: thread.comparison, messages: thread.messages.map((message) => ({ role: message.role, status: message.status, characters: message.content.length })).slice(-4) })) }; }).catch(() => null);
+      const backendCaptureCompletedAt = Date.now();
+      const applicationSnapshot = await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot?.()').catch(() => null);
+      console.error('Comparison first-response diagnostics', JSON.stringify({ waitStartedAt, waitFailedAt, unchangedResponseDeadlineMs: 30000, diagnostic, requestsAtFailure, requestTimelineAtFailure,
+        backendCaptureStartedAt, backendCaptureCompletedAt, backend, requestTimelineAfterCapture: fixture.timeline.slice(-16), applicationSnapshot }));
+      throw error;
+    } finally { await page.evaluate(() => { window.__qiyaoComparisonSetup?.clear(); delete window.__qiyaoComparisonSetup; }).catch(() => {}); }
+  }
   await open(); assert.equal(await dialog().getByLabel('本次比较问题', { exact: true }).inputValue(), question); await dialog().getByLabel('比较连接 2', { exact: true }).selectOption(providerA); await dialog().getByLabel('比较模型 2', { exact: true }).selectOption('one'); assert.equal(await dialog().getByRole('button', { name: '发送并比较', exact: true }).isEnabled(), false);
   await capture('117-model-comparison-config-light.png'); await close(); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests);
   verified('native comparison setup preserves literal question, complete attachments and original owner/draft, rejects duplicate provider/model pairs and cancels without requesting a model');
 
-  await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 1', { exact: true }).waitFor(); await waitForBridge(page, () => document.querySelectorAll('.comparison-result').length === 2); await waitPartial();
+  await open(); await submitFirstGroup(); await waitForBridge(page, () => document.querySelectorAll('.comparison-result').length === 2); await waitPartial();
   assert.equal(fixture.requests.length, beforeRequests + 2); const firstGroup = await currentGroup(); groups.push(firstGroup); const firstRequests = fixture.requests.slice(-2); assert.deepEqual(firstRequests[0].messages, firstRequests[1].messages); assert.deepEqual(firstRequests.map((request) => request.connection).sort(), ['a', 'b']);
   assert.equal(fixture.timeline.length, 2); for (const timing of fixture.timeline) { assert.ok(Number.isInteger(timing.receivedAt)); assert.ok(timing.partialSentAt >= timing.receivedAt); assert.equal(timing.messages, firstRequests[0].messages.length); assert.equal(timing.closedAt, undefined); }
   assert.equal(await page.evaluate(() => Object.hasOwn(window, '__qiyaoComparisonPartialPoll')), false);
