@@ -2,8 +2,14 @@
   "workflowStructureVerified": true,
   "coverage": {
     "lines": {
-      "total": 39,
-      "covered": 39,
+      "total": 41,
+      "covered": 41,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 51,
+      "covered": 51,
       "skipped": 0,
       "pct": 100
     },
@@ -13,20 +19,20 @@
       "skipped": 0,
       "pct": 100
     },
-    "statements": {
-      "total": 49,
-      "covered": 49,
+    "branches": {
+      "total": 86,
+      "covered": 86,
       "skipped": 0,
       "pct": 100
     },
-    "branches": {
-      "total": 78,
-      "covered": 78,
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
       "skipped": 0,
-      "pct": 100
+      "pct": "Unknown"
     }
   },
-  "verifiedAt": "2026-10-03T05:21:09.316Z",
+  "verifiedAt": "2026-10-03T06:34:55.442Z",
   "installerScriptSyntaxVerified": true,
   "nativeCommandBlocksParsed": 8,
   "version": "0.1.0-alpha.1",
@@ -38,8 +44,8 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Independent canonical source, frozen dependencies, fresh history, private remote and initial push are verified. Hosted fixture preparation passed all 515 tests, typecheck and release notices, then the build reached its approximately 2 GB V8 heap limit. The build step now sets a 4 GB ceiling and all native script blocks parse; the next complete hosted run remains required. Existing runtime/installer/portable evidence is separately hash-bound. No successful complete hosted run or release is claimed.",
-  "focusedPolicyTests": 23,
+  "scope": "Independent canonical source/history and remote are established. The prior hosted run passed the 4 GB build and package audit, then failed the implicit initial viewport assumption. The final source body passes 532 tests, complete 178-check desktop/normal close, complete matching five-check branch navigation, and actual isolated light/dark variable Inter font loading. Release policy requires current packaged and installed proofs including removed-font reference rejection; these and physical acceptance remain outstanding. No completed hosted lifecycle or release is claimed.",
+  "focusedPolicyTests": 24,
   "implementationFiles": [
     {
       "file": ".github/workflows/windows.yml",
@@ -47,11 +53,11 @@
     },
     {
       "file": "scripts/prepare-release.mjs",
-      "sha256": "56cf98d857cd80430c9a8a0adf0d8f334464e5f0e156a8819225d1a8270640e2"
+      "sha256": "3835fd2eb224a836496f4d97f5dbebe526f3e68bc38952b7aee1c3ae5d80b937"
     },
     {
       "file": "scripts/release-policy.mjs",
-      "sha256": "3eb4994afc8ee8c23682ac4a1da65f4ffa2324ad4a0491fdaff2ffe5c5ed33de"
+      "sha256": "c2fafec91013f203ef9746f44f9eb37f090b957d2339312710280926e42e2f2f"
     },
     {
       "file": "scripts/verify-installer.ps1",
@@ -59,7 +65,7 @@
     },
     {
       "file": "verification/release-policy.test.ts",
-      "sha256": "1cccefc809a0630fb22162c2514bfa72d5f70e1764c945d4aa1a78743be50447"
+      "sha256": "b63460f6833d96cde8bc6a520fba143675c86cfcda8b1316ce627c22805c0577"
     }
   ],
   "workflowRunVerified": false,
@@ -91,37 +97,34 @@
     }
   },
   "unit": {
-    "tests": 515,
-    "files": 52,
-    "workers": 1,
-    "durationSeconds": 31.36,
-    "defaultTestDeadlineMs": 5000,
-    "executorExitCode": 0,
-    "coverageScope": "Contracts and desktop services",
+    "tests": 532,
+    "files": 54,
+    "durationSeconds": 32.78,
+    "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
-        "total": 2708,
-        "covered": 2684,
+        "total": 2745,
+        "covered": 2721,
         "skipped": 0,
-        "pct": 99.11
+        "pct": 99.12
       },
       "statements": {
-        "total": 4648,
-        "covered": 4488,
+        "total": 4723,
+        "covered": 4563,
         "skipped": 0,
-        "pct": 96.55
+        "pct": 96.61
       },
       "functions": {
-        "total": 1034,
-        "covered": 1005,
+        "total": 1037,
+        "covered": 1008,
         "skipped": 0,
-        "pct": 97.19
+        "pct": 97.2
       },
       "branches": {
-        "total": 3339,
-        "covered": 3124,
+        "total": 3380,
+        "covered": 3165,
         "skipped": 0,
-        "pct": 93.56
+        "pct": 93.63
       },
       "branchesTrue": {
         "total": 0,
@@ -131,7 +134,7 @@
       }
     }
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -140,6 +143,23 @@
     "sourceHistoryResult": "source-history-result.json"
   },
   "hostedVerification": {
+    "runId": 37099548957,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37099548957",
+    "sourceCommit": "3fc59bbdbfa0d1b07ac4f4cb553963afc7becc97",
+    "conclusion": "failure",
+    "typecheckVerified": true,
+    "unitTestsPassed": 515,
+    "unitTestFiles": 52,
+    "releaseNoticesVerified": true,
+    "buildAndPackageAuditVerified": true,
+    "buildHeapMiB": 4096,
+    "buildHeapScope": "Build/packaging step only; runtime test processes and deadlines unchanged",
+    "failedStep": "Verify the complete packaged desktop and settings",
+    "failure": "Initial native viewport was 1024x720 while the first geometry assertion assumed 1280x840",
+    "viewportPreparation": "The test explicitly sets and awaits 1280x840 before retaining the existing sidebar/radius assertions",
+    "nextStep": "Verify the final branch increment and explicit viewport preparation in the complete hosted workflow"
+  },
+  "previousHostedVerification": {
     "runId": 37099119289,
     "url": "https://github.com/Moresyl/qiyao/actions/runs/37099119289",
     "sourceCommit": "a13ed3c89c75386e30992d107a1dd603f8cfe820",

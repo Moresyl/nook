@@ -1,0 +1,39 @@
+# 更新记录
+
+## [0.1.0-alpha.1] - 2026-10-03
+
+这是栖曜 Qiyao 的首次独立预发布版本，独立仓库尚无上一版本；不沿用其他项目的版本历史。
+
+### 新功能
+
+- 提供本地聊天、流式回复、停止与重新生成，以及 OpenAI Responses／兼容接口、Anthropic、Gemini、Azure 和 Ollama 连接。模型配置、输出预算及实际请求用量可查看和保存。
+- 消息可引用、在新分支重发或仅保存修改。旧回复和完整原文保留；回复版本及分支导航支持预览、搜索和完整分页，各条路径独立保存后续消息、草稿与附件。
+- 提供 PDF／Office／OpenDocument 文本提取、图片输入及预览，资料集、关键词与语义／混合检索，以及回复来源片段。聊天内容支持公式、代码高亮和 Mermaid 图表。
+- 项目工作台包含可展开文件树、本地代码编辑器、未保存草稿、Git 审阅／暂存／提交及真实终端。分析和执行模式展示工具过程，文件修改和命令分别确认。
+- 提供助手配置导入导出、变量提示模板、自动任务、MCP 工具／资源／提示及 OAuth、本地技能、隔离插件、统一命令搜索、聊天正文查找、系统托盘和全局唤起快捷键。
+- 完整工作台可导出 JSON 或 gzip 备份，保留对话、附件、资料库、草稿及本地扩展资产；恢复后的插件需要重新授予权限。
+
+### 变更与安全
+
+- 统一为栖曜 Qiyao 名称、独立图标、应用标识与 Windows 元数据。主工作台及隔离插件面板统一使用原始 OFL Inter 字体，保留指定参考中的非字体样式和数学字体。
+- 配置的密钥在本地加密，并绑定连接目标；共享备份不包含密钥。插件按声明的能力与项目范围授权，文件、命令及远程工具调用保留具体操作预览。
+- 完整保留原始开源许可证、依赖法律文档及安装器组件来源。流水线检查编译后的旧身份／已移除字体引用、原始文件字节和同一应用体的运行记录，发布文件附对应源码与 SHA-256。
+
+### 修复与完善
+
+- 分支切换等待当前草稿保存，保存失败保留输入与选择并允许重试；原对话删除后保留其他路径，原有直接导航按钮继续可用。
+- 修正隔离插件面板对已移除字体的引用和文件匹配，实际加载与主工作台一致的 Inter 可变字重。
+- 项目目录采用完整分页，避免旧清单截断；短窗口在 100%／125%／150% 缩放下保留聊天操作、可见标题以及代码／终端的使用空间。
+- Windows 便携启动器使用完整原生文件提取和扩展路径，保留长路径文档，并在正常退出后清理临时提取目录。安装版卸载保留用户数据。
+
+### 安装
+
+- 下载 Windows x64 安装版 `Qiyao-Setup-0.1.0-alpha.1-x64.exe`，或便携版 `Qiyao-Portable-0.1.0-alpha.1-x64.exe`。安装版支持当前用户及自选目录；便携版无需安装。
+- 使用随版本提供的 `SHA256SUMS.txt` 核对文件；对应源码、实际验证记录与更新说明一并提供。启动后自行配置模型连接；已有工作台可先导出完整备份。
+- 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
+
+### English
+
+First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation and independent drafts; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
+
+Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves drafts on failed branch switches, completes directory pagination and improves minimum-window controls. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.

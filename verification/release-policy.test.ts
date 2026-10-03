@@ -13,14 +13,15 @@ const notes = (version = '1.2.3', newline = '\n') => [
 ].join(newline);
 
 function proof(): ReleaseProof {
-  const audit = { compiledAssetsMatchVerifiedBuild: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 173, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
+  const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
+  const desktop = { variant: 'packaged executable', checks: 178, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
   return {
     audit, desktop, surfaces: { ...desktop, checks: 4 },
+    branches: { ...desktop, checks: 5, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0 },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 173, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: 178, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -55,7 +56,7 @@ describe('release version and notes', () => {
 describe('Windows release execution evidence', () => {
   it('accepts matching complete runtime and actual distribution evidence', () => {
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
-    const future = proof(); future.desktop.checks = 180; future.installer.checks = 180;
+    const future = proof(); future.desktop.checks = 180; future.installer.checks = 180; future.branches.suiteChecks = 180;
     expect(() => verifyRuntimeProof(future)).not.toThrow();
   });
   it('rejects missing or malformed executable/archive/wrapper hashes', () => {
@@ -65,13 +66,14 @@ describe('Windows release execution evidence', () => {
     for (const value of [first, second, third]) expect(() => verifyRuntimeProof(value)).toThrow('SHA-256');
   });
   it('rejects unresolved fonts, old identity, distribution rights and stale compiled assets', () => {
-    const cases = [proof(), proof(), proof(), proof()];
+    const cases = [proof(), proof(), proof(), proof(), proof()];
     cases[0].audit.unresolvedAssets = ['Font']; cases[1].audit.oldProductIdentityMatches = ['Old product'];
     cases[2].audit.unresolvedDistribution = ['Plugin']; cases[3].audit.compiledAssetsMatchVerifiedBuild = false;
+    cases[4].audit.removedUiFontReferencesVerified = false;
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('unresolved');
   });
   it('rejects source/forced-close/error or mismatched packaged execution', () => {
-    for (const key of ['desktop', 'surfaces'] as const) {
+    for (const key of ['desktop', 'surfaces', 'branches'] as const) {
       const cases = [proof(), proof(), proof(), proof(), proof()];
       cases[0][key].variant = 'development executable'; cases[1][key].normalCloseVerified = false;
       cases[2][key].runtimeErrors = ['Failure']; cases[3][key].executableSha256 = otherHash; cases[4][key].archiveSha256 = hash;
@@ -80,11 +82,19 @@ describe('Windows release execution evidence', () => {
   });
   it('rejects incomplete desktop/settings/portable checks and different portable body', () => {
     const cases = Array.from({ length: 11 }, proof);
-    cases[0].desktop.checks = 172; cases[1].desktop.checks = Number.NaN; cases[2].surfaces.checks = 3;
+    cases[0].desktop.checks = 173; cases[1].desktop.checks = Number.NaN; cases[2].surfaces.checks = 3;
     cases[3].portable.checks = 6; cases[4].portable.launches = [{}]; cases[5].portable.runtimeErrors = ['Failure'];
     cases[6].portable.childExecutableSha256 = otherHash; cases[7].portableAudit.executableSha256 = otherHash;
     cases[8].portableAudit.archiveSha256 = hash; cases[9].portableAudit.unresolvedAssets = ['Font']; cases[10].portableAudit.unresolvedDistribution = ['Plugin'];
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('portable verification');
+  });
+  it('rejects missing, focused, incomplete, stale or requesting branch-navigation evidence', () => {
+    const missing = proof(); delete (missing as Partial<ReleaseProof>).branches;
+    expect(() => verifyRuntimeProof(missing)).toThrow('normal close');
+    const cases = [proof(), proof(), proof(), proof()];
+    cases[0].branches.checks = 4; cases[1].branches.verificationRun = 'focused branch-navigation suite';
+    cases[2].branches.suiteChecks = 173; cases[3].branches.modelRequests = 1;
+    for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('branch-navigation verification');
   });
   it('rejects absent cleanup proof and untested or incomplete long-path launches', () => {
     const cases = [proof(), proof(), proof(), proof(), proof(), proof()];

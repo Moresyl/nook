@@ -203,6 +203,16 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .message-actions { display: flex; margin-top: 6px; color: var(--ds-text-tertiary); opacity: .5; }
 .message-usage { margin-top: 4px; }
 .reply-version-button { margin-top: 4px; color: var(--ds-text-tertiary); font-size: 11px; }
+.branch-tree { list-style: none; margin: 14px 0 8px; padding: 0; max-height: 260px; overflow: auto; }
+.branch-tree > li { padding-left: calc(var(--branch-depth) * 16px); margin: 4px 0; }
+.branch-node { position: relative; display: block; width: 100%; text-align: left; border-left: 2px solid var(--ds-border); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 8px 10px; }
+.branch-node strong, .branch-node span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.branch-node strong { font-size: 12px; font-weight: 590; }
+.branch-node span { margin-top: 3px; color: var(--ds-text-secondary); font-size: 10px; }
+.branch-node.selected { border-left-color: var(--ds-accent); background: var(--ds-bg-secondary); }
+.branch-pagination { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.branch-pagination > span { flex: 1; }
+.branch-pagination > .button { font-size: 11px; }
 .usage-button { color: var(--ds-text-tertiary); font-size: 11px; padding: 4px 6px; height: auto; white-space: normal; text-align: left; }
 .usage-counts { margin: 16px 0; display: grid; gap: 8px; font-size: 12px; }
 .usage-counts > div { display: flex; justify-content: space-between; gap: 16px; }
@@ -489,6 +499,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 @media (max-height: 500px) {
   .workspace:has(.chat-page) > .workspace-header { min-height: 36px; padding: 4px 12px; gap: 8px; }
   .workspace:has(.chat-page) > .workspace-header .header-actions { gap: 2px; }
+  .workspace:has(.chat-page) > .workspace-header .header-actions .icon-button { width: 24px; height: 24px; min-height: 24px; }
+  .workspace:has(.chat-page) > .workspace-header .thread-title { padding-inline: 0; gap: 4px; }
   .chat-page .message-navigation { top: 8px; bottom: 8px; }
   .chat-page .composer-dock { padding: 4px 12px 8px; }
   .chat-page .composer { padding: 8px 8px 6px; }

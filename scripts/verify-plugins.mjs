@@ -26,6 +26,7 @@ export async function verifyPlugins({ page, application, directory, projectDirec
   const frame = page.frameLocator('iframe[title="插件仪表板"]'); await frame.getByText(/parentBlocked/).waitFor();
   const isolation = JSON.parse(await frame.getByLabel('面板命令结果').innerText()); assert.equal(isolation.parentBlocked, true); assert.equal(isolation.node, 'undefined'); assert.equal(isolation.require, 'undefined'); assert.equal(isolation.app, 'undefined');
   const actualFrame = page.frames().find((item) => item.url().startsWith(`qiyao-plugin://${plugin.id}/`)); assert.ok(actualFrame);
+  const lightFont = await actualPanelFont(actualFrame);
   assert.equal(await actualFrame.evaluate(async () => (await fetch('/files/.env')).status), 404);
   await assert.rejects(actualFrame.evaluate(() => fetch('http://outside.example/')), /Failed to fetch/);
   await assert.rejects(actualFrame.evaluate(() => window.qiyaoPlugin.call('project.read', { path: 'README.md' })), /请求失败/);
@@ -40,6 +41,7 @@ export async function verifyPlugins({ page, application, directory, projectDirec
   await page.getByRole('button', { name: '关闭插件面板', exact: true }).click();
   await page.keyboard.press('Control+,'); await page.getByRole('button', { name: '外观与交互', exact: true }).click(); await page.getByLabel('主题', { exact: true }).selectOption('dark'); await page.getByRole('button', { name: '本地插件', exact: true }).click(); await page.getByRole('button', { name: /验证插件 运行中/ }).click(); await page.getByRole('button', { name: '插件仪表板', exact: true }).click();
   await frame.getByText(/parentBlocked/).waitFor(); await actualPanelTheme(page, 'dark');
+  const darkFont = await actualPanelFont(page.frames().find((item) => item.url().startsWith(`qiyao-plugin://${plugin.id}/`)));
   await application.resize(760, 540); await page.waitForFunction(() => window.innerWidth === 760 && window.innerHeight === 540); await page.locator('.plugin-panel').scrollIntoViewIfNeeded();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false); await page.screenshot({ path: join(screenshots, '28-plugin-panel-dark-narrow.png') });
   await page.getByRole('button', { name: '关闭插件面板', exact: true }).click(); await application.resize(1280, 840); await page.waitForFunction(() => window.innerWidth === 1280);
@@ -111,7 +113,19 @@ export async function verifyPlugins({ page, application, directory, projectDirec
   await page.evaluate((input) => window.qiyao.savePlugin(input), { ...reduced, id: replacement.id, grants: plugin.manifest.permissions });
   await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor();
   verified('native backup and restore preserve complete plugin assets and data, remap thread selections and require fresh grants');
-  return replacement.id;
+  return { id: replacement.id, fonts: [lightFont, darkFont] };
+}
+async function actualPanelFont(frame) {
+  assert.ok(frame);
+  const font = await frame.evaluate(async () => {
+    const response = await fetch('/_qiyao/font.woff2'); const bytes = await response.arrayBuffer();
+    const sha256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), (byte) => byte.toString(16).padStart(2, '0')).join('');
+    const weights = await Promise.all([400, 510, 590, 700].map(async (weight) => ({ weight, faces: (await document.fonts.load(`${weight} 12px "Inter"`)).map((face) => ({ family: face.family, status: face.status })) })));
+    return { theme: document.documentElement.dataset.theme, family: getComputedStyle(document.documentElement).fontFamily, status: response.status, contentType: response.headers.get('Content-Type'), bytes: bytes.byteLength, sha256, weights };
+  });
+  assert.equal(font.status, 200); assert.equal(font.contentType, 'font/woff2'); assert.equal(font.bytes, 352240); assert.equal(font.sha256, '693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3');
+  assert.ok(font.family.startsWith('Inter')); assert.ok(font.weights.every(({ faces }) => faces.length > 0 && faces.every((face) => face.family === 'Inter' && face.status === 'loaded')));
+  return font;
 }
 async function actualPanelTheme(page, theme) {
   const frame = page.frames().find((item) => item.url().startsWith('qiyao-plugin:')); assert.ok(frame); await frame.waitForFunction((value) => document.documentElement.dataset.theme === value, theme);

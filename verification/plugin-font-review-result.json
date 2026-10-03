@@ -1,0 +1,147 @@
+{
+  "verifiedAt": "2026-10-03T06:34:55.442Z",
+  "scope": "Complete 178-check source runtime, isolated plugin light/dark font response bytes and actual loaded variable weights; matching packaged body remains required.",
+  "originalFontSha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+  "fonts": [
+    {
+      "theme": "light",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceDesktopChecks": 178,
+  "normalCloseVerified": true,
+  "unitChecks": 6,
+  "completeUnitTests": 532,
+  "removedFontReferenceAuditAdded": true,
+  "retainedObservation": "The previous isolated theme used a removed family/file lookup. It now shares the retained original Inter asset; missing/disabled/ungranted/foreign requests remain redacted and inaccessible. The first unit fixture used rm on an empty directory and failed EISDIR; it now uses rmdir, without changing product error behavior.",
+  "implementationFiles": [
+    {
+      "file": "desktop/electron-plugin-runtime.ts",
+      "sha256": "af57cc1c4965ca1c99b11bf16bc16831bd9691b4d4873d94af3e600b5e811076"
+    },
+    {
+      "file": "scripts/verify-plugins.mjs",
+      "sha256": "708630c6aa2b5a0a484dc6368f2e2fc835fda279ace9793197caa13ffdff9fe8"
+    },
+    {
+      "file": "scripts/verify-package.mjs",
+      "sha256": "3be7cc8bd2c3f57e65e96d7d3ea5470fc6ee596d463dca780012f0d32abd52d3"
+    },
+    {
+      "file": "scripts/release-policy.mjs",
+      "sha256": "c2fafec91013f203ef9746f44f9eb37f090b957d2339312710280926e42e2f2f"
+    },
+    {
+      "file": "verification/electron-plugin-runtime.test.ts",
+      "sha256": "703ca02b76fd7a37f818ed3ff800adb65f42561fba618b8bc29f490e031fb598"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "b63460f6833d96cde8bc6a520fba143675c86cfcda8b1316ce627c22805c0577"
+    }
+  ],
+  "captures": [
+    {
+      "file": "27-plugin-panel-light.png",
+      "sha256": "74dea7ff44194ab16ae37fd2c263155a4de928dcf0c2617ada0cc24d36341659",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "28-plugin-panel-dark-narrow.png",
+      "sha256": "60978eabb192753665a305538d17dd1d38fd6d205b4451af0e677027c3532767",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    }
+  ]
+}

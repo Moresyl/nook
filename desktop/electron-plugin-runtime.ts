@@ -25,8 +25,8 @@ if(data?.type === 'qiyao:plugin-reply') { const item = pending.get(data.id); if(
 });
 const api = { async call(method, params={}) { await ready; const id=String(++counter); return new Promise((resolve,reject) => { const timer=setTimeout(()=>{pending.delete(id);reject(new Error('Plugin request timed out'));},65000); pending.set(id,{resolve,reject,timer}); parent.postMessage({type:'qiyao:plugin-request',id,method,params},'*'); }); } };
 window.qiyaoPlugin=api; export default api;`;
-const themeCss = `@font-face{font-family:'OpenAI Sans';src:url('/_qiyao/font.woff2') format('woff2');font-weight:400;font-display:swap}
-:root{color-scheme:light;--ds-bg:#fff;--ds-bg-secondary:#f7f7f7;--ds-text:#202020;--ds-text-secondary:#6f6f6f;--ds-border:#dedede;--ds-accent:#0169cc;font-family:'OpenAI Sans','Microsoft YaHei UI',sans-serif;font-size:12px;color:var(--ds-text);background:var(--ds-bg)}
+const themeCss = `@font-face{font-family:'Inter';src:url('/_qiyao/font.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
+:root{color-scheme:light;--ds-bg:#fff;--ds-bg-secondary:#f7f7f7;--ds-text:#202020;--ds-text-secondary:#6f6f6f;--ds-border:#dedede;--ds-accent:#0169cc;font-family:'Inter','Microsoft YaHei UI',sans-serif;font-size:12px;color:var(--ds-text);background:var(--ds-bg)}
 :root[data-theme=dark]{color-scheme:dark;--ds-bg:#212121;--ds-bg-secondary:#181818;--ds-text:#eee;--ds-text-secondary:#aaa;--ds-border:#444;--ds-accent:#339cff}
 body{margin:0;padding:20px}button,input,select,textarea{font:inherit;color:inherit}button{border:0;border-radius:6px;padding:3px 8px;min-height:20px;background:transparent;cursor:pointer}button:hover{background:var(--ds-bg-secondary)}input,select,textarea{border:1px solid var(--ds-border);border-radius:6px;background:transparent;min-height:22px;padding:0 10px}button:focus-visible,input:focus-visible{outline:2px solid var(--ds-accent);outline-offset:2px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--ds-bg-secondary);padding:12px;border-radius:8px}`;
 
@@ -53,7 +53,7 @@ export class ElectronPluginRuntime {
       } else if (url.pathname === '/_qiyao/panel-sdk.js' && !runtimeId) body = panelSdk;
       else if (url.pathname === '/_qiyao/theme.css') { body = themeCss; type = 'text/css'; }
       else if (url.pathname === '/_qiyao/font.woff2') {
-        const fonts = await readdir(join(this.bundleDirectory, '../renderer/assets')); const font = fonts.find((name) => /^OpenAISans-Regular-.*\.woff2$/.test(name)); if (!font) throw new Error();
+        const fonts = await readdir(join(this.bundleDirectory, '../renderer/assets')); const font = fonts.find((name) => /^InterVariable-.*\.woff2$/.test(name)); if (!font) throw new Error();
         body = new Uint8Array(await readFile(join(this.bundleDirectory, '../renderer/assets', font))); type = 'font/woff2';
       } else if (url.pathname.startsWith('/files/')) {
         const path = decodeURIComponent(url.pathname.slice(7)); body = new Uint8Array(await this.packages.asset(plugin, path)); type = mime[path.split('.').at(-1)?.toLowerCase() ?? ''] ?? 'application/octet-stream';

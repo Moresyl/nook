@@ -1,0 +1,95 @@
+{
+  "verifiedAt": "2026-10-03T06:32:33.294Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "complete desktop suite",
+  "suiteChecks": 178,
+  "checks": 7,
+  "projectCommandChecks": 2,
+  "rootEntriesBeforeChange": 224,
+  "rootEntriesAfterChange": 225,
+  "zoomFactors": [
+    1,
+    1.25,
+    1.5
+  ],
+  "layout": [
+    {
+      "zoom": 1,
+      "fileTree": true,
+      "sidebar": true,
+      "width": 760,
+      "height": 540,
+      "documentOverflow": false,
+      "terminal": {
+        "top": 406.734375,
+        "bottom": 528,
+        "height": 121.265625
+      },
+      "editor": {
+        "left": 368,
+        "right": 748,
+        "width": 380,
+        "height": 86.234375
+      },
+      "toggleFits": true
+    },
+    {
+      "zoom": 1.25,
+      "fileTree": false,
+      "sidebar": true,
+      "width": 608,
+      "height": 432,
+      "documentOverflow": false,
+      "terminal": {
+        "top": 313.9250183105469,
+        "bottom": 428.0000228881836,
+        "height": 114.07500457763672
+      },
+      "editor": {
+        "left": 224,
+        "right": 604,
+        "width": 380,
+        "height": 107.42500305175781
+      },
+      "toggleFits": true
+    },
+    {
+      "zoom": 1.5,
+      "fileTree": false,
+      "sidebar": true,
+      "width": 507,
+      "height": 360,
+      "documentOverflow": false,
+      "terminal": {
+        "top": 268,
+        "bottom": 356,
+        "height": 88
+      },
+      "editor": {
+        "left": 224,
+        "right": 502.66668701171875,
+        "width": 278.66668701171875,
+        "height": 61.5
+      },
+      "toggleFits": true
+    }
+  ],
+  "screenshots": [
+    "94-project-tree-pagination-light.png",
+    "95-project-tree-editor-light.png",
+    "96-project-tree-dark-narrow.png",
+    "97-project-workspace-zoom-100.png",
+    "97-project-workspace-zoom-125.png",
+    "97-project-workspace-zoom-150.png",
+    "98-project-settings-zoom-150.png",
+    "99-project-file-command-dark.png",
+    "100-project-terminal-command-dark.png",
+    "101-project-review-command-dark.png"
+  ],
+  "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures",
+  "scope": "Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks."
+}

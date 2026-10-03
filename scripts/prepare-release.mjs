@@ -27,6 +27,7 @@ try {
     audit: await readJson('verification/package-audit-result.json'),
     desktop: await readJson('verification/packaged-result.json'),
     surfaces: await readJson('verification/surfaces-packaged-result.json'),
+    branches: await readJson('verification/conversation-branches-packaged-result.json'),
     portable: await readJson('verification/portable-result.json'),
     portableAudit: await readJson('verification/portable-package-audit-result.json'),
     bootstrap: await readJson('verification/distribution-bootstrap-result.json'),

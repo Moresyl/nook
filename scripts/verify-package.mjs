@@ -18,6 +18,7 @@ const library = createRequire(builder.resolve('app-builder-lib'));
 const asar = library('@electron/asar');
 const sha256 = (content) => createHash('sha256').update(content).digest('hex');
 const oldIdentity = /pi-desktop|pi-pc|vastsa/i;
+const removedUiFont = /OpenAI\s*Sans|OpenAISans/i;
 const paths = asar.listPackage(archive).map((path) => path.replaceAll('\\', '/').replace(/^\//, ''));
 let productFiles = 0;
 let unpackedFiles = 0;
@@ -36,8 +37,13 @@ for (const path of paths) {
   }
   if (!(path.startsWith('out/') || path.startsWith('identity/') || path === 'package.json')) continue;
   assert.equal(oldIdentity.test(path), false, `Old identity in a packaged product path: ${path}`);
+  assert.equal(removedUiFont.test(path), false, `Removed UI font in a packaged product path: ${path}`);
   const content = asar.extractFile(archive, stored); productHashes.add(sha256(content));
-  if (/\.(?:cjs|js|css|html|json|svg)$/.test(path)) assert.equal(oldIdentity.test(content.toString('utf8')), false, `Old identity in packaged product content: ${path}`);
+  if (/\.(?:cjs|js|css|html|json|svg)$/.test(path)) {
+    const text = content.toString('utf8');
+    assert.equal(oldIdentity.test(text), false, `Old identity in packaged product content: ${path}`);
+    assert.equal(removedUiFont.test(text), false, `Removed UI font reference in packaged product content: ${path}`);
+  }
   if (path !== 'package.json') assert.equal(sha256(content), sha256(await readFile(join(root, path))), `Packaged product asset changed: ${path}`);
   productFiles++;
 }
@@ -77,7 +83,7 @@ for (const [original, packed] of [['LICENSE', 'LICENSE.electron.txt'], ['LICENSE
 const { stdout } = await promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $item=Get-Item -LiteralPath $env:QIYAO_AUDIT_EXECUTABLE; $info=$item.VersionInfo; @{ProductName=$info.ProductName;CompanyName=$info.CompanyName;FileDescription=$info.FileDescription;Copyright=$info.LegalCopyright;Signature=(Get-AuthenticodeSignature -LiteralPath $item.FullName).Status.ToString()} | ConvertTo-Json -Compress"], { windowsHide: true, env: { ...process.env, PSModulePath: join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'Modules'), QIYAO_AUDIT_EXECUTABLE: executable } });
 const executableMetadata = JSON.parse(stdout); assert.equal(executableMetadata.ProductName, 'Qiyao'); assert.equal(executableMetadata.CompanyName, 'Qiyao'); assert.equal(executableMetadata.FileDescription, 'Qiyao'); assert.equal(executableMetadata.Copyright, 'Copyright © 2026 Qiyao');
 const unresolvedAssets = assets.filter((asset) => asset.status !== 'verified').map((asset) => asset.name);
-const result = { verifiedAt: new Date().toISOString(), version: metadata.version, executableSha256: sha256(await readFile(executable)), archiveSha256: sha256(await readFile(archive)), executableBytes: (await stat(executable)).size, executableMetadata, productFiles, unpackedFiles, dependencyVersions: dependencies.components.length, retainedDocuments, distributionComponents: distribution.components, distributionFiles: distributionFiles.size, elevationHelperSha256: elevationHelper ? sha256(elevationHelper) : null, unresolvedDistribution: distribution.unresolved, originalVendorNotices: ['LICENSE.electron.txt', 'LICENSES.chromium.html'], oldProductIdentityMatches: [], compiledAssetsMatchVerifiedBuild: true, unresolvedAssets, scope: 'Windows application-directory identity, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior, the occupied workspace directory rename and full feature/UI completion remain separate gates.' };
+const result = { verifiedAt: new Date().toISOString(), version: metadata.version, executableSha256: sha256(await readFile(executable)), archiveSha256: sha256(await readFile(archive)), executableBytes: (await stat(executable)).size, executableMetadata, productFiles, unpackedFiles, dependencyVersions: dependencies.components.length, retainedDocuments, distributionComponents: distribution.components, distributionFiles: distributionFiles.size, elevationHelperSha256: elevationHelper ? sha256(elevationHelper) : null, unresolvedDistribution: distribution.unresolved, originalVendorNotices: ['LICENSE.electron.txt', 'LICENSES.chromium.html'], oldProductIdentityMatches: [], removedUiFontReferencesVerified: true, compiledAssetsMatchVerifiedBuild: true, unresolvedAssets, scope: 'Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates.' };
 await writeFile(join(root, 'verification', process.env.QIYAO_AUDIT_KIND ? `${process.env.QIYAO_AUDIT_KIND}-package-audit-result.json` : process.env.QIYAO_AUDIT_DIRECTORY ? 'installed-package-audit-result.json' : 'package-audit-result.json'), JSON.stringify(result, null, 2));
 console.log(`Verified ${productFiles} packaged product files, ${retainedDocuments} complete dependency legal documents, ${distributionFiles.size} distribution legal/source files, asset notices, Electron/Chromium notices and Qiyao executable metadata.`);
 if (unresolvedAssets.length) console.log(`Unresolved redistribution rights: ${unresolvedAssets.join(', ')}`);

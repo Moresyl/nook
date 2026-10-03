@@ -1,0 +1,244 @@
+{
+  "verifiedAt": "2026-10-03T06:34:55.442Z",
+  "scope": "Complete source-runtime branch navigation, plugin Inter font loading and release-proof gating; current packaged/installer/portable body and physical system picker remain unverified for this increment.",
+  "sourceDesktopChecks": 178,
+  "normalCloseVerified": true,
+  "sourceBranchChecks": 5,
+  "modelRequestsDuringBranchNavigation": 0,
+  "unit": {
+    "tests": 532,
+    "files": 54,
+    "durationSeconds": 32.78,
+    "unchangedTestDeadlineMs": 5000,
+    "coverage": {
+      "lines": {
+        "total": 2745,
+        "covered": 2721,
+        "skipped": 0,
+        "pct": 99.12
+      },
+      "statements": {
+        "total": 4723,
+        "covered": 4563,
+        "skipped": 0,
+        "pct": 96.61
+      },
+      "functions": {
+        "total": 1037,
+        "covered": 1008,
+        "skipped": 0,
+        "pct": 97.2
+      },
+      "branches": {
+        "total": 3380,
+        "covered": 3165,
+        "skipped": 0,
+        "pct": 93.63
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "graphCoverage": {
+    "lines": {
+      "total": 37,
+      "covered": 37,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 3,
+      "covered": 3,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 75,
+      "covered": 75,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 41,
+      "covered": 41,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "releasePolicy": {
+    "tests": 24,
+    "coverage": {
+      "lines": {
+        "total": 41,
+        "covered": 41,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 51,
+        "covered": 51,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 86,
+        "covered": 86,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "minimumDesktopChecks": 178,
+    "completeMatchingBranchProofRequired": true,
+    "removedFontReferenceAuditRequired": true
+  },
+  "originalLegalRetained": true,
+  "implementationFiles": [
+    {
+      "file": "contracts/conversation-branches.ts",
+      "sha256": "17434d997f2890df58edf61dfa0db534e09aac3b52cf1240828242c50d9ae831"
+    },
+    {
+      "file": "workbench/components/branch-navigation.tsx",
+      "sha256": "a3a1b397f0f4650940ddd820681f63c5c8d5f1d4cd3c235f055aa3c01205ad98"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "sha256": "d40971109a1767af3735edc58aac5c6d0f857f1a025017e148c2a13887cf8292"
+    },
+    {
+      "file": "workbench/theme/surfaces.css",
+      "sha256": "5c823e643ba6662e002bde36471f81ace13d8de4cc662633095afe11d20b94e0"
+    },
+    {
+      "file": "desktop/electron-plugin-runtime.ts",
+      "sha256": "af57cc1c4965ca1c99b11bf16bc16831bd9691b4d4873d94af3e600b5e811076"
+    },
+    {
+      "file": "scripts/verify-conversation-branches.mjs",
+      "sha256": "ef68b0fc4da9d28742b1d9edb33e27ec6a5c236f3f8b92a21404623140701985"
+    },
+    {
+      "file": "scripts/verify-plugins.mjs",
+      "sha256": "708630c6aa2b5a0a484dc6368f2e2fc835fda279ace9793197caa13ffdff9fe8"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "88d9620cc258221b768c80de654901efff301c737a98e6153d95c8061cfb46db"
+    },
+    {
+      "file": "scripts/verify-package.mjs",
+      "sha256": "3be7cc8bd2c3f57e65e96d7d3ea5470fc6ee596d463dca780012f0d32abd52d3"
+    },
+    {
+      "file": "scripts/release-policy.mjs",
+      "sha256": "c2fafec91013f203ef9746f44f9eb37f090b957d2339312710280926e42e2f2f"
+    },
+    {
+      "file": "scripts/prepare-release.mjs",
+      "sha256": "3835fd2eb224a836496f4d97f5dbebe526f3e68bc38952b7aee1c3ae5d80b937"
+    },
+    {
+      "file": "verification/conversation-branches.test.ts",
+      "sha256": "6fdd46f4ac9ef75a9f66053d95807777d977f1587798a4e4ee8c8769d88cb94a"
+    },
+    {
+      "file": "verification/electron-plugin-runtime.test.ts",
+      "sha256": "703ca02b76fd7a37f818ed3ff800adb65f42561fba618b8bc29f490e031fb598"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "b63460f6833d96cde8bc6a520fba143675c86cfcda8b1316ce627c22805c0577"
+    }
+  ],
+  "captures": [
+    {
+      "file": "106-branch-navigation-light.png",
+      "sha256": "3de23da61a691969cd8e644ff31c7b18158ea8e5e3098672b494fa617172681a",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "107-branch-navigation-error-light.png",
+      "sha256": "21bee2a9b0f60e580beacb7f3e0cad0c9eab3a3e5355325acea3d8955796a03b",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-100.png",
+      "sha256": "130d6e729b671b451a495c06d8714b78c4a62108c8c7ab4c1cac9f00bb2ff286",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-125.png",
+      "sha256": "2fef5a7d79abe657715f122d6e9ec9cad1e5a2b9740aeb6e741f19084f1d4448",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-150.png",
+      "sha256": "877b1effa4212a4dc82626a93a99f4a3072e5c3c932d7adfb72fb2a259ed6962",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "109-branch-header-dark-zoom-150.png",
+      "sha256": "beb9d645b6c24f4f7d1310b03bc574b551a224505babc66705000765f8466460",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "110-branch-header-with-parent-light-zoom-150.png",
+      "sha256": "35c5206954c1aafd472591125d81ca770fa2d00f4b54dfd422a5aca7f1048e17",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    }
+  ],
+  "retainedFailures": [
+    {
+      "log": "branches-native-focused.log",
+      "observation": "JSON backup omits undefined optional IPC fields; assertions now compare the complete actual JSON representation."
+    },
+    {
+      "log": "branches-full-native.log",
+      "observation": "The original direct parent-navigation button had been removed; it is restored alongside the independent graph action."
+    },
+    {
+      "log": "branches-compatibility-native.log",
+      "observation": "Existing backup import deliberately regenerates managed skill/plugin IDs; complete expected records now use the actual fresh-ID mapping."
+    },
+    {
+      "capture": "110-branch-header-with-parent-light-zoom-150.png",
+      "observation": "Earlier 150-percent header left no visible title text. Compact short-window actions and title padding retain at least 16 CSS pixels of title text with all eight buttons visible."
+    }
+  ],
+  "remaining": [
+    "Matching current packaged/portable/installed runtime proofs",
+    "Complete hosted workflow",
+    "Physical picker/wizard and broader delivery acceptance",
+    "Concrete bilingual changelog and tagged publication"
+  ]
+}
