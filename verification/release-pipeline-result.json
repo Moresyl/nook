@@ -32,7 +32,7 @@
       "pct": "Unknown"
     }
   },
-  "verifiedAt": "2026-10-03T06:34:55.442Z",
+  "verifiedAt": "2026-10-03T07:16:59.534Z",
   "installerScriptSyntaxVerified": true,
   "nativeCommandBlocksParsed": 8,
   "version": "0.1.0-alpha.1",
@@ -44,7 +44,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Independent canonical source/history and remote are established. The prior hosted run passed the 4 GB build and package audit, then failed the implicit initial viewport assumption. The final source body passes 532 tests, complete 178-check desktop/normal close, complete matching five-check branch navigation, and actual isolated light/dark variable Inter font loading. Release policy requires current packaged and installed proofs including removed-font reference rejection; these and physical acceptance remain outstanding. No completed hosted lifecycle or release is claimed.",
+  "scope": "The independent source passes 532 tests and complete 178-check source/normal close. The latest hosted run passes 532 tests, the 4 GB build and package audit, then passes 175 desktop checks before the broad alert selector reads a global toast. Scoped navigation-error readiness passes the complete 178-check packaged desktop and four settings checks against the unchanged executable/ASAR. Current portable/installed and complete hosted reruns and remaining delivery gates are required; no release is claimed.",
   "focusedPolicyTests": 24,
   "implementationFiles": [
     {
@@ -143,21 +143,21 @@
     "sourceHistoryResult": "source-history-result.json"
   },
   "hostedVerification": {
-    "runId": 37099548957,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37099548957",
-    "sourceCommit": "3fc59bbdbfa0d1b07ac4f4cb553963afc7becc97",
+    "runId": 37103791091,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37103791091",
+    "sourceCommit": "4c8a5cd46fc33b21e1035da9c99eb25862a0b7b1",
     "conclusion": "failure",
     "typecheckVerified": true,
-    "unitTestsPassed": 515,
-    "unitTestFiles": 52,
+    "unitTestsPassed": 532,
+    "unitTestFiles": 54,
+    "unitDurationSeconds": 77.01,
     "releaseNoticesVerified": true,
     "buildAndPackageAuditVerified": true,
-    "buildHeapMiB": 4096,
-    "buildHeapScope": "Build/packaging step only; runtime test processes and deadlines unchanged",
+    "initialGeometryVerified": true,
+    "desktopChecksBeforeFailure": 175,
     "failedStep": "Verify the complete packaged desktop and settings",
-    "failure": "Initial native viewport was 1024x720 while the first geometry assertion assumed 1280x840",
-    "viewportPreparation": "The test explicitly sets and awaits 1280x840 before retaining the existing sidebar/radius assertions",
-    "nextStep": "Verify the final branch increment and explicit viewport preparation in the complete hosted workflow"
+    "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
+    "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
   },
   "previousHostedVerification": {
     "runId": 37099119289,
@@ -174,5 +174,54 @@
     "buildHeapMiB": 4096,
     "buildHeapScope": "Build/packaging step only; runtime test processes and deadlines unchanged",
     "nextStep": "Verify the revised build step through the complete hosted workflow"
+  },
+  "hostedVerificationHistory": [
+    {
+      "runId": 37099548957,
+      "url": "https://github.com/Moresyl/qiyao/actions/runs/37099548957",
+      "sourceCommit": "3fc59bbdbfa0d1b07ac4f4cb553963afc7becc97",
+      "conclusion": "failure",
+      "typecheckVerified": true,
+      "unitTestsPassed": 515,
+      "unitTestFiles": 52,
+      "releaseNoticesVerified": true,
+      "buildAndPackageAuditVerified": true,
+      "buildHeapMiB": 4096,
+      "buildHeapScope": "Build/packaging step only; runtime test processes and deadlines unchanged",
+      "failedStep": "Verify the complete packaged desktop and settings",
+      "failure": "Initial native viewport was 1024x720 while the first geometry assertion assumed 1280x840",
+      "viewportPreparation": "The test explicitly sets and awaits 1280x840 before retaining the existing sidebar/radius assertions",
+      "nextStep": "Verify the final branch increment and explicit viewport preparation in the complete hosted workflow"
+    },
+    {
+      "runId": 37103791091,
+      "url": "https://github.com/Moresyl/qiyao/actions/runs/37103791091",
+      "sourceCommit": "4c8a5cd46fc33b21e1035da9c99eb25862a0b7b1",
+      "conclusion": "failure",
+      "typecheckVerified": true,
+      "unitTestsPassed": 532,
+      "unitTestFiles": 54,
+      "unitDurationSeconds": 77.01,
+      "releaseNoticesVerified": true,
+      "buildAndPackageAuditVerified": true,
+      "initialGeometryVerified": true,
+      "desktopChecksBeforeFailure": 175,
+      "failedStep": "Verify the complete packaged desktop and settings",
+      "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
+      "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
+    }
+  ],
+  "packagedVerification": {
+    "desktopChecks": 178,
+    "surfaceChecks": 4,
+    "branchChecks": 5,
+    "verificationRun": "complete desktop suite",
+    "suiteChecks": 178,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "modelRequestsDuringBranchNavigation": 0,
+    "executableSha256": "60eba72ebe4d50e8097ed86a218ad80bbe26e9b8ad3af066cd3e555ec55b9dce",
+    "archiveSha256": "036075658b5d2b1a63944f269df20c3d5d5406c9008bed14d7f65eb0dcfb5d63",
+    "removedFontReferencesVerified": true
   }
 }

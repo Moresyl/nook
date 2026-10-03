@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-10-03T07:16:59.534Z",
+  "scope": "Native packaged fixture readiness correction; complete 178-check packaged desktop and four surface checks pass against the unchanged executable/ASAR with original visibility, exact draft/no-request and retry assertions. Current portable/installed and hosted reruns remain required.",
+  "hosted": {
+    "runId": 37103791091,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37103791091",
+    "sourceCommit": "4c8a5cd46fc33b21e1035da9c99eb25862a0b7b1",
+    "conclusion": "failure",
+    "typecheckVerified": true,
+    "unitTestsPassed": 532,
+    "unitTestFiles": 54,
+    "unitDurationSeconds": 77.01,
+    "releaseNoticesVerified": true,
+    "buildAndPackageAuditVerified": true,
+    "initialGeometryVerified": true,
+    "desktopChecksBeforeFailure": 175,
+    "failedStep": "Verify the complete packaged desktop and settings",
+    "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
+    "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
+  },
+  "localFailedLog": "cleanup-final-packaged-native.log",
+  "localFailedWorkspace": "QiyaoPackagedFinal-d9ac02bc40a745ac81f56bb0621eef4e/qiyao-electron-BoZ34R",
+  "failedCapture": {
+    "file": "cleanup-final-packaged-failure.png",
+    "sha256": "7c0f8d1f9e05f43080f96c683307c9f4d1191e0e820ef3430424d56db8c8a53e",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true
+  },
+  "implementation": {
+    "file": "scripts/verify-conversation-branches.mjs",
+    "sha256": "f782a7ae1461c5fb3a5349be513ff60252041b6a9393536315984a09768ae3bd",
+    "alertScope": "The branch dialog modal-content region",
+    "geometryAssertionRetained": true,
+    "deadlinesChanged": false
+  },
+  "packaged": {
+    "desktopChecks": 178,
+    "surfaceChecks": 4,
+    "branchChecks": 5,
+    "verificationRun": "complete desktop suite",
+    "suiteChecks": 178,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "modelRequestsDuringBranchNavigation": 0,
+    "executableSha256": "60eba72ebe4d50e8097ed86a218ad80bbe26e9b8ad3af066cd3e555ec55b9dce",
+    "archiveSha256": "036075658b5d2b1a63944f269df20c3d5d5406c9008bed14d7f65eb0dcfb5d63",
+    "removedFontReferencesVerified": true
+  },
+  "completeHostedVerification": false,
+  "publicationVerified": false
+}

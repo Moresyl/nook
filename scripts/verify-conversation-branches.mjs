@@ -23,6 +23,7 @@ export async function verifyConversationBranches({ page, application, getApplica
   }); application = getApplication(); await application.resize(1280, 840);
   const composer = () => page.getByLabel('消息', { exact: true });
   const dialog = () => page.getByRole('dialog', { name: '对话分支', exact: true });
+  const navigationError = () => dialog().locator('.modal-content').getByRole('alert');
   const selectRow = (id) => dialog().locator(`.branch-node[data-thread-id="${id}"]`);
   async function open() { await page.getByRole('button', { name: '查看对话分支', exact: true }).click(); await dialog().waitFor(); }
   async function choose(id) { await selectRow(id).click(); await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await page.waitForFunction(() => !document.querySelector('dialog.branch-navigation')); await waitForBridge(page, async (id) => (await window.qiyao.load()).activeThreadId === id, id); }
@@ -56,8 +57,8 @@ export async function verifyConversationBranches({ page, application, getApplica
 
   await application.evaluateMain("globalThis.qiyaoBranchRename=require('node:fs/promises').rename; const rename=globalThis.qiyaoBranchRename; require('node:fs/promises').rename=async(...args)=>{if(String(args[1]).endsWith('workspace.json'))throw Object.assign(new Error('QIYAO_BRANCH_WRITE_FAILURE'),{code:'EIO'});return rename(...args);};");
   try {
-    await composer().fill('ROOT_FAILED_SWITCH_DRAFT'); await open(); await selectRow(childId).click(); await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await dialog().getByRole('alert').waitFor();
-    assert.equal(await dialog().getByRole('alert').evaluate((element) => { const rect = element.getBoundingClientRect(); const scroll = element.closest('.modal-content').getBoundingClientRect(); return rect.top >= scroll.top && rect.bottom <= scroll.bottom; }), true);
+    await composer().fill('ROOT_FAILED_SWITCH_DRAFT'); await open(); await selectRow(childId).click(); await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await navigationError().waitFor();
+    assert.equal(await navigationError().evaluate((element) => { const rect = element.getBoundingClientRect(); const scroll = element.closest('.modal-content').getBoundingClientRect(); return rect.top >= scroll.top && rect.bottom <= scroll.bottom; }), true);
     assert.equal(await composer().inputValue(), 'ROOT_FAILED_SWITCH_DRAFT'); assert.equal((await page.evaluate(() => window.qiyao.load())).activeThreadId, rootId); assert.equal(modelRequests(), beforeRequests); await capture('107-branch-navigation-error-light.png');
   } finally { await application.evaluateMain("require('node:fs/promises').rename=globalThis.qiyaoBranchRename; delete globalThis.qiyaoBranchRename;"); }
   await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await page.waitForFunction(() => !document.querySelector('dialog.branch-navigation')); await waitForBridge(page, async (id) => (await window.qiyao.load()).activeThreadId === id, childId); assert.equal(await composer().inputValue(), 'CHILD_DRAFT_KEEP');
@@ -71,7 +72,7 @@ export async function verifyConversationBranches({ page, application, getApplica
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
 
-  await open(); await selectRow(staleId).click(); await page.evaluate((id) => window.qiyao.deleteThread(id), staleId); await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await dialog().getByRole('alert').waitFor();
+  await open(); await selectRow(staleId).click(); await page.evaluate((id) => window.qiyao.deleteThread(id), staleId); await dialog().getByRole('button', { name: '打开所选对话', exact: true }).click(); await navigationError().waitFor();
   assert.equal(await selectRow(staleId).count(), 0); assert.equal(await dialog().getByRole('button', { name: '打开所选对话', exact: true }).isEnabled(), false); assert.equal(await composer().inputValue(), 'CHILD_DRAFT_KEEP');
   await dialog().getByRole('button', { name: '取消', exact: true }).click(); await page.evaluate((id) => window.qiyao.deleteThread(id), rootId); await page.reload(); await composer().waitFor(); await open();
   assert.equal(await dialog().getByRole('button', { name: '打开原对话', exact: true }).count(), 0); assert.match(await selectRow(childId).textContent(), /原对话已删除/); assert.equal(await dialog().getByText('1–200 / 203', { exact: true }).count(), 1); assert.equal(modelRequests(), beforeRequests);
