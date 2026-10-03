@@ -2,9 +2,10 @@ import { randomUUID } from 'node:crypto';
 import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { appendPrompt, promptTemplateLimits, promptTemplateSchema, promptTemplatesSchema, promptVariables, renderPrompt } from '../contracts/prompt-templates';
+import { appendPrompt, promptParameterSchema, promptParameters, promptTemplateLimits, promptTemplateSchema, promptTemplatesSchema, promptVariables, renderPrompt } from '../contracts/prompt-templates';
 import { emptyWorkspace, workspaceSchema } from '../contracts/workspace';
 import { PromptTemplates } from '../desktop/services/prompt-templates';
+import { AssistantProfiles } from '../desktop/services/assistant-profiles';
 import { WorkspaceVault } from '../desktop/services/vault';
 import { ExtensionSettings } from '../desktop/services/extension-settings';
 import { LocalSkills } from '../desktop/services/local-skills';
@@ -16,6 +17,62 @@ const template = () => ({ id: randomUUID(), title: '写作任务', description: 
 async function setup() { const { vault, directory } = await testVault(); directories.push(directory); return { vault, directory, templates: new PromptTemplates(vault) }; }
 
 describe('prompt templates and bounded literal expansion', () => {
+  it('validates bounded parameter labels, choices and defaults against exact existing variable keys', () => {
+    expect(promptParameters('{{后}} {{前}} {{后}}', [{ key: '前', label: '标题', description: '提示', required: false, defaultValue: '原文' }]))
+      .toEqual([{ key: '后', required: true }, { key: '前', label: '标题', description: '提示', required: false, defaultValue: '原文' }]);
+    expect(promptParameters('{{后}}', [{ key: '后', required: undefined }])).toEqual([{ key: '后', required: true }]);
+    expect(() => promptParameters('{{后}}', Array.from({ length: 21 }, () => ({ key: '后' })))).toThrow();
+    for (const parameters of [[{ key: 'missing' }], [{ key: '后' }, { key: '后' }]]) expect(() => promptParameters('{{后}}', parameters)).toThrow('only once');
+    for (const change of [{ key: '' }, { key: 'x'.repeat(41) }, { label: 'x'.repeat(81) }, { description: 'x'.repeat(513) }, { defaultValue: 'x'.repeat(32001) }, { choices: [] }, { choices: ['a', 'a'] }, { choices: [' '] }, { choices: ['x'.repeat(513)] }, { choices: Array.from({ length: 51 }, (_, i) => String(i)) }, { choices: ['a'], defaultValue: 'b' }, { extra: true }]) {
+      expect(promptParameterSchema.safeParse({ key: '后', ...change }).success).toBe(false);
+    }
+    expect(promptTemplateSchema.safeParse({ ...template(), assistantId: 'writer', parameters: [{ key: '文本', required: false }] }).success).toBe(true);
+    for (const assistantId of ['', 'x'.repeat(129), 'bad\0id']) expect(promptTemplateSchema.safeParse({ ...template(), assistantId }).success).toBe(false);
+    expect(promptTemplateSchema.safeParse({ ...template(), parameters: [{ key: 'missing' }] }).success).toBe(false);
+  });
+  it('applies explicit defaults and optional values while keeping choice values and supplied literal text exact', () => {
+    const definitions = [{ key: '风格', choices: ['简洁', '展开'], defaultValue: '简洁' }, { key: '文本', required: false }];
+    expect(renderPrompt('{{风格}} / {{文本}}', {}, definitions)).toBe('简洁 / ');
+    expect(renderPrompt('{{风格}} / {{文本}}', { 风格: '展开', 文本: '<script>{{风格}} $&😀\n</script>' }, definitions)).toBe('展开 / <script>{{风格}} $&😀\n</script>');
+    expect(() => renderPrompt('{{风格}}', { 风格: '' }, definitions.slice(0, 1))).toThrow('required');
+    expect(() => renderPrompt('{{风格}}', { 风格: 'unknown' }, definitions.slice(0, 1))).toThrow('declared option');
+    expect(renderPrompt('{{风格}}', { 风格: '' }, [{ key: '风格', required: false, choices: ['a'] }])).toBe('');
+    expect(() => renderPrompt('{{风格}}', { extra: 'bad' }, definitions.slice(0, 1))).toThrow('unknown');
+    expect(() => renderPrompt('{{文本}}', {}, [{ key: '文本', defaultValue: ' ' }])).toThrow('required');
+  });
+  it('saves an assistant-bound recipe and exact parameter metadata while rejecting a deleted assistant atomically', async () => {
+    const { templates, vault, directory } = await setup();
+    const item = { ...template(), assistantId: 'writer', parameters: [{ key: '风格', label: '写作风格', choices: ['简洁', '详细'], defaultValue: '简洁' }, { key: '文本', description: '原文😀', required: false }] };
+    await templates.save(item); const before = vault.snapshot(); const bytes = await readFile(join(directory, 'workspace.json'));
+    await expect(templates.save({ ...item, assistantId: 'removed' })).rejects.toThrow('no longer exists');
+    expect(vault.snapshot()).toEqual(before); expect(await readFile(join(directory, 'workspace.json'))).toEqual(bytes);
+    const reopened = new WorkspaceVault(directory, codec); await reopened.initialize(); expect(reopened.snapshot().promptTemplates).toEqual([item]);
+    expect(renderPrompt(item.content, {}, item.parameters)).toBe('按 简洁 改写 ，保持 简洁。');
+  });
+  it('clears only recipes belonging to a removed assistant and keeps exact parameter metadata after an atomic retry', async () => {
+    const { templates, vault, directory } = await setup(); const profiles = new AssistantProfiles(vault);
+    const bound = { ...template(), assistantId: 'writer', parameters: [{ key: '文本', defaultValue: 'EXACT_RECIPE😀' }] };
+    const other = { ...template(), assistantId: 'general' }; await templates.save(bound); await templates.save(other);
+    const before = vault.snapshot(); const bytes = await readFile(join(directory, 'workspace.json'));
+    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('RECIPE_EIO'));
+    await expect(profiles.remove('writer')).rejects.toThrow('RECIPE_EIO');
+    expect(vault.snapshot()).toEqual(before); expect(await readFile(join(directory, 'workspace.json'))).toEqual(bytes);
+    await profiles.remove('writer'); const { assistantId: _removed, ...unbound } = bound;
+    expect(vault.snapshot().promptTemplates).toEqual([unbound, other]);
+    expect(vault.snapshot().assistants.some((item) => item.id === 'writer')).toBe(false);
+    await expect(templates.save(bound)).rejects.toThrow('no longer exists'); await templates.save(unbound);
+  });
+  it('restores assistant associations and parameter defaults through the complete workspace backup without altering rendered drafts', async () => {
+    const { templates, vault, directory } = await setup();
+    const item = { ...template(), assistantId: 'writer', parameters: [{ key: '风格', defaultValue: '简洁' }, { key: '文本', defaultValue: 'RESTORED_LITERAL😀' }] };
+    await templates.save(item); const text = renderPrompt(item.content, {}, item.parameters);
+    await vault.update((draft) => { draft.composerDrafts = [{ text, assistantId: 'writer', attachments: [], model: '', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 }]; });
+    const extensions = new ExtensionSettings(vault, new LocalSkills(join(directory, 'skills'))); const backup = await extensions.backup();
+    await new AssistantProfiles(vault).remove('writer'); await templates.remove(item.id);
+    const restored = await extensions.restore(backup);
+    expect(restored.promptTemplates).toEqual([item]); expect(restored.assistants.some((profile) => profile.id === 'writer')).toBe(true);
+    expect(restored.composerDrafts[0]).toMatchObject({ text, assistantId: 'writer' });
+  });
   it('accepts legacy workspaces and validates exact IDs, fields, names, content and distinct variables', () => {
     const legacy = { ...emptyWorkspace() } as Record<string, unknown>; delete legacy.promptTemplates;
     expect(workspaceSchema.parse(legacy).promptTemplates).toEqual([]); expect(promptTemplatesSchema.parse(undefined)).toEqual([]);

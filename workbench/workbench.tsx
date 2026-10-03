@@ -201,9 +201,10 @@ export function Workbench() {
     try { setText(appendMessageQuote(text, message, selection)); requestAnimationFrame(() => { const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]'); input?.focus(); input?.setSelectionRange(input.value.length, input.value.length); }); }
     catch (problem) { report(problem); }
   }
-  function insertPrompt(prompt: string): boolean {
+  function insertPrompt(prompt: string, recipeAssistantId?: string): boolean {
     try {
-      updateDraft({ text: appendPrompt(draftRef.current.text, prompt) }); setPage('chat');
+      if (recipeAssistantId && !state?.assistants.some((item) => item.id === recipeAssistantId)) throw new Error('关联的助手已移除。请重新选择模板助手。');
+      updateDraft({ text: appendPrompt(draftRef.current.text, prompt), ...(recipeAssistantId ? { assistantId: recipeAssistantId } : {}) }); setPage('chat');
       requestAnimationFrame(() => { const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]'); input?.focus(); input?.setSelectionRange(input.value.length, input.value.length); }); return true;
     } catch (problem) { report(problem); return false; }
   }

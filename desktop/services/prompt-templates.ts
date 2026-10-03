@@ -6,6 +6,9 @@ export class PromptTemplates {
   save(raw: unknown) {
     const template = promptTemplateSchema.parse(raw);
     return this.vault.update((draft) => {
+      if (template.assistantId && !draft.assistants.some((item) => item.id === template.assistantId)) {
+        throw new Error('The linked assistant no longer exists. Choose an available assistant before saving this template.');
+      }
       const index = draft.promptTemplates.findIndex((item) => item.id === template.id);
       if (index < 0) draft.promptTemplates.push(template); else draft.promptTemplates[index] = template;
     });

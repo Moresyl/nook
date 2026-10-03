@@ -328,6 +328,10 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .section-heading p { font-size: 11px; color: var(--ds-text-secondary); margin-top: 4px; }
 .section-heading > .muted { font-size: 10px; }
 .form-actions { display: flex; justify-content: space-between; margin-top: 20px; }
+.prompt-parameter { border-top: 1px solid var(--ds-border); padding: 12px 0; }
+.prompt-parameter > summary { cursor: pointer; color: var(--ds-text-secondary); font-size: 12px; overflow-wrap: anywhere; padding: 4px 0; }
+.prompt-parameter[open] > summary { margin-bottom: 12px; }
+.prompt-parameter .toggle-label { margin-bottom: 12px; }
 .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--ds-border); gap: 12px; }
 .settings-row strong { font-size: 12px; }
 .settings-row p { font-size: 11px; color: var(--ds-text-secondary); margin-top: 4px; }

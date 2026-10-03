@@ -5,7 +5,7 @@ import { Button, Empty, Field, IconButton, Input, Modal, Select, Textarea } from
 import { Glyph } from '../components/glyphs';
 import { PromptTemplatesPage } from './prompt-templates';
 
-type Props = { state: Workspace; onState: (next: Workspace) => void; report: (error: unknown) => void; onUse: (id: string) => void; onPrompt: (text: string) => boolean };
+type Props = { state: Workspace; onState: (next: Workspace) => void; report: (error: unknown) => void; onUse: (id: string) => void; onPrompt: (text: string, assistantId?: string) => boolean };
 export function Collections({ state, onState, report, onUse, onPrompt }: Props) {
   const [tab, setTab] = useState('assistants');
   const focusTab = useRef(false);

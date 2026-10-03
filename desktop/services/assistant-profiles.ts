@@ -22,6 +22,7 @@ export class AssistantProfiles {
       if (!draft.assistants.some((item) => item.id === id)) throw new Error('This assistant no longer exists. Refresh the assistant list.');
       draft.assistants = draft.assistants.filter((item) => item.id !== id);
       for (const item of [...draft.threads, ...draft.composerDrafts, ...draft.automations]) if (item.assistantId === id) delete item.assistantId;
+      for (const template of draft.promptTemplates) if (template.assistantId === id) delete template.assistantId;
     });
   }
   bundle(rawIds?: unknown): AssistantBundle {
