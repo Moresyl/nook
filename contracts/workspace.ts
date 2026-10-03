@@ -58,6 +58,7 @@ export const messageSchema = z.object({
 }).refine((message) => !message.replyVersion || message.role === 'assistant', 'Only assistant replies can have versions');
 export const threadSchema = z.object({
   id: identifier, title: z.string().min(1).max(160),
+  temporary: z.literal(true).optional(),
   projectId: identifier.optional(), assistantId: identifier.optional(),
   providerId: identifier.optional(), model: shortText.default(''),
   mode: z.enum(['chat', 'plan', 'agent']).optional(),

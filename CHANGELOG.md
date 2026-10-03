@@ -8,6 +8,7 @@
 
 - 提供本地聊天、流式回复、停止与重新生成，以及 OpenAI Responses／兼容接口、Anthropic、Gemini、Azure 和 Ollama 连接。模型配置、输出预算及实际请求用量可查看和保存。
 - 消息可引用、在新分支重发或仅保存修改。旧回复和完整原文保留；回复版本及分支导航支持预览、搜索和完整分页，各条路径独立保存后续消息、草稿与附件。
+- 临时聊天只在本次应用运行期间保留，消息、附件、草稿、分支及回复版本不进入本机聊天历史或完整工作台备份；退出后清除，普通聊天草稿保持独立。
 - 提供 PDF／Office／OpenDocument 文本提取、图片输入及预览，资料集、关键词与语义／混合检索，以及回复来源片段。聊天内容支持公式、代码高亮和 Mermaid 图表。
 - 项目工作台包含可展开文件树、本地代码编辑器、未保存草稿、Git 审阅／暂存／提交及真实终端。分析和执行模式展示工具过程，文件修改和命令分别确认。
 - 提供助手配置导入导出、变量提示模板、自动任务、MCP 工具／资源／提示及 OAuth、本地技能、隔离插件、统一命令搜索、聊天正文查找、系统托盘和全局唤起快捷键。
@@ -34,6 +35,6 @@
 
 ### English
 
-First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation and independent drafts; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
+First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation and independent drafts; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
 
 Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves drafts on failed branch switches, completes directory pagination and improves minimum-window controls. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.

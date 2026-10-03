@@ -87,6 +87,7 @@ export class ConversationEngine {
     };
     if (this.runs.has(thread.id)) throw new Error('A response is already running in this conversation. Stop it before sending another message.');
     const knowledgeCollectionIds = request.knowledgeCollectionIds ?? thread.knowledgeCollectionIds ?? [];
+    if (thread.temporary && !thread.messages.length && !request.replay) thread = { ...thread, title: request.text.slice(0, 48) };
     const replaySources = request.replay?.action === 'retry' ? replayMessage?.knowledgeSources : undefined;
     if (knowledgeCollectionIds.length && !replaySources) {
       if (!this.knowledge) throw new Error('Knowledge retrieval is unavailable. Reopen the workspace.');

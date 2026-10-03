@@ -1,6 +1,7 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { emptyWorkspace, workspaceSchema, type Workspace } from '../../contracts/workspace';
+import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
@@ -11,6 +12,7 @@ export class WorkspaceVault {
   private state = emptyWorkspace();
   private keys: Record<string, string> = {};
   private tail: Promise<unknown> = Promise.resolve();
+  private persistentActiveThreadId?: string;
 
   constructor(private readonly directory: string, private readonly codec: SecretCodec) {}
 
@@ -18,7 +20,8 @@ export class WorkspaceVault {
     await mkdir(this.directory, { recursive: true });
     try {
       const raw = await readFile(join(this.directory, 'workspace.json'), 'utf8');
-      this.state = workspaceSchema.parse(JSON.parse(raw));
+      this.state = parsePersistentWorkspace(JSON.parse(raw));
+      this.persistentActiveThreadId = this.state.activeThreadId;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
         throw new Error('Workspace data could not be read. Restore a valid backup before continuing.');
@@ -52,9 +55,14 @@ export class WorkspaceVault {
       const draft = this.snapshot();
       change(draft);
       const next = workspaceSchema.parse(draft);
-      await atomicJson(join(this.directory, 'workspace.backup.json'), this.state);
-      await atomicJson(join(this.directory, 'workspace.json'), next);
+      const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
+      const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
+      if (JSON.stringify(previous) !== JSON.stringify(persistent)) {
+        await atomicJson(join(this.directory, 'workspace.backup.json'), previous);
+        await atomicJson(join(this.directory, 'workspace.json'), persistent);
+      }
       this.state = next;
+      this.persistentActiveThreadId = persistent.activeThreadId;
       return this.snapshot();
     });
     this.tail = operation.catch(() => {});
@@ -95,7 +103,7 @@ export class WorkspaceVault {
   }
 
   backup(): Workspace {
-    const snapshot = this.snapshot();
+    const snapshot = structuredClone(persistentWorkspace(this.state, this.persistentActiveThreadId));
     snapshot.providers.forEach((provider) => { provider.hasKey = false; });
     snapshot.mcpServers.forEach((server) => { server.hasCredentials = false; server.autoConnect = false; });
     return snapshot;

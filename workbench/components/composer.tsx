@@ -12,6 +12,7 @@ import type { PromptTemplate } from '../../contracts/prompt-templates';
 import { PromptUseDialog } from './prompt-use-dialog';
 
 type Props = {
+  temporary?: boolean;
   providers: Provider[]; assistants: Assistant[]; projects: Project[]; messages: Message[];
   providerId: string; model: string; assistantId: string; projectId: string;
   text: string; onText: (text: string) => void; onProvider: (id: string) => void; onModel: (model: string) => void;
@@ -88,6 +89,7 @@ export function Composer(props: Props) {
       </div>
     </div>
     {importing && <p className="composer-mode-hint" role="status">正在导入附件…</p>}
+    {props.temporary && <p className="composer-mode-hint" aria-label="临时聊天说明"><strong>临时聊天</strong>：内容和草稿不写入本机聊天历史或备份，关闭应用后清除。模型服务仍会收到消息；主动导出、工具和插件操作会保留各自结果。</p>}
     {attachments.some((file) => file.image) && <p className="composer-mode-hint">图片将随对话发送给所选模型，请使用支持图片输入的模型。</p>}
     {props.mode === 'plan' && <p className="composer-mode-hint">读取项目、搜索代码并查看改动，整理有依据的方案。</p>}
     {props.mode === 'agent' && <p className="composer-mode-hint">检查项目、提出修改并验证。文件改动与命令执行会先展示给你审批。</p>}

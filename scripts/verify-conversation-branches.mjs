@@ -40,6 +40,11 @@ export async function verifyConversationBranches({ page, application, getApplica
     assert.ok(await page.locator('.thread-title > span').evaluate((element) => element.getBoundingClientRect().width >= 16), 'The minimum-window header must retain visible title text alongside every action.');
     return controls;
   }
+  async function nativeZoom(zoom) {
+    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
+    const [width, height] = await application.evaluateMain(`${mainWindow}.getContentSize()`);
+    await waitForBridge(page, ({ zoom, width, height }) => Math.abs(innerWidth - width / zoom) <= 1 && Math.abs(innerHeight - height / zoom) <= 1, { zoom, width, height });
+  }
   assert.equal(await composer().inputValue(), 'ROOT_DRAFT_KEEP'); await open();
   assert.equal(await dialog().locator('.branch-node').count(), 200); assert.equal(await dialog().getByText('1–200 / 205', { exact: true }).count(), 1);
   assert.equal(await selectRow(rootId).getAttribute('aria-current'), 'page'); assert.equal(await selectRow(childId).getAttribute('aria-pressed'), 'false');
@@ -67,7 +72,7 @@ export async function verifyConversationBranches({ page, application, getApplica
 
   await application.resize(760, 540); const parentHeaderLayout = [];
   for (const zoom of [1, 1.25, 1.5]) {
-    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); parentHeaderLayout.push({ zoom, controls: await headerGeometry(8, zoom) });
+    await nativeZoom(zoom); parentHeaderLayout.push({ zoom, controls: await headerGeometry(8, zoom) });
     if (zoom === 1.5) await capture('110-branch-header-with-parent-light-zoom-150.png');
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
@@ -97,7 +102,7 @@ export async function verifyConversationBranches({ page, application, getApplica
   assert.deepEqual(JSON.parse(JSON.stringify(restored.threads)), expectedThreads); assert.deepEqual(JSON.parse(JSON.stringify(restored.composerDrafts)), expectedDrafts); page = await restart(); application = getApplication(); assert.equal(await composer().inputValue(), 'CHILD_DRAFT_KEEP');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }); await page.reload(); await application.resize(760, 540); const layout = [];
   for (const zoom of [1, 1.25, 1.5]) {
-    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
+    await nativeZoom(zoom);
     const headerControls = await headerGeometry(7, zoom);
     if (zoom === 1.5) await capture('109-branch-header-dark-zoom-150.png');
     await open(); await dialog().getByRole('textbox', { name: '搜索对话分支', exact: true }).focus(); await page.keyboard.press('Tab'); assert.equal(await selectRow(childId).evaluate((element) => element === document.activeElement), true);

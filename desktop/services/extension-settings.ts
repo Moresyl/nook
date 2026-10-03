@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { mcpCredentialsSchema, mcpServerSchema, skillBundleSchema, skillSchema, type McpCredentials, type McpServer, type Skill } from '../../contracts/extensions';
-import { workspaceSchema } from '../../contracts/workspace';
+import { parsePersistentWorkspace } from '../../contracts/temporary-conversations';
 import { mcpDestination } from './mcp-identity';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
@@ -94,7 +94,7 @@ export class ExtensionSettings {
   }
 
   async restore(raw: unknown) {
-    const backup = workspaceSchema.parse(raw);
+    const backup = parsePersistentWorkspace(raw);
     if (backup.preferences.desktop) Object.assign(backup.preferences.desktop, { trayEnabled: false, closeToTray: false, shortcutEnabled: false });
     interruptRuns(backup.threads);
     for (const task of backup.automations) {

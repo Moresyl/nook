@@ -55,6 +55,7 @@ export type Bridge = {
   removeMessageDraft(target: { threadId: string; messageId: string }): Promise<void>;
   editMessage(input: MessageEdit): Promise<Workspace>;
   activateThread(id?: string): Promise<void>;
+  startTemporaryChat(): Promise<Workspace>;
   submit(request: SubmitRequest): Promise<{ threadId: string }>;
   stop(threadId: string): Promise<void>;
   pendingApprovals(): Promise<ApprovalRequest[]>;

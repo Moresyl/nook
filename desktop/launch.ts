@@ -5,9 +5,11 @@ import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { spawn as spawnPty } from 'node-pty';
 import { z } from 'zod';
-import { projectSchema, providerSchema, threadMarkdown, threadSchema, workspaceSchema, type Workspace } from '../contracts/workspace';
+import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
 import { ComposerDrafts } from './services/composer-drafts';
+import { startTemporaryChat } from './services/temporary-conversations';
+import { parsePersistentWorkspace } from '../contracts/temporary-conversations';
 import { HttpModelGateway } from './services/model-gateway';
 import { ProviderSettings } from './services/provider-settings';
 import { ConversationEngine } from './services/conversation-engine';
@@ -199,6 +201,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   removeMessageDraft: (raw) => messageEdits.removeDraft(raw),
   editMessage: (raw) => messageEdits.edit(raw),
   activateThread: (raw) => composerDrafts.activate(raw),
+  startTemporaryChat: () => startTemporaryChat(vault),
   submit: (request) => engine.start(request),
   stop: (id) => engine.stop(idSchema.parse(id)),
   pendingApprovals: () => engine.pendingApprovals(),
@@ -209,6 +212,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     return vault.update((draft) => {
       const index = draft.threads.findIndex((item) => item.id === thread.id);
       if (index < 0) throw new Error('This conversation no longer exists.');
+      if (thread.temporary !== draft.threads[index].temporary) throw new Error('The storage mode of an existing conversation cannot be changed.');
       draft.threads[index] = { ...thread, updatedAt: Date.now() };
     });
   },
@@ -347,7 +351,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     const result = await dialog.showOpenDialog(window!, { title: '恢复 Qiyao 备份', properties: ['openFile'], filters: [{ name: 'Qiyao 备份', extensions: ['json', 'gz'] }] });
     if (result.canceled) return null;
     const rawBackup: unknown = await backupFiles.read(result.filePaths[0]);
-    workspaceSchema.parse(rawBackup);
+    parsePersistentWorkspace(rawBackup);
     const answer = await dialog.showMessageBox(window!, { type: 'question', buttons: ['取消', '恢复备份'], defaultId: 0, cancelId: 0, message: '恢复备份将替换当前本地工作台。', detail: '当前数据会保存在 workspace.backup.json。备份不含密钥；同一提供商已有密钥将继续使用。' });
     if (answer.response !== 1) return null;
     await automations.suspend();

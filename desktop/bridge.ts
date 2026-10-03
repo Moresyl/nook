@@ -74,6 +74,7 @@ const bridge: Bridge = {
   removeMessageDraft: (target) => invoke('removeMessageDraft', target),
   editMessage: (input) => invoke('editMessage', input),
   activateThread: (id) => invoke('activateThread', id),
+  startTemporaryChat: () => invoke('startTemporaryChat'),
   submit: (request) => invoke('submit', request),
   stop: (id) => invoke('stop', id),
   pendingApprovals: () => invoke('pendingApprovals'),
