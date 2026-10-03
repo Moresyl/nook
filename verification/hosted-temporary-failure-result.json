@@ -1,0 +1,132 @@
+{
+  "verifiedAt": "2026-10-03T17:38:32.680Z",
+  "runId": 37136953200,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37136953200",
+  "sourceCommit": "60ce797dfabc8ba7f47514183fda4cd43d7f652a",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T16:28:06Z",
+  "artifact": {
+    "id": 11279727045,
+    "name": "windows-verification-37136953200-1",
+    "bytes": 7919849,
+    "digest": "sha256:833a458a6c0dbbc3477a24e23dd0b09dc73a68a4d517278adb2867efa4a54c66",
+    "directory": "E:/QiyaoPipelineAudits/1c5603b8a6df4f4bb8cdec518bc497f4"
+  },
+  "hostedTestsPassed": 597,
+  "hostedTestFiles": 59,
+  "typecheckPassed": true,
+  "fixturePreparationPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "packagedDesktopChecksPassedBeforeFailure": 184,
+  "failure": {
+    "source": "scripts/verify-temporary-conversations.mjs:53:3",
+    "phase": "first temporary-chat reply completion",
+    "originalDeadlineMs": 10000,
+    "expected": "the original temporary thread last message status is complete",
+    "causeEstablished": false,
+    "lastPollCaptured": false,
+    "backendStateAtDeadlineCaptured": false
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 1280,
+    "height": 840,
+    "sha256": "a836f3440eaaef08c5db71c50003e06b802aab1ceae034ad4abf09fa42814c8a",
+    "individuallyReviewed": true,
+    "observation": "The post-failure image shows the selected temporary conversation, prompt and imported attachment, a complete-looking reply with usage and a retry control. It does not capture the last backend poll or establish the state at the original deadline."
+  },
+  "bodyHashes": {
+    "executableSha256": "a9a5b5b7a7559de40c9dc3e9abb1cd6c32ddedb331ec7516488219193e0cadb7",
+    "archiveSha256": "950a611733ffb51df1bffbb33039ca8e8eddeb3cb1a1856a482d3238ceadb7b8"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "present": true,
+      "sha256": "04fbf4672632f725368864d02e36e52069a144ce48fe4da6f3bef70a9309c82f",
+      "verifiedAt": "2026-10-03T16:40:41.316Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "freshTenRecordResetVerified": true,
+  "completeRuntimeProofRejected": true,
+  "rejection": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "exactCommitPolicySha256": "1f223e9fb86c3bcf8b774df888bd7777104a1396e4b15e234a640a6193082cef",
+  "source": [
+    {
+      "path": "scripts/verify-temporary-conversations.mjs",
+      "sha256": "88b6b8247f4967817747a77f92117979b73d4589eca9875d172f2350f4e83c3b"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "6ba6c20df94db4a5672b073b32a494cf66c00ef15a652fc4ee8c382f7f5172e7"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "1f223e9fb86c3bcf8b774df888bd7777104a1396e4b15e234a640a6193082cef"
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-fresh-fixture-full.log",
+      "bytes": 259321,
+      "sha256": "59148a8d48d5aae60da9bcc425a2ed79672f9ede2645f962a05f8d01de008159"
+    },
+    {
+      "name": "github-fresh-fixture-failed.log",
+      "bytes": 71320,
+      "sha256": "f9b717163fc241de578c9fbdf051feb48a57c253b28f7f42143d1ebbdcf2115c"
+    }
+  ],
+  "settingsVerified": false,
+  "portableVerified": false,
+  "installedVerified": false,
+  "hostedRuntimeVerified": false,
+  "publicationVerified": false,
+  "scope": "The hosted directory fixture and all 597 unit checks pass, then the new package passes its audit and 184 desktop checks before the first temporary reply completion wait fails at its unchanged 10-second deadline. The exact cause is unknown. The failure screenshot was taken later and cannot establish backend state at the deadline. The CI-only reset removes all ten inherited required records: this artifact contains a fresh package audit but none of the other nine required records, and collection correctly rejects incomplete proof. Other historical source or non-required generated files in the artifact do not establish current completion. No settings, portable, installed or complete hosted acceptance is claimed. Bounded last-poll/current-state diagnostics are being added without relaxing the predicate or deadline."
+}

@@ -1,0 +1,359 @@
+{
+  "verifiedAt": "2026-10-03T17:54:40.759Z",
+  "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 616,
+  "unitFiles": 61,
+  "serviceTests": 13,
+  "previewTests": 5,
+  "focusedNativeChecks": 6,
+  "desktopChecks": 200,
+  "coverage": {
+    "lines": {
+      "total": 2897,
+      "covered": 2873,
+      "skipped": 0,
+      "pct": 99.17
+    },
+    "statements": {
+      "total": 4964,
+      "covered": 4803,
+      "skipped": 0,
+      "pct": 96.75
+    },
+    "functions": {
+      "total": 1106,
+      "covered": 1074,
+      "skipped": 0,
+      "pct": 97.1
+    },
+    "branches": {
+      "total": 3546,
+      "covered": 3328,
+      "skipped": 0,
+      "pct": 93.85
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "previewCoverage": {
+    "lines": {
+      "total": 14,
+      "covered": 14,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 31,
+      "covered": 31,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 4,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 18,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "policyTests": 34,
+  "policyCoverage": {
+    "lines": {
+      "total": 57,
+      "covered": 57,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 73,
+      "covered": 73,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 19,
+      "covered": 19,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 121,
+      "covered": 121,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "source": [
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "1784a7b1c48f2bdf1c6029f2817f3334c59efbdf92f6adf966317c132d6ebdae"
+    },
+    {
+      "path": "contracts/extensions.ts",
+      "sha256": "cda711f0a8aadb51d44fbe708073f6e1a943a82e501e48b1ed775a38ce975588"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "6ffd23522e46a1e7a321af01693fc72688f5118a1655d2c9a03a92065dbbff05"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "e526cc04f7c76bbe94a2d7acc6acc0906067e7b412e0a49c73cf236045c3fe3d"
+    },
+    {
+      "path": "desktop/services/mcp-connections.ts",
+      "sha256": "2bbbc541823cd05ef52e771e6561ff8d234cb4b28a5a303b27ac4dc1e01c5ae7"
+    },
+    {
+      "path": "desktop/services/mcp-content.ts",
+      "sha256": "c777c3af77a7307f248c916da19c0804617ef3acf464c294d7e717712607d804"
+    },
+    {
+      "path": "desktop/services/mcp-resource-subscriptions.ts",
+      "sha256": "a2da027a2e15f0cc5d6e680cf13d3b23b795fd0239db4955895e5a01ad2753a1"
+    },
+    {
+      "path": "workbench/lib/mcp-resource-updates.ts",
+      "sha256": "0ea6f40ee4dafef2d994afa84b0fc5bff41be9fc77434281ea63c6c69fdb7476"
+    },
+    {
+      "path": "workbench/pages/mcp-content-browser.tsx",
+      "sha256": "d6f8688a902b5f8a3736d29a138cb7803371721e0366873f593b9631388d295a"
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions.test.ts",
+      "sha256": "07fed52c6285080a29af1ae29fcdbde7967645c23e9d6c9fd96676ea7efb0d1d"
+    },
+    {
+      "path": "verification/mcp-resource-updates.test.ts",
+      "sha256": "2d7d2ddf9f8d101850c6774d142f75ee29dfff996f75016a0312ba4d6c2dc120"
+    },
+    {
+      "path": "verification/mcp-fixture.mjs",
+      "sha256": "a6e9e595f061959bf464b1e7d79ab49725124ecddbc13ccd0562d83e6a8af2c8"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "6d6abdf7f17848a322174b11876071a8d147cd74f39fe1d61caafcd13d7e9cd7"
+    },
+    {
+      "path": "scripts/verify-mcp-resource-subscriptions.mjs",
+      "sha256": "bbf13a53e9a91795f6c19ebc380ce78d61bd64fd6d0674e5e0c5482cc9667ddd"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "26e2e640405e910377a1b3fb5d1496eb5cd25e3f6135f4e40b24ec30e0d6766e"
+    },
+    {
+      "path": "scripts/verify-temporary-conversations.mjs",
+      "sha256": "989034f43d112d72c87fa9fdbaff577bbcf6d91b78b0c9e19b9640bdccfea2c6"
+    },
+    {
+      "path": "scripts/verify-automations.mjs",
+      "sha256": "2d4a283f602d60253b4641a4e3d52ed60118ea8a984b4a14d01475013a9ef636"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "aa7bca7de83de2addadc78ea1135f8e6c32057f89e73113d84fa235200e4d54b"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "104b2bb84417ee7896937dd10d776f2175cdeb9bf0268224ff21e4c6f6ebffda"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "a4d2962c419293b30fcd6e3382b3f72b280100b5b8eb52006a256590080cbbae"
+    }
+  ],
+  "records": [
+    {
+      "key": "desktop",
+      "path": "verification/electron-result.json",
+      "sha256": "9aa7a3ef9539481c7e563d237a15b5e0b3612ee4e7028aa3eaf695483e0f2307",
+      "bytes": 48388
+    },
+    {
+      "key": "subscriptions",
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "3264fbfb8e45bf68852b5827f13eb07f97d1ffed76bb5284ee13174573b76f57",
+      "bytes": 795
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "2fb82cc7b75080e43eecb617b01a370d25455e8be3539e79d41a4f3486de4181",
+      "bytes": 2126
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "02c4585ea4f66aae51abe68baf7b883825c0e2c0b9617e957704eaee0e4bd671",
+      "bytes": 11675
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "ad5f56771f1569a2537b9d4bfb698df7cbb3a866e1571b38e15d0ef6594adba8",
+      "bytes": 1832
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/122-mcp-subscription-live-light.png",
+      "sha256": "49e0a5fce307e0f8e8fb8666b77d58d73ce5f303e97caeca8197cd1a91350a20",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-100.png",
+      "sha256": "6ce90eb289b04bbaf5cc5999c0fd6601f7e000f83b9e12acdd20df353cd3d376",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-125.png",
+      "sha256": "0c3d548e7a0920746c773c4b54d26336ca5d82f2627023125988ec864ca6151e",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/123-mcp-subscription-dark-zoom-150.png",
+      "sha256": "6b3896a99f670e77b564ebdb9ce45a16be949ad54722ce8b2faaf035cb460ca9",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "logs": [
+    {
+      "name": "mcp-resource-updates-full-coverage-recheck.log",
+      "bytes": 4392,
+      "sha256": "264b8f0f378264f2d8c4c307724a46158f87418976a6a0d533c4e4bdeaa8287f"
+    },
+    {
+      "name": "mcp-resource-updates-policy.log",
+      "bytes": 898,
+      "sha256": "bdaea2b84133a6288dd3851b4393f066ae0967064cfcb75da3dcf9e61ceb2cdd"
+    },
+    {
+      "name": "mcp-resource-updates-integrated-typecheck.log",
+      "bytes": 85,
+      "sha256": "06a8cf9ce94d3aa01e19452ac15d191f1e1d978b0a929c947146469d7ae89828"
+    },
+    {
+      "name": "mcp-resource-updates-build.log",
+      "bytes": 22549,
+      "sha256": "c1a40ee685e4e0a0c75c970053f119cb3891f6a46a5248f2c26534418507fba9"
+    },
+    {
+      "name": "mcp-resource-updates-native.log",
+      "bytes": 1073,
+      "sha256": "1c49f4393a5582362c2b520954a1de2e90ebb613814c2a3bab2d59e20bd5143a"
+    },
+    {
+      "name": "mcp-resource-updates-complete-source-recheck.log",
+      "bytes": 29561,
+      "sha256": "a1264785257e4ae9f9dd1c938e429b9943ce328efab95d718dfb07a58cb6c3dd"
+    },
+    {
+      "name": "mcp-resource-updates-after-fix.log",
+      "bytes": 891,
+      "sha256": "7a1cfc4c1c7bc008c5787601a655207e088648c7d1faedcd2d127222f9dfc07c"
+    }
+  ],
+  "negativeLogs": [
+    {
+      "name": "mcp-resource-updates-before-fix.log",
+      "bytes": 2484,
+      "sha256": "b9be3e70a60d0fc826ff9634e24f629d1be3a7e9ec3b634de7b270142df6d5ee"
+    },
+    {
+      "name": "mcp-resource-subscriptions-complete-source.log",
+      "bytes": 34328,
+      "sha256": "b004880d349c2cf0fabf2b6c28be4170f749024bcf76e09c8e2be38ac670049f"
+    },
+    {
+      "name": "mcp-resource-updates-complete-source.log",
+      "bytes": 17124,
+      "sha256": "a8b2ab2814c1dbd7d35d02b42b0487ced5e230554e9a62d95b3509f2e7d17bdd"
+    }
+  ],
+  "dateProbe": {
+    "verifiedAt": "2026-10-03T17:39:57.766Z",
+    "directory": "C:\\Users\\18468\\AppData\\Local\\Temp\\qiyao-date-input-probe-keieH3",
+    "actualElectron": true,
+    "cases": [
+      {
+        "value": "2026-10-04T01:36:00",
+        "actual": "2026-10-04T01:36",
+        "equivalent": true,
+        "error": "locator.fill: Error: Malformed value"
+      },
+      {
+        "value": "2026-10-04T01:36",
+        "actual": "2026-10-04T01:36",
+        "equivalent": true
+      },
+      {
+        "value": "2026-10-04T01:36:01",
+        "actual": "2026-10-04T01:36:01",
+        "equivalent": true
+      }
+    ],
+    "causeEstablished": "The actual native datetime-local input removes zero seconds; Playwright fill rejects the equivalent non-canonical value. Minute precision and nonzero second precision both fill successfully without changing the timestamp."
+  },
+  "scope": "Real SDK connection-scoped subscriptions enforce catalog/template validation, FIFO changes, limits and sanitized failures. Real stdio notifications refresh a literal preview serially without starving completed results, manual insertion stays available during continuous updates and makes no model request. Actual unsubscribe filters a delayed notification; Unicode selection, disconnect/reconnect, unsupported capabilities, normal restart/draft retention and dark native Tab access at 100/125/150% zoom pass in the complete 200-check source suite. The previous full source starvation failure and two failing controlled tests remain independent negative evidence. A separate full-suite failure at a zero-second one-shot input was reproduced in the actual Electron input: browser normalization retains the identical timestamp but Playwright rejects the non-canonical string. The fixture uses native canonical formatting and asserts the persisted timestamp, retaining the original four-second wall-clock execution and original wait. The hosted temporary completion cause remains unknown; bounded last-poll diagnostics retain its original deadline/predicate. New package and hosted verification remain separate required gates."
+}

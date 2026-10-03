@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-03T15:27:57.306Z",
+  "verifiedAt": "2026-10-03T17:52:33.438Z",
   "variant": "development executable",
-  "checks": 194,
+  "checks": 200,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -142,8 +142,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84173558,
-    "compressedBytes": 240124,
+    "expandedBytes": 84173624,
+    "compressedBytes": 240153,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -731,6 +731,24 @@
       "121-model-comparison-results-dark-zoom-150.png"
     ],
     "scope": "Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate."
+  },
+  "mcpResourceSubscriptions": {
+    "checks": 6,
+    "screenshots": [
+      "122-mcp-subscription-live-light.png",
+      "123-mcp-subscription-dark-zoom-100.png",
+      "123-mcp-subscription-dark-zoom-125.png",
+      "123-mcp-subscription-dark-zoom-150.png"
+    ],
+    "modelRequests": 0,
+    "realNotificationsVerified": true,
+    "explicitDraftInsertionVerified": true,
+    "delayedUnsubscribeFiltered": true,
+    "templateSelectionVerified": true,
+    "disconnectRestartVerified": true,
+    "unsupportedServerVerified": true,
+    "zoomKeyboardVerified": true,
+    "originalDraftRetained": true
   },
   "pluginFonts": [
     {

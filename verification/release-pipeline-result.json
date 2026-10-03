@@ -133,7 +133,7 @@
       }
     }
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -377,11 +377,13 @@
     "removedFontReferencesVerified": true
   },
   "sourceVerification": {
-    "desktopChecks": 179,
-    "branchChecks": 6,
-    "ambiguousHistoryRecoveryVerified": true,
+    "verifiedAt": "2026-10-03T17:54:40.759Z",
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "unitTests": 616,
+    "unitFiles": 61,
+    "desktopChecks": 200,
     "normalCloseVerified": true,
-    "proofFile": "verification/branch-recovery-review-result.json"
+    "proof": "verification/mcp-resource-subscriptions-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -486,6 +488,12 @@
       "sourceCommit": "859b32ede117348eb0f1df62ac92992976fa5b2c",
       "conclusion": "failure",
       "proof": "verification/hosted-directory-fixture-result.json"
+    },
+    {
+      "runId": 37136953200,
+      "sourceCommit": "60ce797dfabc8ba7f47514183fda4cd43d7f652a",
+      "conclusion": "failure",
+      "proof": "verification/hosted-temporary-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -628,6 +636,37 @@
       "freshRuntimeRecordsBeforeChecks": true
     },
     "proof": "verification/hosted-directory-fixture-result.json",
-    "hostedVerified": false
+    "hostedVerified": false,
+    "latestHostedRunId": 37136953200,
+    "hostedFixturePreparationPassed": true,
+    "hostedTenRecordResetVerified": true
+  },
+  "latestHostedAttempt": {
+    "runId": 37136953200,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37136953200",
+    "sourceCommit": "60ce797dfabc8ba7f47514183fda4cd43d7f652a",
+    "conclusion": "failure",
+    "unitTestsPassed": 597,
+    "packagedChecksBeforeFailure": 184,
+    "completeRuntimeVerified": false,
+    "proof": "verification/hosted-temporary-failure-result.json"
+  },
+  "previousSourceVerification": {
+    "desktopChecks": 179,
+    "branchChecks": 6,
+    "ambiguousHistoryRecoveryVerified": true,
+    "normalCloseVerified": true,
+    "proofFile": "verification/branch-recovery-review-result.json"
+  },
+  "mcpResourceSubscriptions": {
+    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
+    "sourceVerified": true,
+    "packagedVerified": false,
+    "hostedVerified": false,
+    "sourceChecks": 200,
+    "focusedChecks": 6,
+    "modelRequests": 0,
+    "previewTests": 5,
+    "proof": "verification/mcp-resource-subscriptions-review-result.json"
   }
 }
