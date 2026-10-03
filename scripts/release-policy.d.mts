@@ -1,9 +1,10 @@
 export function releaseVersion(tag: string, version: string): { tag: string; version: string; prerelease: boolean };
 export function releaseNotes(changelog: string, version: string): string;
 export type McpSubscriptionProof = { checks: number; modelRequests: number; realNotificationsVerified: boolean; explicitDraftInsertionVerified: boolean; delayedUnsubscribeFiltered: boolean; templateSelectionVerified: boolean; disconnectRestartVerified: boolean; unsupportedServerVerified: boolean; zoomKeyboardVerified: boolean; originalDraftRetained: boolean };
+export type McpBinaryProof = { checks: number; binaryModelRequests: number; realWorkerPreviewVerified: boolean; exactOriginalExportVerified: boolean; emptyAndUnsupportedExportVerified: boolean; promptBinaryTextOnlyVerified: boolean; staleSelectionVerified: boolean; zoomKeyboardVerified: boolean; restartDraftRetainedVerified: boolean };
 export type ReleaseProof = {
   audit: { compiledAssetsMatchVerifiedBuild: boolean; removedUiFontReferencesVerified: boolean; oldProductIdentityMatches: string[]; unresolvedAssets: string[]; unresolvedDistribution: string[]; executableSha256: string; archiveSha256: string };
-  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof };
+  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof };
   surfaces: ReleaseProof['desktop'];
   branches: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; modelRequests: number; ambiguousHistoryRecoveryVerified: boolean; manualOrderingVerified: boolean; orderingFailureRecoveryVerified: boolean; orderingBackupRestartVerified: boolean };
   temporary: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; temporaryModelRequests: number; persistenceExcludedVerified: boolean; backupsExcludedVerified: boolean; restartClearedVerified: boolean; storageModeImmutableVerified: boolean; regularDraftsRetainedVerified: boolean };

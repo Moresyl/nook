@@ -1,6 +1,6 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
-import { ErrorCode, GetPromptRequestSchema, ListPromptsRequestSchema, ListResourcesRequestSchema, ListResourceTemplatesRequestSchema, McpError, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { ErrorCode, GetPromptRequestSchema, ListPromptsRequestSchema, ListResourcesRequestSchema, ListResourceTemplatesRequestSchema, McpError, ReadResourceRequestSchema, type GetPromptResult } from '@modelcontextprotocol/sdk/types.js';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mcpServerSchema } from '../contracts/extensions';
 import { McpConnections } from '../desktop/services/mcp-connections';
@@ -15,7 +15,7 @@ async function setup() {
   const templates = vi.fn(async () => ({ resourceTemplates: [{ name: 'Profile', uriTemplate: 'test://profiles/{user}' }] }));
   const prompts = vi.fn(async () => ({ prompts: [{ name: 'review', description: 'Review content', arguments: [{ name: 'topic', required: true }, { name: 'style', required: false }] }] }));
   const read = vi.fn(async (request: { params: { uri: string } }) => ({ contents: request.params.uri === 'test://binary' ? [{ uri: request.params.uri, blob: 'AP8=', mimeType: 'application/octet-stream' }] : [{ uri: request.params.uri, text: 'RESOURCE_EVIDENCE', mimeType: 'text/plain' }] }));
-  const prompt = vi.fn(async (request: { params: { name: string; arguments?: Record<string, string> } }) => ({ messages: [{ role: 'user' as const, content: { type: 'text' as const, text: `Review ${request.params.arguments?.topic}` } }, { role: 'assistant' as const, content: { type: 'resource' as const, resource: { uri: 'test://document', text: 'PROMPT_RESOURCE_EVIDENCE' } } }] }));
+  const prompt = vi.fn(async (request: { params: { name: string; arguments?: Record<string, string> } }): Promise<GetPromptResult> => ({ messages: [{ role: 'user', content: { type: 'text', text: `Review ${request.params.arguments?.topic}` } }, { role: 'assistant', content: { type: 'resource', resource: { uri: 'test://document', text: 'PROMPT_RESOURCE_EVIDENCE' } } }] }));
   server.setRequestHandler(ListResourcesRequestSchema, resources); server.setRequestHandler(ListResourceTemplatesRequestSchema, templates); server.setRequestHandler(ListPromptsRequestSchema, prompts); server.setRequestHandler(ReadResourceRequestSchema, read); server.setRequestHandler(GetPromptRequestSchema, prompt);
   const [local, remote] = InMemoryTransport.createLinkedPair(); await server.connect(remote);
   const manager = new McpConnections(() => config, () => ({}), () => {}, () => local); cleanup.push(() => manager.shutdown());
@@ -49,7 +49,7 @@ describe('MCP resources and prompts', () => {
     catalog.resources.length = 0; expect(manager.catalog('content').resources).toHaveLength(2);
     expect(await manager.readResource('content', 'test://document')).toMatchObject({ title: 'Document', text: 'Source: test://document\nRESOURCE_EVIDENCE', binaryItems: [] });
     expect((await manager.readResource('content', 'test://profiles/alice')).text).toContain('RESOURCE_EVIDENCE');
-    expect((await manager.readResource('content', 'test://binary')).binaryItems).toEqual([{ uri: 'test://binary', mimeType: 'application/octet-stream', bytes: 2 }]);
+    expect((await manager.readResource('content', 'test://binary')).binaryItems).toEqual([{ uri: 'test://binary', mimeType: 'application/octet-stream', bytes: 2, data: 'AP8=' }]);
     const prompt = await manager.getPrompt('content', 'review', { topic: 'Project' }); expect(prompt.text).toContain('[user]\nReview Project'); expect(prompt.text).toContain('PROMPT_RESOURCE_EVIDENCE');
     await expect(manager.readResource('content', 'test://unknown')).rejects.toThrow('Could not read'); expect(read).toHaveBeenCalledTimes(3);
     await expect(manager.getPrompt('content', 'review', {})).rejects.toThrow('Could not load'); await expect(manager.getPrompt('content', 'review', { topic: 'Project', unknown: 'value' })).rejects.toThrow();
@@ -66,6 +66,60 @@ describe('MCP resources and prompts', () => {
     approval.approve.mockResolvedValue(false); expect((await selected.execute(call, signal, approval)).output).toContain('declined'); expect(read).toHaveBeenCalledOnce();
     const get = { id: 'prompt', name: find('get_prompt'), arguments: '{"name":"review","arguments":{"topic":"Evidence"}}' }; approval.approve.mockResolvedValue(true); expect((await selected.execute(get, signal, approval)).output).toContain('Review Evidence');
     expect((await selected.execute({ ...call, arguments: '{bad' }, signal, approval)).error).toBe(true);
+  });
+  it('returns the exact binary snapshot for explicit UI use while approved model reads receive only bounded metadata', async () => {
+    const { manager, read } = await setup(); const bytes = Buffer.from('MODEL_BINARY_PAYLOAD_SECRET');
+    read.mockResolvedValue({ contents: [{ uri: 'test://binary', mimeType: 'application/octet-stream', blob: bytes.toString('base64') }] });
+    expect((await manager.readResource('content', 'test://binary')).binaryItems[0]).toEqual({ uri: 'test://binary', mimeType: 'application/octet-stream', bytes: bytes.length, data: bytes.toString('base64') });
+    const selected = manager.select(['content']); const approval = context(); const name = selected.definitions.find((item) => item.name.startsWith('mcp_read_resource_'))!.name;
+    const result = await selected.execute({ id: 'binary', name, arguments: '{"uri":"test://binary"}' }, new AbortController().signal, approval);
+    expect(result.error).toBe(false); expect(approval.approve).toHaveBeenCalledOnce();
+    expect(result.output).toContain(`"bytes":${bytes.length}`); expect(result.output).not.toContain(bytes.toString('base64')); expect(result.output).not.toContain('MODEL_BINARY_PAYLOAD_SECRET'); expect(result.output).not.toContain('"data"');
+  });
+  it('bounds the aggregate binary bytes and file count on a real SDK reply, then permits a valid retry', async () => {
+    const { manager, read } = await setup(); const small = { uri: 'test://binary', mimeType: 'application/octet-stream', blob: 'AP8=' };
+    read.mockResolvedValue({ contents: Array.from({ length: 12 }, () => small) }); expect((await manager.readResource('content', 'test://binary')).binaryItems).toHaveLength(12);
+    read.mockResolvedValue({ contents: Array.from({ length: 13 }, () => small) }); await expect(manager.readResource('content', 'test://binary')).rejects.toThrow('Could not read the MCP resource');
+    const large = { ...small, blob: Buffer.alloc(2_000_000).toString('base64') };
+    read.mockResolvedValue({ contents: Array.from({ length: 6 }, () => large) }); expect((await manager.readResource('content', 'test://binary')).binaryItems).toHaveLength(6);
+    read.mockResolvedValue({ contents: [...Array.from({ length: 6 }, () => large), small] }); await expect(manager.readResource('content', 'test://binary')).rejects.toThrow('Could not read the MCP resource');
+    read.mockResolvedValue({ contents: [small] }); expect((await manager.readResource('content', 'test://binary')).binaryItems).toHaveLength(1);
+  });
+  it('rejects an oversized padded binary and invalid returned metadata instead of exposing an unsafe export snapshot', async () => {
+    const { manager, read } = await setup(); const small = { uri: 'test://binary', mimeType: 'application/octet-stream', blob: 'AP8=' };
+    for (const invalid of [{ ...small, blob: Buffer.alloc(2_000_001).toString('base64') }, { ...small, mimeType: 'image/png\n' }, { ...small, uri: 'test://binary\0' }]) {
+      read.mockResolvedValue({ contents: [invalid] }); await expect(manager.readResource('content', 'test://binary')).rejects.toThrow('Could not read the MCP resource');
+    }
+  });
+  it('retains embedded prompt files, images and audio for explicit UI actions while approved model calls receive metadata only', async () => {
+    const { manager, prompt } = await setup(); const data = Buffer.from('PROMPT_BINARY_PRIVATE 中文').toString('base64');
+    prompt.mockResolvedValue({ messages: [
+      { role: 'user', content: { type: 'text', text: 'PROMPT_LITERAL <img onerror="alert(1)">' } },
+      { role: 'assistant', content: { type: 'resource', resource: { uri: 'test://prompt-file', mimeType: 'application/octet-stream', blob: data } } },
+      { role: 'assistant', content: { type: 'image', mimeType: 'image/png', data } },
+      { role: 'assistant', content: { type: 'audio', mimeType: 'audio/wav', data } },
+      { role: 'assistant', content: { type: 'resource_link', name: 'Linked file', uri: 'test://linked' } },
+      { role: 'assistant', content: { type: 'resource', resource: { uri: 'test://empty', blob: '' } } },
+    ] });
+    const content = await manager.getPrompt('content', 'review', { topic: 'Evidence' });
+    expect(content.text).toContain('PROMPT_LITERAL <img onerror="alert(1)">'); expect(content.text).toContain('Resource: test://linked'); expect(content.text).not.toContain(data);
+    expect(content.binaryItems.map((item) => item.uri)).toEqual(['test://prompt-file', 'prompt:review', 'prompt:review', 'test://empty']);
+    expect(content.binaryItems.map((item) => item.data)).toEqual([data, data, data, '']); expect(content.binaryItems.at(-1)?.bytes).toBe(0);
+    const selected = manager.select(['content']); const name = selected.definitions.find((item) => item.name.startsWith('mcp_get_prompt_'))!.name; const approval = context();
+    const result = await selected.execute({ id: 'prompt-files', name, arguments: '{"name":"review","arguments":{"topic":"Evidence"}}' }, new AbortController().signal, approval);
+    expect(result.error).toBe(false); expect(JSON.parse(result.output.split('\nBinary items:\n')[1])).toEqual(content.binaryItems.map(({ data: _data, ...metadata }) => metadata));
+    expect(result.output).not.toContain(data); expect(result.output).not.toContain('PROMPT_BINARY_PRIVATE'); expect(approval.approve).toHaveBeenCalledOnce();
+  });
+  it('applies prompt binary size, aggregate, count and metadata limits before permitting another valid request', async () => {
+    const { manager, prompt } = await setup();
+    const small = { role: 'user' as const, content: { type: 'image' as const, mimeType: 'image/png', data: 'AP8=' } };
+    prompt.mockResolvedValue({ messages: Array.from({ length: 12 }, () => small) }); expect((await manager.getPrompt('content', 'review', { topic: 'Evidence' })).binaryItems).toHaveLength(12);
+    const large = { ...small, content: { ...small.content, data: Buffer.alloc(2_000_000).toString('base64') } };
+    prompt.mockResolvedValue({ messages: Array.from({ length: 6 }, () => large) }); expect((await manager.getPrompt('content', 'review', { topic: 'Evidence' })).binaryItems).toHaveLength(6);
+    for (const messages of [Array.from({ length: 13 }, () => small), [...Array.from({ length: 6 }, () => large), small], [{ ...small, content: { ...small.content, data: Buffer.alloc(2_000_001).toString('base64') } }], [{ ...small, content: { ...small.content, mimeType: 'image/png\n' } }]]) {
+      prompt.mockResolvedValue({ messages }); await expect(manager.getPrompt('content', 'review', { topic: 'Evidence' })).rejects.toThrow('Could not load the MCP prompt');
+    }
+    prompt.mockResolvedValue({ messages: [small] }); expect((await manager.getPrompt('content', 'review', { topic: 'Evidence' })).binaryItems).toHaveLength(1);
   });
   it('invalidates stale catalogs after notifications and configuration changes during approval', async () => {
     const { manager, server, resources, config, read } = await setup(); const selected = manager.select(['content']); const name = selected.definitions.find((item) => item.name.startsWith('mcp_read_resource_'))!.name;

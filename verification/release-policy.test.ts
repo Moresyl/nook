@@ -18,16 +18,16 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 200, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
+  const desktop = { variant: 'packaged executable', checks: 206, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
   return {
-    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
+    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true } }, surfaces: { ...desktop, checks: 4 },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
     comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 200, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: 206, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -62,7 +62,7 @@ describe('release version and notes', () => {
 describe('Windows release execution evidence', () => {
   it('accepts matching complete runtime and actual distribution evidence', () => {
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
-    const future = proof(); future.desktop.checks = 201; future.installer.checks = 201; future.branches.suiteChecks = 201; future.temporary.suiteChecks = 201; future.comparisons.suiteChecks = 201;
+    const future = proof(); const nextChecks = future.desktop.checks + 1; future.desktop.checks = nextChecks; future.installer.checks = nextChecks; future.branches.suiteChecks = nextChecks; future.temporary.suiteChecks = nextChecks; future.comparisons.suiteChecks = nextChecks;
     expect(() => verifyRuntimeProof(future)).not.toThrow();
   });
   it('rejects missing or malformed executable/archive/wrapper hashes', () => {
@@ -137,6 +137,17 @@ describe('Windows release execution evidence', () => {
       const absent = proof(); delete (absent.desktop.mcpResourceSubscriptions as Partial<NonNullable<ReleaseProof['desktop']['mcpResourceSubscriptions']>>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('MCP resource-subscription');
       const invalid = proof(); (invalid.desktop.mcpResourceSubscriptions as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP resource-subscription');
     }
+  });
+  it('requires complete native binary-file evidence and rejects absent, partial, model-sending or non-boolean claims', () => {
+    const missing = proof(); delete missing.desktop.mcpBinaryFiles; expect(() => verifyRuntimeProof(missing)).toThrow('MCP binary-file');
+    const partial = proof(); partial.desktop.mcpBinaryFiles!.checks = 5; expect(() => verifyRuntimeProof(partial)).toThrow('MCP binary-file');
+    const sending = proof(); sending.desktop.mcpBinaryFiles!.binaryModelRequests = 1; expect(() => verifyRuntimeProof(sending)).toThrow('MCP binary-file');
+    for (const key of ['realWorkerPreviewVerified', 'exactOriginalExportVerified', 'emptyAndUnsupportedExportVerified', 'promptBinaryTextOnlyVerified', 'staleSelectionVerified', 'zoomKeyboardVerified', 'restartDraftRetainedVerified'] as const) {
+      const failed = proof(); failed.desktop.mcpBinaryFiles![key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('MCP binary-file');
+      const absent = proof(); delete (absent.desktop.mcpBinaryFiles as Partial<NonNullable<ReleaseProof['desktop']['mcpBinaryFiles']>>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('MCP binary-file');
+      const invalid = proof(); (invalid.desktop.mcpBinaryFiles as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP binary-file');
+    }
+    const previous = proof(); previous.desktop.checks = 200; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
   });
   it('rejects absent cleanup proof and untested or incomplete long-path launches', () => {
     const cases = [proof(), proof(), proof(), proof(), proof(), proof()];

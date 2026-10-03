@@ -3,6 +3,7 @@ import { UriTemplate } from '@modelcontextprotocol/sdk/shared/uriTemplate.js';
 import { ErrorCode, McpError } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import type { McpCatalog, McpContent } from '../../contracts/extensions';
+import { mcpBinaryItemSchema, mcpBinaryLimits } from '../../contracts/mcp-binary';
 import type { ToolCall, ToolDefinition, ToolExecutionContext, ToolResult } from '../../contracts/tools';
 import { boundedToolOutput } from './project-tools';
 
@@ -45,8 +46,15 @@ export async function mcpContentCatalog(client: Client, signal: AbortSignal, tim
 }
 
 function binarySize(blob: string): number {
-  if (blob.length > 2_666_672 || Buffer.from(blob, 'base64').toString('base64') !== blob) throw new Error('The MCP content contains invalid or oversized binary data.');
-  return Buffer.byteLength(blob, 'base64');
+  if (blob.length > Math.ceil(mcpBinaryLimits.itemBytes / 3) * 4 || Buffer.from(blob, 'base64').toString('base64') !== blob) throw new Error('The MCP content contains invalid or oversized binary data.');
+  const bytes = Buffer.byteLength(blob, 'base64');
+  if (bytes > mcpBinaryLimits.itemBytes) throw new Error('The MCP content contains oversized binary data.');
+  return bytes;
+}
+function appendBinary(items: McpContent['binaryItems'], uri: string, mimeType: string | undefined, data: string): void {
+  const bytes = binarySize(data);
+  if (items.length >= mcpBinaryLimits.count || items.reduce((total, item) => total + item.bytes, 0) + bytes > mcpBinaryLimits.totalBytes) throw new Error('The MCP content returned too many binary files or more than 12 MB.');
+  items.push(mcpBinaryItemSchema.parse({ uri, mimeType, bytes, data }));
 }
 
 export class McpContentAccess {
@@ -78,7 +86,7 @@ export class McpContentAccess {
     if (reply.contents.length > 100) throw new Error('The MCP resource returned too many items.');
     for (const item of reply.contents) {
       if ('text' in item) output += `Source: ${item.uri}\n${item.text}\n\n`;
-      else binaryItems.push({ uri: item.uri, mimeType: item.mimeType, bytes: binarySize(item.blob) });
+      else appendBinary(binaryItems, item.uri, item.mimeType, item.blob);
       if (output.length > 256_000) throw new Error('The MCP resource text exceeds 256 KB.');
     }
     return { title: this.catalog.resources.find((item) => item.uri === uri)?.name ?? uri, text: output.trimEnd(), binaryItems };
@@ -97,8 +105,8 @@ export class McpContentAccess {
       if (content.type === 'text') output += content.text;
       else if (content.type === 'resource' && 'text' in content.resource) output += `Source: ${content.resource.uri}\n${content.resource.text}`;
       else if (content.type === 'resource_link') output += `Resource: ${content.uri}`;
-      else if (content.type === 'resource' && 'blob' in content.resource) binaryItems.push({ uri: content.resource.uri, mimeType: content.resource.mimeType, bytes: binarySize(content.resource.blob) });
-      else if (content.type === 'image' || content.type === 'audio') binaryItems.push({ uri: `prompt:${name}`, mimeType: content.mimeType, bytes: binarySize(content.data) });
+      else if (content.type === 'resource' && 'blob' in content.resource) appendBinary(binaryItems, content.resource.uri, content.resource.mimeType, content.resource.blob);
+      else if (content.type === 'image' || content.type === 'audio') appendBinary(binaryItems, `prompt:${name}`, content.mimeType, content.data);
       output += '\n\n';
       if (output.length > 256_000) throw new Error('The MCP prompt text exceeds 256 KB.');
     }
@@ -136,7 +144,7 @@ export class McpContentAccess {
       signal.throwIfAborted(); this.check();
       const content = action === 'read_resource' ? await this.resource((input as z.infer<typeof resourceInput>).uri, signal) : await this.prompt((input as z.infer<typeof promptInput>).name, (input as z.infer<typeof promptInput>).arguments, signal);
       signal.throwIfAborted();
-      return { callId: call.id, output: boundedToolOutput(content.text + (content.binaryItems.length ? `\nBinary items:\n${JSON.stringify(content.binaryItems)}` : '')), error: false };
+      return { callId: call.id, output: boundedToolOutput(content.text + (content.binaryItems.length ? `\nBinary items:\n${JSON.stringify(content.binaryItems.map(({ uri, mimeType, bytes }) => ({ uri, mimeType, bytes })))}` : '')), error: false };
     } catch {
       signal.throwIfAborted();
       return { callId: call.id, output: 'The MCP content request failed. Check the selected resource, prompt arguments and connection.', error: true };

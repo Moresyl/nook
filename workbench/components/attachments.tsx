@@ -22,9 +22,13 @@ export function AttachmentList({ files, disabled = false, onRemove }: { files: A
   return <><div className="attachments">{files.map((file) => <div className="attachment" key={file.id}>
     <Button className="attachment-preview-button" aria-label={`预览 ${file.name}`} onClick={() => setPreview(file)}>{file.image ? <img src={attachmentImageUrl(file)} alt="" className="attachment-thumbnail" /> : <Glyph name="file" size={14} />}<span>{file.name}</span></Button>
     {onRemove && <IconButton icon="close" label={`移除 ${file.name}`} disabled={disabled} onClick={() => onRemove(file.id)} />}
-  </div>)}</div>{preview && <Modal title={preview.name} onClose={() => setPreview(null)} footer={<Button onClick={() => setPreview(null)}>完成</Button>}>
-    {preview.source && <p className="field-hint">{preview.source.format.toUpperCase()} · {(preview.source.bytes / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} KB{preview.image ? ` · ${preview.image.width} × ${preview.image.height}` : ' · 提取的文本'}</p>}
-    {preview.warnings?.map((warning) => <p className="field-hint" key={warning}>{warning}</p>)}
-    {preview.image ? <img className="attachment-image-preview" src={attachmentImageUrl(preview)} alt={preview.name} /> : <pre className="attachment-text-preview">{preview.content || '（空文本文件）'}</pre>}
-  </Modal>}</>;
+  </div>)}</div>{preview && <AttachmentPreview file={preview} onClose={() => setPreview(null)} />}</>;
+}
+
+export function AttachmentPreview({ file, onClose }: { file: Attachment; onClose: () => void }) {
+  return <Modal title={file.name} onClose={onClose} footer={<Button onClick={onClose}>完成</Button>}>
+    {file.source && <p className="field-hint">{file.source.format.toUpperCase()} · {(file.source.bytes / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} KB{file.image ? ` · ${file.image.width} × ${file.image.height}` : ' · 提取的文本'}</p>}
+    {file.warnings?.map((warning) => <p className="field-hint" key={warning}>{warning}</p>)}
+    {file.image ? <img className="attachment-image-preview" src={attachmentImageUrl(file)} alt={file.name} /> : <pre className="attachment-text-preview">{file.content || '（空文本文件）'}</pre>}
+  </Modal>;
 }

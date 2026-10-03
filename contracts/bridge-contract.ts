@@ -2,6 +2,7 @@ import type { Assistant, Attachment, ComposerDraft, Note, Preferences, Project, 
 import type { ApprovalRequest, ToolActivity } from './tools';
 import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
+import type { McpBinaryItem } from './mcp-binary';
 import type { ToolResult } from './tools';
 import type { PluginUpdate, PluginView } from './plugins';
 import type { ModelInfo, ModelInvocation } from './models';
@@ -32,6 +33,8 @@ export type Bridge = {
   mcpCatalog(id: string): Promise<McpCatalog>;
   mcpRefreshCatalog(id: string): Promise<McpCatalog>;
   mcpReadResource(id: string, uri: string): Promise<McpContent>;
+  mcpPreviewBinary(item: McpBinaryItem): Promise<Attachment>;
+  mcpExportBinary(item: McpBinaryItem): Promise<boolean>;
   mcpSetResourceSubscription(id: string, uri: string, subscribed: boolean): Promise<McpView>;
   mcpGetPrompt(id: string, name: string, argumentsMap: Record<string, string>): Promise<McpContent>;
   onMcp(callback: (view: McpView) => void): () => void;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { McpBinaryItem } from './mcp-binary';
 
 const identifier = z.string().min(1).max(128).refine((value) => !value.includes('\0'), 'Identifiers cannot contain NUL characters');
 const plainText = z.string().max(4096).refine((value) => !value.includes('\0'), 'NUL characters are not allowed');
@@ -46,7 +47,7 @@ export type McpResource = { uri: string; name: string; description: string; mime
 export type McpResourceTemplate = { uriTemplate: string; name: string; description: string; mimeType?: string };
 export type McpPrompt = { name: string; description: string; arguments: { name: string; description: string; required: boolean }[] };
 export type McpCatalog = { resources: McpResource[]; templates: McpResourceTemplate[]; prompts: McpPrompt[] };
-export type McpContent = { title: string; text: string; binaryItems: { uri: string; mimeType?: string; bytes: number }[] };
+export type McpContent = { title: string; text: string; binaryItems: (Omit<McpBinaryItem, 'data'> & { data?: string })[] };
 export type McpView = { id: string; status: 'disconnected' | 'connecting' | 'connected' | 'error' | 'auth-required' | 'authorizing'; error?: string; tools: McpTool[]; resourceSubscriptionsSupported?: boolean; subscribedResources?: string[] };
 export type McpResourceUpdate = { id: string; uri: string };
 export type SkillDocument = { instructions: string; files: string[]; directory: string };

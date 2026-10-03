@@ -39,6 +39,7 @@ import { verifyConversationBranches } from './verify-conversation-branches.mjs';
 import { verifyTemporaryConversations } from './verify-temporary-conversations.mjs';
 import { verifyModelComparisons } from './verify-model-comparisons.mjs';
 import { verifyMcpResourceSubscriptions } from './verify-mcp-resource-subscriptions.mjs';
+import { verifyMcpBinaryFiles } from './verify-mcp-binary-files.mjs';
 import { modelComparisonFixture } from '../verification/model-comparison-fixture.mjs';
 import { chatNavigationFixture } from '../verification/chat-navigation-fixture.mjs';
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
@@ -323,10 +324,14 @@ let branchNavigationResult;
 let temporaryConversationsResult;
 let modelComparisonsResult;
 let mcpResourceSubscriptionsResult;
+let mcpBinaryFilesResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_MCP_SUBSCRIPTIONS_ONLY) {
+  if (process.env.QIYAO_TEST_MCP_BINARY_ONLY) {
+    const result = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = result.page; mcpBinaryFilesResult = result.result;
+    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.QIYAO_TEST_MCP_SUBSCRIPTIONS_ONLY) {
     const result = await verifyMcpResourceSubscriptions({ page, application, getApplication: () => application, root, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = result.page; mcpResourceSubscriptionsResult = result.result;
     assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_MODEL_COMPARISONS_ONLY) {
@@ -889,6 +894,8 @@ try {
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const mcpSubscriptionsRun = await verifyMcpResourceSubscriptions({ page, application, getApplication: () => application, root, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpSubscriptionsRun.page; mcpResourceSubscriptionsResult = mcpSubscriptionsRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  const mcpBinaryRun = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpBinaryRun.page; mcpBinaryFilesResult = mcpBinaryRun.result;
+  assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const data = await readFile(join(directory, 'workspace.json'), 'utf8');
   assert.ok(data.includes('验证资料'));
   assert.ok(!(await readFile(join(directory, 'credentials.json'), 'utf8')).includes('local-verification-key'));
@@ -897,12 +904,13 @@ try {
   fullResult = { verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count, runtimeErrors: errors,
     scope: 'Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.',
     composerDraftScope: 'Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.',
-    richContent, nativeProviders: nativeProviderResult, attachments: attachmentResult.result, knowledge: knowledgeResult.result, automations: automationsResult.result, desktop: desktopResult.result, assistants: assistantsResult.result, prompts: promptsResult.result, replies: repliesResult.result, messageEdits: messageEditsResult.result, commands: commandResult.result, backups: backupsResult.result, projectTree: projectTreeRun.result, chatNavigation: chatNavigationRun.result, modelComparisons: modelComparisonRun.result, mcpResourceSubscriptions: mcpSubscriptionsRun.result, pluginFonts: pluginVerification.fonts,
+    richContent, nativeProviders: nativeProviderResult, attachments: attachmentResult.result, knowledge: knowledgeResult.result, automations: automationsResult.result, desktop: desktopResult.result, assistants: assistantsResult.result, prompts: promptsResult.result, replies: repliesResult.result, messageEdits: messageEditsResult.result, commands: commandResult.result, backups: backupsResult.result, projectTree: projectTreeRun.result, chatNavigation: chatNavigationRun.result, modelComparisons: modelComparisonRun.result, mcpResourceSubscriptions: mcpSubscriptionsRun.result, mcpBinaryFiles: mcpBinaryRun.result, pluginFonts: pluginVerification.fonts,
     richContentScope: 'Native streamed inline/display/fenced math with local reference fonts and accessible MathML; reference light/dark syntax colors including PowerShell; exact copy through a clipboard fixture; isolated readonly flowchart, sequence and class diagrams; SVG geometry/path preservation, theme/minimum-window layout and manual-scroll retention; inert hostile directives/HTML/remote math commands and complete malformed/oversized source recovery. Content substitutions are persisted through the bridge and reloaded.',
     screenshots: [...screenshotNames, 'composer-draft-dark-narrow', 'rich-content-light', 'rich-content-dark-narrow', 'rich-content-error-narrow', 'diagram-light', 'diagram-dark-narrow', 'native-provider-gemini', 'native-provider-responses', 'native-provider-chat', 'native-provider-deployment-chat', 'native-provider-dark-narrow', 'token-usage-light', 'token-usage-dark-narrow', 'token-usage-failed', 'model-capacity-dark-narrow', 'document-preview-light', 'image-preview-light', 'attachment-drag-light', 'image-preview-dark-narrow', 'knowledge-library-light', 'knowledge-source-light', 'knowledge-index-progress', 'knowledge-conversation-light', 'knowledge-source-dark-narrow', 'knowledge-library-dark-narrow', 'knowledge-settings-dark-narrow', 'backup-settings-light', 'backup-settings-dark-narrow', 'backup-export-progress', 'automation-list-light', 'automation-once-form-light', 'automation-history-light', 'automation-cron-dark-narrow', 'sidebar-history-dark-narrow', 'desktop-settings-light', 'desktop-settings-dark-narrow', 'desktop-error-dark-narrow', 'desktop-error-light', 'assistant-transfer-light', 'assistant-import-preview-light', 'assistant-import-error-dark-narrow', 'assistant-transfer-dark-narrow', 'prompt-templates-light', 'prompt-template-editor-light', 'prompt-template-preview-light', 'prompt-template-error-dark-narrow', 'prompt-templates-dark-narrow', 'reply-versions-light', 'reply-version-preview-light', 'reply-version-error-dark-narrow', 'reply-version-preview-dark-narrow', 'message-save-light', 'assistant-edit-preview-light', 'message-draft-conflict-dark-narrow', 'message-edit-save-error-dark-narrow', 'command-palette-light', 'plugin-command-preview-light', 'command-palette-error-dark-narrow', 'command-shortcuts-dark-narrow'].map((name, index) => `${String(index + 1).padStart(2, '0')}-${name}.png`).concat(projectTreeRun.result.screenshots, chatNavigationRun.result.screenshots) };
   }
   if (fullResult && branchNavigationResult) { fullResult.branchNavigation = branchNavigationResult; fullResult.screenshots.push(...branchNavigationResult.screenshots); }
   if (fullResult && temporaryConversationsResult) { fullResult.temporaryConversations = temporaryConversationsResult; fullResult.screenshots.push(...temporaryConversationsResult.screenshots); }
+  if (fullResult && mcpBinaryFilesResult) fullResult.screenshots.push(...mcpBinaryFilesResult.screenshots);
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -937,6 +945,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'mcp-resource-subscriptions-packaged-result.json' : 'mcp-resource-subscriptions-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused MCP resource-subscription suite' }), ...mcpResourceSubscriptionsResult }, null, 2));
     console.log(`Verified ${mcpResourceSubscriptionsResult.checks} MCP resource-subscription checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && mcpBinaryFilesResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'mcp-binary-files-packaged-result.json' : 'mcp-binary-files-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused MCP binary-file suite' }), ...mcpBinaryFilesResult }, null, 2));
+    console.log(`Verified ${mcpBinaryFilesResult.checks} MCP binary-file checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && surfaceResult) {
     assert.deepEqual(errors, []);

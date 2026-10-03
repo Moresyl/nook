@@ -32,6 +32,7 @@ import { PluginHost } from './services/plugin-host';
 import { ElectronPluginRuntime, pluginAssetUrl } from './electron-plugin-runtime';
 import { pluginUpdateSchema } from '../contracts/plugins';
 import { AttachmentImporter, parseInWorker } from './services/attachment-importer';
+import { McpBinaryFiles } from './services/mcp-binary-files';
 import { attachmentInputsSchema, attachmentSchema } from '../contracts/attachments';
 import { KnowledgeService } from './services/knowledge-service';
 import { knowledgeCollectionSchema, knowledgeQuerySchema } from '../contracts/knowledge';
@@ -67,6 +68,10 @@ const taskNotifications = new Set<Notification>();
 const git = new ProjectGit();
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input));
+const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
+  const result = await dialog.showSaveDialog(window!, { defaultPath: name });
+  return result.canceled ? undefined : result.filePath;
+});
 const idSchema = z.string().min(1).max(128);
 let quitting = false;
 let quitRequested = false;
@@ -142,6 +147,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   mcpCatalog: (raw) => mcp.catalog(idSchema.parse(raw)),
   mcpRefreshCatalog: (raw) => mcp.refreshCatalog(idSchema.parse(raw)),
   mcpReadResource: (raw, uri) => mcp.readResource(idSchema.parse(raw), z.string().min(1).max(4096).parse(uri)),
+  mcpPreviewBinary: (raw) => mcpBinaryFiles.preview(raw),
+  mcpExportBinary: (raw) => mcpBinaryFiles.export(raw),
   mcpSetResourceSubscription: (raw, uri, subscribed) => mcp.setResourceSubscription(idSchema.parse(raw), z.string().min(1).max(4096).parse(uri), z.boolean().parse(subscribed)),
   mcpGetPrompt: (raw, name, args) => mcp.getPrompt(idSchema.parse(raw), z.string().min(1).max(256).parse(name), z.record(z.string().max(256), z.string().max(16_000)).parse(args)),
   importSkill: async () => {

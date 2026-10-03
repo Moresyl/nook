@@ -30,7 +30,7 @@ export function Modal({ title, children, onClose, footer, className = '' }: { ti
     element.showModal();
     return () => { element.close(); previous?.focus(); };
   }, []);
-  return <dialog ref={dialog} aria-labelledby={titleId} className={`modal ${className}`} onCancel={(event) => { event.preventDefault(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
+  return <dialog ref={dialog} aria-labelledby={titleId} className={`modal ${className}`} onCancel={(event) => { event.preventDefault(); event.stopPropagation(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
     <header className="modal-header"><h2 id={titleId}>{title}</h2><IconButton icon="close" label="关闭" onClick={onClose} /></header>
     <div className="modal-content">{children}</div>{footer && <footer className="modal-footer">{footer}</footer>}
   </dialog>;
