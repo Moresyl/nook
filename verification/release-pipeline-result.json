@@ -26,7 +26,7 @@
       "pct": 100
     }
   },
-  "verifiedAt": "2026-10-03T05:13:10.230Z",
+  "verifiedAt": "2026-10-03T05:21:09.316Z",
   "installerScriptSyntaxVerified": true,
   "nativeCommandBlocksParsed": 8,
   "version": "0.1.0-alpha.1",
@@ -38,12 +38,12 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Independent canonical source, frozen dependencies, fresh initial source history, private remote and initial push are verified. Local migration and fixture-preparation regressions passed all 515 tests with existing coverage thresholds and default five-second deadlines. Two hosted attempts failed in unit verification and are recorded. Existing runtime/installer/portable evidence remains separately hash-bound. No successful hosted run or release is claimed.",
+  "scope": "Independent canonical source, frozen dependencies, fresh history, private remote and initial push are verified. Hosted fixture preparation passed all 515 tests, typecheck and release notices, then the build reached its approximately 2 GB V8 heap limit. The build step now sets a 4 GB ceiling and all native script blocks parse; the next complete hosted run remains required. Existing runtime/installer/portable evidence is separately hash-bound. No successful complete hosted run or release is claimed.",
   "focusedPolicyTests": 23,
   "implementationFiles": [
     {
       "file": ".github/workflows/windows.yml",
-      "sha256": "4a7206f499ab2920a99ed8f15098d73ce163c4c251bf47251d3ec22c32fac37d"
+      "sha256": "51e9b336be2ba377ac253f00ccd27017014f0e5ebc26bfd0402f1e37b1f4e5d5"
     },
     {
       "file": "scripts/prepare-release.mjs",
@@ -140,10 +140,19 @@
     "sourceHistoryResult": "source-history-result.json"
   },
   "hostedVerification": {
-    "runId": 37098410537,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37098410537",
-    "attempts": 2,
+    "runId": 37099119289,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37099119289",
+    "sourceCommit": "a13ed3c89c75386e30992d107a1dd603f8cfe820",
     "conclusion": "failure",
-    "nextStep": "Run the verified fixture-preparation commit through the complete hosted workflow"
+    "typecheckVerified": true,
+    "unitTestsPassed": 515,
+    "unitTestFiles": 52,
+    "unitDurationSeconds": 72.22,
+    "releaseNoticesVerified": true,
+    "failedStep": "Build the audited Windows installer and portable executable",
+    "failure": "V8 reached the approximately 2 GB heap limit",
+    "buildHeapMiB": 4096,
+    "buildHeapScope": "Build/packaging step only; runtime test processes and deadlines unchanged",
+    "nextStep": "Verify the revised build step through the complete hosted workflow"
   }
 }

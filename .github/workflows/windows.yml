@@ -49,6 +49,8 @@ jobs:
           pnpm test:coverage --maxWorkers=1
           pnpm notices:release
       - name: Build the audited Windows installer and portable executable
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
           pnpm prepare:installer
