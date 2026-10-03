@@ -1,16 +1,17 @@
 {
-  "verifiedAt": "2026-10-03T06:32:33.293Z",
+  "verifiedAt": "2026-10-03T07:59:25.696Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "verificationRun": "complete desktop suite",
-  "suiteChecks": 178,
-  "checks": 5,
+  "suiteChecks": 179,
+  "checks": 6,
   "familyThreadsInitially": 205,
   "survivingThreads": 203,
   "pageSize": 200,
+  "ambiguousHistoryRecoveryVerified": true,
   "modelRequests": 0,
   "layout": [
     {
@@ -446,7 +447,8 @@
     "108-branch-navigation-dark-zoom-125.png",
     "108-branch-navigation-dark-zoom-150.png",
     "109-branch-header-dark-zoom-150.png",
-    "110-branch-header-with-parent-light-zoom-150.png"
+    "110-branch-header-with-parent-light-zoom-150.png",
+    "111-branch-navigation-ambiguous-dark.png"
   ],
-  "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
+  "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
 }

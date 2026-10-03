@@ -20,8 +20,8 @@
       "pct": 100
     },
     "branches": {
-      "total": 86,
-      "covered": 86,
+      "total": 87,
+      "covered": 87,
       "skipped": 0,
       "pct": 100
     },
@@ -32,19 +32,20 @@
       "pct": "Unknown"
     }
   },
-  "verifiedAt": "2026-10-03T07:16:59.534Z",
+  "verifiedAt": "2026-10-03T08:03:22.728Z",
   "installerScriptSyntaxVerified": true,
   "nativeCommandBlocksParsed": 8,
   "version": "0.1.0-alpha.1",
   "publicationVerified": false,
   "remaining": [
+    "Complete packaged/installed/portable verification for the recovery-guard body",
     "Successful complete hosted verification",
     "Remaining capability/UI and physical wizard/picker acceptance",
     "Exact bilingual release-note/source verification and tagged pipeline publication"
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "The independent source passes 532 tests and complete 178-check source/normal close. The latest hosted run passes 532 tests, the 4 GB build and package audit, then passes 175 desktop checks before the broad alert selector reads a global toast. Scoped navigation-error readiness passes the complete 178-check packaged desktop and four settings checks against the unchanged executable/ASAR. Current portable/installed and complete hosted reruns and remaining delivery gates are required; no release is claimed.",
+  "scope": "Duplicate-ID compatibility recovery in the actual source app. Schema-valid persisted duplicate thread IDs previously crashed branch rendering; the dialog now shows a redacted recoverable error while leaving every workspace byte and owner draft intact. Complete normal restart with the original valid file restores all 203 paths. Packaged/installed/portable and complete hosted proofs must be rebuilt for this renderer.",
   "focusedPolicyTests": 24,
   "implementationFiles": [
     {
@@ -57,7 +58,7 @@
     },
     {
       "file": "scripts/release-policy.mjs",
-      "sha256": "c2fafec91013f203ef9746f44f9eb37f090b957d2339312710280926e42e2f2f"
+      "sha256": "862723814e8cdf0ee5885ba45957688bf06d3ff592d96b55ae7bb216fa8a9934"
     },
     {
       "file": "scripts/verify-installer.ps1",
@@ -65,7 +66,7 @@
     },
     {
       "file": "verification/release-policy.test.ts",
-      "sha256": "b63460f6833d96cde8bc6a520fba143675c86cfcda8b1316ce627c22805c0577"
+      "sha256": "595754cbbb5e219198c3b57627b7bd8c82330b4a2e81ad61d61f41f7fbfd4389"
     }
   ],
   "workflowRunVerified": false,
@@ -99,7 +100,7 @@
   "unit": {
     "tests": 532,
     "files": 54,
-    "durationSeconds": 32.78,
+    "durationSeconds": 48.95,
     "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
@@ -143,21 +144,22 @@
     "sourceHistoryResult": "source-history-result.json"
   },
   "hostedVerification": {
-    "runId": 37103791091,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37103791091",
-    "sourceCommit": "4c8a5cd46fc33b21e1035da9c99eb25862a0b7b1",
+    "runId": 37105863055,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37105863055",
+    "sourceCommit": "f0ff7998505dd539a490e8bb91a91b98d73972b4",
     "conclusion": "failure",
-    "typecheckVerified": true,
-    "unitTestsPassed": 532,
-    "unitTestFiles": 54,
-    "unitDurationSeconds": 77.01,
-    "releaseNoticesVerified": true,
+    "typecheckUnitCoverageNoticesVerified": true,
     "buildAndPackageAuditVerified": true,
-    "initialGeometryVerified": true,
-    "desktopChecksBeforeFailure": 175,
+    "desktopChecksBeforeFailure": 25,
     "failedStep": "Verify the complete packaged desktop and settings",
-    "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
-    "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
+    "failure": "The stop-plugin approval remains visible/enabled with the slow invocation still awaiting approval. Playwright stops after scrolling and times out at click; no renderer or filesystem product error was recorded. The original cause remains unestablished; no test/product deadline or approval assertion has been weakened.",
+    "failedCapture": {
+      "sha256": "c44c3b1855a20d657b92090e4c6601ea0bbbe5bc913b1568bf9e386ac8a46825",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    "nextStep": "Complete hosted verification of the recovery-guard body"
   },
   "previousHostedVerification": {
     "runId": 37099119289,
@@ -209,9 +211,31 @@
       "failedStep": "Verify the complete packaged desktop and settings",
       "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
       "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
+    },
+    {
+      "runId": 37103791091,
+      "url": "https://github.com/Moresyl/qiyao/actions/runs/37103791091",
+      "sourceCommit": "4c8a5cd46fc33b21e1035da9c99eb25862a0b7b1",
+      "conclusion": "failure",
+      "typecheckVerified": true,
+      "unitTestsPassed": 532,
+      "unitTestFiles": 54,
+      "unitDurationSeconds": 77.01,
+      "releaseNoticesVerified": true,
+      "buildAndPackageAuditVerified": true,
+      "initialGeometryVerified": true,
+      "desktopChecksBeforeFailure": 175,
+      "failedStep": "Verify the complete packaged desktop and settings",
+      "failure": "The global draft-error toast is portaled directly into the active dialog before its own navigation error is rendered; the broad role-alert selector read the toast and its modal-content ancestor was absent.",
+      "nextStep": "Verify the scoped navigation-error readiness in complete packaged/installed and hosted reruns"
     }
   ],
   "packagedVerification": {
+    "status": "Pending complete verification for the recovery-guard renderer",
+    "requiredDesktopChecks": 179,
+    "requiredBranchChecks": 6
+  },
+  "previousPackagedVerification": {
     "desktopChecks": 178,
     "surfaceChecks": 4,
     "branchChecks": 5,
@@ -223,5 +247,12 @@
     "executableSha256": "60eba72ebe4d50e8097ed86a218ad80bbe26e9b8ad3af066cd3e555ec55b9dce",
     "archiveSha256": "036075658b5d2b1a63944f269df20c3d5d5406c9008bed14d7f65eb0dcfb5d63",
     "removedFontReferencesVerified": true
+  },
+  "sourceVerification": {
+    "desktopChecks": 179,
+    "branchChecks": 6,
+    "ambiguousHistoryRecoveryVerified": true,
+    "normalCloseVerified": true,
+    "proofFile": "verification/branch-recovery-review-result.json"
   }
 }

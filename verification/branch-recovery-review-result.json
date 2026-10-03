@@ -1,0 +1,208 @@
+{
+  "verifiedAt": "2026-10-03T08:03:22.728Z",
+  "scope": "Duplicate-ID compatibility recovery in the actual source app. Schema-valid persisted duplicate thread IDs previously crashed branch rendering; the dialog now shows a redacted recoverable error while leaving every workspace byte and owner draft intact. Complete normal restart with the original valid file restores all 203 paths. Packaged/installed/portable and complete hosted proofs must be rebuilt for this renderer.",
+  "sourceDesktopChecks": 179,
+  "sourceBranchChecks": 6,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "modelRequests": 0,
+  "ambiguousHistoryRecoveryVerified": true,
+  "unit": {
+    "tests": 532,
+    "files": 54,
+    "durationSeconds": 48.95,
+    "unchangedTestDeadlineMs": 5000,
+    "coverage": {
+      "lines": {
+        "total": 2745,
+        "covered": 2721,
+        "skipped": 0,
+        "pct": 99.12
+      },
+      "statements": {
+        "total": 4723,
+        "covered": 4563,
+        "skipped": 0,
+        "pct": 96.61
+      },
+      "functions": {
+        "total": 1037,
+        "covered": 1008,
+        "skipped": 0,
+        "pct": 97.2
+      },
+      "branches": {
+        "total": 3380,
+        "covered": 3165,
+        "skipped": 0,
+        "pct": 93.63
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "releasePolicy": {
+    "tests": 24,
+    "coverage": {
+      "lines": {
+        "total": 41,
+        "covered": 41,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 51,
+        "covered": 51,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 87,
+        "covered": 87,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "minimumDesktopChecks": 179,
+    "completeBranchChecks": 6,
+    "matchingRecoveryProofRequired": true
+  },
+  "reproduction": {
+    "failedLog": "branch-ambiguous-reproduction.log",
+    "retainedWorkspace": "QiyaoAmbiguousRepro-cc703350a7224508b0ec073a171b643f/qiyao-electron-WiSO75",
+    "failedCapture": {
+      "file": "branch-ambiguous-reproduction.png",
+      "sha256": "20ebe0f3499e4077e96e805388440dca1f05b9979eac1216debd3d040e0c33b2",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    "result": "Opening the branch graph crashes the old renderer before its dialog becomes visible; the added sixth check fails after the unchanged 30-second locator deadline."
+  },
+  "implementationFiles": [
+    {
+      "file": "workbench/components/branch-navigation.tsx",
+      "sha256": "a769ff21b8a14290b9626aab4a1f4df7d5a8c8c6ac8061907124ff9740085a3a"
+    },
+    {
+      "file": "contracts/workspace.ts",
+      "sha256": "5f921c70460388c408e8fb90f0517eb695615fc3cbd77a7f8d7230bb5b9d05ec"
+    },
+    {
+      "file": "contracts/conversation-branches.ts",
+      "sha256": "17434d997f2890df58edf61dfa0db534e09aac3b52cf1240828242c50d9ae831"
+    },
+    {
+      "file": "scripts/verify-conversation-branches.mjs",
+      "sha256": "5694e47bec87bec163a00d85add1f8562ceeafd3723645237f2ffa46b0d53324"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "d099504b3292bf8ba21d60d0473a36fba72dc9e80bda1a72f6ef2f4b38964178"
+    },
+    {
+      "file": "scripts/release-policy.mjs",
+      "sha256": "862723814e8cdf0ee5885ba45957688bf06d3ff592d96b55ae7bb216fa8a9934"
+    },
+    {
+      "file": "scripts/release-policy.d.mts",
+      "sha256": "dadae8c80bc9011365dc5c55b538722d1458c3e7f4c7958bce5ead8bdae040d5"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "595754cbbb5e219198c3b57627b7bd8c82330b4a2e81ad61d61f41f7fbfd4389"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "106-branch-navigation-light.png",
+      "sha256": "ad48b6a9b0b36910d7504024b5d6db8f20b34595de95378cdc24b2c91c138eca",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "107-branch-navigation-error-light.png",
+      "sha256": "4543277899c323d701eea055553f46595b09099a9efa3a64c1a55ea840cca713",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-100.png",
+      "sha256": "130d6e729b671b451a495c06d8714b78c4a62108c8c7ab4c1cac9f00bb2ff286",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-125.png",
+      "sha256": "2fef5a7d79abe657715f122d6e9ec9cad1e5a2b9740aeb6e741f19084f1d4448",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "108-branch-navigation-dark-zoom-150.png",
+      "sha256": "877b1effa4212a4dc82626a93a99f4a3072e5c3c932d7adfb72fb2a259ed6962",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "109-branch-header-dark-zoom-150.png",
+      "sha256": "beb9d645b6c24f4f7d1310b03bc574b551a224505babc66705000765f8466460",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "110-branch-header-with-parent-light-zoom-150.png",
+      "sha256": "35c5206954c1aafd472591125d81ca770fa2d00f4b54dfd422a5aca7f1048e17",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "file": "111-branch-navigation-ambiguous-dark.png",
+      "sha256": "a12994fec35d3ef75bcf3e879913abdaf01db30da837bae5b65b0545c9a8817a",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    }
+  ],
+  "hosted": {
+    "runId": 37105863055,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37105863055",
+    "sourceCommit": "f0ff7998505dd539a490e8bb91a91b98d73972b4",
+    "conclusion": "failure",
+    "typecheckUnitCoverageNoticesVerified": true,
+    "buildAndPackageAuditVerified": true,
+    "desktopChecksBeforeFailure": 25,
+    "failedStep": "Verify the complete packaged desktop and settings",
+    "failure": "The stop-plugin approval remains visible/enabled with the slow invocation still awaiting approval. Playwright stops after scrolling and times out at click; no renderer or filesystem product error was recorded. The original cause remains unestablished; no test/product deadline or approval assertion has been weakened.",
+    "failedCapture": {
+      "sha256": "c44c3b1855a20d657b92090e4c6601ea0bbbe5bc913b1568bf9e386ac8a46825",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    "nextStep": "Complete hosted verification of the recovery-guard body"
+  }
+}

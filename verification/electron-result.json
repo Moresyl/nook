@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-03T06:32:33.076Z",
+  "verifiedAt": "2026-10-03T07:59:25.565Z",
   "variant": "development executable",
-  "checks": 178,
+  "checks": 179,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -142,8 +142,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84173834,
-    "compressedBytes": 240153,
+    "expandedBytes": 84173846,
+    "compressedBytes": 240173,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -891,13 +891,15 @@
     "108-branch-navigation-dark-zoom-125.png",
     "108-branch-navigation-dark-zoom-150.png",
     "109-branch-header-dark-zoom-150.png",
-    "110-branch-header-with-parent-light-zoom-150.png"
+    "110-branch-header-with-parent-light-zoom-150.png",
+    "111-branch-navigation-ambiguous-dark.png"
   ],
   "branchNavigation": {
-    "checks": 5,
+    "checks": 6,
     "familyThreadsInitially": 205,
     "survivingThreads": 203,
     "pageSize": 200,
+    "ambiguousHistoryRecoveryVerified": true,
     "modelRequests": 0,
     "layout": [
       {
@@ -1333,9 +1335,10 @@
       "108-branch-navigation-dark-zoom-125.png",
       "108-branch-navigation-dark-zoom-150.png",
       "109-branch-header-dark-zoom-150.png",
-      "110-branch-header-with-parent-light-zoom-150.png"
+      "110-branch-header-with-parent-light-zoom-150.png",
+      "111-branch-navigation-ambiguous-dark.png"
     ],
-    "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
+    "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
   },
   "normalCloseVerified": true,
   "executableSha256": null,
