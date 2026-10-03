@@ -1,0 +1,571 @@
+{
+  "verifiedAt": "2026-10-03T22:44:00.851Z",
+  "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 638,
+  "unitFiles": 62,
+  "desktopChecks": 210,
+  "focusedNativeChecks": 4,
+  "recipeModelRequests": 0,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 2960,
+      "covered": 2939,
+      "skipped": 0,
+      "pct": 99.29
+    },
+    "statements": {
+      "total": 5048,
+      "covered": 4893,
+      "skipped": 0,
+      "pct": 96.92
+    },
+    "functions": {
+      "total": 1130,
+      "covered": 1098,
+      "skipped": 0,
+      "pct": 97.16
+    },
+    "branches": {
+      "total": 3604,
+      "covered": 3396,
+      "skipped": 0,
+      "pct": 94.22
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "recipeCoverage": {
+    "D:\\GR\\qiyao-assistant-recipes\\contracts\\prompt-templates.ts": {
+      "lines": {
+        "total": 45,
+        "covered": 45,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 22,
+        "covered": 22,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 73,
+        "covered": 73,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 44,
+        "covered": 43,
+        "skipped": 0,
+        "pct": 97.72
+      }
+    },
+    "D:\\GR\\qiyao-assistant-recipes\\desktop\\services\\assistant-profiles.ts": {
+      "lines": {
+        "total": 26,
+        "covered": 26,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 19,
+        "covered": 19,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 48,
+        "covered": 48,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 14,
+        "covered": 14,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao-assistant-recipes\\desktop\\services\\prompt-templates.ts": {
+      "lines": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 9,
+        "covered": 9,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 18,
+        "covered": 18,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 8,
+        "covered": 8,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "policyTests": 35,
+  "policyCoverage": {
+    "lines": {
+      "total": 63,
+      "covered": 61,
+      "skipped": 0,
+      "pct": 96.82
+    },
+    "statements": {
+      "total": 81,
+      "covered": 76,
+      "skipped": 0,
+      "pct": 93.82
+    },
+    "functions": {
+      "total": 21,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 85.71
+    },
+    "branches": {
+      "total": 133,
+      "covered": 131,
+      "skipped": 0,
+      "pct": 98.49
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-templates.ts",
+      "sha256": "1c250a32a61c09e2a87fa68d2c1efafc535e912de9b13e253cb691a0ec824cbb"
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "82eb6b6c672a6c28372ce807a65bafe389fe5a465486b5dc7483d9a5f9f81ea8"
+    },
+    {
+      "path": "desktop/services/assistant-profiles.ts",
+      "sha256": "65333b7f5d510b6f2a704b7774eee0f8c56fb93955670dac3a2a20c7edab6d51"
+    },
+    {
+      "path": "verification/prompt-templates.test.ts",
+      "sha256": "80d8705c69675d9a1ecb8249ff786413a6c7b798c9358b9ca23a312b8068cbb5"
+    },
+    {
+      "path": "workbench/components/prompt-use-dialog.tsx",
+      "sha256": "c4d1ada6576022aafce9f0c0f6964a6e70318c381befacd0be3c90c409151bc3"
+    },
+    {
+      "path": "workbench/components/composer.tsx",
+      "sha256": "fbb166762cdb6c5adef5010547789e20d6f15b950b602a3b48da5e281aa6e4e7"
+    },
+    {
+      "path": "workbench/pages/collections.tsx",
+      "sha256": "abcc72d5f0538a082d09c73738a1efc4404d49666fa4cf29884300bf78b55498"
+    },
+    {
+      "path": "workbench/workbench.tsx",
+      "sha256": "826407c052c84ce41612527748ee86fba55cddf91433247a6c69f68ec74c0756"
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "c85779b69feb2e6e4bba051170198e768289b4494f7a268cff2adddc1ffeabf1"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "20742a3d7a88f58397068b5d719a7af5dc09ede67e893f595e2de784e5d915f2"
+    },
+    {
+      "path": "scripts/verify-assistant-recipes.mjs",
+      "sha256": "46e9a47f02bdbae9f461514275ea7da49a019b244ff5d9a38681d9cf25d5847c"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "94b976112a502f1a6f59e9bdf96dc7bdb10a05dfca85a4360a9add373be07bfc"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "5cb87548395bbc1965cafdf93d837a049f658ef4dd6831f8b326a0fe6db2398c"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "29c7597a56f75f324530a5dc805815c68ec50c4097e29eabbfad57207c13d674"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "98e4e0cfa1cb90c7800f0cc405ed01b4f0e3965b3aa9eddc08a4bd808b9a157a"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "a452bf11c0621d59e31bba44c9cfda01df109f26e26336820949b1cdb7bb3b45"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "06169f2de1945a5ff06b0397490ff5dd14f54f435a082458ac25c7719a9ac09d",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "0941171e8b5ef316c6bfeea6179d39f9eb86dc8dc603af0de81c037d1562b273",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "c19837a430bcb13df2c5361f1e9b5b46391ce597d75dea6648e6ac870aec2909",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "28c98a509c51d9865ce64974a7abf73b4747d10f0655e52ae8fd48531c24b035",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "8eeb9a358dafe30f3c7b5c67645d341ca92aafaadf163dd41dc7abc3888aa398",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "17e9f0378d187a4e26e164d601b112a96032e1a2e855a1300f4bfbefa6750507",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "a0de5b38a5d23528b50cbd74d7284bab46083b33664f8fbcfcf42d1804cc0690",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "1659a7b812a7afc3139491404c356f272f64490cf403562601626197c7a258a8",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "f28bdb5a4c1a2f5857918fcfaa86457ef7838ec8c1171bd14825e1633cafbcf5",
+      "bytes": 51943
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "4165ebfe73b6797a94d3bef0b2d137db99edd0c21430763be3118258e4ab1ab1",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "e2515dfa5cc6af32e91fda6b0dd1b3106997c57bb16755933b8913c70c68733f",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "555186db041ac85dc955b6c6916b745e2332fa5b800e2db8a72768c7c0b89b3c",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "1b4d418dd658e1977201026d6095d97e8d233b4bd16c565f6c82be54775c2b05",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "ca1414bc131c223a34ad9858701e29dc3b061dbb04c561f7920aa819e5a96c94",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "564a27941c338244c18571cef2bbd421ce529ddc981d329ae932e0923d31896d",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "cc9c17c3becaaadb077127f7844d568bb0ca39f3a745e9d3d6c26381838614cd",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "42811af34d3c0c86f867d3415ed0911139b3a63d2c5f7cf9b3a5b30c5fcf0fb8",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "c7a14c40cfabc9bd332e556c356060145f3ccd96ec3cfc6125ce53b90828b474",
+      "bytes": 1832
+    }
+  ],
+  "focusedRecord": {
+    "name": "assistant-recipes-focused-record.json",
+    "sha256": "f9c5880f88ed7236716fff0798a39abbd5e8e9e2268d0e9ad7c0d60a7f4b5c29"
+  },
+  "screenshots": [
+    {
+      "name": "126-assistant-recipe-editor-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "b334fd4964d9b5d9209b06e57e797269e0408cf1d917d09d543662eaf5eacfbd",
+      "individuallyReviewed": true,
+      "observation": "The light editor shows the selected linked assistant, exact template text, labels and visible cancel/save footer controls.",
+      "path": "verification/screenshots/126-assistant-recipe-editor-light.png",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "126-assistant-recipe-parameters-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "46811b65f967b4847985830ea722182e67e1c1bb29610c43e3b0d54cc6815b78",
+      "individuallyReviewed": true,
+      "observation": "The light parameter editor shows the literal prototype-key default, required switch, editable choices, focused default textarea and visible footer controls.",
+      "path": "verification/screenshots/126-assistant-recipe-parameters-light.png",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-100.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "659aa1269e2df7864eac4f73e556120c3e0bab21d1308ee9fc5876334e20ef10",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-100.png",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-125.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "4513a20e4f2842ee0307c32432d66fcc51a5a96b6213d6141f710a42f7ae9667",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-125.png",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "127-assistant-recipe-dark-zoom-150.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "6a8ef51a6a1eedac8f96c00c7347a6da4d7da628c49a638862ca01d239e4908f",
+      "individuallyReviewed": true,
+      "observation": "The actual dark recipe dialog retains visible title/footer and its native append button at the specified minimum-window zoom; the 125% and 150% captures also show the keyboard focus ring.",
+      "path": "verification/screenshots/127-assistant-recipe-dark-zoom-150.png",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "workflow": {
+    "verifiedAt": "2026-10-03T22:11:23.332Z",
+    "installedMinimumChecks": 210,
+    "nativeCommandBlocksParsed": 9,
+    "installerScriptSyntaxVerified": true,
+    "workflowSha256": "a0dc596a06fd755cc6c722f66152c9451c2d7879343e7469d2e0207518bf3a3e",
+    "installerScriptSha256": "98e4e0cfa1cb90c7800f0cc405ed01b4f0e3965b3aa9eddc08a4bd808b9a157a",
+    "scope": "Parses every actual native workflow command block and the installer script without executing them; verifies that the current installer minimum and strict runtime-proof step remain wired into the pipeline. Hosted execution and publication are separate evidence."
+  },
+  "logs": [
+    {
+      "name": "assistant-recipes-complete-coverage.log",
+      "sha256": "6f1adb75fc203476b5384a549e24c455e5356ae5217d0e07f58ce5cf2b51e609",
+      "bytes": 4500
+    },
+    {
+      "name": "assistant-recipes-complete-typecheck.log",
+      "sha256": "93aba0511158e8a4a2504809d303ee0f5f444fc5aa6fa567ca4e8b46912343db",
+      "bytes": 89
+    },
+    {
+      "name": "assistant-recipes-complete-build.log",
+      "sha256": "2f31adff12e48337d1cb135d1e026c7ae1140421412b987c3c6ae4b569f9f1c6",
+      "bytes": 22553
+    },
+    {
+      "name": "assistant-recipes-native-window-capture.log",
+      "sha256": "df3367f62f5ff0ec4e7ac723922946447004d92d64a4e8c7baefa6f0eb7fe0f7",
+      "bytes": 1125
+    },
+    {
+      "name": "assistant-recipes-complete-source.log",
+      "sha256": "323d3f9a5f0fb47b5632aceab2141fb630d45fadbd19ea2b1cc510b974ed6556",
+      "bytes": 34147
+    },
+    {
+      "name": "assistant-recipes-release-policy-coverage.log",
+      "sha256": "c43d1b83029a8f994cc72458f237aad518e18186e6cbc96449bd0d40186a2339",
+      "bytes": 1076
+    }
+  ],
+  "negativeLogs": [
+    {
+      "name": "assistant-recipes-native.log",
+      "sha256": "733023f588fd09dd2e93e430cfe13f49554caea90530e0893a4d48eccccc6828",
+      "bytes": 3653
+    },
+    {
+      "name": "assistant-recipes-native-recheck.log",
+      "sha256": "e3f546d9fd2d245dd0b99d62b8153cbea22d59429bcac06c8678bc14625c1120",
+      "bytes": 2303
+    },
+    {
+      "name": "assistant-recipes-native-final-recheck.log",
+      "sha256": "e1fb1e03846db0a1997df354bc430995e31a786e05eec149cf3cf6af37dd09f0",
+      "bytes": 1418
+    },
+    {
+      "name": "assistant-recipes-native-paint-recheck.log",
+      "sha256": "9b1eeb09a17422a180493931fd23f4d87b1b919b700715a718d4cc323f937dd1",
+      "bytes": 2695
+    }
+  ],
+  "paintNegative": {
+    "name": "assistant-recipes-zoom-150-paint-before-fix.png",
+    "sha256": "7b625a879d654d38f674cc5ed83dc8cdfcbd14cc23e7884c3a03b794ecda9859",
+    "observation": "The earlier 150% capture showed the background after the dialog had not yet painted. Waiting for two actual animation frames now produces a reviewed dialog capture."
+  },
+  "scope": "Assistant-bound local templates support exact variable labels and hints, required/optional values, literal defaults and bounded choices. Explicit insertion selects the linked existing assistant in the same draft update, retaining attachments and context without sending a model request. Transactional saving rejects a deleted assistant without partial template changes; deleting an assistant clears only that binding. Unit checks cover real filesystem atomic failure/retry, complete backup restoration and prototype-safe rendering. Four native checks cover actual editor keyboard input, cancellation, literal preview, insertion, stale-assistant rejection/retry, dark minimum-window zoom/focus/Escape, real gzip export/import and normal restart. All 638 unit checks and 210 source desktop checks pass with normal close; five current full-run captures were individually reviewed. Earlier selector, restart-fixture, record-writer and screenshot-paint failures remain archived as negative evidence. Native picker and confirmation responses are isolated fixtures. Additional format interoperability, wider accessibility/platform/scale work, new-body distribution, hosted verification and full-scope publication remain pending.",
+  "completeSourceZoomNegative": {
+    "verifiedAt": "2026-10-03T22:27:27.052Z",
+    "screenshots": [
+      {
+        "name": "126-assistant-recipe-editor-light.png",
+        "width": 853,
+        "height": 560,
+        "sha256": "37bb43123e0c7d9c846791d71062f64cb1248443e69eb1f0a8a8dbac2e13f71b"
+      },
+      {
+        "name": "126-assistant-recipe-parameters-light.png",
+        "width": 853,
+        "height": 560,
+        "sha256": "a7a9d428780ad7303a87c309c70439e2a6362454a0e598f72056eb9842e388a1"
+      },
+      {
+        "name": "127-assistant-recipe-dark-zoom-100.png",
+        "width": 760,
+        "height": 540,
+        "sha256": "659aa1269e2df7864eac4f73e556120c3e0bab21d1308ee9fc5876334e20ef10"
+      },
+      {
+        "name": "127-assistant-recipe-dark-zoom-125.png",
+        "width": 760,
+        "height": 540,
+        "sha256": "4513a20e4f2842ee0307c32432d66fcc51a5a96b6213d6141f710a42f7ae9667"
+      },
+      {
+        "name": "127-assistant-recipe-dark-zoom-150.png",
+        "width": 760,
+        "height": 540,
+        "sha256": "6a8ef51a6a1eedac8f96c00c7347a6da4d7da628c49a638862ca01d239e4908f"
+      }
+    ],
+    "records": [
+      {
+        "name": "assistant-profiles-result.json",
+        "sha256": "74232dc13afc18aff6f68e627425f6aea6d7e62b5abf5731b8d14737d55c8fe3"
+      },
+      {
+        "name": "automations-result.json",
+        "sha256": "4de7fe6239b94b3fe4a9b1d35bcdbbd3b3324dc29809209467749806a534274d"
+      },
+      {
+        "name": "backups-result.json",
+        "sha256": "2dff54110e3d38248972c41a8ea42c67a4fb5001da558c09bb9ab9d3a571cafc"
+      },
+      {
+        "name": "chat-navigation-result.json",
+        "sha256": "c8a1c1e7f60e069f394a074734eb8f138e728bce48b31dda704e0bf0bc630aef"
+      },
+      {
+        "name": "commands-result.json",
+        "sha256": "ecc1ff66c74b3e968b8f2351cb3803f7c86d7c9d1b83add6fae4c0ececcaa925"
+      },
+      {
+        "name": "conversation-branches-result.json",
+        "sha256": "51dabb99ac77d5c83e95420e4016fffab5ba50d480cbd421fcc3505db1a59805"
+      },
+      {
+        "name": "desktop-integration-result.json",
+        "sha256": "2126a2f1b62c033bac57192ec6ef934d954a5799bee598a5b26a1a568cbaf5a9"
+      },
+      {
+        "name": "electron-result.json",
+        "sha256": "1783afa735b9a48f1d555d1a50867c8fea2067426cd35ce16f0a4b0079094c39"
+      },
+      {
+        "name": "knowledge-result.json",
+        "sha256": "bad31b22d72180ec54fcde0e36c8288cd147c8cd8eb0dce406606a4a8350653f"
+      },
+      {
+        "name": "mcp-binary-files-result.json",
+        "sha256": "dde41b0975035809c775ae77551c65b92a22e6afc56db1d98d283c5d723f32a2"
+      },
+      {
+        "name": "mcp-resource-subscriptions-result.json",
+        "sha256": "4ae268a6ab9dc08419f64adc2d8c83e07db70812bbccfd308b61d3ec534a1bf0"
+      },
+      {
+        "name": "message-edits-result.json",
+        "sha256": "0fbc7e7136b1dc669ebc672876f97ae937b99ec339447121f4cd1784ea0c5540"
+      },
+      {
+        "name": "model-comparisons-result.json",
+        "sha256": "86aa55d50c0e519bee83b77d567af8b1399baade1b14505abd0eea9098f48dec"
+      },
+      {
+        "name": "project-tree-result.json",
+        "sha256": "64f78309acfd19ec1e7f21d7b8c9033ddfba0301912335ada42cd9ba03432c59"
+      },
+      {
+        "name": "prompt-templates-result.json",
+        "sha256": "bcb9b1f8f6e894e1bf633acd08bce0ea71d57fd0322929ef191b80a772efa590"
+      },
+      {
+        "name": "reply-versions-result.json",
+        "sha256": "7b15f9931fc29da3431986fb1bdff0777e25fcb3719eb5a10db59f6afb0cd489"
+      },
+      {
+        "name": "temporary-conversations-result.json",
+        "sha256": "98a12611b90f77b0d5b30bffdc9fc1ac389c0601942ad380e8b360c0313df2f7"
+      },
+      {
+        "name": "assistant-recipes-result.json",
+        "sha256": "5e7bbc57d859e8b4cab0ed1cef6c498c0d91e3d0679b823567b27af1a05f729b"
+      }
+    ],
+    "functionalChecks": 210,
+    "currentUiReviewAccepted": false,
+    "logSha256": "048436e42fccb2c5db51bc547ea75757612c844a4c84968ae1c62c9d7695c769",
+    "observation": "The complete run passed its 210 functional checks and normal close, but the light editor image inherited 150% zoom and the CSS screenshot was cropped to 853 by 560. The image does not establish full-window UI acceptance."
+  }
+}

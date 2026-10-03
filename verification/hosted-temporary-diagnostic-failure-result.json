@@ -1,0 +1,245 @@
+{
+  "verifiedAt": "2026-10-03T22:19:50.897Z",
+  "codeCommit": "ff2dbbbaec9831920bf0b9cf77b33e2317831a7b",
+  "runId": 37155970153,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37155970153",
+  "conclusion": "failure",
+  "unitTests": 630,
+  "unitFiles": 62,
+  "passedDesktopChecks": 184,
+  "artifact": {
+    "id": 11285424060,
+    "name": "windows-verification-37155970153-1",
+    "bytes": 7987357,
+    "digest": "sha256:04f20a52f7d832ff5756f89fc60413bd40f518eda44f1c69173af336b2fe2e97"
+  },
+  "actualBody": {
+    "executableSha256": "e8e206169f42d148b795d80219dd403b27c53073103b1abc57a0fe428bda5b78",
+    "archiveSha256": "4a2f3f78d02ab9ba10ec8a47805537b0cf6c5a9637d4997cac8317b9bccb4123",
+    "auditSha256": "cf4a7f400ac3d53a14ff7feecee5a43895769ac478b6bb0d33a58d4d1be095fc"
+  },
+  "temporary": {
+    "expectedThreadId": "f20d52c6-c253-4d35-a321-91a8c3ae5fdf",
+    "requestsBefore": 47,
+    "requestsNow": 48,
+    "recentRequests": [
+      {
+        "model": "verification-model",
+        "messages": 2
+      }
+    ],
+    "diagnostic": {
+      "capturedAt": 1791065467114,
+      "lastPoll": {
+        "polledAt": 1791065461969,
+        "expectedThreadId": "f20d52c6-c253-4d35-a321-91a8c3ae5fdf",
+        "activeThreadId": "f20d52c6-c253-4d35-a321-91a8c3ae5fdf",
+        "temporary": true,
+        "messages": 0
+      },
+      "activeThreadId": "f20d52c6-c253-4d35-a321-91a8c3ae5fdf",
+      "threads": [
+        {
+          "id": "f20d52c6-c253-4d35-a321-91a8c3ae5fdf",
+          "temporary": true,
+          "messages": 2,
+          "last": {
+            "id": "75052e6d-243d-4bdc-8784-4cd8afa9e29d",
+            "status": "running",
+            "characters": 0,
+            "tail": ""
+          }
+        }
+      ],
+      "visible": {
+        "provider": "42acdff6-580c-4fc4-bf4a-df5595f4a823",
+        "model": "verification-model",
+        "temporaryDisclosure": true,
+        "lastReply": "这是通过本地测试服务返回的 真实流式回复。\n项目状态工作台正常用量未返回 · 1 次请求"
+      }
+    }
+  },
+  "terminalTiming": {
+    "registeredAt": 1791064980382,
+    "pid": 6436,
+    "processName": "xterm-256color",
+    "cols": 80,
+    "rows": 12,
+    "chunks": 4,
+    "characters": 305,
+    "firstDataAt": 1791064980723,
+    "lastDataAt": 1791064982131
+  },
+  "terminalSnapshot": {
+    "capturedAt": 1791064982550,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791064980382,
+        "pid": 6436,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 4,
+        "characters": 305,
+        "firstDataAt": 1791064980723,
+        "lastDataAt": 1791064982131
+      }
+    ],
+    "mainMemory": {
+      "rss": 1411710976,
+      "heapTotal": 1245990912,
+      "heapUsed": 1231267644,
+      "external": 4306352,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 2952622080,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 6916,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 36.741812,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 1378652,
+          "peakWorkingSetSize": 2457148,
+          "privateBytes": 1379084
+        }
+      },
+      {
+        "pid": 3672,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 1.301089,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 75672,
+          "peakWorkingSetSize": 97112,
+          "privateBytes": 20368
+        }
+      },
+      {
+        "pid": 5700,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.065649,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 46196,
+          "peakWorkingSetSize": 50876,
+          "privateBytes": 11628
+        }
+      },
+      {
+        "pid": 2648,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 13.484906,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 1017752,
+          "peakWorkingSetSize": 1272988,
+          "privateBytes": 969316
+        }
+      }
+    ]
+  },
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "cf4a7f400ac3d53a14ff7feecee5a43895769ac478b6bb0d33a58d4d1be095fc"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292",
+    "matchingHistoricalLocalProofAccepted": true,
+    "reusedHistoricalRecordsWithRemoteAuditRejected": true,
+    "rejection": "Runtime proof must match the audited application and normal close"
+  },
+  "screenshot": {
+    "name": "failure.png",
+    "sha256": "6c4a20ba79b923b86b1a5f8b295b29b0b458f069a57601a05ce98a5e3cbba539",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "A later light screenshot shows the selected temporary conversation, its submitted question/attachment, a visible reply table, usage and regenerate controls. The screenshot was captured after the failed wait and does not establish completion before its deadline."
+  },
+  "logs": [
+    {
+      "name": "github-comparison-first-response-full.log",
+      "bytes": 268843,
+      "sha256": "e21c0f50204d8d53812fe0868158839c57a39af551ccc0f8d64b404030f63164"
+    },
+    {
+      "name": "github-comparison-first-response-failed.log",
+      "bytes": 75261,
+      "sha256": "a4aab64f8b04d57d79352e99aaaead8e25767df53509e94ee2933232b3b5d139"
+    }
+  ],
+  "scope": "This exact hosted source passes unit/type/build/package gates and the first 184 desktop checks, then the original ten-second temporary first-reply completion wait fails. One actual model request is added. The last recorded poll has the expected active temporary thread and no messages; later backend capture has two messages and an empty running reply while its visible DOM already contains reply text. These captures have different times and do not establish the precise cause or timely completion. Actual ASAR-bound terminal diagnostics pass. Comparison diagnostics are not reached; settings, portable, installed runtime/uninstall and complete-record gates are skipped. Only the fresh application audit exists among the ten required runtime records, and collection rejects missing records. Exact-source policy accepts the separate historical local body and rejects reusing its records with this remote audit. No complete hosted acceptance or release is claimed."
+}

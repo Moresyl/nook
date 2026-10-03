@@ -2,28 +2,28 @@
   "workflowStructureVerified": true,
   "coverage": {
     "lines": {
-      "total": 52,
-      "covered": 52,
+      "total": 63,
+      "covered": 61,
       "skipped": 0,
-      "pct": 100
+      "pct": 96.82
     },
     "statements": {
-      "total": 64,
-      "covered": 64,
+      "total": 81,
+      "covered": 76,
       "skipped": 0,
-      "pct": 100
+      "pct": 93.82
     },
     "functions": {
-      "total": 15,
-      "covered": 15,
+      "total": 21,
+      "covered": 18,
       "skipped": 0,
-      "pct": 100
+      "pct": 85.71
     },
     "branches": {
-      "total": 113,
-      "covered": 113,
+      "total": 133,
+      "covered": 131,
       "skipped": 0,
-      "pct": 100
+      "pct": 98.49
     },
     "branchesTrue": {
       "total": 0,
@@ -42,29 +42,29 @@
     "Exact bilingual release-note/source verification and tagged pipeline publication"
   ],
   "typecheckExitCode": 0,
-  "installedScriptExecutionVerified": true,
-  "scope": "Current local distribution acceptance passes 206 unpacked and installed desktop checks, four surface checks, seven portable checks, original bootstrap plugins, data-retaining uninstall and ten strict matching-body records. Current source unit acceptance is 630 tests in 62 files. Historical hosted success remains attached to its own source and body hashes; the latest hosted failures and current attempts do not establish complete acceptance of this binary-resource body. Full capability/UI/physical delivery, exact tagged source/checksums and publication remain pending.",
-  "focusedPolicyTests": 24,
+  "installedScriptExecutionVerified": false,
+  "scope": "Current assistant-recipe source passes 638 unit tests in 62 files and 210 complete desktop checks with normal close; five current full-run captures are reviewed. The strengthened policy requires the four recipe checks and at least 210 complete desktop checks. Earlier 206-check distribution and hosted results remain historical evidence for their own source/body. New-body distribution, complete hosted acceptance, remaining capability/UI work and exact tagged publication remain pending.",
+  "focusedPolicyTests": 35,
   "implementationFiles": [
     {
       "file": ".github/workflows/windows.yml",
-      "sha256": "51e9b336be2ba377ac253f00ccd27017014f0e5ebc26bfd0402f1e37b1f4e5d5"
+      "sha256": "a0dc596a06fd755cc6c722f66152c9451c2d7879343e7469d2e0207518bf3a3e"
     },
     {
       "file": "scripts/prepare-release.mjs",
-      "sha256": "3835fd2eb224a836496f4d97f5dbebe526f3e68bc38952b7aee1c3ae5d80b937"
+      "sha256": "b84f03d7aea8e7ae181e922b66692e94a593f76f5c86177c7460d66ef4855927"
     },
     {
       "file": "scripts/release-policy.mjs",
-      "sha256": "862723814e8cdf0ee5885ba45957688bf06d3ff592d96b55ae7bb216fa8a9934"
+      "sha256": "5cb87548395bbc1965cafdf93d837a049f658ef4dd6831f8b326a0fe6db2398c"
     },
     {
       "file": "scripts/verify-installer.ps1",
-      "sha256": "5301c59927280566cfe40bd0bce74131c79e131fdc76b47db5015d1bf903e03b"
+      "sha256": "98e4e0cfa1cb90c7800f0cc405ed01b4f0e3965b3aa9eddc08a4bd808b9a157a"
     },
     {
       "file": "verification/release-policy.test.ts",
-      "sha256": "595754cbbb5e219198c3b57627b7bd8c82330b4a2e81ad61d61f41f7fbfd4389"
+      "sha256": "a452bf11c0621d59e31bba44c9cfda01df109f26e26336820949b1cdb7bb3b45"
     }
   ],
   "workflowRunVerified": false,
@@ -135,7 +135,7 @@
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "proof": "verification/mcp-binary-files-review-result.json"
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -380,13 +380,13 @@
     "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
   },
   "sourceVerification": {
-    "verifiedAt": "2026-10-03T19:51:03.053Z",
-    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
-    "unitTests": 630,
+    "verifiedAt": "2026-10-03T22:44:00.851Z",
+    "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
+    "unitTests": 638,
     "unitFiles": 62,
-    "desktopChecks": 206,
+    "desktopChecks": 210,
     "normalCloseVerified": true,
-    "proof": "verification/mcp-binary-files-review-result.json"
+    "proof": "verification/assistant-recipes-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -680,13 +680,13 @@
     "proof": "verification/hosted-comparison-first-response-failure-result.json"
   },
   "previousSourceVerification": {
-    "verifiedAt": "2026-10-03T17:54:40.759Z",
-    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
-    "unitTests": 616,
-    "unitFiles": 61,
-    "desktopChecks": 200,
+    "verifiedAt": "2026-10-03T19:51:03.053Z",
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "unitTests": 630,
+    "unitFiles": 62,
+    "desktopChecks": 206,
     "normalCloseVerified": true,
-    "proof": "verification/mcp-resource-subscriptions-review-result.json"
+    "proof": "verification/mcp-binary-files-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -777,5 +777,24 @@
   },
   "currentHostedRuntimeProofVerified": false,
   "historicalWorkflowRunVerified": true,
-  "previousVerificationScope": "The independent main-branch Windows workflow completes every verification gate on this commit, including actual current-user installation/complete installed regression and data-preserving uninstall. Downloaded hosted records independently satisfy current strict release policy and match their own executable/ASAR/wrapper hashes. Tagged source/checksum preparation and publication are skipped on a branch; no release is claimed. Capability/UI/physical acceptance gates remain separate work."
+  "previousVerificationScope": "Current local distribution acceptance passes 206 unpacked and installed desktop checks, four surface checks, seven portable checks, original bootstrap plugins, data-retaining uninstall and ten strict matching-body records. Current source unit acceptance is 630 tests in 62 files. Historical hosted success remains attached to its own source and body hashes; the latest hosted failures and current attempts do not establish complete acceptance of this binary-resource body. Full capability/UI/physical delivery, exact tagged source/checksums and publication remain pending.",
+  "previousCurrentRuntimeProofVerified": true,
+  "assistantRecipes": {
+    "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
+    "sourceVerified": true,
+    "packagedVerified": false,
+    "hostedVerified": false,
+    "sourceChecks": 210,
+    "focusedChecks": 4,
+    "modelRequests": 0,
+    "proof": "verification/assistant-recipes-review-result.json"
+  },
+  "latestTemporaryDiagnosticWorkflow": {
+    "runId": 37155970153,
+    "codeCommit": "ff2dbbbaec9831920bf0b9cf77b33e2317831a7b",
+    "conclusion": "failure",
+    "passedUnitTests": 630,
+    "passedDesktopChecks": 184,
+    "proof": "verification/hosted-temporary-diagnostic-failure-result.json"
+  }
 }

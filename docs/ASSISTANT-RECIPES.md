@@ -1,0 +1,13 @@
+# Assistant-bound prompt templates
+
+Open **助手 → 提示模板** to create or edit a local template. The assistant selector can keep the current conversation assistant or bind an existing profile to the template. A binding is used only when **追加到草稿** is explicitly selected. Cancellation keeps the exact prior draft and assistant; insertion retains attachments, model, mode and other context.
+
+Each existing `{{variable}}` can have a display name, hint, required/optional setting, literal default and optional list of choices. Variable names remain case-sensitive and support the existing Unicode syntax. Choice text uses one exact option per line. Empty or duplicate options are rejected, and a nonempty default must match one declared option. A required variable needs a nonblank value; an optional variable can remain empty. Explicit input overrides a default.
+
+The preview and appended result remain plain text. Values such as markup, `$&`, `{{another_variable}}` and `__proto__` are inserted literally. They are not evaluated or expanded again. Existing variable, value, aggregate template and draft limits still apply. The editor retains incomplete option input so Enter can create a second line; saving stays disabled until the definition is valid.
+
+Saving checks the selected assistant inside the same vault transaction as the template write. If the assistant was removed while the editor was open, the save fails without discarding the entered form or changing the previous template. Select an existing assistant and retry. Removing an assistant clears its template bindings while retaining template content and parameter definitions. Complete JSON/gzip workspace backup and restart retain the metadata and rendered drafts.
+
+The source acceptance record is [assistant-recipes-review-result.json](../verification/assistant-recipes-review-result.json). It records actual filesystem failure/retry and backup checks, complete unit coverage, four native recipe checks inside the complete desktop suite, five individually inspected captures, exact source hashes and preserved negative evidence. The native checks use real editors, keyboard choice input, literal previews, explicit assistant selection, stale-assistant rejection/retry, minimum-window zoom/focus/Escape, actual gzip files and normal restart. Picker and confirmation responses are isolated fixtures.
+
+The release policy requires the four recipe checks with zero model requests and at least 210 complete desktop checks from the audited application. New-body installer/portable distribution, complete hosted acceptance, additional profile/template transfer formats and wider scale/accessibility/platform work are separate checks. Original open-source legal documents remain unchanged.

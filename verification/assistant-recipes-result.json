@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-10-03T22:41:09.049Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "complete desktop suite",
+  "suiteChecks": 210,
+  "checks": 4,
+  "recipeModelRequests": 0,
+  "assistantBindingVerified": true,
+  "defaultOptionalChoicesVerified": true,
+  "deletedAssistantRecoveryVerified": true,
+  "zoomKeyboardVerified": true,
+  "backupRestartVerified": true,
+  "originalDraftRetained": true,
+  "layout": [
+    {
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "top": 1,
+      "bottom": 521,
+      "overflow": false
+    },
+    {
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "top": 0.800000011920929,
+      "bottom": 412.00000762939453,
+      "overflow": false
+    },
+    {
+      "zoom": 1.5,
+      "width": 507,
+      "height": 360,
+      "top": 0.6666666865348816,
+      "bottom": 339.3333435058594,
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    "126-assistant-recipe-editor-light.png",
+    "126-assistant-recipe-parameters-light.png",
+    "127-assistant-recipe-dark-zoom-100.png",
+    "127-assistant-recipe-dark-zoom-125.png",
+    "127-assistant-recipe-dark-zoom-150.png"
+  ],
+  "scope": "Actual library/composer recipe forms, keyboard choice editing, literal default/optional/prototype expansion, explicit assistant selection and untouched context, actual stale-assistant rejection/retry, three native zoom/focus/Escape checks, real gzip backup and normal restart. Picker/confirmation responses are isolated fixtures; physical picker and wider platform/accessibility checks remain separate."
+}
