@@ -1,0 +1,194 @@
+{
+  "verifiedAt": "2026-10-03T10:50:20.129Z",
+  "productCodeCommit": "1c39a1c0937cc68bf4b7a26cad37d222b24f7cf3",
+  "hostedFailure": {
+    "runId": 37114355094,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37114355094",
+    "conclusion": "failure",
+    "artifactId": 11271615210,
+    "deadlineMs": 30000,
+    "failure": "Chat-navigation dark minimum-window wait expected a 760x540 CSS viewport while the retained image shows 608x432 at 125% zoom.",
+    "capture": {
+      "path": "E:/QiyaoPipelineAudits/de08d6df00e64dda9cd5c2aefa889977/verification/screenshots/failure.png",
+      "bytes": 32010,
+      "sha256": "abeff85aab91d12f274121e89e5af261835ec6b05fd971919179794351b2408b",
+      "width": 608,
+      "height": 432,
+      "individuallyReviewed": true
+    },
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\github-temporary-failed.log",
+      "bytes": 93075,
+      "sha256": "51e93760df58be72a100ae6bd26f4e90da8d919ec66a2f1c2f37e44e67286349"
+    },
+    "published": false
+  },
+  "reproduction": {
+    "inheritedNativeZoom": 1.25,
+    "checksBeforeFailure": 4,
+    "deadlineMs": 30000,
+    "retainedWorkspace": "C:/Users/18468/AppData/Local/Temp/qiyao-electron-bJluwJ",
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-before-fix.log",
+      "bytes": 8354,
+      "sha256": "371a9912338ae8a18259337c74801dc20fd6fde1851b1e7f9e093c1b187d22b5"
+    },
+    "capture": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-before-fix.png",
+      "bytes": 31369,
+      "sha256": "955e72680481ba8e51e6d2acbeb144ea6989865f7665fe866140e70304aca54c"
+    }
+  },
+  "correction": {
+    "path": "D:\\GR\\qiyao\\scripts\\verify-chat-navigation.mjs",
+    "bytes": 22524,
+    "sha256": "86f8e4cd8cad620a4853db45d56b83d5a8cba4deebccf3866305462cfd844559",
+    "explicitPhaseZoom": true,
+    "bothViewportDimensionsSettled": true,
+    "focusedRegressionStartsAt125Percent": true,
+    "originalDeadlineAndGeometryAssertionsRetained": true
+  },
+  "focused": [
+    {
+      "name": "source",
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-focused-source-result.json",
+      "bytes": 10490,
+      "sha256": "3e5232a5707cb18bc22ff10fcf9a1475e0ee9b0a978e0091241379ec8b44aa1c",
+      "executableSha256": null,
+      "archiveSha256": null,
+      "checks": 5,
+      "modelRequests": 1,
+      "normalCloseVerified": true,
+      "runtimeErrors": [],
+      "layout": [
+        {
+          "zoom": 1,
+          "width": 760,
+          "height": 540
+        },
+        {
+          "zoom": 1.25,
+          "width": 608,
+          "height": 432
+        },
+        {
+          "zoom": 1.5,
+          "width": 507,
+          "height": 360
+        }
+      ]
+    },
+    {
+      "name": "packaged",
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-focused-packaged-result.json",
+      "bytes": 10611,
+      "sha256": "8f0ce3a31de51ab9dc4c8f37cda07f9561e7aceddd274876381d220161c972ef",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4",
+      "checks": 5,
+      "modelRequests": 1,
+      "normalCloseVerified": true,
+      "runtimeErrors": [],
+      "layout": [
+        {
+          "zoom": 1,
+          "width": 760,
+          "height": 540
+        },
+        {
+          "zoom": 1.25,
+          "width": 608,
+          "height": 432
+        },
+        {
+          "zoom": 1.5,
+          "width": 507,
+          "height": 360
+        }
+      ]
+    }
+  ],
+  "completeSource": {
+    "path": "D:\\GR\\qiyao\\verification\\electron-result.json",
+    "bytes": 45035,
+    "sha256": "4c7a3a7dd2911cd926ab7d81ed78206aa56857e2952dec0e27daf1087b6f574b",
+    "checks": 185,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-complete-source.log",
+      "bytes": 26427,
+      "sha256": "91aba7bb3b122512b606f3c1d292bd70d93209fd4bc12be8b6828dd69379b78b"
+    }
+  },
+  "captures": [
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\102-message-navigation-light.png",
+      "bytes": 81991,
+      "sha256": "d706136dedb88a34cb9770f834d1bbf6dc75304a797310620f018e2f5f3f17a7",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\103-chat-find-light.png",
+      "bytes": 85519,
+      "sha256": "03810cbc83d3748e34602583a5cbd652319f08f4d1b90462bc5f845df549891d",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\104-chat-find-code-light.png",
+      "bytes": 65145,
+      "sha256": "81efbe74f4409572654897dae0b5df57246680b0153415f0d65d98d950943535",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\105-chat-find-dark-zoom-100.png",
+      "bytes": 44989,
+      "sha256": "90d818bfa44fe6c44b7c204a1df7fd2a72318f31af67c15eb618e4bf8cb05f2b",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\105-chat-find-dark-zoom-125.png",
+      "bytes": 47659,
+      "sha256": "04917f6e726c03b6b6c6a945335ae4837edb6a1c44592bb97bbdec11ec8dc263",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\chat-zoom-packaged-ui\\105-chat-find-dark-zoom-150.png",
+      "bytes": 52874,
+      "sha256": "465d8a5658bbbe076232206292de4e490ccad5624876ed687d644da129f2e750",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    }
+  ],
+  "hostedRecheckVerified": false,
+  "scope": "Reproduced test viewport-precondition failure and explicit settled native-zoom setup. Actual source/package focused runs and complete source desktop pass; six packaged captures individually reviewed. The origin of the hosted 125% state remains unestablished. This is not completed hosted, physical-picker/wizard or full-delivery acceptance."
+}
