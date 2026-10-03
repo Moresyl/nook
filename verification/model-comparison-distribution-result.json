@@ -1,0 +1,273 @@
+{
+  "verifiedAt": "2026-10-03T14:14:02.550Z",
+  "codeCommit": "e3128bf37d4daa704059246ade9b1b7c710d4781",
+  "strictReleasePolicyVerified": true,
+  "sourceProof": "verification/model-comparison-review-result.json",
+  "applicationHashes": {
+    "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+    "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+    "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+    "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+  },
+  "desktopChecks": 194,
+  "installedChecks": 194,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "branchChecks": 9,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "originalUnpackedFilesVerified": 188,
+  "portablePathLengths": [
+    274,
+    274
+  ],
+  "originalBootstrapPlugins": [
+    {
+      "variant": "installer",
+      "plugins": 6,
+      "sha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03"
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5,
+      "sha256": "bc67d6682735b225c404f7c92f0351f50cf5831db0201720c73f16414f6f3dd1"
+    },
+    {
+      "variant": "portable",
+      "plugins": 2,
+      "sha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "202aca0d8bf519387d26c7e0ba1e863c34b40c61e95574603801804e276edd9b",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "008e32e302986241b1e393707c79fab80b6a427fa0df2c30f378edbb72e31677",
+      "bytes": 47864
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "fc96b464d74a94c6cef09ed15c10d51677783cb6145e83fb3b176b14a6f8d95a",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "1d55265f352e88517b146f6fea1e672c6f9fd4b4635babb8af3489ea3af8e11e",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "3e97bf95e0660840d9be2f2c8a834b8a4b32a41394bed27b19473478ec5206d0",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "c8a68845da26336ec98e4b5be55908de8942337981cdeb520300bdd88b098c77",
+      "bytes": 2206
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "648c641be96cd0269c0bd2511c2268a704daabea1e510327785eb30f9c62a92f",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "6f2d9391b4d94b36744e5f47d299a810b3ad65d99e4c038abc866beb74ccfb2b",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "dfa4c10e74d39bcf2152f5894857ceff1e9e065a5b25752fbfa7b68a9e68bea9",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "280ce99c9f69c5d7e5a4f55f74caa98d2e215b223b182c79bd3cefd8977535a0",
+      "bytes": 766
+    }
+  ],
+  "logs": [
+    {
+      "name": "model-comparisons-package.log",
+      "sha256": "66c8d09a6e036d0dc60fe399de9ad49e2709ecd5c048487ec3c5bae674a7e613",
+      "bytes": 5202
+    },
+    {
+      "name": "model-comparisons-package-audit.log",
+      "sha256": "950659b5a1892cd634b92f4a5940f8950c43013dcdaf9e65e62aa2910a6cdc2b",
+      "bytes": 298
+    },
+    {
+      "name": "model-comparisons-packaged-desktop.log",
+      "sha256": "ea6e311665ca63974ace00e3e7565e2ecd6956c4ae6ca73e2206d17b88a35955",
+      "bytes": 28585
+    },
+    {
+      "name": "model-comparisons-packaged-settings.log",
+      "sha256": "89c07df38e57011541bb1cee999ea901683b3623f87c2b03695abc9ff8899b38",
+      "bytes": 763
+    },
+    {
+      "name": "model-comparisons-bootstrap.log",
+      "sha256": "f97956a67de78f8a83a6738a53e834788d2339fbd1ac746cbed6fe93c055e1e9",
+      "bytes": 375
+    },
+    {
+      "name": "model-comparisons-portable.log",
+      "sha256": "b027aeb49c4579b344e05f6b29c4961bc9d5fcfd91de715fb826ffcc90415c3a",
+      "bytes": 1054
+    },
+    {
+      "name": "model-comparisons-installer.log",
+      "sha256": "ab52c88293f677a827f6c24d16e6fc8ae74984880ec9791682782671238361f3",
+      "bytes": 28951
+    },
+    {
+      "name": "model-comparisons-runtime-proof.log",
+      "sha256": "4cad34f8a49fcb15be361ba264d693ea0f386d8378f6d60f99cf397fe4975424",
+      "bytes": 108
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/117-model-comparison-config-light.png",
+      "sha256": "f696adeb9c7dfcb970b6bc5f80039b5f314a6bffdf2c968789346dd65d5ed7f5",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/118-model-comparison-stream-light.png",
+      "sha256": "a4f017234a00cf68defc0a745ee81d2b92066ef818e0c661bd437fa185af40b4",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/119-model-comparison-save-error-light.png",
+      "sha256": "fa8c68d5bbb58ec08fda1ccc7172071d37a362043e89547dde948bd7f7e774bc",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-100.png",
+      "sha256": "4ced1c23bbb1514e09d574977abb86c98e0094bed0b662aa0cbb344d29f9216a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-100.png",
+      "sha256": "c08b10bdd0a159827f1ec025ee99eec1700f104fd1d1db73244d35eb72c0be69",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-125.png",
+      "sha256": "127cc4962a8f607d649cc37b6cc9b962d766dadd6f014e7ecfb267e2c9fb5fb7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-125.png",
+      "sha256": "c849bd2535dd1fba3548488c334ca75f711d0a2281a2bd05640773f36e68aadc",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-150.png",
+      "sha256": "3a7dae11a1b171953f416d50222eb840b1d32a3b05f500629d105913980b440b",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    },
+    {
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-150.png",
+      "sha256": "fd03f89a15e166b7f92efef500f0f7fa790d04095e3a02620e9f712308be653a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f",
+      "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
+      "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
+    }
+  ],
+  "hostedVerified": false,
+  "scope": "Actual rebuilt unsigned Windows application. Complete 194-check unpacked and installed runtimes each include six comparison checks/eleven real local HTTP requests, nine no-request branch checks and six temporary-chat checks/three requests, with normal close. Four settings checks, original bootstrap plugins, two long-path portable launches, all original unpacked files, current-user Unicode-path installation, shortcuts and data-retaining uninstall pass. All ten original records satisfy current strict same-product release policy. Nine installed comparison captures were individually inspected. Hosted verification, live provider quality, physical system dialogs and remaining full delivery scope are separate."
+}
