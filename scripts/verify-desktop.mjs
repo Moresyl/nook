@@ -316,7 +316,9 @@ async function launch() {
   await page.getByLabel('消息', { exact: true }).waitFor();
   await application.evaluateMain(`
     globalThis.qiyaoPtyDiagnostics = [];
-    const terminalPrototype = require('node-pty/lib/terminal').Terminal.prototype;
+    const applicationRequire = require('node:module').createRequire(require('node:path').join(require('electron').app.getAppPath(), 'package.json'));
+    const terminalPrototype = applicationRequire('node-pty/lib/terminal').Terminal.prototype;
+    globalThis.qiyaoPtyModuleSources = { defaultTerminalPath: require.resolve('node-pty/lib/terminal'), applicationTerminalPath: applicationRequire.resolve('node-pty/lib/terminal'), sameModule: require('node-pty/lib/terminal').Terminal === applicationRequire('node-pty/lib/terminal').Terminal };
     const dataDescriptor = Object.getOwnPropertyDescriptor(terminalPrototype, 'onData');
     const exitDescriptor = Object.getOwnPropertyDescriptor(terminalPrototype, 'onExit');
     const observedTerminals = new WeakMap();
@@ -337,7 +339,7 @@ async function launch() {
       const register = exitDescriptor.get.call(this); const record = observedTerminal(this);
       return listener => register(event => { record.exitedAt = Date.now(); record.exitCode = event.exitCode; listener(event); });
     } });
-    globalThis.qiyaoTerminalProcessSnapshot = () => ({ capturedAt: Date.now(), terminals: globalThis.qiyaoPtyDiagnostics.slice(-16), mainMemory: process.memoryUsage(),
+    globalThis.qiyaoTerminalProcessSnapshot = () => ({ capturedAt: Date.now(), moduleSources: globalThis.qiyaoPtyModuleSources, terminals: globalThis.qiyaoPtyDiagnostics.slice(-16), mainMemory: process.memoryUsage(),
       systemMemory: { free: require('node:os').freemem(), total: require('node:os').totalmem() },
       applicationProcesses: require('electron').app.getAppMetrics().slice(-16).map(item => ({ pid: item.pid, type: item.type, cpu: item.cpu, memory: item.memory })) });
   `);
