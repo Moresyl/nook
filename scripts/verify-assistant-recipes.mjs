@@ -9,12 +9,19 @@ export async function verifyAssistantRecipes({ page, application, getApplication
   const attachment = { id: 'recipe-context', name: '上下文.txt', content: 'RECIPE_ATTACHMENT_EXACT' };
   const content = '方式：{{风格}}\n内容：{{文本}}\n原型：{{__proto__}}\nRECIPE_NATIVE';
   const initialCalls = calls.length;
+  const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/'))";
+  async function capture(name) {
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const image = await application.evaluateMain(`(async () => { const window = ${mainWindow}; return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()`);
+    const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size); assert.deepEqual(image.size, name.includes('-dark-') ? [760, 540] : [1280, 840]);
+    await writeFile(join(screenshots, name), bytes);
+  }
   await page.evaluate(async ({ assistantId, prefix, attachment }) => {
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
     await window.qiyao.saveAssistant({ id: assistantId, name: '配方助手😀', description: '明确使用时选择', instructions: 'RECIPE_ASSISTANT_INSTRUCTIONS' });
     await window.qiyao.saveComposerDraft({ text: prefix, attachments: [attachment], assistantId: 'general', model: '', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [], updatedAt: Date.now() });
     await window.qiyao.activateThread();
-  }, { assistantId, prefix, attachment }); await page.reload(); await application.resize(1280, 840);
+  }, { assistantId, prefix, attachment }); await page.reload(); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
   const manager = async () => { await page.getByRole('button', { name: '助手', exact: true }).click(); await page.getByRole('tab', { name: '提示模板', exact: true }).click(); };
   const editor = () => page.getByRole('dialog', { name: '编辑提示模板', exact: true });
   const using = () => page.getByRole('dialog', { name: '使用提示模板', exact: true });
@@ -27,10 +34,9 @@ export async function verifyAssistantRecipes({ page, application, getApplication
   assert.equal(await choices.inputValue(), '简洁\n展开'); await editor().getByLabel('默认值 风格', { exact: true }).fill('简洁');
   await editor().getByText('变量设置：文本', { exact: true }).click(); await editor().getByText('参数 文本 必填', { exact: true }).click();
   await editor().getByText('变量设置：__proto__', { exact: true }).click(); await editor().getByLabel('默认值 __proto__', { exact: true }).fill('PROTO_LITERAL😀');
-  await page.screenshot({ path: join(screenshots, '126-assistant-recipe-parameters-light.png') });
+  await capture('126-assistant-recipe-parameters-light.png');
   await editor().locator('.modal-content').evaluate((element) => { element.scrollTop = 0; });
-  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-  await page.screenshot({ path: join(screenshots, '126-assistant-recipe-editor-light.png') }); await editor().getByRole('button', { name: '保存', exact: true }).click(); await editor().waitFor({ state: 'hidden' });
+  await capture('126-assistant-recipe-editor-light.png'); await editor().getByRole('button', { name: '保存', exact: true }).click(); await editor().waitFor({ state: 'hidden' });
   let recipe = await page.evaluate(() => (window.qiyao.load()).then((state) => state.promptTemplates.find((item) => item.title === '助手配方😀')));
   assert.equal(recipe.assistantId, assistantId); assert.deepEqual(recipe.parameters.find((item) => item.key === '风格').choices, ['简洁', '展开']);
   assert.equal(recipe.parameters.find((item) => item.key === '文本').required, false); assert.equal(recipe.parameters.find((item) => item.key === '__proto__').defaultValue, 'PROTO_LITERAL😀');
@@ -60,14 +66,13 @@ export async function verifyAssistantRecipes({ page, application, getApplication
   await editor().getByLabel('模板助手', { exact: true }).selectOption('general'); await editor().getByRole('button', { name: '保存', exact: true }).click(); await editor().waitFor({ state: 'hidden' });
   recipe = (await page.evaluate(() => window.qiyao.load())).promptTemplates.find((item) => item.id === recipe.id); assert.equal(recipe.assistantId, 'general');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }); await page.reload(); await application.resize(760, 540); await manager();
-  const layout = []; const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
+  const layout = [];
   for (const zoom of [1, 1.25, 1.5]) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await page.waitForFunction((width) => Math.abs(innerWidth - width) <= 2, 760 / zoom);
     await row().getByRole('button', { name: '使用模板', exact: true }).click(); const done = using().getByRole('button', { name: '追加到草稿', exact: true }); await done.focus();
     const geometry = await using().evaluate((dialog) => { const header = dialog.querySelector('.modal-header').getBoundingClientRect(); const footer = dialog.querySelector('.modal-footer').getBoundingClientRect(); return { width: innerWidth, height: innerHeight, top: header.top, bottom: footer.bottom, overflow: document.documentElement.scrollWidth > innerWidth + 1 }; });
     assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.height + 1); assert.equal(geometry.overflow, false); assert.equal(await done.evaluate((element) => element === document.activeElement), true); layout.push({ zoom, ...geometry });
-    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-    const image = await application.evaluateMain(`(async () => { const window = ${mainWindow}; return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()`); const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size); await writeFile(join(screenshots, `127-assistant-recipe-dark-zoom-${Math.round(zoom * 100)}.png`), bytes);
+    await capture(`127-assistant-recipe-dark-zoom-${Math.round(zoom * 100)}.png`);
     await page.keyboard.press('Escape'); await using().waitFor({ state: 'hidden' }); assert.equal(await row().getByRole('button', { name: '使用模板', exact: true }).evaluate((element) => element === document.activeElement), true);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); assert.equal(calls.length, initialCalls);
