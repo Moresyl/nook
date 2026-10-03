@@ -1,0 +1,55 @@
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { TerminalSessions, type PtyFactory } from '../desktop/services/terminal-sessions';
+const directories: string[] = [];
+afterEach(async () => { await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
+async function setup(emit = vi.fn()) {
+  const root = await mkdtemp(join(tmpdir(), 'qiyao-terminal-')); directories.push(root);
+  const processes: { data: (value: string) => void; exit: (value: { exitCode: number }) => void; write: ReturnType<typeof vi.fn>; resize: ReturnType<typeof vi.fn>; kill: ReturnType<typeof vi.fn>; dispose: ReturnType<typeof vi.fn> }[] = [];
+  const spawn: PtyFactory = vi.fn(() => {
+    const process = { data: (_value: string) => {}, exit: (_value: { exitCode: number }) => {}, write: vi.fn(), resize: vi.fn(), kill: vi.fn(), dispose: vi.fn() }; processes.push(process);
+    return { pid: 123, write: process.write, resize: process.resize, kill: process.kill, onData: (listener: (data: string) => void) => { process.data = listener; return { dispose: process.dispose }; }, onExit: (listener: (event: { exitCode: number; signal?: number }) => void) => { process.exit = listener; return { dispose: process.dispose }; } };
+  });
+  const terminate = vi.fn(async (process) => process.kill());
+  const terminals = new TerminalSessions(spawn, emit, terminate);
+  return { root, processes, spawn, emit, terminate, terminals };
+}
+describe('owned PTY sessions', () => {
+  it('starts in the verified project folder, streams numbered output and replays bounded snapshots', async () => {
+    const { root, terminals, processes, spawn, emit } = await setup();
+    const session = await terminals.open('project', root, { cols: 80, rows: 24 });
+    expect(spawn).toHaveBeenCalledWith(expect.any(String), expect.any(Array), expect.objectContaining({ cwd: root, cols: 80, rows: 24, name: 'xterm-256color' }));
+    processes[0].data('\u001b[31mANSI output\u001b[0m'); processes[0].data('x'.repeat(300_000));
+    expect(emit.mock.calls[0][0]).toMatchObject({ id: session.id, sequence: 1, data: '\u001b[31mANSI output\u001b[0m' });
+    expect(terminals.list('project')[0]).toMatchObject({ sequence: 2, status: 'running' }); expect(terminals.list('project')[0].output).toHaveLength(256_000);
+    const copied = terminals.list('project'); copied[0].output = 'changed'; expect(terminals.list('project')[0].output).not.toBe('changed');
+    expect(terminals.list('other')).toEqual([]); expect(terminals.active()).toBe(true);
+    terminals.write(session.id, 'echo evidence\r'); terminals.resize(session.id, { cols: 120, rows: 40 });
+    expect(processes[0].write).toHaveBeenCalledWith('echo evidence\r'); expect(processes[0].resize).toHaveBeenCalledWith(120, 40);
+    processes[0].exit({ exitCode: 7 }); expect(terminals.active()).toBe(false); expect(terminals.list('project')[0]).toMatchObject({ status: 'exited', exitCode: 7, sequence: 3 });
+    expect(() => terminals.write(session.id, 'more')).toThrow('closed'); await terminals.close(session.id); expect(terminals.list('project')).toEqual([]);
+  });
+  it('closes only owned project sessions, disposes listeners and stops accepting sessions at shutdown', async () => {
+    const { root, terminals, processes, terminate } = await setup();
+    const one = await terminals.open('one', root, { cols: 80, rows: 24 }); const two = await terminals.open('two', root, { cols: 80, rows: 24 });
+    await terminals.closeProject('one'); expect(terminate).toHaveBeenCalledTimes(1); expect(processes[0].dispose).toHaveBeenCalledTimes(2); expect(terminals.list('two')).toHaveLength(1);
+    processes[0].data('late'); processes[0].exit({ exitCode: 0 }); expect(terminals.list('one')).toEqual([]);
+    await terminals.close(one.id); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(2); expect(() => terminals.resize(two.id, { cols: 80, rows: 24 })).toThrow('closed');
+    await expect(terminals.open('one', root, { cols: 80, rows: 24 })).rejects.toThrow('Close');
+  });
+  it('validates geometry, input, session limits, missing folders and process errors', async () => {
+    const { root, terminals } = await setup();
+    await expect(terminals.open('p', root, { cols: 1, rows: 24 })).rejects.toThrow();
+    await expect(terminals.open('p', join(root, 'missing'), { cols: 80, rows: 24 })).rejects.toThrow();
+    expect(() => terminals.write('unknown', 'x')).toThrow('closed'); expect(() => terminals.write('unknown', '')).toThrow('input'); expect(() => terminals.write('unknown', 'x'.repeat(64_001))).toThrow('input');
+    for (let i = 0; i < 16; i++) await terminals.open('p', root, { cols: 80, rows: 24 });
+    await expect(terminals.open('p', root, { cols: 80, rows: 24 })).rejects.toThrow('Close'); await terminals.shutdown();
+    const failed = new TerminalSessions(() => { throw new Error('Private shell output'); }, vi.fn()); await expect(failed.open('p', root, { cols: 80, rows: 24 })).rejects.toThrow('Could not start');
+  });
+  it('keeps sessions alive if the renderer disappears', async () => {
+    const { root, terminals, processes } = await setup(vi.fn(() => { throw new Error('Renderer gone'); }));
+    await terminals.open('p', root, { cols: 80, rows: 24 }); processes[0].data('Kept'); processes[0].kill.mockImplementation(() => { throw new Error('Already gone'); }); processes[0].exit({ exitCode: 0 }); expect(terminals.list('p')[0].output).toBe('Kept'); await terminals.shutdown();
+  });
+});

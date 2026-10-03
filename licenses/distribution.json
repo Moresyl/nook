@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "builderVersion": "26.15.3",
+  "toolset": "0.0.0",
+  "archiveFilter": "BCJ",
+  "components": [
+    {
+      "name": "NSIS 3.0.4.1 and electron-builder installer templates",
+      "license": "zlib/libpng; bzip2; CPL-1.0 with LZMA linking exception; MIT (builder templates)",
+      "status": "verified",
+      "source": "https://github.com/electron-userland/electron-builder-binaries/releases/tag/nsis-3.0.4.1",
+      "notes": "NSIS compiler archive SHA256: 9877df902530f96357d13a7a31ae2b9df67f48b11ffc9a1700a7c961574ec5fa. nsis-resources 3.4.1 archive SHA256: 593a9a92ef958321293ac6a2ee61e64bf1bd543142a5bd6b3d310709cc924103. Core plugin/stub records are build inputs, not an embedding inventory.",
+      "documents": [
+        {
+          "path": "distribution/NOTICE.txt",
+          "sha256": "3ab3e88aab5ee09e95477d54b616523af1df81d9b33b63846df5242e7a426c96"
+        },
+        {
+          "path": "distribution/nsis/COPYING",
+          "sha256": "3c8de989f6504d52f5f8dfafedb6668cd47201f5d01f1319570727c091425dd6"
+        },
+        {
+          "path": "distribution/builder/LICENSE",
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        }
+      ],
+      "sources": [],
+      "binaries": [
+        {
+          "location": "compiler",
+          "path": "Bin/makensis.exe",
+          "sha256": "e277b7378931b74392015f5ad6b1d744dcd8a347baa4480350a75ebeab8d8e3d"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/uninst",
+          "sha256": "ba82bb5d90262417a18cec6631bbd8b880020eb159b45f264a9145196dfb8f3a"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/bzip2-x86-unicode",
+          "sha256": "4d4199e792448bb59fd68297bbbeb9be148764daddf24a931ed302a9f15a7821"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/bzip2_solid-x86-unicode",
+          "sha256": "ba42e54524083ddd5848cde25669c3c7974821e1d2b7558b1fc4d02b46c03fcf"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/lzma-x86-unicode",
+          "sha256": "d72775320a1365a155a6bab6ac7fb0fecb7eab29ae35e742483bdf749fe423b6"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/lzma_solid-x86-unicode",
+          "sha256": "2a161ccb5801b4d3170ae257a2e3cec0f25ef821fa6d6b3c424e50cda542cfbb"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/zlib-x86-unicode",
+          "sha256": "aed7cb7405345d69121485184cf59b608686e144a19f5cf579b1adf5d97f7328"
+        },
+        {
+          "location": "compiler",
+          "path": "Stubs/zlib_solid-x86-unicode",
+          "sha256": "5e2dd27e22064762668c62dafdbe569452c3f6c7d8ca565514a357c7524d65d2"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/AdvSplash.dll",
+          "sha256": "4ef1281cf084598b059d4b6e369e9db820d7e9341a9f1a194556e6c345d1b0b6"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/Banner.dll",
+          "sha256": "6368dec20ad41b43074ee7af476ce092a106b42be47d8f48b63f011ebc58209a"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/BgImage.dll",
+          "sha256": "e27efa5dfde875bd6b826fafb4c7698db6b6e30e68715a1c03eb018e3170fc04"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/Dialer.dll",
+          "sha256": "43b3b9a4ef98a601d233ca13f61e738a98fc9d115cb7110fb5965dcb4de9f65d"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/InstallOptions.dll",
+          "sha256": "ca092ba7f275b0c9000098cdd1a9876fe8dc050fcb40a0e8a1ab8335236e9dc5"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/LangDLL.dll",
+          "sha256": "6f14c8f01f50a30743dac68c5ac813451463dfb427eb4e35fcdfe2410e1a913b"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/Math.dll",
+          "sha256": "39b1bf4c55db3872c7c6f08e5764bac2def6faed0fbcc68d6cce5aab61243ec8"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/nsDialogs.dll",
+          "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/nsExec.dll",
+          "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/NSISdl.dll",
+          "sha256": "9a3c2fe5490c34f73f1a05899ef60cfef05e0c9599cd704e524ef7a46ead67ba"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/Splash.dll",
+          "sha256": "dcbf89e4ab7e558981ab5120eb88c2bdcefe7e21c0ab6430c0fec4f50d40ba24"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/StartMenu.dll",
+          "sha256": "948998c5c1f9bf5cebff627bc397a4641acc23fb9a3d32650df4ea3d87f68ebb"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/System.dll",
+          "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/TypeLib.dll",
+          "sha256": "4c88add8a31ab92c8b9852814e98516c175c8c51d4df62ba64182fe5bb8c97a2"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/UserInfo.dll",
+          "sha256": "9aa388c7de8e96885adcb4325af871b470ac50edb60d4b0d876ad43f5332ffd1"
+        },
+        {
+          "location": "compiler",
+          "path": "Plugins/x86-unicode/VPatch.dll",
+          "sha256": "622de16d46265d701efafa5e455bbaf53627cecb3c753c2e56e5f38c65c5eda3"
+        }
+      ]
+    },
+    {
+      "name": "StdUtils 1.14",
+      "license": "LGPL-2.1-or-later with original installer clarification",
+      "status": "verified",
+      "source": "https://github.com/lordmulder/stdutils/releases/download/1.14/StdUtils.2018-10-27.zip",
+      "notes": "The DLL matches the original release archive SHA256 3ffe893dc7477fdb1cac551a86ae017509e1f2d0ebdc7185fd0fbaf20870688c.",
+      "documents": [
+        {
+          "path": "distribution/stdutils/ReadMe.txt",
+          "sha256": "31b67e463c6e5695e9ffaf62dd077d9bd62df34026593c2f29bc9ea87fdac72f"
+        },
+        {
+          "path": "distribution/stdutils/LGPL.txt",
+          "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531"
+        },
+        {
+          "path": "distribution/stdutils/LGPL_CLARIFICATION.txt",
+          "sha256": "ae0ab3f49b4473152181c1fe5670435faaca079eda0b261ee31a51a6180bc9e7"
+        },
+        {
+          "path": "distribution/stdutils/BUILD_TAG.txt",
+          "sha256": "202f37732dc052a47104a63f3e64d38a9332962bdddc8ae957f63d724ffaf2fe"
+        }
+      ],
+      "sources": [
+        {
+          "path": "distribution/stdutils/Sources.tar",
+          "sha256": "db9f98d7a947d5a6b7cd341e01edd412ea04510c5faee19a23b1e84582d86121"
+        }
+      ],
+      "binaries": [
+        {
+          "location": "plugins",
+          "path": "x86-unicode/StdUtils.dll",
+          "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+        }
+      ]
+    },
+    {
+      "name": "UAC plugin",
+      "license": "zlib/libpng",
+      "status": "verified",
+      "source": "https://nsis.sourceforge.io/mediawiki/images/8/8f/UAC.zip",
+      "documents": [
+        {
+          "path": "distribution/uac/License.txt",
+          "sha256": "997fd014643f27a2f240faf9b9b54a98371775c63eb38134829154794f7326fa"
+        }
+      ],
+      "sources": [
+        {
+          "path": "distribution/uac/Source.zip",
+          "sha256": "20e3192af5598568887c16d88de59a52c2ce4a26e42c5fb8bee8105dcbbd1760"
+        },
+        {
+          "path": "distribution/uac/uac.cpp",
+          "sha256": "a54b801a377dd4a9be29fcf68672f4ff381f50853e8a815cb535405e97ec1905"
+        }
+      ],
+      "binaries": [
+        {
+          "location": "plugins",
+          "path": "x86-unicode/UAC.dll",
+          "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+        }
+      ]
+    },
+    {
+      "name": "nsis7z 19.00",
+      "license": "LGPL (plugin declaration); public domain (LZMA SDK declaration)",
+      "status": "verified",
+      "source": "https://nsis.sourceforge.io/mediawiki/images/6/69/Nsis7z_19.00.7z",
+      "notes": "The original plugin document does not state an LGPL version. Its rebuild instructions require LZMA SDK 19.00, retained from https://www.7-zip.org/a/lzma1900.7z with original version 19.00 and SHA256 00f569e624b3d9ed89cf8d40136662c4c5207eaceb92a70b1044c77f84234bad. The SDK C and CPP folders supplement the plugin source.",
+      "documents": [
+        {
+          "path": "distribution/nsis7z/License.txt",
+          "sha256": "63fcfe54826809b5a9f9df8a8ff53c04330122319ec67a2dd815085586adaf0e"
+        },
+        {
+          "path": "distribution/nsis7z/nsis7z.txt",
+          "sha256": "881f8ba4da0a0c30e281d324408baa596f14211b03d1f3bf99fe18c4621916c3"
+        },
+        {
+          "path": "distribution/nsis7z/lzma-sdk.txt",
+          "sha256": "92b680dc41560dade14d7e51cd7b162effa6e7905b03befc043d17ec5b4fa857"
+        },
+        {
+          "path": "distribution/stdutils/LGPL.txt",
+          "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531"
+        }
+      ],
+      "sources": [
+        {
+          "path": "distribution/nsis7z/Source.7z",
+          "sha256": "6f2f3730049926f40442ee0c8b7d3e3dee7ace544d82467ff8059ea3f4201c58"
+        },
+        {
+          "path": "distribution/nsis7z/LZMA-SDK-19.00.7z",
+          "sha256": "00f569e624b3d9ed89cf8d40136662c4c5207eaceb92a70b1044c77f84234bad"
+        }
+      ],
+      "binaries": [
+        {
+          "location": "plugins",
+          "path": "x86-unicode/nsis7z.dll",
+          "sha256": "b393f05e8ff919ef071181050e1873c9a776e1a0ae8329aefff7007d0cadf592"
+        }
+      ]
+    },
+    {
+      "name": "Johannes Passing Elevate 1.0.0.2894",
+      "license": "LGPL-2.1-or-later (explicit main.c declaration)",
+      "status": "verified",
+      "source": "https://github.com/jpassing/elevate/tree/d5cfc93d1ce06844a39d1a334a7a8081d26b6204",
+      "notes": "The generic MIT template has placeholder copyright holders. It does not override the LGPL source header. Source revision version/copyright matches the shipped binary; no reproducible historical rebuild is claimed.",
+      "documents": [
+        {
+          "path": "distribution/elevate/LICENSE.md",
+          "sha256": "c8513abf1a738a5420f288c1be9c774b386785cc99c313f8543296321d06f04d"
+        },
+        {
+          "path": "distribution/elevate/README.md",
+          "sha256": "114145d90cb0e01d393143fb8b77de53066220fd585ac033ddd7cefd043ac0bd"
+        },
+        {
+          "path": "distribution/stdutils/LGPL.txt",
+          "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531"
+        }
+      ],
+      "sources": [
+        {
+          "path": "distribution/elevate/Source.zip",
+          "sha256": "9ab7bf5909c43312b497cd613560f4a0b9713f3c0951901c311cc401948d0450"
+        },
+        {
+          "path": "distribution/elevate/main.c",
+          "sha256": "5274d3eaaadce8d01e04416f5e0b27c0678d70fde7c0d7a9cd34d73825101e9b"
+        }
+      ],
+      "binaries": [
+        {
+          "location": "elevate",
+          "path": "elevate.exe",
+          "sha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "completeRuntimeResult": "packaged-result.json",
+  "surfaceResult": "surfaces-packaged-result.json",
+  "verificationImplementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "completeNativeChecks": 173,
+  "packageAudit": "unpacked-package-audit-result.json",
+  "screenshots": [
+    {
+      "file": "91-surface-controls-light.png",
+      "sha256": "0888930b80f0b423f172b5b7305a61531e855ae3564bc1fb63b0d17c01f72f51",
+      "width": 1280,
+      "height": 840,
+      "visuallyInspected": true
+    },
+    {
+      "file": "92-surface-controls-dark-narrow.png",
+      "sha256": "9445c5a5bdc873fe06ab77243ba8e04453f250909d3875c70ed7f73a8424dbbf",
+      "width": 760,
+      "height": 540,
+      "visuallyInspected": true
+    },
+    {
+      "file": "93-surface-settings-zoomed.png",
+      "sha256": "3fbda17647f7fbaebd0a578bca7c8acc8288e1e2d06c59695fda675387946b09",
+      "width": 760,
+      "height": 540,
+      "visuallyInspected": true
+    }
+  ],
+  "archiveSha256": "522ea40e6af9481129716c526eed465a2a1b4841fb83d5ec3b6a1e5c0fa758c4",
+  "executableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "normalCloseVerified": true,
+  "sourceImplementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "scope": "3 individually inspected complete native Inter-font captures; same audited executable/ASAR in the complete 173-check installed desktop, four packaged settings checks and two real portable launches. All 261 unpacked files and original legal documents match their exact hashes. Historical failures and earlier focused coverage remain retained. Full control-state/maximum-scale/physical accessibility, graphical branches and hosted pipeline publication remain separate work.",
+  "verifiedAt": "2026-10-03T04:20:45.316Z",
+  "checks": 4,
+  "retainedFailures": [
+    "Initial D-drive startup reached the unchanged thirty-second deadline without debugger output. Sustained D-drive read activity was observed, but the cause remains unestablished; an independent E-drive copy with exact executable/ASAR hashes started and passed",
+    "Initial new test used an exact settings-button accessible name that omitted its visible shortcut text. The selector was corrected to the existing sidebar settings convention; no product change was made",
+    "Browser screenshots after native Electron zoom cropped the visible page. Native BrowserWindow capture and content-size assertions now retain the complete window",
+    "The first native captures could precede the requested settings frame. The fixture now waits for the exact appearance heading and two animation frames before capture; no product rendering/performance fix is claimed"
+  ],
+  "findings": [
+    "All three complete native captures show the close action and fit the window without horizontal content clipping",
+    "The light controls and dark 125-percent appearance form preserve the reference neutral surfaces, accent, labels and spacing",
+    "The dark 150-percent capture shows the real scrolled appearance details; content remains scrollable beneath the fixed modal header"
+  ],
+  "executableAndArchiveMatchPackageAudit": true,
+  "executorExitCode": 0,
+  "priorRuntimeEvidence": {
+    "verifiedAt": "2026-10-03T02:20:18.3961391Z",
+    "executableSha256": "105f89a8b80b6fcae6cfa4d5537cc31cbf1c0b004a2fc599c822499593df4421",
+    "archiveSha256": "d65b094f62e5c385e0d5111d707007092807d27195e5ae9d71938476f47cca07",
+    "sourceImplementationCommit": "e235242d9c6541777f2fb3c6ac524f22f4932c5d"
+  },
+  "fontFamily": "Inter",
+  "unit": {
+    "tests": 515,
+    "files": 52,
+    "workers": 1,
+    "durationSeconds": 31.36,
+    "defaultTestDeadlineMs": 5000,
+    "executorExitCode": 0,
+    "coverageScope": "Contracts and desktop services",
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  }
+}

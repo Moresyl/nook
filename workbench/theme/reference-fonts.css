@@ -1,0 +1,46 @@
+/* Local OFL-licensed UI fonts. Original font files remain unmodified. */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/InterVariable-693b77d4f32e.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Carlito;
+  src: url("./fonts/carlito-latin-400-normal-11f827802cc9.woff2") format("woff2"),
+       url("./fonts/carlito-latin-400-normal-231061d55c03.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Carlito;
+  src: url("./fonts/carlito-latin-700-normal-d0e833a43e47.woff2") format("woff2"),
+       url("./fonts/carlito-latin-700-normal-a31b730ba98f.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --font-ui-family: "Inter", var(--font-sans-default);
+  --font-code-family: var(--font-mono-default);
+  --font-sans-default: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono-default: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-ui-weight: 400;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 510;
+  --font-weight-semibold: 590;
+  --font-weight-bold: 700;
+}
+
+body {
+  font-family: var(--font-ui-family);
+  font-weight: var(--font-ui-weight);
+}

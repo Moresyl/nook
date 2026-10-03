@@ -1,0 +1,81 @@
+{
+  "verifiedAt": "2026-10-03T04:58:25.432Z",
+  "canonicalSourceDirectory": "D:\\GR\\qiyao",
+  "cleanSourceSnapshotCreated": true,
+  "inheritedGitDirectory": false,
+  "sourceSnapshotSha256": "96a09dde2f8bfdbd8cbeabed1af6a16536231bd344939c6bee8247e6c96c4414",
+  "productIdentityScan": {
+    "packageResult": "package-audit-result.json",
+    "packagedProductMatches": [],
+    "productFiles": 233,
+    "unpackedFiles": 261,
+    "permittedMatchesOutsideLegalRecords": [
+      "scripts/verify-package.mjs identity-rejection pattern"
+    ]
+  },
+  "privateDevelopmentWorkspace": {
+    "existingSessionStillOpen": true,
+    "physicalMovePerformed": false,
+    "foreignHandlesClosed": false,
+    "foreignProcessesStopped": false,
+    "includedInIndependentSourceHistory": false
+  },
+  "scope": "The canonical directory contains a verified current-source snapshot with a newly initialized repository and no inherited commits or historical blobs. Frozen dependencies resolve entirely within the canonical tree; Electron, typecheck, all 515 tests, release notices and build passed after migration. Original legal bytes are retained. Packaged-runtime evidence predates this migration and remains separately bound to its executable/ASAR hashes. The private development archive stays open and is excluded from the independent source history; no literal move is claimed. Clean initial commit, remote and hosted verification remain the next steps.",
+  "migration": {
+    "repositoryInitialized": true,
+    "inheritedCommitCount": 0,
+    "sourceSnapshotFilesVerified": 822,
+    "snapshotDifferences": [
+      "docs/DELIVERY.md",
+      "verification/workspace-identity-result.json"
+    ],
+    "frozenLockfileInstallVerified": true,
+    "directDependencyRootsVerified": 37,
+    "electronVersion": "44.5.1",
+    "electronInstallerRetryExitCode": 0,
+    "cachedElectronSha256": "9b382492dcfee91f8f9e92c91f7972550a1b95d2299cac72279dab33a600d7db",
+    "typecheckExitCode": 0,
+    "releaseNoticesExitCode": 0,
+    "buildExitCode": 0,
+    "tests": 515,
+    "testFiles": 52,
+    "testDurationSeconds": 33.34,
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "originalLegalHashes": {
+      "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "licenses/fonts/Inter-OFL.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  }
+}

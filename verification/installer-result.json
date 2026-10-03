@@ -1,0 +1,136 @@
+{
+  "verifiedAt": "2026-10-02T12:00:09.4621415Z",
+  "version": "0.1.0-alpha.1",
+  "artifacts": [
+    {
+      "Description": "Qiyao — a local AI workspace for ideas, projects and agents",
+      "Bytes": 236968433,
+      "File": "Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "Sha256": "3a602c5e68ba4a75bbe265a166d24a74d24b70d8078ead76481b8e9f681b034c",
+      "Signature": "NotSigned",
+      "Company": "Qiyao",
+      "ProductName": "Qiyao"
+    },
+    {
+      "Description": "Qiyao — a local AI workspace for ideas, projects and agents",
+      "Bytes": 237191177,
+      "File": "Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "Sha256": "98b9c575dc502a73d3b9b4def43bf8e7402f9f22858b65470290ba352e619847",
+      "Signature": "NotSigned",
+      "Company": "Qiyao",
+      "ProductName": "Qiyao"
+    }
+  ],
+  "installation": {
+    "exitCode": 0,
+    "mode": "current user",
+    "chineseAndSpacePathVerified": true,
+    "registrationVerified": true,
+    "shortcutTargetsVerified": true,
+    "shortcutAppUserModelIdsVerified": true,
+    "publisher": "Qiyao",
+    "displayName": "Qiyao 0.1.0-alpha.1",
+    "nativeWizardCompleted": false
+  },
+  "installedApplication": {
+    "productFiles": 235,
+    "dependencyVersions": 381,
+    "retainedDependencyDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "executableSha256": "5f12f497a0bf89ebe6b5351f319cbbaae47668677ad05ffff40d56e3087abae5",
+    "archiveSha256": "95ffe0cec632e414c3b84771da51593a6a0dbd2dbe656b54f6d710c399986428",
+    "nativeChecks": 161,
+    "runtimeErrors": [],
+    "executorExitCode": 0,
+    "normalCloseVerified": true,
+    "nativeResult": "installed-desktop-result.json",
+    "undeclaredDistributionFileRejected": true
+  },
+  "runtimeEvidence": {
+    "fullChecks": 161,
+    "fullResult": "installed-desktop-result.json",
+    "fullVerifiedAt": "2026-10-02T09:15:22.115Z",
+    "reusedFromCommit": "0c05bf1",
+    "exactExecutableAndArchiveHashesMatch": true,
+    "newlyInstalledDesktopEntryChecks": 5,
+    "newlyInstalledResult": "installed-desktop-entry-result.json",
+    "newExecutorExitCode": 0,
+    "newNormalCloseVerified": true
+  },
+  "bootstrap": {
+    "result": "distribution-bootstrap-result.json",
+    "pluginCounts": [
+      {
+        "plugins": 6,
+        "variant": "installer"
+      },
+      {
+        "plugins": 5,
+        "variant": "uninstaller"
+      },
+      {
+        "plugins": 3,
+        "variant": "portable"
+      }
+    ]
+  },
+  "shellIntegration": {
+    "result": "shell-integration-result.json",
+    "checks": 5,
+    "sourceSha256": "730180e3acb7257afb6a657a278b3e8e49c41a5827ab7404aef5efad456a6538",
+    "installedShortcutsResult": "installed-shortcuts-result.json",
+    "oldPluginRemoved": true
+  },
+  "portable": {
+    "result": "portable-result.json",
+    "checks": 7,
+    "twoNormalExitsVerified": true,
+    "temporaryExtractionRemoved": true,
+    "persistedDataRestored": true,
+    "existingInstallationAndShortcutsPreserved": true
+  },
+  "uninstall": {
+    "exitCode": 0,
+    "applicationDirectoryRemoved": true,
+    "registrationRemoved": true,
+    "shortcutsRemoved": true,
+    "defaultUserProfilesRetained": true,
+    "profileSentinelDirectories": [
+      "Qiyao",
+      "qiyao-workspace"
+    ]
+  },
+  "originalRootLicenses": {
+    "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+    "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  "unitValidation": {
+    "tests": 459,
+    "files": 48,
+    "workers": 1,
+    "exitCode": 0,
+    "coreLines": 99.1,
+    "coreBranches": 93.45,
+    "coreFunctions": 97.16,
+    "log": "shell-replacement-coverage.log",
+    "installerTemplateLines": 100,
+    "installerTemplateBranches": 100,
+    "installerTemplateFunctions": 100
+  },
+  "retainedFailures": [
+    "Full parallel coverage: existing five-second replay/credential/draft deadlines; subsequent full serial suite passed 454 tests in 47 files",
+    "Initial installed full runtime: document worker thirty-second deadline and failure-cleanup ten-second close deadline after 86 checks; attachment recheck passed fourteen and final installed run passed all 161 with unchanged deadlines",
+    "Initial portable probe combined extraction and application startup into thirty seconds; subsequent separate extraction/application budgets passed both actual wrappers",
+    "Later final serial coverage passed 451 of 454: the existing one-shot fixture computed its 150-ms future time before another async save and expired; preparation order was corrected with the same time/deadlines. Image-ingestion and invocation-record five-second deadline causes remain unestablished. The subsequent full serial rerun passed all 454 tests in 47 files",
+    "Initial shell validator used the unsupported !strlen directive in legacy NSIS 3.0.4.1; bounded runtime validation replaced it and the five native shell checks passed. Two independent headless shortcut-reader attempts failed their thirty-second exit deadline; diagnostics from the second showed all four shortcuts read and its report written before app.quit stalled. This batch utility now uses app.exit(0) after synchronous report writes; the actual two-shortcut and five isolated checks passed. No product quit behavior or original exit-delay cause is claimed fixed."
+  ],
+  "releaseGate": {
+    "passed": false,
+    "expectedRejectionVerified": true,
+    "unresolved": [
+      "OpenAI Sans font assets"
+    ]
+  },
+  "scope": "Actual unsigned Windows x64 installer/current-user installation, exact installed product/legal/native hashes, actual shortcut AppUserModelIDs, embedded bootstrap plugins without WinShell, real portable wrapper and silent uninstall retention. The prior complete 161-check installed-runtime proof is reused only because executable and ASAR hashes are identical; five newly installed desktop-entry checks separately passed normal quit/restart. Test fixtures use isolated data. Native GUI-wizard interaction, existing runtime/coverage timeout causes, other platforms, source/history publication review and broader delivery gates remain unresolved."
+}

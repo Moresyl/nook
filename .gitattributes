@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# Preserve original legal bytes, including vendor whitespace.
+# Original Markdown legal/source documents can contain seven-equals headings.
+LICENSE -text -whitespace conflict-marker-size=32
+COPYING -text -whitespace conflict-marker-size=32
+THIRD_PARTY_NOTICES.txt -text -whitespace conflict-marker-size=32
+licenses/** -text -whitespace conflict-marker-size=32

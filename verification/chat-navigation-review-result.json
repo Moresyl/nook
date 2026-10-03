@@ -1,0 +1,584 @@
+{
+  "verifiedAt": "2026-10-03T04:20:45.316Z",
+  "sourceImplementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "additionalSurfaceChecks": 4,
+  "completeRuntimeResult": "packaged-result.json",
+  "archiveSha256": "522ea40e6af9481129716c526eed465a2a1b4841fb83d5ec3b6a1e5c0fa758c4",
+  "oldPackagedProductIdentityMatches": [],
+  "modelRequests": 1,
+  "screenshots": [
+    {
+      "file": "102-message-navigation-light.png",
+      "sha256": "b3e95b7ed95dfa783535f5aa69ddc9a889eed3fe30de8498c1ab7bd4e7f1fe3f",
+      "width": 1280,
+      "height": 840,
+      "visuallyInspected": true
+    },
+    {
+      "file": "103-chat-find-light.png",
+      "sha256": "9dd264356388b09f41d67dee2579811a035d92ea92d6b7d705cb0c8a1e03f1f7",
+      "width": 1280,
+      "height": 840,
+      "visuallyInspected": true
+    },
+    {
+      "file": "104-chat-find-code-light.png",
+      "sha256": "209e626997ffb23b999650a9994860b0340a8cb376b507f7674d645d15c7d91e",
+      "width": 1280,
+      "height": 840,
+      "visuallyInspected": true
+    },
+    {
+      "file": "105-chat-find-dark-zoom-100.png",
+      "sha256": "762fdaa95dd990f10c42d55f86f13fe956ca043bb13527885e46fbd83fbf1282",
+      "width": 760,
+      "height": 540,
+      "visuallyInspected": true
+    },
+    {
+      "file": "105-chat-find-dark-zoom-125.png",
+      "sha256": "1a6abe4e192ecb26b3405f66cdb0b2e9e31e6ecac34eb4fe8705ef8fc260ed2b",
+      "width": 760,
+      "height": 540,
+      "visuallyInspected": true
+    },
+    {
+      "file": "105-chat-find-dark-zoom-150.png",
+      "sha256": "13c1da9337266930c05460159dd050c98bf60186f47df1c08ee77702378077b8",
+      "width": 760,
+      "height": 540,
+      "visuallyInspected": true
+    }
+  ],
+  "normalCloseVerified": true,
+  "recordedInspectedImageCount": 109,
+  "runtimeResult": "chat-navigation-packaged-result.json",
+  "packageAudit": "unpacked-package-audit-result.json",
+  "executableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "nativeChecks": 5,
+  "retainedFailures": [
+    "The first development-runtime attempt timed out before emitting its debugger endpoint; its full log and owned failed workspace qiyao-electron-LEFuCc are retained. The second attempt emitted its main-process debugger but not the renderer endpoint within the unchanged 30-second startup deadline; its full log and owned workspace qiyao-electron-8Vixq9 are retained. Neither attempt reached UI checks. Subsequent final development checks passed with the same startup deadline; no underlying cause for the earlier startup failures is claimed.",
+    "The first packaged fixture attempted to update a nonexistent conversation and was correctly rejected. Its full log and owned workspace qiyao-electron-WzyKbQ are retained. The test now seeds only its isolated workspace while the application is normally closed, then starts the real application and uses its actual draft/activation bridge; the production updateThread guard remains unchanged.",
+    "The real marker geometry was 24 by 2 pixels because the shared transparent button border reduced the available flex width. Its full log, screenshot and owned failed workspace are retained. The rail button now has no border and the unchanged native 26-by-2 assertion passes, including the reduced-motion transition check.",
+    "The first 150-percent minimum-window check measured a zero-height transcript. Its full log, screenshot and owned workspace qiyao-electron-RbUlDm are retained. Compact spacing, bounded attachment/tool rows and responsive model fields preserve the input and reading area. Visual review also exposed clipped rail lines and header actions; tighter rail insets and a bounded title preserve visible markers and all six actions. The final native checks assert actual controls, marker clipping and Enter-located range bounds at each zoom.",
+    "A subsequent source run reproduced a detached code-search range while transcript scroll state rerendered an inline Markdown pre component. Its full log, screenshot and owned workspace qiyao-electron-cAmKfr are retained. Markdown link/pre component types now remain stable through a private rendering context, and visible-body mutations refresh the find index. Actual code-node retention across composer edits and dynamic Mermaid source visibility pass in the native suite without removing the range checks.",
+    "The first complete packaged rerun passed 172 checks, then its fully configured composer measured a 28-pixel transcript and a 19.33-pixel send button at 150-percent zoom. Its complete log, screenshot and owned workspace qiyao-electron-IFAmoq are retained. The final short-height toolbar stays on one horizontally scrolling row, the textarea is height-bounded without changing its contents, and the send button cannot shrink. Actual Tab focus scrolls each option fully into view; the unchanged reading/control/range assertions and a new exact send-width assertion pass against the populated source fixture.",
+    "Replaying the complete-suite workspace initially exposed duplicate fixture titles, and its next keyboard check recorded a partly clipped tool option at 125 percent. Both logs and owned failed workspaces are retained. The fixture now uses a unique title bound to its generated owner; the production tool group scrolls the actual focused element into view, with no forced test click or changed geometry assertions. Five populated-source checks then passed and normally closed."
+  ],
+  "originalLegalHashes": {
+    "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+    "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  "unit": {
+    "tests": 515,
+    "files": 52,
+    "workers": 1,
+    "durationSeconds": 31.36,
+    "defaultTestDeadlineMs": 5000,
+    "executorExitCode": 0,
+    "coverageScope": "Contracts and desktop services",
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "surfaceResult": "surfaces-packaged-result.json",
+  "completeNativeChecks": 173,
+  "layout": [
+    {
+      "zoom": 1,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 536,
+          "right": 564,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 572,
+          "right": 600,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "置顶聊天",
+          "left": 608,
+          "right": 636,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "导出聊天",
+          "left": 644,
+          "right": 672,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "归档聊天",
+          "left": 680,
+          "right": 708,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "删除聊天",
+          "left": 716,
+          "right": 744,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 269,
+          "right": 451.96875,
+          "top": 329,
+          "bottom": 353,
+          "width": 182.96875,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 252,
+          "right": 728,
+          "top": 368,
+          "bottom": 428,
+          "width": 476,
+          "height": 60
+        },
+        {
+          "label": "发送消息",
+          "left": 696,
+          "right": 728,
+          "top": 428,
+          "bottom": 460,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 246,
+          "right": 397,
+          "top": 477,
+          "bottom": 501,
+          "width": 151,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 397,
+          "right": 546,
+          "top": 477,
+          "bottom": 501,
+          "width": 149,
+          "height": 24
+        }
+      ],
+      "width": 760,
+      "height": 540,
+      "overflow": false,
+      "bar": {
+        "left": 220,
+        "right": 760,
+        "top": 92,
+        "bottom": 133
+      },
+      "close": {
+        "left": 724,
+        "right": 752,
+        "top": 98,
+        "bottom": 126
+      },
+      "region": {
+        "width": 540,
+        "height": 171
+      },
+      "marker": {
+        "left": 227,
+        "right": 253,
+        "top": 168,
+        "bottom": 170
+      },
+      "rail": {
+        "top": 157,
+        "bottom": 280
+      },
+      "result": {
+        "top": 190,
+        "bottom": 207
+      }
+    },
+    {
+      "zoom": 1.25,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 418,
+          "right": 446,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 448,
+          "right": 476,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "置顶聊天",
+          "left": 478,
+          "right": 506,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "导出聊天",
+          "left": 508,
+          "right": 536,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "归档聊天",
+          "left": 538,
+          "right": 566,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "删除聊天",
+          "left": 568,
+          "right": 596,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 248.8000030517578,
+          "right": 431.3625030517578,
+          "top": 257.6000061035156,
+          "bottom": 281.6000061035156,
+          "width": 182.5625,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 240,
+          "right": 588,
+          "top": 288.3999938964844,
+          "bottom": 336.3999938964844,
+          "width": 348,
+          "height": 48
+        },
+        {
+          "label": "发送消息",
+          "left": 556,
+          "right": 588,
+          "top": 339.20001220703125,
+          "bottom": 371.20001220703125,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 232,
+          "right": 382.40000915527344,
+          "top": 382,
+          "bottom": 406,
+          "width": 150.40000915527344,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 382.3999938964844,
+          "right": 530.3999938964844,
+          "top": 382,
+          "bottom": 406,
+          "width": 148,
+          "height": 24
+        }
+      ],
+      "width": 608,
+      "height": 432,
+      "overflow": false,
+      "bar": {
+        "left": 220,
+        "right": 608,
+        "top": 72,
+        "bottom": 112.79999923706055
+      },
+      "close": {
+        "left": 572,
+        "right": 600,
+        "top": 78,
+        "bottom": 106
+      },
+      "region": {
+        "width": 388,
+        "height": 130
+      },
+      "marker": {
+        "left": 227,
+        "right": 253,
+        "top": 131.8000030517578,
+        "bottom": 133.8000030517578
+      },
+      "rail": {
+        "top": 120.80000305175781,
+        "bottom": 234.8000030517578
+      },
+      "result": {
+        "top": 156.1999969482422,
+        "bottom": 173
+      }
+    },
+    {
+      "zoom": 1.5,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 316.66668701171875,
+          "right": 344.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 346.66668701171875,
+          "right": 374.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "置顶聊天",
+          "left": 376.66668701171875,
+          "right": 404.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "导出聊天",
+          "left": 406.66668701171875,
+          "right": 434.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "归档聊天",
+          "left": 436.66668701171875,
+          "right": 464.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "删除聊天",
+          "left": 466.66668701171875,
+          "right": 494.66668701171875,
+          "top": 40,
+          "bottom": 68,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 248.6666717529297,
+          "right": 430.9583435058594,
+          "top": 185.33334350585938,
+          "bottom": 209.33334350585938,
+          "width": 182.2916717529297,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 240,
+          "right": 486.6666717529297,
+          "top": 216,
+          "bottom": 264,
+          "width": 246.6666717529297,
+          "height": 48
+        },
+        {
+          "label": "发送消息",
+          "left": 454.66668701171875,
+          "right": 486.66668701171875,
+          "top": 267,
+          "bottom": 299,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 232,
+          "right": 363.3333435058594,
+          "top": 310,
+          "bottom": 334,
+          "width": 131.33334350585938,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 363.3333435058594,
+          "right": 494.66668701171875,
+          "top": 310,
+          "bottom": 334,
+          "width": 131.33334350585938,
+          "height": 24
+        }
+      ],
+      "width": 507,
+      "height": 360,
+      "overflow": false,
+      "bar": {
+        "left": 220,
+        "right": 506.66668701171875,
+        "top": 72,
+        "bottom": 112.66666793823242
+      },
+      "close": {
+        "left": 470.66668701171875,
+        "right": 498.66668701171875,
+        "top": 78,
+        "bottom": 106
+      },
+      "region": {
+        "width": 286.66668701171875,
+        "height": 58
+      },
+      "marker": {
+        "left": 227,
+        "right": 253,
+        "top": 131.6666717529297,
+        "bottom": 133.6666717529297
+      },
+      "rail": {
+        "top": 120.66667175292969,
+        "bottom": 162.6666717529297
+      },
+      "result": {
+        "top": 131.6666717529297,
+        "bottom": 148.33334350585938
+      }
+    }
+  ],
+  "populatedSource": {
+    "executorExitCode": 0,
+    "sourceResult": "chat-navigation-result.json",
+    "seedScope": "An exact isolated copy of the retained 84,264,215-byte complete-suite workspace, encrypted fixture credentials, skills and plugins; all copied automation plans were verified disabled before launch",
+    "normalCloseVerified": true,
+    "checks": 5
+  },
+  "retainedDependencyDocuments": 401,
+  "scope": "6 individually inspected complete native Inter-font captures; same audited executable/ASAR in the complete 173-check installed desktop, four packaged settings checks and two real portable launches. All 261 unpacked files and original legal documents match their exact hashes. Historical failures and earlier focused coverage remain retained. Full control-state/maximum-scale/physical accessibility, graphical branches and hosted pipeline publication remain separate work.",
+  "focusedCoverage": {
+    "files": 2,
+    "executorExitCode": 0,
+    "tests": 24,
+    "coverage": {
+      "lines": {
+        "total": 47,
+        "covered": 47,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 94,
+        "covered": 94,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 25,
+        "covered": 25,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 109,
+        "covered": 109,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "scope": "User-message markers and keyboard bounds, literal Unicode search offsets and context-bound command catalog"
+  },
+  "executorExitCode": 0,
+  "priorRuntimeEvidence": {
+    "verifiedAt": "2026-10-03T02:20:18.3748090Z",
+    "executableSha256": "105f89a8b80b6fcae6cfa4d5537cc31cbf1c0b004a2fc599c822499593df4421",
+    "archiveSha256": "d65b094f62e5c385e0d5111d707007092807d27195e5ae9d71938476f47cca07",
+    "sourceImplementationCommit": "e235242d9c6541777f2fb3c6ac524f22f4932c5d"
+  },
+  "verificationImplementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "fontFamily": "Inter"
+}

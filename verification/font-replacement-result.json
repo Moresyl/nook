@@ -1,0 +1,90 @@
+{
+  "verifiedAt": "2026-10-03T04:20:45.316Z",
+  "implementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "upstream": {
+    "version": "v4.1",
+    "commit": "e3a3d4c57d5ecc01453a575621882a384c1995a3",
+    "releaseUrl": "https://github.com/rsms/inter/releases/tag/v4.1",
+    "files": [
+      {
+        "source": "https://raw.githubusercontent.com/rsms/inter/e3a3d4c57d5ecc01453a575621882a384c1995a3/LICENSE.txt",
+        "path": "LICENSE.txt",
+        "bytes": 4380,
+        "originalGitBlob": "9b2ca37b3ffc77391d8b2ebef4a974ef32bf46ea",
+        "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+      },
+      {
+        "source": "https://raw.githubusercontent.com/rsms/inter/e3a3d4c57d5ecc01453a575621882a384c1995a3/docs/font-files/InterVariable.woff2",
+        "path": "docs/font-files/InterVariable.woff2",
+        "bytes": 352240,
+        "originalGitBlob": "5a8d3e72ad7ffb62af3b146e1b1f54ab5813a212",
+        "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+      }
+    ]
+  },
+  "fontFile": "workbench/theme/fonts/InterVariable-693b77d4f32e.woff2",
+  "completeOriginalLicense": "licenses/fonts/Inter-OFL.txt",
+  "fontBytesUnchanged": true,
+  "fontFamily": "Inter",
+  "nativeLoadedWeights": [
+    400,
+    510,
+    590,
+    700
+  ],
+  "nativeFontAssertions": "scripts/verify-desktop.mjs:384",
+  "fontReferenceDeviation": "Inter substitutes the reference proprietary UI face; supplied non-font design values, Carlito and KaTeX assets are retained.",
+  "originalLegalHashes": {
+    "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+    "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  "unit": {
+    "tests": 515,
+    "files": 52,
+    "workers": 1,
+    "durationSeconds": 31.36,
+    "defaultTestDeadlineMs": 5000,
+    "executorExitCode": 0,
+    "coverageScope": "Contracts and desktop services",
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "desktopChecks": 173,
+  "additionalSurfaceChecks": 4,
+  "individuallyReinspectedCurrentCaptures": 19,
+  "executableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "archiveSha256": "522ea40e6af9481129716c526eed465a2a1b4841fb83d5ec3b6a1e5c0fa758c4",
+  "unresolvedAssets": [],
+  "releaseNoticeGateExitCode": 0,
+  "scope": "Verified official Git blobs and unchanged Inter 4.1 WOFF2/OFL bytes; actual loaded UI weights, current native layouts, matching packaged/installed/portable bodies and complete retained legal documents. Prior private reference assets and development Git objects are excluded from the forthcoming clean source snapshot; source-history cleanup and remaining UI/capability acceptance remain required."
+}

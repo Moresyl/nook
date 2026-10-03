@@ -1,0 +1,177 @@
+{
+  "verifiedAt": "2026-10-03T04:20:45.316Z",
+  "implementationCommit": "fb1ff526b3b0dd5b555a2a301fd2f0473eda39da",
+  "originalTemplate": {
+    "source": "portable.nsi",
+    "sha256": "80fa75cf8cb68f4999eb92afc9f37f8e5b605cb1c3a077821bbc350a9b907a48"
+  },
+  "nativeFileExtraction": true,
+  "transformerCoverage": {
+    "lines": {
+      "total": 24,
+      "covered": 24,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 6,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 30,
+      "covered": 30,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 21,
+      "covered": 21,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "releasePolicyCoverage": {
+    "lines": {
+      "total": 39,
+      "covered": 39,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 12,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 49,
+      "covered": 49,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 78,
+      "covered": 78,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "focusedTests": 33,
+  "unit": {
+    "tests": 515,
+    "files": 52,
+    "workers": 1,
+    "durationSeconds": 31.36,
+    "defaultTestDeadlineMs": 5000,
+    "executorExitCode": 0,
+    "coverageScope": "Contracts and desktop services",
+    "coverage": {
+      "lines": {
+        "total": 2708,
+        "covered": 2684,
+        "skipped": 0,
+        "pct": 99.11
+      },
+      "statements": {
+        "total": 4648,
+        "covered": 4488,
+        "skipped": 0,
+        "pct": 96.55
+      },
+      "functions": {
+        "total": 1034,
+        "covered": 1005,
+        "skipped": 0,
+        "pct": 97.19
+      },
+      "branches": {
+        "total": 3339,
+        "covered": 3124,
+        "skipped": 0,
+        "pct": 93.56
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "controlledCleanupProbe": {
+    "directory": "C:\\Users\\18468\\AppData\\Local\\Temp\\qiyao-cleanup-probe-Kz2nlx",
+    "results": [
+      {
+        "extended": false,
+        "leafLength": 301,
+        "removed": false
+      },
+      {
+        "extended": true,
+        "leafLength": 301,
+        "removed": true
+      }
+    ]
+  },
+  "controlledExtractionProbe": {
+    "directory": "C:\\Users\\18468\\AppData\\Local\\Temp\\qiyao-extraction-probe-e0rZdc",
+    "results": [
+      {
+        "native": false,
+        "documentLength": 280,
+        "content": "ENOENT"
+      },
+      {
+        "native": true,
+        "documentLength": 280,
+        "content": "unchanged owned document"
+      }
+    ]
+  },
+  "actualPortableResult": "portable-result.json",
+  "actualInstallerResult": "pipeline-installer-result.json",
+  "unpackedFilesVerified": 261,
+  "nativeLongDocumentLengths": [
+    295,
+    295
+  ],
+  "actualBootstrapPluginCounts": [
+    {
+      "variant": "installer",
+      "plugins": 6
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5
+    },
+    {
+      "variant": "portable",
+      "plugins": 2
+    }
+  ],
+  "executableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "archiveSha256": "522ea40e6af9481129716c526eed465a2a1b4841fb83d5ec3b6a1e5c0fa758c4",
+  "retainedFailures": [
+    {
+      "stage": "Original normal-exit cleanup",
+      "log": ".firecrawl/inter-portable.log",
+      "directory": "C:/Users/18468/AppData/Local/Temp/QiyaoDesktopAudit/b004eaec2af44978997c78a56de435c5/qiyao-portable-KGBLwg",
+      "observation": "Wrapper exited zero; one 262-character document path remained without an application process."
+    },
+    {
+      "stage": "Overlong bootstrap fixture",
+      "log": ".firecrawl/portable-longpath-native.log",
+      "directory": "C:/Users/18468/AppData/Local/Temp/QiyaoDesktopAudit/ec0cd9093f694ac3a5ee5a27e44e0eff/qiyao-portable-DBk2DK",
+      "observation": "Wrapper exited 2147483651 before application observation. Original startup cause remains unestablished."
+    },
+    {
+      "stage": "Staged long-file extraction",
+      "log": ".firecrawl/portable-longpath-retry.log",
+      "directory": "C:/Users/18468/AppData/Local/Temp/QiyaoDesktopAudit/c3d53639bb694059846006ecb3fc0297/qiyao-portable-XwO2LY",
+      "observation": "Application started; the required long-path document was absent. Isolated staged/native ordinary-path probes also omitted the 280-character document; native extended-path extraction retained its exact bytes."
+    }
+  ],
+  "scope": "Pinned original portable template, per-build Windows factory, native NSIS file extraction and extended output/cleanup paths. Full real portable and current-user install/uninstall checks passed with unchanged startup/exit deadlines, all unpacked file hashes, exact Unicode arguments, data retention and original legal documents. Template/API version changes fail before compilation. Native wizard interaction and complete delivery remain pending."
+}

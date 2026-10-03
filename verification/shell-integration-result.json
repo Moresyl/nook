@@ -1,0 +1,16 @@
+{
+  "verifiedAt": "2026-10-03T04:01:44.774Z",
+  "checks": [
+    "Empty, spaced and oversized application identities are rejected before identity writes or destination cleanup",
+    "Compiled original System-plugin integration preserves the caller registers and stack",
+    "Missing and corrupt shortcuts return errors without altering the corrupt file",
+    "Independent Electron shell reads verify exact AppUserModelIDs and preserved Unicode target/arguments/working directory/description",
+    "Unpin and destination cleanup execute only against isolated fixture shortcut and random AppUserModelID"
+  ],
+  "results": {
+    "unpin": 1,
+    "destinations": 0
+  },
+  "sourceSha256": "730180e3acb7257afb6a657a278b3e8e49c41a5827ab7404aef5efad456a6538",
+  "scope": "Actual x86 NSIS/System calls and independent Windows shortcut reads. No existing user shortcut or application destination is changed. Physical pinned-item delivery and full installer integration remain separate checks."
+}

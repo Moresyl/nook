@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-10-03T04:00:46.168Z",
+  "version": "0.1.0-alpha.1",
+  "variant": "actual Windows portable wrapper",
+  "checks": 7,
+  "evidence": [
+    "actual portable wrapper starts from a Chinese path with spaces and forwards exact Unicode arguments",
+    "real extracted portable application retains all product, native, vendor and distribution files",
+    "extracted portable native PTY returns real PowerShell output and exit code",
+    "normal application close exits the wrapper successfully and removes its extraction",
+    "a second real wrapper extraction removes stale long-path files and restores exact persisted notes and project scope",
+    "the restarted portable wrapper also exits normally and cleans its extraction",
+    "portable operation preserves its executable, existing installation registration and shortcuts"
+  ],
+  "wrapperSha256": "cbc3cac1af593743b17d3cb29d70b0b11691353dcbd6b40007fecd9e50e040ec",
+  "childExecutableSha256": "4b70bf2af8c5231ceb7c8aa926a977faa2b97503030dad7428b46ae40110917c",
+  "launches": [
+    {
+      "wrapperStartedAt": 1791000022188,
+      "applicationObservedAt": 1791000030821,
+      "longDocumentPathLength": 295,
+      "applicationReadyAt": 1791000030927
+    },
+    {
+      "wrapperStartedAt": 1791000036377,
+      "applicationObservedAt": 1791000044875,
+      "longDocumentPathLength": 295,
+      "applicationReadyAt": 1791000044914
+    }
+  ],
+  "unpackedFilesVerified": 261,
+  "longPathCleanupVerified": true,
+  "runtimeErrors": [],
+  "scope": "Actual x64 portable wrapper, isolated data and temporary directories, Chinese/space path and exact forwarded Unicode arguments, complete extracted-package hashes and all unpacked-asset names/bytes including a retained document beyond MAX_PATH, real native PTY, cleanup of a stale long-path document before restart, two normal lifecycle exits, retained data and extraction cleanup. Cold extraction is measured separately with a 120-second budget; Electron startup retains 30 seconds. Default data location, native dialogs, other platforms and public release remain separate gates."
+}

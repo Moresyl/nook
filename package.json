@@ -1,0 +1,130 @@
+{
+  "name": "qiyao-workspace",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "license": "LGPL-3.0-or-later",
+  "description": "Qiyao — a local AI workspace for ideas, projects and agents",
+  "author": {
+    "name": "Qiyao"
+  },
+  "main": "out/main/launch.cjs",
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "identity": "node scripts/identity-assets.mjs",
+    "notices": "node scripts/prepare-licenses.mjs",
+    "notices:check": "node scripts/prepare-licenses.mjs --check",
+    "notices:release": "node scripts/prepare-licenses.mjs --check --release",
+    "prepare:installer": "node scripts/prepare-installer.mjs",
+    "test:package": "node scripts/verify-package.mjs",
+    "test:desktop": "node scripts/verify-desktop.mjs",
+    "test:portable": "node scripts/verify-portable.mjs",
+    "test:distribution": "node scripts/verify-distribution.mjs",
+    "test:shell": "node scripts/verify-shell-integration.mjs",
+    "package:win": "pnpm prepare:installer && pnpm notices && pnpm build && node scripts/package-windows.mjs",
+    "package:dir": "pnpm notices && pnpm build && electron-builder --dir --publish never"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "@monaco-editor/react": "4.7.0",
+    "@xterm/addon-fit": "0.11.0",
+    "@xterm/xterm": "6.0.0",
+    "croner": "10.0.1",
+    "dompurify": "3.4.16",
+    "hast-util-to-string": "3.0.1",
+    "katex": "0.16.45",
+    "lowlight": "3.3.0",
+    "mermaid": "12.0.0",
+    "monaco-editor": "0.57.0",
+    "node-pty": "1.1.0",
+    "officeparser": "8.1.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "7.0.2",
+    "rehype-katex": "7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "6.0.0",
+    "sharp": "0.34.5",
+    "yaml": "2.9.0",
+    "zod": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.5",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@vitest/coverage-v8": "4.1.11",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.0.0",
+    "electron-vite": "^5.0.0",
+    "fflate": "0.8.3",
+    "playwright": "^1.56.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0",
+    "vitest": "4.1.11"
+  },
+  "build": {
+    "appId": "app.qiyao.workspace",
+    "productName": "Qiyao",
+    "copyright": "Copyright © 2026 Qiyao",
+    "electronDist": "node_modules/electron/dist",
+    "npmRebuild": false,
+    "toolsets": { "nsis": "0.0.0" },
+    "asarUnpack": [
+      "node_modules/node-pty/**/*"
+    ],
+    "directories": {
+      "output": "artifacts",
+      "buildResources": "identity"
+    },
+    "files": [
+      "out/**/*",
+      "identity/qiyao.ico",
+      "identity/qiyao.png",
+      "package.json"
+    ],
+    "extraResources": [
+      { "from": "LICENSE", "to": "LICENSE" },
+      { "from": "COPYING", "to": "COPYING" },
+      { "from": "THIRD_PARTY_NOTICES.txt", "to": "THIRD_PARTY_NOTICES.txt" },
+      { "from": "licenses", "to": "licenses" }
+    ],
+    "win": {
+      "icon": "identity/qiyao.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Qiyao-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "include": "identity/windows/include.nsh",
+      "artifactName": "Qiyao-Setup-${version}-${arch}.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "portable": {
+      "artifactName": "Qiyao-Portable-${version}-${arch}.${ext}",
+      "useZip": true
+    }
+  }
+}

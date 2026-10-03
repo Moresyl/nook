@@ -1,0 +1,66 @@
+Qiyao Windows distribution provenance
+
+The Windows installer and portable wrapper are built with electron-builder
+26.15.3 and its legacy NSIS toolset (configuration value 0.0.0): NSIS 3.0.4.1
+and nsis-resources 3.4.1. This record covers known build inputs, not a claim
+that every plugin is included in every generated executable.
+
+Windows application payloads use the explicit BCJ archive filter. The retained
+LZMA SDK 19 decoder does not support the newer ARM64 filter selected automatically
+by current 7-Zip; that combination omitted ARM64 native files during installation.
+The explicit compatible filter preserves those original file bytes as well.
+
+Original notices are retained without editing. Source archives are retained
+under licenses/distribution for the LGPL components. Original binary-only
+releases are identified explicitly and do not claim to contain source code.
+Their hashes and the actual build-input hashes are in licenses/distribution.json.
+
+NSIS core
+Copyright (C) 1999-2018 Contributors.
+Original complete COPYING: distribution/nsis/COPYING.
+The compression-module licenses and the LZMA linking exception are included.
+The toolset is provided by electron-builder-binaries; its MIT license for build
+scripts does not replace the original licenses of distributed tool components.
+
+StdUtils 1.14 (DLL version 1.1.4.0)
+Copyright (C) 2004-2018 LoRd_MuldeR <mulder2@gmx.de>.
+The original README, GNU LGPL 2.1 text and LGPL clarification are retained.
+The original release contains its complete source tar, retained separately.
+
+UAC plugin
+Copyright (C) Anders Kjersem.
+The original source header declares the zlib/libpng license. The full original
+License.txt is retained, as is the source release archive.
+
+nsis7z 19.00
+Copyright notices include Igor Pavlov, Nik Medved, Marek Mizanin and Stuart Welch.
+The plugin's original documentation declares LGPL; its License.txt separately
+declares the LZMA SDK public domain. Both declarations are retained, together
+with the complete GNU LGPL 2.1 text and the original plugin source archive.
+Rebuilding the plugin also requires the LZMA SDK 19.00 C and CPP folders, as
+described in the original documentation. The original SDK archive and its
+complete original documentation/public-domain declaration are retained as
+well. The plugin archive alone is not a complete standalone build of the SDK.
+
+Qiyao shell integration
+Shortcut AppUserModelID properties, pinned-item removal and application
+destination cleanup use NSIS's original open source System plugin and Windows
+COM APIs. The former WinShell binary-only plugin is not redistributed.
+The original electron-builder MIT installer templates are transformed locally;
+original template hashes are pinned and changed shell calls fail preparation.
+
+The actual installer, embedded uninstaller and portable bootstrap plugin audits
+do not contain nsProcess. Unused nsProcess reference material is kept outside
+the product and is not redistributed in its legal/source bundle.
+
+Johannes Passing Elevate 1.0.0.2894
+Copyright (c) 2007 Johannes Passing.
+The original main.c explicitly declares GNU LGPL 2.1 or later. The repository's
+LICENSE.md is an MIT template with placeholder copyright text. Both original
+files are retained; the template is not used to override the explicit source
+declaration. The complete GNU LGPL 2.1 text and the pinned source archive are
+retained. Version and copyright information match the shipped elevation helper;
+this record does not claim a reproducible rebuild of that historical binary.
+
+Original authors and legal attributions are retained independently of Qiyao's
+product identity. No installer component is claimed as original Qiyao code.
