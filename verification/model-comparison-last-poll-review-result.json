@@ -1,0 +1,88 @@
+{
+  "verifiedAt": "2026-10-03T19:10:14.950Z",
+  "codeCommit": "6384aaa08b031b7d211e535cb3e5595d99034f2f",
+  "previousHostedFailure": "verification/hosted-mcp-comparison-failure-result.json",
+  "originalDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "originalEveryPartialPredicateRetained": true,
+  "boundedLastPollDiagnostics": true,
+  "boundedRealRequestTimeline": true,
+  "successfulPollCleanupVerified": true,
+  "source": [
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "c8addbbcd2256c89c3a8423490da2b671a22caaed5e1eeac9105f34a6189202f"
+    },
+    {
+      "path": "verification/model-comparison-fixture.mjs",
+      "sha256": "7e09e027b47bfc6c0bd4d81eb7e24266b8d87aaecb4e0eef26d4c8d7246fe09f"
+    }
+  ],
+  "native": {
+    "recordSha256": "549e1e2d0a2fb8bac587626c100d6f66b8bc739fd56d7d60a2006d67b9473357",
+    "record": {
+      "verifiedAt": "2026-10-03T19:08:21.578Z",
+      "variant": "development executable",
+      "executableSha256": null,
+      "archiveSha256": null,
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "verificationRun": "focused model-comparison suite",
+      "checks": 6,
+      "comparisonModelRequests": 11,
+      "parallelStreamsVerified": true,
+      "independentFailureStopVerified": true,
+      "atomicSaveRetryVerified": true,
+      "backupsRestartVerified": true,
+      "temporaryExclusionVerified": true,
+      "originalDraftRetainedVerified": true,
+      "originalModelIdentityVerified": true,
+      "layout": [
+        {
+          "zoom": 1,
+          "width": 760,
+          "height": 540,
+          "headerTop": 1,
+          "footerBottom": 521,
+          "overflow": false
+        },
+        {
+          "zoom": 1.25,
+          "width": 608,
+          "height": 432,
+          "headerTop": 0.800000011920929,
+          "footerBottom": 412.00000762939453,
+          "overflow": false
+        },
+        {
+          "zoom": 1.5,
+          "width": 507,
+          "height": 360,
+          "headerTop": 0.6666666865348816,
+          "footerBottom": 339.3333435058594,
+          "overflow": false
+        }
+      ],
+      "screenshots": [
+        "117-model-comparison-config-light.png",
+        "118-model-comparison-stream-light.png",
+        "119-model-comparison-save-error-light.png",
+        "120-model-comparison-config-dark-zoom-100.png",
+        "121-model-comparison-results-dark-zoom-100.png",
+        "120-model-comparison-config-dark-zoom-125.png",
+        "121-model-comparison-results-dark-zoom-125.png",
+        "120-model-comparison-config-dark-zoom-150.png",
+        "121-model-comparison-results-dark-zoom-150.png"
+      ],
+      "scope": "Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate."
+    },
+    "log": {
+      "name": "comparison-last-poll-native.log",
+      "bytes": 1315,
+      "sha256": "9683f3accb1f23d94f654d6aef76407e6ce28431e939d74ae01a4f82b56c8f0f"
+    }
+  },
+  "failureDiagnosticBranchObservedInThisNativeRun": false,
+  "hostedVerified": false,
+  "scope": "Only QA diagnostics and its isolated real-HTTP fixture change. Six focused actual Electron comparison checks pass with the original eleven requests and normal close, including request timestamps and successful last-poll cleanup. The original ten-second wait, 100 ms poll and every-PARTIAL predicate remain. The catch diagnostics were not exercised by this successful run; no remote root cause or new hosted completion is established. Complete source/distribution evidence remains separately recorded for the unchanged product body."
+}
