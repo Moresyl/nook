@@ -386,7 +386,7 @@
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
     "sourceVerified": true,
-    "packagedVerified": false,
+    "packagedVerified": true,
     "hostedVerified": false,
     "unitTests": 545,
     "unitFiles": 55,
@@ -397,6 +397,20 @@
     "releasePolicyTests": 25,
     "minimumCompleteDesktopChecks": 185,
     "sameApplicationBodyRequired": true,
-    "proof": "verification/temporary-conversations-review-result.json"
+    "proof": "verification/temporary-conversations-review-result.json",
+    "packagedVerifiedAt": "2026-10-03T10:04:25.904Z",
+    "packagedDesktopChecks": 185,
+    "installedDesktopChecks": 185,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "applicationHashes": {
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4",
+      "installerSha256": "1e4800fe0b95f644d461cf8c4f1b56544fb80bddc5a58240cd4457e590aa64b0",
+      "portableSha256": "101ee1ba3c8f7b20fea09b038209de59ff067dde3f56e41a7c75d762d49d4014"
+    },
+    "distributionProof": "verification/temporary-distribution-result.json",
+    "hostedRunId": 37114355094,
+    "hostedCodeCommit": "1c39a1c0937cc68bf4b7a26cad37d222b24f7cf3"
   }
 }

@@ -1,0 +1,150 @@
+{
+  "verifiedAt": "2026-10-03T10:04:25.904Z",
+  "codeCommit": "1c39a1c0937cc68bf4b7a26cad37d222b24f7cf3",
+  "variant": "packaged executable",
+  "strictReleasePolicyVerified": true,
+  "applicationHashes": {
+    "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+    "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4",
+    "installerSha256": "1e4800fe0b95f644d461cf8c4f1b56544fb80bddc5a58240cd4457e590aa64b0",
+    "portableSha256": "101ee1ba3c8f7b20fea09b038209de59ff067dde3f56e41a7c75d762d49d4014"
+  },
+  "desktopChecks": 185,
+  "installedChecks": 185,
+  "surfaceChecks": 4,
+  "branchChecks": 6,
+  "temporaryChecks": 6,
+  "temporaryModelRequests": 3,
+  "portableChecks": 7,
+  "originalUnpackedFilesVerified": 188,
+  "originalBootstrapPlugins": [
+    {
+      "variant": "installer",
+      "plugins": 6,
+      "sha256": "1e4800fe0b95f644d461cf8c4f1b56544fb80bddc5a58240cd4457e590aa64b0"
+    },
+    {
+      "variant": "uninstaller",
+      "plugins": 5,
+      "sha256": "a84cd782c3e34ee7aefc7699e55496a8aebcf0531fdb01c1ad2b00cd07470fac"
+    },
+    {
+      "variant": "portable",
+      "plugins": 2,
+      "sha256": "101ee1ba3c8f7b20fea09b038209de59ff067dde3f56e41a7c75d762d49d4014"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "d2cc7053e3d6c2ef1245b631bf83246a4568718bfa8e893a7637efc01e16ad5f",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "f73393045f8a05ff78e2b457d0ddeb369a30f6f475d48470956d56c63219eb64",
+      "bytes": 45156
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "fb3e01297ade7f94c28207131d78d6991cf5ac954e613cb4b51acb8dd3f491a3",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "00ffdc6867424f6928420ba08711f8a6560a3be0c45c57083912e945ba6805d5",
+      "bytes": 11248
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "87d43a102b04d889d336642577993105e06bbf37c4b783f413f2d27e940194a7",
+      "bytes": 1953
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "d4bed41f440c824a634bcd8236382296db0715c4eb3f6226d8af98d26b500d0a",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "91a07db16babaf3721d75bcf9a4c197dea002b32bb9cb348a8285b66d196caa3",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "e7df8cff1ca0eff1569ac65ee2e1acbf7c7185e7a89cd7d1e1eb55006090515c",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "232b1273ce8e91c9882ef860e82e16c1d1aaa2afa35ba80b5cb3b6a5c60d4710",
+      "bytes": 766
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/112-temporary-chat-light.png",
+      "width": 1280,
+      "height": 840,
+      "sha256": "6db2afdbf0f49efbe25b8c07535c2762436f6f8fc63565dc9f95dcd7e0692d6b",
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "verification/screenshots/113-temporary-chat-dark-zoom-100.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "250875e9fd51176aee686e7e2cbe2eb82e4dfbb2ccd38b42db37ae1f087c92fe",
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "verification/screenshots/113-temporary-chat-dark-zoom-125.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "d8c41e183a275d87249c5eba493aedfb21737556a8c3dcfcd0104cce77ac6098",
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    },
+    {
+      "path": "verification/screenshots/113-temporary-chat-dark-zoom-150.png",
+      "width": 760,
+      "height": 540,
+      "sha256": "63944e87d42b51c624a6c674dfb80ae2eb0cf0a4d669afa7994f7b6c5f73fa0b",
+      "individuallyReviewed": true,
+      "variant": "packaged executable",
+      "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+      "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
+    }
+  ],
+  "scope": "Current rebuilt unsigned Windows application, matching full 185-check unpacked and actual installed desktop with six temporary-chat and six branch recovery checks, four settings checks, original bootstrap plugins, two real portable launches with long-path cleanup, current-user Unicode-path install/shortcut metadata/uninstall retaining fresh profile sentinels. All nine original runtime records independently satisfy the current release policy against the same application hashes. Four current installed-body temporary-chat captures were individually reviewed. Hosted verification, remaining full-delivery capabilities and physical wizard/picker acceptance remain separate."
+}

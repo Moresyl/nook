@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-03T08:18:57.088Z",
+  "verifiedAt": "2026-10-03T10:00:04.745Z",
   "variant": "packaged executable",
-  "checks": 179,
+  "checks": 185,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -142,8 +142,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84173882,
-    "compressedBytes": 240194,
+    "expandedBytes": 84173888,
+    "compressedBytes": 240162,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -892,7 +892,11 @@
     "108-branch-navigation-dark-zoom-150.png",
     "109-branch-header-dark-zoom-150.png",
     "110-branch-header-with-parent-light-zoom-150.png",
-    "111-branch-navigation-ambiguous-dark.png"
+    "111-branch-navigation-ambiguous-dark.png",
+    "112-temporary-chat-light.png",
+    "113-temporary-chat-dark-zoom-100.png",
+    "113-temporary-chat-dark-zoom-125.png",
+    "113-temporary-chat-dark-zoom-150.png"
   ],
   "branchNavigation": {
     "checks": 6,
@@ -1340,7 +1344,58 @@
     ],
     "scope": "Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
   },
+  "temporaryConversations": {
+    "checks": 6,
+    "temporaryModelRequests": 3,
+    "persistenceExcludedVerified": true,
+    "backupsExcludedVerified": true,
+    "restartClearedVerified": true,
+    "storageModeImmutableVerified": true,
+    "regularDraftsRetainedVerified": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "hintTop": 453,
+        "hintBottom": 486,
+        "inputTop": 345,
+        "inputBottom": 405,
+        "sendBottom": 437,
+        "height": 540,
+        "overflow": false,
+        "focus": "消息"
+      },
+      {
+        "zoom": 1.25,
+        "hintTop": 363,
+        "hintBottom": 396,
+        "inputTop": 265.3999938964844,
+        "inputBottom": 313.3999938964844,
+        "sendBottom": 348.20001220703125,
+        "height": 432,
+        "overflow": false,
+        "focus": "消息"
+      },
+      {
+        "zoom": 1.5,
+        "hintTop": 274.5,
+        "hintBottom": 324,
+        "inputTop": 176.5,
+        "inputBottom": 224.5,
+        "sendBottom": 259.5,
+        "height": 360,
+        "overflow": false,
+        "focus": "消息"
+      }
+    ],
+    "screenshots": [
+      "112-temporary-chat-light.png",
+      "113-temporary-chat-dark-zoom-100.png",
+      "113-temporary-chat-dark-zoom-125.png",
+      "113-temporary-chat-dark-zoom-150.png"
+    ],
+    "scope": "Actual temporary creation, isolated draft/attachment switching, local HTTP sends/retry/stop, native branches/editing drafts, original JSON/gzip backup export, explicit Markdown export, immutable existing storage modes, minimum-window zoom and normal restart. Native file dialog responses are isolated fixtures; model providers and explicit exports/tool/plugin actions retain their own results."
+  },
   "normalCloseVerified": true,
-  "executableSha256": "2cb79202ebcec2f611589f5cf59f2bc1319491d5a43c6d99a3835a073ef35230",
-  "archiveSha256": "902ff578e2e652d4d8c7cf7e5c21b813381620e1f2423e95395801349b08d433"
+  "executableSha256": "5cee3a9c113cee4ecea3d2b0c6516eae07283a4340e04f1d6094a7e551cfd567",
+  "archiveSha256": "56a30dfdb16c5f6680927c545b45bb78f19f714496521ad4462793307014ffc4"
 }
