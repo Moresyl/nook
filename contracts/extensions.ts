@@ -47,7 +47,8 @@ export type McpResourceTemplate = { uriTemplate: string; name: string; descripti
 export type McpPrompt = { name: string; description: string; arguments: { name: string; description: string; required: boolean }[] };
 export type McpCatalog = { resources: McpResource[]; templates: McpResourceTemplate[]; prompts: McpPrompt[] };
 export type McpContent = { title: string; text: string; binaryItems: { uri: string; mimeType?: string; bytes: number }[] };
-export type McpView = { id: string; status: 'disconnected' | 'connecting' | 'connected' | 'error' | 'auth-required' | 'authorizing'; error?: string; tools: McpTool[] };
+export type McpView = { id: string; status: 'disconnected' | 'connecting' | 'connected' | 'error' | 'auth-required' | 'authorizing'; error?: string; tools: McpTool[]; resourceSubscriptionsSupported?: boolean; subscribedResources?: string[] };
+export type McpResourceUpdate = { id: string; uri: string };
 export type SkillDocument = { instructions: string; files: string[]; directory: string };
 export const skillBundleSchema = z.object({
   id: z.uuid(), files: z.array(z.object({ path: z.string().min(1).max(4096), base64: z.string().max(2_666_672) })).max(1000),

@@ -50,7 +50,22 @@ export async function verifyTemporaryConversations({ page, application, getAppli
   verified('switching temporary, regular and new chats preserves three independent drafts and their attachments without sending or persisting temporary content');
 
   await input().fill(prompt); await page.getByRole('button', { name: '发送消息', exact: true }).click();
-  await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id)?.messages.at(-1)?.status === 'complete', id);
+  try {
+    await waitForBridge(page, async (id) => {
+      const state = await window.qiyao.load(); const thread = state.threads.find((thread) => thread.id === id); const last = thread?.messages.at(-1);
+      window.__qiyaoTemporaryFirstPoll = { polledAt: Date.now(), expectedThreadId: id, activeThreadId: state.activeThreadId, temporary: thread?.temporary, messages: thread?.messages.length, last: last && { id: last.id, status: last.status, characters: last.content.length, tail: last.content.slice(-128) } };
+      return last?.status === 'complete';
+    }, id);
+  } catch (error) {
+    const diagnostic = await page.evaluate(async () => {
+      const state = await window.qiyao.load();
+      return { capturedAt: Date.now(), lastPoll: window.__qiyaoTemporaryFirstPoll, activeThreadId: state.activeThreadId,
+        threads: state.threads.filter((thread) => thread.temporary).slice(-12).map((thread) => { const last = thread.messages.at(-1); return { id: thread.id, temporary: thread.temporary, messages: thread.messages.length, last: last && { id: last.id, status: last.status, characters: last.content.length, tail: last.content.slice(-128) } }; }),
+        visible: { provider: document.querySelector('[aria-label="模型提供商"]')?.value, model: document.querySelector('[aria-label="选择模型"]')?.value, temporaryDisclosure: Boolean(document.querySelector('[aria-label="临时聊天说明"]')), lastReply: Array.from(document.querySelectorAll('article.message-assistant')).at(-1)?.textContent.slice(-256), sendButton: document.querySelector('[aria-label="发送消息"]')?.disabled } };
+    }).catch(() => null);
+    console.error('Temporary-send diagnostics', JSON.stringify({ expectedThreadId: id, requestsBefore: beforeCalls, requestsNow: calls.length, recentRequests: calls.slice(beforeCalls).slice(-8).map((request) => ({ model: request.model, messages: request.messages?.length })), diagnostic }));
+    throw error;
+  } finally { await page.evaluate(() => { delete window.__qiyaoTemporaryFirstPoll; }).catch(() => {}); }
   assert.equal(calls.length, beforeCalls + 1); assert.ok(JSON.stringify(calls.at(-1)).includes(prompt)); assert.ok(JSON.stringify(calls.at(-1)).includes(attachmentSecret));
   await page.getByRole('button', { name: '重新生成', exact: true }).click();
   await waitForBridge(page, async (id) => { const state = await window.qiyao.load(); return state.threads.some((thread) => thread.temporary && thread.forkedFrom?.threadId === id && thread.forkedFrom.kind === 'reply') && state.threads.find((thread) => thread.id === id)?.messages.at(-1)?.status === 'complete'; }, id);

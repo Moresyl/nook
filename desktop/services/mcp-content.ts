@@ -67,9 +67,11 @@ export class McpContentAccess {
     return input;
   }
 
+  validateResource(uri: string): void { this.resourceUri({ uri }); this.check(); this.signal.throwIfAborted(); }
+
   async resource(uri: string, rawSignal = this.signal): Promise<McpContent> {
     const signal = AbortSignal.any([this.signal, rawSignal]);
-    this.resourceUri({ uri }); this.check(); signal.throwIfAborted();
+    this.validateResource(uri); signal.throwIfAborted();
     const reply = await this.client.readResource({ uri }, { signal, timeout: this.timeout, maxTotalTimeout: this.timeout }).catch(async (error) => { await this.onError(error); throw error; });
     this.check(); signal.throwIfAborted();
     let output = ''; const binaryItems: McpContent['binaryItems'] = [];

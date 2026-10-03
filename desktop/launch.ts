@@ -142,6 +142,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   mcpCatalog: (raw) => mcp.catalog(idSchema.parse(raw)),
   mcpRefreshCatalog: (raw) => mcp.refreshCatalog(idSchema.parse(raw)),
   mcpReadResource: (raw, uri) => mcp.readResource(idSchema.parse(raw), z.string().min(1).max(4096).parse(uri)),
+  mcpSetResourceSubscription: (raw, uri, subscribed) => mcp.setResourceSubscription(idSchema.parse(raw), z.string().min(1).max(4096).parse(uri), z.boolean().parse(subscribed)),
   mcpGetPrompt: (raw, name, args) => mcp.getPrompt(idSchema.parse(raw), z.string().min(1).max(256).parse(name), z.record(z.string().max(256), z.string().max(16_000)).parse(args)),
   importSkill: async () => {
     const choice = await dialog.showOpenDialog(window!, { title: '导入技能文件夹', properties: ['openDirectory'] });
@@ -474,7 +475,8 @@ else {
     oauthStore = new McpOAuthStore(vault);
     const oauthSessions = new McpOAuthSessions(oauthStore, (url) => shell.openExternal(url), (id) => vault.snapshot().mcpServers.find((server) => server.id === id));
     mcp = new McpConnections((id) => vault.snapshot().mcpServers.find((server) => server.id === id), (id) => extensions.credentials(id),
-      (view) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp', view); }, undefined, (config, credentials, signal, interactive, onRedirect) => oauthSessions.create(config, credentials, signal, interactive, onRedirect));
+      (view) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp', view); }, undefined, (config, credentials, signal, interactive, onRedirect) => oauthSessions.create(config, credentials, signal, interactive, onRedirect),
+      (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp-resource', event); });
     knowledge = new KnowledgeService(vault, gateway);
     engine = new ConversationEngine(vault, gateway, (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:run', event); }, undefined, undefined,
       new ConversationExtensions(mcp, skills, () => vault.snapshot(), plugins), knowledge);

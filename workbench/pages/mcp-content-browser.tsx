@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { UriTemplate } from '@modelcontextprotocol/sdk/shared/uriTemplate.js';
-import type { McpCatalog, McpContent, McpServer } from '../../contracts/extensions';
+import type { McpCatalog, McpContent, McpServer, McpView } from '../../contracts/extensions';
 import { Button, Field, Input, Select } from '../components/controls';
+import { observeMcpResource } from '../lib/mcp-resource-updates';
 
 export function McpContentBrowser({ server, onUse, report }: { server: McpServer; onUse: (text: string) => void; report: (error: unknown) => void }) {
   const [catalog, setCatalog] = useState<McpCatalog>({ resources: [], templates: [], prompts: [] });
@@ -13,13 +14,35 @@ export function McpContentBrowser({ server, onUse, report }: { server: McpServer
   const [promptName, setPromptName] = useState('');
   const [argumentsMap, setArguments] = useState<Record<string, string>>({});
   const [content, setContent] = useState<McpContent | null>(null);
+  const [view, setView] = useState<McpView | undefined>();
+  const [updating, setUpdating] = useState(false);
+  const watching = view?.subscribedResources?.includes(uri) === true;
   useEffect(() => {
-    let live = true;
-    const refresh = () => { void window.qiyao.mcpCatalog(server.id).then((next) => { if (live) { setCatalog(next); setContent(null); } }).catch(report); };
+    let live = true; let requests = 0; let events = 0; let revision = '';
+    const refresh = () => {
+      const request = ++requests;
+      void window.qiyao.mcpCatalog(server.id).then((next) => {
+        if (!live || request !== requests) return;
+        const nextRevision = JSON.stringify(next);
+        setCatalog(next); if (nextRevision !== revision) setContent(null); revision = nextRevision;
+      }).catch((error) => { if (live && request === requests) report(error); });
+    };
+    setView(undefined); setContent(null);
+    void window.qiyao.mcpViews().then((views) => { if (live && events === 0) setView(views.find((item) => item.id === server.id)); }).catch((error) => { if (live) report(error); });
     refresh();
-    const unsubscribe = window.qiyao.onMcp((view) => { if (view.id === server.id) { if (view.status === 'connected') refresh(); else { setCatalog({ resources: [], templates: [], prompts: [] }); setContent(null); } } });
+    const unsubscribe = window.qiyao.onMcp((next) => {
+      if (next.id !== server.id || !live) return;
+      events++; setView(next);
+      if (next.status === 'connected') refresh();
+      else { requests++; revision = ''; setCatalog({ resources: [], templates: [], prompts: [] }); setContent(null); }
+    });
     return () => { live = false; unsubscribe(); };
   }, [server.id, report]);
+  const catalogRevision = JSON.stringify(catalog);
+  useEffect(() => {
+    if (!watching || !uri || tab !== 'resources') return;
+    return observeMcpResource(window.qiyao, server.id, uri, { content: setContent, busy: setUpdating, error: report });
+  }, [server.id, uri, watching, tab, catalogRevision, report]);
   async function act<T>(operation: () => Promise<T>, success: (result: T) => void) {
     if (busy) return;
     setBusy(true); try { success(await operation()); } catch (error) { report(error); } finally { setBusy(false); }
@@ -37,7 +60,10 @@ export function McpContentBrowser({ server, onUse, report }: { server: McpServer
       {catalog.templates.length > 0 && <Field label="资源模板"><Select disabled={busy} value={template} onChange={(event) => chooseTemplate(event.target.value)}><option value="">选择模板…</option>{catalog.templates.map((item) => <option key={item.uriTemplate} value={item.uriTemplate}>{item.name}</option>)}</Select></Field>}
       {Object.keys(variables).map((name) => template && <Field key={name} label={`资源参数 ${name}`}><Input disabled={busy} value={variables[name]} onChange={(event) => { const next = { ...variables, [name]: event.target.value }; setVariables(next); setUri(new UriTemplate(template).expand(next)); setContent(null); }} /></Field>)}
       <Field label="资源 URI"><Input disabled={busy} value={uri} onChange={(event) => { setUri(event.target.value); setContent(null); }} /></Field>
-      <Button disabled={busy || !uri} onClick={() => { void act(() => window.qiyao.mcpReadResource(server.id, uri), setContent); }}>{busy ? '读取中…' : '读取资源'}</Button>
+      <Button disabled={busy || updating || !uri} onClick={() => { void act(() => window.qiyao.mcpReadResource(server.id, uri), setContent); }}>{busy || updating ? '读取中…' : '读取资源'}</Button>
+      <Button disabled={busy || !uri || (!watching && !view?.resourceSubscriptionsSupported)} onClick={() => { void act(() => window.qiyao.mcpSetResourceSubscription(server.id, uri, !watching), setView); }}>{watching ? '停止订阅所选资源' : '订阅所选资源'}</Button>
+      <p className="field-hint">订阅后，所选资源有更新时自动刷新预览。用于对话仍须手动点击；断开连接后停止订阅。{view?.resourceSubscriptionsSupported === false && '此服务器不支持资源订阅。'}</p>
+      {!!view?.subscribedResources?.length && <section aria-label="已订阅 MCP 资源">{view.subscribedResources.map((item) => <div className="extension-actions" key={item}><span>{item}</span><Button aria-label={`停止订阅 ${item}`} disabled={busy} onClick={() => { void act(() => window.qiyao.mcpSetResourceSubscription(server.id, item, false), setView); }}>停止订阅</Button></div>)}</section>}
       {!catalog.resources.length && !catalog.templates.length && <p className="field-hint">服务器未提供资源。请确认连接状态。</p>}
     </> : <>
       <Field label="服务器提示词"><Select disabled={busy} value={promptName} onChange={(event) => { setPromptName(event.target.value); setArguments({}); setContent(null); }}><option value="">选择提示词…</option>{catalog.prompts.map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}</Select></Field>

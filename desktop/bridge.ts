@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import type { Bridge, RunEvent } from '../contracts/bridge-contract';
 import type { TerminalEvent } from '../contracts/projects';
-import type { McpView } from '../contracts/extensions';
+import type { McpResourceUpdate, McpView } from '../contracts/extensions';
 import type { PluginView } from '../contracts/plugins';
 
 const invoke = (command: string, ...args: unknown[]) => ipcRenderer.invoke('qiyao:invoke', command, ...args);
@@ -31,11 +31,17 @@ const bridge: Bridge = {
   mcpCatalog: (id) => invoke('mcpCatalog', id),
   mcpRefreshCatalog: (id) => invoke('mcpRefreshCatalog', id),
   mcpReadResource: (id, uri) => invoke('mcpReadResource', id, uri),
+  mcpSetResourceSubscription: (id, uri, subscribed) => invoke('mcpSetResourceSubscription', id, uri, subscribed),
   mcpGetPrompt: (id, name, argumentsMap) => invoke('mcpGetPrompt', id, name, argumentsMap),
   onMcp: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, payload: McpView) => callback(payload);
     ipcRenderer.on('qiyao:mcp', listener);
     return () => { ipcRenderer.removeListener('qiyao:mcp', listener); };
+  },
+  onMcpResource: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, payload: McpResourceUpdate) => callback(payload);
+    ipcRenderer.on('qiyao:mcp-resource', listener);
+    return () => { ipcRenderer.removeListener('qiyao:mcp-resource', listener); };
   },
   importSkill: () => invoke('importSkill'),
   saveSkill: (skill) => invoke('saveSkill', skill),

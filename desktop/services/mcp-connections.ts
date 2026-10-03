@@ -9,17 +9,18 @@ import { CallToolResultSchema, PromptListChangedNotificationSchema, ResourceList
 import { AjvJsonSchemaValidator } from '@modelcontextprotocol/sdk/validation/ajv-provider.js';
 import type { JsonSchemaValidator } from '@modelcontextprotocol/sdk/validation/types.js';
 import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js';
-import { mcpCredentialsSchema, type McpCatalog, type McpContent, type McpCredentials, type McpServer, type McpTool, type McpView } from '../../contracts/extensions';
+import { mcpCredentialsSchema, type McpCatalog, type McpContent, type McpCredentials, type McpResourceUpdate, type McpServer, type McpTool, type McpView } from '../../contracts/extensions';
 import type { ToolCall, ToolDefinition, ToolExecutionContext, ToolResult } from '../../contracts/tools';
 import { boundedToolOutput } from './project-tools';
 import { emptyMcpCatalog, mcpContentCatalog, McpContentAccess } from './mcp-content';
+import { McpResourceSubscriptions } from './mcp-resource-subscriptions';
 import { mcpDestination, mcpToolName } from './mcp-identity';
 import { OAuthInteractionRequired, oauthWebUrl, type McpOAuthFactory, type McpOAuthSession } from './mcp-oauth';
 
 export { mcpDestination, mcpToolName } from './mcp-identity';
 
 type ToolBinding = { tool: McpTool; validate: JsonSchemaValidator<Record<string, unknown>> };
-type Session = { id: string; config: McpServer; client: Client; transport?: Transport; controller: AbortController; status: McpView['status']; error?: string; bindings: Map<string, ToolBinding>; catalog: McpCatalog; oauth?: McpOAuthSession; connecting?: Promise<void> };
+type Session = { id: string; config: McpServer; client: Client; transport?: Transport; controller: AbortController; status: McpView['status']; error?: string; bindings: Map<string, ToolBinding>; catalog: McpCatalog; oauth?: McpOAuthSession; connecting?: Promise<void>; subscriptions?: McpResourceSubscriptions };
 export type McpSelection = { definitions: ToolDefinition[]; execute(call: ToolCall, signal: AbortSignal, context: ToolExecutionContext): Promise<ToolResult> };
 export type McpTransportFactory = (config: McpServer, credentials: McpCredentials, signal: AbortSignal, authProvider?: OAuthClientProvider) => Transport;
 
@@ -74,12 +75,15 @@ export class McpConnections {
   private closing = false;
   constructor(private readonly config: (id: string) => McpServer | undefined,
     private readonly credentials: (id: string) => McpCredentials,
-    private readonly emit: (view: McpView) => void = () => {}, private readonly factory: McpTransportFactory = transportFor, private readonly oauthFactory?: McpOAuthFactory) {}
+    private readonly emit: (view: McpView) => void = () => {}, private readonly factory: McpTransportFactory = transportFor, private readonly oauthFactory?: McpOAuthFactory,
+    private readonly resourceUpdated: (event: McpResourceUpdate) => void = () => {}) {}
 
   view(id: string): McpView {
     const session = this.sessions.get(id);
     return { id, status: session?.status ?? 'disconnected', error: session?.error,
-      tools: session?.status === 'connected' ? [...session.bindings.values()].map(({ tool }) => structuredClone(tool)) : [] };
+      tools: session?.status === 'connected' ? [...session.bindings.values()].map(({ tool }) => structuredClone(tool)) : [],
+      resourceSubscriptionsSupported: session?.status === 'connected' && session.subscriptions?.supported === true,
+      subscribedResources: session?.status === 'connected' ? session.subscriptions?.uris() ?? [] : [] };
   }
 
   private notify(id: string): void { try { this.emit(this.view(id)); } catch {} }
@@ -128,7 +132,11 @@ export class McpConnections {
         await bounded(() => this.refresh(session));
         session.controller.signal.throwIfAborted();
         if (this.sessions.get(id) !== session) throw new Error('This connection was replaced.');
-        session.status = 'connected'; this.notify(id);
+        session.status = 'connected';
+        session.subscriptions = new McpResourceSubscriptions(client, controller.signal, config.timeout,
+          (uri) => { const access = this.contentAccess(id); if (uri !== undefined) access.validateResource(uri); },
+          () => this.notify(id), (uri) => this.resourceUpdated({ id, uri }), (error) => this.authenticationFailed(session, error));
+        this.notify(id);
         client.setNotificationHandler(ToolListChangedNotificationSchema, async () => {
           if (this.sessions.get(id) !== session || session.status !== 'connected') return;
           try { await this.refresh(session); this.notify(id); }
@@ -194,7 +202,7 @@ export class McpConnections {
     try {
       const catalog = await mcpContentCatalog(session.client, session.controller.signal, session.config.timeout);
       if (this.sessions.get(id) !== session || session.controller.signal.aborted || JSON.stringify(this.config(id)) !== JSON.stringify(session.config)) throw new Error('This MCP connection changed.');
-      session.catalog = catalog; this.notify(id); return structuredClone(catalog);
+      session.catalog = catalog; session.subscriptions?.refresh(); this.notify(id); return structuredClone(catalog);
     } catch (error) { await this.authenticationFailed(session, error); throw new Error('The MCP content catalog could not be refreshed. Check the connection and retry.'); }
   }
 
@@ -249,6 +257,13 @@ export class McpConnections {
   }
 
   catalog(id: string): McpCatalog { return structuredClone(this.contentAccess(id).catalog); }
+
+  async setResourceSubscription(id: string, uri: string, subscribed: boolean): Promise<McpView> {
+    const session = this.sessions.get(id);
+    if (!session || session.status !== 'connected' || !session.subscriptions) throw new Error('Connect this MCP server before subscribing to resources.');
+    await session.subscriptions.set(uri, subscribed);
+    return this.view(id);
+  }
 
   async readResource(id: string, uri: string): Promise<McpContent> {
     try { return await this.contentAccess(id).resource(uri); }
