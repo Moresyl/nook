@@ -1,0 +1,133 @@
+{
+  "verifiedAt": "2026-10-03T20:43:51.949Z",
+  "runId": 37151024409,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37151024409",
+  "sourceCommit": "60380aebfcf0ef6fa71df69ac6ce7c1c7adee332",
+  "conclusion": "failure",
+  "runnerStartedAt": "2026-10-03T20:17:47Z",
+  "artifact": {
+    "id": 11283739928,
+    "name": "windows-verification-37151024409-1",
+    "bytes": 6089578,
+    "digest": "sha256:6f6d3d175a82fc84aae54129681031d7cd5a73252df0ef431adffd137fca34d6",
+    "directory": "E:\\QiyaoPipelineAudits\\mcp-binary-module-4e4af59f4214467fbb49e34ec5688b91"
+  },
+  "hostedTestsPassed": 630,
+  "hostedTestFiles": 62,
+  "typecheckPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "packagedDesktopChecksPassedBeforeFailure": 164,
+  "failure": {
+    "source": "scripts/verify-project-tree.mjs:82:10",
+    "originalPowerShellPromptWaitPassed": true,
+    "expected": "new diagnostic observes a positive real PTY PID",
+    "moduleIdentityCapturedRemotely": false,
+    "localEquivalentFailureDiagnosis": "verification/project-terminal-package-module-review-result.json",
+    "correctedBindingHostedVerified": false
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 760,
+    "height": 540,
+    "sha256": "55acd263e2d3f34c2d391fe548ee665f337fa3d7b3cc35433432316f88849066",
+    "individuallyReviewed": true,
+    "observation": "The dark minimum-window project retains its tree and exact dirty editor text. The PowerShell tab visibly contains its PS prompt and project path after failure."
+  },
+  "bodyHashes": {
+    "executableSha256": "e8e206169f42d148b795d80219dd403b27c53073103b1abc57a0fe428bda5b78",
+    "archiveSha256": "4a2f3f78d02ab9ba10ec8a47805537b0cf6c5a9637d4997cac8317b9bccb4123"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "present": true,
+      "sha256": "8d4a3d4e4b41cc1860a2126491a8dfbfc94faafca248b27a9e08afb2c34db10d",
+      "verifiedAt": "2026-10-03T20:30:05.839Z"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "source": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "4a2b7916ed467fce18ef26d768914560ad5e3ca072b41a67fc835bd5fabc7aa1"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "709a78981472a976d39cb536c491e6016e6d1617a5cc9f6614e104947c5a4031"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292"
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-mcp-binary-full.log",
+      "bytes": 267854,
+      "sha256": "cffa1e66b48d3ea28cb5cdbbca44055fa35cac248949c1d376a73f5ad0a8c7cf"
+    },
+    {
+      "name": "github-mcp-binary-failed.log",
+      "bytes": 77999,
+      "sha256": "e9ac799584f2e051d61a0efc7c8b22bc6a1fba7617cabe7b5dbb1fb661333c9d"
+    }
+  ],
+  "freshTenRecordResetVerified": true,
+  "completeRuntimeProofRejected": true,
+  "rejection": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "exactCommitPolicySha256": "95539e46be4b05a2244b57393fa71d8d31ebe16e444b0290effffb9c49d02292",
+  "comparisonChecksReached": false,
+  "subscriptionChecksReached": false,
+  "binaryChecksReached": false,
+  "settingsVerified": false,
+  "portableVerified": false,
+  "installedVerified": false,
+  "hostedRuntimeVerified": false,
+  "publicationVerified": false,
+  "scope": "The exact 60380ae source passes 630 hosted unit tests, typecheck, package audit and 164 desktop checks. Its original ten-second PowerShell prompt wait succeeds; the subsequent newly added PID diagnostic assertion fails. The individually reviewed screenshot visibly includes the prompt and retained dirty draft. The local equivalent failure establishes distinct debugger/application node-pty module instances and has a corrective same-body packaged recheck, but this hosted run does not capture module identities or validate the corrected binding. Later comparison/subscription/binary, settings, portable, installed and publication gates are skipped. Only the fresh audit exists among ten required records; the collector and exact-commit frozen policy reject incomplete proof. This is separate from prior original prompt failures, whose causes remain unestablished."
+}

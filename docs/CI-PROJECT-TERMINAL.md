@@ -15,3 +15,5 @@
 新应用包的第一轮完整回归通过 164 项及原有 PowerShell 提示符等待，随后被新增的诊断 PID 断言拦住。实际模块路径核对确认：调试器直接 `require` 解析到本地依赖，应用则使用 ASAR 内的另一份 `node-pty`，原观察器因此没有收到应用终端事件。`97c7722` 用应用 `package.json` 建立 `createRequire`，将观察器绑定到应用实际使用的模块。
 
 在 EXE／ASAR 哈希均不变的同一应用包上，七项定向检查通过，记录了两个不同模块路径、真实 PID／输出时序和正常退出。原有 10 秒／100 毫秒及 `PS ` 条件保持不变。第一轮完整失败继续保留，完整 206 项打包验收和远端提示符问题仍需分别验证，见 [打包模块诊断证据](../verification/project-terminal-package-module-review-result.json)。
+
+[37151024409](https://github.com/Moresyl/qiyao/actions/runs/37151024409) 使用修正前的 `60380ae`，通过 630 项／62 个文件单元测试、类型检查、构建及包审计，以及 164 项桌面检查。原 PowerShell 提示符条件已通过，随后新增的 PID 诊断断言失败；已检查的截图也显示提示符与保留的编辑草稿。这轮未记录远端模块身份，不能直接代替修正后的远端复验，也不能确定此前提示符超时的原始原因。后续流程跳过，十份必要记录仍仅有新包审计，采集器与冻结策略拒绝不完整结果，见 [本轮远端证据](../verification/hosted-mcp-binary-diagnostic-failure-result.json)。
