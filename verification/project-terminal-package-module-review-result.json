@@ -1,0 +1,157 @@
+{
+  "verifiedAt": "2026-10-03T20:28:42.291Z",
+  "codeCommit": "97c77222613c8f28835b80ac124c3f3e5380cfc0",
+  "source": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "7ab755f6dffb4726f5022e8c36d52ba0309a983a7a89ccfa2962d67dcac7328e"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "709a78981472a976d39cb536c491e6016e6d1617a5cc9f6614e104947c5a4031"
+    }
+  ],
+  "applicationHashes": {
+    "executableSha256": "55402e6ce4b4472d8c8863180efa5f3885335b020316e38370f0a4400f067d91",
+    "archiveSha256": "6114157492a706bb67ac754c48df62827e1ab3c9f54beb0b2387e8f19b0b4013"
+  },
+  "initialFailure": {
+    "passedChecks": 164,
+    "source": "scripts/verify-project-tree.mjs:82:10",
+    "originalPowerShellPromptWaitPassed": true,
+    "failedAssertion": "new diagnostic requires a real positive terminal PID",
+    "completePackagedAcceptance": false
+  },
+  "bindingDiagnosisEstablished": true,
+  "moduleSources": {
+    "defaultTerminalPath": "D:\\GR\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+    "applicationTerminalPath": "D:\\GR\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+    "sameModule": false
+  },
+  "originalDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "originalPowerShellPromptPredicateRetained": true,
+  "packagedFocusedRecheck": {
+    "checks": 7,
+    "modelRequests": 0,
+    "normalCloseVerified": true,
+    "runtimeErrors": [],
+    "rawRecordSha256": "d10b3f7a25d73ec34dc5a0dbe35bc88a2a033bc9f8da20746d964f42cdeb9a37",
+    "timing": {
+      "registeredAt": 1791058948459,
+      "pid": 82232,
+      "processName": "xterm-256color",
+      "cols": 80,
+      "rows": 12,
+      "chunks": 5,
+      "characters": 290,
+      "firstDataAt": 1791058948466,
+      "lastDataAt": 1791058948621
+    },
+    "processSnapshot": {
+      "capturedAt": 1791058948691,
+      "moduleSources": {
+        "defaultTerminalPath": "D:\\GR\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+        "applicationTerminalPath": "D:\\GR\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+        "sameModule": false
+      },
+      "terminals": [
+        {
+          "registeredAt": 1791058948459,
+          "pid": 82232,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 5,
+          "characters": 290,
+          "firstDataAt": 1791058948466,
+          "lastDataAt": 1791058948621
+        }
+      ],
+      "mainMemory": {
+        "rss": 211087360,
+        "heapTotal": 34066432,
+        "heapUsed": 20020296,
+        "external": 4306581,
+        "arrayBuffers": 0
+      },
+      "systemMemory": {
+        "free": 11006124032,
+        "total": 34088599552
+      },
+      "applicationProcesses": [
+        {
+          "pid": 94588,
+          "type": "Browser",
+          "cpu": {
+            "cumulativeCPUUsage": 1.179975,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 206168,
+            "peakWorkingSetSize": 206168,
+            "privateBytes": 173596
+          }
+        },
+        {
+          "pid": 84084,
+          "type": "GPU",
+          "cpu": {
+            "cumulativeCPUUsage": 1.28366,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 125572,
+            "peakWorkingSetSize": 128872,
+            "privateBytes": 168984
+          }
+        },
+        {
+          "pid": 93508,
+          "type": "Utility",
+          "cpu": {
+            "cumulativeCPUUsage": 0.053508,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 54380,
+            "peakWorkingSetSize": 54380,
+            "privateBytes": 12700
+          }
+        },
+        {
+          "pid": 104120,
+          "type": "Tab",
+          "cpu": {
+            "cumulativeCPUUsage": 3.911398,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 435944,
+            "peakWorkingSetSize": 486128,
+            "privateBytes": 378112
+          }
+        }
+      ]
+    }
+  },
+  "logs": [
+    {
+      "name": "mcp-binary-packaged-desktop.log",
+      "bytes": 28959,
+      "sha256": "b72bf3e2df5f69613e99e47b79fb74788d02f705795eef8b150eda26b27772ed"
+    },
+    {
+      "name": "project-terminal-observer-packaged-recheck.log",
+      "bytes": 3227,
+      "sha256": "5866acf9265efa9875d5e1b68f210bf6f9f7789b057314e6cf0c88e8ddebadd9"
+    }
+  ],
+  "fullPackagedVerified": false,
+  "hostedVerified": false,
+  "scope": "The initial complete packaged run passes 164 checks and its original PowerShell prompt wait, then the newly added diagnostic PID assertion fails because the debugger resolves the local node-pty module rather than the application ASAR module. The focused recheck demonstrates distinct resolved module paths and module identities, and binds the observer using createRequire from the actual application package. Seven real packaged project-tree checks pass on the unchanged EXE and ASAR, preserving the original ten-second/100-ms prompt predicate, real command execution, Unicode dirty drafts, keyboard/zoom assertions and normal close. The failed full run remains failed; neither a complete packaged result nor the earlier hosted prompt failure is claimed resolved. The focused raw record is archived separately and the prior complete 200-check record is restored byte-for-byte until a fresh full 206-check record is available."
+}
