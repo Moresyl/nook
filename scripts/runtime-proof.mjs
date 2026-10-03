@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 
 export const runtimeProofFiles = {
@@ -15,4 +15,9 @@ export async function readRuntimeProof(root) {
       return [key, record];
     } catch { throw new Error(`Could not read complete runtime proof (${key}). Run all distribution checks again.`); }
   })));
+}
+
+export async function resetRuntimeProof(root) {
+  const results = await Promise.allSettled(Object.values(runtimeProofFiles).map((name) => rm(join(root, 'verification', name), { force: true })));
+  if (results.some((result) => result.status === 'rejected')) throw new Error('Could not reset runtime proof. Check the generated verification files.');
 }

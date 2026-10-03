@@ -45,6 +45,7 @@ jobs:
       - name: Verify types, unit coverage and complete redistribution notices
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
+          node scripts/reset-runtime-proof.mjs
           pnpm check
           pnpm test:coverage --maxWorkers=1
           pnpm notices:release

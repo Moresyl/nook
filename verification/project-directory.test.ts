@@ -34,13 +34,25 @@ describe('revision-bound project directory pages', () => {
   });
   describe('complete directory pagination', () => {
     let root: string;
-    beforeAll(async () => {
-      root = await mkdtemp(join(tmpdir(), 'qiyao-directory-pages-'));
-      const names = Array.from({ length: 2003 }, (_, index) => `file-${String(index).padStart(4, '0')}.txt`);
-      for (let index = 0; index < names.length; index += 32) await Promise.all(names.slice(index, index + 32).map((name) => writeFile(join(root, name), '')));
-      await mkdir(join(root, 'z-directory')); await mkdir(join(root, 'a-directory'));
-    });
-    afterAll(async () => { if (root) await rm(root, { recursive: true, force: true }); });
+    let preparation: Promise<void> | undefined;
+    let stopped = false;
+    beforeAll(() => {
+      stopped = false;
+      preparation = (async () => {
+        root = await mkdtemp(join(tmpdir(), 'qiyao-directory-pages-'));
+        const names = Array.from({ length: 2003 }, (_, index) => `file-${String(index).padStart(4, '0')}.txt`);
+        for (let index = 0; index < names.length; index += 32) {
+          if (stopped) throw new Error('Directory fixture preparation stopped.');
+          const writes = await Promise.allSettled(names.slice(index, index + 32).map((name) => writeFile(join(root, name), '')));
+          const failure = writes.find((result) => result.status === 'rejected');
+          if (failure?.status === 'rejected') throw failure.reason;
+        }
+        if (stopped) throw new Error('Directory fixture preparation stopped.');
+        await mkdir(join(root, 'z-directory')); await mkdir(join(root, 'a-directory'));
+      })();
+      return preparation;
+    }, 30_000);
+    afterAll(async () => { stopped = true; await preparation?.catch(() => {}); if (root) await rm(root, { recursive: true, force: true }); });
     it('retains all entries beyond the former 2000-file cutoff and pages through every sorted entry once', async () => {
       const all = await projectEntries(root, ''); expect(all).toHaveLength(2005);
       const first = await projectDirectory(root, {});
