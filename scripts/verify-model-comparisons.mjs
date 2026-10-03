@@ -28,13 +28,27 @@ export async function verifyModelComparisons({ page, application, getApplication
   async function currentGroup() { const state = await page.evaluate(() => window.qiyao.load()); return state.threads.findLast((thread) => thread.comparison)?.comparison.groupId; }
   async function waitCompleted(groupId) { await waitForBridge(page, async (groupId) => (await window.qiyao.load()).threads.filter((thread) => thread.comparison?.groupId === groupId).every((thread) => thread.messages.at(-1)?.status !== 'running'), groupId); }
   async function waitPartial() {
-    try { await waitForBridge(page, () => Array.from(document.querySelectorAll('.comparison-result textarea')).every((input) => input.value.includes('PARTIAL'))); }
-    catch (error) {
-      const state = await page.evaluate(() => window.qiyao.load()).catch(() => null);
-      const visible = await page.evaluate(() => Array.from(document.querySelectorAll('.comparison-result')).map((item) => ({ text: item.querySelector('textarea')?.value.slice(0, 128), status: item.querySelector('.field-hint')?.textContent }))).catch(() => null);
-      console.error('Comparison-stream diagnostics', JSON.stringify({ capturedAt: Date.now(), requests: fixture.requests.slice(-16).map(({ connection, model, messages }) => ({ connection, model, messages: messages.length })), visible, threads: state?.threads.filter((thread) => thread.comparison).slice(-16).map((thread) => ({ id: thread.id, comparison: thread.comparison, messages: thread.messages.length, original: thread.messages[thread.comparison.contextLength + 1] && { id: thread.messages[thread.comparison.contextLength + 1].id, status: thread.messages[thread.comparison.contextLength + 1].status, characters: thread.messages[thread.comparison.contextLength + 1].content.length, tail: thread.messages[thread.comparison.contextLength + 1].content.slice(-128) } })) }));
-      throw error;
+    const waitStartedAt = Date.now();
+    try {
+      await waitForBridge(page, () => {
+        const inputs = Array.from(document.querySelectorAll('.comparison-result textarea'));
+        const matched = inputs.every((input) => input.value.includes('PARTIAL'));
+        window.__qiyaoComparisonPartialPoll = { polledAt: Date.now(), sequence: (window.__qiyaoComparisonPartialPoll?.sequence ?? 0) + 1, matched, count: inputs.length,
+          visible: inputs.slice(-4).map((input) => ({ characters: input.value.length, tail: input.value.slice(-128), status: input.closest('.comparison-result')?.querySelector('.field-hint')?.textContent.slice(0, 64) })) };
+        return matched;
+      });
     }
+    catch (error) {
+      const waitFailedAt = Date.now();
+      const lastPoll = await page.evaluate(() => window.__qiyaoComparisonPartialPoll).catch(() => null);
+      const backendCaptureStartedAt = Date.now();
+      const state = await page.evaluate(() => window.qiyao.load()).catch(() => null);
+      const backendCaptureCompletedAt = Date.now();
+      const visible = await page.evaluate(() => Array.from(document.querySelectorAll('.comparison-result')).map((item) => ({ text: item.querySelector('textarea')?.value.slice(0, 128), status: item.querySelector('.field-hint')?.textContent }))).catch(() => null);
+      console.error('Comparison-stream diagnostics', JSON.stringify({ capturedAt: Date.now(), waitStartedAt, waitFailedAt, unchangedDeadlineMs: 10000, lastPoll, backendCaptureStartedAt, backendCaptureCompletedAt,
+        requestTimeline: fixture.timeline.slice(-16), requests: fixture.requests.slice(-16).map(({ connection, model, messages }) => ({ connection, model, messages: messages.length })), visible, threads: state?.threads.filter((thread) => thread.comparison).slice(-16).map((thread) => ({ id: thread.id, comparison: thread.comparison, messages: thread.messages.length, original: thread.messages[thread.comparison.contextLength + 1] && { id: thread.messages[thread.comparison.contextLength + 1].id, status: thread.messages[thread.comparison.contextLength + 1].status, characters: thread.messages[thread.comparison.contextLength + 1].content.length, tail: thread.messages[thread.comparison.contextLength + 1].content.slice(-128) } })) }));
+      throw error;
+    } finally { await page.evaluate(() => { delete window.__qiyaoComparisonPartialPoll; }).catch(() => {}); }
   }
   const sourceBefore = await page.evaluate(() => window.qiyao.load()); const originalDraft = sourceBefore.composerDrafts.find((draft) => draft.threadId === sourceId);
   await open(); assert.equal(await dialog().getByLabel('本次比较问题', { exact: true }).inputValue(), question); await dialog().getByLabel('比较连接 2', { exact: true }).selectOption(providerA); await dialog().getByLabel('比较模型 2', { exact: true }).selectOption('one'); assert.equal(await dialog().getByRole('button', { name: '发送并比较', exact: true }).isEnabled(), false);
@@ -43,6 +57,8 @@ export async function verifyModelComparisons({ page, application, getApplication
 
   await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 1', { exact: true }).waitFor(); await waitForBridge(page, () => document.querySelectorAll('.comparison-result').length === 2); await waitPartial();
   assert.equal(fixture.requests.length, beforeRequests + 2); const firstGroup = await currentGroup(); groups.push(firstGroup); const firstRequests = fixture.requests.slice(-2); assert.deepEqual(firstRequests[0].messages, firstRequests[1].messages); assert.deepEqual(firstRequests.map((request) => request.connection).sort(), ['a', 'b']);
+  assert.equal(fixture.timeline.length, 2); for (const timing of fixture.timeline) { assert.ok(Number.isInteger(timing.receivedAt)); assert.ok(timing.partialSentAt >= timing.receivedAt); assert.equal(timing.messages, firstRequests[0].messages.length); assert.equal(timing.closedAt, undefined); }
+  assert.equal(await page.evaluate(() => Object.hasOwn(window, '__qiyaoComparisonPartialPoll')), false);
   const sent = JSON.stringify(firstRequests[0].messages); for (const value of ['COMPARE_PREVIOUS_USER', 'COMPARE_PREVIOUS_REPLY', question, attachment.content, 'COMPARE_PROJECT_INSTRUCTIONS']) assert.ok(sent.includes(value));
   assert.equal(await dialog().locator('img').count(), 0); assert.equal(await dialog().getByLabel('回复 1', { exact: true }).getAttribute('readonly'), ''); await capture('118-model-comparison-stream-light.png'); fixture.finish(); await waitCompleted(firstGroup);
   let state = await page.evaluate(() => window.qiyao.load()); assert.deepEqual(state.threads.find((thread) => thread.id === sourceId), source); assert.deepEqual(state.composerDrafts.find((draft) => draft.threadId === sourceId), originalDraft); assert.equal(state.activeThreadId, sourceId); await close(); assert.equal(await composer().inputValue(), question);
