@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { attachmentSchema } from './attachments';
-import type { Thread } from './workspace';
+import type { Message, Thread } from './workspace';
 
 const identifier = z.string().min(1).max(128).refine((value) => !value.includes('\0'), 'Identifiers cannot contain NUL characters');
 export const comparisonSchema = z.object({
@@ -14,6 +14,14 @@ export const comparisonSchema = z.object({
 });
 export type ComparisonRequest = z.infer<typeof comparisonSchema>;
 export type ComparisonResult = { groupId: string; threadIds: string[]; failedThreadIds: string[] };
+
+export function comparisonReply(thread: Thread): { message?: Message; providerName?: string; model?: string } {
+  if (!thread.comparison) return {};
+  const message = thread.messages[thread.comparison.contextLength + 1];
+  if (message?.role !== 'assistant') return {};
+  const invocation = message.invocations?.at(-1);
+  return { message, providerName: invocation?.providerName, model: invocation?.model };
+}
 
 export function comparisonThreads(threads: Thread[], groupId: string): Thread[] {
   const members = threads.filter((thread) => thread.comparison?.groupId === groupId);

@@ -2,7 +2,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { comparisonSchema, comparisonThreads } from '../contracts/model-comparisons';
+import { comparisonReply, comparisonSchema, comparisonThreads } from '../contracts/model-comparisons';
 import { conversationHistory } from '../contracts/conversations';
 import { threadSchema } from '../contracts/workspace';
 import { ConversationEngine } from '../desktop/services/conversation-engine';
@@ -46,6 +46,29 @@ describe('model comparison contracts', () => {
   });
 });
 describe('independent parallel model comparisons', () => {
+  it('retains the recorded comparison origin after an actual continuation changes models and the vault restarts', async () => {
+    const { engine, vault, directory } = await setup(); const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
+    const origin = comparisonReply(vault.snapshot().threads.find((thread) => thread.id === result.threadIds[0])!);
+    expect(origin).toMatchObject({ model: 'one', providerName: 'Local', message: { role: 'assistant', status: 'complete' } });
+    await engine.start({ ...request, threadId: result.threadIds[0], model: 'two' }); await engine.settle(result.threadIds[0]);
+    await vault.update((state) => { state.providers[0].name = 'Renamed connection'; });
+    const continued = vault.snapshot().threads.find((thread) => thread.id === result.threadIds[0])!; expect(continued.model).toBe('two'); expect(continued.messages.at(-1)?.invocations?.[0].model).toBe('two'); expect(comparisonReply(continued)).toEqual(origin);
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(comparisonReply(restarted.snapshot().threads.find((thread) => thread.id === continued.id)!)).toEqual(origin);
+  });
+  it('uses the original reply position and final recorded invocation without borrowing a later reply or mutating history', () => {
+    const invocation = { round: 0, providerId: 'original', providerName: 'Original connection', providerKind: 'openai' as const, model: 'initial-model', destination: 'https://example.invalid/v1', startedAt: 1, status: 'complete' as const };
+    const message = { id: 'message', role: 'assistant' as const, content: 'Original reply', attachments: [], status: 'complete' as const, createdAt: 1, invocations: [invocation, { ...invocation, round: 1, model: 'recorded-model' }] };
+    const thread = sampleThread({ model: 'later-model', providerId: 'later', comparison: { groupId: randomUUID(), index: 0, contextLength: 2 }, messages: [{ ...message, id: 'base-user', role: 'user', invocations: undefined }, { ...message, id: 'base-reply' }, { ...message, id: 'question', role: 'user', invocations: undefined }, message, { ...message, id: 'continuation', role: 'user', invocations: undefined }, { ...message, id: 'later-reply', invocations: [{ ...invocation, providerName: 'Later connection', model: 'later-model' }] }] });
+    const before = structuredClone(thread); expect(comparisonReply(thread)).toEqual({ message, providerName: 'Original connection', model: 'recorded-model' }); expect(thread).toEqual(before);
+  });
+  it('keeps missing or invalid original replies distinct from an unrecorded request and never guesses their origin', () => {
+    const message = { id: 'message', role: 'assistant' as const, content: '', attachments: [], status: 'error' as const, createdAt: 1 };
+    const comparison = { groupId: randomUUID(), index: 0, contextLength: 0 };
+    expect(comparisonReply(sampleThread({ messages: [message, message] }))).toEqual({});
+    expect(comparisonReply(sampleThread({ comparison }))).toEqual({});
+    expect(comparisonReply(sampleThread({ comparison, messages: [message, { ...message, role: 'user' }] }))).toEqual({});
+    for (const original of [message, { ...message, invocations: [] }]) expect(comparisonReply(sampleThread({ comparison, model: 'unrelated', messages: [message, original] }))).toEqual({ message: original, providerName: undefined, model: undefined });
+  });
   it('announces each durable running checkpoint so an initial parallel state snapshot cannot permanently hide partial text', async () => {
     const { engine, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
     const result = await engine.compare(input);

@@ -54,7 +54,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, branches, tempora
   if (temporary.checks !== 6 || temporary.verificationRun !== 'complete desktop suite' || temporary.suiteChecks !== desktop.checks || temporary.temporaryModelRequests !== 3 || !temporary.persistenceExcludedVerified || !temporary.backupsExcludedVerified || !temporary.restartClearedVerified || !temporary.storageModeImmutableVerified || !temporary.regularDraftsRetainedVerified) {
     throw new Error('Complete temporary-chat persistence, backup and restart verification is required');
   }
-  if (comparisons.checks !== 6 || comparisons.verificationRun !== 'complete desktop suite' || comparisons.suiteChecks !== desktop.checks || comparisons.comparisonModelRequests !== 11 || !['parallelStreamsVerified', 'independentFailureStopVerified', 'atomicSaveRetryVerified', 'backupsRestartVerified', 'temporaryExclusionVerified', 'originalDraftRetainedVerified'].every((key) => comparisons[key] === true)) {
+  if (comparisons.checks !== 6 || comparisons.verificationRun !== 'complete desktop suite' || comparisons.suiteChecks !== desktop.checks || comparisons.comparisonModelRequests !== 11 || !['parallelStreamsVerified', 'independentFailureStopVerified', 'atomicSaveRetryVerified', 'backupsRestartVerified', 'temporaryExclusionVerified', 'originalDraftRetainedVerified', 'originalModelIdentityVerified'].every((key) => comparisons[key] === true)) {
     throw new Error('Complete parallel model-comparison verification is required');
   }
   if (!portable.longPathCleanupVerified || !Number.isInteger(portable.unpackedFilesVerified) || portable.unpackedFilesVerified < 1 || !portable.launches.every((launch) => Number.isInteger(launch.longDocumentPathLength) && launch.longDocumentPathLength > 260)) {

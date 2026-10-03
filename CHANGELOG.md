@@ -24,6 +24,7 @@
 
 ### 修复与完善
 
+- 比较卡片从原始回复的请求记录读取连接与模型。沿所选路径换模型续聊后，原回复的标注及备份恢复保持一致，缺少原始请求记录时明确显示未记录。
 - 分支切换等待当前草稿保存，保存失败保留输入与选择并允许重试；原对话删除后保留其他路径，原有直接导航按钮继续可用。历史数据含重复对话标识时显示可恢复的错误，保留原始文件与草稿，恢复有效备份后可继续浏览。
 - 分支排序保存失败后可保留原状态重试；并发发送或重试保留后台最新顺序，旧聊天对象不能覆盖新排序。新增分支与原文档案不继承父路径在另一层的序号。
 - 并行启动时已保存的流式检查点会逐条通知界面，恢复被早期状态更新盖掉的部分文本；新增比较入口后仍保留原有发送按钮尺寸。
@@ -41,4 +42,4 @@
 
 First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
 
-Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
+Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves original comparison labels after changing models, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.

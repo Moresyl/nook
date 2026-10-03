@@ -23,7 +23,7 @@ function proof(): ReleaseProof {
     audit, desktop, surfaces: { ...desktop, checks: 4 },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
-    comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true },
+    comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
@@ -122,7 +122,7 @@ describe('Windows release execution evidence', () => {
     const missing = proof(); delete (missing as Partial<ReleaseProof>).comparisons; expect(() => verifyRuntimeProof(missing)).toThrow('normal close');
     const cases = Array.from({ length: 4 }, proof); cases[0].comparisons.checks = 5; cases[1].comparisons.verificationRun = 'focused model-comparison suite'; cases[2].comparisons.suiteChecks = 193; cases[3].comparisons.comparisonModelRequests = 10;
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('parallel model-comparison');
-    for (const key of ['parallelStreamsVerified', 'independentFailureStopVerified', 'atomicSaveRetryVerified', 'backupsRestartVerified', 'temporaryExclusionVerified', 'originalDraftRetainedVerified'] as const) {
+    for (const key of ['parallelStreamsVerified', 'independentFailureStopVerified', 'atomicSaveRetryVerified', 'backupsRestartVerified', 'temporaryExclusionVerified', 'originalDraftRetainedVerified', 'originalModelIdentityVerified'] as const) {
       const failed = proof(); failed.comparisons[key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('parallel model-comparison');
       const absent = proof(); delete (absent.comparisons as Partial<ReleaseProof['comparisons']>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('parallel model-comparison');
       const invalid = proof(); (invalid.comparisons as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('parallel model-comparison');
