@@ -1,0 +1,130 @@
+{
+  "verifiedAt": "2026-10-03T15:28:47.687Z",
+  "runId": 37129058455,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37129058455",
+  "sourceCommit": "90c27b876e4c45fdab4bb349b4acf2d01206541b",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 11276537254,
+    "name": "windows-verification-37129058455-1",
+    "bytes": 8304465,
+    "digest": "sha256:bf028b35a4af3148de91c04d56a40fc1a7acc55d1a4d28dfe7d86697bef6a93c",
+    "directory": "E:/QiyaoPipelineAudits/e02004906de541d79e5854b91afb9755"
+  },
+  "unitTests": 590,
+  "unitFiles": 58,
+  "typecheckBuildNoticesAuditVerified": true,
+  "successfulUnpackedChecksBeforeFailure": 189,
+  "completeUnpackedVerified": false,
+  "installedVerificationStarted": false,
+  "exactCommitPolicyRejected": true,
+  "exactCommitPolicyError": "Runtime proof must match the audited application and normal close",
+  "auditHashes": {
+    "executableSha256": "b053341f7a3cc85a84b4c76f6544e850a407c6e273ca1c2f6a11d485c501753c",
+    "archiveSha256": "02f1b77f938a55538ddc629f9cf95aad6462497d302e5e7500a976c41adfe93a"
+  },
+  "staleCompletedRecords": [
+    {
+      "key": "desktop",
+      "checks": 194,
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f"
+    },
+    {
+      "key": "comparisons",
+      "checks": 6,
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f"
+    },
+    {
+      "key": "installer",
+      "checks": 194,
+      "executableSha256": "edc58541fa93b8c205827975c06f720c21946816034d3aa4ee7cbcbaa86006fd",
+      "archiveSha256": "75d372eb8799963450e84cb63774d4c70e2de33e986141f6b3ad4d2bf24c0f9f"
+    }
+  ],
+  "failure": {
+    "stage": "two simultaneous held comparison streams display both durable partial replies",
+    "source": "scripts/verify-model-comparisons.mjs:35:250",
+    "originalPollDeadlineMs": 10000,
+    "message": "The desktop bridge did not reach the expected state.",
+    "retainedRunnerDirectory": "C:/Users/runneradmin/AppData/Local/QiyaoPipeline-17c1ed0f85594fa59a903ec0a154898c/qiyao-electron-MaXabk",
+    "rootCauseEstablished": false,
+    "firstReplyEmptyInPostFailureScreenshot": true,
+    "secondReplyContainsPartialInPostFailureScreenshot": true,
+    "backendStateRecorded": false
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 1280,
+    "height": 840,
+    "sha256": "67f90f4c87f0ddfc8c27b9cbf0f31b8b09907f7a5e68a1091c12d9b7772fc26c",
+    "individuallyReviewed": true
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "b3b20ebdaf50438a2cd89b43970d8bc548b5142831e037fbd5cb31e8b980a544"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "008e32e302986241b1e393707c79fab80b6a427fa0df2c30f378edbb72e31677"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "fc96b464d74a94c6cef09ed15c10d51677783cb6145e83fb3b176b14a6f8d95a"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "1d55265f352e88517b146f6fea1e672c6f9fd4b4635babb8af3489ea3af8e11e"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "3e97bf95e0660840d9be2f2c8a834b8a4b32a41394bed27b19473478ec5206d0"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "c8a68845da26336ec98e4b5be55908de8942337981cdeb520300bdd88b098c77"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "648c641be96cd0269c0bd2511c2268a704daabea1e510327785eb30f9c62a92f"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "6f2d9391b4d94b36744e5f47d299a810b3ad65d99e4c038abc866beb74ccfb2b"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "dfa4c10e74d39bcf2152f5894857ceff1e9e065a5b25752fbfa7b68a9e68bea9"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "280ce99c9f69c5d7e5a4f55f74caa98d2e215b223b182c79bd3cefd8977535a0"
+    }
+  ],
+  "logs": [
+    {
+      "privateLog": "github-90c-failed.log",
+      "sha256": "b482d845035e851f66af225e452218c892c6a2286c705116441f648126d02795",
+      "bytes": 77731
+    },
+    {
+      "privateLog": "github-90c-complete.log",
+      "sha256": "79a94faac063a2d95d790b17f4c99800ccc98982b8ee23887f1364ae5057a1eb",
+      "bytes": 266527
+    }
+  ],
+  "exactCommitPolicySha256": "9b4a1d4625b7c6d686841bf14f5233394f8962d0114712450ff795aaaf0f0ce2",
+  "scope": "The exact hosted body passes 590 tests, typecheck, notices, build/audit and 189 unpacked checks. The original 10-second both-partial comparison wait fails. The individually inspected failure screenshot shows an empty first reply and a partial second reply; no persisted/backend state was uploaded, so this hosted root cause is not established. Prior terminal and restart checks passed this run. Actual settings/portable/installation were not reached. The exact commit’s original ten-record policy rejects the stale local completed records against this hosted EXE/ASAR. A separately reproduced delayed startup snapshot regression has a failing-then-passing test and a source fix; bounded diagnostics preserve the original native assertion/deadline and will distinguish future failures. No hosted completion is claimed."
+}

@@ -46,6 +46,17 @@ describe('model comparison contracts', () => {
   });
 });
 describe('independent parallel model comparisons', () => {
+  it('does not regress a durable partial reply when a later initial-save callback releases an older whole-state snapshot', async () => {
+    const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
+    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 3) await held; return saved; });
+    const comparing = engine.compare(input);
+    await vi.waitFor(() => { expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true); });
+    release(); const result = await comparing;
+    const laterInitialNotification = emit.mock.calls.map(([event]) => event).find((event) => event.state && event.threadId === result.threadIds[1]);
+    expect(laterInitialNotification?.state?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === result.threadIds[0])?.messages.at(-1)?.content).toContain('one: PARTIAL');
+    await Promise.all(result.threadIds.map((id) => engine.stop(id)));
+  });
   it('retains the recorded comparison origin after an actual continuation changes models and the vault restarts', async () => {
     const { engine, vault, directory } = await setup(); const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
     const origin = comparisonReply(vault.snapshot().threads.find((thread) => thread.id === result.threadIds[0])!);

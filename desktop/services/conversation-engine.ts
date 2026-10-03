@@ -34,7 +34,7 @@ export class ConversationEngine {
 
   private notify(event: RunEvent): void {
     // A closing renderer must not interrupt persistence or release of a run.
-    try { this.emit(event); } catch {}
+    try { this.emit(event.state ? { ...event, state: this.vault.snapshot() } : event); } catch {}
   }
 
   async start(raw: SubmitRequest): Promise<{ threadId: string }> {

@@ -474,6 +474,12 @@
       "sourceCommit": "09a9139a16f8446746b906d4c6457af75bc425e5",
       "conclusion": "failure",
       "proof": "verification/hosted-terminal-failure-result.json"
+    },
+    {
+      "runId": 37129058455,
+      "sourceCommit": "90c27b876e4c45fdab4bb349b4acf2d01206541b",
+      "conclusion": "failure",
+      "proof": "verification/hosted-comparison-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -514,7 +520,25 @@
       "installerSha256": "f35992486868129393758f848f1d7b6efc9876993261324e41d0a89776637f03",
       "portableSha256": "19eec13bb31e5d7f171692cb16d7527174954f8ef5d15ab3655ef3fafdc9fcf9"
     },
-    "distributionProof": "verification/model-comparison-distribution-result.json"
+    "distributionProof": "verification/model-comparison-distribution-result.json",
+    "latestHostedAttemptRunId": 37129058455,
+    "latestHostedAttemptConclusion": "failure"
   },
-  "workflowStructureVerifiedAt": "2026-10-03T13:54:50.5912652Z"
+  "workflowStructureVerifiedAt": "2026-10-03T13:54:50.5912652Z",
+  "comparisonOrigins": {
+    "verifiedAt": "2026-10-03T14:49:01.847Z",
+    "codeCommit": "f70aca84b29d27b058724f2b44ee50a2d6da77a2",
+    "sourceVerified": true,
+    "unitTests": 593,
+    "sourceDesktopChecks": 194,
+    "comparisonChecks": 6,
+    "comparisonModelRequests": 11,
+    "reviewedSourceCaptures": 9,
+    "releasePolicyTests": 30,
+    "matchingRuntimeRecordsRequired": 10,
+    "originalModelIdentityVerified": true,
+    "sourceProof": "verification/model-comparison-origin-review-result.json",
+    "packagedVerified": false,
+    "hostedVerified": false
+  }
 }
