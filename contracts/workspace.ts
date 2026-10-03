@@ -60,6 +60,7 @@ export const threadSchema = z.object({
   id: identifier, title: z.string().min(1).max(160),
   temporary: z.literal(true).optional(),
   branchOrder: z.number().int().min(0).max(9999).optional(),
+  comparison: z.object({ groupId: z.uuid(), index: z.number().int().min(0).max(3), contextLength: z.number().int().min(0).max(4998) }).strict().optional(),
   projectId: identifier.optional(), assistantId: identifier.optional(),
   providerId: identifier.optional(), model: shortText.default(''),
   mode: z.enum(['chat', 'plan', 'agent']).optional(),

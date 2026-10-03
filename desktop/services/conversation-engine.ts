@@ -18,11 +18,13 @@ import type { KnowledgeService } from './knowledge-service';
 import { knowledgeLimits } from '../../contracts/knowledge';
 import { nextReplyVersion } from '../../contracts/reply-versions';
 import { archiveConversation } from './conversation-archive';
+import { comparisonSchema, type ComparisonResult } from '../../contracts/model-comparisons';
 
 type ActiveRun = { controller: AbortController; completion: Promise<void>; projectId?: string; providerId: string; embeddingProviderIds: string[]; serverIds: string[]; skillIds: string[]; pluginIds: string[] };
 
 export class ConversationEngine {
   private runs = new Map<string, ActiveRun>();
+  private comparisons = new Set<Promise<void>>();
   private closing = false;
   private approvals: ApprovalGate;
   constructor(private readonly vault: WorkspaceVault, private readonly gateway: ModelGateway, private readonly emit: (event: RunEvent) => void,
@@ -81,6 +83,7 @@ export class ConversationEngine {
         thread = { ...thread, id: randomUUID(), title: `${thread.title.slice(0, 140)} · 编辑`, pinned: false, archived: false, createdAt: now, updatedAt: now,
           forkedFrom: { threadId: request.threadId!, messageId: request.replay.messageId, kind: 'edit' } };
         delete thread.branchOrder;
+        delete thread.comparison;
       }
     }
     thread ??= {
@@ -157,6 +160,56 @@ export class ConversationEngine {
     return { threadId: next.id };
   }
 
+  async compare(raw: unknown): Promise<ComparisonResult> {
+    if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
+    let finish!: () => void; const completion = new Promise<void>((resolve) => { finish = resolve; });
+    this.comparisons.add(completion);
+    try { return await this.startComparison(raw); } finally { this.comparisons.delete(completion); finish(); }
+  }
+
+  private async startComparison(raw: unknown): Promise<ComparisonResult> {
+    const input = comparisonSchema.parse(raw);
+    const captured = this.vault.snapshot();
+    const source = input.threadId ? captured.threads.find((thread) => thread.id === input.threadId) : undefined;
+    const validate = (state: typeof captured) => {
+      const current = input.threadId ? state.threads.find((thread) => thread.id === input.threadId) : undefined;
+      if (input.threadId && (!current || createHash('sha256').update(conversationHistory(current)).digest('hex') !== input.revision)) throw new Error('This conversation changed. Reopen the comparison with the current context.');
+      if (current && (this.active(current.id) || current.messages.some((message) => message.status === 'running'))) throw new Error('Stop the current response before comparing its context.');
+      if ((current?.messages.length ?? 0) > 4998) throw new Error('This conversation has reached its message limit. Compare from a shorter context.');
+      if (state.threads.length + input.models.length > 10_000) throw new Error('Conversation history has reached its limit. Delete unused conversations before comparing models.');
+      if (input.projectId && !state.projects.some((project) => project.id === input.projectId)) throw new Error('The selected project no longer exists.');
+      if (input.assistantId && !state.assistants.some((assistant) => assistant.id === input.assistantId)) throw new Error('The selected assistant no longer exists.');
+      for (const selected of input.models) {
+        const provider = state.providers.find((provider) => provider.id === selected.providerId);
+        if (!provider || !provider.models.includes(selected.model)) throw new Error('A selected provider or model is no longer configured. Refresh the comparison.');
+        if (provider.kind !== 'ollama' && !providerKey(this.vault, provider)) throw new Error('Add every selected provider’s API key before comparing models.');
+        validateModelAttachments(provider, selected.model, [...(current?.messages ?? []), { id: 'comparison-validation', role: 'user', content: input.text, attachments: input.attachments, status: 'complete', createdAt: 0 }]);
+      }
+    };
+    validate(captured);
+    const groupId = randomUUID(); const now = Date.now();
+    const branches: Thread[] = input.models.map((selected, index) => {
+      const last = source?.messages.at(-1);
+      return { id: randomUUID(), title: `${input.text.slice(0, 90)} · ${selected.model.slice(0, 60)}`, ...(source?.temporary ? { temporary: true } : {}),
+        ...selected, assistantId: input.assistantId, projectId: input.projectId, mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [],
+        pinned: false, archived: false, createdAt: now, updatedAt: now, messages: structuredClone(source?.messages ?? []),
+        comparison: { groupId, index, contextLength: source?.messages.length ?? 0 }, ...(source && last ? { forkedFrom: { threadId: source.id, messageId: last.id, kind: 'branch' as const } } : {}) };
+    });
+    await this.vault.update((state) => { if (this.closing) throw new Error('The workspace is shutting down. Reopen it before comparing models.'); validate(state); state.threads.push(...branches); });
+    const outcomes = await Promise.allSettled(branches.map((thread) => this.start({ threadId: thread.id, text: input.text, attachments: input.attachments, providerId: thread.providerId!, model: thread.model, assistantId: input.assistantId, projectId: input.projectId, mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [] })));
+    const failedThreadIds = outcomes.flatMap((outcome, index) => outcome.status === 'rejected' ? [branches[index].id] : []);
+    if (failedThreadIds.length) {
+      const state = await this.vault.update((state) => {
+        for (const thread of state.threads) if (failedThreadIds.includes(thread.id) && thread.messages.length === thread.comparison?.contextLength) {
+          thread.messages.push({ id: randomUUID(), role: 'user', content: input.text, attachments: structuredClone(input.attachments), status: 'complete', createdAt: now },
+            { id: randomUUID(), role: 'assistant', content: '', attachments: [], status: 'error', createdAt: now, error: 'Could not start this model response. Check the connection and retry in its conversation.' });
+        }
+      });
+      this.notify({ threadId: branches[0].id, messageId: '', state });
+    }
+    return { groupId, threadIds: branches.map((thread) => thread.id), failedThreadIds };
+  }
+
   private persist(threadId: string, message: Message) {
     const snapshot = structuredClone(message);
     return this.vault.update((draft) => {
@@ -175,7 +228,10 @@ export class ConversationEngine {
       if (!dirty || checkpointing) return;
       dirty = false;
       checkpointing = true;
-      checkpoint = this.persist(thread.id, message).catch(() => {
+      checkpoint = this.persist(thread.id, message).then((state) => {
+        const saved = state.threads.find((item) => item.id === thread.id)?.messages.find((item) => item.id === message.id);
+        if (saved) this.notify({ threadId: thread.id, messageId: message.id, message: saved });
+      }).catch(() => {
         checkpointFailed = true;
         this.runs.get(thread.id)?.controller.abort();
       }).finally(() => { checkpointing = false; });
@@ -293,7 +349,7 @@ export class ConversationEngine {
 
   async settle(threadId: string): Promise<void> { await this.runs.get(threadId)?.completion; }
 
-  active(threadId?: string): boolean { return threadId === undefined ? this.runs.size > 0 : this.runs.has(threadId); }
+  active(threadId?: string): boolean { return threadId === undefined ? this.runs.size > 0 || this.comparisons.size > 0 : this.runs.has(threadId); }
 
   async stopProject(projectId: string): Promise<void> { await Promise.all([...this.runs].filter(([, run]) => run.projectId === projectId).map(([id]) => this.stop(id))); }
 
@@ -308,5 +364,5 @@ export class ConversationEngine {
 
   resolveApproval(id: string, allowed: boolean): void { this.approvals.resolve(id, allowed); }
 
-  async shutdown(): Promise<void> { this.closing = true; await Promise.all([...this.runs.keys()].map((id) => this.stop(id))); }
+  async shutdown(): Promise<void> { this.closing = true; await Promise.all([...this.runs.keys()].map((id) => this.stop(id))); await Promise.all(this.comparisons); }
 }

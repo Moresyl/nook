@@ -10,6 +10,7 @@
 - 消息可引用、在新分支重发或仅保存修改。旧回复和完整原文保留；回复版本及分支导航支持预览、搜索和完整分页，各条路径独立保存后续消息、草稿与附件。
 - 临时聊天只在本次应用运行期间保留，消息、附件、草稿、分支及回复版本不进入本机聊天历史或完整工作台备份；退出后清除，普通聊天草稿保持独立。
 - 对话分支可调整同层顺序或恢复时间顺序，完整子路径一起移动。排序跨分页保留选择，随普通历史、完整备份和重启保存；临时路径的排序仍只保留在内存。
+- 同一问题可并行比较 2–4 个已配置模型，保留相同完整上下文、附件和助手／项目说明。回复可分别停止、失败或继续，当前草稿保留，普通组随历史与完整备份保存，临时组随应用退出清除。
 - 提供 PDF／Office／OpenDocument 文本提取、图片输入及预览，资料集、关键词与语义／混合检索，以及回复来源片段。聊天内容支持公式、代码高亮和 Mermaid 图表。
 - 项目工作台包含可展开文件树、本地代码编辑器、未保存草稿、Git 审阅／暂存／提交及真实终端。分析和执行模式展示工具过程，文件修改和命令分别确认。
 - 提供助手配置导入导出、变量提示模板、自动任务、MCP 工具／资源／提示及 OAuth、本地技能、隔离插件、统一命令搜索、聊天正文查找、系统托盘和全局唤起快捷键。
@@ -25,6 +26,7 @@
 
 - 分支切换等待当前草稿保存，保存失败保留输入与选择并允许重试；原对话删除后保留其他路径，原有直接导航按钮继续可用。历史数据含重复对话标识时显示可恢复的错误，保留原始文件与草稿，恢复有效备份后可继续浏览。
 - 分支排序保存失败后可保留原状态重试；并发发送或重试保留后台最新顺序，旧聊天对象不能覆盖新排序。新增分支与原文档案不继承父路径在另一层的序号。
+- 并行启动时已保存的流式检查点会逐条通知界面，恢复被早期状态更新盖掉的部分文本；新增比较入口后仍保留原有发送按钮尺寸。
 - 修正隔离插件面板对已移除字体的引用和文件匹配，实际加载与主工作台一致的 Inter 可变字重。
 - 项目目录采用完整分页，避免旧清单截断；短窗口在 100%／125%／150% 缩放下保留聊天操作、可见标题以及代码／终端的使用空间。
 - Windows 便携启动器使用完整原生文件提取和扩展路径，保留长路径文档，并在正常退出后清理临时提取目录。安装版卸载保留用户数据。
@@ -37,6 +39,6 @@
 
 ### English
 
-First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
+First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. Includes complete JSON/gzip backup and opt-in desktop entry controls.
 
-Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves drafts on failed branch switches, completes directory pagination and improves minimum-window controls. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
+Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.

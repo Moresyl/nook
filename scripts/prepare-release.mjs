@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { releaseNotes, releaseVersion, verifyRuntimeProof } from './release-policy.mjs';
+import { readRuntimeProof } from './runtime-proof.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const runFile = promisify(execFile);
@@ -23,17 +24,7 @@ try {
   const changed = await runFile('git', ['diff', '--name-only', 'HEAD'], { cwd: root, windowsHide: true });
   const untracked = await runFile('git', ['ls-files', '--others', '--exclude-standard'], { cwd: root, windowsHide: true });
   assert.ok(`${changed.stdout}\n${untracked.stdout}`.split(/\r?\n/).filter(Boolean).every((path) => /^verification\/[a-z-]+-result\.json$/.test(path)), 'Release source must be committed; only generated verification results may differ');
-  const proofs = {
-    audit: await readJson('verification/package-audit-result.json'),
-    desktop: await readJson('verification/packaged-result.json'),
-    surfaces: await readJson('verification/surfaces-packaged-result.json'),
-    branches: await readJson('verification/conversation-branches-packaged-result.json'),
-    temporary: await readJson('verification/temporary-conversations-packaged-result.json'),
-    portable: await readJson('verification/portable-result.json'),
-    portableAudit: await readJson('verification/portable-package-audit-result.json'),
-    bootstrap: await readJson('verification/distribution-bootstrap-result.json'),
-    installer: await readJson('verification/pipeline-installer-result.json'),
-  };
+  const proofs = await readRuntimeProof(root);
   verifyRuntimeProof(proofs);
   assert.equal(proofs.audit.version, release.version);
   assert.ok((await readJson('licenses/assets.json')).every((asset) => asset.status === 'verified'), 'Resolve every bundled asset before release');

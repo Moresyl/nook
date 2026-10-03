@@ -1,0 +1,132 @@
+import { createHash, randomUUID } from 'node:crypto';
+import { readFile, rm } from 'node:fs/promises';
+import { join } from 'node:path';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { comparisonSchema, comparisonThreads } from '../contracts/model-comparisons';
+import { conversationHistory } from '../contracts/conversations';
+import { threadSchema } from '../contracts/workspace';
+import { ConversationEngine } from '../desktop/services/conversation-engine';
+import type { ModelGateway, ModelInput } from '../desktop/services/model-gateway';
+import { WorkspaceVault } from '../desktop/services/vault';
+import { archiveConversation } from '../desktop/services/conversation-archive';
+import { WorkspaceBackupFiles } from '../desktop/services/backup-files';
+import { persistentWorkspace, parsePersistentWorkspace } from '../contracts/temporary-conversations';
+import { codec, request, sampleThread, testVault } from './fixtures';
+
+const directories: string[] = []; const engines: ConversationEngine[] = [];
+afterEach(async () => { await Promise.all(engines.splice(0).map((engine) => engine.shutdown())); await Promise.all(directories.splice(0).map((directory) => rm(directory, { recursive: true, force: true }))); });
+const models = [{ providerId: 'local', model: 'one' }, { providerId: 'local', model: 'two' }];
+const input = { text: 'Same question 中文 <img> {{literal}}', attachments: [], models };
+const revision = (thread: ReturnType<typeof sampleThread>) => createHash('sha256').update(conversationHistory(thread)).digest('hex');
+async function setup(gateway: ModelGateway = { stream: async (_input, text) => { text('reply'); } }, interval = 750) {
+  const { vault, directory } = await testVault(); directories.push(directory);
+  await vault.update((state) => { state.providers[0].models = ['one', 'two', 'three', 'four']; });
+  const emit = vi.fn(); const engine = new ConversationEngine(vault, gateway, emit, undefined, interval); engines.push(engine);
+  return { vault, directory, engine, emit };
+}
+describe('model comparison contracts', () => {
+  it('accepts two to four distinct provider/model pairs, including punctuation without composite-key collisions', () => {
+    expect(comparisonSchema.parse(input).models).toEqual(models);
+    expect(comparisonSchema.parse({ ...input, models: [{ providerId: 'a:b', model: 'c' }, { providerId: 'a', model: 'b:c' }] }).models).toHaveLength(2);
+    expect(comparisonSchema.parse({ ...input, models: [...models, { providerId: 'local', model: 'three' }, { providerId: 'other', model: 'one' }] }).models).toHaveLength(4);
+    for (const selected of [[], [models[0]], [models[0], models[0]], [...models, ...models, models[0]]]) expect(() => comparisonSchema.parse({ ...input, models: selected })).toThrow();
+  });
+  it('requires a revision exactly with an existing context and rejects hidden replay/tool/storage options', () => {
+    expect(comparisonSchema.parse({ ...input, threadId: 'source', revision: 'a'.repeat(64) }).threadId).toBe('source');
+    for (const extra of [{ threadId: 'source' }, { revision: 'a'.repeat(64) }, { mode: 'agent' }, { temporary: true }, { replay: {} }, { threadId: '\0', revision: 'a'.repeat(64) }]) expect(() => comparisonSchema.parse({ ...input, ...extra })).toThrow();
+  });
+  it('sorts surviving members by their fixed position and rejects ambiguous identifiers or positions', () => {
+    const groupId = randomUUID(); const one = sampleThread({ id: 'one', comparison: { groupId, index: 0, contextLength: 0 } }); const two = sampleThread({ id: 'two', comparison: { groupId, index: 1, contextLength: 0 } });
+    expect(comparisonThreads([two, sampleThread(), one], groupId)).toEqual([one, two]); expect(comparisonThreads([two], groupId)).toEqual([two]); expect(comparisonThreads([one], randomUUID())).toEqual([]);
+    expect(() => comparisonThreads([one, one], groupId)).toThrow('ambiguous'); expect(() => comparisonThreads([one, { ...two, comparison: one.comparison }], groupId)).toThrow('ambiguous');
+    expect(() => comparisonThreads([one, { ...two, id: one.id }], groupId)).toThrow('ambiguous');
+    expect(() => comparisonThreads(Array.from({ length: 5 }, (_, index) => ({ ...one, id: String(index), comparison: { groupId, index, contextLength: 0 } })), groupId)).toThrow('ambiguous');
+    expect(threadSchema.parse(sampleThread()).comparison).toBeUndefined();
+    for (const comparison of [{ groupId: 'invalid', index: 0, contextLength: 0 }, { groupId, index: 4, contextLength: 0 }, { groupId, index: 0, contextLength: 4999 }, { groupId, index: 0, contextLength: 0, hidden: true }]) expect(() => threadSchema.parse({ ...one, comparison })).toThrow();
+  });
+});
+describe('independent parallel model comparisons', () => {
+  it('announces each durable running checkpoint so an initial parallel state snapshot cannot permanently hide partial text', async () => {
+    const { engine, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
+    const result = await engine.compare(input);
+    await vi.waitFor(() => { const checkpoints = emit.mock.calls.map(([event]) => event).filter((event) => event.message?.status === 'running'); expect(new Set(checkpoints.map((event) => event.threadId)).size).toBe(2); expect(checkpoints.every((event) => event.message.content.includes('PARTIAL'))).toBe(true); });
+    expect(result.threadIds.every((id) => engine.active(id))).toBe(true);
+  });
+  it('starts all streams before any completes, sends identical full context and attachments, and retains original drafts and active owner', async () => {
+    const observed: ModelInput[] = []; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    const { engine, vault } = await setup({ stream: async (model, text) => { observed.push(model); text(`${model.model}: partial`); await held; text(': finished'); } });
+    const attachment = { id: 'attachment', name: '中文.txt', content: 'same evidence' };
+    const source = sampleThread({ branchOrder: 2, messages: [{ id: 'u', role: 'user', content: 'exact previous', attachments: [attachment], createdAt: 1, status: 'complete' }, { id: 'a', role: 'assistant', content: 'previous reply', attachments: [], createdAt: 2, status: 'complete' }] });
+    await vault.update((state) => { state.threads.push(source); state.activeThreadId = source.id; state.composerDrafts.push({ threadId: source.id, text: 'SOURCE_DRAFT_KEEP', attachments: [attachment], model: 'one', mode: 'agent', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 }); });
+    const before = vault.snapshot(); const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source), attachments: [attachment], assistantId: 'general' });
+    expect(observed).toHaveLength(2); expect(result.failedThreadIds).toEqual([]); expect(result.threadIds.every((id) => engine.active(id))).toBe(true);
+    expect(observed[0].messages.slice(0, -1)).toEqual(observed[1].messages.slice(0, -1));
+    expect(observed.every((model) => model.messages.at(-1)?.content === input.text && model.messages.at(-1)?.attachments[0].content === 'same evidence' && model.instructions.includes('Be clear') && !model.tools?.length)).toBe(true);
+    expect(vault.snapshot().threads.find((thread) => thread.id === source.id)).toEqual(source); expect(vault.snapshot().composerDrafts).toEqual(before.composerDrafts); expect(vault.snapshot().activeThreadId).toBe(source.id);
+    expect(comparisonThreads(vault.snapshot().threads, result.groupId).every((thread) => !thread.branchOrder && thread.forkedFrom?.threadId === source.id && thread.mode === 'chat')).toBe(true);
+    release(); await Promise.all(result.threadIds.map((id) => engine.settle(id))); expect(comparisonThreads(vault.snapshot().threads, result.groupId).map((thread) => thread.messages.at(-1)?.content)).toEqual(['one: partial: finished', 'two: partial: finished']);
+  });
+  it('retains independent provider failure and partial stop while other requests finish and can be continued', async () => {
+    const { engine, vault } = await setup({ stream: async (model, text) => { text(model.model); if (model.model === 'one') throw new Error('Fixture provider failure'); if (model.model === 'two') await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } });
+    const result = await engine.compare({ ...input, models: [...models, { providerId: 'local', model: 'three' }] });
+    await engine.settle(result.threadIds[0]); expect(engine.active(result.threadIds[1])).toBe(true); await engine.stop(result.threadIds[1]); await engine.settle(result.threadIds[2]);
+    expect(comparisonThreads(vault.snapshot().threads, result.groupId).map((thread) => thread.messages.at(-1)?.status)).toEqual(['error', 'stopped', 'complete']);
+    await engine.start({ ...request, threadId: result.threadIds[2], model: 'three', text: 'Continue selected' }); await engine.settle(result.threadIds[2]);
+    expect(vault.snapshot().threads.find((thread) => thread.id === result.threadIds[2])?.messages).toHaveLength(4); expect(comparisonThreads(vault.snapshot().threads, result.groupId)).toHaveLength(3);
+  });
+  it('validates every provider, model, credential, assistant and project before saving or making any model request', async () => {
+    const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const before = await readFile(join(directory, 'workspace.json'));
+    for (const extra of [{ models: [models[0], { providerId: 'missing', model: 'two' }] }, { models: [models[0], { providerId: 'local', model: 'missing' }] }, { assistantId: 'missing' }, { projectId: 'missing' }, { threadId: 'missing', revision: 'a'.repeat(64) }]) await expect(engine.compare({ ...input, ...extra })).rejects.toThrow();
+    expect(stream).not.toHaveBeenCalled(); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before);
+    await vault.update((state) => { state.providers.push({ ...state.providers[0], id: 'remote', kind: 'openai' }); });
+    await expect(engine.compare({ ...input, models: [models[0], { providerId: 'remote', model: 'two' }] })).rejects.toThrow('every selected'); expect(stream).not.toHaveBeenCalled(); expect(vault.snapshot().threads).toEqual([]);
+  });
+  it('rejects stale or running context without modifying the source or consuming its draft', async () => {
+    const { engine, vault } = await setup(); const source = sampleThread({ messages: [{ id: 'a', role: 'assistant', content: 'running', attachments: [], status: 'running', createdAt: 1 }] });
+    await vault.update((state) => { state.threads.push(source); }); await expect(engine.compare({ ...input, threadId: source.id, revision: 'a'.repeat(64) })).rejects.toThrow('changed');
+    await expect(engine.compare({ ...input, threadId: source.id, revision: revision(source) })).rejects.toThrow('Stop'); expect(vault.snapshot().threads).toEqual([source]);
+  });
+  it('revalidates live context inside the FIFO write after a captured history change', async () => {
+    const stream = vi.fn(); const { engine, vault } = await setup({ stream }); const source = sampleThread(); await vault.update((state) => { state.threads.push(source); });
+    const update = vault.update.bind(vault); vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await update((state) => { state.threads[0].messages.push({ id: 'later', role: 'user', content: 'Changed', attachments: [], status: 'complete', createdAt: 1 }); }); return update(change); });
+    await expect(engine.compare({ ...input, threadId: source.id, revision: revision(source) })).rejects.toThrow('changed'); expect(stream).not.toHaveBeenCalled(); expect(vault.snapshot().threads).toHaveLength(1);
+  });
+  it('keeps both workspace files and every reservation unchanged when the atomic group save fails', async () => {
+    const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const before = await readFile(join(directory, 'workspace.json'));
+    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Fixture EIO'));
+    await expect(engine.compare(input)).rejects.toThrow('EIO'); expect(stream).not.toHaveBeenCalled(); expect(engine.active()).toBe(false); expect(vault.snapshot().threads).toEqual([]); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before);
+  });
+  it('records an individual initial save failure without leaking its details or aborting the other request', async () => {
+    const { engine, vault } = await setup(); const update = vault.update.bind(vault); let calls = 0;
+    vi.spyOn(vault, 'update').mockImplementation((change) => ++calls === 2 ? Promise.reject(new Error('PRIVATE_CREDENTIAL_OR_PATH')) : update(change));
+    const result = await engine.compare(input); expect(result.failedThreadIds).toEqual([result.threadIds[0]]); await engine.settle(result.threadIds[1]);
+    const threads = comparisonThreads(vault.snapshot().threads, result.groupId); expect(threads[0].messages.at(-1)).toMatchObject({ status: 'error', content: '' }); expect(JSON.stringify(threads)).not.toContain('PRIVATE_CREDENTIAL_OR_PATH'); expect(threads[1].messages.at(-1)?.status).toBe('complete');
+  });
+  it('persists the group, original reply position and independent contexts through actual vault restart', async () => {
+    const { engine, vault, directory } = await setup(); const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
+    const before = vault.snapshot(); const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(comparisonThreads(restarted.snapshot().threads, result.groupId)).toEqual(comparisonThreads(before.threads, result.groupId));
+    const archive = await vault.update((state) => { archiveConversation(state, state.threads[0], state.threads[0].messages[1].id, 'reply', Date.now()); });
+    expect(archive.threads.at(-1)?.comparison).toBeUndefined(); expect(comparisonThreads(archive.threads, result.groupId)).toHaveLength(2);
+    const files = new WorkspaceBackupFiles();
+    for (const name of ['comparison-backup.json', 'comparison-backup.json.gz']) { const path = join(directory, name); await files.write(path, persistentWorkspace(archive)); const restored = parsePersistentWorkspace(await files.read(path)); expect(comparisonThreads(restored.threads, result.groupId)).toEqual(comparisonThreads(archive.threads, result.groupId)); }
+  });
+  it('keeps temporary comparisons and their new drafts out of both history files and normal restart', async () => {
+    const { engine, vault, directory } = await setup(); const source = sampleThread({ temporary: true }); await vault.update((state) => { state.threads.push(source); });
+    const before = await readFile(join(directory, 'workspace.json')); const beforeBackup = await readFile(join(directory, 'workspace.backup.json')); const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source) }); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
+    expect(comparisonThreads(vault.snapshot().threads, result.groupId).every((thread) => thread.temporary)).toBe(true); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before);
+    expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(beforeBackup); expect(persistentWorkspace(vault.snapshot()).threads).toEqual([]);
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot().threads).toEqual([]);
+  });
+  it('rejects group creation after shutdown and at the exact conversation and message limits', async () => {
+    const { engine, vault } = await setup(); await vault.update((state) => { state.threads = Array.from({ length: 9999 }, (_, index) => sampleThread({ id: `limit-${index}` })); }); await expect(engine.compare(input)).rejects.toThrow('history'); expect(vault.snapshot().threads).toHaveLength(9999);
+    const source = sampleThread({ messages: Array.from({ length: 4999 }, (_, index) => ({ id: `message-${index}`, role: 'user' as const, content: 'x', attachments: [], createdAt: 1, status: 'complete' as const })) }); await vault.update((state) => { state.threads = [source]; }); await expect(engine.compare({ ...input, threadId: source.id, revision: revision(source) })).rejects.toThrow('message limit');
+    await engine.shutdown(); await expect(engine.compare(input)).rejects.toThrow('shutting down'); expect(vault.snapshot().threads).toEqual([source]);
+  });
+  it('treats a held initial group save as active and waits for its rejection before completing shutdown', async () => {
+    const stream = vi.fn(); const { engine, vault } = await setup({ stream }); const update = vault.update.bind(vault); let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await held; return update(change); });
+    const outcome = engine.compare(input).catch((failure) => failure); expect(engine.active()).toBe(true);
+    let closed = false; const shutdown = engine.shutdown().then(() => { closed = true; }); await Promise.resolve(); expect(closed).toBe(false);
+    release(); expect((await outcome).message).toContain('shutting down'); await shutdown; expect(closed).toBe(true); expect(engine.active()).toBe(false); expect(stream).not.toHaveBeenCalled(); expect(vault.snapshot().threads).toEqual([]);
+  });
+});

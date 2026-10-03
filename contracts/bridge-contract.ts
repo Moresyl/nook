@@ -13,6 +13,7 @@ import type { AssistantBundle } from './assistant-profiles';
 import type { PromptTemplate } from './prompt-templates';
 import type { MessageDraft, MessageEdit } from './message-edits';
 import type { BranchReorder } from './conversation-branches';
+import type { ComparisonRequest, ComparisonResult } from './model-comparisons';
 
 export type RunEvent = { threadId: string; messageId: string; delta?: string; activity?: ToolActivity; invocation?: ModelInvocation; approval?: ApprovalRequest; approvalResolved?: string; message?: import('./workspace').Message; state?: Workspace; error?: string };
 export type { FileEntry } from './projects';
@@ -59,6 +60,7 @@ export type Bridge = {
   startTemporaryChat(): Promise<Workspace>;
   reorderBranch(input: BranchReorder): Promise<Workspace>;
   submit(request: SubmitRequest): Promise<{ threadId: string }>;
+  compareModels(request: ComparisonRequest): Promise<ComparisonResult>;
   stop(threadId: string): Promise<void>;
   pendingApprovals(): Promise<ApprovalRequest[]>;
   resolveApproval(id: string, allowed: boolean): Promise<void>;

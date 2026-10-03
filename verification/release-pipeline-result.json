@@ -458,7 +458,9 @@
       "installerSha256": "b69d7250020a5b35e1440bb174c2881cfd9c5e6ffdafac812d87a99fa3b64fd8",
       "portableSha256": "a89ac66d420d98b45cbb36878594ab80580c970243467562e8b7ead94b1949a5"
     },
-    "distributionProof": "verification/branch-order-distribution-result.json"
+    "distributionProof": "verification/branch-order-distribution-result.json",
+    "latestHostedAttemptRunId": 37122060337,
+    "latestHostedAttemptConclusion": "failure"
   },
   "hostedFailures": [
     {
@@ -466,6 +468,12 @@
       "sourceCommit": "8cab07d6e81e86655a867d3bdfa19a102dedf78b",
       "conclusion": "failure",
       "proof": "verification/hosted-startup-failure-result.json"
+    },
+    {
+      "runId": 37122060337,
+      "sourceCommit": "09a9139a16f8446746b906d4c6457af75bc425e5",
+      "conclusion": "failure",
+      "proof": "verification/hosted-terminal-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -476,6 +484,7 @@
     "portableChecks": 7,
     "originalHostedFailureCauseEstablished": false,
     "hostedVerified": false,
-    "proof": "verification/desktop-startup-review-result.json"
+    "proof": "verification/desktop-startup-review-result.json",
+    "latestHostedAttemptRunId": 37122060337
   }
 }

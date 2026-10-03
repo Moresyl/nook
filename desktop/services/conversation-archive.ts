@@ -6,6 +6,7 @@ export function archiveConversation(state: Workspace, original: Thread, messageI
   const archive: Thread = { ...structuredClone(original), id: randomUUID(), title: `${original.title.slice(0, 140)} · ${kind === 'reply' ? '原回复' : '编辑前'}`, pinned: false, archived: true, updatedAt: now,
     forkedFrom: { threadId: original.id, messageId, kind } };
   delete archive.branchOrder;
+  delete archive.comparison;
   const savedDraft = state.composerDrafts.find((item) => item.threadId === original.id);
   if (savedDraft) {
     if (state.composerDrafts.length >= 100) throw new Error('Conversation drafts are limited to 100 owners. Clear an unused draft before editing or retrying.');

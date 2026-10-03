@@ -6,6 +6,7 @@ export type ReleaseProof = {
   surfaces: ReleaseProof['desktop'];
   branches: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; modelRequests: number; ambiguousHistoryRecoveryVerified: boolean; manualOrderingVerified: boolean; orderingFailureRecoveryVerified: boolean; orderingBackupRestartVerified: boolean };
   temporary: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; temporaryModelRequests: number; persistenceExcludedVerified: boolean; backupsExcludedVerified: boolean; restartClearedVerified: boolean; storageModeImmutableVerified: boolean; regularDraftsRetainedVerified: boolean };
+  comparisons: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; comparisonModelRequests: number; parallelStreamsVerified: boolean; independentFailureStopVerified: boolean; atomicSaveRetryVerified: boolean; backupsRestartVerified: boolean; temporaryExclusionVerified: boolean; originalDraftRetainedVerified: boolean };
   portable: { checks: number; launches: { longDocumentPathLength?: number }[]; longPathCleanupVerified: boolean; unpackedFilesVerified: number; runtimeErrors: string[]; wrapperSha256: string; childExecutableSha256: string };
   portableAudit: { executableSha256: string; archiveSha256: string; unresolvedAssets: string[]; unresolvedDistribution: string[] };
   bootstrap: { variants: { variant: string; executableSha256: string; plugins: { redistributionStatus: string }[] }[] };

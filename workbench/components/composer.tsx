@@ -24,6 +24,7 @@ type Props = {
   plugins: Plugin[]; pluginIds: string[]; onPlugins: (ids: string[]) => void;
   knowledgeCollections: KnowledgeCollection[]; hasNotes: boolean; knowledgeCollectionIds: string[]; onKnowledgeCollections: (ids: string[]) => void;
   onSend: () => Promise<boolean>; onStop: () => void; running: boolean; enterToSend: boolean;
+  onCompare: () => void; onViewComparison?: () => void;
   onConfigure: () => void; report: (error: unknown) => void;
   promptTemplates: PromptTemplate[]; onPrompt: (text: string) => boolean;
 };
@@ -80,6 +81,8 @@ export function Composer(props: Props) {
         <div className="composer-tools" onFocusCapture={(event) => { if (event.currentTarget.scrollWidth > event.currentTarget.clientWidth && event.target instanceof HTMLElement) event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' }); }}><IconButton icon="attach" label="添加附件" disabled={busy} onClick={() => { void attach(); }} />
           <Select aria-label="选择助手" disabled={submitting} value={props.assistantId} onChange={(event) => props.onAssistant(event.target.value)}><option value="">默认助手</option>{props.assistants.map((assistant) => <option key={assistant.id} value={assistant.id}>{assistant.name}</option>)}</Select>
           {props.promptTemplates.length > 0 && <Button disabled={busy} aria-label="使用提示模板" onClick={() => setPrompts(true)}><Glyph name="compose" size={14} />模板</Button>}
+          <Button disabled={busy || props.running || !props.text.trim()} aria-label="发送给多个模型比较" onClick={props.onCompare}>比较</Button>
+          {props.onViewComparison && <Button disabled={busy} aria-label="查看模型比较" onClick={props.onViewComparison}>查看比较</Button>}
           {props.projects.length > 0 && <Select aria-label="选择项目" disabled={submitting} value={props.projectId} onChange={(event) => props.onProject(event.target.value)}><option value="">独立聊天</option>{props.projects.map((project) => <option key={project.id} value={project.id}>{project.name}</option>)}</Select>}
           {props.projectId && <Select aria-label="工作模式" value={props.mode} disabled={props.running || submitting} onChange={(event) => props.onMode(event.target.value as ConversationMode)}><option value="chat">聊天</option><option value="plan">项目分析</option><option value="agent">执行任务</option></Select>}
           {(props.servers.length > 0 || props.skills.length > 0 || props.plugins.length > 0) && <Button className="composer-extension-button" aria-label="选择工具与技能" disabled={props.running || submitting} onClick={() => setExtensions(true)}><Glyph name="code" size={14} />工具与技能{count ? ` · ${count}` : ''}</Button>}

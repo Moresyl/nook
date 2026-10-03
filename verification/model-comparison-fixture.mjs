@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+
+export function modelComparisonFixture() {
+  const pending = new Map();
+  const finish = (response, model) => response.end(`data: ${JSON.stringify({ choices: [{ delta: { content: `\n${model}: COMPLETE <img> {{literal}} 中文😀` }, finish_reason: null }] })}\n\ndata: ${JSON.stringify({ choices: [{ delta: {}, finish_reason: 'stop' }], usage: { prompt_tokens: 12, completion_tokens: 6, total_tokens: 18 } })}\n\ndata: [DONE]\n\n`);
+  return { requests: [], async handle(request, response) {
+    if (!request.url?.startsWith('/model-comparison/')) return false;
+    const match = /^\/model-comparison\/(a|b)\/v1\/chat\/completions$/.exec(request.url); assert.ok(match);
+    assert.equal(request.headers.authorization, `Bearer COMPARISON_${match[1].toUpperCase()}_TEST_KEY`);
+    let body = ''; for await (const chunk of request) body += chunk;
+    const input = JSON.parse(body); assert.equal(input.stream, true); assert.ok(['one', 'two', 'fail', 'held'].includes(input.model)); assert.equal(input.tools, undefined);
+    this.requests.push({ connection: match[1], ...input });
+    if (input.model === 'fail') { response.writeHead(503, { 'Content-Type': 'application/json' }); response.end(JSON.stringify({ error: { message: 'Fixture model unavailable' } })); return true; }
+    response.writeHead(200, { 'Content-Type': 'text/event-stream' }); response.write(`data: ${JSON.stringify({ choices: [{ delta: { content: `${input.model}: PARTIAL` }, finish_reason: null }] })}\n\n`);
+    pending.set(response, input.model); response.once('close', () => pending.delete(response)); return true;
+  }, finish(model) { for (const [response, selected] of pending) if ((!model && selected !== 'held') || selected === model) { pending.delete(response); finish(response, selected); } } };
+}

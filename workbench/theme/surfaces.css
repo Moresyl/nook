@@ -134,7 +134,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .composer-tools { display: flex; align-items: center; gap: 2px; min-width: 0; color: var(--ds-text-secondary); }
 .composer-tools .select, .model-selectors .select { width: auto; min-height: 24px; max-width: 160px; border-color: transparent; background: transparent; font-size: 11px; padding: 2px 4px; }
 .composer-tools .select:hover, .model-selectors .select:hover { background: var(--ghost-hover); }
-.send-button { border-radius: 9999px; width: 32px; height: 32px; padding: 0; background: var(--ds-accent); color: white; }
+.send-button { border-radius: 9999px; width: 32px; height: 32px; flex-shrink: 0; padding: 0; background: var(--ds-accent); color: white; }
 .send-button:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-accent) 85%, black); }
 .send-button:disabled { background: var(--ghost-hover); color: var(--ds-text-tertiary); opacity: 1; }
 .composer-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 38px; padding: 4px 6px; color: var(--ds-text-tertiary); font-size: 10px; }
@@ -214,6 +214,13 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .branch-pagination > span { flex: 1; }
 .branch-pagination > .button { font-size: 11px; }
 .branch-order-controls { flex-wrap: wrap; }
+.comparison-model-row { display: flex; align-items: end; gap: 8px; flex-wrap: wrap; }
+.comparison-model-row .field { flex: 1; min-width: 160px; }
+.comparison-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.comparison-result { min-width: 0; }
+.comparison-result h3 { overflow-wrap: anywhere; }
+.comparison-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 640px) { .comparison-results { grid-template-columns: minmax(0, 1fr); } }
 .usage-button { color: var(--ds-text-tertiary); font-size: 11px; padding: 4px 6px; height: auto; white-space: normal; text-align: left; }
 .usage-counts { margin: 16px 0; display: grid; gap: 8px; font-size: 12px; }
 .usage-counts > div { display: flex; justify-content: space-between; gap: 16px; }

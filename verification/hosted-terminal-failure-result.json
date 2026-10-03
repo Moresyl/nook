@@ -1,0 +1,118 @@
+{
+  "verifiedAt": "2026-10-03T13:11:03.712Z",
+  "runId": 37122060337,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37122060337",
+  "sourceCommit": "09a9139a16f8446746b906d4c6457af75bc425e5",
+  "conclusion": "failure",
+  "artifact": {
+    "id": 11273513184,
+    "name": "windows-verification-37122060337-1",
+    "bytes": 6022556,
+    "digest": "sha256:c4e3c0c3b6def4cf46903058dc6c00fc8a6a32a1fdbe204c825f367ff71e1780",
+    "directory": "E:/QiyaoPipelineAudits/afb7f411412841e8b7a98fda7cf3ee39"
+  },
+  "unitTests": 571,
+  "unitFiles": 57,
+  "typecheckBuildNoticesAuditVerified": true,
+  "successfulUnpackedChecksBeforeFailure": 164,
+  "completeUnpackedVerified": false,
+  "installedVerificationStarted": false,
+  "exactCommitPolicyRejected": true,
+  "exactCommitPolicyError": "Runtime proof must match the audited application and normal close",
+  "auditHashes": {
+    "executableSha256": "a5e62ef6d894c4a1789739236c632819fbd481d6c35f16c35877a2a950b4132e",
+    "archiveSha256": "bb5d2e6965b3dbafbc28b123c47fb6de7b57a8db2e9af222385f434f58e0995f"
+  },
+  "staleCompletedRecords": [
+    {
+      "key": "desktop",
+      "checks": 188,
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    },
+    {
+      "key": "installer",
+      "checks": 188,
+      "executableSha256": "0599340eb36992162e266ebd40ee49c0d62ffa2f7d3f7c302ba79988b7469b2e",
+      "archiveSha256": "c82b9d3d4f67c0ef914dd103e6ec200cbaa375432a071b2eb06eb1fb5b2df0ae"
+    }
+  ],
+  "failure": {
+    "stage": "project tree initial terminal prompt readiness",
+    "source": "scripts/verify-project-tree.mjs:73:169",
+    "originalPollDeadlineMs": 10000,
+    "message": "The desktop bridge did not reach the expected state.",
+    "retainedRunnerDirectory": "C:/Users/runneradmin/AppData/Local/QiyaoPipeline-b7649b825fa243d6af718c875a29ac02/qiyao-electron-jT07Du",
+    "rootCauseEstablished": false,
+    "promptVisibleInPostFailureScreenshot": true,
+    "lastRawTerminalPollRecorded": false
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "width": 760,
+    "height": 540,
+    "sha256": "e94243aac9bb3db0794d70e13dfb020143e7365a24fa77e5e53153f73657e7a7",
+    "individuallyReviewed": true
+  },
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "17227305dbcb9571331e3f7a40e1c90e710cece6aaddf128d0bae66bc3bad770"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "267af02d5f0a519808437fac2ca48c2d7cfd752ae18d71c2b601c84489c50c70"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "1f9ce2e7cb482d676e3730b2e860c1fbfe8cbf549485b95a0977dbb9e46a4e58"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "a0467318749692842f849c4720d6c3f4874f20fc855f0f2aab84c99419f59bb9"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "c0cd75ae0940e7c5026b59fb6d777702a7b0344e436ccbb3314876c967fcf6a5"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "d4eed027cabd2473c2b8716e4929aff2e863286af3fdc0e3c9fec648976bf072"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "db035adcce665256cb3b6929de087877584a3dac0ee8c81d5d64f672845e11ed"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "f5ed9a2d42fe614821e5e439b52b3661e1e4b2dcb85534312864877058d843f1"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "1dea4a87245af08c7e1ed3c48b943d21ff9e0d191f82c01b5902eebf8ad791b7"
+    }
+  ],
+  "logs": [
+    {
+      "privateLog": "github-09a-failed.log",
+      "sha256": "e74a55e637ca1be3af6e684cc11bd4b70725c705e55c30fe91d05886d2ab1a91",
+      "bytes": 77541
+    },
+    {
+      "privateLog": "github-09a-complete.log",
+      "sha256": "b96f8411c6eb1492d0a2e16a3e31078af4f81486d835c707a2a58de8ca394d63",
+      "bytes": 265387
+    }
+  ],
+  "exactCommitPolicySha256": "f55d989237271b9dea33a16ad70e5be4794519c7532c6e929ca3878cfdc9294d",
+  "scope": "The exact hosted body passes 571 tests, typecheck, notices, build/audit and 164 unpacked checks. The original 10-second raw terminal prompt wait fails; a subsequent native screenshot displays a PowerShell prompt, but the last raw poll was not recorded, so neither ANSI encoding nor late readiness is established as its cause. Actual settings/portable/installation were not reached. Older completed records from checkout are explicitly rejected by this commit’s unchanged original nine-record release policy; no hosted completion is claimed. New diagnostics preserve the original assertion and deadline and capture the last poll plus current terminal status/output."
+}

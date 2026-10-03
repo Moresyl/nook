@@ -75,6 +75,8 @@ jobs:
           pnpm test:portable
       - name: Verify current-user installation, installed desktop and data-preserving uninstall
         run: ./scripts/verify-installer.ps1
+      - name: Verify matching complete runtime records
+        run: node scripts/verify-runtime-proof.mjs
       - name: Prepare exact tagged source, bilingual notes and checksums
         if: startsWith(github.ref, 'refs/tags/')
         env:
