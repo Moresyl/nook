@@ -482,6 +482,7 @@
       "proof": "verification/hosted-comparison-failure-result.json"
     },
     {
+      "runId": 37135402356,
       "sourceCommit": "859b32ede117348eb0f1df62ac92992976fa5b2c",
       "conclusion": "failure",
       "proof": "verification/hosted-directory-fixture-result.json"
@@ -575,10 +576,11 @@
       "portableSha256": "e829ecd5a517881dcfdede4d91fcbb05fa8f58e445b175e9b1663bcc2965cc51"
     },
     "distributionProof": "verification/model-comparison-queued-state-distribution-result.json",
-    "latestHostedAttemptConclusion": "failure"
+    "latestHostedAttemptConclusion": "failure",
+    "latestHostedAttemptRunId": 37135402356
   },
   "freshRuntimeRecords": {
-    "verifiedAt": "2026-10-03T16:27:58.861Z",
+    "verifiedAt": "2026-10-03T16:29:45.199Z",
     "codeCommit": "bb1b3ccf36fce89d4b801d30f0ce3dfb6b873f0d",
     "unitTests": 597,
     "focusedPolicyTests": 33,
