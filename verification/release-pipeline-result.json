@@ -550,6 +550,12 @@
       "sourceCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
       "conclusion": "failure",
       "proof": "verification/hosted-checkpoint-journal-terminal-failure-result.json"
+    },
+    {
+      "runId": 37215478801,
+      "sourceCommit": "749576eef912ad47cc8f01b6ff8753ed6438c14f",
+      "conclusion": "failure",
+      "proof": "verification/checkpoint-journal-distribution-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -698,16 +704,15 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37213317168,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37213317168",
-    "sourceCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
+    "runId": 37215478801,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37215478801",
+    "sourceCommit": "749576eef912ad47cc8f01b6ff8753ed6438c14f",
     "conclusion": "failure",
     "unitTestsPassed": 730,
-    "unitFiles": 69,
-    "packagedChecksBeforeFailure": 164,
-    "terminalPromptWaitFailed": true,
+    "packagedChecksBeforeFailure": 184,
+    "temporaryCompletionWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-checkpoint-journal-terminal-failure-result.json"
+    "proof": "verification/checkpoint-journal-distribution-failure-result.json"
   },
   "previousSourceVerification": {
     "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
@@ -844,19 +849,16 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37201161132,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37201161132",
-    "sourceCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
+    "runId": 37213317168,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37213317168",
+    "sourceCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
     "conclusion": "failure",
-    "unitTestsPassed": 691,
-    "unitFiles": 68,
-    "completePackagedChecks": 215,
-    "surfaceChecks": 4,
-    "portableChecks": 7,
-    "installedChecksBeforeFailure": 173,
-    "startupWaitFailed": true,
+    "unitTestsPassed": 730,
+    "unitFiles": 69,
+    "packagedChecksBeforeFailure": 164,
+    "terminalPromptWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-workspace-serialization-startup-failure-result.json"
+    "proof": "verification/hosted-checkpoint-journal-terminal-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
@@ -1060,6 +1062,10 @@
     "currentDistributionVerified": false,
     "currentHostedVerified": false,
     "completeSource": "verification/checkpoint-journal-complete-source-result.json",
-    "completeSourceChecks": 215
+    "completeSourceChecks": 215,
+    "unpackedChecks": 215,
+    "installedChecksBeforeFailure": 192,
+    "distributionVerified": false,
+    "distributionFailureProof": "verification/checkpoint-journal-distribution-failure-result.json"
   }
 }

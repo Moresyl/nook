@@ -1,0 +1,566 @@
+{
+  "verifiedAt": "2026-10-04T17:01:06.195Z",
+  "codeCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
+  "unitTestsPassed": 730,
+  "unpackedChecks": 215,
+  "settingsChecks": 4,
+  "portableChecks": 7,
+  "installedAssertionsBeforeFailure": 192,
+  "localFailure": {
+    "phase": "partial",
+    "sendStartedAt": 1791132066189,
+    "capturedAt": 1791132077770,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "expectedServerRequests": 11,
+    "serverRequests": 11,
+    "timeline": [
+      {
+        "receivedAt": 1791132035006,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791132035006,
+        "completionQueuedAt": 1791132038986,
+        "completionFlushedAt": 1791132038987,
+        "closedAt": 1791132038987
+      },
+      {
+        "receivedAt": 1791132044692,
+        "connection": "a",
+        "model": "one",
+        "messages": 2,
+        "partialSentAt": 1791132044693,
+        "completionQueuedAt": 1791132048421,
+        "completionFlushedAt": 1791132048421,
+        "closedAt": 1791132048421
+      },
+      {
+        "receivedAt": 1791132044693,
+        "connection": "b",
+        "model": "two",
+        "messages": 2,
+        "partialSentAt": 1791132044693,
+        "completionQueuedAt": 1791132048421,
+        "completionFlushedAt": 1791132048421,
+        "closedAt": 1791132048421
+      },
+      {
+        "receivedAt": 1791132077655,
+        "connection": "b",
+        "model": "two",
+        "messages": 6,
+        "partialSentAt": 1791132077656
+      }
+    ],
+    "rendererPolls": [
+      {
+        "phase": "partial",
+        "startedAt": 1791132066248,
+        "completedAt": 1791132073584,
+        "expectedMessageCount": 6,
+        "messageCount": 4,
+        "lastUserMatches": false,
+        "lastStatus": "complete",
+        "hasPartial": true,
+        "reached": false
+      },
+      {
+        "phase": "partial",
+        "startedAt": 1791132074043,
+        "completedAt": 1791132077505,
+        "expectedMessageCount": 6,
+        "messageCount": 6,
+        "lastUserMatches": true,
+        "lastStatus": "running",
+        "hasPartial": false,
+        "reached": false
+      }
+    ],
+    "native": {
+      "observations": {
+        "installedAt": 1791132066184,
+        "loads": [
+          {
+            "startedAt": 1791132066246,
+            "returnedAt": 1791132073426,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            },
+            "finishedAt": 1791132073426
+          },
+          {
+            "startedAt": 1791132074041,
+            "returnedAt": 1791132077350,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            },
+            "finishedAt": 1791132077350
+          }
+        ],
+        "clones": [
+          {
+            "startedAt": 1791132069406,
+            "completedAt": 1791132069508,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132069508,
+            "completedAt": 1791132069590,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132073235,
+            "completedAt": 1791132073340,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132073340,
+            "completedAt": 1791132073426,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132073524,
+            "completedAt": 1791132073610,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132073610,
+            "completedAt": 1791132073691,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791132076969,
+            "completedAt": 1791132077080,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791132077080,
+            "completedAt": 1791132077161,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791132077263,
+            "completedAt": 1791132077350,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791132077454,
+            "completedAt": 1791132077536,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791132077570,
+            "completedAt": 1791132077651,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          }
+        ],
+        "sends": [
+          {
+            "startedAt": 1791132077161,
+            "hasState": true,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            },
+            "completedAt": 1791132077261
+          },
+          {
+            "startedAt": 1791132077262,
+            "hasState": false,
+            "completedAt": 1791132077262
+          },
+          {
+            "startedAt": 1791132077655,
+            "hasState": false,
+            "deltaCharacters": 12,
+            "hasPartialDelta": true,
+            "completedAt": 1791132077655
+          }
+        ]
+      },
+      "transport": [
+        {
+          "id": 8,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791132034990,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791132034990
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791132035004
+            },
+            {
+              "phase": "headers",
+              "at": 1791132035005
+            },
+            {
+              "phase": "trailers",
+              "at": 1791132038986
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 9,
+          "method": "POST",
+          "path": "/model-comparison/a/v1/chat/completions",
+          "firstObservedAt": 1791132044688,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791132044688
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791132044691
+            },
+            {
+              "phase": "headers",
+              "at": 1791132044692
+            },
+            {
+              "phase": "trailers",
+              "at": 1791132048421
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 10,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791132044688,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791132044688
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791132044691
+            },
+            {
+              "phase": "headers",
+              "at": 1791132044692
+            },
+            {
+              "phase": "trailers",
+              "at": 1791132048912
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 11,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791132077262,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791132077262
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791132077652
+            },
+            {
+              "phase": "headers",
+              "at": 1791132077655
+            }
+          ],
+          "statusCode": 200
+        }
+      ],
+      "memory": {
+        "rss": 1425571840,
+        "heapTotal": 930119680,
+        "heapUsed": 918946504,
+        "external": 343140764,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 18296000,
+        "system": 11359000
+      },
+      "capturedAt": 1791132077773
+    }
+  },
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "b18799e1ce391172e37b88ea7636c911bf90f5e7d076a4911fd3514ae6c12439"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485580322,
+      "sha256": "14e8f18ea675bc6de3039f348425effd7b082731a34b29346453c0a0042aac03"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237878881,
+      "sha256": "ed335139eabc9089c704977211313b73e2f54121593a5aa34aad0fcaa0f4eec1"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306618986,
+      "sha256": "c1a7de4e824de1048acd015bd33a2bc51dd0007c7a07fc8e4530d71ca5391f16"
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "bytes": 54037,
+      "sha256": "7a1543b9a509adecdfa9d8899b819c12905329f2f6ed971792aff368a0714871"
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "614fe8faacbd10c8b12f80b798319ad9212255186e4c99b5ca77cae7e10a8a24"
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "bytes": 11796,
+      "sha256": "ac0ed3227eb47f80c451728ab56067bf3aad5b5427b05d7cd5e87ad98ef23858"
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "bytes": 1953,
+      "sha256": "980d86d634db339297232f9d0dd0046b90ed4e83540b8e9693074c682c97a6f5"
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "bytes": 2247,
+      "sha256": "5ceed78cf7971adaae8b2e7e718d4febe3493fd21f48dcf9948d6d4e5dd4aab1"
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "bytes": 1971,
+      "sha256": "a665a2bfa13229a7a1bda4640c357c18d0413b8d74c39c39b80fbd375f373a2a"
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "bytes": 1798,
+      "sha256": "c4bab0fd6844746c027c2fdf7e8e844aef72964a618c8aae1a96872f768f19ca"
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "bytes": 1891,
+      "sha256": "94a3816073110a73353be65a13b5ff4cecaf177eda5d2278d2f3f8306433ab15"
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "bytes": 916,
+      "sha256": "ba8abc8503920f90b06a809b51cae637acd22eab866a4ceadf0339a30e55c80e"
+    }
+  ],
+  "strictCurrentRuntimeProofRejected": true,
+  "hosted": {
+    "runId": 37215478801,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37215478801",
+    "codeCommit": "749576eef912ad47cc8f01b6ff8753ed6438c14f",
+    "conclusion": "failure",
+    "packagedAssertionsBeforeFailure": 184,
+    "diagnostic": {
+      "expectedThreadId": "a4040888-b0f1-4bf7-9e19-f0980480c6ed",
+      "requestsBefore": 47,
+      "requestsNow": 48,
+      "recentRequests": [
+        {
+          "model": "verification-model",
+          "messages": 2
+        }
+      ],
+      "diagnostic": {
+        "capturedAt": 1791131538469,
+        "lastPoll": {
+          "polledAt": 1791131532978,
+          "expectedThreadId": "a4040888-b0f1-4bf7-9e19-f0980480c6ed",
+          "activeThreadId": "a4040888-b0f1-4bf7-9e19-f0980480c6ed",
+          "temporary": true,
+          "messages": 0
+        },
+        "activeThreadId": "a4040888-b0f1-4bf7-9e19-f0980480c6ed",
+        "threads": [
+          {
+            "id": "a4040888-b0f1-4bf7-9e19-f0980480c6ed",
+            "temporary": true,
+            "messages": 2,
+            "last": {
+              "id": "dba364e4-df5f-40b4-a3ed-da53b4a11863",
+              "status": "complete",
+              "characters": 65,
+              "tail": "这是通过本地测试服务返回的 **真实流式回复**。\n\n| 项目 | 状态 |\n| --- | --- |\n| 工作台 | 正常 |"
+            }
+          }
+        ],
+        "visible": {
+          "provider": "28e1abfa-c44c-4368-bd68-9b0538bd2ece",
+          "model": "verification-model",
+          "temporaryDisclosure": true,
+          "lastReply": "这是通过本地测试服务返回的 真实流式回复。\n项目状态工作台正常用量未返回 · 1 次请求",
+          "sendButton": true
+        }
+      }
+    },
+    "packageAudit": {
+      "verifiedAt": "2026-10-04T16:19:01.270Z",
+      "version": "0.1.0-alpha.1",
+      "executableSha256": "09783158881b3997ae5543ebc0d2a2ef6e85e66e7bbbd65bcc6225a7067d24ad",
+      "archiveSha256": "297403b585ea818d35e290146982fd0fc68d8f0d46e50d8f979127cdb1cc9eaf",
+      "executableBytes": 245726720,
+      "executableMetadata": {
+        "Copyright": "Copyright © 2026 Qiyao",
+        "ProductName": "Qiyao",
+        "FileDescription": "Qiyao",
+        "Signature": "NotSigned",
+        "CompanyName": "Qiyao"
+      },
+      "productFiles": 233,
+      "unpackedFiles": 188,
+      "dependencyVersions": 381,
+      "retainedDocuments": 401,
+      "distributionComponents": 5,
+      "distributionFiles": 20,
+      "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+      "unresolvedDistribution": [],
+      "originalVendorNotices": [
+        "LICENSE.electron.txt",
+        "LICENSES.chromium.html"
+      ],
+      "oldProductIdentityMatches": [],
+      "removedUiFontReferencesVerified": true,
+      "compiledAssetsMatchVerifiedBuild": true,
+      "unresolvedAssets": [],
+      "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+    },
+    "artifact": {
+      "id": 11308163551,
+      "bytes": 8248023,
+      "sha256": "ca1e54c9b9b3eba749b99f87e0a955aeb979c07843e0c3134dfd56c4a535d6b6",
+      "githubDigestMatched": true
+    },
+    "completeRuntimeProofRejected": true
+  },
+  "logs": [
+    {
+      "name": "checkpoint-journal-installer.log",
+      "bytes": 44612,
+      "sha256": "fa989e6a773e2cd04df1dddb0d913303e97f08027b5d63e983bc2113f3aa9fbc"
+    },
+    {
+      "name": "checkpoint-journal-749-hosted-full.log",
+      "bytes": 277549,
+      "sha256": "dc4dec14cad2a70c3f0aec0518e38fe91522c725270d828f4783b3d3fe144aff"
+    }
+  ],
+  "scope": "The guarded journal passes complete source/unpacked desktop, settings and portable checks. Actual installed comparison continuation misses its original partial-response deadline after 192 assertions; all eleven HTTP requests arrive. Hosted terminal startup passes, but temporary-send completion misses its original deadline; a later read sees the complete response. These are separate failures on their exact application hashes. Complete local/hosted distribution and publication remain unverified."
+}
