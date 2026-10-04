@@ -40,6 +40,35 @@ describe('durable response checkpoint journal', () => {
     expect(restored.snapshot().threads[0].messages[0].content).toBe('Before');
     await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
   });
+  it('waits for the queued durable checkpoint without materializing the primary or announcing unsaved state', async () => {
+    const { vault, primary, journal } = await fixture(); const before = await readFile(primary);
+    const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');
+    let release!: () => void; let started!: () => void; const held = new Promise<void>(resolve => { release = resolve; }); const entered = new Promise<void>(resolve => { started = resolve; });
+    vi.mocked(rename).mockImplementation(async (from, to) => { if (to === journal) { started(); await held; } return actual.rename(from, to); });
+    const saving = vault.checkpointMessages([{ threadId: 'thread', message: message('Committed') }]);
+    try {
+      await entered; let settled = false; const waiting = vault.wait().then(() => { settled = true; });
+      await Promise.resolve(); expect(settled).toBe(false); expect(vault.snapshot().threads[0].messages[0].content).toBe('Before');
+      release(); await saving; await waiting; expect(settled).toBe(true); expect(vault.snapshot().threads[0].messages[0].content).toBe('Committed');
+      expect(await readFile(primary)).toEqual(before);
+    } finally { release(); await saving; }
+  });
+  it('ignores retired checkpoints after a successful save restores identical base bytes even when journal cleanup fails', async () => {
+    const { vault, directory, primary, journal } = await fixture(); const before = await readFile(primary);
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Retired') }]);
+    const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');
+    vi.mocked(rm).mockImplementation(async (path, options) => { if (path === journal) throw Object.assign(new Error('Cleanup unavailable'), { code: 'EACCES' }); return actual.rm(path, options); });
+    await vault.update(draft => { draft.threads[0] = sampleThread({ messages: [message('Before')] }); });
+    expect((await readFile(primary)).equals(before)).toBe(true); expect((await readFile(journal, 'utf8')).includes('Retired')).toBe(true);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot().threads[0].messages[0].content).toBe('Before');
+  });
+  it('bounds a journal that grows between its size check and reading, and retains both private files on recovery failure', async () => {
+    const { directory, primary, journal } = await fixture(); const before = await readFile(primary);
+    await writeFile(journal, Buffer.alloc(8 * 1024 * 1024 + 1, 32)); const info = await stat(journal); Object.defineProperty(info, 'size', { value: 0 });
+    vi.mocked(stat).mockResolvedValueOnce(info);
+    await expect(new WorkspaceVault(directory, codec).initialize()).rejects.toThrow('Saved response checkpoints could not be read');
+    expect(await readFile(primary)).toEqual(before); expect((await stat(journal)).size).toBe(8 * 1024 * 1024 + 1);
+  });
   it('retains committed data through actual journal replacement failure and permits an exact retry', async () => {
     const { vault, primary, backup, journal } = await fixture(); const before = vault.snapshot(); const bytes = await readFile(primary);
     const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');

@@ -1,0 +1,950 @@
+{
+  "verifiedAt": "2026-10-04T14:42:13.113Z",
+  "codeCommit": "01a6124d1d90d0b94dbc123c096a0dbb95ab7039",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "9fa3816372b47047e8ad32b023b1ca7495ade4d7360d1f89a60d545df48bbd0a"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "a15aceced134625c59a76b9a34ffd1a07086c43ada8fa03bde073543579e970e"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    }
+  ],
+  "tests": [
+    {
+      "path": "verification/workspace-checkpoint-journal.test.ts",
+      "sha256": "cac91a753ecd4dca715b115a93800c9929db82b57b99507d6d7e52312ab0fc02"
+    },
+    {
+      "path": "verification/conversation-engine.test.ts",
+      "sha256": "040ba02614e32580bb17ce91e6e23573c847a31aee0f43ff7f329f0e708dc2bb"
+    },
+    {
+      "path": "verification/message-checkpoints.test.ts",
+      "sha256": "8bc891f654b4bfc645501406e2063f3baf7d77031742fce7fe271d0207f91454"
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "sha256": "b44c232cffaa672fd92d9f3a3c19ff282f85d492993d29bf782d6001b54eb7ef"
+    }
+  ],
+  "nativeHarness": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "a1d6baddc4f5c2f8363c1b57c462ca35e6d029be9dc8c73ce883e5beabff7103"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "4acadeb7daaa2cff2f6b2eb1dc1c1c9e2095eb84373219518cb4aaae7a296288"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "e74e9ca7ce33d3e241ec0b6bd6271d6eeb0cd1c46cc87fcf2747e86236dc904b"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "unitTestsPassed": 711,
+  "unitFiles": 69,
+  "coverage": {
+    "lines": {
+      "total": 3174,
+      "covered": 3150,
+      "skipped": 0,
+      "pct": 99.24
+    },
+    "statements": {
+      "total": 5364,
+      "covered": 5203,
+      "skipped": 0,
+      "pct": 96.99
+    },
+    "functions": {
+      "total": 1198,
+      "covered": 1165,
+      "skipped": 0,
+      "pct": 97.24
+    },
+    "branches": {
+      "total": 3762,
+      "covered": 3555,
+      "skipped": 0,
+      "pct": 94.49
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "typecheckExitCode": 0,
+  "buildExitCode": 0,
+  "startup": {
+    "verifiedAt": "2026-10-04T14:28:55.193Z",
+    "cases": [
+      {
+        "input": "workspace.json",
+        "elapsedMs": 3157,
+        "exitCode": 1,
+        "exactFailurePhaseVerified": true,
+        "nativeErrorDialogDidNotBlock": true,
+        "privateInputNotLogged": true,
+        "diagnostics": {
+          "events": [
+            {
+              "phase": "when-ready",
+              "at": 1791124126293,
+              "memory": {
+                "rss": 89141248,
+                "heapTotal": 23617536,
+                "heapUsed": 18522488,
+                "external": 3514370,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 78000,
+                "system": 140000
+              }
+            },
+            {
+              "phase": "protocol.ready",
+              "at": 1791124126297,
+              "memory": {
+                "rss": 94347264,
+                "heapTotal": 23617536,
+                "heapUsed": 18530664,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 78000,
+                "system": 140000
+              }
+            },
+            {
+              "phase": "vault.workspace.read",
+              "at": 1791124126301,
+              "memory": {
+                "rss": 103243776,
+                "heapTotal": 23617536,
+                "heapUsed": 18547728,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 156000
+              }
+            },
+            {
+              "phase": "failed",
+              "at": 1791124126392,
+              "memory": {
+                "rss": 104378368,
+                "heapTotal": 23617536,
+                "heapUsed": 18567912,
+                "external": 3514594,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 156000
+              }
+            }
+          ]
+        }
+      },
+      {
+        "input": "credentials.json",
+        "elapsedMs": 3223,
+        "exitCode": 1,
+        "exactFailurePhaseVerified": true,
+        "nativeErrorDialogDidNotBlock": true,
+        "privateInputNotLogged": true,
+        "diagnostics": {
+          "events": [
+            {
+              "phase": "when-ready",
+              "at": 1791124129421,
+              "memory": {
+                "rss": 88309760,
+                "heapTotal": 23355392,
+                "heapUsed": 18905716,
+                "external": 3514370,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 31000
+              }
+            },
+            {
+              "phase": "protocol.ready",
+              "at": 1791124129424,
+              "memory": {
+                "rss": 93077504,
+                "heapTotal": 23617536,
+                "heapUsed": 18337472,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "vault.workspace.read",
+              "at": 1791124129435,
+              "memory": {
+                "rss": 103759872,
+                "heapTotal": 23617536,
+                "heapUsed": 18354732,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "vault.workspace.parsed",
+              "at": 1791124129436,
+              "memory": {
+                "rss": 104341504,
+                "heapTotal": 23617536,
+                "heapUsed": 18368284,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "vault.credentials.read",
+              "at": 1791124129436,
+              "memory": {
+                "rss": 104341504,
+                "heapTotal": 23617536,
+                "heapUsed": 18715288,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "failed",
+              "at": 1791124129436,
+              "memory": {
+                "rss": 104398848,
+                "heapTotal": 23617536,
+                "heapUsed": 18387100,
+                "external": 3514599,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            }
+          ]
+        }
+      },
+      {
+        "input": "workspace.checkpoints.json",
+        "elapsedMs": 2717,
+        "exitCode": 1,
+        "exactFailurePhaseVerified": true,
+        "nativeErrorDialogDidNotBlock": true,
+        "privateInputNotLogged": true,
+        "diagnostics": {
+          "events": [
+            {
+              "phase": "when-ready",
+              "at": 1791124132649,
+              "memory": {
+                "rss": 88244224,
+                "heapTotal": 23617536,
+                "heapUsed": 18593596,
+                "external": 3514370,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "protocol.ready",
+              "at": 1791124132652,
+              "memory": {
+                "rss": 93544448,
+                "heapTotal": 23617536,
+                "heapUsed": 18601772,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "vault.workspace.read",
+              "at": 1791124132656,
+              "memory": {
+                "rss": 102293504,
+                "heapTotal": 23617536,
+                "heapUsed": 18618864,
+                "external": 3514426,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 140000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "failed",
+              "at": 1791124132657,
+              "memory": {
+                "rss": 103464960,
+                "heapTotal": 23617536,
+                "heapUsed": 18650828,
+                "external": 3514594,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 156000,
+                "system": 93000
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "source": [
+      {
+        "path": "desktop/launch.ts",
+        "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+      },
+      {
+        "path": "desktop/services/vault.ts",
+        "sha256": "9fa3816372b47047e8ad32b023b1ca7495ade4d7360d1f89a60d545df48bbd0a"
+      },
+      {
+        "path": "desktop/services/startup-diagnostics.ts",
+        "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+      },
+      {
+        "path": "desktop/services/workspace-checkpoint-journal.ts",
+        "sha256": "a15aceced134625c59a76b9a34ffd1a07086c43ada8fa03bde073543579e970e"
+      }
+    ],
+    "scope": "3 real isolated Electron processes with malformed workspace, credential or optional checkpoint files exit with code 1 before the unchanged 30-second discovery deadline. Exact phase/resource diagnostics are captured and private input is omitted. The isolated diagnostic flag prevents an unattended native startup error dialog from blocking exit. Normal production startup errors keep their native dialog. This reproduces the native error reporting branch; it does not identify the earlier hosted startup timeout cause."
+  },
+  "benchmark": {
+    "before": {
+      "verifiedAt": "2026-10-04T14:02:08.782Z",
+      "label": "before",
+      "source": [
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "858e07d03021f6607a32d9a0dcf6e577141e3a6f7f5461ebbe49edb1c368f9db"
+        },
+        {
+          "path": "desktop/services/atomic-file.ts",
+          "sha256": "b9c3ddbb7e575d19df3900823b81f07907fbafb84ced13dc72d98e1ede6a0ffb"
+        },
+        {
+          "path": "desktop/services/workspace-serialization.ts",
+          "sha256": "a006a43e603cbc154f7efe5a4ab401aad2b49ba6fdcece56de627644fda1fb41"
+        }
+      ],
+      "initializationMs": 701.7169999999999,
+      "fixture": {
+        "threads": 297,
+        "largeHistories": 20,
+        "bytes": 84064332,
+        "sha256": "879b7d64007503508733eac23e609df4bb4fa9cd8671e8eaceb5fafa309edda1"
+      },
+      "updateCount": 4,
+      "timings": [
+        2270.7563,
+        2324.9455000000003,
+        1746.0457999999999,
+        1677.0967999999993
+      ],
+      "updateMs": 8018.8444,
+      "updateCpu": {
+        "user": 641000,
+        "system": 547000
+      },
+      "materializationMs": 0.017599999999220017,
+      "updatePlusMaterializationMs": 8018.861999999999,
+      "primary": {
+        "bytes": 84064350,
+        "sha256": "1dbb5d9146e92ef9e9412da986ee3dc10c2393954b518c9e7ffdf58d717ea4fc",
+        "exactCanonicalBytes": true
+      },
+      "backup": {
+        "bytes": 84064350,
+        "sha256": "d2e1c08c332c588405a696baafb051dc729e05c48f7102a7280b45a804a4c411",
+        "exactPriorCanonicalBytes": true
+      },
+      "originalLargeHistoryUnchanged": true,
+      "memoryAfterVerification": {
+        "rss": 1072267264,
+        "heapTotal": 711499776,
+        "heapUsed": 574860576,
+        "external": 422288753,
+        "arrayBuffers": 420374910
+      }
+    },
+    "after": {
+      "verifiedAt": "2026-10-04T14:02:15.955Z",
+      "label": "after",
+      "source": [
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "9fa3816372b47047e8ad32b023b1ca7495ade4d7360d1f89a60d545df48bbd0a"
+        },
+        {
+          "path": "desktop/services/atomic-file.ts",
+          "sha256": "b9c3ddbb7e575d19df3900823b81f07907fbafb84ced13dc72d98e1ede6a0ffb"
+        },
+        {
+          "path": "desktop/services/workspace-serialization.ts",
+          "sha256": "a006a43e603cbc154f7efe5a4ab401aad2b49ba6fdcece56de627644fda1fb41"
+        },
+        {
+          "path": "desktop/services/workspace-checkpoint-journal.ts",
+          "sha256": "a15aceced134625c59a76b9a34ffd1a07086c43ada8fa03bde073543579e970e"
+        }
+      ],
+      "initializationMs": 822.4784,
+      "fixture": {
+        "threads": 297,
+        "largeHistories": 20,
+        "bytes": 84064332,
+        "sha256": "879b7d64007503508733eac23e609df4bb4fa9cd8671e8eaceb5fafa309edda1"
+      },
+      "updateCount": 4,
+      "timings": [
+        1098.2229000000002,
+        1022.6884,
+        1014.2506000000003,
+        978.9277000000002
+      ],
+      "updateMs": 4114.089600000001,
+      "updateCpu": {
+        "user": 594000,
+        "system": 344000
+      },
+      "materializationMs": 845.4099000000006,
+      "updatePlusMaterializationMs": 4959.499500000002,
+      "primary": {
+        "bytes": 84064350,
+        "sha256": "1dbb5d9146e92ef9e9412da986ee3dc10c2393954b518c9e7ffdf58d717ea4fc",
+        "exactCanonicalBytes": true
+      },
+      "backup": {
+        "bytes": 84064350,
+        "sha256": "d2e1c08c332c588405a696baafb051dc729e05c48f7102a7280b45a804a4c411",
+        "exactPriorCanonicalBytes": true
+      },
+      "originalLargeHistoryUnchanged": true,
+      "memoryAfterVerification": {
+        "rss": 1164865536,
+        "heapTotal": 719839232,
+        "heapUsed": 583026464,
+        "external": 506352208,
+        "arrayBuffers": 504438365
+      }
+    },
+    "sameFixtureAndExactOutput": true,
+    "singleLocalSample": true
+  },
+  "nativeAttempts": [
+    {
+      "passedLabels": 6,
+      "normalCloseVerified": false,
+      "completeCurrentNativeVerified": false,
+      "scope": "Six focused seeded model-comparison assertions passed, but final normal window close failed; this is not an accepted complete native run."
+    },
+    {
+      "passedLabels": 4,
+      "normalCloseVerified": false,
+      "completeCurrentNativeVerified": false,
+      "continuationFailure": {
+        "phase": "partial",
+        "sendStartedAt": 1791124256786,
+        "capturedAt": 1791124267785,
+        "originalDeadlineMs": 10000,
+        "originalPollIntervalMs": 100,
+        "expectedServerRequests": 11,
+        "serverRequests": 11,
+        "timeline": [
+          {
+            "receivedAt": 1791124226695,
+            "connection": "b",
+            "model": "two",
+            "messages": 4,
+            "partialSentAt": 1791124226695,
+            "completionQueuedAt": 1791124230492,
+            "completionFlushedAt": 1791124230493,
+            "closedAt": 1791124230493
+          },
+          {
+            "receivedAt": 1791124238073,
+            "connection": "a",
+            "model": "one",
+            "messages": 2,
+            "partialSentAt": 1791124238073,
+            "completionQueuedAt": 1791124241440,
+            "completionFlushedAt": 1791124241440,
+            "closedAt": 1791124241440
+          },
+          {
+            "receivedAt": 1791124238074,
+            "connection": "b",
+            "model": "two",
+            "messages": 2,
+            "partialSentAt": 1791124238074,
+            "completionQueuedAt": 1791124241440,
+            "completionFlushedAt": 1791124241440,
+            "closedAt": 1791124241440
+          },
+          {
+            "receivedAt": 1791124267670,
+            "connection": "b",
+            "model": "two",
+            "messages": 6,
+            "partialSentAt": 1791124267670
+          }
+        ],
+        "rendererPolls": [
+          {
+            "phase": "partial",
+            "startedAt": 1791124256839,
+            "completedAt": 1791124263648,
+            "expectedMessageCount": 6,
+            "messageCount": 4,
+            "lastUserMatches": false,
+            "lastStatus": "complete",
+            "hasPartial": true,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791124263943,
+            "completedAt": 1791124267458,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          }
+        ],
+        "native": {
+          "observations": {
+            "installedAt": 1791124256778,
+            "loads": [
+              {
+                "startedAt": 1791124256834,
+                "returnedAt": 1791124263480,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                },
+                "finishedAt": 1791124263480
+              },
+              {
+                "startedAt": 1791124263938,
+                "returnedAt": 1791124267296,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791124267296
+              }
+            ],
+            "clones": [
+              {
+                "startedAt": 1791124259940,
+                "completedAt": 1791124260047,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124260047,
+                "completedAt": 1791124260132,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124263265,
+                "completedAt": 1791124263386,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124263386,
+                "completedAt": 1791124263480,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124263582,
+                "completedAt": 1791124263682,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124263682,
+                "completedAt": 1791124263788,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791124266881,
+                "completedAt": 1791124267020,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791124267020,
+                "completedAt": 1791124267101,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791124267202,
+                "completedAt": 1791124267296,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791124267396,
+                "completedAt": 1791124267504,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791124267543,
+                "completedAt": 1791124267662,
+                "threadCount": 315,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              }
+            ],
+            "sends": [
+              {
+                "startedAt": 1791124267101,
+                "hasState": true,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "completedAt": 1791124267201
+              },
+              {
+                "startedAt": 1791124267201,
+                "hasState": false,
+                "completedAt": 1791124267201
+              },
+              {
+                "startedAt": 1791124267666,
+                "hasState": false,
+                "deltaCharacters": 12,
+                "hasPartialDelta": true,
+                "completedAt": 1791124267666
+              }
+            ]
+          },
+          "transport": [
+            {
+              "id": 8,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791124226690,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791124226690
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791124226692
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791124226694
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791124230489
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 9,
+              "method": "POST",
+              "path": "/model-comparison/a/v1/chat/completions",
+              "firstObservedAt": 1791124238065,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791124238065
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791124238068
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791124238069
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791124241435
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 10,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791124238065,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791124238065
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791124238068
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791124238069
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791124241809
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 11,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791124267202,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791124267202
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791124267664
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791124267666
+                }
+              ],
+              "statusCode": 200
+            }
+          ],
+          "memory": {
+            "rss": 1275707392,
+            "heapTotal": 813588480,
+            "heapUsed": 806199308,
+            "external": 343329404,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 18687000,
+            "system": 12234000
+          },
+          "capturedAt": 1791124267783
+        }
+      },
+      "scope": "The following seeded run failed the unchanged selected-continuation partial-response predicate."
+    }
+  ],
+  "logs": [
+    {
+      "name": "final-unit",
+      "sha256": "1d79a54c3db1d9260b3ac817b9c9291561b6f6c8d6f8940a403f1a1e1bfecc04",
+      "bytes": 4584,
+      "passedLabels": 0
+    },
+    {
+      "name": "final-typecheck",
+      "sha256": "54a87df41eb61f30bcb0fd3670d522418729d7ca7facc870645ab8193c03249c",
+      "bytes": 90,
+      "passedLabels": 0
+    },
+    {
+      "name": "build",
+      "sha256": "af056d91fc261be570e89019a86942e7048888c4907da467dc0b6d94bfd242db",
+      "bytes": 22553,
+      "passedLabels": 0
+    },
+    {
+      "name": "startup-native",
+      "sha256": "28f07421a907ec940e9b2704e607cba3c1d91d35444ed33844860ee1e8dda52c",
+      "bytes": 114,
+      "passedLabels": 0
+    },
+    {
+      "name": "isolated-seeded-comparison-native",
+      "sha256": "de9bf38ea1bd818af4b5689aeb4568c1b7e5079c52321c482dfd12fcfdf1808c",
+      "bytes": 21298,
+      "passedLabels": 6
+    },
+    {
+      "name": "close-observed-native",
+      "sha256": "dfe754ddeedcd236bc18eed73ec3a4dc3a575fd1c1bc34049a610e82ee7c0d8e",
+      "bytes": 12751,
+      "passedLabels": 4
+    }
+  ],
+  "originalIndependentBackupAndAtomicAcknowledgementRetained": true,
+  "completeCurrentNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Recoverable response journal component only. Startup failures, unit coverage and exact-byte local benchmark are verified. Focused native attempts remain failed; no current packaged, installed or hosted acceptance is claimed."
+}
