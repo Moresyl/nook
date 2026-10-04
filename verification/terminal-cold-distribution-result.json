@@ -1,0 +1,255 @@
+{
+  "verifiedAt": "2026-10-04T21:11:41.303Z",
+  "codeCommit": "ed46a28",
+  "applicationCodeCommit": "5b54696",
+  "unitTestsPassed": 746,
+  "unitFiles": 70,
+  "startupOnlyNativeChecks": 6,
+  "unpackedChecks": 215,
+  "installedChecks": 215,
+  "settingsChecks": 4,
+  "portableChecks": 7,
+  "matchingRuntimeProofVerified": true,
+  "runtimeRecordCount": 10,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "hostedVerified": false,
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "541669c22bdbbd7f67cee2e2b78575b992d06ad6b6711fd16aee1d9fdd431eb0"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "bytes": 54037,
+      "sha256": "c5be52f3c050fdb3973b4db36491e47f3859a17119ac327a7ec2b6f8629feec8"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "5431a2e1ce50abdd27c69ceb49ac6e8e2593bbe10b51dc2cc098f18dcdcb8217"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "bytes": 11796,
+      "sha256": "0cd94674ac450a98e04fd61463b1d7f548cf84c61f125387f88e337b88537bc4"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "bytes": 1953,
+      "sha256": "08b5ee06580c545ca7d6718abf79772e44e505e1ed064788237f4912abff7a17"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "bytes": 2247,
+      "sha256": "b09c44915d8233a2360ced686bc79070c452c96f24e860dff29ffe4b1514b674"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "bytes": 2092,
+      "sha256": "70f96961d297932b3c43a4dacd41a6f341fd07b4efa6d2ffae367b8a5d78f8b7"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "945f5b9362ee3c640c94f1415e7fd373ccb667c87dfbe2d3a313d74f999e3431"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "cb417fe6ba81b9fe961ac7e6ac1d831e07d5a3ce3afeba69e32dee702c66d912"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "bytes": 766,
+      "sha256": "605c4ba43eb77209357f4d164694e6b13b1dcfb4f9c5b7d08b6bf4905450a1a7"
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "bytes": 54037,
+      "sha256": "a107a4c41ed32e7f314b09e1493a4f8f54b9a0e86cd812cafba86ce64a60b248"
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "5431a2e1ce50abdd27c69ceb49ac6e8e2593bbe10b51dc2cc098f18dcdcb8217"
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "bytes": 11796,
+      "sha256": "f8ef95bd2c73f94ebc7663dbc78c72bd948969793d08292dce073d80fed9bd93"
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "bytes": 1953,
+      "sha256": "795d8291951b771d744365c045bc86ad0430fe2fef7776bddfdea7fb818d48b5"
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "bytes": 2247,
+      "sha256": "c45776db6c6cc69dbccb3e8ab55168ef2e6e559940031cc68122b750efa988ec"
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "bytes": 1971,
+      "sha256": "d56752d0bf26423ef42e7c58b0bfb9157b259a8773c00f093231d244e95bfe1a"
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "bytes": 1798,
+      "sha256": "98ade17eb282e0ea0a122596ca2982a37973a9aa5027e2b0acdc83709739e773"
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "bytes": 1891,
+      "sha256": "00380cfce0301a015eec2c5450638dbcf2ac3e9a3f36f3264622d80bce8034ea"
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "bytes": 916,
+      "sha256": "fd143f22c7b3ead803fa9d9262e2b6aa66c536e5949d79148e044f9c573eb095"
+    },
+    {
+      "name": "chat-navigation-packaged-result.json",
+      "bytes": 10712,
+      "sha256": "49d5dbe74afe09d9b1d5b21639d33fa170ffe567382916f9a6cbe5dbe9b2a621"
+    },
+    {
+      "name": "project-tree-packaged-result.json",
+      "bytes": 3673,
+      "sha256": "d2a711d57da26073c6145091a904a74b15b31fed1238d01a0a978208d3602df7"
+    }
+  ],
+  "installedCompanions": [
+    {
+      "path": "verification/conversation-branches-packaged-result.json",
+      "bytes": 11796,
+      "sha256": "0cd94674ac450a98e04fd61463b1d7f548cf84c61f125387f88e337b88537bc4"
+    },
+    {
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "bytes": 1953,
+      "sha256": "08b5ee06580c545ca7d6718abf79772e44e505e1ed064788237f4912abff7a17"
+    },
+    {
+      "path": "verification/model-comparisons-packaged-result.json",
+      "bytes": 2247,
+      "sha256": "b09c44915d8233a2360ced686bc79070c452c96f24e860dff29ffe4b1514b674"
+    },
+    {
+      "path": "verification/prompt-transfer-packaged-result.json",
+      "bytes": 1971,
+      "sha256": "2a36808b26650c9dc995a81db2b93513367f3901d204ab379e5ce158e56ae4dd"
+    },
+    {
+      "path": "verification/assistant-recipes-packaged-result.json",
+      "bytes": 1798,
+      "sha256": "9bc59140b138ca448de5f87343363d4ebd95af949792336c41d6c9b744a68c96"
+    },
+    {
+      "path": "verification/mcp-binary-files-packaged-result.json",
+      "bytes": 1891,
+      "sha256": "6808243d3c75ce1052d7ccd6fefbc7827e454061dc4a2ec3868b0bddaeda012b"
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-packaged-result.json",
+      "bytes": 916,
+      "sha256": "e2301f7b871f7e573020558d893bb6212e64ef32dcc19fccae239d462a89c640"
+    },
+    {
+      "path": "verification/chat-navigation-packaged-result.json",
+      "bytes": 10712,
+      "sha256": "4f0db5a1650d5a5c11c82ca26023f53ea71d538803994428a481f374888a4555"
+    },
+    {
+      "path": "verification/project-tree-packaged-result.json",
+      "bytes": 3673,
+      "sha256": "93691534826a5d6b784aeae2607c8fc2159e6f34b2278b6c276d9681eac4f1da"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/129-prompt-import-preview-light.png",
+      "sha256": "35b6034428303488847c197c5bf9dc5d38c990bbbf7e17c7011b7478798820e8",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-125.png",
+      "sha256": "fcc9b7487758275ac1ae36529bed3ab682bdd3beae06d7cfa7c265ea148409f7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-150.png",
+      "sha256": "e362cf7e9f185857407271169be84c450c59aa44ac9505622ff1f55521451c27",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "6287791c90310d65da2d7c74024539c737a83f2f0c1afbac5d7c1e808c01c679"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485580560,
+      "sha256": "248b7adc60bd89944c733b4e427aa973ffcb70b36b57f01c4336d8ec3428cfbb"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237878819,
+      "sha256": "f53a019e9e62743eef89e56754f207f49494b28ff4973a2c325b8094c8c13394"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306619079,
+      "sha256": "0f0feff2bcac7b0f66dd9baddacfa5d926bada2d18bd33af92b6f0bb3af34233"
+    }
+  ],
+  "logs": [
+    {
+      "name": "terminal-cold-complete-packaged-native.log",
+      "bytes": 57850,
+      "sha256": "ed78d1324561e52ebd76e41d2c445655ebf10b53a8fa3a139afea72629643bbd"
+    },
+    {
+      "name": "terminal-cold-installer.log",
+      "bytes": 57977,
+      "sha256": "ecb7d3859d6bab6d4e67d322f90e5fcae7ed273f1dcd62faaa0334822d5a681b"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "scope": "Current startup-diagnostic application and portable-cleanup wrappers pass complete actual unpacked and installed suites, settings, portable lifecycle, bootstrap and data-retaining uninstall. Ten runtime records match their exact app/wrapper hashes. Individually reviewed installed captures and binaries are archived. Full development-source, hosted, native wizard and broader capability acceptance are separate."
+}

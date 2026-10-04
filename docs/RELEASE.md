@@ -4,13 +4,17 @@
 
 ## 当前验证状态
 
-当前源码通过 735 项单元测试、类型检查和构建，行覆盖率 99.31%。新增工作区阶段诊断通过 4 个真实启动错误场景，以及空工作区和约 84 MB 工作区的正常启动与退出；后者原文件字节保持一致。见 [启动诊断证据](../verification/workspace-read-phases-native-result.json)。这些专项检查不代表完整分发验收。
+当前源码通过 746 项单元测试（70 个文件）和类型检查，行覆盖率 99.31%。新增工作区阶段诊断通过 4 个真实启动错误场景，以及空工作区和约 84 MB 工作区的正常启动与退出；后者原文件字节保持一致。见 [启动诊断证据](../verification/workspace-read-phases-native-result.json)。
 
 便携清理修复已通过 8 个真实 NSIS 受控场景，以及新便携包的全部 7 项实际检查，两次正常退出均清除解压目录。后续本地安装版在 194 项后未读到预期 MCP 订阅能力；单独复现已通过 6 项，但原失败原因尚未确认。见 [便携证据](../verification/portable-retry-portable-result.json)、[安装失败](../verification/portable-retry-installed-failure-result.json) 和 [MCP 专项](../verification/mcp-preflight-observed-packaged-result.json)。
 
 远端 `37223855053` 通过单元、打包、完整未安装桌面、设置和便携检查，安装版在 214 项后的模板恢复重启超时。新增诊断用于区分读取、JSON 解码、结构校验与检查点恢复。下一次远端 `37229089238` 在 PDF 解析器预热钩子的 10 秒默认预算超时，714 项通过、21 项跳过，未进入打包。预热预算现与产品已有 30 秒解析工作进程期限一致，单项测试和产品期限保持原值；本地附件 29 项与全量 735 项复核通过。见 [远端启动失败](../verification/hosted-chat-navigation-template-startup-failure-result.json) 和 [预热失败](../verification/hosted-attachment-bootstrap-failure-result.json)。
 
-当前没有完整通过的新安装／云端验收或已发布版本。完整能力和指定 UI 的剩余范围见 [能力记录](CAPABILITIES.md)、[交付要求](DELIVERY.md) 和 [UI 验收](UI-ACCEPTANCE.md)。历史验证只适用于各自记录的源码、EXE、ASAR 和启动器，不能作为当前版本的完成证明。
+当前新应用本地完整未安装桌面与实际安装版分别通过 215 项并正常退出，设置 4 项、便携 7 项及卸载保留数据通过；十份运行记录严格匹配 EXE、ASAR 和包装文件。已独立保存未安装记录、安装版截图和四份二进制。见 [完整本地分发证据](../verification/terminal-cold-distribution-result.json)。此前的 194 项失败仍保留，后续通过不等同于已经查明原始失败原因。
+
+远端 `37232146654` 通过 746 项单元测试、构建、完整未安装桌面、设置及便携验收，实际安装版通过 187 项后，在临时聊天重启时未于原定 10 秒内正常退出。日志已记录窗口关闭及 `will-quit`，具体进程清理阻塞原因尚未确认；原始日志和 GitHub 校验值匹配的诊断归档已保存。见 [远端正常退出失败](../verification/hosted-terminal-close-failure-result.json)。发布任务未运行。
+
+当前没有完整通过的云端验收或已发布版本。完整能力和指定 UI 的剩余范围见 [能力记录](CAPABILITIES.md)、[交付要求](DELIVERY.md) 和 [UI 验收](UI-ACCEPTANCE.md)。历史验证只适用于各自记录的源码、EXE、ASAR 和启动器，不能作为当前版本的完成证明。
 
 ## 发布流程与约束
 

@@ -131,7 +131,7 @@
       }
     }
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -344,20 +344,20 @@
     }
   ],
   "packagedVerification": {
+    "codeCommit": "ed46a28",
+    "desktopChecks": 215,
+    "installedChecks": 215,
+    "matchingRuntimeProofVerified": true,
+    "proof": "verification/terminal-cold-distribution-result.json",
+    "executableSha256": "6287791c90310d65da2d7c74024539c737a83f2f0c1afbac5d7c1e808c01c679",
+    "archiveSha256": "248b7adc60bd89944c733b4e427aa973ffcb70b36b57f01c4336d8ec3428cfbb"
+  },
+  "previousPackagedVerification": {
     "codeCommit": "117ed6031c589b5b68709559384de420267ff5c2",
     "desktopChecks": 215,
     "installedChecks": 215,
     "matchingRuntimeProofVerified": true,
     "proof": "verification/provider-transport-distribution-result.json",
-    "executableSha256": "0d844fa37f304022d14789fb5dfd05f31f7a4dbbd6cbe6a53747dbc5279e1d0e",
-    "archiveSha256": "ef35eb048841928645fa2b23845e8d8a572827fd97819c9f0a2874b274320f10"
-  },
-  "previousPackagedVerification": {
-    "codeCommit": "085d8181027dc88789a62bddd7ee2b9a89cde254",
-    "desktopChecks": 215,
-    "installedChecks": 215,
-    "matchingRuntimeProofVerified": true,
-    "proof": "verification/project-access-distribution-result.json",
     "executableSha256": "0d844fa37f304022d14789fb5dfd05f31f7a4dbbd6cbe6a53747dbc5279e1d0e",
     "archiveSha256": "ef35eb048841928645fa2b23845e8d8a572827fd97819c9f0a2874b274320f10"
   },
@@ -1112,9 +1112,10 @@
     "nativeProbeCases": 8,
     "unitTestsPassed": 734,
     "actualNewPortableVerified": true,
-    "actualNewInstalledVerified": false,
+    "actualNewInstalledVerified": true,
     "portableProof": "verification/portable-retry-portable-result.json",
-    "installedFailure": "verification/portable-retry-installed-failure-result.json"
+    "installedFailure": "verification/portable-retry-installed-failure-result.json",
+    "distributionProof": "verification/terminal-cold-distribution-result.json"
   },
   "workspaceReadPhases": {
     "codeCommit": "eaf6a4b0192fcbcee375999ac6c0ad87f56ad803",
@@ -1122,14 +1123,15 @@
     "unitTestsPassed": 735,
     "mcpFocusedChecks": 6,
     "currentStartupNativeVerified": false,
-    "currentDistributionVerified": false,
+    "currentDistributionVerified": true,
     "currentHostedVerified": false,
     "startupOnlyNativeChecks": 6,
     "startupOnlyNativeProof": "verification/workspace-read-phases-native-result.json",
     "hostedRunId": 37229089238,
     "hostedFailure": "verification/hosted-attachment-bootstrap-failure-result.json",
     "localFailure": "verification/workspace-read-renderer-failure-result.json",
-    "fullUnpackedVerified": true
+    "fullUnpackedVerified": true,
+    "distributionProof": "verification/terminal-cold-distribution-result.json"
   },
   "terminalColdStart": {
     "codeCommit": "96d1fa756399fe38805b060574180e1902dd8606",
@@ -1139,6 +1141,8 @@
     "hostedFailure": "verification/hosted-terminal-cold-start-failure-result.json",
     "currentHostedVerified": false,
     "fullUnpackedVerified": true,
-    "fullUnpackedProof": "verification/terminal-cold-complete-unpacked-result.json"
+    "fullUnpackedProof": "verification/terminal-cold-complete-unpacked-result.json",
+    "currentDistributionVerified": true,
+    "distributionProof": "verification/terminal-cold-distribution-result.json"
   }
 }
