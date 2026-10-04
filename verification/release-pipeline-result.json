@@ -1101,7 +1101,9 @@
     "originalDeadlineMs": 10000,
     "hostedCauseEstablished": false,
     "completeCurrentPackagedVerified": true,
-    "completePackagedProof": "verification/chat-navigation-observed-complete-unpacked-result.json"
+    "completePackagedProof": "verification/chat-navigation-observed-complete-unpacked-result.json",
+    "hostedRunId": 37223855053,
+    "hostedFailure": "verification/hosted-chat-navigation-template-startup-failure-result.json"
   },
   "portableCleanupRetry": {
     "codeCommit": "7df8e3c6dd920f1e45729ddc4741323e8691599a",
@@ -1111,6 +1113,16 @@
     "unitTestsPassed": 734,
     "actualNewPortableVerified": true,
     "actualNewInstalledVerified": false,
-    "portableProof": "verification/portable-retry-portable-result.json"
+    "portableProof": "verification/portable-retry-portable-result.json",
+    "installedFailure": "verification/portable-retry-installed-failure-result.json"
+  },
+  "workspaceReadPhases": {
+    "codeCommit": "eaf6a4b0192fcbcee375999ac6c0ad87f56ad803",
+    "component": "verification/workspace-read-phases-component-result.json",
+    "unitTestsPassed": 735,
+    "mcpFocusedChecks": 6,
+    "currentStartupNativeVerified": false,
+    "currentDistributionVerified": false,
+    "currentHostedVerified": false
   }
 }

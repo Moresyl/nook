@@ -1,0 +1,104 @@
+{
+  "verifiedAt": "2026-10-04T19:38:45.304Z",
+  "codeCommit": "eaf6a4b0192fcbcee375999ac6c0ad87f56ad803",
+  "startupDiagnosticsCodeCommit": "5b54696",
+  "unitTestsPassed": 735,
+  "unitFiles": 69,
+  "focusedUnitTests": 21,
+  "typecheckPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3212,
+      "covered": 3190,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5427,
+      "covered": 5265,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1216,
+      "covered": 1182,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3828,
+      "covered": 3619,
+      "skipped": 0,
+      "pct": 94.54
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "eb12d33cb509a07c8bb754c5fb8c9fa83f93a36033e0c8157d2276fe7aa562a6"
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "0403d93efc52a5337c7a72b13774a26ec1ff1d713c62bd0cb55c466c9236f4a5"
+    },
+    {
+      "path": "scripts/verify-mcp-resource-subscriptions.mjs",
+      "sha256": "2648761b48156c4cbf7967a9e0cc53121887d1281ef4ae77717ed7fe31ab7d78"
+    }
+  ],
+  "logs": [
+    {
+      "name": "workspace-read-phases-focused-unit.log",
+      "bytes": 226,
+      "sha256": "259a1e59a61362e192462c4dcd22e0d1ac9316bdb405a648407f5ca341c59774"
+    },
+    {
+      "name": "workspace-read-phases-typecheck.log",
+      "bytes": 90,
+      "sha256": "54a87df41eb61f30bcb0fd3670d522418729d7ca7facc870645ab8193c03249c"
+    },
+    {
+      "name": "workspace-read-phases-full-unit.log",
+      "bytes": 4666,
+      "sha256": "b4e788149b67a90a6025e96a3d8e99a4cfcc92c73d14be69dcee8a71d7df348c"
+    },
+    {
+      "name": "mcp-preflight-observed-big-workspace.log",
+      "bytes": 6924,
+      "sha256": "0079d658a772a800f303ff96876300cdcf55a92afd3338f9c8dbfb1bafa893e6"
+    },
+    {
+      "name": "mcp-preflight-observed-unique-workspace.log",
+      "bytes": 1359,
+      "sha256": "69f5dcee8246acb01034746e20b701a49901dd47a87780a21039b86c882d5902"
+    }
+  ],
+  "mcpFocusedChecks": 6,
+  "mcpNormalCloseVerified": true,
+  "mcpModelRequests": 0,
+  "mcpFocusedApplicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "mcpNativeProof": {
+    "path": "verification/mcp-preflight-observed-packaged-result.json",
+    "sha256": "ea9378d1c54341d16243bc8f5befc5423732479d13c3aea15ee1b5507cd84837"
+  },
+  "mcpSeedBytes": 84543554,
+  "originalMcpTimeoutMs": 5000,
+  "originalStartupDeadlineMs": 30000,
+  "initialSeededProbeFailure": "The connection succeeded, but retained same-name fixture servers made the native resource button locator ambiguous. Unique per-run names remove the fixture collision.",
+  "originalInstalledMcpCauseEstablished": false,
+  "hostedStartupCauseEstablished": false,
+  "currentStartupNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Startup phase boundaries and failure ordering are unit-tested. The independently observed six-check real packaged MCP suite uses the preceding unchanged application body with a retained 84 MB workspace; it does not verify the newly instrumented startup executable or establish the cause of either earlier full-suite failure."
+}
