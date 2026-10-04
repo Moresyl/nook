@@ -4,6 +4,7 @@ import type { IPty, IPtyForkOptions } from 'node-pty';
 import type { TerminalEvent, TerminalGeometry, TerminalSession } from '../../contracts/projects';
 import { terminalGeometrySchema } from '../../contracts/projects';
 import { scopedPath } from './project-files';
+import { terminalShell } from './terminal-shell';
 
 type Pty = Pick<IPty, 'pid' | 'onData' | 'onExit' | 'write' | 'resize' | 'kill'>;
 export type PtyFactory = (shell: string, args: string[], options: IPtyForkOptions) => Pty;
@@ -17,14 +18,17 @@ export class TerminalSessions {
       const finish = () => { try { pty.kill(); } catch {} resolve(); };
       if (process.platform === 'win32') execFile('taskkill', ['/PID', String(pty.pid), '/T', '/F'], { windowsHide: true, timeout: 5000 }, finish);
       else finish();
-    })) {}
+    }), private readonly chooseShell: () => Promise<string> = () => terminalShell()) {}
   private notify(event: TerminalEvent) { try { this.emit(event); } catch {} }
   async open(projectId: string, root: string, raw: TerminalGeometry): Promise<TerminalSession> {
     if (this.closing || this.sessions.size >= 16) throw new Error('Close a terminal before opening another one.');
     const geometry = terminalGeometrySchema.parse(raw);
     const cwd = await scopedPath(root, '.');
     if (this.closing || this.sessions.size >= 16) throw new Error('Close a terminal before opening another one.');
-    const shell = process.platform === 'win32' ? 'powershell.exe' : process.env.SHELL || '/bin/bash';
+    let shell: string;
+    try { shell = await this.chooseShell(); }
+    catch { throw new Error('Could not start the terminal. Check the shell and project folder.'); }
+    if (this.closing || this.sessions.size >= 16) throw new Error('Close a terminal before opening another one.');
     let pty: Pty;
     try { pty = this.spawn(shell, process.platform === 'win32' ? ['-NoLogo', '-NoProfile'] : [], { ...geometry, cwd, name: 'xterm-256color', env: { ...process.env, TERM: 'xterm-256color' } }); }
     catch { throw new Error('Could not start the terminal. Check the shell and project folder.'); }
