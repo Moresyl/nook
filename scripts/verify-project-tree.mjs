@@ -76,6 +76,16 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   } catch (error) {
     console.error('Project terminal startup diagnostics', JSON.stringify(await page.evaluate(async (id) => ({ at: Date.now(), lastPoll: globalThis.qiyaoTreePromptPoll, current: (await window.qiyao.terminalList(id)).map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }), projectId).catch((failure) => ({ diagnosticError: String(failure) }))));
     console.error('Project terminal process diagnostics', JSON.stringify(await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot()').catch(() => ({ diagnosticError: 'Main-process diagnostics unavailable' }))));
+    // Preserve the original failure while distinguishing slow cold startup from a terminal that remains stalled.
+    try {
+      const startedAt = Date.now(); let current = [];
+      do {
+        current = await page.evaluate(async (id) => (await window.qiyao.terminalList(id)).map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })), projectId);
+        if (current.some((terminal) => terminal.output.includes('PS ')) || current.every((terminal) => terminal.status !== 'running')) break;
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      } while (Date.now() - startedAt < 20_000);
+      console.error('Project terminal after-failure observation', JSON.stringify({ startedAt, capturedAt: Date.now(), current }));
+    } catch { console.error('Project terminal after-failure observation unavailable'); }
     throw error;
   } finally { await page.evaluate(() => { delete globalThis.qiyaoTreePromptPoll; }).catch(() => {}); }
   const terminalTiming = await application.evaluateMain('globalThis.qiyaoPtyDiagnostics?.at(-1)');
