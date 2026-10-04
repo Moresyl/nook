@@ -544,6 +544,12 @@
       "sourceCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
       "conclusion": "failure",
       "proof": "verification/hosted-workspace-serialization-startup-failure-result.json"
+    },
+    {
+      "runId": 37213317168,
+      "sourceCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
+      "conclusion": "failure",
+      "proof": "verification/hosted-checkpoint-journal-terminal-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -692,19 +698,16 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37201161132,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37201161132",
-    "sourceCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
+    "runId": 37213317168,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37213317168",
+    "sourceCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
     "conclusion": "failure",
-    "unitTestsPassed": 691,
-    "unitFiles": 68,
-    "completePackagedChecks": 215,
-    "surfaceChecks": 4,
-    "portableChecks": 7,
-    "installedChecksBeforeFailure": 173,
-    "startupWaitFailed": true,
+    "unitTestsPassed": 730,
+    "unitFiles": 69,
+    "packagedChecksBeforeFailure": 164,
+    "terminalPromptWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-workspace-serialization-startup-failure-result.json"
+    "proof": "verification/hosted-checkpoint-journal-terminal-failure-result.json"
   },
   "previousSourceVerification": {
     "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
@@ -841,17 +844,19 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37196858974,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37196858974",
-    "sourceCommit": "9610f7a5a7690f708ca307605ffc82942149a5ee",
+    "runId": 37201161132,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37201161132",
+    "sourceCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
     "conclusion": "failure",
-    "unitTestsPassed": 683,
-    "unitFiles": 67,
-    "packagedChecksBeforeFailure": 192,
-    "selectedContinuationPartialWaitFailed": true,
-    "diagnosticsObserved": true,
+    "unitTestsPassed": 691,
+    "unitFiles": 68,
+    "completePackagedChecks": 215,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "installedChecksBeforeFailure": 173,
+    "startupWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-comparison-continuation-observed-failure-result.json"
+    "proof": "verification/hosted-workspace-serialization-startup-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",

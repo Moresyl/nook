@@ -1,0 +1,210 @@
+{
+  "verifiedAt": "2026-10-04T16:03:14.242Z",
+  "runId": 37213317168,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37213317168",
+  "codeCommit": "7106ef9406afbcaa4c3d7800a3681a43899b623d",
+  "conclusion": "failure",
+  "source": [
+    {
+      "path": "desktop/services/terminal-shell.ts",
+      "sha256": "49090490269efcca6039683757e6c4767f49464f7eeefb9abd2a18411087dd00"
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "50073c8761564bc644e977e7d4a845b9e188576a673f105f744a0572585a7b91"
+    },
+    {
+      "path": "workbench/components/project-terminal.tsx",
+      "sha256": "c1ccb2d90e44a432763779e99cfa1044824f7fd7e389f941d817b9a0181b08a0"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "62ae03a703ef65454a7f5ecde068232811ff23fd477f9811bcc6f1c003c2317d"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    }
+  ],
+  "unitTestsPassed": 730,
+  "unitFiles": 69,
+  "typecheckAndNoticesVerified": true,
+  "packageAudit": {
+    "verifiedAt": "2026-10-04T15:42:42.845Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "09783158881b3997ae5543ebc0d2a2ef6e85e66e7bbbd65bcc6225a7067d24ad",
+    "archiveSha256": "297403b585ea818d35e290146982fd0fc68d8f0d46e50d8f979127cdb1cc9eaf",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Qiyao",
+      "ProductName": "Qiyao",
+      "FileDescription": "Qiyao",
+      "Signature": "NotSigned",
+      "CompanyName": "Qiyao"
+    },
+    "productFiles": 233,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates.",
+    "recordSha256": "016837d49a24da7e50546c93bf656aa28a96ce1afd7ac2f9c16cb4e9885f4c80"
+  },
+  "packagedAssertionsBeforeFailure": 164,
+  "originalTerminalPromptDeadlineMs": 10000,
+  "originalPromptCondition": "terminal.output.includes(\"PS \")",
+  "terminal": {
+    "at": 1791128954563,
+    "lastPoll": {
+      "at": 1791128954307,
+      "terminals": [
+        {
+          "id": "08fc0e87-f545-4c70-bcf3-57a8d78ec087",
+          "projectId": "a7758914-cf8c-4f8d-9269-67616e37120c",
+          "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-c7515690a5e343769ae0197d98b43b63\\qiyao-electron-Vv82lJ\\文件树 项目",
+          "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+          "status": "running",
+          "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007",
+          "sequence": 4
+        }
+      ]
+    },
+    "current": [
+      {
+        "id": "08fc0e87-f545-4c70-bcf3-57a8d78ec087",
+        "projectId": "a7758914-cf8c-4f8d-9269-67616e37120c",
+        "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-c7515690a5e343769ae0197d98b43b63\\qiyao-electron-Vv82lJ\\文件树 项目",
+        "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "status": "running",
+        "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007",
+        "sequence": 4
+      }
+    ]
+  },
+  "separatelyCapturedProcess": {
+    "capturedAt": 1791128954565,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791128944401,
+        "pid": 6372,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 4,
+        "characters": 195,
+        "firstDataAt": 1791128944440,
+        "lastDataAt": 1791128950341
+      }
+    ],
+    "mainMemory": {
+      "rss": 688406528,
+      "heapTotal": 357466112,
+      "heapUsed": 353879368,
+      "external": 172987759,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 3499925504,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 6632,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 12.670429,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 672300,
+          "peakWorkingSetSize": 2415652,
+          "privateBytes": 650292
+        }
+      },
+      {
+        "pid": 7348,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 0.880526,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 64732,
+          "peakWorkingSetSize": 97952,
+          "privateBytes": 17444
+        }
+      },
+      {
+        "pid": 8,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.054316,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 47120,
+          "peakWorkingSetSize": 50476,
+          "privateBytes": 11556
+        }
+      },
+      {
+        "pid": 7072,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 9.705014,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 944172,
+          "peakWorkingSetSize": 1261616,
+          "privateBytes": 900076
+        }
+      }
+    ]
+  },
+  "exactFailureCauseEstablished": false,
+  "shellProcessCpuOrStackCaptured": false,
+  "largeBackupRestartPassed": true,
+  "artifact": {
+    "id": 11307518689,
+    "name": "windows-verification-37213317168-1",
+    "bytes": 6342088,
+    "sha256": "38bc53575efe0bbf1fe7c22e734edd2da707fb1da77d72b2469b6c11f0934242",
+    "githubDigestMatched": true
+  },
+  "log": {
+    "bytes": 286326,
+    "sha256": "287c1714650951484232cefcaa2b9148e4b975b42189376730c9e76983482de4"
+  },
+  "screenshot": {
+    "name": "failure.png",
+    "sha256": "5c25255790e63ae309e15a7aaab0c1865f502bf6173811b95f407c1606338b55",
+    "width": 760,
+    "height": 540,
+    "individuallyReviewed": true
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "currentHostedVerified": false,
+  "scope": "The current guarded checkpoint journal passes hosted unit, legal and build gates, primary-file rejection and large-backup restart. The unchanged project-terminal prompt condition fails with the actual PowerShell 7 process still running and only control/title output. The individually reviewed image shows the blank terminal and retained dirty editor. No root cause, complete hosted runtime, installation or release success is claimed."
+}

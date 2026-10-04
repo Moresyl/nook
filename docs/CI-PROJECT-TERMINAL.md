@@ -1,5 +1,7 @@
 # 项目终端远端失败记录
 
+检查点日志修复后的 [37213317168](https://github.com/Moresyl/qiyao/actions/runs/37213317168) 通过 730 项／69 个文件测试、类型、许可证和打包检查，以及 164 项桌面检查。主文件故障拒绝和大备份恢复重启通过；随后实际 PowerShell 7 在原 10 秒条件内没有输出 `PS ` 提示符。PID 6372 仍运行，收到四段共 195 字符的控制／标题输出。已逐张查看的 760×540 失败截图显示空终端和保留的编辑草稿。未采集 Shell 子进程 CPU／堆栈，不能确定启动延迟原因。诊断压缩包已核对 GitHub 字节数和 SHA-256，完整运行记录采集器拒绝缺失的桌面证据；安装及发布步骤未执行。见 [本轮证据](../verification/hosted-checkpoint-journal-terminal-failure-result.json)。
+
 后续运行 `37177697511` 再次在原有 10 秒条件下通过真实 PowerShell 7 终端与大工作台重启，但在首次比较回复显示的 30 秒条件失败：189 项通过，第二路请求延迟至等待开始后 49,665 ms 到达。完整现场见 `verification/hosted-checkpoint-first-response-failure-result.json`；该记录不能表示完整远端通过。
 
 同一终端源代码随后完成全部 215 项本机桌面回归并正常关闭，模板传输保持零模型请求，模型比较保留 11 个真实请求和原有期限。当前编译体重新执行两次损坏文件启动检查，准确记录错误阶段并在 30 秒内以代码 1 退出；五张当前项目截图已逐张检查。24 个源文件与 20 份原始记录逐字节绑定，见 [完整源代码证据](../verification/terminal-shell-source-review-result.json)。
