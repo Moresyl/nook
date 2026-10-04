@@ -1,0 +1,438 @@
+{
+  "verifiedAt": "2026-10-04T03:21:24.818Z",
+  "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 672,
+  "unitFiles": 66,
+  "desktopChecks": 215,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "actualPowerShellMajor": 7,
+  "originalPromptDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "transferModelRequests": 0,
+  "comparisonModelRequests": 11,
+  "actualStartupFailureCases": 2,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3051,
+      "covered": 3030,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5190,
+      "covered": 5035,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1165,
+      "covered": 1133,
+      "skipped": 0,
+      "pct": 97.25
+    },
+    "branches": {
+      "total": 3690,
+      "covered": 3486,
+      "skipped": 0,
+      "pct": 94.47
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "desktop/services/terminal-shell.ts": {
+      "lines": {
+        "total": 7,
+        "covered": 7,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "desktop/services/terminal-sessions.ts": {
+      "lines": {
+        "total": 47,
+        "covered": 44,
+        "skipped": 0,
+        "pct": 93.61
+      },
+      "functions": {
+        "total": 25,
+        "covered": 22,
+        "skipped": 0,
+        "pct": 88
+      },
+      "statements": {
+        "total": 80,
+        "covered": 71,
+        "skipped": 0,
+        "pct": 88.75
+      },
+      "branches": {
+        "total": 36,
+        "covered": 31,
+        "skipped": 0,
+        "pct": 86.11
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-bundles.ts",
+      "sha256": "efd1d599a5e526713142dc9bdae089c3271b4a8290a063d320cf57c2b9f6cb5f",
+      "bytes": 1874
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "8f077738261f93957947214215336b8ae9822830492d4e957bf8b005f5d162a5",
+      "bytes": 8458
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "e4f0f1789b32e7e3e6747c224dd74d8efb24b4bc20ae47a13ef65201b2c29150",
+      "bytes": 9197
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "72bef09701b373f0499deac987a3dc1962fb1fbc94db30215ea5c5ad6d9d0a89",
+      "bytes": 40166
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "32a9614d1d1ce71e2bcd56843bbe8ca17db760f19b07bad499878661c0d58178",
+      "bytes": 4545
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986",
+      "bytes": 2721
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1",
+      "bytes": 9526
+    },
+    {
+      "path": "verification/prompt-bundles.test.ts",
+      "sha256": "338f450c213d02d67d8f0465f6cd47861c0d132b5c661f13f04564433f999115",
+      "bytes": 11953
+    },
+    {
+      "path": "scripts/verify-prompt-transfer.mjs",
+      "sha256": "6c367383334b34df7c63a0580cd11775ab6748881e61b0c9ad1a7f37641a825f",
+      "bytes": 20032
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "17ec48791c04be03b470a9fab340c9b0467ba892e93a9eed5559a2e2fd178b9c",
+      "bytes": 123851
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+      "bytes": 8034
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "d92c6f4d175d897668a2379738c9de0a789ff94a88e3cbd8f31d026eeba9f263",
+      "bytes": 3886
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "8f93e312c49bbe589bda67881378d5a0f0cb071971d9d384f8bacc1d8c8a0f7e",
+      "bytes": 7435
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "e065572c28734f1a6f94048c339c135bf849a693060d2325e4d07a843537e3c6",
+      "bytes": 23397
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "38d5efcb27afcbe4a3020dd4910eec1004bb3c6acc7fabbc402b943c8bcaefa6",
+      "bytes": 3765
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673",
+      "bytes": 760
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9",
+      "bytes": 5720
+    },
+    {
+      "path": "verification/startup-diagnostics.test.ts",
+      "sha256": "5955f7cf5cd13bd6594cfa05f585b314867c9ed64698ea46933f129bc6612e3b",
+      "bytes": 2013
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "3b258f117a0c34e86b859fc1df505af55d7551e89f786e46a88039a5ad29f5a6",
+      "bytes": 10447
+    },
+    {
+      "path": "desktop/services/terminal-shell.ts",
+      "sha256": "49090490269efcca6039683757e6c4767f49464f7eeefb9abd2a18411087dd00",
+      "bytes": 839
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "50073c8761564bc644e977e7d4a845b9e188576a673f105f744a0572585a7b91",
+      "bytes": 4737
+    },
+    {
+      "path": "verification/terminal-shell.test.ts",
+      "sha256": "4be0e6957100c151b938a8d967632083cbfdb500853d4f277a70ad959d7a6bcd",
+      "bytes": 3126
+    },
+    {
+      "path": "verification/terminal-sessions.test.ts",
+      "sha256": "63da02adaeaa1d6fef0661c7b9e01bf24baf77202a6cc593a58ff5a7d432a5b2",
+      "bytes": 8740
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "dfe2e9720be438750e47185e33b4a28cbabcdfd022611510711464ce56ebd389",
+      "bytes": 34882
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "5d1532e8148abc063f047bb07caa46c87c3feaa0fe827dee687d2ae80f5f70b5",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "0a29b72fa03a5487f58aa89ebbd80732e57fdd5d1736d68d774eb94ecc268602",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "1426af76cd5acdf6b47981cd06169b7fa47d1ae22a332b54966071ed8ea9b74d",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "4356ff57939e651bc279328025f0bf2f12c2ac9e4f8c9c9a66988fdeb86150f7",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "3e21387d6779363f60a0062e7189d2a45db60db09b3c9fd363686a523a8ab133",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "949172967660cadecfc09940d37f51432b1c0c1fc79df6a62de6f375ae68fc59",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "ee2a9467f4497dff7515a25dd4344d564801839ff00376ec8829f95aaefc62b2",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "e05d9ba06820100a0f40473f26cac78e626cee6ae5785d854f1d6d12d983f595",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "41254fccae4bb00a22907e436fb94bb3ebaaf3f48f1e0a3d7b14847abbb67da0",
+      "bytes": 53916
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "d8cdf7a734587ed3f5147ced12290d71a86d82304b94ed5336959d4db68efa2f",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "6cedfd5c3eb6b96eb15be26db626d2a391634d9bc5ca88f87deb1e3dcc43e252",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "c3cb37e2fc36166a40257d789e9f4f66f720d8db003b2cd0e746b1e9ba6e674f",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "bace4b3c05b0a4542194bb9e5acea1ca073f38f668b385c5cca70926875d9011",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "a6e482116c74f2dcf3fd571af7e92cf4c90c17eb32d45370f2011df6c9b253d8",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "733d1f0d82177a6131947f22b5f95750a37a57a9eb0a8571b679efd782093fe2",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "8b0f79e4c4bcd4fbcc830a7a3d43d7c5d2938b744e1c4ef2776253bfc3a959c9",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "0dd8159c26d6ed31bd8f6954850573de3353c2e8ca4c07024e82b23de2c5624d",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "b1c283228765e56b64d4102ab23aa47242aabf54cfdce9500dad662d45cd5b21",
+      "bytes": 1832
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "sha256": "13f1fd35e1409d0f54477a6dda503948cce466dab697c7d5ed532b9117030784",
+      "bytes": 1850
+    },
+    {
+      "path": "verification/terminal-shell-native-failure-result.json",
+      "sha256": "d356899305ecfba7e6f2df3dc7f0572b3e331dc96c07d200eb2fd8595447b12e",
+      "bytes": 5599
+    }
+  ],
+  "componentProof": {
+    "path": "verification/terminal-shell-component-review-result.json",
+    "sha256": "a406e93460a3831ca56b6ec4910828161f4220a0d4d7b8576f8e91a641d98f72"
+  },
+  "logs": [
+    {
+      "name": "terminal-shell-typecheck.log",
+      "sha256": "d3b50510eb56f73bb784a4a0a9d6ac92e7135097dc33897b271c5c9f106eb342",
+      "bytes": 86
+    },
+    {
+      "name": "terminal-shell-coverage.log",
+      "sha256": "5cf12fdf95b9f2a107cac4aedada5d2edbab743adf70258ab35fe16e5d08fa73",
+      "bytes": 4555
+    },
+    {
+      "name": "terminal-shell-build.log",
+      "sha256": "280f5d31ccc7ac1bb33c6b0af0032330107c6897594547f7315dbe0d266d5290",
+      "bytes": 22549
+    },
+    {
+      "name": "terminal-shell-complete-native.log",
+      "sha256": "afc69b28e266219d11bcdf2b7e9ef433d16286f274f39ac3837d83732a158f5c",
+      "bytes": 35453
+    },
+    {
+      "name": "terminal-shell-startup-failure-probe.log",
+      "sha256": "838379dbb3a2178ae1733d3492119908988c8ed0ab5f327f43850f592075ff22",
+      "bytes": 116
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "compiled": {
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "f489acb8b2aff056facd918852321b97c3d86e6a9a7cc973d6e582abd066b91e"
+    },
+    "renderer": {
+      "path": "out/renderer/assets/index-Cqr_5QJD.js",
+      "sha256": "6d18d7017bde1f5d9720a2afc310e6696009834eecfb854169db02fba772071f"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "96-project-tree-dark-narrow.png",
+      "sha256": "d8da8e38cdb0b6d8d0d75729b28b049f435fc88894fd92efc04eccc71972066d",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "97-project-workspace-zoom-100.png",
+      "sha256": "a676481780540f73ffdedc7f360d4a82cbd48833f5579c5895cebff00df75e39",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "97-project-workspace-zoom-125.png",
+      "sha256": "f51300707f00bb4c4bc0259bc6668398b6bdd12c06f350de488aa4562e193afb",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "97-project-workspace-zoom-150.png",
+      "sha256": "a4a5321be85dd175a376e51c1de971e740de35627d803a27e0a4ed06bce64aea",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "name": "100-project-terminal-command-dark.png",
+      "sha256": "254f073945e8448e6d5189dd07a0e057de73da8d196d570b36e750381c97748f",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "development executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "unchangedRendererReview": {
+    "exactCompiledBytesMatch": true,
+    "priorSixIndividuallyReviewedInstalledTransferCaptures": "verification/template-startup-combined-distribution-result.json",
+    "currentTransferCapturesIndividuallyReviewed": false
+  },
+  "scope": "The final available-shell source passes all 672 tests in 66 files, type/build and the complete 215-check native suite with normal close. Actual PowerShell 7 output, profile-free project PTY commands, keyboard/zoom/restart, sixteen-session concurrency and shutdown during discovery are verified while the original prompt deadline is unchanged. Template transfer retains zero model requests, model comparisons retain eleven real requests, and both corrupt-file startup cases are newly executed on this compiled body with bounded code-1 exits and omitted private input. Nineteen complete-suite records and one current two-case startup record are preserved. Five current project captures are individually reviewed; unchanged renderer bytes bind prior installed template-transfer UI review without claiming current transfer-image review. The preceding combined-body four binaries are preserved separately. Fresh matching-body distribution, hosted acceptance and the full remaining capability/UI scope remain open; the exact previous hosted terminal timeout cause remains unestablished."
+}
