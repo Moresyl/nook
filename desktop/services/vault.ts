@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { emptyWorkspace, workspaceSchema, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
+import { atomicFile } from './atomic-file';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
 
@@ -13,6 +14,7 @@ export class WorkspaceVault {
   private keys: Record<string, string> = {};
   private tail: Promise<unknown> = Promise.resolve();
   private persistentActiveThreadId?: string;
+  private persistentBytes?: Buffer;
 
   constructor(private readonly directory: string, private readonly codec: SecretCodec) {}
 
@@ -44,6 +46,7 @@ export class WorkspaceVault {
       catch { provider.hasKey = false; }
     }
     for (const server of this.state.mcpServers) server.hasCredentials = Boolean(this.keys[`\0mcp:${server.id}`]);
+    this.persistentBytes = Buffer.from(JSON.stringify(persistentWorkspace(this.state, this.persistentActiveThreadId), null, 2), 'utf8');
     if (interruptRuns(this.state.threads)) await this.update(() => {});
   }
 
@@ -55,14 +58,16 @@ export class WorkspaceVault {
       const draft = this.snapshot();
       change(draft);
       const next = workspaceSchema.parse(draft);
-      const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
       const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
-      if (JSON.stringify(previous) !== JSON.stringify(persistent)) {
-        await atomicJson(join(this.directory, 'workspace.backup.json'), previous);
-        await atomicJson(join(this.directory, 'workspace.json'), persistent);
+      const previousBytes = this.persistentBytes ?? Buffer.from(JSON.stringify(persistentWorkspace(this.state, this.persistentActiveThreadId), null, 2), 'utf8');
+      const nextBytes = Buffer.from(JSON.stringify(persistent, null, 2), 'utf8');
+      if (!previousBytes.equals(nextBytes)) {
+        await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
+        await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
       }
       this.state = next;
       this.persistentActiveThreadId = persistent.activeThreadId;
+      this.persistentBytes = nextBytes;
       return this.snapshot();
     });
     this.tail = operation.catch(() => {});
