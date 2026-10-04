@@ -61,6 +61,21 @@ describe('release version and notes', () => {
 });
 
 describe('Windows release execution evidence', () => {
+  it('rejects retained installed or portable results for a different audited wrapper even when their application body is identical', () => {
+    const installed = proof(); installed.installer.installerSha256 = otherHash;
+    const portable = proof(); portable.bootstrap.variants.find((variant) => variant.variant === 'portable')!.executableSha256 = otherHash;
+    for (const value of [installed, portable]) expect(() => verifyRuntimeProof(value)).toThrow('bootstraps');
+  });
+  it('requires valid hashes for the installer and each actual bootstrap executable', () => {
+    for (const value of ['', 'unavailable', hash.toUpperCase(), undefined]) {
+      const installed = proof(); installed.installer.installerSha256 = value as string;
+      expect(() => verifyRuntimeProof(installed)).toThrow('SHA-256');
+      for (const name of ['installer', 'uninstaller', 'portable']) {
+        const bootstrap = proof(); bootstrap.bootstrap.variants.find((variant) => variant.variant === name)!.executableSha256 = value as string;
+        expect(() => verifyRuntimeProof(bootstrap)).toThrow('SHA-256');
+      }
+    }
+  });
   it('accepts matching complete runtime and actual distribution evidence', () => {
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
     const future = proof(); const nextChecks = future.desktop.checks + 1; future.desktop.checks = nextChecks; future.installer.checks = nextChecks; future.branches.suiteChecks = nextChecks; future.temporary.suiteChecks = nextChecks; future.comparisons.suiteChecks = nextChecks;

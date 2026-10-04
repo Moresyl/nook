@@ -1,5 +1,7 @@
 # Capability verification ledger
 
+启动器哈希绑定缺口已修复：40 项专项测试和类型检查通过，发布策略覆盖 100%，实际混合包装记录已被拒绝，此前完整记录仍按原范围通过。比较续聊的持久状态性能及当前完整分发／远端验收仍待完成，见 `verification/runtime-wrapper-proof-component-result.json`。
+
 最新清理后包已通过法律／资源审计、完整未安装 215 项、设置 4 项和便携 7 项；实际安装和远端 `37196858974` 均在 192 项后失败。新日志确认请求与部分回复传输成功，但原期限内持久状态读取没有包含部分回复；大工作区保存性能仍需修复，启动器哈希绑定也需收紧。当前完整分发和发布验收未成立，见 `verification/license-continuation-local-failure-result.json`、`verification/hosted-comparison-continuation-observed-failure-result.json`。
 
 最新比较续聊诊断通过独立的 6 项实际桌面检查、11 次请求和受控数量不匹配失败检查，保留原有 10 秒／100 ms 条件；远端原因仍待新日志定位。许可证说明中的可选旧项目标识已清理，原始许可证及 401 份依赖法律文件保持原哈希。当前诊断脚本和清理后的分发资源尚未通过新的完整流水线；以下 215 项记录属于此前已归档应用体，见 `verification/comparison-continuation-component-result.json`、`verification/license-brand-cleanup-component-result.json`。

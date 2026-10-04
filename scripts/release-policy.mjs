@@ -82,4 +82,10 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, branches, tempora
   if (!installer.normalCloseVerified || !installer.registrationVerified || !installer.shortcutsVerified || !installer.uninstalled || !installer.userDataRetained || installer.checks !== desktop.checks || installer.executableSha256 !== audit.executableSha256 || installer.archiveSha256 !== audit.archiveSha256) {
     throw new Error('Installed-runtime, shortcut and uninstall proof is incomplete');
   }
+  if (![installer.installerSha256, ...bootstrap.variants.map((variant) => variant.executableSha256)].every((hash) => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash))) {
+    throw new Error('Release proof requires complete bootstrap SHA-256 values');
+  }
+  if (bootstrap.variants.find((variant) => variant.variant === 'installer').executableSha256 !== installer.installerSha256 || bootstrap.variants.find((variant) => variant.variant === 'portable').executableSha256 !== portable.wrapperSha256) {
+    throw new Error('Windows runtime proof must match its audited installer and portable bootstraps');
+  }
 }

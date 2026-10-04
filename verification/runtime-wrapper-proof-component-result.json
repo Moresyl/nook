@@ -1,0 +1,142 @@
+{
+  "verifiedAt": "2026-10-04T11:43:08.763Z",
+  "baselineSourceCommit": "71afbbb558f00263f8165c32005733db042831c5",
+  "source": [
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "bc2a80a933ea39cf874db912843115a2660d8f27eab57fe3913f2810390eaacc"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "7b5d39ef5d1b16195d8612c80f6df7fdf132b590e3161db33fe55ba7ad16b1a3"
+    }
+  ],
+  "focusedTestsPassed": 40,
+  "regressionsFailedBeforeFix": 2,
+  "typecheckExitCode": 0,
+  "policyCoverage": {
+    "lines": {
+      "total": 61,
+      "covered": 61,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 21,
+      "covered": 21,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 80,
+      "covered": 80,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 140,
+      "covered": 140,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "logs": [
+    {
+      "path": "runtime-wrapper-proof-red.log",
+      "sha256": "6abbf988493d12a1eea58cf1841ba60fa94f9c5eb32f997f7eee4bdd4498c38d",
+      "bytes": 2368
+    },
+    {
+      "path": "runtime-wrapper-proof-green.log",
+      "sha256": "89e43c0af6af90d900e336797a6abd5e51d6856fdba750fb0fd8527a22832ce3",
+      "bytes": 1078
+    },
+    {
+      "path": "runtime-wrapper-proof-typecheck.log",
+      "sha256": "0616800bf9836cdae7bc4a9f46815e3a10d65207ac4b09de457fb8f4e25f92db",
+      "bytes": 93
+    }
+  ],
+  "productionSourceUnchanged": true,
+  "compiledApplicationUnchanged": true,
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "actualMixedCurrentRecords": {
+    "rejected": true,
+    "reason": "Windows runtime proof must match its audited installer and portable bootstraps",
+    "currentBootstrapInstallerSha256": "34a456645a97a18396a021fef8a462d67984454aa7334147ed30fbfc5946a1d9",
+    "retainedInstallerSha256": "b78387b426375dd527a06e4b07a0ff5733001e42830064132c43d0a293a465f0"
+  },
+  "originalCompleteRecords": {
+    "commit": "f0e5f6e",
+    "accepted": true,
+    "records": [
+      {
+        "key": "audit",
+        "path": "verification/package-audit-result.json",
+        "sha256": "481dccd207408b59eae7438acc524fc5f63a442a5358a7d62cbdd952f53da1ea"
+      },
+      {
+        "key": "desktop",
+        "path": "verification/packaged-result.json",
+        "sha256": "61561dd8065d19132ac7453d7e3884c3d5c418b4c7869051b05665a2d7983e92"
+      },
+      {
+        "key": "surfaces",
+        "path": "verification/surfaces-packaged-result.json",
+        "sha256": "9ccecab60fe7d458fce1820564172d77a458bfd37ca4a4109dec5c042eb5ec3c"
+      },
+      {
+        "key": "branches",
+        "path": "verification/conversation-branches-packaged-result.json",
+        "sha256": "9969d367dd76124eb65ad5471e7f6e7acba1b572b5d23c473f5f3dd76a605680"
+      },
+      {
+        "key": "temporary",
+        "path": "verification/temporary-conversations-packaged-result.json",
+        "sha256": "502bcb5418bf35c2350cf696e027f9a383e29794a982dcc8334a4f42419f09b7"
+      },
+      {
+        "key": "comparisons",
+        "path": "verification/model-comparisons-packaged-result.json",
+        "sha256": "14037c92e35431d50486bf5159505eabe7f02e7f560615bfd28f2f880f8077c7"
+      },
+      {
+        "key": "portable",
+        "path": "verification/portable-result.json",
+        "sha256": "937ce52791474caa956dd330ad715037dc8902d23d4b3f5d5dc5d34b526cad83"
+      },
+      {
+        "key": "portableAudit",
+        "path": "verification/portable-package-audit-result.json",
+        "sha256": "4e74b633e5d1cb29918c4b4fd05bc62e5a09b65c7f74728772b7e34b3d9635bb"
+      },
+      {
+        "key": "bootstrap",
+        "path": "verification/distribution-bootstrap-result.json",
+        "sha256": "e678810a5b884677a8e97e9f2341b5cc17492e85e9d99050f5c6b0778a8d296f"
+      },
+      {
+        "key": "installer",
+        "path": "verification/pipeline-installer-result.json",
+        "sha256": "758795edc84a9bdaa5c854801f655a3849715e5ac5cef6f06aba95418a201579"
+      }
+    ],
+    "scope": "Read-only validation of the preserved earlier complete cohort. Its original application and wrapper scope remains unchanged."
+  },
+  "completeCurrentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Require valid SHA-256 values for each bootstrap and bind actual installer/portable runtime results to their audited wrappers. This prevents unchanged application bytes from legitimizing mixed wrapper records; selected-continuation persistence performance still requires a separate fix."
+}
