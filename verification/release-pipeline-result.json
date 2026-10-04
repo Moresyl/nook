@@ -871,7 +871,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": false,
+  "completeCurrentSourceVerified": true,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -1051,8 +1051,10 @@
     "focusedBranchAcceptance": true,
     "focusedBranchChecks": 9,
     "normalCloseVerified": true,
-    "completeCurrentNativeVerified": false,
+    "completeCurrentNativeVerified": true,
     "currentDistributionVerified": false,
-    "currentHostedVerified": false
+    "currentHostedVerified": false,
+    "completeSource": "verification/checkpoint-journal-complete-source-result.json",
+    "completeSourceChecks": 215
   }
 }

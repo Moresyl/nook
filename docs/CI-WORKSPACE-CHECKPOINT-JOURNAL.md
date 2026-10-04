@@ -23,3 +23,11 @@
 修正后的完整检查通过 177 项，包括草稿保存失败时保留窗口、阻止备份及真实关闭／重启；随后分支导航用例没有触发预期错误，因为故障注入只拦截旧主文件。提交 `7106ef9` 使该用例同时拦截主文件与当前日志写入，保留原有错误断言与期限。相同大工作区副本的九项分支检查与正常关闭通过，确认真实 EIO、草稿保留、同一选择重试、完整 gzip 恢复、重启及重复 ID 恢复。完整桌面与分发验收仍需另行通过。
 
 历史远端 `37210867822` 的 `f1734e1` 应用体通过 723 项及 233／401／20 项包许可证检查，在相同第 43 项主文件故障检查失败；下载的诊断归档与 GitHub 的字节数和 SHA-256 一致，严格运行证明收集器拒绝其不完整记录。当前组件与原始失败分别见 `verification/checkpoint-primary-guard-component-result.json`、`verification/checkpoint-primary-guard-before-failure-result.json`、`verification/checkpoint-branch-fault-before-result.json` 及 `verification/hosted-journal-primary-failure-result.json`。
+
+## 当前完整源码验收
+
+`7106ef9` 的验证脚本与 `e2d0355` 的应用代码随后完成全部 215 项桌面检查和正常关闭，19 份原始记录均来自此次运行。原有主文件目录故障、分支日志 EIO、模型比较、完整备份恢复、临时数据排除及重启均通过。完整来源与编译文件哈希见 `verification/checkpoint-journal-complete-source-result.json`；730 项测试、类型检查和构建对应同一应用代码。
+
+此次大工作区的部分回复观测实际耗时约 13.16 秒：原有等待器会等待期限内已经发起的读取完成，最后一次读取返回时谓词成立。没有扩大原有 10 秒／100 ms 设置，但这个结果不表示实际响应延迟小于 10 秒。此前聚焦样本的约 8.43 秒属于另一轮测量。
+
+上述结果仅验收开发程序，当前安装包、便携版、安装后程序及远端流水线仍分别验证。

@@ -30,6 +30,8 @@
 - 项目文件和终端查询只读取当前项目的独立副本，避免大型工作台中每次查询复制全部聊天历史；未提交的更新和失败的修改不影响当前已保存项目，删除后立即拒绝后续访问。
 - 多模型比较共享启动准备，在一次原子更新中保存整组初始消息并统一通知界面；组保存失败时保留完整工作台与其他进行中的回复，重试可完整创建各路对话。
 - 同一轮到达的多路回复检查点合并为一次原子工作台更新，分别保留回复原文、完成状态和完整上一份文件；保存失败时整批拒绝并可重试，删除后的对话与消息不会被重新创建。
+- 流式回复、草稿及已有对话的续聊启动使用绑定主文件版本的恢复日志，保留独立的上一版完整备份；正常关闭时写回原有 JSON 格式。日志损坏或归属错误时保留文件并报告恢复错误，主文件被替换或变成目录时不再确认不可恢复的日志保存。
+- 快速切换对话时合并尚未开始的选择保存，最新选择落盘后才返回成功；普通与临时对话分别排队，重启仍恢复此前最后一个普通对话，临时内容保持不落盘。
 - 关闭项目差异预览时先释放差异视图，再释放文本模型，取消仍在进行的计算，避免延迟工作线程结果触发运行时错误。
 - 项目终端优先使用标准目录中已安装的 PowerShell 7，缺失时保留原有 Shell；异步发现后重新检查关闭状态和会话上限，避免退出期间或并发打开时创建多余终端。
 - 比较卡片从原始回复的请求记录读取连接与模型。沿所选路径换模型续聊后，原回复的标注及备份恢复保持一致，缺少原始请求记录时明确显示未记录。
@@ -54,3 +56,5 @@
 First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. MCP resource subscriptions refresh literal previews during continuous updates and allow explicit draft insertion without model requests. Includes complete JSON/gzip backup and opt-in desktop entry controls. MCP resource/prompt binaries support explicit original-byte export and bounded normalized image previews, including empty-file/cancel handling; approved model reads retain metadata only. Delayed results respect selection changes, and nested Escape preserves the parent settings dialog.
 
 Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves original comparison labels after changing models, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
+
+Response checkpoints, drafts and existing-conversation starts use a recoverable journal bound to the current primary file, with an independent complete previous-state backup and normal-close materialization. Pending conversation selections are coalesced without mixing regular and temporary persistence. Damaged journals and unavailable primary files retain explicit recovery or save errors.
