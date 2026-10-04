@@ -1,0 +1,312 @@
+{
+  "verifiedAt": "2026-10-04T03:56:12.003Z",
+  "runId": 37173408503,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37173408503",
+  "sourceCommit": "aa2b59d0f6701765d88a7a421076265d15390cd6",
+  "sourceBranch": "fix/terminal-shell-discovery",
+  "conclusion": "failure",
+  "unitTestsPassed": 672,
+  "unitFiles": 66,
+  "passedDesktopChecks": 190,
+  "actualPowerShellMajor": 7,
+  "originalTerminalPromptConditionPassed": true,
+  "originalLargeBackupRestartPassed": true,
+  "firstTwoModelComparisonPassed": true,
+  "fourModelCompletionWaitFailed": true,
+  "diagnostics": {
+    "groupId": "3cb08c10-f7b7-4669-b40a-d0e568a5162a",
+    "waitStartedAt": 1791085322297,
+    "waitFailedAt": 1791085333019,
+    "unchangedCompletionDeadlineMs": 10000,
+    "lastPoll": {
+      "polledAt": 1791085331722,
+      "sequence": 1,
+      "loadStartedAt": 1791085322300,
+      "loadedAt": 1791085331722,
+      "matched": false,
+      "replies": [
+        {
+          "id": "e5e8bb6b-9156-4865-b112-107b493987d1",
+          "model": "fail",
+          "messages": 4,
+          "status": "error",
+          "characters": 0,
+          "invocationStatus": "error"
+        },
+        {
+          "id": "22325b84-a5e1-4c21-b335-325569bdbae7",
+          "model": "held",
+          "messages": 4,
+          "status": "stopped",
+          "characters": 13,
+          "invocationStatus": "interrupted"
+        },
+        {
+          "id": "bace32e8-9bda-4dbf-91a5-4dfed5165772",
+          "model": "one",
+          "messages": 4,
+          "status": "running",
+          "characters": 12,
+          "invocationStatus": "running"
+        },
+        {
+          "id": "15a1ad8c-c959-4a43-b1b4-ef26f5cc38a7",
+          "model": "two",
+          "messages": 4,
+          "status": "complete",
+          "characters": 49,
+          "invocationStatus": "complete"
+        }
+      ]
+    },
+    "requestTimelineAtFailure": [
+      {
+        "receivedAt": 1791085240622,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791085240622,
+        "completionQueuedAt": 1791085261912,
+        "completionFlushedAt": 1791085261913,
+        "closedAt": 1791085261913
+      },
+      {
+        "receivedAt": 1791085244283,
+        "connection": "b",
+        "model": "two",
+        "messages": 4,
+        "partialSentAt": 1791085244283,
+        "completionQueuedAt": 1791085261912,
+        "completionFlushedAt": 1791085261913,
+        "closedAt": 1791085261913
+      },
+      {
+        "receivedAt": 1791085283336,
+        "connection": "a",
+        "model": "fail",
+        "messages": 4,
+        "failureSentAt": 1791085283336,
+        "closedAt": 1791085283336
+      },
+      {
+        "receivedAt": 1791085287297,
+        "connection": "b",
+        "model": "held",
+        "messages": 4,
+        "partialSentAt": 1791085287297,
+        "closedAt": 1791085322197
+      },
+      {
+        "receivedAt": 1791085290743,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791085290743,
+        "completionQueuedAt": 1791085322103,
+        "completionFlushedAt": 1791085322152,
+        "closedAt": 1791085322152
+      },
+      {
+        "receivedAt": 1791085294921,
+        "connection": "b",
+        "model": "two",
+        "messages": 4,
+        "partialSentAt": 1791085294921,
+        "completionQueuedAt": 1791085322131,
+        "completionFlushedAt": 1791085322152,
+        "closedAt": 1791085322152
+      }
+    ],
+    "resourceCaptureStartedAt": 1791085333049,
+    "resourceCaptureCompletedAt": 1791085333053,
+    "resource": {
+      "capturedAt": 1791085333052,
+      "memory": {
+        "rss": 1619111936,
+        "heapTotal": 1223012352,
+        "heapUsed": 1214151508,
+        "external": 257966316,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 36281000,
+        "system": 25250000
+      },
+      "processes": [
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 61.426379,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 7980,
+          "type": "Browser",
+          "creationTime": 1791085222882.821,
+          "memory": {
+            "workingSetSize": 1581192,
+            "peakWorkingSetSize": 2219316,
+            "privateBytes": 1579324
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 82.793115,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 8880,
+          "type": "GPU",
+          "creationTime": 1791085223532.754,
+          "serviceName": "GPU",
+          "memory": {
+            "workingSetSize": 79208,
+            "peakWorkingSetSize": 129592,
+            "privateBytes": 33816
+          },
+          "integrityLevel": "low",
+          "sandboxed": true
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.054805,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 6492,
+          "type": "Utility",
+          "creationTime": 1791085223507.547,
+          "serviceName": "network.mojom.NetworkService",
+          "name": "Network Service",
+          "memory": {
+            "workingSetSize": 33388,
+            "peakWorkingSetSize": 50472,
+            "privateBytes": 11224
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 17.124557,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 4200,
+          "type": "Tab",
+          "creationTime": 1791085223623.463,
+          "memory": {
+            "workingSetSize": 683708,
+            "peakWorkingSetSize": 1423432,
+            "privateBytes": 639672
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      ]
+    }
+  },
+  "completionWaitElapsedMs": 10722,
+  "onlyPollLoadElapsedMs": 9422,
+  "completionAlreadyFlushedBeforeWaitMs": [
+    145,
+    145
+  ],
+  "laterResourceSampleScope": "Sampled after the failed wait; the recorded CPU values are cumulative, not per-operation CPU or a deadline/peak measurement.",
+  "actualBody": {
+    "executableSha256": "aa11d1864d757c0de5736558284e2feb8c9ba6031d6bb5aa77df76495ac4606e",
+    "archiveSha256": "b825fb198229921e1b53b50d4e34efdb55805bf7a249f10c63e556224205a6aa",
+    "auditSha256": "7e5d57cbf5dfb878eab41a909a0fef5e6ba602e92c097248abb62634a0b41765"
+  },
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "exists": true,
+      "sha256": "7e5d57cbf5dfb878eab41a909a0fef5e6ba602e92c097248abb62634a0b41765",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "exists": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "exists": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "exists": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "exists": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "exists": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "exists": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "exists": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "exists": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "exists": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+    "historical215CohortAcceptedForOwnBody": true,
+    "mixingFreshAuditRejected": true,
+    "mixedRejection": "Runtime proof must match the audited application and normal close"
+  },
+  "artifact": {
+    "id": 11292189914,
+    "reportedSha256": "sha256:bf325cb8f7fb5679394982f680dd417d9e7504c4166dd33d1dac48e385ce9253",
+    "size": 8576998
+  },
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "9d5c5d5b890bdb9a0087bbdd01bd5b8368487ba3ccfe70720da6b07f5fff5a5c",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "observation": "The later actual light four-reply dialog shows error/stopped/running/complete statuses. Both successful replies display COMPLETE text, while the first retains generating status."
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-terminal-shell-branch-full.log",
+      "sha256": "fd54fdbce45966cb1662aeaae452ba199e521b55d5bdbb1036c02d61cf81b94b",
+      "bytes": 275528
+    },
+    {
+      "name": "github-terminal-shell-branch-failed.log",
+      "sha256": "6bcb97aae121ad9e4a451dfb5e1d433d91445eabcd69e3e3e5a4830f6ea9594f",
+      "bytes": 81281
+    }
+  ],
+  "scope": "The exact modern-shell branch passes 672 unit tests, type/build/package gates and 190 native checks, including actual PowerShell 7 and the unchanged project prompt condition, large-backup restart and the first two-model comparison. The subsequent four-model completion check fails at its original 10-second deadline. The only completed full-workspace poll takes 9422 ms and reports one successful reply still running; both successful server streams are flushed 145 ms before the wait starts. The later screenshot displays both COMPLETE texts with one generating status. load awaits pending vault persistence before cloning/transferring the workspace; the individual queue, clone and IPC contributions are not measured, so their exact cause remains unestablished. Nine required records are missing. Frozen policy accepts its tracked previous 215-check cohort only for that cohort’s own hashes and rejects mixing it with this fresh remote audit. Hosted installation, complete runtime acceptance and publication remain unverified."
+}

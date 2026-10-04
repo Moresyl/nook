@@ -531,6 +531,12 @@
       "sourceCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
       "conclusion": "failure",
       "proof": "verification/hosted-template-startup-terminal-failure-result.json"
+    },
+    {
+      "runId": 37173408503,
+      "sourceCommit": "aa2b59d0f6701765d88a7a421076265d15390cd6",
+      "conclusion": "failure",
+      "proof": "verification/hosted-terminal-shell-comparison-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -679,17 +685,19 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37169903719,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37169903719",
-    "sourceCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
+    "runId": 37173408503,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37173408503",
+    "sourceCommit": "aa2b59d0f6701765d88a7a421076265d15390cd6",
+    "sourceBranch": "fix/terminal-shell-discovery",
     "conclusion": "failure",
-    "unitTestsPassed": 664,
-    "unitFiles": 65,
-    "packagedChecksBeforeFailure": 164,
-    "largeBackupRestartPassed": true,
-    "terminalPromptWaitFailed": true,
+    "unitTestsPassed": 672,
+    "unitFiles": 66,
+    "packagedChecksBeforeFailure": 190,
+    "originalTerminalPromptConditionPassed": true,
+    "fourModelCompletionWaitFailed": true,
+    "onlyPollLoadElapsedMs": 9422,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-template-startup-terminal-failure-result.json"
+    "proof": "verification/hosted-terminal-shell-comparison-failure-result.json"
   },
   "previousSourceVerification": {
     "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
@@ -826,16 +834,17 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37167281647,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37167281647",
-    "sourceCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+    "runId": 37169903719,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37169903719",
+    "sourceCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
     "conclusion": "failure",
-    "unitTestsPassed": 649,
-    "unitFiles": 63,
-    "packagedChecksBeforeFailure": 160,
-    "startupWaitFailed": true,
+    "unitTestsPassed": 664,
+    "unitFiles": 65,
+    "packagedChecksBeforeFailure": 164,
+    "largeBackupRestartPassed": true,
+    "terminalPromptWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-vault-startup-failure-result.json"
+    "proof": "verification/hosted-template-startup-terminal-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
@@ -885,6 +894,7 @@
     "packagedVerified": false,
     "hostedVerified": false,
     "proof": "verification/terminal-shell-component-review-result.json",
-    "sourceProof": "verification/terminal-shell-source-review-result.json"
+    "sourceProof": "verification/terminal-shell-source-review-result.json",
+    "latestHostedRunId": 37173408503
   }
 }
