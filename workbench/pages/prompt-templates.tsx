@@ -1,14 +1,17 @@
 import { useState, type ReactNode } from 'react';
 import type { Workspace } from '../../contracts/workspace';
+import type { PromptBundle } from '../../contracts/prompt-bundles';
 import { promptTemplateSchema, promptVariables, type PromptParameter, type PromptTemplate } from '../../contracts/prompt-templates';
 import { Button, Empty, Field, IconButton, Input, Modal, Select, Textarea, Toggle } from '../components/controls';
 import { Glyph } from '../components/glyphs';
 import { PromptUseDialog } from '../components/prompt-use-dialog';
+import { PromptImportDialog } from '../components/prompt-import-dialog';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; report: (error: unknown) => void; onUse: (text: string, assistantId?: string) => boolean; navigation: ReactNode };
 export function PromptTemplatesPage({ state, onState, report, onUse, navigation }: Props) {
   const [search, setSearch] = useState(''); const [editing, setEditing] = useState<PromptTemplate | null>(null);
   const [using, setUsing] = useState<string | null>(null); const [removing, setRemoving] = useState<string | null>(null); const [busy, setBusy] = useState(false);
+  const [incoming, setIncoming] = useState<PromptBundle | null>(null);
   const templates = state.promptTemplates.filter((item) => `${item.title}\n${item.description}\n${item.content}`.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()));
   let variables: string[] = [];
   if (editing) try { variables = promptVariables(editing.content); } catch { /* Retain incomplete content and parameter settings while editing. */ }
@@ -28,9 +31,21 @@ export function PromptTemplatesPage({ state, onState, report, onUse, navigation 
     if (!removing || busy) return; setBusy(true);
     try { onState(await window.qiyao.removePromptTemplate(removing)); setRemoving(null); } catch (error) { report(error); } finally { setBusy(false); }
   }
-  return <><div className="page-heading"><div><h1>提示模板</h1><p>保存常用任务，填写变量后放入草稿。</p></div><Button tone="solid" onClick={() => setEditing({ id: crypto.randomUUID(), title: '', description: '', content: '' })}><Glyph name="plus" size={16} />创建模板</Button></div>
+  async function readImport() {
+    if (busy) return; setBusy(true);
+    try { const bundle = await window.qiyao.readPromptImport(); if (bundle) setIncoming(bundle); } catch (error) { report(error); } finally { setBusy(false); }
+  }
+  async function importTemplates() {
+    if (!incoming || busy) return; setBusy(true);
+    try { onState(await window.qiyao.importPrompts(incoming)); setIncoming(null); } catch (error) { report(error); } finally { setBusy(false); }
+  }
+  async function exportTemplates(ids?: string[]) {
+    if (busy) return; setBusy(true);
+    try { await window.qiyao.exportPrompts(ids); } catch (error) { report(error); } finally { setBusy(false); }
+  }
+  return <><div className="page-heading"><div><h1>提示模板</h1><p>保存常用任务，填写变量后放入草稿。</p></div><div className="action-row"><Button disabled={busy} onClick={() => { void readImport(); }}>导入模板</Button><Button disabled={busy || !state.promptTemplates.length} onClick={() => { void exportTemplates(); }}>导出全部模板</Button><Button disabled={busy} tone="solid" onClick={() => setEditing({ id: crypto.randomUUID(), title: '', description: '', content: '' })}><Glyph name="plus" size={16} />创建模板</Button></div></div>
     {navigation}<Input aria-label="搜索提示模板" className="collection-search" value={search} placeholder="搜索名称、简介或内容…" onChange={(event) => setSearch(event.target.value)} />
-    {templates.length ? <div className="item-list">{templates.map((item) => <div className="list-row" data-template-id={item.id} key={item.id}><span className="row-symbol"><Glyph name="compose" size={22} /></span><Button className="row-content" onClick={() => setEditing(item)}><strong>{item.title}</strong><span>{item.description || `${promptVariables(item.content).length} 个变量`}</span></Button><Button onClick={() => setUsing(item.id)}>使用模板</Button><IconButton icon="copy" label={`复制模板 ${item.title}`} onClick={() => setEditing({ ...item, id: crypto.randomUUID(), title: `${item.title.slice(0, 77)} 副本` })} /><IconButton icon="trash" label={`删除模板 ${item.title}`} onClick={() => setRemoving(item.id)} /></div>)}</div> : <Empty icon="compose" title={search ? '没有匹配的模板' : '还没有提示模板'} detail={search ? '试试其他关键词。' : '创建一个模板，保存写作、研究或项目任务。'} />}
+    {templates.length ? <div className="item-list">{templates.map((item) => <div className="list-row" data-template-id={item.id} key={item.id}><span className="row-symbol"><Glyph name="compose" size={22} /></span><Button disabled={busy} className="row-content" onClick={() => setEditing(item)}><strong>{item.title}</strong><span>{item.description || `${promptVariables(item.content).length} 个变量`}</span></Button><Button disabled={busy} onClick={() => setUsing(item.id)}>使用模板</Button><Button disabled={busy} aria-label={`导出模板 ${item.title}`} onClick={() => { void exportTemplates([item.id]); }}>导出</Button><IconButton disabled={busy} icon="copy" label={`复制模板 ${item.title}`} onClick={() => setEditing({ ...item, id: crypto.randomUUID(), title: `${item.title.slice(0, 77)} 副本` })} /><IconButton disabled={busy} icon="trash" label={`删除模板 ${item.title}`} onClick={() => setRemoving(item.id)} /></div>)}</div> : <Empty icon="compose" title={search ? '没有匹配的模板' : '还没有提示模板'} detail={search ? '试试其他关键词。' : '创建一个模板，保存写作、研究或项目任务。'} />}
     {editing && <Modal title="编辑提示模板" onClose={() => { if (!busy) setEditing(null); }} footer={<><Button disabled={busy} onClick={() => setEditing(null)}>取消</Button><Button tone="solid" disabled={busy || !promptTemplateSchema.safeParse(editing).success} onClick={() => { void save(); }}>保存</Button></>}>
       <Field label="模板名称"><Input autoFocus maxLength={80} disabled={busy} value={editing.title} onChange={(event) => setEditing({ ...editing, title: event.target.value })} /></Field>
       <Field label="模板简介"><Input maxLength={512} disabled={busy} value={editing.description} onChange={(event) => setEditing({ ...editing, description: event.target.value })} /></Field>
@@ -51,5 +66,6 @@ export function PromptTemplatesPage({ state, onState, report, onUse, navigation 
     </Modal>}
     {removing && <Modal title="删除提示模板？" onClose={() => { if (!busy) setRemoving(null); }} footer={<><Button disabled={busy} onClick={() => setRemoving(null)}>取消</Button><Button tone="danger" disabled={busy} onClick={() => { void remove(); }}>删除</Button></>}><p>已有消息和草稿会保留。这个模板将从本地工作台移除。</p></Modal>}
     {using && <PromptUseDialog templates={state.promptTemplates} assistants={state.assistants} initialId={using} onUse={onUse} onClose={() => setUsing(null)} />}
+    {incoming && <PromptImportDialog bundle={incoming} busy={busy} onClose={() => setIncoming(null)} onImport={() => { void importTemplates(); }} />}
   </>;
 }
