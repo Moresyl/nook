@@ -280,6 +280,18 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   importAssistants: (raw) => assistantProfiles.import(raw),
   savePromptTemplate: (raw) => promptTemplates.save(raw),
   removePromptTemplate: (raw) => promptTemplates.remove(raw),
+  readPromptImport: async () => {
+    const result = await dialog.showOpenDialog(window!, { title: '导入提示模板', properties: ['openFile'], filters: [{ name: 'Qiyao 提示模板', extensions: ['json', 'gz'] }] });
+    if (result.canceled || !result.filePaths[0]) return null;
+    return promptTemplates.read(result.filePaths[0]);
+  },
+  importPrompts: (raw) => promptTemplates.import(raw),
+  exportPrompts: async (ids) => {
+    const bundle = promptTemplates.bundle(ids);
+    const result = await dialog.showSaveDialog(window!, { defaultPath: 'Qiyao-prompts.json', filters: [{ name: 'Qiyao 提示模板', extensions: ['json'] }, { name: '压缩提示模板', extensions: ['gz'] }] });
+    if (result.canceled || !result.filePath) return false;
+    await promptTemplates.write(result.filePath, bundle); return true;
+  },
   exportAssistants: async (ids) => {
     const bundle = assistantProfiles.bundle(ids);
     const result = await dialog.showSaveDialog(window!, { defaultPath: 'Qiyao-assistants.json', filters: [{ name: 'Qiyao 助手配置', extensions: ['json'] }, { name: '压缩助手配置', extensions: ['gz'] }] });
@@ -393,7 +405,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
 async function finishClose(): Promise<void> {
   if (!quitRequested && desktopIntegration.canHide()) { window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
-  if (quit) { quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  if (quit) { quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
   closeAllowed = true; window?.close();
   if (quit) app.quit();
 }

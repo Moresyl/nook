@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, useEffect, useId, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
+import { cloneElement, isValidElement, useEffect, useId, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { Glyph, type GlyphName } from './glyphs';
 
 export function Button({ tone = 'ghost', className = '', ...props }: ComponentProps<'button'> & { tone?: 'ghost' | 'solid' | 'danger' }) {
@@ -21,14 +21,14 @@ export function Toggle({ label, checked, onChange, disabled = false }: { label: 
 export function Empty({ icon, title, detail, action }: { icon: GlyphName; title: string; detail: string; action?: ReactNode }) {
   return <div className="empty"><div className="empty-glyph"><Glyph name={icon} size={28} /></div><h3>{title}</h3><p>{detail}</p>{action}</div>;
 }
-export function Modal({ title, children, onClose, footer, className = '' }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; className?: string }) {
+export function Modal({ title, children, onClose, footer, className = '', returnFocus }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; className?: string; returnFocus?: RefObject<HTMLElement | null> }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   useEffect(() => {
     const element = dialog.current!;
     const previous = document.activeElement as HTMLElement | null;
     element.showModal();
-    return () => { element.close(); previous?.focus(); };
+    return () => { element.close(); (returnFocus?.current ?? previous)?.focus(); };
   }, []);
   return <dialog ref={dialog} aria-labelledby={titleId} className={`modal ${className}`} onCancel={(event) => { event.preventDefault(); event.stopPropagation(); onClose(); }} onClick={(event) => { if (event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
     <header className="modal-header"><h2 id={titleId}>{title}</h2><IconButton icon="close" label="关闭" onClick={onClose} /></header>

@@ -12,6 +12,7 @@ import type { AutomationInput } from './automations';
 import type { DesktopState } from './desktop-integration';
 import type { AssistantBundle } from './assistant-profiles';
 import type { PromptTemplate } from './prompt-templates';
+import type { PromptBundle } from './prompt-bundles';
 import type { MessageDraft, MessageEdit } from './message-edits';
 import type { BranchReorder } from './conversation-branches';
 import type { ComparisonRequest, ComparisonResult } from './model-comparisons';
@@ -82,6 +83,9 @@ export type Bridge = {
   exportAssistants(ids?: string[]): Promise<boolean>;
   savePromptTemplate(template: PromptTemplate): Promise<Workspace>;
   removePromptTemplate(id: string): Promise<Workspace>;
+  readPromptImport(): Promise<PromptBundle | null>;
+  importPrompts(bundle: PromptBundle): Promise<Workspace>;
+  exportPrompts(ids?: string[]): Promise<boolean>;
   saveAutomation(task: AutomationInput): Promise<Workspace>;
   setAutomationEnabled(id: string, enabled: boolean): Promise<Workspace>;
   removeAutomation(id: string): Promise<Workspace>;

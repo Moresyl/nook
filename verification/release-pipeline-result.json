@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "The final byte cache serializes each durable workspace once and advances only after successful atomic writes; validation, actual destination EIO, retry, no-op/temporary exclusion and normalized credentials are covered. A preserved old-code failure proves interrupted replies previously remained running on disk; restart now durably saves stopped state while retaining the prior backup. Four actual local writes over 84,011,026 bytes decrease from 4214.5486 ms to 2252.3754 ms. Memory samples are after updates, not peak or remote deadline measurements. The final source passes 649 tests, type/build and all unchanged 210 native desktop checks with normal close. Renderer bytes match the previously reviewed nine-capture build. The six comparison checks retain eleven real HTTP requests and all original deadlines. Added failure diagnostics distinguish final status polls, server queued/flushed completion and separately timed later process resources; that failure branch has not run in the successful local suite. Fresh complete matching-body distribution and hosted acceptance remain separate.",
+  "scope": "Strict bounded portable template bundles retain full definitions and referenced assistant profiles without source IDs or credentials. Native selected/all JSON/gzip export, content-detected input, inert complete preview, cancel/Escape, private-field rejection, actual EIO preservation/retry, fresh shared assistant/template IDs, same-name originals, unbound templates, complete gzip backup and normal restart are verified with zero model requests. An actual Escape focus failure is preserved and fixed by an explicit import opener reference. Six complete-run captures are individually reviewed at light 1280×840 and dark 760×540 100/125/150 percent. Final type/build, 660 tests and all 215 desktop checks pass; the bundle contract and template service have complete coverage. Three new release-policy tests reject prior 210-check bodies and absent, partial, requesting or nonboolean transfer evidence. Draft content/context are exact; ordinary autosave timestamp/undefined-property normalization is excluded from object comparisons, while the actual EIO primary-file hash is exact. Picker and confirmation responses are isolated native fixtures; physical picker, foreign formats and wider platform checks remain open. Historical 210-check installer evidence keeps its old application hashes and cannot satisfy the new minimum 215 release gate.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -380,13 +380,13 @@
     "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
   },
   "sourceVerification": {
-    "verifiedAt": "2026-10-04T01:25:46.593Z",
-    "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
-    "unitTests": 649,
-    "unitFiles": 63,
-    "desktopChecks": 210,
+    "verifiedAt": "2026-10-04T01:55:58.001Z",
+    "codeCommit": "ce9bb6c26ea66f6d1a98a23aa2ab18b65853d1bc",
+    "unitTests": 660,
+    "unitFiles": 64,
+    "desktopChecks": 215,
     "normalCloseVerified": true,
-    "proof": "verification/vault-serialization-review-result.json"
+    "proof": "verification/prompt-transfer-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -693,13 +693,13 @@
     "proof": "verification/hosted-vault-startup-failure-result.json"
   },
   "previousSourceVerification": {
-    "verifiedAt": "2026-10-04T00:37:36.205Z",
-    "codeCommit": "08a8f44f6204d0020595bacf156e950734074275",
-    "unitTests": 647,
+    "verifiedAt": "2026-10-04T01:25:46.593Z",
+    "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+    "unitTests": 649,
     "unitFiles": 63,
     "desktopChecks": 210,
     "normalCloseVerified": true,
-    "proof": "verification/streaming-progress-review-result.json"
+    "proof": "verification/vault-serialization-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -790,7 +790,7 @@
   },
   "currentHostedRuntimeProofVerified": false,
   "historicalWorkflowRunVerified": true,
-  "previousVerificationScope": "Three deterministic failures reproduce stale initial-state and checkpoint updates on the previous product. Active run notifications retain live content with durable terminal status, and queued persistence samples the message inside its transaction. All renderer workspace replacements retain only matching-owner/message streaming prefixes and terminal replies; deletions, new retry IDs, different text and authoritative terminal/manual edits remain effective. The final source passes 647 tests, type/build and the unchanged complete 210-check native suite with six comparison checks, eleven real HTTP requests and normal close. Nine current complete-run comparison captures are individually reviewed. This establishes local regression recovery; the exact remote intervening producer and fresh same-body distribution/hosted acceptance remain to be verified. Existing 210-check installer/portable evidence retains its prior application hashes.",
+  "previousVerificationScope": "The final byte cache serializes each durable workspace once and advances only after successful atomic writes; validation, actual destination EIO, retry, no-op/temporary exclusion and normalized credentials are covered. A preserved old-code failure proves interrupted replies previously remained running on disk; restart now durably saves stopped state while retaining the prior backup. Four actual local writes over 84,011,026 bytes decrease from 4214.5486 ms to 2252.3754 ms. Memory samples are after updates, not peak or remote deadline measurements. The final source passes 649 tests, type/build and all unchanged 210 native desktop checks with normal close. Renderer bytes match the previously reviewed nine-capture build. The six comparison checks retain eleven real HTTP requests and all original deadlines. Added failure diagnostics distinguish final status polls, server queued/flushed completion and separately timed later process resources; that failure branch has not run in the successful local suite. Fresh complete matching-body distribution and hosted acceptance remain separate.",
   "previousCurrentRuntimeProofVerified": true,
   "assistantRecipes": {
     "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
@@ -848,5 +848,14 @@
     "sourceChecks": 210,
     "proof": "verification/vault-serialization-review-result.json",
     "latestHostedRunId": 37167281647
+  },
+  "promptTransfer": {
+    "codeCommit": "ce9bb6c26ea66f6d1a98a23aa2ab18b65853d1bc",
+    "sourceVerified": true,
+    "packagedVerified": false,
+    "hostedVerified": false,
+    "sourceChecks": 215,
+    "transferModelRequests": 0,
+    "proof": "verification/prompt-transfer-review-result.json"
   }
 }
