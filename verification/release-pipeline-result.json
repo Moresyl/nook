@@ -131,7 +131,7 @@
       }
     }
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -686,16 +686,17 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37190658648,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37190658648",
-    "sourceCommit": "220a1ace0469686710fb3b243772f0400d29d203",
+    "runId": 37196858974,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37196858974",
+    "sourceCommit": "9610f7a5a7690f708ca307605ffc82942149a5ee",
     "conclusion": "failure",
     "unitTestsPassed": 683,
     "unitFiles": 67,
     "packagedChecksBeforeFailure": 192,
     "selectedContinuationPartialWaitFailed": true,
+    "diagnosticsObserved": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-comparison-continuation-failure-result.json"
+    "proof": "verification/hosted-comparison-continuation-observed-failure-result.json"
   },
   "previousSourceVerification": {
     "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
@@ -832,19 +833,16 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37186719269,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37186719269",
-    "sourceCommit": "117ed6031c589b5b68709559384de420267ff5c2",
+    "runId": 37190658648,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37190658648",
+    "sourceCommit": "220a1ace0469686710fb3b243772f0400d29d203",
     "conclusion": "failure",
     "unitTestsPassed": 683,
     "unitFiles": 67,
-    "completePackagedChecks": 215,
-    "surfaceChecks": 4,
-    "portableChecks": 7,
-    "installedChecksBeforeFailure": 160,
-    "startupWaitFailed": true,
+    "packagedChecksBeforeFailure": 192,
+    "selectedContinuationPartialWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-provider-transport-startup-failure-result.json"
+    "proof": "verification/hosted-comparison-continuation-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
@@ -974,7 +972,10 @@
     "oldPackagedNoticeRejected": true,
     "componentProof": "verification/license-brand-cleanup-component-result.json",
     "distributionVerified": false,
-    "hostedVerified": false
+    "hostedVerified": false,
+    "hostedPackageAuditVerified": true,
+    "packageResourcesVerified": true,
+    "packageProof": "verification/license-brand-cleanup-package-result.json"
   },
   "comparisonContinuationDiagnostics": {
     "sourceVerified": true,
@@ -986,6 +987,18 @@
     "componentProof": "verification/comparison-continuation-component-result.json",
     "currentCompleteDesktopVerified": false,
     "distributionVerified": false,
-    "hostedVerified": false
+    "hostedVerified": false,
+    "latestHostedRun": 37196858974,
+    "hostedFailureProof": "verification/hosted-comparison-continuation-observed-failure-result.json",
+    "unpackedCompleteDesktopVerified": true
+  },
+  "latestLocalAttempt": {
+    "codeCommit": "9610f7a5a7690f708ca307605ffc82942149a5ee",
+    "unpackedChecks": 215,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "installedChecksBeforeFailure": 192,
+    "completeRuntimeVerified": false,
+    "proof": "verification/license-continuation-local-failure-result.json"
   }
 }

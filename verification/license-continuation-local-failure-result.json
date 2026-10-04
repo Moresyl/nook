@@ -1,0 +1,539 @@
+{
+  "verifiedAt": "2026-10-04T11:36:06.610Z",
+  "codeCommit": "9610f7a5a7690f708ca307605ffc82942149a5ee",
+  "packageResourcesVerified": true,
+  "legalResourceProof": {
+    "path": "verification/license-brand-cleanup-package-result.json",
+    "sha256": "0ef375ec1077abaea4504aaf2b924ebcfc9351f9d5de85bad5ef3b3105877cf8"
+  },
+  "unpackedChecks": 215,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "installedChecksBeforeFailure": 192,
+  "installedComplete": false,
+  "completeRuntimeVerified": false,
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "fb5d271a8cc26a825396c24c54c9150e59bd952b5a32881771b131eead175e33",
+      "bytes": 54037,
+      "checks": 215
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "6d776ff8fdfb2a7c2ed94a1139a834b7954afa6d01ff82c8987a6f25b5272fb6",
+      "bytes": 1295,
+      "checks": 4
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "d1c8271a6522f5790b4e0f5d6f09a4906a3bdd12db79fb1c63d0304c974f6fe2",
+      "bytes": 11796,
+      "checks": 9
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "a5f0c9791b7d1dcb8c2fd709c4179b4598221141ddfc8fc0c1b8f49373168e41",
+      "bytes": 1953,
+      "checks": 6
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "1461b714a1e6340714599fea7adf9f943ab2ac4aef39adbf5392907443f77fd6",
+      "bytes": 2247,
+      "checks": 6
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "sha256": "0ae123bfe0aa6cd0a70244ffee22b4cc5c0f03cda0f946c1de7625fea1431e52",
+      "bytes": 1971,
+      "checks": 5
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "sha256": "f5cce3df8bfc9775bd76f61aad2e18cbd1b567684793b2df906b808586622b74",
+      "bytes": 1798,
+      "checks": 4
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "sha256": "e13bf68f2109620a39f71c461ee338b9627965200c1feadc1428a53836e854b8",
+      "bytes": 1891,
+      "checks": 6
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "2854f98ba4293ba2b5330f03a926dd8508df09ed631116e9d927756a19b67328",
+      "bytes": 916,
+      "checks": 6
+    }
+  ],
+  "installedPartialObservations": {
+    "phase": "partial",
+    "sendStartedAt": 1791113454825,
+    "capturedAt": 1791113465181,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "expectedServerRequests": 11,
+    "serverRequests": 11,
+    "timeline": [
+      {
+        "receivedAt": 1791113419577,
+        "connection": "b",
+        "model": "two",
+        "messages": 4,
+        "partialSentAt": 1791113419577,
+        "completionQueuedAt": 1791113423394,
+        "completionFlushedAt": 1791113423395,
+        "closedAt": 1791113423395
+      },
+      {
+        "receivedAt": 1791113434542,
+        "connection": "a",
+        "model": "one",
+        "messages": 2,
+        "partialSentAt": 1791113434542,
+        "completionQueuedAt": 1791113437871,
+        "completionFlushedAt": 1791113437872,
+        "closedAt": 1791113437872
+      },
+      {
+        "receivedAt": 1791113434543,
+        "connection": "b",
+        "model": "two",
+        "messages": 2,
+        "partialSentAt": 1791113434543,
+        "completionQueuedAt": 1791113437871,
+        "completionFlushedAt": 1791113437872,
+        "closedAt": 1791113437872
+      },
+      {
+        "receivedAt": 1791113465067,
+        "connection": "b",
+        "model": "two",
+        "messages": 6,
+        "partialSentAt": 1791113465067
+      }
+    ],
+    "rendererPolls": [
+      {
+        "phase": "partial",
+        "startedAt": 1791113454895,
+        "completedAt": 1791113461300,
+        "expectedMessageCount": 6,
+        "messageCount": 4,
+        "lastUserMatches": false,
+        "lastStatus": "complete",
+        "hasPartial": true,
+        "reached": false
+      },
+      {
+        "phase": "partial",
+        "startedAt": 1791113461825,
+        "completedAt": 1791113464654,
+        "expectedMessageCount": 6,
+        "messageCount": 6,
+        "lastUserMatches": true,
+        "lastStatus": "running",
+        "hasPartial": false,
+        "reached": false
+      }
+    ],
+    "native": {
+      "observations": {
+        "installedAt": 1791113454824,
+        "loads": [
+          {
+            "startedAt": 1791113454895,
+            "returnedAt": 1791113461141,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            },
+            "finishedAt": 1791113461141
+          },
+          {
+            "startedAt": 1791113461825,
+            "returnedAt": 1791113464501,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            },
+            "finishedAt": 1791113464501
+          }
+        ],
+        "clones": [
+          {
+            "startedAt": 1791113457894,
+            "completedAt": 1791113457969,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113457969,
+            "completedAt": 1791113458055,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113460977,
+            "completedAt": 1791113461056,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113461056,
+            "completedAt": 1791113461141,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113461236,
+            "completedAt": 1791113461336,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113461337,
+            "completedAt": 1791113461417,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 4,
+              "lastUserMatches": false,
+              "lastStatus": "complete",
+              "contentCharacters": 49,
+              "hasPartial": true
+            }
+          },
+          {
+            "startedAt": 1791113464140,
+            "completedAt": 1791113464221,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791113464221,
+            "completedAt": 1791113464302,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791113464403,
+            "completedAt": 1791113464501,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791113464606,
+            "completedAt": 1791113464687,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791113464984,
+            "completedAt": 1791113465066,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          },
+          {
+            "startedAt": 1791113465166,
+            "completedAt": 1791113465248,
+            "threadCount": 306,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            }
+          }
+        ],
+        "sends": [
+          {
+            "startedAt": 1791113464302,
+            "hasState": true,
+            "thread": {
+              "threadFound": true,
+              "messageCount": 6,
+              "lastUserMatches": true,
+              "lastStatus": "running",
+              "contentCharacters": 0,
+              "hasPartial": false
+            },
+            "completedAt": 1791113464402
+          },
+          {
+            "startedAt": 1791113464402,
+            "hasState": false,
+            "completedAt": 1791113464402
+          },
+          {
+            "startedAt": 1791113465068,
+            "hasState": false,
+            "deltaCharacters": 12,
+            "hasPartialDelta": true,
+            "completedAt": 1791113465068
+          }
+        ]
+      },
+      "transport": [
+        {
+          "id": 8,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791113419575,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791113419575
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791113419577
+            },
+            {
+              "phase": "headers",
+              "at": 1791113419578
+            },
+            {
+              "phase": "trailers",
+              "at": 1791113423404
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 9,
+          "method": "POST",
+          "path": "/model-comparison/a/v1/chat/completions",
+          "firstObservedAt": 1791113434530,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791113434530
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791113434542
+            },
+            {
+              "phase": "headers",
+              "at": 1791113434543
+            },
+            {
+              "phase": "trailers",
+              "at": 1791113437879
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 10,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791113434540,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791113434540
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791113434542
+            },
+            {
+              "phase": "headers",
+              "at": 1791113434543
+            },
+            {
+              "phase": "trailers",
+              "at": 1791113437880
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 11,
+          "method": "POST",
+          "path": "/model-comparison/b/v1/chat/completions",
+          "firstObservedAt": 1791113464403,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791113464403
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791113465067
+            },
+            {
+              "phase": "headers",
+              "at": 1791113465068
+            }
+          ],
+          "statusCode": 200
+        }
+      ],
+      "memory": {
+        "rss": 1545273344,
+        "heapTotal": 1055453184,
+        "heapUsed": 1045625072,
+        "external": 342526182,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 22875000,
+        "system": 12343000
+      },
+      "capturedAt": 1791113465533
+    }
+  },
+  "logs": [
+    {
+      "path": "license-continuation-package.log",
+      "bytes": 28266,
+      "sha256": "17bc5ac5e58d3c71853a43cdc364fdfc3928d4c8c25e7d226268915a47f0b7c0"
+    },
+    {
+      "path": "license-continuation-package-audit.log",
+      "bytes": 298,
+      "sha256": "950659b5a1892cd634b92f4a5940f8950c43013dcdaf9e65e62aa2910a6cdc2b"
+    },
+    {
+      "path": "license-continuation-packaged-native.log",
+      "bytes": 53427,
+      "sha256": "867245d63a001aca4106ebe4ebefafcbf82da809cf3872a80bf5ad789d5b5d1a"
+    },
+    {
+      "path": "license-continuation-packaged-settings.log",
+      "bytes": 763,
+      "sha256": "89c07df38e57011541bb1cee999ea901683b3623f87c2b03695abc9ff8899b38"
+    },
+    {
+      "path": "license-continuation-bootstrap.log",
+      "bytes": 375,
+      "sha256": "f97956a67de78f8a83a6738a53e834788d2339fbd1ac746cbed6fe93c055e1e9"
+    },
+    {
+      "path": "license-continuation-portable.log",
+      "bytes": 1055,
+      "sha256": "273d42252e9a9eed15bbb36b3a3cf1a8ac881ba5188f569f40919f0b600fbcd3"
+    },
+    {
+      "path": "license-continuation-installer.log",
+      "bytes": 44819,
+      "sha256": "da2e1a57a716630442a5efb8e0dc96e6e5133d5ec47d0915679fce274d45de34"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "0d844fa37f304022d14789fb5dfd05f31f7a4dbbd6cbe6a53747dbc5279e1d0e"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485569149,
+      "sha256": "ef35eb048841928645fa2b23845e8d8a572827fd97819c9f0a2874b274320f10"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237875910,
+      "sha256": "34a456645a97a18396a021fef8a462d67984454aa7334147ed30fbfc5946a1d9"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306616753,
+      "sha256": "50ec38349904f88b18e79b55ab9e2e63c71cfeb73d23d85553cca920e9d71a15"
+    }
+  ],
+  "failedBinaryArchive": "E:\\QiyaoPipelineAudits\\license-continuation-local-failed-192-2a9f2d11-8036-4d5c-8a6a-67012beb1ada",
+  "runtimeCollector": {
+    "rejected": false,
+    "wrapperBindingGapObserved": true,
+    "retainedInstallerSha256": "b78387b426375dd527a06e4b07a0ff5733001e42830064132c43d0a293a465f0",
+    "currentBootstrapInstallerSha256": "34a456645a97a18396a021fef8a462d67984454aa7334147ed30fbfc5946a1d9",
+    "tighteningPending": true
+  },
+  "scope": "Fresh clean-resource package audit, complete unpacked desktop/settings, bootstrap and portable lifecycle pass. Actual installation reaches 192 checks then fails the unchanged selected-continuation partial persistent-state condition. The previous complete installer record is retained in its original scope. The existing policy unexpectedly accepts mixed wrapper records; this observed gap is recorded for tightening. These archived files are a failure cohort, not accepted release artifacts."
+}
