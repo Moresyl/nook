@@ -1,5 +1,7 @@
 # Delivery requirements
 
+当前比较续聊诊断已通过 6 项专项实际桌面检查与受控失败路径，原期限和条件不变。可选旧项目法律说明已经清理，原始许可证及依赖法律文件哈希不变；清理后安装包和新的完整远端验收仍待完成。此前 215 项分发记录保留其原应用体范围，不能作为最新资源与测试脚本的完整验收。
+
 新增受限传输诊断已通过 683／67／215 及两次启动错误检查，独立主动断连捕获 `UND_ERR_SOCKET`。同一份应用体的新检查还通过未安装／实际安装各 215 项、设置 4 项、便携 7 项、兼容终端 7 项、实际快捷方式、保留用户数据的卸载及十份严格匹配记录；完整运行均保留原有期限和请求计数并捕获四次续聊 HTTP 200。两张当前安装版截图逐张审阅，四份字节不变的二进制另行归档；构建工具证明保留原时间和准确哈希，不冒充新构建，见 `verification/provider-transport-distribution-result.json`。远端 `37186719269` 已通过完整未安装桌面、设置及便携验证；安装后的 160 项通过后，大 gzip 备份恢复重启在原有 30 秒页面发现条件失败，进程仍存活且 Electron 就绪，具体初始化阶段未完整输出。远端及全部剩余能力／UI 范围继续处理，彻底完成后走流水线发布，无需再次确认。
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.

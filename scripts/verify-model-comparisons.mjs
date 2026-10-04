@@ -136,7 +136,101 @@ export async function verifyModelComparisons({ page, application, getApplication
 
   await page.getByRole('button', { name: '临时聊天', exact: true }).click(); await page.getByLabel('临时聊天说明', { exact: true }).waitFor(); await composer().fill('COMPARE_TEMP_PRIVATE_QUESTION'); await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const temporaryGroup = await currentGroup(); fixture.finish(); await waitCompleted(temporaryGroup); assert.ok((await group(temporaryGroup)).every((thread) => thread.temporary)); await close();
   await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question);
-  const first = (await group(firstGroup))[0]; first.title = '比较模型一继续'; await page.evaluate((thread) => window.qiyao.updateThread(thread), first); await page.reload(); await composer().waitFor(); await page.locator('.thread-list').getByRole('button', { name: first.title, exact: true }).click(); await page.getByLabel('模型提供商', { exact: true }).selectOption(providerB); await page.getByLabel('选择模型', { exact: true }).selectOption('two'); await composer().fill('COMPARE_SELECTED_CONTINUATION'); await page.getByRole('button', { name: '发送消息', exact: true }).click(); await waitForBridge(page, async ({ id, count }) => { const thread = (await window.qiyao.load()).threads.find((item) => item.id === id); return thread?.messages.length === count + 2 && thread.messages.at(-2)?.content === 'COMPARE_SELECTED_CONTINUATION' && thread.messages.at(-1)?.status === 'running' && thread.messages.at(-1)?.content.includes('PARTIAL'); }, { id: first.id, count: first.messages.length }); assert.equal(fixture.requests.length, beforeRequests + 11); fixture.finish(); await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id)?.messages.at(-1)?.status === 'complete', first.id);
+  const first = (await group(firstGroup))[0]; first.title = '比较模型一继续'; await page.evaluate((thread) => window.qiyao.updateThread(thread), first); await page.reload(); await composer().waitFor(); await page.locator('.thread-list').getByRole('button', { name: first.title, exact: true }).click(); await page.getByLabel('模型提供商', { exact: true }).selectOption(providerB); await page.getByLabel('选择模型', { exact: true }).selectOption('two'); await composer().fill('COMPARE_SELECTED_CONTINUATION');
+  const observerInstalled = await getApplication().evaluateMain(`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    const contents = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/'))?.webContents;
+    if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function' || !contents) return false;
+    const target = ${JSON.stringify(first.id)};
+    const data = globalThis.qiyaoComparisonContinuationObservations = { installedAt: Date.now(), loads: [], clones: [], sends: [] };
+    const append = (list, row) => { try { list.push(row); if (list.length > 64) list.shift(); } catch {} };
+    const summarize = state => {
+      const thread = state?.threads?.find(item => item.id === target);
+      const last = thread?.messages.at(-1);
+      return { threadFound: Boolean(thread), messageCount: thread?.messages.length,
+        lastUserMatches: thread?.messages.at(-2)?.content === 'COMPARE_SELECTED_CONTINUATION',
+        lastStatus: last?.status, contentCharacters: last?.content.length, hasPartial: last?.content.includes('PARTIAL') };
+    };
+    const originalHandler = handlers.get('qiyao:invoke');
+    const handler = async function (...args) {
+      if (args[1] !== 'load') return originalHandler.apply(this, args);
+      const row = { startedAt: Date.now() };
+      try {
+        const state = await originalHandler.apply(this, args);
+        try { row.returnedAt = Date.now(); row.thread = summarize(state); } catch {}
+        return state;
+      } finally { try { row.finishedAt = Date.now(); append(data.loads, row); } catch {} }
+    };
+    const originalClone = globalThis.structuredClone;
+    const clone = function (...args) {
+      const startedAt = Date.now();
+      const result = originalClone.apply(this, args);
+      try { if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) append(data.clones,
+        { startedAt, completedAt: Date.now(), threadCount: args[0].threads.length, thread: summarize(result) }); } catch {}
+      return result;
+    };
+    const originalSend = contents.send;
+    const send = function (...args) {
+      const event = args[1];
+      if (args[0] !== 'qiyao:run' || event?.threadId !== target) return originalSend.apply(this, args);
+      const row = { startedAt: Date.now() };
+      try { row.hasState = Boolean(event.state); row.deltaCharacters = event.delta?.length; row.hasPartialDelta = event.delta?.includes('PARTIAL');
+        if (event.state) row.thread = summarize(event.state); } catch {}
+      try { return originalSend.apply(this, args); }
+      finally { try { row.completedAt = Date.now(); append(data.sends, row); } catch {} }
+    };
+    handlers.set('qiyao:invoke', handler); globalThis.structuredClone = clone; contents.send = send;
+    globalThis.qiyaoRestoreComparisonContinuationObservers = () => {
+      if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', originalHandler);
+      if (globalThis.structuredClone === clone) globalThis.structuredClone = originalClone;
+      if (contents.send === send) contents.send = originalSend;
+    };
+    return true;
+  })()`);
+  assert.equal(observerInstalled, true, 'The exact owned native process must support all continuation observations.');
+  await page.evaluate(() => { globalThis.qiyaoComparisonContinuationPolls = []; });
+  const sendStartedAt = Date.now();
+  let continuationPhase = 'partial';
+  const collectContinuation = async () => ({ phase: continuationPhase, sendStartedAt, capturedAt: Date.now(), originalDeadlineMs: 10_000, originalPollIntervalMs: 100,
+    expectedServerRequests: beforeRequests + 11, serverRequests: fixture.requests.length, timeline: fixture.timeline.slice(-4),
+    rendererPolls: await page.evaluate(() => globalThis.qiyaoComparisonContinuationPolls).catch(() => undefined),
+    native: await getApplication().evaluateMain('({observations:globalThis.qiyaoComparisonContinuationObservations,transport:globalThis.qiyaoModelTransportEvents?.filter(item=>item.path.startsWith("/model-comparison/")).slice(-4),memory:process.memoryUsage(),cpu:process.cpuUsage(),capturedAt:Date.now()})').catch(() => undefined) });
+  try {
+    await page.getByRole('button', { name: '发送消息', exact: true }).click();
+    await waitForBridge(page, async ({ id, count }) => {
+      const startedAt = Date.now();
+      const thread = (await window.qiyao.load()).threads.find((item) => item.id === id);
+      const reached = thread?.messages.length === count + 2 && thread.messages.at(-2)?.content === 'COMPARE_SELECTED_CONTINUATION' && thread.messages.at(-1)?.status === 'running' && thread.messages.at(-1)?.content.includes('PARTIAL');
+      globalThis.qiyaoComparisonContinuationPolls.push({ phase: 'partial', startedAt, completedAt: Date.now(), expectedMessageCount: count + 2, messageCount: thread?.messages.length,
+        lastUserMatches: thread?.messages.at(-2)?.content === 'COMPARE_SELECTED_CONTINUATION', lastStatus: thread?.messages.at(-1)?.status,
+        hasPartial: thread?.messages.at(-1)?.content.includes('PARTIAL'), reached: Boolean(reached) });
+      if (globalThis.qiyaoComparisonContinuationPolls.length > 16) globalThis.qiyaoComparisonContinuationPolls.shift();
+      return reached;
+    }, { id: first.id, count: first.messages.length });
+    assert.equal(fixture.requests.length, beforeRequests + 11);
+    console.log('Comparison continuation partial observations', JSON.stringify(await collectContinuation()));
+    fixture.finish(); continuationPhase = 'complete';
+    await waitForBridge(page, async (id) => {
+      const startedAt = Date.now();
+      const thread = (await window.qiyao.load()).threads.find((thread) => thread.id === id);
+      const reached = thread?.messages.at(-1)?.status === 'complete';
+      globalThis.qiyaoComparisonContinuationPolls.push({ phase: 'complete', startedAt, completedAt: Date.now(), messageCount: thread?.messages.length,
+        lastStatus: thread?.messages.at(-1)?.status, hasPartial: thread?.messages.at(-1)?.content.includes('PARTIAL'), reached });
+      if (globalThis.qiyaoComparisonContinuationPolls.length > 16) globalThis.qiyaoComparisonContinuationPolls.shift();
+      return reached;
+    }, first.id);
+    const continuation = await collectContinuation();
+    assert.ok(continuation.native.observations.loads.length > 0);
+    assert.ok(continuation.native.observations.clones.length > 0);
+    assert.ok(continuation.native.observations.sends.some(event => event.hasPartialDelta));
+    assert.equal(continuation.native.transport.at(-1).statusCode, 200);
+    console.log('Comparison continuation completed observations', JSON.stringify(continuation));
+  } catch (error) {
+    console.error('Comparison continuation failure observations', JSON.stringify(await collectContinuation()));
+    throw error;
+  } finally {
+    await getApplication().evaluateMain('globalThis.qiyaoRestoreComparisonContinuationObservers?.()').catch(() => {});
+  }
   assert.ok(JSON.stringify(fixture.requests.at(-1).messages).includes('one: COMPLETE')); assert.equal(fixture.requests.length, beforeRequests + 11); assert.equal(fixture.requests.at(-1).connection, 'b'); assert.equal(fixture.requests.at(-1).model, 'two'); await composer().fill('COMPARE_CHILD_DRAFT_KEEP'); await page.getByRole('button', { name: '查看模型比较', exact: true }).click(); assert.ok((await dialog().getByLabel('回复 1', { exact: true }).inputValue()).includes('one: COMPLETE')); assert.equal(await dialog().locator('.comparison-result').first().getByRole('heading', { level: 3 }).textContent(), '比较连接 A · one'); await close();
   await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question); const backupPaths = [];
   for (const extension of ['json', 'json.gz']) {

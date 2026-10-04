@@ -1,5 +1,7 @@
 # Capability verification ledger
 
+最新比较续聊诊断通过独立的 6 项实际桌面检查、11 次请求和受控数量不匹配失败检查，保留原有 10 秒／100 ms 条件；远端原因仍待新日志定位。许可证说明中的可选旧项目标识已清理，原始许可证及 401 份依赖法律文件保持原哈希。当前诊断脚本和清理后的分发资源尚未通过新的完整流水线；以下 215 项记录属于此前已归档应用体，见 `verification/comparison-continuation-component-result.json`、`verification/license-brand-cleanup-component-result.json`。
+
 当前传输诊断源码通过 683 项／67 个文件、类型、构建、完整 215 项桌面检查及两次启动错误检查。同一应用体重新通过未安装和实际安装各 215 项、设置 4 项、便携 7 项、兼容 PowerShell 5 的 7 项检查、正常关闭及十份严格匹配运行记录；两套完整运行均捕获四次续聊 POST／HTTP 200，并验证大工作区项目读取不复制完整历史。两张当前安装版截图逐张审阅，四个原封不动的二进制另行归档，原始构建工具记录按其原时间和哈希保留；见 `verification/provider-transport-distribution-result.json`。远端 `37186719269` 通过 683 项、完整未安装桌面、设置和便携运行；实际安装通过 160 项后，大 gzip 备份恢复重启未在原有 30 秒内出现窗口。进程存活、Electron 已就绪，但嵌套启动阶段在日志中被折叠，具体原因尚未建立。此前续聊连接错误的原因也不能由本次成功推断。远端验收及全部剩余能力／UI 范围继续待办。
 
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.

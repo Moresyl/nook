@@ -222,11 +222,18 @@ const workerUrls = [];
 let importedSkillId;
 function verified(label) { count++; console.log(`PASS ${label}`); }
 async function waitForBridge(page, predicate, argument) {
-  const deadline = Date.now() + 10_000;
+  const waitStartedAt = Date.now();
+  const deadline = waitStartedAt + 10_000;
+  const polls = [];
   while (Date.now() < deadline) {
-    if (await page.evaluate(predicate, argument)) return;
+    const startedAt = Date.now();
+    const reached = await page.evaluate(predicate, argument);
+    polls.push({ startedAt, completedAt: Date.now(), reached: Boolean(reached) });
+    if (polls.length > 16) polls.shift();
+    if (reached) return;
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
+  console.error('Bridge wait failure timing', JSON.stringify({ waitStartedAt, failedAt: Date.now(), originalDeadlineMs: 10_000, originalPollIntervalMs: 100, polls }));
   throw new Error('The desktop bridge did not reach the expected state.');
 }
 async function waitForCheckpoint(content) {
@@ -329,7 +336,7 @@ async function launch() {
         const request = message.request;
         if (!request || String(request.origin) !== fixtureOrigin) return;
         const path = new URL(request.path, fixtureOrigin).pathname;
-        if (!path.startsWith('/message-edits/')) return;
+        if (!path.startsWith('/message-edits/') && !path.startsWith('/model-comparison/')) return;
         let record = observedRequests.get(request);
         if (!record) {
           record = { id: ++requestSequence, method: request.method, path, firstObservedAt: Date.now(), phases: [] };
