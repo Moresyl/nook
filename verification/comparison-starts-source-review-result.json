@@ -1,0 +1,409 @@
+{
+  "verifiedAt": "2026-10-04T06:03:01.283Z",
+  "codeCommit": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 681,
+  "unitFiles": 67,
+  "desktopChecks": 215,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "actualPowerShellMajor": 7,
+  "originalFirstResponseDeadlineMs": 30000,
+  "originalCompletionDeadlineMs": 10000,
+  "originalTerminalDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "sourceFirstResponseElapsedMs": 1199,
+  "comparisonModelRequests": 11,
+  "transferModelRequests": 0,
+  "actualStartupFailureCases": 2,
+  "actualDelayedDiffWorkerDisposalVerified": true,
+  "coverage": {
+    "lines": {
+      "total": 3076,
+      "covered": 3055,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5231,
+      "covered": 5075,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1170,
+      "covered": 1138,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3697,
+      "covered": 3492,
+      "skipped": 0,
+      "pct": 94.45
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-bundles.ts",
+      "sha256": "efd1d599a5e526713142dc9bdae089c3271b4a8290a063d320cf57c2b9f6cb5f",
+      "bytes": 1874
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "8f077738261f93957947214215336b8ae9822830492d4e957bf8b005f5d162a5",
+      "bytes": 8458
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "e4f0f1789b32e7e3e6747c224dd74d8efb24b4bc20ae47a13ef65201b2c29150",
+      "bytes": 9197
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "72bef09701b373f0499deac987a3dc1962fb1fbc94db30215ea5c5ad6d9d0a89",
+      "bytes": 40166
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "32a9614d1d1ce71e2bcd56843bbe8ca17db760f19b07bad499878661c0d58178",
+      "bytes": 4545
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986",
+      "bytes": 2721
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1",
+      "bytes": 9526
+    },
+    {
+      "path": "verification/prompt-bundles.test.ts",
+      "sha256": "338f450c213d02d67d8f0465f6cd47861c0d132b5c661f13f04564433f999115",
+      "bytes": 11953
+    },
+    {
+      "path": "scripts/verify-prompt-transfer.mjs",
+      "sha256": "6c367383334b34df7c63a0580cd11775ab6748881e61b0c9ad1a7f37641a825f",
+      "bytes": 20032
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "47b3c9c1bc29d2ae48c82adc7e8e8837211d3c27473b5bb59855c97d1b815241",
+      "bytes": 125127
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+      "bytes": 8034
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "d92c6f4d175d897668a2379738c9de0a789ff94a88e3cbd8f31d026eeba9f263",
+      "bytes": 3886
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "8f93e312c49bbe589bda67881378d5a0f0cb071971d9d384f8bacc1d8c8a0f7e",
+      "bytes": 7435
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "e065572c28734f1a6f94048c339c135bf849a693060d2325e4d07a843537e3c6",
+      "bytes": 23397
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "38d5efcb27afcbe4a3020dd4910eec1004bb3c6acc7fabbc402b943c8bcaefa6",
+      "bytes": 3765
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673",
+      "bytes": 760
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9",
+      "bytes": 5720
+    },
+    {
+      "path": "verification/startup-diagnostics.test.ts",
+      "sha256": "5955f7cf5cd13bd6594cfa05f585b314867c9ed64698ea46933f129bc6612e3b",
+      "bytes": 2013
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "3b258f117a0c34e86b859fc1df505af55d7551e89f786e46a88039a5ad29f5a6",
+      "bytes": 10447
+    },
+    {
+      "path": "desktop/services/terminal-shell.ts",
+      "sha256": "49090490269efcca6039683757e6c4767f49464f7eeefb9abd2a18411087dd00",
+      "bytes": 839
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "50073c8761564bc644e977e7d4a845b9e188576a673f105f744a0572585a7b91",
+      "bytes": 4737
+    },
+    {
+      "path": "verification/terminal-shell.test.ts",
+      "sha256": "4be0e6957100c151b938a8d967632083cbfdb500853d4f277a70ad959d7a6bcd",
+      "bytes": 3126
+    },
+    {
+      "path": "verification/terminal-sessions.test.ts",
+      "sha256": "63da02adaeaa1d6fef0661c7b9e01bf24baf77202a6cc593a58ff5a7d432a5b2",
+      "bytes": 8740
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "dfe2e9720be438750e47185e33b4a28cbabcdfd022611510711464ce56ebd389",
+      "bytes": 34882
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "7abe401bc6935f904648ec95db6213937320e1083143ce4d2d1a48aa3c96c4bb",
+      "bytes": 30158
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62",
+      "bytes": 2153
+    },
+    {
+      "path": "verification/conversation-engine.test.ts",
+      "sha256": "9f0c467fb78f01c2f7cecd33e521e55bfabc07845161f612278afce30b44156e",
+      "bytes": 23502
+    },
+    {
+      "path": "verification/message-checkpoints.test.ts",
+      "sha256": "9e480adfeb07eabdc8eed26955590d2e828cf08bdb258739bca90291da3a1e2e",
+      "bytes": 6827
+    },
+    {
+      "path": "workbench/components/code-editor.tsx",
+      "sha256": "ab0423cf99c62e90fe94a981deab14417d76164340813904a0113619c7b79e7b",
+      "bytes": 4476
+    },
+    {
+      "path": "scripts/verify-diff-disposal.mjs",
+      "sha256": "b0fdce8d147dcb70304c34399d680b7fb05ffa1e4f91209f51cf00681657ab44",
+      "bytes": 2832
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "sha256": "4d47644910f99fc2d6165220783f9b4c6348658edec09cab12f49bcab08ae7a1",
+      "bytes": 34850
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "afd7df145da2bda37806e17336d21137f730076b409df6713c0afd8046f46827",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "24c7f1cc334d869b939146e716ec7634b3cd48f2046c6f5c96ff17cf24219cfc",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "791acba78f8e7feca74cd4998933753eddfc4b53fafbe1b96cb7927d614af498",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "461175803b40a1c12c56fd8420ba35c42d2269beca137a5a10664c28c924dacd",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "93265ae4b16ec286d9114d635752ba681bfee9b659c3b719092f5d20380f886c",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "f7a89d3f051f442a40377ed3d48ac63cd9371f33f083bd636e2c9e8897a9e068",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "18bf16df01079efe9f5b11b29b1288f5a979155a854f627818e8b8eec9ab6e65",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "992f37a438c1ea661a80bcadb0a77525a89699b6c1f0842975d4706582772fa7",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "04e9a4f74ed189e4c94b08fb475a24c4fce766fbac67a164d7e39b20db5d2c5d",
+      "bytes": 53916
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "a0e3a47ae674a01eda10a52e21d254d48d871bf13ee532dbf2ad09890b7f0dbe",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "e8ea4298aa0c957cb3846fe235b1367f3e16b914f3c62898ed8980d923e3fc04",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "d468da8c33c3e554697f87f682cc05518a37abfc1cc75e60386958dca2993a10",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "0d08f308d8035ea8ea9fad8c2eccd083ec6ab8cff7e7788cc6c87302d01bfc9a",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "b7f207ad2ab623d2aafc699eec8a155bc9d283237851142f8a9ced41f8d764ce",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "cd2be74b0e0067b99a56f98f2c31bbb5999be7fdf2e493f49ee2062deaeda38d",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "e41e1f8e338a106cb65d50a94c68c644086db72ebdc9a5a01f878349de1ac24d",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "c1a139fbeb679664eadd6fdc37371d9dfc20982b58006f190c9ee148c8dc48e3",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "04cc5313898fae5e7bc9ac7d2ad5f912c7e88aa840ec996cc0a99f36571b9b07",
+      "bytes": 1832
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "sha256": "0b932771642c3cfd56e230d2479d372b618a220975480bef7d7cad04c865d324",
+      "bytes": 1850
+    },
+    {
+      "path": "verification/comparison-starts-native-failure-result.json",
+      "sha256": "ab3786f59b5769a0c025eb338f62e784d1b85429936448c2e4b828ae8f2d6778",
+      "bytes": 5602
+    }
+  ],
+  "logs": [
+    {
+      "name": "comparison-starts-typecheck.log",
+      "sha256": "2a70735c22bf7c78a712504ebcbec8f1fcdedaa34fd29e791e2297fb184357f7",
+      "bytes": 89
+    },
+    {
+      "name": "comparison-starts-coverage.log",
+      "sha256": "8f3d041d6769357da66a2ecf2340c7a7f692823e729e9c86ab455568d8363070",
+      "bytes": 4580
+    },
+    {
+      "name": "comparison-starts-build.log",
+      "sha256": "0672c106494b4477f694ef7729020c4d0709e9aa0e92aac255e6a1bc57052fcc",
+      "bytes": 22553
+    },
+    {
+      "name": "comparison-starts-complete-native.log",
+      "sha256": "4f0bacaf895a820716e811c317a429d3d76bed2cfe23aa04b770378ad8fe0f6c",
+      "bytes": 35837
+    },
+    {
+      "name": "comparison-starts-startup-failure-probe.log",
+      "sha256": "838379dbb3a2178ae1733d3492119908988c8ed0ab5f327f43850f592075ff22",
+      "bytes": 116
+    }
+  ],
+  "compiled": {
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "9661c00ba153ebb58e6c6dc182ec96915d351a84ab8fe987790e087af22bb9a9"
+    },
+    "renderer": {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    "projectRenderer": {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  },
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "componentProof": {
+    "path": "verification/comparison-starts-component-result.json",
+    "sha256": "79ea81a1019ed244ee7e0ea4a3ea474028128513309d6a7ebe3fb615a0446c3b"
+  },
+  "screenshots": [
+    {
+      "name": "118-model-comparison-stream-light.png",
+      "sha256": "6647f52234fcca7cdab3b8e99329a741ab66c66137397dab6f02c05f0b698e33",
+      "bytes": 116671,
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "review": "Two readonly partial reply cards retain independent open/stop actions and visible modal header/footer in the light layout."
+    },
+    {
+      "name": "119-model-comparison-save-error-light.png",
+      "sha256": "fa8c68d5bbb58ec08fda1ccc7172071d37a362043e89547dde948bd7f7e774bc",
+      "bytes": 131821,
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "review": "Actual group-save failure retains exact question/attachment/model choices, a redacted error and visible retry/close actions."
+    },
+    {
+      "name": "121-model-comparison-results-dark-zoom-150.png",
+      "sha256": "fd03f89a15e166b7f92efef500f0f7fa790d04095e3a02620e9f712308be653a",
+      "bytes": 16937,
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "review": "Dark 760 by 540 window at 150 percent retains fixed title/footer, scrollable reply body and visible native open-action focus."
+    }
+  ],
+  "rendererReview": {
+    "exactCompiledBytesMatchPriorReviewedRenderer": true,
+    "priorReview": "verification/checkpoint-batching-source-review-result.json",
+    "currentCompleteComparisonCapturesIndividuallyReviewed": true
+  },
+  "scope": "Atomic comparison startup passes 681 tests in 67 files, types/build, all 215 native desktop checks with normal close and two newly executed corrupt-file startup cases. Same 84 MB/297-thread benchmark reduces four-model startup writes from five to one and initial full-state notices from four to one, preserving the complete previous file, original owner/draft and all exact contexts/attachments. Source two-model first visibility is measured at 1,199 ms under the unchanged 30-second condition; four-model independent failure/stop/completion and eleven real requests pass under existing deadlines. Three current complete-suite captures are individually reviewed. Exact renderer/project assets retain the previous diff-view disposal body while the main-process body changes. Fresh matching distribution, hosted acceptance and the full remaining capability/UI scope remain pending."
+}

@@ -1,6 +1,6 @@
 # Delivery requirements
 
-最新源码为检查点合并及差异视图取消修复，679／67／215 与两次真实启动错误检查已通过并保留二十份当前原始记录。四个现代终端分发二进制仍按此前验证体独立归档，不能证明新源码分发。新远端 `37177697511` 保留 189 项通过和首次回复显示失败现场，九份必需运行记录缺失，收集器拒绝验收。下一步处理多模型启动的重复整份工作台保存与通知，再完成当前应用体分发、远端和全部剩余能力／UI 范围；不发布标签或版本。
+最新源码进一步原子保存比较组，共享启动准备和一次全量通知，681／67／215、正常关闭及两次当前启动错误检查通过，二十份当前原始记录与三张逐张审阅的比较截图归档。84 MB／297 个对话启动实测 4,051.06 → 1,048.74 ms，完整上下文／草稿／附件和上一文件保留；见 `verification/comparison-starts-source-review-result.json`。此前四个现代终端分发二进制属于旧应用体，不能证明新源码分发。失败运行 `37177697511` 仍单独保留，新运行 `37180692285` 在执行。接下来完成当前应用体分发、远端和全部剩余能力／UI 范围，完成后走流水线发布。
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.
 

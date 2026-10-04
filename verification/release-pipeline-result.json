@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Shared single-start preparation preserves ordinary chat/plan/agent behavior. A comparison reserves all replies, revalidates current history inside one atomic transaction, persists complete group/context/user/assistant records once, then announces one full state and opens all streams. Group-start write failure preserves both complete files and unrelated active runs; retry is intact, and queued shutdown releases all reservations before any request. Individual provider failure/stop and the original 30/10-second native conditions remain. Actual 84 MB/297-thread local startup benchmark and six native comparison checks pass; local benchmark uses a held mock gateway and does not measure hosted HTTP/IPC deadline contributions. Complete current native/source, matching distribution, hosted acceptance and the remaining full capability/UI scope are pending.",
+  "scope": "Atomic comparison startup passes 681 tests in 67 files, types/build, all 215 native desktop checks with normal close and two newly executed corrupt-file startup cases. Same 84 MB/297-thread benchmark reduces four-model startup writes from five to one and initial full-state notices from four to one, preserving the complete previous file, original owner/draft and all exact contexts/attachments. Source two-model first visibility is measured at 1,199 ms under the unchanged 30-second condition; four-model independent failure/stop/completion and eleven real requests pass under existing deadlines. Three current complete-suite captures are individually reviewed. Exact renderer/project assets retain the previous diff-view disposal body while the main-process body changes. Fresh matching distribution, hosted acceptance and the full remaining capability/UI scope remain pending.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -366,12 +366,12 @@
     "archiveSha256": "3a7e89ed2499796aa92f377a1f594439caecd1b76d4f41a1f710b829cbaa2844"
   },
   "sourceVerification": {
-    "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
-    "unitTests": 679,
+    "codeCommit": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
+    "unitTests": 681,
     "unitFiles": 67,
     "desktopChecks": 215,
     "normalCloseVerified": true,
-    "proof": "verification/checkpoint-batching-source-review-result.json"
+    "proof": "verification/comparison-starts-source-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -857,7 +857,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": false,
+  "completeCurrentSourceVerified": true,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -918,8 +918,9 @@
     "unitFiles": 67,
     "focusedDesktopChecks": 6,
     "componentProof": "verification/comparison-starts-component-result.json",
-    "completeSourceVerified": false,
+    "completeSourceVerified": true,
     "distributionVerified": false,
-    "hostedVerified": false
+    "hostedVerified": false,
+    "sourceProof": "verification/comparison-starts-source-review-result.json"
   }
 }
