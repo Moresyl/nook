@@ -1,0 +1,230 @@
+{
+  "verifiedAt": "2026-10-04T12:08:33.517Z",
+  "codeCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
+  "baselineCommit": "35823fef774b9593081fe3f7cdced8c5888258a1",
+  "unitTestsPassed": 691,
+  "unitFiles": 68,
+  "typecheckExitCode": 0,
+  "buildExitCode": 0,
+  "coverage": {
+    "lines": {
+      "total": 3105,
+      "covered": 3084,
+      "skipped": 0,
+      "pct": 99.32
+    },
+    "statements": {
+      "total": 5267,
+      "covered": 5111,
+      "skipped": 0,
+      "pct": 97.03
+    },
+    "functions": {
+      "total": 1173,
+      "covered": 1141,
+      "skipped": 0,
+      "pct": 97.27
+    },
+    "branches": {
+      "total": 3713,
+      "covered": 3508,
+      "skipped": 0,
+      "pct": 94.47
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "newSerializerCoverage": {
+    "lines": {
+      "total": 26,
+      "covered": 26,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 32,
+      "covered": 32,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 14,
+      "covered": 14,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "858e07d03021f6607a32d9a0dcf6e577141e3a6f7f5461ebbe49edb1c368f9db"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "81659ce4b8fe32a17645df0a2d1a41d117248b3c756da3e3b878e4ee6bd9ce13"
+    },
+    {
+      "path": "verification/workspace-serialization.test.ts",
+      "sha256": "11924ebd8bc1692fc6446be7be6532d6ab1d9ac6ef2979b9cf334cc2eabe58b0"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "e0d8fd659bb76f1d00137eb03b5b22506b268efefcb2c46df040f552e29512f5",
+      "previousSha256": "5a0a65e2b0f071ba47318511033cfd959d6c7393778f4c27cd35ed46287dd295",
+      "unchanged": false
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80",
+      "previousSha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80",
+      "unchanged": true
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a",
+      "previousSha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a",
+      "unchanged": true
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "logs": [
+    {
+      "path": "workspace-serialization-unit.log",
+      "bytes": 4513,
+      "sha256": "e34179d54a6817da72f31ec17a0ccb16557c0a0d933b3419ede48fd5e43aeece"
+    },
+    {
+      "path": "workspace-serialization-typecheck.log",
+      "bytes": 95,
+      "sha256": "b5582a764675d909ca6f8fb4cafb7b340603fde8fa54e527624f42a45e9e1592"
+    },
+    {
+      "path": "workspace-serialization-build.log",
+      "bytes": 22559,
+      "sha256": "47bf673466188a214de9276aaa834bf1a48bef6d4bf2cda9d181d6542c4548e9"
+    },
+    {
+      "path": "workspace-serialization-before-benchmark.log",
+      "bytes": 426,
+      "sha256": "c99cdccb43e681ad369f2c4a8aab9be1ae4d178dafac0ba8fabbdfda40307577"
+    },
+    {
+      "path": "workspace-serialization-after-benchmark.log",
+      "bytes": 407,
+      "sha256": "88be9c6d25a8522b78d95a9b7352ee1eef3fd7485e133d7a65f767f2ea30eae0"
+    }
+  ],
+  "benchmark": {
+    "fixture": {
+      "threads": 297,
+      "largeHistories": 20,
+      "bytes": 84064132,
+      "sha256": "796e1b78e8d4ccf4f1add9b0940152dc5808eab214b2c23166dfb458d00662b0"
+    },
+    "exactSameInputAndOutputBytes": true,
+    "before": {
+      "initializationMs": 589.9317000000001,
+      "updateCount": 4,
+      "timings": [
+        1996.5806,
+        2050.1142000000004,
+        2094.7464,
+        1952.7759000000005
+      ],
+      "totalUpdateMs": 8094.217100000001,
+      "cpu": {
+        "user": 1281000,
+        "system": 594000
+      },
+      "fullWorkspaceSerializations": 4,
+      "largeHistorySerializations": 0,
+      "primary": {
+        "bytes": 84064134,
+        "sha256": "c685fb5fbc50311277a2542bff6a5866f053d3b0f05f5704ab3c3f6f2c53fc90",
+        "exactCanonicalBytes": true
+      },
+      "backup": {
+        "bytes": 84064134,
+        "sha256": "8db3bb65332acbeea37f34f29c978340321b27737d60957b89c50dbcf5d33ddd",
+        "exactPriorCanonicalBytes": true
+      },
+      "originalLargeHistoryUnchanged": true,
+      "memoryAfterVerification": {
+        "rss": 995098624,
+        "heapTotal": 720084992,
+        "heapUsed": 582710576,
+        "external": 506291664,
+        "arrayBuffers": 336279687
+      }
+    },
+    "after": {
+      "initializationMs": 692.704,
+      "updateCount": 4,
+      "timings": [
+        2011.4634,
+        1764.6064999999999,
+        1885.2721000000001,
+        1783.9448999999995
+      ],
+      "totalUpdateMs": 7445.2869,
+      "cpu": {
+        "user": 562000,
+        "system": 453000
+      },
+      "fullWorkspaceSerializations": 0,
+      "largeHistorySerializations": 0,
+      "primary": {
+        "bytes": 84064134,
+        "sha256": "c685fb5fbc50311277a2542bff6a5866f053d3b0f05f5704ab3c3f6f2c53fc90",
+        "exactCanonicalBytes": true
+      },
+      "backup": {
+        "bytes": 84064134,
+        "sha256": "8db3bb65332acbeea37f34f29c978340321b27737d60957b89c50dbcf5d33ddd",
+        "exactPriorCanonicalBytes": true
+      },
+      "originalLargeHistoryUnchanged": true,
+      "memoryAfterVerification": {
+        "rss": 1191321600,
+        "heapTotal": 831631360,
+        "heapUsed": 694951024,
+        "external": 590403381,
+        "arrayBuffers": 420361270
+      }
+    },
+    "limits": "One local sample of four real atomic updates. Both primary and backup bytes match exactly. Reduced encoding/CPU cost does not establish the selected-continuation failure is resolved; I/O and scheduling remain part of elapsed time."
+  },
+  "originalAtomicSaveAndRollbackRetained": true,
+  "originalPartialDeadlineMs": 10000,
+  "originalPartialPollIntervalMs": 100,
+  "completeCurrentNativeVerified": true,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Cache independently cloned validated thread values and their exact pretty-JSON bytes. Unchanged histories are reused while deletions, ordering, duplicate IDs, temporary exclusion, input/result mutation, failed serialization and Unicode separators retain canonical bytes. Full current desktop, distribution and hosted acceptance remain separate gates.",
+  "completeNativeProof": "verification/workspace-serialization-initial-native-result.json"
+}

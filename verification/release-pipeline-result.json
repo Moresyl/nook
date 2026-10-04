@@ -862,7 +862,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": true,
+  "completeCurrentSourceVerified": false,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -1008,6 +1008,22 @@
     "actualMixedRecordsRejected": true,
     "previousCompleteRecordsAccepted": true,
     "componentProof": "verification/runtime-wrapper-proof-component-result.json",
+    "hostedVerified": false
+  },
+  "workspaceSerialization": {
+    "codeCommit": "05550b2ec63ab0ff315da93af885c9d8ad43a173",
+    "sourceComponentVerified": true,
+    "unitTests": 693,
+    "unitFiles": 68,
+    "newSerializerCoverage": 100,
+    "exactSameBenchmarkBytes": true,
+    "componentProof": "verification/workspace-serialization-ordered-component-result.json",
+    "startupChecks": 2,
+    "initialNativeProof": "verification/workspace-serialization-initial-native-result.json",
+    "initialNativeCodeCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
+    "initialNativeChecks": 215,
+    "completeNativeVerified": false,
+    "distributionVerified": false,
     "hostedVerified": false
   }
 }
