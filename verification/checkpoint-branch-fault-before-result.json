@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-04T15:26:11.989Z",
+  "codeCommit": "e2d0355343b3f0ac92ac6f80380be93442b0cf7b",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "ab4bbd2007ece4de3c4d2888fd8f4d40ba8adc21ac5262bf582ffb4bbd04eda2"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "0955c8795fe2e652cb77fb0e35c20f4d5e93d1abe1da225c4631cc18bb4c3c41"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "744769522169f0e5e335f0cdd55b0dfe129752d531b64b638c75a3e315367b3b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    },
+    {
+      "path": "scripts/verify-conversation-branches.mjs",
+      "sha256": "fd651304e6aadc9fb835c8b06ba7470b963f0e585801c51723adcb1a1c31cd9f"
+    }
+  ],
+  "compiledMain": {
+    "path": "out/main/launch.cjs",
+    "sha256": "4149f00ddcb5a8f3e48e99e86c20029f2a484c15e16f1f2911e92dc2d3bec745"
+  },
+  "unitTestsPassed": 730,
+  "fullSuiteChecksBeforeFailure": 177,
+  "failure": "The unchanged branch navigation error predicate did not become visible within 30000 ms",
+  "faultInjectionTarget": "workspace.json only",
+  "currentDurableNavigationTarget": "workspace.checkpoints.json",
+  "originalPrimaryDirectoryDraftSaveFailureChecksPassed": true,
+  "normalCloseVerified": false,
+  "completeCurrentNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "log": {
+    "name": "checkpoint-primary-guard-full-source-native.log",
+    "bytes": 34141,
+    "sha256": "32f78efb847cbddd95ff77966a942d9f10c2d5e08f569dd4f92c2e1e20e33617"
+  },
+  "scope": "Current guarded application body passed 177 complete-suite assertions, including actual primary-directory rejection. The branch navigation fault injector still targeted only the legacy full-file writer and therefore did not produce its expected EIO."
+}

@@ -1,0 +1,92 @@
+{
+  "verifiedAt": "2026-10-04T15:21:52.543Z",
+  "runId": 37210867822,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37210867822",
+  "codeCommit": "f1734e1511c43fcc15e870e28a5b5edb46bf4b52",
+  "conclusion": "failure",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "e480c5bc6d52ec327c5828d7b36776ce6026c139abb286efa8f46ba232e716c2"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "298ba26fbbcbd3bad68b947c34cfb6c9b31e625f11d7d009a5f016f2d7b415d2"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "92121817f13d4a81ae76f6957ead227ff3267c9c34b04ff3bbb717d87e6d6f18"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    }
+  ],
+  "unitTestsPassed": 723,
+  "unitFiles": 69,
+  "typecheckAndNoticesVerified": true,
+  "packageAudit": {
+    "verifiedAt": "2026-10-04T15:03:19.324Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "37191de91592941664ea2cfacad2adb2bb697bf107699dad24699822e9ed1e67",
+    "archiveSha256": "acc2efb1f2a7d3d1d7ad88863acddec318f8b2e5209ea7f53834b60ea6f1a6f7",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Qiyao",
+      "ProductName": "Qiyao",
+      "FileDescription": "Qiyao",
+      "Signature": "NotSigned",
+      "CompanyName": "Qiyao"
+    },
+    "productFiles": 233,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates.",
+    "recordSha256": "07b5f6d2fa88efb8f594b8bedabb3c7414213ee4ed10cef3fec6c6bf60e93e41"
+  },
+  "packagedAssertionsBeforeFailure": 43,
+  "failure": "The failed draft close was not rejected",
+  "originalPrimaryFileFaultRetained": true,
+  "artifact": {
+    "id": 11307205769,
+    "name": "windows-verification-37210867822-1",
+    "bytes": 2475558,
+    "sha256": "fa85df3b87cfdae7cbe8186c6c43f43e4574ce1a5bb7c35a5586b678ae494f64",
+    "githubDigestMatched": true
+  },
+  "log": {
+    "bytes": 219534,
+    "sha256": "a1c821b46b68e1372af2938c8d8a10c0d2227a33a2b969a539038b445015de0f"
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "completeCurrentNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Historical f173 hosted body failed the unchanged primary-directory draft-save rejection predicate after 43 packaged assertions. Its unit and package-license checks passed. No complete runtime, installer or publication acceptance is claimed."
+}

@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-10-04T15:12:44.486Z",
+  "codeCommit": "a39565f6e9bcd4111ab721d6a600a5786a97181a",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "ab4bbd2007ece4de3c4d2888fd8f4d40ba8adc21ac5262bf582ffb4bbd04eda2"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "298ba26fbbcbd3bad68b947c34cfb6c9b31e625f11d7d009a5f016f2d7b415d2"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "744769522169f0e5e335f0cdd55b0dfe129752d531b64b638c75a3e315367b3b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    }
+  ],
+  "compiledMain": {
+    "path": "out/main/launch.cjs",
+    "sha256": "622c1726fb0162ed9ed99cafdc3271dcacb2d39bc4b9f0f9f4f70f0ecbaf6817"
+  },
+  "unitTestsPassed": 728,
+  "fullSuiteChecksBeforeFailure": 43,
+  "failure": "The failed draft close was not rejected",
+  "originalFault": "The actual primary-file path was replaced by a directory",
+  "normalCloseVerified": false,
+  "completeCurrentNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "log": {
+    "name": "activation-coalescing-full-source-native.log",
+    "bytes": 8488,
+    "sha256": "faebf6d3a1fdbd0e8bd2a98e2d0ef6a0750d8fb44145bdde0c80ebbd6f29e9ea"
+  },
+  "scope": "Earlier application body passed 43 complete-suite assertions but failed the unchanged draft-save filesystem rejection predicate. Its focused six-comparison acceptance remains a separate record."
+}
