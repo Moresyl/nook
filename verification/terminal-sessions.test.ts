@@ -17,6 +17,12 @@ async function setup(emit = vi.fn()) {
   return { root, processes, spawn, emit, terminate, terminals };
 }
 describe('owned PTY sessions', () => {
+  it('uses the selected available shell with the existing profile-free arguments and owned project geometry', async () => {
+    const { root, spawn, emit, terminate } = await setup(); const selected = 'C:\\Program Files\\PowerShell\\7\\pwsh.exe'; const choose = vi.fn(async () => selected);
+    const terminals = new TerminalSessions(spawn, emit, terminate, choose);
+    const session = await terminals.open('project', root, { cols: 80, rows: 24 }); expect(choose).toHaveBeenCalledTimes(1); expect(session.shell).toBe(selected);
+    expect(spawn).toHaveBeenCalledWith(selected, process.platform === 'win32' ? ['-NoLogo', '-NoProfile'] : [], expect.objectContaining({ cwd: root, cols: 80, rows: 24 })); await terminals.shutdown();
+  });
   it('starts in the verified project folder, streams numbered output and replays bounded snapshots', async () => {
     const { root, terminals, processes, spawn, emit } = await setup();
     const session = await terminals.open('project', root, { cols: 80, rows: 24 });
@@ -30,6 +36,29 @@ describe('owned PTY sessions', () => {
     expect(processes[0].write).toHaveBeenCalledWith('echo evidence\r'); expect(processes[0].resize).toHaveBeenCalledWith(120, 40);
     processes[0].exit({ exitCode: 7 }); expect(terminals.active()).toBe(false); expect(terminals.list('project')[0]).toMatchObject({ status: 'exited', exitCode: 7, sequence: 3 });
     expect(() => terminals.write(session.id, 'more')).toThrow('closed'); await terminals.close(session.id); expect(terminals.list('project')).toEqual([]);
+  });
+  it('does not spawn a terminal when shutdown happens during shell discovery', async () => {
+    const { root, spawn, emit, terminate } = await setup(); let release!: (shell: string) => void;
+    const selected = new Promise<string>((resolve) => { release = resolve; }); const choose = vi.fn(() => selected);
+    const terminals = new TerminalSessions(spawn, emit, terminate, choose); const opening = terminals.open('project', root, { cols: 80, rows: 24 });
+    const rejected = expect(opening).rejects.toThrow('Close'); await vi.waitFor(() => expect(choose).toHaveBeenCalledTimes(1));
+    await terminals.shutdown(); release('powershell.exe'); await rejected; expect(spawn).not.toHaveBeenCalled(); expect(terminals.list('project')).toEqual([]);
+  });
+  it('keeps the sixteen-session limit when concurrent shell discovery completes together', async () => {
+    const { root, spawn, emit, terminate } = await setup(); let release!: (shell: string) => void;
+    const selected = new Promise<string>((resolve) => { release = resolve; }); const choose = vi.fn(() => selected);
+    const terminals = new TerminalSessions(spawn, emit, terminate, choose);
+    const openings = Promise.allSettled(Array.from({ length: 17 }, () => terminals.open('project', root, { cols: 80, rows: 24 })));
+    await vi.waitFor(() => expect(choose).toHaveBeenCalledTimes(17)); release('powershell.exe'); const results = await openings;
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(16);
+    expect(results.filter((result) => result.status === 'rejected')).toEqual([expect.objectContaining({ reason: expect.any(Error) })]);
+    expect(spawn).toHaveBeenCalledTimes(16); expect(terminals.list('project')).toHaveLength(16); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(16);
+  });
+  it('redacts a failed shell resolver and leaves no owned process or session', async () => {
+    const { root, spawn, emit, terminate } = await setup(); const choose = vi.fn(async () => { throw new Error('PRIVATE_SHELL_DISCOVERY_PATH'); });
+    const terminals = new TerminalSessions(spawn, emit, terminate, choose);
+    await expect(terminals.open('project', root, { cols: 80, rows: 24 })).rejects.toThrow(/^Could not start the terminal\. Check the shell and project folder\.$/);
+    expect(spawn).not.toHaveBeenCalled(); expect(terminals.active()).toBe(false); await terminals.shutdown();
   });
   it('closes only owned project sessions, disposes listeners and stops accepting sessions at shutdown', async () => {
     const { root, terminals, processes, terminate } = await setup();

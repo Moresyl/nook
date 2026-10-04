@@ -1,0 +1,196 @@
+{
+  "verifiedAt": "2026-10-04T03:11:37.738Z",
+  "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
+  "componentVerified": true,
+  "completeSourceVerified": false,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 672,
+  "unitFiles": 66,
+  "focusedDesktopChecks": 7,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "actualPowerShellMajor": 7,
+  "originalPromptDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "negativeReproduction": "The old terminal ignores the available-shell resolver; its new regression fails because the resolver is called zero times instead of once. This reproduces the missing selection behavior, not the precise hosted timeout cause.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3051,
+      "covered": 3030,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5190,
+      "covered": 5035,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1165,
+      "covered": 1133,
+      "skipped": 0,
+      "pct": 97.25
+    },
+    "branches": {
+      "total": 3690,
+      "covered": 3486,
+      "skipped": 0,
+      "pct": 94.47
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "desktop/services/terminal-shell.ts": {
+      "lines": {
+        "total": 7,
+        "covered": 7,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 12,
+        "covered": 12,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "desktop/services/terminal-sessions.ts": {
+      "lines": {
+        "total": 47,
+        "covered": 44,
+        "skipped": 0,
+        "pct": 93.61
+      },
+      "functions": {
+        "total": 25,
+        "covered": 22,
+        "skipped": 0,
+        "pct": 88
+      },
+      "statements": {
+        "total": 80,
+        "covered": 71,
+        "skipped": 0,
+        "pct": 88.75
+      },
+      "branches": {
+        "total": 36,
+        "covered": 31,
+        "skipped": 0,
+        "pct": 86.11
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/terminal-shell.ts",
+      "sha256": "49090490269efcca6039683757e6c4767f49464f7eeefb9abd2a18411087dd00",
+      "bytes": 839
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "50073c8761564bc644e977e7d4a845b9e188576a673f105f744a0572585a7b91",
+      "bytes": 4737
+    },
+    {
+      "path": "verification/terminal-shell.test.ts",
+      "sha256": "4be0e6957100c151b938a8d967632083cbfdb500853d4f277a70ad959d7a6bcd",
+      "bytes": 3126
+    },
+    {
+      "path": "verification/terminal-sessions.test.ts",
+      "sha256": "63da02adaeaa1d6fef0661c7b9e01bf24baf77202a6cc593a58ff5a7d432a5b2",
+      "bytes": 8740
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "dfe2e9720be438750e47185e33b4a28cbabcdfd022611510711464ce56ebd389",
+      "bytes": 34882
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/terminal-shell-focused-native-result.json",
+      "sha256": "1084f98d555d578a43b8ce016002028159e1a9ff9d55a48a3afbd5836c3876e7",
+      "bytes": 3553
+    }
+  ],
+  "logs": [
+    {
+      "name": "terminal-shell-selection-negative.log",
+      "sha256": "db777ba7a96e77f71061e679d181e2b7c7b266dedb077cd97630cccbf560a702",
+      "bytes": 1336
+    },
+    {
+      "name": "terminal-shell-focused-unit.log",
+      "sha256": "e37050ee369a11e69ff8abb388fda21879b6bf5cee61ba82518c33cf9ac1a456",
+      "bytes": 221
+    },
+    {
+      "name": "terminal-shell-typecheck.log",
+      "sha256": "d3b50510eb56f73bb784a4a0a9d6ac92e7135097dc33897b271c5c9f106eb342",
+      "bytes": 86
+    },
+    {
+      "name": "terminal-shell-coverage.log",
+      "sha256": "5cf12fdf95b9f2a107cac4aedada5d2edbab743adf70258ab35fe16e5d08fa73",
+      "bytes": 4555
+    },
+    {
+      "name": "terminal-shell-build.log",
+      "sha256": "280f5d31ccc7ac1bb33c6b0af0032330107c6897594547f7315dbe0d266d5290",
+      "bytes": 22549
+    },
+    {
+      "name": "terminal-shell-focused-native.log",
+      "sha256": "83ae6846db999d5ea75f263b5b1a087858de7d31b8a0d007240f6530f61320f5",
+      "bytes": 3439
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "compiled": {
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "f489acb8b2aff056facd918852321b97c3d86e6a9a7cc973d6e582abd066b91e"
+    },
+    "renderer": {
+      "path": "out/renderer/assets/index-Cqr_5QJD.js",
+      "sha256": "6d18d7017bde1f5d9720a2afc310e6696009834eecfb854169db02fba772071f"
+    }
+  },
+  "scope": "Prefers an actual PowerShell 7 executable in standard Windows installation locations, retains legacy/Unix fallback, profile-free arguments and project geometry, redacts resolver failures and rechecks shutdown/capacity after asynchronous discovery. All 672 tests pass; selector coverage is 100 percent and session coverage exceeds 80 percent. Seven actual Electron project checks retain the original prompt deadline, verify real major-version output, keyboard PTY commands, zoom, restart and normal close. Complete 215-check source regression is running; fresh distribution and hosted acceptance remain open. The prior four combined-body 215-check binaries stay archived under their own source and hashes; they do not prove this changed terminal body."
+}
