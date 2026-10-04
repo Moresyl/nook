@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Exact 672-test available-shell source, complete 215-check unpacked and actual Unicode-path installed suites, four surface checks, real portable lifecycle, bootstrap audit, shortcuts and data-retaining uninstall pass with ten strict matching runtime records. Both complete application variants verify actual PowerShell 7 output; the same unpacked executable separately passes seven real legacy PowerShell 5 fallback checks under an owned empty installation environment with original deadlines. Six current installed template-transfer captures are individually reviewed, and all four exact binaries are separately preserved before later rebuilds. This local distribution proof does not verify hosted acceptance. The full remaining capability/UI delivery scope and physical wizard interaction remain open.",
+  "scope": "Checkpoint batching passes 679 tests, types/build, six native model-comparison checks and the actual 84 MB completion benchmark. Complete current-source, fresh matching distribution and hosted acceptance remain pending; preceding terminal distribution records are historical for this changed main-process body. Original completion deadlines and full remaining capability/UI scope remain unchanged.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -135,7 +135,7 @@
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "proof": "verification/mcp-binary-files-review-result.json"
   },
-  "currentRuntimeProofVerified": true,
+  "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -696,9 +696,9 @@
     "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
     "unitTests": 672,
     "unitFiles": 66,
-    "focusedDesktopChecks": 7,
-    "completeSourceVerified": false,
-    "proof": "verification/terminal-shell-component-review-result.json"
+    "desktopChecks": 215,
+    "normalCloseVerified": true,
+    "proof": "verification/terminal-shell-source-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -857,7 +857,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": true,
+  "completeCurrentSourceVerified": false,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -890,5 +890,19 @@
     "sourceProof": "verification/terminal-shell-source-review-result.json",
     "latestHostedRunId": 37173408503,
     "distributionProof": "verification/terminal-shell-distribution-result.json"
+  },
+  "checkpointBatching": {
+    "codeCommit": "95c5b1970fccdf5d244ec615a3c74a3b3e9f1ed7",
+    "unitTests": 679,
+    "unitFiles": 67,
+    "typecheckPassed": true,
+    "buildPassed": true,
+    "focusedComparisonChecks": 6,
+    "comparisonModelRequests": 11,
+    "normalCloseVerified": true,
+    "benchmarkProof": "verification/checkpoint-batching-benchmark-result.json",
+    "completeSourceVerified": false,
+    "distributionVerified": false,
+    "hostedVerified": false
   }
 }
