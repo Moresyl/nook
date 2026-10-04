@@ -1,0 +1,1019 @@
+{
+  "verifiedAt": "2026-10-04T19:46:29.696Z",
+  "codeCommit": "5b54696",
+  "startupChecks": 6,
+  "failures": [
+    {
+      "input": "workspace.json",
+      "elapsedMs": 26200,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142932827,
+            "memory": {
+              "rss": 88190976,
+              "heapTotal": 22577152,
+              "heapUsed": 17523968,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 78000,
+              "system": 234000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142933599,
+            "memory": {
+              "rss": 98480128,
+              "heapTotal": 22577152,
+              "heapUsed": 17532144,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 265000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142934400,
+            "memory": {
+              "rss": 102785024,
+              "heapTotal": 22577152,
+              "heapUsed": 17549480,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 281000
+            }
+          },
+          {
+            "phase": "vault.workspace.loaded",
+            "at": 1791142934599,
+            "memory": {
+              "rss": 103051264,
+              "heapTotal": 22577152,
+              "heapUsed": 17567260,
+              "external": 3518783,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 281000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791142934611,
+            "memory": {
+              "rss": 103108608,
+              "heapTotal": 22577152,
+              "heapUsed": 17569296,
+              "external": 3518783,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 281000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": "workspace.json",
+      "elapsedMs": 267,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142937287,
+            "memory": {
+              "rss": 91299840,
+              "heapTotal": 24150016,
+              "heapUsed": 18423212,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142937291,
+            "memory": {
+              "rss": 96452608,
+              "heapTotal": 24150016,
+              "heapUsed": 18431388,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142937295,
+            "memory": {
+              "rss": 105463808,
+              "heapTotal": 24150016,
+              "heapUsed": 18447924,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "vault.workspace.loaded",
+            "at": 1791142937296,
+            "memory": {
+              "rss": 106647552,
+              "heapTotal": 24150016,
+              "heapUsed": 18465120,
+              "external": 3518802,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "vault.workspace.decoded",
+            "at": 1791142937296,
+            "memory": {
+              "rss": 106647552,
+              "heapTotal": 24150016,
+              "heapUsed": 18465556,
+              "external": 3518802,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791142937299,
+            "memory": {
+              "rss": 107556864,
+              "heapTotal": 24412160,
+              "heapUsed": 18816432,
+              "external": 3518804,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 125000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": "credentials.json",
+      "elapsedMs": 263,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142937533,
+            "memory": {
+              "rss": 88199168,
+              "heapTotal": 23363584,
+              "heapUsed": 18409576,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 109000,
+              "system": 46000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142937537,
+            "memory": {
+              "rss": 93401088,
+              "heapTotal": 23363584,
+              "heapUsed": 18417752,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142937540,
+            "memory": {
+              "rss": 101543936,
+              "heapTotal": 23363584,
+              "heapUsed": 18434260,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.checkpoints.restore",
+            "at": 1791142937571,
+            "memory": {
+              "rss": 104415232,
+              "heapTotal": 23363584,
+              "heapUsed": 18441900,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.workspace.parsed",
+            "at": 1791142937571,
+            "memory": {
+              "rss": 104583168,
+              "heapTotal": 23363584,
+              "heapUsed": 18448112,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.credentials.read",
+            "at": 1791142937571,
+            "memory": {
+              "rss": 104583168,
+              "heapTotal": 23363584,
+              "heapUsed": 18448428,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791142937572,
+            "memory": {
+              "rss": 104849408,
+              "heapTotal": 23363584,
+              "heapUsed": 18465792,
+              "external": 3518788,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 140000,
+              "system": 93000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": "workspace.checkpoints.json",
+      "elapsedMs": 246,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142937813,
+            "memory": {
+              "rss": 88735744,
+              "heapTotal": 23625728,
+              "heapUsed": 18666168,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 125000,
+              "system": 46000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142937817,
+            "memory": {
+              "rss": 94498816,
+              "heapTotal": 23625728,
+              "heapUsed": 18674344,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 203000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142937821,
+            "memory": {
+              "rss": 103317504,
+              "heapTotal": 23625728,
+              "heapUsed": 18690852,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 203000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "vault.checkpoints.restore",
+            "at": 1791142937822,
+            "memory": {
+              "rss": 103821312,
+              "heapTotal": 23625728,
+              "heapUsed": 18698520,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 203000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791142937822,
+            "memory": {
+              "rss": 104214528,
+              "heapTotal": 23887872,
+              "heapUsed": 18720604,
+              "external": 3518783,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 203000,
+              "system": 109000
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "successes": [
+    {
+      "seeded": false,
+      "workspaceBytes": 0,
+      "readyElapsedMs": 7749,
+      "normalCloseVerified": true,
+      "originalDataUnchanged": false,
+      "startup": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142938364,
+            "memory": {
+              "rss": 92028928,
+              "heapTotal": 23363584,
+              "heapUsed": 18407456,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142938368,
+            "memory": {
+              "rss": 97140736,
+              "heapTotal": 23363584,
+              "heapUsed": 18415824,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142938371,
+            "memory": {
+              "rss": 105525248,
+              "heapTotal": 23363584,
+              "heapUsed": 18432088,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.checkpoints.restore",
+            "at": 1791142938372,
+            "memory": {
+              "rss": 106078208,
+              "heapTotal": 23625728,
+              "heapUsed": 18439476,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.workspace.parsed",
+            "at": 1791142938372,
+            "memory": {
+              "rss": 106205184,
+              "heapTotal": 23625728,
+              "heapUsed": 18445160,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.credentials.read",
+            "at": 1791142938372,
+            "memory": {
+              "rss": 106213376,
+              "heapTotal": 23625728,
+              "heapUsed": 18445476,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.credentials.bound",
+            "at": 1791142938373,
+            "memory": {
+              "rss": 106594304,
+              "heapTotal": 23625728,
+              "heapUsed": 18455524,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.persistent-cache.serialize",
+            "at": 1791142938373,
+            "memory": {
+              "rss": 106598400,
+              "heapTotal": 23625728,
+              "heapUsed": 18455928,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.persistent-cache.ready",
+            "at": 1791142938373,
+            "memory": {
+              "rss": 107094016,
+              "heapTotal": 23625728,
+              "heapUsed": 18486076,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "vault.runs.recovered",
+            "at": 1791142938374,
+            "memory": {
+              "rss": 107118592,
+              "heapTotal": 23625728,
+              "heapUsed": 18487868,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "services.create",
+            "at": 1791142938374,
+            "memory": {
+              "rss": 107126784,
+              "heapTotal": 23625728,
+              "heapUsed": 18488156,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "automations.resume",
+            "at": 1791142938374,
+            "memory": {
+              "rss": 107597824,
+              "heapTotal": 23625728,
+              "heapUsed": 18516716,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "automations.ready",
+            "at": 1791142938374,
+            "memory": {
+              "rss": 107642880,
+              "heapTotal": 23625728,
+              "heapUsed": 18523640,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "window.create",
+            "at": 1791142938375,
+            "memory": {
+              "rss": 107941888,
+              "heapTotal": 23887872,
+              "heapUsed": 18605928,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "window.created",
+            "at": 1791142938969,
+            "memory": {
+              "rss": 118071296,
+              "heapTotal": 23887872,
+              "heapUsed": 18644336,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "startup.complete",
+            "at": 1791142938971,
+            "memory": {
+              "rss": 118145024,
+              "heapTotal": 23887872,
+              "heapUsed": 18720800,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 78000
+            }
+          },
+          {
+            "phase": "renderer.loaded",
+            "at": 1791142943834,
+            "memory": {
+              "rss": 132587520,
+              "heapTotal": 25985024,
+              "heapUsed": 16378928,
+              "external": 4715456,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 171000,
+              "system": 109000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "seeded": true,
+      "workspaceBytes": 84543554,
+      "readyElapsedMs": 6617,
+      "normalCloseVerified": true,
+      "originalDataUnchanged": true,
+      "startup": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791142946427,
+            "memory": {
+              "rss": 88924160,
+              "heapTotal": 23625728,
+              "heapUsed": 18440984,
+              "external": 3518559,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791142946431,
+            "memory": {
+              "rss": 94015488,
+              "heapTotal": 23625728,
+              "heapUsed": 18449352,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791142946436,
+            "memory": {
+              "rss": 103727104,
+              "heapTotal": 23625728,
+              "heapUsed": 18465516,
+              "external": 3518615,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.workspace.loaded",
+            "at": 1791142946692,
+            "memory": {
+              "rss": 232611840,
+              "heapTotal": 145563648,
+              "heapUsed": 134221208,
+              "external": 3669389,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 406000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.workspace.decoded",
+            "at": 1791142946786,
+            "memory": {
+              "rss": 465866752,
+              "heapTotal": 378695680,
+              "heapUsed": 367821180,
+              "external": 3669389,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 484000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.workspace.validated",
+            "at": 1791142946832,
+            "memory": {
+              "rss": 468246528,
+              "heapTotal": 380268544,
+              "heapUsed": 375034884,
+              "external": 3670662,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 500000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.checkpoints.restore",
+            "at": 1791142946832,
+            "memory": {
+              "rss": 468246528,
+              "heapTotal": 380268544,
+              "heapUsed": 375035200,
+              "external": 3670662,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 500000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.workspace.parsed",
+            "at": 1791142947027,
+            "memory": {
+              "rss": 468684800,
+              "heapTotal": 380268544,
+              "heapUsed": 375062744,
+              "external": 3670662,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 687000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.credentials.read",
+            "at": 1791142947027,
+            "memory": {
+              "rss": 468684800,
+              "heapTotal": 380268544,
+              "heapUsed": 375063364,
+              "external": 3670662,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 687000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.credentials.bound",
+            "at": 1791142947117,
+            "memory": {
+              "rss": 580825088,
+              "heapTotal": 492597248,
+              "heapUsed": 482024352,
+              "external": 3670662,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 750000,
+              "system": 187000
+            }
+          },
+          {
+            "phase": "vault.persistent-cache.serialize",
+            "at": 1791142950478,
+            "memory": {
+              "rss": 604459008,
+              "heapTotal": 516345856,
+              "heapUsed": 506568368,
+              "external": 3144950,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2390000,
+              "system": 2000000
+            }
+          },
+          {
+            "phase": "vault.persistent-cache.ready",
+            "at": 1791142951074,
+            "memory": {
+              "rss": 869199872,
+              "heapTotal": 612806656,
+              "heapUsed": 602918628,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2875000,
+              "system": 2078000
+            }
+          },
+          {
+            "phase": "vault.runs.recovered",
+            "at": 1791142951074,
+            "memory": {
+              "rss": 869281792,
+              "heapTotal": 613068800,
+              "heapUsed": 603043880,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2875000,
+              "system": 2078000
+            }
+          },
+          {
+            "phase": "services.create",
+            "at": 1791142951074,
+            "memory": {
+              "rss": 869281792,
+              "heapTotal": 613068800,
+              "heapUsed": 603044176,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2875000,
+              "system": 2078000
+            }
+          },
+          {
+            "phase": "automations.resume",
+            "at": 1791142951075,
+            "memory": {
+              "rss": 869314560,
+              "heapTotal": 613068800,
+              "heapUsed": 603067108,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2875000,
+              "system": 2078000
+            }
+          },
+          {
+            "phase": "automations.ready",
+            "at": 1791142951288,
+            "memory": {
+              "rss": 1035415552,
+              "heapTotal": 779423744,
+              "heapUsed": 765933356,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2968000,
+              "system": 2203000
+            }
+          },
+          {
+            "phase": "window.create",
+            "at": 1791142951289,
+            "memory": {
+              "rss": 1035509760,
+              "heapTotal": 779423744,
+              "heapUsed": 766016756,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 2968000,
+              "system": 2203000
+            }
+          },
+          {
+            "phase": "window.created",
+            "at": 1791142951316,
+            "memory": {
+              "rss": 1045037056,
+              "heapTotal": 779423744,
+              "heapUsed": 766054048,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 3000000,
+              "system": 2203000
+            }
+          },
+          {
+            "phase": "startup.complete",
+            "at": 1791142951635,
+            "memory": {
+              "rss": 1162997760,
+              "heapTotal": 897093632,
+              "heapUsed": 883592888,
+              "external": 172289058,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 3109000,
+              "system": 2375000
+            }
+          },
+          {
+            "phase": "renderer.loaded",
+            "at": 1791142951868,
+            "memory": {
+              "rss": 1172967424,
+              "heapTotal": 898142208,
+              "heapUsed": 885229940,
+              "external": 173485899,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 3156000,
+              "system": 2375000
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "source": [
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "eb12d33cb509a07c8bb754c5fb8c9fa83f93a36033e0c8157d2276fe7aa562a6"
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "0955c8795fe2e652cb77fb0e35c20f4d5e93d1abe1da225c4631cc18bb4c3c41"
+    }
+  ],
+  "compiledSha256": "4d0dacddb2c09bbdf17277c1193bd007cadad1df17cb541681edff62389bc293",
+  "logs": [
+    {
+      "name": "workspace-read-phases-build.log",
+      "bytes": 22499,
+      "sha256": "fbe15d3caf8238b8847437cfd3e86d790c5fe02333820a0699b828f8e660735c"
+    },
+    {
+      "name": "workspace-read-failure-native.log",
+      "bytes": 114,
+      "sha256": "617df92cd6e86bb64858c4769eda0cf35688903fb5038e2c8f66aa1ca032db60"
+    },
+    {
+      "name": "workspace-read-success-native.log",
+      "bytes": 131,
+      "sha256": "fb04f60368bd276d92bb65cdd32dce24a8d4ba425ab9c1345989f0521345184e"
+    }
+  ],
+  "completeDesktopVerified": false,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "scope": "Four isolated native error branches plus fresh and retained 84 MB workspace successful launches and normal close on the new development build. This does not establish hosted failure cause or full distribution acceptance."
+}

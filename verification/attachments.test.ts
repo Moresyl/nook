@@ -32,10 +32,12 @@ async function image() { return parseAttachment(input('image.png', await imageBy
 
 describe('attachment ingestion', () => {
   beforeAll(async () => {
+    const startedAt = Date.now();
     const bootstrap = await parseAttachment(input('parser-bootstrap.pdf', documentBytes('pdf')));
     expect(bootstrap.content).toContain('Document evidence'); expect(bootstrap.content).toContain('42');
     vi.mocked(parseOffice).mockClear();
-  });
+    console.info('Attachment parser bootstrap observations', { elapsedMs: Date.now() - startedAt });
+  }, 30_000); // Cold PDF initialization gets the existing production worker budget; individual checks keep their normal timeout.
   it.each(['pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf'])('extracts actual %s document text and preserves source details', async (format) => {
     const bytes = documentBytes(format); const file = await parseAttachment(input(`document.${format}`, bytes));
     expect(file.content).toContain('Document evidence'); expect(file.content).toContain('42'); expect(file.source).toEqual({ format, bytes: bytes.length }); expect(file.image).toBeUndefined();
