@@ -1,0 +1,425 @@
+{
+  "verifiedAt": "2026-10-04T01:25:46.593Z",
+  "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 649,
+  "unitFiles": 63,
+  "desktopChecks": 210,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 2990,
+      "covered": 2969,
+      "skipped": 0,
+      "pct": 99.29
+    },
+    "statements": {
+      "total": 5094,
+      "covered": 4939,
+      "skipped": 0,
+      "pct": 96.95
+    },
+    "functions": {
+      "total": 1140,
+      "covered": 1108,
+      "skipped": 0,
+      "pct": 97.19
+    },
+    "branches": {
+      "total": 3641,
+      "covered": 3434,
+      "skipped": 0,
+      "pct": 94.31
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "vaultCoverage": {
+    "lines": {
+      "total": 64,
+      "covered": 64,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 24,
+      "covered": 23,
+      "skipped": 0,
+      "pct": 95.83
+    },
+    "statements": {
+      "total": 82,
+      "covered": 82,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 26,
+      "covered": 26,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "58b4d27f05c6ba3c71366ae3cce2496eb8473b911820416d96e9418f4378b09f"
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "a36d0cd712fcd2e5f67d0c5fc34544f5307bf43e2edcf93aae761f235a978c75"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "059727335d64772c61fb033dc0d9976baf5a583999516839c86e145da9a442b3"
+    },
+    {
+      "path": "verification/model-comparison-fixture.mjs",
+      "sha256": "13b7e7def1abc359731dd00e06119e0653589628cf0df4ee3fb8ef4a9f8d6cc3"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "b70d50f26802e1668c22b3686190b98696fcbf79d80591bbccb15cc124614dd2",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "b487c23eb4dafbeb305a4fd88e5cc3aaf6bd9f067bb66e86e419560ee833e77d",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "7ed75f2bfeea7a3379e73791d12a5c810e7f4aa09115d7c8509e916c9588607e",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "4766033c047095a12dc64052f56ac07dc246c1e5a0d8ed7265b39e9fc5e285da",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "490fea9d18b2a1e9294f3edbb1b4e59e18289f6a6286e3d1c8213700044ae0dc",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "af784ffeae375744df48332cca33b0e80279f8c2aa73f907eb92ab8c38bc994c",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "a9546e1605752e896d1db603e87b7631ae38d787bb21977a348d65c04ccae9c1",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "37b908f518c3d5451dd714233ba20c46a7771b674a7d8c4f06e9b88f01aca8f0",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "a33283d48907d969580c7b97fc515994e705a6c026f04f4ad240ae16be68de3d",
+      "bytes": 51943
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "f493ecc29ff70dbb4c3d9711ee453c4b047bff521e6ea5bd28367c017d6b4d62",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "65dd8da031dbe5ab1431abd13b3556efdb7aba05254bf224c5b5f21aec5cd44a",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "99c7367dd12d3af8a583471809fc0ac0abd843ef17963719e84a6c3c2eddb3a1",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "b7e37ad8caca6dcb0ea863c7e006be7ca49152464d71ebd615071bb736aecb68",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "ea6752952ccf1198da28f5f360074dd8cc35bfb55be50f2e33e81d3ef3790cfa",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "a620d6418de8569f7869292ef419076ef946e26adf9f2baf90e4feac3fc9a143",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "3de0a2d36f77912325f5a79d7021aa73d23d7dbb5981e071c949365a0db96529",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "f3950093d226d7fd206d4397fe4792256a20133717c67d71c382c535b77d2bc8",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "1d5336685ec047d8312a522fdeed3cad7d73c6cbecc7c29a3206ba5b43cb412c",
+      "bytes": 1832
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "logs": [
+    {
+      "name": "vault-recovery-persistence-negative.log",
+      "sha256": "e34e48625b7ca93283fd91587a1d35417fa12c0f375dbb76c72e677af1e0a125",
+      "bytes": 1476
+    },
+    {
+      "name": "vault-serialization-focused.log",
+      "sha256": "d9a160ba23e5abef70ce1278612145a882ded8a0b8e7dd95f085aece9cbc3cad",
+      "bytes": 1094
+    },
+    {
+      "name": "vault-serialization-final-typecheck.log",
+      "sha256": "8d466041e06e0b552d0afd72b3f80fbc69e7b73e29f91bb4ffaeab2df501c5cf",
+      "bytes": 91
+    },
+    {
+      "name": "vault-serialization-final-coverage.log",
+      "sha256": "3d4672a0d7810423b9b7c631ae094c3570c0f52133a6e3c7eab84b7929725bf0",
+      "bytes": 4575
+    },
+    {
+      "name": "vault-serialization-build.log",
+      "sha256": "24c2853d7d5ecb53fcaa2585c0c9d5615477ce026a145776690197d81da50d79",
+      "bytes": 22555
+    },
+    {
+      "name": "vault-serialization-comparison-native.log",
+      "sha256": "c50738a828c67c4018509fa72454a27e1dd986f12c1895de22c633d9d9815a31",
+      "bytes": 1735
+    },
+    {
+      "name": "vault-serialization-complete-source.log",
+      "sha256": "3579a8d3633b1f23f495d355af21339d5d91b6e763b10c56f57468b35acca628",
+      "bytes": 33963
+    }
+  ],
+  "benchmarks": [
+    {
+      "name": "vault-serialization-before-benchmark.json",
+      "sha256": "91a75a8c10c2dfd778bdb9813fdc4e7bbca9367201b274a2d72885c16021cd3e",
+      "sample": {
+        "label": "before",
+        "measuredAt": "2026-10-04T00:51:42.016Z",
+        "sourceSha256": "18e2105d04a70ed8a990fdbc2de7b163389e5d619e4ed57c44c2e9d16bbb88bd",
+        "workspaceBytes": 84011026,
+        "updates": [
+          {
+            "elapsedMs": 1017.9764,
+            "beforeMemory": {
+              "rss": 509939712,
+              "heapTotal": 490237952,
+              "heapUsed": 353633064,
+              "external": 85914419,
+              "arrayBuffers": 84028193
+            },
+            "afterMemory": {
+              "rss": 622702592,
+              "heapTotal": 601518080,
+              "heapUsed": 465980712,
+              "external": 85946737,
+              "arrayBuffers": 84060471
+            }
+          },
+          {
+            "elapsedMs": 1053.5396,
+            "beforeMemory": {
+              "rss": 622702592,
+              "heapTotal": 601518080,
+              "heapUsed": 465981128,
+              "external": 85946737,
+              "arrayBuffers": 84060471
+            },
+            "afterMemory": {
+              "rss": 734908416,
+              "heapTotal": 713846784,
+              "heapUsed": 576926480,
+              "external": 85946737,
+              "arrayBuffers": 84060471
+            }
+          },
+          {
+            "elapsedMs": 1072.8780000000002,
+            "beforeMemory": {
+              "rss": 734908416,
+              "heapTotal": 713846784,
+              "heapUsed": 576926744,
+              "external": 85946737,
+              "arrayBuffers": 84060471
+            },
+            "afterMemory": {
+              "rss": 734654464,
+              "heapTotal": 713584640,
+              "heapUsed": 576850944,
+              "external": 85944220,
+              "arrayBuffers": 84060471
+            }
+          },
+          {
+            "elapsedMs": 1070.1545999999998,
+            "beforeMemory": {
+              "rss": 734654464,
+              "heapTotal": 713584640,
+              "heapUsed": 576851208,
+              "external": 85944220,
+              "arrayBuffers": 84060471
+            },
+            "afterMemory": {
+              "rss": 734642176,
+              "heapTotal": 713846784,
+              "heapUsed": 576913008,
+              "external": 85944221,
+              "arrayBuffers": 84060472
+            }
+          }
+        ],
+        "totalMs": 4214.5486,
+        "exactPrimaryAndBackupVerified": true,
+        "scope": "Four serial small response updates over the same 20 large Unicode-message fixture used by native backup acceptance. Actual filesystem writes, flush and exact previous/current reply checks are included. This measures a local process; it does not establish the previous remote timeout cause."
+      }
+    },
+    {
+      "name": "vault-serialization-after-benchmark.json",
+      "sha256": "792cb4d4cf06c94efa7d993287a0c92424a232950816a728fc2f101c26830335",
+      "sample": {
+        "label": "after",
+        "measuredAt": "2026-10-04T01:01:10.944Z",
+        "sourceSha256": "58b4d27f05c6ba3c71366ae3cce2496eb8473b911820416d96e9418f4378b09f",
+        "workspaceBytes": 84011026,
+        "updates": [
+          {
+            "elapsedMs": 588.4916,
+            "beforeMemory": {
+              "rss": 386744320,
+              "heapTotal": 269815808,
+              "heapUsed": 234032000,
+              "external": 85947875,
+              "arrayBuffers": 84061649
+            },
+            "afterMemory": {
+              "rss": 698605568,
+              "heapTotal": 594350080,
+              "heapUsed": 458288168,
+              "external": 169990763,
+              "arrayBuffers": 168104497
+            }
+          },
+          {
+            "elapsedMs": 558.6266,
+            "beforeMemory": {
+              "rss": 698605568,
+              "heapTotal": 594350080,
+              "heapUsed": 458288584,
+              "external": 169990763,
+              "arrayBuffers": 168104497
+            },
+            "afterMemory": {
+              "rss": 698777600,
+              "heapTotal": 594350080,
+              "heapUsed": 458285016,
+              "external": 169990585,
+              "arrayBuffers": 168104319
+            }
+          },
+          {
+            "elapsedMs": 559.4142000000002,
+            "beforeMemory": {
+              "rss": 698777600,
+              "heapTotal": 594350080,
+              "heapUsed": 458285280,
+              "external": 169990585,
+              "arrayBuffers": 168104319
+            },
+            "afterMemory": {
+              "rss": 698773504,
+              "heapTotal": 594350080,
+              "heapUsed": 458288952,
+              "external": 169990585,
+              "arrayBuffers": 168104319
+            }
+          },
+          {
+            "elapsedMs": 545.8429999999998,
+            "beforeMemory": {
+              "rss": 698773504,
+              "heapTotal": 594350080,
+              "heapUsed": 458289216,
+              "external": 169990585,
+              "arrayBuffers": 168104319
+            },
+            "afterMemory": {
+              "rss": 698839040,
+              "heapTotal": 594350080,
+              "heapUsed": 458346096,
+              "external": 169990586,
+              "arrayBuffers": 168104320
+            }
+          }
+        ],
+        "totalMs": 2252.3754,
+        "exactPrimaryAndBackupVerified": true,
+        "scope": "Four serial small response updates over the same 20 large Unicode-message fixture used by native backup acceptance. Actual filesystem writes, flush and exact previous/current reply checks are included. This measures a local process; it does not establish the previous remote timeout cause."
+      }
+    }
+  ],
+  "localSaveReductionPercent": 46.55713781542346,
+  "recoveryPersistenceNegativeReproduced": true,
+  "focusedCoverageAttempt": {
+    "passingTests": 49,
+    "globalThresholdAccepted": false,
+    "scope": "The narrow engine/vault subset did not cover unrelated engine paths; the complete final 649-test run passes every threshold."
+  },
+  "unchangedRenderer": {
+    "path": "out/renderer/assets/index-C2aJKA6n.js",
+    "sha256": "a7cc2d6d4e5545a1d7ab79e74e750b94a08726991bebf185c2de30dd8436ba18",
+    "finalRunningThreadGuardVerified": true,
+    "previouslyReviewedUiProof": "verification/streaming-progress-review-result.json",
+    "exactBuiltBytesMatch": true,
+    "currentCapturesIndividuallyReviewed": false
+  },
+  "comparisonDiagnostics": {
+    "originalDeadlinesRetained": true,
+    "originalRequestCountRetained": true,
+    "successfulCompletionQueueFlushOrderingExercised": true,
+    "failureProbeExercisedLocally": false
+  },
+  "scope": "The final byte cache serializes each durable workspace once and advances only after successful atomic writes; validation, actual destination EIO, retry, no-op/temporary exclusion and normalized credentials are covered. A preserved old-code failure proves interrupted replies previously remained running on disk; restart now durably saves stopped state while retaining the prior backup. Four actual local writes over 84,011,026 bytes decrease from 4214.5486 ms to 2252.3754 ms. Memory samples are after updates, not peak or remote deadline measurements. The final source passes 649 tests, type/build and all unchanged 210 native desktop checks with normal close. Renderer bytes match the previously reviewed nine-capture build. The six comparison checks retain eleven real HTTP requests and all original deadlines. Added failure diagnostics distinguish final status polls, server queued/flushed completion and separately timed later process resources; that failure branch has not run in the successful local suite. Fresh complete matching-body distribution and hosted acceptance remain separate."
+}
