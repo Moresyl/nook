@@ -1,0 +1,376 @@
+{
+  "verifiedAt": "2026-10-04T08:47:45.842Z",
+  "codeCommit": "117ed6031c589b5b68709559384de420267ff5c2",
+  "runId": 37186719269,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37186719269",
+  "conclusion": "failure",
+  "unitTests": 683,
+  "unitFiles": 67,
+  "completeUnpackedChecks": 215,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "installedChecksBeforeFailure": 160,
+  "artifact": {
+    "id": 11297929322,
+    "name": "windows-verification-37186719269-1",
+    "bytes": 9971138,
+    "digest": "sha256:dd304fe997b9003587c85714f44a6d8ea7ce2aa858b1584918f36c42f77d878c",
+    "downloadedDigestVerified": true
+  },
+  "actualBody": {
+    "executableSha256": "5d02b3ed5bd8ac0800733c3c1e36d4178fbe102a2d2664adac401a2c631d9331",
+    "archiveSha256": "84792aacd27eda45a727c84124ccac711f6508b6bdc9b6692b57f400662b268c",
+    "auditSha256": "2ee4dd8b5a0145f85fae6616472a820c1ca4c7c0dd2fe3cddcc3f4345cd05cc6"
+  },
+  "successfulTransportTraces": [
+    {
+      "variant": "unpacked",
+      "traces": [
+        {
+          "question": "MESSAGE_SAVE_ORIGINAL",
+          "serverRequests": 1,
+          "transport": {
+            "id": 1,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791100885115,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791100885115
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791100885202
+              },
+              {
+                "phase": "headers",
+                "at": 1791100885214
+              },
+              {
+                "phase": "trailers",
+                "at": 1791100885215
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_LATER",
+          "serverRequests": 2,
+          "transport": {
+            "id": 2,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791100885750,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791100885750
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791100885751
+              },
+              {
+                "phase": "headers",
+                "at": 1791100885753
+              },
+              {
+                "phase": "trailers",
+                "at": 1791100885753
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_CONTINUE_NEW",
+          "serverRequests": 3,
+          "transport": {
+            "id": 3,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791100889301,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791100889301
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791100889450
+              },
+              {
+                "phase": "headers",
+                "at": 1791100889459
+              },
+              {
+                "phase": "trailers",
+                "at": 1791100889459
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_CONTINUE_OLD",
+          "serverRequests": 4,
+          "transport": {
+            "id": 4,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791100890532,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791100890532
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791100890533
+              },
+              {
+                "phase": "headers",
+                "at": 1791100890616
+              },
+              {
+                "phase": "trailers",
+                "at": 1791100890616
+              }
+            ],
+            "statusCode": 200
+          }
+        }
+      ]
+    },
+    {
+      "variant": "installed",
+      "traces": [
+        {
+          "question": "MESSAGE_SAVE_ORIGINAL",
+          "serverRequests": 1,
+          "transport": {
+            "id": 1,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791102449543,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791102449543
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791102449609
+              },
+              {
+                "phase": "headers",
+                "at": 1791102449626
+              },
+              {
+                "phase": "trailers",
+                "at": 1791102449627
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_LATER",
+          "serverRequests": 2,
+          "transport": {
+            "id": 2,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791102450104,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791102450104
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791102450110
+              },
+              {
+                "phase": "headers",
+                "at": 1791102450195
+              },
+              {
+                "phase": "trailers",
+                "at": 1791102450196
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_CONTINUE_NEW",
+          "serverRequests": 3,
+          "transport": {
+            "id": 3,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791102452717,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791102452717
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791102452717
+              },
+              {
+                "phase": "headers",
+                "at": 1791102452901
+              },
+              {
+                "phase": "trailers",
+                "at": 1791102452901
+              }
+            ],
+            "statusCode": 200
+          }
+        },
+        {
+          "question": "MESSAGE_SAVE_CONTINUE_OLD",
+          "serverRequests": 4,
+          "transport": {
+            "id": 4,
+            "method": "POST",
+            "path": "/message-edits/v1/chat/completions",
+            "firstObservedAt": 1791102453882,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791102453882
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791102453883
+              },
+              {
+                "phase": "headers",
+                "at": 1791102453945
+              },
+              {
+                "phase": "trailers",
+                "at": 1791102453945
+              }
+            ],
+            "statusCode": 200
+          }
+        }
+      ]
+    }
+  ],
+  "startup": {
+    "originalPageDiscoveryDeadlineMs": 30000,
+    "separatelyCapturedElapsedFromSpawnMs": 31154,
+    "processExited": false,
+    "mainReady": true,
+    "pages": [],
+    "windows": [],
+    "initializationPhaseCapturedCompletely": false,
+    "nestedEventsCollapsedByLogOutput": true,
+    "memoryAfterDeadline": {
+      "rss": 258740224,
+      "heapTotal": 108310528,
+      "heapUsed": 63109944,
+      "external": 3627750,
+      "arrayBuffers": 0
+    },
+    "nativeStartupErrorCaptured": false,
+    "originalCauseEstablished": false
+  },
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "2ee4dd8b5a0145f85fae6616472a820c1ca4c7c0dd2fe3cddcc3f4345cd05cc6",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": true,
+      "sha256": "529adf10d6cae7fa331225b0ce28741c09fbe5dc911429970ba62a300303c086",
+      "bytes": 54037
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": true,
+      "sha256": "ca658ab9e6d717428366d514b104cb9a1880ceeca818facc41b9bcce11ed33ae",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": true,
+      "sha256": "799d1accd9529442259c417e838d0d5af0ea5ad8679b649cb67a67f1307caccf",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": true,
+      "sha256": "cd5f0b40628221c567363b8f63035e7ee08e0e7c7bef0ef6059571051809c601",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": true,
+      "sha256": "837918f5345f56228bb5c652d215ca18072f8bbd96d7ef843df46e5cd9e99a45",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": true,
+      "sha256": "b445574e90cd830eef3b58067525c9eb0b07524698967b4aadf9c54630e2f3a2",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": true,
+      "sha256": "79ec0ffc2b506c22f569ccaac745e887011e66a8fa5af07facbc616214c27b71",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": true,
+      "sha256": "022401e02b63a1e8f74fdb4fd212a5c9308748a463ad3b87f698e5cd09d38982",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 1,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicySha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+  "installedNormalCloseAndUninstallAcceptanceEstablished": false,
+  "overallJobTimeoutEstablished": false,
+  "logs": [
+    {
+      "name": "github-provider-transport-branch-full.log",
+      "sha256": "ab4b79aa8bcfffd584279a2f21402ba4fefd76bcc86204aedaba33c685110ac5",
+      "bytes": 314165
+    },
+    {
+      "name": "github-provider-transport-branch-failed.log",
+      "sha256": "5c724d4c76048a55ceefc21abd72b5ba86054719f231ce9bbf0aba62541d4df5",
+      "bytes": 53259
+    }
+  ],
+  "scope": "The exact hosted source passes 683 tests/67 files, full 215-check unpacked desktop with normal close, four settings checks, bootstrap and seven portable checks. Both native variants record four real edited-history POST/HTTP 200 traces. Actual installed verification passes 160 checks then fails the original 30-second page-discovery condition after large gzip restoration/restart. A later probe observes a live ready main process with no pages/windows; nested startup events and process metrics were folded by object logging, so the exact phase/cause is unknown. Memory is a later sample, not a peak or proof of cause. Nine fresh mandatory runtime records are present and the missing installer record prevents strict collection. No complete installed, uninstall, hosted release or old connection-cause acceptance is claimed."
+}
