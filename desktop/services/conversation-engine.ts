@@ -20,7 +20,7 @@ import { nextReplyVersion } from '../../contracts/reply-versions';
 import { archiveConversation } from './conversation-archive';
 import { comparisonSchema, type ComparisonResult } from '../../contracts/model-comparisons';
 
-type ActiveRun = { controller: AbortController; completion: Promise<void>; projectId?: string; providerId: string; embeddingProviderIds: string[]; serverIds: string[]; skillIds: string[]; pluginIds: string[] };
+type ActiveRun = { controller: AbortController; completion: Promise<void>; message: Message; projectId?: string; providerId: string; embeddingProviderIds: string[]; serverIds: string[]; skillIds: string[]; pluginIds: string[] };
 
 export class ConversationEngine {
   private runs = new Map<string, ActiveRun>();
@@ -34,7 +34,20 @@ export class ConversationEngine {
 
   private notify(event: RunEvent): void {
     // A closing renderer must not interrupt persistence or release of a run.
-    try { this.emit(event.state ? { ...event, state: this.vault.snapshot() } : event); } catch {}
+    try {
+      if (event.state) {
+        const state = this.vault.snapshot();
+        for (const thread of state.threads) if (this.runs.has(thread.id)) thread.messages = thread.messages.map((message) => this.runningMessage(thread.id, message));
+        this.emit({ ...event, state });
+      } else this.emit(event.message ? { ...event, message: this.runningMessage(event.threadId, event.message) } : event);
+    } catch {}
+  }
+
+  private runningMessage(threadId: string, saved: Message): Message {
+    const live = this.runs.get(threadId)?.message;
+    if (!live || live.id !== saved.id || saved.status !== 'running') return saved;
+    // Text is live; terminal status remains authoritative only after persistence.
+    return { ...structuredClone(live), status: saved.status, error: saved.error };
   }
 
   async start(raw: SubmitRequest): Promise<{ threadId: string }> {
@@ -104,9 +117,9 @@ export class ConversationEngine {
     validateModelAttachments(provider, request.model, [...thread.messages, user]);
     const controller = new AbortController();
     let finish!: () => void;
-    const run: ActiveRun = { controller, completion: new Promise<void>((resolve) => { finish = resolve; }), projectId: request.projectId, providerId: provider.id, embeddingProviderIds: knowledgeCollectionIds.flatMap((id) => state.knowledgeCollections.find((item) => item.id === id)?.embedding?.providerId ?? []), serverIds, skillIds, pluginIds };
-    this.runs.set(thread.id, run);
     const assistant: Message = { id: randomUUID(), role: 'assistant', content: '', attachments: [], status: 'running', activities: [], invocations: [], createdAt: now, ...(replyVersion ? { replyVersion } : {}) };
+    const run: ActiveRun = { controller, completion: new Promise<void>((resolve) => { finish = resolve; }), message: assistant, projectId: request.projectId, providerId: provider.id, embeddingProviderIds: knowledgeCollectionIds.flatMap((id) => state.knowledgeCollections.find((item) => item.id === id)?.embedding?.providerId ?? []), serverIds, skillIds, pluginIds };
+    this.runs.set(thread.id, run);
     const next: Thread = { ...thread, mode, projectId: request.projectId, assistantId: request.assistantId, providerId: provider.id, model: request.model, mcpServerIds: serverIds, skillIds, pluginIds, ...(knowledgeCollectionIds.length || thread.knowledgeCollectionIds ? { knowledgeCollectionIds } : {}), updatedAt: now, messages: [...thread.messages, user, assistant] };
     let saved;
     try {
@@ -211,11 +224,10 @@ export class ConversationEngine {
   }
 
   private persist(threadId: string, message: Message) {
-    const snapshot = structuredClone(message);
     return this.vault.update((draft) => {
       const target = draft.threads.find((item) => item.id === threadId);
       const index = target?.messages.findIndex((item) => item.id === message.id) ?? -1;
-      if (target && index >= 0) { target.messages[index] = snapshot; target.updatedAt = Date.now(); }
+      if (target && index >= 0) { target.messages[index] = structuredClone(message); target.updatedAt = Date.now(); }
     });
   }
 

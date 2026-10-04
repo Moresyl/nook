@@ -46,6 +46,80 @@ describe('model comparison contracts', () => {
   });
 });
 describe('independent parallel model comparisons', () => {
+  it('retains an uncheckpointed partial reply in a later parallel initial-state notification', async () => {
+    const callbacks = new Map<string, (text: string) => void>();
+    const { engine, vault, emit } = await setup({ stream: async (model, text) => { callbacks.set(model.model, text); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 60_000);
+    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 3) await held; return saved; });
+    const comparing = engine.compare(input);
+    try {
+      await vi.waitFor(() => { expect(callbacks.has('one')).toBe(true); });
+      callbacks.get('one')!('one: PARTIAL');
+      expect(vault.snapshot().threads[0].messages.at(-1)?.content).toBe('');
+      release(); const result = await comparing;
+      const later = emit.mock.calls.map(([event]) => event).find((event) => event.state && event.threadId === result.threadIds[1]);
+      expect(later?.state?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === result.threadIds[0])?.messages.at(-1)).toMatchObject({ content: 'one: PARTIAL', status: 'running' });
+      expect(vault.snapshot().threads[0].messages.at(-1)?.content).toBe('');
+      later!.state!.threads[0].messages.at(-1)!.content = 'Modified emitted copy';
+      await engine.stop(result.threadIds[0]);
+      expect(vault.snapshot().threads[0].messages.at(-1)?.content).toBe('one: PARTIAL');
+    } finally { release(); await comparing; await engine.shutdown(); }
+  });
+  it('retains new stream text when an earlier empty checkpoint returns after the delta', async () => {
+    let text!: (value: string) => void;
+    const { engine, vault, emit } = await setup({ stream: async (model, callback) => { text = callback; await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
+    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { checkpointStarted = resolve; });
+    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) { checkpointStarted(); await held; } return saved; });
+    await engine.start({ ...request, model: 'one' });
+    try {
+      await started; text('one: PARTIAL');
+      expect(vault.snapshot().threads[0].messages.at(-1)?.content).toBe('');
+      release();
+      await vi.waitFor(() => { expect(emit.mock.calls.some(([event]) => event.message)).toBe(true); });
+      const checkpoint = emit.mock.calls.find(([event]) => event.message)?.[0];
+      expect(checkpoint?.message).toMatchObject({ content: 'one: PARTIAL', status: 'running' });
+    } finally { release(); await engine.shutdown(); }
+  });
+  it('samples a queued checkpoint when its transaction runs without announcing unsaved completion', async () => {
+    let text!: (value: string) => void; let finish!: () => void;
+    const stream = new Promise<void>((resolve) => { finish = resolve; });
+    const { engine, vault, emit } = await setup({ stream: async (_model, callback) => { text = callback; await stream; } }, 10);
+    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void; let queuedContent: string | undefined;
+    const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { checkpointStarted = resolve; });
+    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; if (own === 2) { checkpointStarted(); await held; } const saved = await update(change); if (own === 2) queuedContent = saved.threads[0].messages.at(-1)?.content; return saved; });
+    const { threadId } = await engine.start({ ...request, model: 'one' });
+    try {
+      await started; text('one: PARTIAL'); release();
+      await vi.waitFor(() => { expect(queuedContent).toBeDefined(); });
+      expect(queuedContent).toBe('one: PARTIAL');
+      expect(vault.snapshot().threads[0].messages.at(-1)?.status).toBe('running');
+      finish(); await engine.settle(threadId);
+      expect(emit.mock.calls.at(-1)?.[0].state?.threads[0].messages.at(-1)).toMatchObject({ content: 'one: PARTIAL', status: 'complete' });
+    } finally { release(); finish(); await engine.shutdown(); }
+  });
+  it('keeps terminal status running until its final transaction commits and does not revive deleted messages', async () => {
+    let finish!: () => void; const stream = new Promise<void>((resolve) => { finish = resolve; });
+    const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); if (model.model === 'one') await stream; else await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 60_000);
+    const update = vault.update.bind(vault); let release!: () => void; let finalStarted!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { finalStarted = resolve; });
+    const first = await engine.start({ ...request, model: 'one' });
+    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { finalStarted(); await held; return update(change); });
+    try {
+      finish(); await started;
+      await engine.start({ ...request, model: 'two' });
+      const pending = emit.mock.calls.filter(([event]) => event.state).at(-1)?.[0].state;
+      expect(pending?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === first.threadId)?.messages.at(-1)).toMatchObject({ content: 'one: PARTIAL', status: 'running' });
+      expect(vault.snapshot().threads[0].messages.at(-1)?.content).toBe('');
+      release(); await engine.settle(first.threadId);
+      const completed = emit.mock.calls.filter(([event]) => event.state).at(-1)?.[0].state;
+      expect(completed?.threads[0].messages.at(-1)?.status).toBe('complete'); expect(completed?.threads[1].messages.at(-1)?.content).toBe('two: PARTIAL');
+      await update((state) => { state.threads[1].messages = []; });
+      await engine.start({ ...request, model: 'three' });
+      const removed = emit.mock.calls.filter(([event]) => event.state).at(-1)?.[0].state;
+      expect(removed?.threads[1].messages).toEqual([]);
+    } finally { release(); finish(); await engine.shutdown(); }
+  });
   it('does not regress a durable partial reply when a later initial-save callback releases an older whole-state snapshot', async () => {
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
     const update = vault.update.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });

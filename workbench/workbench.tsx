@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { SetStateAction } from 'react';
 import { emptyWorkspace, searchThreads, type ComposerDraft, type Message, type SubmitRequest, type Thread, type Workspace } from '../contracts/workspace';
 import { appendMessageQuote, conversationRevision } from '../contracts/conversations';
+import { mergeStreamingState } from '../contracts/streaming-state';
 import { composerContent, composerRevision, restoreComposer } from '../contracts/composer';
 import type { ApprovalRequest, ConversationMode } from '../contracts/tools';
 import { Button, Empty, IconButton, Input, Modal } from './components/controls';
@@ -27,7 +29,10 @@ import { CommandPalette } from './components/command-palette';
 
 type Page = WorkspacePage | 'plugin';
 export function Workbench() {
-  const [state, setState] = useState<Workspace | null>(null);
+  const [state, storeState] = useState<Workspace | null>(null);
+  const setState = useCallback((next: SetStateAction<Workspace | null>) => {
+    storeState((current) => mergeStreamingState(current, typeof next === 'function' ? next(current) : next));
+  }, []);
   const [page, setPage] = useState<Page>('chat');
   const [projectView, setProjectView] = useState<ProjectView>(() => ({ projectId: localStorage.getItem('qiyao.project') ?? '', panel: 'editor', files: true, terminal: false }));
   const projectContext = useRef<ProjectView | undefined>(undefined);
