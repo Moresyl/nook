@@ -1,0 +1,105 @@
+{
+  "verifiedAt": "2026-10-04T04:36:31.823Z",
+  "before": {
+    "measuredAt": "2026-10-04T04:26:46.645Z",
+    "label": "before",
+    "source": [
+      {
+        "path": "desktop/services/conversation-engine.ts",
+        "sha256": "14e5f15acf2fb98ef3ee05ce517aa260656540a87e1f38213d8ebab0b293de05"
+      },
+      {
+        "path": "desktop/services/vault.ts",
+        "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+      }
+    ],
+    "workspaceBytes": 84014340,
+    "largeFixtureContentSha256": "a99240e5370f96403e431e7fb1ad02e3c1217606b47b6dde1f8c77ec50a77d80",
+    "concurrentCompletedReplies": 4,
+    "atomicWorkspaceUpdates": 4,
+    "elapsedMs": 2838.9332000000004,
+    "beforeMemory": {
+      "rss": 481124352,
+      "heapTotal": 375676928,
+      "heapUsed": 239125384,
+      "external": 170058780,
+      "arrayBuffers": 168077903
+    },
+    "afterMemory": {
+      "rss": 901562368,
+      "heapTotal": 712138752,
+      "heapUsed": 575238560,
+      "external": 254109324,
+      "arrayBuffers": 252062951
+    },
+    "exactAllOwnersAndLargeFixtureVerified": true,
+    "priorBackupFinalReplyCount": 3,
+    "completePreviousFileRetained": false,
+    "scope": "Actual ConversationEngine and WorkspaceVault filesystem completion of four concurrently released responses over the same twenty-large-Unicode-message fixture. Both sides retain all four exact owners/replies and all twenty large messages; the batched side preserves the exact complete pre-final workspace as backup. Measured local Node process elapsed time includes persistence and state notifications; resource samples are before/after, not peaks or remote deadline samples. This does not establish the precise hosted queue/clone/IPC timeout contributions."
+  },
+  "after": {
+    "measuredAt": "2026-10-04T04:26:52.308Z",
+    "label": "after",
+    "source": [
+      {
+        "path": "desktop/services/conversation-engine.ts",
+        "sha256": "34900bf706ffa15dc95a05234a1ce9ccebf7b0d9ded2b3c95c2125199edf7e60"
+      },
+      {
+        "path": "desktop/services/vault.ts",
+        "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+      },
+      {
+        "path": "desktop/services/message-checkpoints.ts",
+        "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62"
+      }
+    ],
+    "workspaceBytes": 84014340,
+    "largeFixtureContentSha256": "a99240e5370f96403e431e7fb1ad02e3c1217606b47b6dde1f8c77ec50a77d80",
+    "concurrentCompletedReplies": 4,
+    "atomicWorkspaceUpdates": 1,
+    "elapsedMs": 888.2005000000004,
+    "beforeMemory": {
+      "rss": 481931264,
+      "heapTotal": 376201216,
+      "heapUsed": 239135872,
+      "external": 170058780,
+      "arrayBuffers": 168077903
+    },
+    "afterMemory": {
+      "rss": 711663616,
+      "heapTotal": 605937664,
+      "heapUsed": 468719808,
+      "external": 170028028,
+      "arrayBuffers": 168047111
+    },
+    "exactAllOwnersAndLargeFixtureVerified": true,
+    "priorBackupFinalReplyCount": 0,
+    "completePreviousFileRetained": true,
+    "scope": "Actual ConversationEngine and WorkspaceVault filesystem completion of four concurrently released responses over the same twenty-large-Unicode-message fixture. Both sides retain all four exact owners/replies and all twenty large messages; the batched side preserves the exact complete pre-final workspace as backup. Measured local Node process elapsed time includes persistence and state notifications; resource samples are before/after, not peaks or remote deadline samples. This does not establish the precise hosted queue/clone/IPC timeout contributions."
+  },
+  "elapsedReductionPercent": 68.71358227097417,
+  "logs": [
+    {
+      "name": "checkpoint-batching-negative.log",
+      "bytes": 1367,
+      "sha256": "c29609c4d5cde9ac3cd8f0ae85f77140c6d9be44a50050ca6b1b01112ab05df2"
+    },
+    {
+      "name": "checkpoint-batching-positive.log",
+      "bytes": 238,
+      "sha256": "f11f2d63811e64709dbcb838987d5ac54f1724cdabbd7756bb994caab9fdfe9c"
+    },
+    {
+      "name": "checkpoint-batching-before-benchmark.log",
+      "bytes": 180,
+      "sha256": "6db250b117fd64f67042fcf3117c05f77bcb0b68ddef17e3d4936f71951381c0"
+    },
+    {
+      "name": "checkpoint-batching-after-benchmark.log",
+      "bytes": 178,
+      "sha256": "99d2ea62d4a1d174d871deaf3dca10542858749e7d74835c0dff3e4731da2b98"
+    }
+  ],
+  "scope": "Actual local ConversationEngine and WorkspaceVault completion of four simultaneous replies over the same 84,014,340-byte Unicode workspace. Exact reply owners/content/status and all twenty large messages survive both implementations. The new batch also retains the complete pre-final file as the atomic backup. Before/after memory is sampled, not peak usage. This local comparison does not establish the precise hosted timeout phase or prove the next hosted run."
+}

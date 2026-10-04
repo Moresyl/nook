@@ -5,6 +5,7 @@ import { ConversationEngine } from '../desktop/services/conversation-engine';
 import type { ModelGateway, ModelInput, ModelReply } from '../desktop/services/model-gateway';
 import { ProjectTools, type ProjectToolExecutor } from '../desktop/services/project-tools';
 import { WorkspaceVault } from '../desktop/services/vault';
+import { workspaceSchema } from '../contracts/workspace';
 import { codec, request, sampleThread, testVault } from './fixtures';
 
 const directories: string[] = [];
@@ -17,6 +18,21 @@ async function setup(gateway: ModelGateway, tools?: ProjectToolExecutor, interva
 const call = { id: 'call', name: 'read_file', arguments: '{"path":"README.md","start_line":1,"max_lines":20}' };
 function reply(): ModelReply { return { kind: 'ollama', items: [{ role: 'assistant', tool_calls: [{ id: call.id, type: 'function', function: { name: call.name, arguments: call.arguments } }] }], toolCalls: [call] }; }
 describe('conversation engine', () => {
+  it('persists concurrent completed replies in one atomic checkpoint while retaining every owner and the previous complete file', async () => {
+    let finish!: () => void; let opened = 0; const completion = new Promise<void>((resolve) => { finish = resolve; });
+    const { engine, vault, directory } = await setup({ stream: async (_input, onText) => { const index = opened++; await completion; onText(`FINAL_${index}`); } }, undefined, 60_000);
+    const runs = []; for (let index = 0; index < 4; index++) runs.push(await engine.start({ ...request, text: `ATOMIC_OWNER_${index}` }));
+    expect(opened).toBe(4); const previous = await readFile(join(directory, 'workspace.json')); const update = vi.spyOn(vault, 'update');
+    finish(); await Promise.all(runs.map(({ threadId }) => engine.settle(threadId)));
+    expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
+    const persisted = workspaceSchema.parse(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')));
+    for (const [index, { threadId }] of runs.entries()) {
+      const thread = persisted.threads.find((thread) => thread.id === threadId);
+      if (!thread) throw new Error('The completed checkpoint lost its conversation owner.');
+      expect(thread.messages[0].content).toBe(`ATOMIC_OWNER_${index}`); expect(thread.messages[1]).toMatchObject({ content: `FINAL_${index}`, status: 'complete' });
+    }
+    expect(engine.active()).toBe(false); await engine.shutdown();
+  });
   it('stops only the selected project or provider and counts reserved new runs as active', async () => {
     const { engine, vault, directory } = await setup({ stream: async (input) => { await new Promise<void>((_resolve, reject) => input.signal.addEventListener('abort', () => reject(new DOMException('Stopped', 'AbortError')), { once: true })); } });
     await vault.update((draft) => { draft.projects.push({ id: 'project', name: 'Fixture', path: directory, instructions: '', createdAt: 1 }); draft.providers.push({ ...draft.providers[0], id: 'other-provider' }); });
