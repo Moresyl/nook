@@ -51,7 +51,7 @@ try {
   $taskDesktop = Get-Content verification/packaged-result.json -Raw | ConvertFrom-Json
   $taskAudit = Get-Content verification/package-audit-result.json -Raw | ConvertFrom-Json
   $taskInstalledAudit = Get-Content verification/installed-package-audit-result.json -Raw | ConvertFrom-Json
-  if (-not $taskDesktop.normalCloseVerified -or $taskDesktop.runtimeErrors.Count -ne 0 -or $taskDesktop.checks -lt 210 -or $taskDesktop.executableSha256 -ne $taskAudit.executableSha256 -or $taskDesktop.archiveSha256 -ne $taskAudit.archiveSha256 -or $taskInstalledAudit.executableSha256 -ne $taskAudit.executableSha256 -or $taskInstalledAudit.archiveSha256 -ne $taskAudit.archiveSha256) { throw 'Installed runtime must normally close and match the built application.' }
+  if (-not $taskDesktop.normalCloseVerified -or $taskDesktop.runtimeErrors.Count -ne 0 -or $taskDesktop.checks -lt 215 -or $taskDesktop.executableSha256 -ne $taskAudit.executableSha256 -or $taskDesktop.archiveSha256 -ne $taskAudit.archiveSha256 -or $taskInstalledAudit.executableSha256 -ne $taskAudit.executableSha256 -or $taskInstalledAudit.archiveSha256 -ne $taskAudit.archiveSha256) { throw 'Installed runtime must normally close and match the built application.' }
   $taskPassed = $true
 } finally {
   if ($taskRegistered) {

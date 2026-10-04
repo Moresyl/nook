@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, type RefObject } from 'react';
 import type { PromptBundle } from '../../contracts/prompt-bundles';
 import { promptParameters } from '../../contracts/prompt-templates';
 import { Button, Field, Input, Modal, Select, Textarea } from './controls';
 
-type Props = { bundle: PromptBundle; busy: boolean; onClose: () => void; onImport: () => void };
-export function PromptImportDialog({ bundle, busy, onClose, onImport }: Props) {
+type Props = { bundle: PromptBundle; busy: boolean; onClose: () => void; onImport: () => void; returnFocus: RefObject<HTMLButtonElement | null> };
+export function PromptImportDialog({ bundle, busy, onClose, onImport, returnFocus }: Props) {
   const [preview, setPreview] = useState(0);
   const template = bundle.templates[preview];
   const assistant = template.assistantIndex === undefined ? undefined : bundle.assistants[template.assistantIndex];
-  return <Modal title="导入提示模板" onClose={() => { if (!busy) onClose(); }} footer={<><Button disabled={busy} onClick={onClose}>取消</Button><Button tone="solid" disabled={busy} onClick={onImport}>添加 {bundle.templates.length} 个模板</Button></>}>
+  return <Modal title="导入提示模板" returnFocus={returnFocus} onClose={() => { if (!busy) onClose(); }} footer={<><Button disabled={busy} onClick={onClose}>取消</Button><Button tone="solid" disabled={busy} onClick={onImport}>添加 {bundle.templates.length} 个模板</Button></>}>
     <p className="field-hint">将添加 {bundle.templates.length} 个模板和 {bundle.assistants.length} 个关联助手副本。先查看完整内容；添加后可自行填写变量并追加到草稿。</p>
     <Field label="查看模板"><Select autoFocus disabled={busy} value={preview} onChange={(event) => setPreview(Number(event.target.value))}>{bundle.templates.map((item, index) => <option key={index} value={index}>{item.title}</option>)}</Select></Field>
     <Field label="模板简介"><Input readOnly value={template.description} /></Field>

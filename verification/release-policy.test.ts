@@ -18,7 +18,8 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 210, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash };
+  const desktop = { variant: 'packaged executable', checks: 215, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
@@ -27,7 +28,7 @@ function proof(): ReleaseProof {
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 210, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: 215, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -168,6 +169,23 @@ describe('Windows release execution evidence', () => {
       const failed = proof(); failed.desktop.assistantRecipes![key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('assistant-recipe');
       const absent = proof(); delete (absent.desktop.assistantRecipes as Partial<NonNullable<ReleaseProof['desktop']['assistantRecipes']>>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('assistant-recipe');
       const invalid = proof(); (invalid.desktop.assistantRecipes as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('assistant-recipe');
+    }
+  });
+  it('rejects the previous 210-check application even with matching complete suite and installation counts', () => {
+    const previous = proof(); previous.desktop.checks = 210; previous.installer.checks = 210;
+    previous.branches.suiteChecks = 210; previous.temporary.suiteChecks = 210; previous.comparisons.suiteChecks = 210;
+    expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
+  it('rejects missing, partial, excessive and requesting prompt-transfer proof', () => {
+    const missing = proof(); delete missing.desktop.promptTransfer; expect(() => verifyRuntimeProof(missing)).toThrow('prompt-transfer');
+    for (const count of [0, 4, 6, Number.NaN]) { const partial = proof(); partial.desktop.promptTransfer!.checks = count; expect(() => verifyRuntimeProof(partial)).toThrow('prompt-transfer'); }
+    for (const count of [1, -1, Number.NaN, '0']) { const requesting = proof(); (requesting.desktop.promptTransfer as unknown as Record<string, unknown>).transferModelRequests = count; expect(() => verifyRuntimeProof(requesting)).toThrow('prompt-transfer'); }
+  });
+  it('requires exact booleans for prompt export, preview/cancel, atomic retry, fresh shared bindings, zoom, backup and draft retention', () => {
+    for (const key of ['exportModesVerified', 'inertPreviewCancelVerified', 'atomicImportRetryVerified', 'sharedFreshAssociationsVerified', 'zoomKeyboardVerified', 'backupRestartVerified', 'originalDraftRetained'] as const) {
+      const failed = proof(); failed.desktop.promptTransfer![key] = false; expect(() => verifyRuntimeProof(failed)).toThrow('prompt-transfer');
+      const absent = proof(); delete (absent.desktop.promptTransfer as Partial<NonNullable<ReleaseProof['desktop']['promptTransfer']>>)[key]; expect(() => verifyRuntimeProof(absent)).toThrow('prompt-transfer');
+      const invalid = proof(); (invalid.desktop.promptTransfer as unknown as Record<string, unknown>)[key] = 'true'; expect(() => verifyRuntimeProof(invalid)).toThrow('prompt-transfer');
     }
   });
   it('rejects absent cleanup proof and untested or incomplete long-path launches', () => {
