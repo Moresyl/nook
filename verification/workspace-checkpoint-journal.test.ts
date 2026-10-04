@@ -2,6 +2,7 @@ import { readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { WorkspaceVault } from '../desktop/services/vault';
+import { ComposerDrafts } from '../desktop/services/composer-drafts';
 import type { Message } from '../contracts/workspace';
 import { codec, sampleThread, testVault } from './fixtures';
 
@@ -20,6 +21,73 @@ async function fixture() {
 }
 
 describe('durable response checkpoint journal', () => {
+  it('recovers actual composer saves and active-owner clearing with exact independent backups, then materializes canonical bytes', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture(); const original = await readFile(primary);
+    const drafts = new ComposerDrafts(vault);
+    await drafts.save({ threadId: 'thread', text: '未发送 🧪', attachments: [], model: 'fixture', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 });
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup)).toEqual(original);
+    const savedDraft = vault.snapshot(); await drafts.activate('thread');
+    expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(savedDraft, null, 2));
+    await drafts.activate(); const expected = vault.snapshot();
+    const recovered = new WorkspaceVault(directory, codec); await recovered.initialize(); expect(recovered.snapshot()).toEqual(expected);
+    expect(recovered.snapshot().activeThreadId).toBeUndefined(); expect((await readFile(journal, 'utf8')).includes('未发送 🧪')).toBe(true);
+    await recovered.flush(); expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(expected, null, 2));
+    await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+  it('retains draft metadata across response checkpoints and clears it atomically when continuing an existing conversation', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture(); const original = await readFile(primary);
+    await new ComposerDrafts(vault).save({ threadId: 'thread', text: 'Question', attachments: [], model: 'fixture', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 });
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Reply') }]); const before = vault.snapshot();
+    await vault.update(draft => { draft.threads[0].messages.push({ ...message('Next question'), id: 'question', role: 'user' }); draft.composerDrafts = []; }, { conversation: true });
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(before, null, 2));
+    const recovered = new WorkspaceVault(directory, codec); await recovered.initialize(); expect(recovered.snapshot()).toEqual(vault.snapshot());
+    expect(JSON.parse(await readFile(journal, 'utf8')).schemaVersion).toBe(2);
+  });
+  it.each(['append', 'remove', 'reorder', 'preferences'])('falls back to the original full-file transaction for structural or unrelated changes (%s)', async change => {
+    const { vault, directory, primary, journal } = await fixture();
+    await vault.update(draft => { draft.threads.push(sampleThread({ id: 'second' })); });
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Saved') }]);
+    await vault.update(draft => {
+      if (change === 'append') draft.threads.push(sampleThread({ id: 'third' }));
+      if (change === 'remove') draft.threads.pop();
+      if (change === 'reorder') draft.threads.reverse();
+      if (change === 'preferences') draft.preferences.theme = 'dark';
+    }, { conversation: true });
+    expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+    await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+    const recovered = new WorkspaceVault(directory, codec); await recovered.initialize(); expect(recovered.snapshot()).toEqual(vault.snapshot());
+  });
+  it('does not materialize a pending journal on a no-op conversation activation', async () => {
+    const { vault, primary, journal } = await fixture(); await vault.update(draft => { draft.activeThreadId = 'thread'; });
+    const original = await readFile(primary); await vault.checkpointMessages([{ threadId: 'thread', message: message('Saved') }]);
+    const saved = await readFile(journal); await new ComposerDrafts(vault).activate('thread');
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(journal)).toEqual(saved);
+  });
+  it('keeps a failed draft journal unpublished and retries without losing the previous response checkpoint', async () => {
+    const { vault, directory, primary, journal } = await fixture(); await vault.checkpointMessages([{ threadId: 'thread', message: message('Saved') }]);
+    const before = vault.snapshot(), original = await readFile(primary), saved = await readFile(journal);
+    const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');
+    vi.mocked(rename).mockImplementationOnce(async (from, to) => actual.rename(from, to)).mockRejectedValueOnce(Object.assign(new Error('Disk unavailable'), { code: 'EIO' }));
+    const change = (draft: ReturnType<WorkspaceVault['snapshot']>) => { draft.activeThreadId = 'thread'; };
+    await expect(vault.update(change, { conversation: true })).rejects.toThrow();
+    expect(vault.snapshot()).toEqual(before); expect(await readFile(primary)).toEqual(original); expect(await readFile(journal)).toEqual(saved);
+    const recovered = new WorkspaceVault(directory, codec); await recovered.initialize(); expect(recovered.snapshot()).toEqual(before);
+    await vault.update(change, { conversation: true });
+    const retried = new WorkspaceVault(directory, codec); await retried.initialize(); expect(retried.snapshot()).toEqual(vault.snapshot());
+  });
+  it.each(['owner', 'active', 'duplicate', 'legacy'])('rejects malformed draft journal metadata (%s) without disclosing its contents', async kind => {
+    const { vault, directory, journal } = await fixture();
+    await new ComposerDrafts(vault).save({ threadId: 'thread', text: 'PRIVATE_DRAFT_BODY', attachments: [], model: 'fixture', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 });
+    const saved = JSON.parse(await readFile(journal, 'utf8'));
+    if (kind === 'owner') saved.composer.composerDrafts[0].threadId = 'missing';
+    if (kind === 'active') saved.composer.activeThreadId = 'missing';
+    if (kind === 'duplicate') saved.composer.composerDrafts.push(saved.composer.composerDrafts[0]);
+    if (kind === 'legacy') saved.schemaVersion = 1;
+    const bytes = JSON.stringify(saved); await writeFile(journal, bytes);
+    let failure: unknown; try { await new WorkspaceVault(directory, codec).initialize(); } catch (error) { failure = error; }
+    expect(failure).toBeInstanceOf(Error); expect((failure as Error).message).not.toContain('PRIVATE_DRAFT_BODY'); expect((failure as Error).cause).toBeUndefined();
+    expect(await readFile(journal, 'utf8')).toBe(bytes);
+  });
   it('commits the exact previous backup and a recoverable checkpoint without replacing the full primary; flush materializes exact canonical bytes', async () => {
     const { vault, directory, primary, backup, journal } = await fixture();
     const before = await readFile(primary); const primaryId = (await stat(primary, { bigint: true })).ino;

@@ -15,7 +15,7 @@ export class ComposerDrafts {
       else if (index < 0) { if (state.composerDrafts.length >= 100) throw new Error('Conversation drafts are limited to 100 owners. Send or clear an existing draft first.'); state.composerDrafts.push(draft); }
       else state.composerDrafts[index] = draft;
       if (Buffer.byteLength(JSON.stringify(state.composerDrafts), 'utf8') > 32_000_000) throw new Error('Conversation drafts exceed 32 MB. Send or clear an existing draft before saving more.');
-    });
+    }, { conversation: true });
   }
 
   async activate(raw?: unknown): Promise<void> {
@@ -23,6 +23,6 @@ export class ComposerDrafts {
     await this.vault.update((state) => {
       if (id && !state.threads.some((thread) => thread.id === id)) throw new Error('This conversation no longer exists.');
       state.activeThreadId = id;
-    });
+    }, { conversation: true });
   }
 }

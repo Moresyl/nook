@@ -57,7 +57,7 @@ export class ConversationEngine {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
     const prepared = this.prepareStart(raw, this.vault.snapshot());
     try {
-      const state = await this.vault.update(prepared.apply);
+      const state = await this.vault.update(prepared.apply, { conversation: true });
       this.notify({ threadId: prepared.threadId, messageId: prepared.messageId, state });
       prepared.launch(); return { threadId: prepared.threadId };
     } catch (error) { prepared.release(); throw error; }

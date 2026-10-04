@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { cp, mkdtemp, mkdir, readFile, rm, statfs, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, readFile, rm, stat, statfs, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -239,7 +239,29 @@ async function waitForBridge(page, predicate, argument) {
 async function waitForCheckpoint(content) {
   const deadline = Date.now() + 5000;
   while (Date.now() < deadline) {
-    const state = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8'));
+    const primary = join(directory, 'workspace.json');
+    const bytes = await readFile(primary);
+    const state = JSON.parse(bytes.toString('utf8'));
+    const journalPath = join(directory, 'workspace.checkpoints.json');
+    let journalBytes;
+    try {
+      assert.ok((await stat(journalPath)).size <= 8 * 1024 * 1024, 'The durable response journal exceeds its recovery bound.');
+      journalBytes = await readFile(journalPath);
+    } catch (error) { if (error.code !== 'ENOENT') throw error; }
+    if (journalBytes) {
+      assert.ok(journalBytes.length <= 8 * 1024 * 1024);
+      const saved = JSON.parse(journalBytes.toString('utf8')); const signature = await stat(primary, { bigint: true });
+      if (saved.baseSha256 === createHash('sha256').update(bytes).digest('hex') && signature.ino !== 0n
+        && saved.signature.ino === signature.ino.toString() && saved.signature.mtimeNs === signature.mtimeNs.toString()) {
+        assert.ok(saved.schemaVersion === 1 || saved.schemaVersion === 2);
+        assert.ok(Array.isArray(saved.threads) && saved.threads.length <= 10000);
+        const indices = new Set();
+        for (const { index, thread } of saved.threads) {
+          assert.ok(Number.isInteger(index) && index >= 0 && index < state.threads.length && !indices.has(index));
+          assert.equal(thread.id, state.threads[index].id); assert.ok(!thread.temporary); indices.add(index); state.threads[index] = thread;
+        }
+      }
+    }
     if (state.threads.at(-1)?.messages.at(-1)?.content === content) return;
     await new Promise((resolve) => setTimeout(resolve, 100));
   }

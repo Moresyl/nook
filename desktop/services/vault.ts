@@ -1,5 +1,6 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { isDeepStrictEqual } from 'node:util';
 import { emptyWorkspace, workspaceSchema, type Message, type Project, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
@@ -80,8 +81,8 @@ export class WorkspaceVault {
     this.tail = operation.catch(() => {}); await operation;
   }
 
-  update(change: (draft: Workspace) => void): Promise<Workspace> {
-    return this.save(change);
+  update(change: (draft: Workspace) => void, options?: { conversation: boolean }): Promise<Workspace> {
+    return this.save(change, undefined, options?.conversation);
   }
 
   checkpointMessages(entries: { threadId: string; message: Message }[]): Promise<Workspace> {
@@ -96,23 +97,34 @@ export class WorkspaceVault {
     }, captured.map(entry => entry.threadId));
   }
 
-  private save(change: (draft: Workspace) => void, checkpointIds?: string[]): Promise<Workspace> {
+  private save(change: (draft: Workspace) => void, checkpointIds?: string[], conversation = false): Promise<Workspace> {
     const operation = this.tail.then(async () => {
       const draft = this.snapshot();
       change(draft);
       const next = workspaceSchema.parse(draft);
       const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
-      const previousBytes = this.persistentBytes ?? this.serialization.serialize(persistentWorkspace(this.state, this.persistentActiveThreadId));
+      const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
+      const previousBytes = this.persistentBytes ?? this.serialization.serialize(previous);
       const nextBytes = this.serialization.serialize(persistent);
       if (!previousBytes.equals(nextBytes)) {
-        const candidate = checkpointIds ? await this.checkpoints.prepare(persistent, checkpointIds) : undefined;
+        let ids = checkpointIds;
+        let includeComposer = false;
+        if (conversation) {
+          const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, ...oldHeader } = previous;
+          const { threads, composerDrafts, activeThreadId, ...header } = persistent;
+          if (isDeepStrictEqual(oldHeader, header) && oldThreads.length === threads.length && threads.every((thread, index) => thread.id === oldThreads[index].id)) {
+            ids = threads.filter((thread, index) => JSON.stringify(thread) !== JSON.stringify(oldThreads[index])).map(thread => thread.id);
+            includeComposer = !isDeepStrictEqual(oldDrafts, composerDrafts) || oldActive !== activeThreadId;
+          }
+        }
+        const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer) : undefined;
         await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
         if (candidate) await this.checkpoints.commit(candidate);
         else {
           await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
           await this.checkpoints.reset(nextBytes);
         }
-      } else if (!checkpointIds && this.checkpoints.pending) {
+      } else if (!checkpointIds && !conversation && this.checkpoints.pending && isDeepStrictEqual(next, this.state)) {
         await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(nextBytes));
         await this.checkpoints.reset(nextBytes);
       }
