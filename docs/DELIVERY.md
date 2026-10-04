@@ -1,6 +1,6 @@
 # Delivery requirements
 
-项目局部读取源码的 683／67／215、正常关闭、两次启动错误检查已通过，并完成同一构建的 215 项未安装／实际安装检查、4 项设置、7 项便携、真实 PowerShell 5 兼容、安装与便携启动组件、快捷方式和数据保留卸载。十份记录严格匹配，四个实际二进制已单独保存，两张当前安装版项目截图逐张审阅；见 `verification/project-access-distribution-result.json`。原有终端和模型检查期限保持不变。远端 `37183557672` 通过 683 项单元测试和 144 项桌面检查后，手动编辑续聊的助手回复出现连接错误，尚未达到完整运行验收；现场为 `verification/hosted-project-access-message-failure-result.json`。接下来补齐具体传输诊断、完整远端流水线与全部剩余能力／UI 范围，完成后走流水线发布，无需用户再次确认。
+新增受限传输诊断已通过 683／67／215、正常关闭及两次当前启动错误检查，四次实际续聊均捕获 HTTP 200，独立服务器主动断连捕获 `UND_ERR_SOCKET`，原有完成期限、轮询及请求计数保持不变；见 `verification/provider-transport-source-review-result.json`。三份编译资源与此前完整本地分发应用体字节一致，二十份当前原始记录和两张逐张审阅的项目截图归档。此前项目局部分发的四个二进制、215 项未安装／实际安装、便携／兼容终端及十份匹配记录继续单独保留。远端 `37183557672` 的续聊连接错误具体原因仍待诊断，新运行 `37186719269` 已进入完整桌面检查。接下来核验新增诊断下的同一应用体运行、远端及全部剩余能力／UI 范围，完成后走流水线发布，无需再次确认。
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.
 

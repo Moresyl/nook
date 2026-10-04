@@ -1,0 +1,194 @@
+{
+  "verifiedAt": "2026-10-04T08:02:29.185Z",
+  "cases": [
+    {
+      "input": "workspace.json",
+      "elapsedMs": 351,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791100948700,
+            "memory": {
+              "rss": 88297472,
+              "heapTotal": 23605248,
+              "heapUsed": 18331280,
+              "external": 3507148,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 78000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791100948717,
+            "memory": {
+              "rss": 94101504,
+              "heapTotal": 23605248,
+              "heapUsed": 18345956,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 93000,
+              "system": 156000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791100948721,
+            "memory": {
+              "rss": 102850560,
+              "heapTotal": 23605248,
+              "heapUsed": 18357940,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 187000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791100948773,
+            "memory": {
+              "rss": 104595456,
+              "heapTotal": 23605248,
+              "heapUsed": 18377232,
+              "external": 3507372,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 187000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": "credentials.json",
+      "elapsedMs": 262,
+      "exitCode": 1,
+      "exactFailurePhaseVerified": true,
+      "nativeErrorDialogDidNotBlock": true,
+      "privateInputNotLogged": true,
+      "diagnostics": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791100949044,
+            "memory": {
+              "rss": 88449024,
+              "heapTotal": 23343104,
+              "heapUsed": 18502172,
+              "external": 3507148,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791100949048,
+            "memory": {
+              "rss": 93888512,
+              "heapTotal": 23343104,
+              "heapUsed": 18510348,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791100949054,
+            "memory": {
+              "rss": 103190528,
+              "heapTotal": 23343104,
+              "heapUsed": 18522332,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.workspace.parsed",
+            "at": 1791100949054,
+            "memory": {
+              "rss": 103473152,
+              "heapTotal": 23343104,
+              "heapUsed": 18531108,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "vault.credentials.read",
+            "at": 1791100949055,
+            "memory": {
+              "rss": 103473152,
+              "heapTotal": 23343104,
+              "heapUsed": 18531424,
+              "external": 3507204,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 93000
+            }
+          },
+          {
+            "phase": "failed",
+            "at": 1791100949056,
+            "memory": {
+              "rss": 103981056,
+              "heapTotal": 23605248,
+              "heapUsed": 18557584,
+              "external": 3507377,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 156000,
+              "system": 156000
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "source": [
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "4823afad4ce144eaa3ee6daf72cc4bbd8f76446c67535e70de072d6e648e6f5e"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "37ce0b88d49b5fbfec953ab4eadebbf7039f74e704c39c1cfe86fe6534514e56"
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+    }
+  ],
+  "scope": "Two real isolated Electron processes with malformed workspace and credential files exit with code 1 before the unchanged 30-second discovery deadline. Exact phase/resource diagnostics are captured and private input is omitted. The isolated diagnostic flag prevents an unattended native startup error dialog from blocking exit. Normal production startup errors keep their native dialog. This reproduces the native error reporting branch; it does not identify the earlier hosted startup timeout cause."
+}
