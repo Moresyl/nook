@@ -57,13 +57,19 @@ describe('attachment ingestion', () => {
     expect(file.image?.mimeType).toBe('image/jpeg'); expect(file.content).toBe(''); expect(file.source?.format).toBe(format); expect(metadata.exif).toBeUndefined(); expect(metadata.orientation).toBeUndefined(); expect(metadata.width).toBe(file.image?.width); expect(metadata.height).toBe(file.image?.height); expect(file.warnings?.[0]).toContain('元数据');
     expect(attachmentImageUrl(file)).toMatch(/^data:image\/jpeg;base64,/); expect(attachmentImageUrl({ id: 'f', name: 'text', content: '' })).toBeUndefined();
   });
-  it('resizes large images, treats renamed SVG as invalid image input, rejects damaged files and never reports private parser data', async () => {
+  it('resizes large images and reports the retained dimension limit', async () => {
     const file = await parseAttachment(input('large.png', await imageBytes('png', 2400, 1200))); expect(Math.max(file.image!.width, file.image!.height)).toBe(2000); expect(file.warnings?.some((value) => value.includes('2,000'))).toBe(true);
+  });
+  it('rejects renamed SVG, damaged and unsupported files without exposing private parser data', async () => {
     await expect(parseAttachment(input('image.png', Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><rect width="10" height="10"/></svg>')))).rejects.toThrow('image');
     await expect(parseAttachment(input('private.docx', Buffer.from('PRIVATE_CORRUPT_CONTENT')))).rejects.toThrow('integrity');
     await expect(parseAttachment(input('old.doc', Buffer.from('Old document')))).rejects.toThrow('unsupported');
+  });
+  it('rejects noncanonical base64 and oversized input before parsing', async () => {
     await expect(parseAttachment({ name: 'text.txt', data: 'Zh==' })).rejects.toThrow('canonical base64');
     const oversized = input('file.txt', Buffer.alloc(12_000_001)); await expect(parseAttachment(oversized)).rejects.toThrow('12 MB');
+  });
+  it('rejects document expansion beyond the extraction limit', async () => {
     const bomb = zipSync({ 'word/document.xml': strToU8('x'.repeat(32_000_001)) }); await expect(parseAttachment(input('bomb.docx', Buffer.from(bomb)))).rejects.toThrow(/limits|integrity/);
   });
   it('validates persistence shapes and preserves legacy attachments', async () => {

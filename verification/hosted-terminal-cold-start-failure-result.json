@@ -1,0 +1,253 @@
+{
+  "verifiedAt": "2026-10-04T20:17:12.209Z",
+  "runId": 37229762837,
+  "codeCommit": "5e8eec785b2dad7a8d33954b0f861b3297792771",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37229762837",
+  "conclusion": "failure",
+  "unitTestsPassed": 735,
+  "packagedAssertionsBeforeFailure": 164,
+  "wait": {
+    "waitStartedAt": 1791144225363,
+    "failedAt": 1791144235425,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "polls": [
+      {
+        "startedAt": 1791144233709,
+        "completedAt": 1791144233711,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144233819,
+        "completedAt": 1791144233821,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144233928,
+        "completedAt": 1791144233931,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234032,
+        "completedAt": 1791144234034,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234148,
+        "completedAt": 1791144234150,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234257,
+        "completedAt": 1791144234259,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234368,
+        "completedAt": 1791144234370,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234477,
+        "completedAt": 1791144234479,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234580,
+        "completedAt": 1791144234582,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234682,
+        "completedAt": 1791144234684,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234790,
+        "completedAt": 1791144234792,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144234899,
+        "completedAt": 1791144234901,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144235003,
+        "completedAt": 1791144235005,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144235105,
+        "completedAt": 1791144235108,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144235212,
+        "completedAt": 1791144235214,
+        "reached": false
+      },
+      {
+        "startedAt": 1791144235323,
+        "completedAt": 1791144235325,
+        "reached": false
+      }
+    ]
+  },
+  "startup": {
+    "at": 1791144235532,
+    "lastPoll": {
+      "at": 1791144235325,
+      "terminals": [
+        {
+          "id": "e6bbfedc-c10e-43fa-add1-13d03b43cd64",
+          "projectId": "5ac41062-2b51-4f6d-844a-2e322e5a3864",
+          "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-db035520a053425e920457fd8ac79a85\\qiyao-electron-g998KM\\文件树 项目",
+          "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+          "status": "running",
+          "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h",
+          "sequence": 3
+        }
+      ]
+    },
+    "current": [
+      {
+        "id": "e6bbfedc-c10e-43fa-add1-13d03b43cd64",
+        "projectId": "5ac41062-2b51-4f6d-844a-2e322e5a3864",
+        "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-db035520a053425e920457fd8ac79a85\\qiyao-electron-g998KM\\文件树 项目",
+        "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "status": "running",
+        "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h",
+        "sequence": 3
+      }
+    ]
+  },
+  "processes": {
+    "capturedAt": 1791144235535,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791144225418,
+        "pid": 7476,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 3,
+        "characters": 137,
+        "firstDataAt": 1791144225671,
+        "lastDataAt": 1791144225792
+      }
+    ],
+    "mainMemory": {
+      "rss": 98123776,
+      "heapTotal": 357728256,
+      "heapUsed": 353700420,
+      "external": 172987701,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 3609505792,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 3248,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 11.219892,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 95912,
+          "peakWorkingSetSize": 2527312,
+          "privateBytes": 647292
+        }
+      },
+      {
+        "pid": 544,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 0.905932,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 64840,
+          "peakWorkingSetSize": 95624,
+          "privateBytes": 17512
+        }
+      },
+      {
+        "pid": 3732,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.045419,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 43104,
+          "peakWorkingSetSize": 49968,
+          "privateBytes": 12276
+        }
+      },
+      {
+        "pid": 5332,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 8.264017,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 1153020,
+          "peakWorkingSetSize": 1370224,
+          "privateBytes": 1187988
+        }
+      }
+    ]
+  },
+  "later": {
+    "startedAt": 1791144235537,
+    "capturedAt": 1791144240297,
+    "current": [
+      {
+        "id": "e6bbfedc-c10e-43fa-add1-13d03b43cd64",
+        "projectId": "5ac41062-2b51-4f6d-844a-2e322e5a3864",
+        "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-db035520a053425e920457fd8ac79a85\\qiyao-electron-g998KM\\文件树 项目",
+        "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "status": "running",
+        "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007PS C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-db035520a053425e920457fd8ac79a85\\qiyao-electron-g998KM\\文件树 项目> ",
+        "sequence": 5
+      }
+    ]
+  },
+  "firstObservedPromptElapsedMs": 14934,
+  "exactColdStartCauseEstablished": false,
+  "log": {
+    "bytes": 279018,
+    "sha256": "3a6058e2b4567fb842b9a0e00664572965c77ac48f8e6f0a6f529e7d988792ed"
+  },
+  "artifact": {
+    "id": 11313870776,
+    "bytes": 6415342,
+    "sha256": "9c06a76243f5231e9813821c5c7374e5ba35d3da18998fc9409dbe182e9f0c72",
+    "githubDigestMatched": true
+  },
+  "screenshot": {
+    "sha256": "e423a25432f8e91bece64f9b66d0c725b029c0b3b332b6f74aacc94249a1131c",
+    "width": 760,
+    "height": 540,
+    "individuallyReviewed": true,
+    "observation": "The later dark minimum-window capture shows the eventual PowerShell prompt and retained unsaved editor content; it is not evidence that the original ten-second condition passed."
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "hostedVerified": false,
+  "publicationVerified": false
+}

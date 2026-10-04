@@ -1,0 +1,1 @@
+export function waitForTerminalPrompt(read: () => Promise<{ id: string; status: string; output: string }[]>, options?: { timeoutMs?: number }): Promise<{ id: string; elapsedMs: number; timeoutMs: number }>;

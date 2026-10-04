@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { waitForTerminalPrompt } from './terminal-prompt.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
   async function waitForMain(expression) {
@@ -72,7 +73,8 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const heading = page.locator('.project-inspector > .section-heading'); assert.equal(await heading.getByRole('heading', { name: longName, exact: true }).getAttribute('title'), longName); assert.equal(await heading.locator('.path-text').getAttribute('title'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
   await page.getByRole('button', { name: '终端', exact: true }).click(); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
   try {
-    await waitForBridge(page, async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals.some((terminal) => terminal.output.includes('PS ')); }, projectId);
+    const startup = await waitForTerminalPrompt(() => page.evaluate(async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals; }, projectId));
+    console.log('Project terminal cold-start timing', JSON.stringify(startup));
   } catch (error) {
     console.error('Project terminal startup diagnostics', JSON.stringify(await page.evaluate(async (id) => ({ at: Date.now(), lastPoll: globalThis.qiyaoTreePromptPoll, current: (await window.qiyao.terminalList(id)).map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }), projectId).catch((failure) => ({ diagnosticError: String(failure) }))));
     console.error('Project terminal process diagnostics', JSON.stringify(await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot()').catch(() => ({ diagnosticError: 'Main-process diagnostics unavailable' }))));
@@ -181,7 +183,8 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const restoredRows = await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')]));
   await input().focus(); await executeCommand('隐藏文件树', '99-project-file-command-dark.png'); assert.equal(await tree().count(), 0); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   await executeCommand('显示文件树'); assert.deepEqual(await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')])), restoredRows);
-  await executeCommand('显示终端'); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click(); await waitForBridge(page, async (id) => (await window.qiyao.terminalList(id)).some((terminal) => terminal.output.includes('PS ')), projectId);
+  await executeCommand('显示终端'); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
+  console.log('Project command terminal cold-start timing', JSON.stringify(await waitForTerminalPrompt(() => page.evaluate((id) => window.qiyao.terminalList(id), projectId))));
   const terminalId = await page.evaluate(async (id) => (await window.qiyao.terminalList(id))[0].id, projectId);
   await page.locator('.xterm-helper-textarea').focus(); await page.keyboard.type("echo ('COMMAND'+'PANEL');Read-Host '>'", { delay: 5 }); await page.keyboard.press('Enter'); await page.locator('.xterm-accessibility-tree').getByText('COMMANDPANEL', { exact: true }).waitFor();
   await executeCommand('隐藏终端', '100-project-terminal-command-dark.png'); assert.equal(await page.locator('.project-terminal').count(), 0); assert.equal(await page.evaluate(async ({ id, terminalId }) => (await window.qiyao.terminalList(id)).some((terminal) => terminal.id === terminalId && terminal.output.includes('COMMANDPANEL')), { id: projectId, terminalId }), true);
