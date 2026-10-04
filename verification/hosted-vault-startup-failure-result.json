@@ -1,0 +1,108 @@
+{
+  "verifiedAt": "2026-10-04T01:43:25.047Z",
+  "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+  "runId": 37167281647,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37167281647",
+  "conclusion": "failure",
+  "unitTests": 649,
+  "unitFiles": 63,
+  "passedDesktopChecks": 160,
+  "artifact": {
+    "id": 11289842363,
+    "name": "windows-verification-37167281647-1",
+    "bytes": 5961624,
+    "digest": "sha256:7a4a92843d4a0aa11b1dcc8c765a4ce6d54c08a5a5c01495f2478e8a6a102ca5"
+  },
+  "actualBody": {
+    "executableSha256": "085ecc051cf640a7913d98f7e7d23922b122df412a7c74d3fd710ffc41d23ca3",
+    "archiveSha256": "53ee7e8434a9650b2164af60a4bdd88b88adcde82600673255d5ec37a07322af",
+    "auditSha256": "6e166c51569fc9374fcec7d4f8b6be50a3c41d319e1940f6b3392daee2b09111"
+  },
+  "startup": {
+    "originalPageDiscoveryDeadlineMs": 30000,
+    "separatelyCapturedElapsedFromSpawnMs": 31292,
+    "processExited": false,
+    "pages": [],
+    "mainReady": true,
+    "windows": [],
+    "initializationPhaseCaptured": false,
+    "nativeStartupErrorCaptured": false,
+    "deadlineResourceSampleCaptured": false
+  },
+  "modelComparisonReached": false,
+  "newComparisonFailureDiagnosticsExercised": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "6e166c51569fc9374fcec7d4f8b6be50a3c41d319e1940f6b3392daee2b09111"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "5cb87548395bbc1965cafdf93d837a049f658ef4dd6831f8b326a0fe6db2398c",
+    "historical210CohortAcceptedForOwnBody": true,
+    "mixingFreshAuditRejected": true,
+    "rejection": "Runtime proof must match the audited application and normal close"
+  },
+  "logs": [
+    {
+      "name": "github-vault-serialization-full.log",
+      "sha256": "688ef9fc929de7c47eb4267163a9e8139fbbdb1cc590634585926507ae415aa7",
+      "bytes": 244627
+    },
+    {
+      "name": "github-vault-serialization-failed.log",
+      "sha256": "aa532715d1e9d3d4e9f41c9765ee0cae1f31c84673c4004c28cc8585d24e4dd2",
+      "bytes": 41624
+    }
+  ],
+  "scope": "The exact final byte-cache source passes 649 unit tests, type/build/package gates and 160 desktop checks. Large JSON restore, actual gzip export, filesystem replacement failure and corrupt-input rejection pass. The following gzip restoration/restart fails the unchanged 30-second application page-discovery wait. A later probe 31,292 ms from spawn finds the process alive, Electron ready, no pages and no BrowserWindows. Startup phase, a possible native startup error and deadline resources are not captured, so the exact cause is not established. Comparisons and their new completion-failure probes are not reached. Nine required runtime records are absent; the collector rejects them and the frozen source policy rejects mixing the new audit with the historical 210-check body. Successful local source evidence keeps its independent scope; fresh hosted installation and release remain unverified."
+}
