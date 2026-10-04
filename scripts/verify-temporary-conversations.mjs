@@ -73,7 +73,11 @@ export async function verifyTemporaryConversations({ page, application, getAppli
   await page.locator('article.message-user').first().getByRole('button', { name: '从这里创建分支', exact: true }).click();
   await waitForBridge(page, async (id) => { const state = await window.qiyao.load(); return state.threads.find((thread) => thread.id === state.activeThreadId)?.forkedFrom?.threadId === id; }, id);
   state = await page.evaluate(() => window.qiyao.load()); const branchId = state.activeThreadId; assert.equal(state.threads.find((thread) => thread.id === branchId).temporary, true);
-  await input().fill('slow TEMP_CHAT_STOPPED_SECRET'); privateData.add('TEMP_CHAT_STOPPED_SECRET'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
+  const branchTitle = state.threads.find((thread) => thread.id === branchId).title;
+  await waitForBridge(page, (title) => document.querySelector('.thread-title')?.getAttribute('title') === title, branchTitle);
+  await input().fill('slow TEMP_CHAT_STOPPED_SECRET');
+  assert.equal(await input().inputValue(), 'slow TEMP_CHAT_STOPPED_SECRET');
+  privateData.add('TEMP_CHAT_STOPPED_SECRET'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id)?.messages.at(-1)?.content.includes('First partial response'), branchId);
   await page.getByRole('button', { name: '停止生成', exact: true }).click();
   await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id)?.messages.at(-1)?.status === 'stopped', branchId);

@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-10-04T21:45:19.653Z",
+  "executableSha256": "6287791c90310d65da2d7c74024539c737a83f2f0c1afbac5d7c1e808c01c679",
+  "archiveSha256": "248b7adc60bd89944c733b4e427aa973ffcb70b36b57f01c4336d8ec3428cfbb",
+  "nativeChecks": 6,
+  "temporaryModelRequests": 3,
+  "activeSwitchesVerifiedEachLaunch": true,
+  "observations": [
+    {
+      "elapsedMs": 110,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 2637,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 77,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "logSha256": "3477e170d3bbb29f916132cf762db6dc91ffaa3cabe6d52d709e5523e804a636",
+  "precedingFailedLogSha256": "556d175b834aee4e44e6146a3440377a2910c16e151013b28ae97770f37af639",
+  "precedingFailure": "The test filled before branch rendering settled; its send click then waited on a disabled button. The later failure screenshot showed the new branch with empty input.",
+  "correction": "Wait for the backend-created branch title to appear in the actual renderer, then fill and assert the exact input before sending. All original privacy, backup, request-count and restart assertions remain.",
+  "productCodeChanged": false,
+  "fullNewConfigurationVerified": false,
+  "hostedVerified": false,
+  "hostedCauseEstablished": false
+}

@@ -48,6 +48,8 @@ import { chatNavigationFixture } from '../verification/chat-navigation-fixture.m
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
+// Match Playwright's Electron loader for unattended CDP interaction, without changing product defaults.
+const rendererTestSwitches = ['disable-background-timer-throttling', 'disable-backgrounding-occluded-windows', 'disable-renderer-backgrounding'];
 const scratchRoot = resolve(tmpdir());
 const scratchSpace = await statfs(scratchRoot);
 if (scratchSpace.bavail * scratchSpace.bsize < 1_000_000_000) throw new Error('Desktop verification needs at least 1 GB of free temporary disk space. Archive old test workspaces or choose another TMP directory.');
@@ -270,7 +272,7 @@ async function waitForCheckpoint(content) {
 async function launch() {
   application = undefined; currentPage = undefined;
   const startedAt = Date.now();
-  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
   const exited = new Promise((resolve) => child.once('exit', resolve));
   let diagnostics = '';
@@ -309,6 +311,9 @@ async function launch() {
   }
   let browser; let page;
   try {
+    const activeRendererSwitches = await evaluateMain(`${JSON.stringify(rendererTestSwitches)}.filter(name => require('electron').app.commandLine.hasSwitch(name))`);
+    assert.deepEqual(activeRendererSwitches, rendererTestSwitches, 'The explicit renderer test configuration must be active.');
+    console.log('Desktop renderer test switches', JSON.stringify(activeRendererSwitches));
     browser = await chromium.connectOverCDP(debuggerUrl);
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
   } catch (error) {
