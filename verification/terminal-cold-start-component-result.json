@@ -1,0 +1,155 @@
+{
+  "verifiedAt": "2026-10-04T20:26:56.989Z",
+  "codeCommit": "96d1fa756399fe38805b060574180e1902dd8606",
+  "applicationCodeCommit": "5b54696",
+  "unitTestsPassed": 746,
+  "unitFiles": 70,
+  "focusedTests": 8,
+  "attachmentAndCommandTests": 35,
+  "typecheckPassed": true,
+  "focusedCoverage": {
+    "lines": {
+      "total": 12,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 19,
+      "covered": 19,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 7,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 12,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "fullCoverage": {
+    "lines": {
+      "total": 3212,
+      "covered": 3190,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5427,
+      "covered": 5265,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1216,
+      "covered": 1182,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3828,
+      "covered": 3619,
+      "skipped": 0,
+      "pct": 94.54
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "scripts/terminal-prompt.mjs",
+      "sha256": "674304a19f64c91e1bb1edf55f6762b7a4f91ab86183c0d64051dc5056148270"
+    },
+    {
+      "path": "scripts/terminal-prompt.d.mts",
+      "sha256": "2cc1ab40b6365e8d49fc44c8d5e7ca57882036b405b687dab3bba6a7f0cf32e6"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "4658ef74cbac59e9273f3d03b1532c109924516d40d971d0fc5614002d776720"
+    },
+    {
+      "path": "verification/terminal-prompt.test.ts",
+      "sha256": "6c555a4e23d2c934dfeb993d705d2dc860b7c88245b8d5ec8ddbff2346a80c2f"
+    },
+    {
+      "path": "verification/attachments.test.ts",
+      "sha256": "ef597c3aa5bdd371bb7cab3e04872ed70e2b89275537325ed27afb4aee4a7177"
+    }
+  ],
+  "logs": [
+    {
+      "name": "terminal-cold-start-focused-unit.log",
+      "bytes": 875,
+      "sha256": "8e2a37c796f64982fc4e6d22308ae6458bcffc46bd7afb9281919b95c9dba556"
+    },
+    {
+      "name": "terminal-cold-start-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "terminal-cold-start-full-unit.log",
+      "bytes": 4475,
+      "sha256": "fc11c1f2f0f7afde639d7edc78cef31080031ad3cc9644383347dd482c5951fc"
+    },
+    {
+      "name": "terminal-cold-start-attachment-split-focused.log",
+      "bytes": 226,
+      "sha256": "f21aa113b41d840d4b7555ab1fabc114c080e1dce14f24d0a3b842f03f1067dd"
+    },
+    {
+      "name": "terminal-cold-start-full-unit-before-split.log",
+      "bytes": 1929,
+      "sha256": "90322b2b5dc7aeb41eddd18a8a7a3bacf1a72717569c9ca35ebb5069d46b6001"
+    },
+    {
+      "name": "terminal-cold-start-focused-native.log",
+      "bytes": 3700,
+      "sha256": "6d7eb5530cfd864aba324aa8af5e99841376155957c6c412e1c66f57807ac09b"
+    }
+  ],
+  "nativeProjectChecks": 7,
+  "nativeTimings": [
+    {
+      "id": "0941411d-05fd-4f5e-82ba-ab333cecb4fb",
+      "elapsedMs": 464,
+      "timeoutMs": 30000
+    },
+    {
+      "id": "c53a6f03-0169-4958-9ffa-7360c8db39f3",
+      "elapsedMs": 375,
+      "timeoutMs": 30000
+    }
+  ],
+  "normalCloseVerified": true,
+  "nativeProof": {
+    "path": "verification/terminal-cold-start-focused-packaged-result.json",
+    "sha256": "d14d063db191a87a376b7e4ec5a727672cb7b20e5db0b38f3df90618adf7ec90"
+  },
+  "coldPromptBudgetMs": 30000,
+  "previousColdPromptBudgetMs": 10000,
+  "existingCommandResponseBudgetMs": 10000,
+  "applicationStartupBudgetChanged": false,
+  "priorLocalUnitFailures": "The combined attachment test exceeded five seconds and an explicitly supplied slash-form Windows TEMP path differed from process.cwd(). The attachment assertions are split by behavior; the rerun uses the standard Windows temporary path. All individual deadlines remain unchanged.",
+  "fullCurrentPackagedVerified": false,
+  "fullCurrentInstalledVerified": false,
+  "currentHostedVerified": false,
+  "publicationVerified": false
+}

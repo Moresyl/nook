@@ -1127,6 +1127,15 @@
     "startupOnlyNativeChecks": 6,
     "startupOnlyNativeProof": "verification/workspace-read-phases-native-result.json",
     "hostedRunId": 37229089238,
-    "hostedFailure": "verification/hosted-attachment-bootstrap-failure-result.json"
+    "hostedFailure": "verification/hosted-attachment-bootstrap-failure-result.json",
+    "localFailure": "verification/workspace-read-renderer-failure-result.json"
+  },
+  "terminalColdStart": {
+    "codeCommit": "96d1fa756399fe38805b060574180e1902dd8606",
+    "component": "verification/terminal-cold-start-component-result.json",
+    "unitTestsPassed": 746,
+    "focusedNativeChecks": 7,
+    "hostedFailure": "verification/hosted-terminal-cold-start-failure-result.json",
+    "currentHostedVerified": false
   }
 }
