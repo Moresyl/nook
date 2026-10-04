@@ -54,6 +54,11 @@ let retainedDocuments = 0;
 for (const component of dependencies.components) {
   for (const document of component.documents) { const content = await readFile(join(resources, 'licenses', document.path)); assert.equal(sha256(content), document.sha256, `A packaged license changed: ${component.name}`); retainedDocuments++; }
 }
+for (const path of ['THIRD_PARTY_NOTICES.txt', 'licenses/project/NOTICE.txt', 'licenses/assets.json']) {
+  const content = await readFile(join(resources, path));
+  assert.equal(oldIdentity.test(content.toString('utf8')), false, `Old project identity in packaged licensing metadata: ${path}`);
+  assert.ok(content.equals(await readFile(join(root, path))), `Packaged licensing metadata changed: ${path}`);
+}
 const assets = JSON.parse(await readFile(join(root, 'licenses', 'assets.json'), 'utf8'));
 for (const asset of assets) {
   assert.equal(sha256(await readFile(join(resources, 'licenses', asset.document))), asset.documentSha256, `A packaged asset notice changed: ${asset.name}`);
