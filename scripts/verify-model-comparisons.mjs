@@ -24,8 +24,8 @@ export async function verifyModelComparisons({ page, application, getApplication
   async function capture(name) { await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); assert.equal(await dialog().isVisible(), true); const result = await application.evaluateMain(`(async()=>{const window=${mainWindow};const image=await window.capturePage();return {png:image.toPNG().toString('base64'),size:window.getContentSize()};})()`); const bytes = Buffer.from(result.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], result.size); await writeFile(join(screenshots, name), bytes); captures.push(name); }
   async function open() { await page.getByRole('button', { name: '发送给多个模型比较', exact: true }).click(); await dialog().waitFor(); await dialog().getByLabel('比较连接 2', { exact: true }).selectOption(providerB); await dialog().getByLabel('比较模型 2', { exact: true }).selectOption('two'); }
   async function close() { await dialog().locator('.modal-footer').getByRole('button', { name: '关闭', exact: true }).click(); await dialog().waitFor({ state: 'hidden' }); }
-  const groups = []; const group = async (groupId) => (await page.evaluate(() => window.qiyao.load())).threads.filter((thread) => thread.comparison?.groupId === groupId).sort((a, b) => a.comparison.index - b.comparison.index);
-  async function currentGroup() { const state = await page.evaluate(() => window.qiyao.load()); return state.threads.findLast((thread) => thread.comparison)?.comparison.groupId; }
+  const groups = []; const group = (groupId) => page.evaluate(async (id) => (await window.qiyao.load()).threads.filter((thread) => thread.comparison?.groupId === id).sort((a, b) => a.comparison.index - b.comparison.index), groupId);
+  async function currentGroup() { return page.evaluate(async () => (await window.qiyao.load()).threads.findLast((thread) => thread.comparison)?.comparison.groupId); }
   async function waitCompleted(groupId) {
     const waitStartedAt = Date.now();
     try {
