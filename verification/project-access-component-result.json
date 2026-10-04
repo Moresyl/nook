@@ -1,0 +1,426 @@
+{
+  "verifiedAt": "2026-10-04T06:41:50.139Z",
+  "unitTests": 683,
+  "unitFiles": 67,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "focusedDesktopChecks": 7,
+  "focusedModelRequests": 0,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "completeSourceVerified": false,
+  "distributionVerified": false,
+  "hostedVerified": false,
+  "originalPromptDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "actualScopedIpcRegression": {
+    "oldFullWorkspaceCopies": 9,
+    "newFullWorkspaceCopies": 0,
+    "terminalReads": 8,
+    "documentReads": 1
+  },
+  "benchmark": {
+    "beforeBody": "4b79cd38dee64cdd46b0dd6a4ae46ee7b3b7c225",
+    "before": {
+      "verifiedAt": "2026-10-04T06:34:21.117Z",
+      "label": "before",
+      "checks": 40,
+      "elapsedMs": 3233.0682,
+      "fullWorkspaceCopies": 40,
+      "isolatedProjectCopies": 0,
+      "workspaceBytes": 84064376,
+      "workspaceSha256": "6ffd9299a24e6727536a033ecad3a0e6598f0c20f17faf4f2c3bac62b86892f9",
+      "source": [
+        {
+          "path": "desktop/launch.ts",
+          "sha256": "72bef09701b373f0499deac987a3dc1962fb1fbc94db30215ea5c5ad6d9d0a89"
+        },
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+        }
+      ],
+      "benchmarkSourceSha256": "0016f1a110d6e9df709b7083a1dbd36147d68e0d4168f1c9d41f59b8168016a6",
+      "beforeMemory": {
+        "rss": 365105152,
+        "heapTotal": 163614720,
+        "heapUsed": 127523528,
+        "external": 170065741,
+        "arrayBuffers": 168179515
+      },
+      "afterMemory": {
+        "rss": 677888000,
+        "heapTotal": 571412480,
+        "heapUsed": 434466032,
+        "external": 170062915,
+        "arrayBuffers": 168146515
+      },
+      "unchangedPrimaryAndBackup": true,
+      "externalProjectMutationIsolated": true,
+      "scope": "Serial Node 24 measurement uses the actual vault implementation with twenty large Unicode messages and 297 conversations. Forty project lookups match the old full-snapshot selection or new narrow accessor. Every returned project is exact and isolated; primary/backup bytes remain unchanged. This measures lookup copying cost, not actual terminal startup, IPC latency, peak memory or the hosted failure cause."
+    },
+    "after": {
+      "verifiedAt": "2026-10-04T06:34:21.971Z",
+      "label": "after",
+      "checks": 40,
+      "elapsedMs": 0.7156999999999698,
+      "fullWorkspaceCopies": 0,
+      "isolatedProjectCopies": 40,
+      "workspaceBytes": 84064376,
+      "workspaceSha256": "8a5831433ba5754c7fa7ec5a79e8f665618f8d9b1c414ed338762eb4367ffb54",
+      "source": [
+        {
+          "path": "desktop/launch.ts",
+          "sha256": "4823afad4ce144eaa3ee6daf72cc4bbd8f76446c67535e70de072d6e648e6f5e"
+        },
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "37ce0b88d49b5fbfec953ab4eadebbf7039f74e704c39c1cfe86fe6534514e56"
+        }
+      ],
+      "benchmarkSourceSha256": "0016f1a110d6e9df709b7083a1dbd36147d68e0d4168f1c9d41f59b8168016a6",
+      "beforeMemory": {
+        "rss": 365674496,
+        "heapTotal": 163352576,
+        "heapUsed": 127573640,
+        "external": 170065741,
+        "arrayBuffers": 168179515
+      },
+      "afterMemory": {
+        "rss": 365727744,
+        "heapTotal": 163352576,
+        "heapUsed": 127707408,
+        "external": 170095915,
+        "arrayBuffers": 168179515
+      },
+      "unchangedPrimaryAndBackup": true,
+      "externalProjectMutationIsolated": true,
+      "scope": "Serial Node 24 measurement uses the actual vault implementation with twenty large Unicode messages and 297 conversations. Forty project lookups match the old full-snapshot selection or new narrow accessor. Every returned project is exact and isolated; primary/backup bytes remain unchanged. This measures lookup copying cost, not actual terminal startup, IPC latency, peak memory or the hosted failure cause."
+    },
+    "elapsedReductionPercent": 99.97786313323054,
+    "equalWorkspaceByteSize": true,
+    "byteIdenticalWorkspaceFixture": false,
+    "fixtureDifference": "The identical deterministic benchmark generator uses a separately owned temporary project directory in each run. Project paths therefore differ and complete serialized workspace hashes differ; chat data and workspace byte sizes match.",
+    "scope": "Actual vault lookup cost over forty serial reads of matching 84 MB chat fixtures with isolated temporary project paths. This does not measure actual shell startup, IPC latency, peak memory or the precise hosted failure cause."
+  },
+  "previousBodyUnpackedProof": {
+    "indexSha256": "f062c3c24556b7d5ee3b89c0c45681a01839268bf7fbfdda5412053003af109a",
+    "preservedAt": "2026-10-04T06:35:10.511Z",
+    "sourceBody": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
+    "fullUnpackedChecks": 215,
+    "surfacesChecks": 4,
+    "legacyFallbackChecks": 7,
+    "archiveSha256": "42af1774ad16ba7bc8707c539d0f362934f600125028485b8beba6aaf279e459",
+    "executableSha256": "869f18864b56926d6dcb49f8d5bd3bc732477d3b5f05137f5f3ff768254319b8",
+    "completeDistributionVerified": false,
+    "records": [
+      {
+        "name": "assistant-profiles-packaged-result.json",
+        "bytes": 515,
+        "sha256": "9ffbca1761817b1dc9fa603fd088f2f83b9d0f1cc7f0233e93908b084658f330"
+      },
+      {
+        "name": "assistant-recipes-packaged-result.json",
+        "bytes": 1798,
+        "sha256": "c8dd9693cf485ffc92036d09ef082cb5ef05ebb4df9f90f31fcbebb01be2be68"
+      },
+      {
+        "name": "automations-packaged-result.json",
+        "bytes": 671,
+        "sha256": "d2564f84e4d213b1bf5b04e5965b8cd2a14d85d20e2ef9bd9deee334ae3eca88"
+      },
+      {
+        "name": "backups-packaged-result.json",
+        "bytes": 1994,
+        "sha256": "af3e14aaede3a5c76a0bf0a398f0a6bed2522aab1270f6a7760d189dbf353b05"
+      },
+      {
+        "name": "chat-navigation-packaged-result.json",
+        "bytes": 10712,
+        "sha256": "165ac91b557e866089498551e6b5e05ca39b1cb3b8b6918f556d5896e8856337"
+      },
+      {
+        "name": "commands-packaged-result.json",
+        "bytes": 870,
+        "sha256": "5f9505991788e4d0b24e36ce0d4b80168cd803172bdda0dc5f7f827d11883508"
+      },
+      {
+        "name": "conversation-branches-packaged-result.json",
+        "bytes": 11796,
+        "sha256": "1beb72f7b3035224b093414a1f0b18adbc3b4c63b36758d54701044c0e7b093a"
+      },
+      {
+        "name": "desktop-integration-packaged-result.json",
+        "bytes": 625,
+        "sha256": "1f1dbd0878f506c3e9560b5a78f311c70af9982dd4d2598bdf801fa308a8cc94"
+      },
+      {
+        "name": "installer-toolset-result.json",
+        "bytes": 8630,
+        "sha256": "3a1a1cabd0659725e1e1b3c8903798a098bdfabe0787f0a9377d7b3c66249d6e"
+      },
+      {
+        "name": "knowledge-packaged-result.json",
+        "bytes": 778,
+        "sha256": "074bbae22dde7b787be255cf6f662a094287a90dcc98b32607a0f0683e07e45c"
+      },
+      {
+        "name": "mcp-binary-files-packaged-result.json",
+        "bytes": 1891,
+        "sha256": "46a0f2c470c49b9fb784c8edcedbb4ddf965e29fb0779a27b46efb6e8668d84c"
+      },
+      {
+        "name": "mcp-resource-subscriptions-packaged-result.json",
+        "bytes": 916,
+        "sha256": "ba54043c010d2dadd1464c3f9b123ae93df72606f5185a30df7237f8c8f53e70"
+      },
+      {
+        "name": "message-edits-packaged-result.json",
+        "bytes": 765,
+        "sha256": "b32e27fea7e09c7b4d132a0226fcc02ab5cde11cf32798a096e928d47b1a5a64"
+      },
+      {
+        "name": "model-comparisons-packaged-result.json",
+        "bytes": 2247,
+        "sha256": "baad196b30ab4f7e047eac4bbedc93c80a3e453d8b7196ec33feaf13f231dbfa"
+      },
+      {
+        "name": "package-audit-result.json",
+        "bytes": 1293,
+        "sha256": "14dfc2c7dd9dde36112c78ea12f78b400f3b393a60ac9534d69f5f4196e760ee"
+      },
+      {
+        "name": "packaged-result.json",
+        "bytes": 54037,
+        "sha256": "cc2f3e763c3fa570f4798605dfbc5a4973baecb27c8a8e4be53b68af5f71e9dc"
+      },
+      {
+        "name": "project-tree-packaged-result.json",
+        "bytes": 3673,
+        "sha256": "760e677ac4ae45f011f31975b78b32e830a02693e0534adf35e750505bdae72e"
+      },
+      {
+        "name": "prompt-templates-packaged-result.json",
+        "bytes": 526,
+        "sha256": "ef98c46d9e82eb9f113e8b376f29d131d3879c8d35fbb38631802b40849a4f9f"
+      },
+      {
+        "name": "prompt-transfer-packaged-result.json",
+        "bytes": 1971,
+        "sha256": "9a76d686fc18096dc0b0f19863ab601cc56c2a83cb8d286c14e48b6f8af2b04d"
+      },
+      {
+        "name": "reply-versions-packaged-result.json",
+        "bytes": 594,
+        "sha256": "21ab7a2a96a306c987fe2e17530e5c6a666ff2df589a6ba0b94a4a98e4517dfa"
+      },
+      {
+        "name": "surfaces-packaged-result.json",
+        "bytes": 1295,
+        "sha256": "8629b5e8c03b00fb44e7ecbd6d92a128d4368c1e67028b4093533ae5c85871cc"
+      },
+      {
+        "name": "temporary-conversations-packaged-result.json",
+        "bytes": 1953,
+        "sha256": "89e366d1fd36eb13e627d31d4cf073c467d1b8e3035434d7ef661b2ef6c72b46"
+      },
+      {
+        "name": "comparison-starts-legacy-native-result.json",
+        "bytes": 5220,
+        "sha256": "fb89831483bfe098979e5990d18617dea3f81d2b53e8630094998c0bc43206a6"
+      }
+    ],
+    "scope": "These 215/4/7 checks belong to the preceding atomic-comparison binary and are not current project-access distribution acceptance."
+  },
+  "coverage": {
+    "lines": {
+      "total": 3078,
+      "covered": 3057,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5234,
+      "covered": 5078,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1172,
+      "covered": 1140,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3699,
+      "covered": 3494,
+      "skipped": 0,
+      "pct": 94.45
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/launch.ts",
+      "bytes": 40127,
+      "sha256": "4823afad4ce144eaa3ee6daf72cc4bbd8f76446c67535e70de072d6e648e6f5e"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "bytes": 5914,
+      "sha256": "37ce0b88d49b5fbfec953ab4eadebbf7039f74e704c39c1cfe86fe6534514e56"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "bytes": 36501,
+      "sha256": "62ae03a703ef65454a7f5ecde068232811ff23fd477f9811bcc6f1c003c2317d"
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "bytes": 12705,
+      "sha256": "403308fc0e3c3b519896a73953c99753c462514ac329581c03f5a2fc904224c8"
+    }
+  ],
+  "focusedNativeRecord": {
+    "sha256": "d47b7d56821ee970325adffbc75bd229c91f9789331e48458ae7e859e3cb71db",
+    "bytes": 3553,
+    "data": {
+      "verifiedAt": "2026-10-04T06:37:21.263Z",
+      "variant": "development executable",
+      "executableSha256": null,
+      "archiveSha256": null,
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "verificationRun": "focused project-tree suite",
+      "modelRequests": 0,
+      "checks": 7,
+      "projectCommandChecks": 2,
+      "rootEntriesBeforeChange": 224,
+      "rootEntriesAfterChange": 225,
+      "zoomFactors": [
+        1,
+        1.25,
+        1.5
+      ],
+      "layout": [
+        {
+          "zoom": 1,
+          "fileTree": true,
+          "sidebar": true,
+          "width": 760,
+          "height": 540,
+          "documentOverflow": false,
+          "terminal": {
+            "top": 404.03125,
+            "bottom": 528,
+            "height": 123.96875
+          },
+          "editor": {
+            "left": 368,
+            "right": 748,
+            "width": 380,
+            "height": 89.53125
+          },
+          "toggleFits": true
+        },
+        {
+          "zoom": 1.25,
+          "fileTree": false,
+          "sidebar": true,
+          "width": 608,
+          "height": 432,
+          "documentOverflow": false,
+          "terminal": {
+            "top": 311.4125061035156,
+            "bottom": 428.00000762939453,
+            "height": 116.5875015258789
+          },
+          "editor": {
+            "left": 224,
+            "right": 604,
+            "width": 380,
+            "height": 110.51250457763672
+          },
+          "toggleFits": true
+        },
+        {
+          "zoom": 1.5,
+          "fileTree": false,
+          "sidebar": true,
+          "width": 507,
+          "height": 360,
+          "documentOverflow": false,
+          "terminal": {
+            "top": 268,
+            "bottom": 356,
+            "height": 88
+          },
+          "editor": {
+            "left": 224,
+            "right": 502.66668701171875,
+            "width": 278.66668701171875,
+            "height": 67.5
+          },
+          "toggleFits": true
+        }
+      ],
+      "screenshots": [
+        "94-project-tree-pagination-light.png",
+        "95-project-tree-editor-light.png",
+        "96-project-tree-dark-narrow.png",
+        "97-project-workspace-zoom-100.png",
+        "97-project-workspace-zoom-125.png",
+        "97-project-workspace-zoom-150.png",
+        "98-project-settings-zoom-150.png",
+        "99-project-file-command-dark.png",
+        "100-project-terminal-command-dark.png",
+        "101-project-review-command-dark.png"
+      ],
+      "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures",
+      "scope": "Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks."
+    }
+  },
+  "logs": [
+    {
+      "name": "project-access-negative-native.log",
+      "bytes": 7721,
+      "sha256": "61bdd0e1943e12c355c0a303a23f784048dd0be8c327486b1adcc03113700e47"
+    },
+    {
+      "name": "project-access-positive-native.log",
+      "bytes": 3447,
+      "sha256": "84cdf863123d719ff2d7aeaca98f06b8b197a3be4e1d1096c38c432889e24756"
+    },
+    {
+      "name": "project-access-typecheck.log",
+      "bytes": 86,
+      "sha256": "09652b99b0bd67a17520fb1be2bce5540053d9c7bba708a288133d3fe8b5f18f"
+    },
+    {
+      "name": "project-access-coverage.log",
+      "bytes": 4571,
+      "sha256": "1225c2a6a8e719b806a409f9430cb170102b39f7827aff04eedf38a63ec4084b"
+    },
+    {
+      "name": "project-access-build.log",
+      "bytes": 22550,
+      "sha256": "e293bb70d6a9340bec656478dedd5d7c7f1991580a5f429acaeaf670e1f9d700"
+    },
+    {
+      "name": "project-access-before-benchmark.log",
+      "bytes": 131,
+      "sha256": "4ed376a2275dc173dca9da1d147d3e268945c2235ff4ae8031398911bbfab2ba"
+    },
+    {
+      "name": "project-access-after-benchmark.log",
+      "bytes": 139,
+      "sha256": "38ce7b230817dc9f50746aa67e8a738f511f20d8cec222a07848e5b19b1e6739"
+    }
+  ],
+  "scope": "Current source passes 683 unit tests, type checking, build and seven actual development-executable project checks with zero model requests and normal close. The old executable reproduces nine full workspace copies across eight terminal-list IPC reads and one document read; the current source produces zero. Narrow project records remain isolated and only reflect committed updates, including queued saves, failed changes and deletion. Complete current-source desktop, fault cases, matching distribution, hosted verification and the remaining feature/UI scope are still separate open gates."
+}

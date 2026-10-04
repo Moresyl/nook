@@ -89,7 +89,7 @@ function assertWorkspaceIdle(): void {
 }
 
 function workspaceProject(id: unknown) {
-  const project = vault.snapshot().projects.find((item) => item.id === idSchema.parse(id));
+  const project = vault.project(idSchema.parse(id));
   if (!project) throw new Error('The selected project no longer exists.');
   return project;
 }

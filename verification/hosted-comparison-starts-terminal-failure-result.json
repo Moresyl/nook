@@ -1,0 +1,227 @@
+{
+  "verifiedAt": "2026-10-04T06:28:13.770Z",
+  "runId": 37180692285,
+  "headSha": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37180692285",
+  "conclusion": "failure",
+  "unitTests": 681,
+  "unitFiles": 67,
+  "typecheckPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "passedDesktopChecks": 164,
+  "artifact": {
+    "id": 11295685707,
+    "name": "windows-verification-37180692285-1",
+    "bytes": 6217657,
+    "reportedZipDigest": "sha256:dce15c5696ca4bf8c05af9a38a0feecc09e10ad97e3ee6eb39239da55c097f18"
+  },
+  "actualBody": {
+    "executableSha256": "fada2fadc537ecd85a1ebdecba929e3449818226016bbfeab8fb7013cebf1b76",
+    "archiveSha256": "57153330eca81363bc2b4490e23d90d21a5548d5c793510a908bf72c8754c529",
+    "auditSha256": "d1765fdd043aba7ae3615b2ff43dc4e56c34abc3da48e4e77d4d8b05125d28a2"
+  },
+  "largeBackupRestartPassed": true,
+  "originalTerminalPromptDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "originalPromptCondition": "terminal.output.includes(\"PS \")",
+  "terminal": {
+    "at": 1791093783142,
+    "lastPoll": {
+      "at": 1791093783026,
+      "terminals": [
+        {
+          "id": "0e284f53-67d3-41f3-9d1a-c97afe6f846c",
+          "projectId": "99c14935-7b2d-4557-9ecd-42aa52d0f844",
+          "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-36042ebdbfd3464ebba329b9d40f9022\\qiyao-electron-QWqDCo\\文件树 项目",
+          "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+          "status": "running",
+          "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b]0;Administrator: C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007",
+          "sequence": 3
+        }
+      ]
+    },
+    "current": [
+      {
+        "id": "0e284f53-67d3-41f3-9d1a-c97afe6f846c",
+        "projectId": "99c14935-7b2d-4557-9ecd-42aa52d0f844",
+        "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-36042ebdbfd3464ebba329b9d40f9022\\qiyao-electron-QWqDCo\\文件树 项目",
+        "shell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "status": "running",
+        "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007\u001b[?25h\u001b]0;Administrator: C:\\Program Files\\PowerShell\\7\\pwsh.exe\u0007",
+        "sequence": 3
+      }
+    ]
+  },
+  "separatelyCapturedProcesses": {
+    "capturedAt": 1791093783294,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791093773049,
+        "pid": 7328,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 3,
+        "characters": 152,
+        "firstDataAt": 1791093773429,
+        "lastDataAt": 1791093781132
+      }
+    ],
+    "mainMemory": {
+      "rss": 728043520,
+      "heapTotal": 479211520,
+      "heapUsed": 465760040,
+      "external": 88553332,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 4089995264,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 5204,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 28.927812,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 711008,
+          "peakWorkingSetSize": 1834620,
+          "privateBytes": 691356
+        }
+      },
+      {
+        "pid": 6908,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 1.325834,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 63760,
+          "peakWorkingSetSize": 96432,
+          "privateBytes": 17464
+        }
+      },
+      {
+        "pid": 2972,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.063068,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 43116,
+          "peakWorkingSetSize": 50852,
+          "privateBytes": 11752
+        }
+      },
+      {
+        "pid": 6824,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 12.184889,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 495588,
+          "peakWorkingSetSize": 1271456,
+          "privateBytes": 443592
+        }
+      }
+    ]
+  },
+  "laterProcessSampleFromRegistrationMs": 10245,
+  "shellProcessCpuOrStackCaptured": false,
+  "exactFailureCauseEstablished": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "d1765fdd043aba7ae3615b2ff43dc4e56c34abc3da48e4e77d4d8b05125d28a2"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRuntimeRecordCollectionRejected": true,
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "8155313ecc18c60aa79121f910f3fc8b5b44920edf261cde152b4b27f3b76cb4",
+      "bytes": 46175,
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "review": "Dark minimum-window project view retains the exact unsaved Unicode editor contents and selected PowerShell terminal tab. The terminal body is blank. This later failure image does not establish shell initialization timing."
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-comparison-starts-branch-full.log",
+      "bytes": 277513,
+      "sha256": "57778e7c40dc19c1275297ecf8ed9e418f14fc3d82631193091abf19c89bd09f"
+    },
+    {
+      "name": "github-comparison-starts-branch-failed.log",
+      "bytes": 80030,
+      "sha256": "11e456e02e57b8ca9a14d0c20cadcc1ef2bba3ef276195b7bc30f2fcc3bedb2e"
+    }
+  ],
+  "scope": "The atomic comparison startup body passes 681 hosted unit tests, types, build, package audit and 164 desktop checks, including early real interactive PTY and later large-backup restore/restart. The original ten-second project terminal prompt condition then fails: the packaged node-pty instance starts actual PowerShell 7, remains running and emits three chunks of control/title sequences without a PS prompt. The later main/application/system resource snapshot is neither a deadline sample nor shell CPU/stack attribution. Comparison checks are not reached in this run. Nine required current runtime records are missing and the strict collector rejects the run. Separate local source and binary checks do not establish hosted or release acceptance."
+}
