@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-03T23:39:46.111Z",
+  "verifiedAt": "2026-10-04T03:05:00.912Z",
   "variant": "packaged executable",
-  "checks": 210,
+  "checks": 215,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -143,7 +143,7 @@
   },
   "backups": {
     "expandedBytes": 84173596,
-    "compressedBytes": 240153,
+    "compressedBytes": 240107,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -1021,7 +1021,13 @@
     "126-assistant-recipe-parameters-light.png",
     "127-assistant-recipe-dark-zoom-100.png",
     "127-assistant-recipe-dark-zoom-125.png",
-    "127-assistant-recipe-dark-zoom-150.png"
+    "127-assistant-recipe-dark-zoom-150.png",
+    "128-prompt-transfer-library-light.png",
+    "129-prompt-import-preview-light.png",
+    "130-prompt-import-write-error-light.png",
+    "131-prompt-import-dark-zoom-100.png",
+    "131-prompt-import-dark-zoom-125.png",
+    "131-prompt-import-dark-zoom-150.png"
   ],
   "branchNavigation": {
     "checks": 9,
@@ -1572,7 +1578,56 @@
     ],
     "scope": "Actual library/composer recipe forms, keyboard choice editing, literal default/optional/prototype expansion, explicit assistant selection and untouched context, actual stale-assistant rejection/retry, three native zoom/focus/Escape checks, real gzip backup and normal restart. Picker/confirmation responses are isolated fixtures; physical picker and wider platform/accessibility checks remain separate."
   },
+  "promptTransfer": {
+    "checks": 5,
+    "transferModelRequests": 0,
+    "exportModesVerified": true,
+    "inertPreviewCancelVerified": true,
+    "atomicImportRetryVerified": true,
+    "sharedFreshAssociationsVerified": true,
+    "zoomKeyboardVerified": true,
+    "backupRestartVerified": true,
+    "originalDraftRetained": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "top": 1,
+        "bottom": 521,
+        "scrollable": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "top": 0.800000011920929,
+        "bottom": 412.00000762939453,
+        "scrollable": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "top": 0.6666666865348816,
+        "bottom": 339.3333435058594,
+        "scrollable": true,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "128-prompt-transfer-library-light.png",
+      "129-prompt-import-preview-light.png",
+      "130-prompt-import-write-error-light.png",
+      "131-prompt-import-dark-zoom-100.png",
+      "131-prompt-import-dark-zoom-125.png",
+      "131-prompt-import-dark-zoom-150.png"
+    ],
+    "scope": "Actual native library exports and plain/gzip/content-detected input, full inert parameter/profile preview, cancellation, actual atomic-write rejection/retry, fresh shared associations, native minimum-window zoom/focus/Escape, complete gzip backup and normal restart with zero model requests. System-picker and confirmation results are intercepted only in this isolated process; physical picker and wider platform checks remain separate."
+  },
   "normalCloseVerified": true,
-  "executableSha256": "5dda2141cc311bd5f4038d4d938ee82d0bed0427da7c31b4865c40ce5562c9d0",
-  "archiveSha256": "b7180f92fb97a567c1cd0755ce411e627f23cff950df69e1cca609814e3a10b6"
+  "executableSha256": "87af3cf74dbd0885e925f46f0e633d4f41510f8ced22811f4d755ff594e14052",
+  "archiveSha256": "3a7e89ed2499796aa92f377a1f594439caecd1b76d4f41a1f710b829cbaa2844"
 }

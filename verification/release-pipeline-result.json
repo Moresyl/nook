@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "The combined template-transfer and startup-diagnostic source passes final 664 tests in 65 files, type/build and all 215 native desktop checks with normal close. Transfer retains zero model requests; model comparisons retain eleven real requests and every original deadline. Actual large Unicode backup restart passes with isolated phase diagnostics enabled. Two newly built corrupt-file Electron processes verify exact failure phases, resources, nonblocking code-1 exit and omitted private input on this combined body. Nineteen complete-suite records and one exact native failure record are preserved. Final renderer bytes match the prior six individually reviewed template-transfer captures; current captures are not individually reviewed. The isolated flag changes only diagnostic-mode startup error reporting; ordinary production startup keeps its native error dialog. The earlier hosted startup timeout cause remains unestablished. Complete fresh matching-body distribution and hosted acceptance remain open, alongside the full capability/UI delivery scope. Prior 210-check binaries cannot meet the new 215-check transfer release policy.",
+  "scope": "Exact combined template-transfer/startup source, complete 215-check unpacked and actual Unicode-path installed suites, four unpacked surface checks, real portable lifecycle, bootstrap plugin audit, shortcut registration, data-retaining uninstall and ten matching strict runtime records pass. Six current installed template-transfer captures are individually reviewed. These four binary files are preserved separately before later rebuilds. Hosted run 37169903719 fails at the original terminal prompt deadline after the large-backup restart passes; hosted acceptance and the full remaining capability/UI scope remain open. Physical installation-wizard interaction retains its separate scope.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -135,7 +135,7 @@
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "proof": "verification/mcp-binary-files-review-result.json"
   },
-  "currentRuntimeProofVerified": false,
+  "currentRuntimeProofVerified": true,
   "githubConfiguredSessionVerified": true,
   "independentRepository": {
     "url": "https://github.com/Moresyl/qiyao",
@@ -348,6 +348,15 @@
     }
   ],
   "packagedVerification": {
+    "codeCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
+    "desktopChecks": 215,
+    "installedChecks": 215,
+    "matchingRuntimeProofVerified": true,
+    "proof": "verification/template-startup-combined-distribution-result.json",
+    "executableSha256": "87af3cf74dbd0885e925f46f0e633d4f41510f8ced22811f4d755ff594e14052",
+    "archiveSha256": "3a7e89ed2499796aa92f377a1f594439caecd1b76d4f41a1f710b829cbaa2844"
+  },
+  "previousPackagedVerification": {
     "verifiedAt": "2026-10-03T20:58:30.183Z",
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
     "desktopChecks": 206,
@@ -362,22 +371,6 @@
       "portableSha256": "13084a23256b051b5b65d9e7a25dd3a3383d131abd0ffd0bb8883efc89e4dbd9"
     },
     "proof": "verification/mcp-binary-files-distribution-result.json"
-  },
-  "previousPackagedVerification": {
-    "verifiedAt": "2026-10-03T18:44:33.632Z",
-    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
-    "desktopChecks": 200,
-    "installedChecks": 200,
-    "surfaceChecks": 4,
-    "portableChecks": 7,
-    "strictReleasePolicyVerified": true,
-    "applicationHashes": {
-      "executableSha256": "7cf103d42e266beba7d95d47e70dcda9deac992c512a21ab069fbbb99d03e16b",
-      "archiveSha256": "f5b239f34ee24630290721d69ad9cafe2d8c570df86af7ec49c33389ddaadca7",
-      "installerSha256": "171f6de21020a8f8fdee09e2198216acd2c823b9264edf6610e3abfba23cdd0b",
-      "portableSha256": "23dadb258cfb0c38b7fb623a588d574d1c8d2ddc41418f5e788e3c13e999b3bd"
-    },
-    "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
   },
   "sourceVerification": {
     "verifiedAt": "2026-10-04T02:17:29.158Z",
@@ -880,10 +873,11 @@
   "combinedTemplateStartup": {
     "codeCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
     "sourceVerified": true,
-    "packagedVerified": false,
+    "packagedVerified": true,
     "hostedVerified": false,
     "sourceChecks": 215,
     "proof": "verification/template-startup-combined-review-result.json",
-    "latestHostedRunId": 37169903719
+    "latestHostedRunId": 37169903719,
+    "distributionProof": "verification/template-startup-combined-distribution-result.json"
   }
 }
