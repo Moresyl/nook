@@ -9,6 +9,14 @@ const directories: string[] = [];
 afterEach(async () => { await Promise.all(directories.splice(0).map((path) => rm(path, { force: true, recursive: true }))); });
 async function freshDirectory() { const path = await mkdtemp(join(tmpdir(), 'qiyao-vault-')); directories.push(path); return path; }
 describe('local workspace persistence', () => {
+  it('reports exact initialization boundaries and stops before later phases on a private malformed workspace', async () => {
+    const directory = await freshDirectory(); const phases: string[] = [];
+    const vault = new WorkspaceVault(directory, codec); await vault.initialize((phase) => phases.push(phase));
+    expect(phases).toEqual(['workspace.read', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
+    await writeFile(join(directory, 'workspace.json'), '{PRIVATE_STARTUP_FIXTURE'); phases.length = 0;
+    const failed = new WorkspaceVault(directory, codec); await expect(failed.initialize((phase) => phases.push(phase))).rejects.toThrow('Workspace data could not be read');
+    expect(phases).toEqual(['workspace.read']);
+  });
   it('handles prototype-like credential IDs as plain data', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     expect(vault.key('toString')).toBe(''); await vault.setKey('__proto__', 'private'); expect(vault.key('__proto__')).toBe('private');

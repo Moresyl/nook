@@ -208,7 +208,7 @@ async function providerRequest(request, response) {
 const server = createServer((request, response) => { void providerRequest(request, response).catch((error) => { providerErrors.push(String(error)); response.destroy(); }); });
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const endpoint = `http://127.0.0.1:${server.address().port}/v1`;
-const env = { ...process.env, QIYAO_DATA_DIRECTORY: directory };
+const env = { ...process.env, QIYAO_DATA_DIRECTORY: directory, QIYAO_TEST_STARTUP_DIAGNOSTICS: '1' };
 delete env.ELECTRON_RUN_AS_NODE;
 let application;
 let authorizationBrowser;
@@ -275,7 +275,7 @@ async function launch() {
     browser = await chromium.connectOverCDP(debuggerUrl);
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
   } catch (error) {
-    const main = await evaluateMain("({ready:require('electron').app.isReady(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,url:window.webContents.getURL(),visible:window.isVisible(),destroyed:window.isDestroyed()}))})").catch(() => undefined);
+    const main = await evaluateMain("({capturedAt:Date.now(),ready:require('electron').app.isReady(),startup:globalThis.qiyaoStartupDiagnostics?.(),memory:process.memoryUsage(),cpu:process.cpuUsage(),processes:require('electron').app.getAppMetrics(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,url:window.webContents.getURL(),visible:window.isVisible(),destroyed:window.isDestroyed()}))})").catch(() => undefined);
     console.error('Desktop page startup diagnostics', { pid: child.pid, elapsedMs: Date.now() - startedAt, exitCode: child.exitCode, signalCode: child.signalCode, pages: browser?.contexts().flatMap((context) => context.pages().map((page) => ({ url: page.url(), closed: page.isClosed() }))), main }, diagnostics.slice(-4000).replace(/ws:\/\/[^\s]+/g, '[test debugger]'));
     if (child.exitCode === null && child.signalCode === null) child.kill();
     await browser?.close().catch(() => {});
