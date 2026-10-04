@@ -1,0 +1,88 @@
+{
+  "verifiedAt": "2026-10-04T19:33:08.140Z",
+  "codeCommit": "4f9f0af",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "wrapperCodeCommit": "7df8e3c6dd920f1e45729ddc4741323e8691599a",
+  "installedAssertionsBeforeFailure": 194,
+  "installationAndShortcutAuditPassed": true,
+  "failure": "The actual installed MCP subscription preflight returned resourceSubscriptionsSupported=false before the first subscription assertion. Original connection result/status were not logged, so the reason is not established.",
+  "exactFailureCauseEstablished": false,
+  "fullInstalledVerified": false,
+  "publicationVerified": false,
+  "log": {
+    "name": "portable-retry-installer.log",
+    "sha256": "3ef6f6a2c9855ce69fc2443e09eded6dc6436f716978680522e5983d3150f305",
+    "bytes": 59814
+  },
+  "screenshot": {
+    "name": "failure.png",
+    "sha256": "42c4851e42a1bf139644755dbcb8bfd1afff453b6b3da660be95e7710d458396",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "The light native window shows the subscription draft in the composer; no connection-status panel is open. This image cannot establish the MCP connection failure cause."
+  },
+  "partialRecords": [
+    {
+      "path": "verification/assistant-profiles-packaged-result.json",
+      "sha256": "d219b508501265433a652d54b6dea059ebffa23d00cc63bbaac231d486db0e5d",
+      "bytes": 515
+    },
+    {
+      "path": "verification/automations-packaged-result.json",
+      "sha256": "6689652e5d6c6f5886f1bbeee66d71f733ee917c14ea9b06d242ba198ef8eb8f",
+      "bytes": 671
+    },
+    {
+      "path": "verification/backups-packaged-result.json",
+      "sha256": "4041ebb3137ab7c35caa9bc05a65985b5494df7a3fb09978e958716dff563aac",
+      "bytes": 1994
+    },
+    {
+      "path": "verification/commands-packaged-result.json",
+      "sha256": "6df61f7564324c56e239802563977575a109c87de3a349ee6a40fe93c7d73d88",
+      "bytes": 870
+    },
+    {
+      "path": "verification/desktop-integration-packaged-result.json",
+      "sha256": "990f16699e93fae1d2e2fc92afabbc6a8ff29d71420fc9bca9ac0d2b75ae8809",
+      "bytes": 625
+    },
+    {
+      "path": "verification/installed-package-audit-result.json",
+      "sha256": "c65b8059b24f2d4ece6661d4bffdc67132943804edf80564b2340c9540cfbbbb",
+      "bytes": 1293
+    },
+    {
+      "path": "verification/installed-shortcuts-result.json",
+      "sha256": "21321531a29cd52754d99356c33afb14263a94683514773398dd81a4b85d13b5",
+      "bytes": 875
+    },
+    {
+      "path": "verification/knowledge-packaged-result.json",
+      "sha256": "ca4d4b454ee74d06d8b301e5ac12658aaa9d16d12fd396ae44c0dde31063e82e",
+      "bytes": 778
+    },
+    {
+      "path": "verification/message-edits-packaged-result.json",
+      "sha256": "d749b3453bb9a508405da8e5441fc375d433d00bba7f4cf354357482b48bef1e",
+      "bytes": 765
+    },
+    {
+      "path": "verification/prompt-templates-packaged-result.json",
+      "sha256": "1a359b9a3ae2e25de0c8cd53a068408c59c47dd4d0da7cf93ead987fc0cedd65",
+      "bytes": 526
+    },
+    {
+      "path": "verification/reply-versions-packaged-result.json",
+      "sha256": "75c0beef22b85ceb75cb9878df8a94ba557d4eb881784c6d900ca255911853b0",
+      "bytes": 594
+    },
+    {
+      "path": "verification/shell-integration-result.json",
+      "sha256": "251e998c42d8a8691e985d0b8ef1454ef9a0331b5fb648ab065b8433889402fb",
+      "bytes": 984
+    }
+  ],
+  "portableProof": "verification/portable-retry-portable-result.json"
+}
