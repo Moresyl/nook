@@ -1,0 +1,314 @@
+{
+  "verifiedAt": "2026-10-04T05:20:26.988Z",
+  "runId": 37177697511,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37177697511",
+  "headSha": "3ea14208ac2267daeadfaaa19a29c4b0c2abd1a5",
+  "conclusion": "failure",
+  "unitTests": 679,
+  "unitFiles": 67,
+  "coverage": {
+    "lines": {
+      "total": 3070,
+      "covered": 3049,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5221,
+      "covered": 5066,
+      "skipped": 0,
+      "pct": 97.03
+    },
+    "functions": {
+      "total": 1170,
+      "covered": 1138,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3701,
+      "covered": 3498,
+      "skipped": 0,
+      "pct": 94.51
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "passedDesktopChecksBeforeFailure": 189,
+  "actualPowerShellMajor": 7,
+  "originalTerminalDeadlineMs": 10000,
+  "originalFirstResponseDeadlineMs": 30000,
+  "firstRequestAfterWaitStartedMs": 4916,
+  "secondRequestAfterWaitStartedMs": 49665,
+  "backendCaptureElapsedMs": 11937,
+  "diagnostics": {
+    "waitStartedAt": 1791090467629,
+    "waitFailedAt": 1791090498409,
+    "unchangedResponseDeadlineMs": 30000,
+    "diagnostic": {
+      "installedAt": 1791090467629,
+      "clicks": [
+        {
+          "at": 1791090467705,
+          "trusted": true
+        }
+      ],
+      "samples": 310,
+      "lastPoll": {
+        "at": 1791090498745,
+        "sendButtonPresent": true,
+        "sendButtonDisabled": true,
+        "responses": []
+      }
+    },
+    "requestsAtFailure": [
+      {
+        "connection": "a",
+        "model": "one",
+        "messages": 4
+      }
+    ],
+    "requestTimelineAtFailure": [
+      {
+        "receivedAt": 1791090472545,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791090472546
+      }
+    ],
+    "backendCaptureStartedAt": 1791090508022,
+    "backendCaptureCompletedAt": 1791090519959,
+    "backend": {
+      "threads": 297,
+      "notes": 10,
+      "noteCharacters": 203,
+      "comparisons": [
+        {
+          "id": "effe0e53-8474-4d83-9770-e31085e3c953",
+          "comparison": {
+            "groupId": "98328102-f080-46d2-a6e1-92497b06850b",
+            "index": 0,
+            "contextLength": 2
+          },
+          "messages": [
+            {
+              "role": "user",
+              "status": "complete",
+              "characters": 21
+            },
+            {
+              "role": "assistant",
+              "status": "complete",
+              "characters": 22
+            },
+            {
+              "role": "user",
+              "status": "complete",
+              "characters": 42
+            },
+            {
+              "role": "assistant",
+              "status": "running",
+              "characters": 12
+            }
+          ]
+        },
+        {
+          "id": "cd25e779-0b09-440d-b672-00fae67bf799",
+          "comparison": {
+            "groupId": "98328102-f080-46d2-a6e1-92497b06850b",
+            "index": 1,
+            "contextLength": 2
+          },
+          "messages": [
+            {
+              "role": "user",
+              "status": "complete",
+              "characters": 21
+            },
+            {
+              "role": "assistant",
+              "status": "complete",
+              "characters": 22
+            },
+            {
+              "role": "user",
+              "status": "complete",
+              "characters": 42
+            },
+            {
+              "role": "assistant",
+              "status": "running",
+              "characters": 0
+            }
+          ]
+        }
+      ]
+    },
+    "requestTimelineAfterCapture": [
+      {
+        "receivedAt": 1791090472545,
+        "connection": "a",
+        "model": "one",
+        "messages": 4,
+        "partialSentAt": 1791090472546
+      },
+      {
+        "receivedAt": 1791090517294,
+        "connection": "b",
+        "model": "two",
+        "messages": 4,
+        "partialSentAt": 1791090517294
+      }
+    ],
+    "applicationSnapshot": {
+      "capturedAt": 1791090519962,
+      "moduleSources": {
+        "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+        "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+        "sameModule": false
+      },
+      "terminals": [],
+      "mainMemory": {
+        "rss": 1560875008,
+        "heapTotal": 1156898816,
+        "heapUsed": 1149890972,
+        "external": 257929099,
+        "arrayBuffers": 0
+      },
+      "systemMemory": {
+        "free": 3352260608,
+        "total": 8584425472
+      },
+      "applicationProcesses": [
+        {
+          "pid": 6324,
+          "type": "Browser",
+          "cpu": {
+            "cumulativeCPUUsage": 12.105668,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 1524336,
+            "peakWorkingSetSize": 1560008,
+            "privateBytes": 1520564
+          }
+        },
+        {
+          "pid": 1708,
+          "type": "GPU",
+          "cpu": {
+            "cumulativeCPUUsage": 48.367949,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 114296,
+            "peakWorkingSetSize": 126208,
+            "privateBytes": 50752
+          }
+        },
+        {
+          "pid": 6972,
+          "type": "Utility",
+          "cpu": {
+            "cumulativeCPUUsage": 0.049403,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 38744,
+            "peakWorkingSetSize": 49720,
+            "privateBytes": 11176
+          }
+        },
+        {
+          "pid": 3816,
+          "type": "Tab",
+          "cpu": {
+            "cumulativeCPUUsage": 5.562844,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "memory": {
+            "workingSetSize": 479596,
+            "peakWorkingSetSize": 1089968,
+            "privateBytes": 421244
+          }
+        }
+      ]
+    }
+  },
+  "artifact": {
+    "id": 11294019976,
+    "name": "windows-verification-37177697511-1",
+    "bytes": 8476622,
+    "reportedZipDigest": "sha256:9959c81624b3001fc364000e8ad2eae4880b880709defa1c4c8c53d2c4176851"
+  },
+  "freshAudit": {
+    "path": "verification/package-audit-result.json",
+    "sha256": "266a6b59f472156240f8502339f0a1eef8dd9121620e62f5b338878fdadae2e9",
+    "executableSha256": "eef10eb158130eddbd55dab47bb91391b95930067f8611c5c12c82bdc726802d",
+    "archiveSha256": "158405e04ce8dc58c107dc9c801a20878f1579cb0cd6199ebfc95b53f116c533"
+  },
+  "missingRuntimeRecords": [
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json"
+    }
+  ],
+  "collectorRejectedMissingRuntimeProof": true,
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "sha256": "55affeebf9e7c9f19b9bff940e471e5e8b8779e184f917a1c79bcf8a3cca42dd",
+    "bytes": 112162,
+    "individuallyReviewed": true,
+    "review": "Later light failure capture shows both readonly comparison cards with exact partial text and independent stop/open actions. It does not show when either card first became visible."
+  },
+  "logs": [
+    {
+      "name": "github-checkpoint-batching-branch-full.log",
+      "bytes": 273188,
+      "sha256": "00190ef9d0d596827451822e525ca60c69f2f3c2929ebb008c7da095526fe053"
+    }
+  ],
+  "scope": "The batching branch passes hosted types, 679 tests/67 files, package audit and 189 native checks including actual PowerShell 7 and large-backup restart. Its first-reply visibility check fails after 30,780 ms: one actual model request exists at failure, the second reaches the server 49,665 ms after wait start, and the later backend capture takes 11,937 ms. Resource samples are after the failure, not deadline/peak attribution. Later screenshot shows both partial cards; it does not prove visibility within 30 seconds. Nine required current runtime records are absent and the collector rejects this run. Initial comparison saves, state broadcasts and IPC contributions remain unmeasured individually. This run precedes the explicit diff-view disposal body and does not verify that changed renderer, matching distribution or full remaining scope."
+}

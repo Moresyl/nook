@@ -1,0 +1,96 @@
+{
+  "observedAt": "2026-10-04T04:56:46.030Z",
+  "codeCommit": "3ea14208ac2267daeadfaaa19a29c4b0c2abd1a5",
+  "completeSourceVerified": false,
+  "runtimeErrors": [
+    "no diff result available"
+  ],
+  "passedChecksBeforeFailure": 182,
+  "assertionLocation": "scripts/verify-desktop.mjs:927",
+  "failedWorkspaceRetained": true,
+  "exactInternalCauseInOriginalRunMeasured": false,
+  "actualWorkerRegression": {
+    "heldRequests": 1,
+    "receivedReplies": 1,
+    "replyAfterModelsDisposed": true,
+    "sameRuntimeErrorReproduced": true
+  },
+  "source": [
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "34900bf706ffa15dc95a05234a1ce9ccebf7b0d9ded2b3c95c2125199edf7e60"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62"
+    },
+    {
+      "path": "workbench/components/code-editor.tsx",
+      "sha256": "cc10c806adf8313de30c0c56965394757e40532f37bfdd45e36dccbade7194c4"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "17ec48791c04be03b470a9fab340c9b0467ba892e93a9eed5559a2e2fd178b9c"
+    }
+  ],
+  "partialRecords": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "28269832a080872b34f399d2cae69724407121a574ee00f89a5c04720ced7a6e",
+      "bytes": 552
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "01ca93ed848637c47cbf3f45b3310dce058afcd2c89b9de117d26218a1d9a80a",
+      "bytes": 708
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "6280142422d84896d5e028ba25614fc0b4220a1d6520992440db567a325cd7bc",
+      "bytes": 2031
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "9c6a472d0bf7601a560466569a98f14d4935176297f011eb0c3ef48c5a41a446",
+      "bytes": 907
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "3027da9e6ae69e8efb7fed08005ca6efe87f74a0c374e961cf123d88717ae160",
+      "bytes": 662
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "b6b734fa3f0da18810a9cc5391de1d02ba8e2a083f019618375df05bc051a368",
+      "bytes": 815
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "306a4f7c82ccfe951875947093aa36bc3d10072839093f706d29832679889441",
+      "bytes": 802
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "3d69ab77ba2f789cec505300fb18ffb5f8d956fa7151fbff98e15d3171372c90",
+      "bytes": 563
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "6babae2cd77b17bdf5eba1e97e6357568a7d348e2fc361751fec6d0ed31203d8",
+      "bytes": 631
+    }
+  ],
+  "logs": [
+    {
+      "name": "checkpoint-batching-complete-native.log",
+      "bytes": 32624,
+      "sha256": "ad66a09f9c3e06963f42a4cf5f38d68a9a3190de44538b4236d6435cb9e781ea"
+    },
+    {
+      "name": "diff-disposal-negative.log",
+      "bytes": 1787,
+      "sha256": "e413d5d40f84c5860efe05c6eb3b7b1c9d17acc82f2f980834c2745bcd1b8e49"
+    }
+  ],
+  "scope": "The batching body passed its six-check comparison focus and 84 MB benchmark, but its complete source suite stopped on an accumulated Monaco runtime error after branch verification. Nine earlier component records are preserved as partial evidence. An actual gated diff-worker request over the loaded README reproduces the same error when the view/text models close before the delayed worker request is released. The original run did not capture the exact error stack/time, so this does not claim a measured original disposal timeline or complete-suite acceptance."
+}

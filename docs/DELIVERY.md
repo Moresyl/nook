@@ -1,5 +1,7 @@
 # Delivery requirements
 
+最新源码为检查点合并及差异视图取消修复，679／67／215 与两次真实启动错误检查已通过并保留二十份当前原始记录。四个现代终端分发二进制仍按此前验证体独立归档，不能证明新源码分发。新远端 `37177697511` 保留 189 项通过和首次回复显示失败现场，九份必需运行记录缺失，收集器拒绝验收。下一步处理多模型启动的重复整份工作台保存与通知，再完成当前应用体分发、远端和全部剩余能力／UI 范围；不发布标签或版本。
+
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.
 
 Latest hosted [37173408503](https://github.com/Moresyl/qiyao/actions/runs/37173408503) passes 672 tests, build/package checks and 190 desktop checks, including real PowerShell 7 and the original terminal prompt condition. It then fails the original four-model completion wait; its only completed full-workspace load takes 9422 ms. Exact queue, cloning and IPC contributions remain unmeasured; nine required records are missing. See [current hosted evidence](../verification/hosted-terminal-shell-comparison-failure-result.json). Full hosted acceptance and publication remain open.

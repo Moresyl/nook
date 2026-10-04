@@ -5,6 +5,7 @@ import { composerContent } from '../../contracts/composer';
 import type { RunEvent } from '../../contracts/bridge-contract';
 import type { ApprovalRequest, ToolActivity } from '../../contracts/tools';
 import type { WorkspaceVault } from './vault';
+import { MessageCheckpoints } from './message-checkpoints';
 import type { ModelGateway, ModelInput } from './model-gateway';
 import type { ModelExchange } from './model-protocol';
 import { projectToolDefinitions, boundedToolOutput, type ProjectToolExecutor } from './project-tools';
@@ -27,15 +28,17 @@ export class ConversationEngine {
   private comparisons = new Set<Promise<void>>();
   private closing = false;
   private approvals: ApprovalGate;
+  private checkpoints: MessageCheckpoints;
   constructor(private readonly vault: WorkspaceVault, private readonly gateway: ModelGateway, private readonly emit: (event: RunEvent) => void,
     private readonly tools: ProjectToolExecutor = new ExecutionTools(), private readonly checkpointInterval = 750, private readonly extensions?: ExtensionRuntime, private readonly knowledge?: Pick<KnowledgeService, 'validateSelection' | 'search'>) {
     this.approvals = new ApprovalGate((event) => this.notify(event));
+    this.checkpoints = new MessageCheckpoints(vault);
   }
 
-  private notify(event: RunEvent): void {
+  private notify(event: RunEvent, withState = false): void {
     // A closing renderer must not interrupt persistence or release of a run.
     try {
-      if (event.state) {
+      if (event.state || withState) {
         const state = this.vault.snapshot();
         for (const thread of state.threads) if (this.runs.has(thread.id)) thread.messages = thread.messages.map((message) => this.runningMessage(thread.id, message));
         this.emit({ ...event, state });
@@ -224,11 +227,7 @@ export class ConversationEngine {
   }
 
   private persist(threadId: string, message: Message) {
-    return this.vault.update((draft) => {
-      const target = draft.threads.find((item) => item.id === threadId);
-      const index = target?.messages.findIndex((item) => item.id === message.id) ?? -1;
-      if (target && index >= 0) { target.messages[index] = structuredClone(message); target.updatedAt = Date.now(); }
-    });
+    return this.checkpoints.persist(threadId, message);
   }
 
   private async execute(thread: Thread, message: Message, input: ModelInput, extension?: ExtensionSelection, knowledge?: { ids: string[]; user: Message }): Promise<void> {
@@ -240,8 +239,7 @@ export class ConversationEngine {
       if (!dirty || checkpointing) return;
       dirty = false;
       checkpointing = true;
-      checkpoint = this.persist(thread.id, message).then((state) => {
-        const saved = state.threads.find((item) => item.id === thread.id)?.messages.find((item) => item.id === message.id);
+      checkpoint = this.persist(thread.id, message).then((saved) => {
         if (saved) this.notify({ threadId: thread.id, messageId: message.id, message: saved });
       }).catch(() => {
         checkpointFailed = true;
@@ -345,8 +343,8 @@ export class ConversationEngine {
     await checkpoint;
     if (checkpointFailed) { message.status = 'error'; message.error = 'Could not save the response while it was running. Check disk space before continuing.'; }
     try {
-      const state = await this.persist(thread.id, message);
-      this.notify({ threadId: thread.id, messageId: message.id, state });
+      await this.persist(thread.id, message);
+      this.notify({ threadId: thread.id, messageId: message.id }, true);
     } catch {
       message.status = 'error';
       message.error = 'Could not save the response. Check disk space before continuing.';
