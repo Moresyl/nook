@@ -6,6 +6,7 @@ export function replyProviderFixture(prefix = '/reply-versions/') {
     assert.equal(request.url, `${prefix}v1/chat/completions`); assert.equal(request.headers.authorization, 'Bearer REPLY_VERSION_TEST_KEY');
     let body = ''; for await (const chunk of request) body += chunk; const input = JSON.parse(body); assert.equal(input.stream, true); fixture.requests.push(input);
     const mode = fixture.mode; fixture.mode = 'reply';
+    if (mode === 'connection-fail') { fixture.texts.push(''); response.destroy(); return true; }
     if (mode === 'fail') { fixture.texts.push(''); response.writeHead(503, { 'Content-Type': 'application/json' }); response.end(JSON.stringify({ error: { message: 'Synthetic reply provider failure' } })); return true; }
     const text = mode === 'stop' ? 'PARTIAL_REPLY_VERSION' : `REPLY_VERSION_RESPONSE_${fixture.requests.length} 中文😀 $& {{literal}} <img src="https://example.invalid/reply.png">`;
     fixture.texts.push(text); response.writeHead(200, { 'Content-Type': 'text/event-stream' }); response.write(`data: ${JSON.stringify({ choices: [{ delta: { content: text }, finish_reason: null }] })}\n\n`);

@@ -1,0 +1,323 @@
+{
+  "verifiedAt": "2026-10-04T07:44:40.672Z",
+  "unitTests": 683,
+  "unitFiles": 67,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "focusedDesktopChecks": 7,
+  "focusedProviderRequests": 5,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "completeSourceVerified": false,
+  "distributionVerified": false,
+  "hostedVerified": false,
+  "originalCompletionDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "actualSuccessfulTransportTraces": [
+    {
+      "question": "MESSAGE_SAVE_ORIGINAL",
+      "serverRequests": 1,
+      "transport": {
+        "id": 1,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791099147280,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791099147280
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791099147357
+          },
+          {
+            "phase": "headers",
+            "at": 1791099147369
+          },
+          {
+            "phase": "trailers",
+            "at": 1791099147369
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_LATER",
+      "serverRequests": 2,
+      "transport": {
+        "id": 2,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791099147892,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791099147892
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791099147892
+          },
+          {
+            "phase": "headers",
+            "at": 1791099147893
+          },
+          {
+            "phase": "trailers",
+            "at": 1791099147893
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_CONTINUE_NEW",
+      "serverRequests": 3,
+      "transport": {
+        "id": 3,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791099150034,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791099150034
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791099150034
+          },
+          {
+            "phase": "headers",
+            "at": 1791099150035
+          },
+          {
+            "phase": "trailers",
+            "at": 1791099150035
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_CONTINUE_OLD",
+      "serverRequests": 4,
+      "transport": {
+        "id": 4,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791099150386,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791099150386
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791099150386
+          },
+          {
+            "phase": "headers",
+            "at": 1791099150387
+          },
+          {
+            "phase": "trailers",
+            "at": 1791099150387
+          }
+        ],
+        "statusCode": 200
+      }
+    }
+  ],
+  "controlledConnectionFailure": {
+    "expectedNonzeroExit": true,
+    "actualTransportErrorCode": "UND_ERR_SOCKET",
+    "data": {
+      "sendStartedAt": 1791099164670,
+      "waitStartedAt": 1791099164734,
+      "failedAt": 1791099174824,
+      "question": "MESSAGE_SAVE_CONTINUE_NEW",
+      "serverRequestsBefore": 2,
+      "serverRequestsAfter": 3,
+      "originalCompletionDeadlineMs": 10000,
+      "originalPollIntervalMs": 100,
+      "transport": [
+        {
+          "id": 1,
+          "method": "POST",
+          "path": "/message-edits/v1/chat/completions",
+          "firstObservedAt": 1791099162934,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791099162934
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791099162939
+            },
+            {
+              "phase": "headers",
+              "at": 1791099162942
+            },
+            {
+              "phase": "trailers",
+              "at": 1791099162943
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 2,
+          "method": "POST",
+          "path": "/message-edits/v1/chat/completions",
+          "firstObservedAt": 1791099163127,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791099163127
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791099163127
+            },
+            {
+              "phase": "headers",
+              "at": 1791099163128
+            },
+            {
+              "phase": "trailers",
+              "at": 1791099163128
+            }
+          ],
+          "statusCode": 200
+        },
+        {
+          "id": 3,
+          "method": "POST",
+          "path": "/message-edits/v1/chat/completions",
+          "firstObservedAt": 1791099164747,
+          "phases": [
+            {
+              "phase": "create",
+              "at": 1791099164747
+            },
+            {
+              "phase": "bodySent",
+              "at": 1791099164747
+            },
+            {
+              "phase": "error",
+              "at": 1791099164749
+            }
+          ],
+          "errorCode": "UND_ERR_SOCKET"
+        }
+      ]
+    },
+    "diagnosticsCapturedAfterWaitStartMs": 10090,
+    "scope": "The isolated server deliberately destroys the third request connection after receiving the exact request. This validates real transport/error diagnostics and the unchanged failed completion condition; it does not establish the prior hosted connection failure cause."
+  },
+  "transportHeadersKeysBodiesAndRawErrorsNotCaptured": true,
+  "compiledAssetsExactlyMatchPriorVerifiedDistribution": true,
+  "priorDistribution": {
+    "path": "verification/project-access-distribution-result.json",
+    "sha256": "06e0339baa8f0006901bfcba49ef890859ee0c60583dd1984da5f5624519e896",
+    "sourceChecks": 215,
+    "installedChecks": 215,
+    "runtimeRecordCount": 10,
+    "scope": "Previously verified application bytes are unchanged. Those records do not establish the newly instrumented complete native suite or hosted acceptance."
+  },
+  "coverage": {
+    "lines": {
+      "total": 3078,
+      "covered": 3057,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5234,
+      "covered": 5078,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1172,
+      "covered": 1140,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3699,
+      "covered": 3494,
+      "skipped": 0,
+      "pct": 94.45
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "bytes": 126868,
+      "sha256": "918e357eee013126155f455fc612001bcbce3df4e729cac2d8e5e3b98262d7a3"
+    },
+    {
+      "path": "scripts/verify-message-edits.mjs",
+      "bytes": 25243,
+      "sha256": "df864cfb779b49550b1e92c205b2e1e9cd6022d9d434b53cc19a2cced835ee9b"
+    },
+    {
+      "path": "verification/reply-provider-fixture.mjs",
+      "bytes": 1684,
+      "sha256": "b441ea7fa5ff86c2781195fa0b562c8bdce00088623536185d326b9ae055a677"
+    }
+  ],
+  "focusedNativeRecord": {
+    "sha256": "84b23de678ceed87fd31a99c37565836a012e02a91b4402a7582e40370917529",
+    "bytes": 768,
+    "data": {
+      "verifiedAt": "2026-10-04T07:32:41.348Z",
+      "variant": "development executable",
+      "runtimeErrors": [],
+      "checks": 7,
+      "archivedPaths": 4,
+      "providerRequests": 5,
+      "scope": "Actual user/assistant plain-save without sending; preserved complete history, attachments, following messages, producing models/usage and manual provenance; selected original/edited HTTP continuation; independent editor drafts, actual close/restart before debounce, stale conflicts and explicit discard; native storage failure rejects close/backup and recovers; exact gzip recovery and owner deletion. Native file/confirmation and filesystem-failure boundaries are isolated fixtures; abrupt termination, maximum scale, broader accessibility and other platforms remain separate gates."
+    }
+  },
+  "logs": [
+    {
+      "name": "provider-transport-build.log",
+      "bytes": 22554,
+      "sha256": "695a87f4dbdfe6b5531ab1a6ef3407c004dee058142cd78d66c4d2f7180a04f6"
+    },
+    {
+      "name": "provider-transport-typecheck.log",
+      "bytes": 90,
+      "sha256": "d9863bfe80177fa2fe27d22d74fc297a6a78ebbf0ca325cb81d884e1f3a2819f"
+    },
+    {
+      "name": "provider-transport-coverage.log",
+      "bytes": 4584,
+      "sha256": "9446e8fcafd8c28a5e0d486439014d28fb1801debde3acbc72f5f74a6fe3dc90"
+    },
+    {
+      "name": "provider-transport-positive-native.log",
+      "bytes": 2961,
+      "sha256": "76b89a868be522cc23282d56330e2fcb60c77ccbe322e0a1d3abd0156881a64a"
+    },
+    {
+      "name": "provider-transport-negative-native.log",
+      "bytes": 4238,
+      "sha256": "1c022947371fe1874a2d9e0516ace9b64979dc97cc4a6dacd140b745cd418ce7"
+    }
+  ],
+  "scope": "Observational native transport checks pass 683 unit tests, type checking, unchanged application build and seven actual message-edit checks with normal close. Four real sends each show a matching POST and HTTP 200 header trace. A separate controlled connection closure records actual UND_ERR_SOCKET, exact server request counts and the original ten-second failure condition. Only owned loopback routes, timestamps, status and restricted error codes are recorded. The original hosted connection cause remains unknown; complete newly instrumented desktop, matching runtime and hosted acceptance are pending."
+}

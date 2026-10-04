@@ -1,6 +1,6 @@
 # Capability verification ledger
 
-当前项目局部读取应用体已通过 683 项／67 个文件、类型、构建、完整 215 项源码检查、两次当前启动错误检查，以及同一构建的完整 215 项未安装／实际安装桌面检查、4 项设置、7 项便携和 7 项真实兼容终端检查。十份运行记录严格匹配，两张当前安装版项目截图逐张审阅，四个实际二进制单独归档；见 `verification/project-access-distribution-result.json`。大型备份恢复后的 8 次终端查询与 1 次文档读取不复制完整聊天数据，已提交项目边界和原有检查期限保持正确。远端 `37183557672` 通过 683／144 后在手动编辑续聊中出现明确连接错误，底层错误码和时间尚未捕获；现场为 `verification/hosted-project-access-message-failure-result.json`。当前本地分发通过，完整远端流水线及全部剩余能力／UI 验收继续待办。
+当前传输诊断源码通过 683 项／67 个文件、类型、构建、完整 215 项桌面检查、正常关闭及两次当前启动错误检查，四次消息续聊验证真实 POST／HTTP 200 响应阶段；独立主动断连检查捕获 `UND_ERR_SOCKET` 与准确请求数量，原有期限保持不变。三份编译资源与此前已通过完整本地分发的应用体字节一致，两张当前项目截图逐张审阅；见 `verification/provider-transport-source-review-result.json`。此前 `verification/project-access-distribution-result.json` 的 215 项未安装／实际安装、4 项设置、7 项便携、7 项兼容终端及十份匹配记录仍单独保留，不能替代新增诊断条件下的完整运行验收。远端 `37183557672` 的 683／144 连接失败原因仍未建立，新运行 `37186719269` 已进入完整桌面验证。新增条件下的分发、远端及全部剩余能力／UI 范围继续待办。
 
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.
 
