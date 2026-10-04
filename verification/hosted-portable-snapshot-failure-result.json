@@ -1,0 +1,34 @@
+{
+  "verifiedAt": "2026-10-04T22:17:35.603Z",
+  "runId": 37237384474,
+  "codeCommit": "7acafb58136b864428e276dd1779e9fb853b57fd",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37237384474",
+  "conclusion": "failure",
+  "unitTestsPassed": 746,
+  "desktopChecks": 215,
+  "settingsChecks": 4,
+  "desktopNormalCloseVerified": true,
+  "archiveSha256": "a56cf38e1ef7598333fe3927d1bdcd7b7855af3194d382cb3185a92af6eca47e",
+  "executableSha256": "8b4895410f982c56c9811bc03a866def1e4ab24181fc43252eb06a463fa3adb5",
+  "bootstrapInstallerChecks": 6,
+  "bootstrapUninstallerChecks": 5,
+  "bootstrapPortableChecks": 2,
+  "portableChecks": 0,
+  "actualPortableLaunched": false,
+  "failure": "Initial read-only PowerShell registration/shortcut snapshot exceeded the ten-second subprocess deadline with empty stdout/stderr and was terminated, before launch of the portable executable.",
+  "exactColdStartCauseEstablished": false,
+  "log": {
+    "bytes": 302993,
+    "sha256": "57d78c69c447a67b15ddf2e9de64e88fdd664fde0c2de64ac83d6aec8229e0c7"
+  },
+  "artifact": {
+    "id": 11316820591,
+    "bytes": 10166772,
+    "sha256": "34a9ef741db4178ec495c2b966298e3dbf798151d4dcf3eb70cbfba45f4d349f",
+    "githubDigestMatched": true
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (portableAudit). Run all distribution checks again.",
+  "hostedVerified": false,
+  "publicationVerified": false
+}
