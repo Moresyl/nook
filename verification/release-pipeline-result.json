@@ -521,6 +521,12 @@
       "sourceCommit": "7eae0d96ff31d4b2d39ece5d0974c4a6ba3afddb",
       "conclusion": "failure",
       "proof": "verification/hosted-comparison-first-response-failure-result.json"
+    },
+    {
+      "runId": 37164504844,
+      "sourceCommit": "08a8f44f6204d0020595bacf156e950734074275",
+      "conclusion": "failure",
+      "proof": "verification/hosted-streaming-completion-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -669,15 +675,17 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37159904540,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37159904540",
-    "sourceCommit": "c938cd62ca99d0b3e7919d673e829ba8cdafd541",
+    "runId": 37164504844,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37164504844",
+    "sourceCommit": "08a8f44f6204d0020595bacf156e950734074275",
     "conclusion": "failure",
-    "unitTestsPassed": 638,
+    "unitTestsPassed": 647,
+    "unitFiles": 63,
     "packagedChecksBeforeFailure": 189,
-    "visiblePartialRegressionObserved": true,
+    "originalPartialConditionPassed": true,
+    "completionWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-assistant-recipes-comparison-failure-result.json"
+    "proof": "verification/hosted-streaming-completion-failure-result.json"
   },
   "previousSourceVerification": {
     "verifiedAt": "2026-10-03T22:44:00.851Z",
@@ -811,6 +819,18 @@
     "sourceChecks": 210,
     "regressionTests": 9,
     "comparisonModelRequests": 11,
-    "proof": "verification/streaming-progress-review-result.json"
+    "proof": "verification/streaming-progress-review-result.json",
+    "latestHostedRunId": 37164504844
+  },
+  "previousHostedAttempt": {
+    "runId": 37159904540,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37159904540",
+    "sourceCommit": "c938cd62ca99d0b3e7919d673e829ba8cdafd541",
+    "conclusion": "failure",
+    "unitTestsPassed": 638,
+    "packagedChecksBeforeFailure": 189,
+    "visiblePartialRegressionObserved": true,
+    "completeRuntimeVerified": false,
+    "proof": "verification/hosted-assistant-recipes-comparison-failure-result.json"
   }
 }

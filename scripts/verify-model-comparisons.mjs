@@ -26,7 +26,27 @@ export async function verifyModelComparisons({ page, application, getApplication
   async function close() { await dialog().locator('.modal-footer').getByRole('button', { name: '关闭', exact: true }).click(); await dialog().waitFor({ state: 'hidden' }); }
   const groups = []; const group = async (groupId) => (await page.evaluate(() => window.qiyao.load())).threads.filter((thread) => thread.comparison?.groupId === groupId).sort((a, b) => a.comparison.index - b.comparison.index);
   async function currentGroup() { const state = await page.evaluate(() => window.qiyao.load()); return state.threads.findLast((thread) => thread.comparison)?.comparison.groupId; }
-  async function waitCompleted(groupId) { await waitForBridge(page, async (groupId) => (await window.qiyao.load()).threads.filter((thread) => thread.comparison?.groupId === groupId).every((thread) => thread.messages.at(-1)?.status !== 'running'), groupId); }
+  async function waitCompleted(groupId) {
+    const waitStartedAt = Date.now();
+    try {
+      await waitForBridge(page, async (groupId) => {
+        const loadStartedAt = Date.now(); const state = await window.qiyao.load(); const loadedAt = Date.now();
+        const threads = state.threads.filter((thread) => thread.comparison?.groupId === groupId);
+        const matched = threads.every((thread) => thread.messages.at(-1)?.status !== 'running');
+        window.__qiyaoComparisonCompletionPoll = { polledAt: loadedAt, sequence: (window.__qiyaoComparisonCompletionPoll?.sequence ?? 0) + 1, loadStartedAt, loadedAt, matched,
+          replies: threads.map((thread) => ({ id: thread.id, model: thread.model, messages: thread.messages.length, status: thread.messages.at(-1)?.status, characters: thread.messages.at(-1)?.content.length, invocationStatus: thread.messages.at(-1)?.invocations?.at(-1)?.status })) };
+        return matched;
+      }, groupId);
+    } catch (error) {
+      const waitFailedAt = Date.now(); const requestTimelineAtFailure = structuredClone(fixture.timeline.slice(-16));
+      const lastPoll = await page.evaluate(() => window.__qiyaoComparisonCompletionPoll ?? null).catch(() => null);
+      const resourceCaptureStartedAt = Date.now();
+      const resource = await application.evaluateMain('({capturedAt:Date.now(),memory:process.memoryUsage(),cpu:process.cpuUsage(),processes:require("electron").app.getAppMetrics()})').catch(() => null);
+      const resourceCaptureCompletedAt = Date.now();
+      console.error('Comparison completion diagnostics', JSON.stringify({ groupId, waitStartedAt, waitFailedAt, unchangedCompletionDeadlineMs: 10000, lastPoll, requestTimelineAtFailure, resourceCaptureStartedAt, resourceCaptureCompletedAt, resource }));
+      throw error;
+    } finally { await page.evaluate(() => { delete window.__qiyaoComparisonCompletionPoll; }).catch(() => {}); }
+  }
   async function waitPartial() {
     const waitStartedAt = Date.now();
     try {
@@ -95,6 +115,8 @@ export async function verifyModelComparisons({ page, application, getApplication
   assert.equal(await page.evaluate(() => Object.hasOwn(window, '__qiyaoComparisonPartialPoll')), false);
   const sent = JSON.stringify(firstRequests[0].messages); for (const value of ['COMPARE_PREVIOUS_USER', 'COMPARE_PREVIOUS_REPLY', question, attachment.content, 'COMPARE_PROJECT_INSTRUCTIONS']) assert.ok(sent.includes(value));
   assert.equal(await dialog().locator('img').count(), 0); assert.equal(await dialog().getByLabel('回复 1', { exact: true }).getAttribute('readonly'), ''); await capture('118-model-comparison-stream-light.png'); fixture.finish(); await waitCompleted(firstGroup);
+  for (const timing of fixture.timeline) { assert.ok(Number.isInteger(timing.completionQueuedAt)); assert.ok(timing.completionQueuedAt >= timing.partialSentAt); assert.ok(Number.isInteger(timing.completionFlushedAt)); assert.ok(timing.completionFlushedAt >= timing.completionQueuedAt); }
+  assert.equal(await page.evaluate(() => Object.hasOwn(window, '__qiyaoComparisonCompletionPoll')), false);
   let state = await page.evaluate(() => window.qiyao.load()); assert.deepEqual(state.threads.find((thread) => thread.id === sourceId), source); assert.deepEqual(state.composerDrafts.find((draft) => draft.threadId === sourceId), originalDraft); assert.equal(state.activeThreadId, sourceId); await close(); assert.equal(await composer().inputValue(), question);
   verified('two real HTTP streams start before either completes with identical full context, question, attachments and assistant/project instructions; readonly previews keep markup inert and preserve the entire source and draft');
 

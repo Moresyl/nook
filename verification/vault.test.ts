@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -36,6 +36,30 @@ describe('local workspace persistence', () => {
     await vault.update((draft) => { draft.preferences.theme = 'dark'; });
     expect(vault.snapshot().preferences.theme).toBe('dark');
   });
+  it('retains exact primary and backup bytes after validation and actual destination failures, then retries from the last committed state', async () => {
+    const directory = await freshDirectory(); const vault = new WorkspaceVault(directory, codec);
+    await vault.update((draft) => { draft.notes.push({ id: 'one', title: 'First', content: 'Unicode 文档 🧪', createdAt: 1 }); });
+    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json');
+    const before = vault.snapshot(); const primaryBytes = await readFile(primary); const backupBytes = await readFile(backup);
+    await expect(vault.update((draft) => { draft.schemaVersion = 2 as 1; })).rejects.toThrow(); expect(await readFile(primary)).toEqual(primaryBytes); expect(await readFile(backup)).toEqual(backupBytes);
+    const retained = join(directory, 'workspace-retained.json'); await rename(primary, retained); await mkdir(primary);
+    try { await expect(vault.update((draft) => { draft.notes[0].content = 'Failed replacement'; })).rejects.toThrow('Local data'); expect(vault.snapshot()).toEqual(before); expect(await readFile(retained)).toEqual(primaryBytes); expect(await readFile(backup)).toEqual(primaryBytes); }
+    finally { await rm(primary, { recursive: true, force: true }); await rename(retained, primary); }
+    await vault.update((draft) => { draft.notes[0].content = 'Successful retry 中文'; });
+    expect(await readFile(backup)).toEqual(primaryBytes); expect(JSON.parse(await readFile(primary, 'utf8')).notes[0].content).toBe('Successful retry 中文');
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(vault.snapshot());
+  });
+  it('keeps both persisted files unchanged for no-op and temporary-only updates while retaining credential normalization and later durable writes', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    await vault.setKey(provider.id, 'PRIVATE_TEST_KEY'); const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot().providers[0].hasKey).toBe(true);
+    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json'); const primaryBytes = await readFile(primary); const backupBytes = await readFile(backup);
+    await restarted.update(() => {});
+    await restarted.update((draft) => { draft.threads.push(sampleThread({ id: 'temporary', temporary: true, messages: [{ id: 'temporary-reply', role: 'assistant', content: 'PRIVATE_TEMPORARY_TEXT', attachments: [], status: 'running', createdAt: 1 }] })); draft.activeThreadId = 'temporary'; });
+    expect(await readFile(primary)).toEqual(primaryBytes); expect(await readFile(backup)).toEqual(backupBytes); expect(restarted.snapshot().threads[0].temporary).toBe(true);
+    await restarted.update((draft) => { draft.preferences.theme = 'dark'; });
+    for (const path of [primary, backup]) { const text = await readFile(path, 'utf8'); expect(text).not.toContain('PRIVATE_TEST_KEY'); expect(text).not.toContain('PRIVATE_TEMPORARY_TEXT'); expect(JSON.parse(text).providers[0].hasKey).toBe(true); }
+    const reopened = new WorkspaceVault(directory, codec); await reopened.initialize(); expect(reopened.snapshot().threads).toEqual([]); expect(reopened.snapshot().preferences.theme).toBe('dark');
+  });
   it('encrypts secrets, excludes credentials from backups, and supports deleting keys', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     await vault.setKey(provider.id, 'super-secret');
@@ -60,6 +84,8 @@ describe('local workspace persistence', () => {
     await vault.update((draft) => { draft.threads.push(sampleThread({ messages: [{ id: 'a', role: 'assistant', content: 'Partial', createdAt: 1, status: 'running', attachments: [] }] })); });
     const restored = new WorkspaceVault(directory, codec); await restored.initialize();
     expect(restored.snapshot().threads[0].messages[0]).toMatchObject({ status: 'stopped', content: 'Partial' });
+    expect(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')).threads[0].messages[0]).toMatchObject({ status: 'stopped', content: 'Partial' });
+    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json'), 'utf8')).threads[0].messages[0]).toMatchObject({ status: 'running', content: 'Partial' });
   });
   it('fails clearly on corrupted workspace data instead of silently overwriting it', async () => {
     const directory = await freshDirectory(); await writeFile(join(directory, 'workspace.json'), '{bad');
