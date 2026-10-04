@@ -1,0 +1,259 @@
+{
+  "verifiedAt": "2026-10-04T13:01:05.004Z",
+  "codeCommit": "d9e935acfa44ae54ebcbc89d9df7053edd1ee54c",
+  "runId": 37201161132,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37201161132",
+  "conclusion": "failure",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "858e07d03021f6607a32d9a0dcf6e577141e3a6f7f5461ebbe49edb1c368f9db"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "81659ce4b8fe32a17645df0a2d1a41d117248b3c756da3e3b878e4ee6bd9ce13"
+    },
+    {
+      "path": "verification/workspace-serialization.test.ts",
+      "sha256": "11924ebd8bc1692fc6446be7be6532d6ab1d9ac6ef2979b9cf334cc2eabe58b0"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "bc2a80a933ea39cf874db912843115a2660d8f27eab57fe3913f2810390eaacc"
+    }
+  ],
+  "unitTests": 691,
+  "unitFiles": 68,
+  "completeUnpackedChecks": 215,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "installedChecksBeforeFailure": 173,
+  "artifact": {
+    "id": 11303079811,
+    "name": "windows-verification-37201161132-1",
+    "bytes": 10040841,
+    "digest": "sha256:21deb06ddbfde19e16734c12e5472fa3a1da5a78356f9207a4d873b63e3623aa",
+    "downloadedDigestVerified": true
+  },
+  "actualBody": {
+    "executableSha256": "c3a03258e903c0c602ba927abdde13738e8651ecdb7c0b7d881a785053aaee7a",
+    "archiveSha256": "5a004aeb8dd8731059d72cb71400aa95a6e985860a8915539bfa5bdce4906f92",
+    "portableSha256": "3d6f00bcbc1f57582a2eb1b55c7601fa452594f3399595a5f9849b6e38d36e12",
+    "installerSha256": "0ebc97fc4f2c76ac633bad8c047677da862c6aa25db2aab1dc410a9f1c9d1586"
+  },
+  "startup": {
+    "originalPageDiscoveryDeadlineMs": 30000,
+    "separatelyCapturedElapsedFromSpawnMs": 30848,
+    "diagnostics": {
+      "pid": 6104,
+      "elapsedMs": 30848,
+      "exitCode": null,
+      "signalCode": null,
+      "pages": [],
+      "main": {
+        "capturedAt": 1791118102236,
+        "ready": true,
+        "startup": {
+          "events": [
+            {
+              "phase": "when-ready",
+              "at": 1791118071788,
+              "memory": {
+                "rss": 122363904,
+                "heapTotal": 27541504,
+                "heapUsed": 17764960,
+                "external": 3905803,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 218000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "protocol.ready",
+              "at": 1791118071794,
+              "memory": {
+                "rss": 126464000,
+                "heapTotal": 27541504,
+                "heapUsed": 17773408,
+                "external": 3274972,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 234000,
+                "system": 93000
+              }
+            },
+            {
+              "phase": "vault.workspace.read",
+              "at": 1791118080624,
+              "memory": {
+                "rss": 153022464,
+                "heapTotal": 33308672,
+                "heapUsed": 16655112,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 2796000,
+                "system": 4265000
+              }
+            }
+          ]
+        },
+        "memory": {
+          "rss": 153702400,
+          "heapTotal": 33308672,
+          "heapUsed": 16605640,
+          "external": 3103347,
+          "arrayBuffers": 0
+        },
+        "cpu": {
+          "user": 9765000,
+          "system": 16343000
+        },
+        "processes": [
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 26.033486,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 6104,
+            "type": "Browser",
+            "creationTime": 1791118071401.412,
+            "memory": {
+              "workingSetSize": 150144,
+              "peakWorkingSetSize": 150144,
+              "privateBytes": 131236
+            },
+            "integrityLevel": "high",
+            "sandboxed": false
+          },
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.038044,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 1632,
+            "type": "GPU",
+            "creationTime": 1791118071821.988,
+            "serviceName": "GPU",
+            "memory": {
+              "workingSetSize": 50152,
+              "peakWorkingSetSize": 55952,
+              "privateBytes": 14112
+            },
+            "integrityLevel": "low",
+            "sandboxed": true
+          },
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.034444,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 1700,
+            "type": "Utility",
+            "creationTime": 1791118071807.283,
+            "serviceName": "network.mojom.NetworkService",
+            "name": "Network Service",
+            "memory": {
+              "workingSetSize": 45596,
+              "peakWorkingSetSize": 50364,
+              "privateBytes": 11372
+            },
+            "integrityLevel": "high",
+            "sandboxed": false
+          }
+        ],
+        "windows": []
+      }
+    },
+    "originalCauseEstablished": false,
+    "limits": "The final observed phase begins workspace reading and ends only after JSON decoding and persistent-schema parsing. This record cannot separate those contributions; observed resources are sampled after the deadline."
+  },
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "5d17a8c83b314b5f3e893e1534d4369ca640ca614c66a6be7f1f5bf68d39cbfb",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": true,
+      "sha256": "f6155e342c212388035a74ddca54e71f68cfb8cd8f8710eed4f9368e36ff9cbc",
+      "bytes": 54037
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": true,
+      "sha256": "b1d6b858c89907d3b3a48d0ed69eda711c0473887ee0c8d441072be3532d8f24",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": true,
+      "sha256": "46722418b43e262a762a9352ee46e2561559b668040b06d65b5c5f775abe677a",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": true,
+      "sha256": "b47fa837883e50b273ff9f9ab139585ae0452cc9d0a617f371b081b204f43a99",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": true,
+      "sha256": "fc8d55741233ddbdb60697073710e9860032cf1547cf9c6f9f5163492bd090dc",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": true,
+      "sha256": "8f27c8ee5c895c41f60f7e8baca2fc4a8ce016242979ecc3e3f4fcc9e9c0eadb",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": true,
+      "sha256": "a38875a4227837da31ee9f4f4cf291e02fc498c00b1ddba4b71a0a592f851f35",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": true,
+      "sha256": "b377a17256717b70b55e87685a923f7d5f72e6aa7248142293d74d7148fbc636",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 1,
+  "completeRecordCollectionRejected": true,
+  "completeInstalledVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "log": {
+    "path": "github-workspace-serialization-branch-full.log",
+    "bytes": 336108,
+    "sha256": "17efd8242cfbb0922dcb62c87242f3c33747798587f859960670f7336c46ea4f"
+  },
+  "scope": "Exact earlier serializer source passes complete unpacked desktop, settings, actual bootstrap and portable checks. Installed verification passes 173 checks before branch-fixture restart misses its original 30-second page-discovery condition. Missing installed acceptance prevents release. This is not acceptance of the subsequent property-order fix."
+}

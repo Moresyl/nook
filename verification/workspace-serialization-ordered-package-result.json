@@ -1,0 +1,76 @@
+{
+  "verifiedAt": "2026-10-04T13:02:59.824Z",
+  "codeCommit": "05550b2ec63ab0ff315da93af885c9d8ad43a173",
+  "componentProof": {
+    "path": "verification/workspace-serialization-ordered-component-result.json",
+    "sha256": "c7e65352c60e1c464258aa08f1535883da65519f4b51eb8c7aceee6bdddab4c9"
+  },
+  "packageResourcesVerified": true,
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "b44294be8e0b752abe5fa29b700e48008c7bb3bf62b33da68971d595f1426cd9",
+      "previousSha256": "5a0a65e2b0f071ba47318511033cfd959d6c7393778f4c27cd35ed46287dd295",
+      "unchanged": false
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80",
+      "previousSha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80",
+      "unchanged": true
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a",
+      "previousSha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a",
+      "unchanged": true
+    }
+  ],
+  "cleanFiles": [
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "bytes": 910532,
+      "sha256": "9c5e1787065973e92a32624cdc4c68816b94cbf94097c5a0d3bb6614822c6d8e"
+    },
+    {
+      "path": "licenses/project/NOTICE.txt",
+      "bytes": 367,
+      "sha256": "6f41cffae494367509839eaba00fbb9bfaa57614d73b8de84ea12248dc13561b"
+    },
+    {
+      "path": "licenses/assets.json",
+      "bytes": 16174,
+      "sha256": "933dac51de597b9e6766fc030cefd407e676af4233433931ec58ac765bb4d21f"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "originalDependencyDocumentsVerified": 401,
+  "dependencyVersions": 381,
+  "audit": {
+    "path": "verification/package-audit-result.json",
+    "sha256": "1d1954fbecae9720d65965e0d0c3332127ce4cfc16d6752dea600a0ceec5f762",
+    "executableSha256": "fbc6c7ebee0032441b3d562721ab4f1458a3475ea8e81d626f3d2b09af66409c",
+    "archiveSha256": "35d5ade61dbd0c4bc15d2364da8343541699ce0fb4aaebff4006c0ccbe233445"
+  },
+  "log": {
+    "path": "workspace-serialization-ordered-package-audit.log",
+    "sha256": "950659b5a1892cd634b92f4a5940f8950c43013dcdaf9e65e62aa2910a6cdc2b",
+    "bytes": 298
+  },
+  "completeDistributionVerified": false,
+  "hostedVerified": false,
+  "scope": "Fresh ordered-serializer package resources retain all original licenses and 401 dependency legal documents byte for byte, contain the cleaned product notices, and match the independently verified compiled assets. Complete runtime and lifecycle acceptance are separate records."
+}
