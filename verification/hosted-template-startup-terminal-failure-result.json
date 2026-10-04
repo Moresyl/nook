@@ -1,0 +1,227 @@
+{
+  "verifiedAt": "2026-10-04T02:36:32.490Z",
+  "codeCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
+  "runId": 37169903719,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37169903719",
+  "conclusion": "failure",
+  "unitTests": 664,
+  "unitFiles": 65,
+  "passedDesktopChecks": 164,
+  "artifact": {
+    "id": 11291451532,
+    "name": "windows-verification-37169903719-1",
+    "bytes": 6168520,
+    "digest": "sha256:cc007de5067d41fd4762db6d06f25693359f1ab74c6024e5583fbea61cecaf56"
+  },
+  "actualBody": {
+    "executableSha256": "c5ff95472ef8c3033b1300bf08bcc7ae82de4af69af23d658e927acafebddcb7",
+    "archiveSha256": "b2745f531c580043bda8d8dcade52be8df52c268014c27a916f994f1a61f93e3",
+    "auditSha256": "5ce33c176686f723996c5a2fb0c60419b570f538b4d64acdcaf3085472da8dd7"
+  },
+  "largeBackupRestartPassed": true,
+  "originalTerminalPromptDeadlineMs": 10000,
+  "originalPromptCondition": "terminal.output.includes(\"PS \")",
+  "terminal": {
+    "at": 1791080504043,
+    "lastPoll": {
+      "at": 1791080503935,
+      "terminals": [
+        {
+          "id": "177f547a-8aa7-4ddc-94b7-e6e26958a5f8",
+          "projectId": "30f36378-c166-4291-bb37-431719caf867",
+          "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-806480f6527146eabc77318e63c122e5\\qiyao-electron-rYIAmp\\文件树 项目",
+          "shell": "powershell.exe",
+          "status": "running",
+          "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007",
+          "sequence": 3
+        }
+      ]
+    },
+    "current": [
+      {
+        "id": "177f547a-8aa7-4ddc-94b7-e6e26958a5f8",
+        "projectId": "30f36378-c166-4291-bb37-431719caf867",
+        "cwd": "C:\\Users\\runneradmin\\AppData\\Local\\QiyaoPipeline-806480f6527146eabc77318e63c122e5\\qiyao-electron-rYIAmp\\文件树 项目",
+        "shell": "powershell.exe",
+        "status": "running",
+        "output": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[H\r\n\r\n\r\n\r\n\r\n\u001b[H\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\r\n\u001b[K\u001b[H\u001b[?25h\u001b]0;Administrator: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007",
+        "sequence": 3
+      }
+    ]
+  },
+  "separatelyCapturedProcess": {
+    "capturedAt": 1791080504145,
+    "moduleSources": {
+      "defaultTerminalPath": "D:\\a\\qiyao\\qiyao\\node_modules\\.pnpm\\node-pty@1.1.0\\node_modules\\node-pty\\lib\\terminal.js",
+      "applicationTerminalPath": "D:\\a\\qiyao\\qiyao\\artifacts\\win-unpacked\\resources\\app.asar\\node_modules\\node-pty\\lib\\terminal.js",
+      "sameModule": false
+    },
+    "terminals": [
+      {
+        "registeredAt": 1791080493713,
+        "pid": 8264,
+        "processName": "xterm-256color",
+        "cols": 80,
+        "rows": 12,
+        "chunks": 3,
+        "characters": 233,
+        "firstDataAt": 1791080493885,
+        "lastDataAt": 1791080501778
+      }
+    ],
+    "mainMemory": {
+      "rss": 640827392,
+      "heapTotal": 377200640,
+      "heapUsed": 359131804,
+      "external": 88553332,
+      "arrayBuffers": 0
+    },
+    "systemMemory": {
+      "free": 3742212096,
+      "total": 8584425472
+    },
+    "applicationProcesses": [
+      {
+        "pid": 6300,
+        "type": "Browser",
+        "cpu": {
+          "cumulativeCPUUsage": 35.786956,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 625836,
+          "peakWorkingSetSize": 2160544,
+          "privateBytes": 580844
+        }
+      },
+      {
+        "pid": 7240,
+        "type": "GPU",
+        "cpu": {
+          "cumulativeCPUUsage": 1.028233,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 65544,
+          "peakWorkingSetSize": 113252,
+          "privateBytes": 17176
+        }
+      },
+      {
+        "pid": 3008,
+        "type": "Utility",
+        "cpu": {
+          "cumulativeCPUUsage": 0.05469,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 62232,
+          "peakWorkingSetSize": 79480,
+          "privateBytes": 11380
+        }
+      },
+      {
+        "pid": 8696,
+        "type": "Tab",
+        "cpu": {
+          "cumulativeCPUUsage": 9.713758,
+          "percentCPUUsage": 0,
+          "idleWakeupsPerSecond": 0
+        },
+        "memory": {
+          "workingSetSize": 937380,
+          "peakWorkingSetSize": 1369024,
+          "privateBytes": 900432
+        }
+      }
+    ]
+  },
+  "laterProcessSampleFromRegistrationMs": 10432,
+  "shellProcessCpuOrStackCaptured": false,
+  "exactFailureCauseEstablished": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "5ce33c176686f723996c5a2fb0c60419b570f538b4d64acdcaf3085472da8dd7"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+    "previous210OwnBodyRejected": true,
+    "mixingFreshAuditRejected": true
+  },
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "b54930cdab6d5e82f067db7a63df4986ba4c4a65f2dfaaa063968675927cf4c3",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-template-startup-combined-full.log",
+      "sha256": "3683fd1745a9ac8eb777eda9ddcc9945a79a4e3d24b38cdaa3c8a60e75020780",
+      "bytes": 273822
+    },
+    {
+      "name": "github-template-startup-combined-failed.log",
+      "sha256": "5e0378fd17cac2c2e3639ec7802e3f74efc1cb2e5182072f61a966adaad0ab38",
+      "bytes": 79600
+    }
+  ],
+  "scope": "The exact combined template/startup source passes 664 tests, type/build/package gates and 164 desktop checks. Large gzip restoration and actual application restart now pass. The later original 10-second PowerShell prompt condition fails: the correctly observed packaged node-pty instance starts real PID 8264, receives three chunks/233 control-and-title characters, remains running, but its last poll and later current output contain no PS prompt. The later process sample, 10,432 ms after registration, records application memory/processes and 3,742,212,096 free system bytes; this is not a deadline/peak sample or the shell process CPU/stack, and does not determine the cause. The individually viewed dark minimum-window failure image shows a blank terminal below the retained dirty editor. Nine required records are absent. Frozen policy rejects the preceding 210-check body even against its own hashes and rejects mixing it with the fresh audit. Comparisons and transfer checks are not reached; successful local 664/215 source acceptance remains separate. Complete hosted installation and release remain open."
+}

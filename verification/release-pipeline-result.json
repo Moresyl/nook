@@ -533,6 +533,12 @@
       "sourceCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
       "conclusion": "failure",
       "proof": "verification/hosted-vault-startup-failure-result.json"
+    },
+    {
+      "runId": 37169903719,
+      "sourceCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
+      "conclusion": "failure",
+      "proof": "verification/hosted-template-startup-terminal-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -681,16 +687,17 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37167281647,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37167281647",
-    "sourceCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+    "runId": 37169903719,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37169903719",
+    "sourceCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
     "conclusion": "failure",
-    "unitTestsPassed": 649,
-    "unitFiles": 63,
-    "packagedChecksBeforeFailure": 160,
-    "startupWaitFailed": true,
+    "unitTestsPassed": 664,
+    "unitFiles": 65,
+    "packagedChecksBeforeFailure": 164,
+    "largeBackupRestartPassed": true,
+    "terminalPromptWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-vault-startup-failure-result.json"
+    "proof": "verification/hosted-template-startup-terminal-failure-result.json"
   },
   "previousSourceVerification": {
     "verifiedAt": "2026-10-04T01:55:58.001Z",
@@ -828,17 +835,16 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37164504844,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37164504844",
-    "sourceCommit": "08a8f44f6204d0020595bacf156e950734074275",
+    "runId": 37167281647,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37167281647",
+    "sourceCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
     "conclusion": "failure",
-    "unitTestsPassed": 647,
+    "unitTestsPassed": 649,
     "unitFiles": 63,
-    "packagedChecksBeforeFailure": 189,
-    "originalPartialConditionPassed": true,
-    "completionWaitFailed": true,
+    "packagedChecksBeforeFailure": 160,
+    "startupWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-streaming-completion-failure-result.json"
+    "proof": "verification/hosted-vault-startup-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
@@ -877,6 +883,7 @@
     "packagedVerified": false,
     "hostedVerified": false,
     "sourceChecks": 215,
-    "proof": "verification/template-startup-combined-review-result.json"
+    "proof": "verification/template-startup-combined-review-result.json",
+    "latestHostedRunId": 37169903719
   }
 }
