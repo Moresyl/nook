@@ -1,0 +1,392 @@
+{
+  "verifiedAt": "2026-10-04T02:17:29.158Z",
+  "codeCommit": "82eb615d2b2f2b484dc38086fbccf01cd3d3b0cb",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 664,
+  "unitFiles": 65,
+  "desktopChecks": 215,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "transferModelRequests": 0,
+  "comparisonModelRequests": 11,
+  "actualStartupFailureCases": 2,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3041,
+      "covered": 3020,
+      "skipped": 0,
+      "pct": 99.3
+    },
+    "statements": {
+      "total": 5172,
+      "covered": 5017,
+      "skipped": 0,
+      "pct": 97
+    },
+    "functions": {
+      "total": 1160,
+      "covered": 1128,
+      "skipped": 0,
+      "pct": 97.24
+    },
+    "branches": {
+      "total": 3677,
+      "covered": 3470,
+      "skipped": 0,
+      "pct": 94.37
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "D:\\GR\\qiyao\\contracts\\prompt-bundles.ts": {
+      "lines": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 16,
+        "covered": 16,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 10,
+        "covered": 10,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao\\desktop\\services\\prompt-templates.ts": {
+      "lines": {
+        "total": 37,
+        "covered": 37,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 22,
+        "covered": 22,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 62,
+        "covered": 62,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 24,
+        "covered": 24,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao\\desktop\\services\\startup-diagnostics.ts": {
+      "lines": {
+        "total": 7,
+        "covered": 7,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 9,
+        "covered": 9,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao\\desktop\\services\\vault.ts": {
+      "lines": {
+        "total": 71,
+        "covered": 71,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 25,
+        "covered": 24,
+        "skipped": 0,
+        "pct": 96
+      },
+      "statements": {
+        "total": 89,
+        "covered": 89,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 27,
+        "covered": 27,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-bundles.ts",
+      "sha256": "efd1d599a5e526713142dc9bdae089c3271b4a8290a063d320cf57c2b9f6cb5f"
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "8f077738261f93957947214215336b8ae9822830492d4e957bf8b005f5d162a5"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "e4f0f1789b32e7e3e6747c224dd74d8efb24b4bc20ae47a13ef65201b2c29150"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "72bef09701b373f0499deac987a3dc1962fb1fbc94db30215ea5c5ad6d9d0a89"
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "32a9614d1d1ce71e2bcd56843bbe8ca17db760f19b07bad499878661c0d58178"
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986"
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1"
+    },
+    {
+      "path": "verification/prompt-bundles.test.ts",
+      "sha256": "338f450c213d02d67d8f0465f6cd47861c0d132b5c661f13f04564433f999115"
+    },
+    {
+      "path": "scripts/verify-prompt-transfer.mjs",
+      "sha256": "6c367383334b34df7c63a0580cd11775ab6748881e61b0c9ad1a7f37641a825f"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "17ec48791c04be03b470a9fab340c9b0467ba892e93a9eed5559a2e2fd178b9c"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "d92c6f4d175d897668a2379738c9de0a789ff94a88e3cbd8f31d026eeba9f263"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "8f93e312c49bbe589bda67881378d5a0f0cb071971d9d384f8bacc1d8c8a0f7e"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "e065572c28734f1a6f94048c339c135bf849a693060d2325e4d07a843537e3c6"
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "38d5efcb27afcbe4a3020dd4910eec1004bb3c6acc7fabbc402b943c8bcaefa6"
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+    },
+    {
+      "path": "verification/startup-diagnostics.test.ts",
+      "sha256": "5955f7cf5cd13bd6594cfa05f585b314867c9ed64698ea46933f129bc6612e3b"
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "3b258f117a0c34e86b859fc1df505af55d7551e89f786e46a88039a5ad29f5a6"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "4281430a4ddddba234b0eeb7d3815ba9c9a8a88a6cf79e278544eeca5e52c1ab",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "b1a1895c6977011d8d833654bc3302aecac29514af6700c998e6c7b0be0110b6",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "28431702dc3afb74465b2ef81fecc706a5219868024dec6eef4fa7b52bf56761",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "e04371b50697515cac775135c9860adf6b30ba8b64ff9cb790faf6794d07089e",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "d39953b1fa27d87ef9b1bd7e91e9f60216afbe836d6735cdd6c392cb62683a61",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "3f65e5268f6b3885b27b78185a0ea865182606f0d08b2edbc74f4419a152d3e8",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "96439726f632a405eccf7a93747c6d5e38c647be7aa205b612cc814eeeb3cbc0",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "ab404ba912adb1487bc3197f7a008cf69660350035f5111f548c0b6b65298bdd",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "a682b9be3ca5f7605c3d3986676908444df70c81818a484337d10787bf881726",
+      "bytes": 53916
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "09f1817611f058a68b578835f78cb912b4325a684f7df0712bce780ec917d274",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "4616ee8b8f18222ba18002d4575bc630d9b74410b329f4fed0a4c0e026bfd7d0",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "31598c3db864edbee8e740a90ea63487cd2bf2ca44ef20fd670852f5ee8c80c4",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "2173dfe79823b83fbfeec4ce51ad6f2ed3bd1f70f25b0c2dced1c33998e0ea65",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "668344002b08af5d6998e26b39159bdb49a18346193efd8d42dcad5c1ad5bd7c",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "a493eed068be2bc0b5796b0051e097a2f85359867a74523e877e9797186789a5",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "16d54210b25cf6957fef5bbcb4246add1a6580390510177271f9d1639621c69e",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "77725f5f0e2e8ed96ea20cb3614fbdfcf62b8a5604c09bdae0d08332eb98d007",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "0430e71a3237b72d617550fc5bbd5db67996fa77f31b344e2767f79c1fac60c2",
+      "bytes": 1832
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "sha256": "9fd43526b02ce71d016cce02c6950829a3becc505e34d0dfe596cbf4272f5402",
+      "bytes": 1850
+    },
+    {
+      "path": "verification/template-startup-combined-native-failure-result.json",
+      "sha256": "0460d0b0017375fd49f8b66cc900158d9b667b9c3457f79bcf86aea50b5be6d1",
+      "bytes": 5603
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "logs": [
+    {
+      "name": "template-startup-combined-typecheck.log",
+      "sha256": "351216499d4f071ec40adca7ff15ce9991e6648517c79af77f0c944654e0baf6",
+      "bytes": 71
+    },
+    {
+      "name": "template-startup-combined-coverage.log",
+      "sha256": "463cf65b70300161cc552aa930582a0d37da7d1ebbfec368f3eb5c2f89404cf9",
+      "bytes": 4355
+    },
+    {
+      "name": "template-startup-combined-build.log",
+      "sha256": "51e30d97d6ea01255b96860415d88f3918bef674c48945ff6a0e9d65fab2c2f5",
+      "bytes": 22499
+    },
+    {
+      "name": "template-startup-combined-native.log",
+      "sha256": "a990e2b9e7023276b59e92ea629c82df8c0b4c9534e3b9ed4429c08467199f66",
+      "bytes": 35239
+    },
+    {
+      "name": "template-startup-combined-failure-probe.log",
+      "sha256": "838379dbb3a2178ae1733d3492119908988c8ed0ab5f327f43850f592075ff22",
+      "bytes": 116
+    }
+  ],
+  "compiled": {
+    "renderer": {
+      "path": "out/renderer/assets/index-Cqr_5QJD.js",
+      "sha256": "6d18d7017bde1f5d9720a2afc310e6696009834eecfb854169db02fba772071f"
+    },
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "7befc366d1e942960067c90803a9369247d6e626d9ebc1fe4533e6aaefebf628"
+    }
+  },
+  "unchangedRendererReview": {
+    "exactCompiledBytesMatch": true,
+    "priorSixIndividuallyReviewedCaptures": "verification/prompt-transfer-review-result.json",
+    "currentCapturesIndividuallyReviewed": false
+  },
+  "scope": "The combined template-transfer and startup-diagnostic source passes final 664 tests in 65 files, type/build and all 215 native desktop checks with normal close. Transfer retains zero model requests; model comparisons retain eleven real requests and every original deadline. Actual large Unicode backup restart passes with isolated phase diagnostics enabled. Two newly built corrupt-file Electron processes verify exact failure phases, resources, nonblocking code-1 exit and omitted private input on this combined body. Nineteen complete-suite records and one exact native failure record are preserved. Final renderer bytes match the prior six individually reviewed template-transfer captures; current captures are not individually reviewed. The isolated flag changes only diagnostic-mode startup error reporting; ordinary production startup keeps its native error dialog. The earlier hosted startup timeout cause remains unestablished. Complete fresh matching-body distribution and hosted acceptance remain open, alongside the full capability/UI delivery scope. Prior 210-check binaries cannot meet the new 215-check transfer release policy."
+}

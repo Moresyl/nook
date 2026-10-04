@@ -1,5 +1,7 @@
 # UI acceptance mapping
 
+The current combined template/startup body passes all 215 native checks with normal close. Its final renderer bytes exactly match the six individually reviewed template-transfer captures below; current complete-run captures are not individually reviewed. See [combined source evidence](../verification/template-startup-combined-review-result.json).
+
 Prompt-template sharing has six individually reviewed current complete-run captures: light library, full inert import preview, retained preview after actual destination EIO, and dark 760×540 import dialogs at 100/125/150% zoom. Long content scrolls while title/footer and native keyboard focus remain visible; Escape restores the explicit import opener. All 215 desktop checks pass with normal close. See [current source evidence](../verification/prompt-transfer-review-result.json); fresh matching-body distribution and hosted acceptance remain open.
 
 The current vault optimization changes persistence and comparison diagnostics. Its final renderer bytes exactly match the previously reviewed streaming-recovery build, and the complete 210-check native suite passes with normal close. The new suite's captures have not been individually reviewed; the nine reviewed captures below retain their original scope. See [current source evidence](../verification/vault-serialization-review-result.json).
