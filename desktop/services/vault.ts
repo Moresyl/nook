@@ -18,8 +18,9 @@ export class WorkspaceVault {
 
   constructor(private readonly directory: string, private readonly codec: SecretCodec) {}
 
-  async initialize(): Promise<void> {
+  async initialize(onPhase: (phase: string) => void = () => {}): Promise<void> {
     await mkdir(this.directory, { recursive: true });
+    onPhase('workspace.read');
     try {
       const raw = await readFile(join(this.directory, 'workspace.json'), 'utf8');
       this.state = parsePersistentWorkspace(JSON.parse(raw));
@@ -29,6 +30,8 @@ export class WorkspaceVault {
         throw new Error('Workspace data could not be read. Restore a valid backup before continuing.');
       }
     }
+    onPhase('workspace.parsed');
+    onPhase('credentials.read');
     try {
       const stored: unknown = JSON.parse(await readFile(join(this.directory, 'credentials.json'), 'utf8'));
       if (!stored || typeof stored !== 'object' || Array.isArray(stored) || Object.values(stored).some((value) => typeof value !== 'string')) {
@@ -41,13 +44,17 @@ export class WorkspaceVault {
       }
     }
     await bindProviderKeys(this);
+    onPhase('credentials.bound');
     for (const provider of this.state.providers) {
       try { provider.hasKey = Boolean(providerKey(this, provider)); }
       catch { provider.hasKey = false; }
     }
     for (const server of this.state.mcpServers) server.hasCredentials = Boolean(this.keys[`\0mcp:${server.id}`]);
+    onPhase('persistent-cache.serialize');
     this.persistentBytes = Buffer.from(JSON.stringify(persistentWorkspace(this.state, this.persistentActiveThreadId), null, 2), 'utf8');
+    onPhase('persistent-cache.ready');
     if (interruptRuns(this.state.threads)) await this.update(() => {});
+    onPhase('runs.recovered');
   }
 
   snapshot(): Workspace { return structuredClone(this.state); }

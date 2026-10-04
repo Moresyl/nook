@@ -7,6 +7,7 @@ import { spawn as spawnPty } from 'node-pty';
 import { z } from 'zod';
 import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
+import { StartupDiagnostics } from './services/startup-diagnostics';
 import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
 import { reorderConversationBranch } from './services/branch-order';
@@ -444,6 +445,8 @@ function createWindow(): void {
 }
 
 app.setName('Qiyao');
+const startupDiagnostics = new StartupDiagnostics(Boolean(process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS));
+if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) Object.defineProperty(globalThis, 'qiyaoStartupDiagnostics', { value: () => startupDiagnostics.snapshot() });
 app.setAppUserModelId('app.qiyao.workspace');
 if (process.env.QIYAO_DATA_DIRECTORY) app.setPath('userData', process.env.QIYAO_DATA_DIRECTORY);
 const locked = app.requestSingleInstanceLock();
@@ -451,11 +454,13 @@ if (!locked) app.quit();
 else {
   app.on('second-instance', () => { if (window?.isMinimized()) window.restore(); window?.focus(); });
   void app.whenReady().then(async () => {
+    startupDiagnostics.phase('when-ready');
     protocol.handle('qiyao', async (request) => {
       if (!['GET', 'HEAD'].includes(request.method)) return new Response('Method not allowed', { status: 405 });
       try { return await net.fetch(pathToFileURL(await appAssetPath(join(bundleDirectory, '../renderer'), request.url)).toString()); }
       catch { return new Response('Not found', { status: 404 }); }
     });
+    startupDiagnostics.phase('protocol.ready');
     vault = new WorkspaceVault(app.getPath('userData'), {
       seal: (key) => {
         if (!safeStorage.isEncryptionAvailable()) throw new Error('System key encryption is unavailable. Check your operating system key store.');
@@ -463,7 +468,8 @@ else {
       },
       open: (value) => safeStorage.decryptString(Buffer.from(value, 'base64')),
     });
-    await vault.initialize();
+    await vault.initialize((phase) => startupDiagnostics.phase(`vault.${phase}`));
+    startupDiagnostics.phase('services.create');
     composerDrafts = new ComposerDrafts(vault);
     assistantProfiles = new AssistantProfiles(vault);
     promptTemplates = new PromptTemplates(vault);
@@ -498,7 +504,8 @@ else {
         if (!window) { createWindow(); window!.webContents.once('did-finish-load', navigate); } else { window.show(); window.focus(); navigate(); }
       }); notification.show();
     });
-    await automations.resume(); powerMonitor.on('resume', () => automations.wake());
+    startupDiagnostics.phase('automations.resume');
+    await automations.resume(); startupDiagnostics.phase('automations.ready'); powerMonitor.on('resume', () => automations.wake());
     providerSettings = new ProviderSettings(vault, async (id) => { await engine.stopProvider(id); await knowledge.stopProvider(id); });
     terminals = new TerminalSessions(spawnPty, (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:terminal', event); });
     desktopIntegration = new DesktopIntegration(vault, {
@@ -527,11 +534,20 @@ else {
       { label: '视图', submenu: [{ role: 'resetZoom', label: '实际大小' }, { role: 'zoomIn', label: '放大' }, { role: 'zoomOut', label: '缩小' }, { role: 'togglefullscreen', label: '全屏' }] },
       { label: '帮助', submenu: [{ label: '关于栖曜', click: () => { void dialog.showMessageBox(window!, { message: `栖曜 Qiyao ${app.getVersion()}`, detail: '让想法有处落地。\n本地 AI 工作台。' }); } }] },
     ]));
+    startupDiagnostics.phase('window.create');
     createWindow();
+    startupDiagnostics.phase('window.created');
+    window!.webContents.once('did-finish-load', () => startupDiagnostics.phase('renderer.loaded'));
     await desktopIntegration.refresh().catch(() => {});
     for (const plugin of vault.snapshot().plugins) if (plugin.enabled) void plugins.load(plugin.id).catch(() => {});
     for (const server of vault.snapshot().mcpServers) if (server.enabled && server.autoConnect) void mcp.connect(server.id).catch(() => {});
-  }).catch((error) => { dialog.showErrorBox('Qiyao 启动失败', error instanceof Error ? error.message : 'Could not initialize the application.'); app.exit(1); });
+    startupDiagnostics.phase('startup.complete');
+  }).catch((error) => {
+    startupDiagnostics.phase('failed');
+    if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.error('Qiyao startup diagnostics', JSON.stringify(startupDiagnostics.snapshot()));
+    else dialog.showErrorBox('Qiyao 启动失败', error instanceof Error ? error.message : 'Could not initialize the application.');
+    app.exit(1);
+  });
   app.on('activate', () => { if (!window && engine) createWindow(); });
   app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit(); });
   app.on('before-quit', (event) => {
