@@ -1,6 +1,6 @@
 # Capability verification ledger
 
-当前传输诊断源码通过 683 项／67 个文件、类型、构建、完整 215 项桌面检查、正常关闭及两次当前启动错误检查，四次消息续聊验证真实 POST／HTTP 200 响应阶段；独立主动断连检查捕获 `UND_ERR_SOCKET` 与准确请求数量，原有期限保持不变。三份编译资源与此前已通过完整本地分发的应用体字节一致，两张当前项目截图逐张审阅；见 `verification/provider-transport-source-review-result.json`。此前 `verification/project-access-distribution-result.json` 的 215 项未安装／实际安装、4 项设置、7 项便携、7 项兼容终端及十份匹配记录仍单独保留，不能替代新增诊断条件下的完整运行验收。远端 `37183557672` 的 683／144 连接失败原因仍未建立，新运行 `37186719269` 已进入完整桌面验证。新增条件下的分发、远端及全部剩余能力／UI 范围继续待办。
+当前传输诊断源码通过 683 项／67 个文件、类型、构建、完整 215 项桌面检查及两次启动错误检查。同一应用体重新通过未安装和实际安装各 215 项、设置 4 项、便携 7 项、兼容 PowerShell 5 的 7 项检查、正常关闭及十份严格匹配运行记录；两套完整运行均捕获四次续聊 POST／HTTP 200，并验证大工作区项目读取不复制完整历史。两张当前安装版截图逐张审阅，四个原封不动的二进制另行归档，原始构建工具记录按其原时间和哈希保留；见 `verification/provider-transport-distribution-result.json`。远端 `37186719269` 通过 683 项、完整未安装桌面、设置和便携运行；实际安装通过 160 项后，大 gzip 备份恢复重启未在原有 30 秒内出现窗口。进程存活、Electron 已就绪，但嵌套启动阶段在日志中被折叠，具体原因尚未建立。此前续聊连接错误的原因也不能由本次成功推断。远端验收及全部剩余能力／UI 范围继续待办。
 
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.
 

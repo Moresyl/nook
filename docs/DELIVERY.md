@@ -1,6 +1,6 @@
 # Delivery requirements
 
-新增受限传输诊断已通过 683／67／215、正常关闭及两次当前启动错误检查，四次实际续聊均捕获 HTTP 200，独立服务器主动断连捕获 `UND_ERR_SOCKET`，原有完成期限、轮询及请求计数保持不变；见 `verification/provider-transport-source-review-result.json`。三份编译资源与此前完整本地分发应用体字节一致，二十份当前原始记录和两张逐张审阅的项目截图归档。此前项目局部分发的四个二进制、215 项未安装／实际安装、便携／兼容终端及十份匹配记录继续单独保留。远端 `37183557672` 的续聊连接错误具体原因仍待诊断，新运行 `37186719269` 已进入完整桌面检查。接下来核验新增诊断下的同一应用体运行、远端及全部剩余能力／UI 范围，完成后走流水线发布，无需再次确认。
+新增受限传输诊断已通过 683／67／215 及两次启动错误检查，独立主动断连捕获 `UND_ERR_SOCKET`。同一份应用体的新检查还通过未安装／实际安装各 215 项、设置 4 项、便携 7 项、兼容终端 7 项、实际快捷方式、保留用户数据的卸载及十份严格匹配记录；完整运行均保留原有期限和请求计数并捕获四次续聊 HTTP 200。两张当前安装版截图逐张审阅，四份字节不变的二进制另行归档；构建工具证明保留原时间和准确哈希，不冒充新构建，见 `verification/provider-transport-distribution-result.json`。远端 `37186719269` 已通过完整未安装桌面、设置及便携验证；安装后的 160 项通过后，大 gzip 备份恢复重启在原有 30 秒页面发现条件失败，进程仍存活且 Electron 就绪，具体初始化阶段未完整输出。远端及全部剩余能力／UI 范围继续处理，彻底完成后走流水线发布，无需再次确认。
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.
 
