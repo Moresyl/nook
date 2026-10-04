@@ -36,6 +36,7 @@ import { verifyMessageEdits } from './verify-message-edits.mjs';
 import { verifyCommands } from './verify-commands.mjs';
 import { verifySurfaces } from './verify-surfaces.mjs';
 import { verifyProjectTree } from './verify-project-tree.mjs';
+import { verifyDiffDisposal } from './verify-diff-disposal.mjs';
 import { verifyChatNavigation } from './verify-chat-navigation.mjs';
 import { verifyConversationBranches } from './verify-conversation-branches.mjs';
 import { verifyTemporaryConversations } from './verify-temporary-conversations.mjs';
@@ -361,7 +362,14 @@ let promptTransferResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_PROMPT_TRANSFER_ONLY) {
+  if (process.env.QIYAO_TEST_DIFF_ONLY) {
+    await page.evaluate((path) => window.qiyao.saveProject({ id: 'verification-project', name: '验证项目', path, instructions: '', createdAt: 1 }), projectDirectory);
+    await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.getByRole('button', { name: '验证项目', exact: true }).click();
+    await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: 'README.md', exact: true }).click(); await page.locator('.monaco-editor .view-lines').getByText(/QIYAO_PROJECT_EVIDENCE/).waitFor();
+    await verifyDiffDisposal({ page, open: async () => { await page.getByRole('button', { name: '查看改动', exact: true }).click(); await page.locator('.change-row').getByRole('button', { name: /README.md/ }).click(); }, close: () => page.getByRole('button', { name: '文件', exact: true }).click() });
+    verified('closing a real diff during its worker computation cancels the obsolete view before disposing text models');
+    assert.equal(count, 1); assert.equal(calls.length, 0); assert.deepEqual(errors, []);
+  } else if (process.env.QIYAO_TEST_PROMPT_TRANSFER_ONLY) {
     const result = await verifyPromptTransfer({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; promptTransferResult = result.result;
     assert.equal(count, 5); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_RECIPES_ONLY) {
@@ -545,10 +553,7 @@ try {
   await page.getByRole('button', { name: '验证项目', exact: true }).click();
   await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: 'README.md', exact: true }).click();
   await page.locator('.monaco-editor .view-lines').getByText(/QIYAO_PROJECT_EVIDENCE/).waitFor();
-  await page.getByRole('button', { name: '查看改动', exact: true }).click();
-  await page.locator('.change-row').getByRole('button', { name: /README.md/ }).click();
-  await page.locator('.monaco-diff-editor').getByText('After change', { exact: true }).waitFor();
-  await page.getByRole('button', { name: '文件', exact: true }).click();
+  await verifyDiffDisposal({ page, open: async () => { await page.getByRole('button', { name: '查看改动', exact: true }).click(); await page.locator('.change-row').getByRole('button', { name: /README.md/ }).click(); await page.locator('.monaco-diff-editor').getByText('After change', { exact: true }).waitFor(); }, close: () => page.getByRole('button', { name: '文件', exact: true }).click() });
   await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: 'editor-fixture.ts', exact: true }).click();
   await page.locator('.editor-actionbar .path-text').getByText('editor-fixture.ts', { exact: true }).waitFor();
   const editorInput = page.locator('.project-main-panel:not([hidden]) .monaco-editor textarea.inputarea');

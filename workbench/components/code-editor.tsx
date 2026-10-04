@@ -49,8 +49,9 @@ export function CodeDiff({ path, before, after }: { path: string; before: string
     const original = monaco.editor.createModel(before, undefined, monaco.Uri.parse(`qiyao-diff://before/${id}/${path}`));
     const modified = monaco.editor.createModel(after, undefined, monaco.Uri.parse(`qiyao-diff://after/${id}/${path}`));
     const editor = monaco.editor.createDiffEditor(container.current!, { ...options, readOnly: true, renderSideBySide: true, useInlineViewWhenSpaceIsLimited: true });
-    models.current = { before: original, after: modified }; editor.setModel({ original, modified });
-    return () => { models.current = null; editor.setModel(null); editor.dispose(); original.dispose(); modified.dispose(); };
+    const viewModel = editor.createViewModel({ original, modified });
+    models.current = { before: original, after: modified }; editor.setModel(viewModel);
+    return () => { models.current = null; editor.setModel(null); viewModel.dispose(); editor.dispose(); original.dispose(); modified.dispose(); };
   }, [path]);
   useEffect(() => { models.current?.before.setValue(before); models.current?.after.setValue(after); }, [before, after]);
   return <div ref={container} className="code-diff-canvas" />;
