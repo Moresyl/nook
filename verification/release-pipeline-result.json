@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Checkpoint batching and explicit diff-view disposal pass 679 tests in 67 files, types/build, all 215 native desktop checks with normal close and two newly executed corrupt-file startup cases. The actual delayed diff worker returns after native view closure without a runtime error; its original implementation reproduces the same Monaco error. The same 84 MB real-engine benchmark retains four exact owners/replies/statuses and twenty large messages while reducing final atomic updates from four to one and preserving the complete previous file. Original model/terminal completion deadlines and poll intervals are unchanged. Renderer bytes changed for explicit diff-view disposal; current comparison images are not claimed as individually reviewed. Fresh matching-body distribution, hosted acceptance and remaining full capability/UI scope remain open; precise earlier hosted timeout phase contributions are unestablished.",
+  "scope": "Atomic comparison startup passes 681 tests in 67 files, types/build, all 215 native desktop checks with normal close and two newly executed corrupt-file startup cases. Same 84 MB/297-thread benchmark reduces four-model startup writes from five to one and initial full-state notices from four to one, preserving the complete previous file, original owner/draft and all exact contexts/attachments. Source two-model first visibility is measured at 1,199 ms under the unchanged 30-second condition; four-model independent failure/stop/completion and eleven real requests pass under existing deadlines. Three current complete-suite captures are individually reviewed. Exact renderer/project assets retain the previous diff-view disposal body while the main-process body changes. Fresh matching distribution, hosted acceptance and the full remaining capability/UI scope remain pending.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -366,12 +366,12 @@
     "archiveSha256": "3a7e89ed2499796aa92f377a1f594439caecd1b76d4f41a1f710b829cbaa2844"
   },
   "sourceVerification": {
-    "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
-    "unitTests": 679,
+    "codeCommit": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
+    "unitTests": 681,
     "unitFiles": 67,
     "desktopChecks": 215,
     "normalCloseVerified": true,
-    "proof": "verification/checkpoint-batching-source-review-result.json"
+    "proof": "verification/comparison-starts-source-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -693,12 +693,12 @@
     "proof": "verification/hosted-terminal-shell-comparison-failure-result.json"
   },
   "previousSourceVerification": {
-    "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
-    "unitTests": 672,
-    "unitFiles": 66,
+    "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
+    "unitTests": 679,
+    "unitFiles": 67,
     "desktopChecks": 215,
     "normalCloseVerified": true,
-    "proof": "verification/terminal-shell-source-review-result.json"
+    "proof": "verification/checkpoint-batching-source-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -912,5 +912,15 @@
     "headSha": "3ea14208ac2267daeadfaaa19a29c4b0c2abd1a5",
     "conclusion": "failure",
     "proof": "verification/hosted-checkpoint-first-response-failure-result.json"
+  },
+  "comparisonStarts": {
+    "unitTests": 681,
+    "unitFiles": 67,
+    "focusedDesktopChecks": 6,
+    "componentProof": "verification/comparison-starts-component-result.json",
+    "completeSourceVerified": true,
+    "distributionVerified": false,
+    "hostedVerified": false,
+    "sourceProof": "verification/comparison-starts-source-review-result.json"
   }
 }

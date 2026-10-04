@@ -1,0 +1,284 @@
+{
+  "verifiedAt": "2026-10-04T05:43:00.382Z",
+  "unitTests": 681,
+  "unitFiles": 67,
+  "focusedUnitTests": 52,
+  "focusedDesktopChecks": 6,
+  "comparisonModelRequests": 11,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "completeSourceVerified": false,
+  "distributionVerified": false,
+  "hostedVerified": false,
+  "originalFirstResponseDeadlineMs": 30000,
+  "originalCompletionDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "coverage": {
+    "lines": {
+      "total": 3076,
+      "covered": 3055,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5231,
+      "covered": 5075,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1170,
+      "covered": 1138,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3697,
+      "covered": 3492,
+      "skipped": 0,
+      "pct": 94.45
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "bytes": 30158,
+      "sha256": "7abe401bc6935f904648ec95db6213937320e1083143ce4d2d1a48aa3c96c4bb"
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "bytes": 34850,
+      "sha256": "4d47644910f99fc2d6165220783f9b4c6348658edec09cab12f49bcab08ae7a1"
+    }
+  ],
+  "logs": [
+    {
+      "name": "comparison-starts-negative.log",
+      "bytes": 957,
+      "sha256": "5620732f19b4282acbe95abb3fcb34ed7c0d54e3b56116a7ef1df253f183f4e5"
+    },
+    {
+      "name": "comparison-starts-positive.log",
+      "bytes": 236,
+      "sha256": "b5fa16f99fba1cf0b9219f4882a910c3aeaf0ca91d8c9d87b145dfb0c7480f6c"
+    },
+    {
+      "name": "comparison-starts-focused-unit.log",
+      "bytes": 225,
+      "sha256": "f36ee3c28d7669e2897d090d4f8c12ff3bec75a7a57eee8ec9cde4e9514a615b"
+    },
+    {
+      "name": "comparison-starts-typecheck.log",
+      "bytes": 89,
+      "sha256": "2a70735c22bf7c78a712504ebcbec8f1fcdedaa34fd29e791e2297fb184357f7"
+    },
+    {
+      "name": "comparison-starts-coverage.log",
+      "bytes": 4580,
+      "sha256": "8f3d041d6769357da66a2ecf2340c7a7f692823e729e9c86ab455568d8363070"
+    },
+    {
+      "name": "comparison-starts-build.log",
+      "bytes": 22553,
+      "sha256": "0672c106494b4477f694ef7729020c4d0709e9aa0e92aac255e6a1bc57052fcc"
+    },
+    {
+      "name": "comparison-starts-focused-native.log",
+      "bytes": 1563,
+      "sha256": "e9c718dc1e4e37ba8cc6bfe6118d77597c0c24a06110b95d8be5d5e8a94baaed"
+    },
+    {
+      "name": "comparison-starts-before-benchmark.log",
+      "bytes": 242,
+      "sha256": "5930a7e355413b44e1c955d7f933f9efb996d47db745dca83749fbb6ec5adcbf"
+    },
+    {
+      "name": "comparison-starts-after-benchmark.log",
+      "bytes": 239,
+      "sha256": "9acbf4f98207103c09fbef1adb8e79b07a74bd16559ae9a642a4184b4dd8a985"
+    }
+  ],
+  "benchmark": {
+    "before": {
+      "measuredAt": "2026-10-04T05:40:39.748Z",
+      "label": "before",
+      "source": [
+        {
+          "path": "desktop/services/conversation-engine.ts",
+          "sha256": "34900bf706ffa15dc95a05234a1ce9ccebf7b0d9ded2b3c95c2125199edf7e60"
+        },
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+        },
+        {
+          "path": "desktop/services/message-checkpoints.ts",
+          "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62"
+        }
+      ],
+      "workspaceBytes": 84075281,
+      "originalThreadCount": 297,
+      "largeFixtureContentSha256": "a99240e5370f96403e431e7fb1ad02e3c1217606b47b6dde1f8c77ec50a77d80",
+      "atomicWorkspaceUpdates": 5,
+      "initialStateNotifications": 4,
+      "elapsedMs": 4051.0607,
+      "beforeMemory": {
+        "rss": 482828288,
+        "heapTotal": 377135104,
+        "heapUsed": 240644528,
+        "external": 170150979,
+        "arrayBuffers": 168167585
+      },
+      "afterMemory": {
+        "rss": 1362419712,
+        "heapTotal": 1169702912,
+        "heapUsed": 1032815888,
+        "external": 254304277,
+        "arrayBuffers": 252257760
+      },
+      "requests": [
+        {
+          "model": "one",
+          "startedMs": 1940.4069000000002,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "two",
+          "startedMs": 2635.8414000000002,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "three",
+          "startedMs": 3361.5560000000005,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "four",
+          "startedMs": 4050.9528,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        }
+      ],
+      "exactAllOwnersContextsDraftsAndLargeFixtureVerified": true,
+      "completePreviousFileRetained": false,
+      "scope": "Actual local ConversationEngine comparison startup and WorkspaceVault filesystem writes over 297 initial threads including twenty large Unicode messages. All four held streams start with identical exact context/question/attachment; original owner/draft and every large message remain intact. Local elapsed time includes startup persistence and state-notification cloning, with before/after memory samples rather than peaks. Mock gateway receipt is not native HTTP/IPC or proof of the next hosted 30-second visibility deadline."
+    },
+    "after": {
+      "measuredAt": "2026-10-04T05:40:42.795Z",
+      "label": "after",
+      "source": [
+        {
+          "path": "desktop/services/conversation-engine.ts",
+          "sha256": "7abe401bc6935f904648ec95db6213937320e1083143ce4d2d1a48aa3c96c4bb"
+        },
+        {
+          "path": "desktop/services/vault.ts",
+          "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+        },
+        {
+          "path": "desktop/services/message-checkpoints.ts",
+          "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62"
+        }
+      ],
+      "workspaceBytes": 84075281,
+      "originalThreadCount": 297,
+      "largeFixtureContentSha256": "a99240e5370f96403e431e7fb1ad02e3c1217606b47b6dde1f8c77ec50a77d80",
+      "atomicWorkspaceUpdates": 1,
+      "initialStateNotifications": 1,
+      "elapsedMs": 1048.7442,
+      "beforeMemory": {
+        "rss": 483504128,
+        "heapTotal": 377217024,
+        "heapUsed": 243950272,
+        "external": 170151179,
+        "arrayBuffers": 168167785
+      },
+      "afterMemory": {
+        "rss": 820682752,
+        "heapTotal": 714989568,
+        "heapUsed": 577479472,
+        "external": 254234046,
+        "arrayBuffers": 168175187
+      },
+      "requests": [
+        {
+          "model": "one",
+          "startedMs": 1048.2205,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "two",
+          "startedMs": 1048.6267000000003,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "three",
+          "startedMs": 1048.6803,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        },
+        {
+          "model": "four",
+          "startedMs": 1048.7129,
+          "context": [
+            "ORIGINAL_CONTEXT",
+            "ORIGINAL_REPLY",
+            "SAME_COMPARISON_QUESTION 中文😀"
+          ],
+          "attachment": "EXACT_ATTACHMENT 中文😀"
+        }
+      ],
+      "exactAllOwnersContextsDraftsAndLargeFixtureVerified": true,
+      "completePreviousFileRetained": true,
+      "scope": "Actual local ConversationEngine comparison startup and WorkspaceVault filesystem writes over 297 initial threads including twenty large Unicode messages. All four held streams start with identical exact context/question/attachment; original owner/draft and every large message remain intact. Local elapsed time includes startup persistence and state-notification cloning, with before/after memory samples rather than peaks. Mock gateway receipt is not native HTTP/IPC or proof of the next hosted 30-second visibility deadline."
+    },
+    "elapsedReductionPercent": 74.11186161688468
+  },
+  "focusedRecord": {
+    "privateArchiveName": "comparison-starts-focused-native-result.json",
+    "sha256": "f966651be4c0559da63712de17f14020b85ea84bbd9543864a70a0eb040e7ddd",
+    "bytes": 2112
+  },
+  "scope": "Shared single-start preparation preserves ordinary chat/plan/agent behavior. A comparison reserves all replies, revalidates current history inside one atomic transaction, persists complete group/context/user/assistant records once, then announces one full state and opens all streams. Group-start write failure preserves both complete files and unrelated active runs; retry is intact, and queued shutdown releases all reservations before any request. Individual provider failure/stop and the original 30/10-second native conditions remain. Actual 84 MB/297-thread local startup benchmark and six native comparison checks pass; local benchmark uses a held mock gateway and does not measure hosted HTTP/IPC deadline contributions. Complete current native/source, matching distribution, hosted acceptance and the remaining full capability/UI scope are pending."
+}
