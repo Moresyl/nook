@@ -4,6 +4,26 @@ const replacements = [
   ['UninstAppUserModelId', 'QiyaoClearAppDestinations', 1],
 ];
 
+const portableCleanup = String.raw`Function QiyaoRemovePortableDirectory
+  Push $0
+  StrCpy $0 0
+qiyao_cleanup_retry:
+  ClearErrors
+  RMDir /r "\\?\$INSTDIR"
+  IfFileExists "\\?\$INSTDIR" 0 qiyao_cleanup_done
+  IntOp $0 $0 + 1
+  IntCmp $0 20 qiyao_cleanup_failed 0 qiyao_cleanup_failed
+  Sleep 100
+  Goto qiyao_cleanup_retry
+qiyao_cleanup_failed:
+  Pop $0
+  SetErrorLevel 1
+  Quit
+qiyao_cleanup_done:
+  ClearErrors
+  Pop $0
+FunctionEnd`;
+
 export function rewriteInstallerTemplate(source, variant) {
   if (typeof source !== 'string' || !source.trim() || !['installer', 'uninstaller'].includes(variant)) throw new Error('Invalid Windows installer template');
   const counts = { SetLnkAUMI: 0, UninstShortcut: 0, UninstAppUserModelId: 0 };
@@ -25,7 +45,7 @@ export function rewritePortableTemplate(source) {
   let count = 0;
   let result = source.replace(/^([ \t]*)RMDir \/r \$INSTDIR[ \t]*(\r?)$/gm, (_, indent, carriageReturn) => {
     count++;
-    return `${indent}RMDir /r "\\\\?\\$INSTDIR"${carriageReturn}`;
+    return `${indent}Call QiyaoRemovePortableDirectory${carriageReturn}`;
   });
   if (count !== 2 || /RMDir\s+\/r\s+\$INSTDIR/i.test(result)) throw new Error('Windows portable cleanup changed; review the template before packaging');
   let destinations = 0;
@@ -34,5 +54,6 @@ export function rewritePortableTemplate(source) {
     return `${indent}SetOutPath "\\\\?\\$INSTDIR"${carriageReturn}`;
   });
   if (destinations !== 1) throw new Error('Windows portable extraction changed; review the template before packaging');
-  return `; Modified by Qiyao: original electron-builder MIT template with Windows extended-path extraction and cleanup.\n${result}`;
+  const separator = source.includes('\r\n') ? '\r\n' : '\n';
+  return `; Modified by Qiyao: original electron-builder MIT template with Windows extended-path extraction and bounded cleanup retries.\n${result}${separator}${separator}${portableCleanup.replace(/\n/g, separator)}${separator}`;
 }

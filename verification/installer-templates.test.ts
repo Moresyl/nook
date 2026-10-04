@@ -46,15 +46,22 @@ describe('Windows portable cleanup transformation', () => {
     'ExecWait "$INSTDIR\\${APP_EXECUTABLE_FILENAME} $R0" $0', 'SetErrorLevel $0',
     'SetOutPath $EXEDIR', '\tRMDir /r $INSTDIR',
   ].join(separator);
-  it.each(['\n', '\r\n'])('retains launch arguments and exit code while extending both cleanup paths with %j newlines', (separator) => {
+  it.each(['\n', '\r\n'])('retains launch arguments and exit code while retrying both extended cleanup paths with %j newlines', (separator) => {
     const result = rewritePortableTemplate(portable(separator));
-    const lines = result.slice(result.indexOf('\n') + 1).split(separator);
-    expect(lines[1]).toBe('  RMDir /r "\\\\?\\$INSTDIR"');
-    expect(lines[6]).toBe('\tRMDir /r "\\\\?\\$INSTDIR"');
+    const lines = result.slice(result.indexOf('\n') + 1).split(separator).slice(0, 7);
+    expect(lines[1]).toBe('  Call QiyaoRemovePortableDirectory');
+    expect(lines[6]).toBe('\tCall QiyaoRemovePortableDirectory');
     expect(lines[2]).toBe('SetOutPath "\\\\?\\$INSTDIR"');
     for (const index of [0, 3, 4, 5]) expect(lines[index]).toBe(portable(separator).split(separator)[index]);
     expect(lines).toHaveLength(7);
     expect(result.startsWith('; Modified by Qiyao: original electron-builder MIT')).toBe(true);
+    expect(result.replace(/\r\n/g, '\n').match(/^Function QiyaoRemovePortableDirectory$/gm)).toHaveLength(1);
+    expect(result).toContain('RMDir /r "\\\\?\\$INSTDIR"');
+    expect(result).toContain('IfFileExists "\\\\?\\$INSTDIR" 0 qiyao_cleanup_done');
+    expect(result).toContain('IntCmp $0 20 qiyao_cleanup_failed 0 qiyao_cleanup_failed');
+    expect(result).toContain('Sleep 100');
+    expect(result).toContain('SetErrorLevel 1');
+    expect(result).not.toContain('SetErrorLevel 0');
   });
   it('rejects changed cleanup locations, counts and syntax', () => {
     for (const source of [portable().replace('  RMDir /r $INSTDIR', ''), `${portable()}\nRMDir /r $INSTDIR`, portable().replace('RMDir /r $INSTDIR', 'RMDir /r "$INSTDIR"'), portable().replace('RMDir /r $INSTDIR', 'RMDir /r $TEMP'), `${portable()}\nRMDir  /r $INSTDIR`]) expect(() => rewritePortableTemplate(source)).toThrow('cleanup changed');
