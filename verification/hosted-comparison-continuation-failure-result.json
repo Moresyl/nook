@@ -1,0 +1,127 @@
+{
+  "verifiedAt": "2026-10-04T09:50:35.332Z",
+  "codeCommit": "220a1ace0469686710fb3b243772f0400d29d203",
+  "runId": 37190658648,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37190658648",
+  "conclusion": "failure",
+  "unitTests": 683,
+  "unitFiles": 67,
+  "passedDesktopChecks": 192,
+  "artifact": {
+    "id": 11299591216,
+    "name": "windows-verification-37190658648-1",
+    "bytes": 8742546,
+    "digest": "sha256:95fa5297a2c770a244b683f097cd38a890b4101cf0fe6765ddfdc0c0fde5e019",
+    "downloadedDigestVerified": true
+  },
+  "actualBody": {
+    "executableSha256": "5d02b3ed5bd8ac0800733c3c1e36d4178fbe102a2d2664adac401a2c631d9331",
+    "archiveSha256": "84792aacd27eda45a727c84124ccac711f6508b6bdc9b6692b57f400662b268c",
+    "auditSha256": "7a49e50e9d77cdcc65150eb6febd345164eea1c10ab92a8c0aef191f26d36230"
+  },
+  "failure": {
+    "file": "scripts/verify-model-comparisons.mjs",
+    "line": 139,
+    "column": 564,
+    "wait": "selected comparison-result continuation: two appended messages, exact new question, running assistant with PARTIAL",
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "completionWaitReached": false,
+    "selectedConnectionVisible": "B",
+    "selectedModelVisible": "two",
+    "laterPartialReplyVisible": true,
+    "providerConnectionErrorVisible": false,
+    "expectedServerRequestCountAtNextAssertion": 11,
+    "actualRequestCountCapturedAtFailure": false,
+    "individualPollValuesAndDurationsCaptured": false,
+    "exactTransportAndPartialSendTimesCaptured": false,
+    "originalCauseEstablished": false
+  },
+  "priorChecks": {
+    "largeBackupRestartPassed": true,
+    "realPowerShell7Passed": true,
+    "twoAndFourModelCasesPassed": true,
+    "atomicGroupSaveFailureAndRetryPassed": true
+  },
+  "screenshot": {
+    "path": "verification/screenshots/failure.png",
+    "sha256": "dffbe8e1f6f5763b35f9a3abe5e786ce23205213580b85a84178cc2fa4716947",
+    "bytes": 74833,
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "Later light-window image retains the selected original comparison reply, literal new continuation question, a running two: PARTIAL reply and stop action, with connection B/model two visibly selected. It does not establish what the original backend polls returned or when the partial arrived."
+  },
+  "startupObserverFailureBranchExercisedByHostedRun": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "7a49e50e9d77cdcc65150eb6febd345164eea1c10ab92a8c0aef191f26d36230",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "sourceVerifierSha256": "059727335d64772c61fb033dc0d9976baf5a583999516839c86e145da9a442b3",
+  "sourceBridgeWaitSha256": "f41b8a264d765fd674d175a639fd3671ebfc0dd9f9739dd7bd3058c7c4f12fb9",
+  "logs": [
+    {
+      "name": "github-startup-stage-output-branch-full.log",
+      "sha256": "687f364e8573a100811f6b7583f984556fc8d3d966772306fd0da668935707c1",
+      "bytes": 269921
+    },
+    {
+      "name": "github-startup-stage-output-branch-failed.log",
+      "sha256": "94c3a33b60b7aedab46886fbaf69282a8d09c61d600df4efbe39a36a1fb0cb15",
+      "bytes": 77538
+    }
+  ],
+  "scope": "The exact 683-test/67-file hosted source passes types, redistribution notices/build/package and 192 native checks, including large backup/restart, real PowerShell 7, two/four model comparisons and atomic group-save EIO/retry. Selected comparison-result continuation then fails its original 10-second/100-ms partial-running predicate before the completion wait or exact final request-count assertion. The later reviewed image shows the correct new question and a running partial from model two. Per-poll backend values/durations and exact request/partial times were not recorded, so lateness, snapshot state and transport contribution remain unestablished. No startup timeout is observed in this cohort. Nine mandatory records are absent and strict collection rejects complete hosted acceptance."
+}

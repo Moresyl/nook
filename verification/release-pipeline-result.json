@@ -532,6 +532,12 @@
       "sourceCommit": "117ed6031c589b5b68709559384de420267ff5c2",
       "conclusion": "failure",
       "proof": "verification/hosted-provider-transport-startup-failure-result.json"
+    },
+    {
+      "runId": 37190658648,
+      "sourceCommit": "220a1ace0469686710fb3b243772f0400d29d203",
+      "conclusion": "failure",
+      "proof": "verification/hosted-comparison-continuation-failure-result.json"
     }
   ],
   "desktopStartupHarness": {
@@ -680,19 +686,16 @@
     "hostedTenRecordResetVerified": true
   },
   "latestHostedAttempt": {
-    "runId": 37186719269,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37186719269",
-    "sourceCommit": "117ed6031c589b5b68709559384de420267ff5c2",
+    "runId": 37190658648,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37190658648",
+    "sourceCommit": "220a1ace0469686710fb3b243772f0400d29d203",
     "conclusion": "failure",
     "unitTestsPassed": 683,
     "unitFiles": 67,
-    "completePackagedChecks": 215,
-    "surfaceChecks": 4,
-    "portableChecks": 7,
-    "installedChecksBeforeFailure": 160,
-    "startupWaitFailed": true,
+    "packagedChecksBeforeFailure": 192,
+    "selectedContinuationPartialWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-provider-transport-startup-failure-result.json"
+    "proof": "verification/hosted-comparison-continuation-failure-result.json"
   },
   "previousSourceVerification": {
     "codeCommit": "dcafd793feba0807da33aa47e3cf53f9a3257306",
@@ -829,19 +832,19 @@
     "latestHostedRunId": 37164504844
   },
   "previousHostedAttempt": {
-    "runId": 37173408503,
-    "url": "https://github.com/Moresyl/qiyao/actions/runs/37173408503",
-    "sourceCommit": "aa2b59d0f6701765d88a7a421076265d15390cd6",
-    "sourceBranch": "fix/terminal-shell-discovery",
+    "runId": 37186719269,
+    "url": "https://github.com/Moresyl/qiyao/actions/runs/37186719269",
+    "sourceCommit": "117ed6031c589b5b68709559384de420267ff5c2",
     "conclusion": "failure",
-    "unitTestsPassed": 672,
-    "unitFiles": 66,
-    "packagedChecksBeforeFailure": 190,
-    "originalTerminalPromptConditionPassed": true,
-    "fourModelCompletionWaitFailed": true,
-    "onlyPollLoadElapsedMs": 9422,
+    "unitTestsPassed": 683,
+    "unitFiles": 67,
+    "completePackagedChecks": 215,
+    "surfaceChecks": 4,
+    "portableChecks": 7,
+    "installedChecksBeforeFailure": 160,
+    "startupWaitFailed": true,
     "completeRuntimeVerified": false,
-    "proof": "verification/hosted-terminal-shell-comparison-failure-result.json"
+    "proof": "verification/hosted-provider-transport-startup-failure-result.json"
   },
   "vaultSerialization": {
     "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
@@ -960,6 +963,7 @@
     "componentProof": "verification/startup-stage-output-component-result.json",
     "jobBudgetMinutes": 90,
     "completeNewSourceNativeVerified": false,
-    "hostedVerified": false
+    "hostedVerified": false,
+    "latestHostedRunId": 37190658648
   }
 }
