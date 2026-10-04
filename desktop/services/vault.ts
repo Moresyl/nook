@@ -29,7 +29,11 @@ export class WorkspaceVault {
     let primaryText: string | undefined;
     try {
       const raw = await readFile(join(this.directory, 'workspace.json'), 'utf8');
-      this.state = parsePersistentWorkspace(JSON.parse(raw));
+      onPhase('workspace.loaded');
+      const decoded: unknown = JSON.parse(raw);
+      onPhase('workspace.decoded');
+      this.state = parsePersistentWorkspace(decoded);
+      onPhase('workspace.validated');
       primaryText = raw;
       this.persistentActiveThreadId = this.state.activeThreadId;
     } catch (error) {
@@ -37,6 +41,7 @@ export class WorkspaceVault {
         throw new Error('Workspace data could not be read. Restore a valid backup before continuing.');
       }
     }
+    onPhase('checkpoints.restore');
     this.state = await this.checkpoints.restore(this.state, primaryText);
     onPhase('workspace.parsed');
     onPhase('credentials.read');

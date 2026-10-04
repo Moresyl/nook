@@ -12,10 +12,27 @@ describe('local workspace persistence', () => {
   it('reports exact initialization boundaries and stops before later phases on a private malformed workspace', async () => {
     const directory = await freshDirectory(); const phases: string[] = [];
     const vault = new WorkspaceVault(directory, codec); await vault.initialize((phase) => phases.push(phase));
-    expect(phases).toEqual(['workspace.read', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
+    expect(phases).toEqual(['workspace.read', 'checkpoints.restore', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
     await writeFile(join(directory, 'workspace.json'), '{PRIVATE_STARTUP_FIXTURE'); phases.length = 0;
     const failed = new WorkspaceVault(directory, codec); await expect(failed.initialize((phase) => phases.push(phase))).rejects.toThrow('Workspace data could not be read');
-    expect(phases).toEqual(['workspace.read']);
+    expect(phases).toEqual(['workspace.read', 'workspace.loaded']);
+  });
+  it('distinguishes decoded invalid data from validated data and failed checkpoint recovery without exposing content', async () => {
+    const directory = await freshDirectory(); const phases: string[] = [];
+    const observe = (phase: string) => phases.push(phase);
+    await writeFile(join(directory, 'workspace.json'), JSON.stringify({ schemaVersion: 'PRIVATE_INVALID_SCHEMA' }));
+    await expect(new WorkspaceVault(directory, codec).initialize(observe)).rejects.toThrow('Workspace data could not be read');
+    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.decoded']);
+    const vault = new WorkspaceVault(directory, codec);
+    await writeFile(join(directory, 'workspace.json'), JSON.stringify(vault.snapshot()));
+    await writeFile(join(directory, 'workspace.checkpoints.json'), '{PRIVATE_INVALID_CHECKPOINT');
+    phases.length = 0;
+    await expect(new WorkspaceVault(directory, codec).initialize(observe)).rejects.toThrow('Saved response checkpoints could not be read');
+    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore']);
+    await rm(join(directory, 'workspace.checkpoints.json')); phases.length = 0;
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(observe);
+    expect(restored.snapshot()).toEqual(vault.snapshot());
+    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
   });
   it('handles prototype-like credential IDs as plain data', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);

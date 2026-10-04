@@ -1,0 +1,443 @@
+{
+  "verifiedAt": "2026-10-04T19:33:09.413Z",
+  "runId": 37223855053,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37223855053",
+  "codeCommit": "7bc98613037be24afd4cf664fd58d8ed1f3094c1",
+  "conclusion": "failure",
+  "unitTestsPassed": 734,
+  "unitFiles": 69,
+  "typecheckAndNoticesVerified": true,
+  "packagedChecks": 215,
+  "settingsChecks": 4,
+  "portableChecks": 7,
+  "installedAssertionsBeforeFailure": 214,
+  "startup": {
+    "pid": 6880,
+    "elapsedMs": 31088,
+    "exitCode": null,
+    "signalCode": null,
+    "pages": [],
+    "main": {
+      "capturedAt": 1791141471154,
+      "ready": true,
+      "startup": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791141440832,
+            "memory": {
+              "rss": 132190208,
+              "heapTotal": 27295744,
+              "heapUsed": 17823612,
+              "external": 3274916,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 406000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791141440846,
+            "memory": {
+              "rss": 136712192,
+              "heapTotal": 27295744,
+              "heapUsed": 17877308,
+              "external": 3274972,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 406000,
+              "system": 125000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791141442343,
+            "memory": {
+              "rss": 159657984,
+              "heapTotal": 31752192,
+              "heapUsed": 16713380,
+              "external": 3274972,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 828000,
+              "system": 734000
+            }
+          }
+        ]
+      },
+      "memory": {
+        "rss": 202674176,
+        "heapTotal": 71016448,
+        "heapUsed": 55147296,
+        "external": 3627750,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 8937000,
+        "system": 14265000
+      },
+      "processes": [
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 23.399208,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 6880,
+          "type": "Browser",
+          "creationTime": 1791141440079.89,
+          "memory": {
+            "workingSetSize": 197968,
+            "peakWorkingSetSize": 197968,
+            "privateBytes": 171912
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.059971,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 2796,
+          "type": "GPU",
+          "creationTime": 1791141440891.374,
+          "serviceName": "GPU",
+          "memory": {
+            "workingSetSize": 61700,
+            "peakWorkingSetSize": 64964,
+            "privateBytes": 14128
+          },
+          "integrityLevel": "low",
+          "sandboxed": true
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.053187,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 7720,
+          "type": "Utility",
+          "creationTime": 1791141440863.827,
+          "serviceName": "network.mojom.NetworkService",
+          "name": "Network Service",
+          "memory": {
+            "workingSetSize": 54880,
+            "peakWorkingSetSize": 59124,
+            "privateBytes": 11308
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        }
+      ],
+      "windows": []
+    }
+  },
+  "navigation": {
+    "streamStartedAt": 1791140556045,
+    "completedAt": 1791140562282,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "requests": 1,
+    "native": {
+      "observations": {
+        "installedAt": 1791140556045,
+        "loads": [
+          {
+            "startedAt": 1791140557311,
+            "returnedAt": 1791140557544,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            },
+            "finishedAt": 1791140557544
+          },
+          {
+            "startedAt": 1791140558404,
+            "returnedAt": 1791140559659,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            },
+            "finishedAt": 1791140559659
+          },
+          {
+            "startedAt": 1791140560842,
+            "returnedAt": 1791140561801,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            },
+            "finishedAt": 1791140561801
+          }
+        ],
+        "clones": [
+          {
+            "startedAt": 1791140556047,
+            "completedAt": 1791140556141,
+            "threads": 90,
+            "thread": {
+              "messageCount": 40,
+              "status": "complete",
+              "characters": 56,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140556144,
+            "completedAt": 1791140556238,
+            "threads": 90,
+            "thread": {
+              "messageCount": 40,
+              "status": "complete",
+              "characters": 56,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140556744,
+            "completedAt": 1791140556835,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140556835,
+            "completedAt": 1791140556926,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140557311,
+            "completedAt": 1791140557544,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140557826,
+            "completedAt": 1791140558047,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791140559030,
+            "completedAt": 1791140559203,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791140559203,
+            "completedAt": 1791140559658,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791140560546,
+            "completedAt": 1791140560793,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791140561297,
+            "completedAt": 1791140561397,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791140561397,
+            "completedAt": 1791140561502,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791140561654,
+            "completedAt": 1791140561800,
+            "threads": 90,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          }
+        ],
+        "files": [
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791140556290,
+            "completedAt": 1791140556331
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791140556331,
+            "completedAt": 1791140556729
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791140556738,
+            "completedAt": 1791140556739
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791140556739,
+            "completedAt": 1791140556743
+          },
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791140558141,
+            "completedAt": 1791140558561
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791140558561,
+            "completedAt": 1791140558998
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791140559014,
+            "completedAt": 1791140559014
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791140559014,
+            "completedAt": 1791140559029
+          },
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791140560844,
+            "completedAt": 1791140560887
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791140560887,
+            "completedAt": 1791140561281
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791140561292,
+            "completedAt": 1791140561292
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791140561292,
+            "completedAt": 1791140561296
+          }
+        ]
+      },
+      "capturedAt": 1791140562281
+    }
+  },
+  "failure": "Installed template backup restart did not discover an application page within the original 30000 ms. The ready main process had no window; the last recorded workspace.read phase combines read, JSON decoding, validation and checkpoint restoration.",
+  "exactFailureCauseEstablished": false,
+  "originalStartupDeadlineMs": 30000,
+  "packageIdentity": {
+    "executableSha256": "790ac280f3a5432bc5facb287891e033b3799e7e1053b8c9de924ebe047c1f83",
+    "archiveSha256": "f0d5ad3d729094894b4ffbaed8d97b1e58e2433499a18ef3f5b289d979c32b7e",
+    "retainedDocuments": 401,
+    "oldProductIdentityMatches": []
+  },
+  "records": [
+    {
+      "path": "verification/package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "f23acb5366b09c7d3919d751a6905bfcdca4754aba56e52910a6bd29a48730a7"
+    },
+    {
+      "path": "verification/packaged-result.json",
+      "bytes": 54037,
+      "sha256": "f2ed9ad5871d2656d8b6f11ac4345ac56f6ae0c858e03579e95e019254d07459"
+    },
+    {
+      "path": "verification/surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "64f702671a1a7679b25db886c39ec12eed3adbb6996b11c3bfa4b999bef530e2"
+    },
+    {
+      "path": "verification/portable-result.json",
+      "bytes": 2092,
+      "sha256": "974d9914ea94151a02820d458f6e0907fcfae4b7e5468189fb2dc4f348a37bb6"
+    }
+  ],
+  "artifact": {
+    "id": 11313165464,
+    "bytes": 10128909,
+    "sha256": "1c5f0683c6cd55312aa47bbcd05428d15f2fcfcb4b60eb03942be103f01609ea",
+    "githubDigestMatched": true
+  },
+  "log": {
+    "bytes": 377596,
+    "sha256": "7bf18c1b3171a60cd847f2315db867a230d94a1f9d082e357762b2d8f85851f4"
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (installer). Run all distribution checks again.",
+  "currentHostedVerified": false,
+  "publicationVerified": false
+}
