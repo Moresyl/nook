@@ -3,6 +3,15 @@ import type { Thread, Workspace } from '../../contracts/workspace';
 
 type EncodedThread = { value: Thread; bytes: Buffer };
 
+function samePropertyOrder(left: object, right: object): boolean {
+  const keys = Object.keys(left); const otherKeys = Object.keys(right);
+  return keys.every((key, index) => {
+    if (key !== otherKeys[index]) return false;
+    const value = (left as Record<string, unknown>)[key];
+    return !value || typeof value !== 'object' || samePropertyOrder(value, (right as Record<string, unknown>)[key] as object);
+  });
+}
+
 /** Preserve the existing pretty JSON bytes while reusing unchanged validated histories. */
 export class WorkspaceSerialization {
   private threads = new Map<string, EncodedThread>();
@@ -25,7 +34,7 @@ export class WorkspaceSerialization {
       for (let index = 0; index < state.threads.length; index++) {
         const thread = state.threads[index];
         const previous = this.threads.get(thread.id);
-        const encoded = previous && isDeepStrictEqual(previous.value, thread) ? previous : {
+        const encoded = previous && isDeepStrictEqual(previous.value, thread) && samePropertyOrder(previous.value, thread) ? previous : {
           value: structuredClone(thread),
           bytes: Buffer.from(`    ${JSON.stringify(thread, null, 2).replaceAll('\n', '\n    ')}`, 'utf8'),
         };

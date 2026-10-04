@@ -12,6 +12,12 @@ function populated(): Workspace {
 }
 afterEach(() => { vi.restoreAllMocks(); });
 describe('cached canonical workspace serialization', () => {
+  it.each(['thread', 'message'] as const)('retains exact JSON property order when the %s has equal values in a different key order', (level) => {
+    const state = populated(); const serialization = new WorkspaceSerialization(); serialization.serialize(state);
+    if (level === 'thread') state.threads[0] = Object.fromEntries(Object.entries(state.threads[0]).reverse()) as typeof state.threads[number];
+    else state.threads[0].messages[0] = Object.fromEntries(Object.entries(state.threads[0].messages[0]).reverse()) as typeof state.threads[number]['messages'][number];
+    expect(serialization.serialize(state)).toEqual(canonical(state));
+  });
   it('matches exact existing JSON bytes for empty and populated Unicode workspaces', () => {
     const serialization = new WorkspaceSerialization();
     for (const state of [emptyWorkspace(), populated()]) {
