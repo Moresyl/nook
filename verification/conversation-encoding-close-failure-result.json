@@ -1,0 +1,220 @@
+{
+  "verifiedAt": "2026-10-04T17:37:22.859Z",
+  "codeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "a27c3569fafa90dce837ec3d87013a419315ea9e90ce058ca76606e993cf9801"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "0955c8795fe2e652cb77fb0e35c20f4d5e93d1abe1da225c4631cc18bb4c3c41"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "744769522169f0e5e335f0cdd55b0dfe129752d531b64b638c75a3e315367b3b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    },
+    {
+      "path": "scripts/verify-conversation-branches.mjs",
+      "sha256": "3e6ab4462d96088304862ed92c36d04cf827f1d56dc2827f6e1a67bcdd0c175f"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "1ea5734945b01cc57d29772bd8a4c45799d569b74ef800ab96e0641071ca7e30"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "90393a9415462d57bea8440b653d74df7b037ed252acd9d7b0f45827ee108cb7"
+    },
+    {
+      "path": "scripts/verify-temporary-conversations.mjs",
+      "sha256": "989034f43d112d72c87fa9fdbaff577bbcf6d91b78b0c9e19b9640bdccfea2c6"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "4acadeb7daaa2cff2f6b2eb1dc1c1c9e2095eb84373219518cb4aaae7a296288"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "df0a2cf1d26a05ad848681efeb6672a24a44f9f93a24836876ce5ac94ba76c51"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "5423b4cffef523049064ef8bf48cb4523b64f0ada64c84f59fb383418e1b594e"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "passedChecks": 188,
+  "failure": "The desktop must flush drafts and exit without being forcibly killed.",
+  "originalCloseDeadlineMs": 10000,
+  "diagnostic": {
+    "capturedAt": 1791134640551,
+    "events": [],
+    "operations": [
+      {
+        "method": "load",
+        "startedAt": 1791134620653,
+        "finishedAt": 1791134620774
+      },
+      {
+        "method": "load",
+        "startedAt": 1791134621547,
+        "finishedAt": 1791134621671
+      },
+      {
+        "method": "load",
+        "startedAt": 1791134638704,
+        "finishedAt": 1791134638895
+      },
+      {
+        "method": "savePreferences",
+        "startedAt": 1791134639182,
+        "finishedAt": 1791134640286
+      }
+    ],
+    "windows": [
+      {
+        "id": 1,
+        "destroyed": false,
+        "visible": false
+      }
+    ],
+    "handles": [
+      "Socket"
+    ],
+    "filesystem": [],
+    "memory": {
+      "rss": 1078296576,
+      "heapTotal": 708083712,
+      "heapUsed": 692117224,
+      "external": 511817455,
+      "arrayBuffers": 0
+    },
+    "cpu": {
+      "user": 5734000,
+      "system": 4796000
+    }
+  },
+  "events": [
+    {
+      "event": "draft-flush-requested",
+      "at": 1791134640572
+    },
+    {
+      "event": "window-close",
+      "at": 1791134640573,
+      "prevented": true
+    },
+    {
+      "event": "window-close",
+      "at": 1791134640575,
+      "prevented": false
+    },
+    {
+      "event": "before-quit",
+      "at": 1791134640575
+    },
+    {
+      "event": "window-close",
+      "at": 1791134640575,
+      "prevented": false
+    },
+    {
+      "event": "window-closed",
+      "at": 1791134640583
+    },
+    {
+      "event": "will-quit",
+      "at": 1791134640583
+    }
+  ],
+  "completedQuitEventIsNotProofOfProcessExit": true,
+  "exactFailureCauseEstablished": false,
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "c6d2d49e13e612f253bc6de1d6f82c88500f93b34ccbecb10e4721f1453fc11d",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/automations-result.json",
+      "bytes": 674,
+      "sha256": "3c32dcd4b3936b37e1839204b4a15424d20023b24e62fe1e0748ae8d2741180b",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/backups-result.json",
+      "bytes": 1997,
+      "sha256": "f9fdc1c0bf0f8a14875f93336cdbcc366d26a3734ba56e6fd8980458048d81a4",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/commands-result.json",
+      "bytes": 873,
+      "sha256": "d02d7925a88ec0db68d7f84e39c66a47bb71a8677cef1c3d82cb50e0213d21c9",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "96f02888407061f72e88ecbad85ac1e3baac7a94a758113a6ec96cc39a353772",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "bytes": 781,
+      "sha256": "5c5568cf7e516dd9091047f8436b763decfc8419c4a2a1693510be670984dc63",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "bytes": 768,
+      "sha256": "4f97cda731eb944ebe159294968e429098d898e0386b1828e4d2e5246012ed51",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "6f83117a78a246414293df0cb4151068dce9151c13067d29e9b5c00ca1c987c7",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "62db8a151ca83f98e529d2345d2afa7494e22502e383c4d311b6cd22406dd1d0",
+      "scope": "Incomplete 188-assertion source attempt, not complete runtime acceptance."
+    }
+  ],
+  "log": {
+    "bytes": 38792,
+    "sha256": "4ed41e488674da56a2beec62c566002f82ff492ca5b96f2853f185afca7012d5"
+  },
+  "completeCurrentNativeVerified": false,
+  "scope": "The new application passes 188 complete-suite assertions, including temporary sends and restart. A later comparison-setup restart reports window-closed/will-quit but the harness does not observe child-process exit within the original deadline and forces termination. Earlier focused suites remain separate. Nine partial records were independently preserved and restored away from the historical complete record names. Inspector disconnection is being investigated; this failure does not establish that it caused the delayed exit."
+}

@@ -1,0 +1,154 @@
+{
+  "verifiedAt": "2026-10-04T17:40:58.547Z",
+  "codeCommit": "8d936cd37553b5823241c6ef5c44ba2921a5ceb9",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "a27c3569fafa90dce837ec3d87013a419315ea9e90ce058ca76606e993cf9801"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "0955c8795fe2e652cb77fb0e35c20f4d5e93d1abe1da225c4631cc18bb4c3c41"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "744769522169f0e5e335f0cdd55b0dfe129752d531b64b638c75a3e315367b3b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "23c4237d7c6f3a8a955314551a3b5cedb79c0e088894b5a33b3ab2e20778106a"
+    },
+    {
+      "path": "scripts/verify-conversation-branches.mjs",
+      "sha256": "3e6ab4462d96088304862ed92c36d04cf827f1d56dc2827f6e1a67bcdd0c175f"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "1ea5734945b01cc57d29772bd8a4c45799d569b74ef800ab96e0641071ca7e30"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "90393a9415462d57bea8440b653d74df7b037ed252acd9d7b0f45827ee108cb7"
+    },
+    {
+      "path": "scripts/verify-temporary-conversations.mjs",
+      "sha256": "989034f43d112d72c87fa9fdbaff577bbcf6d91b78b0c9e19b9640bdccfea2c6"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "4acadeb7daaa2cff2f6b2eb1dc1c1c9e2095eb84373219518cb4aaae7a296288"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "df0a2cf1d26a05ad848681efeb6672a24a44f9f93a24836876ce5ac94ba76c51"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "5423b4cffef523049064ef8bf48cb4523b64f0ada64c84f59fb383418e1b594e"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "unitTestsPassed": 734,
+  "unitFiles": 69,
+  "coverage": {
+    "lines": {
+      "total": 3207,
+      "covered": 3185,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5422,
+      "covered": 5260,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1216,
+      "covered": 1182,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3828,
+      "covered": 3619,
+      "skipped": 0,
+      "pct": 94.54
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "productBytesUnchanged": true,
+  "originalCloseDeadlineMs": 10000,
+  "debuggerDisconnectDeadlineMs": 5000,
+  "actualConnectionBefore": "CLOSING",
+  "actualConnectionAfter": "CLOSED",
+  "successAndErrorEvaluationVerified": true,
+  "normalOwnedNodeProcessExitVerified": true,
+  "focusedNativeChecks": 6,
+  "normalCloseVerified": true,
+  "native": {
+    "path": "verification/inspector-disconnect-model-comparisons-native-result.json",
+    "sha256": "6d8c9fc397b95b21e7d404d04355ceb8f2293d589952d5a5a1cffcf5263cb45d"
+  },
+  "logs": [
+    {
+      "name": "inspector-disconnect-before.log",
+      "bytes": 503,
+      "sha256": "dc3a7fb6428fb2afb3ee5fc967b20bf549a806438fb7510ec38f3da63e55ebb3"
+    },
+    {
+      "name": "inspector-disconnect-after.log",
+      "bytes": 110,
+      "sha256": "7c65ef8d5573b2f51f0fe6b81a75faac2e4d053e13894322c323f6286f78c7f1"
+    },
+    {
+      "name": "inspector-disconnect-comparison-native.log",
+      "bytes": 17691,
+      "sha256": "9205d8466fe3b4559ff58c44fa19ddafcd8ff188535600a4d2bcd97a0e997a6f"
+    }
+  ],
+  "sourceFailure": "verification/conversation-encoding-close-failure-result.json",
+  "completeCurrentSourceVerified": false,
+  "scope": "Only the native verification harness changes: it waits for the actual inspector WebSocket close event before returning from a main-process evaluation, and reports an explicit disconnect failure at a bounded deadline. A real Node inspector probe fails before the fix with CLOSING and passes afterward with CLOSED for success/error and normal process exit. The same failed large-workspace fixture passes all six actual model-comparison checks and normal close. Application/renderer bytes and the original desktop close deadline are unchanged. This does not establish the exact cause of the earlier process-exit delay or complete new-harness source/distribution acceptance."
+}
