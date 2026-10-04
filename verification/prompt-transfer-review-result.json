@@ -1,0 +1,379 @@
+{
+  "verifiedAt": "2026-10-04T01:55:58.001Z",
+  "codeCommit": "ce9bb6c26ea66f6d1a98a23aa2ab18b65853d1bc",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 660,
+  "unitFiles": 64,
+  "desktopChecks": 215,
+  "focusedNativeChecks": 5,
+  "transferModelRequests": 0,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3027,
+      "covered": 3006,
+      "skipped": 0,
+      "pct": 99.3
+    },
+    "statements": {
+      "total": 5154,
+      "covered": 4999,
+      "skipped": 0,
+      "pct": 96.99
+    },
+    "functions": {
+      "total": 1156,
+      "covered": 1124,
+      "skipped": 0,
+      "pct": 97.23
+    },
+    "branches": {
+      "total": 3667,
+      "covered": 3460,
+      "skipped": 0,
+      "pct": 94.35
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "D:\\GR\\qiyao-prompt-transfer\\contracts\\prompt-bundles.ts": {
+      "lines": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 16,
+        "covered": 16,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 10,
+        "covered": 10,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao-prompt-transfer\\desktop\\services\\prompt-templates.ts": {
+      "lines": {
+        "total": 37,
+        "covered": 37,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 22,
+        "covered": 22,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 62,
+        "covered": 62,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 24,
+        "covered": 24,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-bundles.ts",
+      "sha256": "efd1d599a5e526713142dc9bdae089c3271b4a8290a063d320cf57c2b9f6cb5f"
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "8f077738261f93957947214215336b8ae9822830492d4e957bf8b005f5d162a5"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "e4f0f1789b32e7e3e6747c224dd74d8efb24b4bc20ae47a13ef65201b2c29150"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "8f31372f8fecfa3ffbe1a3d8b47bd57ab84a65316d253fad319c881d46d03e45"
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "32a9614d1d1ce71e2bcd56843bbe8ca17db760f19b07bad499878661c0d58178"
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986"
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1"
+    },
+    {
+      "path": "verification/prompt-bundles.test.ts",
+      "sha256": "338f450c213d02d67d8f0465f6cd47861c0d132b5c661f13f04564433f999115"
+    },
+    {
+      "path": "scripts/verify-prompt-transfer.mjs",
+      "sha256": "6c367383334b34df7c63a0580cd11775ab6748881e61b0c9ad1a7f37641a825f"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "1a2a01afef0333c01f0ddae231acbe9e3eb8f533b563d75bc4b11639b0149d64"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "d92c6f4d175d897668a2379738c9de0a789ff94a88e3cbd8f31d026eeba9f263"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "8f93e312c49bbe589bda67881378d5a0f0cb071971d9d384f8bacc1d8c8a0f7e"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "e065572c28734f1a6f94048c339c135bf849a693060d2325e4d07a843537e3c6"
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "38d5efcb27afcbe4a3020dd4910eec1004bb3c6acc7fabbc402b943c8bcaefa6"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "600be40a310bc0046b4f2f70ab9ec910a03c13e6859bf31d2fa21a8238fc05c0",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "0043e91bd70583246c2cf1794cb95add1a603ce1d62670b8dbde77d00a4f90d6",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "c286c77fd1c85365dfd8bfebbd12084014ca5c35b2bff57518705368dea3da58",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "368cb8e97f377604d8f8c9f210855cbe1829f7b88afbd53bad0baea3961852e6",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "552d832252c4b08c3414968391ac950cef6b5d7238bf8af0ae19b86507256c03",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "ee47ddc27d1d12e3c14a0e7c7bbdaff91afb426a023663367cfb4395c9edf9fb",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "b876eed89764e8d23cbeeb95a87c06fc910f45eba917726f4c409c39b5bc8cb9",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "fae95f9edd1f1cf8ce050279064636b79f3c1f3c2fb20bb06c934d26d1e914e3",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "9f7ddc6cc07b43083f64f7f340c00894d3f5aa79e3aa7c81adeab242a0322a11",
+      "bytes": 53916
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "a7da466f5afbdb0bbf8e6997c5749e9a72382dea277d5069cd8d5b9e984eee5d",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "b869c5fc8ab5ab482f79194fb4025241ea00f9d7d683e02903f2e0d7c4fc69c1",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "da8e0e67d6eefeec9485a3abe90bb3e20679034959675009ae1b1772386c0bd9",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "a788f2d70f1b9b2ad70ebccaef0ebc000fb8f43282a6405e39461251fe1d938f",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "11c1c92a5dc49d2521b0666aec86dac91f0ab9c3abf098eb71b92b5a1f55a189",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "bc61552fb2e7696435843902f2fb1c2bd73c9aaf2fee3e1ce14e94ca138b7b68",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "61128b3273be2f5051b7cd29abd428e3f46a2760f30ddccee953cb5c163989b2",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "dbf87bd226d5a55a3eda7e1f1a40ecdb510d46b1818ccf434aa6532a14f2c741",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "996a2626f5c9c1516504aa7f97b2c165ca5cd889ebe31d62552791549ba847c8",
+      "bytes": 1832
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "sha256": "ec2570873c80e6ef27af4c10382de93a99e9ba6f7eeef0c083945968c03df029",
+      "bytes": 1850
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "128-prompt-transfer-library-light.png",
+      "sha256": "c3d68c3168910301717f182bd4c2e0ef99fad0ed76fd16254f6932e54531f563",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/128-prompt-transfer-library-light.png"
+    },
+    {
+      "name": "129-prompt-import-preview-light.png",
+      "sha256": "35b6034428303488847c197c5bf9dc5d38c990bbbf7e17c7011b7478798820e8",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/129-prompt-import-preview-light.png"
+    },
+    {
+      "name": "130-prompt-import-write-error-light.png",
+      "sha256": "5d45f1855ba92ea65deb6fbfbe73d458870ab2793296136b46ea0c85957b0adb",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/130-prompt-import-write-error-light.png"
+    },
+    {
+      "name": "131-prompt-import-dark-zoom-100.png",
+      "sha256": "048f44dabaca45a2170ac3b00307e9fc6fc4ebcd0ad83c10c88db150882a1e36",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-100.png"
+    },
+    {
+      "name": "131-prompt-import-dark-zoom-125.png",
+      "sha256": "fcc9b7487758275ac1ae36529bed3ab682bdd3beae06d7cfa7c265ea148409f7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-125.png"
+    },
+    {
+      "name": "131-prompt-import-dark-zoom-150.png",
+      "sha256": "e362cf7e9f185857407271169be84c450c59aa44ac9505622ff1f55521451c27",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-150.png"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "logs": [
+    {
+      "name": "prompt-transfer-policy-focused.log",
+      "sha256": "195a0376174e71cc826a6e1e827a5ca432ce879c17f37f12cb9984ea3cc8eea9",
+      "bytes": 223
+    },
+    {
+      "name": "prompt-transfer-final-coverage.log",
+      "sha256": "726e25266ac82626ff23dafd651b7a617fd792557bcb4be38d6582a71a7fece4",
+      "bytes": 4374
+    },
+    {
+      "name": "prompt-transfer-final-typecheck.log",
+      "sha256": "150856fd75a8de7760c89f43c6ab21e130b5031154ca7f434e16cfcf1757e4d5",
+      "bytes": 87
+    },
+    {
+      "name": "prompt-transfer-final-build.log",
+      "sha256": "1080b5c12006bfe6576bb15ae994afb73e98ce3d978e42ee620e33b04baa3cce",
+      "bytes": 22551
+    },
+    {
+      "name": "prompt-transfer-focus-restoration-negative.log",
+      "sha256": "2dff15f8b358089478a7e8bdb95262169d2c7ca9afada11c4de75c84d5b1d5a2",
+      "bytes": 2166
+    },
+    {
+      "name": "prompt-transfer-focused-native.log",
+      "sha256": "6188749ddedfed4897b4f68da07e94e7fde201675c3a8a6b5a81092d5d995428",
+      "bytes": 1197
+    },
+    {
+      "name": "prompt-transfer-complete-native.log",
+      "sha256": "4e0367d9030b56ef2a820acb301d6be57773298da3fccf001f7cf08733fe830b",
+      "bytes": 35247
+    }
+  ],
+  "compiled": {
+    "renderer": {
+      "path": "out/renderer/assets/index-Cqr_5QJD.js",
+      "sha256": "6d18d7017bde1f5d9720a2afc310e6696009834eecfb854169db02fba772071f"
+    },
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "bdea12f33d2f81beac68fb81e536bfa6915ca82e5e1e7b30766ba9426729a8e2"
+    }
+  },
+  "draftAssertionScope": {
+    "contentAttachmentsAndSelectionsComparedExactly": true,
+    "autosaveUpdatedAtAndAbsentUndefinedPropertiesExcluded": true,
+    "actualFailurePrimaryBytesComparedExactly": true
+  },
+  "focusRestorationNegativeReproduced": true,
+  "scope": "Strict bounded portable template bundles retain full definitions and referenced assistant profiles without source IDs or credentials. Native selected/all JSON/gzip export, content-detected input, inert complete preview, cancel/Escape, private-field rejection, actual EIO preservation/retry, fresh shared assistant/template IDs, same-name originals, unbound templates, complete gzip backup and normal restart are verified with zero model requests. An actual Escape focus failure is preserved and fixed by an explicit import opener reference. Six complete-run captures are individually reviewed at light 1280×840 and dark 760×540 100/125/150 percent. Final type/build, 660 tests and all 215 desktop checks pass; the bundle contract and template service have complete coverage. Three new release-policy tests reject prior 210-check bodies and absent, partial, requesting or nonboolean transfer evidence. Draft content/context are exact; ordinary autosave timestamp/undefined-property normalization is excluded from object comparisons, while the actual EIO primary-file hash is exact. Picker and confirmation responses are isolated native fixtures; physical picker, foreign formats and wider platform checks remain open. Historical 210-check installer evidence keeps its old application hashes and cannot satisfy the new minimum 215 release gate."
+}

@@ -1,0 +1,57 @@
+{
+  "verifiedAt": "2026-10-04T01:53:23.715Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "complete desktop suite",
+  "suiteChecks": 215,
+  "checks": 5,
+  "transferModelRequests": 0,
+  "exportModesVerified": true,
+  "inertPreviewCancelVerified": true,
+  "atomicImportRetryVerified": true,
+  "sharedFreshAssociationsVerified": true,
+  "zoomKeyboardVerified": true,
+  "backupRestartVerified": true,
+  "originalDraftRetained": true,
+  "layout": [
+    {
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "top": 1,
+      "bottom": 521,
+      "scrollable": true,
+      "overflow": false
+    },
+    {
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "top": 0.800000011920929,
+      "bottom": 412.00000762939453,
+      "scrollable": true,
+      "overflow": false
+    },
+    {
+      "zoom": 1.5,
+      "width": 507,
+      "height": 360,
+      "top": 0.6666666865348816,
+      "bottom": 339.3333435058594,
+      "scrollable": true,
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    "128-prompt-transfer-library-light.png",
+    "129-prompt-import-preview-light.png",
+    "130-prompt-import-write-error-light.png",
+    "131-prompt-import-dark-zoom-100.png",
+    "131-prompt-import-dark-zoom-125.png",
+    "131-prompt-import-dark-zoom-150.png"
+  ],
+  "scope": "Actual native library exports and plain/gzip/content-detected input, full inert parameter/profile preview, cancellation, actual atomic-write rejection/retry, fresh shared associations, native minimum-window zoom/focus/Escape, complete gzip backup and normal restart with zero model requests. System-picker and confirmation results are intercepted only in this isolated process; physical picker and wider platform checks remain separate."
+}

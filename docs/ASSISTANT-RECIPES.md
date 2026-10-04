@@ -1,5 +1,7 @@
 # Assistant-bound prompt templates
 
+Templates and their referenced assistant profiles can now be shared through bounded JSON/gzip files. Import previews are inert, create independent copies only after explicit confirmation, and preserve the current draft and assistant. See [template transfer](PROMPT-TRANSFER.md) and its [660-test / 215-check source evidence](../verification/prompt-transfer-review-result.json); prior distribution evidence below retains its original body hashes.
+
 Open **助手 → 提示模板** to create or edit a local template. The assistant selector can keep the current conversation assistant or bind an existing profile to the template. A binding is used only when **追加到草稿** is explicitly selected. Cancellation keeps the exact prior draft and assistant; insertion retains attachments, model, mode and other context.
 
 Each existing `{{variable}}` can have a display name, hint, required/optional setting, literal default and optional list of choices. Variable names remain case-sensitive and support the existing Unicode syntax. Choice text uses one exact option per line. Empty or duplicate options are rejected, and a nonempty default must match one declared option. A required variable needs a nonblank value; an optional variable can remain empty. Explicit input overrides a default.
