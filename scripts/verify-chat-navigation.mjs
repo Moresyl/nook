@@ -18,7 +18,8 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   }, { providerId, endpoint });
   page = await restart(async () => {
     const path = join(directory, 'workspace.json'); const state = JSON.parse(await readFile(path, 'utf8'));
-    state.threads.push({ id: threadId, title: threadTitle, model: 'chat-navigation-model', providerId, pinned: false, archived: false, createdAt: 1, updatedAt: 2, messages });
+    const createdAt = Date.now();
+    state.threads.push({ id: threadId, title: threadTitle, model: 'chat-navigation-model', providerId, pinned: false, archived: false, createdAt, updatedAt: createdAt, messages });
     await writeFile(path, JSON.stringify(state));
   }); application = getApplication();
   await page.evaluate(async ({ threadId, providerId, attachment }) => { await window.qiyao.saveComposerDraft({ threadId, text: 'CHAT_NAV_DRAFT_KEEP', attachments: [attachment], providerId, model: 'chat-navigation-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread(threadId); }, { threadId, providerId, attachment });
@@ -57,10 +58,82 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   const state = await page.evaluate(() => window.qiyao.load()); assert.deepEqual(state.threads.find((thread) => thread.id === threadId).messages, messages); assert.equal(state.composerDrafts.find((draft) => draft.threadId === threadId).text, 'CHAT_NAV_DRAFT_KEEP'); assert.deepEqual(state.composerDrafts.find((draft) => draft.threadId === threadId).attachments, [attachment]); assert.equal(fixture.requests.length, 0);
   verified('actual command-menu find opens and focuses the same bar, leaving the chat removes stale highlights and disables its context-bound command, and returning preserves the exact saved history, draft and attachment without sending');
 
-  await page.evaluate(async ({ threadId, providerId }) => { await window.qiyao.submit({ threadId, providerId, model: 'chat-navigation-model', text: 'CHAT_NAV_STREAM_REQUEST', attachments: [], mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [] }); }, { threadId, providerId });
+  const observerInstalled = await application.evaluateMain(String.raw`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function') return false;
+    const target = ${JSON.stringify(threadId)};
+    const data = globalThis.qiyaoChatNavigationObservations = { installedAt: Date.now(), loads: [], clones: [], files: [] };
+    const append = (list, row) => { list.push(row); if (list.length > 64) list.shift(); };
+    const summarize = state => { const thread = state?.threads?.find(item => item.id === target); const last = thread?.messages.at(-1);
+      return { messageCount: thread?.messages.length, status: last?.status, characters: last?.content.length, hasNeedle: last?.content.includes('STREAM_FIND_NEEDLE') }; };
+    const originalHandler = handlers.get('qiyao:invoke');
+    const handler = async function (...args) {
+      if (args[1] !== 'load') return originalHandler.apply(this, args);
+      const row = { startedAt: Date.now() }; append(data.loads, row);
+      try { const state = await originalHandler.apply(this, args); row.returnedAt = Date.now(); row.thread = summarize(state); return state; }
+      finally { row.finishedAt = Date.now(); }
+    };
+    const originalClone = globalThis.structuredClone;
+    const clone = function (...args) {
+      const startedAt = Date.now(); const result = originalClone.apply(this, args);
+      if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) append(data.clones,
+        { startedAt, completedAt: Date.now(), threads: args[0].threads.length, thread: summarize(result) });
+      return result;
+    };
+    const fs = require('node:fs/promises'); const path = require('node:path'); const originalOpen = fs.open; const restorers = new Set(); let active = true;
+    const open = async function (...args) {
+      const handle = await originalOpen.apply(this, args); const name = typeof args[0] === 'string' ? path.basename(args[0]) : '';
+      if (!active || !/^workspace\.(?:backup\.)?json(?:\.|$)|^workspace\.checkpoints\.json(?:\.|$)/.test(name)) return handle;
+      const originals = new Map();
+      for (const method of ['writeFile', 'sync']) {
+        const original = handle[method]; originals.set(method, original);
+        handle[method] = async function (...values) {
+          const row = { file: name.startsWith('workspace.backup.') ? 'backup' : name.startsWith('workspace.checkpoints.') ? 'journal' : 'primary', method, startedAt: Date.now() }; append(data.files, row);
+          try { return await original.apply(this, values); } finally { row.completedAt = Date.now(); }
+        };
+      }
+      const originalClose = handle.close;
+      const restore = () => { for (const [method, original] of originals) handle[method] = original; handle.close = originalClose; restorers.delete(restore); };
+      handle.close = async function (...values) { try { return await originalClose.apply(this, values); } finally { restore(); } };
+      restorers.add(restore); return handle;
+    };
+    handlers.set('qiyao:invoke', handler); globalThis.structuredClone = clone; fs.open = open;
+    globalThis.qiyaoRestoreChatNavigationObservers = () => {
+      active = false;
+      if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', originalHandler);
+      if (globalThis.structuredClone === clone) globalThis.structuredClone = originalClone;
+      if (fs.open === open) fs.open = originalOpen;
+      for (const restore of [...restorers]) restore();
+    };
+    return true;
+  })()`);
+  assert.equal(observerInstalled, true);
+  const streamStartedAt = Date.now();
+  let streamPhase = 'submit';
   try {
-    await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id).messages.at(-1)?.content.includes('STREAM_FIND_NEEDLE'), threadId); await page.keyboard.press('Control+f'); await search('STREAM_FIND_NEEDLE', 1); await search('needle.a*', 4); const before = await page.locator('.transcript-scroll').evaluate((element) => element.scrollTop); fixture.finish(); await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id).messages.at(-1)?.status === 'complete', threadId); assert.ok(Math.abs(await page.locator('.transcript-scroll').evaluate((element) => element.scrollTop) - before) <= 2); await search('STREAM_FIND_NEEDLE', 2); assert.equal(fixture.requests.length, 1); assert.equal(await rail().getByRole('button').count(), 21); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
-  } finally { fixture.finish(); }
+    await page.evaluate(async ({ threadId, providerId }) => { await window.qiyao.submit({ threadId, providerId, model: 'chat-navigation-model', text: 'CHAT_NAV_STREAM_REQUEST', attachments: [], mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [] }); }, { threadId, providerId });
+    streamPhase = 'partial';
+    await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id).messages.at(-1)?.content.includes('STREAM_FIND_NEEDLE'), threadId);
+    streamPhase = 'find-partial';
+    await page.keyboard.press('Control+f'); await search('STREAM_FIND_NEEDLE', 1); await search('needle.a*', 4);
+    const before = await page.locator('.transcript-scroll').evaluate((element) => element.scrollTop);
+    fixture.finish(); streamPhase = 'complete';
+    await waitForBridge(page, async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id).messages.at(-1)?.status === 'complete', threadId);
+    streamPhase = 'find-complete';
+    assert.ok(Math.abs(await page.locator('.transcript-scroll').evaluate((element) => element.scrollTop) - before) <= 2);
+    await search('STREAM_FIND_NEEDLE', 2); assert.equal(fixture.requests.length, 1); assert.equal(await rail().getByRole('button').count(), 21); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
+    const native = await application.evaluateMain('({observations:globalThis.qiyaoChatNavigationObservations,capturedAt:Date.now()})');
+    assert.ok(native.observations.loads.length > 0); assert.ok(native.observations.clones.length > 0); assert.ok(native.observations.files.some(row => row.method === 'sync'));
+    console.log('Chat navigation streaming observations', JSON.stringify({ streamStartedAt, completedAt: Date.now(), originalDeadlineMs: 10000, originalPollIntervalMs: 100, requests: fixture.requests.length, native }));
+  } catch (error) {
+    const failedAt = Date.now();
+    const native = await application.evaluateMain('({observations:globalThis.qiyaoChatNavigationObservations,transport:globalThis.qiyaoModelTransportEvents?.filter(item=>item.path.startsWith("/chat-navigation/")).slice(-4),memory:process.memoryUsage(),cpu:process.cpuUsage(),capturedAt:Date.now()})').catch(() => null);
+    console.error('Chat navigation streaming failure observations', JSON.stringify({ streamStartedAt, failedAt, streamPhase, originalDeadlineMs: 10000, originalPollIntervalMs: 100, requests: fixture.requests.length, native }));
+    throw error;
+  } finally {
+    fixture.finish();
+    await application.evaluateMain('globalThis.qiyaoRestoreChatNavigationObservers?.()').catch(() => {});
+  }
   verified('real held HTTP streaming updates the find index and user-turn rail, retains the earlier result and manual reading position through appended reply text, and preserves the independent composer draft without another provider request');
 
   if (process.env.QIYAO_TEST_CHAT_NAVIGATION_ONLY) {
