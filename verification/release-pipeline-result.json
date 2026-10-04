@@ -878,7 +878,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": false,
+  "completeCurrentSourceVerified": true,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -1076,7 +1076,7 @@
     "normalCloseVerified": true,
     "proof": "verification/conversation-encoding-component-result.json",
     "hostedRunId": 37219400051,
-    "completeSourceVerified": false,
+    "completeSourceVerified": true,
     "distributionVerified": false,
     "hostedVerified": false,
     "completeSourceFailure": "verification/conversation-encoding-close-failure-result.json",
@@ -1088,6 +1088,9 @@
     "focusedNativeChecks": 6,
     "normalCloseVerified": true,
     "proof": "verification/inspector-disconnect-component-result.json",
-    "completeSourceVerified": false
+    "completeSourceVerified": true,
+    "completeCurrentNativeVerified": true,
+    "completeSource": "verification/inspector-disconnect-complete-source-result.json",
+    "completeSourceChecks": 215
   }
 }

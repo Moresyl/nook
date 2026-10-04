@@ -1,0 +1,1330 @@
+{
+  "verifiedAt": "2026-10-04T17:57:44.676Z",
+  "codeCommit": "8d936cd37553b5823241c6ef5c44ba2921a5ceb9",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "checks": 215,
+  "normalCloseVerified": true,
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "78cfe82223a6d27bd8851be777cc78cad15ccaa8a710143714367c0756204871"
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "bytes": 1677,
+      "sha256": "4b8168106b3d7bed4f97d16ee4333586b1c1e461d5c629c9a819243e124264c1"
+    },
+    {
+      "path": "verification/automations-result.json",
+      "bytes": 674,
+      "sha256": "4df64893f4184bccb31b02f8327c892fee5dc442da61e35891bb397da24f9f14"
+    },
+    {
+      "path": "verification/backups-result.json",
+      "bytes": 1997,
+      "sha256": "fbba1f6e4fc46241dddc2cc04b1d91cc83166b0e8384a2c2ef9f39bb4cbface8"
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "bytes": 10591,
+      "sha256": "b8173ed6b492f9e078c6b10abfb0c23e8b498c02796d692176882ddf58b10120"
+    },
+    {
+      "path": "verification/commands-result.json",
+      "bytes": 873,
+      "sha256": "5185cea6f8e59ece028020a129f6cb8f89c61db7f4d975a7208c09c50d318708"
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "bytes": 11675,
+      "sha256": "3bfbf02657f18b5878e15f202aa3196dcd42bb9117fca82a43c8977b47713569"
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "dfc9100309dad1725dcd8bf2774f66d820db57a600db53f487760dd49d530246"
+    },
+    {
+      "path": "verification/electron-result.json",
+      "bytes": 53916,
+      "sha256": "e29d70157087c44e9e0cd4557b5da1f2907ac79bce9838368f99698eac6f3184"
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "bytes": 781,
+      "sha256": "dd19c46f3fd1f1b6df31e5e6fd3e57c6ac303232e83b106b2062bbdf52b6360b"
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "bytes": 1770,
+      "sha256": "260f17ab7e6a16db676afd3b9af59ab8393298fdec2602b640af8251c3318309"
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "bytes": 795,
+      "sha256": "bcbb6005d381563ebc8b5f17f389432083a1218ba8687c28f16ae848c6977cc0"
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "bytes": 768,
+      "sha256": "ea7de5263670450868d3ef1b94a168c9ad935a8127a8f715f75465c2f3a08cdb"
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "bytes": 2126,
+      "sha256": "c75cd134480c339819f29382a5d77089ef3893495525ce4b607d1f01413381c1"
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "bytes": 3552,
+      "sha256": "20bdd3ca35cb86204f692c0c8c1c7092aa74d5e1042044624db12664b72680fc"
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "227c673f117f1ee24035a2c70c8964739eae5054758086d6ce1011d8ed26f2b6"
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "8f780a90c97ae43ad6f5e6938a2b17309ed118b163217104bae2d744f34068d5"
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "bytes": 1832,
+      "sha256": "106d373dcfbb1e8c5302f1a567604939738b4ec784865a4eb098cba38205ad04"
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "bytes": 1850,
+      "sha256": "9a885fac8c5a30f3a9f7f94204673d792f31305ef44ee608e52a4808e5a8cf4f"
+    }
+  ],
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "a27c3569fafa90dce837ec3d87013a419315ea9e90ce058ca76606e993cf9801"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "0955c8795fe2e652cb77fb0e35c20f4d5e93d1abe1da225c4631cc18bb4c3c41"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "744769522169f0e5e335f0cdd55b0dfe129752d531b64b638c75a3e315367b3b"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "23c4237d7c6f3a8a955314551a3b5cedb79c0e088894b5a33b3ab2e20778106a"
+    },
+    {
+      "path": "scripts/verify-conversation-branches.mjs",
+      "sha256": "3e6ab4462d96088304862ed92c36d04cf827f1d56dc2827f6e1a67bcdd0c175f"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "1ea5734945b01cc57d29772bd8a4c45799d569b74ef800ab96e0641071ca7e30"
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "90393a9415462d57bea8440b653d74df7b037ed252acd9d7b0f45827ee108cb7"
+    },
+    {
+      "path": "scripts/verify-temporary-conversations.mjs",
+      "sha256": "989034f43d112d72c87fa9fdbaff577bbcf6d91b78b0c9e19b9640bdccfea2c6"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "4acadeb7daaa2cff2f6b2eb1dc1c1c9e2095eb84373219518cb4aaae7a296288"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "df0a2cf1d26a05ad848681efeb6672a24a44f9f93a24836876ce5ac94ba76c51"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "5423b4cffef523049064ef8bf48cb4523b64f0ada64c84f59fb383418e1b594e"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "unitTestsPassed": 734,
+  "unitFiles": 69,
+  "coverage": {
+    "lines": {
+      "total": 3207,
+      "covered": 3185,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5422,
+      "covered": 5260,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1216,
+      "covered": 1182,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3828,
+      "covered": 3619,
+      "skipped": 0,
+      "pct": 94.54
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "typecheckExitCode": 0,
+  "buildExitCode": 0,
+  "log": {
+    "name": "inspector-disconnect-complete-native.log",
+    "bytes": 59802,
+    "sha256": "edd630912690ecb4a7ec4739b8b0b43a3c29e6ac1548cfc1c99af04055826c06"
+  },
+  "comparisonContinuation": [
+    {
+      "phase": "partial",
+      "sendStartedAt": 1791136249264,
+      "capturedAt": 1791136253158,
+      "originalDeadlineMs": 10000,
+      "originalPollIntervalMs": 100,
+      "expectedServerRequests": 11,
+      "serverRequests": 11,
+      "timeline": [
+        {
+          "receivedAt": 1791136218240,
+          "connection": "b",
+          "model": "two",
+          "messages": 4,
+          "partialSentAt": 1791136218240,
+          "completionQueuedAt": 1791136223171,
+          "completionFlushedAt": 1791136223172,
+          "closedAt": 1791136223172
+        },
+        {
+          "receivedAt": 1791136227589,
+          "connection": "a",
+          "model": "one",
+          "messages": 2,
+          "partialSentAt": 1791136227589,
+          "completionQueuedAt": 1791136232450,
+          "completionFlushedAt": 1791136232451,
+          "closedAt": 1791136232451
+        },
+        {
+          "receivedAt": 1791136227591,
+          "connection": "b",
+          "model": "two",
+          "messages": 2,
+          "partialSentAt": 1791136227591,
+          "completionQueuedAt": 1791136232451,
+          "completionFlushedAt": 1791136232451,
+          "closedAt": 1791136232451
+        },
+        {
+          "receivedAt": 1791136251626,
+          "connection": "b",
+          "model": "two",
+          "messages": 6,
+          "partialSentAt": 1791136251626
+        }
+      ],
+      "rendererPolls": [
+        {
+          "phase": "partial",
+          "startedAt": 1791136249373,
+          "completedAt": 1791136250280,
+          "expectedMessageCount": 6,
+          "messageCount": 4,
+          "lastUserMatches": false,
+          "lastStatus": "complete",
+          "hasPartial": true,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136250595,
+          "completedAt": 1791136251415,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": false,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136251762,
+          "completedAt": 1791136252100,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": false,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136252300,
+          "completedAt": 1791136253159,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": true,
+          "reached": true
+        }
+      ],
+      "native": {
+        "observations": {
+          "installedAt": 1791136249259,
+          "loads": [
+            {
+              "startedAt": 1791136249373,
+              "returnedAt": 1791136250046,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              },
+              "finishedAt": 1791136250046
+            },
+            {
+              "startedAt": 1791136250595,
+              "returnedAt": 1791136251168,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "finishedAt": 1791136251168
+            },
+            {
+              "startedAt": 1791136251761,
+              "returnedAt": 1791136251870,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "finishedAt": 1791136251870
+            },
+            {
+              "startedAt": 1791136252300,
+              "returnedAt": 1791136252931,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              },
+              "finishedAt": 1791136252931
+            }
+          ],
+          "clones": [
+            {
+              "startedAt": 1791136249434,
+              "completedAt": 1791136249554,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249554,
+              "completedAt": 1791136249665,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249863,
+              "completedAt": 1791136249952,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249952,
+              "completedAt": 1791136250044,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250207,
+              "completedAt": 1791136250313,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250313,
+              "completedAt": 1791136250419,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250693,
+              "completedAt": 1791136250792,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136250792,
+              "completedAt": 1791136250897,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251058,
+              "completedAt": 1791136251167,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251341,
+              "completedAt": 1791136251467,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251517,
+              "completedAt": 1791136251625,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251761,
+              "completedAt": 1791136251870,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136252027,
+              "completedAt": 1791136252144,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136252716,
+              "completedAt": 1791136252818,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136252822,
+              "completedAt": 1791136252931,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              }
+            }
+          ],
+          "sends": [
+            {
+              "startedAt": 1791136250897,
+              "hasState": true,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "completedAt": 1791136251056
+            },
+            {
+              "startedAt": 1791136251056,
+              "hasState": false,
+              "completedAt": 1791136251056
+            },
+            {
+              "startedAt": 1791136251635,
+              "hasState": false,
+              "deltaCharacters": 12,
+              "hasPartialDelta": true,
+              "completedAt": 1791136251635
+            },
+            {
+              "startedAt": 1791136252818,
+              "hasState": false,
+              "completedAt": 1791136252822
+            }
+          ]
+        },
+        "transport": [
+          {
+            "id": 8,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136218238,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136218238
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136218241
+              },
+              {
+                "phase": "headers",
+                "at": 1791136218243
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136223397
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 9,
+            "method": "POST",
+            "path": "/model-comparison/a/v1/chat/completions",
+            "firstObservedAt": 1791136227586,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136227586
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136227590
+              },
+              {
+                "phase": "headers",
+                "at": 1791136227593
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136232456
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 10,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136227588,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136227588
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136227593
+              },
+              {
+                "phase": "headers",
+                "at": 1791136227594
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136232962
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 11,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136251057,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136251057
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136251633
+              },
+              {
+                "phase": "headers",
+                "at": 1791136251635
+              }
+            ],
+            "statusCode": 200
+          }
+        ],
+        "memory": {
+          "rss": 1200046080,
+          "heapTotal": 824868864,
+          "heapUsed": 805854864,
+          "external": 258839802,
+          "arrayBuffers": 0
+        },
+        "cpu": {
+          "user": 29593000,
+          "system": 16531000
+        },
+        "capturedAt": 1791136253183
+      }
+    },
+    {
+      "phase": "complete",
+      "sendStartedAt": 1791136249264,
+      "capturedAt": 1791136254164,
+      "originalDeadlineMs": 10000,
+      "originalPollIntervalMs": 100,
+      "expectedServerRequests": 11,
+      "serverRequests": 11,
+      "timeline": [
+        {
+          "receivedAt": 1791136218240,
+          "connection": "b",
+          "model": "two",
+          "messages": 4,
+          "partialSentAt": 1791136218240,
+          "completionQueuedAt": 1791136223171,
+          "completionFlushedAt": 1791136223172,
+          "closedAt": 1791136223172
+        },
+        {
+          "receivedAt": 1791136227589,
+          "connection": "a",
+          "model": "one",
+          "messages": 2,
+          "partialSentAt": 1791136227589,
+          "completionQueuedAt": 1791136232450,
+          "completionFlushedAt": 1791136232451,
+          "closedAt": 1791136232451
+        },
+        {
+          "receivedAt": 1791136227591,
+          "connection": "b",
+          "model": "two",
+          "messages": 2,
+          "partialSentAt": 1791136227591,
+          "completionQueuedAt": 1791136232451,
+          "completionFlushedAt": 1791136232451,
+          "closedAt": 1791136232451
+        },
+        {
+          "receivedAt": 1791136251626,
+          "connection": "b",
+          "model": "two",
+          "messages": 6,
+          "partialSentAt": 1791136251626,
+          "completionQueuedAt": 1791136253181,
+          "completionFlushedAt": 1791136253182,
+          "closedAt": 1791136253182
+        }
+      ],
+      "rendererPolls": [
+        {
+          "phase": "partial",
+          "startedAt": 1791136249373,
+          "completedAt": 1791136250280,
+          "expectedMessageCount": 6,
+          "messageCount": 4,
+          "lastUserMatches": false,
+          "lastStatus": "complete",
+          "hasPartial": true,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136250595,
+          "completedAt": 1791136251415,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": false,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136251762,
+          "completedAt": 1791136252100,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": false,
+          "reached": false
+        },
+        {
+          "phase": "partial",
+          "startedAt": 1791136252300,
+          "completedAt": 1791136253159,
+          "expectedMessageCount": 6,
+          "messageCount": 6,
+          "lastUserMatches": true,
+          "lastStatus": "running",
+          "hasPartial": true,
+          "reached": true
+        },
+        {
+          "phase": "complete",
+          "startedAt": 1791136253338,
+          "completedAt": 1791136254165,
+          "messageCount": 6,
+          "lastStatus": "complete",
+          "hasPartial": true,
+          "reached": true
+        }
+      ],
+      "native": {
+        "observations": {
+          "installedAt": 1791136249259,
+          "loads": [
+            {
+              "startedAt": 1791136249373,
+              "returnedAt": 1791136250046,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              },
+              "finishedAt": 1791136250046
+            },
+            {
+              "startedAt": 1791136250595,
+              "returnedAt": 1791136251168,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "finishedAt": 1791136251168
+            },
+            {
+              "startedAt": 1791136251761,
+              "returnedAt": 1791136251870,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "finishedAt": 1791136251870
+            },
+            {
+              "startedAt": 1791136252300,
+              "returnedAt": 1791136252931,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              },
+              "finishedAt": 1791136252931
+            },
+            {
+              "startedAt": 1791136253338,
+              "returnedAt": 1791136253925,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              },
+              "finishedAt": 1791136253925
+            }
+          ],
+          "clones": [
+            {
+              "startedAt": 1791136249434,
+              "completedAt": 1791136249554,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249554,
+              "completedAt": 1791136249665,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249863,
+              "completedAt": 1791136249952,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136249952,
+              "completedAt": 1791136250044,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250207,
+              "completedAt": 1791136250313,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250313,
+              "completedAt": 1791136250419,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 4,
+                "lastUserMatches": false,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136250693,
+              "completedAt": 1791136250792,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136250792,
+              "completedAt": 1791136250897,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251058,
+              "completedAt": 1791136251167,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251341,
+              "completedAt": 1791136251467,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251517,
+              "completedAt": 1791136251625,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136251761,
+              "completedAt": 1791136251870,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136252027,
+              "completedAt": 1791136252144,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              }
+            },
+            {
+              "startedAt": 1791136252716,
+              "completedAt": 1791136252818,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136252822,
+              "completedAt": 1791136252931,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136253189,
+              "completedAt": 1791136253295,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 12,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136253422,
+              "completedAt": 1791136253531,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136253531,
+              "completedAt": 1791136253637,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            },
+            {
+              "startedAt": 1791136253800,
+              "completedAt": 1791136253925,
+              "threadCount": 306,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              }
+            }
+          ],
+          "sends": [
+            {
+              "startedAt": 1791136250897,
+              "hasState": true,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "running",
+                "contentCharacters": 0,
+                "hasPartial": false
+              },
+              "completedAt": 1791136251056
+            },
+            {
+              "startedAt": 1791136251056,
+              "hasState": false,
+              "completedAt": 1791136251056
+            },
+            {
+              "startedAt": 1791136251635,
+              "hasState": false,
+              "deltaCharacters": 12,
+              "hasPartialDelta": true,
+              "completedAt": 1791136251635
+            },
+            {
+              "startedAt": 1791136252818,
+              "hasState": false,
+              "completedAt": 1791136252822
+            },
+            {
+              "startedAt": 1791136253188,
+              "hasState": false,
+              "deltaCharacters": 37,
+              "hasPartialDelta": false,
+              "completedAt": 1791136253188
+            },
+            {
+              "startedAt": 1791136253188,
+              "hasState": false,
+              "completedAt": 1791136253188
+            },
+            {
+              "startedAt": 1791136253189,
+              "hasState": false,
+              "completedAt": 1791136253189
+            },
+            {
+              "startedAt": 1791136253637,
+              "hasState": true,
+              "thread": {
+                "threadFound": true,
+                "messageCount": 6,
+                "lastUserMatches": true,
+                "lastStatus": "complete",
+                "contentCharacters": 49,
+                "hasPartial": true
+              },
+              "completedAt": 1791136253800
+            }
+          ]
+        },
+        "transport": [
+          {
+            "id": 8,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136218238,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136218238
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136218241
+              },
+              {
+                "phase": "headers",
+                "at": 1791136218243
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136223397
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 9,
+            "method": "POST",
+            "path": "/model-comparison/a/v1/chat/completions",
+            "firstObservedAt": 1791136227586,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136227586
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136227590
+              },
+              {
+                "phase": "headers",
+                "at": 1791136227593
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136232456
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 10,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136227588,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136227588
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136227593
+              },
+              {
+                "phase": "headers",
+                "at": 1791136227594
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136232962
+              }
+            ],
+            "statusCode": 200
+          },
+          {
+            "id": 11,
+            "method": "POST",
+            "path": "/model-comparison/b/v1/chat/completions",
+            "firstObservedAt": 1791136251057,
+            "phases": [
+              {
+                "phase": "create",
+                "at": 1791136251057
+              },
+              {
+                "phase": "bodySent",
+                "at": 1791136251633
+              },
+              {
+                "phase": "headers",
+                "at": 1791136251635
+              },
+              {
+                "phase": "trailers",
+                "at": 1791136253185
+              }
+            ],
+            "statusCode": 200
+          }
+        ],
+        "memory": {
+          "rss": 1575219200,
+          "heapTotal": 1116241920,
+          "heapUsed": 1097984052,
+          "external": 343446484,
+          "arrayBuffers": 0
+        },
+        "cpu": {
+          "user": 29937000,
+          "system": 16984000
+        },
+        "capturedAt": 1791136254192
+      }
+    }
+  ],
+  "originalPartialDeadlineMs": 10000,
+  "originalPartialPollIntervalMs": 100,
+  "completeCurrentNativeVerified": true,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Complete current development executable: 215 actual desktop assertions, normal close and 19 fresh source runtime records. Packaged, portable, installed and hosted bodies require independent current acceptance."
+}
