@@ -298,7 +298,14 @@ async function launch() {
         });
         socket.send(JSON.stringify({ id: 1, method: 'Runtime.evaluate', params: { expression, includeCommandLineAPI: true, returnByValue: true, awaitPromise: true } }));
       });
-    } finally { socket.close(); }
+    } finally {
+      await new Promise((resolve, reject) => {
+        if (socket.readyState === WebSocket.CLOSED) { resolve(); return; }
+        const timer = setTimeout(() => reject(new Error('Main-process debugger did not disconnect')), 5000);
+        socket.addEventListener('close', () => { clearTimeout(timer); resolve(); }, { once: true });
+        socket.close();
+      });
+    }
   }
   let browser; let page;
   try {
