@@ -1,0 +1,80 @@
+{
+  "verifiedAt": "2026-10-04T22:34:15.767Z",
+  "codeCommit": "9ebf03a",
+  "portableChecks": 7,
+  "typecheckExitCode": 0,
+  "timings": [
+    {
+      "elapsedMs": 365,
+      "timeoutMs": 30000
+    },
+    {
+      "elapsedMs": 344,
+      "timeoutMs": 30000
+    }
+  ],
+  "log": {
+    "bytes": 1193,
+    "sha256": "2e29171c52c98097b6dc77b4fd136701934e7c4445e13d4e963e031be3a539bc"
+  },
+  "archiveSha256": "248b7adc60bd89944c733b4e427aa973ffcb70b36b57f01c4336d8ec3428cfbb",
+  "executableSha256": "6287791c90310d65da2d7c74024539c737a83f2f0c1afbac5d7c1e808c01c679",
+  "wrapperSha256": "0f0feff2bcac7b0f66dd9baddacfa5d926bada2d18bd33af92b6f0bb3af34233",
+  "matchingRuntimeProofVerified": true,
+  "runtimeRecordCount": 10,
+  "records": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "541669c22bdbbd7f67cee2e2b78575b992d06ad6b6711fd16aee1d9fdd431eb0"
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "91ea9a2246ab27f0322088a976c7cbe475e03b2d59ec1fa00bac8edec903c161"
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "5431a2e1ce50abdd27c69ceb49ac6e8e2593bbe10b51dc2cc098f18dcdcb8217"
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "cc78287171ebfb323068740cd09870faf95ea59c928b9dc85eb94e3b0652d71d"
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "043fbfe43585f232833216d956341c0866450310a2e4cac681361c1620fd94a5"
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "0caa379050fd32d31746d692d331e647d43bc445699b88fd8d0bda20f60120fe"
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "833667480c8f57c5f0d7425a0ed9bc113d4ef051c1c24c9ccbaeed4a7cc83d4a"
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "07a7e8d656a04736338e853df41adb93dd0893ab7f7a9ec452d7928c05ee9565"
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "cb417fe6ba81b9fe961ac7e6ac1d831e07d5a3ce3afeba69e32dee702c66d912"
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "1b8c2791f6d3667e9bf636e867ba750dc87dcfd35add3b6a5a07714b008d7302"
+    }
+  ],
+  "applicationChanged": false,
+  "hostedVerified": false,
+  "scope": "Actual same-body portable wrapper passes all seven original assertions, two natural exits/cleanups, retained data and unchanged registration/shortcuts after only the read-only PowerShell system-snapshot budget changed. Complete installed/unpacked new-renderer-config checks have separate proof; all ten current runtime records pass strict policy."
+}

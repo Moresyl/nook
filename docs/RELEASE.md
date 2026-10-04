@@ -18,7 +18,9 @@
 
 后续远端 `37235418909` 通过 746 项单元测试和构建，但在更早的审批拒绝按钮点击时，停留于 Playwright 的滚动阶段并超过原有 30 秒期限；按钮已被判定为可见、可用且稳定，失败后截图中的操作区也位于窗口内。应用随后正常退出。该批次未到达前一轮的退出失败点，不能据此宣称退出根因已解决。见 [审批点击失败证据](../verification/hosted-approval-scroll-failure-result.json)。
 
-验收启动器对齐 Playwright 的无人值守渲染调度参数，并等待临时分支实际显示后再输入。新配置已通过完整本地未安装包的 215 项与正常退出；19 份记录独立归档，应用正常启动参数及原安装版记录保持不变。详见 [渲染配置说明](CI-RENDERER-SCHEDULING.md) 与 [完整新配置证据](../verification/renderer-scheduling-complete-packaged-result.json)。远端 `37237384474` 的结果尚未返回。
+验收启动器对齐 Playwright 的无人值守渲染调度参数，并等待临时分支实际显示后再输入。新配置分别通过完整本地未安装包及实际安装版各 215 项与正常退出，快捷方式、中文安装路径、卸载及用户数据保留均通过；未安装和安装记录分别归档。应用正常启动参数和二进制保持不变。详见 [渲染配置说明](CI-RENDERER-SCHEDULING.md)、[完整未安装证据](../verification/renderer-scheduling-complete-packaged-result.json) 与 [实际安装证据](../verification/renderer-scheduling-installed-result.json)。
+
+远端 `37237384474` 通过完整桌面 215 项和设置 4 项，在便携程序启动前的只读注册表／快捷方式基线快照辅助命令中超过 10 秒期限；便携未启动，后续安装未执行。将此辅助命令的有界预算改为 30 秒后，本地实际便携 7 项及两次退出清理全部通过，快照耗时分别为 365、344 毫秒；当前十份匹配运行记录校验通过。见 [失败与调整说明](CI-PORTABLE-SNAPSHOT.md) 和 [实际便携证据](../verification/portable-snapshot-component-result.json)。云端仍须重新完整验收。
 
 当前没有完整通过的云端验收或已发布版本。完整能力和指定 UI 的剩余范围见 [能力记录](CAPABILITIES.md)、[交付要求](DELIVERY.md) 和 [UI 验收](UI-ACCEPTANCE.md)。历史验证只适用于各自记录的源码、EXE、ASAR 和启动器，不能作为当前版本的完成证明。
 
