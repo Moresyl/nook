@@ -1,0 +1,67 @@
+{
+  "verifiedAt": "2026-10-04T20:19:00.091Z",
+  "codeCommit": "5e8eec785b2dad7a8d33954b0f861b3297792771",
+  "packagedAssertionsBeforeFailure": 190,
+  "failure": "The renderer crashed while inspecting model comparison results. Error cleanup then attempted to send a draft-flush request to the failed renderer. The exact renderer crash reason was not captured.",
+  "exactCauseEstablished": false,
+  "observedAvailableScratchBytesAfterFailure": 278523904,
+  "observedLaterAvailableScratchBytes": 3275526144,
+  "scratchSpaceCauseEstablished": false,
+  "log": {
+    "name": "workspace-read-complete-packaged-native.log",
+    "bytes": 39563,
+    "sha256": "0e18ec0a05264fdf54b9da1e4d8b5e6e19ff02f1552c0372756f180d343a517c"
+  },
+  "partialRecords": [
+    {
+      "path": "verification/assistant-profiles-packaged-result.json",
+      "bytes": 515,
+      "sha256": "73b7c74623b3527f5bbca1fd2f0430acdcbb5e8ca84148f7fd625e2edd305ae9"
+    },
+    {
+      "path": "verification/automations-packaged-result.json",
+      "bytes": 671,
+      "sha256": "da31485b08b3ff6d175f965a479dd7b315aa810dfb779016dd7c1278c9689a33"
+    },
+    {
+      "path": "verification/backups-packaged-result.json",
+      "bytes": 1994,
+      "sha256": "8252211e27ee781423ee77566a1509995909772c7e6d36dd7e3cf23ba776924f"
+    },
+    {
+      "path": "verification/commands-packaged-result.json",
+      "bytes": 870,
+      "sha256": "bc443b77c9df3181fbcc1173acc18906702ede8206168a053aa179d1e7608769"
+    },
+    {
+      "path": "verification/desktop-integration-packaged-result.json",
+      "bytes": 625,
+      "sha256": "61dc1dc25710455c00baa7c87479e29ad2a05cded637051d6cfa8692b2ac1bc7"
+    },
+    {
+      "path": "verification/knowledge-packaged-result.json",
+      "bytes": 778,
+      "sha256": "715bd63e160fefbd9e0c8e9f9c06a26460b7a3c545346fd0446f294c15542bb1"
+    },
+    {
+      "path": "verification/message-edits-packaged-result.json",
+      "bytes": 765,
+      "sha256": "d0f48792c641fde13ae912a7c28cefc04b6e3f854f3f9237d9bbf174ca5cf9aa"
+    },
+    {
+      "path": "verification/prompt-templates-packaged-result.json",
+      "bytes": 526,
+      "sha256": "9c7273f7bde7d007c5be73ceb94050c64c1c0d22680e826abfb01b331a525374"
+    },
+    {
+      "path": "verification/reply-versions-packaged-result.json",
+      "bytes": 594,
+      "sha256": "595bb0d8e3b2695d198358d6bc1bf4397e36393cd44a72bcdaaa00f591cbf3a1"
+    }
+  ],
+  "packageProof": "verification/workspace-read-package-result.json",
+  "fullPackagedVerified": false,
+  "currentDistributionVerified": false,
+  "publicationVerified": false,
+  "scope": "Actual failure is retained. Low scratch space was observed afterward but is not proven to cause this crash. Partial records are archived and the preceding standard records restored exactly; none is treated as current complete acceptance."
+}
