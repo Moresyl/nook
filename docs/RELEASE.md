@@ -12,7 +12,11 @@
 
 当前新应用本地完整未安装桌面与实际安装版分别通过 215 项并正常退出，设置 4 项、便携 7 项及卸载保留数据通过；十份运行记录严格匹配 EXE、ASAR 和包装文件。已独立保存未安装记录、安装版截图和四份二进制。见 [完整本地分发证据](../verification/terminal-cold-distribution-result.json)。此前的 194 项失败仍保留，后续通过不等同于已经查明原始失败原因。
 
+移除关闭期间的重复调试连接后，完整源码桌面再次通过全部 215 项，34 次退出均为退出码 0、无终止信号；19 份新记录及 9 张逐张审阅的源码界面截图已保存。见 [完整源码验收](../verification/close-no-reconnect-complete-source-result.json) 和 [本轮界面审阅](../verification/close-observer-source-ui-result.json)。应用编译字节与上述完整本地分发相同，验收脚本范围分别记录。
+
 远端 `37232146654` 通过 746 项单元测试、构建、完整未安装桌面、设置及便携验收，实际安装版通过 187 项后，在临时聊天重启时未于原定 10 秒内正常退出。日志已记录窗口关闭及 `will-quit`，具体进程清理阻塞原因尚未确认；原始日志和 GitHub 校验值匹配的诊断归档已保存。见 [远端正常退出失败](../verification/hosted-terminal-close-failure-result.json)。发布任务未运行。
+
+后续远端 `37235418909` 通过 746 项单元测试和构建，但在更早的审批拒绝按钮点击时，停留于 Playwright 的滚动阶段并超过原有 30 秒期限；按钮已被判定为可见、可用且稳定，失败后截图中的操作区也位于窗口内。应用随后正常退出。该批次未到达前一轮的退出失败点，不能据此宣称退出根因已解决。见 [审批点击失败证据](../verification/hosted-approval-scroll-failure-result.json)。
 
 当前没有完整通过的云端验收或已发布版本。完整能力和指定 UI 的剩余范围见 [能力记录](CAPABILITIES.md)、[交付要求](DELIVERY.md) 和 [UI 验收](UI-ACCEPTANCE.md)。历史验证只适用于各自记录的源码、EXE、ASAR 和启动器，不能作为当前版本的完成证明。
 

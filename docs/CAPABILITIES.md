@@ -1,5 +1,13 @@
 # Capability verification ledger
 
+## 当前验证入口
+
+最新完整本地分发通过未安装与实际安装各 215 项、设置 4 项和便携 7 项，十份运行记录匹配同一应用及启动器；单元测试 746 项通过。见 [分发证据](../verification/terminal-cold-distribution-result.json)。云端正常退出失败及后续验收进度集中记录于 [发布状态](RELEASE.md)。下方能力表中的剩余工作仍保留，局部通过不代表完整交付。
+
+## 历史批次与能力表
+
+以下叙述保留各批次的原有提交、二进制和覆盖范围；其“当前／最新”措辞仅指当时记录，不替代上述状态。
+
 启动器哈希绑定缺口已修复：40 项专项测试和类型检查通过，发布策略覆盖 100%，实际混合包装记录已被拒绝，此前完整记录仍按原范围通过。比较续聊的持久状态性能及当前完整分发／远端验收仍待完成，见 `verification/runtime-wrapper-proof-component-result.json`。
 
 最新清理后包已通过法律／资源审计、完整未安装 215 项、设置 4 项和便携 7 项；实际安装和远端 `37196858974` 均在 192 项后失败。新日志确认请求与部分回复传输成功，但原期限内持久状态读取没有包含部分回复；大工作区保存性能仍需修复，启动器哈希绑定也需收紧。当前完整分发和发布验收未成立，见 `verification/license-continuation-local-failure-result.json`、`verification/hosted-comparison-continuation-observed-failure-result.json`。

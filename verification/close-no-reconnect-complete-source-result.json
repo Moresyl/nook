@@ -1,0 +1,364 @@
+{
+  "verifiedAt": "2026-10-04T21:39:07.687Z",
+  "codeCommit": "d7550b656551a482b99707aeba5646a9b486e1b6",
+  "applicationCodeCommit": "5b54696",
+  "checks": 215,
+  "normalCloseVerified": true,
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "fbf193baefaa3a317f2b25160606a022b2d72e2245c1a15e34901a30fce40172"
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "bytes": 1677,
+      "sha256": "95c859a267b31dd2671d670b929ce3e392b9409d525fd885f7885a5f761b14d5"
+    },
+    {
+      "path": "verification/automations-result.json",
+      "bytes": 674,
+      "sha256": "82d81782ff2e73f814b0e6c4ed96cadc5f4c6e48d88c4870861f90d0e9cad77c"
+    },
+    {
+      "path": "verification/backups-result.json",
+      "bytes": 1997,
+      "sha256": "c865f0aaa0c033bfeaf8e19107c09bef97111362992a27b7992d1adca26a2385"
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "bytes": 10591,
+      "sha256": "691dc43508afd12a2d312095dc9d5b6efe6816d7b4fed423f2e255840297a77d"
+    },
+    {
+      "path": "verification/commands-result.json",
+      "bytes": 873,
+      "sha256": "6c645dd7046e641eb0752e047ce1aced099c98df0130fb7030cf0025b1d46c75"
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "bytes": 11675,
+      "sha256": "2a470f90b805088885adc4753934349c250def8bf37dfd15d3ecd66c983fa4c2"
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "a45994c75015df5baf4847cb6b16d83bbd992fc42d9138dce74bf5b58207c212"
+    },
+    {
+      "path": "verification/electron-result.json",
+      "bytes": 53916,
+      "sha256": "412fc6f8eafcf9d0ac00dfb9fa5c898353a2d50c4a4dc5e9e8d15ad483063bd3"
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "bytes": 781,
+      "sha256": "7bee5e14aa22e5563780e8c864cb7b543f0dc34e8b59212ee2f4c4cf15b4ec91"
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "bytes": 1770,
+      "sha256": "b536bbd0de3b3dfb1aa661ee9dccc8a429bdb7e925484e0bdd6aecd984091904"
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "bytes": 795,
+      "sha256": "c32785b67735ae8920098d06744aab1e9f8f8ac5de2660e5017da15b7d6d281a"
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "bytes": 768,
+      "sha256": "f359c4cec49f62533935392055426a70b804e19c21b070f9afb3f766a4411c1f"
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "bytes": 2126,
+      "sha256": "2c08671a8ff8cb00036ae07857e5d5c6c61c582bfa85157b671a0abcb063c29f"
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "bytes": 3552,
+      "sha256": "f02c39c9c21fe821fa3d2e54bbefb8991e64c51c1f1d5b6a605a0cc0627ca7e4"
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "0bbeb24256ac4d4c9c255150e56b8ea0ef0de6e6a3030e0b569c479f43bf3b68"
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "e04d2629b6c7487ef96a4b37d995b79aea8ebdd0aeb01e619df9ddc870bde055"
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "bytes": 1832,
+      "sha256": "ab0c6a99f3d8682143c436b340b871166bc376d29b722b81985132be58b819f9"
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "bytes": 1850,
+      "sha256": "53ebfc3bb7db88ef3c36ee776c51edaf7d2614d1bf05be52b7c42bd51aa593ec"
+    }
+  ],
+  "source": [
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "eb12d33cb509a07c8bb754c5fb8c9fa83f93a36033e0c8157d2276fe7aa562a6"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "47b1b9090324c226a55df8c1475161d4b7b79d9120e5a6ffd5d03d0145b2b0be"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "e2031dd1df1c7305283f520fdd191a5c520fccb47c14769208d937d0ccff06d7"
+    }
+  ],
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "4d0dacddb2c09bbdf17277c1193bd007cadad1df17cb541681edff62389bc293"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "observations": [
+    {
+      "elapsedMs": 1127,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 641,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 172,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 134,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 324,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 340,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1199,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1443,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 216,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1209,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 763,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 252,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 808,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 704,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 151,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 437,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 154,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 589,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1446,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 909,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1101,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 250,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 465,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 789,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 2364,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1905,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 374,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1585,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 266,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1847,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 677,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 155,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 247,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 325,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "unitTestsPassed": 746,
+  "unitFiles": 70,
+  "log": {
+    "bytes": 60912,
+    "sha256": "b9f5b8e986a459d5ce608458b122077f27971eda1690f262c14eb32f88baf290"
+  },
+  "hostedVerified": false,
+  "scope": "Complete current development executable and updated exit observer pass 215 actual desktop assertions. All process exits are natural; original exit assertions remain. Prior complete local distribution retains its original QA script and body hashes. Hosted acceptance is separate."
+}

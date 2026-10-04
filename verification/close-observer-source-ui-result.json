@@ -1,0 +1,77 @@
+{
+  "reviewedAt": "2026-10-04T21:34:01.906Z",
+  "codeCommit": "d7550b656551a482b99707aeba5646a9b486e1b6",
+  "screenshots": [
+    {
+      "path": "verification/screenshots/01-home-light.png",
+      "sha256": "a91dd8551515c504ef3ed8322b72caabf03eb4248ed047ef777e396fd4e18016",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/04-home-dark.png",
+      "sha256": "9e5653e4a75ef62498a2f0189684126005240b682fe966e1c63707de51c0f342",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/10-project-editor.png",
+      "sha256": "cfed44739f0c26848588fb78cb33b1c636fcec602f057d26dcffebfbb701d85e",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/02-conversation.png",
+      "sha256": "d88f9f8f305ef271ba99b750627d08ab5859376ccb668dd9379246315f27855a",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/09-narrow-approval.png",
+      "sha256": "b55dc7d73904cc15d23af297bd58da67418ec6ac3f1760e637c21a117ae72e2a",
+      "width": 760,
+      "height": 620,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/113-temporary-chat-dark-zoom-150.png",
+      "sha256": "bb0c4c85aba7ca1bc8f53a109d2f3499c0881365df46d2766faf59068ad405ee",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/03-settings-dark.png",
+      "sha256": "266a161980fe08bb7bcd704b4ea6590112e62f4a4284b2d1ae476507623d037a",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/11-project-git.png",
+      "sha256": "f0f62c1c25d9b0fb3cd71c2f71f91fec9b7ca860c86ee6a4963044934bb9869c",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "path": "verification/screenshots/12-project-terminal.png",
+      "sha256": "6b54866a5b8bd490a723f85e79a46150e1a8d7286457717890aafd58294a3ab9",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    }
+  ],
+  "observations": [
+    "Light and dark home and conversation screens retain Qiyao identity, consistent navigation and readable composer.",
+    "Project editor, Git review and live PowerShell terminal retain visible controls and independent panels.",
+    "The dark settings form keeps its section navigation and scrollable controls inside the modal.",
+    "The narrow approval dialog retains original/proposed contents, scrolling and visible decision buttons.",
+    "At 150% dark minimum-window zoom, the temporary-chat disclosure, focused message input and send button remain visible; the compact composer action row has its own horizontal scrolling."
+  ],
+  "scope": "Nine individually reviewed captures from the current complete development-executable run. File-dialog responses remain test fixtures. Physical wizard, native picker and assistive-technology interaction are not represented."
+}

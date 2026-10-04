@@ -1,5 +1,17 @@
 # UI acceptance mapping
 
+## 当前 UI 证据
+
+当前应用的完整本地未安装／实际安装验收各 215 项通过。当前安装版的浅色模板导入预览、深色最小窗口 125% 与 150% 缩放截图已分别审阅：内容可滚动，标题、固定操作区及键盘焦点可见。截图哈希和实际图片尺寸见 [分发记录](../verification/terminal-cold-distribution-result.json)。此记录仅涵盖已审阅的三个画面；下方较早批次的审阅仍保留其各自应用体范围。
+
+原生电脑控制工具当前无法连接 native pipe，尚不能补齐物理安装向导和系统选择器交互。程序化桌面、静默安装以及截图审阅不代替这些交互证据。
+
+本轮完整源码 215 项验收另有 9 张逐张审阅并独立归档的截图，覆盖浅深色主页、对话、项目编辑器、Git、终端、设置、窄审批窗口与 150% 临时聊天。后者的紧凑操作行使用自身横向滚动，输入、发送和临时数据说明仍可见。见 [源码界面审阅](../verification/close-observer-source-ui-result.json)。
+
+## 历史批次与设计映射
+
+以下各批次“当前／最新”仅指相应历史记录。
+
 The current combined template/startup body passes all 215 native checks with normal close. Its final renderer bytes exactly match the six individually reviewed template-transfer captures below; current complete-run captures are not individually reviewed. See [combined source evidence](../verification/template-startup-combined-review-result.json).
 
 Prompt-template sharing has six individually reviewed current complete-run captures: light library, full inert import preview, retained preview after actual destination EIO, and dark 760×540 import dialogs at 100/125/150% zoom. Long content scrolls while title/footer and native keyboard focus remain visible; Escape restores the explicit import opener. All 215 desktop checks pass with normal close. See [current source evidence](../verification/prompt-transfer-review-result.json); fresh matching-body distribution and hosted acceptance remain open.

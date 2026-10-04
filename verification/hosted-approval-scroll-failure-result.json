@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-04T21:39:08.032Z",
+  "runId": 37235418909,
+  "codeCommit": "d7550b656551a482b99707aeba5646a9b486e1b6",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37235418909",
+  "conclusion": "failure",
+  "unitTestsPassed": 746,
+  "packagedChecksBeforeFailure": 31,
+  "failure": "The denial button was located, visible, enabled and stable, but Playwright timed out after thirty seconds while scrolling it into view. No denial pointer delivery was confirmed.",
+  "exactCauseEstablished": false,
+  "closeObservations": [
+    {
+      "elapsedMs": 673,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "log": {
+    "bytes": 236276,
+    "sha256": "d1eb42e3f690300d668571b15f8a0cab2d18c420a601f4c9eca4c6b3f5b96d41"
+  },
+  "artifact": {
+    "id": 11316240393,
+    "bytes": 2133804,
+    "sha256": "861a0a71bf77409d77e449d07a5c23c993689b9b3d7e33248a7fd61104c40d83",
+    "githubDigestMatched": true
+  },
+  "screenshot": {
+    "sha256": "ded68a7c25a76fc1c9cfb791b783e98ac4de4704f2d11878975fb871a253874a",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "Dark approval dialog, complete original/proposed panels and stop/deny/allow footer remain visible inside the 1280-by-840 capture. This later capture does not prove that the original pointer operation completed."
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (desktop). Run all distribution checks again.",
+  "hostedVerified": false,
+  "publicationVerified": false
+}
