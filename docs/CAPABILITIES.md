@@ -1,5 +1,7 @@
 # Capability verification ledger
 
+当前源码加入同轮消息检查点合并和差异视图显式释放，重新通过 679 项单元测试／67 个文件、类型、构建、215 项原生桌面检查、正常关闭及两次真实启动错误检查。84 MB 实测保存四个完整回复只执行一次原子更新，保留整份上一文件。当前源码证据为 `verification/checkpoint-batching-source-review-result.json`，此前终端分发记录属于旧应用体。远端 `37177697511` 在 189 项后首次回复显示失败；第二路请求在等待开始 49,665 ms 后到达。当前分发、远端和完整剩余能力／UI 验收继续待办。
+
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, actual Unicode-path installation and data-retaining uninstall, with ten strict matching runtime records. Both full variants verify real PowerShell 7; the same unpacked body also passes seven real legacy PowerShell 5 fallback checks. Six current installed transfer captures were individually reviewed, and all four exact binaries are separately preserved. See [current distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted acceptance remains false; the later comparison load/persistence latency continues separately.
