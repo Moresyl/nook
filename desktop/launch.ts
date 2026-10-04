@@ -123,7 +123,7 @@ function panelPlugin(id: string) {
 }
 
 const commands: Record<string, (...args: any[]) => unknown> = {
-  load: async () => { await vault.flush(); return vault.snapshot(); },
+  load: async () => { await vault.wait(); return vault.snapshot(); },
   finishDraftFlush: (raw, saved) => {
     const token = idSchema.parse(raw); const request = draftFlushRequests.get(token);
     if (!request) return;

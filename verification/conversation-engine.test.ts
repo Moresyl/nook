@@ -22,16 +22,18 @@ describe('conversation engine', () => {
     let finish!: () => void; let opened = 0; const completion = new Promise<void>((resolve) => { finish = resolve; });
     const { engine, vault, directory } = await setup({ stream: async (_input, onText) => { const index = opened++; await completion; onText(`FINAL_${index}`); } }, undefined, 60_000);
     const runs = []; for (let index = 0; index < 4; index++) runs.push(await engine.start({ ...request, text: `ATOMIC_OWNER_${index}` }));
-    expect(opened).toBe(4); const previous = await readFile(join(directory, 'workspace.json')); const update = vi.spyOn(vault, 'update');
+    expect(opened).toBe(4); const previous = await readFile(join(directory, 'workspace.json')); const update = vi.spyOn(vault, 'checkpointMessages');
     finish(); await Promise.all(runs.map(({ threadId }) => engine.settle(threadId)));
     expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
-    const persisted = workspaceSchema.parse(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')));
+    expect(await readFile(join(directory, 'workspace.json'))).toEqual(previous);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); const persisted = restored.snapshot();
     for (const [index, { threadId }] of runs.entries()) {
       const thread = persisted.threads.find((thread) => thread.id === threadId);
       if (!thread) throw new Error('The completed checkpoint lost its conversation owner.');
       expect(thread.messages[0].content).toBe(`ATOMIC_OWNER_${index}`); expect(thread.messages[1]).toMatchObject({ content: `FINAL_${index}`, status: 'complete' });
     }
-    expect(engine.active()).toBe(false); await engine.shutdown();
+    expect(engine.active()).toBe(false); await engine.shutdown(); await vault.flush();
+    expect(workspaceSchema.parse(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')))).toEqual(vault.snapshot());
   });
   it('stops only the selected project or provider and counts reserved new runs as active', async () => {
     const { engine, vault, directory } = await setup({ stream: async (input) => { await new Promise<void>((_resolve, reject) => input.signal.addEventListener('abort', () => reject(new DOMException('Stopped', 'AbortError')), { once: true })); } });
@@ -98,7 +100,7 @@ describe('conversation engine', () => {
     await engine.shutdown();
   });
   it('reports final save failure and always releases the active run', async () => {
-    const { engine, vault, emit } = await setup({ stream: async () => { vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); } });
+    const { engine, vault, emit } = await setup({ stream: async () => { vi.spyOn(vault, 'checkpointMessages').mockRejectedValueOnce(new Error('Disk full')); } });
     const { threadId } = await engine.start(request); await engine.settle(threadId);
     expect(emit.mock.calls.at(-1)?.[0].error).toContain('Could not save');
     expect(emit.mock.calls.at(-1)?.[0].message.status).toBe('error');
@@ -199,8 +201,9 @@ describe('conversation engine', () => {
     } }, new ProjectTools(), 10);
     const { threadId } = await engine.start(request);
     await vi.waitFor(async () => {
-      const stored = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8'));
-      expect(stored.threads[0].messages[1]).toMatchObject({ status: 'running', content: 'Saved while running' });
+      const stored = JSON.parse(await readFile(join(directory, 'workspace.checkpoints.json'), 'utf8'));
+      expect(stored.threads[0].thread.messages[1]).toMatchObject({ status: 'running', content: 'Saved while running' });
+      expect(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')).threads[0].messages[1].content).toBe('');
     });
     await engine.stop(threadId);
     await vault.update((draft) => {
@@ -213,7 +216,7 @@ describe('conversation engine', () => {
 
   it('stops on checkpoint failures and rejects oversized answers while retaining valid text', async () => {
     const { engine, vault } = await setup({ stream: async (input, onText) => {
-      onText('Partial'); vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full'));
+      onText('Partial'); vi.spyOn(vault, 'checkpointMessages').mockRejectedValueOnce(new Error('Disk full'));
       await new Promise<void>((_resolve, reject) => input.signal.addEventListener('abort', () => reject(new Error('stopped')), { once: true }));
     } }, undefined, 10);
     const { threadId } = await engine.start(request); await engine.settle(threadId);

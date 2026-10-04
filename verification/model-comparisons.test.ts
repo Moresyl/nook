@@ -101,9 +101,9 @@ describe('independent parallel model comparisons', () => {
   it('retains new stream text when an earlier empty checkpoint returns after the delta', async () => {
     let text!: (value: string) => void;
     const { engine, vault, emit } = await setup({ stream: async (model, callback) => { text = callback; await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
-    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void;
+    const update = vault.checkpointMessages.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void;
     const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { checkpointStarted = resolve; });
-    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) { checkpointStarted(); await held; } return saved; });
+    vi.spyOn(vault, 'checkpointMessages').mockImplementation(async (entries) => { const own = ++calls; const saved = await update(entries); if (own === 1) { checkpointStarted(); await held; } return saved; });
     await engine.start({ ...request, model: 'one' });
     try {
       await started; text('one: PARTIAL');
@@ -118,9 +118,9 @@ describe('independent parallel model comparisons', () => {
     let text!: (value: string) => void; let finish!: () => void;
     const stream = new Promise<void>((resolve) => { finish = resolve; });
     const { engine, vault, emit } = await setup({ stream: async (_model, callback) => { text = callback; await stream; } }, 10);
-    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void; let queuedContent: string | undefined;
+    const update = vault.checkpointMessages.bind(vault); let calls = 0; let release!: () => void; let checkpointStarted!: () => void; let queuedContent: string | undefined;
     const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { checkpointStarted = resolve; });
-    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; if (own === 2) { checkpointStarted(); await held; } const saved = await update(change); if (own === 2) queuedContent = saved.threads[0].messages.at(-1)?.content; return saved; });
+    vi.spyOn(vault, 'checkpointMessages').mockImplementation(async (entries) => { const own = ++calls; if (own === 1) { checkpointStarted(); await held; } const saved = await update(entries); if (own === 1) queuedContent = saved.threads[0].messages.at(-1)?.content; return saved; });
     const { threadId } = await engine.start({ ...request, model: 'one' });
     try {
       await started; text('one: PARTIAL'); release();
@@ -134,10 +134,10 @@ describe('independent parallel model comparisons', () => {
   it('keeps terminal status running until its final transaction commits and does not revive deleted messages', async () => {
     let finish!: () => void; const stream = new Promise<void>((resolve) => { finish = resolve; });
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); if (model.model === 'one') await stream; else await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 60_000);
-    const update = vault.update.bind(vault); let release!: () => void; let finalStarted!: () => void;
+    const update = vault.update.bind(vault); const checkpoint = vault.checkpointMessages.bind(vault); let release!: () => void; let finalStarted!: () => void;
     const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { finalStarted = resolve; });
     const first = await engine.start({ ...request, model: 'one' });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { finalStarted(); await held; return update(change); });
+    vi.spyOn(vault, 'checkpointMessages').mockImplementationOnce(async (entries) => { finalStarted(); await held; return checkpoint(entries); });
     try {
       finish(); await started;
       await engine.start({ ...request, model: 'two' });

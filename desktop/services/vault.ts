@@ -1,12 +1,13 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { emptyWorkspace, workspaceSchema, type Project, type Workspace } from '../../contracts/workspace';
+import { emptyWorkspace, workspaceSchema, type Message, type Project, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
 import { WorkspaceSerialization } from './workspace-serialization';
+import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
 
@@ -17,21 +18,25 @@ export class WorkspaceVault {
   private persistentActiveThreadId?: string;
   private persistentBytes?: Buffer;
   private readonly serialization = new WorkspaceSerialization();
+  private readonly checkpoints: WorkspaceCheckpointJournal;
 
-  constructor(private readonly directory: string, private readonly codec: SecretCodec) {}
+  constructor(private readonly directory: string, private readonly codec: SecretCodec) { this.checkpoints = new WorkspaceCheckpointJournal(directory); }
 
   async initialize(onPhase: (phase: string) => void = () => {}): Promise<void> {
     await mkdir(this.directory, { recursive: true });
     onPhase('workspace.read');
+    let primaryText: string | undefined;
     try {
       const raw = await readFile(join(this.directory, 'workspace.json'), 'utf8');
       this.state = parsePersistentWorkspace(JSON.parse(raw));
+      primaryText = raw;
       this.persistentActiveThreadId = this.state.activeThreadId;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
         throw new Error('Workspace data could not be read. Restore a valid backup before continuing.');
       }
     }
+    this.state = await this.checkpoints.restore(this.state, primaryText);
     onPhase('workspace.parsed');
     onPhase('credentials.read');
     try {
@@ -64,9 +69,34 @@ export class WorkspaceVault {
     const project = this.state.projects.find((item) => item.id === id);
     return project ? structuredClone(project) : undefined;
   }
-  async flush(): Promise<void> { await this.tail; }
+  async wait(): Promise<void> { await this.tail; }
+  async flush(): Promise<void> {
+    const operation = this.tail.then(async () => {
+      if (!this.checkpoints.pending) return;
+      const bytes = this.persistentBytes!;
+      await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(bytes));
+      await this.checkpoints.reset(bytes);
+    });
+    this.tail = operation.catch(() => {}); await operation;
+  }
 
   update(change: (draft: Workspace) => void): Promise<Workspace> {
+    return this.save(change);
+  }
+
+  checkpointMessages(entries: { threadId: string; message: Message }[]): Promise<Workspace> {
+    const captured = entries.map(({ threadId, message }) => ({ threadId, message }));
+    return this.save(draft => {
+      const now = Date.now();
+      for (const entry of captured) {
+        const target = draft.threads.find(thread => thread.id === entry.threadId);
+        const index = target?.messages.findIndex(message => message.id === entry.message.id) ?? -1;
+        if (target && index >= 0) { target.messages[index] = structuredClone(entry.message); target.updatedAt = now; }
+      }
+    }, captured.map(entry => entry.threadId));
+  }
+
+  private save(change: (draft: Workspace) => void, checkpointIds?: string[]): Promise<Workspace> {
     const operation = this.tail.then(async () => {
       const draft = this.snapshot();
       change(draft);
@@ -75,8 +105,16 @@ export class WorkspaceVault {
       const previousBytes = this.persistentBytes ?? this.serialization.serialize(persistentWorkspace(this.state, this.persistentActiveThreadId));
       const nextBytes = this.serialization.serialize(persistent);
       if (!previousBytes.equals(nextBytes)) {
+        const candidate = checkpointIds ? await this.checkpoints.prepare(persistent, checkpointIds) : undefined;
         await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
-        await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
+        if (candidate) await this.checkpoints.commit(candidate);
+        else {
+          await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
+          await this.checkpoints.reset(nextBytes);
+        }
+      } else if (!checkpointIds && this.checkpoints.pending) {
+        await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(nextBytes));
+        await this.checkpoints.reset(nextBytes);
       }
       this.state = next;
       this.persistentActiveThreadId = persistent.activeThreadId;

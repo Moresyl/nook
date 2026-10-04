@@ -8,7 +8,7 @@ type Checkpoint = { threadId: string; message: Message; waiters: Waiter[] };
 export class MessageCheckpoints {
   private pending = new Map<string, Checkpoint>();
   private flushing = false;
-  constructor(private readonly vault: Pick<WorkspaceVault, 'update'>) {}
+  constructor(private readonly vault: Pick<WorkspaceVault, 'checkpointMessages'>) {}
 
   persist(threadId: string, message: Message): Promise<Message | undefined> {
     return new Promise((resolve, reject) => {
@@ -23,13 +23,7 @@ export class MessageCheckpoints {
     await yieldEventLoop();
     const batch = [...this.pending.values()]; this.pending.clear();
     try {
-      const state = await this.vault.update((draft) => {
-        const now = Date.now();
-        for (const entry of batch) {
-          const target = draft.threads.find((thread) => thread.id === entry.threadId); const index = target?.messages.findIndex((message) => message.id === entry.message.id) ?? -1;
-          if (target && index >= 0) { target.messages[index] = structuredClone(entry.message); target.updatedAt = now; }
-        }
-      });
+      const state = await this.vault.checkpointMessages(batch);
       for (const entry of batch) {
         const saved = state.threads.find((thread) => thread.id === entry.threadId)?.messages.find((message) => message.id === entry.message.id);
         for (const waiter of entry.waiters) waiter.resolve(saved ? structuredClone(saved) : undefined);
