@@ -1,0 +1,367 @@
+{
+  "verifiedAt": "2026-10-04T00:37:36.205Z",
+  "codeCommit": "08a8f44f6204d0020595bacf156e950734074275",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 647,
+  "unitFiles": 63,
+  "desktopChecks": 210,
+  "comparisonChecks": 6,
+  "comparisonModelRequests": 11,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 2987,
+      "covered": 2966,
+      "skipped": 0,
+      "pct": 99.29
+    },
+    "statements": {
+      "total": 5089,
+      "covered": 4934,
+      "skipped": 0,
+      "pct": 96.95
+    },
+    "functions": {
+      "total": 1138,
+      "covered": 1106,
+      "skipped": 0,
+      "pct": 97.18
+    },
+    "branches": {
+      "total": 3639,
+      "covered": 3432,
+      "skipped": 0,
+      "pct": 94.31
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "D:\\GR\\qiyao-streaming-progress\\contracts\\streaming-state.ts": {
+      "lines": {
+        "total": 20,
+        "covered": 20,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 6,
+        "covered": 6,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 31,
+        "covered": 31,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 26,
+        "covered": 26,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao-streaming-progress\\desktop\\services\\conversation-engine.ts": {
+      "lines": {
+        "total": 256,
+        "covered": 256,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 92,
+        "covered": 91,
+        "skipped": 0,
+        "pct": 98.91
+      },
+      "statements": {
+        "total": 398,
+        "covered": 393,
+        "skipped": 0,
+        "pct": 98.74
+      },
+      "branches": {
+        "total": 330,
+        "covered": 320,
+        "skipped": 0,
+        "pct": 96.96
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/streaming-state.ts",
+      "sha256": "86d607f61e0f1963716906f6a640abf4f8161494fca55eb4505243e0110bb5a7"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "14e5f15acf2fb98ef3ee05ce517aa260656540a87e1f38213d8ebab0b293de05"
+    },
+    {
+      "path": "workbench/workbench.tsx",
+      "sha256": "e9fce40fb664a0a1099e99f1eadd59bf7d9eb2223ef4a6daef96bcb8738ef53e"
+    },
+    {
+      "path": "verification/streaming-state.test.ts",
+      "sha256": "ce0f595afe3648a202f8d588614b5e3b921f1302a8fded59b3f77bba3fcc4a31"
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "sha256": "b64a9924fd32244797bee5861444744628d60762281259837f32bbb246b6acbc"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "94b976112a502f1a6f59e9bdf96dc7bdb10a05dfca85a4360a9add373be07bfc"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "be9143640994f8f6fc082db28576d8ec05a2ffa2cefdd248d30b45002a1c0b7c"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "18e2105d04a70ed8a990fdbc2de7b163389e5d619e4ed57c44c2e9d16bbb88bd"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "68c19e0b2a4f3afd10062cd95a55807bfe7a664e11c3ad8f014adefc6bc8f4e6",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "e11b0118f2ddaf720ff926ed6e1feaffe69102639c1809f6d170d4a2ac96c365",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "0d3e6728b3d940533d334e978089117886fbe1fe55fe82845e8adaeb69b59755",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "2f777df4caf33e862a371ab262d8fa0397c3c9b5a525a3b8c9082e32f7e2f979",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "262622487ed6c88875ed0c87ee49f1cf088f2872699f6ccbbf55b1b361586a4e",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "e8057c233b2e4d594c590a2d8b565eaa8e14993b01bc3b9e97498284a4f57552",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "3a2e147456ff1cd395bd8ad8ebae5aa39c90404a2af0e2adc1c0b4e4276b0736",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "0e0fbf4a943c53fd443e9f099be278de41e607f7b0693a2280f0613dde78003c",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "92c01b615cb4cee92ccd5d6ced7363bf38d96126271cc5190e6595600fef9335",
+      "bytes": 51943
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "6c2c958c1813d082e04b3f3842b33284b022d56732f4dd42bb5ff6f3b02d3fff",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "b4180e9c36de2f13db07160009b9d0ba58cc4a5d4038a90ad04e7cc994689a76",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "feea04512f03fda6df12911e22a0173dda0c072c16b9b53f9f351baad1b02b92",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "32f023ab3df1da28a8c0abdb9bd882d01a4c16870e79def12c7c23ffef57bc71",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "57521dc0a7c85ebf71d175b4c1c3a7482780a3fec06d1fbdb56c786497539358",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "46b2f8973151403b7e69350b3240d48477fd663f55f7e1766ab45f806510bdc6",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "e4ad0d613348e80c631ade106043c5c734c34c8cc7d9b80bf8235d7d49637370",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "853575fc6a0991b150f9e753725ffb24ded139e1f18530467c4d9aa66df8b863",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "8c42c00b48ee555e3afb69221ed7ec362ae13d7ee6f636397fefb99d4934e2f4",
+      "bytes": 1832
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "117-model-comparison-config-light.png",
+      "sha256": "3b0130be080f35d4ff878d077d8a645b5f840a4bb6d55a91c1cb09b1d47dcf2f",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/117-model-comparison-config-light.png"
+    },
+    {
+      "name": "118-model-comparison-stream-light.png",
+      "sha256": "8519c327dd519c4790e2d3496b666bea7f55e88fa39e5db6ea8890febfd2e4d1",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/118-model-comparison-stream-light.png"
+    },
+    {
+      "name": "119-model-comparison-save-error-light.png",
+      "sha256": "fa8c68d5bbb58ec08fda1ccc7172071d37a362043e89547dde948bd7f7e774bc",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/119-model-comparison-save-error-light.png"
+    },
+    {
+      "name": "120-model-comparison-config-dark-zoom-100.png",
+      "sha256": "4ced1c23bbb1514e09d574977abb86c98e0094bed0b662aa0cbb344d29f9216a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-100.png"
+    },
+    {
+      "name": "121-model-comparison-results-dark-zoom-100.png",
+      "sha256": "c08b10bdd0a159827f1ec025ee99eec1700f104fd1d1db73244d35eb72c0be69",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-100.png"
+    },
+    {
+      "name": "120-model-comparison-config-dark-zoom-125.png",
+      "sha256": "127cc4962a8f607d649cc37b6cc9b962d766dadd6f014e7ecfb267e2c9fb5fb7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-125.png"
+    },
+    {
+      "name": "121-model-comparison-results-dark-zoom-125.png",
+      "sha256": "c849bd2535dd1fba3548488c334ca75f711d0a2281a2bd05640773f36e68aadc",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-125.png"
+    },
+    {
+      "name": "120-model-comparison-config-dark-zoom-150.png",
+      "sha256": "3a7dae11a1b171953f416d50222eb840b1d32a3b05f500629d105913980b440b",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/120-model-comparison-config-dark-zoom-150.png"
+    },
+    {
+      "name": "121-model-comparison-results-dark-zoom-150.png",
+      "sha256": "fd03f89a15e166b7f92efef500f0f7fa790d04095e3a02620e9f712308be653a",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "path": "verification/screenshots/121-model-comparison-results-dark-zoom-150.png"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "renderer": {
+    "path": "out/renderer/assets/index-C2aJKA6n.js",
+    "sha256": "a7cc2d6d4e5545a1d7ab79e74e750b94a08726991bebf185c2de30dd8436ba18",
+    "finalRunningThreadGuardVerified": true
+  },
+  "logs": [
+    {
+      "name": "streaming-progress-negative.log",
+      "sha256": "02655f94b3cca1808b41ea663b12c6b54fc8b1c47b356a544c0c7d94215f545e",
+      "bytes": 3561
+    },
+    {
+      "name": "streaming-progress-focused.log",
+      "sha256": "16c38d3774ef31f4f542963ae7f8916404027739e79c57eb0a3e84d125ded808",
+      "bytes": 1393
+    },
+    {
+      "name": "streaming-progress-final-coverage.log",
+      "sha256": "14da0bc984fbf1a597db726343fdcb1ef0fba2e5fa27dcfd3001949cff86e989",
+      "bytes": 4572
+    },
+    {
+      "name": "streaming-progress-final-typecheck.log",
+      "sha256": "017969c11262459d8e243c7d28ffb67ac0f32813e481c464da45646526255515",
+      "bytes": 90
+    },
+    {
+      "name": "streaming-progress-final-build.log",
+      "sha256": "9285bc3af92fdf6e45529f404ed353fa66a8d84b6008e78b70e6b69ba48d8b61",
+      "bytes": 22555
+    },
+    {
+      "name": "streaming-progress-complete-source.log",
+      "sha256": "83c12a6d749645a20ac716baa50101f8808a714ae503329d01031793a95c3a68",
+      "bytes": 34047
+    }
+  ],
+  "negativeTests": {
+    "count": 3,
+    "cases": [
+      "uncheckpointed partial erased by another initial state",
+      "empty checkpoint returned after a new delta",
+      "checkpoint captured before its queued transaction executes"
+    ]
+  },
+  "focusedCoverageAttempt": {
+    "passingTests": 47,
+    "globalThresholdAccepted": false,
+    "scope": "The narrow engine subset did not cover unrelated engine paths sufficiently. The complete final 647-test coverage run passes all thresholds."
+  },
+  "scope": "Three deterministic failures reproduce stale initial-state and checkpoint updates on the previous product. Active run notifications retain live content with durable terminal status, and queued persistence samples the message inside its transaction. All renderer workspace replacements retain only matching-owner/message streaming prefixes and terminal replies; deletions, new retry IDs, different text and authoritative terminal/manual edits remain effective. The final source passes 647 tests, type/build and the unchanged complete 210-check native suite with six comparison checks, eleven real HTTP requests and normal close. Nine current complete-run comparison captures are individually reviewed. This establishes local regression recovery; the exact remote intervening producer and fresh same-body distribution/hosted acceptance remain to be verified. Existing 210-check installer/portable evidence retains its prior application hashes."
+}
