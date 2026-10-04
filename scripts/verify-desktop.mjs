@@ -323,12 +323,13 @@ async function launch() {
   application = { evaluateMain, resize: (width, height) => evaluateMain(`require('electron').BrowserWindow.getAllWindows().find(w => w.webContents.getURL().startsWith('qiyao://app/')).setSize(${width}, ${height})`), close: async ({ quit = false } = {}) => {
     if (child.exitCode === null) {
       const closeDiagnostic = "({capturedAt:Date.now(),events:globalThis.qiyaoCloseEvents,operations:globalThis.qiyaoCloseOperations,windows:require('electron').BrowserWindow.getAllWindows().map(w=>({id:w.id,destroyed:w.isDestroyed(),visible:w.isVisible()})),handles:process._getActiveHandles().map(h=>h.constructor.name),filesystem:globalThis.qiyaoFilesystemFailures,memory:process.memoryUsage(),cpu:process.cpuUsage()})";
-      let closeSnapshot = await evaluateMain(closeDiagnostic).catch(() => undefined);
+      const closeSnapshot = await evaluateMain(closeDiagnostic).catch(() => undefined);
+      const closeStartedAt = Date.now();
       if (quit) await evaluateMain("require('electron').app.quit()").catch(() => {}); else await page.evaluate(() => window.qiyao.windowAction('close')).catch(() => {});
       let forced = false;
-      const diagnosticTimer = setTimeout(() => { void evaluateMain(closeDiagnostic).then((value) => { closeSnapshot = value; }).catch(() => {}); }, 4000);
+      // Shutdown must run without a newly attached inspector. Progress is already recorded on stderr.
       await Promise.race([exited, new Promise((resolve) => { const timer = setTimeout(() => { forced = true; console.error('Desktop close diagnostics', JSON.stringify(closeSnapshot ?? 'Main process unavailable'), diagnostics.slice(-2000).replace(/ws:\/\/[^\s]+/g, '[test debugger]')); child.kill(); resolve(); }, 10_000); exited.then(() => clearTimeout(timer)); })]);
-      clearTimeout(diagnosticTimer);
+      console.log('Desktop exit observation', JSON.stringify({ elapsedMs: Date.now() - closeStartedAt, forced, exitCode: child.exitCode, signalCode: child.signalCode }));
       assert.equal(forced, false, 'The desktop must flush drafts and exit without being forcibly killed.');
     }
     await browser.close().catch(() => {});

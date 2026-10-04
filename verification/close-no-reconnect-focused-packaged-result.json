@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-04T21:15:04.040Z",
+  "variant": "packaged executable",
+  "executableSha256": "6287791c90310d65da2d7c74024539c737a83f2f0c1afbac5d7c1e808c01c679",
+  "archiveSha256": "248b7adc60bd89944c733b4e427aa973ffcb70b36b57f01c4336d8ec3428cfbb",
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "focused temporary-conversation suite",
+  "checks": 6,
+  "temporaryModelRequests": 3,
+  "persistenceExcludedVerified": true,
+  "backupsExcludedVerified": true,
+  "restartClearedVerified": true,
+  "storageModeImmutableVerified": true,
+  "regularDraftsRetainedVerified": true,
+  "layout": [
+    {
+      "zoom": 1,
+      "hintTop": 453,
+      "hintBottom": 486,
+      "inputTop": 345,
+      "inputBottom": 405,
+      "sendBottom": 437,
+      "height": 540,
+      "overflow": false,
+      "focus": "消息"
+    },
+    {
+      "zoom": 1.25,
+      "hintTop": 363,
+      "hintBottom": 396,
+      "inputTop": 271,
+      "inputBottom": 319,
+      "sendBottom": 351,
+      "height": 432,
+      "overflow": false,
+      "focus": "消息"
+    },
+    {
+      "zoom": 1.5,
+      "hintTop": 274.5,
+      "hintBottom": 324,
+      "inputTop": 182.5,
+      "inputBottom": 230.5,
+      "sendBottom": 262.5,
+      "height": 360,
+      "overflow": false,
+      "focus": "消息"
+    }
+  ],
+  "screenshots": [
+    "112-temporary-chat-light.png",
+    "113-temporary-chat-dark-zoom-100.png",
+    "113-temporary-chat-dark-zoom-125.png",
+    "113-temporary-chat-dark-zoom-150.png"
+  ],
+  "scope": "Actual temporary creation, isolated draft/attachment switching, local HTTP sends/retry/stop, native branches/editing drafts, original JSON/gzip backup export, explicit Markdown export, immutable existing storage modes, minimum-window zoom and normal restart. Native file dialog responses are isolated fixtures; model providers and explicit exports/tool/plugin actions retain their own results."
+}
