@@ -1,0 +1,158 @@
+{
+  "verifiedAt": "2026-10-04T14:58:15.806Z",
+  "codeCommit": "f1734e1511c43fcc15e870e28a5b5edb46bf4b52",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "e480c5bc6d52ec327c5828d7b36776ce6026c139abb286efa8f46ba232e716c2"
+    },
+    {
+      "path": "desktop/services/workspace-checkpoint-journal.ts",
+      "sha256": "298ba26fbbcbd3bad68b947c34cfb6c9b31e625f11d7d009a5f016f2d7b415d2"
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "eae823f9656daba4acd7694011d2e6bbe63e6854e0a09c1bb7515183f5bcd61b"
+    },
+    {
+      "path": "desktop/services/composer-drafts.ts",
+      "sha256": "92121817f13d4a81ae76f6957ead227ff3267c9c34b04ff3bbb717d87e6d6f18"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "c594afb44f6f71ad98a18db082933b1343ba0af0944f429fd4f0007f2b9a6dc3"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "147ca746c0e8472aa973f9cbd9f1c551e20c9af68bb79c86f31f49314598e1d3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    }
+  ],
+  "compiledMain": {
+    "path": "out/main/launch.cjs",
+    "sha256": "6740bc68b294077934cd8ce676eb48b04134a6905adc21cb0e0ed716edca7b2a"
+  },
+  "unitTestsPassed": 723,
+  "focusedNativeAssertionsPassed": 6,
+  "originalPartialDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "partialElapsedMs": 6187,
+  "normalCloseVerified": false,
+  "close": {
+    "capturedAt": 1791125527651,
+    "events": [
+      {
+        "event": "draft-flush-requested",
+        "at": 1791125523646
+      },
+      {
+        "event": "window-close",
+        "at": 1791125523646,
+        "prevented": true
+      }
+    ],
+    "operations": [
+      {
+        "method": "load",
+        "startedAt": 1791125505286,
+        "finishedAt": 1791125505370
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125505607,
+        "finishedAt": 1791125505691
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125508779,
+        "finishedAt": 1791125508892
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125512026,
+        "finishedAt": 1791125512107
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125515151,
+        "finishedAt": 1791125515246
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125518370,
+        "finishedAt": 1791125518449
+      },
+      {
+        "method": "savePreferences",
+        "startedAt": 1791125518590,
+        "finishedAt": 1791125520640
+      },
+      {
+        "method": "load",
+        "startedAt": 1791125520843,
+        "finishedAt": 1791125520929
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125521426,
+        "finishedAt": 1791125523473
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125522176,
+        "finishedAt": 1791125526075
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125522458,
+        "finishedAt": 1791125527630
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125522737
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125522987
+      },
+      {
+        "method": "activateThread",
+        "startedAt": 1791125523613
+      }
+    ],
+    "windows": [
+      {
+        "id": 1,
+        "destroyed": false,
+        "visible": false
+      }
+    ],
+    "handles": [
+      "Socket"
+    ],
+    "filesystem": [],
+    "memory": {
+      "rss": 1866977280,
+      "heapTotal": 1231896576,
+      "heapUsed": 1214725104,
+      "external": 512153747,
+      "arrayBuffers": 0
+    },
+    "cpu": {
+      "user": 6671000,
+      "system": 3671000
+    }
+  },
+  "log": {
+    "name": "conversation-journal-seeded-native.log",
+    "bytes": 22459,
+    "sha256": "ab5962c26d80691cec2ef2aff5093adc601e68ee98c0d7f79441ca78a735709a"
+  },
+  "completeCurrentNativeVerified": false,
+  "currentDistributionVerified": false,
+  "currentHostedVerified": false,
+  "scope": "Six seeded comparison assertions passed; final normal window close failed while queued activation operations remained pending. Not an accepted native run."
+}
