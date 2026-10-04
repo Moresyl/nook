@@ -1,0 +1,185 @@
+{
+  "verifiedAt": "2026-10-04T02:01:42.856Z",
+  "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
+  "componentSourceVerified": true,
+  "completeCurrentNativeSuiteVerified": false,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 653,
+  "unitFiles": 64,
+  "largeBackupNativeChecks": 6,
+  "actualStartupFailureCases": 2,
+  "successfulLargeBackupRestartVerified": true,
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3004,
+      "covered": 2983,
+      "skipped": 0,
+      "pct": 99.3
+    },
+    "statements": {
+      "total": 5112,
+      "covered": 4957,
+      "skipped": 0,
+      "pct": 96.96
+    },
+    "functions": {
+      "total": 1144,
+      "covered": 1112,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3651,
+      "covered": 3444,
+      "skipped": 0,
+      "pct": 94.33
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedCoverage": {
+    "D:\\GR\\qiyao-startup-diagnostics\\desktop\\services\\startup-diagnostics.ts": {
+      "lines": {
+        "total": 7,
+        "covered": 7,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 11,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 9,
+        "covered": 9,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "D:\\GR\\qiyao-startup-diagnostics\\desktop\\services\\vault.ts": {
+      "lines": {
+        "total": 71,
+        "covered": 71,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 25,
+        "covered": 24,
+        "skipped": 0,
+        "pct": 96
+      },
+      "statements": {
+        "total": 89,
+        "covered": 89,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 27,
+        "covered": 27,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "source": [
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673"
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "c0718327d4ce8934a63b49c362241dca8ceff4af151e8faf887dfc5cb8f5c7f9"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "3e112bd8574ff98fe2192858eef890b72dc55adbe72a9a37d878da5700e903f9"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "8b789c80e734b24b2bb44442935b20ced7b1faaefda3398b2b83235c3387964a"
+    },
+    {
+      "path": "verification/startup-diagnostics.test.ts",
+      "sha256": "5955f7cf5cd13bd6594cfa05f585b314867c9ed64698ea46933f129bc6612e3b"
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "3b258f117a0c34e86b859fc1df505af55d7551e89f786e46a88039a5ad29f5a6"
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/startup-failure-native-result.json",
+      "sha256": "2d8adb6e8a0d5283bcc94dab5c8794d9b48c3daf1aab4e1197a8174cef621751",
+      "bytes": 5601
+    },
+    {
+      "path": "verification/startup-diagnostics-backup-result.json",
+      "sha256": "7b219ba06df7cc0ffb22f376b843d037d18e950348edefa1f09f8ac81852a10d",
+      "bytes": 1997
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "logs": [
+    {
+      "name": "startup-diagnostics-typecheck.log",
+      "sha256": "e139784b5b35843f3e52f3f4ceb68d95c23ae67d8c4b2812b6e11718bc7ce551",
+      "bytes": 91
+    },
+    {
+      "name": "startup-diagnostics-coverage.log",
+      "sha256": "ab47ca67f0985c7a2ffff2736e60f3f6cb377adcf93a32a4b47c4de3de2ea103",
+      "bytes": 4377
+    },
+    {
+      "name": "startup-diagnostics-build.log",
+      "sha256": "fedeb013761f913dca505c3812e6e4f9a77cb7a6b7e1184e2491e9c58eebf2fc",
+      "bytes": 22555
+    },
+    {
+      "name": "startup-failure-native-probe.log",
+      "sha256": "838379dbb3a2178ae1733d3492119908988c8ed0ab5f327f43850f592075ff22",
+      "bytes": 116
+    },
+    {
+      "name": "startup-diagnostics-large-backup-native.log",
+      "sha256": "a96963a398258919a66243aa8c57f5565fd722983a1a8ebc78a37d380f548481",
+      "bytes": 802
+    }
+  ],
+  "focusedBackupWriter": {
+    "normalCloseFieldPresent": false,
+    "acceptanceScope": "Six actual focused backup checks, including normal restart, and a successful native harness process exit. This older focused writer has no normal-close field and is not complete desktop release evidence."
+  },
+  "scope": "The isolated startup diagnostic flag records bounded timestamps and process memory/CPU at exact workspace, credential, persistent-cache, recovery, services, automation and window stages. Failure discovery adds a separately timed later process/phase probe without changing the original 30-second deadline. In isolated diagnostic mode an initialization failure logs phase/resources and exits with code 1 instead of waiting for an unattended native error dialog; ordinary production startup retains its native error UI. Disabled, ordered/immutable/bounded/default sampler and exact vault boundary tests pass. Two actual corrupt-file Electron processes exit in 268/246 ms with exact phases and no private input logged. All 653 component-source tests, type/build and six actual 84 MB backup checks including successful restart pass. The older focused backup writer has no normal-close field. The earlier hosted startup timeout cause is not established; fresh combined template/diagnostic source, complete 215-check body, distribution and hosted acceptance remain separate."
+}
