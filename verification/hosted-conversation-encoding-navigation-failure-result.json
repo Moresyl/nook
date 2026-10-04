@@ -1,0 +1,99 @@
+{
+  "verifiedAt": "2026-10-04T18:05:41.887Z",
+  "runId": 37219400051,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37219400051",
+  "codeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "conclusion": "failure",
+  "source": [
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "a27c3569fafa90dce837ec3d87013a419315ea9e90ce058ca76606e993cf9801"
+    },
+    {
+      "path": "desktop/services/workspace-serialization.ts",
+      "sha256": "1ea5734945b01cc57d29772bd8a4c45799d569b74ef800ab96e0641071ca7e30"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5506a3c1cd006bfa65a2d72d2ed4912e6c5302cee6365f2ecc76c720e6c6593e"
+    },
+    {
+      "path": "scripts/verify-chat-navigation.mjs",
+      "sha256": "86f8e4cd8cad620a4853db45d56b83d5a8cba4deebccf3866305462cfd844559"
+    }
+  ],
+  "unitTestsPassed": 734,
+  "unitFiles": 69,
+  "typecheckAndNoticesVerified": true,
+  "packagedChecks": 215,
+  "settingsChecks": 4,
+  "bootstrapAndPortableStepPassed": true,
+  "installedAssertionsBeforeFailure": 171,
+  "timing": {
+    "waitStartedAt": 1791136587061,
+    "failedAt": 1791136602371,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "polls": [
+      {
+        "startedAt": 1791136587061,
+        "completedAt": 1791136602262,
+        "reached": false
+      }
+    ]
+  },
+  "singlePollElapsedMs": 15201,
+  "failure": "Installed chat-navigation held-stream state predicate did not pass the original deadline. The original line contains both partial and complete predicates; the precise phase is not logged.",
+  "exactFailureCauseEstablished": false,
+  "queueCloneAndFileTimingsCaptured": false,
+  "packageIdentity": {
+    "executableSha256": "790ac280f3a5432bc5facb287891e033b3799e7e1053b8c9de924ebe047c1f83",
+    "archiveSha256": "f0d5ad3d729094894b4ffbaed8d97b1e58e2433499a18ef3f5b289d979c32b7e",
+    "retainedDocuments": 401,
+    "oldProductIdentityMatches": []
+  },
+  "records": [
+    {
+      "path": "verification/package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "4f62b447479f3124eb628b4708cb1e770df996553613ce68cd836b7bc79ae193"
+    },
+    {
+      "path": "verification/packaged-result.json",
+      "bytes": 54037,
+      "sha256": "84d7058666d302e32130090cae797f130aadb8238eeacaddc266b0997e9afb7f"
+    },
+    {
+      "path": "verification/surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "ea6b757f900aa063e2727b979cec1ea90575b916bcbf358d1a7171e2aa696e36"
+    },
+    {
+      "path": "verification/portable-result.json",
+      "bytes": 2092,
+      "sha256": "7e7a208757b1d10b725802101ef3e716a876cb1fd306ee78ca14c4f5c8c67534"
+    }
+  ],
+  "artifact": {
+    "id": 11311016169,
+    "bytes": 10157574,
+    "sha256": "e7333612c321d67286793eb7e5b183cb36a5659d7c96766cb8ccca99bd95dd74",
+    "githubDigestMatched": true
+  },
+  "log": {
+    "bytes": 402001,
+    "sha256": "04442cf75ccdb41b8be13b9e172dbb2d02612c0a1cec0109f5caf6b4f791ff06"
+  },
+  "screenshot": {
+    "name": "failure.png",
+    "sha256": "49d7cd8f8e1cdb70ec192ea1fb10aa0ff050dc77170381f41979b59cfa401532",
+    "width": 1280,
+    "height": 840,
+    "individuallyReviewed": true,
+    "observation": "Later screenshot shows reply text, retained draft and attachment; this does not prove timely predicate completion."
+  },
+  "strictCollectorRejected": true,
+  "collectorFailure": "Could not read complete runtime proof (installer). Run all distribution checks again.",
+  "currentHostedVerified": false,
+  "publicationVerified": false
+}

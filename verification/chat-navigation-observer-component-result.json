@@ -1,0 +1,349 @@
+{
+  "verifiedAt": "2026-10-04T18:16:36.884Z",
+  "codeCommit": "98a79bf35edd7e0750aa4fb65e8569bc48ad714e",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "source": [
+    {
+      "path": "scripts/verify-chat-navigation.mjs",
+      "sha256": "16b6dadc8fa7cfc94a1a86ef8b814d57d8e25ce67278cb727a85424671502839"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "23c4237d7c6f3a8a955314551a3b5cedb79c0e088894b5a33b3ab2e20778106a"
+    }
+  ],
+  "applicationBytesUnchanged": true,
+  "packageProof": "verification/inspector-current-package-result.json",
+  "checks": 5,
+  "normalCloseVerified": true,
+  "record": {
+    "path": "verification/chat-navigation-observed-packaged-result.json",
+    "bytes": 10697,
+    "sha256": "c4ea343b35ded2b17c13282e80d4928a5c92469d81d8ae8b28b7114b17339fba"
+  },
+  "observations": {
+    "streamStartedAt": 1791137624713,
+    "completedAt": 1791137634855,
+    "originalDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "requests": 1,
+    "native": {
+      "observations": {
+        "installedAt": 1791137624717,
+        "loads": [
+          {
+            "startedAt": 1791137629324,
+            "returnedAt": 1791137630159,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            },
+            "finishedAt": 1791137630159
+          },
+          {
+            "startedAt": 1791137630658,
+            "returnedAt": 1791137631186,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            },
+            "finishedAt": 1791137631186
+          },
+          {
+            "startedAt": 1791137634293,
+            "returnedAt": 1791137634411,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            },
+            "finishedAt": 1791137634411
+          }
+        ],
+        "clones": [
+          {
+            "startedAt": 1791137624721,
+            "completedAt": 1791137624904,
+            "threads": 295,
+            "thread": {
+              "messageCount": 40,
+              "status": "complete",
+              "characters": 56,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137624907,
+            "completedAt": 1791137625017,
+            "threads": 295,
+            "thread": {
+              "messageCount": 40,
+              "status": "complete",
+              "characters": 56,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137625407,
+            "completedAt": 1791137625493,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137625493,
+            "completedAt": 1791137625607,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137629012,
+            "completedAt": 1791137629276,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137629951,
+            "completedAt": 1791137630038,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137630043,
+            "completedAt": 1791137630159,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137630308,
+            "completedAt": 1791137630500,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 0,
+              "hasNeedle": false
+            }
+          },
+          {
+            "startedAt": 1791137630954,
+            "completedAt": 1791137631039,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791137631040,
+            "completedAt": 1791137631186,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791137632327,
+            "completedAt": 1791137632420,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "running",
+              "characters": 27,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791137632663,
+            "completedAt": 1791137632771,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791137632772,
+            "completedAt": 1791137632971,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          },
+          {
+            "startedAt": 1791137634293,
+            "completedAt": 1791137634410,
+            "threads": 295,
+            "thread": {
+              "messageCount": 42,
+              "status": "complete",
+              "characters": 52,
+              "hasNeedle": true
+            }
+          }
+        ],
+        "files": [
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791137625086,
+            "completedAt": 1791137625344
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791137625344,
+            "completedAt": 1791137625397
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791137625405,
+            "completedAt": 1791137625405
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791137625405,
+            "completedAt": 1791137625406
+          },
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791137629740,
+            "completedAt": 1791137629875
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791137629875,
+            "completedAt": 1791137629922
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791137629949,
+            "completedAt": 1791137629949
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791137629949,
+            "completedAt": 1791137629950
+          },
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791137630546,
+            "completedAt": 1791137630876
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791137630876,
+            "completedAt": 1791137630938
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791137630953,
+            "completedAt": 1791137630953
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791137630953,
+            "completedAt": 1791137630953
+          },
+          {
+            "file": "backup",
+            "method": "writeFile",
+            "startedAt": 1791137632470,
+            "completedAt": 1791137632594
+          },
+          {
+            "file": "backup",
+            "method": "sync",
+            "startedAt": 1791137632594,
+            "completedAt": 1791137632647
+          },
+          {
+            "file": "journal",
+            "method": "writeFile",
+            "startedAt": 1791137632655,
+            "completedAt": 1791137632655
+          },
+          {
+            "file": "journal",
+            "method": "sync",
+            "startedAt": 1791137632655,
+            "completedAt": 1791137632656
+          }
+        ]
+      },
+      "capturedAt": 1791137634860
+    }
+  },
+  "probe": {
+    "bytes": 152,
+    "sha256": "f2b388335f03bc559b0cf18a9fd1a1b0b5b23a18f26e162aed6c5c5e57364dfa",
+    "originalErrorAndRealBytesVerified": true,
+    "boundedRecordsVerified": true,
+    "normalAndInFlightRestorationVerified": true
+  },
+  "earlierFixtureFailure": {
+    "log": "chat-navigation-observed-packaged-native.log",
+    "bytes": 4748,
+    "sha256": "915a388d2056cdf386da95ec83ba9fd0f08902657edb42b8aefeebdf5d66a021",
+    "assertionsBeforeFailure": 2,
+    "explanation": "Fixed ancient timestamps placed the newly injected navigation thread outside the first 100 recent entries in the retained large seed. Actual creation timestamps keep the new fixture visible without removing any history."
+  },
+  "log": {
+    "name": "chat-navigation-observed-current-packaged-native.log",
+    "bytes": 6065,
+    "sha256": "93d1b92268f413917fd042f47970c22d7c787b547134fe4e2ccb0a75630511a3"
+  },
+  "hostedCauseEstablished": false,
+  "completeCurrentPackagedVerified": false,
+  "completeCurrentInstalledVerified": false,
+  "currentHostedVerified": false
+}

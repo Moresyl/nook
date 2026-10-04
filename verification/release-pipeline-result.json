@@ -1080,7 +1080,8 @@
     "distributionVerified": false,
     "hostedVerified": false,
     "completeSourceFailure": "verification/conversation-encoding-close-failure-result.json",
-    "completeChecksBeforeFailure": 188
+    "completeChecksBeforeFailure": 188,
+    "hostedFailure": "verification/hosted-conversation-encoding-navigation-failure-result.json"
   },
   "inspectorLifecycle": {
     "codeCommit": "8d936cd37553b5823241c6ef5c44ba2921a5ceb9",
@@ -1092,5 +1093,13 @@
     "completeCurrentNativeVerified": true,
     "completeSource": "verification/inspector-disconnect-complete-source-result.json",
     "completeSourceChecks": 215
+  },
+  "chatNavigationTiming": {
+    "codeCommit": "98a79bf35edd7e0750aa4fb65e8569bc48ad714e",
+    "component": "verification/chat-navigation-observer-component-result.json",
+    "focusedPackagedChecks": 5,
+    "originalDeadlineMs": 10000,
+    "hostedCauseEstablished": false,
+    "completeCurrentPackagedVerified": false
   }
 }
