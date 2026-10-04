@@ -1,0 +1,205 @@
+{
+  "verifiedAt": "2026-10-04T19:01:36.769Z",
+  "codeCommit": "7df8e3c6dd920f1e45729ddc4741323e8691599a",
+  "source": [
+    {
+      "path": "scripts/installer-templates.mjs",
+      "sha256": "be1e046ba5fbe5ac0a3a109770fe8acc02efc71df98b9d3c659a9a14de8ccdf9"
+    },
+    {
+      "path": "scripts/package-windows.mjs",
+      "sha256": "23b50742a672acdf3b270483570735823c1875482ee619ccb127bacfebe058a6"
+    },
+    {
+      "path": "verification/installer-templates.test.ts",
+      "sha256": "cff9c4209c7134fd9f72118de2182acc178d37c858f287d6aab9bb244445c114"
+    }
+  ],
+  "applicationCodeUnchanged": true,
+  "unitTestsPassed": 734,
+  "unitFiles": 69,
+  "coverage": {
+    "lines": {
+      "total": 3207,
+      "covered": 3185,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5422,
+      "covered": 5260,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1216,
+      "covered": 1182,
+      "skipped": 0,
+      "pct": 97.2
+    },
+    "branches": {
+      "total": 3828,
+      "covered": 3619,
+      "skipped": 0,
+      "pct": 94.54
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "focusedTestsPassed": 10,
+  "focusedCoverage": {
+    "lines": {
+      "total": 26,
+      "covered": 26,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 32,
+      "covered": 32,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 6,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 23,
+      "covered": 23,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": "Unknown"
+    }
+  },
+  "typecheckExitCode": 0,
+  "nativeProbes": {
+    "verifiedAt": "2026-10-04T18:52:27.2747022Z",
+    "transformationSha256": "be1e046ba5fbe5ac0a3a109770fe8acc02efc71df98b9d3c659a9a14de8ccdf9",
+    "baselineTransformationSha256": "d64b39c29281823cb29d4499a2c56acf4f64ce27128fcf86e33986bc83f57562",
+    "cases": [
+      {
+        "name": "baseline-after-temporary-lock",
+        "exitCode": 7,
+        "elapsedMs": 1328,
+        "passed": true,
+        "residual": true
+      },
+      {
+        "name": "current-after-temporary-lock",
+        "exitCode": 7,
+        "elapsedMs": 1385,
+        "passed": true,
+        "residual": false
+      },
+      {
+        "name": "current-after-permanent-lock",
+        "exitCode": 1,
+        "elapsedMs": 2898,
+        "passed": true,
+        "residual": true
+      },
+      {
+        "name": "current-before-temporary-lock",
+        "exitCode": 7,
+        "elapsedMs": 477,
+        "passed": true,
+        "residual": false
+      },
+      {
+        "name": "current-before-permanent-lock",
+        "exitCode": 1,
+        "elapsedMs": 2162,
+        "passed": true,
+        "residual": true
+      },
+      {
+        "name": "current-absent-zero-exit",
+        "exitCode": 0,
+        "elapsedMs": 122,
+        "passed": true,
+        "residual": false
+      },
+      {
+        "name": "current-empty-nonzero-exit",
+        "exitCode": 7,
+        "elapsedMs": 52,
+        "passed": true,
+        "residual": false
+      },
+      {
+        "name": "current-stale-long-path",
+        "exitCode": 7,
+        "elapsedMs": 73,
+        "passed": true,
+        "residual": false
+      }
+    ],
+    "compilerSha256": "e277b7378931b74392015f5ad6b1d744dcd8a347baa4480350a75ebeab8d8e3d"
+  },
+  "logs": [
+    {
+      "name": "portable-cleanup-retry-before-test.log",
+      "bytes": 1757,
+      "sha256": "db25566807c6b5819786ab76743b71704a2e3a86e4bf4e304ce507567f43af1a"
+    },
+    {
+      "name": "portable-cleanup-retry-after-test.log",
+      "bytes": 222,
+      "sha256": "a844876fffb2fc9825dc159adab12c1608c892390337748f4ef55a1d0c5dbce4"
+    },
+    {
+      "name": "portable-cleanup-native-build.log",
+      "bytes": 125,
+      "sha256": "921ea2f98302038a4b998548f9f1f10c78a39d52f719c20ffa0d8ec1d161c9e4"
+    },
+    {
+      "name": "portable-cleanup-native-run.log",
+      "bytes": 461,
+      "sha256": "7aa0e37d85b292e43aa93cd832d47cfe7ad95868d0b03001ff12d83c2bc5a2be"
+    },
+    {
+      "name": "portable-cleanup-retry-typecheck.log",
+      "bytes": 90,
+      "sha256": "54a87df41eb61f30bcb0fd3670d522418729d7ca7facc870645ab8193c03249c"
+    },
+    {
+      "name": "portable-cleanup-retry-unit.log",
+      "bytes": 1196,
+      "sha256": "0ea22a10e021df6dc89ff2fe4914935eaf120304bc166484696a31f77c09fc04"
+    },
+    {
+      "name": "portable-cleanup-retry-serial-unit.log",
+      "bytes": 4665,
+      "sha256": "e101bce28dc4a42e81a24e567f6d621d47998bb17104e6b990da197bc9b650b1"
+    },
+    {
+      "name": "portable-cleanup-focused-coverage.log",
+      "bytes": 898,
+      "sha256": "8a5b3d2c0d3b97e20b9d20ddf5ad5116707dd6b5d326cc1a993a1fd241c327aa"
+    }
+  ],
+  "firstFullUnitAttempt": {
+    "passed": 733,
+    "failed": 1,
+    "case": "attachment large-image resizing",
+    "originalDeadlineMs": 5000,
+    "retryWorkers": 1,
+    "deadlineUnchanged": true
+  },
+  "actualNewPortableVerified": false,
+  "actualNewInstalledVerified": false,
+  "hostedVerified": false,
+  "scope": "Audited actual NSIS probes reproduce old one-shot cleanup residue and verify bounded recovery, permanent failure before/after launch, long paths, absent/empty directories and original exit codes. Fresh actual wrappers and full distribution require separate acceptance."
+}
