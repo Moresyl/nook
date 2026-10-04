@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { emptyWorkspace, workspaceSchema, type Workspace } from '../contracts/workspace';
 import { persistentWorkspace } from '../contracts/temporary-conversations';
-import { WorkspaceSerialization } from '../desktop/services/workspace-serialization';
+import { sameThreadEncoding, WorkspaceSerialization } from '../desktop/services/workspace-serialization';
 import { sampleThread } from './fixtures';
 
 const canonical = (state: Workspace) => Buffer.from(JSON.stringify(state, null, 2), 'utf8');
@@ -12,6 +12,17 @@ function populated(): Workspace {
 }
 afterEach(() => { vi.restoreAllMocks(); });
 describe('cached canonical workspace serialization', () => {
+  it('compares exact thread encoding without serializing equal Unicode history and detects changed nested values', () => {
+    const original = populated().threads[0], copy = structuredClone(original);
+    const stringify = vi.spyOn(JSON, 'stringify');
+    expect(sameThreadEncoding(original, copy)).toBe(true); expect(stringify).not.toHaveBeenCalled();
+    copy.messages[0].content += 'Changed'; expect(sameThreadEncoding(original, copy)).toBe(false);
+  });
+  it.each(['thread', 'message'] as const)('distinguishes equal values with changed JSON key order at the %s level', level => {
+    const original = populated().threads[0], copy = structuredClone(original);
+    if (level === 'thread') expect(sameThreadEncoding(original, Object.fromEntries(Object.entries(copy).reverse()) as typeof copy)).toBe(false);
+    else { copy.messages[0] = Object.fromEntries(Object.entries(copy.messages[0]).reverse()) as typeof copy.messages[number]; expect(sameThreadEncoding(original, copy)).toBe(false); }
+  });
   it.each(['thread', 'message'] as const)('retains exact JSON property order when the %s has equal values in a different key order', (level) => {
     const state = populated(); const serialization = new WorkspaceSerialization(); serialization.serialize(state);
     if (level === 'thread') state.threads[0] = Object.fromEntries(Object.entries(state.threads[0]).reverse()) as typeof state.threads[number];

@@ -7,7 +7,7 @@ import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
-import { WorkspaceSerialization } from './workspace-serialization';
+import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serialization';
 import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
@@ -117,7 +117,7 @@ export class WorkspaceVault {
           const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, ...oldHeader } = previous;
           const { threads, composerDrafts, activeThreadId, ...header } = persistent;
           if (isDeepStrictEqual(oldHeader, header) && oldThreads.length === threads.length && threads.every((thread, index) => thread.id === oldThreads[index].id)) {
-            ids = threads.filter((thread, index) => JSON.stringify(thread) !== JSON.stringify(oldThreads[index])).map(thread => thread.id);
+            ids = threads.filter((thread, index) => !sameThreadEncoding(thread, oldThreads[index])).map(thread => thread.id);
             includeComposer = !isDeepStrictEqual(oldDrafts, composerDrafts) || oldActive !== activeThreadId;
           }
         }

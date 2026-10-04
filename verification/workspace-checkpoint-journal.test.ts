@@ -21,6 +21,22 @@ async function fixture() {
 }
 
 describe('durable response checkpoint journal', () => {
+  it('saves composer metadata without re-encoding unrelated history and retains exact backup and restart state', async () => {
+    const { vault, directory, primary, backup } = await fixture();
+    await vault.update(draft => { draft.threads.push(sampleThread({ id: 'large', messages: [message('Unchanged 中文 😀\n'.repeat(50_000))] })); });
+    const before = await readFile(primary);
+    const stringify = vi.spyOn(JSON, 'stringify');
+    let encodedUnchanged: boolean;
+    try {
+      await new ComposerDrafts(vault).save({ threadId: 'thread', text: 'New draft', attachments: [], model: 'fixture', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 });
+      encodedUnchanged = stringify.mock.calls.some(([value]) => value && typeof value === 'object' && 'id' in value && value.id === 'large');
+    } finally { stringify.mockRestore(); }
+    expect(encodedUnchanged).toBe(false);
+    expect((await readFile(primary)).equals(before)).toBe(true); expect((await readFile(backup)).equals(before)).toBe(true);
+    const recovered = new WorkspaceVault(directory, codec); await recovered.initialize();
+    expect(recovered.snapshot()).toEqual(vault.snapshot());
+    await recovered.flush(); expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+  });
   it('rejects a composer save when its primary path has become a directory, without acknowledging an unusable journal', async () => {
     const { vault, directory, primary, journal } = await fixture(); await vault.checkpointMessages([{ threadId: 'thread', message: message('Previous') }]);
     const before = vault.snapshot(), saved = await readFile(journal), held = join(directory, 'held-primary.json');

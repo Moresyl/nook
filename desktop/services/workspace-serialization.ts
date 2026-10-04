@@ -12,6 +12,11 @@ function samePropertyOrder(left: object, right: object): boolean {
   });
 }
 
+/** Equal validated threads must also retain key order to preserve their exact JSON bytes. */
+export function sameThreadEncoding(left: Thread, right: Thread): boolean {
+  return isDeepStrictEqual(left, right) && samePropertyOrder(left, right);
+}
+
 /** Preserve the existing pretty JSON bytes while reusing unchanged validated histories. */
 export class WorkspaceSerialization {
   private threads = new Map<string, EncodedThread>();
@@ -34,7 +39,7 @@ export class WorkspaceSerialization {
       for (let index = 0; index < state.threads.length; index++) {
         const thread = state.threads[index];
         const previous = this.threads.get(thread.id);
-        const encoded = previous && isDeepStrictEqual(previous.value, thread) && samePropertyOrder(previous.value, thread) ? previous : {
+        const encoded = previous && sameThreadEncoding(previous.value, thread) ? previous : {
           value: structuredClone(thread),
           bytes: Buffer.from(`    ${JSON.stringify(thread, null, 2).replaceAll('\n', '\n    ')}`, 'utf8'),
         };
