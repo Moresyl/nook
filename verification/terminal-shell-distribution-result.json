@@ -1,0 +1,355 @@
+{
+  "verifiedAt": "2026-10-04T04:03:38.122Z",
+  "codeCommit": "867c59085dd92acdeb558dce3531d285d9712dbd",
+  "sourceProof": {
+    "path": "verification/terminal-shell-source-review-result.json",
+    "sha256": "2e755d4a550f127aa124f8e1ed6b350052bcb414d0aaa55bcdc13a8dd79b1d7f"
+  },
+  "sourceVerified": true,
+  "packagedVerified": true,
+  "hostedVerified": false,
+  "unitTests": 672,
+  "unitFiles": 66,
+  "sourceChecks": 215,
+  "unpackedChecks": 215,
+  "installedChecks": 215,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "matchingRuntimeProofVerified": true,
+  "runtimeRecordCount": 10,
+  "actualPowerShellMajor": 7,
+  "legacyFallbackChecks": 7,
+  "legacyPowerShellMajor": 5,
+  "legacyFallbackProof": {
+    "path": "verification/terminal-shell-legacy-native-result.json",
+    "sha256": "dde1a7c5c5265ddd093cbac204dd635e2497682e8dcdb2a5176b5033530bc61b",
+    "bytes": 5293
+  },
+  "transferChecks": 5,
+  "transferModelRequests": 0,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "runtimeRecords": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "5b51e98d20deaf22b99b5657dc517b10f0863fbf03f5893d71247577e29993d4",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "d9d04e1de45d57e944a22e3dda79c1890ac5e59b4618cb1b59a4e495dcfefa3e",
+      "bytes": 54037
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "d9142d12a20decfbe9529f7bc3b228da951b25106ae4592a4820a2bec2265889",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "93b3c39462e464bc813abe6b4ae65ee163b6f564d02a8214553cae6799807c65",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "079f77318d172a529b84380ce7d342e839b847c15cc4b6324032753624ccce24",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "18839187bf12c57a002a980f229721e5b1f38545afdcb2bb2a93db05bdd1ed8e",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "ca938806026768021428a5943b71b6445bfcd8c091f12df55fa00352ca9b99b2",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "b65c8be9622ec8a53e3b67569d1542b78d0194c3afa267688be3dfe7682ebd09",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "0e9f29601b135db348ae322357da2f9e15bcc92e4ba21527ff30f2ff35a4b8ed",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "de7caca85d91327e49478ee62cba4ef3b514bd5911ab9bbbe79ccfd38192cab0",
+      "bytes": 766
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "8af2d82003b552bdbcadb8c194835d6a0c235c26de8ce96020400da46ae6986a",
+      "bytes": 54037,
+      "checks": 215
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "d9142d12a20decfbe9529f7bc3b228da951b25106ae4592a4820a2bec2265889",
+      "bytes": 1295,
+      "checks": 4
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "456dd085e018fb5fc7950790bb4982f59eeb2a409fb79fdd45229c3030da7b11",
+      "bytes": 11796,
+      "checks": 9
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "09f210f81018a3393949e213e65c9bff2c92a9a879c4f555b55315321440441d",
+      "bytes": 1953,
+      "checks": 6
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "b9bf81b631022bbe95328036e52db8fc73f8511783093d6b3a663df0544f2cb3",
+      "bytes": 2247,
+      "checks": 6
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "52ce8f7f98c52a2fc99257381ab54b24a995caa63c02ba4cd697f12837f1166c",
+      "bytes": 916,
+      "checks": 6
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "sha256": "657e4772fbed3dff1c4239224f5480d76b8895fa90cde684ede0a31ce94823bb",
+      "bytes": 1891,
+      "checks": 6
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "sha256": "8fdd76fa3eb0da10e317373e9dccfef2a76ce9820404d756d33e16abf5bf47dc",
+      "bytes": 1798,
+      "checks": 4
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "sha256": "65b090274cd5cc6663cc23c2f52ec794ba58f1ecc899fa8090aa149e6b91126f",
+      "bytes": 1971,
+      "checks": 5
+    }
+  ],
+  "installedCompanionRecords": [
+    {
+      "path": "verification/assistant-profiles-packaged-result.json",
+      "sha256": "c041fe70dcbf2216101c7c343780c2f60accd84c2c70fcdbf2e08024fb7828ea",
+      "bytes": 515
+    },
+    {
+      "path": "verification/assistant-recipes-packaged-result.json",
+      "sha256": "7e48754fc8e026d8f194c4edf9e36e099ba3c4afb3030600cb03a5686b7a8387",
+      "bytes": 1798
+    },
+    {
+      "path": "verification/automations-packaged-result.json",
+      "sha256": "c4a8535a8ba49079de3afb2bd06902022d8010a3967a01cede0eeb2ce7de68d7",
+      "bytes": 671
+    },
+    {
+      "path": "verification/backups-packaged-result.json",
+      "sha256": "e43f1b6fa8316c271fe93efc4768b1c0cd29defd677ebea37b0be2b56c17af36",
+      "bytes": 1994
+    },
+    {
+      "path": "verification/chat-navigation-packaged-result.json",
+      "sha256": "d1a6f6a4c81ab5210a793d988a62ac6ed5eab252c3b1043bd180b422bc9b56fe",
+      "bytes": 10712
+    },
+    {
+      "path": "verification/commands-packaged-result.json",
+      "sha256": "17f2945cfec37ecf08ad75c317a55ce2600269752b534714969cac34bdebc89b",
+      "bytes": 870
+    },
+    {
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "93b3c39462e464bc813abe6b4ae65ee163b6f564d02a8214553cae6799807c65",
+      "bytes": 11796
+    },
+    {
+      "path": "verification/desktop-integration-packaged-result.json",
+      "sha256": "2c6e4e814af71bbec2e1a3fbf5efae6bb79009f62b1e664993ca1a7fdbd4132c",
+      "bytes": 625
+    },
+    {
+      "path": "verification/knowledge-packaged-result.json",
+      "sha256": "49f4913564a636938302bad41c6c5e96ad1c001a1cb823ff3976156f60e2907c",
+      "bytes": 778
+    },
+    {
+      "path": "verification/mcp-binary-files-packaged-result.json",
+      "sha256": "b6d82167ed67551f719239950176b39cfe3c413fd413e37e87f3809402e7ba31",
+      "bytes": 1891
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "dd851c9ca5d860282023e0ffe5d38df89330e32f11014324a4c53469807cb49c",
+      "bytes": 916
+    },
+    {
+      "path": "verification/message-edits-packaged-result.json",
+      "sha256": "8acb448bf15c6dc803b0acf5ce97473cc3eed5a7925cfe1fe115cb7152adb0f5",
+      "bytes": 765
+    },
+    {
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "18839187bf12c57a002a980f229721e5b1f38545afdcb2bb2a93db05bdd1ed8e",
+      "bytes": 2247
+    },
+    {
+      "path": "verification/project-tree-packaged-result.json",
+      "sha256": "ccd3835466ee47d0df2eba0d7d3c6322544a87380e90d42c76526936fdad697c",
+      "bytes": 3673
+    },
+    {
+      "path": "verification/prompt-templates-packaged-result.json",
+      "sha256": "1baca9d435e22076dea7439d0a302c58d2e279bfc0d9cf07d374fc8cfaf9920b",
+      "bytes": 526
+    },
+    {
+      "path": "verification/reply-versions-packaged-result.json",
+      "sha256": "7a83c4de155c3b79b41a92dc870313ad7e1d3e866c162a4d0dd1fba2be80512a",
+      "bytes": 594
+    },
+    {
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "079f77318d172a529b84380ce7d342e839b847c15cc4b6324032753624ccce24",
+      "bytes": 1953
+    },
+    {
+      "path": "verification/prompt-transfer-packaged-result.json",
+      "sha256": "ce504e2eb66e7e33206028c0ceb9774cbbf5ed04b402d1d9791484c7735bf814",
+      "bytes": 1971
+    },
+    {
+      "path": "verification/installed-package-audit-result.json",
+      "sha256": "996264ecbb3ec953e6b128e12d505dd42e83edc52887071eae46f92c67264fe3",
+      "bytes": 1293
+    },
+    {
+      "path": "verification/installed-shortcuts-result.json",
+      "sha256": "0aa27e6fd5ba531a268d6cbd8d366407c4db968294757949dc2bb41ba26849bd",
+      "bytes": 875
+    },
+    {
+      "path": "verification/shell-integration-result.json",
+      "sha256": "f1a5ccdb005d70494f61405217f0021a04d8c06b1b67718276304f3d3c5256d7",
+      "bytes": 984
+    },
+    {
+      "path": "verification/installer-toolset-result.json",
+      "sha256": "37e9d9d42be674f71fc9177e0c7ace4358e60a780521a58c88acd3bffb0809b0",
+      "bytes": 8630
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "verification/screenshots/128-prompt-transfer-library-light.png",
+      "sha256": "c3d68c3168910301717f182bd4c2e0ef99fad0ed76fd16254f6932e54531f563",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/129-prompt-import-preview-light.png",
+      "sha256": "35b6034428303488847c197c5bf9dc5d38c990bbbf7e17c7011b7478798820e8",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/130-prompt-import-write-error-light.png",
+      "sha256": "5d45f1855ba92ea65deb6fbfbe73d458870ab2793296136b46ea0c85957b0adb",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-100.png",
+      "sha256": "048f44dabaca45a2170ac3b00307e9fc6fc4ebcd0ad83c10c88db150882a1e36",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-125.png",
+      "sha256": "fcc9b7487758275ac1ae36529bed3ab682bdd3beae06d7cfa7c265ea148409f7",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    },
+    {
+      "path": "verification/screenshots/131-prompt-import-dark-zoom-150.png",
+      "sha256": "d2b06d65895cdbc1d1c58c834c9a0fb16070b4a5ba8468111f2e2019a6805ec3",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "variant": "actual installed executable",
+      "verificationRun": "complete desktop suite"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "64ebdc417586702cd2e4ff4d7185bc0137d33298aa0333c42bec2e3a18f2cbc2"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485567554,
+      "sha256": "bcbde1265f64d703c60844db5bf95fd12be24016106b7331e734076109e676b9"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237875711,
+      "sha256": "cf01eb101db7e99bab11f534139be8585434bffc3467e0e793e7d222b91ae677"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306616773,
+      "sha256": "18aa368088eb0689d67ce10bef857bbdd6faefe44cfbbf562d57372988160a7b"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "scope": "Exact 672-test available-shell source, complete 215-check unpacked and actual Unicode-path installed suites, four surface checks, real portable lifecycle, bootstrap audit, shortcuts and data-retaining uninstall pass with ten strict matching runtime records. Both complete application variants verify actual PowerShell 7 output; the same unpacked executable separately passes seven real legacy PowerShell 5 fallback checks under an owned empty installation environment with original deadlines. Six current installed template-transfer captures are individually reviewed, and all four exact binaries are separately preserved before later rebuilds. This local distribution proof does not verify hosted acceptance. The full remaining capability/UI delivery scope and physical wizard interaction remain open."
+}
