@@ -878,7 +878,7 @@
     "transferModelRequests": 0,
     "proof": "verification/prompt-transfer-review-result.json"
   },
-  "completeCurrentSourceVerified": true,
+  "completeCurrentSourceVerified": false,
   "startupDiagnostics": {
     "codeCommit": "54c2b531e11bb398eba1c892e4781ec175502b07",
     "componentSourceVerified": true,
@@ -1067,5 +1067,17 @@
     "installedChecksBeforeFailure": 192,
     "distributionVerified": false,
     "distributionFailureProof": "verification/checkpoint-journal-distribution-failure-result.json"
+  },
+  "conversationEncoding": {
+    "codeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+    "unitTestsPassed": 734,
+    "temporaryChecks": 6,
+    "comparisonChecks": 6,
+    "normalCloseVerified": true,
+    "proof": "verification/conversation-encoding-component-result.json",
+    "hostedRunId": 37219400051,
+    "completeSourceVerified": false,
+    "distributionVerified": false,
+    "hostedVerified": false
   }
 }
