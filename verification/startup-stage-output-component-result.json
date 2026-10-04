@@ -1,0 +1,544 @@
+{
+  "verifiedAt": "2026-10-04T08:57:59.533Z",
+  "baselineAcceptedCodeCommit": "117ed6031c589b5b68709559384de420267ff5c2",
+  "baselineUnitTests": 683,
+  "baselineUnitFiles": 67,
+  "baselineFullSourceChecks": 215,
+  "baselineDistributionProof": {
+    "path": "verification/provider-transport-distribution-result.json",
+    "sha256": "23555d1b625c66cc610b1855aa5a4d6def6fdadbe157c0dae96c28e598b9b50a",
+    "unpackedChecks": 215,
+    "installedChecks": 215
+  },
+  "productionSourceInputsUnchanged": 32,
+  "threeCompiledAssetsUnchanged": true,
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "sourceChanges": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "originalSha256": "918e357eee013126155f455fc612001bcbce3df4e729cac2d8e5e3b98262d7a3",
+      "sha256": "f41b8a264d765fd674d175a639fd3671ebfc0dd9f9739dd7bd3058c7c4f12fb9"
+    },
+    {
+      "path": ".github/workflows/windows.yml",
+      "sha256": "1c19ecc0fec562efb00d5f87eb450fbed9d14b2a8c8209c543e5a165c81d9401"
+    }
+  ],
+  "discoveryHelperSha256": "2899f8d38f90cbb8011b37de7bafac88f85ba0efa410a872b96184ff8b199157",
+  "originalPageDiscoveryDeadlineMs": 30000,
+  "originalPollIntervalMs": 100,
+  "jobBudgetMinutes": 90,
+  "previousJobBudgetMinutes": 45,
+  "controlledFailure": {
+    "onlyTestPageSelectionFiltered": true,
+    "actualApplicationHasWindow": true,
+    "completeNestedJsonVerified": true,
+    "diagnostics": {
+      "pid": 83856,
+      "elapsedMs": 45493,
+      "exitCode": null,
+      "signalCode": null,
+      "pages": [
+        {
+          "url": "qiyao://app/index.html",
+          "closed": false
+        }
+      ],
+      "main": {
+        "capturedAt": 1791103984168,
+        "ready": true,
+        "startup": {
+          "events": [
+            {
+              "phase": "when-ready",
+              "at": 1791103949795,
+              "memory": {
+                "rss": 127995904,
+                "heapTotal": 25964544,
+                "heapUsed": 14695836,
+                "external": 3692556,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 343000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "protocol.ready",
+              "at": 1791103950993,
+              "memory": {
+                "rss": 140816384,
+                "heapTotal": 25964544,
+                "heapUsed": 14704284,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 375000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.workspace.read",
+              "at": 1791103952353,
+              "memory": {
+                "rss": 145801216,
+                "heapTotal": 25964544,
+                "heapUsed": 14718036,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.workspace.parsed",
+              "at": 1791103953021,
+              "memory": {
+                "rss": 146112512,
+                "heapTotal": 25964544,
+                "heapUsed": 14726236,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.credentials.read",
+              "at": 1791103953021,
+              "memory": {
+                "rss": 146112512,
+                "heapTotal": 25964544,
+                "heapUsed": 14726552,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.credentials.bound",
+              "at": 1791103953163,
+              "memory": {
+                "rss": 146255872,
+                "heapTotal": 25964544,
+                "heapUsed": 14737016,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.persistent-cache.serialize",
+              "at": 1791103953163,
+              "memory": {
+                "rss": 146255872,
+                "heapTotal": 25964544,
+                "heapUsed": 14737420,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.persistent-cache.ready",
+              "at": 1791103953168,
+              "memory": {
+                "rss": 146284544,
+                "heapTotal": 25964544,
+                "heapUsed": 14741232,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "vault.runs.recovered",
+              "at": 1791103953168,
+              "memory": {
+                "rss": 146284544,
+                "heapTotal": 25964544,
+                "heapUsed": 14743124,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "services.create",
+              "at": 1791103953168,
+              "memory": {
+                "rss": 146284544,
+                "heapTotal": 25964544,
+                "heapUsed": 14743624,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "automations.resume",
+              "at": 1791103953209,
+              "memory": {
+                "rss": 146321408,
+                "heapTotal": 25964544,
+                "heapUsed": 14773632,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "automations.ready",
+              "at": 1791103953210,
+              "memory": {
+                "rss": 146321408,
+                "heapTotal": 25964544,
+                "heapUsed": 14780764,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "window.create",
+              "at": 1791103953212,
+              "memory": {
+                "rss": 146358272,
+                "heapTotal": 25964544,
+                "heapUsed": 14866800,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 406000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "window.created",
+              "at": 1791103954779,
+              "memory": {
+                "rss": 155430912,
+                "heapTotal": 25964544,
+                "heapUsed": 14907680,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 437000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "startup.complete",
+              "at": 1791103954781,
+              "memory": {
+                "rss": 155549696,
+                "heapTotal": 25964544,
+                "heapUsed": 14972036,
+                "external": 3103347,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 437000,
+                "system": 203000
+              }
+            },
+            {
+              "phase": "renderer.loaded",
+              "at": 1791103959865,
+              "memory": {
+                "rss": 165736448,
+                "heapTotal": 26488832,
+                "heapUsed": 16933060,
+                "external": 4300188,
+                "arrayBuffers": 0
+              },
+              "cpu": {
+                "user": 484000,
+                "system": 203000
+              }
+            }
+          ]
+        },
+        "memory": {
+          "rss": 161341440,
+          "heapTotal": 16527360,
+          "heapUsed": 14479132,
+          "external": 4306276,
+          "arrayBuffers": 0
+        },
+        "cpu": {
+          "user": 546000,
+          "system": 265000
+        },
+        "processes": [
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.646981,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 83856,
+            "type": "Browser",
+            "creationTime": 1791103938976.047,
+            "memory": {
+              "workingSetSize": 157588,
+              "peakWorkingSetSize": 170108,
+              "privateBytes": 119236
+            },
+            "integrityLevel": "high",
+            "sandboxed": false
+          },
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.584668,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 88944,
+            "type": "GPU",
+            "creationTime": 1791103949318.043,
+            "serviceName": "GPU",
+            "memory": {
+              "workingSetSize": 107108,
+              "peakWorkingSetSize": 110888,
+              "privateBytes": 107528
+            },
+            "integrityLevel": "low",
+            "sandboxed": true
+          },
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.048292,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 56640,
+            "type": "Utility",
+            "creationTime": 1791103949593.778,
+            "serviceName": "network.mojom.NetworkService",
+            "name": "Network Service",
+            "memory": {
+              "workingSetSize": 53904,
+              "peakWorkingSetSize": 53912,
+              "privateBytes": 12204
+            },
+            "integrityLevel": "high",
+            "sandboxed": false
+          },
+          {
+            "cpu": {
+              "cumulativeCPUUsage": 0.247818,
+              "percentCPUUsage": 0,
+              "idleWakeupsPerSecond": 0
+            },
+            "pid": 110644,
+            "type": "Tab",
+            "creationTime": 1791103950873.504,
+            "memory": {
+              "workingSetSize": 109828,
+              "peakWorkingSetSize": 114276,
+              "privateBytes": 55384
+            },
+            "integrityLevel": "untrusted",
+            "sandboxed": true
+          }
+        ],
+        "windows": [
+          {
+            "id": 1,
+            "url": "qiyao://app/index.html",
+            "visible": false,
+            "destroyed": false
+          }
+        ]
+      }
+    }
+  },
+  "focusedNativeChecks": 7,
+  "focusedProviderRequests": 5,
+  "focusedNormalApplicationCloseVerified": true,
+  "focusedNativeProof": {
+    "path": "verification/startup-stage-output-focused-native-result.json",
+    "sha256": "83c91efd5d79fd69471b2dbc8d4b300c74beb3199d1367870d9945cd2e8f052f",
+    "bytes": 765
+  },
+  "successfulTransportTraces": [
+    {
+      "question": "MESSAGE_SAVE_ORIGINAL",
+      "serverRequests": 1,
+      "transport": {
+        "id": 1,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791104039913,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791104039913
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791104040274
+          },
+          {
+            "phase": "headers",
+            "at": 1791104040278
+          },
+          {
+            "phase": "trailers",
+            "at": 1791104040279
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_LATER",
+      "serverRequests": 2,
+      "transport": {
+        "id": 2,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791104041219,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791104041219
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791104041220
+          },
+          {
+            "phase": "headers",
+            "at": 1791104041220
+          },
+          {
+            "phase": "trailers",
+            "at": 1791104041220
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_CONTINUE_NEW",
+      "serverRequests": 3,
+      "transport": {
+        "id": 3,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791104044117,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791104044117
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791104044118
+          },
+          {
+            "phase": "headers",
+            "at": 1791104044118
+          },
+          {
+            "phase": "trailers",
+            "at": 1791104044118
+          }
+        ],
+        "statusCode": 200
+      }
+    },
+    {
+      "question": "MESSAGE_SAVE_CONTINUE_OLD",
+      "serverRequests": 4,
+      "transport": {
+        "id": 4,
+        "method": "POST",
+        "path": "/message-edits/v1/chat/completions",
+        "firstObservedAt": 1791104044461,
+        "phases": [
+          {
+            "phase": "create",
+            "at": 1791104044461
+          },
+          {
+            "phase": "bodySent",
+            "at": 1791104044462
+          },
+          {
+            "phase": "headers",
+            "at": 1791104044462
+          },
+          {
+            "phase": "trailers",
+            "at": 1791104044462
+          }
+        ],
+        "statusCode": 200
+      }
+    }
+  ],
+  "completeNewSourceNativeVerified": false,
+  "completeNewHostedRuntimeVerified": false,
+  "originalHostedCauseEstablished": false,
+  "logs": [
+    {
+      "name": "startup-stage-output-negative-native.log",
+      "sha256": "1e086d0a9a67b353fbcc5a4549630ce54bb4f4bfd9c1a900934b874c9f3f57b6",
+      "bytes": 5602
+    },
+    {
+      "name": "startup-stage-output-positive-native.log",
+      "sha256": "876e41b521d3a419cc0b6590eb207371931177251f9f85cd1e8387007cc341df",
+      "bytes": 2961
+    }
+  ],
+  "scope": "Only the native test failure logger and overall workflow budget change. All 32 other accepted source inputs, the three actual compiled assets and original licenses retain exact hashes. An actual unchanged packaged application reaches complete startup; private page filtering exercises the original 30-second discovery failure and verifies complete JSON with 16 real startup stages, window and process metrics. This verifies observation, not the prior hosted cause. A separate unmodified page-selection run passes seven native message-edit checks, four real HTTP 200 traces, five requests and normal close. The earlier 683/215 full-source and exact 215/215 local-distribution cohorts remain their original accepted baseline. Complete verification of the new diagnostic source will run independently in CI."
+}

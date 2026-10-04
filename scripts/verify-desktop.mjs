@@ -277,7 +277,8 @@ async function launch() {
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
   } catch (error) {
     const main = await evaluateMain("({capturedAt:Date.now(),ready:require('electron').app.isReady(),startup:globalThis.qiyaoStartupDiagnostics?.(),memory:process.memoryUsage(),cpu:process.cpuUsage(),processes:require('electron').app.getAppMetrics(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,url:window.webContents.getURL(),visible:window.isVisible(),destroyed:window.isDestroyed()}))})").catch(() => undefined);
-    console.error('Desktop page startup diagnostics', { pid: child.pid, elapsedMs: Date.now() - startedAt, exitCode: child.exitCode, signalCode: child.signalCode, pages: browser?.contexts().flatMap((context) => context.pages().map((page) => ({ url: page.url(), closed: page.isClosed() }))), main }, diagnostics.slice(-4000).replace(/ws:\/\/[^\s]+/g, '[test debugger]'));
+    console.error('Desktop page startup diagnostics', JSON.stringify({ pid: child.pid, elapsedMs: Date.now() - startedAt, exitCode: child.exitCode, signalCode: child.signalCode, pages: browser?.contexts().flatMap((context) => context.pages().map((page) => ({ url: page.url(), closed: page.isClosed() }))), main }));
+    console.error(diagnostics.slice(-4000).replace(/ws:\/\/[^\s]+/g, '[test debugger]'));
     if (child.exitCode === null && child.signalCode === null) child.kill();
     await browser?.close().catch(() => {});
     throw error;
