@@ -43,7 +43,7 @@
   ],
   "typecheckExitCode": 0,
   "installedScriptExecutionVerified": true,
-  "scope": "Three deterministic failures reproduce stale initial-state and checkpoint updates on the previous product. Active run notifications retain live content with durable terminal status, and queued persistence samples the message inside its transaction. All renderer workspace replacements retain only matching-owner/message streaming prefixes and terminal replies; deletions, new retry IDs, different text and authoritative terminal/manual edits remain effective. The final source passes 647 tests, type/build and the unchanged complete 210-check native suite with six comparison checks, eleven real HTTP requests and normal close. Nine current complete-run comparison captures are individually reviewed. This establishes local regression recovery; the exact remote intervening producer and fresh same-body distribution/hosted acceptance remain to be verified. Existing 210-check installer/portable evidence retains its prior application hashes.",
+  "scope": "The final byte cache serializes each durable workspace once and advances only after successful atomic writes; validation, actual destination EIO, retry, no-op/temporary exclusion and normalized credentials are covered. A preserved old-code failure proves interrupted replies previously remained running on disk; restart now durably saves stopped state while retaining the prior backup. Four actual local writes over 84,011,026 bytes decrease from 4214.5486 ms to 2252.3754 ms. Memory samples are after updates, not peak or remote deadline measurements. The final source passes 649 tests, type/build and all unchanged 210 native desktop checks with normal close. Renderer bytes match the previously reviewed nine-capture build. The six comparison checks retain eleven real HTTP requests and all original deadlines. Added failure diagnostics distinguish final status polls, server queued/flushed completion and separately timed later process resources; that failure branch has not run in the successful local suite. Fresh complete matching-body distribution and hosted acceptance remain separate.",
   "focusedPolicyTests": 35,
   "implementationFiles": [
     {
@@ -380,13 +380,13 @@
     "proof": "verification/mcp-resource-subscriptions-distribution-result.json"
   },
   "sourceVerification": {
-    "verifiedAt": "2026-10-04T00:37:36.205Z",
-    "codeCommit": "08a8f44f6204d0020595bacf156e950734074275",
-    "unitTests": 647,
+    "verifiedAt": "2026-10-04T01:25:46.593Z",
+    "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+    "unitTests": 649,
     "unitFiles": 63,
     "desktopChecks": 210,
     "normalCloseVerified": true,
-    "proof": "verification/streaming-progress-review-result.json"
+    "proof": "verification/vault-serialization-review-result.json"
   },
   "temporaryChats": {
     "verifiedAt": "2026-10-03T09:44:23.401Z",
@@ -688,13 +688,13 @@
     "proof": "verification/hosted-streaming-completion-failure-result.json"
   },
   "previousSourceVerification": {
-    "verifiedAt": "2026-10-03T22:44:00.851Z",
-    "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
-    "unitTests": 638,
-    "unitFiles": 62,
+    "verifiedAt": "2026-10-04T00:37:36.205Z",
+    "codeCommit": "08a8f44f6204d0020595bacf156e950734074275",
+    "unitTests": 647,
+    "unitFiles": 63,
     "desktopChecks": 210,
     "normalCloseVerified": true,
-    "proof": "verification/assistant-recipes-review-result.json"
+    "proof": "verification/streaming-progress-review-result.json"
   },
   "mcpResourceSubscriptions": {
     "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
@@ -785,7 +785,7 @@
   },
   "currentHostedRuntimeProofVerified": false,
   "historicalWorkflowRunVerified": true,
-  "previousVerificationScope": "The unchanged assistant-recipe source passes complete 210-check unpacked and actual installed desktop suites, including four recipe checks with zero model requests. Eight exact unpacked records are preserved before the installed suite overwrites common records. Five current installed recipe captures are individually reviewed. Four settings checks, seven portable checks with two real long-path launches, original bootstrap input inventories, actual current-user Unicode-path installation, shortcuts and data-retaining uninstall all pass. All ten required records satisfy current strict matching-body policy, and all four actual distributable hashes match those records. Earlier cropped/incomplete UI captures remain negative source evidence. Complete hosted acceptance, remaining capability/UI/physical work and publication remain pending.",
+  "previousVerificationScope": "Three deterministic failures reproduce stale initial-state and checkpoint updates on the previous product. Active run notifications retain live content with durable terminal status, and queued persistence samples the message inside its transaction. All renderer workspace replacements retain only matching-owner/message streaming prefixes and terminal replies; deletions, new retry IDs, different text and authoritative terminal/manual edits remain effective. The final source passes 647 tests, type/build and the unchanged complete 210-check native suite with six comparison checks, eleven real HTTP requests and normal close. Nine current complete-run comparison captures are individually reviewed. This establishes local regression recovery; the exact remote intervening producer and fresh same-body distribution/hosted acceptance remain to be verified. Existing 210-check installer/portable evidence retains its prior application hashes.",
   "previousCurrentRuntimeProofVerified": true,
   "assistantRecipes": {
     "codeCommit": "7bedddadb0486afdde9cea4065cf5f1fde3bbe88",
@@ -832,5 +832,13 @@
     "visiblePartialRegressionObserved": true,
     "completeRuntimeVerified": false,
     "proof": "verification/hosted-assistant-recipes-comparison-failure-result.json"
+  },
+  "vaultSerialization": {
+    "codeCommit": "6e6df69c2d60d9b03b7649184ce6555c9de65aae",
+    "sourceVerified": true,
+    "packagedVerified": false,
+    "hostedVerified": false,
+    "sourceChecks": 210,
+    "proof": "verification/vault-serialization-review-result.json"
   }
 }
