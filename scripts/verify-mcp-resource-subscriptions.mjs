@@ -8,16 +8,18 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   await application.resize(1280, 840);
   await waitForBridge(page, () => innerWidth === 1280 && innerHeight === 840);
   const beforeRequests = modelRequests(); const id = randomUUID(); const unsupportedId = randomUUID();
-  const name = '订阅验证 MCP'; const unsupportedName = '不支持订阅 MCP'; const documentUri = 'fixture://document';
+  const name = `订阅验证 MCP ${id}`; const unsupportedName = `不支持订阅 MCP ${unsupportedId}`; const documentUri = 'fixture://document';
   const profileUri = `fixture://profiles/${encodeURIComponent('订阅中文用户')}`;
   const captures = []; const draft = 'MCP_SUBSCRIPTION_KEEP_DRAFT 中文 <literal>';
-  await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command }) => {
+  const connection = await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command }) => {
     for (const [serverId, serverName, args] of [[id, name, [fixture]], [unsupportedId, unsupportedName, [fixture, '--no-subscriptions']]]) {
       await window.qiyao.saveMcpServer({ id: serverId, name: serverName, transport: 'stdio', command, args, enabled: true, timeout: 5000 }, { env: {} });
     }
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
-    await window.qiyao.mcpConnect(id);
+    const startedAt = Date.now(); const connected = await window.qiyao.mcpConnect(id);
+    return { startedAt, completedAt: Date.now(), status: connected.status, error: connected.error, resourceSubscriptionsSupported: connected.resourceSubscriptionsSupported };
   }, { id, unsupportedId, name, unsupportedName, fixture: join(root, 'verification/mcp-fixture.mjs'), command: process.execPath });
+  console.log('MCP subscription connection observations', JSON.stringify(connection));
   await page.reload(); await page.keyboard.press('Control+n'); await page.getByLabel('消息', { exact: true }).fill(draft);
   const dialog = () => page.getByRole('dialog');
   const preview = () => page.getByLabel('MCP 内容预览', { exact: true });
@@ -35,7 +37,9 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
     const png = await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/')).capturePage().then(image => image.toPNG().toString('base64'))");
     await writeFile(join(screenshots, filename), Buffer.from(png, 'base64')); captures.push(filename);
   }
-  assert.equal((await view()).resourceSubscriptionsSupported, true);
+  const initialView = await view();
+  console.log('MCP subscription preflight observations', JSON.stringify({ capturedAt: Date.now(), status: initialView?.status, error: initialView?.error, resourceSubscriptionsSupported: initialView?.resourceSubscriptionsSupported }));
+  assert.equal(initialView.resourceSubscriptionsSupported, true);
   await open(); await page.getByLabel('服务器资源', { exact: true }).selectOption(documentUri);
   await page.getByRole('button', { name: '订阅所选资源', exact: true }).click();
   await waitRevision(2);
