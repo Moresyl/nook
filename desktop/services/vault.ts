@@ -1,7 +1,7 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
-import { emptyWorkspace, workspaceSchema, type Message, type Project, type Workspace } from '../../contracts/workspace';
+import { emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
@@ -66,6 +66,10 @@ export class WorkspaceVault {
   }
 
   snapshot(): Workspace { return structuredClone(this.state); }
+  thread(id: string): Thread | undefined {
+    const thread = this.state.threads.find(item => item.id === id);
+    return thread ? structuredClone(thread) : undefined;
+  }
   project(id: string): Project | undefined {
     const project = this.state.projects.find((item) => item.id === id);
     return project ? structuredClone(project) : undefined;

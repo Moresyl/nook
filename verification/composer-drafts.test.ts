@@ -17,6 +17,41 @@ const draft = (change: Partial<ComposerDraft> = {}): ComposerDraft => ({ text: '
 async function setup() { const context = await testVault(); directories.push(context.directory); return { ...context, drafts: new ComposerDrafts(context.vault) }; }
 
 describe('conversation draft persistence and consumption', () => {
+  it('returns an independent selected-thread snapshot without requiring a complete workspace clone', async () => {
+    const { vault } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    expect(vault.thread('missing')).toBeUndefined(); const selected = vault.thread('thread')!;
+    selected.title = 'Changed outside the vault'; selected.messages.push({ id: 'external', role: 'user', content: 'External', status: 'complete', attachments: [], createdAt: 1 });
+    expect(vault.thread('thread')).toEqual(sampleThread()); expect(vault.snapshot().threads[0]).toEqual(sampleThread());
+  });
+  it('coalesces queued selections into the latest durable owner without letting a later workspace operation overtake them', async () => {
+    const { vault, directory, drafts } = await setup(); await vault.update(state => { state.threads = [sampleThread(), sampleThread({ id: 'second' })]; });
+    const update = vi.spyOn(vault, 'update'); let observed: string | undefined;
+    const choices = [drafts.activate('thread'), drafts.activate('second'), drafts.activate('thread'), drafts.activate('second')];
+    const following = vault.update(state => { observed = state.activeThreadId; });
+    await Promise.all([...choices, following]); expect(observed).toBe('second'); expect(update).toHaveBeenCalledTimes(2);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot().activeThreadId).toBe('second');
+  });
+  it('does not acknowledge queued choices until the selected state has been saved, including clearing the owner', async () => {
+    const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    const original = vault.update.bind(vault); let release!: () => void; const hold = new Promise<void>(resolve => { release = resolve; });
+    vi.spyOn(vault, 'update').mockImplementationOnce(async (...args) => { await hold; return original(...args); });
+    let acknowledgements = 0; const first = drafts.activate('thread').then(() => { acknowledgements++; }); const cleared = drafts.activate().then(() => { acknowledgements++; });
+    await Promise.resolve(); expect(acknowledgements).toBe(0); release(); await Promise.all([first, cleared]);
+    expect(acknowledgements).toBe(2); expect(vault.snapshot().activeThreadId).toBeUndefined();
+  });
+  it('rejects every invalid queued owner while retaining the last valid choice', async () => {
+    const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    const invalid = expect(drafts.activate('missing')).rejects.toThrow('no longer exists');
+    const valid = drafts.activate('thread'); const lastInvalid = expect(drafts.activate('also-missing')).rejects.toThrow('no longer exists');
+    await Promise.all([invalid, valid, lastInvalid]); expect(vault.snapshot().activeThreadId).toBe('thread');
+    await expect(drafts.activate('still-missing')).rejects.toThrow('no longer exists'); expect(vault.snapshot().activeThreadId).toBe('thread');
+  });
+  it('rejects a failed queued activation and permits a later retry without leaving the batch stuck', async () => {
+    const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk unavailable'));
+    await expect(drafts.activate('thread')).rejects.toThrow('Disk unavailable'); expect(vault.snapshot().activeThreadId).toBeUndefined();
+    await drafts.activate('thread'); expect(vault.snapshot().activeThreadId).toBe('thread');
+  });
   it('reads earlier backups, validates owners and bounds, and gives canonical browser/native revisions', async () => {
     const old = emptyWorkspace(); delete (old as Partial<typeof old>).composerDrafts; expect(workspaceSchema.parse(old).composerDrafts).toEqual([]);
     expect(workspaceSchema.safeParse({ ...old, composerDrafts: [draft(), draft()] }).success).toBe(false);

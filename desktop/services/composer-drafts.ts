@@ -2,7 +2,10 @@ import { z } from 'zod';
 import { composerDraftSchema } from '../../contracts/workspace';
 import type { WorkspaceVault } from './vault';
 
+type Activation = { id?: string; resolve: () => void; reject: (error: unknown) => void };
+
 export class ComposerDrafts {
+  private pendingActivation?: { requests: Activation[]; temporary: boolean };
   constructor(private readonly vault: WorkspaceVault) {}
 
   async save(raw: unknown): Promise<void> {
@@ -20,9 +23,27 @@ export class ComposerDrafts {
 
   async activate(raw?: unknown): Promise<void> {
     const id = z.string().min(1).max(128).optional().parse(raw);
-    await this.vault.update((state) => {
-      if (id && !state.threads.some((thread) => thread.id === id)) throw new Error('This conversation no longer exists.');
-      state.activeThreadId = id;
-    }, { conversation: true });
+    const temporary = id ? this.vault.thread(id)?.temporary === true : false;
+    return new Promise<void>((resolve, reject) => {
+      const request = { id, resolve, reject };
+      if (this.pendingActivation?.temporary === temporary) { this.pendingActivation.requests.push(request); return; }
+      const batch = { requests: [request], temporary }; this.pendingActivation = batch;
+      // Queue immediately to preserve ordering with sends, backups and other updates.
+      // Choices arriving before this transaction begins share its latest durable selection.
+      void this.vault.update(state => {
+        if (this.pendingActivation === batch) this.pendingActivation = undefined;
+        const valid = batch.requests.filter(item => {
+          if (item.id && !state.threads.some(thread => thread.id === item.id)) { item.reject(new Error('This conversation no longer exists.')); return false; }
+          return true;
+        });
+        if (valid.length) state.activeThreadId = valid.at(-1)!.id;
+      }, { conversation: true }).then(() => {
+        if (this.pendingActivation === batch) this.pendingActivation = undefined;
+        for (const item of batch.requests) item.resolve();
+      }, error => {
+        if (this.pendingActivation === batch) this.pendingActivation = undefined;
+        for (const item of batch.requests) item.reject(error);
+      });
+    });
   }
 }
