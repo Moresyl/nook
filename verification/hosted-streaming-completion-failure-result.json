@@ -1,0 +1,145 @@
+{
+  "verifiedAt": "2026-10-04T01:05:32.222Z",
+  "codeCommit": "08a8f44f6204d0020595bacf156e950734074275",
+  "runId": 37164504844,
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37164504844",
+  "conclusion": "failure",
+  "unitTests": 647,
+  "unitFiles": 63,
+  "passedDesktopChecks": 189,
+  "artifact": {
+    "id": 11288608882,
+    "name": "windows-verification-37164504844-1",
+    "bytes": 8512453,
+    "digest": "sha256:7a55f810754617d4b07cc9e5dbadad48299ad16d7fa097c05278f816bab31a99"
+  },
+  "actualBody": {
+    "executableSha256": "5594d58d6ac8f4da11c7291d425ab55f410232d2b11602ed7bc048ba628d54ce",
+    "archiveSha256": "6025bce79183172fb42192e340af2161df86ebc613eb4c590058e3cb9c177463",
+    "auditSha256": "70b79ed7af1eb4cd23854b3f102fdeeda1a6ee3931c6e313a85c27342d276a15"
+  },
+  "firstResponse": {
+    "waitStartedAt": 1791074267020,
+    "completedAt": 1791074277991,
+    "unchangedResponseDeadlineMs": 30000,
+    "diagnostic": {
+      "installedAt": 1791074267015,
+      "clicks": [
+        {
+          "at": 1791074267059,
+          "trusted": true
+        }
+      ],
+      "samples": 108,
+      "lastPoll": {
+        "at": 1791074277926,
+        "sendButtonPresent": false,
+        "sendButtonDisabled": null,
+        "responses": [
+          {
+            "text": "one: PARTIAL",
+            "status": "生成中"
+          },
+          {
+            "text": "two: PARTIAL",
+            "status": "生成中"
+          }
+        ]
+      }
+    },
+    "elapsedMs": 10971
+  },
+  "originalPartialConditionPassed": true,
+  "unchangedCompletionDeadlineMs": 10000,
+  "completionFailurePollCaptured": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "70b79ed7af1eb4cd23854b3f102fdeeda1a6ee3931c6e313a85c27342d276a15"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRecordCollectionRejected": true,
+  "exactSourcePolicy": {
+    "sha256": "5cb87548395bbc1965cafdf93d837a049f658ef4dd6831f8b326a0fe6db2398c",
+    "historical210CohortAcceptedForOwnBody": true,
+    "mixingFreshAuditRejected": true,
+    "rejection": "Runtime proof must match the audited application and normal close"
+  },
+  "screenshots": [
+    {
+      "name": "118-model-comparison-stream-light.png",
+      "sha256": "28e452bfc200dd8aedad690c5c29a3172710ad10e99b9e09e420f16dab226e33",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    },
+    {
+      "name": "failure.png",
+      "sha256": "a4cba2a3122c868258ce2a2ea9f4c2c622458d2c9b4a53282caebf07443e9913",
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-streaming-progress-full.log",
+      "sha256": "5c4b126ee5d416a5ad17aff8c03a420ffc748be0096599f0742cb7aeaace627f",
+      "bytes": 264067
+    },
+    {
+      "name": "github-streaming-progress-failed.log",
+      "sha256": "f251f1121c0428f4e47481f57e50aec34c1b4e0f576000f98b9d7d92d34a9d53",
+      "bytes": 75421
+    }
+  ],
+  "scope": "The exact stream-recovery source passes 647 unit tests, type/build/package gates and 189 desktop checks. One trusted click reaches the first response in about eleven seconds with both partial texts already visible. The unchanged simultaneous-partial condition passes and its screenshot shows both partials. The later first-group completion wait fails after fixture.finish, before the next verified check. The later failure screenshot shows both COMPLETE texts, the first reply complete and the second still running. No last completion poll, backend state at that deadline, fixture final-send timing or resource sample at that deadline was captured; the remaining producer is not established. Nine required records are absent. The frozen policy accepts the historical 210-check cohort only against its own application hashes and rejects combining it with the fresh audit. Full hosted installation and publication remain unverified."
+}
