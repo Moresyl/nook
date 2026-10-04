@@ -318,6 +318,38 @@ async function launch() {
   await application.evaluateMain("globalThis.qiyaoCloseEvents=[]; const recordClose=(event,extra={})=>{ const item={event,at:Date.now(),...extra}; globalThis.qiyaoCloseEvents.push(item); console.error('QIYAO_TEST_CLOSE',JSON.stringify(item)); }; for(const event of ['before-quit','will-quit','window-all-closed']) require('electron').app.on(event,()=>recordClose(event)); for(const w of require('electron').BrowserWindow.getAllWindows()) { w.on('close',event=>recordClose('window-close',{prevented:event.defaultPrevented})); w.on('closed',()=>recordClose('window-closed')); const send=w.webContents.send.bind(w.webContents); w.webContents.send=(channel,...args)=>{ if(channel==='qiyao:before-close') recordClose('draft-flush-requested'); return send(channel,...args); }; }");
   await page.getByLabel('消息', { exact: true }).waitFor();
   await application.evaluateMain(`
+    globalThis.qiyaoModelTransportEvents = [];
+    const diagnosticChannels = require('node:diagnostics_channel');
+    const fixtureOrigin = ${JSON.stringify(new URL(endpoint).origin)};
+    const observedRequests = new WeakMap();
+    let requestSequence = 0;
+    const recordTransport = (message, phase) => {
+      try {
+        const request = message.request;
+        if (!request || String(request.origin) !== fixtureOrigin) return;
+        const path = new URL(request.path, fixtureOrigin).pathname;
+        if (!path.startsWith('/message-edits/')) return;
+        let record = observedRequests.get(request);
+        if (!record) {
+          record = { id: ++requestSequence, method: request.method, path, firstObservedAt: Date.now(), phases: [] };
+          observedRequests.set(request, record);
+          globalThis.qiyaoModelTransportEvents.push(record);
+          if (globalThis.qiyaoModelTransportEvents.length > 64) globalThis.qiyaoModelTransportEvents.shift();
+        }
+        record.phases.push({ phase, at: Date.now() });
+        if (phase === 'headers') record.statusCode = message.response?.statusCode;
+        if (phase === 'error') {
+          const safeCode = value => typeof value === 'string' && /^[A-Z][A-Z0-9_]{0,63}$/.test(value) ? value : undefined;
+          record.errorCode = safeCode(message.error?.code);
+          record.causeCode = safeCode(message.error?.cause?.code);
+        }
+      } catch { /* Test diagnostics cannot alter the actual transport. */ }
+    };
+    for (const phase of ['create', 'bodySent', 'headers', 'trailers', 'error']) {
+      diagnosticChannels.channel('undici:request:' + phase).subscribe(message => recordTransport(message, phase));
+    }
+  `);
+  await application.evaluateMain(`
     globalThis.qiyaoPtyDiagnostics = [];
     const applicationRequire = require('node:module').createRequire(require('node:path').join(require('electron').app.getAppPath(), 'package.json'));
     const terminalPrototype = applicationRequire('node-pty/lib/terminal').Terminal.prototype;
