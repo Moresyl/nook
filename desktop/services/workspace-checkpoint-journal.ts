@@ -33,7 +33,7 @@ export class WorkspaceCheckpointJournal {
 
   private async primarySignature(): Promise<Signature | undefined> {
     const info = await stat(join(this.directory, 'workspace.json'), { bigint: true });
-    return info.ino === 0n ? undefined : { ino: info.ino.toString(), mtimeNs: info.mtimeNs.toString() };
+    return !info.isFile() || info.ino === 0n ? undefined : { ino: info.ino.toString(), mtimeNs: info.mtimeNs.toString() };
   }
 
   async restore(state: Workspace, primaryText?: string): Promise<Workspace> {
@@ -43,7 +43,11 @@ export class WorkspaceCheckpointJournal {
       try {
         if ((await stat(this.path)).size > maximumBytes) throw new Error('Oversized checkpoint journal');
         bytes = await readFile(this.path);
-      } catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return state; throw error; }
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+        this.signature = primaryText === undefined ? undefined : await this.primarySignature().catch(() => undefined);
+        return state;
+      }
       if (bytes.length > maximumBytes) throw new Error('Oversized checkpoint journal');
       const saved = journalSchema.parse(JSON.parse(bytes.toString('utf8')));
       if (saved.schemaVersion === 1 && saved.composer) throw new Error('Legacy response journals cannot contain draft changes');
@@ -69,8 +73,8 @@ export class WorkspaceCheckpointJournal {
   async prepare(state: Workspace, threadIds: string[], includeComposer = false): Promise<Candidate | undefined> {
     if (!this.baseSha256) return undefined;
     try {
-      const signature = this.signature ?? await this.primarySignature();
-      if (!signature) return undefined;
+      const signature = await this.primarySignature();
+      if (!signature || !this.signature || signature.ino !== this.signature.ino || signature.mtimeNs !== this.signature.mtimeNs) return undefined;
       const threads = new Map(this.threads);
       for (const id of new Set(threadIds)) {
         const index = state.threads.findIndex(thread => thread.id === id);
@@ -91,7 +95,7 @@ export class WorkspaceCheckpointJournal {
   }
 
   async reset(primaryBytes: Buffer): Promise<void> {
-    this.baseSha256 = hash(primaryBytes); this.signature = undefined; this.threads.clear(); this.composer = undefined;
+    this.baseSha256 = hash(primaryBytes); this.signature = await this.primarySignature().catch(() => undefined); this.threads.clear(); this.composer = undefined;
     await rm(this.path, { force: true }).catch(() => {});
   }
 }

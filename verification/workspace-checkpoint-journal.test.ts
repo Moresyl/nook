@@ -1,4 +1,4 @@
-import { readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { WorkspaceVault } from '../desktop/services/vault';
@@ -21,6 +21,24 @@ async function fixture() {
 }
 
 describe('durable response checkpoint journal', () => {
+  it('rejects a composer save when its primary path has become a directory, without acknowledging an unusable journal', async () => {
+    const { vault, directory, primary, journal } = await fixture(); await vault.checkpointMessages([{ threadId: 'thread', message: message('Previous') }]);
+    const before = vault.snapshot(), saved = await readFile(journal), held = join(directory, 'held-primary.json');
+    await rename(primary, held); await mkdir(primary);
+    await expect(new ComposerDrafts(vault).save({ threadId: 'thread', text: 'Unsaved', attachments: [], model: 'fixture', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 })).rejects.toThrow('Local data could not be saved');
+    expect(vault.snapshot()).toEqual(before); expect(await readFile(journal)).toEqual(saved); expect((await stat(primary)).isDirectory()).toBe(true);
+    await rm(primary, { recursive: true }); await rename(held, primary);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(before);
+  });
+  it('falls back to an independent full transaction when the primary file has been externally replaced with identical bytes', async () => {
+    const { vault, directory, primary, journal } = await fixture(); const original = await readFile(primary);
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Previous') }]);
+    await rename(primary, join(directory, 'retired-primary.json')); await writeFile(primary, original);
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Latest') }]);
+    expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+    await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());
+  });
   it('recovers actual composer saves and active-owner clearing with exact independent backups, then materializes canonical bytes', async () => {
     const { vault, directory, primary, backup, journal } = await fixture(); const original = await readFile(primary);
     const drafts = new ComposerDrafts(vault);
