@@ -96,34 +96,32 @@
     }
   },
   "unit": {
-    "tests": 630,
-    "files": 62,
-    "durationSeconds": 21.21,
-    "unchangedTestDeadlineMs": 5000,
+    "testsPassed": 683,
+    "filesPassed": 67,
     "coverage": {
       "lines": {
-        "total": 2938,
-        "covered": 2917,
+        "total": 3078,
+        "covered": 3057,
         "skipped": 0,
-        "pct": 99.28
+        "pct": 99.31
       },
       "statements": {
-        "total": 5019,
-        "covered": 4864,
+        "total": 5234,
+        "covered": 5078,
         "skipped": 0,
-        "pct": 96.91
+        "pct": 97.01
       },
       "functions": {
-        "total": 1119,
-        "covered": 1087,
+        "total": 1172,
+        "covered": 1140,
         "skipped": 0,
-        "pct": 97.14
+        "pct": 97.26
       },
       "branches": {
-        "total": 3577,
-        "covered": 3370,
+        "total": 3699,
+        "covered": 3494,
         "skipped": 0,
-        "pct": 94.21
+        "pct": 94.45
       },
       "branchesTrue": {
         "total": 0,
@@ -131,9 +129,7 @@
         "skipped": 0,
         "pct": 100
       }
-    },
-    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
-    "proof": "verification/mcp-binary-files-review-result.json"
+    }
   },
   "currentRuntimeProofVerified": false,
   "githubConfiguredSessionVerified": true,
@@ -725,34 +721,34 @@
     "latestHostedRunId": 37146925190
   },
   "previousUnitVerification": {
-    "tests": 616,
-    "files": 61,
-    "durationSeconds": 19.68,
+    "tests": 630,
+    "files": 62,
+    "durationSeconds": 21.21,
     "unchangedTestDeadlineMs": 5000,
     "coverage": {
       "lines": {
-        "total": 2897,
-        "covered": 2873,
+        "total": 2938,
+        "covered": 2917,
         "skipped": 0,
-        "pct": 99.17
+        "pct": 99.28
       },
       "statements": {
-        "total": 4964,
-        "covered": 4803,
+        "total": 5019,
+        "covered": 4864,
         "skipped": 0,
-        "pct": 96.75
+        "pct": 96.91
       },
       "functions": {
-        "total": 1106,
-        "covered": 1074,
+        "total": 1119,
+        "covered": 1087,
         "skipped": 0,
-        "pct": 97.1
+        "pct": 97.14
       },
       "branches": {
-        "total": 3546,
-        "covered": 3328,
+        "total": 3577,
+        "covered": 3370,
         "skipped": 0,
-        "pct": 93.85
+        "pct": 94.21
       },
       "branchesTrue": {
         "total": 0,
@@ -761,8 +757,8 @@
         "pct": 100
       }
     },
-    "codeCommit": "20827bd0bb1119728f9592c7de8ec479cde332f3",
-    "proof": "verification/mcp-resource-subscriptions-review-result.json"
+    "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
+    "proof": "verification/mcp-binary-files-review-result.json"
   },
   "mcpBinaryFiles": {
     "codeCommit": "530de9f66efe7a710daf1e48b2b161be704db2c0",
@@ -908,10 +904,10 @@
     "hostedFailureProof": "verification/hosted-checkpoint-first-response-failure-result.json"
   },
   "latestHostedRun": {
-    "runId": 37177697511,
-    "headSha": "3ea14208ac2267daeadfaaa19a29c4b0c2abd1a5",
+    "runId": 37180692285,
+    "headSha": "a124a86da69c0816d88f5e81d6a7ea0d19ba4aa2",
     "conclusion": "failure",
-    "proof": "verification/hosted-checkpoint-first-response-failure-result.json"
+    "proof": "verification/hosted-comparison-starts-terminal-failure-result.json"
   },
   "comparisonStarts": {
     "unitTests": 681,
@@ -922,5 +918,15 @@
     "distributionVerified": false,
     "hostedVerified": false,
     "sourceProof": "verification/comparison-starts-source-review-result.json"
+  },
+  "projectAccess": {
+    "unitTests": 683,
+    "unitFiles": 67,
+    "focusedDesktopChecks": 7,
+    "componentProof": "verification/project-access-component-result.json",
+    "completeSourceVerified": true,
+    "distributionVerified": false,
+    "hostedVerified": false,
+    "sourceProof": "verification/project-access-source-review-result.json"
   }
 }

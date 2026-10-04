@@ -1,6 +1,6 @@
 import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { emptyWorkspace, workspaceSchema, type Workspace } from '../../contracts/workspace';
+import { emptyWorkspace, workspaceSchema, type Project, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
@@ -58,6 +58,10 @@ export class WorkspaceVault {
   }
 
   snapshot(): Workspace { return structuredClone(this.state); }
+  project(id: string): Project | undefined {
+    const project = this.state.projects.find((item) => item.id === id);
+    return project ? structuredClone(project) : undefined;
+  }
   async flush(): Promise<void> { await this.tail; }
 
   update(change: (draft: Workspace) => void): Promise<Workspace> {

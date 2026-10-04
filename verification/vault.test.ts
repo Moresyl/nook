@@ -38,6 +38,41 @@ describe('local workspace persistence', () => {
     const reloaded = new WorkspaceVault(directory, codec); await reloaded.initialize();
     expect(reloaded.snapshot().notes).toHaveLength(2);
   });
+  it('returns isolated current project records without cloning conversation history', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const project = { id: '__proto__', name: 'Project', path: directory, instructions: 'PRIVATE_PROJECT_CONTEXT', createdAt: 1 };
+    await vault.update((draft) => { draft.projects.push(project); draft.threads.push(sampleThread()); });
+    const originalClone = globalThis.structuredClone;
+    const copied: unknown[] = [];
+    globalThis.structuredClone = ((value: unknown, options?: StructuredSerializeOptions) => { copied.push(value); return originalClone(value, options); }) as typeof structuredClone;
+    try {
+      const found = vault.project(project.id);
+      expect(found).toEqual(project);
+      expect(found).not.toBe(project);
+      found!.name = 'Changed outside the vault';
+      expect(vault.project(project.id)).toEqual(project);
+      expect(vault.project('toString')).toBeUndefined();
+      expect(vault.project('missing')).toBeUndefined();
+      expect(copied).toHaveLength(2);
+      expect(copied.every((value) => (value as { id?: string }).id === project.id)).toBe(true);
+    } finally { globalThis.structuredClone = originalClone; }
+    expect(vault.snapshot().threads).toEqual([sampleThread()]);
+  });
+  it('keeps project reads on the committed revision through queued saves, failure and removal', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const project = { id: 'project', name: 'Before', path: directory, instructions: '', createdAt: 1 };
+    await vault.update((draft) => { draft.projects.push(project); });
+    const saving = vault.update((draft) => { draft.projects[0].name = 'After'; });
+    expect(vault.project(project.id)?.name).toBe('Before');
+    await saving;
+    expect(vault.project(project.id)?.name).toBe('After');
+    await expect(vault.update((draft) => { draft.projects[0].name = ''; })).rejects.toThrow();
+    expect(vault.project(project.id)?.name).toBe('After');
+    const removing = vault.update((draft) => { draft.projects = []; });
+    expect(vault.project(project.id)?.name).toBe('After');
+    await removing;
+    expect(vault.project(project.id)).toBeUndefined();
+  });
   it('continues after a rejected change without committing invalid data', async () => {
     const directory = await freshDirectory(); const vault = new WorkspaceVault(directory, codec); await vault.initialize();
     await expect(vault.update((draft) => { draft.schemaVersion = 2 as 1; })).rejects.toThrow();

@@ -89,6 +89,30 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await waitForBridge(page, async (id) => (await window.qiyao.terminalList(id)).some((terminal) => /QIYAO_PS_VERSION_\d+/.test(terminal.output)), projectId);
   const shellRuntime = await page.evaluate(async (id) => { const terminal = (await window.qiyao.terminalList(id)).find((terminal) => /QIYAO_PS_VERSION_\d+/.test(terminal.output)); return { shell: terminal.shell, major: Number(terminal.output.match(/QIYAO_PS_VERSION_(\d+)/)[1]) }; }, projectId);
   assert.equal(shellRuntime.major, /pwsh\.exe$/i.test(shellRuntime.shell) ? 7 : 5); console.log('Project terminal selected shell runtime', JSON.stringify(shellRuntime));
+  await application.evaluateMain(`
+    globalThis.qiyaoProjectOriginalClone = globalThis.structuredClone;
+    globalThis.qiyaoProjectWorkspaceCopies = 0;
+    globalThis.structuredClone = (value, ...args) => {
+      if (value?.schemaVersion === 1 && Array.isArray(value.threads) && Array.isArray(value.projects)) globalThis.qiyaoProjectWorkspaceCopies++;
+      return globalThis.qiyaoProjectOriginalClone(value, ...args);
+    };
+  `);
+  let projectWorkspaceCopies;
+  try {
+    await page.evaluate(async (id) => {
+      for (let index = 0; index < 8; index++) {
+        const terminals = await window.qiyao.terminalList(id);
+        if (!terminals.some((terminal) => terminal.status === 'running')) throw new Error('The owned project terminal is no longer running');
+      }
+      const document = await window.qiyao.loadDocument(id, 'source/资料/代码.ts');
+      if (!document.text.includes('TREE_ORIGINAL')) throw new Error('The owned project document changed unexpectedly');
+    }, projectId);
+    projectWorkspaceCopies = await application.evaluateMain('globalThis.qiyaoProjectWorkspaceCopies');
+  } finally {
+    await application.evaluateMain('globalThis.structuredClone=globalThis.qiyaoProjectOriginalClone;delete globalThis.qiyaoProjectOriginalClone;delete globalThis.qiyaoProjectWorkspaceCopies;');
+  }
+  assert.equal(projectWorkspaceCopies, 0, 'Project terminal and document IPC must not copy unrelated conversation history');
+  console.log('Verified actual scoped project IPC without full workspace copies', JSON.stringify({ terminalReads: 8, documentReads: 1, workspaceCopies: projectWorkspaceCopies }));
   await page.getByRole('button', { name: '定位当前文件', exact: true }).click();
   const geometry = await page.evaluate(() => { const terminal = document.querySelector('.project-terminal').getBoundingClientRect(); const editor = document.querySelector('.editor-canvas').getBoundingClientRect(); return { top: terminal.top, bottom: terminal.bottom, height: terminal.height, editor: editor.height, windowHeight: innerHeight }; }); assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.windowHeight && geometry.height >= 100 && geometry.editor >= 60, JSON.stringify(geometry)); await page.screenshot({ path: join(screenshots, '96-project-tree-dark-narrow.png') });
   const rowsBeforeHide = await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')]));
