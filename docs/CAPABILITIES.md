@@ -1,6 +1,6 @@
 # Capability verification ledger
 
-当前源码已将项目查询改为只读取当前项目的独立副本，通过 683 项／67 个文件、类型、构建、完整 215 项原生检查、正常关闭及两次当前启动错误检查。大型 gzip 备份恢复和重启后，8 次真实终端查询及 1 次文档读取不再复制完整聊天历史；未提交、失败和删除后的项目保持正确边界。两张当前项目截图逐张审阅，渲染资源与此前已审阅 UI 字节一致；证据为 `verification/project-access-source-review-result.json`，读取成本与临时路径差异见 `docs/CI-PROJECT-ACCESS.md`。此前原子比较安装包的 215／4／7 检查属于旧应用体；远端 `37180692285` 在 164 项后终端提示符失败并保留现场，新的 `37183557672` 正在执行。当前分发、远端和完整剩余能力／UI 验收继续待办。
+当前项目局部读取应用体已通过 683 项／67 个文件、类型、构建、完整 215 项源码检查、两次当前启动错误检查，以及同一构建的完整 215 项未安装／实际安装桌面检查、4 项设置、7 项便携和 7 项真实兼容终端检查。十份运行记录严格匹配，两张当前安装版项目截图逐张审阅，四个实际二进制单独归档；见 `verification/project-access-distribution-result.json`。大型备份恢复后的 8 次终端查询与 1 次文档读取不复制完整聊天数据，已提交项目边界和原有检查期限保持正确。远端 `37183557672` 通过 683／144 后在手动编辑续聊中出现明确连接错误，底层错误码和时间尚未捕获；现场为 `verification/hosted-project-access-message-failure-result.json`。当前本地分发通过，完整远端流水线及全部剩余能力／UI 验收继续待办。
 
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.
 
