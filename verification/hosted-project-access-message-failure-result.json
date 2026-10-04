@@ -1,0 +1,117 @@
+{
+  "verifiedAt": "2026-10-04T07:16:12.166Z",
+  "runId": 37183557672,
+  "headSha": "085d8181027dc88789a62bddd7ee2b9a89cde254",
+  "url": "https://github.com/Moresyl/qiyao/actions/runs/37183557672",
+  "conclusion": "failure",
+  "unitTests": 683,
+  "unitFiles": 67,
+  "typecheckPassed": true,
+  "buildAndPackageAuditPassed": true,
+  "passedDesktopChecks": 144,
+  "artifact": {
+    "id": 11296207374,
+    "name": "windows-verification-37183557672-1",
+    "bytes": 5550853,
+    "reportedZipDigest": "sha256:a81ad4f7f9b9b261a484b0e8134b9035af00eb5b37bdab86871f209e6cda55da"
+  },
+  "actualBody": {
+    "executableSha256": "5d02b3ed5bd8ac0800733c3c1e36d4178fbe102a2d2664adac401a2c631d9331",
+    "archiveSha256": "84792aacd27eda45a727c84124ccac711f6508b6bdc9b6692b57f400662b268c",
+    "auditSha256": "1fe200a199fe72442157650d61a72ef0e83123da6c584f03cfc9e08f7367f411"
+  },
+  "failedCheck": {
+    "script": "scripts/verify-message-edits.mjs",
+    "line": 24,
+    "question": "MESSAGE_SAVE_CONTINUE_NEW",
+    "originalCompletionDeadlineMs": 10000,
+    "originalPollIntervalMs": 100,
+    "condition": "matching latest user question and complete assistant status",
+    "visibleReplyError": "Could not connect to the provider. Check the network and endpoint, then retry.",
+    "transportErrorCodeCaptured": false,
+    "requestAndResponseTimingsCaptured": false,
+    "underlyingConnectionCauseEstablished": false
+  },
+  "projectLookupCheckReached": false,
+  "largeBackupRestoreCheckReached": false,
+  "comparisonChecksReached": false,
+  "requiredRecords": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "present": true,
+      "sha256": "1fe200a199fe72442157650d61a72ef0e83123da6c584f03cfc9e08f7367f411"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "present": false
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "present": false
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "present": false
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "present": false
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "present": false
+    }
+  ],
+  "missingRequiredRecords": 9,
+  "completeRuntimeRecordCollectionRejected": true,
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "0ac0667120bb96c3a3436a9da937b75f1160a8099e1d65c397ff8322d3b691d3",
+      "bytes": 80414,
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "review": "Light conversation retains the edited and original history, exact continuation question and producing model; the latest assistant reply shows the safe connection error and retry action, with unknown usage. This is an actual request failure rather than a displayed completed reply."
+    }
+  ],
+  "logs": [
+    {
+      "name": "github-project-access-branch-full.log",
+      "bytes": 247053,
+      "sha256": "2a8cc8486a72f61f861daab0dfe5198ebd752387ce0aa40f3cd9ab5ab21e9fa2"
+    },
+    {
+      "name": "github-project-access-branch-failed.log",
+      "bytes": 54128,
+      "sha256": "3c009a5811faf0daa65acbda07d94709c2eb64f0e0486374573ba1dea72087f2"
+    }
+  ],
+  "scope": "The narrow project access body passes 683 hosted tests, types, build, package audit and 144 native checks. Continuing the manually edited conversation then fails the original ten-second completed-status condition. The independently inspected failure image and body show a persisted safe provider connection error for the exact continuation question. The gateway source uses this error when the fetch operation rejects, but transport code and request/response timing were not captured, so the underlying cause is not established. Large backup restoration, the new project lookup regression and comparisons are not reached on this run. Nine required current runtime records are missing and collection is rejected; local full-source or unpacked acceptance does not establish hosted or release acceptance."
+}

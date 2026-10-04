@@ -1,6 +1,6 @@
 # Delivery requirements
 
-最新源码的项目读取只复制所需项目，通过 683／67／215、正常关闭及两次当前启动错误检查，二十份当前原始记录及两张逐张审阅的项目截图归档；见 `verification/project-access-source-review-result.json`。恢复大型工作台后，真实终端和文档 IPC 不再复制无关聊天数据，旧实际安装包的 9 次整工作台复制可复现，原有终端及模型检查期限保持不变。旧原子比较安装包的 215／4／7 检查及此前四个现代终端分发二进制仍是独立历史证据，不能证明这次修改后的分发。远端 `37180692285` 的 681／164 终端失败现场保留，新运行 `37183557672` 正在执行。接下来完成当前应用体分发、远端和全部剩余能力／UI 范围，完成后走流水线发布。
+项目局部读取源码的 683／67／215、正常关闭、两次启动错误检查已通过，并完成同一构建的 215 项未安装／实际安装检查、4 项设置、7 项便携、真实 PowerShell 5 兼容、安装与便携启动组件、快捷方式和数据保留卸载。十份记录严格匹配，四个实际二进制已单独保存，两张当前安装版项目截图逐张审阅；见 `verification/project-access-distribution-result.json`。原有终端和模型检查期限保持不变。远端 `37183557672` 通过 683 项单元测试和 144 项桌面检查后，手动编辑续聊的助手回复出现连接错误，尚未达到完整运行验收；现场为 `verification/hosted-project-access-message-failure-result.json`。接下来补齐具体传输诊断、完整远端流水线与全部剩余能力／UI 范围，完成后走流水线发布，无需用户再次确认。
 
 The 672-test terminal body now passes complete 215-check unpacked and actual installed suites, four surface checks, seven portable checks, real Unicode-path installation and data-retaining uninstall. Ten strict matching runtime records pass. The same unpacked executable also passes seven actual PowerShell 5 fallback checks, while both complete variants verify PowerShell 7 at the unchanged deadline. Six current installed transfer captures were individually reviewed; all four exact binaries are separately preserved. See [current local distribution evidence](../verification/terminal-shell-distribution-result.json). Hosted comparison latency and the full remaining capability/UI delivery scope remain open.
 

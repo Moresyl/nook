@@ -1,0 +1,327 @@
+{
+  "verifiedAt": "2026-10-04T07:30:07.213Z",
+  "codeCommit": "085d8181027dc88789a62bddd7ee2b9a89cde254",
+  "sourceProof": {
+    "path": "verification/project-access-source-review-result.json",
+    "sha256": "494e9ff5785a222fa22c85b83169494ca684dd2e21919b1f818ea4a5acc681eb"
+  },
+  "sourceVerified": true,
+  "packagedVerified": true,
+  "hostedVerified": false,
+  "unitTests": 683,
+  "unitFiles": 67,
+  "sourceChecks": 215,
+  "unpackedChecks": 215,
+  "installedChecks": 215,
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "matchingRuntimeProofVerified": true,
+  "runtimeRecordCount": 10,
+  "actualPowerShellMajor": 7,
+  "legacyFallbackChecks": 7,
+  "legacyPowerShellMajor": 5,
+  "legacyFallbackProof": {
+    "path": "verification/project-access-legacy-native-result.json",
+    "sha256": "20918403b8e8c5d5e97e61e48c25b10f3adb551bbe8963ead17a1dd39e1fa8ed",
+    "bytes": 5265
+  },
+  "transferChecks": 5,
+  "transferModelRequests": 0,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "projectLookupRegression": {
+    "terminalReads": 8,
+    "documentReads": 1,
+    "fullWorkspaceCopies": 0,
+    "unpackedAndInstalledVerified": true
+  },
+  "runtimeRecords": [
+    {
+      "key": "audit",
+      "path": "verification/package-audit-result.json",
+      "sha256": "5d820f8b4d3a3c716af5a1b5c4f51b493b9ada77695204e2a4276b20e7defe93",
+      "bytes": 1293
+    },
+    {
+      "key": "desktop",
+      "path": "verification/packaged-result.json",
+      "sha256": "633189ae9f615e05cdb6d88c291baef15fd1f8c558e66951169e4b93ef144d6a",
+      "bytes": 54037
+    },
+    {
+      "key": "surfaces",
+      "path": "verification/surfaces-packaged-result.json",
+      "sha256": "fb41d0659380449db85a1f743d2f2cca674cbda3eeeb648100140aefcf7c9ea4",
+      "bytes": 1295
+    },
+    {
+      "key": "branches",
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "e1b0beb50e516aef5cde2272399e38f8f51754fca9199e7a2d9f6f30416903e3",
+      "bytes": 11796
+    },
+    {
+      "key": "temporary",
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "318c16a379ffc517d2bbbb751d962708ddcb4e8888c3796517e2847d3affb7bd",
+      "bytes": 1953
+    },
+    {
+      "key": "comparisons",
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "4b6e672dc7e887801d0edbaf18294726fb686f7db70ae7c5deeb59ecaf33fb2f",
+      "bytes": 2247
+    },
+    {
+      "key": "portable",
+      "path": "verification/portable-result.json",
+      "sha256": "e8ad3455bffb6b9e8afa3ee94773931dedaa4c5e5df1b78b0cf330b99a665624",
+      "bytes": 2092
+    },
+    {
+      "key": "portableAudit",
+      "path": "verification/portable-package-audit-result.json",
+      "sha256": "3126a595ecfff12872748266cb421012fa99a58d6caa001aaac62b2d86b79936",
+      "bytes": 1293
+    },
+    {
+      "key": "bootstrap",
+      "path": "verification/distribution-bootstrap-result.json",
+      "sha256": "c357511075364860ec39689d66abb0499729c05e37e02adce2103d670f8f3fb1",
+      "bytes": 4195
+    },
+    {
+      "key": "installer",
+      "path": "verification/pipeline-installer-result.json",
+      "sha256": "8309fa2b158fba26d0026edd926ad9507bfa0a1ff26af08609c542f249815fd8",
+      "bytes": 766
+    }
+  ],
+  "unpackedRecords": [
+    {
+      "name": "packaged-result.json",
+      "sha256": "1e788ab64dd510c31f046d99917e40e4e0f980d1e9b4003d518006f95516d831",
+      "bytes": 54037,
+      "checks": 215
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "sha256": "fb41d0659380449db85a1f743d2f2cca674cbda3eeeb648100140aefcf7c9ea4",
+      "bytes": 1295,
+      "checks": 4
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "sha256": "631cc20260288c8960700b94be0ec48132f9a68de9a46ac2e5730e119dc2a8d3",
+      "bytes": 11796,
+      "checks": 9
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "sha256": "ae73131ba8bb4d79cebbacc267a5555da36f8bcbfd35cc88416d12fd34546758",
+      "bytes": 1953,
+      "checks": 6
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "sha256": "3d95c5bc1b0df060ff497677d0fc07be89a906239c50c1db7c87f3b7578e56fc",
+      "bytes": 2247,
+      "checks": 6
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "sha256": "a8e24c63808e4e73b69a501ad79209287beaa480db621feb54398cf4125ab211",
+      "bytes": 1971,
+      "checks": 5
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "sha256": "59e94a096914897173891008ccacb73f8f50a18b891b5d08df228475299740a7",
+      "bytes": 1798,
+      "checks": 4
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "sha256": "a1784767d3d5e27d1168016dcb6e577dc7b4f1e5e0ee745b4c3d799551cd4887",
+      "bytes": 1891,
+      "checks": 6
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "9ff64e53755b5e9e309613160b5dbd95253040750ed95783f715de525af1d537",
+      "bytes": 916,
+      "checks": 6
+    }
+  ],
+  "installedCompanionRecords": [
+    {
+      "path": "verification/assistant-profiles-packaged-result.json",
+      "sha256": "8537f568e93a508b87842378afe1261f7142c4341dcd108b364457beeb365a34",
+      "bytes": 515
+    },
+    {
+      "path": "verification/assistant-recipes-packaged-result.json",
+      "sha256": "321b70796aa26cbbd1050c549bda3e6f3774e765adf2edd9e3014a1e359d815e",
+      "bytes": 1798
+    },
+    {
+      "path": "verification/automations-packaged-result.json",
+      "sha256": "b86c000267d167ee0f70e9dbd99f61e6c49907ba267af8a9ec920861bb1f6d09",
+      "bytes": 671
+    },
+    {
+      "path": "verification/backups-packaged-result.json",
+      "sha256": "ddf290cb6e7948cf198ef51c881f2c050f42591a09a8f437fe1e632921b1564f",
+      "bytes": 1994
+    },
+    {
+      "path": "verification/chat-navigation-packaged-result.json",
+      "sha256": "f0029f9a5f221df980f5d947bf4b7d4d98026cacc01ee8c89a1c077c7d29003c",
+      "bytes": 10712
+    },
+    {
+      "path": "verification/commands-packaged-result.json",
+      "sha256": "588265f7d7f7568019ad3112a1d70323b5c184302459684190a4589539618749",
+      "bytes": 870
+    },
+    {
+      "path": "verification/conversation-branches-packaged-result.json",
+      "sha256": "e1b0beb50e516aef5cde2272399e38f8f51754fca9199e7a2d9f6f30416903e3",
+      "bytes": 11796
+    },
+    {
+      "path": "verification/desktop-integration-packaged-result.json",
+      "sha256": "5d3236b1e6d9a708c5b94f6a05f01dd5029191e3b85be4326ee25cfed0c70b56",
+      "bytes": 625
+    },
+    {
+      "path": "verification/knowledge-packaged-result.json",
+      "sha256": "14a77a65c6522837d41f79758340044b68b5d8e1286b45c71aa4f5e7e3e76483",
+      "bytes": 778
+    },
+    {
+      "path": "verification/mcp-binary-files-packaged-result.json",
+      "sha256": "9226cdbb6c2cbd2d9566b4fb2c18ff8a9da31d2c3f09c8465372fa63fdef5669",
+      "bytes": 1891
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-packaged-result.json",
+      "sha256": "e14902bb8b12bfc379660dbe3c68e49cbbc79258896aabcddff6ebf9d3ef33b2",
+      "bytes": 916
+    },
+    {
+      "path": "verification/message-edits-packaged-result.json",
+      "sha256": "801a7fccaac0ef0f046379fa56575d1d7176d62d0675d84bf843065bcf911512",
+      "bytes": 765
+    },
+    {
+      "path": "verification/model-comparisons-packaged-result.json",
+      "sha256": "4b6e672dc7e887801d0edbaf18294726fb686f7db70ae7c5deeb59ecaf33fb2f",
+      "bytes": 2247
+    },
+    {
+      "path": "verification/project-tree-packaged-result.json",
+      "sha256": "6ca3f39b9298a775cbb58202230cb1c9ca789adfd5d1993f807af9479133f460",
+      "bytes": 3673
+    },
+    {
+      "path": "verification/prompt-templates-packaged-result.json",
+      "sha256": "7316d9e46c19281c9116fdaadfb646c9eb1e5d5c9af2eaccb4bed1f20e1c3d25",
+      "bytes": 526
+    },
+    {
+      "path": "verification/reply-versions-packaged-result.json",
+      "sha256": "25eb0158d9a267a481d54433fa88a5a6e13c93dca5bd17caa28ee7f0ef562e1c",
+      "bytes": 594
+    },
+    {
+      "path": "verification/temporary-conversations-packaged-result.json",
+      "sha256": "318c16a379ffc517d2bbbb751d962708ddcb4e8888c3796517e2847d3affb7bd",
+      "bytes": 1953
+    },
+    {
+      "path": "verification/prompt-transfer-packaged-result.json",
+      "sha256": "4fcf1a97e76c2fa7d61636ce5f03adfe964ec4ccb529f96c23da4cd82c7b3a08",
+      "bytes": 1971
+    },
+    {
+      "path": "verification/installed-package-audit-result.json",
+      "sha256": "7d5e9546814dc852c646790509fd1ca7757867d17e9c9078163d446871c8f0fb",
+      "bytes": 1293
+    },
+    {
+      "path": "verification/installed-shortcuts-result.json",
+      "sha256": "c80b2c79cc7d6619bbef58c1d159a4e0ee53bef05796e434974b2d03b7309c43",
+      "bytes": 875
+    },
+    {
+      "path": "verification/shell-integration-result.json",
+      "sha256": "7f3fa296020ab9689edb83007f9e4655130b7d2a3e07c42de5ef10cf425c5910",
+      "bytes": 984
+    },
+    {
+      "path": "verification/installer-toolset-result.json",
+      "sha256": "457edba7e2b0102904daf9c3fb2ef4f0f88b822524416200047f5ae7aa947339",
+      "bytes": 8630
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "95-project-tree-editor-light.png",
+      "path": "verification/screenshots/95-project-tree-editor-light.png",
+      "sha256": "900a6c8b62aff7b98609ab64b6b5d12a797dc2f8e3fcc6f3378c54e4aed0b408",
+      "bytes": 87010,
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "review": "Installed light project view retains the expanded Unicode file tree, exact original source, independent unsaved draft and visible save controls."
+    },
+    {
+      "name": "96-project-tree-dark-narrow.png",
+      "path": "verification/screenshots/96-project-tree-dark-narrow.png",
+      "sha256": "2b9ffdd7941d94adc3635ad5ee720a261829e6bc5f18d2b0a2dd43c9b0364543",
+      "bytes": 56965,
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "review": "Installed dark 760 by 540 project view retains exact unsaved source above the real PowerShell terminal; the version command returns QIYAO_PS_VERSION_7 and an actual prompt."
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Qiyao.exe",
+      "bytes": 245726720,
+      "sha256": "0d844fa37f304022d14789fb5dfd05f31f7a4dbbd6cbe6a53747dbc5279e1d0e"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 485569149,
+      "sha256": "ef35eb048841928645fa2b23845e8d8a572827fd97819c9f0a2874b274320f10"
+    },
+    {
+      "path": "artifacts/Qiyao-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 237876291,
+      "sha256": "b78387b426375dd527a06e4b07a0ff5733001e42830064132c43d0a293a465f0"
+    },
+    {
+      "path": "artifacts/Qiyao-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 306617085,
+      "sha256": "4f7776582e4e11814ca90eef184541978df1e9b491dd1733c471baf8c1b218e5"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "scope": "Exact 683-test project access source, complete 215-check unpacked and actual Unicode-path installed suites, four settings checks, actual portable lifecycle, bootstrap audit, shortcuts and data-retaining uninstall pass with ten strict matching runtime records. Both complete application variants verify real PowerShell 7 under original deadlines and eight terminal-list plus one document IPC reads without copying unrelated workspace history. The exact unpacked binary separately passes seven real Windows PowerShell 5 fallback checks and normal close. Two current installed project captures are individually reviewed. All four exact binaries are separately preserved before later builds. This establishes local distribution, while complete hosted acceptance, physical system-dialog interaction and the remaining capability/UI delivery scope remain open."
+}
