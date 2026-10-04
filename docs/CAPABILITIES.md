@@ -1,6 +1,6 @@
 # Capability verification ledger
 
-当前源码进一步原子保存整组比较启动，共享启动准备及一次全量通知，重新通过 681 项／67 个文件、类型、构建、完整 215 项原生检查、正常关闭及两次当前启动错误检查。84 MB／297 个对话实测四模型启动从 5 次更新／4 次通知降为各 1 次，原文、附件、草稿和整份上一文件保留。三张当前完整套件截图逐张审阅，原有 30 秒条件下两路首次回复显示为 1,199 ms；证据为 `verification/comparison-starts-source-review-result.json`。此前终端分发属于旧应用体，新远端 `37180692285` 仍在执行。当前分发、远端和完整剩余能力／UI 验收继续待办。
+当前源码已将项目查询改为只读取当前项目的独立副本，通过 683 项／67 个文件、类型、构建、完整 215 项原生检查、正常关闭及两次当前启动错误检查。大型 gzip 备份恢复和重启后，8 次真实终端查询及 1 次文档读取不再复制完整聊天历史；未提交、失败和删除后的项目保持正确边界。两张当前项目截图逐张审阅，渲染资源与此前已审阅 UI 字节一致；证据为 `verification/project-access-source-review-result.json`，读取成本与临时路径差异见 `docs/CI-PROJECT-ACCESS.md`。此前原子比较安装包的 215／4／7 检查属于旧应用体；远端 `37180692285` 在 164 项后终端提示符失败并保留现场，新的 `37183557672` 正在执行。当前分发、远端和完整剩余能力／UI 验收继续待办。
 
 This ledger tracks the full desktop scope. The current foundation is working, but broader integration and release remain incomplete.
 

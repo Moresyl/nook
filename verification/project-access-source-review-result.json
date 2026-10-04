@@ -1,0 +1,405 @@
+{
+  "verifiedAt": "2026-10-04T06:49:52.264Z",
+  "codeCommit": "085d8181027dc88789a62bddd7ee2b9a89cde254",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "unitTests": 683,
+  "unitFiles": 67,
+  "desktopChecks": 215,
+  "normalCloseVerified": true,
+  "runtimeErrors": [],
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "actualPowerShellMajor": 7,
+  "originalFirstResponseDeadlineMs": 30000,
+  "originalCompletionDeadlineMs": 10000,
+  "originalTerminalDeadlineMs": 10000,
+  "originalPollIntervalMs": 100,
+  "sourceFirstResponseElapsedMs": 1178,
+  "comparisonModelRequests": 11,
+  "transferModelRequests": 0,
+  "actualStartupFailureCases": 2,
+  "actualDelayedDiffWorkerDisposalVerified": true,
+  "actualLargeRestoredWorkspaceLookupVerified": {
+    "terminalReads": 8,
+    "documentReads": 1,
+    "fullWorkspaceCopies": 0
+  },
+  "coverage": {
+    "lines": {
+      "total": 3078,
+      "covered": 3057,
+      "skipped": 0,
+      "pct": 99.31
+    },
+    "statements": {
+      "total": 5234,
+      "covered": 5078,
+      "skipped": 0,
+      "pct": 97.01
+    },
+    "functions": {
+      "total": 1172,
+      "covered": 1140,
+      "skipped": 0,
+      "pct": 97.26
+    },
+    "branches": {
+      "total": 3699,
+      "covered": 3494,
+      "skipped": 0,
+      "pct": 94.45
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "source": [
+    {
+      "path": "contracts/prompt-bundles.ts",
+      "sha256": "efd1d599a5e526713142dc9bdae089c3271b4a8290a063d320cf57c2b9f6cb5f",
+      "bytes": 1874
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "8f077738261f93957947214215336b8ae9822830492d4e957bf8b005f5d162a5",
+      "bytes": 8458
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "e4f0f1789b32e7e3e6747c224dd74d8efb24b4bc20ae47a13ef65201b2c29150",
+      "bytes": 9197
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "4823afad4ce144eaa3ee6daf72cc4bbd8f76446c67535e70de072d6e648e6f5e",
+      "bytes": 40127
+    },
+    {
+      "path": "desktop/services/prompt-templates.ts",
+      "sha256": "32a9614d1d1ce71e2bcd56843bbe8ca17db760f19b07bad499878661c0d58178",
+      "bytes": 4545
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986",
+      "bytes": 2721
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1",
+      "bytes": 9526
+    },
+    {
+      "path": "verification/prompt-bundles.test.ts",
+      "sha256": "338f450c213d02d67d8f0465f6cd47861c0d132b5c661f13f04564433f999115",
+      "bytes": 11953
+    },
+    {
+      "path": "scripts/verify-prompt-transfer.mjs",
+      "sha256": "6c367383334b34df7c63a0580cd11775ab6748881e61b0c9ad1a7f37641a825f",
+      "bytes": 20032
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "47b3c9c1bc29d2ae48c82adc7e8e8837211d3c27473b5bb59855c97d1b815241",
+      "bytes": 125127
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "96bafc06b2bdeb24f781e5a8774d1a7e3b8f11f32e57bb113d728de94c6f14b4",
+      "bytes": 8034
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "d92c6f4d175d897668a2379738c9de0a789ff94a88e3cbd8f31d026eeba9f263",
+      "bytes": 3886
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "8f93e312c49bbe589bda67881378d5a0f0cb071971d9d384f8bacc1d8c8a0f7e",
+      "bytes": 7435
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "e065572c28734f1a6f94048c339c135bf849a693060d2325e4d07a843537e3c6",
+      "bytes": 23397
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "38d5efcb27afcbe4a3020dd4910eec1004bb3c6acc7fabbc402b943c8bcaefa6",
+      "bytes": 3765
+    },
+    {
+      "path": "desktop/services/startup-diagnostics.ts",
+      "sha256": "f85d88eec7f87c6b9cc75b3faca126475bcbd1c7b976a19f81655e969912a673",
+      "bytes": 760
+    },
+    {
+      "path": "desktop/services/vault.ts",
+      "sha256": "37ce0b88d49b5fbfec953ab4eadebbf7039f74e704c39c1cfe86fe6534514e56",
+      "bytes": 5914
+    },
+    {
+      "path": "verification/startup-diagnostics.test.ts",
+      "sha256": "5955f7cf5cd13bd6594cfa05f585b314867c9ed64698ea46933f129bc6612e3b",
+      "bytes": 2013
+    },
+    {
+      "path": "verification/vault.test.ts",
+      "sha256": "403308fc0e3c3b519896a73953c99753c462514ac329581c03f5a2fc904224c8",
+      "bytes": 12705
+    },
+    {
+      "path": "desktop/services/terminal-shell.ts",
+      "sha256": "49090490269efcca6039683757e6c4767f49464f7eeefb9abd2a18411087dd00",
+      "bytes": 839
+    },
+    {
+      "path": "desktop/services/terminal-sessions.ts",
+      "sha256": "50073c8761564bc644e977e7d4a845b9e188576a673f105f744a0572585a7b91",
+      "bytes": 4737
+    },
+    {
+      "path": "verification/terminal-shell.test.ts",
+      "sha256": "4be0e6957100c151b938a8d967632083cbfdb500853d4f277a70ad959d7a6bcd",
+      "bytes": 3126
+    },
+    {
+      "path": "verification/terminal-sessions.test.ts",
+      "sha256": "63da02adaeaa1d6fef0661c7b9e01bf24baf77202a6cc593a58ff5a7d432a5b2",
+      "bytes": 8740
+    },
+    {
+      "path": "scripts/verify-project-tree.mjs",
+      "sha256": "62ae03a703ef65454a7f5ecde068232811ff23fd477f9811bcc6f1c003c2317d",
+      "bytes": 36501
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "7abe401bc6935f904648ec95db6213937320e1083143ce4d2d1a48aa3c96c4bb",
+      "bytes": 30158
+    },
+    {
+      "path": "desktop/services/message-checkpoints.ts",
+      "sha256": "d2b3ea11bc716b3293579cbeea38ec85b748080878e7f979b6ced5d2a33e0a62",
+      "bytes": 2153
+    },
+    {
+      "path": "verification/conversation-engine.test.ts",
+      "sha256": "9f0c467fb78f01c2f7cecd33e521e55bfabc07845161f612278afce30b44156e",
+      "bytes": 23502
+    },
+    {
+      "path": "verification/message-checkpoints.test.ts",
+      "sha256": "9e480adfeb07eabdc8eed26955590d2e828cf08bdb258739bca90291da3a1e2e",
+      "bytes": 6827
+    },
+    {
+      "path": "workbench/components/code-editor.tsx",
+      "sha256": "ab0423cf99c62e90fe94a981deab14417d76164340813904a0113619c7b79e7b",
+      "bytes": 4476
+    },
+    {
+      "path": "scripts/verify-diff-disposal.mjs",
+      "sha256": "b0fdce8d147dcb70304c34399d680b7fb05ffa1e4f91209f51cf00681657ab44",
+      "bytes": 2832
+    },
+    {
+      "path": "verification/model-comparisons.test.ts",
+      "sha256": "4d47644910f99fc2d6165220783f9b4c6348658edec09cab12f49bcab08ae7a1",
+      "bytes": 34850
+    }
+  ],
+  "records": [
+    {
+      "path": "verification/assistant-profiles-result.json",
+      "sha256": "3a1622a1c06caa4509efb6e8c4c5f0b440f620ad52f7c1e953560e178945fb9f",
+      "bytes": 518
+    },
+    {
+      "path": "verification/assistant-recipes-result.json",
+      "sha256": "b3b14676e0cacf4493bd8b9a1605319f7b816c9d969f969375a6265c9434565e",
+      "bytes": 1677
+    },
+    {
+      "path": "verification/automations-result.json",
+      "sha256": "f79f7efd540301d0e987879ae29a22dfee8893e0490a80205910c744981a90d1",
+      "bytes": 674
+    },
+    {
+      "path": "verification/backups-result.json",
+      "sha256": "28c187a086aa89dc5ca49b58a26e6bd58e270d8dc79703f747c842e302233fd4",
+      "bytes": 1997
+    },
+    {
+      "path": "verification/chat-navigation-result.json",
+      "sha256": "1f265dc561336331ae48fffe82938d2171aa4fa6c1a6ace8adbcd8f19e08d137",
+      "bytes": 10591
+    },
+    {
+      "path": "verification/commands-result.json",
+      "sha256": "9db4a1eec91483cfd3963cea1172299e2c12a7367b01c1a671371c6819f127a4",
+      "bytes": 873
+    },
+    {
+      "path": "verification/conversation-branches-result.json",
+      "sha256": "c7f91471596992001a9e3352df725e8b6c45288ea13882760e2f997382f1adb5",
+      "bytes": 11675
+    },
+    {
+      "path": "verification/desktop-integration-result.json",
+      "sha256": "aff46dd16414fce5c606da4b66b249862c2223a26f61aa8f36bb78c8d149db38",
+      "bytes": 628
+    },
+    {
+      "path": "verification/electron-result.json",
+      "sha256": "6e50425d7674709ded31e4fb1f6eaf0fe30ac93b4096b709c150a0c12f81272f",
+      "bytes": 53916
+    },
+    {
+      "path": "verification/knowledge-result.json",
+      "sha256": "c3d53fdf26333a51108424bfb26949a366622c189e76e03563faa757f844fd2f",
+      "bytes": 781
+    },
+    {
+      "path": "verification/mcp-binary-files-result.json",
+      "sha256": "94e512ffa75508bb8b7977276329f780d5a861e5eec5b6002dc997354d2a1d2b",
+      "bytes": 1770
+    },
+    {
+      "path": "verification/mcp-resource-subscriptions-result.json",
+      "sha256": "609d1edb275bf8e58f291c986b4203b78489a7805f0ea29364a10bde2e4c7842",
+      "bytes": 795
+    },
+    {
+      "path": "verification/message-edits-result.json",
+      "sha256": "f4fbccac338f9bc6b31c35f45eff675f7b3d8cdaf39183aad5aa115286e3924e",
+      "bytes": 768
+    },
+    {
+      "path": "verification/model-comparisons-result.json",
+      "sha256": "49dfc449ea96fd9c5c16cc8b478fbfe02f9eed808a49a728e49834004a204084",
+      "bytes": 2126
+    },
+    {
+      "path": "verification/project-tree-result.json",
+      "sha256": "dfd3fc7bfdab1447c26a75b31a46f16a8dd051dd9b676bb1d99a1024520a5060",
+      "bytes": 3552
+    },
+    {
+      "path": "verification/prompt-templates-result.json",
+      "sha256": "a59f3c014f1b43f4bdeba89f42f704f6809cecd35114023f3e9e933c814eff7a",
+      "bytes": 529
+    },
+    {
+      "path": "verification/reply-versions-result.json",
+      "sha256": "b2d6bd6c818e2823bf8259ddefe251bf31aafdca9f160c523f81f0faa22daa3a",
+      "bytes": 597
+    },
+    {
+      "path": "verification/temporary-conversations-result.json",
+      "sha256": "30d494e058037a84e8b524b05468b30054b4ba6fba1c358963393f364c34f63b",
+      "bytes": 1832
+    },
+    {
+      "path": "verification/prompt-transfer-result.json",
+      "sha256": "07655efce9875a6a1b0756863be7a44965040c20402813b8ec7a85d9e0b96894",
+      "bytes": 1850
+    },
+    {
+      "path": "verification/project-access-native-failure-result.json",
+      "sha256": "c9599e10c19ee5d345f571ee64aa267631a070e60d63fa91752324b29a194d6b",
+      "bytes": 5603
+    }
+  ],
+  "logs": [
+    {
+      "name": "project-access-typecheck.log",
+      "sha256": "09652b99b0bd67a17520fb1be2bce5540053d9c7bba708a288133d3fe8b5f18f",
+      "bytes": 86
+    },
+    {
+      "name": "project-access-coverage.log",
+      "sha256": "1225c2a6a8e719b806a409f9430cb170102b39f7827aff04eedf38a63ec4084b",
+      "bytes": 4571
+    },
+    {
+      "name": "project-access-build.log",
+      "sha256": "e293bb70d6a9340bec656478dedd5d7c7f1991580a5f429acaeaf670e1f9d700",
+      "bytes": 22550
+    },
+    {
+      "name": "project-access-complete-native.log",
+      "sha256": "fe2326dde36b848462c878f3d7377cea0b17aad2f11c46f46d957c6281a35261",
+      "bytes": 35963
+    },
+    {
+      "name": "project-access-startup-failure-probe.log",
+      "sha256": "838379dbb3a2178ae1733d3492119908988c8ed0ab5f327f43850f592075ff22",
+      "bytes": 116
+    }
+  ],
+  "compiled": {
+    "main": {
+      "path": "out/main/launch.cjs",
+      "sha256": "5a0a65e2b0f071ba47318511033cfd959d6c7393778f4c27cd35ed46287dd295"
+    },
+    "renderer": {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    "projectRenderer": {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  },
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "componentProof": {
+    "path": "verification/project-access-component-result.json",
+    "sha256": "f7a3fb09b116ce956c4ad168a0bee57b47cf9620f124a0d40a66c5b6c2f7c56b"
+  },
+  "screenshots": [
+    {
+      "name": "95-project-tree-editor-light.png",
+      "sha256": "4e2c2ebdcc2e3bcda16456703670eb70955dd4dfe41b5911c390990aa2b3e9f4",
+      "bytes": 86971,
+      "width": 1280,
+      "height": 840,
+      "individuallyReviewed": true,
+      "review": "Light project view retains the expanded Unicode file tree, exact original source, independent unsaved draft and visible save controls."
+    },
+    {
+      "name": "96-project-tree-dark-narrow.png",
+      "sha256": "c7785caa512559a70ce8f91961f8c03e5a4431aad4ae6fc9a7ee0e85feb28a37",
+      "bytes": 56940,
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "review": "Dark 760 by 540 project view retains the exact unsaved editor text above the real PowerShell terminal; the actual version command returns QIYAO_PS_VERSION_7 and a prompt."
+    }
+  ],
+  "rendererReview": {
+    "exactCompiledBytesMatchPriorReviewedRenderer": true,
+    "priorReview": "verification/comparison-starts-source-review-result.json",
+    "currentCompleteProjectCapturesIndividuallyReviewed": true
+  },
+  "scope": "Narrow project reads pass 683 tests in 67 files, types/build, all 215 native desktop checks and normal close, plus two fresh corrupt-file startup cases. After actual large gzip restoration and restart, eight real terminal-list calls and one document read make zero full workspace copies. Actual PowerShell 7 responds under the unchanged ten-second prompt condition; original comparison first-display/completion deadlines, independent errors/stops and eleven real requests remain verified. Unit tests preserve record isolation and committed revisions across queued, failed and deleted projects. Two current project images are individually reviewed and renderer/project assets exactly retain the preceding reviewed UI. Fresh matching distribution, complete hosted acceptance and remaining capability/UI scope are pending."
+}
