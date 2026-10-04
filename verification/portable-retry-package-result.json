@@ -1,0 +1,123 @@
+{
+  "verifiedAt": "2026-10-04T19:14:28.643Z",
+  "codeCommit": "7df8e3c6dd920f1e45729ddc4741323e8691599a",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "packageExitCode": 0,
+  "auditExitCode": 0,
+  "completeApplicationAuditUnchanged": true,
+  "packageAudit": {
+    "path": "verification/package-audit-result.json",
+    "sha256": "8b0a91a5264d1693ae328cf4eb75cbd677ccf36236dcfdb9479f2918d34a1fc2",
+    "originalAuditCommit": "6149a63",
+    "originalAuditSha256": "2ff3e1ec976cb75f00fb85bb1cd9e669fd42c0c42d76b8a93f773d3b4af161b6",
+    "previousVerifiedAt": "2026-10-04T18:08:14.756Z",
+    "currentVerifiedAt": "2026-10-04T19:13:15.294Z"
+  },
+  "executableSha256": "cdc255f1ba1e2a9739f1b060619ca3fb4386f380237ddc57b045e513103a52f4",
+  "archiveSha256": "59c146046b1471e6dcc0032c74c5f28b5070d74c8b85834d1d28dab671c9aa96",
+  "compiled": [
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "5423b4cffef523049064ef8bf48cb4523b64f0ada64c84f59fb383418e1b594e"
+    },
+    {
+      "path": "out/renderer/assets/index-CNWMmtIX.js",
+      "sha256": "b85cd01b7bd837b3b26cb0c4af3d98979b904bf46a4ed3a8d3eb51944e493c80"
+    },
+    {
+      "path": "out/renderer/assets/projects-DRyjzR0s.js",
+      "sha256": "631087a4a88247b0a1f8ec36027051a3f8003fb48d147aca0233dd9b51cdda7a"
+    }
+  ],
+  "originalLegal": [
+    {
+      "path": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "licenses/fonts/Inter-OFL.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    }
+  ],
+  "existingUnpackedProof": "verification/chat-navigation-observed-complete-unpacked-result.json",
+  "existingUnpackedChecks": 215,
+  "existingSettingsChecks": 4,
+  "existingRuntimeRecordTimesPreserved": true,
+  "records": [
+    {
+      "name": "packaged-result.json",
+      "bytes": 54037,
+      "sha256": "6d6a53cd351c099151cb3e6e9318a7c3f508592da9f7dd1ffc07b98b68b85cb4"
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "bytes": 1295,
+      "sha256": "c82025076d103c02b398aefd563a7c2a5488f67eb371f2a0a27ae0535022e13b"
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "bytes": 11796,
+      "sha256": "96987160e816baf75d41f09ba66b254b0cf4c1a3ccbf991aebe397ce3490f850"
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "bytes": 1953,
+      "sha256": "9aebdfad74cf2529bee299931a61ebff71e9bcea3c948c6605983b42d183a05b"
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "bytes": 2247,
+      "sha256": "64e8726835b7ff552c9b72e2df52521c3ebfe974dc2526f3e56657e6a041a4c8"
+    },
+    {
+      "name": "prompt-transfer-packaged-result.json",
+      "bytes": 1971,
+      "sha256": "8952865ad6350ce17629063af5322573d162745b021d1dce071ab1fa104795d1"
+    },
+    {
+      "name": "assistant-recipes-packaged-result.json",
+      "bytes": 1798,
+      "sha256": "02e2fb3aa50085527361fc5bec1305261313c0cc43011e5942c75d843208aaab"
+    },
+    {
+      "name": "mcp-binary-files-packaged-result.json",
+      "bytes": 1891,
+      "sha256": "260ce994da6ca5f2264deeabab39e29df6b49d05ededa42c4aaf825d8b30e1e9"
+    },
+    {
+      "name": "mcp-resource-subscriptions-packaged-result.json",
+      "bytes": 916,
+      "sha256": "e7b81ba4522aebe1e84cc10afea8e0a600114fa3687e3050f09438f6878adaab"
+    },
+    {
+      "name": "chat-navigation-packaged-result.json",
+      "bytes": 10712,
+      "sha256": "92d0b3bc13318bf5eed5a5ea0225bcf961e70ddae82b393ef3fd8cd7cc2b8ec1"
+    },
+    {
+      "name": "project-tree-packaged-result.json",
+      "bytes": 3673,
+      "sha256": "ef42a130983014250fd8bad28a8a9fc84297b2c00054ca28d196fae6a19666a0"
+    }
+  ],
+  "logs": [
+    {
+      "name": "portable-retry-package.log",
+      "bytes": 28266,
+      "sha256": "553033447dbc581d94904776ab8d181abe509d03bc0802dcbc1682c0324e5dcd"
+    },
+    {
+      "name": "portable-retry-package-audit.log",
+      "bytes": 298,
+      "sha256": "950659b5a1892cd634b92f4a5940f8950c43013dcdaf9e65e62aa2910a6cdc2b"
+    }
+  ],
+  "actualNewPortableVerified": false,
+  "actualNewInstalledVerified": false,
+  "hostedVerified": false,
+  "scope": "New bounded-cleanup packaging passes full legal/product audit. Every field of the unpacked audit other than verification time matches the independently recorded original body, and all eleven complete runtime/settings records retain their exact original bytes/timestamps. New wrapper execution and installation remain independent gates."
+}

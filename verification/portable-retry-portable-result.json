@@ -1,0 +1,56 @@
+{
+  "verifiedAt": "2026-10-04T19:18:05.986Z",
+  "codeCommit": "7df8e3c6dd920f1e45729ddc4741323e8691599a",
+  "applicationCodeCommit": "264042c8146ebc7532b3bad8d0221f4aad83e05b",
+  "checks": 7,
+  "launches": [
+    {
+      "wrapperStartedAt": 1791141283490,
+      "applicationObservedAt": 1791141290837,
+      "longDocumentPathLength": 295,
+      "applicationReadyAt": 1791141290912
+    },
+    {
+      "wrapperStartedAt": 1791141296138,
+      "applicationObservedAt": 1791141303245,
+      "longDocumentPathLength": 295,
+      "applicationReadyAt": 1791141303283
+    }
+  ],
+  "wrapperSha256": "bcc7f416b712d726ec8caf9a7e5914080614e8101edae236f92f3d602926fe3e",
+  "childExecutableSha256": "cdc255f1ba1e2a9739f1b060619ca3fb4386f380237ddc57b045e513103a52f4",
+  "archiveSha256": "59c146046b1471e6dcc0032c74c5f28b5070d74c8b85834d1d28dab671c9aa96",
+  "completeNativePortableVerified": true,
+  "longPathCleanupVerified": true,
+  "priorWrapperWasPreserved": true,
+  "records": [
+    {
+      "path": "verification/portable-result.json",
+      "bytes": 2092,
+      "sha256": "2e72b2b8c6e4fef891ee7e3efe56ad4a322b025b841d0b6c42004fa98a12914a"
+    },
+    {
+      "path": "verification/portable-package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "fe71af14de1721c8c34168227160f8e52ce08da8bbb701a38381ca741e83fbae"
+    },
+    {
+      "path": "verification/distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "e93ac67964fad6abdd901e13e7c858bc022c9a570af0d9c6178a529de98ec8af"
+    },
+    {
+      "path": "verification/package-audit-result.json",
+      "bytes": 1293,
+      "sha256": "8b0a91a5264d1693ae328cf4eb75cbd677ccf36236dcfdb9479f2918d34a1fc2"
+    }
+  ],
+  "log": {
+    "name": "portable-retry-portable.log",
+    "bytes": 1054,
+    "sha256": "111e43d26153037747311a407937f988a1f722d144ad390efef545d29925a1e2"
+  },
+  "actualNewInstalledVerified": false,
+  "hostedVerified": false,
+  "scope": "Actual new bounded-cleanup portable wrapper passes all seven original checks, both real extraction/normal-exit lifecycles, long paths, native PTY, unchanged data and system integration. Installed and hosted acceptance are separate."
+}
