@@ -107,7 +107,7 @@ export async function verifyModelComparisons({ page, application, getApplication
     } finally { await page.evaluate(() => { delete window.__qiyaoComparisonPartialPoll; }).catch(() => {}); }
   }
   const sourceBefore = await page.evaluate(() => window.qiyao.load()); const originalDraft = sourceBefore.composerDrafts.find((draft) => draft.threadId === sourceId);
-  async function submitFirstGroup() {
+  async function submitGroup(expectedReplies) {
     await page.evaluate(() => {
       const diagnostic = { installedAt: Date.now(), clicks: [], samples: 0, lastPoll: null };
       const onClick = (event) => { const button = event.target.closest?.('button'); if (button?.textContent?.trim() === '发送并比较') diagnostic.clicks.push({ at: Date.now(), trusted: event.isTrusted }); };
@@ -122,10 +122,10 @@ export async function verifyModelComparisons({ page, application, getApplication
     const waitStartedAt = Date.now();
     try {
       await dialog().getByRole('button', { name: '发送并比较', exact: true }).click();
-      await dialog().getByLabel('回复 1', { exact: true }).waitFor();
+      await dialog().getByLabel(`回复 ${expectedReplies}`, { exact: true }).waitFor();
       const diagnostic = await page.evaluate(() => window.__qiyaoComparisonSetup.diagnostic);
       assert.equal(diagnostic.clicks.length, 1); assert.equal(diagnostic.clicks[0].trusted, true);
-      console.log('Comparison first-response timing', JSON.stringify({ waitStartedAt, completedAt: Date.now(), unchangedResponseDeadlineMs: 30000, diagnostic }));
+      console.log('Comparison response timing', JSON.stringify({ expectedReplies, waitStartedAt, completedAt: Date.now(), unchangedResponseDeadlineMs: 30000, diagnostic }));
     } catch (error) {
       const waitFailedAt = Date.now();
       const requestTimelineAtFailure = structuredClone(fixture.timeline.slice(-16));
@@ -136,7 +136,7 @@ export async function verifyModelComparisons({ page, application, getApplication
         noteCharacters: state.notes.reduce((sum, note) => sum + note.content.length, 0), comparisons: state.threads.filter((thread) => thread.comparison).slice(-16).map((thread) => ({ id: thread.id, comparison: thread.comparison, messages: thread.messages.map((message) => ({ role: message.role, status: message.status, characters: message.content.length })).slice(-4) })) }; }).catch(() => null);
       const backendCaptureCompletedAt = Date.now();
       const applicationSnapshot = await application.evaluateMain('globalThis.qiyaoTerminalProcessSnapshot?.()').catch(() => null);
-      console.error('Comparison first-response diagnostics', JSON.stringify({ waitStartedAt, waitFailedAt, unchangedResponseDeadlineMs: 30000, diagnostic, requestsAtFailure, requestTimelineAtFailure,
+      console.error('Comparison response diagnostics', JSON.stringify({ expectedReplies, waitStartedAt, waitFailedAt, unchangedResponseDeadlineMs: 30000, diagnostic, requestsAtFailure, requestTimelineAtFailure,
         backendCaptureStartedAt, backendCaptureCompletedAt, backend, requestTimelineAfterCapture: fixture.timeline.slice(-16), applicationSnapshot }));
       throw error;
     } finally { await page.evaluate(() => { window.__qiyaoComparisonSetup?.clear(); delete window.__qiyaoComparisonSetup; }).catch(() => {}); }
@@ -145,7 +145,7 @@ export async function verifyModelComparisons({ page, application, getApplication
   await capture('117-model-comparison-config-light.png'); await close(); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests);
   verified('native comparison setup preserves literal question, complete attachments and original owner/draft, rejects duplicate provider/model pairs and cancels without requesting a model');
 
-  await open(); await submitFirstGroup(); await waitForBridge(page, () => document.querySelectorAll('.comparison-result').length === 2); await waitPartial();
+  await open(); await submitGroup(1); await waitForBridge(page, () => document.querySelectorAll('.comparison-result').length === 2); await waitPartial();
   assert.equal(fixture.requests.length, beforeRequests + 2); const firstGroup = await currentGroup(); groups.push(firstGroup); const firstRequests = fixture.requests.slice(-2); assert.deepEqual(firstRequests[0].messages, firstRequests[1].messages); assert.deepEqual(firstRequests.map((request) => request.connection).sort(), ['a', 'b']);
   assert.equal(fixture.timeline.length, 2); for (const timing of fixture.timeline) { assert.ok(Number.isInteger(timing.receivedAt)); assert.ok(timing.partialSentAt >= timing.receivedAt); assert.equal(timing.messages, firstRequests[0].messages.length); assert.equal(timing.closedAt, undefined); }
   assert.equal(await page.evaluate(() => Object.hasOwn(window, '__qiyaoComparisonPartialPoll')), false);
@@ -158,7 +158,7 @@ export async function verifyModelComparisons({ page, application, getApplication
 
   await open(); await dialog().getByRole('button', { name: '添加比较模型', exact: true }).click(); await dialog().getByRole('button', { name: '添加比较模型', exact: true }).click();
   for (const [index, provider, model] of [[1, providerA, 'fail'], [2, providerB, 'held'], [3, providerA, 'one'], [4, providerB, 'two']]) { await dialog().getByLabel(`比较连接 ${index}`, { exact: true }).selectOption(provider); await dialog().getByLabel(`比较模型 ${index}`, { exact: true }).selectOption(model); }
-  await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 4', { exact: true }).waitFor(); await waitForBridge(page, () => Array.from(document.querySelectorAll('.comparison-result textarea')).slice(1).every((input) => input.value.includes('PARTIAL')));
+  await submitGroup(4); await waitForBridge(page, () => Array.from(document.querySelectorAll('.comparison-result textarea')).slice(1).every((input) => input.value.includes('PARTIAL')));
   assert.equal(fixture.requests.length, beforeRequests + 6); const fourGroup = await currentGroup(); groups.push(fourGroup); fixture.finish(); await dialog().locator('.comparison-result').nth(1).getByRole('button', { name: '停止此回复', exact: true }).click(); await waitCompleted(fourGroup);
   assert.deepEqual((await group(fourGroup)).map((thread) => thread.messages.at(-1).status), ['error', 'stopped', 'complete', 'complete']); assert.ok((await dialog().locator('.comparison-result').nth(1).getByLabel('回复 2', { exact: true }).inputValue()).includes('held: PARTIAL')); await close(); assert.equal(await composer().inputValue(), question);
   verified('four independent real requests retain an actual HTTP failure and stopped partial response while the other two complete; native stopping targets only its selected reply');

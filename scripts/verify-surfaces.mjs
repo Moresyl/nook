@@ -92,6 +92,42 @@ async function assertFieldStates(page, dialog, mode, screenshots) {
   assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null), saved, 'Invalid input must not alter the saved desktop preferences');
 }
 
+async function assertControlGeometry(page, dialog, mode) {
+  const theme = dialog.getByLabel('主题', { exact: true });
+  assert.deepEqual(await theme.evaluate(element => {
+    const style = getComputedStyle(element); const picker = getComputedStyle(element, '::picker(select)');
+    return { left: style.paddingLeft, right: style.paddingRight, gap: style.gap, pickerPadding: picker.paddingTop };
+  }), { left: '6px', right: '6px', gap: '4px', pickerPadding: '6px' });
+  await theme.focus();
+  assert.equal(await theme.evaluate(element => getComputedStyle(element).borderTopColor), mode === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)');
+  const apply = dialog.getByRole('button', { name: '应用快捷键', exact: true });
+  assert.deepEqual(await apply.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap };
+  }), { height: '20px', left: '6px', right: '6px', gap: '3px' });
+  // Isolated controls exercise native pressed states without saving settings or sending requests.
+  await dialog.evaluate(element => {
+    const probe = document.createElement('div'); probe.dataset.controlAudit = '';
+    for (const tone of ['ghost', 'solid']) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = `button button-${tone}`;
+      button.textContent = `Control audit ${tone}`; probe.append(button);
+    }
+    element.querySelector('.modal-content').prepend(probe);
+  });
+  try {
+    for (const [tone, expected] of [['ghost', mode === 'light' ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.16)'], ['solid', mode === 'light' ? 'rgb(65, 65, 65)' : 'rgb(220, 220, 220)']]) {
+      const button = dialog.getByRole('button', { name: `Control audit ${tone}`, exact: true });
+      await button.focus(); await page.keyboard.down('Space');
+      try {
+        await page.waitForFunction(({ tone, expected }) => {
+          const element = document.querySelector(`[data-control-audit] .button-${tone}`);
+          return element?.matches(':active') && getComputedStyle(element).backgroundColor === expected;
+        }, { tone, expected });
+      } finally { await page.keyboard.up('Space'); }
+    }
+  } finally { await dialog.locator('[data-control-audit]').evaluate(element => element.remove()); }
+}
+
 export async function verifySurfaces({ page, application, screenshots, verified }) {
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
@@ -196,6 +232,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
     await toggle.focus(); await toggle.press('ArrowRight');
     assert.equal(await toggle.evaluate((element) => getComputedStyle(element.nextElementSibling).outlineColor), mode === 'light' ? 'rgb(1, 105, 204)' : 'rgb(2, 133, 255)', 'Switch keyboard focus uses the reference ring color');
     await assertFieldStates(page, dialog, mode, screenshots);
+    await assertControlGeometry(page, dialog, mode);
   }
   await theme.selectOption('light');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
