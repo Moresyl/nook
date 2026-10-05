@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T15:06:54.022Z",
+  "verifiedAt": "2026-10-05T19:06:51.277Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -7,11 +7,20 @@
   "normalCloseVerified": true,
   "modelRequests": 0,
   "checks": 4,
+  "startupFallback": {
+    "passed": true,
+    "scope": "Built entry document in isolated Electron window with page scripts disabled; system theme and reduced-motion emulation; normal renderer replacement"
+  },
+  "startupRecovery": {
+    "passed": true,
+    "scope": "Isolated initial-load IPC rejection and delay; persistent error, keyboard retry, narrow layout and exact saved-draft restoration; not corrupt-vault recovery"
+  },
   "settingsCategories": [
     "模型连接",
     "MCP 工具",
     "本地技能",
     "本地插件",
+    "记忆",
     "外观与交互",
     "数据与备份",
     "关于 Nook"
@@ -141,7 +150,11 @@
     "100-tooltip-dark.png",
     "101-tooltip-edge.png",
     "102-button-tooltip-disabled.png",
-    "103-button-tooltip-long.png"
+    "103-button-tooltip-long.png",
+    "104-startup-light.png",
+    "104-startup-dark.png",
+    "105-startup-error.png",
+    "105-startup-error-narrow.png"
   ],
   "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
   "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."

@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
+    // Bundle startup JavaScript dependencies to avoid many synchronous module reads.
+    // Native modules and document parsers retain their existing external loading.
+    plugins: [externalizeDepsPlugin({ exclude: ['zod', '@modelcontextprotocol/sdk', 'yaml'] })],
     build: { rollupOptions: { input: { launch: 'desktop/launch.ts', 'attachment-worker': 'desktop/attachment-worker.ts' }, output: { format: 'cjs', entryFileNames: '[name].cjs' } } },
   },
   preload: {

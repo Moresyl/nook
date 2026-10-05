@@ -23,7 +23,8 @@ export async function verifyMemories({ page, application, directory, screenshots
   const persisted = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')); assert.deepEqual(persisted.memories.find((entry) => entry.id === item.id), item);
   await dialog.getByRole('button', { name: new RegExp('^记忆验证：') }).click();
   await dialog.getByLabel('适用范围', { exact: true }).selectOption('');
-  await dialog.getByRole('switch', { name: '在后续聊天中使用', exact: true }).click();
+  await dialog.locator('.toggle-label').filter({ hasText: '在后续聊天中使用' }).click();
+  assert.equal(await dialog.getByRole('switch', { name: '在后续聊天中使用', exact: true }).isChecked(), false);
   await dialog.getByRole('button', { name: '保存记忆', exact: true }).click();
   await waitForBridge(page, async () => (await window.qiyao.load()).memories.some((entry) => entry.content.startsWith('记忆验证：') && !entry.enabled && !entry.projectId));
   verified('memory settings persist explicit Unicode entries, escape markup, edit scope and disable future use');

@@ -1,0 +1,43 @@
+{
+  "change": "Bundle zod, MCP SDK and YAML JavaScript in the main build, keeping native modules and document parsers external. Correct the memory toggle test to click its visible label and verify checked state.",
+  "baseCommit": "714032c",
+  "typecheck": "passed",
+  "build": { "result": "passed", "log": "D:/GR/pi-pc/.firecrawl/nook-bundled-startup-build.log", "sha256": "c6b9cb0a3beeff3ec686578dd0a56ebb461681ee10ab8aea6e8b86f35567b195", "mainSha256": "4a1d83dad003df5f83993d3cdf62a3ea8cd38651071cd6a92f52ec9c55f5fae1", "sharedChunkSha256": "7ec78f639f413960caef39b50b941c30519f5d54bc1c54899d6220212fdfd3d1" },
+  "importProbe": {
+    "beforeEntryImportMs": 29611,
+    "afterEntryImportMs": 1597,
+    "beforeLog": "D:/GR/pi-pc/.firecrawl/nook-startup-import.log",
+    "beforeSha256": "1039b49b8731ac453361d363b20b5c0961a7b48858f9745df703f69d73b25d23",
+    "afterLog": "D:/GR/pi-pc/.firecrawl/nook-startup-import-bundled.log",
+    "afterSha256": "1a6b2c651866e50c7c9847018df4d067207efb3802390cdff29a1fa59b0b6df0",
+    "boundary": "One uncontrolled before/after observation with an external diagnostic wrapper; not a stable performance benchmark or acceptance run. Both loaded the page. The second probe needed a later normal windowAction close after its initial did-finish-load quit request did not finish. Startup waiting before the wrapper remains unexplained."
+  },
+  "memoryUi": {
+    "passed": 3,
+    "normalCloseMs": 909,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-bundled-memories-retry.log",
+    "sha256": "ea95b6c918fcc508f7b3e31e2566251906981ff458c3a62ac73f13a6861f1eee",
+    "firstAttempt": { "result": "failed clicking a zero-size native checkbox; visible label interaction substituted without force-click", "log": "D:/GR/pi-pc/.firecrawl/nook-bundled-memories-desktop.log", "sha256": "b4a2cf619cc9c6e0c86ffcc4e215ee0edccdacaf94640f6ab15a444b9cd8324e" },
+    "screenshotsReviewed": ["docs/images/memory-settings-light.png", "docs/images/memory-settings-dark.png"]
+  },
+  "surfaces": {
+    "passed": 4,
+    "normalCloseMs": 298,
+    "categories": 8,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-bundled-surfaces.log",
+    "sha256": "d3afe0804336b899ea4980230c4749cdec0330d4db62e1cd50b1e9989a43817f",
+    "boundary": "Global 500/600 weights, startup fallback/recovery, controls and seven window/zoom combinations passed. The old seven-category descriptive string was corrected after the run; the actual recorded category array contains eight."
+  },
+  "fullDesktop": {
+    "result": "failed",
+    "passedBeforeFailure": 195,
+    "failure": "Model-comparison backup draft flush missed the unchanged 5000 ms deadline.",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-bundled-full-desktop.log",
+    "sha256": "ceb868d45ca5d8ed0b3545945f3b3ca68e1240c34121490b521d122b6834131a",
+    "fixture": "E:/NookVerification/Temp/qiyao-electron-mSgs8S",
+    "flushTimeline": { "exportStartedAt": 1791228335377, "draftSaveFinishedAt": 1791228337097, "selectionSaveFinishedAt": 1791228340580, "acknowledgementAt": 1791228340612, "exportFailedAt": 1791228340378, "draftBackupSyncMs": 1392, "selectionBackupSyncMs": 2600 },
+    "cleanupNormalCloseMs": 1610,
+    "rendererExits": []
+  },
+  "acceptance": "Memory and surface focused runs passed. Full desktop, matching distribution and release remain incomplete; no timeout was relaxed and no universal startup fix is claimed."
+}
