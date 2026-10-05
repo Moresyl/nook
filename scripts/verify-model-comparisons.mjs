@@ -47,7 +47,7 @@ async function observeComparisonBackup(application, mainWindow) {
     const observed = new Set(['saveComposerDraft', 'activateThread', 'exportWorkspace', 'finishDraftFlush']);
     const handler = async function (...args) {
       if (!observed.has(args[1])) return original.apply(this, args);
-      const row = { operation: args[1], startedAt: Date.now() }; append(row);
+      const row = { operation: args[1], startedAt: Date.now(), ...(args[1] === 'activateThread' && Array.isArray(args[3]) ? { batchedDrafts: args[3].length } : {}) }; append(row);
       try { const result = await original.apply(this, args); row.success = true; return result; }
       catch (error) { row.success = false; throw error; }
       finally { row.finishedAt = Date.now(); }

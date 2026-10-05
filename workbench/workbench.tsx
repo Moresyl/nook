@@ -85,7 +85,8 @@ export function Workbench() {
   async function flushDrafts() { clearTimeout(draftTimer.current); await draftStore.current.flush(); await activation.current; }
   function selectDraft(next: ComposerDraft) {
     draftRef.current = next; setComposerDraft(next); setPage('chat');
-    activation.current = window.qiyao.activateThread(next.threadId); void activation.current.catch(report);
+    clearTimeout(draftTimer.current);
+    activation.current = draftStore.current.activate(next.threadId, (id, drafts) => window.qiyao.activateThread(id, drafts), state?.threads.find(item => item.id === next.threadId)?.temporary === true); void activation.current.catch(report);
   }
   const thread = state?.threads.find((item) => item.id === threadId);
   findContext.current = page === 'chat' ? thread?.id : undefined;

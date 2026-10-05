@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { rm } from 'node:fs/promises';
+import { mkdir, rename, rm } from 'node:fs/promises';
+import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composerContent, composerRevision, restoreComposer } from '../contracts/composer';
 import { mcpServerSchema, skillSchema } from '../contracts/extensions';
@@ -17,6 +18,51 @@ const draft = (change: Partial<ComposerDraft> = {}): ComposerDraft => ({ text: '
 async function setup() { const context = await testVault(); directories.push(context.directory); return { ...context, drafts: new ComposerDrafts(context.vault) }; }
 
 describe('conversation draft persistence and consumption', () => {
+  it('atomically persists dirty owners and the selected conversation with one commit and restores both after restart', async () => {
+    const { vault, drafts, directory } = await setup(); await vault.update(state => { state.threads = [sampleThread(), sampleThread({ id: 'second' })]; });
+    const commit = vi.spyOn(vault, 'commit');
+    const pending = [draft(), draft({ threadId: 'thread', attachments: [{ id: 'file', name: 'notes.txt', content: 'EXACT' }] })];
+    await drafts.activate('second', pending); expect(commit).toHaveBeenCalledTimes(1);
+    pending[0].text = 'Mutated caller';
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize();
+    expect(restored.snapshot().activeThreadId).toBe('second'); expect(restored.snapshot().composerDrafts[0]).toEqual(draft());
+    expect(restored.snapshot().composerDrafts[1].attachments[0].content).toBe('EXACT');
+    await drafts.activate(undefined, [draft({ text: '' })]); expect(vault.snapshot().activeThreadId).toBeUndefined(); expect(vault.snapshot().composerDrafts).toHaveLength(1);
+  });
+  it('rejects invalid batches and owners without persisting any draft or selection', async () => {
+    const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    const before = vault.snapshot();
+    await expect(drafts.activate('missing', [draft()])).rejects.toThrow('no longer exists');
+    await expect(drafts.activate('thread', [draft(), draft({ threadId: 'missing' })])).rejects.toThrow('no longer exists');
+    await expect(drafts.activate('thread', Array.from({ length: 101 }, () => draft()))).rejects.toThrow();
+    await expect(drafts.activate('thread', [{ ...draft(), unexpected: true }])).rejects.toThrow();
+    expect(vault.snapshot()).toEqual(before);
+  });
+  it('keeps temporary draft content out of persistence while saving a regular owner in the same batch', async () => {
+    const { vault, drafts, directory } = await setup();
+    await vault.update(state => { state.threads = [sampleThread(), sampleThread({ id: 'temporary', temporary: true })]; state.activeThreadId = 'thread'; });
+    await drafts.activate('temporary', [draft({ threadId: 'thread' }), draft({ threadId: 'temporary', text: 'PRIVATE' })]);
+    expect(vault.snapshot().activeThreadId).toBe('temporary'); expect(vault.snapshot().composerDrafts).toHaveLength(2);
+    expect(vault.backup().composerDrafts).toEqual([draft({ threadId: 'thread' })]);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize();
+    expect(restored.snapshot().activeThreadId).toBe('thread'); expect(restored.snapshot().composerDrafts).toEqual([draft({ threadId: 'thread' })]);
+  });
+  it('does not coalesce selections across a combined draft transaction', async () => {
+    const { vault, drafts } = await setup(); await vault.update(state => { state.threads = [sampleThread(), sampleThread({ id: 'second' })]; });
+    const first = drafts.activate('thread'); const combined = drafts.activate('second', [draft()]); const last = drafts.activate('thread');
+    await Promise.all([first, combined, last]);
+    expect(vault.snapshot().activeThreadId).toBe('thread'); expect(vault.snapshot().composerDrafts).toEqual([draft()]);
+  });
+  it('rolls back both selection and drafts after a real filesystem failure and retries the same batch', async () => {
+    const { vault, drafts, directory } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
+    const before = vault.snapshot(); const path = join(directory, 'workspace.json'); const held = join(directory, 'held.json');
+    await rename(path, held); await mkdir(path);
+    try { await expect(drafts.activate('thread', [draft()])).rejects.toThrow('could not be saved'); expect(vault.snapshot()).toEqual(before); }
+    finally { await rm(path, { recursive: true }); await rename(held, path); }
+    await drafts.activate('thread', [draft()]);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize();
+    expect(restored.snapshot().activeThreadId).toBe('thread'); expect(restored.snapshot().composerDrafts).toEqual([draft()]);
+  });
   it('returns an independent selected-thread snapshot without requiring a complete workspace clone', async () => {
     const { vault } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
     expect(vault.thread('missing')).toBeUndefined(); const selected = vault.thread('thread')!;
@@ -127,6 +173,34 @@ describe('conversation draft persistence and consumption', () => {
 });
 
 describe('renderer conversation draft coordination', () => {
+  it('coalesces queued regular selections while preserving temporary and flush ordering boundaries', async () => {
+    const save = vi.fn().mockResolvedValue(undefined); const select = vi.fn().mockResolvedValue(undefined); const store = new ComposerDraftStore(save);
+    const first = store.activate('first', select); const second = store.activate('second', select);
+    const temporary = store.activate('private', select, true); const regular = store.activate('third', select);
+    const barrier = store.flush(); const last = store.activate('last', select);
+    await Promise.all([first, second, temporary, regular, barrier, last]);
+    expect(select.mock.calls.map(([id]) => id)).toEqual(['second', 'private', 'third', 'last']);
+  });
+  it('combines dirty owners with selection, retains edits made in flight and orders later flushes', async () => {
+    let release!: () => void; const hold = new Promise<void>(resolve => { release = resolve; });
+    const save = vi.fn().mockResolvedValue(undefined); const select = vi.fn().mockImplementationOnce(() => hold);
+    const store = new ComposerDraftStore(save); store.stage(draft()); store.stage(draft({ threadId: 'thread' }));
+    const selection = store.activate('second', select); await Promise.resolve();
+    expect(select).toHaveBeenCalledWith('second', [draft(), draft({ threadId: 'thread' })]);
+    store.stage(draft({ text: 'Typed during activation' })); const flush = store.flush();
+    expect(save).not.toHaveBeenCalled(); release(); await Promise.all([selection, flush]);
+    expect(save).toHaveBeenCalledExactlyOnceWith(draft({ text: 'Typed during activation' }));
+    expect(store.get('thread')).toEqual(draft({ threadId: 'thread' }));
+  });
+  it('retains every dirty owner on activation failure and retries without aliasing or redundant saves', async () => {
+    const save = vi.fn().mockResolvedValue(undefined); const select = vi.fn().mockRejectedValueOnce(new Error('Disk unavailable')).mockResolvedValue(undefined);
+    const store = new ComposerDraftStore(save); store.stage(draft());
+    await expect(store.activate('thread', select)).rejects.toThrow('Disk unavailable');
+    select.mock.calls[0][1][0].text = 'External mutation'; expect(store.get()).toEqual(draft());
+    await store.activate('thread', select); expect(select.mock.calls[1][1]).toEqual([draft()]);
+    await store.flush(); expect(save).not.toHaveBeenCalled();
+    await store.activate(undefined, select); expect(select.mock.calls[2]).toEqual([undefined, []]);
+  });
   it('consumes a submitted owner after navigating away while preserving newer text and other owners', () => {
     const store = new ComposerDraftStore(async () => {}); const submitted = draft({ threadId: 'thread' }); store.stage(submitted); store.stage(draft());
     expect(store.consume({ ...submitted, knowledgeCollectionIds: [], updatedAt: 10 })).toBe(true); expect(store.get('thread')).toBeUndefined(); expect(store.get()?.text).toBe(draft().text);

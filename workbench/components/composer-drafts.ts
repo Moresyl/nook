@@ -5,6 +5,7 @@ export class ComposerDraftStore {
   private drafts = new Map<string, ComposerDraft>();
   private dirty = new Map<string, ComposerDraft>();
   private tail: Promise<void> = Promise.resolve();
+  private pendingSelection?: { threadId?: string; temporary: boolean; operation: Promise<void> };
   constructor(private readonly save: (draft: ComposerDraft) => Promise<void>) {}
 
   initialize(drafts: ComposerDraft[]): void {
@@ -25,7 +26,25 @@ export class ComposerDraftStore {
     if (!current || composerContent(current) !== composerContent(submitted)) return false;
     this.forget(submitted.threadId); return true;
   }
+  activate(threadId: string | undefined, saveSelection: (id: string | undefined, drafts: ComposerDraft[]) => Promise<void>, temporary = false): Promise<void> {
+    if (this.pendingSelection?.temporary === temporary) {
+      this.pendingSelection.threadId = threadId;
+      return this.pendingSelection.operation;
+    }
+    const selection = { threadId, temporary, operation: Promise.resolve() };
+    this.pendingSelection = selection;
+    const operation = this.tail.then(async () => {
+      if (this.pendingSelection === selection) this.pendingSelection = undefined;
+      const pending = [...this.dirty.entries()];
+      await saveSelection(selection.threadId, pending.map(([, draft]) => structuredClone(draft)));
+      for (const [key, draft] of pending) if (this.dirty.get(key) === draft) this.dirty.delete(key);
+    });
+    selection.operation = operation;
+    this.tail = operation.catch(() => {});
+    return operation;
+  }
   flush(): Promise<void> {
+    this.pendingSelection = undefined;
     const operation = this.tail.then(async () => {
       while (this.dirty.size) {
         const [key, draft] = this.dirty.entries().next().value!;

@@ -211,7 +211,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   saveMessageDraft: (raw) => messageEdits.saveDraft(raw),
   removeMessageDraft: (raw) => messageEdits.removeDraft(raw),
   editMessage: (raw) => messageEdits.edit(raw),
-  activateThread: (raw) => composerDrafts.activate(raw),
+  activateThread: (raw, drafts) => composerDrafts.activate(raw, drafts),
   startTemporaryChat: () => startTemporaryChat(vault),
   reorderBranch: (raw) => reorderConversationBranch(vault, raw),
   submit: (request) => engine.start(request),

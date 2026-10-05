@@ -62,7 +62,7 @@ export type Bridge = {
   saveMessageDraft(draft: MessageDraft): Promise<void>;
   removeMessageDraft(target: { threadId: string; messageId: string }): Promise<void>;
   editMessage(input: MessageEdit): Promise<Workspace>;
-  activateThread(id?: string): Promise<void>;
+  activateThread(id?: string, drafts?: ComposerDraft[]): Promise<void>;
   startTemporaryChat(): Promise<Workspace>;
   reorderBranch(input: BranchReorder): Promise<Workspace>;
   submit(request: SubmitRequest): Promise<{ threadId: string }>;
