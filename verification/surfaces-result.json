@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T11:06:27.616Z",
+  "verifiedAt": "2026-10-05T12:00:50.593Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -21,6 +21,85 @@
     1.25,
     1.5
   ],
+  "geometryChecks": [
+    {
+      "windowWidth": 760,
+      "windowHeight": 540,
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "top": 0,
+      "left": 0,
+      "viewportWidth": 760,
+      "viewportHeight": 540
+    },
+    {
+      "windowWidth": 760,
+      "windowHeight": 540,
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "top": 0,
+      "left": 0,
+      "viewportWidth": 608,
+      "viewportHeight": 432
+    },
+    {
+      "windowWidth": 760,
+      "windowHeight": 540,
+      "zoom": 1.5,
+      "width": 506.66668701171875,
+      "height": 360,
+      "top": 0,
+      "left": 0,
+      "viewportWidth": 507,
+      "viewportHeight": 360
+    },
+    {
+      "windowWidth": 1280,
+      "windowHeight": 540,
+      "zoom": 1,
+      "width": 720,
+      "height": 460,
+      "top": 35.5555534362793,
+      "left": 280,
+      "viewportWidth": 1280,
+      "viewportHeight": 540
+    },
+    {
+      "windowWidth": 1280,
+      "windowHeight": 540,
+      "zoom": 1.25,
+      "width": 720,
+      "height": 392,
+      "top": 17.77777671813965,
+      "left": 152,
+      "viewportWidth": 1024,
+      "viewportHeight": 432
+    },
+    {
+      "windowWidth": 1280,
+      "windowHeight": 540,
+      "zoom": 1.5,
+      "width": 720,
+      "height": 320,
+      "top": 17.77777671813965,
+      "left": 66.66667175292969,
+      "viewportWidth": 853,
+      "viewportHeight": 360
+    },
+    {
+      "windowWidth": 768,
+      "windowHeight": 540,
+      "zoom": 1,
+      "width": 720,
+      "height": 460,
+      "top": 35.5555534362793,
+      "left": 24,
+      "viewportWidth": 768,
+      "viewportHeight": 540
+    }
+  ],
   "screenshots": [
     "91-surface-controls-light.png",
     "92-surface-controls-dark-narrow.png",
@@ -30,8 +109,9 @@
     "96-switch-light.png",
     "96-switch-dark.png",
     "97-field-invalid-light.png",
-    "97-field-invalid-dark.png"
+    "97-field-invalid-dark.png",
+    "98-surface-short-wide.png"
   ],
   "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
-  "scope": "Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+  "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
 }

@@ -26,7 +26,19 @@ async function assertModalLayout(page, dialog) {
     };
   });
   assert.deepEqual(layout, { modal: true, documentOverflow: false, contentOverflow: false, fits: true, closeVisible: true });
+  const geometry = await dialog.evaluate(element => {
+    const bounds = element.getBoundingClientRect();
+    return { width: bounds.width, height: bounds.height, top: bounds.top, left: bounds.left, viewportWidth: innerWidth, viewportHeight: innerHeight };
+  });
+  const fullscreen = geometry.viewportWidth < 768;
+  const expectedWidth = fullscreen ? geometry.viewportWidth : Math.min(720, geometry.viewportWidth - 32);
+  const expectedHeight = fullscreen ? geometry.viewportHeight : Math.min(460, geometry.viewportHeight - 40);
+  const expectedTop = fullscreen ? 0 : (geometry.viewportHeight - expectedHeight) * 4 / 9;
+  for (const [property, expected] of [['width', expectedWidth], ['height', expectedHeight], ['top', expectedTop], ['left', (geometry.viewportWidth - expectedWidth) / 2]]) {
+    assert.ok(Math.abs(geometry[property] - expected) <= 1, `Settings ${property} follows the reference viewport geometry: ${geometry[property]} vs ${expected}`);
+  }
   assert.equal(await page.getByRole('dialog').count(), 1);
+  return geometry;
 }
 
 async function assertFocusBoundary(page, dialog) {
@@ -100,6 +112,20 @@ async function assertControlGeometry(page, dialog, mode) {
   }), { left: '6px', right: '6px', gap: '4px', pickerPadding: '6px' });
   await theme.focus();
   assert.equal(await theme.evaluate(element => getComputedStyle(element).borderTopColor), mode === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)');
+  await theme.click();
+  await page.waitForFunction(() => document.querySelector('select:open'));
+  const option = theme.getByRole('option', { name: '跟随系统', exact: true });
+  const highlight = mode === 'light' ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.1)';
+  await option.hover();
+  assert.deepEqual(await option.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { background: style.backgroundColor, height: style.height, radius: style.borderRadius, lineHeight: style.lineHeight };
+  }), { background: highlight, height: '36px', radius: '10px', lineHeight: '20px' });
+  assert.equal(await theme.locator('option:checked').evaluate(element => getComputedStyle(element).fontWeight), '590');
+  await page.keyboard.press('Home');
+  assert.equal(await option.evaluate(element => element.matches(':focus-visible') && getComputedStyle(element).backgroundColor), highlight);
+  await page.keyboard.press('Escape');
+  assert.equal(await theme.inputValue(), mode, 'Inspecting menu states must not change the selected theme');
   const apply = dialog.getByRole('button', { name: '应用快捷键', exact: true });
   assert.deepEqual(await apply.evaluate(element => {
     const style = getComputedStyle(element);
@@ -267,23 +293,31 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await application.resize(760, 540);
   const zooms = [1, 1.25, 1.5];
   const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '外观与交互', '数据与备份', '关于 Nook'];
-  for (const zoom of zooms) {
+  const geometryChecks = [];
+  for (const [width, height, zoom] of [
+    ...zooms.map(zoom => [760, 540, zoom]),
+    ...zooms.map(zoom => [1280, 540, zoom]),
+    [768, 540, 1],
+  ]) {
+    await application.resize(width, height);
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
-    await page.waitForFunction((expected) => Math.abs(innerWidth - expected) <= 2, 760 / zoom);
+    await page.waitForFunction((expected) => Math.abs(innerWidth - expected) <= 2, width / zoom);
     dialog = await open();
+    geometryChecks.push({ windowWidth: width, windowHeight: height, zoom, ...await assertModalLayout(page, dialog) });
     await assertFocusBoundary(page, dialog);
     for (const category of categories) {
       await dialog.getByRole('button', { name: category, exact: true }).click();
       await assertModalLayout(page, dialog);
     }
     await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
-    if (zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));
+    if (width === 760 && zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));
+    if (width === 1280 && zoom === 1.5) await captureSurface(page, application, join(screenshots, '98-surface-short-wide.png'));
     await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
-  verified('all seven settings categories fit the real dark minimum window at 100/125/150 percent Electron zoom, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  verified('all seven settings categories follow reference viewport geometry in minimum and short-wide windows at 100/125/150 percent Electron zoom and the 768px boundary, retain native focus and restore the opener/draft after Escape');
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, geometryChecks, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }

@@ -20,6 +20,8 @@
 
 ## 已验证的界面
 
+后续源码修正弹窗视口余量与垂直位置：宽／高保留 32px／40px，按可用高度差的 1/18 上移，小于 768px 时铺满；Electron 原生缩放已经折算 CSS 视口。选择器选中项使用字重和勾选，悬停／键盘焦点采用参考的明暗高亮。类型、构建和设置专项 4 项通过，包含七组窗口／缩放、全部七个设置分类、真实菜单悬停／Home／Escape 和偏好保留。已查看[短宽窗口](images/dialog-viewport-dark.png)、[浅色菜单](images/select-highlight-light.png)及[深色菜单](images/select-highlight-dark.png)。这批源码修正尚未进入已完整验证的 `10d432f` 分发包。
+
 共享默认按钮已调整为 20px 高、6px 左右内边距与 3px 间隔，并分别补齐 ghost／solid 的明暗按下色。选择器调整为 6px 内边距、4px 间隔与 ghost 背景，列表外内边距为 6px。类型、构建和源码设置专项 4 项通过，覆盖真实尺寸、选择器焦点、临时控件的真实键盘按住状态及三档缩放。已查看[浅色选择器](images/select-spacing-light.png)和[深色选择器](images/select-spacing-dark.png)；这批改动尚未取得完整分发证明。
 
 共享焦点改用参考的 `--color-ring`，输入悬停／聚焦采用对应明暗透明边框，非法输入采用参考错误色，并保持错误优先于悬停与聚焦。源码类型、构建和设置专项 4 项通过；实际清空／恢复快捷键时，应用按钮状态和已保存配置均正确。已查看[浅色错误状态](images/field-invalid-light.png)与[深色错误状态](images/field-invalid-dark.png)。这批修正已进入 `10d432f` 新包并通过设置专项，完整分发验证仍待完成。
