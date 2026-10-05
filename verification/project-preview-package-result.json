@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "9575887639986254d50f905db656d939fa690f01",
+  "version": "0.1.0-alpha.1",
+  "platform": "Windows x64",
+  "build": "passed",
+  "package": "installer and portable generation passed",
+  "audit": { "result": "passed", "productFiles": 233, "dependencyLegalDocuments": 401, "distributionLegalAndSourceFiles": 20, "compiledAssetsMatchVerifiedBuild": true, "unresolvedAssets": [], "unresolvedDistribution": [], "oldProductIdentityMatches": [] },
+  "artifacts": {
+    "application": { "path": "artifacts/win-unpacked/Nook.exe", "bytes": 245726720, "sha256": "c79281c4792cfb919cde528ec29a04e0217bfa591d8da8410a7d91089af2127b", "signature": "NotSigned" },
+    "archive": { "path": "artifacts/win-unpacked/resources/app.asar", "sha256": "497476e9ffecdf5d5c65fbb979bf2b4ad5cebeb3ee8bc5413415e7ed190ae0c6" },
+    "installer": { "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe", "bytes": 238002302, "sha256": "f3c102bd02235ef02b95c08d954eb1a8e760125e3c0d8a864edbd1d0a3a8a631", "signature": "NotSigned" },
+    "portable": { "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe", "bytes": 306789319, "sha256": "7a9c0fe211c3c9132c9571ad263a581f6bace0cf323213f3041c1c7447d84f7a", "signature": "NotSigned" }
+  },
+  "sourceVerification": { "checks": 223, "normalCloseVerified": true, "runtimeErrors": [], "componentTests": 798 },
+  "packagedVerification": { "checks": 223, "normalCloseVerified": true, "normalExitMs": 198, "runtimeErrors": [], "verifiedAt": "2026-10-05T22:01:06.729Z", "previewChecks": 5, "outsideHttpRequests": 0, "result": "packaged-result.json" },
+  "runtimeBoundary": "Complete packaged verification passed for this candidate. Actual installed lifecycle, portable verification, settings and all matching runtime records remain required. This candidate does not include the subsequent project-switcher changes. No release has been published.",
+  "hostedRun": { "id": 37376157269, "status": "completed", "conclusion": "failure", "stepsExecuted": 0, "reason": "GitHub reported recent failed account payments or a spending-limit requirement; publish was skipped." },
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-project-preview-package.log", "sha256": "fa54987c22a5c03706f06da53bbeeb2b06c1721dd01205d157a59645ddf80a48" },
+    { "name": "nook-project-preview-package-audit.log", "sha256": "e1d70b87192d773635b975210a11a6b1cc5644832abe10f24431124443cb7b68" },
+    { "name": "nook-project-preview-packaged-full.log", "sha256": "b3632670c953694adcbdecd389b6f2ed9ca3097abfae8d03b19042df9edbf444" }
+  ]
+}

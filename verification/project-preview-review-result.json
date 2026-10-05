@@ -31,8 +31,9 @@
     "boundary": "The original full-suite exception did not recur; its cause is still unproven. DOM paste and scripted preview interaction are not physical clipboard/pointer or complete sandbox evidence. Current source sub-suite records belong to the subsequent complete successful run; earlier failed runs remain in the log history. The three preview screenshots from this complete run were visually inspected."
   },
   "releaseGate": "Eleven matching runtime records; full desktop and installation must include three memory and five offline preview checks, and at least 223 total checks. Old 215/218-check suites are rejected.",
-  "hostedRun": { "id": 37373525761, "commit": "a52b71e939c109e91229e9344f53ab75977efb8a", "status": "completed", "conclusion": "failure", "verifyJob": 111976285846, "stepsExecuted": 0, "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts", "publish": "skipped" },
-  "distribution": "Existing packages predate the feature; no current packaged/installed/portable acceptance or release is claimed.",
+  "previousHostedRun": { "id": 37373525761, "commit": "a52b71e939c109e91229e9344f53ab75977efb8a", "status": "completed", "conclusion": "failure", "verifyJob": 111976285846, "stepsExecuted": 0, "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts", "publish": "skipped" },
+  "hostedRun": { "id": 37376157269, "commit": "9575887639986254d50f905db656d939fa690f01", "status": "completed", "conclusion": "failure", "verifyJob": 111985432686, "stepsExecuted": 0, "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings", "publish": "skipped" },
+  "distribution": "The Windows x64 candidate built from 9575887 passed package audit and all 223 packaged checks, including five offline preview checks, with no runtime errors and normal exit in 198 ms. Hashes match packaged-result.json. Actual installed lifecycle, portable and remaining matching runtime records are pending. Subsequent project-switcher changes are not included. No release is claimed.",
   "logDirectory": "D:/GR/pi-pc/.firecrawl",
   "logs": [
     { "name": "nook-project-preview-full.log", "sha256": "669cb4cc1634d39e66613a0bc9ec286b0682cdeaf8de9fce178918b6ec53378b" },
