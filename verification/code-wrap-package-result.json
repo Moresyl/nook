@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-10-05T23:42:15.449Z",
+  "sourceCommit": "d3dd3263c0d45ec7eb11ad026476052f48feec83",
+  "version": "0.1.0-alpha.1",
+  "build": "passed",
+  "packageAudit": { "result": "package-audit-result.json", "productFiles": 233, "dependencyLegalDocuments": 401, "distributionLegalAndSourceFiles": 20, "compiledAssetsMatchVerifiedBuild": true, "oldProductIdentityMatches": [] },
+  "files": [
+    { "path": "artifacts/win-unpacked/Nook.exe", "bytes": 245726720, "sha256": "319460168cbdbb7e47cd9f72b18a6acbcaf880e59e05e89d51c457b384e1822b", "signature": "NotSigned" },
+    { "path": "artifacts/win-unpacked/resources/app.asar", "bytes": 486575856, "sha256": "86e3f218f886276677ff84f9f9db02b9ff28ccb3a1bd42c782c72e199b9af2f4" },
+    { "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe", "bytes": 238003787, "sha256": "6f6baf94a8ae4e8c3856f47387f5a749e6d9842f9b7d1b45dd78b32e1f648421", "signature": "NotSigned" },
+    { "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe", "bytes": 306790381, "sha256": "000cc76fda3309dd297c875a735de77a46b6aa7d230c5795f1f5563b9dbe6187", "signature": "NotSigned" }
+  ],
+  "runtimeVerification": { "completeDesktop": "started, not yet complete", "log": "nook-code-wrap-packaged-full.log", "installedLifecycle": "pending", "portable": "pending", "matchingReleaseProofs": "pending" },
+  "boundary": "New application and installers include the scoped MCP read, project switcher, checkbox and code wrapping changes. The prior 9575887 package's 223-group pass belongs to different file hashes. Building and legal/identity auditing do not establish native installer interaction, complete runtime, full design alignment, signing or release readiness.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-code-wrap-package.log", "sha256": "361f82c9bd8781840fc4bfdcd6637cf89ca9e095903aacdf40db321a3ef0382c" },
+    { "name": "nook-code-wrap-package-audit.log", "sha256": "e1d70b87192d773635b975210a11a6b1cc5644832abe10f24431124443cb7b68" }
+  ]
+}
