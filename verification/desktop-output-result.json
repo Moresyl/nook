@@ -1,0 +1,16 @@
+{
+  "change": "Continuously consume the owned Electron process stdout without retaining content; include only its byte count in startup failure diagnostics.",
+  "typecheck": "pnpm check passed after adding the script declaration; the first attempt reported TS7016 for the missing declaration.",
+  "unitTests": { "command": "pnpm exec vitest run verification/desktop-output.test.ts verification/desktop-page.test.ts", "passed": 9, "files": 2, "realChildOutputBytes": 4194304, "realChildExitCode": 0 },
+  "desktopAttempt": {
+    "command": "QIYAO_TEST_SURFACES_ONLY=1 node scripts/verify-desktop.mjs",
+    "result": "failed before surface assertions: startup timeout",
+    "elapsedMs": 32638,
+    "stdoutBytes": 2,
+    "timeoutMs": 30000,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-stdout-surfaces.log",
+    "sha256": "bd28c923ef7e0e7454ff8e4247c086990eb2c55c604046cc0eac38b33e9955d9",
+    "fixture": "E:/NookVerification/Temp/qiyao-electron-TEDwdJ"
+  },
+  "boundary": "This prevents stdout backpressure in the verifier but does not resolve the observed desktop startup failure. No UI or release acceptance is claimed and no timeout was relaxed."
+}

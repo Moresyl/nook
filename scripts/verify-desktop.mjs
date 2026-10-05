@@ -6,6 +6,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { waitForDesktopPage } from './desktop-page.mjs';
+import { drainDesktopOutput } from './desktop-output.mjs';
 import { startStartupProfileExpression, summarizeStartupProfile } from './startup-profile.mjs';
 import { execFile, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -275,12 +276,13 @@ async function launch() {
   const startedAt = Date.now();
   const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
+  const stdoutBytes = drainDesktopOutput(child.stdout);
   const exited = new Promise((resolve) => child.once('exit', resolve));
   let diagnostics = '';
   let nodeUrl;
   let startupInspected = false;
   const debuggerUrl = await new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);
+    const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt, stdoutBytes: stdoutBytes() }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);
     child.once('error', (error) => { clearTimeout(timeout); reject(error); });
     child.once('exit', (code) => { clearTimeout(timeout); reject(new Error(`Desktop exited with ${code}: ${diagnostics.slice(-4000)}`)); });
     child.stderr.on('data', (data) => {
