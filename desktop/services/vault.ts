@@ -28,8 +28,10 @@ export class WorkspaceVault {
     onPhase('workspace.read');
     let primaryText: string | undefined;
     try {
-      const raw = await readFile(join(this.directory, 'workspace.json'), 'utf8');
+      const bytes = await readFile(join(this.directory, 'workspace.json'));
       onPhase('workspace.loaded');
+      const raw = bytes.toString('utf8');
+      onPhase('workspace.text-decoded');
       const decoded: unknown = JSON.parse(raw);
       onPhase('workspace.decoded');
       this.state = parsePersistentWorkspace(decoded);
