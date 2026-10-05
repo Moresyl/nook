@@ -7,7 +7,9 @@ $taskRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $taskRoot
 $taskVersion = (Get-Content package.json -Raw | ConvertFrom-Json).version
 $taskSetup = Join-Path $taskRoot "artifacts/Nook-Setup-$taskVersion-x64.exe"
-$taskScratch = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) ('NookInstallerAudit-' + [Guid]::NewGuid().ToString('N'))
+$taskScratchRoot = if ($env:QIYAO_INSTALLER_AUDIT_ROOT) { [IO.Path]::GetFullPath($env:QIYAO_INSTALLER_AUDIT_ROOT) } else { [Environment]::GetFolderPath('LocalApplicationData') }
+if (-not (Test-Path -LiteralPath $taskScratchRoot -PathType Container)) { throw 'The installer audit root must be an existing directory.' }
+$taskScratch = Join-Path $taskScratchRoot ('NookInstallerAudit-' + [Guid]::NewGuid().ToString('N'))
 $taskInstall = Join-Path $taskScratch '安装 Nook'
 $taskRegistryRoots = @('HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall', 'HKCU:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall', 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall', 'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall')
 function Get-NookRegistration {
