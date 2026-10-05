@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-05T09:09:47.582Z",
+  "executableSha256": "852d9f5ce3c4cd0011424f9730992729370f72f7c0a5f49440457d15a4ae0e27",
+  "archiveSha256": "f7d2db35bb955f74352408f777e20d5b881d1b1e53b08ddcfd27642c0761e46f",
+  "nativeBackupChecks": 6,
+  "normalCloseVerified": true,
+  "profiles": [
+    {
+      "durationMs": 347.925,
+      "samples": 35,
+      "frames": [
+        {
+          "name": "BaseWindow",
+          "samples": 24,
+          "microseconds": 247414
+        },
+        {
+          "name": "(idle)",
+          "samples": 5,
+          "microseconds": 43437
+        },
+        {
+          "name": "post",
+          "samples": 1,
+          "microseconds": 29285
+        },
+        {
+          "name": "dispatch",
+          "samples": 1,
+          "microseconds": 10113
+        },
+        {
+          "name": "__require",
+          "samples": 1,
+          "microseconds": 7613
+        },
+        {
+          "name": "get",
+          "samples": 1,
+          "microseconds": 6477
+        },
+        {
+          "name": "requireBuiltin",
+          "samples": 1,
+          "microseconds": 2551
+        },
+        {
+          "name": "get Navigator",
+          "samples": 1,
+          "microseconds": 827
+        }
+      ]
+    },
+    {
+      "durationMs": 1357.469,
+      "samples": 127,
+      "frames": [
+        {
+          "name": "structuredClone",
+          "samples": 45,
+          "microseconds": 519464
+        },
+        {
+          "name": "update",
+          "samples": 18,
+          "microseconds": 181605
+        },
+        {
+          "name": "utf8Write",
+          "samples": 13,
+          "microseconds": 136041
+        },
+        {
+          "name": "serialize",
+          "samples": 11,
+          "microseconds": 125600
+        },
+        {
+          "name": "(idle)",
+          "samples": 12,
+          "microseconds": 122044
+        },
+        {
+          "name": "initialize",
+          "samples": 7,
+          "microseconds": 71559
+        },
+        {
+          "name": "utf8Slice",
+          "samples": 6,
+          "microseconds": 62195
+        },
+        {
+          "name": "(anonymous)",
+          "samples": 5,
+          "microseconds": 51160
+        },
+        {
+          "name": "post",
+          "samples": 1,
+          "microseconds": 29028
+        },
+        {
+          "name": "(garbage collector)",
+          "samples": 1,
+          "microseconds": 10778
+        },
+        {
+          "name": "dispatch",
+          "samples": 1,
+          "microseconds": 10314
+        },
+        {
+          "name": "BaseWindow",
+          "samples": 1,
+          "microseconds": 10273
+        }
+      ]
+    }
+  ],
+  "scope": "Actual packaged application startup and 84 MB backup restore/restart with the test-only 10 ms CPU sampler. Local success does not establish the cause or resolution of the hosted read timeout."
+}

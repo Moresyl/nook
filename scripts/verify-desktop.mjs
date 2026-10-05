@@ -6,6 +6,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { waitForDesktopPage } from './desktop-page.mjs';
+import { startStartupProfileExpression, summarizeStartupProfile } from './startup-profile.mjs';
 import { execFile, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { promisify } from 'node:util';
@@ -310,13 +311,25 @@ async function launch() {
     }
   }
   let browser; let page;
+  let profiling = false;
+  const finishProfile = async () => {
+    if (!profiling) return;
+    profiling = false;
+    const profile = await evaluateMain('globalThis.qiyaoCaptureStartupProfile?.()').catch(() => undefined);
+    console.log('Desktop startup CPU samples', JSON.stringify(summarizeStartupProfile(profile) ?? { unavailable: true }));
+  };
   try {
     const activeRendererSwitches = await evaluateMain(`${JSON.stringify(rendererTestSwitches)}.filter(name => require('electron').app.commandLine.hasSwitch(name))`);
     assert.deepEqual(activeRendererSwitches, rendererTestSwitches, 'The explicit renderer test configuration must be active.');
     console.log('Desktop renderer test switches', JSON.stringify(activeRendererSwitches));
+    profiling = await evaluateMain(startStartupProfileExpression).catch(() => false);
     browser = await chromium.connectOverCDP(debuggerUrl);
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
+    await finishProfile();
   } catch (error) {
+    await finishProfile();
+    const pendingRequests = await evaluateMain('process._getActiveRequests().map(request => request.constructor.name)').catch(() => undefined);
+    console.error('Desktop pending startup operations', JSON.stringify(pendingRequests ?? { unavailable: true }));
     const main = await evaluateMain("({capturedAt:Date.now(),ready:require('electron').app.isReady(),startup:globalThis.qiyaoStartupDiagnostics?.(),memory:process.memoryUsage(),cpu:process.cpuUsage(),processes:require('electron').app.getAppMetrics(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,url:window.webContents.getURL(),visible:window.isVisible(),destroyed:window.isDestroyed()}))})").catch(() => undefined);
     console.error('Desktop page startup diagnostics', JSON.stringify({ pid: child.pid, elapsedMs: Date.now() - startedAt, exitCode: child.exitCode, signalCode: child.signalCode, pages: browser?.contexts().flatMap((context) => context.pages().map((page) => ({ url: page.url(), closed: page.isClosed() }))), main }));
     console.error(diagnostics.slice(-4000).replace(/ws:\/\/[^\s]+/g, '[test debugger]'));
