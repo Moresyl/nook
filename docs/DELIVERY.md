@@ -1,10 +1,10 @@
-# Delivery requirements
+# 交付要求
 
-## 当前交付状态
+## 当前入口
 
-当前应用已完成原项目产品身份清理，原始开源许可证保留；最新包审计及法律文件哈希见 [构建证据](../verification/workspace-read-package-result.json)。746 项单元测试通过。本地同一应用与启动器已通过完整未安装／实际安装各 215 项、设置 4 项、便携 7 项及十份严格运行记录校验，见 [完整本地分发](../verification/terminal-cold-distribution-result.json)。
+项目现名 **Nook**，仓库为 [Moresyl/nook](https://github.com/Moresyl/nook)。当前发布状态与剩余步骤见 [发布状态](RELEASE.md)，最新界面截图和设计差异见 [设计对照](DESIGN-ALIGNMENT.md)。本轮改造尚未完成最终分发和托管验收，历史完整测试记录不能作为当前版本完成证明。
 
-远端 `37232146654` 在实际安装版 187 项后的正常退出检查失败，未发布；新的退出观测脚本通过六项专项并已提交流水线验证。详见 [发布状态](RELEASE.md) 和 [退出观测](CI-EXIT-OBSERVATION.md)。完整能力及物理 UI 验收仍按下方交付要求执行，不以局部通过代替全部完成。
+下方保留原交付范围、能力表和历史证据，不因品牌与 UI 改造缩小范围。历史段落中的“当前／最新”均只针对当时的源码和产物。
 
 ## 历史批次记录
 

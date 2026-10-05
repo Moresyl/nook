@@ -2,7 +2,7 @@
 
 ## [0.1.0-alpha.1] - 2026-10-03
 
-这是栖曜 Qiyao 的首次独立预发布版本，独立仓库尚无上一版本；不沿用其他项目的版本历史。
+这是 Nook 的首次独立预发布候选说明，尚未发布，独立仓库尚无上一版本；不沿用其他项目的版本历史。
 
 ### 新功能
 
@@ -20,12 +20,15 @@
 
 ### 变更与安全
 
-- 统一为栖曜 Qiyao 名称、独立图标、应用标识与 Windows 元数据。主工作台及隔离插件面板统一使用原始 OFL Inter 字体，保留指定参考中的非字体样式和数学字体。
+- 应用显示名称、独立图标和 Windows 产品元数据统一为 Nook，已有 Qiyao 数据目录继续兼容读取。主工作台与隔离插件使用 OFL Inter 字体；参考设计的采用范围与差异见设计对照文档。
 - 配置的密钥在本地加密，并绑定连接目标；共享备份不包含密钥。插件按声明的能力与项目范围授权，文件、命令及远程工具调用保留具体操作预览。
 - 清理产品及项目法律说明中的旧项目标识，完整保留原始开源许可证、401 份依赖法律文档及安装器组件来源。流水线检查编译后的旧身份／已移除字体引用、包内法律说明与源码的一致性、原始文件字节和同一应用体的运行记录，发布文件附对应源码与 SHA-256。
 - MCP 二进制输入限制单项 2 MB、单次 12 项／合计 12 MB，验证规范编码和文件元数据。模型读取结果只含文本与文件元数据，图片预览和导出操作不会自动调用模型。
 
 ### 修复与完善
+
+- 首页和项目说明精简为任务入口与使用指南；设置采用 720×460 布局，分类和详情独立滚动，原生下拉菜单统一明暗样式与键盘操作。
+- 项目切换移至顶部，为编辑器释放宽度；窄输入区使用带提示和数量的图标操作。极窄视口采用紧凑导航，修复聊天列表被底部操作区遮挡的问题。
 
 - 便携启动器对解压目录的短暂文件占用进行有界清理重试，成功时保留应用退出码；持续占用会明确返回失败，启动前清理失败时不继续覆盖解压。
 - 项目文件和终端查询只读取当前项目的独立副本，避免大型工作台中每次查询复制全部聊天历史；未提交的更新和失败的修改不影响当前已保存项目，删除后立即拒绝后续访问。
@@ -49,14 +52,16 @@
 
 ### 安装
 
-- 下载 Windows x64 安装版 `Qiyao-Setup-0.1.0-alpha.1-x64.exe`，或便携版 `Qiyao-Portable-0.1.0-alpha.1-x64.exe`。安装版支持当前用户及自选目录；便携版无需安装。
+- 发布后可下载 Windows x64 安装版 `Nook-Setup-0.1.0-alpha.1-x64.exe`，或便携版 `Nook-Portable-0.1.0-alpha.1-x64.exe`。安装版支持当前用户及自选目录；便携版无需安装。
 - 使用随版本提供的 `SHA256SUMS.txt` 核对文件；对应源码、实际验证记录与更新说明一并提供。启动后自行配置模型连接；已有工作台可先导出完整备份。
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
 
-First independent Qiyao prerelease. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. MCP resource subscriptions refresh literal previews during continuous updates and allow explicit draft insertion without model requests. Includes complete JSON/gzip backup and opt-in desktop entry controls. MCP resource/prompt binaries support explicit original-byte export and bounded normalized image previews, including empty-file/cancel handling; approved model reads retain metadata only. Delayed results respect selection changes, and nested Escape preserves the parent settings dialog.
+Planned first independent Nook prerelease; not yet published. Adds local conversations with preserved reply versions, searchable branch navigation, persistent sibling ordering and independent drafts; parallel comparison across two to four configured models with identical context and independent continuation; temporary chats excluded from local history and workspace backups; document/image inputs and knowledge retrieval; project editing, Git and native terminals; assistants, prompt templates, scheduled tasks, MCP and isolated local extensions. MCP resource subscriptions refresh literal previews during continuous updates and allow explicit draft insertion without model requests. Includes complete JSON/gzip backup and opt-in desktop entry controls. MCP resource/prompt binaries support explicit original-byte export and bounded normalized image previews, including empty-file/cancel handling; approved model reads retain metadata only. Delayed results respect selection changes, and nested Escape preserves the parent settings dialog.
 
-Unifies the Qiyao identity and original OFL Inter font, fixes isolated-panel font loading, preserves original comparison labels after changing models, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
+Unifies the Nook identity and original OFL Inter font, fixes isolated-panel font loading, preserves original comparison labels after changing models, preserves drafts on failed branch switches, restores partial stream text after parallel startup snapshots, completes directory pagination and preserves minimum-window send-button sizing. Windows portable extraction and cleanup retain long-path files. Original open-source notices and matching source are included. Windows x64 installer and portable binaries are unsigned; verify their SHA-256 before use.
 
 Response checkpoints, drafts and existing-conversation starts use a recoverable journal bound to the current primary file, with an independent complete previous-state backup and normal-close materialization. Pending conversation selections are coalesced without mixing regular and temporary persistence. Damaged journals and unavailable primary files retain explicit recovery or save errors.
+
+The revised UI includes a compact home, a 720×460 settings dialog with independent navigation/detail scrolling, themed native selects, a horizontal project switcher, compact composer actions and narrow-window navigation. Reference-design adoption remains documented with explicit differences.
