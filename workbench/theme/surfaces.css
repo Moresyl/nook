@@ -317,7 +317,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .empty-glyph { display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; width: 52px; height: 52px; color: var(--ds-text-tertiary); }
 .empty h3 { font-size: 15px; }
 .empty p { margin: 8px 0 20px; color: var(--ds-text-secondary); font-size: 12px; }
-.modal { width: min(720px, calc(100vw - 40px)); max-height: min(680px, calc(100vh - 100px)); padding: 0; border: 1px solid var(--ds-border); border-radius: 12px; color: var(--ds-text); background: var(--ds-bg-elevated); box-shadow: var(--shadow-2xl); overflow: hidden; transform: translateY(-20px); }
+.modal { width: min(720px, calc(100vw - 40px)); max-height: min(460px, calc(100dvh - 80px)); padding: 0; border: 1px solid var(--ds-border); border-radius: 12px; color: var(--ds-text); background: var(--ds-bg-elevated); box-shadow: var(--shadow-2xl); overflow: hidden; transform: translateY(-20px); }
 .modal[open] { display: flex; flex-direction: column; }
 .modal-header, .modal-footer { flex-shrink: 0; }
 .modal-content { flex: 1; min-height: 0; }
