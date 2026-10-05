@@ -460,7 +460,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .projects-page { display: flex; flex-direction: column; min-height: 0; overflow: hidden; padding: 24px; }
 .projects-page .page-heading { flex: none; }
 .projects-page .project-layout { flex: 1; min-height: 0; margin-top: 16px; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-.projects-page .project-list { display: flex; align-items: center; gap: 4px; padding: 8px 0; border-right: 0; border-bottom: 1px solid var(--ds-border); overflow: auto; }
+.projects-page .project-list { display: flex; align-items: center; gap: 4px; min-width: 0; padding: 8px 0; border-right: 0; border-bottom: 1px solid var(--ds-border); }
+.project-tabs { display: flex; align-items: center; flex: 1; gap: 4px; min-width: 0; padding: 0 2px; overflow: auto; }
 .projects-page .project-row { flex: 0 0 auto; min-width: 120px; max-width: min(240px, calc(100% - 36px)); }
 .projects-page .project-inspector { display: flex; flex-direction: column; min-height: 0; padding: 12px 0 0; }
 .projects-page.has-selection { padding: 0; }

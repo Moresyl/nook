@@ -1,0 +1,23 @@
+{
+  "verifiedAt": "2026-10-05T22:11:17.298Z",
+  "sourceBase": "9575887639986254d50f905db656d939fa690f01",
+  "changes": ["Keep the add-project action outside the horizontal scroller", "Reveal the selected project after project-list or viewport changes", "Preserve deliberate horizontal browsing and prioritize a focused row during resize", "Expose selected state and full-name tooltips"],
+  "typeCheck": "passed",
+  "build": "passed",
+  "native": { "result": "project-tree-result.json", "checks": 7, "runtimeErrors": [], "normalCloseVerified": true, "finalExitMs": 2455, "zoomFactors": [1, 1.25, 1.5], "minimumEditorHeightCssPx": 62.16666793823242, "overflowFixtureAdditionalProjects": 6 },
+  "screenshotsReviewed": ["95-project-tree-editor-light.png", "97-project-workspace-zoom-150.png", "102-project-switcher-dark-narrow.png"],
+  "attempts": [
+    { "log": "nook-project-switcher-desktop.log", "result": "failed original editor-height assertion at 150 percent: 58.17 CSS px; removed four extra vertical padding pixels without lowering the 60 px requirement" },
+    { "log": "nook-project-switcher-desktop-retry.log", "result": "all seven groups passed, but final process exit exceeded the unchanged 10 second deadline; shutdown reached will-quit and a PTY helper reported AttachConsole failed; causal relationship remains unproven" },
+    { "log": "nook-project-switcher-desktop-final.log", "result": "all seven groups and normal final exit passed on the same build" }
+  ],
+  "boundary": "Source project-tree integration only. The existing 9575887 packaged result does not include these changes. Native folder selection is intercepted for the add-action check; physical picker/accessibility and full current-source/distribution regression remain separate requirements. One successful retry does not establish that the earlier shutdown failure is fixed.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-project-switcher-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-project-switcher-build-retry.log", "sha256": "47f67596bd6a63480d2669d88a3a139483aaea4a9d4aedb89a1067477fc3d635" },
+    { "name": "nook-project-switcher-desktop.log", "sha256": "267c404edaa05802829948fa296eaf03d3156efe4fac103b0d76fd3575f7ff26" },
+    { "name": "nook-project-switcher-desktop-retry.log", "sha256": "d0fa63428662eaaf30394894f7e9449c1a40d4bdfabd5d471ffe18e563fc190f" },
+    { "name": "nook-project-switcher-desktop-final.log", "sha256": "e76b6ad50e392f735da2d19bc648680f4a9ee40273571ba3beba045a65ba2972" }
+  ]
+}

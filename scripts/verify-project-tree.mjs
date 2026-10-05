@@ -19,11 +19,13 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await writeFile(join(root, '__proto__/note.txt'), 'TREE_PROTOTYPE_SAFE_PATH'); await writeFile(join(root, 'root.txt'), 'TREE_ROOT'); await writeFile(join(second, 'second.txt'), 'SECOND_PROJECT_ONLY');
   for (let index = 0; index < 220; index += 32) await Promise.all(Array.from({ length: Math.min(32, 220 - index) }, (_, offset) => writeFile(join(root, `file-${String(index + offset).padStart(4, '0')}.txt`), 'TREE_PAGE')));
   const projectId = randomUUID(); const secondId = randomUUID();
-  await page.evaluate(async ({ projectId, secondId, root, second }) => {
+  const switcherProjects = Array.from({ length: 6 }, (_, index) => ({ id: randomUUID(), name: `切换验证 ${index + 1} · ${'保留完整项目名称'.repeat(8)}` }));
+  await page.evaluate(async ({ projectId, secondId, root, second, switcherProjects }) => {
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
-    await window.qiyao.saveProject({ id: projectId, name: '文件树验证', path: root, instructions: '', createdAt: Date.now() });
     await window.qiyao.saveProject({ id: secondId, name: '第二个目录', path: second, instructions: '', createdAt: Date.now() });
-  }, { projectId, secondId, root, second });
+    for (const project of switcherProjects) await window.qiyao.saveProject({ ...project, path: second, instructions: '', createdAt: Date.now() });
+    await window.qiyao.saveProject({ id: projectId, name: '文件树验证', path: root, instructions: '', createdAt: Date.now() });
+  }, { projectId, secondId, root, second, switcherProjects });
   await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: '文件树验证', exact: true }).click();
   const tree = () => page.getByRole('tree', { name: '项目文件', exact: true });
   const item = (path) => tree().getByRole('treeitem', { name: path, exact: true });
@@ -151,6 +153,14 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const zoomFactors = [1, 1.25, 1.5]; const layout = [];
   for (const zoom of zoomFactors) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await page.waitForFunction((width) => Math.abs(innerWidth - width) <= 2, 760 / zoom);
+    await page.waitForFunction(() => {
+      const viewport = document.querySelector('.project-tabs'); const selected = document.querySelector('.project-row.selected'); const add = document.querySelector('.project-list-add');
+      if (!viewport || !selected || !add) return false;
+      const view = viewport.getBoundingClientRect(); const row = selected.getBoundingClientRect(); const action = add.getBoundingClientRect();
+      return viewport.scrollWidth > viewport.clientWidth && row.left >= view.left - 1 && row.right <= view.right + 1 && action.left >= 0 && action.right <= view.left + 1 && action.width > 0;
+    });
+    assert.equal(await page.locator('.project-row.selected > button').first().getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('.project-list button[aria-pressed="true"]').count(), 1);
     if (zoom === 1.25) await page.getByRole('button', { name: '隐藏文件树', exact: true }).click();
     const marker = `TREE_SPACE_INPUT_${zoom * 100}`; await input().focus(); await input().press('Control+End'); await page.keyboard.insertText(`// ${marker}\n`); draftContents += `// ${marker}\n`;
     await waitForBridge(page, async ({ id, text }) => (await window.qiyao.load()).editorDrafts.some((draft) => draft.projectId === id && draft.path === 'source/资料/代码.ts' && draft.text === text), { id: projectId, text: draftContents });
@@ -169,6 +179,30 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     const add = await page.getByRole('button', { name: '添加项目', exact: true }).boundingBox(); assert.ok(add && add.x >= 0 && add.y >= 0 && add.x + add.width <= bounds.width + 1 && add.y + add.height <= bounds.height + 1, 'The compact layout must retain the add-project action');
     if (zoom === 1.5) {
       const opener = page.getByRole('button', { name: `编辑 ${longName}`, exact: true }); await opener.focus(); await opener.press('Enter'); const settings = page.getByRole('dialog', { name: '项目设置', exact: true }); await settings.waitFor(); assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), longName); assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await capture('98-project-settings-zoom-150.png'); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' }); assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
+      await page.locator('.project-tabs').hover(); await page.mouse.wheel(-10_000, 0);
+      await page.waitForFunction(() => document.querySelector('.project-tabs').scrollLeft < 1);
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      assert.equal(await page.locator('.project-tabs').evaluate(element => element.scrollLeft), 0, 'Manual horizontal browsing must not snap back to the selected project');
+      await application.evaluateMain(`globalThis.nookSwitcherOpenDialog=require('electron').dialog.showOpenDialog;require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:[${JSON.stringify(root)}]});`);
+      try {
+        const addProject = page.getByRole('button', { name: '添加项目', exact: true }); await addProject.focus(); await addProject.press('Enter'); await settings.waitFor();
+        assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' });
+        assert.equal(await addProject.evaluate(element => element === document.activeElement), true);
+      } finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.nookSwitcherOpenDialog;delete globalThis.nookSwitcherOpenDialog"); }
+      const firstRow = page.locator('.project-tabs .project-row').first(); const firstProject = firstRow.getByRole('button').first(); const firstName = await firstProject.innerText();
+      await firstProject.focus(); await application.resize(800, 560);
+      await page.waitForFunction(() => Math.abs(innerWidth - 800 / 1.5) < 2);
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      assert.equal(await firstProject.evaluate(element => { const row = element.closest('.project-row').getBoundingClientRect(); const view = element.closest('.project-tabs').getBoundingClientRect(); return element === document.activeElement && row.left >= view.left - 1 && row.right <= view.right + 1; }), true);
+      await firstProject.press('Tab'); const editFirst = firstRow.getByRole('button', { name: `编辑 ${firstName}`, exact: true });
+      assert.equal(await editFirst.evaluate(element => element === document.activeElement), true); await editFirst.press('Enter'); await settings.waitFor();
+      assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), firstName); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' });
+      assert.equal(await editFirst.evaluate(element => element === document.activeElement), true);
+      await application.resize(760, 540); await page.waitForFunction(() => Math.abs(innerWidth - 760 / 1.5) < 2);
+      await page.locator('.project-row.selected > button').first().focus();
+      await page.locator('.monaco-editor .view-lines').getByText(new RegExp(marker)).waitFor();
+      assert.equal(await page.locator('.project-row.selected > button').first().innerText(), longName);
+      await capture('102-project-switcher-dark-narrow.png');
     }
     await terminalInput.focus();
     await terminalInput.press('Enter'); await waitForBridge(page, async ({ id, marker }) => (await window.qiyao.terminalList(id)).some((terminal) => terminal.output.slice(terminal.output.lastIndexOf(marker)).includes('PS ')), { id: projectId, marker: `SPACE${zoom * 100}` });
@@ -214,5 +248,11 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   } finally { await application.evaluateMain("globalThis.qiyaoProjectRelease?.();globalThis.qiyaoProjectIpc.removeHandler('qiyao:invoke');globalThis.qiyaoProjectIpc.handle('qiyao:invoke',globalThis.qiyaoProjectInvoke)"); }
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
-  return { page, result: { checks: 7, projectCommandChecks: 2, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout, screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures', scope: 'Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks.' } };
+  return { page, result: {
+    checks: 7, projectCommandChecks: 2, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
+    screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
+    screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',
+    scope: 'Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. Overflowing project switches retain the selected row and separate add action across zoom; horizontal wheel browsing stays put, focused project buttons survive resize and Tab/Enter/Escape restore settings focus without changing the selected project or editor draft. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks.',
+  } };
 }
