@@ -10,6 +10,7 @@ import { automationsSchema } from './automations';
 import { desktopPreferencesSchema } from './desktop-integration';
 import { promptTemplatesSchema } from './prompt-templates';
 import { messageDraftsSchema } from './message-edits';
+import { memoriesSchema } from './memories';
 export { attachmentSchema } from './attachments';
 
 const identifier = z.string().min(1).max(128).refine((value) => !value.includes('\0'), 'Identifiers cannot contain NUL characters');
@@ -116,8 +117,12 @@ export const workspaceSchema = z.object({
   automations: automationsSchema,
   promptTemplates: promptTemplatesSchema,
   messageDrafts: messageDraftsSchema,
+  memories: memoriesSchema,
   knowledgeCollections: z.array(knowledgeCollectionSchema).max(64).default([]).refine((collections) => new Set(collections.map((item) => item.id)).size === collections.length, 'Knowledge collection IDs must be unique'),
 }).superRefine((state, context) => {
+  state.memories.forEach((memory, index) => {
+    if (memory.projectId && !state.projects.some((project) => project.id === memory.projectId)) context.addIssue({ code: 'custom', path: ['memories', index, 'projectId'], message: 'A memory must belong to an existing project' });
+  });
   state.messageDrafts.forEach((draft, index) => {
     if (!state.threads.find((thread) => thread.id === draft.threadId)?.messages.some((message) => message.id === draft.messageId)) context.addIssue({ code: 'custom', path: ['messageDrafts', index], message: 'Message editing drafts must refer to stored messages' });
   });
@@ -151,7 +156,7 @@ export type ComposerDraft = z.infer<typeof composerDraftSchema>;
 
 export function emptyWorkspace(): Workspace {
   return {
-    schemaVersion: 1, providers: [], threads: [], projects: [], notes: [], editorDrafts: [], composerDrafts: [], messageDrafts: [], mcpServers: [], skills: [], plugins: [], knowledgeCollections: [], automations: [], promptTemplates: [],
+    schemaVersion: 1, providers: [], threads: [], projects: [], notes: [], editorDrafts: [], composerDrafts: [], messageDrafts: [], memories: [], mcpServers: [], skills: [], plugins: [], knowledgeCollections: [], automations: [], promptTemplates: [],
     assistants: [
       { id: 'general', name: '通用助手', description: '梳理想法，完成日常工作', instructions: 'Be clear, accurate and helpful. Respond in the language the user uses.' },
       { id: 'developer', name: '代码伙伴', description: '理解项目，设计和检查代码', instructions: 'You are a careful software engineer. Inspect evidence, explain tradeoffs, write maintainable code and verify changes.' },

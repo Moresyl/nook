@@ -44,6 +44,7 @@ import { conversationAutomationRunner } from './services/automation-runner';
 import { DesktopIntegration } from './services/desktop-integration';
 import { AssistantProfiles } from './services/assistant-profiles';
 import { PromptTemplates } from './services/prompt-templates';
+import { Memories } from './services/memories';
 import { MessageEdits } from './services/message-edits';
 
 const bundleDirectory = __dirname;
@@ -268,11 +269,14 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     await Promise.all(scopedPlugins.map(async (plugin) => { await engine.stopPlugin(plugin.id); await plugins.unload(plugin.id); }));
     return vault.update((draft) => {
       draft.projects = draft.projects.filter((project) => project.id !== id);
+      draft.memories = draft.memories.filter((memory) => memory.projectId !== id);
       draft.threads.forEach((thread) => { if (thread.projectId === id) delete thread.projectId; });
       draft.plugins.forEach((plugin) => { if (plugin.projectIds.includes(id)) { plugin.projectIds = plugin.projectIds.filter((value) => value !== id); plugin.enabled = false; } });
     });
   },
   saveAssistant: (raw) => assistantProfiles.save(raw),
+  saveMemory: (raw) => new Memories(vault).save(raw),
+  removeMemory: (raw) => new Memories(vault).remove(raw),
   removeAssistant: (raw) => assistantProfiles.remove(raw),
   readAssistantImport: async () => {
     const result = await dialog.showOpenDialog(window!, { title: '导入助手配置', properties: ['openFile'], filters: [{ name: 'Nook 助手配置', extensions: ['json', 'gz'] }] });

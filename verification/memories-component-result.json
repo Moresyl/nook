@@ -1,0 +1,22 @@
+{
+  "change": "Explicit user-managed memories with global/project scope, enabled state, search/edit/delete settings, vault persistence, backup inclusion and temporary-chat exclusion.",
+  "baseCommit": "c8d7a7f3a897642539b7d6bc88de108d48eb3ffb",
+  "componentTests": {
+    "focused": { "files": 4, "passed": 41 },
+    "full": { "files": 74, "passed": 774 },
+    "coverage": { "lines": 99.32, "statements": 97.05, "branches": 94.58, "functions": 97.26, "scope": "contracts and desktop services; excludes renderer and bridge contract" },
+    "log": "D:/GR/pi-pc/.firecrawl/nook-memories-coverage.log",
+    "sha256": "73cb84d8599becb2313cc376d961f46363b075350bd6b872823e7441b511bb9f"
+  },
+  "typecheck": "passed",
+  "build": { "result": "passed", "log": "D:/GR/pi-pc/.firecrawl/nook-memories-build.log", "sha256": "09bfed5eaab385c40cc9efc559fb16a46e71a904e0ec4f1a2c6f0012f4120336" },
+  "desktop": {
+    "result": "failed before any memory UI assertion: existing 30-second startup deadline",
+    "elapsedMs": 30743,
+    "stdoutBytes": 2,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-memories-desktop.log",
+    "sha256": "4c705315edce97528817fcde873a3f160e44effba1ac4c481419cb9acfb7fc9e",
+    "fixture": "E:/NookVerification/Temp/qiyao-electron-SIfart"
+  },
+  "acceptance": "Actual memory settings interactions, screenshots, full desktop regression, matching distribution and release remain incomplete. Existing build artifacts do not contain this feature. No startup timeout was relaxed."
+}

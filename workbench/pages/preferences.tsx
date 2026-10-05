@@ -9,6 +9,7 @@ import { PluginSettingsPage } from './plugins';
 import { ModelCapacity } from './model-capacity';
 import { configuredModels, configuredProvider, discoveredModels } from './model-settings';
 import { DesktopSettings } from './desktop-settings';
+import { MemorySettings } from './memory-settings';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onOpenPanel: (pluginId: string, panelId: string) => void };
 const blankProvider = (): Provider => ({ id: crypto.randomUUID(), name: '', kind: 'responses', endpoint: 'https://api.openai.com/v1', models: [], hasKey: false });
@@ -28,8 +29,9 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
   function updateProvider(field: keyof Provider, value: string) {
     setEditing((current) => current ? { ...current, [field]: value, ...(field === 'endpoint' && value !== current.endpoint ? { modelCatalog: undefined } : {}) } : null);
   }
-  const tabs = [{ id: 'models', label: '模型连接', icon: 'assistant' }, { id: 'mcp', label: 'MCP 工具', icon: 'code' }, { id: 'skills', label: '本地技能', icon: 'library' }, { id: 'plugins', label: '本地插件', icon: 'code' }, { id: 'appearance', label: '外观与交互', icon: 'sun' }, { id: 'data', label: '数据与备份', icon: 'download' }, { id: 'about', label: '关于 Nook', icon: 'settings' }] as const;
+  const tabs = [{ id: 'models', label: '模型连接', icon: 'assistant' }, { id: 'mcp', label: 'MCP 工具', icon: 'code' }, { id: 'skills', label: '本地技能', icon: 'library' }, { id: 'plugins', label: '本地插件', icon: 'code' }, { id: 'memories', label: '记忆', icon: 'library' }, { id: 'appearance', label: '外观与交互', icon: 'sun' }, { id: 'data', label: '数据与备份', icon: 'download' }, { id: 'about', label: '关于 Nook', icon: 'settings' }] as const;
   return <Modal className="settings-dialog" title="设置" onClose={onClose}><div className="settings-layout"><nav className="settings-nav" aria-label="设置分类">{tabs.map((item) => <Button key={item.id} className={tab === item.id ? 'selected' : ''} onClick={() => { setTab(item.id); setEditing(null); }}><Glyph name={item.icon} size={16} />{item.label}</Button>)}</nav><section key={tab} className="settings-detail" aria-label={tabs.find((item) => item.id === tab)?.label}>
+    {tab === 'memories' && <MemorySettings state={state} onState={onState} report={report} />}
     {tab === 'models' && (editing ? <>
       <div className="section-heading"><Button disabled={busy} onClick={() => setEditing(null)}>← 返回连接列表</Button><span className="muted">{editing.hasKey ? '密钥已保存在系统中' : '新连接'}</span></div>
       <Field label="连接名称"><Input disabled={busy} value={editing.name} placeholder="例如：我的模型" onChange={(event) => updateProvider('name', event.target.value)} /></Field>

@@ -37,6 +37,7 @@ import { verifyReplyVersions } from './verify-reply-versions.mjs';
 import { verifyMessageEdits } from './verify-message-edits.mjs';
 import { verifyCommands } from './verify-commands.mjs';
 import { verifySurfaces } from './verify-surfaces.mjs';
+import { verifyMemories } from './verify-memories.mjs';
 import { verifyProjectTree } from './verify-project-tree.mjs';
 import { verifyDiffDisposal } from './verify-diff-disposal.mjs';
 import { verifyChatNavigation } from './verify-chat-navigation.mjs';
@@ -459,6 +460,7 @@ async function launch() {
 }
 let suiteCompleted = false;
 let surfaceResult;
+let memoriesResult;
 let projectTreeResult;
 let chatNavigationResult;
 let branchNavigationResult;
@@ -505,6 +507,9 @@ try {
   } else if (process.env.QIYAO_TEST_PROJECT_TREE_ONLY) {
     const result = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; projectTreeResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.QIYAO_TEST_MEMORIES_ONLY) {
+    memoriesResult = await verifyMemories({ page, application, directory, screenshots, projectDirectory, waitForBridge, verified });
+    assert.equal(count, 3); assert.deepEqual(errors, []);
   } else if (process.env.QIYAO_TEST_SURFACES_ONLY) {
     surfaceResult = await verifySurfaces({ page, application, screenshots, verified, waitForBridge });
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
@@ -574,6 +579,7 @@ try {
     assert.deepEqual(providerErrors, []); assert.deepEqual(errors, []); console.log(`Verified ${count} focused conversation checks.`);
   } else {
   await application.resize(1280, 840); await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
+  memoriesResult = await verifyMemories({ page, application, directory, screenshots, projectDirectory, waitForBridge, verified });
   await page.screenshot({ path: join(screenshots, '01-home-light.png') });
   const metrics = await page.evaluate(() => ({ font: getComputedStyle(document.body).fontFamily, sidebar: document.querySelector('.sidebar').getBoundingClientRect().width, composerRadius: getComputedStyle(document.querySelector('.composer')).borderRadius, color: getComputedStyle(document.body).color }));
   assert.ok(metrics.font.includes('Inter'));
@@ -1068,6 +1074,7 @@ try {
   if (fullResult && mcpBinaryFilesResult) fullResult.screenshots.push(...mcpBinaryFilesResult.screenshots);
   if (fullResult && assistantRecipesResult) { fullResult.assistantRecipes = assistantRecipesResult; fullResult.screenshots.push(...assistantRecipesResult.screenshots); }
   if (fullResult && promptTransferResult) { fullResult.promptTransfer = promptTransferResult; fullResult.screenshots.push(...promptTransferResult.screenshots); }
+  if (fullResult && memoriesResult) { fullResult.memories = memoriesResult; fullResult.screenshots.push(...memoriesResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -1124,6 +1131,12 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'prompt-transfer-packaged-result.json' : 'prompt-transfer-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused prompt-transfer suite' }), ...promptTransferResult }, null, 2));
     console.log(`Verified ${promptTransferResult.checks} prompt-transfer checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && memoriesResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'memories-packaged-result.json' : 'memories-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...memoriesResult }, null, 2));
   }
   if (suiteCompleted && !closeError && surfaceResult) {
     assert.deepEqual(errors, []);

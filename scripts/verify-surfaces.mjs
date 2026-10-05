@@ -451,7 +451,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   await application.resize(760, 540);
   const zooms = [1, 1.25, 1.5];
-  const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '外观与交互', '数据与备份', '关于 Nook'];
+  const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '记忆', '外观与交互', '数据与备份', '关于 Nook'];
   const geometryChecks = [];
   for (const [width, height, zoom] of [
     ...zooms.map(zoom => [760, 540, zoom]),
