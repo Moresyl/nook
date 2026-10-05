@@ -12,7 +12,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 assert.ok(!process.env.QIYAO_AUDIT_KIND || ['portable', 'unpacked'].includes(process.env.QIYAO_AUDIT_KIND), 'Unsupported application-directory audit kind');
 assert.ok(!process.env.QIYAO_AUDIT_KIND || process.env.QIYAO_AUDIT_DIRECTORY, 'An explicit application-directory audit kind requires the actual directory');
 const directory = process.env.QIYAO_AUDIT_DIRECTORY ? resolve(process.env.QIYAO_AUDIT_DIRECTORY) : join(root, 'artifacts', 'win-unpacked'); const resources = join(directory, 'resources');
-const executable = join(directory, 'Qiyao.exe'); const archive = join(resources, 'app.asar');
+const executable = join(directory, 'Nook.exe'); const archive = join(resources, 'app.asar');
 const builder = createRequire(import.meta.resolve('electron-builder'));
 const library = createRequire(builder.resolve('app-builder-lib'));
 const asar = library('@electron/asar');
@@ -48,7 +48,7 @@ for (const path of paths) {
   productFiles++;
 }
 const metadata = JSON.parse(asar.extractFile(archive, 'package.json').toString('utf8'));
-assert.equal(metadata.name, 'qiyao-workspace'); assert.equal(metadata.author.name, 'Qiyao'); assert.equal(metadata.license, 'LGPL-3.0-or-later');
+assert.equal(metadata.name, 'nook-workspace'); assert.equal(metadata.author.name, 'Nook'); assert.equal(metadata.license, 'LGPL-3.0-or-later');
 const dependencies = JSON.parse(await readFile(join(root, 'licenses', 'dependencies.json'), 'utf8'));
 let retainedDocuments = 0;
 for (const component of dependencies.components) {
@@ -86,10 +86,10 @@ const elevationHelper = await readFile(join(resources, 'elevate.exe')).catch((er
 if (elevationHelper) assert.equal(sha256(elevationHelper), helper.sha256, 'The packaged elevation helper changed');
 for (const [original, packed] of [['LICENSE', 'LICENSE.electron.txt'], ['LICENSES.chromium.html', 'LICENSES.chromium.html']]) assert.ok((await readFile(join(root, 'node_modules', 'electron', 'dist', original))).equals(await readFile(join(directory, packed))), `Electron vendor notice changed: ${packed}`);
 const { stdout } = await promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $item=Get-Item -LiteralPath $env:QIYAO_AUDIT_EXECUTABLE; $info=$item.VersionInfo; @{ProductName=$info.ProductName;CompanyName=$info.CompanyName;FileDescription=$info.FileDescription;Copyright=$info.LegalCopyright;Signature=(Get-AuthenticodeSignature -LiteralPath $item.FullName).Status.ToString()} | ConvertTo-Json -Compress"], { windowsHide: true, env: { ...process.env, PSModulePath: join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'Modules'), QIYAO_AUDIT_EXECUTABLE: executable } });
-const executableMetadata = JSON.parse(stdout); assert.equal(executableMetadata.ProductName, 'Qiyao'); assert.equal(executableMetadata.CompanyName, 'Qiyao'); assert.equal(executableMetadata.FileDescription, 'Qiyao'); assert.equal(executableMetadata.Copyright, 'Copyright © 2026 Qiyao');
+const executableMetadata = JSON.parse(stdout); assert.equal(executableMetadata.ProductName, 'Nook'); assert.equal(executableMetadata.CompanyName, 'Nook'); assert.equal(executableMetadata.FileDescription, 'Nook'); assert.equal(executableMetadata.Copyright, 'Copyright © 2026 Nook');
 const unresolvedAssets = assets.filter((asset) => asset.status !== 'verified').map((asset) => asset.name);
 const result = { verifiedAt: new Date().toISOString(), version: metadata.version, executableSha256: sha256(await readFile(executable)), archiveSha256: sha256(await readFile(archive)), executableBytes: (await stat(executable)).size, executableMetadata, productFiles, unpackedFiles, dependencyVersions: dependencies.components.length, retainedDocuments, distributionComponents: distribution.components, distributionFiles: distributionFiles.size, elevationHelperSha256: elevationHelper ? sha256(elevationHelper) : null, unresolvedDistribution: distribution.unresolved, originalVendorNotices: ['LICENSE.electron.txt', 'LICENSES.chromium.html'], oldProductIdentityMatches: [], removedUiFontReferencesVerified: true, compiledAssetsMatchVerifiedBuild: true, unresolvedAssets, scope: 'Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates.' };
 await writeFile(join(root, 'verification', process.env.QIYAO_AUDIT_KIND ? `${process.env.QIYAO_AUDIT_KIND}-package-audit-result.json` : process.env.QIYAO_AUDIT_DIRECTORY ? 'installed-package-audit-result.json' : 'package-audit-result.json'), JSON.stringify(result, null, 2));
-console.log(`Verified ${productFiles} packaged product files, ${retainedDocuments} complete dependency legal documents, ${distributionFiles.size} distribution legal/source files, asset notices, Electron/Chromium notices and Qiyao executable metadata.`);
+console.log(`Verified ${productFiles} packaged product files, ${retainedDocuments} complete dependency legal documents, ${distributionFiles.size} distribution legal/source files, asset notices, Electron/Chromium notices and Nook executable metadata.`);
 if (unresolvedAssets.length) console.log(`Unresolved redistribution rights: ${unresolvedAssets.join(', ')}`);
 if (distribution.unresolved.length) console.log(`Unresolved installer redistribution declarations: ${distribution.unresolved.join(', ')}`);

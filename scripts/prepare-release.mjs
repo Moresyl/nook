@@ -31,7 +31,7 @@ try {
   const directory = join(root, 'artifacts', 'release');
   await mkdir(directory, { recursive: true });
   assert.equal((await readdir(directory)).length, 0, 'Release output must start empty');
-  const files = [`Qiyao-Setup-${release.version}-x64.exe`, `Qiyao-Portable-${release.version}-x64.exe`];
+  const files = [`Nook-Setup-${release.version}-x64.exe`, `Nook-Portable-${release.version}-x64.exe`];
   const records = [];
   for (const file of files) {
     const content = await readFile(join(root, 'artifacts', file));
@@ -42,8 +42,8 @@ try {
     await copyFile(join(root, 'artifacts', file), join(directory, file));
     records.push({ file, bytes: content.length, sha256: hash });
   }
-  const source = `Qiyao-Source-${release.version}.zip`;
-  await runFile('git', ['archive', '--format=zip', `--prefix=Qiyao-${release.version}/`, `--output=${join(directory, source)}`, commit], { cwd: root, windowsHide: true });
+  const source = `Nook-Source-${release.version}.zip`;
+  await runFile('git', ['archive', '--format=zip', `--prefix=Nook-${release.version}/`, `--output=${join(directory, source)}`, commit], { cwd: root, windowsHide: true });
   records.push({ file: source, bytes: (await stat(join(directory, source))).size, sha256: sha256(await readFile(join(directory, source))) });
   await writeFile(join(directory, 'release-notes.md'), notes);
   await writeFile(join(directory, 'verification.json'), `${JSON.stringify({ ...release, commit, verifiedAt: new Date().toISOString(), artifacts: records, proofs }, null, 2)}\n`);

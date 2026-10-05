@@ -25,7 +25,7 @@ const installedLinks = process.env.QIYAO_INSTALLED_SHORTCUTS ? JSON.parse(proces
 if (installedLinks.length) {
   assert.ok(process.env.QIYAO_AUDIT_DIRECTORY, 'Installed shortcut verification requires the actual installation directory');
   assert.equal(installedLinks.length, 2, 'Verify both actual installer-owned shortcuts');
-  assert.ok(installedLinks.every((path) => typeof path === 'string' && basename(path) === 'Qiyao.lnk'), 'Unexpected installed shortcut names');
+  assert.ok(installedLinks.every((path) => typeof path === 'string' && basename(path) === 'Nook.lnk'), 'Unexpected installed shortcut names');
 }
 let succeeded = false;
 try {
@@ -127,7 +127,7 @@ try {
   checks.push('Unpin and destination cleanup execute only against isolated fixture shortcut and random AppUserModelID');
   if (installedLinks.length) {
     const installedDirectory = resolve(process.env.QIYAO_AUDIT_DIRECTORY);
-    const installedExecutable = join(installedDirectory, 'Qiyao.exe');
+    const installedExecutable = join(installedDirectory, 'Nook.exe');
     const metadata = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
     const records = [];
     for (let index = 0; index < installedLinks.length; index++) {

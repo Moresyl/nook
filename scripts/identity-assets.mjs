@@ -20,4 +20,4 @@ for (let index = 0; index < sizes.length; index++) {
   offset += images[index].length;
 }
 await writeFile(new URL('../identity/qiyao.ico', import.meta.url), Buffer.concat([header, ...images]));
-console.log('Generated Qiyao PNG and seven-size Windows ICO.');
+console.log('Generated Nook PNG and seven-size Windows ICO.');

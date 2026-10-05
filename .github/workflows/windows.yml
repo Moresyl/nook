@@ -34,7 +34,7 @@ jobs:
       - name: Prepare isolated temporary storage and pinned dependencies
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
-          $taskTemp = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) ('QiyaoPipeline-' + [Guid]::NewGuid().ToString('N'))
+          $taskTemp = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) ('NookPipeline-' + [Guid]::NewGuid().ToString('N'))
           New-Item -ItemType Directory -Path $taskTemp > $null
           if ([IO.DriveInfo]::new([IO.Path]::GetPathRoot($taskTemp)).AvailableFreeSpace -lt 2GB) { throw 'Insufficient verification storage.' }
           "TEMP=$taskTemp" >> $env:GITHUB_ENV
@@ -61,7 +61,7 @@ jobs:
       - name: Verify the complete packaged desktop and settings
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
-          $env:QIYAO_TEST_EXECUTABLE = (Resolve-Path artifacts/win-unpacked/Qiyao.exe).Path
+          $env:QIYAO_TEST_EXECUTABLE = (Resolve-Path artifacts/win-unpacked/Nook.exe).Path
           pnpm test:desktop
           $env:QIYAO_TEST_SURFACES_ONLY = '1'
           try { pnpm test:desktop } finally { Remove-Item Env:QIYAO_TEST_SURFACES_ONLY }
@@ -98,7 +98,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: qiyao-release-${{ github.sha }}
+          name: nook-release-${{ github.sha }}
           path: artifacts/release/*
           retention-days: 7
           if-no-files-found: error
@@ -113,7 +113,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: qiyao-release-${{ github.sha }}
+          name: nook-release-${{ github.sha }}
           path: release
       - name: Verify all downloads and publish the completed release
         env:
@@ -145,7 +145,7 @@ jobs:
             if (-not $taskExisting.isDraft -or $taskExisting.tagName -ne $env:QIYAO_RELEASE_TAG -or $taskExisting.targetCommitish -ne $env:QIYAO_RELEASE_COMMIT) { throw 'A published or unrelated release must be preserved.' }
             gh release edit $env:QIYAO_RELEASE_TAG --notes-file release/release-notes.md
           } else {
-            $taskCreate = @('release', 'create', $env:QIYAO_RELEASE_TAG, '--verify-tag', '--target', $env:QIYAO_RELEASE_COMMIT, '--title', "Qiyao $($taskManifest.version)", '--notes-file', 'release/release-notes.md', '--draft')
+            $taskCreate = @('release', 'create', $env:QIYAO_RELEASE_TAG, '--verify-tag', '--target', $env:QIYAO_RELEASE_COMMIT, '--title', "Nook $($taskManifest.version)", '--notes-file', 'release/release-notes.md', '--draft')
             if ($taskManifest.prerelease) { $taskCreate += '--prerelease' }
             gh @taskCreate
           }

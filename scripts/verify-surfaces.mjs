@@ -105,7 +105,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   await application.resize(760, 540);
   const zooms = [1, 1.25, 1.5];
-  const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '外观与交互', '数据与备份', '关于栖曜'];
+  const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '外观与交互', '数据与备份', '关于 Nook'];
   for (const zoom of zooms) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
     await page.waitForFunction((expected) => Math.abs(innerWidth - expected) <= 2, 760 / zoom);

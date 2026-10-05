@@ -4,6 +4,8 @@
 
 > 开发中的 Windows 桌面应用，尚未发布正式版本。界面与品牌正在更新。
 
+![Nook 深色主题首页](docs/images/nook-home.png)
+
 ## 一个窗口，完成日常工作
 
 | 工作 | 可以做什么 |
@@ -51,7 +53,7 @@ pnpm build
 
 Windows 桌面验证：`pnpm test:desktop`，需要 Git、PowerShell 和 Google Chrome。生成 Windows 安装包：`pnpm package:win`。
 
-界面按照指定的桌面设计资料逐项调整，目前尚未完整还原。已采用明暗主题与参考设计变量；UI 字体使用 OFL 许可的 Inter 和系统中文字体。品牌更新期间，内部兼容标识及历史验证记录仍保留原名。
+界面按照指定的桌面设计资料逐项调整，目前尚未完整还原。已采用明暗主题与参考设计变量；UI 字体使用 OFL 许可的 Inter 和系统中文字体。进度与差异见 [设计对照](docs/DESIGN-ALIGNMENT.md)。内部兼容标识及历史验证记录仍保留原名。
 
 ## 开源许可
 

@@ -1,11 +1,11 @@
 {
-  "name": "qiyao-workspace",
+  "name": "nook-workspace",
   "version": "0.1.0-alpha.1",
   "private": true,
   "license": "LGPL-3.0-or-later",
-  "description": "Qiyao — a local AI workspace for ideas, projects and agents",
+  "description": "Nook — a local AI workspace for chat, documents and projects",
   "author": {
-    "name": "Qiyao"
+    "name": "Nook"
   },
   "main": "out/main/launch.cjs",
   "type": "module",
@@ -73,8 +73,8 @@
   },
   "build": {
     "appId": "app.qiyao.workspace",
-    "productName": "Qiyao",
-    "copyright": "Copyright © 2026 Qiyao",
+    "productName": "Nook",
+    "copyright": "Copyright © 2026 Nook",
     "electronDist": "node_modules/electron/dist",
     "npmRebuild": false,
     "toolsets": { "nsis": "0.0.0" },
@@ -113,17 +113,17 @@
           ]
         }
       ],
-      "artifactName": "Qiyao-${version}-${arch}.${ext}"
+      "artifactName": "Nook-${version}-${arch}.${ext}"
     },
     "nsis": {
       "include": "identity/windows/include.nsh",
-      "artifactName": "Qiyao-Setup-${version}-${arch}.${ext}",
+      "artifactName": "Nook-Setup-${version}-${arch}.${ext}",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true
     },
     "portable": {
-      "artifactName": "Qiyao-Portable-${version}-${arch}.${ext}",
+      "artifactName": "Nook-Portable-${version}-${arch}.${ext}",
       "useZip": true
     }
   }

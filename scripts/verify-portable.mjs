@@ -21,11 +21,11 @@ const directory = await mkdtemp(join(scratchRoot, 'qiyao-portable-'));
 const extractionRoot = join(directory, `temporary-${'a'.repeat(Math.max(32, 128 - directory.length - 'temporary-'.length - 1))}`);
 const data = join(directory, 'data');
 const project = join(directory, 'project');
-const portableDirectory = join(directory, '免安装 栖曜');
+const portableDirectory = join(directory, '免安装 Nook');
 for (const path of [extractionRoot, data, project, portableDirectory]) await mkdir(path);
 const metadata = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
-const original = join(root, 'artifacts', `Qiyao-Portable-${metadata.version}-x64.exe`);
-const executable = join(portableDirectory, '栖曜 免安装.exe');
+const original = join(root, 'artifacts', `Nook-Portable-${metadata.version}-x64.exe`);
+const executable = join(portableDirectory, 'Nook 免安装.exe');
 await copyFile(original, executable);
 const sha256 = (content) => createHash('sha256').update(content).digest('hex');
 const wrapperHash = sha256(await readFile(executable));
@@ -34,13 +34,13 @@ const runFile = promisify(execFile);
 const psEnv = { ...process.env, PSModulePath: join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'WindowsPowerShell', 'v1.0', 'Modules') };
 const systemSnapshot = async () => {
   const startedAt = Date.now();
-  const { stdout } = await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $roots=@('HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKCU:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall'); $entries=@($roots | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-ChildItem -LiteralPath $_ } | ForEach-Object { Get-ItemProperty -LiteralPath $_.PSPath } | Where-Object { $_.DisplayName -match '^Qiyao(?:\\s|$)' } | Select-Object PSPath,DisplayName,UninstallString | Sort-Object PSPath); $links=@((Join-Path ([Environment]::GetFolderPath('Desktop')) 'Qiyao.lnk'),(Join-Path ([Environment]::GetFolderPath('Programs')) 'Qiyao.lnk')) | ForEach-Object { if(Test-Path -LiteralPath $_) { @{Path=$_;Sha256=(Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash} } }; @{Registry=$entries;Shortcuts=@($links)} | ConvertTo-Json -Depth 5 -Compress"], { windowsHide: true, timeout: 30_000, env: psEnv });
+  const { stdout } = await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $roots=@('HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKCU:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall'); $entries=@($roots | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-ChildItem -LiteralPath $_ } | ForEach-Object { Get-ItemProperty -LiteralPath $_.PSPath } | Where-Object { $_.DisplayName -match '^Nook(?:\\s|$)' } | Select-Object PSPath,DisplayName,UninstallString | Sort-Object PSPath); $links=@((Join-Path ([Environment]::GetFolderPath('Desktop')) 'Nook.lnk'),(Join-Path ([Environment]::GetFolderPath('Programs')) 'Nook.lnk')) | ForEach-Object { if(Test-Path -LiteralPath $_) { @{Path=$_;Sha256=(Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash} } }; @{Registry=$entries;Shortcuts=@($links)} | ConvertTo-Json -Depth 5 -Compress"], { windowsHide: true, timeout: 30_000, env: psEnv });
   const snapshot = JSON.parse(stdout);
   console.log('Portable system-snapshot timing', JSON.stringify({ elapsedMs: Date.now() - startedAt, timeoutMs: 30_000 }));
   return snapshot;
 };
 const ownedChildren = async () => {
-  const { stdout } = await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $prefix=$env:QIYAO_PORTABLE_SCRATCH+[IO.Path]::DirectorySeparatorChar; @(Get-CimInstance Win32_Process -Filter \"Name='Qiyao.exe'\" | Where-Object { $_.ExecutablePath -and $_.ExecutablePath.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase) } | Select-Object ProcessId,ParentProcessId,ExecutablePath) | ConvertTo-Json -Compress"], { windowsHide: true, timeout: 10_000, env: { ...psEnv, QIYAO_PORTABLE_SCRATCH: extractionRoot } });
+  const { stdout } = await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false); $ErrorActionPreference='Stop'; $prefix=$env:QIYAO_PORTABLE_SCRATCH+[IO.Path]::DirectorySeparatorChar; @(Get-CimInstance Win32_Process -Filter \"Name='Nook.exe'\" | Where-Object { $_.ExecutablePath -and $_.ExecutablePath.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase) } | Select-Object ProcessId,ParentProcessId,ExecutablePath) | ConvertTo-Json -Compress"], { windowsHide: true, timeout: 10_000, env: { ...psEnv, QIYAO_PORTABLE_SCRATCH: extractionRoot } });
   if (!stdout.trim()) return [];
   const value = JSON.parse(stdout); return Array.isArray(value) ? value : [value];
 };
@@ -230,7 +230,7 @@ try {
     if (application.endpoint) await evaluateMain(application.endpoint, "require('electron').app.quit()").catch(() => {});
     if (application.browser) await application.browser.close().catch(() => {});
     // Cleanup is restricted to this newly created scratch directory and wrapper.
-    await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "$ErrorActionPreference='Stop'; $prefix=$env:QIYAO_PORTABLE_SCRATCH+[IO.Path]::DirectorySeparatorChar; Get-CimInstance Win32_Process -Filter \"Name='Qiyao.exe'\" | Where-Object { $_.ExecutablePath -and $_.ExecutablePath.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase) } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"], { windowsHide: true, timeout: 10_000, env: { ...psEnv, QIYAO_PORTABLE_SCRATCH: extractionRoot } });
+    await runFile('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', "$ErrorActionPreference='Stop'; $prefix=$env:QIYAO_PORTABLE_SCRATCH+[IO.Path]::DirectorySeparatorChar; Get-CimInstance Win32_Process -Filter \"Name='Nook.exe'\" | Where-Object { $_.ExecutablePath -and $_.ExecutablePath.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase) } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"], { windowsHide: true, timeout: 10_000, env: { ...psEnv, QIYAO_PORTABLE_SCRATCH: extractionRoot } });
     if (application.child.exitCode === null) application.child.kill();
   }
   if (succeeded) {

@@ -28,7 +28,7 @@ async function audit(executable, variant) {
   assert.ok(listed.length, 'NSIS plugin listing must not be empty');
   assert.ok(!listed.some((path) => /[\\/]WinShell\.dll$/i.test(path)), 'The removed WinShell plugin must not be embedded');
   const target = join(directory, variant); await mkdir(target);
-  await runFile(tool, ['x', '-y', '-sccUTF-8', `-o${target}`, executable, ...listed, ...(variant === 'installer' ? ['$R0\\Uninstall Qiyao.exe'] : [])], { windowsHide: true, timeout: 30_000, maxBuffer: 1024 * 1024 });
+  await runFile(tool, ['x', '-y', '-sccUTF-8', `-o${target}`, executable, ...listed, ...(variant === 'installer' ? ['$R0\\Uninstall Nook.exe'] : [])], { windowsHide: true, timeout: 30_000, maxBuffer: 1024 * 1024 });
   const plugins = [];
   for (const path of listed) {
     const filename = basename(path.replaceAll('\\', '/'));
@@ -43,11 +43,11 @@ async function audit(executable, variant) {
   console.log(`Verified ${plugins.length} actual ${variant} bootstrap plugins and their declared original input hashes.`);
   const unresolved = plugins.filter((plugin) => plugin.redistributionStatus !== 'verified').map((plugin) => plugin.file);
   if (unresolved.length) console.log(`Unresolved ${variant} plugin redistribution declarations: ${unresolved.join(', ')}`);
-  if (variant === 'installer') await audit(join(target, '$R0', 'Uninstall Qiyao.exe'), 'uninstaller');
+  if (variant === 'installer') await audit(join(target, '$R0', 'Uninstall Nook.exe'), 'uninstaller');
 }
 try {
-  await audit(join(root, 'artifacts', `Qiyao-Setup-${metadata.version}-x64.exe`), 'installer');
-  await audit(join(root, 'artifacts', `Qiyao-Portable-${metadata.version}-x64.exe`), 'portable');
+  await audit(join(root, 'artifacts', `Nook-Setup-${metadata.version}-x64.exe`), 'installer');
+  await audit(join(root, 'artifacts', `Nook-Portable-${metadata.version}-x64.exe`), 'portable');
   await writeFile(join(root, 'verification', 'distribution-bootstrap-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), archiveToolSha256: sha256(await readFile(tool)), variants, scope: 'Actual NSIS installer, embedded uninstaller and portable bootstrap plugin inventories and exact original plugin hashes. Unresolved declarations remain explicit and fail the separate release gate. Application directory/source retention, runtime behavior, signatures, fonts and release approval remain separate checks.' }, null, 2));
   succeeded = true;
 } finally {
