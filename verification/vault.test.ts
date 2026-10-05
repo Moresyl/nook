@@ -43,7 +43,7 @@ describe('local workspace persistence', () => {
     await writeFile(join(directory, 'workspace.json'), bytes);
     await vault.initialize();
     expect(vault.snapshot().notes).toEqual(state.notes);
-    expect(await readFile(join(directory, 'workspace.json'))).toEqual(bytes);
+    expect((await readFile(join(directory, 'workspace.json'))).equals(bytes)).toBe(true);
   });
   it('handles prototype-like credential IDs as plain data', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);

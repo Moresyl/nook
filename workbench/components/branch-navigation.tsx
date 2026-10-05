@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { conversationBranchPeers, conversationBranches, type BranchReorder } from '../../contracts/conversation-branches';
 import type { Thread, Workspace } from '../../contracts/workspace';
 import { Button, Field, IconButton, Input, Modal, Textarea } from './controls';
@@ -16,7 +16,7 @@ export function BranchNavigation({ thread, threads, onSelect, onReorder }: Props
     catch { return { nodes: [], error: '无法读取对话分支，请恢复有效的备份后重试。' }; }
   }, [open, threads, thread.id]);
   const nodes = navigation.nodes; const failure = error || navigation.error;
-  useEffect(() => { if (failure) errorRef.current?.scrollIntoView({ block: 'nearest' }); }, [failure]);
+  useLayoutEffect(() => { if (failure) errorRef.current?.scrollIntoView({ block: 'nearest' }); }, [failure]);
   const filtered = nodes.filter(({ thread }) => `${thread.title}\n${thread.model}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   const currentIndex = Math.max(0, filtered.findIndex((node) => node.thread.id === thread.id));
   const start = Math.min(offset < 0 ? Math.floor(currentIndex / pageSize) * pageSize : offset, Math.max(0, Math.ceil(filtered.length / pageSize) - 1) * pageSize);
