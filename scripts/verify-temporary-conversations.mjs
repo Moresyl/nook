@@ -29,6 +29,27 @@ export async function verifyTemporaryConversations({ page, application, getAppli
   await waitForBridge(page, async (id) => (await window.qiyao.load()).composerDrafts.find((draft) => draft.threadId === id)?.text === 'REGULAR_UI_DRAFT_KEEP', regular.threadId);
   const before = await files(); const beforeCalls = calls.length;
   await page.getByRole('button', { name: '临时聊天', exact: true }).click(); await page.getByLabel('临时聊天说明', { exact: true }).waitFor();
+  await input().fill('单行草稿');
+  await page.locator('.composer[data-composer-rows="single"]').waitFor();
+  assert.equal(await page.locator('.composer').evaluate((element) => getComputedStyle(element).borderRadius), '9999px');
+  const compactHeight = await page.locator('.composer').evaluate((element) => element.clientHeight);
+  await page.screenshot({ path: join(screenshots, 'nook-composer-single.png') });
+  await input().fill('第一行\n第二行\n第三行');
+  await page.locator('.composer[data-composer-rows="stacked"]').waitFor();
+  assert.ok(await page.locator('.composer').evaluate((element) => element.clientHeight) > compactHeight);
+  assert.equal(await input().evaluate((element) => element === document.activeElement), true);
+  await input().fill('单行草稿');
+  await page.locator('.composer[data-composer-rows="single"]').waitFor();
+  assert.equal(await page.locator('.composer').evaluate((element) => element.clientHeight), compactHeight);
+  const wrappingDraft = '自动换行'.repeat(9);
+  await input().fill(wrappingDraft);
+  await page.locator('.composer[data-composer-rows="single"]').waitFor();
+  await application.resize(760, 840);
+  await page.locator('.composer[data-composer-rows="stacked"]').waitFor();
+  assert.equal(await input().inputValue(), wrappingDraft);
+  await application.resize(1280, 840);
+  await page.locator('.composer[data-composer-rows="single"]').waitFor();
+  assert.equal(await input().inputValue(), wrappingDraft);
   let state = await page.evaluate(() => window.qiyao.load()); const id = state.activeThreadId; const temporary = state.threads.find((thread) => thread.id === id);
   assert.equal(temporary.temporary, true); assert.equal(temporary.messages.length, 0); temporaryIds.add(id);
   assert.equal(await page.getByLabel('模型提供商', { exact: true }).inputValue(), providerId); assert.equal(await page.getByLabel('选择模型', { exact: true }).inputValue(), 'verification-model');
@@ -39,6 +60,8 @@ export async function verifyTemporaryConversations({ page, application, getAppli
     finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoTemporaryOpenDialog; delete globalThis.qiyaoTemporaryOpenDialog;"); }
   }
   await input().fill(draftSecret); await attach(); await waitForBridge(page, async (id) => (await window.qiyao.load()).composerDrafts.find((draft) => draft.threadId === id)?.attachments.length === 1, id);
+  await page.locator('.composer[data-composer-rows="stacked"]').waitFor();
+  assert.notEqual(await page.locator('.composer').evaluate((element) => getComputedStyle(element).borderRadius), '9999px');
   assert.deepEqual(await files(), before); assert.equal(calls.length, beforeCalls);
   verified('temporary chat creation, native attachment import and unsent input stay in memory without touching either persisted history file or requesting a model');
 

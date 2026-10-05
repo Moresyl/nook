@@ -37,6 +37,7 @@ export function Composer(props: Props) {
   const [prompts, setPrompts] = useState(false);
   const [importing, setImporting] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [singleLine, setSingleLine] = useState(true);
   const mounted = useRef(true);
   const importContext = useRef(props.importContext);
   importContext.current = props.importContext;
@@ -50,7 +51,13 @@ export function Composer(props: Props) {
   useLayoutEffect(() => {
     const node = textarea.current;
     if (!node) return;
-    const resize = () => { node.style.height = 'auto'; node.style.height = `${node.scrollHeight}px`; };
+    const resize = () => {
+      node.style.minHeight = '0'; node.style.height = '0';
+      const height = node.scrollHeight;
+      const style = getComputedStyle(node);
+      setSingleLine(height <= Number.parseFloat(style.lineHeight) + Number.parseFloat(style.paddingTop) + Number.parseFloat(style.paddingBottom) + 1);
+      node.style.removeProperty('min-height'); node.style.height = `${height}px`;
+    };
     resize();
     let width = node.clientWidth;
     const observer = new ResizeObserver(() => {
@@ -60,7 +67,7 @@ export function Composer(props: Props) {
     });
     observer.observe(node);
     return () => observer.disconnect();
-  }, [props.text]);
+  }, [props.text, singleLine, attachments.length]);
   async function send() {
     if (!props.text.trim() || busy || props.running) return;
     if (!provider || !props.model) { props.onConfigure(); return; }
@@ -82,11 +89,15 @@ export function Composer(props: Props) {
     finally { if (mounted.current) setImporting(false); }
   }
   return <div className="composer-wrap">
-    <div className="composer" data-composer-utility-bar-variant={props.running ? 'thread' : 'home'} data-composer-rows="stacked" data-composer-drag-active={dragging || undefined} aria-busy={importing} onDragEnter={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current++; setDragging(true); }} onDragOver={(event) => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); event.dataTransfer.dropEffect = busy ? 'none' : 'copy'; } }} onDragLeave={(event) => { if (!event.dataTransfer.types.includes('Files')) return; if (--dragDepth.current <= 0) { dragDepth.current = 0; setDragging(false); } }} onDrop={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current = 0; setDragging(false); void attach([...event.dataTransfer.files]); }}>
+    <div className="composer" data-composer-utility-bar-variant={props.running ? 'thread' : 'home'} data-composer-rows={singleLine && !attachments.length ? 'single' : 'stacked'} data-composer-drag-active={dragging || undefined} aria-busy={importing} onDragEnter={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current++; setDragging(true); }} onDragOver={(event) => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); event.dataTransfer.dropEffect = busy ? 'none' : 'copy'; } }} onDragLeave={(event) => { if (!event.dataTransfer.types.includes('Files')) return; if (--dragDepth.current <= 0) { dragDepth.current = 0; setDragging(false); } }} onDrop={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current = 0; setDragging(false); void attach([...event.dataTransfer.files]); }}>
       {attachments.length > 0 && <AttachmentList files={attachments} disabled={busy} onRemove={(id) => props.onAttachments(attachments.filter((item) => item.id !== id))} />}
-      <textarea ref={textarea} aria-label="消息" placeholder={dragging ? '松开以添加附件' : '有什么想一起完成的？'} maxLength={256_000} disabled={submitting} value={props.text} onChange={(event) => props.onText(event.target.value)} onPaste={(event) => { const files = [...event.clipboardData.files].filter((file) => file.type.startsWith('image/')); if (files.length) { event.preventDefault(); void attach(files); } }} onKeyDown={(event) => {
+      <div className="composer-entry">
+      <textarea rows={1} ref={textarea} aria-label="消息" placeholder={dragging ? '松开以添加附件' : '有什么想一起完成的？'} maxLength={256_000} disabled={submitting} value={props.text} onChange={(event) => props.onText(event.target.value)} onPaste={(event) => { const files = [...event.clipboardData.files].filter((file) => file.type.startsWith('image/')); if (files.length) { event.preventDefault(); void attach(files); } }} onKeyDown={(event) => {
         if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing && (props.enterToSend || event.ctrlKey || event.metaKey)) { event.preventDefault(); void send(); }
       }} />
+        {props.running ? <Button className="send-button" aria-label="停止生成" onClick={props.onStop}><Glyph name="stop" size={16} /></Button> : <Button className="send-button" tone="solid" aria-label="发送消息" disabled={!props.text.trim() || busy} onClick={() => { void send(); }}><Glyph name="send" size={18} /></Button>}
+      </div>
+    </div>
       <div className="composer-toolbar">
         <div className="composer-tools" onFocusCapture={(event) => { if (event.currentTarget.scrollWidth > event.currentTarget.clientWidth && event.target instanceof HTMLElement) event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' }); }}><IconButton icon="attach" label="添加附件" disabled={busy} onClick={() => { void attach(); }} />
           <Select aria-label="选择助手" disabled={submitting} value={props.assistantId} onChange={(event) => props.onAssistant(event.target.value)}><option value="">默认助手</option>{props.assistants.map((assistant) => <option key={assistant.id} value={assistant.id}>{assistant.name}</option>)}</Select>
@@ -98,9 +109,7 @@ export function Composer(props: Props) {
           {(props.servers.length > 0 || props.skills.length > 0 || props.plugins.length > 0) && <Button className="composer-extension-button composer-action" aria-label="选择工具与技能" title={`工具与技能${count ? ` · 已选 ${count}` : ''}`} disabled={props.running || submitting} onClick={() => setExtensions(true)}><Glyph name="code" size={14} /><span className="composer-tool-label">工具与技能</span>{count > 0 && <span className="composer-count">{count}</span>}</Button>}
           {(props.hasNotes || props.knowledgeCollections.length > 0) && <Button className="composer-extension-button composer-action" aria-label="选择资料集" title={`资料集${props.knowledgeCollectionIds.length ? ` · 已选 ${props.knowledgeCollectionIds.length}` : ''}`} disabled={props.running || submitting} onClick={() => setKnowledge(true)}><Glyph name="library" size={14} /><span className="composer-tool-label">资料集</span>{props.knowledgeCollectionIds.length > 0 && <span className="composer-count">{props.knowledgeCollectionIds.length}</span>}</Button>}
         </div>
-        {props.running ? <Button className="send-button" aria-label="停止生成" onClick={props.onStop}><Glyph name="stop" size={16} /></Button> : <Button className="send-button" tone="solid" aria-label="发送消息" disabled={!props.text.trim() || busy} onClick={() => { void send(); }}><Glyph name="send" size={18} /></Button>}
       </div>
-    </div>
     {importing && <p className="composer-mode-hint" role="status">正在导入附件…</p>}
     {props.temporary && <p className="composer-mode-hint" aria-label="临时聊天说明"><strong>临时聊天</strong>：内容和草稿不写入本机聊天历史或备份，关闭应用后清除。模型服务仍会收到消息；主动导出、工具和插件操作会保留各自结果。</p>}
     {attachments.some((file) => file.image) && <p className="composer-mode-hint">图片将随对话发送给所选模型，请使用支持图片输入的模型。</p>}

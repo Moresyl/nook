@@ -134,14 +134,18 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .home-content { width: min(100%, 768px); margin: auto; padding: 40px 0 96px; }
 .home h1 { font-size: 28px; font-weight: 590; letter-spacing: -.5px; line-height: 1.4; text-align: center; }
 .home-description { color: var(--ds-text-secondary); font-size: 14px; margin: 12px 0 28px; text-align: center; }
-.home .composer > textarea { min-height: 88px; }
+.home .composer-entry > textarea { min-height: 88px; }
 .composer-wrap { width: 100%; container: composer / inline-size; }
 .composer { padding: 14px 12px 10px; border-radius: var(--composer-radius); background: color-mix(in srgb, var(--ds-bg) 90%, transparent); box-shadow: var(--elevation-composer); backdrop-filter: blur(16px); }
 [data-theme="dark"] .composer { background: color-mix(in srgb, var(--ds-bg-elevated) 60%, var(--ds-bg)); box-shadow: var(--elevation-composer-dark), 0 0 0 1px var(--ds-border); }
 .composer:focus-within { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ds-accent) 35%, var(--ds-border)), 0 2px 8px #0000000a; }
-.composer > textarea { display: block; width: 100%; border: 0; background: transparent; font-size: 14px; line-height: 24px; padding: 0 8px 12px; min-height: 48px; max-height: 200px; resize: none; outline: none; }
-.composer > textarea::placeholder { color: var(--ds-text); opacity: .5; }
-.composer-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.composer-entry { display: flex; align-items: flex-end; gap: 8px; min-width: 0; }
+.composer-entry > textarea { display: block; flex: 1; min-width: 0; width: 100%; border: 0; background: transparent; font-size: 14px; line-height: 24px; padding: 0 8px 12px; min-height: 48px; max-height: 200px; resize: none; outline: none; }
+.composer-entry > textarea::placeholder { color: var(--ds-text); opacity: .5; }
+.chat-page .composer[data-composer-rows="single"] { border-radius: 9999px; padding: 10px 12px; }
+.chat-page .composer[data-composer-rows="single"] .composer-entry { align-items: center; }
+.chat-page .composer[data-composer-rows="single"] textarea { min-height: 24px; padding: 0 8px; }
+.composer-toolbar { display: flex; align-items: center; gap: 8px; padding: 6px 4px 0; }
 .composer-tools { display: flex; align-items: center; gap: 2px; min-width: 0; color: var(--ds-text-secondary); }
 .composer-tools .select, .model-selectors .select { width: auto; min-height: 24px; max-width: 160px; border-color: transparent; background: transparent; font-size: 11px; padding: 2px 4px; }
 .composer-tools .select:hover, .model-selectors .select:hover { background: var(--ghost-hover); }
@@ -562,7 +566,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .chat-page .message-navigation { top: 8px; bottom: 8px; }
   .chat-page .composer-dock { padding: 4px 12px 8px; }
   .chat-page .composer { padding: 8px 8px 6px; }
-  .chat-page .composer > textarea { min-height: 32px; max-height: 48px; padding: 0 4px 4px; }
+  .chat-page .composer-entry > textarea { min-height: 32px; max-height: 48px; padding: 0 4px 4px; }
   .chat-page .composer > .attachments { margin: 0 0 4px; max-height: 60px; overflow-y: auto; }
   .chat-page .composer .attachment { min-width: 0; max-width: 100%; }
   .chat-page .composer .attachment-preview-button, .chat-page .composer .attachment-preview-button > span { min-width: 0; }
