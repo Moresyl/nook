@@ -26,8 +26,9 @@
 | --- | --- | --- |
 | `10d432f` 分发应用体 | 未安装包、实际安装包各 215 项；设置 4 项、便携 7 项、法律／身份审计和十份匹配记录 | 不包含随后弹窗公式、选择器高亮、开关开启色及提示改动 |
 | `a3518e9` 源码 | 2026-10-05 12:29 UTC 完整桌面 215 项，正常退出，无运行时错误 | 包含弹窗、菜单及开启色修正；不包含工具提示 |
-| 图标提示源码 | 类型、构建与设置专项 4 项；明暗尺寸、弹窗内显示、键盘、互斥、边缘翻转、Escape 与点击关闭 | 尚未进入上述分发包 |
-| 共享按钮提示源码 `3de4c5d` | 类型、构建、设置专项 4 项、分支专项 9 项、临时聊天专项 6 项；2026-10-05 13:29 UTC 完整桌面 215 项通过，无运行时错误并正常退出 | 最新分发包仍需重新构建验证；[完整源码记录](../verification/shared-button-full-result.json) |
+| 图标提示源码 | 类型、构建与设置专项 4 项；明暗尺寸、弹窗内显示、键盘、互斥、边缘翻转、Escape 与点击关闭 | 已进入 `4296faf` 分发包 |
+| 共享按钮提示源码 `3de4c5d` | 类型、构建、设置专项 4 项、分支专项 9 项、临时聊天专项 6 项；2026-10-05 13:29 UTC 完整桌面 215 项通过，无运行时错误并正常退出 | [完整源码记录](../verification/shared-button-full-result.json)；已进入下方新包 |
+| `4296faf` 分发应用体 | 未安装与实际安装各 215 项、设置 4 项、便携 7 项通过；正常退出／卸载，用户数据保留；十份记录匹配，七张安装截图已查看 | 仍不代表完整参考设计或原生系统交互完成；[分发摘要](../verification/shared-controls-distribution-result.json) |
 
 设置专项还检查全部七个设置分类、七组窗口／缩放组合、768px 边界、焦点与草稿保留；按钮按下和部分禁用状态使用临时状态探针。完整批次与哈希见[发布状态](RELEASE.md)，共享控件逐项证据见[控件对照](CONTROL-AUDIT.md)。
 
@@ -44,9 +45,9 @@
 | 选择器与开关 | [浅色菜单](images/select-highlight-light.png)、[深色菜单](images/select-highlight-dark.png)、[浅色开启](images/switch-checked-light.png)、[深色开启](images/switch-checked-dark.png) |
 | 短窗口与错误状态 | [短宽设置](images/dialog-viewport-dark.png)、[浅色非法输入](images/field-invalid-light.png)、[深色非法输入](images/field-invalid-dark.png) |
 | 最新完整源码回归 | [设置](images/source-settings-dark.png)、[编辑器](images/source-editor.png)、[窄屏审批](images/source-approval-narrow.png)；三张均已逐张查看 |
-| 历史安装版页面 | [深色首页](images/installed-home-dark.png)、[浅色对话](images/installed-conversation.png)、[设置](images/installed-settings-dark.png)、[编辑器](images/installed-editor.png)、[窄屏终端](images/installed-terminal-narrow.png) |
+| 本批实际安装版 | [深色首页](images/installed-home-dark.png)、[浅色对话](images/installed-conversation.png)、[设置](images/installed-settings-dark.png)、[文件审批](images/installed-file-approval.png)、[窄屏审批](images/installed-approval-narrow.png)、[编辑器](images/installed-editor.png)、[窄屏终端](images/installed-terminal-narrow.png) |
 
-截图只证明对应批次和场景；历史安装截图不代表最新源码已进入安装包。原有测试批次保存在[完整设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-05.md)与 Git 历史中。
+截图只证明对应批次和场景。本批七张安装截图及应用哈希见[安装版界面记录](../verification/installed-ui-review-result.json)；原有测试批次与旧截图保存在[完整设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-05.md)及 Git 历史中。
 
 ## 完成标准
 
