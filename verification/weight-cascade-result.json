@@ -1,0 +1,23 @@
+{
+  "change": "Removed stale medium/semibold overrides from the font stylesheet loaded after the semantic tokens.",
+  "reproduction": { "actualSelectWeight": 510, "expected": 500, "log": "D:/GR/pi-pc/.firecrawl/nook-animation-state-diagnostic.log", "sha256": "ae1329facad29e8c8b8ae402506b1fc61e532710e0eeb65267b573192410af5b", "startupAnimations": "both themes finished at opacity 1", "normalCloseMs": 7234 },
+  "build": { "result": "passed", "log": "D:/GR/pi-pc/.firecrawl/nook-weight-cascade-build.log", "sha256": "02fc18a0376cc516f2521d4d2e44e200c34f4c1fd07a6482ea80aa4f20f99f19", "compiledGlobalWeights": [500, 600] },
+  "computedStyleProbe": {
+    "result": "passed",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-weight-cascade-cdp.log",
+    "sha256": "ae2f93f8d4d201856e894c2bdd20720f6beb590ae63dd7aa6aa71be9e0474367",
+    "observations": [
+      { "theme": "light", "select": 500, "fieldLabel": 500, "heading": 600, "selectedOption": 600 },
+      { "theme": "dark", "select": 500, "fieldLabel": 500, "heading": 600, "selectedOption": 600 }
+    ],
+    "screenshots": ["docs/images/current-typography-light.png", "docs/images/current-typography-dark.png"],
+    "boundary": "Actual isolated Nook page, settings/theme changes through DOM events over CDP. Both screenshots reviewed. Not pointer/keyboard interaction or complete surface acceptance."
+  },
+  "surfaceAttempts": [
+    { "result": "startup timeout", "fixture": "E:/NookVerification/Temp/qiyao-electron-ZocMym", "log": "D:/GR/pi-pc/.firecrawl/nook-weight-cascade-surfaces.log", "sha256": "a500abf3f9bb6b3add95673032ac835bfa9d85dfc537151560e811eabc0f8c94" },
+    { "result": "startup timeout", "fixture": "E:/NookVerification/Temp/qiyao-electron-WWMq3v", "log": "D:/GR/pi-pc/.firecrawl/nook-weight-cascade-surfaces-retry.log", "sha256": "f6106db3016a451fc2916c2a2dac17e263771ed74f8e324bfc60747bbb5b6aaa" },
+    { "result": "optional early main observation timed out, then browser CDP connection timed out", "log": "D:/GR/pi-pc/.firecrawl/nook-weight-cascade-early-inspector.log", "sha256": "8e81b8674bf2d59b7cb8c291da47928c017fd3fe005d539b17c44131dc7ee0db" }
+  ],
+  "additionalDiagnostics": "Isolated Playwright probes failed on a settings locator and an initial Windows ESM import path. After correcting the probe, locator interaction still timed out; direct CDP confirmed the page was loaded and obtained the style evidence above. Explicit app.quit through the owned main inspector then produced code 0; the failed locator probe remains failed.",
+  "acceptance": "Full surfaces, latest complete desktop, distribution runtime and release remain incomplete. Startup/connection failures are unresolved; no timeout was relaxed."
+}

@@ -35,6 +35,10 @@ export async function verifyStartupFallback({ page, application, screenshots }) 
       const opacity = () => loader.evaluate(element => getComputedStyle(element.querySelector('.startup-mark')).opacity);
       const deadline = Date.now() + 5_000;
       while (await opacity() !== '1' && Date.now() < deadline) await setTimeout(100);
+      console.log('Startup animation observation', JSON.stringify({ colorScheme,
+        window: await application.evaluateMain(`(() => { const window = require('electron').BrowserWindow.fromId(${id}); return { visible: window.isVisible(), minimized: window.isMinimized(), loading: window.webContents.isLoading(), backgroundThrottling: window.webContents.getBackgroundThrottling() }; })()`),
+        page: await loader.evaluate(element => ({ visibility: document.visibilityState, readyState: document.readyState, opacity: getComputedStyle(element.querySelector('.startup-mark')).opacity,
+          animations: element.getAnimations({ subtree: true }).map(animation => ({ name: animation.animationName, currentTime: animation.currentTime, playState: animation.playState, pending: animation.pending, timeline: animation.timeline?.currentTime })) })) }));
       assert.equal(await opacity(), '1', 'The startup logo finishes fading in');
       await probe.screenshot({ path: join(screenshots, `104-startup-${colorScheme}.png`) });
     }

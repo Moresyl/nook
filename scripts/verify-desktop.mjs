@@ -277,17 +277,25 @@ async function launch() {
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
   const exited = new Promise((resolve) => child.once('exit', resolve));
   let diagnostics = '';
+  let nodeUrl;
+  let startupInspected = false;
   const debuggerUrl = await new Promise((resolve, reject) => {
     const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);
     child.once('error', (error) => { clearTimeout(timeout); reject(error); });
     child.once('exit', (code) => { clearTimeout(timeout); reject(new Error(`Desktop exited with ${code}: ${diagnostics.slice(-4000)}`)); });
     child.stderr.on('data', (data) => {
       diagnostics += data.toString();
+      nodeUrl ??= diagnostics.match(/Debugger listening on (ws:\/\/[^\s]+)/)?.[1];
+      if (nodeUrl && process.env.QIYAO_TEST_STARTUP_INSPECT && !startupInspected) {
+        startupInspected = true;
+        void evaluateMain("({ready:require('electron').app.isReady(),phases:globalThis.qiyaoStartupDiagnostics?.(),windows:require('electron').BrowserWindow.getAllWindows().map(window=>({id:window.id,loading:window.webContents.isLoading()}))})")
+          .then(state => console.log('Early startup observation', JSON.stringify({ elapsedMs: Date.now() - startedAt, state })))
+          .catch(error => console.log('Early startup observation failed', error.message));
+      }
       const match = diagnostics.match(/DevTools listening on (ws:\/\/[^\s]+)/);
       if (match) { clearTimeout(timeout); resolve(match[1]); }
     });
   });
-  const nodeUrl = diagnostics.match(/Debugger listening on (ws:\/\/[^\s]+)/)?.[1];
   assert.ok(nodeUrl, 'The test process must expose its own main-process debugger.');
   async function evaluateMain(expression) {
     const socket = new WebSocket(nodeUrl);
