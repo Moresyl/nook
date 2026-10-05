@@ -4,11 +4,28 @@
 
 ## 当前候选包
 
+源码 `015980c` 已重新生成安装版与便携版，包含脚本加载前的启动占位和首次读取失败的恢复入口。包体／法律审计、安装器／卸载器／便携启动器审计及打包版设置专项 4 项通过；专项还检查了启动占位、持久错误、真实重新加载和已保存草稿恢复。文件仍未签名。
+
+实际便携运行 7 项通过：中文路径、真实终端、两次解压启动、正常退出清理、持久配置保留及现有登记／快捷方式保持。新包摘要与日志哈希见[本批分发记录](../verification/startup-distribution-result.json)。
+
+| 文件 | 新包 SHA-256 |
+| --- | --- |
+| Nook.exe | `b4c228f638ca4c7911ec72ed3f36cccfe2175b6dd79c9460a766f116b5906592` |
+| app.asar | `799488bc9e438ed118da628937dbc7080c198823959b28e5ed5596d64f52039d` |
+| Nook-Setup | `8b4a3f2d7724f2134a94a0033db5da60717848562db8c541423fb896d461cc6e` |
+| Nook-Portable | `0ca9ab6cee5ded3ef151a3a9256923b20ed64e7028ca8263cfa308d7cf8e118f` |
+
+**本批尚未完成新的未安装／实际安装完整回归、安装卸载生命周期及全部匹配运行证据。** 下方完整 215 项等结果属于上一批；不能据此发布新包。新包证据见[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)和[打包版界面](../verification/surfaces-packaged-result.json)。
+
+## 上一批完整验收记录（历史）
+
+本节只描述 `4296faf` 应用体；可变名称的验证文件已开始被新批次更新，请使用[固定历史版本中的原始链接](https://github.com/Moresyl/nook/blob/015980c13d96a8bb959bdc42d464360935cdef43/docs/RELEASE.md)查阅旧包全部记录。
+
 源码 `4296faf` 已生成安装版和便携版，包含弹窗视口位置、选择器高亮、开关开启色及共享按钮／图标提示。应用实现与已通过完整源码回归的 `3de4c5d` 一致。
 
-后续源码加入了脚本加载前的启动占位，类型、构建及设置专项通过，详见[专项记录](../verification/startup-fallback-result.json)。下方候选包尚不包含此改动；旧包的完整通过记录不能作为最新源码的分发验收。
+后续源码加入了脚本加载前的启动占位，类型、构建及设置专项通过，详见[专项记录](../verification/startup-fallback-result.json)。下方历史包不包含此改动；旧包的完整通过记录不能作为最新源码的分发验收。
 
-后续源码也补齐了首次读取失败的持久提示与重新加载入口，隔离失败／重试／已保存草稿恢复及设置专项通过，见[恢复记录](../verification/startup-recovery-result.json)。此改动同样尚未进入下方候选包。
+后续源码也补齐了首次读取失败的持久提示与重新加载入口，隔离失败／重试／已保存草稿恢复及设置专项通过，见[恢复记录](../verification/startup-recovery-result.json)。此改动同样不在下方历史包内。
 
 | 文件 | SHA-256 |
 | --- | --- |
