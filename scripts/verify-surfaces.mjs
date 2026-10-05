@@ -69,7 +69,24 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   const opener = page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ });
   const open = async () => { await opener.focus(); await opener.press('Enter'); const dialog = page.getByRole('dialog', { name: '设置', exact: true }); await dialog.waitFor(); return dialog; };
   let dialog = await open();
+  await dialog.getByRole('button', { name: '添加连接', exact: true }).click();
+  await dialog.getByLabel('连接名称', { exact: true }).fill('示例模型连接');
+  await dialog.getByLabel('模型', { exact: true }).fill('example-model');
+  await dialog.getByRole('button', { name: '保存连接', exact: true }).scrollIntoViewIfNeeded();
+  assert.equal(await dialog.getByLabel('连接名称', { exact: true }).inputValue(), '示例模型连接');
+  assert.equal(await dialog.getByRole('button', { name: '模型连接', exact: true }).isVisible(), true);
+  await assertModalLayout(page, dialog);
+  await page.screenshot({ path: join(screenshots, '96-surface-connection-scroll.png') });
   await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
+  assert.deepEqual(await dialog.evaluate((element) => { const rect = element.getBoundingClientRect(); return [Math.round(rect.width), Math.round(rect.height)]; }), [720, 460]);
+  const detail = dialog.locator('.settings-detail');
+  const navigationBefore = await dialog.locator('.settings-nav').boundingBox();
+  await detail.evaluate((element) => { element.scrollTop = element.scrollHeight; });
+  assert.ok(await detail.evaluate((element) => element.scrollTop > 0), 'Long settings must scroll inside their detail pane');
+  assert.deepEqual(await dialog.locator('.settings-nav').boundingBox(), navigationBefore, 'Scrolling settings must not move their category navigation');
+  await dialog.getByRole('button', { name: '关于 Nook', exact: true }).click();
+  await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
+  assert.equal(await detail.evaluate((element) => element.scrollTop), 0, 'A new settings category starts at its heading');
   const theme = dialog.getByLabel('主题', { exact: true });
   assert.deepEqual(await theme.evaluate((element) => { const style = getComputedStyle(element); return { height: style.height, radius: style.borderRadius, font: style.fontSize }; }), { height: '22px', radius: '6px', font: '12px' });
   assert.equal(await theme.evaluate((element) => getComputedStyle(element).appearance), 'base-select');
@@ -140,5 +157,5 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
   verified('all seven settings categories fit the real dark minimum window at 100/125/150 percent Electron zoom, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Real Electron shared control dimensions, native modal focus/inert background/Escape restoration, keyboard preference persistence, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion uses a temporary CSS-class probe. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion uses a temporary CSS-class probe. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }

@@ -323,6 +323,13 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-nav { display: flex; flex-direction: column; gap: 4px; }
 .settings-nav .button { justify-content: flex-start; min-height: 32px; }
 .settings-detail { min-width: 0; }
+.settings-dialog { height: min(460px, calc(100dvh - 80px)); }
+.settings-dialog > .modal-content { display: flex; padding: 0; max-height: none; overflow: hidden; }
+.settings-dialog .settings-layout { flex: 1; min-height: 0; gap: 0; }
+.settings-dialog .settings-nav { min-height: 0; padding: 12px 8px; border-right: 1px solid var(--ds-border); overflow-y: auto; overscroll-behavior: contain; }
+.settings-dialog .settings-nav .button { flex-shrink: 0; }
+.settings-dialog .settings-detail { min-height: 0; padding: 20px 24px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.settings-dialog .empty { padding: 40px 8px; }
 .extension-server { padding-bottom: 12px; border-bottom: 1px solid var(--ds-border); }
 .extension-server .list-row { border-bottom: 0; }
 .extension-actions { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -489,6 +496,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .modal { width: 100vw; max-width: 100vw; height: 100vh; max-height: 100vh; margin: 0; transform: none; border-radius: 0; }
   .modal-content { max-height: calc(100vh - 130px); }
   .settings-layout { grid-template-columns: 128px minmax(0, 1fr); gap: 16px; }
+  .settings-dialog .settings-layout { grid-template-columns: 128px minmax(0, 1fr); gap: 0; }
+  .settings-dialog .settings-detail { padding: 16px; }
   .transcript { padding: 20px 20px 20px 40px; }
   .composer-dock { padding: 8px 20px 16px; }
   .project-layout { grid-template-columns: minmax(0, 1fr); }
