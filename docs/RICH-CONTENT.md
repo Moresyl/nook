@@ -1,8 +1,29 @@
-# Rich conversation content
+# 内容阅读
+
+Nook 将模型回复中的 Markdown、表格、公式、代码和 Mermaid 图表显示在对话中，同时保留原始文本。
+
+| 内容 | 阅读方式 |
+| --- | --- |
+| 公式 | 支持行内公式、独立公式及 `math`／`latex` 代码块；同时提供 MathML |
+| 代码 | 语法高亮、复制原文、按块切换自动换行；未知语言显示为普通文本 |
+| 图表 | 在只读图表与完整源码之间切换；绘制失败时保留源码和错误状态 |
+| 宽内容 | 表格、公式与代码使用各自的滚动区域，适配窄窗口 |
+
+## 代码阅读控制
 
 代码块提供“代码自动换行”开关，可用鼠标、空格或 Enter 切换；图表切到源码后也可使用。换行只改变当前代码块的显示方式，不修改保存的原文、缩进、空行或复制内容，重新打开页面恢复默认横向滚动。窄窗口中的长语言名称会省略显示，操作按钮保留可用空间。
 
 类型、构建及 13 项相关测试通过；实际桌面内容专项两轮通过，覆盖明暗主题、150% 缩放、代码／图表源码切换、复制一致性、长名称及原有恶意内容检查。第二轮使用窗口自身截图，核对像素尺寸后查看了[浅色](images/code-wrap-light.png)与[深色窄窗](images/code-wrap-dark-narrow.png)。复制仍使用测试拦截，不等同物理剪贴板验收；分发验证待完成。[本批记录](../verification/code-wrap-review-result.json)
+
+## 范围与限制
+
+图表仅供阅读，不执行其中的交互脚本或外部链接。图表源码上限为 50,000 字符，配置的边数上限为 500；超限或无法绘制时仍保留完整源码。此内容视图尚不包含代码执行、产物编辑或原始文档版式查看；项目终端与 HTML 预览见[项目说明](PROJECTS.md)。
+
+数学字体随应用分发，无需 CDN。字体、样式和渲染库分别保留其许可证、版权及必要的保留名称，见[第三方许可](LICENSES.md)。
+
+## 实现与验证记录
+
+下文保留早期实现及验证细节。覆盖率数字只属于当时纳入统计的模块，不代表整个界面或第三方渲染器；当前版本状态见[发布记录](RELEASE.md)。
 
 Assistant replies retain their original Markdown source in the workspace and exports. The renderer supports GFM tables, inline `$...$` formulas, display `$$...$$` formulas and fenced `math`/`latex` formulas. KaTeX produces accessible MathML alongside the visual formula. Trusted HTML/URL commands are disabled; macro expansion and requested sizes are bounded, and invalid formulas remain visible rather than executing HTML or loading remote images.
 

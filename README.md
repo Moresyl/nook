@@ -14,6 +14,7 @@
 | 资料 | 导入文档与图片，检索资料集，查看回答引用的原文 |
 | 项目 | 编辑代码、预览 HTML 草稿、审阅 Git 改动、使用项目终端 |
 | 助手 | 保存工作指令与提示模板，连接 MCP，加载本地技能 |
+| 记忆 | 显式管理全局或项目记忆，随时编辑、停用或删除 |
 | 自动任务 | 安排一次、周期或 Cron 任务，查看执行结果 |
 
 支持 OpenAI 兼容接口、Responses、Anthropic、Gemini、Azure 和 Ollama。文件修改与命令执行会展示审批内容。
@@ -39,6 +40,7 @@ pnpm dev
 ## 文档
 
 - [模型连接](docs/MODEL-CONNECTIONS.md) · [附件](docs/ATTACHMENTS.md) · [资料库](docs/KNOWLEDGE.md)
+- [内容阅读与代码换行](docs/RICH-CONTENT.md) · [记忆](docs/MEMORIES.md) · [临时聊天](docs/TEMPORARY-CHATS.md)
 - [项目](docs/PROJECTS.md) · [HTML 预览](docs/PROJECT-PREVIEW.md) · [对话分支](docs/CONVERSATION-BRANCHES.md) · [模型比较](docs/MODEL-COMPARISON.md)
 - [助手](docs/ASSISTANTS.md) · [自动任务](docs/AUTOMATIONS.md) · [插件](docs/PLUGINS.md)
 - [备份与恢复](docs/BACKUPS.md) · [快捷键](docs/COMMANDS.md) · [发布状态](docs/RELEASE.md)
