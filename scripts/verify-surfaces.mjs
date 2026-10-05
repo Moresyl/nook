@@ -135,6 +135,39 @@ export async function verifySurfaces({ page, application, screenshots, verified 
 
   const toggle = dialog.getByRole('switch', { name: '按 Enter 发送消息', exact: true });
   const original = await toggle.isChecked();
+  // Exercise the real switch in both themes; disabled is a temporary CSS-state probe.
+  if (original) {
+    await toggle.focus(); await toggle.press('Space');
+    await page.waitForFunction(async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
+  }
+  for (const [mode, off, hover, disabled] of [
+    ['light', 'rgb(223, 223, 223)', 'rgb(205, 205, 205)', 'rgb(237, 237, 237)'],
+    ['dark', 'rgb(65, 65, 65)', 'rgb(79, 79, 79)', 'rgb(48, 48, 48)'],
+  ]) {
+    await theme.selectOption(mode);
+    await page.waitForFunction((mode) => document.documentElement.dataset.theme === mode, mode);
+    await dialog.getByRole('heading', { name: '外观与交互', exact: true }).hover();
+    const trackColor = () => toggle.evaluate((element) => getComputedStyle(element.nextElementSibling).backgroundColor);
+    assert.equal(await toggle.isChecked(), false);
+    assert.equal(await trackColor(), off, `${mode} unchecked switch follows the reference palette`);
+    await toggle.locator('..').hover();
+    assert.equal(await trackColor(), hover, `${mode} unchecked switch has a distinct hover state`);
+    await toggle.evaluate((element) => { element.disabled = true; element.closest('label').classList.add('disabled'); });
+    try {
+      assert.equal(await trackColor(), disabled, `${mode} disabled switch does not inherit hover color`);
+      assert.equal(await toggle.evaluate((element) => getComputedStyle(element.closest('label')).opacity), '0.25');
+      assert.equal(await toggle.evaluate((element) => getComputedStyle(element.nextElementSibling.firstElementChild).backgroundColor), 'rgb(255, 255, 255)');
+    } finally {
+      await toggle.evaluate((element) => { element.disabled = false; element.closest('label').classList.remove('disabled'); });
+    }
+    await captureSurface(page, application, join(screenshots, `96-switch-${mode}.png`));
+  }
+  await theme.selectOption('light');
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
+  if (original) {
+    await toggle.focus(); await toggle.press('Space');
+    await page.waitForFunction(async () => (await window.qiyao.load()).preferences.enterToSend && document.querySelector('.toggle-label input').checked);
+  }
   await toggle.focus(); await toggle.press('Space');
   await page.waitForFunction((expected) => document.querySelector('.toggle-label input').checked === expected, !original);
   assert.equal(await page.evaluate(async () => (await window.qiyao.load()).preferences.enterToSend), !original);
@@ -180,5 +213,5 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
   verified('all seven settings categories fit the real dark minimum window at 100/125/150 percent Electron zoom, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion uses a temporary CSS-class probe. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }
