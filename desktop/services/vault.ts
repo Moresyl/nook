@@ -1,4 +1,4 @@
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir, open, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
@@ -28,7 +28,16 @@ export class WorkspaceVault {
     onPhase('workspace.read');
     let primaryText: string | undefined;
     try {
-      const bytes = await readFile(join(this.directory, 'workspace.json'));
+      const file = await open(join(this.directory, 'workspace.json'), 'r');
+      let bytes: Buffer;
+      try {
+        onPhase('workspace.opened');
+        bytes = await file.readFile();
+        onPhase('workspace.bytes-read');
+      } finally {
+        try { onPhase('workspace.closing'); }
+        finally { await file.close(); }
+      }
       onPhase('workspace.loaded');
       const raw = bytes.toString('utf8');
       onPhase('workspace.text-decoded');

@@ -15,24 +15,24 @@ describe('local workspace persistence', () => {
     expect(phases).toEqual(['workspace.read', 'checkpoints.restore', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
     await writeFile(join(directory, 'workspace.json'), '{PRIVATE_STARTUP_FIXTURE'); phases.length = 0;
     const failed = new WorkspaceVault(directory, codec); await expect(failed.initialize((phase) => phases.push(phase))).rejects.toThrow('Workspace data could not be read');
-    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.text-decoded']);
+    expect(phases).toEqual(['workspace.read', 'workspace.opened', 'workspace.bytes-read', 'workspace.closing', 'workspace.loaded', 'workspace.text-decoded']);
   });
   it('distinguishes decoded invalid data from validated data and failed checkpoint recovery without exposing content', async () => {
     const directory = await freshDirectory(); const phases: string[] = [];
     const observe = (phase: string) => phases.push(phase);
     await writeFile(join(directory, 'workspace.json'), JSON.stringify({ schemaVersion: 'PRIVATE_INVALID_SCHEMA' }));
     await expect(new WorkspaceVault(directory, codec).initialize(observe)).rejects.toThrow('Workspace data could not be read');
-    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded']);
+    expect(phases).toEqual(['workspace.read', 'workspace.opened', 'workspace.bytes-read', 'workspace.closing', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded']);
     const vault = new WorkspaceVault(directory, codec);
     await writeFile(join(directory, 'workspace.json'), JSON.stringify(vault.snapshot()));
     await writeFile(join(directory, 'workspace.checkpoints.json'), '{PRIVATE_INVALID_CHECKPOINT');
     phases.length = 0;
     await expect(new WorkspaceVault(directory, codec).initialize(observe)).rejects.toThrow('Saved response checkpoints could not be read');
-    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore']);
+    expect(phases).toEqual(['workspace.read', 'workspace.opened', 'workspace.bytes-read', 'workspace.closing', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore']);
     await rm(join(directory, 'workspace.checkpoints.json')); phases.length = 0;
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(observe);
     expect(restored.snapshot()).toEqual(vault.snapshot());
-    expect(phases).toEqual(['workspace.read', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
+    expect(phases).toEqual(['workspace.read', 'workspace.opened', 'workspace.bytes-read', 'workspace.closing', 'workspace.loaded', 'workspace.text-decoded', 'workspace.decoded', 'workspace.validated', 'checkpoints.restore', 'workspace.parsed', 'credentials.read', 'credentials.bound', 'persistent-cache.serialize', 'persistent-cache.ready', 'runs.recovered']);
   });
   it('restores multibyte text across file-read chunks without rewriting the persisted file', async () => {
     const directory = await freshDirectory();

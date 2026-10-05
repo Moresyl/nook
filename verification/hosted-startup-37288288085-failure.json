@@ -1,0 +1,177 @@
+{
+  "collectedAt": "2026-10-05T10:08:18.222Z",
+  "run": "https://github.com/Moresyl/nook/actions/runs/37288288085",
+  "commit": "35d754f",
+  "result": "failure",
+  "stage": "installed conversation-branch restart",
+  "timeoutMs": 30000,
+  "profile": {
+    "durationMs": 30818.324,
+    "samples": 273,
+    "frames": [
+      {
+        "name": "(idle)",
+        "samples": 271,
+        "microseconds": 30688240
+      },
+      {
+        "name": "post",
+        "samples": 1,
+        "microseconds": 119545
+      },
+      {
+        "name": "dispatch",
+        "samples": 1,
+        "microseconds": 10182
+      }
+    ]
+  },
+  "pendingRequests": [
+    "FSReqPromise"
+  ],
+  "diagnostics": {
+    "pid": 8620,
+    "elapsedMs": 31607,
+    "exitCode": null,
+    "signalCode": null,
+    "pages": [],
+    "main": {
+      "capturedAt": 1791194594210,
+      "ready": true,
+      "startup": {
+        "events": [
+          {
+            "phase": "when-ready",
+            "at": 1791194563227,
+            "memory": {
+              "rss": 122155008,
+              "heapTotal": 27561984,
+              "heapUsed": 17907156,
+              "external": 3906074,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 390000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "protocol.ready",
+            "at": 1791194563241,
+            "memory": {
+              "rss": 126877696,
+              "heapTotal": 27561984,
+              "heapUsed": 17960852,
+              "external": 3278747,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 406000,
+              "system": 109000
+            }
+          },
+          {
+            "phase": "vault.workspace.read",
+            "at": 1791194563629,
+            "memory": {
+              "rss": 147251200,
+              "heapTotal": 28610560,
+              "heapUsed": 19114988,
+              "external": 3286875,
+              "arrayBuffers": 0
+            },
+            "cpu": {
+              "user": 609000,
+              "system": 234000
+            }
+          }
+        ]
+      },
+      "memory": {
+        "rss": 202297344,
+        "heapTotal": 32280576,
+        "heapUsed": 16783836,
+        "external": 87623366,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 9843000,
+        "system": 15968000
+      },
+      "processes": [
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 25.48894,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 8620,
+          "type": "Browser",
+          "creationTime": 1791194562613.408,
+          "memory": {
+            "workingSetSize": 197600,
+            "peakWorkingSetSize": 199748,
+            "privateBytes": 215648
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.061849,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 3772,
+          "type": "GPU",
+          "creationTime": 1791194563284.184,
+          "serviceName": "GPU",
+          "memory": {
+            "workingSetSize": 53256,
+            "peakWorkingSetSize": 56508,
+            "privateBytes": 14428
+          },
+          "integrityLevel": "low",
+          "sandboxed": true
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.052531,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 6236,
+          "type": "Utility",
+          "creationTime": 1791194563259.131,
+          "serviceName": "network.mojom.NetworkService",
+          "name": "Network Service",
+          "memory": {
+            "workingSetSize": 47668,
+            "peakWorkingSetSize": 49652,
+            "privateBytes": 11292
+          },
+          "integrityLevel": "high",
+          "sandboxed": false
+        },
+        {
+          "cpu": {
+            "cumulativeCPUUsage": 0.047906,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 5124,
+          "type": "Tab",
+          "creationTime": 1791194563532.786,
+          "memory": {
+            "workingSetSize": 56504,
+            "peakWorkingSetSize": 57276,
+            "privateBytes": 19716
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      ],
+      "windows": []
+    }
+  }
+}
