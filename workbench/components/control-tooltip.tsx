@@ -38,7 +38,7 @@ export function useControlTooltip(text: string) {
     };
   }, [open, text]);
   const enter = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType === 'touch') return;
+    if (!text || event.pointerType === 'touch') return;
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setOpen(true), 500);
   };
@@ -47,8 +47,8 @@ export function useControlTooltip(text: string) {
     hide();
   };
   const focus = () => {
-    if (anchor.current?.matches(':focus-visible')) { clearTimeout(timer.current); setOpen(true); }
+    if (text && anchor.current?.matches(':focus-visible')) { clearTimeout(timer.current); setOpen(true); }
   };
   return { anchor, description: open && text ? id : undefined, enter, leave, focus, hide,
-    content: <span ref={tip} id={id} role="tooltip" popover="manual" className="control-tooltip">{text}</span> };
+    content: text ? <span ref={tip} id={id} role="tooltip" popover="manual" className="control-tooltip">{text}</span> : null };
 }

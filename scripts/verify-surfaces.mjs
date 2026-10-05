@@ -207,6 +207,55 @@ async function assertTooltipEdges(page, screenshots) {
   assert.equal(await hint.count(), 0, 'Clicking an icon and unmounting its old trigger removes the hint');
 }
 
+async function assertButtonTooltips(page, application, screenshots, draft) {
+  const hint = page.locator('.control-tooltip:popover-open');
+  const settings = page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ });
+  await settings.hover(); await hint.filter({ hasText: /^设置$/ }).waitFor();
+  assert.equal(await settings.getAttribute('title'), null);
+  await settings.focus(); await page.keyboard.press('Enter');
+  const dialog = page.getByRole('dialog', { name: '设置', exact: true });
+  await dialog.waitFor();
+  assert.equal(await settings.getAttribute('aria-describedby'), null, 'Keyboard activation dismisses the button hint');
+  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+  assert.equal(await settings.evaluate(element => element === document.activeElement), true);
+  const composer = page.getByLabel('消息', { exact: true });
+  await composer.fill('');
+  const compare = page.getByRole('button', { name: '发送给多个模型比较', exact: true });
+  assert.equal(await compare.isDisabled(), true);
+  await compare.hover(); await hint.filter({ hasText: /^发送给多个模型比较$/ }).waitFor();
+  assert.equal(await compare.getAttribute('aria-describedby'), await hint.getAttribute('id'));
+  await page.screenshot({ path: join(screenshots, '102-button-tooltip-disabled.png') });
+  await composer.fill(draft);
+  await page.getByRole('button', { name: '临时聊天', exact: true }).click();
+  await page.locator('.thread-title').click();
+  const rename = page.getByRole('dialog', { name: '重命名聊天', exact: true });
+  const title = '<img src=x> 长标题完整展示与安全换行 '.repeat(6).trim();
+  await rename.getByLabel('聊天名称', { exact: true }).fill(title);
+  await rename.getByRole('button', { name: '保存', exact: true }).click();
+  await rename.waitFor({ state: 'hidden' });
+  try {
+    await application.resize(760, 540);
+    const thread = page.locator('.thread-title');
+    await thread.hover(); await hint.filter({ hasText: title }).waitFor();
+    assert.equal(await hint.textContent(), title);
+    assert.equal(await hint.locator('img').count(), 0, 'Tooltip content remains escaped text');
+    assert.equal(await hint.evaluate(element => {
+      const rect = element.getBoundingClientRect(); const style = getComputedStyle(element);
+      return rect.width <= 320 && rect.height > 2 * parseFloat(style.lineHeight) && rect.left >= 8 && rect.right <= innerWidth - 8 && element.scrollHeight <= element.clientHeight;
+    }), true, 'Long button descriptions wrap without being truncated or escaping the viewport');
+    await page.screenshot({ path: join(screenshots, '103-button-tooltip-long.png') });
+    await application.resize(1280, 840);
+    await hint.waitFor({ state: 'hidden' });
+  } finally {
+    await page.getByRole('button', { name: '删除聊天', exact: true }).click();
+    const confirmation = page.getByRole('dialog', { name: '删除聊天？', exact: true });
+    await confirmation.getByRole('button', { name: '删除', exact: true }).click();
+    await confirmation.waitFor({ state: 'hidden' });
+    await application.resize(1280, 840);
+  }
+  assert.equal(await composer.inputValue(), draft, 'Tooltip checks preserve the original new-chat draft');
+}
+
 export async function verifySurfaces({ page, application, screenshots, verified }) {
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
@@ -394,13 +443,16 @@ export async function verifySurfaces({ page, application, screenshots, verified 
     if (width === 760 && zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));
     if (width === 1280 && zoom === 1.5) await captureSurface(page, application, join(screenshots, '98-surface-short-wide.png'));
     await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
-    assert.equal(await page.locator('.control-tooltip:popover-open').count(), 0, 'Closing a modal must remove its open hints');
+    assert.equal(await page.locator('dialog .control-tooltip:popover-open').count(), 0, 'Closing a modal must remove its own hints; restored keyboard focus may show the opener hint');
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
+  await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await assertTooltipEdges(page, screenshots);
+  await assertButtonTooltips(page, application, screenshots, draft);
   verified('all seven settings categories follow reference viewport geometry in minimum and short-wide windows at 100/125/150 percent Electron zoom and the 768px boundary, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, geometryChecks, checkedSwitchStates, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png', '99-switch-checked-light.png', '99-switch-checked-dark.png', '100-tooltip-light.png', '100-tooltip-dark.png', '101-tooltip-edge.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, custom icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/click dismissal, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, geometryChecks, checkedSwitchStates, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png', '99-switch-checked-light.png', '99-switch-checked-dark.png', '100-tooltip-light.png', '100-tooltip-dark.png', '101-tooltip-edge.png', '102-button-tooltip-disabled.png', '103-button-tooltip-long.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }
