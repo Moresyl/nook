@@ -19,6 +19,8 @@
 
 新包完整回归通过 192 项后，在模型比较备份时发生草稿确认超时，随后正常退出；本批完整结果为失败，见[现场记录](../verification/startup-packaged-full-failure.json)。保留约 84.5 MB 工作区后，副本上的模型比较专项 6 项通过，文件同步耗时已记录，但未证明原超时已消除，见[诊断重跑](../verification/startup-backup-io-replay-result.json)。运行证据校验仍拒绝新包与旧完整／安装结果混用；实际安装验收尚未进行。
 
+后续源码 `0c766d1` 已合并会话切换与待写草稿的原子保存，767 项单元测试、类型、构建及大工作区模型比较 6 项通过，正常退出；[证据](../verification/atomic-selection-result.json)。下方 `015980c` 包尚未包含此改动，仍需完整源码回归及重新打包验收。
+
 ## 上一批完整验收记录（历史）
 
 本节只描述 `4296faf` 应用体；可变名称的验证文件已开始被新批次更新，请使用[固定历史版本中的原始链接](https://github.com/Moresyl/nook/blob/015980c13d96a8bb959bdc42d464360935cdef43/docs/RELEASE.md)查阅旧包全部记录。
