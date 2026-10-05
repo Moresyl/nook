@@ -414,9 +414,17 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .file-preview pre { max-height: 400px; overflow: auto; white-space: pre; font-family: var(--font-code-family); font-size: 11px; line-height: 1.6; margin-top: 12px; }
 .projects-page { display: flex; flex-direction: column; min-height: 0; overflow: hidden; padding: 24px; }
 .projects-page .page-heading { flex: none; }
-.projects-page .project-layout { flex: 1; min-height: 0; margin-top: 16px; }
-.projects-page .project-list { overflow: auto; }
-.projects-page .project-inspector { display: flex; flex-direction: column; min-height: 0; padding-top: 12px; padding-left: 16px; }
+.projects-page .project-layout { flex: 1; min-height: 0; margin-top: 16px; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+.projects-page .project-list { display: flex; align-items: center; gap: 4px; padding: 8px 0; border-right: 0; border-bottom: 1px solid var(--ds-border); overflow: auto; }
+.projects-page .project-row { flex: 0 0 auto; min-width: 120px; max-width: min(240px, calc(100% - 36px)); }
+.projects-page .project-inspector { display: flex; flex-direction: column; min-height: 0; padding: 12px 0 0; }
+.projects-page.has-selection { padding: 0; }
+.projects-page.has-selection .page-heading { display: none; }
+.projects-page.has-selection .project-layout { margin-top: 0; border-top: 0; }
+.projects-page.has-selection .project-list { padding: 4px 12px; }
+.projects-page.has-selection .project-list-add { display: inline-flex; flex: none; }
+.projects-page.has-selection .section-heading { padding: 0 16px; margin-bottom: 8px; }
+.projects-page.has-selection .inspector-toolbar { padding: 4px 12px; }
 .projects-page .section-heading, .projects-page .inspector-toolbar { flex: none; }
 .projects-page .section-heading h3, .projects-page .section-heading .path-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .projects-page .inspector-toolbar { border-bottom: 1px solid var(--ds-border); padding: 4px 0; }
@@ -553,6 +561,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .projects-page .project-list { padding-top: 0; padding-bottom: 0; }
   .projects-page .project-inspector { padding-top: 0; }
   .projects-page .section-heading { margin-bottom: 0; }
+  .projects-page.has-selection .section-heading { padding: 0 8px; margin-bottom: 0; }
+  .projects-page.has-selection .inspector-toolbar { padding: 2px 8px; }
   .projects-page .inspector-toolbar { padding: 2px 0; }
   .projects-page .inspector-toolbar .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; }
   .projects-page .section-heading h3 { font-size: 12px; }

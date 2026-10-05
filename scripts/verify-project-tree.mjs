@@ -54,6 +54,14 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).waitFor({ state: 'hidden' }); await item('file-0219.txt').waitFor(); await row('source/资料').click(); await item('source/资料/代码.ts').waitFor();
   await page.getByRole('button', { name: '新建文件', exact: true }).click(); const newFile = page.getByRole('dialog', { name: '新建文件', exact: true }); assert.equal(await newFile.getByLabel('相对路径', { exact: true }).inputValue(), 'source/资料/'); await newFile.getByLabel('相对路径', { exact: true }).fill('source/资料/新文件.txt'); await newFile.getByRole('button', { name: '创建', exact: true }).click(); await newFile.waitFor({ state: 'hidden' }); await page.locator('.editor-actionbar .path-text').getByText('source/资料/新文件.txt', { exact: true }).waitFor(); await input().waitFor(); await input().focus(); await page.keyboard.insertText('TREE_NEW_FILE_CONTENT😀\n'); await input().press('Control+s'); await page.locator('.editor-actionbar').getByRole('status').getByText('已保存', { exact: true }).waitFor(); assert.equal(await readFile(join(root, 'source/资料/新文件.txt'), 'utf8'), createdContents); await item('source/资料/新文件.txt').waitFor();
   await page.getByRole('tab', { name: /代码\.ts/ }).click(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor(); await page.locator('.editor-actionbar').getByRole('status').getByText('草稿自动保存在工作台', { exact: true }).waitFor(); await page.screenshot({ path: join(screenshots, '95-project-tree-editor-light.png') });
+  const workingLayout = await page.evaluate(() => {
+    const list = document.querySelector('.project-list').getBoundingClientRect();
+    const editor = document.querySelector('.editor-canvas').getBoundingClientRect();
+    return { width: innerWidth, editorWidth: editor.width, switcherAboveEditor: list.bottom <= editor.top, headingHidden: !document.querySelector('.projects-page .page-heading').checkVisibility() };
+  });
+  assert.equal(workingLayout.switcherAboveEditor, true);
+  assert.equal(workingLayout.headingHidden, true);
+  if (workingLayout.width >= 1280) assert.ok(workingLayout.editorWidth >= 700, 'The normal desktop layout must reserve room for the actual editor');
   verified('native pointer and ARIA tree keyboard paths open nested Unicode/prototype-safe files, preserve unsaved drafts through collapse/refresh and create/save an exact file in the selected folder');
 
   const normalize = (path) => path.replaceAll('\\', '/').toLowerCase();
