@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T09:23:22.657Z",
+  "verifiedAt": "2026-10-05T10:08:19.415Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -28,8 +28,10 @@
     "94-surface-select-light.png",
     "95-surface-select-dark.png",
     "96-switch-light.png",
-    "96-switch-dark.png"
+    "96-switch-dark.png",
+    "97-field-invalid-light.png",
+    "97-field-invalid-dark.png"
   ],
-  "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions",
-  "scope": "Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+  "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
+  "scope": "Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
 }

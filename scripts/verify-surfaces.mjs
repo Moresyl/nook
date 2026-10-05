@@ -60,6 +60,38 @@ async function motionState(page) {
   });
 }
 
+async function assertFieldStates(page, dialog, mode, screenshots) {
+  const shortcut = dialog.getByLabel('唤起快捷键', { exact: true });
+  const original = await shortcut.inputValue();
+  const saved = await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null);
+  const heading = dialog.getByRole('heading', { name: '桌面入口', exact: true });
+  const border = () => shortcut.evaluate((element) => getComputedStyle(element).borderTopColor);
+  const palette = mode === 'light'
+    ? { hover: 'rgba(0, 0, 0, 0.25)', focus: 'rgba(0, 0, 0, 0.5)', invalid: 'rgb(224, 46, 42)' }
+    : { hover: 'rgba(255, 255, 255, 0.3)', focus: 'rgba(255, 255, 255, 0.5)', invalid: 'rgb(186, 38, 35)' };
+  await heading.click();
+  await shortcut.hover();
+  assert.equal(await border(), palette.hover, `${mode} input hover uses the reference alpha border`);
+  await shortcut.focus();
+  assert.equal(await border(), palette.focus, `${mode} input focus uses the stronger neutral border`);
+  assert.equal(await shortcut.evaluate((element) => getComputedStyle(element).boxShadow), 'none');
+  await shortcut.fill('');
+  await page.waitForFunction(() => document.querySelector('.desktop-settings input[aria-invalid="true"]'));
+  assert.equal(await shortcut.getAttribute('aria-invalid'), 'true');
+  assert.equal(await border(), palette.invalid, 'Invalid styling takes priority over focus');
+  assert.equal(await dialog.getByRole('button', { name: '应用快捷键', exact: true }).isEnabled(), false);
+  await heading.click(); await shortcut.hover();
+  assert.equal(await border(), palette.invalid, 'Invalid styling takes priority over hover');
+  await shortcut.focus();
+  await page.screenshot({ path: join(screenshots, `97-field-invalid-${mode}.png`) });
+  await shortcut.fill(original);
+  await page.waitForFunction(() => document.querySelector('.desktop-settings input[aria-invalid="false"]'));
+  assert.equal(await shortcut.getAttribute('aria-invalid'), 'false');
+  assert.equal(await border(), palette.focus, 'Correcting the field restores its focused appearance');
+  assert.equal(await dialog.getByRole('button', { name: '应用快捷键', exact: true }).isEnabled(), false);
+  assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null), saved, 'Invalid input must not alter the saved desktop preferences');
+}
+
 export async function verifySurfaces({ page, application, screenshots, verified }) {
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
@@ -161,6 +193,9 @@ export async function verifySurfaces({ page, application, screenshots, verified 
       await toggle.evaluate((element) => { element.disabled = false; element.closest('label').classList.remove('disabled'); });
     }
     await captureSurface(page, application, join(screenshots, `96-switch-${mode}.png`));
+    await toggle.focus(); await toggle.press('ArrowRight');
+    assert.equal(await toggle.evaluate((element) => getComputedStyle(element.nextElementSibling).outlineColor), mode === 'light' ? 'rgb(1, 105, 204)' : 'rgb(2, 133, 255)', 'Switch keyboard focus uses the reference ring color');
+    await assertFieldStates(page, dialog, mode, screenshots);
   }
   await theme.selectOption('light');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
@@ -213,5 +248,5 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
   verified('all seven settings categories fit the real dark minimum window at 100/125/150 percent Electron zoom, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron 720x460 settings, independent category/detail scrolling, shared control dimensions and styled native select keyboard selection, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories at the dark minimum window with three zoom factors. Streaming motion and switch disabled state use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }
