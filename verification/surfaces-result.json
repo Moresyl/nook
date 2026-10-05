@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T12:14:45.662Z",
+  "verifiedAt": "2026-10-05T12:40:09.003Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -136,8 +136,11 @@
     "97-field-invalid-dark.png",
     "98-surface-short-wide.png",
     "99-switch-checked-light.png",
-    "99-switch-checked-dark.png"
+    "99-switch-checked-dark.png",
+    "100-tooltip-light.png",
+    "100-tooltip-dark.png",
+    "101-tooltip-edge.png"
   ],
   "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
-  "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+  "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, custom icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/click dismissal, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
 }

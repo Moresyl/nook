@@ -154,6 +154,59 @@ async function assertControlGeometry(page, dialog, mode) {
   } finally { await dialog.locator('[data-control-audit]').evaluate(element => element.remove()); }
 }
 
+async function assertIconTooltip(page, dialog, mode, screenshots) {
+  const close = dialog.locator('.modal-header').getByRole('button', { name: '关闭', exact: true });
+  const hint = page.locator('.control-tooltip:popover-open');
+  await dialog.getByRole('heading', { name: '外观与交互', exact: true }).hover();
+  await close.hover(); await hint.waitFor();
+  assert.equal(await hint.textContent(), '关闭');
+  assert.equal(await close.getAttribute('title'), null, 'The styled hint must not compete with a native title popup');
+  assert.equal(await close.getAttribute('aria-describedby'), await hint.getAttribute('id'));
+  assert.deepEqual(await hint.evaluate(element => {
+    const bounds = element.getBoundingClientRect(); const style = getComputedStyle(element);
+    return { role: element.getAttribute('role'), inModal: Boolean(element.closest('dialog:modal')), fits: bounds.left >= 0 && bounds.top >= 0 && bounds.right <= innerWidth && bounds.bottom <= innerHeight,
+      font: style.fontSize, radius: style.borderRadius, padding: style.padding, pointerEvents: style.pointerEvents };
+  }), { role: 'tooltip', inModal: true, fits: true, font: '14px', radius: '8px', padding: '8px 12px', pointerEvents: 'none' });
+  await page.screenshot({ path: join(screenshots, `100-tooltip-${mode}.png`) });
+  await dialog.getByRole('heading', { name: '外观与交互', exact: true }).hover();
+  await hint.waitFor({ state: 'hidden' });
+  await close.focus(); await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
+  assert.equal(await close.evaluate(element => element === document.activeElement), true);
+  await hint.waitFor();
+  await page.keyboard.press('Tab'); await hint.waitFor({ state: 'hidden' });
+  assert.equal(await close.getAttribute('aria-describedby'), null);
+}
+
+async function assertTooltipEdges(page, screenshots) {
+  const sidebar = page.getByRole('button', { name: '收起侧边栏', exact: true });
+  const close = page.getByRole('button', { name: '关闭窗口', exact: true });
+  const hint = page.locator('.control-tooltip:popover-open');
+  await sidebar.focus(); await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await hint.filter({ hasText: /^收起侧边栏$/ }).waitFor();
+  await close.hover(); await hint.filter({ hasText: /^关闭窗口$/ }).waitFor();
+  assert.equal(await hint.count(), 1, 'Hovering another icon replaces the keyboard hint');
+  assert.equal(await sidebar.getAttribute('aria-describedby'), null);
+  assert.equal(await sidebar.evaluate(element => element === document.activeElement), true, 'Hovering a hint does not steal keyboard focus');
+  assert.equal(await hint.evaluate(element => element.getBoundingClientRect().right <= innerWidth - 7), true);
+  await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
+  assert.equal(await sidebar.evaluate(element => element === document.activeElement), true);
+  // Move the owned window's icon temporarily to exercise the lower-edge flip.
+  const originalStyle = await close.getAttribute('style');
+  await close.evaluate(element => { element.style.position = 'fixed'; element.style.inset = 'auto 8px 8px auto'; });
+  try {
+    await page.getByRole('heading', { name: /./ }).first().hover();
+    await close.hover(); await hint.waitFor();
+    const buttonBounds = await close.boundingBox(); const hintBounds = await hint.boundingBox();
+    assert.ok(hintBounds.y + hintBounds.height <= buttonBounds.y, 'A bottom-edge hint flips above its icon');
+    assert.ok(hintBounds.x >= 8 && hintBounds.y >= 8);
+    await page.screenshot({ path: join(screenshots, '101-tooltip-edge.png') });
+    await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
+  } finally { await close.evaluate((element, style) => { if (style === null) element.removeAttribute('style'); else element.setAttribute('style', style); }, originalStyle); }
+  await sidebar.click();
+  await page.getByRole('button', { name: '展开侧边栏', exact: true }).click();
+  assert.equal(await hint.count(), 0, 'Clicking an icon and unmounting its old trigger removes the hint');
+}
+
 export async function verifySurfaces({ page, application, screenshots, verified }) {
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
@@ -286,6 +339,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
     await page.waitForFunction(async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
     await assertFieldStates(page, dialog, mode, screenshots);
     await assertControlGeometry(page, dialog, mode);
+    await assertIconTooltip(page, dialog, mode, screenshots);
   }
   await theme.selectOption('light');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
@@ -340,11 +394,13 @@ export async function verifySurfaces({ page, application, screenshots, verified 
     if (width === 760 && zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));
     if (width === 1280 && zoom === 1.5) await captureSurface(page, application, join(screenshots, '98-surface-short-wide.png'));
     await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+    assert.equal(await page.locator('.control-tooltip:popover-open').count(), 0, 'Closing a modal must remove its open hints');
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
+  await assertTooltipEdges(page, screenshots);
   verified('all seven settings categories follow reference viewport geometry in minimum and short-wide windows at 100/125/150 percent Electron zoom and the 768px boundary, retain native focus and restore the opener/draft after Escape');
-  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, geometryChecks, checkedSwitchStates, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png', '99-switch-checked-light.png', '99-switch-checked-dark.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
+  return { checks: 4, settingsCategories: categories, zoomFactors: zooms, geometryChecks, checkedSwitchStates, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png', '99-switch-checked-light.png', '99-switch-checked-dark.png', '100-tooltip-light.png', '100-tooltip-dark.png', '101-tooltip-edge.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, custom icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/click dismissal, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }

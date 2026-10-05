@@ -1,11 +1,19 @@
 import { cloneElement, createElement, isValidElement, useEffect, useId, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { Glyph, type GlyphName } from './glyphs';
+import { useControlTooltip } from './control-tooltip';
 
 export function Button({ tone = 'ghost', className = '', ...props }: ComponentProps<'button'> & { tone?: 'ghost' | 'solid' | 'danger' }) {
   return <button type="button" className={`button button-${tone} ${className}`} {...props} />;
 }
 export function IconButton({ icon, label, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { icon: GlyphName; label: string }) {
-  return <Button className="icon-button" aria-label={label} title={label} {...props}><Glyph name={icon} /></Button>;
+  const tooltip = useControlTooltip(props.title ?? label);
+  return <><Button className="icon-button" aria-label={label} {...props} title={undefined} ref={tooltip.anchor}
+    aria-describedby={[props['aria-describedby'], tooltip.description].filter(Boolean).join(' ') || undefined}
+    onPointerEnter={event => { props.onPointerEnter?.(event); tooltip.enter(event); }}
+    onPointerLeave={event => { props.onPointerLeave?.(event); tooltip.leave(); }}
+    onPointerDown={event => { props.onPointerDown?.(event); tooltip.hide(); }}
+    onFocus={event => { props.onFocus?.(event); tooltip.focus(); }}
+    onBlur={event => { props.onBlur?.(event); tooltip.hide(); }}><Glyph name={icon} /></Button>{tooltip.content}</>;
 }
 export function Input(props: ComponentProps<'input'>) { return <input {...props} className={`input ${props.className ?? ''}`} />; }
 export function Textarea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) { return <textarea {...props} className={`input textarea ${props.className ?? ''}`} />; }
