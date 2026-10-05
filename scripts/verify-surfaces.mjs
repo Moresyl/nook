@@ -256,6 +256,27 @@ async function assertButtonTooltips(page, application, screenshots, draft) {
   assert.equal(await composer.inputValue(), draft, 'Tooltip checks preserve the original new-chat draft');
 }
 
+async function assertTooltipModalScope(page, draft) {
+  const trigger = page.getByRole('button', { name: '资料库', exact: true });
+  const hint = page.locator('.control-tooltip:popover-open');
+  const composer = page.getByLabel('消息', { exact: true });
+  for (const pending of [true, false]) {
+    await composer.focus(); await composer.hover();
+    await trigger.hover();
+    if (!pending) await hint.filter({ hasText: /^资料库$/ }).waitFor();
+    await page.keyboard.press('Control+,');
+    const dialog = page.getByRole('dialog', { name: '设置', exact: true });
+    await dialog.waitFor();
+    // Observe beyond the 500 ms hover delay, including a hint queued before the modal opens.
+    await page.waitForTimeout(600);
+    assert.equal(await hint.evaluateAll(elements => elements.some(element => !element.closest('dialog:modal'))), false, 'Opening a modal must dismiss active and pending background hints');
+    assert.equal(await dialog.evaluate(element => element.contains(document.activeElement)), true);
+    await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+    assert.equal(await composer.inputValue(), draft);
+    assert.equal(await composer.evaluate(element => element === document.activeElement), true);
+  }
+}
+
 export async function verifySurfaces({ page, application, screenshots, verified }) {
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
@@ -275,6 +296,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   assert.equal(await composer.evaluate((element) => element.clientHeight <= 200 && element.scrollHeight > element.clientHeight), true, 'Long drafts must scroll within the input height limit');
   const draft = 'SURFACE_AUDIT_RETAINS_UNSENT_DRAFT';
   await page.getByLabel('消息', { exact: true }).fill(draft);
+  await assertTooltipModalScope(page, draft);
   assert.ok(await composer.evaluate((element) => element.clientHeight) < wideHeight, 'Replacing a long draft must shrink the composer');
   const opener = page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ });
   const open = async () => { await opener.focus(); await opener.press('Enter'); const dialog = page.getByRole('dialog', { name: '设置', exact: true }); await dialog.waitFor(); return dialog; };

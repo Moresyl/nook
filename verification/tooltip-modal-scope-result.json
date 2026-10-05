@@ -1,0 +1,24 @@
+{
+  "applicationCommit": "ebd350dcf7f21c38d3772801d5db2f3c5b3d74db",
+  "verifiedAt": "2026-10-05T14:39:16.612Z",
+  "variant": "development executable",
+  "checks": 4,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "cases": [
+    "Open settings with Control+, while a background tooltip is pending",
+    "Open settings with Control+, while a background tooltip is visible",
+    "Observe past the hover delay: no background tooltip remains open",
+    "Modal focus, Escape restoration and unsent draft remain intact"
+  ],
+  "log": "D:/GR/pi-pc/.firecrawl/nook-tooltip-modal-scope-retry.log",
+  "logSha256": "fa216cf885c5233ddbd7899dff2e6c4f3cf33f767dccda65c363b2680a7e1be8",
+  "priorFailure": {
+    "phase": "Main-process startup, before surface tests",
+    "message": "Main-process test operation timed out",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-tooltip-modal-scope.log",
+    "logSha256": "22d879505b6fbb4a68fc70fedcf90b24e23622c767683cf6f4e1fd82a58aa8a8",
+    "cause": "Unresolved; retained diagnostics show protocol.ready and no window"
+  },
+  "scope": "Added regression checks only; no production change or timeout increase. Passing retry does not establish the cause or resolution of the initial startup timeout, physical OS interaction, complete UI adoption or publication."
+}
