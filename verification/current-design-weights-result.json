@@ -1,0 +1,15 @@
+{
+  "reference": { "directory": "E:/txt", "version": "26.930.41038", "build": "13022", "globalMedium": 500, "globalSemibold": 600, "catalogOnlyWeights": [510, 590] },
+  "change": "Use semantic global weight variables in titles, labels, selects and selected options instead of applying catalog-specific values globally.",
+  "typecheck": "passed",
+  "build": { "result": "passed", "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-weights-build.log", "sha256": "415f3c760e3098301e1a5498f2e9bcf9f0546a3e8052fdb224bd31c10ef81e05" },
+  "runtimeAcceptance": "not passed; new typography assertions were not reached",
+  "attempts": [
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-weights-surfaces.log", "sha256": "2c1ac3eb5bf49b33ea52529c2e8a350245d55119034eaefeb25114646deefa44", "result": "startup timeout before renderer assertions", "fixture": "E:/NookVerification/Temp/qiyao-electron-5yuKR7" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-weights-surfaces-retry.log", "sha256": "f4ba84ef6f8f8ee1b8e4904c2ca33cca3d75284ca3e926829033831a64a2bd5f", "result": "startup timeout before renderer assertions", "fixture": "E:/NookVerification/Temp/qiyao-electron-YYfXIq" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-weights-surfaces-diagnostics.log", "sha256": "4921a952a77c35a1e800550b26908da5f0b4b438ffdaa9de7f0c5f6af512dcef", "result": "main debugger appeared, browser debugger did not reach readiness before startup timeout", "fixture": "E:/NookVerification/Temp/qiyao-electron-hiaW0s" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-weights-surfaces-final.log", "sha256": "0424cbb7c5368859b6be2ccd32462c4f9c31ccfb301bf5205f6a0ad2450221d8", "result": "startup fallback opacity remained 0 within unchanged 5-second assertion; final close forced after 10023ms" }
+  ],
+  "diagnosticProbe": { "log": "D:/GR/pi-pc/.firecrawl/nook-current-design-startup-window-probe.log", "sha256": "f9881192c1b94a0c740d0b24aa28e1cc32d7f058e440379b6dccd38e06eabb29", "result": "observed startup.complete and renderer.loaded, then requested normal app.quit; exit code 0", "boundary": "Main inspector attached early. This diagnostic does not replace the original startup deadline or UI assertions." },
+  "limits": "Startup causes remain unconfirmed. Existing candidate packages and historical 215-check result predate these weights. No new package or release acceptance is claimed."
+}

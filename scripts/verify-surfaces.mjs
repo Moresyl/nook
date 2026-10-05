@@ -108,6 +108,9 @@ async function assertFieldStates(page, dialog, mode, screenshots) {
 
 async function assertControlGeometry(page, dialog, mode) {
   const theme = dialog.getByLabel('主题', { exact: true });
+  assert.equal(await theme.evaluate(element => getComputedStyle(element).fontWeight), '500', `${mode} select uses the global medium weight`);
+  assert.equal(await dialog.getByRole('heading', { name: '外观与交互', exact: true }).evaluate(element => getComputedStyle(element).fontWeight), '600', `${mode} heading uses the global semibold weight`);
+  assert.equal(await dialog.locator('.field-label').first().evaluate(element => getComputedStyle(element).fontWeight), '500', `${mode} field label uses the global medium weight`);
   assert.deepEqual(await theme.evaluate(element => {
     const style = getComputedStyle(element); const picker = getComputedStyle(element, '::picker(select)');
     return { left: style.paddingLeft, right: style.paddingRight, gap: style.gap, pickerPadding: picker.paddingTop };
@@ -123,7 +126,7 @@ async function assertControlGeometry(page, dialog, mode) {
     const style = getComputedStyle(element);
     return { background: style.backgroundColor, height: style.height, radius: style.borderRadius, lineHeight: style.lineHeight };
   }), { background: highlight, height: '36px', radius: '10px', lineHeight: '20px' });
-  assert.equal(await theme.locator('option:checked').evaluate(element => getComputedStyle(element).fontWeight), '590');
+  assert.equal(await theme.locator('option:checked').evaluate(element => getComputedStyle(element).fontWeight), '600');
   await page.keyboard.press('Home');
   assert.equal(await option.evaluate(element => element.matches(':focus-visible') && getComputedStyle(element).backgroundColor), highlight);
   await page.keyboard.press('Escape');
