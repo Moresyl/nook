@@ -10,7 +10,7 @@ export class ComposerDrafts {
 
   async save(raw: unknown): Promise<void> {
     const draft = composerDraftSchema.parse(raw);
-    await this.vault.update((state) => {
+    await this.vault.commit((state) => {
       if (draft.threadId && !state.threads.some((thread) => thread.id === draft.threadId)) throw new Error('This conversation no longer exists. Its draft cannot be saved.');
       if (draft.assistantId && !state.assistants.some((assistant) => assistant.id === draft.assistantId)) delete draft.assistantId;
       const index = state.composerDrafts.findIndex((item) => item.threadId === draft.threadId);
@@ -30,7 +30,7 @@ export class ComposerDrafts {
       const batch = { requests: [request], temporary }; this.pendingActivation = batch;
       // Queue immediately to preserve ordering with sends, backups and other updates.
       // Choices arriving before this transaction begins share its latest durable selection.
-      void this.vault.update(state => {
+      void this.vault.commit(state => {
         if (this.pendingActivation === batch) this.pendingActivation = undefined;
         const valid = batch.requests.filter(item => {
           if (item.id && !state.threads.some(thread => thread.id === item.id)) { item.reject(new Error('This conversation no longer exists.')); return false; }

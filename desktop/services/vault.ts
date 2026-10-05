@@ -102,7 +102,12 @@ export class WorkspaceVault {
   }
 
   update(change: (draft: Workspace) => void, options?: { conversation: boolean }): Promise<Workspace> {
-    return this.save(change, undefined, options?.conversation);
+    return this.save(change, undefined, options?.conversation).then(state => structuredClone(state));
+  }
+
+  /** Persist a transaction whose caller only needs durable acknowledgement. */
+  async commit(change: (draft: Workspace) => void, options?: { conversation: boolean }): Promise<void> {
+    await this.save(change, undefined, options?.conversation);
   }
 
   checkpointMessages(entries: { threadId: string; message: Message }[]): Promise<Workspace> {
@@ -114,7 +119,7 @@ export class WorkspaceVault {
         const index = target?.messages.findIndex(message => message.id === entry.message.id) ?? -1;
         if (target && index >= 0) { target.messages[index] = structuredClone(entry.message); target.updatedAt = now; }
       }
-    }, captured.map(entry => entry.threadId));
+    }, captured.map(entry => entry.threadId)).then(state => structuredClone(state));
   }
 
   private save(change: (draft: Workspace) => void, checkpointIds?: string[], conversation = false): Promise<Workspace> {
@@ -151,7 +156,7 @@ export class WorkspaceVault {
       this.state = next;
       this.persistentActiveThreadId = persistent.activeThreadId;
       this.persistentBytes = nextBytes;
-      return this.snapshot();
+      return next;
     });
     this.tail = operation.catch(() => {});
     return operation;

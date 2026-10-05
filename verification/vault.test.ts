@@ -66,6 +66,50 @@ describe('local workspace persistence', () => {
     const reloaded = new WorkspaceVault(directory, codec); await reloaded.initialize();
     expect(reloaded.snapshot().notes).toHaveLength(2);
   });
+  it('acknowledges commits only after durable ordered writes without exposing mutable transaction state', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    let retained: ReturnType<typeof vault.snapshot> | undefined;
+    const committed = vault.commit(state => { retained = state; state.notes.push({ id: 'committed', title: 'Committed', content: 'Keep', createdAt: 1 }); });
+    const following = vault.update(state => { expect(state.notes[0].id).toBe('committed'); state.notes.push({ id: 'following', title: 'Following', content: 'Next', createdAt: 2 }); });
+    expect(await committed).toBeUndefined();
+    const returned = await following;
+    retained!.notes.length = 0; returned.notes.length = 0;
+    expect(vault.snapshot().notes.map(note => note.id)).toEqual(['committed', 'following']);
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize();
+    expect(restarted.snapshot()).toEqual(vault.snapshot());
+    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json'), 'utf8')).notes.map((note: { id: string }) => note.id)).toEqual(['committed']);
+    await expect(vault.commit(state => { state.schemaVersion = 2 as 1; })).rejects.toThrow();
+    expect(vault.snapshot()).toEqual(restarted.snapshot());
+  });
+  it('keeps update results bound to their own queued transaction and isolated from later checkpoints', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const first = vault.update(state => { state.threads.push(sampleThread()); });
+    const second = vault.update(state => { state.threads[0].title = 'Later'; });
+    const [before, after] = await Promise.all([first, second]);
+    expect(before.threads[0].title).toBe(sampleThread().title);
+    expect(after.threads[0].title).toBe('Later');
+    const message = { id: 'checkpoint', role: 'assistant' as const, content: 'Kept', status: 'complete' as const, attachments: [], createdAt: 1 };
+    await vault.update(state => { state.threads[0].messages.push(message); });
+    const checkpoint = await vault.checkpointMessages([{ threadId: 'thread', message: { ...message, content: 'Updated' } }]);
+    checkpoint.threads[0].messages.at(-1)!.content = 'Outside mutation';
+    expect(vault.snapshot().threads[0].messages.at(-1)!.content).toBe('Updated');
+    before.threads.length = 0; after.threads.length = 0;
+    expect(vault.snapshot().threads).toHaveLength(1);
+  });
+  it('rejects failed commits without changing memory or the primary file, then permits retry', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const before = vault.snapshot(); const primary = join(directory, 'workspace.json');
+    const bytes = await readFile(primary); const backup = join(directory, 'workspace.backup.json');
+    const retained = join(directory, 'retained-backup.json');
+    await rename(backup, retained); await mkdir(backup);
+    try {
+      await expect(vault.commit(state => { state.notes.push({ id: 'retry', title: 'Retry', content: 'Keep', createdAt: 1 }); })).rejects.toThrow('Local data');
+      expect(vault.snapshot()).toEqual(before); expect(await readFile(primary)).toEqual(bytes);
+    } finally { await rm(backup, { recursive: true }); await rename(retained, backup); }
+    await vault.commit(state => { state.notes.push({ id: 'retry', title: 'Retry', content: 'Keep', createdAt: 1 }); });
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize();
+    expect(restarted.snapshot().notes.at(-1)?.id).toBe('retry');
+  });
   it('returns isolated current project records without cloning conversation history', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     const project = { id: '__proto__', name: 'Project', path: directory, instructions: 'PRIVATE_PROJECT_CONTEXT', createdAt: 1 };

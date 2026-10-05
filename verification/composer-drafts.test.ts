@@ -25,16 +25,16 @@ describe('conversation draft persistence and consumption', () => {
   });
   it('coalesces queued selections into the latest durable owner without letting a later workspace operation overtake them', async () => {
     const { vault, directory, drafts } = await setup(); await vault.update(state => { state.threads = [sampleThread(), sampleThread({ id: 'second' })]; });
-    const update = vi.spyOn(vault, 'update'); let observed: string | undefined;
+    const commit = vi.spyOn(vault, 'commit'); let observed: string | undefined;
     const choices = [drafts.activate('thread'), drafts.activate('second'), drafts.activate('thread'), drafts.activate('second')];
     const following = vault.update(state => { observed = state.activeThreadId; });
-    await Promise.all([...choices, following]); expect(observed).toBe('second'); expect(update).toHaveBeenCalledTimes(2);
+    await Promise.all([...choices, following]); expect(observed).toBe('second'); expect(commit).toHaveBeenCalledTimes(1);
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot().activeThreadId).toBe('second');
   });
   it('does not acknowledge queued choices until the selected state has been saved, including clearing the owner', async () => {
     const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
-    const original = vault.update.bind(vault); let release!: () => void; const hold = new Promise<void>(resolve => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (...args) => { await hold; return original(...args); });
+    const original = vault.commit.bind(vault); let release!: () => void; const hold = new Promise<void>(resolve => { release = resolve; });
+    vi.spyOn(vault, 'commit').mockImplementationOnce(async (...args) => { await hold; return original(...args); });
     let acknowledgements = 0; const first = drafts.activate('thread').then(() => { acknowledgements++; }); const cleared = drafts.activate().then(() => { acknowledgements++; });
     await Promise.resolve(); expect(acknowledgements).toBe(0); release(); await Promise.all([first, cleared]);
     expect(acknowledgements).toBe(2); expect(vault.snapshot().activeThreadId).toBeUndefined();
@@ -48,7 +48,7 @@ describe('conversation draft persistence and consumption', () => {
   });
   it('rejects a failed queued activation and permits a later retry without leaving the batch stuck', async () => {
     const { vault, drafts } = await setup(); await vault.update(state => { state.threads.push(sampleThread()); });
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk unavailable'));
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Disk unavailable'));
     await expect(drafts.activate('thread')).rejects.toThrow('Disk unavailable'); expect(vault.snapshot().activeThreadId).toBeUndefined();
     await drafts.activate('thread'); expect(vault.snapshot().activeThreadId).toBe('thread');
   });
@@ -78,7 +78,7 @@ describe('conversation draft persistence and consumption', () => {
   });
   it('does not evict drafts at the count/size limits or commit a failed save', async () => {
     const { vault, drafts } = await setup();
-    await drafts.save(draft()); vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(drafts.save(draft({ text: 'New' }))).rejects.toThrow('Disk full'); expect(vault.snapshot().composerDrafts).toEqual([draft()]);
+    await drafts.save(draft()); vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Disk full')); await expect(drafts.save(draft({ text: 'New' }))).rejects.toThrow('Disk full'); expect(vault.snapshot().composerDrafts).toEqual([draft()]);
     await vault.update((state) => { state.threads = Array.from({ length: 100 }, (_, index) => sampleThread({ id: `thread-${index}` })); state.composerDrafts = state.threads.map((thread) => draft({ threadId: thread.id })); });
     await expect(drafts.save(draft())).rejects.toThrow('100 owners'); expect(vault.snapshot().composerDrafts).toHaveLength(100);
     const attachments = Array.from({ length: 12 }, (_, index) => ({ id: `file-${index}`, name: 'evidence.txt', content: 'x'.repeat(256_000) }));
