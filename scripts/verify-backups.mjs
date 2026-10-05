@@ -8,7 +8,13 @@ export async function verifyBackups({ page, application, getApplication, directo
   const digest = (text) => createHash('sha256').update(text).digest('hex');
   const summary = async () => page.evaluate(async () => { const state = await window.qiyao.load(); const large = state.threads.filter((thread) => thread.title.startsWith('BACKUP_SIZE_')); return { threads: large.map((thread) => ({ id: thread.id, text: thread.messages[0].content.length, beginning: thread.messages[0].content.slice(0, 30), ending: thread.messages[0].content.slice(-30) })), notes: state.notes, collections: state.knowledgeCollections, drafts: state.composerDrafts, projects: state.projects }; });
   async function waitForOperation(button, capture) {
-    await page.getByText('正在处理备份…', { exact: true }).waitFor(); assert.equal(await page.getByRole('button', { name: button, exact: true }).isEnabled(), false);
+    await page.waitForFunction((name) => {
+      const progress = [...document.querySelectorAll('[role="status"]')].find((element) => element.textContent === '正在处理备份…' && element.getClientRects().length > 0);
+      if (!progress) return false;
+      const action = [...document.querySelectorAll('button')].find((element) => element.textContent === name);
+      if (!action?.disabled) throw new Error('The backup action must be disabled while progress is visible');
+      return true;
+    }, button);
     if (capture) await page.screenshot({ path: capture });
     await page.waitForFunction((name) => [...document.querySelectorAll('button')].some((button) => button.textContent === name && !button.disabled), button);
     assert.deepEqual(await page.getByRole('alert').allTextContents(), [], 'Backup UI reported an operation failure');
