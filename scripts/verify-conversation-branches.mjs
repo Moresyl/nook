@@ -36,7 +36,15 @@ export async function verifyConversationBranches({ page, application, getApplica
   async function headerGeometry(expectedCount, zoom) {
     const controls = await page.locator('.header-actions button').evaluateAll((buttons) => buttons.map((button) => { const rect = button.getBoundingClientRect(); return { label: button.getAttribute('aria-label'), left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, withinWindow: rect.left >= 0 && rect.right <= innerWidth + 1 && rect.top >= 0 && rect.bottom <= innerHeight }; }));
     assert.equal(controls.length, expectedCount); assert.ok(controls.every((control) => control.withinWindow), JSON.stringify({ zoom, controls }));
-    assert.equal(await page.locator('.thread-title').getAttribute('title'), threads[1].title);
+    const title = page.locator('.thread-title');
+    await title.hover();
+    const hint = page.locator('.control-tooltip:popover-open').filter({ hasText: threads[1].title });
+    await hint.waitFor();
+    assert.equal(await hint.textContent(), threads[1].title);
+    assert.equal(await title.getAttribute('aria-describedby'), await hint.getAttribute('id'));
+    assert.equal(await title.getAttribute('title'), null, 'The styled title hint replaces the native popup');
+    assert.equal(await hint.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight; }), true);
+    await composer().hover(); await hint.waitFor({ state: 'hidden' });
     assert.ok(await page.locator('.thread-title > span').evaluate((element) => element.getBoundingClientRect().width >= 16), 'The minimum-window header must retain visible title text alongside every action.');
     return controls;
   }
