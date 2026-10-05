@@ -8,6 +8,8 @@
 
 后续源码加入了脚本加载前的启动占位，类型、构建及设置专项通过，详见[专项记录](../verification/startup-fallback-result.json)。下方候选包尚不包含此改动；旧包的完整通过记录不能作为最新源码的分发验收。
 
+后续源码也补齐了首次读取失败的持久提示与重新加载入口，隔离失败／重试／已保存草稿恢复及设置专项通过，见[恢复记录](../verification/startup-recovery-result.json)。此改动同样尚未进入下方候选包。
+
 | 文件 | SHA-256 |
 | --- | --- |
 | Nook.exe | `457897ffd6b0207db70ea42f5521ce56159af79f15e46ad490cea7abe8bfc476` |

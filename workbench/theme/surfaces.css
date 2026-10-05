@@ -437,6 +437,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .modal > .toast { position: absolute; bottom: 12px; max-width: calc(100% - 24px); }
 .startup { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; height: 100%; gap: 20px; color: var(--ds-text-secondary); }
 .startup p { max-width: 450px; font-size: 13px; text-align: center; }
+.startup h1 { margin: 0; font-size: 18px; font-weight: 590; color: var(--ds-text); }
+.startup[role="alert"] { padding: 24px; }
 .project-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); border-top: 1px solid var(--ds-border); margin-top: 24px; min-height: 420px; }
 .project-list { padding-top: 12px; padding-right: 16px; border-right: 1px solid var(--ds-border); }
 .project-row { display: flex; border-radius: 8px; align-items: center; }

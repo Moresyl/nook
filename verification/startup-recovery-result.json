@@ -1,0 +1,30 @@
+{
+  "baseCommit": "ba1a8d964f7c707e9f2a82484fb7538f38945908",
+  "verifiedAt": "2026-10-05T15:06:54.022Z",
+  "variant": "development executable with rebuilt renderer",
+  "build": "passed",
+  "surfaceGroups": 4,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "cases": [
+    "Initial workspace load rejection shows a persistent accessible error beyond the former 12-second toast timer",
+    "Internal error sentinel is absent from visible UI",
+    "Keyboard retry performs a new renderer load and repeated failure remains actionable",
+    "Retry remains inside a 760x540 viewport",
+    "A held retry shows loading with aria-busy=true and removes the old error action",
+    "Successful retry restores the previously persisted new-chat draft exactly",
+    "Settings persistence waits await asynchronous bridge results before inspecting toggle state"
+  ],
+  "log": "D:/GR/pi-pc/.firecrawl/nook-startup-recovery-final.log",
+  "logSha256": "fcefc68865e98f901b4d8a3e43a1b9cd4555e4c41e49a101b412e0f988d38e47",
+  "earlierAttempts": [
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-startup-recovery-surfaces.log", "sha256": "49e844a42a21634d204005808551d960e16f96cd8029769c0a4ee03313ce5dec", "result": "Failed draft precondition: reload occurred before autosave" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-startup-recovery-diagnostics.log", "sha256": "d123bb946eea1d16bff3b5e7aaccc2413ceed1d358c25cf0c7bde0d7a1b47893", "result": "Same precondition failure; IPC sequence contained no intervening draft write" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-startup-recovery-durable.log", "sha256": "d7d3403180d888fd001164bb8a77b6bd2809da92b6c04d835e5946ef21e2101a", "result": "Passed after awaiting actual persistence; final run also corrects three existing toggle waits" }
+  ],
+  "reviewedScreenshots": [
+    { "file": "docs/images/startup-error.png", "width": 1280, "height": 840, "sha256": "ae3355bc4c67091605c271f1a122a1c2cdeb4d0357054452e57959bdd35ca92f" },
+    { "file": "docs/images/startup-error-narrow.png", "width": 760, "height": 540, "sha256": "4a9af956f1aeb11db3fa2a23f502c57c0abbba547f1ba27eb7266180905110c7" }
+  ],
+  "scope": "Isolated initial-load IPC rejection/delay with actual renderer navigation and persisted test draft. This does not simulate a corrupt vault, main-process startup failure, native OS input or unsaved data during arbitrary user-initiated reloads. New startup changes are not yet in the existing 4296faf installer or portable artifacts."
+}

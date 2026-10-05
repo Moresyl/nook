@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { verifyStartupFallback } from './verify-startup-fallback.mjs';
+import { verifyStartupRecovery } from './verify-startup-recovery.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
 
@@ -278,8 +279,9 @@ async function assertTooltipModalScope(page, draft) {
   }
 }
 
-export async function verifySurfaces({ page, application, screenshots, verified }) {
+export async function verifySurfaces({ page, application, screenshots, verified, waitForBridge }) {
   await verifyStartupFallback({ page, application, screenshots });
+  await verifyStartupRecovery({ page, application, screenshots, waitForBridge });
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await page.reload();
@@ -359,7 +361,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   // Exercise the real switch in both themes; disabled is a temporary CSS-state probe.
   if (original) {
     await toggle.focus(); await toggle.press('Space');
-    await page.waitForFunction(async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
   }
   for (const [mode, off, hover, disabled] of [
     ['light', 'rgb(223, 223, 223)', 'rgb(205, 205, 205)', 'rgb(237, 237, 237)'],
@@ -409,7 +411,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
     } finally { await toggle.evaluate(element => { element.disabled = false; element.closest('label').classList.remove('disabled'); }); }
     await captureSurface(page, application, join(screenshots, `99-switch-checked-${mode}.png`));
     await toggle.focus(); await toggle.press('Space');
-    await page.waitForFunction(async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
     await assertFieldStates(page, dialog, mode, screenshots);
     await assertControlGeometry(page, dialog, mode);
     await assertIconTooltip(page, dialog, mode, screenshots);
@@ -418,7 +420,7 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
   if (original) {
     await toggle.focus(); await toggle.press('Space');
-    await page.waitForFunction(async () => (await window.qiyao.load()).preferences.enterToSend && document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => (await window.qiyao.load()).preferences.enterToSend && document.querySelector('.toggle-label input').checked);
   }
   await toggle.focus(); await toggle.press('Space');
   await page.waitForFunction((expected) => document.querySelector('.toggle-label input').checked === expected, !original);

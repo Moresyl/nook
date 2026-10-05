@@ -486,7 +486,7 @@ try {
     const result = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; projectTreeResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_SURFACES_ONLY) {
-    surfaceResult = await verifySurfaces({ page, application, screenshots, verified });
+    surfaceResult = await verifySurfaces({ page, application, screenshots, verified, waitForBridge });
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_COMMANDS_ONLY) {
     const commands = await verifyCommands({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: commandProviders, restart: async () => { await application.close(); return launch(); } }); page = commands.page;
