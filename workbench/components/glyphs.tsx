@@ -28,6 +28,7 @@ const paths = {
   right: 'm9 6 6 6-6 6',
   close: 'm6 6 12 12 M18 6 6 18',
   copy: 'M8 8h12v12H8V8Z M16 8V4H4v12h4',
+  wrap: 'M3 5h18 M3 10h13a4 4 0 0 1 0 8h-4 m3-3-3 3 3 3 M3 15h4 M3 20h4',
   quote: 'M4 6h6v7H6v5H3v-6a6 6 0 0 1 1-6Z M15 6h6v7h-4v5h-3v-6a6 6 0 0 1 1-6Z',
   branch: 'M6 3v14a4 4 0 0 0 4 4h8 M6 10h8a4 4 0 0 0 4-4V3',
   retry: 'M20 8a9 9 0 1 0 1 7 M20 3v5h-5',

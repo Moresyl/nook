@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-10-05T23:32:29.046Z",
+  "sourceBase": "8bd8111",
+  "change": "Independent per-code-block wrapping control with native pressed semantics; preserve original source/copy/highlighting and keep long-language headers from displacing controls.",
+  "typeCheck": "passed",
+  "build": "passed",
+  "tests": { "passed": 13, "files": 2, "scope": "Existing rich-content and Mermaid renderer regression" },
+  "native": { "runs": 2, "checksPerRun": 2, "runtimeErrors": [], "normalExitMs": [303, 3938], "result": "rich-content-result.json", "keyboard": true, "themes": ["light", "dark"], "zoom": [1, 1.5], "exactClipboardArgumentAndSavedSource": true, "mermaidSourceToggle": true, "longLanguageControlsFit": true, "automaticExternalRequests": 0 },
+  "screenshotsReviewed": ["code-wrap-light-100.png", "code-wrap-dark-150.png"],
+  "captureCorrection": "First run passed interaction checks but the 150% Playwright screenshot was cropped. Replaced these new captures with BrowserWindow.capturePage, asserted PNG dimensions match actual content size, then repeated the native suite and inspected both full images.",
+  "boundary": "Clipboard writes are intercepted, not physical clipboard verification. Wrap is a local display state, not code editing or artifact execution. Latest complete 223-group run predates this change; matching final distribution verification is still required. No claim of full reference UI parity or resolution of the previous intermittent shutdown failure.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-code-wrap-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-code-wrap-tests.log", "sha256": "56cbb0d6ae0d7fe671b8553730acbcb5d64e5ce85bcdb18f2f02fef6a22dc790" },
+    { "name": "nook-code-wrap-build.log", "sha256": "74455c22d52022b7efe42b00ae8e7f778631a3c0267fed39a756757939457355" },
+    { "name": "nook-code-wrap-desktop.log", "sha256": "47defc9f1727073458b129a41018cebf823526932ee110a338786479aa30f920" },
+    { "name": "nook-code-wrap-desktop-capture.log", "sha256": "ca40b76339f040957a76e795126d8364fb536eb23d5260a959d088d34cbda401" }
+  ]
+}

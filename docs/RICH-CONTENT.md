@@ -1,5 +1,9 @@
 # Rich conversation content
 
+代码块提供“代码自动换行”开关，可用鼠标、空格或 Enter 切换；图表切到源码后也可使用。换行只改变当前代码块的显示方式，不修改保存的原文、缩进、空行或复制内容，重新打开页面恢复默认横向滚动。窄窗口中的长语言名称会省略显示，操作按钮保留可用空间。
+
+类型、构建及 13 项相关测试通过；实际桌面内容专项两轮通过，覆盖明暗主题、150% 缩放、代码／图表源码切换、复制一致性、长名称及原有恶意内容检查。第二轮使用窗口自身截图，核对像素尺寸后查看了[浅色](images/code-wrap-light.png)与[深色窄窗](images/code-wrap-dark-narrow.png)。复制仍使用测试拦截，不等同物理剪贴板验收；分发验证待完成。[本批记录](../verification/code-wrap-review-result.json)
+
 Assistant replies retain their original Markdown source in the workspace and exports. The renderer supports GFM tables, inline `$...$` formulas, display `$$...$$` formulas and fenced `math`/`latex` formulas. KaTeX produces accessible MathML alongside the visual formula. Trusted HTML/URL commands are disabled; macro expansion and requested sizes are bounded, and invalid formulas remain visible rather than executing HTML or loading remote images.
 
 Fenced code uses the complete lowlight language catalog, including PowerShell. Language detection is disabled, and unknown languages remain readable as plain text. The supplied light/dark syntax colors are mapped to token classes; code headers offer exact source copying, retaining intentional final newlines. HTML-looking code stays escaped text. Inline code retains the existing typography.
