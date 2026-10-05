@@ -14,18 +14,24 @@
   "native": {
     "focusedChecks": 5,
     "focusedResult": "passed with normal close, no runtime errors and zero outside HTTP requests",
-    "fullSuite": "not yet passed",
+    "fullSuite": "passed: 223 checks, no runtime errors, normal exit in 755 ms",
+    "fullSuiteCommit": "a52b71e939c109e91229e9344f53ab75977efb8a",
+    "fullSuiteVerifiedAt": "2026-10-05T21:26:29.989Z",
+    "comparisonBackupFlushMs": { "json": 2246, "gzip": 1 },
+    "comparisonBackupBoundary": "Both formats completed within the original 5000 ms draft-flush deadline in this complete run. This is not a controlled performance comparison or a guarantee across all workloads.",
     "attempts": [
       { "log": "nook-project-preview-full.log", "passedGroups": 173, "result": "failed at a main-process diagnostic operation after preview font inspection; original exception detail was unavailable", "normalExitMs": 1279 },
       { "log": "nook-project-preview-large.log", "passedGroups": 5, "result": "passed focused preview checks using the retained full workspace", "normalExitMs": 338 },
       { "log": "nook-project-preview-integration.log", "passedGroups": 3, "result": "failed because the raw seed contained a previous identically named project, producing an ambiguous test locator", "normalExitMs": 2555 },
-      { "log": "nook-project-preview-integration-replay.log", "passedGroups": 12, "result": "all seven tree and five preview groups completed; diagnostic-only final count incorrectly expected 14 and failed; corrected to 12 after verifying the actual seven tree checks", "normalExitMs": 1808 }
+      { "log": "nook-project-preview-integration-replay.log", "passedGroups": 12, "result": "all seven tree and five preview groups completed; diagnostic-only final count incorrectly expected 14 and failed; corrected to 12 after verifying the actual seven tree checks", "normalExitMs": 1808 },
+      { "log": "nook-project-preview-full-retry.log", "passedGroups": 223, "result": "complete suite passed, including the tree/preview sequence, memory and model-comparison backup/restore/restart; no runtime errors", "normalExitMs": 755 }
     ],
     "replay": { "sourceBytes": 84247148, "threads": 89, "originalSha256": "c709e9b9493cbe654cf49283f99a2bf96e1b9d72f8fde7cc118962d1f4a7d85c", "originalUnchanged": true, "adaptation": "Prefix existing display names in a separate copy to avoid fixture-label collisions; preserve complete histories and references." },
     "originalDeadlinesUnchanged": true,
-    "boundary": "The original full-suite exception has not been reproduced or proven fixed. DOM paste and scripted preview interaction are not physical clipboard/pointer or complete sandbox evidence. Existing sub-suite records from the failed full run do not establish full desktop acceptance."
+    "boundary": "The original full-suite exception did not recur; its cause is still unproven. DOM paste and scripted preview interaction are not physical clipboard/pointer or complete sandbox evidence. Current source sub-suite records belong to the subsequent complete successful run; earlier failed runs remain in the log history. The three preview screenshots from this complete run were visually inspected."
   },
   "releaseGate": "Eleven matching runtime records; full desktop and installation must include three memory and five offline preview checks, and at least 223 total checks. Old 215/218-check suites are rejected.",
+  "hostedRun": { "id": 37373525761, "commit": "a52b71e939c109e91229e9344f53ab75977efb8a", "status": "completed", "conclusion": "failure", "verifyJob": 111976285846, "stepsExecuted": 0, "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts", "publish": "skipped" },
   "distribution": "Existing packages predate the feature; no current packaged/installed/portable acceptance or release is claimed.",
   "logDirectory": "D:/GR/pi-pc/.firecrawl",
   "logs": [
@@ -35,6 +41,7 @@
     { "name": "nook-project-preview-integration-replay.log", "sha256": "3e6813c522846ce7497a10211e15e058534b431be2beb9c1407f37a7e300bfc1" },
     { "name": "nook-project-preview-final-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
     { "name": "nook-project-preview-final-coverage.log", "sha256": "c36f665db0880e4963f038cf7c1c8fdedb266bb3ad250ac39cdf3c5e976af7de" },
-    { "name": "nook-project-preview-build.log", "sha256": "870b8a244cc82bee6186935b89effd988755dc8120219811219f3135eb54201b" }
+    { "name": "nook-project-preview-build.log", "sha256": "870b8a244cc82bee6186935b89effd988755dc8120219811219f3135eb54201b" },
+    { "name": "nook-project-preview-full-retry.log", "sha256": "f7d985b3fd9a29fc3e7d1b4a9a3057b4d9ee55021debdf9ee4703b8bc9829f06" }
   ]
 }
