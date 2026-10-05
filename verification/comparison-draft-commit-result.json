@@ -1,0 +1,26 @@
+{
+  "applicationCommit": "a3e7305",
+  "verifiedAt": "2026-10-05T10:41:58.088Z",
+  "variant": "development executable",
+  "seed": "E:/NookVerification/ComparisonReplay-jGBDnf",
+  "originalSeedBytes": 84541897,
+  "originalSeedThreads": 303,
+  "originalSeedSha256": "79de3004379ba9f32a82ca4bc285bc874eccc5e1cac84a9953913e22d1906f06",
+  "log": "D:/GR/pi-pc/.firecrawl/nook-comparison-commit-ack-replay.log",
+  "logSha256": "8265c0118f984993bf9761a2cd42eabff030834ab8d6bcb8b30efa0c416a2849",
+  "checks": 6,
+  "normalCloseVerified": true,
+  "jsonAndGzipRestoreRestartVerified": true,
+  "originalDeadlineMs": 5000,
+  "jsonFlush": {
+    "requestedAt": 1791196884869,
+    "acknowledgedAt": 1791196887144,
+    "elapsedMs": 2275,
+    "workspaceClonesBeforeAcknowledgement": 2,
+    "activateThreadMs": 1362,
+    "saveDraftIncludingQueueMs": 2283
+  },
+  "gzipFlushMs": 0,
+  "baseline": "comparison-draft-flush-replay-result.json",
+  "scope": "Same complete large seed and existing six native assertions. Draft save and activation use durable commit without discarded full-workspace result copies. Earlier instrumented baseline had four clones before acknowledgement. Single-run latency is not a benchmark or proof that the original intermittent timeout is eliminated; this is not packaged or hosted release evidence."
+}
