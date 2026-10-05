@@ -1,0 +1,38 @@
+{
+  "applicationCommit": "0c766d13d62ec866db5d38149d10edf3035cb360",
+  "verificationBaseCommit": "682e6cc3ac7a9263837d54d9b4582a8cd485bba3",
+  "variant": "development executable",
+  "completedChecksBeforeFailure": 184,
+  "fullSuitePassed": false,
+  "failure": "First temporary-chat reply did not reach complete within the unchanged 10000ms bridge wait",
+  "waitMs": 10295,
+  "pollDurationsMs": [3980, 4754, 1242],
+  "requestWasSent": true,
+  "replyCompleteInSubsequentFailureSnapshot": true,
+  "normalCloseVerified": true,
+  "normalCloseMs": 2535,
+  "log": "D:/GR/pi-pc/.firecrawl/nook-atomic-selection-full.log",
+  "logSha256": "c7af504f497ad5eddc94a164613db594c4cdcf87899d3c18923cbc6224a38621",
+  "retainedFixture": "E:/NookVerification/Temp/qiyao-electron-jZjgzV",
+  "retainedPrimaryBytes": 84514076,
+  "retainedPrimarySha256": "0664a85e2c07944561d6b3d63ae60d81220bb44fce34a859cb33321be068b059",
+  "replaySeed": "E:/NookVerification/TemporaryReplay-xVFkoJ",
+  "replaySeedScope": "Copied complete primary with 294 persisted threads, credentials and extension resources; prefixed display labels to avoid fixture collisions; original primary unchanged",
+  "firstReplay": {
+    "log": "D:/GR/pi-pc/.firecrawl/nook-atomic-selection-temporary-large.log",
+    "sha256": "1a965495206c45a0f37283a769f046bd2a90ec02986a8498e4dadbb2891bba6c",
+    "result": "Initial temporary reply completed, then renderer crashed while reading state after a branch operation; final close did not pass",
+    "mainRssBytesInFailureSnapshot": 2604810240,
+    "cause": "Unconfirmed; renderer exit-reason collection was added afterward. Resource pressure is a lead, not an established cause."
+  },
+  "finalReplay": {
+    "verifiedAt": "2026-10-05T16:39:52.484Z",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-atomic-selection-temporary-resources.log",
+    "sha256": "51440f1d0df782669e5dc4ce843a2e500e69ab12cb4b21e1862a237be223f8a8",
+    "checks": 6,
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "normalCloseMs": 358
+  },
+  "scope": "Failed full regression plus diagnostic replays on unchanged product code. A passing focused replay does not establish resolution of the original delay or renderer crash. Full regression, newly rebuilt packages and actual installed lifecycle remain incomplete."
+}

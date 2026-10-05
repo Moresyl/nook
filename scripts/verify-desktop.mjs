@@ -355,6 +355,16 @@ async function launch() {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (event) => { if (event.type() === 'error' || event.type() === 'warning') rendererDiagnostics.push(event.text()); });
   page.on('worker', (worker) => workerUrls.push(worker.url()));
+  await application.evaluateMain(`(() => {
+    const { app, BrowserWindow } = require('electron'); const os = require('node:os');
+    globalThis.nookRendererExits = [];
+    globalThis.nookResourceSnapshot = () => ({ capturedAt: Date.now(), memory: process.memoryUsage(), systemFreeMemory: os.freemem(), processes: app.getAppMetrics().map(item => ({ pid: item.pid, type: item.type, memory: item.memory })) });
+    for (const window of BrowserWindow.getAllWindows()) window.webContents.on('render-process-gone', (_event, details) => {
+      const row = { reason: details.reason, exitCode: details.exitCode, ...globalThis.nookResourceSnapshot() };
+      globalThis.nookRendererExits.push(row); if (globalThis.nookRendererExits.length > 8) globalThis.nookRendererExits.shift();
+      console.error('Desktop renderer exit', JSON.stringify(row));
+    });
+  })()`);
   await application.evaluateMain("globalThis.qiyaoFilesystemFailures=[]; globalThis.qiyaoAuditRename=require('node:fs/promises').rename; globalThis.qiyaoAuditWriteFile=require('node:fs/promises').writeFile; const recordFilesystemError=(error,path)=>globalThis.qiyaoFilesystemFailures.push({code:error.code,syscall:error.syscall,destination:String(path).split(String.fromCharCode(92)).pop().split('/').pop()}); require('node:fs/promises').rename=async(from,to)=>{ try { return await globalThis.qiyaoAuditRename(from,to); } catch(error) { recordFilesystemError(error,to); throw error; } }; require('node:fs/promises').writeFile=async(path,...args)=>{ try { return await globalThis.qiyaoAuditWriteFile(path,...args); } catch(error) { recordFilesystemError(error,path); throw error; } };");
   await application.evaluateMain(`
     globalThis.qiyaoWorkerEvents = [];
@@ -1053,6 +1063,7 @@ try {
   console.error(`Retained failed desktop verification directory: ${directory}`);
   if (application) console.error(await application.evaluateMain('globalThis.qiyaoFilesystemFailures').catch(() => 'Filesystem diagnostics unavailable'));
   if (application) console.error('File-worker diagnostics', await application.evaluateMain('({capturedAt:Date.now(),workers:globalThis.qiyaoWorkerEvents})').catch(() => 'Worker diagnostics unavailable'));
+  if (application) console.error('Desktop resource diagnostics', JSON.stringify(await application.evaluateMain('({resources:globalThis.nookResourceSnapshot?.(),rendererExits:globalThis.nookRendererExits})').catch(() => ({ unavailable: true }))));
   if (application && process.env.QIYAO_TEST_SHELL_ONLY) console.error(await application.evaluateMain('globalThis.qiyaoDesktopAudit').catch(() => 'Desktop diagnostics unavailable'));
   if (rendererDiagnostics.length) console.error(rendererDiagnostics.join('\n'));
   if (providerErrors.length) console.error(providerErrors.join('\n'));

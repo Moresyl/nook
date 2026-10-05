@@ -65,15 +65,42 @@ export async function verifyTemporaryConversations({ page, application, getAppli
   assert.deepEqual(await files(), before); assert.equal(calls.length, beforeCalls);
   verified('temporary chat creation, native attachment import and unsent input stay in memory without touching either persisted history file or requesting a model');
 
-  await page.locator('.thread-list').getByRole('button', { name: 'REGULAR_TEMP_CHAT_KEEP', exact: true }).click(); assert.equal(await input().inputValue(), 'REGULAR_UI_DRAFT_KEEP'); await page.getByRole('button', { name: '移除 普通资料.txt', exact: true }).waitFor();
-  await page.keyboard.press('Control+n'); assert.equal(await input().inputValue(), 'REGULAR_NEW_KEEP');
-  await page.locator('.thread-list').getByRole('button', { name: '临时 · 临时聊天', exact: true }).click(); assert.equal(await input().inputValue(), draftSecret); await page.getByRole('button', { name: '移除 temporary-chat-attachment.txt', exact: true }).waitFor();
-  await page.locator('.thread-list').getByRole('button', { name: 'REGULAR_TEMP_CHAT_KEEP', exact: true }).click();
-  await page.locator('.thread-list').getByRole('button', { name: '临时 · 临时聊天', exact: true }).click(); assert.equal(calls.length, beforeCalls); await assertHistory();
-  verified('switching temporary, regular and new chats preserves three independent drafts and their attachments without sending or persisting temporary content');
+  await application.evaluateMain(`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    const original = handlers.get('qiyao:invoke');
+    const contents = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents;
+    const originalSend = contents.send; const events = [];
+    const append = row => { events.push(row); if (events.length > 64) events.shift(); };
+    const observed = new Set(['activateThread', 'saveComposerDraft', 'load', 'submit']);
+    const handler = async function (...args) {
+      if (!observed.has(args[1])) return original.apply(this, args);
+      const row = { method: args[1], startedAt: Date.now(), ...(args[1] === 'activateThread' && Array.isArray(args[3]) ? { batchedDrafts: args[3].length } : {}) }; append(row);
+      try { const result = await original.apply(this, args); row.success = true; return result; }
+      catch (error) { row.success = false; throw error; }
+      finally { row.finishedAt = Date.now(); }
+    };
+    const send = function (...args) {
+      if (args[0] === 'qiyao:run') append({ method: 'run-event', at: Date.now(), hasDelta: Boolean(args[1]?.delta), hasState: Boolean(args[1]?.state) });
+      return originalSend.apply(this, args);
+    };
+    handlers.set('qiyao:invoke', handler); contents.send = send;
+    globalThis.nookFinishTemporarySendObservation = () => {
+      if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', original);
+      if (contents.send === send) contents.send = originalSend;
+      delete globalThis.nookFinishTemporarySendObservation;
+      return { events, capturedAt: Date.now(), pendingRequests: process._getActiveRequests().map(request => request.constructor.name) };
+    };
+  })()`);
 
-  await input().fill(prompt); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   try {
+    await page.locator('.thread-list').getByRole('button', { name: 'REGULAR_TEMP_CHAT_KEEP', exact: true }).click(); assert.equal(await input().inputValue(), 'REGULAR_UI_DRAFT_KEEP'); await page.getByRole('button', { name: '移除 普通资料.txt', exact: true }).waitFor();
+    await page.keyboard.press('Control+n'); assert.equal(await input().inputValue(), 'REGULAR_NEW_KEEP');
+    await page.locator('.thread-list').getByRole('button', { name: '临时 · 临时聊天', exact: true }).click(); assert.equal(await input().inputValue(), draftSecret); await page.getByRole('button', { name: '移除 temporary-chat-attachment.txt', exact: true }).waitFor();
+    await page.locator('.thread-list').getByRole('button', { name: 'REGULAR_TEMP_CHAT_KEEP', exact: true }).click();
+    await page.locator('.thread-list').getByRole('button', { name: '临时 · 临时聊天', exact: true }).click(); assert.equal(calls.length, beforeCalls); await assertHistory();
+    verified('switching temporary, regular and new chats preserves three independent drafts and their attachments without sending or persisting temporary content');
+
+    await input().fill(prompt); await page.getByRole('button', { name: '发送消息', exact: true }).click();
     await waitForBridge(page, async (id) => {
       const state = await window.qiyao.load(); const thread = state.threads.find((thread) => thread.id === id); const last = thread?.messages.at(-1);
       window.__qiyaoTemporaryFirstPoll = { polledAt: Date.now(), expectedThreadId: id, activeThreadId: state.activeThreadId, temporary: thread?.temporary, messages: thread?.messages.length, last: last && { id: last.id, status: last.status, characters: last.content.length, tail: last.content.slice(-128) } };
@@ -88,7 +115,10 @@ export async function verifyTemporaryConversations({ page, application, getAppli
     }).catch(() => null);
     console.error('Temporary-send diagnostics', JSON.stringify({ expectedThreadId: id, requestsBefore: beforeCalls, requestsNow: calls.length, recentRequests: calls.slice(beforeCalls).slice(-8).map((request) => ({ model: request.model, messages: request.messages?.length })), diagnostic }));
     throw error;
-  } finally { await page.evaluate(() => { delete window.__qiyaoTemporaryFirstPoll; }).catch(() => {}); }
+  } finally {
+    console.log('Temporary-send IPC observations', JSON.stringify(await application.evaluateMain('globalThis.nookFinishTemporarySendObservation?.()').catch(() => ({ unavailable: true }))));
+    await page.evaluate(() => { delete window.__qiyaoTemporaryFirstPoll; }).catch(() => {});
+  }
   assert.equal(calls.length, beforeCalls + 1); assert.ok(JSON.stringify(calls.at(-1)).includes(prompt)); assert.ok(JSON.stringify(calls.at(-1)).includes(attachmentSecret));
   await page.getByRole('button', { name: '重新生成', exact: true }).click();
   await waitForBridge(page, async (id) => { const state = await window.qiyao.load(); return state.threads.some((thread) => thread.temporary && thread.forkedFrom?.threadId === id && thread.forkedFrom.kind === 'reply') && state.threads.find((thread) => thread.id === id)?.messages.at(-1)?.status === 'complete'; }, id);
