@@ -6,6 +6,7 @@
   "build": "passed",
   "native": { "result": "automations-result.json", "checks": 10, "runtimeErrors": [], "normalExitMs": 264, "themes": ["light", "dark"], "savedSelectionAndReedit": true, "keyboardAndLabel": true, "longLabelAt150Percent": true },
   "screenshotsReviewed": ["checkbox-light.png", "checkbox-dark.png", "checkbox-dark-narrow.png"],
+  "fullSourceRun": { "verifiedAt": "2026-10-05T23:29:12.319Z", "applicationCommit": "ebb710f22e602f8b467115159742856e9d6b0ad3", "harnessCommit": "995540f", "checks": 223, "runtimeErrors": [], "normalCloseVerified": true, "finalCloseMs": 220, "mcpSubscriptionRestartCloseMs": 3647, "log": "nook-checkbox-full.log", "sha256": "ceaab947564e0e5e2c6137bdc14072d06dc1b6809746982c6b30a41a529a23f5", "boundary": "Includes scoped MCP reads, project switcher and checkboxes. Does not include the subsequent code wrapping changes or establish the root cause of the previous close timeout." },
   "boundary": "Disabled/mixed states use temporary DOM probes; forced colors are emulated. No physical OS accessibility or distribution claim. Earlier full 94bf8b6 regression failed at restart after 206 groups and is not replaced by this focused pass. Whole application design is not 100% aligned.",
   "logDirectory": "D:/GR/pi-pc/.firecrawl",
   "logs": [

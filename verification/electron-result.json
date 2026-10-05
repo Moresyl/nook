@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T21:26:29.989Z",
+  "verifiedAt": "2026-10-05T23:29:12.319Z",
   "variant": "development executable",
   "checks": 223,
   "runtimeErrors": [],
@@ -92,6 +92,24 @@
     "scope": "Real desktop import workers, local and synthetic-vector hybrid retrieval, eight native embedding configurations, progress/cancellation, preserved failed rebuild, selected chat evidence, unsupported citation detection, archived retry, draft restart and complete backup restoration. Dialog boundaries use isolated fixtures; no live cloud embedding quality is claimed."
   },
   "automations": {
+    "checkbox": {
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "keyboardAndLabel": true,
+      "persistedSelection": true,
+      "disabledAndMixedProbes": true,
+      "reducedMotion": true,
+      "forcedColorsCheckedProbe": true,
+      "narrowZoom": 1.5,
+      "screenshots": [
+        "checkbox-light.png",
+        "checkbox-dark.png",
+        "checkbox-dark-narrow.png"
+      ],
+      "boundary": "Real automation form and saved selections; disabled and mixed states are temporary DOM probes. Forced colors are emulated, not physical OS accessibility evidence."
+    },
     "tasks": 3,
     "requests": 7,
     "cancelledRequests": 2,
@@ -142,8 +160,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84173538,
-    "compressedBytes": 240276,
+    "expandedBytes": 84174023,
+    "compressedBytes": 240370,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -241,6 +259,14 @@
         "toggleFits": true
       }
     ],
+    "projectSwitcher": {
+      "selectedVisibleAtAllZooms": true,
+      "fixedAddAction": true,
+      "manualWheelBrowsing": true,
+      "focusedProjectSurvivesResize": true,
+      "settingsKeyboardReturn": true,
+      "selectedDraftRetained": true
+    },
     "screenshots": [
       "94-project-tree-pagination-light.png",
       "95-project-tree-editor-light.png",
@@ -251,10 +277,11 @@
       "98-project-settings-zoom-150.png",
       "99-project-file-command-dark.png",
       "100-project-terminal-command-dark.png",
-      "101-project-review-command-dark.png"
+      "101-project-review-command-dark.png",
+      "102-project-switcher-dark-narrow.png"
     ],
     "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures",
-    "scope": "Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks."
+    "scope": "Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. Overflowing project switches retain the selected row and separate add action across zoom; horizontal wheel browsing stays put, focused project buttons survive resize and Tab/Enter/Escape restore settings focus without changing the selected project or editor draft. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks."
   },
   "chatNavigation": {
     "checks": 5,
@@ -741,6 +768,9 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
+    "scopedReadMs": 20.100000143051147,
+    "scopedReadIterations": 8,
+    "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
     "explicitDraftInsertionVerified": true,
     "delayedUnsubscribeFiltered": true,
@@ -990,6 +1020,7 @@
     "99-project-file-command-dark.png",
     "100-project-terminal-command-dark.png",
     "101-project-review-command-dark.png",
+    "102-project-switcher-dark-narrow.png",
     "102-message-navigation-light.png",
     "103-chat-find-light.png",
     "104-chat-find-code-light.png",
