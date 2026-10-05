@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-05T17:20:49.572Z",
+  "sourceCommit": "7e2e4190abfc34077bbdc73718b83ff5690f7135",
+  "executableSha256": "bdf660a68d2bb800a0e2efc9e95e10a587bc040fe1de46dbf64ce3e3023074c1",
+  "archiveSha256": "bcfbe34e0ae9ab58855cb16dfed5bb955cce87bb958f1080e945aba75a7cf428",
+  "setupSha256": "f256ab0ede694385003045e30023e1d90c1954e2e41e944c4eada7906a5b8595",
+  "portableSha256": "753b32f058db4d97121caed30c7ddd761ad18d04c625263bc0533c3a5964a9a7",
+  "signature": "NotSigned",
+  "productFiles": 233,
+  "retainedLegalDocuments": 401,
+  "distributionLegalSourceFiles": 20,
+  "bootstrapAudit": { "installerPlugins": 6, "uninstallerPlugins": 5, "portablePlugins": 2, "log": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-distribution.log", "sha256": "11e793d8440112bd6cda76ad8c327c13424e186fba5175223c77da54c672e581" },
+  "initialFailure": "NSIS portable compiler could not create a 781311473-byte mmap; the previous portable executable was retained and was not accepted as a new build.",
+  "recovery": "After terminal failure, set TEMP and TMP to E:\\NookVerification\\Temp, run package-windows.mjs --prepackaged, then verify-package.mjs --installer. Both distribution files were regenerated and package audit passed.",
+  "logs": [
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-package.log", "sha256": "768fef037a0f6733f5294af7dbfe4f4eae220943768191940c62df5bba4649b2", "result": "portable compilation failed" },
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-package-retry.log", "sha256": "54eed5dffbb5f650b936c63a1baafdecc1969800e845d82ee2a12369ebfdf9d7", "result": "passed" },
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-package-audit.log", "sha256": "1c3e65e8a87af400cff5a48161b32b7e0f72899f8d5e39ea21b7b41b7e894cf9", "result": "passed" }
+  ],
+  "limits": "Full packaged, installed, portable execution and matched runtime proof remain pending. Source 215-check pass is recorded separately and does not establish distribution runtime acceptance."
+}
