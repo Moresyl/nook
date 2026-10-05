@@ -3,18 +3,23 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
+import { verifyCheckboxes } from './verify-checkboxes.mjs';
 
 export async function verifyAutomations({ page, application, getApplication, directory, projectDirectory, endpoint, screenshots, fixture, waitForBridge, verified, restart }) {
   const providerId = randomUUID(); const projectId = randomUUID();
-  await page.evaluate(async ({ providerId, projectId, path, endpoint }) => {
+  const checkboxFixtures = [{ id: randomUUID(), name: '复选框资料集' }, { id: randomUUID(), name: `长名称资料集 · ${'中文与 English 换行验证 '.repeat(8)}` }];
+  await page.evaluate(async ({ providerId, projectId, path, endpoint, checkboxFixtures }) => {
     await window.qiyao.saveProvider({ id: providerId, name: '自动任务测试连接', kind: 'openai', endpoint: `${endpoint}/automation/v1`, models: ['automation-model'], hasKey: false }, 'AUTOMATION_TEST_KEY');
     await window.qiyao.saveProject({ id: projectId, name: '自动任务只读项目', path, instructions: 'AUTOMATION_PROJECT_INSTRUCTIONS', createdAt: Date.now() });
+    for (const collection of checkboxFixtures) await window.qiyao.saveKnowledgeCollection({ ...collection, mode: 'keyword', createdAt: Date.now() });
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
-  }, { providerId, projectId, path: projectDirectory, endpoint: new URL(endpoint).origin }); await page.reload(); await application.resize(1280, 840);
+  }, { providerId, projectId, path: projectDirectory, endpoint: new URL(endpoint).origin, checkboxFixtures }); await page.reload(); await application.resize(1280, 840);
   await page.getByRole('button', { name: /^新聊天\s*Ctrl/ }).click(); await page.getByRole('textbox', { name: '消息', exact: true }).fill('KEEP_AUTOMATION_COMPOSER_DRAFT'); await page.getByRole('button', { name: '自动任务', exact: true }).click();
   async function create(name, prompt) {
     await page.getByRole('button', { name: '创建任务', exact: true }).click(); const dialog = page.getByRole('dialog', { name: '编辑自动任务', exact: true }); await dialog.getByLabel('任务名称', { exact: true }).fill(name); await dialog.getByLabel('工作指令', { exact: true }).fill(prompt); await dialog.getByLabel('模型连接', { exact: true }).selectOption(providerId); return dialog;
   }
+  await waitForBridge(page, async () => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === 'KEEP_AUTOMATION_COMPOSER_DRAFT'));
+  const checkbox = await verifyCheckboxes({ page, application, create, fixtures: checkboxFixtures, screenshots });
   const name = '自动任务记录测试'; let dialog = await create(name, 'QIYAO_AUTOMATION_OK'); await dialog.getByText('助手、项目与上下文', { exact: true }).click(); await dialog.getByLabel('助手', { exact: true }).selectOption('developer'); await dialog.getByLabel('项目', { exact: true }).selectOption(projectId); await dialog.getByLabel('工作方式', { exact: true }).selectOption('plan'); await dialog.getByRole('button', { name: '保存', exact: true }).click(); await dialog.waitFor({ state: 'hidden' });
   const id = await page.evaluate(async (name) => (await window.qiyao.load()).automations.find((task) => task.name === name).id, name); const row = () => page.locator(`[data-automation-id="${id}"]`);
   const state = await page.evaluate(() => window.qiyao.load()); assert.equal(state.automations.find((task) => task.id === id).enabled, false); assert.equal(state.automations.find((task) => task.id === id).nextRunAt, undefined);
@@ -52,5 +57,5 @@ export async function verifyAutomations({ page, application, getApplication, dir
   finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoAutomationOpen; require('electron').dialog.showMessageBox=globalThis.qiyaoAutomationConfirm; delete globalThis.qiyaoAutomationOpen; delete globalThis.qiyaoAutomationConfirm;"); }
   page = await restart(); application = getApplication(); restarted = await page.evaluate(() => window.qiyao.load()); assert.ok(restarted.automations.every((task) => !task.enabled)); assert.deepEqual(fixture.errors, []);
   verified('complete native gzip backup restores task configurations, exact execution history and conversations with every imported schedule paused after real restart');
-  return { page, result: { tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
+  return { page, result: { checkbox, tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
 }

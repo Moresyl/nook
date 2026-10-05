@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Automation, AutomationInput, AutomationRun } from '../../contracts/automations';
 import type { Workspace } from '../../contracts/workspace';
-import { Button, Empty, Field, IconButton, Input, Modal, Select, Textarea, Toggle } from '../components/controls';
+import { Button, Checkbox, Empty, Field, IconButton, Input, Modal, Select, Textarea, Toggle } from '../components/controls';
 import { Glyph } from '../components/glyphs';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; report: (error: unknown) => void; onOpen: (id: string) => void };
@@ -21,7 +21,7 @@ export function AutomationsPage({ state, onState, report, onOpen }: Props) {
   async function run(id: string) { setLaunching((ids) => [...ids, id]); try { await window.qiyao.runAutomation(id); } catch (error) { report(error); } finally { setLaunching((ids) => ids.filter((item) => item !== id)); } }
   async function save() { if (!editing) return; setBusy(true); try { onState(await window.qiyao.saveAutomation(editing)); setEditing(null); } catch (error) { report(error); } finally { setBusy(false); } }
   function selections(key: 'mcpServerIds' | 'skillIds' | 'pluginIds' | 'knowledgeCollectionIds', items: { id: string; name: string }[], label: string) {
-    return items.length > 0 && <fieldset className="automation-selections"><legend>{label}</legend>{items.map((item) => <label key={item.id}><input type="checkbox" checked={editing![key].includes(item.id)} onChange={(event) => setEditing({ ...editing!, [key]: event.target.checked ? [...editing![key], item.id] : editing![key].filter((id) => id !== item.id) })} />{item.name}</label>)}</fieldset>;
+    return items.length > 0 && <fieldset className="automation-selections"><legend>{label}</legend>{items.map((item) => <Checkbox key={item.id} label={item.name} checked={editing![key].includes(item.id)} onChange={(event) => setEditing({ ...editing!, [key]: event.target.checked ? [...editing![key], item.id] : editing![key].filter((id) => id !== item.id) })} />)}</fieldset>;
   }
   const filtered = state.automations.filter((item) => `${item.name}\n${item.prompt}`.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
   return <div className="collection-page automation-page"><div className="page-heading"><div><h1>自动任务</h1><p>为重复的工作安排时间，保留每一次执行。</p></div><Button tone="solid" onClick={create}><Glyph name="plus" size={16} />创建任务</Button></div>

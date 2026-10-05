@@ -117,6 +117,34 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .field { display: flex; flex-direction: column; gap: 6px; margin: 16px 0; }
 .field-label { font-size: 12px; font-weight: var(--font-weight-medium); }
 .field-hint { color: var(--ds-text-tertiary); font-size: 11px; line-height: 1.5; }
+.checkbox-label { display: flex; align-items: flex-start; cursor: pointer; }
+.checkbox-control { position: relative; flex: none; width: 18px; height: 18px; margin-top: 1px; }
+.checkbox-input { appearance: none; display: block; width: 18px; max-width: 18px; height: 18px; margin: 0; padding: 0; border: 1px solid var(--lightningcss-light,var(--gray-200))var(--lightningcss-dark,var(--gray-500)); border-radius: var(--radius-xs); background: transparent; cursor: pointer; transition: border-color .15s, background-color .15s; }
+@media (hover: hover) { .checkbox-input:where(:not(:disabled, :checked)):hover { border-color: var(--lightningcss-light,var(--gray-300))var(--lightningcss-dark,var(--gray-600)); } }
+.checkbox-input:is(:checked, :indeterminate) { border-color: var(--gray-900); background: var(--gray-900); }
+.checkbox-input:focus { outline: none; }
+.checkbox-input:focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+.checkbox-input:disabled { border-color: var(--lightningcss-light,var(--gray-150))var(--lightningcss-dark,var(--gray-300)); background: var(--lightningcss-light,var(--gray-25))var(--lightningcss-dark,var(--gray-200)); cursor: not-allowed; }
+.checkbox-input:disabled:checked { border-color: var(--lightningcss-light,var(--gray-300))var(--lightningcss-dark,var(--gray-200)); background: var(--lightningcss-light,var(--gray-300))var(--lightningcss-dark,var(--gray-200)); }
+.checkbox-label:has(.checkbox-input:disabled) { cursor: not-allowed; }
+.checkbox-text { min-width: 0; min-height: 20px; padding-left: 8px; font-size: 14px; line-height: 20px; overflow-wrap: anywhere; }
+.checkbox-mark { position: absolute; left: 1px; top: 1px; width: calc(16px * .64); height: calc(16px * .32); transform-origin: 50%; transform: rotate(-45deg) translate(-10%, 100%); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; }
+.checkbox-input:is(:checked, :indeterminate) + .checkbox-mark { opacity: 1; }
+.checkbox-mark::before, .checkbox-mark::after { content: ''; display: block; position: absolute; background: var(--gray-0); }
+.checkbox-mark::before { left: 0; top: 0; bottom: 0; width: 2px; transition: opacity .2s; }
+.checkbox-mark::after { left: 0; right: 0; bottom: 0; height: 2px; }
+.checkbox-input:indeterminate + .checkbox-mark { transform: translate(30%, 80%); }
+.checkbox-input:indeterminate + .checkbox-mark::before { opacity: 0; }
+[data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::before, [data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::after { background: var(--gray-100); }
+@media (forced-colors: active) {
+  .checkbox-input { forced-color-adjust: none; border-color: CanvasText; background: Canvas; }
+  .checkbox-input:where(:not(:disabled, :checked)):hover { border-color: Highlight; }
+  .checkbox-input:is(:checked, :indeterminate) { border-color: Highlight; background: Highlight; }
+  .checkbox-input:disabled { border-color: GrayText; background: Canvas; }
+  .checkbox-input:disabled:checked { background: GrayText; border-color: GrayText; }
+  .checkbox-input:focus-visible { outline-color: Highlight; }
+  .checkbox-mark::before, .checkbox-mark::after, [data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::before, [data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::after { forced-color-adjust: none; background: HighlightText; }
+}
 .muted { color: var(--ds-text-secondary); }
 .text-small { font-size: 12px; }
 .spacer { flex: 1; }
@@ -331,7 +359,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .automation-page .row-content { min-width: 140px; }
 .automation-page .row-content span { white-space: normal; overflow-wrap: anywhere; }
 .automation-selections { border: 1px solid var(--ds-border); border-radius: 8px; margin: 16px 0; padding: 12px; }
-.automation-selections label { display: flex; align-items: center; gap: 8px; padding: 4px 0; overflow-wrap: anywhere; }
+.automation-selections .checkbox-label { padding: 4px 0; }
 .automation-prompt { white-space: pre-wrap; overflow-wrap: anywhere; margin: 16px 0; }
 .list-row { display: flex; align-items: center; padding: 14px 4px; border-bottom: 1px solid var(--ds-border); gap: 16px; }
 .row-symbol { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--ds-bg-secondary); border-radius: 10px; color: var(--ds-text-secondary); }
