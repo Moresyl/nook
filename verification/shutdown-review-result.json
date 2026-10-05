@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "ebb710f22e602f8b467115159742856e9d6b0ad3",
+  "priorFailure": { "source": "94bf8b6", "passedGroups": 206, "closeElapsedMs": 10012, "forced": true, "phase": "MCP subscription restart", "evidence": "mcp-scoped-read-result.json" },
+  "replay": { "verifiedAt": "2026-10-05T23:08:21.646Z", "checks": 6, "runtimeErrors": [], "closeMs": [2229, 865], "sourceFixture": "E:/NookVerification/Temp/qiyao-electron-GhdviW", "sourceSha256Unchanged": "30b9f5ea61c3829672d1e0133f9719170d7b1a96b4efd086e5b3aa9a8f3ef3bc", "sourceBytes": 84545758, "sourceThreads": 303, "independentSeed": "E:/NookVerification/ComparisonReplay-6ycuOi", "result": "mcp-resource-subscriptions-result.json" },
+  "terminalLifecycle": { "verifiedAt": "2026-10-05T23:10:14.567Z", "result": "terminal-lifecycle-result.json", "checks": 6, "rounds": 2, "modes": ["natural-exit", "explicit-close", "application-close"], "closeMs": [622, 162, 584, 150, 174, 713, 115], "naturalFinalOutputAndExitCode": true, "ownedShellAndNodeDescendantsGone": true, "runtimeErrors": [], "helperProcessFollowup": "Post-run Windows process inventory found none of the ChildProcess PIDs recorded at shutdown still present." },
+  "diagnostics": "Test harness logs will-quit, process-exit and quit resource summaries without attaching a new inspector during shutdown; no child arguments, credentials or product defaults are changed.",
+  "hostedRun": { "id": 37386568814, "commit": "ebb710f22e602f8b467115159742856e9d6b0ad3", "status": "completed", "conclusion": "failure", "verifyJob": 112021162662, "stepsExecuted": 0, "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings", "publish": "skipped" },
+  "boundary": "No intermittent timeout was reproduced. These focused runs do not prove a root cause or fix, and do not replace complete current-source or matching-distribution verification. Startup, bridge, inspector, draft-flush and close deadlines are unchanged. Physical input and all shell/platform variants remain separate gates.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-shutdown-mcp-replay.log", "sha256": "ae4a9df0da492b352abf9d4109a58c79a2d8ee3d484877715af42962d0a52132" },
+    { "name": "nook-terminal-lifecycle.log", "sha256": "df77400515b10e7e33faf25dbd59f2703e0eb3f7952340754e8b072a3ecc6142" }
+  ]
+}

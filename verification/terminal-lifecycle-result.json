@@ -1,0 +1,70 @@
+{
+  "verifiedAt": "2026-10-05T23:10:14.567Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "checks": 6,
+  "cases": [
+    {
+      "round": 1,
+      "mode": "natural-exit",
+      "ownedPids": [
+        91736
+      ],
+      "restartMs": 1028,
+      "processesGone": true
+    },
+    {
+      "round": 1,
+      "mode": "explicit-close",
+      "ownedPids": [
+        106916,
+        121096
+      ],
+      "restartMs": 564,
+      "processesGone": true
+    },
+    {
+      "round": 1,
+      "mode": "application-close",
+      "ownedPids": [
+        130232,
+        109680
+      ],
+      "restartMs": 986,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "natural-exit",
+      "ownedPids": [
+        113900
+      ],
+      "restartMs": 552,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "explicit-close",
+      "ownedPids": [
+        89512,
+        112044
+      ],
+      "restartMs": 563,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "application-close",
+      "ownedPids": [
+        109108,
+        101260
+      ],
+      "restartMs": 1131,
+      "processesGone": true
+    }
+  ],
+  "boundary": "Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause."
+}

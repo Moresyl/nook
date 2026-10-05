@@ -366,6 +366,7 @@ async function launch() {
       // Shutdown must run without a newly attached inspector. Progress is already recorded on stderr.
       await Promise.race([exited, new Promise((resolve) => { const timer = setTimeout(() => { forced = true; console.error('Desktop close diagnostics', JSON.stringify(closeSnapshot ?? 'Main process unavailable'), diagnostics.slice(-2000).replace(/ws:\/\/[^\s]+/g, '[test debugger]')); child.kill(); resolve(); }, 10_000); exited.then(() => clearTimeout(timer)); })]);
       console.log('Desktop exit observation', JSON.stringify({ elapsedMs: Date.now() - closeStartedAt, forced, exitCode: child.exitCode, signalCode: child.signalCode }));
+      for (const line of diagnostics.split('\n').filter(line => line.startsWith('Desktop shutdown resources '))) console.log(line);
       assert.equal(forced, false, 'The desktop must flush drafts and exit without being forcibly killed.');
     }
     await browser.close().catch(() => {});
@@ -402,6 +403,19 @@ async function launch() {
   `);
   await application.evaluateMain("globalThis.qiyaoCloseEvents=[]; globalThis.qiyaoCloseOperations=[]; const handlers=require('electron').ipcMain._invokeHandlers; const original=handlers.get('qiyao:invoke'); const observed=new Set(['load','saveComposerDraft','activateThread','savePreferences','saveEditorDraft','saveMessageDraft','finishWindowClose']); handlers.set('qiyao:invoke',async function(...args){ if(!observed.has(args[1]))return original.apply(this,args); const row={method:args[1],startedAt:Date.now()}; if(globalThis.qiyaoCloseOperations.length>=64)globalThis.qiyaoCloseOperations.shift(); globalThis.qiyaoCloseOperations.push(row); try{return await original.apply(this,args);}finally{row.finishedAt=Date.now();} }); const recordClose=(event,extra={})=>{ const item={event,at:Date.now(),...extra}; globalThis.qiyaoCloseEvents.push(item); console.error('QIYAO_TEST_CLOSE',JSON.stringify(item)); }; for(const event of ['before-quit','will-quit','window-all-closed']) require('electron').app.on(event,()=>recordClose(event)); for(const w of require('electron').BrowserWindow.getAllWindows()) { w.on('close',event=>recordClose('window-close',{prevented:event.defaultPrevented})); w.on('closed',()=>recordClose('window-closed')); const send=w.webContents.send.bind(w.webContents); w.webContents.send=(channel,...args)=>{ if(channel==='qiyao:before-close') recordClose('draft-flush-requested'); return send(channel,...args); }; }");
   await page.getByLabel('消息', { exact: true }).waitFor();
+  await application.evaluateMain(`
+    const snapshotShutdown = event => {
+      const handles = process._getActiveHandles().map(handle => ({
+        type: handle.constructor.name,
+        ...(handle.constructor.name === 'ChildProcess' ? { pid: handle.pid, exitCode: handle.exitCode, signalCode: handle.signalCode, connected: handle.connected } : {}),
+        ...(handle.constructor.name === 'Socket' ? { destroyed: handle.destroyed, readable: handle.readable, writable: handle.writable } : {})
+      }));
+      console.error('Desktop shutdown resources', JSON.stringify({ event, at: Date.now(), handles, resources: process.getActiveResourcesInfo(), workers: globalThis.qiyaoWorkerEvents?.slice(-16), terminals: globalThis.qiyaoPtyDiagnostics?.slice(-16) }));
+    };
+    require('electron').app.on('will-quit', () => snapshotShutdown('will-quit'));
+    require('electron').app.on('quit', () => snapshotShutdown('quit'));
+    process.once('exit', () => snapshotShutdown('process-exit'));
+  `);
   await application.evaluateMain(`
     globalThis.qiyaoModelTransportEvents = [];
     const diagnosticChannels = require('node:diagnostics_channel');
@@ -470,6 +484,7 @@ let surfaceResult;
 let memoriesResult;
 let projectPreviewResult;
 let projectTreeResult;
+let terminalLifecycleResult;
 let chatNavigationResult;
 let branchNavigationResult;
 let temporaryConversationsResult;
@@ -519,6 +534,10 @@ try {
   } else if (process.env.QIYAO_TEST_CHAT_NAVIGATION_ONLY) {
     const result = await verifyChatNavigation({ page, application, getApplication: () => application, endpoint, directory, screenshots, fixture: chatNavigationProviders, verified, waitForBridge, restart: async (beforeLaunch) => { await application.close(); await beforeLaunch?.(); return launch(); } }); page = result.page; chatNavigationResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.QIYAO_TEST_TERMINAL_LIFECYCLE_ONLY) {
+    const { verifyTerminalLifecycle } = await import('./verify-terminal-lifecycle.mjs');
+    const result = await verifyTerminalLifecycle({ page, application, getApplication: () => application, directory, projectDirectory, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; terminalLifecycleResult = result.result;
+    assert.equal(count, 6); assert.deepEqual(errors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_PROJECT_TREE_ONLY) {
     const result = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; projectTreeResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
@@ -1182,6 +1201,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'temporary-conversations-packaged-result.json' : 'temporary-conversations-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused temporary-conversation suite' }), ...temporaryConversationsResult }, null, 2));
     console.log(`Verified ${temporaryConversationsResult.checks} temporary-conversation checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && terminalLifecycleResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'terminal-lifecycle-packaged-result.json' : 'terminal-lifecycle-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...terminalLifecycleResult }, null, 2));
+    console.log(`Verified ${terminalLifecycleResult.checks} terminal-lifecycle checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && projectTreeResult) {
     assert.deepEqual(errors, []);
