@@ -14,7 +14,9 @@ app.asar       fb1fba3908083a6af868422748ebb61322017579bd050c289d1a00db25206288
 Nook-Setup     cc6fe552497dead807163593f6140939d910f3dc18b4e67720e693867a19fac2
 ```
 
-这批新包于 2026-10-05 11:36 UTC 完成完整未安装桌面 215 项，运行时错误为空、正常退出，见[对应应用体摘要](../verification/control-spacing-packaged-full-result.json)。实际安装回归正在进行，**尚无这批包的实际安装通过或云端成功**。不能使用下面旧包的完整记录，或调整样式前的源码记录，代替未完成的验收。Windows 文件仍未签名。
+这批新包于 2026-10-05 11:36 UTC 完成完整未安装桌面 215 项，运行时错误为空、正常退出，见[对应应用体摘要](../verification/control-spacing-packaged-full-result.json)。11:57 UTC 实际安装版也完成全部 215 项，独立中文路径安装、快捷方式、登记、正常卸载及四份用户数据哨兵保留通过。运行证据校验确认十份记录匹配同一应用体，见[安装结果](../verification/pipeline-installer-result.json)。
+
+安装日志为 `D:\GR\pi-pc\.firecrawl\nook-control-spacing-installed-full.log`，SHA-256 为 `9d49434aebf17a5cd66d8a45c297a1281a3567d6da23b654db8404f5496dbfec`。**这仍不是云端成功或原生向导交互证明**；Windows 文件仍未签名。之后源码中的弹窗视口公式和选择器高亮修正不属于本批应用体，须单独验证。
 
 ## 前一批开关修正包（历史）
 
