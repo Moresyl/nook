@@ -17,6 +17,8 @@
 
 **本批尚未完成新的未安装／实际安装完整回归、安装卸载生命周期及全部匹配运行证据。** 下方完整 215 项等结果属于上一批；不能据此发布新包。新包证据见[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)和[打包版界面](../verification/surfaces-packaged-result.json)。
 
+新包完整回归通过 192 项后，在模型比较备份时发生草稿确认超时，随后正常退出；本批完整结果为失败，见[现场记录](../verification/startup-packaged-full-failure.json)。保留约 84.5 MB 工作区后，副本上的模型比较专项 6 项通过，文件同步耗时已记录，但未证明原超时已消除，见[诊断重跑](../verification/startup-backup-io-replay-result.json)。运行证据校验仍拒绝新包与旧完整／安装结果混用；实际安装验收尚未进行。
+
 ## 上一批完整验收记录（历史）
 
 本节只描述 `4296faf` 应用体；可变名称的验证文件已开始被新批次更新，请使用[固定历史版本中的原始链接](https://github.com/Moresyl/nook/blob/015980c13d96a8bb959bdc42d464360935cdef43/docs/RELEASE.md)查阅旧包全部记录。

@@ -11,6 +11,39 @@ async function observeComparisonBackup(application, mainWindow) {
     if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function' || !contents) return false;
     const events = []; const append = row => { events.push(row); if (events.length > 64) events.shift(); };
     const original = handlers.get('qiyao:invoke'); const originalClone = globalThis.structuredClone; const originalSend = contents.send;
+    const fs = require('node:fs/promises'); const originalOpen = fs.open; const originalRename = fs.rename;
+    const basename = require('node:path').basename;
+    const fileRestorers = new Set();
+    const fileKind = path => {
+      const name = basename(String(path));
+      return name.startsWith('workspace.backup.json') ? 'backup' : name.startsWith('workspace.json') ? 'workspace' : undefined;
+    };
+    const timed = async (operation, file, invoke) => {
+      const row = { operation, file, startedAt: Date.now() }; append(row);
+      try { const result = await invoke(); row.success = true; return result; }
+      catch (error) { row.success = false; throw error; }
+      finally { row.finishedAt = Date.now(); }
+    };
+    const open = async function (...args) {
+      const file = fileKind(args[0]);
+      if (!file) return originalOpen.apply(this, args);
+      const handle = await timed('file-open', file, () => originalOpen.apply(this, args));
+      const originals = new Map();
+      const restore = () => { for (const [name, entry] of originals) if (handle[name] === entry.wrapper) handle[name] = entry.original; fileRestorers.delete(restore); };
+      for (const name of ['writeFile', 'sync', 'close']) {
+        const original = handle[name];
+        const wrapper = async function (...values) {
+          try { return await timed('file-' + name, file, () => original.apply(this, values)); }
+          finally { if (name === 'close') restore(); }
+        };
+        originals.set(name, { original, wrapper }); handle[name] = wrapper;
+      }
+      fileRestorers.add(restore); return handle;
+    };
+    const rename = function (...args) {
+      const file = fileKind(args[1]);
+      return file ? timed('file-rename', file, () => originalRename.apply(this, args)) : originalRename.apply(this, args);
+    };
     const observed = new Set(['saveComposerDraft', 'activateThread', 'exportWorkspace', 'finishDraftFlush']);
     const handler = async function (...args) {
       if (!observed.has(args[1])) return original.apply(this, args);
@@ -29,10 +62,14 @@ async function observeComparisonBackup(application, mainWindow) {
       return originalSend.apply(this, args);
     };
     handlers.set('qiyao:invoke', handler); globalThis.structuredClone = clone; contents.send = send;
+    fs.open = open; fs.rename = rename;
     globalThis.qiyaoFinishComparisonBackupObserver = () => {
       if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', original);
       if (globalThis.structuredClone === clone) globalThis.structuredClone = originalClone;
       if (contents.send === send) contents.send = originalSend;
+      if (fs.open === open) fs.open = originalOpen;
+      if (fs.rename === rename) fs.rename = originalRename;
+      for (const restore of [...fileRestorers]) restore();
       delete globalThis.qiyaoFinishComparisonBackupObserver;
       return { events, capturedAt: Date.now(), memory: process.memoryUsage(), cpu: process.cpuUsage(), pendingRequests: process._getActiveRequests().map(request => request.constructor.name) };
     };

@@ -1,0 +1,15 @@
+{
+  "applicationCommit": "015980c13d96a8bb959bdc42d464360935cdef43",
+  "executableSha256": "b4c228f638ca4c7911ec72ed3f36cccfe2175b6dd79c9460a766f116b5906592",
+  "archiveSha256": "799488bc9e438ed118da628937dbc7080c198823959b28e5ed5596d64f52039d",
+  "completedChecksBeforeFailure": 192,
+  "fullSuitePassed": false,
+  "failure": "Model-comparison JSON backup rejected because renderer draft confirmation exceeded its unchanged 5000ms deadline",
+  "observations": { "activateThreadMs": 3865, "exportWaitMs": 5012, "draftSaveStillPendingAtTimeout": true, "pendingRequests": ["FSReqPromise"], "normalCloseMs": 5655, "forcedClose": false },
+  "log": "D:/GR/pi-pc/.firecrawl/nook-startup-packaged-full.log",
+  "logSha256": "c31178afdd70ee2cfb4217f7df4f51d3e6b1f82edfadb51e0fc4a26dc9010251",
+  "retainedFixture": "E:/NookVerification/Temp/qiyao-electron-j15FuW",
+  "retainedPrimaryBytes": 84541897,
+  "retainedPrimarySha256": "9d60e77e825c66c71b7127e6e623f675d8c65040a987ad31cd56b1c01f1aa61e",
+  "scope": "A failed full packaged regression, not a passing release gate. Normal close after failure does not prove backup success. Existing installed/full results describe a previous application body."
+}

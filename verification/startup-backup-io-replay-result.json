@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-05T15:43:48.304Z",
+  "applicationCommit": "015980c13d96a8bb959bdc42d464360935cdef43",
+  "executableSha256": "b4c228f638ca4c7911ec72ed3f36cccfe2175b6dd79c9460a766f116b5906592",
+  "archiveSha256": "799488bc9e438ed118da628937dbc7080c198823959b28e5ed5596d64f52039d",
+  "seed": "E:/NookVerification/StartupReplay-OngYlq",
+  "seedScope": "Copy of retained 84,541,897-byte primary with 303 persisted threads, credentials and extension resources; only existing display labels prefixed to avoid fixture collisions. Original file hash unchanged.",
+  "checks": 6,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "unchangedDraftFlushDeadlineMs": 5000,
+  "draftFlushMs": 1931,
+  "activateThreadMs": 1272,
+  "saveComposerDraftIncludingQueueMs": 1951,
+  "backupWriteMs": [28, 26],
+  "backupSyncMs": [929, 740],
+  "backupRenameMs": [8, 11],
+  "primarySyncMs": 756,
+  "log": "D:/GR/pi-pc/.firecrawl/nook-startup-comparison-io-replay-fixed.log",
+  "logSha256": "59f433a9416ab5253905ca4ba7f1116fdcc586a5cc323570ba3e3e801f9aae25",
+  "invalidDiagnosticAttempt": {
+    "log": "D:/GR/pi-pc/.firecrawl/nook-startup-comparison-io-replay.log",
+    "sha256": "37c0d5eff08031dcdd518053f71df7456f80f58651102461b6a200d1583ddeeb",
+    "cause": "New observer called inspector-only require from an asynchronous callback; caused save errors and forced test cleanup. Fixed by capturing basename before disconnect. Not evidence of a product persistence defect."
+  },
+  "scope": "Focused replay passes on the unchanged package, with bounded timing-only observers restored after backup. It shows sync cost in this run, not the cause or resolution of the original intermittent timeout. Full regression and installed lifecycle remain incomplete."
+}
