@@ -35,6 +35,8 @@
   --switch-track-color: var(--gray-150);
   --switch-track-color-hover: var(--gray-200);
   --switch-track-color-disabled: var(--gray-100);
+  --switch-track-color-checked: var(--blue-300);
+  --switch-track-color-checked-disabled: color-mix(in oklab, var(--switch-track-color-checked) 50%, transparent);
   color-scheme: light;
 }
 [data-theme="dark"] {
@@ -395,7 +397,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .toggle-label:hover input:not(:disabled):not(:checked) + .toggle-track { background: var(--switch-track-color-hover); }
 .toggle-label input:disabled:not(:checked) + .toggle-track { background: var(--switch-track-color-disabled); }
 .toggle-track > span { width: 13px; height: 13px; border-radius: 999px; background: white; box-shadow: 0 1px 2px #0003; transition: transform .15s; }
-.toggle-label input:checked + .toggle-track { background: var(--ds-accent); }
+.toggle-label input:checked + .toggle-track { background: var(--switch-track-color-checked); }
+.toggle-label input:checked:disabled + .toggle-track { background: var(--switch-track-color-checked-disabled); }
 .toggle-label input:checked + .toggle-track > span { transform: translateX(13px); }
 .toggle-label input:focus-visible + .toggle-track { outline: 2px solid var(--color-ring); outline-offset: 3px; }
 .shortcut-list { padding-top: 28px; font-size: 12px; }

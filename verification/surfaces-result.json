@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-05T12:00:50.593Z",
+  "verifiedAt": "2026-10-05T12:14:45.662Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -100,6 +100,30 @@
       "viewportHeight": 540
     }
   ],
+  "checkedSwitchStates": [
+    {
+      "theme": "light",
+      "enabledColor": "rgb(51, 156, 255)",
+      "disabledRgba": [
+        50,
+        155,
+        255,
+        128
+      ],
+      "disabledClickPreserved": true
+    },
+    {
+      "theme": "dark",
+      "enabledColor": "rgb(51, 156, 255)",
+      "disabledRgba": [
+        50,
+        155,
+        255,
+        128
+      ],
+      "disabledClickPreserved": true
+    }
+  ],
   "screenshots": [
     "91-surface-controls-light.png",
     "92-surface-controls-dark-narrow.png",
@@ -110,8 +134,10 @@
     "96-switch-dark.png",
     "97-field-invalid-light.png",
     "97-field-invalid-dark.png",
-    "98-surface-short-wide.png"
+    "98-surface-short-wide.png",
+    "99-switch-checked-light.png",
+    "99-switch-checked-dark.png"
   ],
   "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
-  "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark unchecked switch hover and disabled palettes, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+  "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and seven empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
 }
