@@ -529,6 +529,18 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .editor-files { width: 136px; }
   .changes-list { width: 188px; }
 }
+@media (max-width: 640px) {
+  .app-shell { grid-template-columns: 64px minmax(0, 1fr); }
+  .sidebar { padding: 8px; }
+  .sidebar-brand { justify-content: center; padding: 4px 0 12px; }
+  .sidebar-brand > svg, .sidebar-brand > div { display: none; }
+  .sidebar .nav-row { justify-content: center; gap: 0; padding: 8px; font-size: 0; }
+  .sidebar .nav-row kbd, .sidebar .local-indicator, .sidebar-empty { display: none; }
+  .sidebar-section-label { padding: 12px 4px 4px; font-size: 0; }
+  .sidebar-section-label > span { display: none; }
+  .sidebar .thread-row { padding: 6px 4px; font-size: 11px; gap: 2px; }
+  .sidebar .thread-list { min-height: 108px; }
+}
 @media (max-height: 650px) {
   .workspace:has(.projects-page) > .workspace-header { min-height: 36px; padding-top: 4px; padding-bottom: 4px; }
   .projects-page { padding: 12px; }
