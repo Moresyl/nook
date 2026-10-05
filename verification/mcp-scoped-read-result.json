@@ -1,0 +1,19 @@
+{
+  "verifiedAt": "2026-10-05T22:44:04.976Z",
+  "sourceBase": "02c6e27",
+  "change": "Read isolated current MCP configuration records instead of cloning complete workspace history in connection/content/OAuth checks, credentials, views, startup and restore teardown.",
+  "typeCheck": "passed",
+  "build": "passed",
+  "tests": { "passed": 800, "files": 77, "statements": 97.06, "branches": 94.61, "functions": 97.29, "lines": 99.33, "scope": "Configured core component coverage; renderer components are not included in these percentages." },
+  "unitScope": "Isolated record/list/nested-array copies, missing and prototype-like IDs, committed revision during queued edits, rejected mutation, restart and removal; existing MCP connection/OAuth/credential tests remain green.",
+  "native": { "result": "mcp-resource-subscriptions-result.json", "checks": 6, "runtimeErrors": [], "normalCloseVerified": true, "normalExitMs": 780, "initialConnectionMs": 178, "scopedReadIterations": 8, "actualIpcReads": 24, "workspaceCopiesDuringScopedReads": 0, "scopedReadMs": 15.199999809265137, "fixtureSeed": "E:/NookVerification/ComparisonReplay-CQvZeD", "originalFixtureBytes": 84545716, "originalFixtureThreads": 303, "originalFixtureSha256": "41ef708e63643d01372d88cfd139ea259c0b26f61da38f4df08658780c7494a7" },
+  "screenshotsReviewed": ["122-mcp-subscription-live-light.png", "123-mcp-subscription-dark-zoom-150.png"],
+  "boundary": "The earlier complete 1031f0a source run failed at MCP preflight after 202 groups. Its unchanged build later passed the six-group replay, so this scoped-copy change is not a proven fix for that connection error. Timings are single-run observations, not a controlled performance comparison. Current full-source and matching distribution verification remain required; existing 9575887 candidate does not include this change or the project-switcher fix. All existing deadlines are unchanged.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-mcp-scoped-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-mcp-scoped-tests.log", "sha256": "167715a02b0caf2fc08c482a3f028f3a06084ae8f7e9bd03862ee0df22142a67" },
+    { "name": "nook-mcp-scoped-build.log", "sha256": "f93b60d5bb26c7505dfd282d4942178e53d0b65f995424347c312c325156b254" },
+    { "name": "nook-mcp-scoped-desktop.log", "sha256": "ff4381d1db9bfc15d4b2481123276a04d646bdaddbef77a7ef6207ab2bef8cab" }
+  ]
+}

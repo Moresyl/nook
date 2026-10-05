@@ -40,6 +40,25 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   const initialView = await view();
   console.log('MCP subscription preflight observations', JSON.stringify({ capturedAt: Date.now(), status: initialView?.status, error: initialView?.error, resourceSubscriptionsSupported: initialView?.resourceSubscriptionsSupported }));
   assert.equal(initialView.resourceSubscriptionsSupported, true);
+  await application.evaluateMain(`
+    globalThis.nookMcpOriginalClone = globalThis.structuredClone;
+    globalThis.nookMcpWorkspaceCopies = 0;
+    globalThis.structuredClone = (value, ...args) => {
+      if (value?.schemaVersion === 1 && Array.isArray(value.threads) && Array.isArray(value.projects)) globalThis.nookMcpWorkspaceCopies++;
+      return globalThis.nookMcpOriginalClone(value, ...args);
+    };
+  `);
+  let scopedReadMs;
+  try {
+    scopedReadMs = await page.evaluate(async id => {
+      const start = performance.now();
+      for (let index = 0; index < 8; index++) { await window.qiyao.mcpViews(); await window.qiyao.mcpCatalog(id); await window.qiyao.mcpReadResource(id, 'fixture://document'); }
+      return performance.now() - start;
+    }, id);
+    const workspaceCopies = await application.evaluateMain('globalThis.nookMcpWorkspaceCopies');
+    assert.equal(workspaceCopies, 0, 'MCP configuration and resource reads must not copy the complete workspace');
+    console.log('MCP scoped read observations', JSON.stringify({ iterations: 8, views: 8, catalogs: 8, resources: 8, workspaceCopies, elapsedMs: scopedReadMs }));
+  } finally { await application.evaluateMain('globalThis.structuredClone=globalThis.nookMcpOriginalClone;delete globalThis.nookMcpOriginalClone;delete globalThis.nookMcpWorkspaceCopies'); }
   await open(); await page.getByLabel('服务器资源', { exact: true }).selectOption(documentUri);
   await page.getByRole('button', { name: '订阅所选资源', exact: true }).click();
   await waitRevision(2);
@@ -117,5 +136,5 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   await page.keyboard.press('Escape'); assert.equal(await dialog().isVisible(), false); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   assert.equal(modelRequests(), beforeRequests);
   verified('live subscription controls remain keyboard-accessible in the real dark minimum window at 100/125/150 percent zoom, Escape retains the opener draft and the complete suite makes no model request');
-  return { page, result: { checks: 6, screenshots: captures, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true } };
+  return { page, result: { checks: 6, screenshots: captures, modelRequests: 0, scopedReadMs, scopedReadIterations: 8, workspaceCopiesDuringScopedReads: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true } };
 }

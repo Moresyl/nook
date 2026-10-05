@@ -14,7 +14,7 @@ export class ExtensionSettings {
   constructor(private readonly vault: WorkspaceVault, private readonly skills: LocalSkills, private readonly plugins?: LocalPlugins) {}
 
   credentials(id: string): McpCredentials {
-    const config = this.vault.snapshot().mcpServers.find((item) => item.id === id);
+    const config = this.vault.mcpServer(id);
     const secret = this.vault.key(`\0mcp:${id}`);
     if (!secret || !config) return {};
     try {
@@ -25,7 +25,7 @@ export class ExtensionSettings {
 
   async saveServer(raw: McpServer, rawCredentials?: McpCredentials) {
     const server = mcpServerSchema.parse(raw);
-    const previous = this.vault.snapshot().mcpServers.find((item) => item.id === server.id);
+    const previous = this.vault.mcpServer(server.id);
     const credentialId = `\0mcp:${server.id}`;
     const previousSecret = this.vault.key(credentialId);
     const oauthId = `\0mcp-oauth:${server.id}`; const previousOAuth = this.vault.key(oauthId);

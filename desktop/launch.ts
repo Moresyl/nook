@@ -143,7 +143,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     const id = idSchema.parse(raw); await engine.stopServer(id); await mcp.disconnect(id);
     return extensions.removeServer(id);
   },
-  mcpViews: () => vault.snapshot().mcpServers.map((server) => mcp.view(server.id)),
+  mcpViews: () => vault.mcpServers().map((server) => mcp.view(server.id)),
   mcpConnect: (raw) => mcp.connect(idSchema.parse(raw)),
   mcpAuthenticate: async (raw) => { const id = idSchema.parse(raw); await engine.stopServer(id); return mcp.connect(id, true); },
   mcpForgetLogin: async (raw) => { const id = idSchema.parse(raw); await engine.stopServer(id); await mcp.disconnect(id); await oauthStore.clear(id); },
@@ -396,7 +396,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     try {
       assertWorkspaceIdle();
       await knowledge.stopAll();
-      await Promise.all(vault.snapshot().mcpServers.map((server) => mcp.disconnect(server.id)));
+      await Promise.all(vault.mcpServers().map((server) => mcp.disconnect(server.id)));
       await Promise.all(vault.snapshot().plugins.map((plugin) => plugins.unload(plugin.id)));
       projectPreview.close();
       const restored = await extensions.restore(rawBackup); await desktopIntegration.refresh(); return restored;
@@ -511,8 +511,8 @@ else {
     session.defaultSession.setPermissionRequestHandler((_contents, _permission, answer) => answer(false));
     session.defaultSession.setPermissionCheckHandler(() => false);
     oauthStore = new McpOAuthStore(vault);
-    const oauthSessions = new McpOAuthSessions(oauthStore, (url) => shell.openExternal(url), (id) => vault.snapshot().mcpServers.find((server) => server.id === id));
-    mcp = new McpConnections((id) => vault.snapshot().mcpServers.find((server) => server.id === id), (id) => extensions.credentials(id),
+    const oauthSessions = new McpOAuthSessions(oauthStore, (url) => shell.openExternal(url), (id) => vault.mcpServer(id));
+    mcp = new McpConnections((id) => vault.mcpServer(id), (id) => extensions.credentials(id),
       (view) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp', view); }, undefined, (config, credentials, signal, interactive, onRedirect) => oauthSessions.create(config, credentials, signal, interactive, onRedirect),
       (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp-resource', event); });
     knowledge = new KnowledgeService(vault, gateway);
@@ -565,7 +565,7 @@ else {
     window!.webContents.once('did-finish-load', () => startupDiagnostics.phase('renderer.loaded'));
     await desktopIntegration.refresh().catch(() => {});
     for (const plugin of vault.snapshot().plugins) if (plugin.enabled) void plugins.load(plugin.id).catch(() => {});
-    for (const server of vault.snapshot().mcpServers) if (server.enabled && server.autoConnect) void mcp.connect(server.id).catch(() => {});
+    for (const server of vault.mcpServers()) if (server.enabled && server.autoConnect) void mcp.connect(server.id).catch(() => {});
     startupDiagnostics.phase('startup.complete');
   }).catch((error) => {
     startupDiagnostics.phase('failed');

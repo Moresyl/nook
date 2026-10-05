@@ -2,6 +2,7 @@ import { mkdir, open, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { composerStateSchema, emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
+import type { McpServer } from '../../contracts/extensions';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
@@ -94,6 +95,11 @@ export class WorkspaceVault {
     const project = this.state.projects.find((item) => item.id === id);
     return project ? structuredClone(project) : undefined;
   }
+  mcpServer(id: string): McpServer | undefined {
+    const server = this.state.mcpServers.find((item) => item.id === id);
+    return server ? structuredClone(server) : undefined;
+  }
+  mcpServers(): McpServer[] { return structuredClone(this.state.mcpServers); }
   async wait(): Promise<void> { await this.tail; }
   async flush(): Promise<void> {
     const operation = this.tail.then(async () => {

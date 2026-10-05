@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { WorkspaceVault } from '../desktop/services/vault';
+import { mcpServerSchema } from '../contracts/extensions';
 import { codec, provider, sampleThread, testVault } from './fixtures';
 
 const directories: string[] = [];
@@ -144,6 +145,39 @@ describe('local workspace persistence', () => {
     expect(vault.project(project.id)?.name).toBe('After');
     await removing;
     expect(vault.project(project.id)).toBeUndefined();
+  });
+  it('returns isolated MCP records and lists without copying conversation history', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    expect(vault.mcpServers()).toEqual([]); expect(vault.mcpServer('missing')).toBeUndefined();
+    const server = mcpServerSchema.parse({ id: '__proto__', name: 'Server', transport: 'stdio', command: 'node', args: ['server.mjs'], disabledTools: ['private'] });
+    await vault.commit(draft => { draft.mcpServers.push(server); draft.threads.push(sampleThread()); });
+    const originalClone = globalThis.structuredClone; const copied: unknown[] = [];
+    globalThis.structuredClone = ((value: unknown, options?: StructuredSerializeOptions) => { copied.push(value); return originalClone(value, options); }) as typeof structuredClone;
+    try {
+      const single = vault.mcpServer(server.id)!; const list = vault.mcpServers();
+      expect(single).toEqual(server); expect(list).toEqual([server]);
+      single.args.push('outside'); list[0].disabledTools.length = 0; list[0].enabled = false; list.length = 0;
+      expect(vault.mcpServer(server.id)).toEqual(server); expect(vault.mcpServers()).toEqual([server]);
+      expect(vault.mcpServer('constructor')).toBeUndefined();
+      expect(copied.every(value => Array.isArray(value) ? value.every(item => item.id === server.id) : (value as { id?: string }).id === server.id)).toBe(true);
+    } finally { globalThis.structuredClone = originalClone; }
+    expect(vault.snapshot().threads).toEqual([sampleThread()]);
+  });
+  it('keeps MCP reads current and committed across edits, rejection, restart and removal', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const server = mcpServerSchema.parse({ id: 'server', name: 'Before', transport: 'stdio', command: 'node' });
+    await vault.commit(draft => { draft.mcpServers.push(server); });
+    const saving = vault.commit(draft => { draft.mcpServers[0].name = 'After'; draft.mcpServers[0].disabledTools = ['echo']; });
+    expect(vault.mcpServer(server.id)).toEqual(server); await saving;
+    const updated = { ...server, name: 'After', disabledTools: ['echo'] };
+    expect(vault.mcpServers()).toEqual([updated]);
+    await expect(vault.commit(draft => { draft.mcpServers[0].command = ''; })).rejects.toThrow();
+    expect(vault.mcpServer(server.id)).toEqual(updated);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize();
+    expect(restored.mcpServer(server.id)).toEqual(updated);
+    const removing = vault.commit(draft => { draft.mcpServers = []; });
+    expect(vault.mcpServers()).toEqual([updated]); await removing;
+    expect(vault.mcpServer(server.id)).toBeUndefined(); expect(vault.mcpServers()).toEqual([]);
   });
   it('continues after a rejected change without committing invalid data', async () => {
     const directory = await freshDirectory(); const vault = new WorkspaceVault(directory, codec); await vault.initialize();
