@@ -33,21 +33,24 @@ export function releaseNotes(changelog, version) {
   return `${body}\n`;
 }
 
-export function verifyRuntimeProof({ audit, desktop, surfaces, branches, temporary, comparisons, portable, portableAudit, bootstrap, installer }) {
+export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches, temporary, comparisons, portable, portableAudit, bootstrap, installer }) {
   if (![audit.executableSha256, audit.archiveSha256, portable.wrapperSha256].every((hash) => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash))) {
     throw new Error('Release proof requires complete SHA-256 values');
   }
   if (!audit.compiledAssetsMatchVerifiedBuild || !audit.removedUiFontReferencesVerified || audit.oldProductIdentityMatches?.length !== 0 || audit.unresolvedAssets?.length !== 0 || audit.unresolvedDistribution?.length !== 0) {
     throw new Error('The application-directory audit has unresolved release requirements');
   }
-  for (const result of [desktop, surfaces, branches, temporary, comparisons]) {
+  for (const result of [desktop, surfaces, preview, branches, temporary, comparisons]) {
     if (!result || result.variant !== 'packaged executable' || !result.normalCloseVerified || result.runtimeErrors?.length !== 0 || result.executableSha256 !== audit.executableSha256 || result.archiveSha256 !== audit.archiveSha256) {
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 215 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 223 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
+  if (preview.checks !== 5 || preview.outsideHttpRequests !== 0) throw new Error('Complete offline project-preview verification is required');
+  if (desktop.memories?.checks !== 3) throw new Error('Complete memory verification is required');
+  if (desktop.projectPreview?.checks !== 5 || desktop.projectPreview.outsideHttpRequests !== 0) throw new Error('Complete desktop must include offline project-preview verification');
   const subscriptions = desktop.mcpResourceSubscriptions;
   if (!subscriptions || subscriptions.checks !== 6 || subscriptions.modelRequests !== 0 || !['realNotificationsVerified', 'explicitDraftInsertionVerified', 'delayedUnsubscribeFiltered', 'templateSelectionVerified', 'disconnectRestartVerified', 'unsupportedServerVerified', 'zoomKeyboardVerified', 'originalDraftRetained'].every((key) => subscriptions[key] === true)) {
     throw new Error('Complete MCP resource-subscription verification is required');

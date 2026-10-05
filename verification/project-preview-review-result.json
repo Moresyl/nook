@@ -1,0 +1,40 @@
+{
+  "baseCommit": "7ba751acb802969f03da761d229d8f3dca4f24b1",
+  "change": "Run the current project HTML draft in an isolated offline window with scoped disk resources, fresh storage, explicit lifecycle cleanup and a shared editor action.",
+  "typecheck": "passed",
+  "build": "passed",
+  "unit": {
+    "files": 77,
+    "tests": 798,
+    "resourceAndLifecycleTests": 17,
+    "coverage": { "statements": 97.06, "branches": 94.6, "functions": 97.29, "lines": 99.33 },
+    "boundary": "Component coverage excludes the renderer. Native interaction is verified separately."
+  },
+  "licenses": { "result": "passed", "dependencyVersions": 381, "legalDocuments": 401, "bundledAssetGroups": 5, "distributionComponents": 5 },
+  "native": {
+    "focusedChecks": 5,
+    "focusedResult": "passed with normal close, no runtime errors and zero outside HTTP requests",
+    "fullSuite": "not yet passed",
+    "attempts": [
+      { "log": "nook-project-preview-full.log", "passedGroups": 173, "result": "failed at a main-process diagnostic operation after preview font inspection; original exception detail was unavailable", "normalExitMs": 1279 },
+      { "log": "nook-project-preview-large.log", "passedGroups": 5, "result": "passed focused preview checks using the retained full workspace", "normalExitMs": 338 },
+      { "log": "nook-project-preview-integration.log", "passedGroups": 3, "result": "failed because the raw seed contained a previous identically named project, producing an ambiguous test locator", "normalExitMs": 2555 },
+      { "log": "nook-project-preview-integration-replay.log", "passedGroups": 12, "result": "all seven tree and five preview groups completed; diagnostic-only final count incorrectly expected 14 and failed; corrected to 12 after verifying the actual seven tree checks", "normalExitMs": 1808 }
+    ],
+    "replay": { "sourceBytes": 84247148, "threads": 89, "originalSha256": "c709e9b9493cbe654cf49283f99a2bf96e1b9d72f8fde7cc118962d1f4a7d85c", "originalUnchanged": true, "adaptation": "Prefix existing display names in a separate copy to avoid fixture-label collisions; preserve complete histories and references." },
+    "originalDeadlinesUnchanged": true,
+    "boundary": "The original full-suite exception has not been reproduced or proven fixed. DOM paste and scripted preview interaction are not physical clipboard/pointer or complete sandbox evidence. Existing sub-suite records from the failed full run do not establish full desktop acceptance."
+  },
+  "releaseGate": "Eleven matching runtime records; full desktop and installation must include three memory and five offline preview checks, and at least 223 total checks. Old 215/218-check suites are rejected.",
+  "distribution": "Existing packages predate the feature; no current packaged/installed/portable acceptance or release is claimed.",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-project-preview-full.log", "sha256": "669cb4cc1634d39e66613a0bc9ec286b0682cdeaf8de9fce178918b6ec53378b" },
+    { "name": "nook-project-preview-large.log", "sha256": "bd5cf59fdd115257ddfd57ecaa93f483209e5a411c1be9f7f717a59db790ead8" },
+    { "name": "nook-project-preview-integration.log", "sha256": "1e189621bb667896d4376100e8d7e79780758ded5c589f6f5aec642fdca5288a" },
+    { "name": "nook-project-preview-integration-replay.log", "sha256": "3e6813c522846ce7497a10211e15e058534b431be2beb9c1407f37a7e300bfc1" },
+    { "name": "nook-project-preview-final-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-project-preview-final-coverage.log", "sha256": "c36f665db0880e4963f038cf7c1c8fdedb266bb3ad250ac39cdf3c5e976af7de" },
+    { "name": "nook-project-preview-build.log", "sha256": "870b8a244cc82bee6186935b89effd988755dc8120219811219f3135eb54201b" }
+  ]
+}

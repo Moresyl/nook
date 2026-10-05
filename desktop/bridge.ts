@@ -123,6 +123,7 @@ const bridge: Bridge = {
   listDirectory: (id, request) => invoke('listDirectory', id, request),
   readFile: (id, path) => invoke('readFile', id, path),
   loadDocument: (id, path) => invoke('loadDocument', id, path),
+  previewProject: (id, input) => invoke('previewProject', id, input),
   prepareDocument: (id, path) => invoke('prepareDocument', id, path),
   saveDocument: (id, input) => invoke('saveDocument', id, input),
   saveEditorDraft: (draft) => invoke('saveEditorDraft', draft),

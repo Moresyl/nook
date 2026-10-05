@@ -39,6 +39,7 @@ import { verifyCommands } from './verify-commands.mjs';
 import { verifySurfaces } from './verify-surfaces.mjs';
 import { verifyMemories } from './verify-memories.mjs';
 import { verifyProjectTree } from './verify-project-tree.mjs';
+import { verifyProjectPreview } from './verify-project-preview.mjs';
 import { verifyDiffDisposal } from './verify-diff-disposal.mjs';
 import { verifyChatNavigation } from './verify-chat-navigation.mjs';
 import { verifyConversationBranches } from './verify-conversation-branches.mjs';
@@ -308,7 +309,13 @@ async function launch() {
         const timer = setTimeout(() => reject(new Error('Main-process test operation timed out')), 5000);
         socket.addEventListener('message', (event) => {
           const message = JSON.parse(event.data);
-          if (message.id === 1) { clearTimeout(timer); if (message.error || message.result?.exceptionDetails) reject(new Error('Main-process test operation failed')); else resolve(message.result?.result?.value); }
+          if (message.id === 1) {
+            clearTimeout(timer);
+            if (message.error || message.result?.exceptionDetails) {
+              const detail = String(message.error?.message ?? message.result.exceptionDetails.exception?.description ?? message.result.exceptionDetails.text).split('\n')[0].slice(0, 300);
+              reject(new Error(`Main-process test operation failed: ${detail}`));
+            } else resolve(message.result?.result?.value);
+          }
         });
         socket.send(JSON.stringify({ id: 1, method: 'Runtime.evaluate', params: { expression, includeCommandLineAPI: true, returnByValue: true, awaitPromise: true } }));
       });
@@ -461,6 +468,7 @@ async function launch() {
 let suiteCompleted = false;
 let surfaceResult;
 let memoriesResult;
+let projectPreviewResult;
 let projectTreeResult;
 let chatNavigationResult;
 let branchNavigationResult;
@@ -473,7 +481,14 @@ let promptTransferResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_DIFF_ONLY) {
+  if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
+    const treeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = treeRun.page; projectTreeResult = treeRun.result;
+    projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
+    assert.equal(count, 12); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_ONLY) {
+    projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
+    assert.equal(count, 5); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.QIYAO_TEST_DIFF_ONLY) {
     await page.evaluate((path) => window.qiyao.saveProject({ id: 'verification-project', name: '验证项目', path, instructions: '', createdAt: 1 }), projectDirectory);
     await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.getByRole('button', { name: '验证项目', exact: true }).click();
     await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: 'README.md', exact: true }).click(); await page.locator('.monaco-editor .view-lines').getByText(/QIYAO_PROJECT_EVIDENCE/).waitFor();
@@ -1042,6 +1057,7 @@ try {
   const backupsResult = await verifyBackups({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = backupsResult.page;
   await writeFile(join(root, 'verification', packaged ? 'backups-packaged-result.json' : 'backups-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - backupsStart, runtimeErrors: errors, ...backupsResult.result }, null, 2));
   const projectTreeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = projectTreeRun.page; projectTreeResult = projectTreeRun.result;
+  projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
   const chatNavigationRun = await verifyChatNavigation({ page, application, getApplication: () => application, endpoint, directory, screenshots, fixture: chatNavigationProviders, verified, waitForBridge, restart: async (beforeLaunch) => { await application.close(); await beforeLaunch?.(); return launch(); } }); page = chatNavigationRun.page; chatNavigationResult = chatNavigationRun.result;
   const branchNavigationRun = await verifyConversationBranches({ page, application, getApplication: () => application, endpoint, directory, screenshots, verified, waitForBridge, restart: async (beforeLaunch) => { await application.close(); await beforeLaunch?.(); return launch(); }, modelRequests: () => calls.length }); page = branchNavigationRun.page; branchNavigationResult = branchNavigationRun.result;
   assert.deepEqual(errors, []);
@@ -1075,6 +1091,7 @@ try {
   if (fullResult && assistantRecipesResult) { fullResult.assistantRecipes = assistantRecipesResult; fullResult.screenshots.push(...assistantRecipesResult.screenshots); }
   if (fullResult && promptTransferResult) { fullResult.promptTransfer = promptTransferResult; fullResult.screenshots.push(...promptTransferResult.screenshots); }
   if (fullResult && memoriesResult) { fullResult.memories = memoriesResult; fullResult.screenshots.push(...memoriesResult.screenshots); }
+  if (fullResult && projectPreviewResult) { fullResult.projectPreview = projectPreviewResult; fullResult.screenshots.push(...projectPreviewResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -1172,6 +1189,12 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'project-tree-packaged-result.json' : 'project-tree-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused project-tree suite', modelRequests: calls.length }), ...projectTreeResult }, null, 2));
     console.log(`Verified ${projectTreeResult.checks} project-tree checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && projectPreviewResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'project-preview-packaged-result.json' : 'project-preview-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, normalCloseVerified: true, runtimeErrors: errors, ...projectPreviewResult }, null, 2));
   }
   if (suiteCompleted && !closeError && fullResult) {
     assert.deepEqual(errors, []);

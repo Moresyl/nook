@@ -1,5 +1,6 @@
 import type { Assistant, Attachment, ComposerDraft, Note, Preferences, Project, Provider, SubmitRequest, Thread, Workspace } from './workspace';
 import type { Memory } from './memories';
+import type { ProjectPreviewInput } from './project-preview';
 import type { ApprovalRequest, ToolActivity } from './tools';
 import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
@@ -111,6 +112,7 @@ export type Bridge = {
   listDirectory(projectId: string, request: DirectoryRequest): Promise<DirectoryPage>;
   readFile(projectId: string, relativePath: string): Promise<string>;
   loadDocument(projectId: string, path: string): Promise<FileDocument>;
+  previewProject(projectId: string, input: ProjectPreviewInput): Promise<void>;
   prepareDocument(projectId: string, path: string): Promise<EditorDraft>;
   saveDocument(projectId: string, input: SaveDocument): Promise<FileDocument>;
   saveEditorDraft(draft: EditorDraft): Promise<void>;

@@ -3,6 +3,7 @@ import { join } from 'node:path';
 
 export const runtimeProofFiles = {
   audit: 'package-audit-result.json', desktop: 'packaged-result.json', surfaces: 'surfaces-packaged-result.json',
+  preview: 'project-preview-packaged-result.json',
   branches: 'conversation-branches-packaged-result.json', temporary: 'temporary-conversations-packaged-result.json', comparisons: 'model-comparisons-packaged-result.json',
   portable: 'portable-result.json', portableAudit: 'portable-package-audit-result.json', bootstrap: 'distribution-bootstrap-result.json', installer: 'pipeline-installer-result.json',
 };

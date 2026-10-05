@@ -46,6 +46,7 @@ import { AssistantProfiles } from './services/assistant-profiles';
 import { PromptTemplates } from './services/prompt-templates';
 import { Memories } from './services/memories';
 import { MessageEdits } from './services/message-edits';
+import { ProjectPreviewWindow } from './project-preview-window';
 
 const bundleDirectory = __dirname;
 let window: BrowserWindow | null = null;
@@ -69,6 +70,7 @@ let assistantProfiles: AssistantProfiles;
 let promptTemplates: PromptTemplates;
 const taskNotifications = new Set<Notification>();
 const git = new ProjectGit();
+const projectPreview = new ProjectPreviewWindow();
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input));
 const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
@@ -82,7 +84,7 @@ let closeAllowed = false;
 let closeToken: string | null = null;
 let closeTimer: ReturnType<typeof setTimeout> | undefined;
 const draftFlushRequests = new Map<string, { resolve: () => void; reject: (error: Error) => void; timer: ReturnType<typeof setTimeout> }>();
-protocol.registerSchemesAsPrivileged(['qiyao', 'qiyao-plugin'].map((scheme) => ({ scheme, privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true } })));
+protocol.registerSchemesAsPrivileged(['qiyao', 'qiyao-plugin', 'nook-preview'].map((scheme) => ({ scheme, privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true } })));
 const pathSchema = z.string().min(1).max(4096);
 const gitFileSchema = z.object({ path: pathSchema, originalPath: pathSchema.optional(), index: z.string().length(1), working: z.string().length(1), conflict: z.boolean() });
 
@@ -256,15 +258,18 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   },
   saveProject: (raw) => {
     const project = projectSchema.parse(raw);
+    let pathChanged = false;
     return vault.update((draft) => {
       const index = draft.projects.findIndex((item) => item.id === project.id);
+      pathChanged = index >= 0 && draft.projects[index].path !== project.path;
       if (index < 0) draft.projects.push(project); else draft.projects[index] = project;
-    });
+    }).then(state => { if (pathChanged) projectPreview.close(project.id); return state; });
   },
   removeProject: async (raw) => {
     const id = idSchema.parse(raw);
     if (vault.snapshot().editorDrafts.some((draft) => draft.projectId === id)) throw new Error('Save or discard this project’s unsaved editor drafts before removing it.');
     await Promise.all([engine.stopProject(id), terminals.closeProject(id)]);
+    projectPreview.close(id);
     const scopedPlugins = vault.snapshot().plugins.filter((plugin) => plugin.projectIds.includes(id));
     await Promise.all(scopedPlugins.map(async (plugin) => { await engine.stopPlugin(plugin.id); await plugins.unload(plugin.id); }));
     return vault.update((draft) => {
@@ -329,6 +334,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   listDirectory: (id, input) => projectDirectory(workspaceProject(id).path, directoryRequestSchema.parse(input)),
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
+  previewProject: async (id, input) => { const project = workspaceProject(id); await projectPreview.open(window!, project.id, project.path, input); },
   prepareDocument: async (id, raw) => {
     const project = workspaceProject(id); const path = pathSchema.parse(raw);
     await writableProjectPath(project.path, path); const current = await optionalProjectDocument(project.path, path);
@@ -392,6 +398,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       await knowledge.stopAll();
       await Promise.all(vault.snapshot().mcpServers.map((server) => mcp.disconnect(server.id)));
       await Promise.all(vault.snapshot().plugins.map((plugin) => plugins.unload(plugin.id)));
+      projectPreview.close();
       const restored = await extensions.restore(rawBackup); await desktopIntegration.refresh(); return restored;
     } finally { await automations.resume(); }
   },
@@ -409,6 +416,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
 };
 
 async function finishClose(): Promise<void> {
+  projectPreview.close();
   if (!quitRequested && desktopIntegration.canHide()) { window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
   if (quit) { quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }

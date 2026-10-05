@@ -18,17 +18,19 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 215, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 223, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    memories: { checks: 3 }, projectPreview: { checks: 5, outsideHttpRequests: 0 },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
+    preview: { ...desktop, checks: 5, outsideHttpRequests: 0 },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
     comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true },
     portable: { checks: 7, launches: [{ longDocumentPathLength: 301 }, { longDocumentPathLength: 301 }], longPathCleanupVerified: true, unpackedFilesVerified: 50, runtimeErrors: [], wrapperSha256: hash, childExecutableSha256: hash },
     portableAudit: { executableSha256: hash, archiveSha256: otherHash, unresolvedAssets: [], unresolvedDistribution: [] },
     bootstrap: { variants: ['installer', 'uninstaller', 'portable'].map((variant) => ({ variant, executableSha256: hash, plugins: [{ redistributionStatus: 'verified' }] })) },
-    installer: { checks: 215, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
+    installer: { checks: desktop.checks, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
 
@@ -95,12 +97,18 @@ describe('Windows release execution evidence', () => {
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('unresolved');
   });
   it('rejects source/forced-close/error or mismatched packaged execution', () => {
-    for (const key of ['desktop', 'surfaces', 'branches', 'temporary', 'comparisons'] as const) {
+    for (const key of ['desktop', 'surfaces', 'preview', 'branches', 'temporary', 'comparisons'] as const) {
       const cases = [proof(), proof(), proof(), proof(), proof()];
       cases[0][key].variant = 'development executable'; cases[1][key].normalCloseVerified = false;
       cases[2][key].runtimeErrors = ['Failure']; cases[3][key].executableSha256 = otherHash; cases[4][key].archiveSha256 = hash;
       for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('normal close');
     }
+  });
+  it('rejects missing, partial or network-accessing project preview evidence', () => {
+    const absent = proof(); delete (absent as Partial<ReleaseProof>).preview; expect(() => verifyRuntimeProof(absent)).toThrow('normal close');
+    const cases = [proof(), proof(), proof()]; cases[0].preview.checks = 4; cases[1].preview.outsideHttpRequests = 1;
+    delete (cases[2].preview as Partial<ReleaseProof['preview']>).outsideHttpRequests;
+    for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
   });
   it('rejects incomplete desktop/settings/portable checks and different portable body', () => {
     const cases = Array.from({ length: 11 }, proof);
@@ -109,6 +117,26 @@ describe('Windows release execution evidence', () => {
     cases[6].portable.childExecutableSha256 = otherHash; cases[7].portableAudit.executableSha256 = otherHash;
     cases[8].portableAudit.archiveSha256 = hash; cases[9].portableAudit.unresolvedAssets = ['Font']; cases[10].portableAudit.unresolvedDistribution = ['Plugin'];
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('portable verification');
+  });
+  it('requires memory and offline preview checks within the complete desktop suite', () => {
+    const missing = proof(); delete missing.desktop.memories; expect(() => verifyRuntimeProof(missing)).toThrow('memory verification');
+    for (const count of [0, 2, 4, Number.NaN]) {
+      const partial = proof(); partial.desktop.memories!.checks = count; expect(() => verifyRuntimeProof(partial)).toThrow('memory verification');
+    }
+    const absent = proof(); delete absent.desktop.projectPreview; expect(() => verifyRuntimeProof(absent)).toThrow('desktop must include');
+    for (const count of [0, 4, 6, Number.NaN]) {
+      const partial = proof(); partial.desktop.projectPreview!.checks = count; expect(() => verifyRuntimeProof(partial)).toThrow('desktop must include');
+    }
+    for (const count of [1, -1, Number.NaN, undefined]) {
+      const outside = proof(); outside.desktop.projectPreview!.outsideHttpRequests = count as number; expect(() => verifyRuntimeProof(outside)).toThrow('desktop must include');
+    }
+  });
+  it('rejects old 215/218-check complete suites even when every matching-body count agrees', () => {
+    for (const count of [215, 218]) {
+      const old = proof(); old.desktop.checks = count; old.installer.checks = count;
+      old.branches.suiteChecks = count; old.temporary.suiteChecks = count; old.comparisons.suiteChecks = count;
+      expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop');
+    }
   });
   it('rejects missing, focused, incomplete, stale or requesting branch-navigation evidence', () => {
     const missing = proof(); delete (missing as Partial<ReleaseProof>).branches;
@@ -235,8 +263,8 @@ async function proofFiles() {
   return { root, value };
 }
 describe('complete runtime proof file loader', () => {
-  it('loads all ten independent records and passes their matching-body policy without changing their data', async () => {
-    const { root, value } = await proofFiles(); const actual = await readRuntimeProof(root); expect(Object.keys(actual)).toHaveLength(10); expect(actual).toEqual(value); expect(() => verifyRuntimeProof(actual)).not.toThrow();
+  it('loads all eleven independent records and passes their matching-body policy without changing their data', async () => {
+    const { root, value } = await proofFiles(); const actual = await readRuntimeProof(root); expect(Object.keys(actual)).toHaveLength(11); expect(actual).toEqual(value); expect(() => verifyRuntimeProof(actual)).not.toThrow();
   });
   it('rejects missing required comparison evidence without exposing its filesystem location', async () => {
     const { root } = await proofFiles(); await rm(join(root, 'verification', runtimeProofFiles.comparisons)); const error = await readRuntimeProof(root).catch((error) => error);
