@@ -1,0 +1,31 @@
+{
+  "baseCommit": "4e9e972061a6f195a1f4ecde60b68b9d07f72ffd",
+  "verifiedAt": "2026-10-05T14:49:43.831Z",
+  "entrySourceSha256": "26d9d02944fcfa9fc24ea3b5b7584947ff09f10d6ffd2de760bbeb00df1a70ba",
+  "variant": "development executable with rebuilt renderer",
+  "typeCheck": "passed",
+  "build": "passed",
+  "surfaceGroups": 4,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "cases": [
+    "Built entry document loads in an isolated Electron window with page JavaScript disabled",
+    "Centered 56px independent Nook mark and draggable startup surface",
+    "180ms fade with 60ms delay reaches full opacity",
+    "Light and dark system preferences select the matching background",
+    "System reduced motion and explicit data-reduced-motion stop fade and shimmer",
+    "Normal renderer replaces the startup fallback"
+  ],
+  "log": "D:/GR/pi-pc/.firecrawl/nook-startup-fallback-surfaces-final.log",
+  "logSha256": "2c2cb7deb3277a1c8b0f63d2a6b1e962c6af60f2da4473fc1aae838f271ae02e",
+  "earlierAttempts": [
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-startup-fallback-surfaces.log", "sha256": "120912f537f3e9d1e68c7205e5e232474edd0435751302395047b71c62e57e30" },
+    { "log": "D:/GR/pi-pc/.firecrawl/nook-startup-fallback-surfaces-visible.log", "sha256": "47c94becf2c4dfe364725bdda62a41ab0321d9e79e0ce52949775559d8aa94b6" }
+  ],
+  "testCorrection": "Page-rAF polling timed out with page JavaScript disabled. External Node polling observed the same unchanged animation complete, within a shorter five-second limit.",
+  "reviewedScreenshots": [
+    { "file": "docs/images/startup-light.png", "width": 760, "height": 540, "sha256": "b4f4622a56354945b44e8dcf4c3a15a0f9a916e31afe7ff4f23959456f763b27" },
+    { "file": "docs/images/startup-dark.png", "width": 760, "height": 540, "sha256": "6109fcc56304b0a83bf01454189b7d394c3c62e98dee07c59da2d5432eb02484" }
+  ],
+  "scope": "Renderer entry fallback only. The probe disables page scripts to retain pre-React content and uses system theme media, not saved app preferences. It does not establish startup before BrowserWindow creation, whole-application startup performance, physical dragging, full regression or newly packaged artifacts. Existing 4296faf distribution files do not include this change."
+}

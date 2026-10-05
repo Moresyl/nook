@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { verifyStartupFallback } from './verify-startup-fallback.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
 
@@ -278,6 +279,7 @@ async function assertTooltipModalScope(page, draft) {
 }
 
 export async function verifySurfaces({ page, application, screenshots, verified }) {
+  await verifyStartupFallback({ page, application, screenshots });
   await application.resize(1280, 840);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await page.reload();

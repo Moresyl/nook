@@ -1,10 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src 'self' qiyao-plugin:; connect-src 'self' ws://localhost:* http://localhost:*" />
     <title>Nook</title>
+    <style>
+      /* Available before the renderer bundle; React replaces this fallback on mount. */
+      .startup-loader { position: fixed; inset: 0; display: grid; place-items: center; background: #fff; -webkit-app-region: drag; }
+      .startup-mark { position: relative; width: 56px; height: 56px; overflow: hidden; border-radius: 30%; opacity: 0; animation: startup-fade 180ms ease-out 60ms forwards; }
+      .startup-mark svg { display: block; width: 56px; height: 56px; }
+      .startup-mark::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, #fff8 50%, transparent 70%); transform: translateX(-100%); animation: startup-shimmer 3s ease-in-out infinite; }
+      @keyframes startup-fade { to { opacity: 1; } }
+      @keyframes startup-shimmer { to { transform: translateX(100%); } }
+      @media (prefers-color-scheme: dark) { .startup-loader { background: #212121; } .startup-mark::after { background: linear-gradient(100deg, transparent 30%, #0009 50%, transparent 70%); } }
+      @media (prefers-reduced-motion: reduce) { .startup-mark { opacity: 1; animation: none; } .startup-mark::after { display: none; animation: none; } }
+      html[data-reduced-motion=true] .startup-mark { opacity: 1; animation: none; }
+      html[data-reduced-motion=true] .startup-mark::after { display: none; animation: none; }
+    </style>
   </head>
-  <body><div id="root"></div><script type="module" src="/entry.tsx"></script></body>
+  <body><div id="root"><div class="startup-loader" role="status" aria-label="正在打开 Nook"><div class="startup-mark"><svg width="56" height="56" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#3143FF" /><path d="M12 28V12L28 28V12" stroke="white" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg></div></div></div><script type="module" src="/entry.tsx"></script></body>
 </html>

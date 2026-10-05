@@ -9,6 +9,7 @@
 | 参考内容 | Nook 实现 | 差异与剩余工作 |
 | --- | --- | --- |
 | `DESIGN.md`、`tokens.css` | 中性灰、蓝色强调、明暗主题与共享变量 | 逐页检查语义色及局部固定色 |
+| 启动占位 | 入口 HTML 的居中 56px Nook 标志；180ms 淡入、60ms 延迟、扫光与减少动效；可拖拽区域 | 读取应用偏好前采用系统明暗主题；不覆盖主窗口创建前的等待或启动故障恢复 |
 | 首页与输入区 | 首页大输入区；对话单行胶囊，换行或附件自动展开；工具栏在下方，发送按钮 32px | textarea，尚非完整富文本编辑器；复杂配置继续检查 |
 | 侧栏 | 默认 264px、导航行 40px；窄内容区使用 64px 紧凑导航 | 紧凑布局为适配方案，非逐像素复制 |
 | 按钮与输入 | 默认按钮 20px 高；明暗悬停、按下、焦点、错误和禁用状态 | 更多组合、最大规模与辅助技术验收 |
@@ -38,10 +39,13 @@
 
 追加的设置快捷键检查通过：背景按钮提示待显示或已显示时打开设置，提示关闭；弹窗焦点、Escape 返回焦点和未发送草稿保留。此批未修改产品代码，设置专项 4 项与正常退出通过；首次运行在界面检查前启动超时，原因尚未查明，失败和重跑日志均见[专项记录](../verification/tooltip-modal-scope-result.json)。
 
+启动占位已加入源码：类型与构建通过，在页面脚本禁用的隔离 Electron 窗口中核对实际构建入口、明暗配色、居中尺寸、淡入结束及两种减少动效设置；正常工作台会替换占位。设置专项 4 项和正常退出通过，[记录与测试修正](../verification/startup-fallback-result.json)保留两次测试轮询失败。此改动尚未进入 `4296faf` 分发包，也未重新完成全套桌面回归。
+
 ## 实际截图
 
 | 内容 | 截图 |
 | --- | --- |
+| 脚本加载前的启动占位 | [浅色](images/startup-light.png)、[深色](images/startup-dark.png)；隔离窗口保留实际入口内容，已逐张查看 |
 | 按钮提示 | [浅色](images/tooltip-light.png)、[深色](images/tooltip-dark.png)、[禁用按钮](images/tooltip-disabled-button.png)、[长标题](images/tooltip-long-title.png) |
 | 边缘避让 | [下边缘翻转](images/tooltip-edge.png)；测试临时移动关闭按钮，结束后恢复布局 |
 | 选择器与开关 | [浅色菜单](images/select-highlight-light.png)、[深色菜单](images/select-highlight-dark.png)、[浅色开启](images/switch-checked-light.png)、[深色开启](images/switch-checked-dark.png) |
