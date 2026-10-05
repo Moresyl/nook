@@ -1,0 +1,246 @@
+{
+  "recordedAt": "2026-10-05T10:31:32.404Z",
+  "applicationCommit": "e0fffd9",
+  "seed": {
+    "original": "E:/NookVerification/Temp/qiyao-electron-ZLJ4ss",
+    "copy": "E:/NookVerification/ComparisonReplay-jGBDnf",
+    "originalSha256": "79de3004379ba9f32a82ca4bc285bc874eccc5e1cac84a9953913e22d1906f06",
+    "bytes": 84541897,
+    "threads": 303,
+    "changes": "Existing thread/provider/project display labels prefixed to avoid fixture collisions; complete histories and references retained."
+  },
+  "deadlineMs": 5000,
+  "runs": [
+    {
+      "log": "D:/GR/pi-pc/.firecrawl/nook-comparison-large-replay.log",
+      "sha256": "6d31ddd870636c24ced51de181d1fc3672971d7297913c3dd8ac4b60df885341",
+      "checks": 6,
+      "normalCloseVerified": true,
+      "observations": [
+        {
+          "format": "json",
+          "events": [
+            {
+              "operation": "exportWorkspace",
+              "startedAt": 1791195803049,
+              "success": true,
+              "finishedAt": 1791195811271
+            },
+            {
+              "operation": "request-renderer-flush",
+              "startedAt": 1791195803049
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791195805566,
+              "threads": 315,
+              "finishedAt": 1791195805661
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791195805661,
+              "threads": 315,
+              "finishedAt": 1791195805744
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791195807708,
+              "threads": 315,
+              "finishedAt": 1791195807791
+            },
+            {
+              "operation": "finishDraftFlush",
+              "startedAt": 1791195807791,
+              "success": true,
+              "finishedAt": 1791195807791
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791195808929,
+              "threads": 312,
+              "finishedAt": 1791195809015
+            }
+          ],
+          "capturedAt": 1791195811273,
+          "memory": {
+            "rss": 1946558464,
+            "heapTotal": 1369202688,
+            "heapUsed": 1357743988,
+            "external": 457569012,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 13187000,
+            "system": 11656000
+          },
+          "pendingRequests": []
+        },
+        {
+          "format": "json.gz",
+          "events": [
+            {
+              "operation": "exportWorkspace",
+              "startedAt": 1791195811537,
+              "success": true,
+              "finishedAt": 1791195812374
+            },
+            {
+              "operation": "request-renderer-flush",
+              "startedAt": 1791195811537
+            },
+            {
+              "operation": "finishDraftFlush",
+              "startedAt": 1791195811537,
+              "success": true,
+              "finishedAt": 1791195811538
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791195811538,
+              "threads": 312,
+              "finishedAt": 1791195811618
+            }
+          ],
+          "capturedAt": 1791195812376,
+          "memory": {
+            "rss": 2122383360,
+            "heapTotal": 1537417216,
+            "heapUsed": 1524375688,
+            "external": 466166360,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 13796000,
+            "system": 12015000
+          },
+          "pendingRequests": []
+        }
+      ]
+    },
+    {
+      "log": "D:/GR/pi-pc/.firecrawl/nook-comparison-large-replay-early.log",
+      "sha256": "928ced5a6a2d6306b85aba0367b6e237eaecb5008d40a13657217af0277f2033",
+      "checks": 6,
+      "normalCloseVerified": true,
+      "observations": [
+        {
+          "format": "json",
+          "events": [
+            {
+              "operation": "activateThread",
+              "startedAt": 1791196039396,
+              "success": true,
+              "finishedAt": 1791196041161
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196039396,
+              "threads": 315,
+              "finishedAt": 1791196039481
+            },
+            {
+              "operation": "saveComposerDraft",
+              "startedAt": 1791196039531,
+              "success": true,
+              "finishedAt": 1791196042790
+            },
+            {
+              "operation": "exportWorkspace",
+              "startedAt": 1791196039539,
+              "success": true,
+              "finishedAt": 1791196045495
+            },
+            {
+              "operation": "request-renderer-flush",
+              "startedAt": 1791196039539
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196040945,
+              "threads": 315,
+              "finishedAt": 1791196041034
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196041034,
+              "threads": 315,
+              "finishedAt": 1791196041115
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196042706,
+              "threads": 315,
+              "finishedAt": 1791196042790
+            },
+            {
+              "operation": "finishDraftFlush",
+              "startedAt": 1791196042790,
+              "success": true,
+              "finishedAt": 1791196042791
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196043809,
+              "threads": 312,
+              "finishedAt": 1791196043898
+            }
+          ],
+          "capturedAt": 1791196045497,
+          "memory": {
+            "rss": 2432679936,
+            "heapTotal": 1763971072,
+            "heapUsed": 1754195524,
+            "external": 550607567,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 13343000,
+            "system": 12265000
+          },
+          "pendingRequests": []
+        },
+        {
+          "format": "json.gz",
+          "events": [
+            {
+              "operation": "exportWorkspace",
+              "startedAt": 1791196045804,
+              "success": true,
+              "finishedAt": 1791196046730
+            },
+            {
+              "operation": "request-renderer-flush",
+              "startedAt": 1791196045804
+            },
+            {
+              "operation": "finishDraftFlush",
+              "startedAt": 1791196045804,
+              "success": true,
+              "finishedAt": 1791196045804
+            },
+            {
+              "operation": "workspace-clone",
+              "startedAt": 1791196045804,
+              "threads": 312,
+              "finishedAt": 1791196045889
+            }
+          ],
+          "capturedAt": 1791196046732,
+          "memory": {
+            "rss": 2508804096,
+            "heapTotal": 1850396672,
+            "heapUsed": 1836777000,
+            "external": 525536451,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 13968000,
+            "system": 12703000
+          },
+          "pendingRequests": []
+        }
+      ]
+    }
+  ],
+  "scope": "Two focused development-executable replays passed. The first flush acknowledgement approached 4.742 seconds; the second early observer captured activation followed by a queued draft save. Original timeout not reproduced here; no deadline or fixture size was reduced and no product fix is claimed."
+}

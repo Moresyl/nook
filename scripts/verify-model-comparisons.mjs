@@ -4,6 +4,42 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 
+async function observeComparisonBackup(application, mainWindow) {
+  assert.equal(await application.evaluateMain(`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    const contents = ${mainWindow}?.webContents;
+    if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function' || !contents) return false;
+    const events = []; const append = row => { events.push(row); if (events.length > 64) events.shift(); };
+    const original = handlers.get('qiyao:invoke'); const originalClone = globalThis.structuredClone; const originalSend = contents.send;
+    const observed = new Set(['saveComposerDraft', 'activateThread', 'exportWorkspace', 'finishDraftFlush']);
+    const handler = async function (...args) {
+      if (!observed.has(args[1])) return original.apply(this, args);
+      const row = { operation: args[1], startedAt: Date.now() }; append(row);
+      try { const result = await original.apply(this, args); row.success = true; return result; }
+      catch (error) { row.success = false; throw error; }
+      finally { row.finishedAt = Date.now(); }
+    };
+    const clone = function (...args) {
+      if (args[0]?.schemaVersion !== 1 || !Array.isArray(args[0]?.threads)) return originalClone.apply(this, args);
+      const row = { operation: 'workspace-clone', startedAt: Date.now(), threads: args[0].threads.length }; append(row);
+      try { return originalClone.apply(this, args); } finally { row.finishedAt = Date.now(); }
+    };
+    const send = function (...args) {
+      if (args[0] === 'qiyao:flush-drafts') append({ operation: 'request-renderer-flush', startedAt: Date.now() });
+      return originalSend.apply(this, args);
+    };
+    handlers.set('qiyao:invoke', handler); globalThis.structuredClone = clone; contents.send = send;
+    globalThis.qiyaoFinishComparisonBackupObserver = () => {
+      if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', original);
+      if (globalThis.structuredClone === clone) globalThis.structuredClone = originalClone;
+      if (contents.send === send) contents.send = originalSend;
+      delete globalThis.qiyaoFinishComparisonBackupObserver;
+      return { events, capturedAt: Date.now(), memory: process.memoryUsage(), cpu: process.cpuUsage(), pendingRequests: process._getActiveRequests().map(request => request.constructor.name) };
+    };
+    return true;
+  })()`), true);
+}
+
 export async function verifyModelComparisons({ page, application, getApplication, endpoint, directory, screenshots, fixture, verified, waitForBridge, restart }) {
   const beforeRequests = fixture.requests.length; const providerA = randomUUID(); const providerB = randomUUID(); const projectId = randomUUID(); const sourceId = randomUUID(); const question = 'COMPARE_SAME_QUESTION 中文 <img> {{literal}}';
   const attachment = { id: randomUUID(), name: '比较资料.txt', content: 'COMPARE_ATTACHMENT_EXACT' };
@@ -231,11 +267,17 @@ export async function verifyModelComparisons({ page, application, getApplication
   } finally {
     await getApplication().evaluateMain('globalThis.qiyaoRestoreComparisonContinuationObservers?.()').catch(() => {});
   }
+  await observeComparisonBackup(application, mainWindow);
   assert.ok(JSON.stringify(fixture.requests.at(-1).messages).includes('one: COMPLETE')); assert.equal(fixture.requests.length, beforeRequests + 11); assert.equal(fixture.requests.at(-1).connection, 'b'); assert.equal(fixture.requests.at(-1).model, 'two'); await composer().fill('COMPARE_CHILD_DRAFT_KEEP'); await page.getByRole('button', { name: '查看模型比较', exact: true }).click(); assert.ok((await dialog().getByLabel('回复 1', { exact: true }).inputValue()).includes('one: COMPLETE')); assert.equal(await dialog().locator('.comparison-result').first().getByRole('heading', { level: 3 }).textContent(), '比较连接 A · one'); await close();
   await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question); const backupPaths = [];
   for (const extension of ['json', 'json.gz']) {
     const backup = join(directory, `model-comparison.${extension}`); backupPaths.push(backup); await application.evaluateMain(`globalThis.qiyaoComparisonSave=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(backup)}});`);
-    try { assert.equal(await page.evaluate(() => window.qiyao.exportWorkspace()), true); } finally { await application.evaluateMain("require('electron').dialog.showSaveDialog=globalThis.qiyaoComparisonSave;delete globalThis.qiyaoComparisonSave;"); }
+    if (extension !== 'json') await observeComparisonBackup(application, mainWindow);
+    try { assert.equal(await page.evaluate(() => window.qiyao.exportWorkspace()), true); }
+    finally {
+      console.log('Comparison backup flush observations', extension, JSON.stringify(await application.evaluateMain('globalThis.qiyaoFinishComparisonBackupObserver?.()').catch(() => ({ unavailable: true }))));
+      await application.evaluateMain("require('electron').dialog.showSaveDialog=globalThis.qiyaoComparisonSave;delete globalThis.qiyaoComparisonSave;");
+    }
     const bytes = await readFile(backup); const text = (extension.endsWith('.gz') ? gunzipSync(bytes) : bytes).toString('utf8'); assert.equal(text.includes('COMPARE_TEMP_PRIVATE_QUESTION'), false); assert.equal(text.includes(temporaryGroup), false); for (const id of groups) assert.ok(text.includes(id));
   }
   for (const backup of backupPaths) {
