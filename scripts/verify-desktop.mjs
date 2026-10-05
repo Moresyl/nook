@@ -530,12 +530,12 @@ try {
   } else if (process.env.QIYAO_TEST_PLUGINS_ONLY) {
     await page.evaluate(async (url) => { await window.qiyao.saveProvider({ id: 'responses', name: 'Responses 验证', kind: 'responses', endpoint: url, models: ['verification-model'], hasKey: false }, 'local-verification-key'); }, endpoint);
     await page.evaluate(async (path) => { await window.qiyao.saveProject({ id: 'verification-project', name: '验证项目', path, instructions: '', createdAt: 1 }); }, projectDirectory);
-    await page.reload(); await page.getByRole('heading', { name: '让想法，有处落地。' }).waitFor();
+    await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
     await verifyPlugins({ page, application, directory, projectDirectory, domain: new URL(endpoint).host, screenshots, verified, waitForBridge });
     assert.deepEqual(providerErrors, []); assert.deepEqual(errors, []); console.log(`Verified ${count} focused plugin checks.`);
   } else if (process.env.QIYAO_TEST_CONVERSATIONS_ONLY) {
     await page.evaluate(async (url) => { await window.qiyao.saveProvider({ id: 'history', name: 'History verification', kind: 'ollama', endpoint: url, models: ['verification-model'], hasKey: false }); }, endpoint);
-    await page.reload(); await page.getByRole('heading', { name: '让想法，有处落地。' }).waitFor();
+    await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
     page = await verifyConversations({ page, application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } });
     page = await verifyComposerDrafts({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } });
     assert.deepEqual(providerErrors, []); assert.deepEqual(errors, []); console.log(`Verified ${count} focused conversation checks.`);

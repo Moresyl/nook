@@ -7,7 +7,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await application.resize(1280, 840); await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
   await page.addInitScript(() => { window.qiyaoAttack = false; Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, value: async (text) => { window.qiyaoVerificationCopy = text; } }); });
   await page.evaluate(async (url) => { await window.qiyao.saveProvider({ id: 'rendering', name: '内容显示验证', kind: 'ollama', endpoint: url, models: ['verification-model'], hasKey: false }); const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); await window.qiyao.saveComposerDraft({ text: '', attachments: [], providerId: 'rendering', model: 'verification-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread(); }, endpoint);
-  await page.reload(); await page.getByRole('heading', { name: '让想法，有处落地。' }).waitFor();
+  await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
   const composer = page.getByRole('textbox', { name: '消息', exact: true }); await composer.fill('RICH_CONTENT_NATIVE'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await page.getByText('RICH_CONTENT_END', { exact: false }).waitFor(); await page.getByRole('button', { name: '重新生成', exact: true }).waitFor();
   assert.equal(await page.locator('.katex').count(), 3); assert.equal(await page.locator('.katex-display').count(), 2); assert.equal(await page.locator('.katex math').count(), 3);

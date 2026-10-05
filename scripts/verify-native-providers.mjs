@@ -24,7 +24,7 @@ export async function verifyNativeProviders({ page, application, endpoint, proje
     await page.screenshot({ path: join(screenshots, `${38 + index}-native-provider-${variant.mode}.png`) });
     await page.getByRole('button', { name: '保存连接', exact: true }).click(); await page.getByRole('dialog').getByText(variant.name, { exact: true }).waitFor(); await page.getByRole('dialog').getByRole('button', { name: '关闭', exact: true }).click();
     async function start(marker, tool) {
-      await page.keyboard.press('Control+n'); await page.getByRole('heading', { name: '让想法，有处落地。' }).waitFor();
+      await page.keyboard.press('Control+n'); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
       await page.getByLabel('模型提供商', { exact: true }).selectOption({ label: variant.name }); await page.getByLabel('选择模型', { exact: true }).selectOption(variant.model);
       await page.getByLabel('选择项目', { exact: true }).selectOption(tool ? 'native-project' : ''); if (tool) await page.getByLabel('工作模式', { exact: true }).selectOption('plan');
       await page.getByRole('textbox', { name: '消息', exact: true }).fill(marker); await page.getByRole('button', { name: '发送消息', exact: true }).click();
@@ -76,7 +76,7 @@ export async function verifyNativeProviderRestart({ restart, verified }) {
     if (provider.modelCatalog?.[0]?.inputTokenLimit !== 32768 || provider.modelCatalog?.[0]?.maxOutputTokens !== 500 || provider.modelCatalog?.[0]?.source !== 'service') throw new Error('The native model capacity was not restored.');
     for (const thread of state.threads.filter((item) => item.messages.some((message) => message.content.startsWith('NATIVE_TOOL_')))) { const records = thread.messages.at(-1).invocations; if (records.length !== 2 || records[0].tokens.totalTokens !== 110 || records[1].tokens.totalTokens !== 220) throw new Error('The per-round native usage was not restored.'); }
   });
-  await page.keyboard.press('Control+n'); await page.getByRole('heading', { name: '让想法，有处落地。' }).waitFor();
+  await page.keyboard.press('Control+n'); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
   await page.getByLabel('模型提供商', { exact: true }).selectOption({ label: 'Gemini 原生验证' }); await page.getByLabel('选择模型', { exact: true }).selectOption('gemini-native'); await page.getByLabel('选择项目', { exact: true }).selectOption('');
   await page.getByRole('textbox', { name: '消息', exact: true }).fill('NATIVE_RESTART_GEMINI'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await page.getByLabel('助手回复', { exact: true }).getByText('NATIVE_STREAM_COMPLETE NATIVE_RESTART_GEMINI', { exact: true }).waitFor(); await page.getByRole('button', { name: '重新生成', exact: true }).waitFor();

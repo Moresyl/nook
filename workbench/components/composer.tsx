@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { Assistant, Attachment, Message, Project, Provider } from '../../contracts/workspace';
 import type { ConversationMode } from '../../contracts/tools';
 import { Button, IconButton, Modal, Select, Toggle } from './controls';
@@ -47,9 +47,19 @@ export function Composer(props: Props) {
   const textarea = useRef<HTMLTextAreaElement>(null);
   const provider = props.providers.find((item) => item.id === props.providerId);
   const context = provider ? modelContext(provider, props.model, props.messages) : undefined;
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = textarea.current;
-    if (node) { node.style.height = 'auto'; node.style.height = `${Math.min(200, Math.max(48, node.scrollHeight))}px`; }
+    if (!node) return;
+    const resize = () => { node.style.height = 'auto'; node.style.height = `${node.scrollHeight}px`; };
+    resize();
+    let width = node.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (node.clientWidth === width) return;
+      width = node.clientWidth;
+      resize();
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
   }, [props.text]);
   async function send() {
     if (!props.text.trim() || busy || props.running) return;
