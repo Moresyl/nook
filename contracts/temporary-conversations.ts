@@ -17,6 +17,6 @@ export function persistentWorkspace(state: Workspace, previousActiveThreadId?: s
 
 export function parsePersistentWorkspace(raw: unknown): Workspace {
   const state = workspaceSchema.parse(raw);
-  if (state.threads.some((thread) => thread.temporary)) throw new Error('Temporary conversations cannot be restored from a workspace file. Choose a complete Qiyao backup.');
+  if (state.threads.some((thread) => thread.temporary)) throw new Error('Temporary conversations cannot be restored from a workspace file. Choose a complete Nook backup.');
   return state;
 }

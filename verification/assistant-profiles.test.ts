@@ -19,7 +19,7 @@ async function setup() { const { vault, directory } = await testVault(); const s
 describe('portable assistant profiles', () => {
   it('validates strict versioned profiles and rejects private fields, IDs, blank names and malformed sizes', () => {
     expect(parseAssistantBundle(bundle([{ ...profile, name: '  写作助手  ' }])).assistants[0]).toEqual(profile);
-    for (const raw of [null, [], { ...bundle(), format: 'foreign' }, { ...bundle(), version: 2 }, bundle([]), bundle([{ ...profile, name: '  ' }]), bundle([{ ...profile, instructions: 'x'.repeat(32001) }]), bundle(Array.from({ length: 1001 }, () => profile)), { ...bundle(), credentials: {} }, { ...bundle(), assistants: [{ ...profile, id: 'general' }] }, { ...bundle(), assistants: [{ ...profile, providerId: 'local' }] }]) expect(() => parseAssistantBundle(raw)).toThrow('valid Qiyao');
+    for (const raw of [null, [], { ...bundle(), format: 'foreign' }, { ...bundle(), version: 2 }, bundle([]), bundle([{ ...profile, name: '  ' }]), bundle([{ ...profile, instructions: 'x'.repeat(32001) }]), bundle(Array.from({ length: 1001 }, () => profile)), { ...bundle(), credentials: {} }, { ...bundle(), assistants: [{ ...profile, id: 'general' }] }, { ...bundle(), assistants: [{ ...profile, providerId: 'local' }] }]) expect(() => parseAssistantBundle(raw)).toThrow('valid Nook');
   });
   it('enforces the exact UTF-8 bundle quota including multibyte instructions', () => {
     const raw = bundle(Array.from({ length: 128 }, () => ({ name: 'A', description: '', instructions: 'x'.repeat(30000) })));
@@ -43,7 +43,7 @@ describe('portable assistant profiles', () => {
     expect(service.bundle(ids).assistants.map((item) => item.name)).toEqual([state.assistants[2].name, state.assistants[0].name]); expect(service.bundle().assistants).toHaveLength(3);
     expect(JSON.stringify(service.bundle())).not.toContain('PRIVATE_TEST_KEY'); expect(Object.keys(service.bundle().assistants[0])).toEqual(['name', 'description', 'instructions']);
     expect(() => service.bundle(['missing'])).toThrow('no longer exists'); expect(() => service.bundle([])).toThrow(); expect(() => service.bundle([ids[0], ids[0]])).toThrow(); expect(() => service.bundle('all')).toThrow();
-    await vault.update((draft) => { draft.assistants = []; }); expect(() => service.bundle()).toThrow('valid Qiyao');
+    await vault.update((draft) => { draft.assistants = []; }); expect(() => service.bundle()).toThrow('valid Nook');
   });
   it('imports atomically with fresh IDs, leaves existing profiles untouched and survives an actual vault restart', async () => {
     const { service, vault, directory } = await setup(); const before = vault.snapshot();
@@ -74,7 +74,7 @@ describe('portable assistant profiles', () => {
     await service.write(plain, bundle()); await service.write(compressed, bundle()); expect(await service.read(plain)).toEqual(bundle()); expect(await service.read(compressed)).toEqual(bundle());
     await writeFile(plain, '\uFEFF' + JSON.stringify(bundle())); expect(await service.read(plain)).toEqual(bundle());
     const occupied = join(directory, 'occupied.json'); await mkdir(occupied); await writeFile(join(occupied, 'keep.txt'), 'keep'); await expect(service.write(occupied, bundle())).rejects.toThrow('could not be saved'); expect(await readFile(join(occupied, 'keep.txt'), 'utf8')).toBe('keep'); expect((await readdir(directory)).filter((name) => name.endsWith('.tmp'))).toEqual([]);
-    const before = await readFile(plain); await expect(service.write(plain, { ...bundle(), version: 2 } as never)).rejects.toThrow('valid Qiyao'); expect(await readFile(plain)).toEqual(before);
+    const before = await readFile(plain); await expect(service.write(plain, { ...bundle(), version: 2 } as never)).rejects.toThrow('valid Nook'); expect(await readFile(plain)).toEqual(before);
   });
   it('rejects missing, malformed, invalid UTF-8, truncated and oversized expanded or plain files without exposing paths', async () => {
     const { service, directory } = await setup(); const invalid = join(directory, 'private-path.json');

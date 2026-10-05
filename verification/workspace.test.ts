@@ -27,7 +27,7 @@ describe('workspace contracts', () => {
       { id: 'a', role: 'assistant', content: 'Done', createdAt: 2, status: 'complete', attachments: [] },
     ] }));
     expect(output).toContain('## You\n\nReview this');
-    expect(output).toContain('## Qiyao\n\nDone');
+    expect(output).toContain('## Nook\n\nDone');
     expect(output).toContain('Attachments: notes.txt');
     expect(output).not.toContain('private note');
   });

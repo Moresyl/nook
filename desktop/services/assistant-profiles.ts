@@ -40,7 +40,7 @@ export class AssistantProfiles {
   }
   async read(path: string): Promise<AssistantBundle> {
     try { return parseAssistantBundle(await this.files.read(path)); }
-    catch { throw new Error('The assistant file could not be read. Choose a complete Qiyao JSON or gzip JSON file no larger than 4 MB.'); }
+    catch { throw new Error('The assistant file could not be read. Choose a complete Nook JSON or gzip JSON file no larger than 4 MB.'); }
   }
   async write(path: string, bundle: AssistantBundle): Promise<void> {
     const parsed = parseAssistantBundle(bundle);

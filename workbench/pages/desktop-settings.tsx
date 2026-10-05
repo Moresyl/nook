@@ -20,7 +20,7 @@ export function DesktopSettings({ state, onState, report }: Props) {
   return <section className="desktop-settings" aria-label="桌面入口"><h4>桌面入口</h4>
     <Toggle label="显示系统托盘" disabled={busy} checked={settings.trayEnabled} onChange={(trayEnabled) => { void save({ ...settings, trayEnabled, closeToTray: trayEnabled && settings.closeToTray }); }} />
     <Toggle label="关闭窗口后保持运行" disabled={busy || !settings.trayEnabled} checked={settings.closeToTray} onChange={(closeToTray) => { void save({ ...settings, closeToTray }); }} />
-    <p className="field-hint">开启后，关闭窗口会先保存草稿，再收起到托盘；自动计划继续运行。选择托盘中的“退出栖曜”可停止任务并退出。</p>
+    <p className="field-hint">开启后，关闭窗口会先保存草稿，再收起到托盘；自动计划继续运行。选择托盘中的“退出 Nook”可停止任务并退出。</p>
     <Toggle label="全局快捷键唤起工作台" disabled={busy || (!settings.shortcutEnabled && !valid)} checked={settings.shortcutEnabled} onChange={(shortcutEnabled) => { void save({ ...settings, shortcutEnabled, accelerator: shortcutEnabled ? accelerator : settings.accelerator }); }} />
     <Field label="唤起快捷键" hint="例如 Ctrl+Alt+Space 或 Ctrl+Shift+F12。快捷键被其他软件占用时，原有设置会保留。"><Input disabled={busy} value={accelerator} maxLength={80} aria-invalid={!valid} onChange={(event) => setAccelerator(event.target.value)} /></Field>
     <Button disabled={busy || !valid || accelerator === settings.accelerator} onClick={() => { void save({ ...settings, accelerator }); }}>应用快捷键</Button>

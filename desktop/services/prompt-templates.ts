@@ -54,7 +54,7 @@ export class PromptTemplates {
   }
   async read(path: string): Promise<PromptBundle> {
     try { return parsePromptBundle(await this.files.read(path)); }
-    catch { throw new Error('The prompt template file could not be read. Choose a complete Qiyao JSON or gzip JSON file no larger than 4 MB.'); }
+    catch { throw new Error('The prompt template file could not be read. Choose a complete Nook JSON or gzip JSON file no larger than 4 MB.'); }
   }
   async write(path: string, bundle: PromptBundle): Promise<void> {
     const parsed = parsePromptBundle(bundle);

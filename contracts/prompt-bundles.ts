@@ -16,7 +16,7 @@ export type PromptBundle = z.infer<typeof promptBundleSchema>;
 
 export function parsePromptBundle(raw: unknown): PromptBundle {
   const result = promptBundleSchema.safeParse(raw);
-  if (!result.success) throw new Error('Choose a valid Qiyao prompt template file containing only template definitions and linked assistant profiles.');
+  if (!result.success) throw new Error('Choose a valid Nook prompt template file containing only template definitions and linked assistant profiles.');
   const bundle = result.data;
   for (const template of bundle.templates) promptParameters(template.content, template.parameters);
   const references = new Set(bundle.templates.flatMap((template) => template.assistantIndex === undefined ? [] : [template.assistantIndex]));

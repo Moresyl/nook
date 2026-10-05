@@ -11,7 +11,7 @@ export type AssistantBundle = z.infer<typeof assistantBundleSchema>;
 
 export function parseAssistantBundle(raw: unknown): AssistantBundle {
   const parsed = assistantBundleSchema.safeParse(raw);
-  if (!parsed.success) throw new Error('Choose a valid Qiyao assistant file containing only names, descriptions and instructions.');
+  if (!parsed.success) throw new Error('Choose a valid Nook assistant file containing only names, descriptions and instructions.');
   if (new TextEncoder().encode(JSON.stringify(parsed.data)).byteLength > assistantProfileLimits.bytes) throw new Error('Assistant profiles exceed the 4 MB limit. Export fewer assistants.');
   return parsed.data;
 }

@@ -47,7 +47,7 @@ export class ElectronPluginRuntime {
       if (!plugin?.enabled || (runtimeId ? runtimeId !== id : !plugin.grants.includes('panels'))) throw new Error();
       let body: string | Uint8Array<ArrayBuffer>; let type = 'text/javascript';
       if (url.pathname === '/_qiyao/runtime.html' && runtimeId) {
-        body = '<!doctype html><html><meta charset="utf-8"><title>Qiyao plugin runtime</title><script type="module" src="/_qiyao/bootstrap.js"></script></html>'; type = 'text/html';
+        body = '<!doctype html><html><meta charset="utf-8"><title>Nook plugin runtime</title><script type="module" src="/_qiyao/bootstrap.js"></script></html>'; type = 'text/html';
       } else if (url.pathname === '/_qiyao/bootstrap.js' && runtimeId) {
         body = `try { const api = window.qiyaoPlugin; ${plugin.manifest.main ? `const entry = await import(${JSON.stringify(pluginAssetUrl(id, plugin.manifest.main))}); const activate = entry.default ?? entry.activate; if(typeof activate !== 'function') throw new Error(); if(typeof entry.deactivate === 'function') api.onDeactivate(entry.deactivate); await activate(api);` : ''} api.ready(); } catch { window.qiyaoPlugin?.ready(true); }`;
       } else if (url.pathname === '/_qiyao/panel-sdk.js' && !runtimeId) body = panelSdk;
@@ -80,7 +80,7 @@ export class ElectronPluginRuntime {
 
   readonly factory: PluginProcessFactory = async (plugin, callbacks): Promise<PluginProcess> => {
     this.registerIpc();
-    const window = new BrowserWindow({ show: false, width: 320, height: 200, skipTaskbar: true, title: `Qiyao · ${plugin.manifest.name}`,
+    const window = new BrowserWindow({ show: false, width: 320, height: 200, skipTaskbar: true, title: `Nook · ${plugin.manifest.name}`,
       webPreferences: { preload: join(this.bundleDirectory, '../preload/plugin-bridge.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false, partition: `qiyao-plugin-runtime-${plugin.id}`, backgroundThrottling: false, spellcheck: false } });
     const contents = window.webContents; const contentsId = contents.id; const session = contents.session;
     try {

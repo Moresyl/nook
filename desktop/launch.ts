@@ -7,6 +7,7 @@ import { spawn as spawnPty } from 'node-pty';
 import { z } from 'zod';
 import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
+import { userDataDirectory } from './services/user-data-directory';
 import { StartupDiagnostics } from './services/startup-diagnostics';
 import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
@@ -274,7 +275,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   saveAssistant: (raw) => assistantProfiles.save(raw),
   removeAssistant: (raw) => assistantProfiles.remove(raw),
   readAssistantImport: async () => {
-    const result = await dialog.showOpenDialog(window!, { title: '导入助手配置', properties: ['openFile'], filters: [{ name: 'Qiyao 助手配置', extensions: ['json', 'gz'] }] });
+    const result = await dialog.showOpenDialog(window!, { title: '导入助手配置', properties: ['openFile'], filters: [{ name: 'Nook 助手配置', extensions: ['json', 'gz'] }] });
     if (result.canceled || !result.filePaths[0]) return null;
     return assistantProfiles.read(result.filePaths[0]);
   },
@@ -282,20 +283,20 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   savePromptTemplate: (raw) => promptTemplates.save(raw),
   removePromptTemplate: (raw) => promptTemplates.remove(raw),
   readPromptImport: async () => {
-    const result = await dialog.showOpenDialog(window!, { title: '导入提示模板', properties: ['openFile'], filters: [{ name: 'Qiyao 提示模板', extensions: ['json', 'gz'] }] });
+    const result = await dialog.showOpenDialog(window!, { title: '导入提示模板', properties: ['openFile'], filters: [{ name: 'Nook 提示模板', extensions: ['json', 'gz'] }] });
     if (result.canceled || !result.filePaths[0]) return null;
     return promptTemplates.read(result.filePaths[0]);
   },
   importPrompts: (raw) => promptTemplates.import(raw),
   exportPrompts: async (ids) => {
     const bundle = promptTemplates.bundle(ids);
-    const result = await dialog.showSaveDialog(window!, { defaultPath: 'Qiyao-prompts.json', filters: [{ name: 'Qiyao 提示模板', extensions: ['json'] }, { name: '压缩提示模板', extensions: ['gz'] }] });
+    const result = await dialog.showSaveDialog(window!, { defaultPath: 'Nook-prompts.json', filters: [{ name: 'Nook 提示模板', extensions: ['json'] }, { name: '压缩提示模板', extensions: ['gz'] }] });
     if (result.canceled || !result.filePath) return false;
     await promptTemplates.write(result.filePath, bundle); return true;
   },
   exportAssistants: async (ids) => {
     const bundle = assistantProfiles.bundle(ids);
-    const result = await dialog.showSaveDialog(window!, { defaultPath: 'Qiyao-assistants.json', filters: [{ name: 'Qiyao 助手配置', extensions: ['json'] }, { name: '压缩助手配置', extensions: ['gz'] }] });
+    const result = await dialog.showSaveDialog(window!, { defaultPath: 'Nook-assistants.json', filters: [{ name: 'Nook 助手配置', extensions: ['json'] }, { name: '压缩助手配置', extensions: ['gz'] }] });
     if (result.canceled || !result.filePath) return false;
     await assistantProfiles.write(result.filePath, bundle); return true;
   },
@@ -367,7 +368,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   },
   exportWorkspace: async () => {
     await flushWorkspaceDrafts();
-    const result = await dialog.showSaveDialog(window!, { defaultPath: `Qiyao-backup-${new Date().toISOString().slice(0, 10)}.json.gz`, filters: [{ name: 'Qiyao 压缩备份', extensions: ['gz'] }, { name: 'JSON 备份', extensions: ['json'] }] });
+    const result = await dialog.showSaveDialog(window!, { defaultPath: `Nook-backup-${new Date().toISOString().slice(0, 10)}.json.gz`, filters: [{ name: 'Nook 压缩备份', extensions: ['gz'] }, { name: 'JSON 备份', extensions: ['json'] }] });
     if (result.canceled || !result.filePath) return false;
     await backupFiles.write(result.filePath, await extensions.backup());
     return true;
@@ -375,7 +376,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   importWorkspace: async () => {
     assertWorkspaceIdle();
     await flushWorkspaceDrafts();
-    const result = await dialog.showOpenDialog(window!, { title: '恢复 Qiyao 备份', properties: ['openFile'], filters: [{ name: 'Qiyao 备份', extensions: ['json', 'gz'] }] });
+    const result = await dialog.showOpenDialog(window!, { title: '恢复 Nook 备份', properties: ['openFile'], filters: [{ name: 'Nook 备份', extensions: ['json', 'gz'] }] });
     if (result.canceled) return null;
     const rawBackup: unknown = await backupFiles.read(result.filePaths[0]);
     parsePersistentWorkspace(rawBackup);
@@ -421,7 +422,7 @@ function showWindow(): void {
 function createWindow(): void {
   closeAllowed = false;
   window = new BrowserWindow({
-    width: 1280, height: 840, minWidth: 760, minHeight: 540, title: '栖曜 Qiyao', frame: false,
+    width: 1280, height: 840, minWidth: 760, minHeight: 540, title: 'Nook', frame: false,
     icon: join(app.getAppPath(), 'identity/qiyao.ico'),
     backgroundColor: '#ffffff', show: false,
     webPreferences: { preload: join(bundleDirectory, '../preload/bridge.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false },
@@ -456,11 +457,11 @@ function createWindow(): void {
   if (developmentUrl) void window.loadURL(developmentUrl); else void window.loadURL('qiyao://app/index.html');
 }
 
-app.setName('Qiyao');
+app.setName('Nook');
 const startupDiagnostics = new StartupDiagnostics(Boolean(process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS));
 if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) Object.defineProperty(globalThis, 'qiyaoStartupDiagnostics', { value: () => startupDiagnostics.snapshot() });
 app.setAppUserModelId('app.qiyao.workspace');
-if (process.env.QIYAO_DATA_DIRECTORY) app.setPath('userData', process.env.QIYAO_DATA_DIRECTORY);
+app.setPath('userData', userDataDirectory(app.getPath('appData'), process.env.NOOK_DATA_DIRECTORY || process.env.QIYAO_DATA_DIRECTORY));
 const locked = app.requestSingleInstanceLock();
 if (!locked) app.quit();
 else {
@@ -524,7 +525,7 @@ else {
       createTray: (actions) => {
         const tray = new Tray(join(app.getAppPath(), process.platform === 'win32' ? 'identity/qiyao.ico' : 'identity/qiyao.png'));
         try {
-          tray.setToolTip('栖曜 Qiyao'); tray.setContextMenu(Menu.buildFromTemplate([{ label: '打开栖曜', click: actions.open }, { type: 'separator' }, { label: '退出栖曜', click: actions.quit }])); tray.on('click', actions.open);
+          tray.setToolTip('Nook'); tray.setContextMenu(Menu.buildFromTemplate([{ label: '打开 Nook', click: actions.open }, { type: 'separator' }, { label: '退出 Nook', click: actions.quit }])); tray.on('click', actions.open);
           return { destroy: () => tray.destroy() };
         } catch (error) { tray.destroy(); throw error; }
       },
@@ -544,7 +545,7 @@ else {
       { label: '文件', submenu: [{ label: '备份工作台…', click: () => { void Promise.resolve(commands.exportWorkspace()).catch((error) => { if (window && !window.isDestroyed()) void dialog.showMessageBox(window, { type: 'error', message: '备份未完成', detail: error instanceof Error ? error.message : 'Could not save the workspace backup.' }).catch(() => {}); }); } }, { type: 'separator' }, { role: 'quit', label: '退出' }] },
       { label: '编辑', submenu: [{ role: 'undo', label: '撤销' }, { role: 'redo', label: '重做' }, { type: 'separator' }, { role: 'cut', label: '剪切' }, { role: 'copy', label: '复制' }, { role: 'paste', label: '粘贴' }, { role: 'selectAll', label: '全选' }] },
       { label: '视图', submenu: [{ role: 'resetZoom', label: '实际大小' }, { role: 'zoomIn', label: '放大' }, { role: 'zoomOut', label: '缩小' }, { role: 'togglefullscreen', label: '全屏' }] },
-      { label: '帮助', submenu: [{ label: '关于栖曜', click: () => { void dialog.showMessageBox(window!, { message: `栖曜 Qiyao ${app.getVersion()}`, detail: '让想法有处落地。\n本地 AI 工作台。' }); } }] },
+      { label: '帮助', submenu: [{ label: '关于 Nook', click: () => { void dialog.showMessageBox(window!, { message: `Nook ${app.getVersion()}`, detail: '本地 AI 工作台。' }); } }] },
     ]));
     startupDiagnostics.phase('window.create');
     createWindow();
@@ -556,8 +557,8 @@ else {
     startupDiagnostics.phase('startup.complete');
   }).catch((error) => {
     startupDiagnostics.phase('failed');
-    if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.error('Qiyao startup diagnostics', JSON.stringify(startupDiagnostics.snapshot()));
-    else dialog.showErrorBox('Qiyao 启动失败', error instanceof Error ? error.message : 'Could not initialize the application.');
+    if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.error('Nook startup diagnostics', JSON.stringify(startupDiagnostics.snapshot()));
+    else dialog.showErrorBox('Nook 启动失败', error instanceof Error ? error.message : 'Could not initialize the application.');
     app.exit(1);
   });
   app.on('activate', () => { if (!window && engine) createWindow(); });

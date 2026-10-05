@@ -171,6 +171,6 @@ export function searchThreads(threads: Thread[], query: string): Thread[] {
 }
 
 export function threadMarkdown(thread: Thread): string {
-  const sections = thread.messages.map((message) => `## ${message.role === 'user' ? 'You' : 'Qiyao'}\n\n${message.content}${message.attachments.length ? `\n\nAttachments: ${message.attachments.map((file) => file.name).join(', ')}` : ''}`);
+  const sections = thread.messages.map((message) => `## ${message.role === 'user' ? 'You' : 'Nook'}\n\n${message.content}${message.attachments.length ? `\n\nAttachments: ${message.attachments.map((file) => file.name).join(', ')}` : ''}`);
   return `# ${thread.title}\n\n${sections.join('\n\n---\n\n')}\n`;
 }

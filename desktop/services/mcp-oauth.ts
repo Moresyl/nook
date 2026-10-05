@@ -67,7 +67,7 @@ class LoopbackAuthorization {
     this.server = createServer((request, response) => {
       response.setHeader('Cache-Control', 'no-store'); response.setHeader('Referrer-Policy', 'no-referrer');
       response.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'");
-      const finish = (status: number, message: string) => { response.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' }); response.end(`<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>栖曜登录</title><body style="font:16px system-ui;padding:48px;line-height:1.6"><h1>栖曜 Qiyao</h1><p>${message}</p></body></html>`); };
+      const finish = (status: number, message: string) => { response.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' }); response.end(`<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>Nook 登录</title><body style="font:16px system-ui;padding:48px;line-height:1.6"><h1>Nook</h1><p>${message}</p></body></html>`); };
       if (request.method !== 'GET' || (request.url?.length ?? 0) > 16_000) { finish(400, '无效的登录回调。'); return; }
       let url: URL;
       try { url = new URL(request.url ?? '/', 'http://127.0.0.1'); }
@@ -113,7 +113,7 @@ export class McpOAuthSessions {
     const persist = async () => { check(); await this.store.save(config, saved); check(); };
     const provider: OAuthClientProvider = {
       get redirectUrl() { if (!saved.redirectUrl) throw new OAuthInteractionRequired(); return saved.redirectUrl; },
-      get clientMetadata() { return { redirect_uris: saved.redirectUrl ? [saved.redirectUrl] : [], client_name: 'Qiyao', grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: credentials.clientSecret ? 'client_secret_basic' : 'none', ...(config.oauthScope ? { scope: config.oauthScope } : {}) }; },
+      get clientMetadata() { return { redirect_uris: saved.redirectUrl ? [saved.redirectUrl] : [], client_name: 'Nook', grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: credentials.clientSecret ? 'client_secret_basic' : 'none', ...(config.oauthScope ? { scope: config.oauthScope } : {}) }; },
       state: () => { if (!flow) throw new OAuthInteractionRequired(); return flow.state; },
       clientInformation: () => {
         check();
