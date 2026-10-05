@@ -1,0 +1,31 @@
+{
+  "applicationCommit": "3de4c5dc650b86fbba86bc7bedf59cfdc66604b9",
+  "applicationImplementationCommit": "bf5e594",
+  "verifiedAt": "2026-10-05T13:29:04.428Z",
+  "variant": "development executable",
+  "checks": 215,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "log": "D:/GR/pi-pc/.firecrawl/nook-shared-button-full-attempt3.log",
+  "logSha256": "fe580c1896e5a39dee68efa59b672f3e5b2f26435bcceda9ae7c04adb653bdc9",
+  "previousAttempts": [
+    {
+      "log": "D:/GR/pi-pc/.firecrawl/nook-shared-button-full.log",
+      "logSha256": "2efb4784d05e16351cdc06f83669853faf6b69e29f7b7fb9f924a438dd47d759",
+      "completedChecks": 178,
+      "failure": "Branch header check still expected the removed native title attribute. Replaced with actual visible tooltip content, accessible association and viewport assertions."
+    },
+    {
+      "log": "D:/GR/pi-pc/.firecrawl/nook-shared-button-full-final.log",
+      "logSha256": "8dade64e691771bd7713b6f67117a54a15bd1b0c8a6407708e77d15f72271cfa",
+      "completedChecks": 184,
+      "failure": "Temporary conversation check still waited for the removed native title attribute. Now waits for the exact rendered conversation title."
+    }
+  ],
+  "reviewedCaptures": [
+    { "path": "docs/images/source-settings-dark.png", "sha256": "d2bb11e7dcb2a35d253a72e2d2eb4b067195f78869e4d13ad55b253985f2615d" },
+    { "path": "docs/images/source-editor.png", "sha256": "a11b2e09c1d71a0c8cb3cdc30a03c5f685d32931d0c73a843d196e42539292fb" },
+    { "path": "docs/images/source-approval-narrow.png", "sha256": "0631a14c69825ac85dfd346e42145d6444d08567f1a273aad10f83476c1545d7" }
+  ],
+  "scope": "Complete existing desktop regression after shared button/icon tooltips. All three listed final-run captures were visually reviewed. Separate surface, branch and temporary-conversation checks passed 4/9/6 checks. This does not prove a new package, installed runtime, hosted success, physical OS dialogs or complete reference-design adoption."
+}

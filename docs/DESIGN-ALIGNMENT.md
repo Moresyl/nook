@@ -24,14 +24,16 @@
 
 | 批次 | 已完成验证 | 边界 |
 | --- | --- | --- |
-| `10d432f` 分发应用体 | 完整源码、未安装包、实际安装包各 215 项；设置 4 项、便携 7 项、法律／身份审计和十份匹配记录 | 不包含随后弹窗公式、选择器高亮、开关开启色及提示改动 |
+| `10d432f` 分发应用体 | 未安装包、实际安装包各 215 项；设置 4 项、便携 7 项、法律／身份审计和十份匹配记录 | 不包含随后弹窗公式、选择器高亮、开关开启色及提示改动 |
 | `a3518e9` 源码 | 2026-10-05 12:29 UTC 完整桌面 215 项，正常退出，无运行时错误 | 包含弹窗、菜单及开启色修正；不包含工具提示 |
 | 图标提示源码 | 类型、构建与设置专项 4 项；明暗尺寸、弹窗内显示、键盘、互斥、边缘翻转、Escape 与点击关闭 | 尚未进入上述分发包 |
-| 共享按钮提示源码 | 类型、构建与设置专项 4 项；导航／输入区、禁用按钮说明、键盘激活关闭、长标题换行与文本转义、缩放关闭和草稿保留 | 完整桌面回归正在进行；分发包仍需重新构建验证 |
+| 共享按钮提示源码 `3de4c5d` | 类型、构建、设置专项 4 项、分支专项 9 项、临时聊天专项 6 项；2026-10-05 13:29 UTC 完整桌面 215 项通过，无运行时错误并正常退出 | 最新分发包仍需重新构建验证；[完整源码记录](../verification/shared-button-full-result.json) |
 
 设置专项还检查全部七个设置分类、七组窗口／缩放组合、768px 边界、焦点与草稿保留；按钮按下和部分禁用状态使用临时状态探针。完整批次与哈希见[发布状态](RELEASE.md)，共享控件逐项证据见[控件对照](CONTROL-AUDIT.md)。
 
 本轮提示检查首次等待侧栏焦点提示超时；诊断重跑可显示，随后在删除测试聊天的异步操作完成前读取草稿而失败。检查脚本明确等待目标视口与删除对话框关闭后通过；没有放宽提示、草稿或退出断言，也不将一次通过视为所有时序问题均已排除。
+
+完整回归还发现分支和临时聊天的两处旧检查仍依赖原生 title 属性。分别改为检查实际提示及界面标题后，完整 215 项通过；前两次失败日志与最终成功日志的哈希均保留在本批记录中。
 
 ## 实际截图
 
@@ -41,6 +43,7 @@
 | 边缘避让 | [下边缘翻转](images/tooltip-edge.png)；测试临时移动关闭按钮，结束后恢复布局 |
 | 选择器与开关 | [浅色菜单](images/select-highlight-light.png)、[深色菜单](images/select-highlight-dark.png)、[浅色开启](images/switch-checked-light.png)、[深色开启](images/switch-checked-dark.png) |
 | 短窗口与错误状态 | [短宽设置](images/dialog-viewport-dark.png)、[浅色非法输入](images/field-invalid-light.png)、[深色非法输入](images/field-invalid-dark.png) |
+| 最新完整源码回归 | [设置](images/source-settings-dark.png)、[编辑器](images/source-editor.png)、[窄屏审批](images/source-approval-narrow.png)；三张均已逐张查看 |
 | 历史安装版页面 | [深色首页](images/installed-home-dark.png)、[浅色对话](images/installed-conversation.png)、[设置](images/installed-settings-dark.png)、[编辑器](images/installed-editor.png)、[窄屏终端](images/installed-terminal-narrow.png) |
 
 截图只证明对应批次和场景；历史安装截图不代表最新源码已进入安装包。原有测试批次保存在[完整设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-05.md)与 Git 历史中。
