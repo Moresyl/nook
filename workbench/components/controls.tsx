@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, useEffect, useId, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
+import { cloneElement, createElement, isValidElement, useEffect, useId, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { Glyph, type GlyphName } from './glyphs';
 
 export function Button({ tone = 'ghost', className = '', ...props }: ComponentProps<'button'> & { tone?: 'ghost' | 'solid' | 'danger' }) {
@@ -9,7 +9,7 @@ export function IconButton({ icon, label, ...props }: ButtonHTMLAttributes<HTMLB
 }
 export function Input(props: ComponentProps<'input'>) { return <input {...props} className={`input ${props.className ?? ''}`} />; }
 export function Textarea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) { return <textarea {...props} className={`input textarea ${props.className ?? ''}`} />; }
-export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) { return <select {...props} className={`input select ${props.className ?? ''}`} />; }
+export function Select({ children, ...props }: SelectHTMLAttributes<HTMLSelectElement>) { return <select {...props} className={`input select ${props.className ?? ''}`}><button type="button">{createElement('selectedcontent')}</button>{children}</select>; }
 export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   const id = useId();
   const control = isValidElement(children) ? cloneElement(children as ReactElement<{ 'aria-labelledby'?: string; 'aria-describedby'?: string }>, { 'aria-labelledby': id, 'aria-describedby': hint ? `${id}-hint` : undefined }) : children;

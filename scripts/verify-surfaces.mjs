@@ -102,6 +102,15 @@ export async function verifySurfaces({ page, application, screenshots, verified 
   await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
   assert.equal(await detail.evaluate((element) => element.scrollTop), 0, 'A new settings category starts at its heading');
   const theme = dialog.getByLabel('主题', { exact: true });
+  const selectedOption = theme.locator('option:checked');
+  const changeOptionLabel = (text) => selectedOption.evaluate((element, text) => { element.textContent = text; const select = element.closest('select'); const index = select.selectedIndex; select.selectedIndex = -1; select.selectedIndex = index; }, text);
+  const originalOptionText = await selectedOption.textContent();
+  const longOptionText = '长名称应在收起时保持单行并保留下拉箭头'.repeat(8);
+  await changeOptionLabel(longOptionText);
+  await page.waitForFunction((text) => document.querySelector('.settings-detail selectedcontent')?.textContent === text, longOptionText);
+  assert.equal(await theme.evaluate((element) => element.getBoundingClientRect().height), 22, 'Long selected content must not stretch a shared control');
+  assert.equal(await theme.locator('selectedcontent').evaluate((element) => getComputedStyle(element).textOverflow === 'ellipsis' && element.scrollWidth > element.clientWidth), true, 'Only the closed display truncates the full option label');
+  await changeOptionLabel(originalOptionText);
   assert.deepEqual(await theme.evaluate((element) => { const style = getComputedStyle(element); return { height: style.height, radius: style.borderRadius, font: style.fontSize }; }), { height: '22px', radius: '6px', font: '12px' });
   assert.equal(await theme.evaluate((element) => getComputedStyle(element).appearance), 'base-select');
   await theme.click();
