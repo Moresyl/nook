@@ -1,7 +1,7 @@
 import { mkdir, open, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
-import { emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
+import { composerStateSchema, emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
@@ -11,6 +11,10 @@ import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serializ
 import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
+export type ComposerTransaction = Pick<Workspace, 'composerDrafts' | 'activeThreadId'> & {
+  readonly threads: ReadonlyArray<Readonly<{ id: string }>>;
+  readonly assistants: ReadonlyArray<Readonly<{ id: string }>>;
+};
 
 export class WorkspaceVault {
   private state = emptyWorkspace();
@@ -110,6 +114,24 @@ export class WorkspaceVault {
     await this.save(change, undefined, options?.conversation);
   }
 
+  /** Draft-only mutations share validated histories but never expose them to the callback. */
+  async commitComposer(change: (draft: ComposerTransaction) => void): Promise<void> {
+    const operation = this.tail.then(async () => {
+      const draft: ComposerTransaction = {
+        ...structuredClone({ composerDrafts: this.state.composerDrafts, activeThreadId: this.state.activeThreadId }),
+        threads: this.state.threads.map(({ id }) => ({ id })), assistants: this.state.assistants.map(({ id }) => ({ id })),
+      };
+      change(draft);
+      const composer = composerStateSchema.parse({ composerDrafts: draft.composerDrafts, activeThreadId: draft.activeThreadId });
+      const merged = { ...this.state, ...composer };
+      // Keep the same canonical property order as full workspace validation.
+      const next = Object.fromEntries(Object.keys(workspaceSchema.shape).filter(key => Object.hasOwn(merged, key)).map(key => [key, merged[key as keyof Workspace]])) as Workspace;
+      await this.persist(next, undefined, true);
+    });
+    this.tail = operation.catch(() => {});
+    await operation;
+  }
+
   checkpointMessages(entries: { threadId: string; message: Message }[]): Promise<Workspace> {
     const captured = entries.map(({ threadId, message }) => ({ threadId, message }));
     return this.save(draft => {
@@ -127,39 +149,43 @@ export class WorkspaceVault {
       const draft = this.snapshot();
       change(draft);
       const next = workspaceSchema.parse(draft);
-      const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
-      const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
-      const previousBytes = this.persistentBytes ?? this.serialization.serialize(previous);
-      const nextBytes = this.serialization.serialize(persistent);
-      if (!previousBytes.equals(nextBytes)) {
-        let ids = checkpointIds;
-        let includeComposer = false;
-        if (conversation) {
-          const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, ...oldHeader } = previous;
-          const { threads, composerDrafts, activeThreadId, ...header } = persistent;
-          if (isDeepStrictEqual(oldHeader, header) && oldThreads.length === threads.length && threads.every((thread, index) => thread.id === oldThreads[index].id)) {
-            ids = threads.filter((thread, index) => !sameThreadEncoding(thread, oldThreads[index])).map(thread => thread.id);
-            includeComposer = !isDeepStrictEqual(oldDrafts, composerDrafts) || oldActive !== activeThreadId;
-          }
-        }
-        const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer) : undefined;
-        await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
-        if (candidate) await this.checkpoints.commit(candidate);
-        else {
-          await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
-          await this.checkpoints.reset(nextBytes);
-        }
-      } else if (!checkpointIds && !conversation && this.checkpoints.pending && isDeepStrictEqual(next, this.state)) {
-        await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(nextBytes));
-        await this.checkpoints.reset(nextBytes);
-      }
-      this.state = next;
-      this.persistentActiveThreadId = persistent.activeThreadId;
-      this.persistentBytes = nextBytes;
-      return next;
+      return this.persist(next, checkpointIds, conversation);
     });
     this.tail = operation.catch(() => {});
     return operation;
+  }
+
+  private async persist(next: Workspace, checkpointIds?: string[], conversation = false): Promise<Workspace> {
+    const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
+    const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
+    const previousBytes = this.persistentBytes ?? this.serialization.serialize(previous);
+    const nextBytes = this.serialization.serialize(persistent);
+    if (!previousBytes.equals(nextBytes)) {
+      let ids = checkpointIds;
+      let includeComposer = false;
+      if (conversation) {
+        const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, ...oldHeader } = previous;
+        const { threads, composerDrafts, activeThreadId, ...header } = persistent;
+        if (isDeepStrictEqual(oldHeader, header) && oldThreads.length === threads.length && threads.every((thread, index) => thread.id === oldThreads[index].id)) {
+          ids = threads.filter((thread, index) => !sameThreadEncoding(thread, oldThreads[index])).map(thread => thread.id);
+          includeComposer = !isDeepStrictEqual(oldDrafts, composerDrafts) || oldActive !== activeThreadId;
+        }
+      }
+      const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer) : undefined;
+      await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
+      if (candidate) await this.checkpoints.commit(candidate);
+      else {
+        await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));
+        await this.checkpoints.reset(nextBytes);
+      }
+    } else if (!checkpointIds && !conversation && this.checkpoints.pending && isDeepStrictEqual(next, this.state)) {
+      await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(nextBytes));
+      await this.checkpoints.reset(nextBytes);
+    }
+    this.state = next;
+    this.persistentActiveThreadId = persistent.activeThreadId;
+    this.persistentBytes = nextBytes;
+    return next;
   }
 
   key(providerId: string): string {

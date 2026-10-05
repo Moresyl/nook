@@ -1,0 +1,88 @@
+{
+  "baseCommit": "875b85f4948f4a4597c6e243b7e6704cdbd2669f",
+  "change": "Restrict composer transactions to detached drafts and owner IDs, sharing already validated unchanged histories. Preserve the existing queue, canonical bytes, exact previous backup, atomic writes and sync, checkpoint recovery and rollback.",
+  "unit": {
+    "files": 75,
+    "tests": 778,
+    "coverage": {
+      "statements": 97.05,
+      "branches": 94.58,
+      "functions": 97.28,
+      "lines": 99.32
+    },
+    "boundary": "Coverage excludes the renderer; four new cases cover bounded cloning, detached references, queue order, invalid state, filesystem failure, exact bytes and restart."
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "desktop": {
+    "result": "not passed",
+    "originalDeadlinesUnchanged": true,
+    "attempts": [
+      {
+        "fixture": "E:/NookVerification/Temp/qiyao-electron-VOdoyV",
+        "failure": "Startup timeout before debugger readiness; only 2 stdout bytes."
+      },
+      {
+        "fixture": "E:/NookVerification/Temp/qiyao-electron-KgamiC",
+        "failure": "Main-process diagnostic operation exceeded its original 5000 ms deadline after app ready. Did not reach backup."
+      }
+    ],
+    "boundary": "The previous full desktop run's 5000 ms backup flush failure has not been demonstrated fixed."
+  },
+  "bootstrapProbe": {
+    "entryFromSpawnMs": 18337,
+    "readyFromSpawnMs": 24727,
+    "normalExitMs": 34378,
+    "code": 0,
+    "boundary": "Minimal Electron application with no Nook workspace. A single diagnostic observation, not a production startup benchmark."
+  },
+  "workload": {
+    "source": "E:/NookVerification/ComparisonReplay-rnn6Yg",
+    "sourceSha256": "e8d93585a4d1b8d07e13b4fc25ddc27707f6f552b38cce1751bdadca10a2dadf",
+    "fullTransactionMs": {
+      "save": 5871,
+      "activate": 3612
+    },
+    "composerTransactionMs": {
+      "save": 6093,
+      "activate": 3645
+    },
+    "exactPreviousBackups": true,
+    "restartMatches": true,
+    "sourceUnchanged": true,
+    "boundary": "One sequential Node observation against full retained data. No measured end-to-end speedup; not Electron acceptance."
+  },
+  "previousHostedRun": {
+    "id": 37363855315,
+    "result": "failure",
+    "verify": "cancelled with no steps",
+    "publish": "skipped",
+    "annotation": "The job was not acquired by Runner of type hosted even after multiple attempts"
+  },
+  "logs": [
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-composer-transaction-coverage.log",
+      "sha256": "a314a5241b5ce9a50f4b665abb885e1b8b97a3759afb7c151c26ec406db39b39"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-composer-transaction-build.log",
+      "sha256": "6fa1640382d4f8f99ef96f1c524a973c17dc1a71d53caf01cea947cf4f971837"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-composer-transaction-replay.log",
+      "sha256": "6dafc90695c2670a6e2a7e4ad1958edf93dfebfb2121a1172f0fc3ea6c0139f1"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-composer-transaction-replay-inspected.log",
+      "sha256": "ddb4ca499619b26c664ece5cbd56250b6be10f8a7e0034ed2cfb3d1233a33faa"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-electron-bootstrap-probe.log",
+      "sha256": "17c2e6fdc05fb2582a3d47bff67cb6eb0256f4be056bf5b985828209d835c4a3"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-composer-workload.log",
+      "sha256": "87a8a501ef4c33ec4de985994b91ad84df393452ea09ce9e27187c98606dc47d"
+    }
+  ]
+}

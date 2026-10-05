@@ -104,14 +104,18 @@ export const composerDraftSchema = z.object({
   pluginIds: z.array(z.uuid()).max(8).default([]), updatedAt: z.number().int().nonnegative(),
   knowledgeCollectionIds: knowledgeSelectionSchema.optional(),
 }).strict();
+export const composerStateSchema = z.object({
+  composerDrafts: z.array(composerDraftSchema).max(100).default([]).refine((drafts) => new Set(drafts.map((draft) => draft.threadId ?? '')).size === drafts.length, 'Conversation drafts must have unique owners'),
+  activeThreadId: identifier.optional(),
+}).strict();
 export const workspaceSchema = z.object({
   schemaVersion: z.literal(1),
   providers: z.array(providerSchema).max(100), threads: z.array(threadSchema).max(10_000),
   projects: z.array(projectSchema).max(1000), assistants: z.array(assistantSchema).max(1000),
   notes: z.array(noteSchema).max(10_000), preferences: preferencesSchema,
   editorDrafts: z.array(editorDraftSchema).max(100).default([]),
-  composerDrafts: z.array(composerDraftSchema).max(100).default([]).refine((drafts) => new Set(drafts.map((draft) => draft.threadId ?? '')).size === drafts.length, 'Conversation drafts must have unique owners'),
-  activeThreadId: identifier.optional(),
+  composerDrafts: composerStateSchema.shape.composerDrafts,
+  activeThreadId: composerStateSchema.shape.activeThreadId,
   mcpServers: z.array(mcpServerSchema).max(100).default([]), skills: z.array(skillSchema).max(1000).default([]),
   plugins: z.array(pluginSchema).max(100).default([]),
   automations: automationsSchema,
