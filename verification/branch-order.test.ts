@@ -78,7 +78,7 @@ describe('persisted sibling branch ordering', () => {
     const { vault } = await setup(); await vault.update((state) => { state.threads.find((thread) => thread.id === 'b')!.messages = [{ id: 'question', role: 'user', content: 'QUESTION_KEEP', createdAt: 1, status: 'complete', attachments: [] }, { id: 'answer', role: 'assistant', content: 'ANSWER_KEEP', createdAt: 2, status: 'complete', attachments: [] }]; });
     let releaseCommit!: () => void; let captured!: () => void; let releaseStream!: () => void;
     const heldCommit = new Promise<void>((resolve) => { releaseCommit = resolve; }); const snapshotCaptured = new Promise<void>((resolve) => { captured = resolve; }); const heldStream = new Promise<void>((resolve) => { releaseStream = resolve; });
-    const update = vault.update.bind(vault); const spy = vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { captured(); await heldCommit; return update(change); });
+    const update = vault.commit.bind(vault); const spy = vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { captured(); await heldCommit; return update(change); });
     const gateway = { stream: vi.fn(async (_input, onText) => { onText('STREAM_BEFORE'); await heldStream; onText('STREAM_AFTER'); }) }; const engine = new ConversationEngine(vault, gateway, () => {});
     const thread = vault.snapshot().threads.find((thread) => thread.id === 'b')!;
     const pending = engine.start({ ...request, threadId: 'b', ...(action === 'retry' ? { replay: { action: 'retry' as const, messageId: 'question', revision: createHash('sha256').update(conversationHistory(thread)).digest('hex') } } : {}) });

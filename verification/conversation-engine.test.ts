@@ -41,8 +41,8 @@ describe('conversation engine', () => {
     const one = await engine.start({ ...request, projectId: 'project' }); const two = await engine.start({ ...request, providerId: 'other-provider' });
     expect(engine.active()).toBe(true); await engine.stopProject('project'); expect(engine.active(one.threadId)).toBe(false); expect(engine.active(two.threadId)).toBe(true);
     await engine.stopProvider('missing'); expect(engine.active(two.threadId)).toBe(true); await engine.stopProvider('other-provider'); expect(engine.active()).toBe(false);
-    const original = vault.update.bind(vault); let release!: () => void; const hold = new Promise<void>((resolve) => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await hold; return original(change); });
+    const original = vault.commit.bind(vault); let release!: () => void; const hold = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await hold; return original(change); });
     const starting = engine.start(request); expect(engine.active()).toBe(true); const stopping = engine.stopProvider(request.providerId); release(); await starting; await stopping; expect(engine.active()).toBe(false);
   });
   it('persists a conversation, streams text, and retains assistant and project instructions', async () => {
@@ -94,7 +94,7 @@ describe('conversation engine', () => {
   });
   it('cleans up its run reservation if the initial disk save fails', async () => {
     const { engine, vault } = await setup({ stream: vi.fn() });
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full'));
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Disk full'));
     await expect(engine.start(request)).rejects.toThrow('Disk full');
     expect(vault.snapshot().threads).toHaveLength(0);
     await engine.shutdown();
@@ -180,10 +180,10 @@ describe('conversation engine', () => {
     const gateway = { stream: vi.fn() };
     const { engine, vault } = await setup(gateway);
     await vault.update((draft) => { draft.threads.push(sampleThread()); });
-    const original = vault.update.bind(vault);
+    const original = vault.commit.bind(vault);
     let release!: () => void;
     const hold = new Promise<void>((resolve) => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await hold; return original(change); });
+    vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await hold; return original(change); });
     const starting = engine.start({ ...request, threadId: 'thread' });
     let shutDown = false;
     const shutdown = engine.shutdown().then(() => { shutDown = true; });

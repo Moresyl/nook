@@ -143,7 +143,7 @@ describe('conversation draft persistence and consumption', () => {
     const pending = draft({ text: request.text }); await drafts.save(pending); await drafts.save(draft({ threadId: 'thread' }));
     const engine = new ConversationEngine(vault, { stream: async () => {} }, vi.fn());
     await expect(engine.start({ ...request, providerId: 'missing', composerRevision: await composerRevision(pending) })).rejects.toThrow('Configure');
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(engine.start({ ...request, composerRevision: await composerRevision(pending) })).rejects.toThrow('Disk full');
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Disk full')); await expect(engine.start({ ...request, composerRevision: await composerRevision(pending) })).rejects.toThrow('Disk full');
     expect(vault.snapshot().composerDrafts).toEqual([pending, draft({ threadId: 'thread' })]);
     await drafts.save(draft({ text: 'Typed while submitting' })); await drafts.activate('thread');
     const result = await engine.start({ ...request, composerRevision: await composerRevision(pending) }); await engine.settle(result.threadId);

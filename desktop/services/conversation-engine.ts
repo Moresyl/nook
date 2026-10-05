@@ -57,8 +57,8 @@ export class ConversationEngine {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
     const prepared = this.prepareStart(raw, this.vault.snapshot());
     try {
-      const state = await this.vault.update(prepared.apply, { conversation: true });
-      this.notify({ threadId: prepared.threadId, messageId: prepared.messageId, state });
+      await this.vault.commit(prepared.apply, { conversation: true });
+      this.notify({ threadId: prepared.threadId, messageId: prepared.messageId }, true);
       prepared.launch(); return { threadId: prepared.threadId };
     } catch (error) { prepared.release(); throw error; }
   }
@@ -221,11 +221,11 @@ export class ConversationEngine {
     const prepared: ReturnType<ConversationEngine['prepareStart']>[] = [];
     try {
       for (const thread of branches) prepared.push(this.prepareStart({ threadId: thread.id, text: input.text, attachments: input.attachments, providerId: thread.providerId!, model: thread.model, assistantId: input.assistantId, projectId: input.projectId, mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [] }, initial));
-      const state = await this.vault.update((draft) => {
+      await this.vault.commit((draft) => {
         if (this.closing) throw new Error('The workspace is shutting down. Reopen it before comparing models.');
         validate(draft); draft.threads.push(...branches); for (const start of prepared) start.apply(draft);
       });
-      this.notify({ threadId: prepared[0].threadId, messageId: prepared[0].messageId, state });
+      this.notify({ threadId: prepared[0].threadId, messageId: prepared[0].messageId }, true);
       for (const start of prepared) start.launch();
       return { groupId, threadIds: branches.map((thread) => thread.id), failedThreadIds: [] };
     } catch (error) { for (const start of prepared) start.release(); throw error; }
@@ -256,13 +256,13 @@ export class ConversationEngine {
       if (knowledge && (knowledge.ids.length || knowledge.user.knowledgeSources)) {
         const sources = knowledge.user.knowledgeSources ?? await this.knowledge!.search({ collections: knowledge.ids, query: knowledge.user.content, limit: 8 }, input.signal);
         input.signal.throwIfAborted(); knowledge.user.knowledgeSources = sources; message.knowledgeSources = sources;
-        const saved = await this.vault.update((draft) => {
+        await this.vault.commit((draft) => {
           const target = draft.threads.find((item) => item.id === thread.id);
           const user = target?.messages.find((item) => item.id === knowledge.user.id);
           const assistant = target?.messages.find((item) => item.id === message.id);
           if (!user || !assistant) throw new Error('The conversation changed during knowledge retrieval. Start the question again.');
           user.knowledgeSources = structuredClone(sources); assistant.knowledgeSources = structuredClone(sources);
-        }); this.notify({ threadId: thread.id, messageId: message.id, state: saved });
+        }); this.notify({ threadId: thread.id, messageId: message.id }, true);
       }
       const exchanges: ModelExchange[] = [];
       for (let round = 0; ; round++) {

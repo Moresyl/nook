@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-05T16:54:36.254Z",
+  "change": "Conversation start, comparison start and knowledge-source persistence acknowledge durable commits without returning an unused whole-workspace clone. Notifications still snapshot authoritative current state and merge live running messages.",
+  "typecheck": "passed",
+  "build": "passed",
+  "tests": 767,
+  "testFiles": 72,
+  "coverage": { "statements": 97.03, "branches": 94.55, "functions": 97.21, "lines": 99.31, "scope": "configured core coverage; renderer excluded" },
+  "temporaryReplay": {
+    "seed": "E:/NookVerification/TemporaryReplay-xVFkoJ",
+    "checks": 6,
+    "runtimeErrors": [],
+    "submitAcknowledgementMs": 454,
+    "finalCloseMs": 458,
+    "forcedClose": false
+  },
+  "logs": [
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-final-coverage.log", "sha256": "4539b12b594ab40d0afd64ed3cec604b37905fbd1e89056234b1a7138a62214c" },
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-build.log", "sha256": "c423690213a53f890a34046cf826bbb3e1c18310aee670a8eeaddb6c26178f23" },
+    { "path": "D:/GR/pi-pc/.firecrawl/nook-engine-commit-temporary-large.log", "sha256": "d284df73cbae89f46d18ca4f6bd837f67d0de389d6334743d3916dbcb8cdffde" }
+  ],
+  "limitations": [
+    "Focused source replay is not full desktop regression or packaged/installed verification.",
+    "No claim that previous timeout or renderer crash is resolved; a single acknowledgement duration is not a benchmark.",
+    "Existing distribution artifacts do not contain this change."
+  ]
+}

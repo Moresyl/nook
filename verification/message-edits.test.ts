@@ -81,9 +81,9 @@ describe('local message edits and durable editing drafts', () => {
     const update = vault.update.bind(vault); let release!: () => void; const hold = new Promise<void>((resolve) => { release = resolve; }); vi.mocked(vault.update).mockImplementationOnce(async (change) => { await hold; return update(change); }); const pending = edits.edit(edit); active.mockReturnValue(true); release(); await expect(pending).rejects.toThrow('Stop'); expect(vault.snapshot()).toEqual(before);
   });
   it('prevents queued normal sends from overwriting changed or deleted conversation history and releases their reservation', async () => {
-    const { vault } = await setup(); const stream = vi.fn(); const engine = new ConversationEngine(vault, { stream }, vi.fn()); const update = vault.update.bind(vault);
+    const { vault } = await setup(); const stream = vi.fn(); const engine = new ConversationEngine(vault, { stream }, vi.fn()); const update = vault.commit.bind(vault);
     for (const deleted of [false, true]) {
-      let release!: () => void; const hold = new Promise<void>((resolve) => { release = resolve; }); vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await hold; return update(change); });
+      let release!: () => void; const hold = new Promise<void>((resolve) => { release = resolve; }); vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await hold; return update(change); });
       const pending = engine.start({ ...request, threadId: 'thread' }); await vi.waitFor(() => expect(engine.active()).toBe(true)); await vault.update((state) => { if (deleted) state.threads = []; else state.threads[0].messages[0].content = 'Concurrent saved edit'; }); release(); await expect(pending).rejects.toThrow('changed'); expect(engine.active()).toBe(false); expect(stream).not.toHaveBeenCalled(); vi.restoreAllMocks();
     }
   });

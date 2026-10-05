@@ -34,7 +34,7 @@ describe('atomic comparison starts', () => {
     const attachment = { id: 'shared-evidence', name: '资料.txt', content: 'EXACT_SHARED_ATTACHMENT 中文😀' };
     const source = sampleThread({ messages: [{ id: 'prior-user', role: 'user', content: 'EXACT_PRIOR_QUESTION', attachments: [attachment], status: 'complete', createdAt: 1 }, { id: 'prior-reply', role: 'assistant', content: 'EXACT_PRIOR_REPLY', attachments: [], status: 'complete', createdAt: 2 }] });
     await vault.update((state) => { state.threads = [source]; state.activeThreadId = source.id; state.composerDrafts = [{ threadId: source.id, text: 'DRAFT_KEEP', attachments: [attachment], model: 'one', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: 1 }]; });
-    const previous = await readFile(join(directory, 'workspace.json')); const before = vault.snapshot(); const update = vi.spyOn(vault, 'update');
+    const previous = await readFile(join(directory, 'workspace.json')); const before = vault.snapshot(); const update = vi.spyOn(vault, 'commit');
     const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source), attachments: [attachment], assistantId: 'general', models: [...models, { providerId: 'local', model: 'three' }, { providerId: 'local', model: 'four' }] });
     expect(observed).toHaveLength(4); expect(result.failedThreadIds).toEqual([]); expect(update).toHaveBeenCalledTimes(1);
     expect(emit.mock.calls.filter(([event]) => event.state)).toHaveLength(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
@@ -47,10 +47,10 @@ describe('atomic comparison starts', () => {
 });
 describe('comparison start shutdown', () => {
   it('releases every reserved response and preserves both exact files when shutdown wins the queued atomic group commit', async () => {
-    const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const update = vault.update.bind(vault);
+    const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const update = vault.commit.bind(vault);
     const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json'));
     let release!: () => void; let queued!: () => void; const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { queued = resolve; });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { queued(); await held; return update(change); });
+    vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { queued(); await held; return update(change); });
     const comparing = engine.compare({ ...input, models: [...models, { providerId: 'local', model: 'three' }, { providerId: 'local', model: 'four' }] }); await started;
     const closing = engine.shutdown(); release(); await expect(comparing).rejects.toThrow('shutting down'); await closing;
     expect(stream).not.toHaveBeenCalled(); expect(engine.active()).toBe(false); expect(vault.snapshot().threads).toEqual([]);
@@ -82,8 +82,8 @@ describe('independent parallel model comparisons', () => {
   it('retains an uncheckpointed partial reply in a later parallel initial-state notification', async () => {
     const callbacks = new Map<string, (text: string) => void>();
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { callbacks.set(model.model, text); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 60_000);
-    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
+    const update = vault.commit.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'commit').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
     const comparing = (async () => { const first = await engine.start({ ...request, model: 'one' }); const second = await engine.start({ ...request, model: 'two' }); return { threadIds: [first.threadId, second.threadId] }; })();
     try {
       await vi.waitFor(() => { expect(callbacks.has('one')).toBe(true); });
@@ -134,7 +134,7 @@ describe('independent parallel model comparisons', () => {
   it('keeps terminal status running until its final transaction commits and does not revive deleted messages', async () => {
     let finish!: () => void; const stream = new Promise<void>((resolve) => { finish = resolve; });
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); if (model.model === 'one') await stream; else await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 60_000);
-    const update = vault.update.bind(vault); const checkpoint = vault.checkpointMessages.bind(vault); let release!: () => void; let finalStarted!: () => void;
+    const update = vault.commit.bind(vault); const checkpoint = vault.checkpointMessages.bind(vault); let release!: () => void; let finalStarted!: () => void;
     const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { finalStarted = resolve; });
     const first = await engine.start({ ...request, model: 'one' });
     vi.spyOn(vault, 'checkpointMessages').mockImplementationOnce(async (entries) => { finalStarted(); await held; return checkpoint(entries); });
@@ -155,8 +155,8 @@ describe('independent parallel model comparisons', () => {
   });
   it('does not regress a durable partial reply when a later initial-save callback releases an older whole-state snapshot', async () => {
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
-    const update = vault.update.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
+    const update = vault.commit.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'commit').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
     const comparing = (async () => { const first = await engine.start({ ...request, model: 'one' }); const second = await engine.start({ ...request, model: 'two' }); return { threadIds: [first.threadId, second.threadId] }; })();
     await vi.waitFor(() => { expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true); });
     release(); const result = await comparing;
@@ -229,19 +229,19 @@ describe('independent parallel model comparisons', () => {
   });
   it('revalidates live context inside the FIFO write after a captured history change', async () => {
     const stream = vi.fn(); const { engine, vault } = await setup({ stream }); const source = sampleThread(); await vault.update((state) => { state.threads.push(source); });
-    const update = vault.update.bind(vault); vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await update((state) => { state.threads[0].messages.push({ id: 'later', role: 'user', content: 'Changed', attachments: [], status: 'complete', createdAt: 1 }); }); return update(change); });
+    const update = vault.commit.bind(vault); vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await update((state) => { state.threads[0].messages.push({ id: 'later', role: 'user', content: 'Changed', attachments: [], status: 'complete', createdAt: 1 }); }); return update(change); });
     await expect(engine.compare({ ...input, threadId: source.id, revision: revision(source) })).rejects.toThrow('changed'); expect(stream).not.toHaveBeenCalled(); expect(vault.snapshot().threads).toHaveLength(1);
   });
   it('keeps both workspace files and every reservation unchanged when the atomic group save fails', async () => {
     const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const before = await readFile(join(directory, 'workspace.json'));
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Fixture EIO'));
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Fixture EIO'));
     await expect(engine.compare(input)).rejects.toThrow('EIO'); expect(stream).not.toHaveBeenCalled(); expect(engine.active()).toBe(false); expect(vault.snapshot().threads).toEqual([]); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before);
   });
   it('keeps a failed atomic start outside both files, preserves an unrelated running response and retries the whole intact group', async () => {
     const stream = vi.fn(async (model: ModelInput, text: (value: string) => void) => { text(model.model); if (model.model === 'three') await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); });
     const { engine, vault, directory } = await setup({ stream }, 60_000); const existing = await engine.start({ ...request, model: 'three' });
     const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json')); const captured = vault.snapshot();
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('PRIVATE_CREDENTIAL_OR_PATH'));
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('PRIVATE_CREDENTIAL_OR_PATH'));
     await expect(engine.compare(input)).rejects.toThrow('PRIVATE_CREDENTIAL_OR_PATH'); expect(stream).toHaveBeenCalledTimes(1); expect(engine.active(existing.threadId)).toBe(true);
     expect(vault.snapshot()).toEqual(captured); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(backup);
     const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id))); expect(result.failedThreadIds).toEqual([]);
@@ -269,8 +269,8 @@ describe('independent parallel model comparisons', () => {
     await engine.shutdown(); await expect(engine.compare(input)).rejects.toThrow('shutting down'); expect(vault.snapshot().threads).toEqual([source]);
   });
   it('treats a held initial group save as active and waits for its rejection before completing shutdown', async () => {
-    const stream = vi.fn(); const { engine, vault } = await setup({ stream }); const update = vault.update.bind(vault); let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
-    vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await held; return update(change); });
+    const stream = vi.fn(); const { engine, vault } = await setup({ stream }); const update = vault.commit.bind(vault); let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
+    vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await held; return update(change); });
     const outcome = engine.compare(input).catch((failure) => failure); expect(engine.active()).toBe(true);
     let closed = false; const shutdown = engine.shutdown().then(() => { closed = true; }); await Promise.resolve(); expect(closed).toBe(false);
     release(); expect((await outcome).message).toContain('shutting down'); await shutdown; expect(closed).toBe(true); expect(engine.active()).toBe(false); expect(stream).not.toHaveBeenCalled(); expect(vault.snapshot().threads).toEqual([]);

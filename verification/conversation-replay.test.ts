@@ -48,9 +48,9 @@ describe('validated conversation replay', () => {
   });
   it('rechecks the authoritative revision after a queued write and releases a rejected branch reservation', async () => {
     for (const remove of [false, true]) {
-      const { engine, vault, stream, thread, replay } = await setup(); const original = vault.update.bind(vault); let release!: () => void;
+      const { engine, vault, stream, thread, replay } = await setup(); const original = vault.commit.bind(vault); let release!: () => void;
       const hold = new Promise<void>((resolve) => { release = resolve; });
-      vi.spyOn(vault, 'update').mockImplementationOnce(async (change) => { await hold; return original(change); });
+      vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { await hold; return original(change); });
       const pending = engine.start({ ...request, threadId: thread.id, replay }); expect(engine.active()).toBe(true);
       await vault.update((draft) => { if (remove) draft.threads = []; else draft.threads[0].messages[3].content = 'Concurrent reply change'; });
       release(); await expect(pending).rejects.toThrow('conversation changed');
@@ -59,7 +59,7 @@ describe('validated conversation replay', () => {
   });
   it('rolls back a failed initial save and refuses editing an active source conversation', async () => {
     const { engine, vault, stream, thread, replay } = await setup();
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(engine.start({ ...request, threadId: thread.id, replay })).rejects.toThrow('Disk full');
+    vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('Disk full')); await expect(engine.start({ ...request, threadId: thread.id, replay })).rejects.toThrow('Disk full');
     expect(vault.snapshot().threads).toEqual([thread]); expect(engine.active()).toBe(false); expect(stream).not.toHaveBeenCalled();
     stream.mockImplementationOnce(async (input: ModelInput, onText) => { onText('Partial'); await new Promise<void>((_resolve, reject) => { input.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true }); }); });
     await engine.start({ ...request, threadId: thread.id });
