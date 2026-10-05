@@ -3,9 +3,7 @@ import type { CSSProperties } from 'react';
 export function Emblem({ size = 28 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 40 40" fill="none" aria-hidden="true">
     <rect width="40" height="40" rx="12" fill="#3143FF" />
-    <path d="M27 24.8A10 10 0 1 1 29.8 18" stroke="white" strokeWidth="3.4" strokeLinecap="round" />
-    <path d="m22 22 8 8" stroke="white" strokeWidth="3.4" strokeLinecap="round" />
-    <path d="m29 7 1.4 4.6L35 13l-4.6 1.4L29 19l-1.4-4.6L23 13l4.6-1.4L29 7Z" fill="white" />
+    <path d="M12 28V12L28 28V12" stroke="white" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
   </svg>;
 }
 
