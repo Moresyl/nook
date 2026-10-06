@@ -306,7 +306,8 @@ async function launch() {
     await new Promise((resolve, reject) => { socket.addEventListener('open', resolve, { once: true }); socket.addEventListener('error', reject, { once: true }); });
     try {
       return await new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error('Main-process test operation timed out')), 5000);
+        const timeoutError = new Error('Main-process test operation timed out');
+        const timer = setTimeout(() => reject(timeoutError), 5000);
         socket.addEventListener('message', (event) => {
           const message = JSON.parse(event.data);
           if (message.id === 1) {

@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "40c1dbedab10ac5e892757ededdf1f5fc2be6b57",
+  "productBuild": "Includes related-file preview drafts and shared button focus; excludes subsequent unbuilt image-viewer work",
+  "status": "failed",
+  "passedGroups": 196,
+  "failure": "Main-process test operation timed out during model-comparison setup, before the first comparison group passed",
+  "deadlineMs": 5000,
+  "normalClose": { "elapsedMs": 833, "forced": false, "exitCode": 0 },
+  "fixture": "E:/NookVerification/Temp/qiyao-electron-CW1AKr",
+  "workspaceBytes": 84349038,
+  "workspaceSha256": "32b72b76be7ad6caafef7e2e37f557f356944626d193e45683c05f8c64012c6c",
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "log": "nook-preview-drafts-full-source.log",
+  "logSha256": "07d2d5135b915f9edec450bd279aacf2188ae287ca12aa0fd827b9d44407af9b",
+  "diagnosticLimits": "The timeout stack was created inside the timer and does not identify the exact caller. The harness now creates the error at invocation so a future failure retains caller context without logging expression contents or changing the deadline.",
+  "concurrentWork": "Image-viewer source edits did not replace the built application. A pnpm check / tsc --noEmit process was started late in this full run and was still live after the failure; resource contention is possible, but causation is not proven. Future compiler work should also run after native suites finish.",
+  "boundary": "Not a successful full regression, not a reproduction of the prior continuation timeout, and not evidence that image viewing was tested. Existing successful focused tests retain their original scope."
+}
