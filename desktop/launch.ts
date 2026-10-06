@@ -481,6 +481,14 @@ function createWindow(): void {
   window.on('close', (event) => {
     if (closeAllowed) return;
     event.preventDefault();
+    if (quitRequested && window?.webContents.isCrashed()) {
+      clearTimeout(closeTimer); closeToken = null;
+      void finishClose().catch(() => {
+        quitting = false; quitRequested = false;
+        if (window && !window.isDestroyed()) void dialog.showMessageBox(window, { type: 'error', message: '窗口数据未能完整保存，应用已保留。', detail: '请检查快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }).catch(() => {});
+      });
+      return;
+    }
     if (closeToken) return;
     closeToken = randomUUID(); window?.webContents.send('qiyao:before-close', closeToken);
     closeTimer = setTimeout(() => {

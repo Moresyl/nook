@@ -517,6 +517,7 @@ let memoriesResult;
 let projectPreviewResult;
 let projectTreeResult;
 let terminalLifecycleResult;
+let rendererCloseResult;
 let chatNavigationResult;
 let branchNavigationResult;
 let temporaryConversationsResult;
@@ -530,7 +531,11 @@ let promptTransferResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_QUICK_CHAT_ONLY) {
+  if (process.env.NOOK_TEST_RENDERER_CLOSE_ONLY) {
+    const { verifyRendererClose } = await import('./verify-renderer-close.mjs');
+    rendererCloseResult = await verifyRendererClose({ page, application, directory, verified, waitForBridge, modelRequests: () => calls.length });
+    assert.equal(count, 2); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.NOOK_TEST_QUICK_CHAT_ONLY) {
     const result = await verifyQuickChat({ page, application, getApplication: () => application, directory, screenshots, endpoint, calls, errors, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; quickChatResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_PDF_PREVIEW_ONLY) {
@@ -1284,6 +1289,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'terminal-lifecycle-packaged-result.json' : 'terminal-lifecycle-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...terminalLifecycleResult }, null, 2));
     console.log(`Verified ${terminalLifecycleResult.checks} terminal-lifecycle checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && rendererCloseResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'renderer-close-packaged-result.json' : 'renderer-close-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...rendererCloseResult }, null, 2));
+    console.log(`Verified ${rendererCloseResult.checks} renderer-close checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && projectTreeResult) {
     assert.deepEqual(errors, []);
