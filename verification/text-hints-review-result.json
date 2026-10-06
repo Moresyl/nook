@@ -63,6 +63,20 @@
     },
     "scope": "All eight settings categories, seven window/zoom combinations and 768px boundary; original button hover/keyboard/modal/edge/disabled/long-title hints, focus, reduced motion and retained draft assertions passed after the generic anchor and shared width change."
   },
+  "pipeline": {
+    "packagedTextHintSuiteAdded": true,
+    "hostedExecutionVerified": false,
+    "gateTests": {
+      "passed": true,
+      "files": 2,
+      "tests": 50,
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-release-gates.log",
+        "sha256": "d039683bf0f203b22f15afab93ee8be55c856c294a43c468cbf8dbd1e20e779f"
+      }
+    },
+    "scope": "Windows verification now runs the focused text-hint suite against the newly packaged executable after full desktop and settings checks. Release-policy and reset tests passed locally; this does not establish hosted or new distribution acceptance."
+  },
   "sourceArtifacts": [
     {
       "file": "workbench/components/control-tooltip.tsx",

@@ -1,0 +1,194 @@
+{
+  "productCodeChanged": false,
+  "rootCauseEstablished": false,
+  "completeInstalledAcceptance": false,
+  "probeOnly": true,
+  "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
+  "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870",
+  "budgets": {
+    "startupMs": 30000,
+    "mainOperationMs": 5000,
+    "normalCloseMs": 10000
+  },
+  "probes": 27,
+  "startupPasses": 27,
+  "validNormalCloseComparisons": 21,
+  "normalExits": 21,
+  "invalidStopSetups": 6,
+  "originalFailureWorkspaceUnchanged": true,
+  "controlledConditions": "Private byte-matching application copy per round; fresh copy of the same 84 MB retained failure workspace per probe; rotated order with three repetitions per mode. Inspector clients closed before requesting normal close; profiler started/stopped only in round one. No raw workspace, credentials, stderr or command lines in these reports. All owned processes cleaned up; diagnostic application copies and workspaces retained.",
+  "limitations": "Short startup/normal-close probes cannot reproduce all resources and restarts of the full installed suite. They do not validate UI design, prove a product fix or replace installed-runtime proof. No-Node-inspector probes still used the Chromium CDP connection and have no JS-exit hooks.",
+  "findings": "All 21 valid comparisons exited normally within the unchanged deadline. A no-Node-inspector probe still took 8591 ms; a disable-GPU probe took 8336 ms. Removing either is not an established cure. The corrected IPC-based inspector stop was positively confirmed in all three probes. The six invalid stop setups are retained and excluded from product conclusions.",
+  "rounds": [
+    {
+      "report": "verification/native-close-gpu-matrix-result.json",
+      "reportSha256": "b29ef357bf7fcb901443499466c85e3f52f9060c83d5ad44f5125165a73795ca",
+      "helper": "D:\\GR\\pi-pc\\.firecrawl\\native-exit-matrix-debugger-callback.mjs",
+      "helperSha256": "c7c7e617d533408b76388ffd6e2769c972672339c29d959b06f2dada3d7568b5",
+      "log": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-exit-matrix.log",
+      "logSha256": "c226cabd5db2f4ef7baf517d10255833dcbd23e90a45c3f8d6890756faa6cb98",
+      "profilingEnabled": true,
+      "groups": [
+        {
+          "mode": "baseline",
+          "count": 3,
+          "startupMs": [
+            3333,
+            1752,
+            1776
+          ],
+          "closeMs": [
+            999,
+            1482,
+            1214
+          ],
+          "validNormalCloseComparisons": true
+        },
+        {
+          "mode": "stopInspector",
+          "count": 3,
+          "startupMs": [
+            2122,
+            1797,
+            1893
+          ],
+          "closeMs": [
+            null,
+            null,
+            null
+          ],
+          "validNormalCloseComparisons": false,
+          "setupFailure": "Inspector-stop marker was not confirmed; callback uses a require reference outside the inspector command-line evaluation scope. These three setup attempts are invalid comparisons, not product shutdown failures."
+        },
+        {
+          "mode": "disableGpu",
+          "count": 3,
+          "startupMs": [
+            1837,
+            2895,
+            1823
+          ],
+          "closeMs": [
+            393,
+            8336,
+            370
+          ],
+          "validNormalCloseComparisons": true
+        }
+      ]
+    },
+    {
+      "report": "verification/native-close-invalid-scope-matrix-result.json",
+      "reportSha256": "2aba7f4b163a0675036a96de3381a1421392192600ec93660eede2c4564fd102",
+      "helper": "D:\\GR\\pi-pc\\.firecrawl\\native-exit-matrix-ipc-invalid-scope.mjs",
+      "helperSha256": "cab67ed4de2c786ce17f62cd6c30c3cff0071955c3ce77cdd0f90535fa249cb5",
+      "log": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-exit-matrix-ipc.log",
+      "logSha256": "1f13f7229e303449cad557df8812fb357291e81644b758c8883ed83ddc3a8526",
+      "profilingEnabled": false,
+      "groups": [
+        {
+          "mode": "baselineNoProfiler",
+          "count": 3,
+          "startupMs": [
+            4823,
+            1927,
+            1903
+          ],
+          "closeMs": [
+            3420,
+            1780,
+            2540
+          ],
+          "validNormalCloseComparisons": true
+        },
+        {
+          "mode": "stopInspectorViaIpc",
+          "count": 3,
+          "startupMs": [
+            1969,
+            1834,
+            1797
+          ],
+          "closeMs": [
+            null,
+            null,
+            null
+          ],
+          "validNormalCloseComparisons": false,
+          "setupFailure": "The test-owned IPC callback threw ReferenceError: require is not defined. It did not stop the inspector. These three setup failures are not product shutdown failures."
+        },
+        {
+          "mode": "noInspector",
+          "count": 3,
+          "startupMs": [
+            1836,
+            1777,
+            1700
+          ],
+          "closeMs": [
+            2524,
+            1595,
+            1530
+          ],
+          "validNormalCloseComparisons": true
+        }
+      ]
+    },
+    {
+      "report": "verification/native-close-inspector-matrix-result.json",
+      "reportSha256": "95ba17de9a3694e9d7ebe252b47e09c3886aa6a65bdb4bb645566b377528c747",
+      "helper": "D:\\GR\\pi-pc\\.firecrawl\\native-exit-matrix.mjs",
+      "helperSha256": "b4c3c993b3fb83b536ac42bffb275d6dbd79080b80ae8e5a1f8a6481ed9dee10",
+      "log": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-exit-matrix-ipc-corrected.log",
+      "logSha256": "e34f53d79e81f9139278a580de105437579db795d84fec861869696500ee15d4",
+      "profilingEnabled": false,
+      "groups": [
+        {
+          "mode": "baselineNoProfiler",
+          "count": 3,
+          "startupMs": [
+            3907,
+            2254,
+            1937
+          ],
+          "closeMs": [
+            8461,
+            2190,
+            2832
+          ],
+          "validNormalCloseComparisons": true
+        },
+        {
+          "mode": "stopInspectorViaIpc",
+          "count": 3,
+          "startupMs": [
+            2047,
+            2179,
+            1749
+          ],
+          "closeMs": [
+            2632,
+            2676,
+            3679
+          ],
+          "validNormalCloseComparisons": true
+        },
+        {
+          "mode": "noInspector",
+          "count": 3,
+          "startupMs": [
+            1916,
+            1981,
+            1955
+          ],
+          "closeMs": [
+            2353,
+            8591,
+            2039
+          ],
+          "validNormalCloseComparisons": true
+        }
+      ]
+    }
+  ]
+}

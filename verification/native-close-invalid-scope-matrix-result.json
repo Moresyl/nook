@@ -1,0 +1,1015 @@
+{
+  "probeOnly": true,
+  "rootCauseEstablished": false,
+  "profilingEnabled": false,
+  "body": {
+    "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
+    "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870"
+  },
+  "seedSha256": "87073df1d748cb0028ca234cd5b2e80c83623a01046a2eb09981474a79a00c4b",
+  "budgets": {
+    "startupMs": 30000,
+    "mainOperationMs": 5000,
+    "normalCloseMs": 10000
+  },
+  "rows": [
+    {
+      "mode": "baselineNoProfiler",
+      "index": 1,
+      "pid": 73268,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\1-baselineNoProfiler",
+      "startedAt": 1791278337744,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [
+        {
+          "event": "before-quit",
+          "at": 1791278342673
+        },
+        {
+          "event": "will-quit",
+          "at": 1791278342677
+        },
+        {
+          "event": "process-exit",
+          "at": 1791278342678
+        },
+        {
+          "event": "quit",
+          "at": 1791278342678
+        }
+      ],
+      "startupMs": 4823,
+      "metrics": [
+        {
+          "pid": 73268,
+          "type": "Browser"
+        },
+        {
+          "pid": 128496,
+          "type": "Utility"
+        },
+        {
+          "pid": 126036,
+          "type": "Tab"
+        }
+      ],
+      "closeRequestedAt": 1791278342595,
+      "nativeObservations": [
+        {
+          "observedAt": 1791278344821,
+          "processes": [
+            {
+              "pid": 73268,
+              "cpuMilliseconds": 1703.125,
+              "workingSetBytes": 156454912,
+              "threads": [
+                {
+                  "id": 95556,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 132084,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 40860,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 18912,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 131216,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 80748,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 79444,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 56936,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 129856,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 55712,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 126388,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 125524,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 102884,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 115776,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 85192,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 117576,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 129952,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 113684,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 107960,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 102360,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 110316,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 122812,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 13520,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 103744,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 120884,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 122268,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 128152,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 116272,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 111120,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 126952,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 120324,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 130340,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 131660,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 76616,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 109172,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 132612,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 107920,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 3704,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 73812,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 86656,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                }
+              ]
+            },
+            {
+              "pid": 128496,
+              "exited": true
+            },
+            {
+              "pid": 126036,
+              "exited": true
+            }
+          ]
+        }
+      ],
+      "closeMs": 3420,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "stopInspectorViaIpc",
+      "index": 2,
+      "pid": 132112,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\2-stopInspectorViaIpc",
+      "startedAt": 1791278347493,
+      "startupPassed": true,
+      "normalExitPassed": false,
+      "events": [],
+      "startupMs": 1969,
+      "metrics": [
+        {
+          "pid": 132112,
+          "type": "Browser"
+        },
+        {
+          "pid": 129028,
+          "type": "GPU"
+        },
+        {
+          "pid": 98332,
+          "type": "Utility"
+        },
+        {
+          "pid": 78668,
+          "type": "Tab"
+        }
+      ],
+      "failure": "page.evaluate: Error: Error invoking remote method 'qiyao:invoke': ReferenceError: require is not defined",
+      "elapsedMs": 2047,
+      "forcedCleanup": true,
+      "exitCode": null,
+      "signalCode": "SIGTERM",
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "noInspector",
+      "index": 3,
+      "pid": 52364,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\3-noInspector",
+      "startedAt": 1791278350391,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [],
+      "startupMs": 1836,
+      "metrics": [
+        {
+          "pid": 52364,
+          "type": "Browser"
+        }
+      ],
+      "closeRequestedAt": 1791278352227,
+      "nativeObservations": [
+        {
+          "observedAt": 1791278354427,
+          "processes": [
+            {
+              "pid": 52364,
+              "cpuMilliseconds": 1828.125,
+              "workingSetBytes": 159707136,
+              "threads": [
+                {
+                  "id": 92996,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 117784,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 130536,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 102808,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 115108,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 90628,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 123592,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 123336,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 97692,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 130980,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 87320,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 99836,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 39952,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 121588,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 119536,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 126480,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 126896,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 86376,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 72276,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 93240,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 104016,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 97916,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 123092,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 107736,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 17292,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 125020,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 76352,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 100444,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 59764,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 117412,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 94360,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 65928,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 116188,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 116912,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 87888,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 115632,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 132972,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 84808,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 124964,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 96172,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "closeMs": 2524,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "stopInspectorViaIpc",
+      "index": 4,
+      "pid": 102264,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\4-stopInspectorViaIpc",
+      "startedAt": 1791278355320,
+      "startupPassed": true,
+      "normalExitPassed": false,
+      "events": [],
+      "startupMs": 1834,
+      "metrics": [
+        {
+          "pid": 102264,
+          "type": "Browser"
+        },
+        {
+          "pid": 78048,
+          "type": "GPU"
+        },
+        {
+          "pid": 107416,
+          "type": "Utility"
+        },
+        {
+          "pid": 95212,
+          "type": "Tab"
+        }
+      ],
+      "failure": "page.evaluate: Error: Error invoking remote method 'qiyao:invoke': ReferenceError: require is not defined",
+      "elapsedMs": 1893,
+      "forcedCleanup": true,
+      "exitCode": null,
+      "signalCode": "SIGTERM",
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "noInspector",
+      "index": 5,
+      "pid": 132316,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\5-noInspector",
+      "startedAt": 1791278358725,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [],
+      "startupMs": 1777,
+      "metrics": [
+        {
+          "pid": 132316,
+          "type": "Browser"
+        }
+      ],
+      "closeRequestedAt": 1791278360502,
+      "closeMs": 1595,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "baselineNoProfiler",
+      "index": 6,
+      "pid": 42212,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\6-baselineNoProfiler",
+      "startedAt": 1791278368626,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [
+        {
+          "event": "before-quit",
+          "at": 1791278370604
+        },
+        {
+          "event": "will-quit",
+          "at": 1791278370607
+        },
+        {
+          "event": "process-exit",
+          "at": 1791278370608
+        },
+        {
+          "event": "quit",
+          "at": 1791278370608
+        }
+      ],
+      "startupMs": 1927,
+      "metrics": [
+        {
+          "pid": 42212,
+          "type": "Browser"
+        },
+        {
+          "pid": 110944,
+          "type": "GPU"
+        },
+        {
+          "pid": 13660,
+          "type": "Utility"
+        },
+        {
+          "pid": 101028,
+          "type": "Tab"
+        }
+      ],
+      "closeRequestedAt": 1791278370557,
+      "closeMs": 1780,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "noInspector",
+      "index": 7,
+      "pid": 122720,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\7-noInspector",
+      "startedAt": 1791278372765,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [],
+      "startupMs": 1700,
+      "metrics": [
+        {
+          "pid": 122720,
+          "type": "Browser"
+        }
+      ],
+      "closeRequestedAt": 1791278374465,
+      "closeMs": 1530,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "baselineNoProfiler",
+      "index": 8,
+      "pid": 132884,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\8-baselineNoProfiler",
+      "startedAt": 1791278376438,
+      "startupPassed": true,
+      "normalExitPassed": true,
+      "events": [
+        {
+          "event": "before-quit",
+          "at": 1791278378392
+        },
+        {
+          "event": "will-quit",
+          "at": 1791278378396
+        },
+        {
+          "event": "process-exit",
+          "at": 1791278378396
+        },
+        {
+          "event": "quit",
+          "at": 1791278378396
+        }
+      ],
+      "startupMs": 1903,
+      "metrics": [
+        {
+          "pid": 132884,
+          "type": "Browser"
+        },
+        {
+          "pid": 38116,
+          "type": "GPU"
+        },
+        {
+          "pid": 119560,
+          "type": "Utility"
+        },
+        {
+          "pid": 94708,
+          "type": "Tab"
+        }
+      ],
+      "closeRequestedAt": 1791278378345,
+      "nativeObservations": [
+        {
+          "observedAt": 1791278380553,
+          "processes": [
+            {
+              "pid": 132884,
+              "cpuMilliseconds": 1593.75,
+              "workingSetBytes": 160796672,
+              "threads": [
+                {
+                  "id": 115548,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 108936,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 60188,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 72836,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 83524,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 92460,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 50992,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 117836,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 132756,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 103944,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 115128,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 95304,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 88984,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 120300,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 76836,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 120600,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 55008,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 78140,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 130104,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 129280,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 108692,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 101308,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 87460,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 84656,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 75052,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 84728,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 7968,
+                  "state": "Wait",
+                  "reason": "EventPairLow"
+                },
+                {
+                  "id": 123788,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 113200,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 120976,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 123536,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 128420,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 40764,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 99388,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 121100,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 132724,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 58644,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 44496,
+                  "state": "Wait",
+                  "reason": "Unknown"
+                },
+                {
+                  "id": 108356,
+                  "state": "Wait",
+                  "reason": "Executive"
+                },
+                {
+                  "id": 34188,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 115580,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                },
+                {
+                  "id": 76816,
+                  "state": "Wait",
+                  "reason": "UserRequest"
+                }
+              ]
+            },
+            {
+              "pid": 38116,
+              "exited": true
+            },
+            {
+              "pid": 119560,
+              "exited": true
+            },
+            {
+              "pid": 94708,
+              "exited": true
+            }
+          ]
+        }
+      ],
+      "closeMs": 2540,
+      "forcedCleanup": false,
+      "exitCode": 0,
+      "signalCode": null,
+      "originalWorkspaceUnchanged": true
+    },
+    {
+      "mode": "stopInspectorViaIpc",
+      "index": 9,
+      "pid": 130784,
+      "data": "E:\\NookVerification\\Temp\\nook-exit-matrix-v8bcYx\\9-stopInspectorViaIpc",
+      "startedAt": 1791278381333,
+      "startupPassed": true,
+      "normalExitPassed": false,
+      "events": [],
+      "startupMs": 1797,
+      "metrics": [
+        {
+          "pid": 130784,
+          "type": "Browser"
+        },
+        {
+          "pid": 121500,
+          "type": "GPU"
+        },
+        {
+          "pid": 92884,
+          "type": "Utility"
+        },
+        {
+          "pid": 131436,
+          "type": "Tab"
+        }
+      ],
+      "failure": "page.evaluate: Error: Error invoking remote method 'qiyao:invoke': ReferenceError: require is not defined",
+      "elapsedMs": 1850,
+      "forcedCleanup": true,
+      "exitCode": null,
+      "signalCode": "SIGTERM",
+      "originalWorkspaceUnchanged": true
+    }
+  ]
+}

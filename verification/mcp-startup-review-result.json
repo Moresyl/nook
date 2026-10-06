@@ -1,0 +1,149 @@
+{
+  "productCodeChanged": false,
+  "rootCauseEstablished": false,
+  "defaultFullSourceFailureResolved": false,
+  "budgetsMilliseconds": {
+    "mcpConnection": 5000,
+    "nativeClose": 10000
+  },
+  "retainedDefaultFullFailure": {
+    "passed": false,
+    "executorExitCode": 1,
+    "checksPassedBeforeFailure": 214,
+    "connectionMilliseconds": 5013,
+    "connection": {
+      "startedAt": 1791282338211,
+      "completedAt": 1791282343224,
+      "status": "error",
+      "error": "Could not connect. Check the program, endpoint and credentials, then retry.",
+      "resourceSubscriptionsSupported": false
+    },
+    "child": {
+      "requestedAt": 1791282338219,
+      "pid": 123500,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "spawnedAt": 1791282338438
+    },
+    "workspace": "E:/NookVerification/Temp/qiyao-electron-6b8uvC",
+    "previouslyVerifiedWorkspaceSha256": "e2474d9bd76adaca9786b6610dd6201193a6a92d7dfd6ee9500b88fd43e573c7",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-source-strict-retry.log",
+      "sha256": "35c878784a51b5cc081be90e087b44c37fe1d5b801013d4efda29e0b081d811e"
+    },
+    "screenshot": {
+      "path": "D:/GR/pi-pc/.firecrawl/source-mcp-214-strict-failure.png",
+      "sha256": "e28eadbf860bc9e541e2e79aae699ad7d8145ca935d397eb506ec7baee8fbd32"
+    },
+    "scope": "Second retained complete source failure; the child emitted neither stdout nor stderr within the original connection budget. No child-entry phase was measured, so its cause is not established."
+  },
+  "observedFocusedReplay": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 6,
+    "report": "verification/source-mcp-startup-observed-result.json",
+    "connectionMilliseconds": 1483,
+    "child": {
+      "requestedAt": 1791283188543,
+      "pid": 125700,
+      "stdoutBytes": 928,
+      "stderrBytes": 128,
+      "stdinBytes": 436,
+      "stdinWrites": 6,
+      "piped": {
+        "stdin": true,
+        "stdout": true,
+        "stderr": true
+      },
+      "startup": [
+        {
+          "phase": "node-entry",
+          "at": 1791283188625,
+          "observedAt": 1791283188639
+        },
+        {
+          "phase": "stdin-listener-ready",
+          "at": 1791283189915,
+          "observedAt": 1791283189928
+        }
+      ],
+      "spawnedAt": 1791283188587,
+      "firstStdinWriteAt": 1791283188587,
+      "lastStdinWriteAt": 1791283189980,
+      "stdinBackpressure": false,
+      "firstStderrAt": 1791283188639,
+      "lastStderrAt": 1791283189928,
+      "firstStdoutAt": 1791283189936,
+      "lastStdoutAt": 1791283189981
+    },
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-source-mcp-startup-observed-focus.log",
+      "sha256": "d59701ba5abf33d56a1effdc0a644499dbc86df28e98f03699d6920a1ade39a3"
+    }
+  },
+  "observedFullSource": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 235,
+    "runtimeErrors": [],
+    "report": "verification/originals-source-mcp-observed-desktop-result.json",
+    "normalExits": 35,
+    "maxCloseMilliseconds": 7341,
+    "finalCloseMilliseconds": 1123,
+    "connectionMilliseconds": 3292,
+    "childEntryToListenerMilliseconds": 3174,
+    "child": {
+      "requestedAt": 1791284383843,
+      "pid": 114632,
+      "stdoutBytes": 928,
+      "stderrBytes": 128,
+      "stdinBytes": 436,
+      "stdinWrites": 6,
+      "piped": {
+        "stdin": true,
+        "stdout": true,
+        "stderr": true
+      },
+      "startup": [
+        {
+          "phase": "node-entry",
+          "at": 1791284383921,
+          "observedAt": 1791284383922
+        },
+        {
+          "phase": "stdin-listener-ready",
+          "at": 1791284387095,
+          "observedAt": 1791284387096
+        }
+      ],
+      "spawnedAt": 1791284383892,
+      "firstStdinWriteAt": 1791284383892,
+      "lastStdinWriteAt": 1791284387118,
+      "stdinBackpressure": false,
+      "firstStderrAt": 1791284383922,
+      "lastStderrAt": 1791284387096,
+      "firstStdoutAt": 1791284387107,
+      "lastStdoutAt": 1791284387118
+    },
+    "connection": {
+      "startedAt": 1791284383835,
+      "completedAt": 1791284387127,
+      "status": "connected",
+      "resourceSubscriptionsSupported": true
+    },
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-source-mcp-startup-observed-full.log",
+      "sha256": "52389227c04c37fe981343fe77c1a36f4ff6c7c0d239944872065884c43620b6"
+    }
+  },
+  "observer": {
+    "enabledOnlyBy": "QIYAO_TEST_MCP_STARTUP_DIAGNOSTICS",
+    "childArguments": "Additional --import bootstrap before the actual SDK fixture",
+    "file": {
+      "path": "E:/NookWorktrees/document-originals/verification/mcp-startup-observer.mjs",
+      "sha256": "e1777d48d265e2ddc17ee16f42d12bc21ff3163b0d06f5b17703742053881ef3"
+    },
+    "scope": "Only bounded whitelisted phase timestamps, byte counts and pipe/backpressure metadata are logged. No stdin or arbitrary stderr contents are exposed. The preload touches standard streams earlier, so an observed pass cannot establish default startup success or a production fix."
+  },
+  "remaining": "Default complete source failure and native-delay cause remain unproved. Broader product/UI, native system interaction and hosted CI acceptance remain open; no release published."
+}

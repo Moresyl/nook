@@ -21,7 +21,7 @@
   "unresolvedDistribution": [],
   "oldProductIdentityMatches": [],
   "pdfVisualReview": {
-    "scope": "Five individually inspected actual uninstalled-package captures, light 1280x840 and dark 760x540. Exact copied bytes also match the earlier source-run captures. Title, search, outline, literal note and footer are visible; not complete design or accessibility acceptance.",
+    "scope": "Five individually inspected actual uninstalled-package captures, light 1280x840 and dark 760x540. All five hashes from the new complete installed run also matched these preserved bytes before the subsequent source retry. See native-installed-retry-review-result.json for provenance; later live screenshot-directory contents can differ. Title, search, outline, literal note and footer are visible; not complete design or accessibility acceptance.",
     "captures": [
       { "file": "docs/images/candidate-pdf-original-light.png", "sha256": "6639dd6114cd7afb8108823d1bca9ec8a2d7928703b6f4d144e53d2c5bab7381" },
       { "file": "docs/images/candidate-pdf-original-dark-minimum.png", "sha256": "9325425aeb0b8d363121cce14063d36bd6e378d5711a4bd7658b3b547afaddb4" },
@@ -31,9 +31,9 @@
     ]
   },
   "hostedVerification": {
-    "commit": "428858f3f310f3f799519171827d10abb3a33539",
-    "run": 37440225156,
-    "verifyCheckRun": 112191879411,
+    "commit": "5d42fc5",
+    "run": 37440543158,
+    "verifyCheckRun": 112192955696,
     "conclusion": "failure",
     "publishConclusion": "skipped",
     "jobDidNotStart": true,
@@ -47,6 +47,12 @@
   "portable": { "passed": true, "checks": 7, "runtimeErrors": [], "normalCloseMilliseconds": [789, 2103], "unpackedFilesVerified": 188, "longPathCleanupVerified": true, "report": "verification/portable-result.json", "audit": "verification/portable-package-audit-result.json", "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-portable.log", "logSha256": "5b513a5fb8050456756c3c49655d750e342b9edbe17ed06a95d889236843b89e", "scope": "Actual current portable wrapper, two cold extractions/restarts, exact application and all unpacked-file hashes, real native PTY, Unicode/space paths, normal wrapper exits and extraction cleanup; existing registration/shortcuts unchanged." },
   "installedFirstRun": { "passed": false, "checksPassedBeforeFailure": 192, "packageAuditPassed": true, "shortcutAuditPassed": true, "forcedClose": true, "normalCloseVerified": false, "closeMilliseconds": 10705, "closeBudgetMilliseconds": 10000, "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-installed.log", "logSha256": "cfd776730dbc3e357ce4c33457da346e10253d7cdc91d9c390b20c94513eb922", "workspace": "E:/NookVerification/Temp/qiyao-electron-3al8z5", "workspaceBytes": 84272014, "workspaceSha256": "87073df1d748cb0028ca234cd5b2e80c83623a01046a2eb09981474a79a00c4b", "installerFixture": "E:/NookVerification/NookInstallerAudit-a0a4a8a041074544b2da47ace37fceef", "retainedSentinelNonce": "638654e7df82483f8ea5e31e94edeb7f", "scope": "Actual installed package and shortcut audits passed. Complete desktop regression failed during chat-navigation restart because native exit was not observed within the existing deadline, despite JavaScript quit callbacks. Installer finally ran without a cleanup exception; failed installation fixture and four fresh sentinel files remain. No complete matching installed-runtime proof was produced." },
   "installedPdfCaptures": { "checksPassed": 6, "capturesMatchPreservedBytes": true, "captureCount": 5, "scope": "The six PDF reading groups passed before the actual installed full run later failed at group 192. All five installed captures exactly match the preserved candidate images and hashes listed above. This does not constitute complete installed acceptance." },
-  "nativeCloseInvestigation": { "report": "verification/native-close-review-result.json", "observedReplayPassed": true, "checks": 5, "normalCloseMilliseconds": [3491, 819, 1244], "originalFailureWorkspaceUnchanged": true, "rootCauseEstablished": false, "scope": "A copied retained installed-failure workspace passed focused chat navigation and native-close observation on the same uninstalled body. The original full failure remains; matching runtime proof still rejects incomplete installed acceptance." },
-  "remaining": "Resolve repeated native-close failure, complete actual installed lifecycle and matching-runtime verification, and investigate the retained source MCP failure. Broader product/UI requirements and hosted pipeline acceptance remain open."
+  "installedRetry": { "passed": true, "checks": 235, "runtimeErrors": [], "normalExits": 35, "allNativeCodesZeroWithoutSignals": true, "maxCloseMilliseconds": 2809, "finalCloseMilliseconds": 725, "uninstallAndRetentionPassed": true, "report": "verification/native-installed-retry-review-result.json", "desktopReport": "verification/originals-installed-desktop-result.json", "lifecycleReport": "verification/pipeline-installer-result.json", "nativeWizardAcceptance": false },
+  "matchingRuntimeProof": { "passed": true, "matchingRecords": 11, "checks": 235, "scope": "All eleven current-body records, including actual silent installation, uninstall and portable lifecycle, match audited hashes. No old-body record substitutes for new evidence." },
+  "nativeCloseInvestigation": { "report": "verification/native-close-review-result.json", "observedReplayPassed": true, "checks": 5, "normalCloseMilliseconds": [3491, 819, 1244], "originalFailureWorkspaceUnchanged": true, "rootCauseEstablished": false, "scope": "Original full failures remain. Fresh complete silent installed acceptance and runtime proof now pass; 27 startup/21 valid native-close isolation probes do not establish why earlier exits exceeded the budget." },
+  "fullUnitRetry": { "passed": true, "files": 94, "tests": 908, "workers": 1, "report": "verification/native-installed-retry-review-result.json", "preparationBarrierCommit": "76be798", "coverageThresholdsUnchanged": 80, "wholeTestBudgetMilliseconds": 5000 },
+  "latestFullUnitParallel": { "passed": true, "files": 94, "tests": 909, "workers": 2, "report": "verification/command-directory-review-result.json", "commit": "bb7c4ff", "wholeTestBudgetMilliseconds": 5000, "globalCoverageThresholdPercent": 80 },
+  "subsequentSourceUiChange": { "commit": "af9efbb", "report": "verification/text-hints-review-result.json", "includedInThisCandidate": false, "scope": "Source text hints and shared 300px bound are built and locally verified separately. This unchanged 77fe114 candidate and its existing runtime hashes do not validate the subsequent UI change as a distribution." },
+  "sourceMcpStartupInvestigation": { "report": "verification/mcp-startup-review-result.json", "defaultFullRunPassed": false, "defaultChecksBeforeFailure": 214, "observedFullRunPassed": true, "observedFullChecks": 235, "extraChildPreloadEnabled": true, "rootCauseEstablished": false },
+  "remaining": "Investigate retained native-delay root cause and repeated complete-source MCP startup failure. Broader product/UI, native wizard and hosted pipeline acceptance remain open."
 }

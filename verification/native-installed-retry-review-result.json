@@ -1,0 +1,175 @@
+{
+  "productCodeChanged": false,
+  "rootCauseEstablished": false,
+  "completeSilentInstalledAcceptancePassed": true,
+  "nativeWizardAcceptance": false,
+  "verifiedAt": "2026-10-06T09:42:43.3021800Z",
+  "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
+  "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870",
+  "installerSha256": "91bfd546a9ab6289ead876991b873d824d8a2f56baa47238708aedf5c6aee0ed",
+  "installed": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 235,
+    "runtimeErrors": [],
+    "report": "verification/originals-installed-desktop-result.json",
+    "lifecycle": "verification/pipeline-installer-result.json",
+    "packageAudit": "verification/installed-package-audit-result.json",
+    "shortcutAudit": "verification/installed-shortcuts-result.json",
+    "normalExits": 35,
+    "allNativeCodesZeroWithoutSignals": true,
+    "minCloseMs": 175,
+    "maxCloseMs": 2809,
+    "finalCloseMs": 725,
+    "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-originals-gzip-installed-strict-retry.log",
+    "sha256": "5f7db35cff8a6c83127602c5eb52e0a0fbcc43284b502bfdccd57f8b96ccc644"
+  },
+  "runtimeProof": {
+    "passed": true,
+    "matchingRecords": 11,
+    "checks": 235,
+    "scope": "Matched the current uninstalled audit, actual installed full regression, packaged settings, preview/branch/temporary/comparison records, portable runtime and exact distribution/installer hashes. This does not replace hosted CI, native wizard or complete product/UI acceptance."
+  },
+  "pdfScreenshots": {
+    "actualInstalledMatchingPreservedBytes": true,
+    "installedHashesObservedBeforeSourceRetry": true,
+    "count": 5,
+    "screenshots": [
+      {
+        "name": "pdf-original-light.png",
+        "preserved": "docs/images/candidate-pdf-original-light.png",
+        "sha256": "6639dd6114cd7afb8108823d1bca9ec8a2d7928703b6f4d144e53d2c5bab7381"
+      },
+      {
+        "name": "pdf-original-dark-minimum.png",
+        "preserved": "docs/images/candidate-pdf-original-dark-minimum.png",
+        "sha256": "9325425aeb0b8d363121cce14063d36bd6e378d5711a4bd7658b3b547afaddb4"
+      },
+      {
+        "name": "pdf-outline-light.png",
+        "preserved": "docs/images/candidate-pdf-outline-light.png",
+        "sha256": "5f9bd4f4c1b558418ec82ae7a32f28c057f3ac799dbc63232856f40e556c9ecb"
+      },
+      {
+        "name": "pdf-search-light.png",
+        "preserved": "docs/images/candidate-pdf-search-light.png",
+        "sha256": "803e9752dc74bd21917fe57912135a01cb600eff3428028f37f985fd76c3a016"
+      },
+      {
+        "name": "pdf-note-light.png",
+        "preserved": "docs/images/candidate-pdf-note-light.png",
+        "sha256": "3b5c8960b3ea1daa0df656e6b6f73678cfe569f0130e1cdb3c9a4d35144db437"
+      }
+    ],
+    "scope": "The five installed screenshot hashes were individually compared before starting the source retry. The screenshot directory can subsequently be overwritten by another run; preserved candidate images retain the same verified bytes."
+  },
+  "unitFirstRun": {
+    "passed": false,
+    "files": 94,
+    "failedFiles": 2,
+    "tests": 908,
+    "passedTests": 905,
+    "failedTests": 3,
+    "executorExitCode": 1,
+    "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-full-coverage.log",
+    "sha256": "f5d087fbb46ed7dff08bc6e3bcff7e1435d5ae680054a763d5171df86c8075f9",
+    "failures": [
+      "Automatic-task capacity case exceeded its 5000 ms whole-test budget",
+      "Automatic-task deadline preparation did not observe the saved thread ID during the implicit short poll",
+      "Parallel-reply preparation did not observe the first durable partial during the implicit short poll"
+    ]
+  },
+  "unitPreparationChanges": {
+    "files": [
+      "verification/automations.test.ts",
+      "verification/model-comparisons.test.ts"
+    ],
+    "commit": "76be798",
+    "wholeTestBudgetMs": 5000,
+    "coverageThresholdsUnchanged": 80,
+    "details": "Use emitted durable-message and saved-thread events as preparation barriers, then retain all state assertions. Capacity runner holds on cancellation without unrelated thread-persistence calls. No production code, fsync, native close budget or coverage gate weakened."
+  },
+  "unitFocused": {
+    "passed": true,
+    "files": 2,
+    "tests": 50,
+    "temporaryDirectory": "E:/NookVerification/Temp",
+    "executorExitCode": 0,
+    "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-unit-barriers-focused.log",
+    "sha256": "6c3724ce297224d323f0e09d5dc2828ded3af5aa14b0258e12ef9d457f1ab5b9"
+  },
+  "unitFull": {
+    "passed": true,
+    "files": 94,
+    "tests": 908,
+    "workers": 1,
+    "temporaryDirectory": "E:/NookVerification/Temp",
+    "executorExitCode": 0,
+    "coverageScope": "Configured contracts and desktop services; excludes renderer/UI and the separate script-helper coverage",
+    "coverage": {
+      "lines": {
+        "total": 3508,
+        "covered": 3486,
+        "skipped": 0,
+        "pct": 99.37
+      },
+      "statements": {
+        "total": 5837,
+        "covered": 5671,
+        "skipped": 0,
+        "pct": 97.15
+      },
+      "functions": {
+        "total": 1312,
+        "covered": 1277,
+        "skipped": 0,
+        "pct": 97.33
+      },
+      "branches": {
+        "total": 4063,
+        "covered": 3847,
+        "skipped": 0,
+        "pct": 94.68
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageFile": "E:/NookVerification/NativeCloseBarrierFullCoverage-20261006/coverage-summary.json",
+    "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-barrier-full-coverage.log",
+    "sha256": "5a6cf649c2b50e0db1588091215775eb1e50c013c2a17563b3909a9ebab2e67e"
+  },
+  "typecheck": {
+    "passed": true,
+    "executorExitCode": 0,
+    "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-unit-barriers-types.log",
+    "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+  },
+  "preliminaryComparisons": {
+    "firstDefaultTempPair": {
+      "passedTests": 50,
+      "durationSeconds": 2.22,
+      "temporaryDirectory": "Default system temporary directory; unlike the subsequent E-drive pair, so it is not a controlled attribution to coverage",
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-unit-failure-focused.log",
+      "sha256": "72c6368f071d89a5c1584c553bc28d3ceb61c43682123b8fe6c6da3ebd3ec57d"
+    },
+    "eDrivePair": {
+      "passedTests": 50,
+      "durationSeconds": 23.26,
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-unit-failure-focused-e-drive.log",
+      "sha256": "32d5fee2620019b29489b0bca9d91e3bf19b1161648a1a22ce23961610487926"
+    },
+    "eDriveCoveragePair": {
+      "assertionsPassed": 50,
+      "executorExitCode": 1,
+      "reason": "Only two files were run; aggregate coverage did not meet the unchanged global 80% threshold. This is a diagnostic, not accepted full coverage.",
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-native-close-unit-failure-focused-coverage.log",
+      "sha256": "1dbd72b9c36b0988a545c925d16332a97e54cd3c10d15274c00a53737d04781c"
+    },
+    "scope": "The preliminary comparisons did not establish a host, disk or coverage root cause. Original failures retained."
+  },
+  "remaining": "Native-delay root cause, retained earlier source failure, full UI/product and system interaction scope, further current-source verification and hosted billing/spending-limit block remain open. No release published."
+}

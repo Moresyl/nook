@@ -1,7 +1,12 @@
 {
   "productCodeChanged": false,
   "rootCauseEstablished": false,
-  "completeInstalledAcceptancePassed": false,
+  "completeInstalledAcceptancePassed": true,
+  "completeInstalledAcceptanceScope": "Actual silent current-user installation, full 235 checks, normal native close, real uninstall, shortcuts and four data-retention sentinels; excludes physical native wizard interaction.",
+  "installedRetry": { "passed": true, "checks": 235, "normalExits": 35, "maxCloseMilliseconds": 2809, "finalCloseMilliseconds": 725, "report": "verification/native-installed-retry-review-result.json" },
+  "exitIsolationMatrices": { "report": "verification/native-close-matrix-review-result.json", "startupPasses": 27, "validNormalExits": 21, "invalidSetupsExcluded": 6, "rootCauseEstablished": false },
+  "fullUnitRetry": { "passed": true, "files": 94, "tests": 908, "workers": 1, "report": "verification/native-installed-retry-review-result.json", "preparationBarrierCommit": "76be798", "wholeTestBudgetMilliseconds": 5000, "globalCoverageThresholdPercent": 80 },
+  "latestFullUnitParallel": { "passed": true, "files": 94, "tests": 909, "workers": 2, "report": "verification/command-directory-review-result.json", "commit": "bb7c4ff", "wholeTestBudgetMilliseconds": 5000, "globalCoverageThresholdPercent": 80 },
   "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
   "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870",
   "retainedFailures": {
@@ -105,10 +110,11 @@
   },
   "releaseGateVerification": { "passed": true, "files": 2, "tests": 50, "log": "D:/GR/pi-pc/.firecrawl/nook-native-close-release-gates.log", "logSha256": "d29b9973b5215889f0a42a0a3244dd596975062684a03ec2fadc761a84bc3c19", "scope": "Existing release policy and runtime-proof reset tests after enabling optional native-close process diagnostics in the Windows verification job. No release gate or timeout was weakened." },
   "runtimeProof": {
-    "passed": false,
-    "reason": "Installed-runtime, shortcut and uninstall proof is incomplete",
-    "scope": "The current candidate has no complete successful actual installed-runtime record. Old installation hashes must not fill this gate."
+    "passed": true,
+    "matchingRecords": 11,
+    "reason": "A new complete actual installed-runtime record now matches current executable, archive, installer and portable hashes",
+    "scope": "Current candidate silent-installed full regression and lifecycle; no old installation hashes fill the gate. This does not replace source, complete product/UI, native wizard or hosted CI acceptance."
   },
   "failedInstallerSentinels": { "archived": true, "count": 4, "directory": "E:/NookVerification/RetainedInstallerSentinels-638654e7df82483f8ea5e31e94edeb7f", "registrationAndShortcutsAbsentVerified": true, "scope": "Exact nonce bytes and hashes preserved before deleting only the four owned sentinel files and otherwise empty profiles. No failed desktop workspace or unrelated user files removed." },
-  "remaining": "Investigate repeated native shutdown delay and complete current-source and installed full suites without extending budgets. Preserve the original failures and match all final distribution records; broader UI/function scope and the hosted payment/spending-limit block remain open."
+  "remaining": "Native-delay root cause is still unproved. Complete current-source regression without extending budgets and preserve the repeated MCP startup failures. Broader UI/function scope, native wizard and the hosted payment/spending-limit block remain open."
 }
