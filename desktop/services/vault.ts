@@ -1,7 +1,7 @@
 import { mkdir, open, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
-import { composerStateSchema, emptyWorkspace, workspaceSchema, type Message, type Project, type Thread, type Workspace } from '../../contracts/workspace';
+import { composerStateSchema, emptyWorkspace, settingsStateSchema, workspaceSchema, type Message, type Preferences, type Project, type Provider, type Thread, type Workspace } from '../../contracts/workspace';
 import type { McpServer } from '../../contracts/extensions';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
@@ -12,6 +12,7 @@ import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serializ
 import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
+export type SettingsTransaction = Pick<Workspace, 'providers' | 'preferences'>;
 export type ComposerTransaction = Pick<Workspace, 'composerDrafts' | 'activeThreadId'> & {
   readonly threads: ReadonlyArray<Readonly<{ id: string }>>;
   readonly assistants: ReadonlyArray<Readonly<{ id: string }>>;
@@ -87,6 +88,12 @@ export class WorkspaceVault {
   }
 
   snapshot(): Workspace { return structuredClone(this.state); }
+  provider(id: string): Provider | undefined {
+    const provider = this.state.providers.find(item => item.id === id);
+    return provider ? structuredClone(provider) : undefined;
+  }
+  providers(): Provider[] { return structuredClone(this.state.providers); }
+  preferences(): Preferences { return structuredClone(this.state.preferences); }
   thread(id: string): Thread | undefined {
     const thread = this.state.threads.find(item => item.id === id);
     return thread ? structuredClone(thread) : undefined;
@@ -118,6 +125,18 @@ export class WorkspaceVault {
   /** Persist a transaction whose caller only needs durable acknowledgement. */
   async commit(change: (draft: Workspace) => void, options?: { conversation: boolean }): Promise<void> {
     await this.save(change, undefined, options?.conversation);
+  }
+
+  /** Configuration changes preserve validated histories and return the complete detached state. */
+  updateSettings(change: (draft: SettingsTransaction) => void): Promise<Workspace> {
+    const operation = this.tail.then(async () => {
+      const draft = structuredClone({ providers: this.state.providers, preferences: this.state.preferences });
+      change(draft);
+      const settings = settingsStateSchema.parse({ providers: draft.providers, preferences: draft.preferences });
+      return this.persist({ ...this.state, ...settings });
+    });
+    this.tail = operation.catch(() => {});
+    return operation.then(state => structuredClone(state));
   }
 
   /** Draft-only mutations share validated histories but never expose them to the callback. */

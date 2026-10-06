@@ -1,0 +1,48 @@
+{
+  "verifiedAt": "2026-10-06T02:01:01.550Z",
+  "variant": "development executable",
+  "change": "Scoped provider/preference reads and queued settings transactions reuse validated histories. Full canonical backup, atomic persistence, credential binding/rollback, checkpoint ordering and detached full API results remain intact.",
+  "typecheck": "passed",
+  "build": "passed",
+  "targetedTests": { "files": 5, "passed": 43 },
+  "coverage": {
+    "files": 78, "passed": 810,
+    "statements": 97.08, "branches": 94.63, "functions": 97.31, "lines": 99.33,
+    "scope": "contracts and desktop/services; excludes bridge-contract and renderer coverage"
+  },
+  "newTestBudget": {
+    "millisecondsPerCase": 30000,
+    "reason": "Eight new multi-MB correctness cases include fixture construction, multiple durable writes and restart. Initial default 5-second runs timed out: 6 cases with two workers, then 7 with one worker. The fixture and assertions were retained; only the new cases received an explicit budget. Existing tests and all production deadlines are unchanged.",
+    "initialLogs": [
+      { "name": "nook-settings-transaction-tests.log", "sha256": "1bce97b49c3c2408253727f082c7016cff37be9ee0bacf137762d5adbb8c11dd" },
+      { "name": "nook-settings-transaction-tests-serial.log", "sha256": "ed6b8a9f1152ccfaddebc1ea672f0160b2acdc5bf24bcfc9314b3c95fa66c37f" }
+    ]
+  },
+  "largeWorkspace": {
+    "bytes": 84349038, "threads": 295, "providers": 36,
+    "original": "E:/NookVerification/Temp/qiyao-electron-CW1AKr/workspace.json",
+    "originalSha256": "32b72b76be7ad6caafef7e2e37f557f356944626d193e45683c05f8c64012c6c",
+    "originalUnchangedAfterVerification": true,
+    "seed": "E:/NookVerification/SettingsReplay-GvDYA1",
+    "seedChange": "One prior comparison fixture title renamed to avoid ambiguous UI selectors. All histories, drafts and references retained.",
+    "checks": 6, "runtimeErrors": [], "finalNormalCloseMs": 5575,
+    "settingsTransactions": [
+      { "operation": "saveProvider", "workspaceCopies": 1, "elapsedMs": 3310 },
+      { "operation": "saveProvider", "workspaceCopies": 1, "elapsedMs": 2189 },
+      { "operation": "savePreferences", "workspaceCopies": 1, "elapsedMs": 2746 }
+    ],
+    "result": "verification/model-comparisons-result.json",
+    "boundary": "Per-invocation AsyncLocalStorage observation records operation names, clone counts and timestamps only. Timings describe this run, not a controlled speed benchmark or proof that earlier full-suite timeouts are fixed."
+  },
+  "desktopIntegration": { "checks": 5, "runtimeErrors": [], "finalNormalCloseMs": 238, "result": "verification/desktop-integration-result.json", "boundary": "Real Electron resources and persistence; callback delivery and failure injection use fixtures. Not physical OS input verification." },
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-settings-transaction-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-settings-transaction-disk-tests.log", "sha256": "1c4ae47e1e91105c316c5906d5ad76319f1672e84ca13dddaa92e75971b6b261" },
+    { "name": "nook-settings-transaction-coverage.log", "sha256": "acf5a3359c7ecdbc7f83f63497f5bb5f36f4a735875b66a04f5326439fb869db" },
+    { "name": "nook-settings-transaction-build.log", "sha256": "c47a46b423f20bbd1c31b5988e92c19697620dfe0e109ef673f746d55da94318" },
+    { "name": "nook-settings-transaction-native-large.log", "sha256": "9af200bffb589ba6968794b5d92e21a9da16ca4fead373103617b7339881e932" },
+    { "name": "nook-settings-transaction-native-shell.log", "sha256": "ec69ed1bf2c990742108dcb31bc7a00c03c0c370b90314c30875cd7f4d58a14a" }
+  ],
+  "boundary": "Focused source verification only. Full regression, current distribution validation, remaining capability/design work and hosted release gates are still required. Earlier startup, continuation and shutdown failures remain unresolved."
+}

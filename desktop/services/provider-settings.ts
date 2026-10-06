@@ -16,13 +16,13 @@ export function providerKey(vault: WorkspaceVault, provider: Provider): string {
     try { const secret = credentialSchema.parse(JSON.parse(stored)); return secret.destination === providerDestination(provider) ? secret.key : ''; }
     catch { throw new Error('The saved provider credentials are invalid. Enter the API key again in settings.'); }
   }
-  const previous = vault.snapshot().providers.find((item) => item.id === provider.id);
+  const previous = vault.provider(provider.id);
   return previous && providerDestination(previous) === providerDestination(provider) ? vault.key(provider.id) : '';
 }
 
 /** Bind legacy keys before restoring different configuration under an existing ID. */
 export async function bindProviderKeys(vault: WorkspaceVault): Promise<void> {
-  for (const provider of vault.snapshot().providers) {
+  for (const provider of vault.providers()) {
     let key: string;
     try { if (vault.key(credentialId(provider.id))) continue; key = vault.key(provider.id); }
     catch { continue; }
@@ -45,7 +45,7 @@ export class ProviderSettings {
   save(raw: Provider, rawKey?: string): Promise<Workspace> {
     const provider = providerSchema.parse(raw); const key = rawKey === undefined ? undefined : z.string().max(4096).parse(rawKey).trim();
     return this.enqueue(async () => {
-      const previous = this.vault.snapshot().providers.find((item) => item.id === provider.id);
+      const previous = this.vault.provider(provider.id);
       const changed = previous && (providerDestination(previous) !== providerDestination(provider) || previous.azureApi !== provider.azureApi || previous.apiVersion !== provider.apiVersion || previous.streamUsage !== provider.streamUsage || JSON.stringify(previous.modelCatalog) !== JSON.stringify(provider.modelCatalog) || JSON.stringify(previous.models) !== JSON.stringify(provider.models));
       if (changed || key !== undefined) await this.stop(provider.id);
       const rollback = this.vault.keyRollback([credentialId(provider.id), provider.id]);
@@ -54,7 +54,7 @@ export class ProviderSettings {
         await this.vault.setKey(credentialId(provider.id), secret ? JSON.stringify({ destination: providerDestination(provider), key: secret }) : '');
         await this.vault.setKey(provider.id, '');
         provider.hasKey = Boolean(secret);
-        return await this.vault.update((draft) => {
+        return await this.vault.updateSettings((draft) => {
           const index = draft.providers.findIndex((item) => item.id === provider.id);
           if (index < 0) draft.providers.push(provider); else draft.providers[index] = provider;
           if (!draft.preferences.defaultProviderId) { draft.preferences.defaultProviderId = provider.id; draft.preferences.defaultModel = provider.models[0] ?? ''; }
@@ -70,7 +70,7 @@ export class ProviderSettings {
       const rollback = this.vault.keyRollback([credentialId(id), id]);
       try {
         await this.vault.setKey(credentialId(id), ''); await this.vault.setKey(id, '');
-        return await this.vault.update((draft) => {
+        return await this.vault.updateSettings((draft) => {
           draft.providers = draft.providers.filter((item) => item.id !== id);
           if (draft.preferences.defaultProviderId === id) { draft.preferences.defaultProviderId = draft.providers[0]?.id; draft.preferences.defaultModel = draft.providers[0]?.models[0] ?? ''; }
         });

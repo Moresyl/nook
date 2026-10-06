@@ -47,10 +47,10 @@ describe('provider configuration and destination-bound credentials', () => {
 
   it('restores both bound and legacy credentials when saving/removing cannot persist', async () => {
     const { vault, settings } = await setup(); await vault.setKey(provider.id, 'legacy-key');
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save(provider, 'replacement')).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('legacy-key');
+    vi.spyOn(vault, 'updateSettings').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save(provider, 'replacement')).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('legacy-key');
     await settings.save(provider, 'bound-key'); await vault.setKey(provider.id, 'legacy-fallback');
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save({ ...provider, endpoint: 'https://different.invalid' })).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('bound-key'); expect(vault.key(provider.id)).toBe('legacy-fallback');
-    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.remove(provider.id)).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('bound-key'); expect(vault.snapshot().providers).toHaveLength(1);
+    vi.spyOn(vault, 'updateSettings').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save({ ...provider, endpoint: 'https://different.invalid' })).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('bound-key'); expect(vault.key(provider.id)).toBe('legacy-fallback');
+    vi.spyOn(vault, 'updateSettings').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.remove(provider.id)).rejects.toThrow('Disk full'); expect(settings.key(provider)).toBe('bound-key'); expect(vault.snapshot().providers).toHaveLength(1);
     vi.spyOn(vault, 'setKey').mockRejectedValueOnce(new Error('Credential store failed')); await expect(settings.save(provider, 'new')).rejects.toThrow('Credential store failed'); expect(settings.key(provider)).toBe('bound-key');
   });
 
@@ -73,7 +73,7 @@ describe('provider configuration and destination-bound credentials', () => {
     const stored = await readFile(join(directory, 'credentials.json'), 'utf8');
     const broken = new WorkspaceVault(directory, { seal: codec.seal, open: (value) => { if (value === codec.seal('unreadable')) throw new Error('private cipher detail'); return codec.open(value); } });
     await broken.initialize(); expect(broken.snapshot().providers[0].hasKey).toBe(false); const settings = new ProviderSettings(broken, async () => {});
-    vi.spyOn(broken, 'update').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save(provider, 'replacement')).rejects.toThrow('Disk full'); expect(await readFile(join(directory, 'credentials.json'), 'utf8')).toBe(stored);
+    vi.spyOn(broken, 'updateSettings').mockRejectedValueOnce(new Error('Disk full')); await expect(settings.save(provider, 'replacement')).rejects.toThrow('Disk full'); expect(await readFile(join(directory, 'credentials.json'), 'utf8')).toBe(stored);
     await settings.save(provider, 'replacement'); expect(settings.key(provider)).toBe('replacement');
     await broken.setKey('\0provider:local', 'unreadable'); await settings.remove(provider.id); expect(broken.snapshot().providers).toEqual([]);
   });

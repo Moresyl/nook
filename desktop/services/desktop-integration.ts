@@ -18,7 +18,7 @@ export class DesktopIntegration {
   private tail: Promise<unknown> = Promise.resolve(); private closed = false;
   constructor(private readonly vault: WorkspaceVault, private readonly runtime: DesktopRuntime) {}
   state(): DesktopState { return { trayEnabled: Boolean(this.tray), shortcutRegistered: Boolean(this.shortcut), ...(this.error ? { error: this.error } : {}) }; }
-  canHide(): boolean { return !this.closed && Boolean(this.tray) && this.vault.snapshot().preferences.desktop?.closeToTray === true; }
+  canHide(): boolean { return !this.closed && Boolean(this.tray) && this.vault.preferences().desktop?.closeToTray === true; }
   private available() { if (this.closed) throw new Error('Desktop integration is closing. Reopen the workspace.'); }
   private enqueue<T>(operation: () => Promise<T>): Promise<T> { const result = this.tail.then(operation); this.tail = result.catch(() => {}); return result; }
   private release(tray: DesktopTray | null, shortcut: Shortcut | null) {
@@ -53,7 +53,7 @@ export class DesktopIntegration {
   refresh(): Promise<void> {
     return this.enqueue(async () => {
       this.available();
-      try { this.prepare(desktopPreferencesSchema.parse(this.vault.snapshot().preferences.desktop ?? {})).commit(); }
+      try { this.prepare(desktopPreferencesSchema.parse(this.vault.preferences().desktop ?? {})).commit(); }
       catch { this.error = unavailable; throw new Error(unavailable); }
     });
   }
@@ -64,7 +64,7 @@ export class DesktopIntegration {
       try { change = this.prepare(desktopPreferencesSchema.parse(preferences.desktop ?? {})); }
       catch { this.error = unavailable; throw new Error(unavailable); }
       let state: Workspace;
-      try { state = await this.vault.update((draft) => { draft.preferences = preferences; }); }
+      try { state = await this.vault.updateSettings((draft) => { draft.preferences = preferences; }); }
       catch { change.cancel(); this.error = storageFailed; throw new Error(storageFailed); }
       if (this.closed) change.cancel(); else change.commit(); return state;
     });

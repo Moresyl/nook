@@ -94,6 +94,9 @@ export const preferencesSchema = z.object({
   enterToSend: z.boolean().default(true),
   desktop: desktopPreferencesSchema.optional(),
 });
+export const settingsStateSchema = z.object({
+  providers: z.array(providerSchema).max(100), preferences: preferencesSchema,
+}).strict();
 export const composerDraftSchema = z.object({
   threadId: identifier.optional(), text: z.string().max(256_000),
   attachments: z.array(attachmentSchema).max(12).default([]),
@@ -110,9 +113,9 @@ export const composerStateSchema = z.object({
 }).strict();
 export const workspaceSchema = z.object({
   schemaVersion: z.literal(1),
-  providers: z.array(providerSchema).max(100), threads: z.array(threadSchema).max(10_000),
+  providers: settingsStateSchema.shape.providers, threads: z.array(threadSchema).max(10_000),
   projects: z.array(projectSchema).max(1000), assistants: z.array(assistantSchema).max(1000),
-  notes: z.array(noteSchema).max(10_000), preferences: preferencesSchema,
+  notes: z.array(noteSchema).max(10_000), preferences: settingsStateSchema.shape.preferences,
   editorDrafts: z.array(editorDraftSchema).max(100).default([]),
   composerDrafts: composerStateSchema.shape.composerDrafts,
   activeThreadId: composerStateSchema.shape.activeThreadId,

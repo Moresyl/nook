@@ -4,6 +4,36 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 
+async function observeSettingsCopies(application) {
+  assert.equal(await application.evaluateMain(`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function') return false;
+    const original = handlers.get('qiyao:invoke'), originalClone = globalThis.structuredClone;
+    const context = new (require('node:async_hooks').AsyncLocalStorage)(); const events = [];
+    const clone = function (...args) {
+      const row = context.getStore();
+      if (row && args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) row.workspaceCopies += 1;
+      return originalClone.apply(this, args);
+    };
+    const handler = function (...args) {
+      if (!['saveProvider', 'savePreferences'].includes(args[1])) return original.apply(this, args);
+      const row = { operation: args[1], workspaceCopies: 0, startedAt: Date.now() };
+      if (events.length < 8) events.push(row);
+      return context.run(row, async () => {
+        try { const result = await original.apply(this, args); row.success = true; return result; }
+        finally { row.finishedAt = Date.now(); }
+      });
+    };
+    globalThis.structuredClone = clone; handlers.set('qiyao:invoke', handler);
+    globalThis.qiyaoFinishSettingsCopies = () => {
+      if (handlers.get('qiyao:invoke') === handler) handlers.set('qiyao:invoke', original);
+      if (globalThis.structuredClone === clone) globalThis.structuredClone = originalClone;
+      context.disable(); delete globalThis.qiyaoFinishSettingsCopies; return events;
+    };
+    return true;
+  })()`), true);
+}
+
 async function observeComparisonBackup(application, mainWindow) {
   assert.equal(await application.evaluateMain(`(() => {
     const handlers = require('electron').ipcMain._invokeHandlers;
@@ -83,11 +113,22 @@ export async function verifyModelComparisons({ page, application, getApplication
   const baseMessages = [{ id: randomUUID(), role: 'user', content: 'COMPARE_PREVIOUS_USER', attachments: [attachment], createdAt: 1, status: 'complete' }, { id: randomUUID(), role: 'assistant', content: 'COMPARE_PREVIOUS_REPLY', attachments: [], createdAt: 2, status: 'complete' }];
   const now = Date.now();
   const source = { id: sourceId, title: '模型比较原对话', providerId: providerA, model: 'one', assistantId: 'general', projectId, mode: 'agent', messages: baseMessages, pinned: false, archived: false, createdAt: now, updatedAt: now };
+  await observeSettingsCopies(application); let settingsTransactions;
+  try {
   await page.evaluate(async ({ providerA, providerB, endpoint, projectId, directory }) => {
     for (const [id, connection] of [[providerA, 'a'], [providerB, 'b']]) await window.qiyao.saveProvider({ id, name: `比较连接 ${connection.toUpperCase()}`, kind: 'openai', endpoint: new URL(`/model-comparison/${connection}/v1`, endpoint).href, models: ['one', 'two', 'fail', 'held'], hasKey: false }, `COMPARISON_${connection.toUpperCase()}_TEST_KEY`);
     await window.qiyao.saveProject({ id: projectId, name: '比较项目', path: directory, instructions: 'COMPARE_PROJECT_INSTRUCTIONS', createdAt: 1 });
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light', defaultProviderId: providerA, defaultModel: 'one' });
   }, { providerA, providerB, endpoint, projectId, directory });
+  } finally {
+    settingsTransactions = await application.evaluateMain('globalThis.qiyaoFinishSettingsCopies?.()');
+    console.log('Comparison settings transactions', JSON.stringify(settingsTransactions));
+  }
+  assert.deepEqual(settingsTransactions.map(({ operation, workspaceCopies, success }) => ({ operation, workspaceCopies, success })), [
+    { operation: 'saveProvider', workspaceCopies: 1, success: true },
+    { operation: 'saveProvider', workspaceCopies: 1, success: true },
+    { operation: 'savePreferences', workspaceCopies: 1, success: true },
+  ]);
   page = await restart(async () => {
     const path = join(directory, 'workspace.json'); const state = JSON.parse(await readFile(path, 'utf8')); state.threads.push(source); state.activeThreadId = sourceId;
     state.composerDrafts.push({ threadId: sourceId, providerId: providerA, model: 'one', assistantId: 'general', projectId, mode: 'agent', text: question, attachments: [attachment], mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [], updatedAt: 1 }); await writeFile(path, JSON.stringify(state));
@@ -340,5 +381,5 @@ export async function verifyModelComparisons({ page, application, getApplication
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests + 11);
   verified('comparison setup and independently scrollable readonly results retain visible modal title/footer, native keyboard focus and Escape at 100%, 125% and 150% dark minimum-window zoom without making preview requests');
-  return { page, result: { checks: 6, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
+  return { page, result: { checks: 6, settingsTransactions, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
 }
