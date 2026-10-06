@@ -21,8 +21,15 @@ export async function verifyRendererClose({ page, application, directory, verifi
   assert.ok(before.composerDrafts.some(draft => draft.text === text)); assert.equal(modelRequests(), 0);
   verified('the actual composer persists an exact Unicode draft before the controlled main-renderer crash without a model request');
   const crashed = page.waitForEvent('crash', { timeout: 5000 });
-  await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.forcefullyCrashRenderer()");
-  await crashed;
+  if (process.env.NOOK_TEST_LOCAL_CRASH_DUMPS === '1') {
+    const session = await page.context().newCDPSession(page);
+    // A crashed renderer cannot reply; normal application close disconnects this session.
+    void session.send('Page.crash').catch(() => {});
+    await crashed;
+  } else {
+    await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.forcefullyCrashRenderer()");
+    await crashed;
+  }
   const state = await application.evaluateMain("({crashed:require('electron').BrowserWindow.getAllWindows().find(window=>window.webContents.getURL().startsWith('qiyao://app/')).webContents.isCrashed(), exits:globalThis.nookRendererExits})");
   assert.equal(state.crashed, true); assert.equal(state.exits.length, 1); assert.equal(state.exits[0].reason, 'crashed');
   const startedAt = Date.now(); await application.close({ quit: true });

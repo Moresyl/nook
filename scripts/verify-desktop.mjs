@@ -402,6 +402,11 @@ async function launch() {
     if (!forcedClose) verifyDesktopExit(child.exitCode, child.signalCode);
     await browser.close().catch(() => {});
   } };
+  if (process.env.NOOK_TEST_LOCAL_CRASH_DUMPS === '1') {
+    const local = await application.evaluateMain("({directory:require('electron').app.getPath('crashDumps'),uploadToServer:require('electron').crashReporter.getUploadToServer()})");
+    assert.equal(local.directory, join(directory, 'local-crash-dumps')); assert.equal(local.uploadToServer, false);
+    console.log('Desktop local crash diagnostics', JSON.stringify(local));
+  }
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (event) => { if (event.type() === 'error' || event.type() === 'warning') rendererDiagnostics.push(event.text()); });
   page.on('worker', (worker) => workerUrls.push(worker.url()));

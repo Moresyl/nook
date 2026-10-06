@@ -1,6 +1,7 @@
-import { app, BrowserWindow, dialog, globalShortcut, ipcMain, Menu, net, Notification, powerMonitor, protocol, safeStorage, session, shell, Tray } from 'electron';
+import { app, BrowserWindow, crashReporter, dialog, globalShortcut, ipcMain, Menu, net, Notification, powerMonitor, protocol, safeStorage, session, shell, Tray } from 'electron';
 import { basename, join } from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
+import { mkdirSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { spawn as spawnPty } from 'node-pty';
@@ -508,6 +509,12 @@ app.setPath('userData', userDataDirectory(app.getPath('appData'), process.env.NO
 const locked = app.requestSingleInstanceLock();
 if (!locked) app.quit();
 else {
+  if (process.env.NOOK_TEST_LOCAL_CRASH_DUMPS === '1') {
+    if (!process.env.NOOK_DATA_DIRECTORY && !process.env.QIYAO_DATA_DIRECTORY) throw new Error('Local crash diagnostics require an explicit isolated workspace directory.');
+    const directory = join(app.getPath('userData'), 'local-crash-dumps'); mkdirSync(directory, { recursive: true });
+    app.setPath('crashDumps', directory); crashReporter.start({ uploadToServer: false });
+    console.error('Local crash diagnostics', JSON.stringify({ directory, uploadToServer: crashReporter.getUploadToServer() }));
+  }
   app.on('second-instance', () => { if (window?.isMinimized()) window.restore(); window?.focus(); });
   void app.whenReady().then(async () => {
     startupDiagnostics.phase('when-ready');
