@@ -1,0 +1,917 @@
+{
+  "verifiedAt": "2026-10-06T22:06:59.084Z",
+  "productCommit": "ded44a86b4783127c444445506321e7e53cd7a40",
+  "source": [
+    {
+      "file": "contracts/bridge-contract.ts",
+      "sha256": "f3cf5db60224acaa0a524b6b85175b5f52f9678fdeee02d63f13570d641ea256"
+    },
+    {
+      "file": "contracts/composer.ts",
+      "sha256": "cad3f702771e591cde3d33797bd480ca9edc7d98725466b061bcb8c041559ad4"
+    },
+    {
+      "file": "contracts/desktop-integration.ts",
+      "sha256": "6da3ebe4a898c0c0d29482a2297f3c76468face532c1a19a16ab6a1e75d23976"
+    },
+    {
+      "file": "contracts/quick-chat-stream.ts",
+      "sha256": "e74c8bdd19af20b3d6ad227646629b0e2f3d5de344558dd2260865a7c2db5b32"
+    },
+    {
+      "file": "contracts/quick-chat.ts",
+      "sha256": "3bfc89f03e24957eece24be976dea2c768bfd27f33a58303e7e35419069ec71f"
+    },
+    {
+      "file": "contracts/workspace.ts",
+      "sha256": "c6cac2733dbc1b3612390caa3f182ac44314e8d3eb75d53d07ae9e213d814888"
+    },
+    {
+      "file": "desktop/bridge.ts",
+      "sha256": "b32bbecd455d1e3614a0fe8b3a760fbd86fd9712d8991202d4c06eb0bbedb375"
+    },
+    {
+      "file": "desktop/launch.ts",
+      "sha256": "9832dddaf4477da48dc9ae288657e6a1495c68f7b598cd20d3ebe453c9d25aa1"
+    },
+    {
+      "file": "desktop/quick-chat-bridge.ts",
+      "sha256": "85888bc90a77fade450ffb2f2e27650e535059f52c087a266089afe66f295446"
+    },
+    {
+      "file": "desktop/quick-chat-window.ts",
+      "sha256": "e72370e6e7f413e52365211d9710a99247ed2aae46c049578590af267cae0b15"
+    },
+    {
+      "file": "desktop/services/conversation-engine.ts",
+      "sha256": "bfe6ac64d17e75124d4fb0b3abd30a7d27386ed4b52e8b7b4180c05ee3d324bf"
+    },
+    {
+      "file": "desktop/services/conversation-extensions.ts",
+      "sha256": "c1fabb7e455fdd32660f96b3a55cd84f735a125348c5ebce046fa1808fbc617d"
+    },
+    {
+      "file": "desktop/services/document-original-references.ts",
+      "sha256": "6fd7f8d3f542f3c0801e4bea587a27b7bce5fdfc64d444c22ec22c7ff5f146d7"
+    },
+    {
+      "file": "desktop/services/quick-chat.ts",
+      "sha256": "bcbd4fbc14ce10f2285cf779cee664dafb1137054211e3595b11447b96ae4cd7"
+    },
+    {
+      "file": "desktop/services/temporary-conversations.ts",
+      "sha256": "1d16dbf4ef35935d9a6d7cc2d21e5424230cbc0e9a4203227cc40fa0753a0d99"
+    },
+    {
+      "file": "desktop/services/terminal-sessions.ts",
+      "sha256": "d8f70afa3cb3ac8a5d6352021ce5da43aeacd9754f5a185d49ab2dd70cab45c7"
+    },
+    {
+      "file": "desktop/services/vault.ts",
+      "sha256": "421dea857842e5f0a8f141350997aab1eeccdd53221b306a4b73d8f17c5d6326"
+    },
+    {
+      "file": "scripts/release-policy.d.mts",
+      "sha256": "6623bfb42ad1bed81d826bc8ac907e452309eb59fa7f86274f6b41ecc0649870"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "2f80ed4070074351b50b78f51c02011cd13228a6af2b2b06486fd7a0c57ba3af"
+    },
+    {
+      "file": "scripts/verify-quick-chat.mjs",
+      "sha256": "78b2f3b50b8c5b898cc62906172ed7b42d849ec549f0ab1da5eda283af5b7c5e"
+    },
+    {
+      "file": "scripts/verify-renderer-close.mjs",
+      "sha256": "a5a307ae77b26946479e19109e740b89bb842f5956f2bb997c8efec2df678708"
+    },
+    {
+      "file": "scripts/verify-terminal-lifecycle.mjs",
+      "sha256": "3e75dc649168947b5ce9dd4990f45147261521aaf1b2ed26db42e0655f24744a"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "670dfa8943b43b1d06fd4ec27875913878987daa24f35887e97c64d282342374"
+    },
+    {
+      "file": "verification/terminal-sessions.test.ts",
+      "sha256": "63686aec2c164fafddd3a3e44c89cb041cdf7c5ac17a4294428f963042e4b7a1"
+    },
+    {
+      "file": "workbench/components/composer.tsx",
+      "sha256": "b5ab9f9d86481b5b010977a7ab71d2d1c110a1233dc4a91d68be9a6efc7be0e7"
+    },
+    {
+      "file": "workbench/components/content-bridge.tsx",
+      "sha256": "b1b7f5a986701d80643cfb7a632320b74480029042730e5e9925790eacad8fa3"
+    },
+    {
+      "file": "workbench/entry.tsx",
+      "sha256": "3e607d63ec94bf390f474dc13fadce1dfe6a4ddecbd53e375c10233e8b919977"
+    },
+    {
+      "file": "workbench/quick-chat.tsx",
+      "sha256": "017c100aa9e1665f93420ca556a24692cef77fd2ff46221b061dd6b8f35f2e9d"
+    },
+    {
+      "file": "workbench/theme/quick-chat.css",
+      "sha256": "ddcd93b4190f8f975f2bd557b07750e5288ad900e973d51e8c4b3be2522a6e59"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "sha256": "8099082561289f690f283dbb812eea720cf5236ea64c28e18ac16fea31207783"
+    }
+  ],
+  "compiledManifestSha256": "5b1c18622fbca6c1c87e5f73a11e549c6b9675a6087273e72c01b39c60e67ffd",
+  "sourceAndCompiledMatchFocusedReview": true,
+  "harnessVariant": "unmodified default full suite, fresh workspace, no extra MCP startup import",
+  "passed": false,
+  "checksBeforeFailure": 146,
+  "normalExits": [
+    {
+      "elapsedMs": 677,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 747,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 231,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 174,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 435,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 2398,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 268,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 400,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 406,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 196,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 203,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 299,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "failedExit": {
+    "elapsedMs": 10002,
+    "forced": true,
+    "exitCode": null,
+    "signalCode": null
+  },
+  "failure": "Normal restart after prompt-template checks exceeded the original native close deadline. Not the controlled renderer-crash regression.",
+  "lastChecks": [
+    "PASS real template tab keyboard navigation, create/search/copy preview and variable validation persist exact templates without sending or changing assistant profiles",
+    "PASS literal nonrecursive Unicode/dollar/HTML preview and cancellation leave the existing draft intact; library insertion preserves whitespace, attachments and selected model/assistant/read-only project without sending",
+    "PASS composer template selection appends fixed text through the same draft path and combined-size rejection retains the active form, unchanged draft and all selected context",
+    "PASS native template write failure retains the exact edit form and saved original; retry and deletion cancellation work in the reference minimum dark window",
+    "PASS explicit send delivers the exact expanded draft, preserved attachment evidence and selected assistant instructions through real native HTTP; deleting a template preserves prior messages and unsent text"
+  ],
+  "lastShutdownResources": [
+    {
+      "event": "will-quit",
+      "at": 1791324221278,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791324221278,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791324221278,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    }
+  ],
+  "nativeCloseObservations": [
+    {
+      "requestedAt": 1791324221261,
+      "observedAt": 1791324223523,
+      "processes": [
+        {
+          "pid": 53260,
+          "cpuMilliseconds": 2218.75,
+          "workingSetBytes": 150630400,
+          "threads": [
+            {
+              "id": 108680,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 65328,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 9700,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 99572,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 134812,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121632,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 110204,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 91476,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59264,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 107912,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 44092,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130452,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 96864,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 108496,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 50688,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132992,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 67780,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 49672,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111928,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 68412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93492,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119464,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80880,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86820,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94956,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132920,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 134180,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 131228,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 53148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 99200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132224,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119768,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136884,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 134284,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 84296,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 88884,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 34728,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130520,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130364,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87600,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129560,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 89744,
+          "cpuMilliseconds": 2031.25,
+          "workingSetBytes": 139780096,
+          "threads": [
+            {
+              "id": 119300,
+              "state": "Ready",
+              "reason": ""
+            }
+          ]
+        },
+        {
+          "pid": 132140,
+          "exited": true
+        },
+        {
+          "pid": 130152,
+          "exited": true
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791324221261,
+      "observedAt": 1791324227542,
+      "processes": [
+        {
+          "pid": 53260,
+          "cpuMilliseconds": 2218.75,
+          "workingSetBytes": 150630400,
+          "threads": [
+            {
+              "id": 108680,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 65328,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 9700,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 99572,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 134812,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121632,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 110204,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 91476,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59264,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 107912,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 44092,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130452,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 96864,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 108496,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 50688,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132992,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 67780,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 49672,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111928,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 68412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93492,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119464,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80880,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86820,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94956,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132920,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 134180,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 131228,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 53148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 99200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132224,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119768,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136884,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 134284,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 84296,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 88884,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 34728,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130520,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130364,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87600,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129560,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 89744,
+          "cpuMilliseconds": 2031.25,
+          "workingSetBytes": 132587520,
+          "threads": [
+            {
+              "id": 119300,
+              "state": "Ready",
+              "reason": ""
+            }
+          ]
+        },
+        {
+          "pid": 132140,
+          "exited": true
+        },
+        {
+          "pid": 130152,
+          "exited": true
+        }
+      ]
+    }
+  ],
+  "workspace": {
+    "path": "E:/NookVerification/Temp/qiyao-electron-BJmifa",
+    "bytes": 194323,
+    "sha256": "b9fc8a943c36a0a5352e1a8b4226ded20eb8ff05383520ac358521ca27ce3020"
+  },
+  "partial": [
+    {
+      "file": "assistant-profiles-result.json",
+      "sha256": "d6eb02d1e5c2af70fff64205bd765d8555a177bbaffcdf2eeedd0e81d1e45201",
+      "acceptedCompleteSuite": false,
+      "record": {
+        "verifiedAt": "2026-10-06T22:03:34.096Z",
+        "variant": "development executable",
+        "checks": 6,
+        "runtimeErrors": [],
+        "imported": 2,
+        "exported": 4,
+        "scope": "Real assistant UI, JSON/gzip files, exact Unicode/inert preview, atomic new IDs, same-name retention, native HTTP instruction delivery, deleted-profile references, app restart and complete backup. Native picker/confirmation and a filesystem EIO boundary use isolated fixtures; physical picker and other-platform interaction remain separate gates."
+      }
+    },
+    {
+      "file": "automations-result.json",
+      "sha256": "2a615205ee7925973ee353cc29e935b5106677186e54332c727534b7c1ad8e53",
+      "acceptedCompleteSuite": false,
+      "record": {
+        "verifiedAt": "2026-10-06T22:03:20.449Z",
+        "variant": "development executable",
+        "checks": 10,
+        "runtimeErrors": [],
+        "checkbox": {
+          "themes": [
+            "light",
+            "dark"
+          ],
+          "keyboardAndLabel": true,
+          "persistedSelection": true,
+          "disabledAndMixedProbes": true,
+          "reducedMotion": true,
+          "forcedColorsCheckedProbe": true,
+          "narrowZoom": 1.5,
+          "screenshots": [
+            "checkbox-light.png",
+            "checkbox-dark.png",
+            "checkbox-dark-narrow.png"
+          ],
+          "boundary": "Real automation form and saved selections; disabled and mixed states are temporary DOM probes. Forced colors are emulated, not physical OS accessibility evidence."
+        },
+        "schedulerReads": {
+          "wakeEvents": 20,
+          "workspaceCopies": 0,
+          "taskListCopies": 40
+        },
+        "tasks": 3,
+        "requests": 7,
+        "cancelledRequests": 2,
+        "historyStatuses": [
+          "complete",
+          "complete",
+          "stopped",
+          "error",
+          "complete",
+          "stopped"
+        ],
+        "scope": "Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
+      }
+    },
+    {
+      "file": "desktop-integration-result.json",
+      "sha256": "5c019a8b7493bbaaa66b05aa55c5bb59f09fb5afd89161cf213b0e705cfa6444",
+      "acceptedCompleteSuite": false,
+      "record": {
+        "verifiedAt": "2026-10-06T22:03:28.664Z",
+        "variant": "development executable",
+        "checks": 5,
+        "runtimeErrors": [],
+        "accelerator": "Ctrl+Alt+Shift+F11",
+        "backgroundTask": "complete",
+        "scope": "Actual desktop UI, real Electron tray creation/menu/hotkey registration/window visibility, hidden-window timed provider HTTP, draft persistence, explicit app quit/restart and complete backup restore. Shortcut/tray callback delivery, occupied-key and filesystem-failure boundaries use isolated test fixtures; physical tray pointer input, OS keyboard delivery, startup conflicts and other platforms remain separate gates."
+      }
+    },
+    {
+      "file": "knowledge-result.json",
+      "sha256": "714ce9038f3164be8e35e3d351abbd3a7c66254133abcf8b574467de0cb6a23a",
+      "acceptedCompleteSuite": false,
+      "record": {
+        "verifiedAt": "2026-10-06T22:02:56.088Z",
+        "variant": "development executable",
+        "checks": 19,
+        "runtimeErrors": [],
+        "protocols": [
+          "responses",
+          "openai",
+          "ollama",
+          "azure-responses",
+          "azure-chat",
+          "azure-deployment",
+          "gemini-fields",
+          "gemini-instruction"
+        ],
+        "requests": 24,
+        "cloudCredentialsUsed": false,
+        "sourceFormats": [
+          "docx",
+          "pdf"
+        ],
+        "scope": "Real desktop import workers, local and synthetic-vector hybrid retrieval, eight native embedding configurations, progress/cancellation, preserved failed rebuild, selected chat evidence, unsupported citation detection, archived retry, draft restart and complete backup restoration. Dialog boundaries use isolated fixtures; no live cloud embedding quality is claimed."
+      }
+    }
+  ],
+  "raw": {
+    "path": "D:/GR/pi-pc/.firecrawl/nook-renderer-close-default-full-native.log",
+    "bytes": 70507,
+    "sha256": "aa4ae3b79526a6acdca7e59f69722a1690de08d4db0267524980cf3e8a245d18",
+    "archive": "E:/NookVerification/QuickChatNative-20261007/renderer-close-full-failure"
+  },
+  "nativeRootCauseEstablished": false,
+  "defaultFullDesktopPassed": false,
+  "packaged": false,
+  "published": false,
+  "deadlines": {
+    "startupMs": 30000,
+    "bridgeMs": 10000,
+    "operationMs": 5000,
+    "nativeCloseMs": 10000
+  },
+  "scope": "Twelve prior exits were successful. The failed close reached will-quit, JavaScript process-exit and quit with only two stdio sockets and no PTY workers; the native process remained. No full-suite record or new package was accepted, and no prior failed run was erased."
+}
