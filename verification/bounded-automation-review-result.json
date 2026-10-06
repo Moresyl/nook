@@ -1,0 +1,135 @@
+{
+  "verifiedAt": "2026-10-06T17:16:14.521Z",
+  "sourceCommit": "f59f6753a4af6004965c92274eb19448822d3dbf",
+  "sources": [
+    {
+      "file": "desktop/services/vault.ts",
+      "sha256": "8c22594d8403cd7d26f4ff9a6cb6ed90a9b6f09242492ae54b664496cbad056c"
+    },
+    {
+      "file": "desktop/services/automations.ts",
+      "sha256": "994572877425b6f6737987884b8553453b1a8aa8b8608db98b9568b97ca7fbb5"
+    },
+    {
+      "file": "scripts/verify-automations.mjs",
+      "sha256": "3b02f01bdd1f248656551fab206579171c4a9848add8e4eac60b8a04b93b692a"
+    },
+    {
+      "file": "verification/automations.test.ts",
+      "sha256": "b1e2edab8016b1c04320826dd4a2993b31c28a16177b498dbc5d6ace07c14eab"
+    }
+  ],
+  "change": "Read only detached automatic task records for startup recovery, timer arming, system-resume due checks and preflight existence checks; preserve existing transaction validation, atomic persistence and model execution.",
+  "focusedUnits": {
+    "files": 4,
+    "tests": 63,
+    "passed": true,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-bounded-automation-unit.log",
+      "bytes": 496,
+      "sha256": "d0ca74388c277c508fe867afbaa199be0a611d62b5f423cc7993987357ba832f"
+    }
+  },
+  "fullUnits": {
+    "expectedFiles": 97,
+    "expectedTests": 929,
+    "passed": true,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-bounded-automation-full-unit.log",
+      "bytes": 5075,
+      "sha256": "c71013e54b8d5b3c1699e6b0b4ea3e8191007a7b69aac44b0640bf5bfb5217e1"
+    },
+    "summary": "Test Files  97 passed (97)\r\n      Tests  929 passed (929)\r\n   Start at  01:08:36\r\n   Duration  219.70s (transform 14.51s, setup 0ms, import 37.21s, tests 387.92s, environment 6ms)\r\n\r\n % Coverage report from v8\r\n-------------------|---------|----------|---------|---------|-------------------\r\nFile               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s \r\n-------------------|---------|----------|---------|---------|-------------------\r\nAll files          |   97.16 |    94.71 |   97.34 |   99.37 |                   \r\n contracts         |   98.92 |    98.73 |   99.54 |   99.56 |                   \r\n  attachments.ts   |   96.55 |    98.55 |     100 |   97.61 | 40               "
+  },
+  "coverage": {
+    "scope": "Configured contracts and desktop services; no renderer or physical UI coverage claim.",
+    "total": {
+      "lines": {
+        "total": 3520,
+        "covered": 3498,
+        "skipped": 0,
+        "pct": 99.37
+      },
+      "statements": {
+        "total": 5854,
+        "covered": 5688,
+        "skipped": 0,
+        "pct": 97.16
+      },
+      "functions": {
+        "total": 1316,
+        "covered": 1281,
+        "skipped": 0,
+        "pct": 97.34
+      },
+      "branches": {
+        "total": 4087,
+        "covered": 3871,
+        "skipped": 0,
+        "pct": 94.71
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "receipt": {
+      "path": "E:/NookVerification/BoundedAutomationCoverage-20261007/coverage-summary.json",
+      "bytes": 29194,
+      "sha256": "d0b34ca0a11f369013fcec019f1522134b69b2274bd3dfb41059221291d72653"
+    }
+  },
+  "defaultNative": {
+    "passed": false,
+    "checks": 0,
+    "startupDeadlineMs": 30000,
+    "observedStartupMs": 33221,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-bounded-automation-native.log",
+      "bytes": 1553,
+      "sha256": "ac1b38021f359253b1440455cbe7829a208c459e2277e84d98979be3ec9ce5f7"
+    },
+    "failureTail": "Desktop verification workspace E:\\NookVerification\\Temp\\qiyao-electron-yiMtkA\r\nDesktop spawned {\r\n  pid: 84916,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe'\r\n}\r\nDesktop startup diagnostics {\r\n  pid: 84916,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe',\r\n  elapsedMs: 33221,\r\n  stdoutBytes: 2\r\n}\r\nRetained failed desktop verification directory: E:\\NookVerification\\Temp\\qiyao-electron-yiMtkA\r\nfile:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:301\r\n    const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt, stdoutBytes: stdoutBytes() }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);\r\n                                                                                                                                                                                                                          ^\r\n\r\nError: Desktop startup timed out: Debugger listening on ws://127.0.0.1:56727/8303188d-a111-4ca5-beea-dbdad73f686b\r\n\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\n\r\n\r\n    at Timeout._onTimeout (file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:301:219)\r\n    at listOnTimeout (node:internal/timers:608:17)\r\n    at process.processTimers (node:internal/timers:543:7)\r\n\r\nNode.js v24.0.0\r\n"
+  },
+  "diagnosticNative": {
+    "diagnosticOnly": true,
+    "acceptedDefaultRun": false,
+    "passed": false,
+    "checks": 8,
+    "schedulerReads": {
+      "wakeEvents": 20,
+      "workspaceCopies": 0,
+      "taskListCopies": 40
+    },
+    "exits": [
+      {
+        "elapsedMs": 990,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-bounded-automation-native-inspect.log",
+      "bytes": 5485,
+      "sha256": "147a25f32ef29c3e55435b05b525e4d4f646c85cad253b1bf96bc0678be0096e"
+    },
+    "tail": "s\":[{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true},{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true}],\"resources\":[\"PipeWrap\",\"PipeWrap\"],\"workers\":[],\"terminals\":[]}\r\nDesktop shutdown resources {\"event\":\"quit\",\"at\":1791306923005,\"handles\":[{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true},{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true}],\"resources\":[\"PipeWrap\",\"PipeWrap\"],\"workers\":[],\"terminals\":[]}\r\nDesktop spawned {\r\n  pid: 93996,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe'\r\n}\r\nEarly startup observation failed Main-process test operation failed: TypeError: Cannot read properties of undefined (reading 'isReady')\r\nDesktop pending startup operations [\"FSReqCallback\"]\r\nDesktop page startup diagnostics {\"pid\":93996,\"elapsedMs\":128,\"exitCode\":null,\"signalCode\":null}\r\nDebugger listening on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\n\r\nDevTools listening on [test debugger]\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\n\r\nRetained failed desktop verification directory: E:\\NookVerification\\Temp\\qiyao-electron-pbNQEP\r\nfile:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:324\r\n        const operationError = new Error('Main-process test operation failed');\r\n                               ^\r\n\r\nError: Main-process test operation failed: TypeError: Cannot read properties of undefined (reading 'commandLine')\r\n    at file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:324:32\r\n    at new Promise (<anonymous>)\r\n    at evaluateMain (file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:322:20)\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\r\n    at async launch (file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:358:36)\r\n    at async verifyAutomations (file:///E:/NookWorktrees/document-originals/scripts/verify-automations.mjs:67:10)\r\n    at async file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:620:25\r\n\r\nNode.js v24.0.0\r\n"
+  },
+  "rootCauseEstablished": false,
+  "fullDesktopPassed": false,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "published": false,
+  "safeguards": {
+    "startupDeadlineMs": 30000,
+    "bridgeWaitMs": 10000,
+    "operationTimeoutMs": 5000,
+    "defaultUnitTimeoutMs": 5000,
+    "nativeCloseDeadlineMs": 10000,
+    "coverageThreshold": 80
+  },
+  "scope": "Scoped task-read regression and existing automatic-task behavior only. A diagnostic pass does not replace the failed default startup or complete desktop/distribution/hosted acceptance."
+}

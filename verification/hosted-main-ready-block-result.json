@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-06T17:24:55.950Z",
+  "sourceCommit": "4d7a3bfa5745deaa4536a3174b5c0fd83694f24b",
+  "run": {
+    "id": 37503033156,
+    "url": "https://github.com/Moresyl/nook/actions/runs/37503033156",
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "jobs": [
+    {
+      "id": 112404599284,
+      "name": "verify",
+      "conclusion": "failure",
+      "steps": 0,
+      "url": "https://github.com/Moresyl/nook/actions/runs/37503033156/job/112404599284"
+    },
+    {
+      "id": 112404619267,
+      "name": "publish",
+      "conclusion": "skipped",
+      "steps": 0,
+      "url": "https://github.com/Moresyl/nook/actions/runs/37503033156/job/112404619267"
+    }
+  ],
+  "verifyAnnotations": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/Moresyl/nook/blob/4d7a3bfa5745deaa4536a3174b5c0fd83694f24b/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "raw_details": ""
+    }
+  ],
+  "accountSettingsChanged": false,
+  "tagCreated": false,
+  "published": false,
+  "inputs": {
+    "run": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-main-ready-hosted-run.json",
+      "sha256": "915be54f5b4680da28089a990aca3bc705f59f102c107dbefe8c83e551bef9ea"
+    },
+    "jobs": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-main-ready-hosted-jobs.json",
+      "sha256": "c5f4d34097336548396b40ff616205ba87629ae87d6c43a1d1e114e0932a3c5e"
+    },
+    "annotations": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-main-ready-hosted-annotations.json",
+      "sha256": "8ca131276129d1e1a446dc83ab0743fc0ff56c1a2d3d59295574e857810441a5"
+    }
+  },
+  "scope": "Read-only GitHub API verification of the pushed task-read and Electron readiness commits. The verification job executed zero steps; its annotation identifies account payments/spending limit. Branch publish skipped; no hosted build or release acceptance."
+}

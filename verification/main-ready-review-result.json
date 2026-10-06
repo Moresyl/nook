@@ -1,0 +1,141 @@
+{
+  "verifiedAt": "2026-10-06T17:28:21.116Z",
+  "sourceCommit": "4d7a3bfa5745deaa4536a3174b5c0fd83694f24b",
+  "productCommit": "f59f6753a4af6004965c92274eb19448822d3dbf",
+  "sources": [
+    {
+      "file": "desktop/services/vault.ts",
+      "sha256": "8c22594d8403cd7d26f4ff9a6cb6ed90a9b6f09242492ae54b664496cbad056c"
+    },
+    {
+      "file": "desktop/services/automations.ts",
+      "sha256": "994572877425b6f6737987884b8553453b1a8aa8b8608db98b9568b97ca7fbb5"
+    },
+    {
+      "file": "scripts/verify-automations.mjs",
+      "sha256": "3b02f01bdd1f248656551fab206579171c4a9848add8e4eac60b8a04b93b692a"
+    },
+    {
+      "file": "verification/automations.test.ts",
+      "sha256": "b1e2edab8016b1c04320826dd4a2993b31c28a16177b498dbc5d6ace07c14eab"
+    },
+    {
+      "file": "scripts/desktop-main-ready.mjs",
+      "sha256": "b8aaeb57345de248eaf1670d71d337e3c5c8d1582081a3cb63e949c872aceeed"
+    },
+    {
+      "file": "scripts/desktop-main-ready.d.mts",
+      "sha256": "15c65e8e4b1521bfddaaf61dd9f43996c76f0f7d8147b3ef5e107ea5836da720"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "6509b8c00fcc188dd3ed13e592eeae374f4606c1ff846ff02e353860a71ceef8"
+    },
+    {
+      "file": "verification/desktop-main-ready.test.ts",
+      "sha256": "d66c2cd4f8c147cac083c0790c306738bd2672220236a26a1572fb6970d1b305"
+    }
+  ],
+  "change": "The verification harness waits for native Electron main-process exports within the existing five-second operation budget, then retains the mandatory renderer-switch assertion; product code and startup/close deadlines are unchanged by this harness fix.",
+  "focusedUnits": {
+    "files": 3,
+    "tests": 15,
+    "passed": true,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-main-ready-unit.log",
+      "bytes": 453,
+      "sha256": "10002600f4d77143fcd418e306944e7832eaa7d9bfaaa590a5d5c21940e21017"
+    }
+  },
+  "fullUnits": {
+    "files": 98,
+    "expectedTests": 932,
+    "passed": true,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-main-ready-full-unit.log",
+      "bytes": 332,
+      "sha256": "47be2602377a308c2b1706ca5407c2674a3c56be1cec1ce9eafca042167ab760"
+    },
+    "summary": "Test Files  98 passed (98)\r\n      Tests  932 passed (932)\r\n   Start at  01:21:32\r\n   Duration  292.14s (transform 54.90s, setup 0ms, import 89.64s, tests 483.65s, environment 6ms)\r\n\r\n"
+  },
+  "focusedNative": {
+    "checks": 10,
+    "passed": true,
+    "exits": [
+      {
+        "elapsedMs": 6299,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1123,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 519,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "schedulerReads": {
+      "wakeEvents": 20,
+      "workspaceCopies": 0,
+      "taskListCopies": 40
+    },
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-bounded-automation-native-ready.log",
+      "bytes": 7295,
+      "sha256": "ed570de20a65fe13193ffd4a82c6e189f4f37a02d2fda716b8438b11f9e00d06"
+    },
+    "receipt": {
+      "path": "E:/NookVerification/BoundedAutomationNative-20261007/snapshot.json",
+      "bytes": 325,
+      "sha256": "c70239813bd2742e0cc56ee448d900bb9e0977c21dd126a39f3576790d80ef25"
+    }
+  },
+  "earlierProductValidation": {
+    "path": "E:\\NookWorktrees\\document-originals\\verification\\bounded-automation-review-result.json",
+    "bytes": 9045,
+    "sha256": "bafc9918f9febbc074952d68b8e0a0f6919ffeb4d58f34e42bbc4fd8010cd5bb"
+  },
+  "completeSource": {
+    "passed": false,
+    "checks": 0,
+    "expectedChecks": 243,
+    "exits": [],
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-main-ready-default-full-source.log",
+      "bytes": 1555,
+      "sha256": "44173bc4fd5933fece3af4a836f65d4f20ac4f9da28b2ee9888d822406945360"
+    },
+    "failureTail": "Desktop verification workspace E:\\NookVerification\\Temp\\qiyao-electron-Lz3B0c\r\nDesktop spawned {\r\n  pid: 121692,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe'\r\n}\r\nDesktop startup diagnostics {\r\n  pid: 121692,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe',\r\n  elapsedMs: 30269,\r\n  stdoutBytes: 2\r\n}\r\nRetained failed desktop verification directory: E:\\NookVerification\\Temp\\qiyao-electron-Lz3B0c\r\nfile:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:302\r\n    const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt, stdoutBytes: stdoutBytes() }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);\r\n                                                                                                                                                                                                                          ^\r\n\r\nError: Desktop startup timed out: Debugger listening on ws://127.0.0.1:64357/1a1a53f6-44f2-43e7-bb2d-ddd5923ae51c\r\n\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\n\r\n\r\n    at Timeout._onTimeout (file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:302:219)\r\n    at listOnTimeout (node:internal/timers:608:17)\r\n    at process.processTimers (node:internal/timers:543:7)\r\n\r\nNode.js v24.0.0\r\n"
+  },
+  "compiledMain": {
+    "path": "E:\\NookWorktrees\\document-originals\\out\\main\\launch.cjs",
+    "bytes": 1177795,
+    "sha256": "5a39728a4696a1965d6d985650b933dce9f4d5d8dea873ba9e7ced09f077a66d"
+  },
+  "hosted": {
+    "path": "E:\\NookWorktrees\\document-originals\\verification\\hosted-main-ready-block-result.json",
+    "bytes": 2149,
+    "sha256": "d7451a83a1172a21e9588e0588ffd484f5f0a57ec1811de5c8f23583c0087e6f"
+  },
+  "packagedVerified": false,
+  "referenceFullyAdopted": false,
+  "hostedVerified": false,
+  "published": false,
+  "rootCauseOfEarlierStartupAndNativeExitEstablished": false,
+  "safeguards": {
+    "startupDeadlineMs": 30000,
+    "bridgeWaitMs": 10000,
+    "operationTimeoutMs": 5000,
+    "defaultUnitTimeoutMs": 5000,
+    "nativeCloseDeadlineMs": 10000,
+    "coverageThreshold": 80
+  },
+  "scope": "Source-only task-read and startup-preflight verification. Earlier 30-second startup failure and diagnostic eight-check bootstrap failure are preserved. Full source, final distribution, physical UI and hosted release remain distinct acceptance layers."
+}
