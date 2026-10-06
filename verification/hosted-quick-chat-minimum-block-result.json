@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-06T20:31:50.672Z",
+  "sourceCommit": "37b3f9576505ad228615065c2f3cdb8a1860c412",
+  "runId": 37526845983,
+  "url": "https://github.com/Moresyl/nook/actions/runs/37526845983",
+  "verify": {
+    "id": 112485911006,
+    "conclusion": "failure",
+    "steps": 0
+  },
+  "publish": {
+    "id": 112485931537,
+    "conclusion": "skipped",
+    "steps": 0
+  },
+  "annotations": [
+    {
+      "level": "failure",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-quick-chat-minimum-hosted-jobs.json",
+      "sha256": "7ae59aaafc37a9df5a28b28e7c2d30975986fadbb3b0d4ac8b0b58eb71ef3a85"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-quick-chat-minimum-hosted-annotations.json",
+      "sha256": "17b6a5ca4926cac6750b97e90fbe47c45f648770b51985f685751b2f7cc1b537"
+    }
+  ],
+  "hostedTestsExecuted": false,
+  "hostedPackagingExecuted": false,
+  "tagCreated": false,
+  "published": false,
+  "billingModified": false,
+  "scope": "Exact short-window and refresh product commit. GitHub rejected verification before any step because of account payment/spending restrictions. The development-branch publish job was skipped; local native passes do not replace hosted or distribution acceptance."
+}
