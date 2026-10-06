@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
 export async function verifyPdfPreview({ page, application, directory, screenshots, verified, restart }) {
-  const bytes = documentBytes('pdf', { outline: true });
+  const bytes = documentBytes('pdf', { outline: true, annotations: true });
   const reference = await page.evaluate(async data => {
     const [file] = await window.qiyao.importAttachments([{ name: 'preview-original.pdf', data }]);
     await window.qiyao.activateThread();
@@ -73,9 +73,41 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   await page.getByRole('spinbutton', { name: 'PDF 页码', exact: true }).fill('1');
   await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
   verified('PDF full-document search jumps across pages, highlights exact literal ranges, cycles backwards and clears obsolete highlights');
+  const internalLink = page.getByRole('link', { name: '跳转到文档位置', exact: true });
+  await internalLink.click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Budget 42'));
+  await page.getByRole('button', { name: '上一页', exact: true }).click();
+  await page.getByRole('button', { name: '查看注释：Review', exact: true }).click();
+  const note = page.getByRole('dialog', { name: 'Review', exact: true });
+  assert.equal(await note.locator('.pdf-note-content').textContent(), '<b>Plain note</b>');
+  assert.equal(await note.locator('.pdf-note-content b').count(), 0);
+  await page.screenshot({ path: join(screenshots, 'pdf-note-light.png') });
+  await note.getByRole('button', { name: '关闭注释', exact: true }).click();
+  assert.equal(await page.getByRole('button', { name: '查看注释：Review', exact: true }).evaluate(element => element === document.activeElement), true);
+  await application.evaluateMain("globalThis.pdfExternalOriginal=require('electron').shell.openExternal;globalThis.pdfExternalCalls=[];require('electron').shell.openExternal=async url=>{globalThis.pdfExternalCalls.push(url)};");
+  try {
+    await page.getByRole('link', { name: '打开链接：https://example.invalid/pdf', exact: true }).click();
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    assert.deepEqual(await application.evaluateMain('globalThis.pdfExternalCalls'), ['https://example.invalid/pdf']);
+  } finally { await application.evaluateMain("require('electron').shell.openExternal=globalThis.pdfExternalOriginal;delete globalThis.pdfExternalOriginal;delete globalThis.pdfExternalCalls;"); }
+  assert.equal(await page.locator('.annotationLayer a').count(), 2);
+  assert.equal(await page.evaluate(() => globalThis.pdfInjected === true), false);
+  const linkPosition = () => internalLink.evaluate(link => { const rect = link.getBoundingClientRect(), root = link.closest('.pdfPreviewPage').getBoundingClientRect(); return [(rect.left - root.left) / root.width, (rect.top - root.top) / root.height, rect.width / root.width]; });
+  const beforePosition = await linkPosition();
   const before = await page.locator('.pdfPreviewPage canvas').evaluate(canvas => canvas.getBoundingClientRect().width);
   await page.getByRole('button', { name: '放大 PDF', exact: true }).click();
-  await page.waitForFunction(width => Number.parseFloat(document.querySelector('.pdfPreviewPage canvas')?.style.width ?? '0') > width, before);
+  await page.waitForFunction(width => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && Number.parseFloat(document.querySelector('.pdfPreviewPage canvas')?.style.width ?? '0') > width, before);
+  await internalLink.waitFor();
+  await page.waitForFunction(expected => {
+    const link = document.querySelector('.annotationLayer a[aria-label="跳转到文档位置"]');
+    if (!link || document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') !== 'false') return false;
+    const rect = link.getBoundingClientRect(), root = link.closest('.pdfPreviewPage').getBoundingClientRect();
+    const actual = [(rect.left - root.left) / root.width, (rect.top - root.top) / root.height, rect.width / root.width];
+    return expected.every((value, index) => Math.abs(value - actual[index]) < 0.002);
+  }, beforePosition);
+  const afterPosition = await linkPosition();
+  beforePosition.forEach((value, index) => assert.ok(Math.abs(value - afterPosition[index]) < 0.002, JSON.stringify({ beforePosition, afterPosition, index })));
+  verified('PDF internal and external links, inert script actions, plain-text notes and zoom-aligned annotation rectangles work in the real viewer');
   await page.getByRole('button', { name: '适合宽度', exact: true }).click();
   await page.getByRole('button', { name: '查看提取文本', exact: true }).click();
   assert.match(await page.locator('.attachment-text-preview').textContent(), /Document evidence/);
@@ -107,5 +139,5 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
   assert.deepEqual(Buffer.from(restored), bytes);
   verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
-  return { page, result: { checks: 5, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png'] } };
+  return { page, result: { checks: 6, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png', 'pdf-note-light.png'] } };
 }

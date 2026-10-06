@@ -6,6 +6,8 @@ import { Button, Input } from './controls';
 import { EmbeddedPdfResources } from './pdf-resources';
 import { pdfOutlineEntries, resolvePdfDestination, type PdfDestination, type PdfOutlineEntry } from './pdf-navigation';
 import { pdfSearchRange, searchPdf, type PdfSearchResult } from './pdf-search';
+import { pdfAnnotations, type PdfAnnotation } from './pdf-annotations';
+import { PdfAnnotationLayer } from './pdf-annotation-layer';
 import '../theme/pdf-preview.css';
 
 export default function PdfPreview({ reference }: { reference: DocumentOriginal }) {
@@ -20,6 +22,8 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
   const textDivs = useRef<HTMLElement[]>([]), [renderRevision, setRenderRevision] = useState(0);
   const [searchJump, setSearchJump] = useState(0);
   const followSearch = useRef(false), searchInput = useRef<HTMLInputElement>(null);
+  const [annotations, setAnnotations] = useState<PdfAnnotation[]>([]), [annotationError, setAnnotationError] = useState('');
+  const paint = useRef<HTMLDivElement>(null);
   const scroll = useRef<HTMLDivElement>(null), surface = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const find = (event: KeyboardEvent) => {
@@ -72,7 +76,7 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
   useEffect(() => {
     if (!document) return;
     let stopped = false, render: RenderTask | undefined, text: TextLayer | undefined;
-    const container = surface.current!; container.replaceChildren(); textDivs.current = []; setLoading(true); setError('');
+    const container = paint.current!, pageRoot = surface.current!; container.replaceChildren(); textDivs.current = []; setAnnotations([]); setAnnotationError(''); setLoading(true); setError('');
     void (async () => {
       const selected = await document.getPage(page); if (stopped) return;
       const unscaled = selected.getViewport({ scale: 1 });
@@ -83,14 +87,20 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
       canvas.style.width = `${viewport.width}px`; canvas.style.height = `${viewport.height}px`;
       canvas.setAttribute('aria-label', `PDF 第 ${page} 页`); canvas.setAttribute('role', 'img');
       const layer = window.document.createElement('div'); layer.className = 'textLayer';
-      container.style.width = `${viewport.width}px`; container.style.height = `${viewport.height}px`;
-      container.style.setProperty('--scale-factor', String(viewport.scale));
-      container.style.setProperty('--user-unit', String(viewport.userUnit));
+      pageRoot.style.width = `${viewport.width}px`; pageRoot.style.height = `${viewport.height}px`;
+      pageRoot.style.setProperty('--scale-factor', String(viewport.scale));
+      pageRoot.style.setProperty('--user-unit', String(viewport.userUnit));
       container.replaceChildren(canvas, layer);
       render = selected.render({ canvas, viewport, transform: ratio === 1 ? undefined : [ratio, 0, 0, ratio, 0, 0] });
       text = new TextLayer({ textContentSource: selected.streamTextContent(), container: layer, viewport });
       await Promise.all([render.promise, text.render()]);
       if (!stopped) {
+        try {
+          const raw = await selected.getAnnotations({ intent: 'display' });
+          if (stopped) return;
+          setAnnotations(pdfAnnotations(raw, viewport));
+        } catch { if (!stopped) setAnnotationError('此页注释无法读取，页面与文字仍可浏览。'); }
+        if (stopped) return;
         textDivs.current = text.textDivs; setRenderRevision(value => value + 1);
         setLoading(false);
         if (destination?.page === page) {
@@ -152,11 +162,12 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
       <span role="status">{searching ? `正在搜索 ${searchedPage}/${document?.numPages ?? 0} 页` : query.trim() ? `${searchResult.matches.length ? activeMatch + 1 : 0} / ${searchResult.matches.length}${searchResult.limited ? '+' : ''}` : ''}</span>
     </div>
     {searchError && <p role="alert" className="field-hint">{searchError}</p>}
+    {annotationError && <p role="alert" className="field-hint">{annotationError}</p>}
     {searchResult.limited && <p className="field-hint">仅显示前 10,000 处匹配，请缩小搜索范围。</p>}
     {outlineOpen && <nav id={outlineId} className="pdf-outline" aria-label="PDF 目录">{outline.length ? outline.map((entry, index) => <Button key={index} style={{ paddingInlineStart: `${8 + Math.min(entry.depth, 12) * 12}px` }} disabled={entry.destination == null} onClick={() => { void navigateOutline(entry.destination); }}>{entry.title}</Button>) : <p className="field-hint">{document ? '此文档没有目录。' : '正在读取目录…'}</p>}</nav>}
     {outlineError && <p role="alert" className="field-hint">{outlineError}</p>}
     {loading && <p role="status" className="field-hint">正在显示 PDF…</p>}
     {error && <div role="alert" className="pdf-error"><p>{error}</p><Button onClick={() => setRetry(value => value + 1)}>重试</Button></div>}
-    <div className="pdf-scroll" ref={scroll} tabIndex={0} aria-label="PDF 页面，可滚动" aria-busy={loading}><div ref={surface} className="pdfPreviewPage" /></div>
+    <div className="pdf-scroll" ref={scroll} tabIndex={0} aria-label="PDF 页面，可滚动" aria-busy={loading}><div ref={surface} className="pdfPreviewPage"><div ref={paint} /><PdfAnnotationLayer items={annotations} navigate={navigateOutline} report={setAnnotationError} /></div></div>
   </section>;
 }

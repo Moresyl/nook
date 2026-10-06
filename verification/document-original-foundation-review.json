@@ -33,7 +33,7 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Complete PDF annotation interactions and verify complete desktop product flows",
+    "Broaden PDF annotation samples and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Extend offline PDF sample coverage to Chinese CMaps, complex images and annotation layers",
     "Verify provider requests exclude original binary bytes",
@@ -137,6 +137,28 @@
     ],
     "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
     "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
+  },
+  "annotationFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "tests": { "files": 3, "passed": 14, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-final-tests.log" },
+    "focusedCoverage": { "scope": "pdf-annotations.ts only, not renderer or whole-product coverage", "statements": 100, "branches": 100, "functions": 100, "lines": 100, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-coverage.log" },
+    "buildPassed": true,
+    "buildLog": "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-synchronized-build.log",
+    "nativeChecks": { "passed": 6, "normalFinalExitMilliseconds": 159, "runtimeErrors": [], "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-native-synchronized.log" },
+    "screenshotsReviewed": ["verification/screenshots/pdf-note-light.png", "verification/screenshots/pdf-original-dark-minimum.png"],
+    "implemented": [
+      "Bounded and viewport-clipped link and read-only comment regions",
+      "Internal page navigation and validated HTTP/HTTPS opening through the desktop bridge",
+      "Plain-text comment modal with explicit truncation and focus restoration",
+      "Ignore script actions and unsupported external schemes; preserve page rendering on annotation failure"
+    ],
+    "initialFailures": {
+      "logs": ["D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-native.log", "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-native-diagnostic.log", "D:/GR/pi-pc/.firecrawl/nook-pdf-annotations-native-settled.log"],
+      "observed": "Zoom assertion observed updated canvas dimensions with previous annotation geometry. Link, note and external invocation assertions had already passed.",
+      "correction": "Include annotation loading in page completion and wait for settled annotation geometry in the native assertion; no deadlines increased."
+    },
+    "remaining": "Broader PDF samples and accessibility, editing/forms, OCR/password workflows, recovery-aware cleanup, full regression, distribution and release."
   },
   "searchFollowUp": {
     "featureComplete": false,

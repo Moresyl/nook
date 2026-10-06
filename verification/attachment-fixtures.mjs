@@ -5,7 +5,7 @@ const zip = (parts) => Buffer.from(zipSync(Object.fromEntries(Object.entries(par
 const contentTypes = '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>';
 const relationships = (entries) => `<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${entries.map(([id, type, target]) => `<Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/${type}" Target="${target}"/>`).join('')}</Relationships>`;
 
-export function documentBytes(format, { outline = false } = {}) {
+export function documentBytes(format, { outline = false, annotations = false } = {}) {
   if (format === 'rtf') return Buffer.from('{\\rtf1\\ansi Document evidence\\par Budget 42}', 'ascii');
   if (format === 'pdf') {
     const objects = ['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>', ...[5, 6].map((id) => `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents ${id} 0 R >>`), ...['Document evidence', 'Budget 42'].map((text) => { const stream = `BT /F1 16 Tf 72 720 Td (${text}) Tj ET`; return `<< /Length ${Buffer.byteLength(stream)} >>\nstream\n${stream}\nendstream`; }), '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>'];
@@ -15,6 +15,15 @@ export function documentBytes(format, { outline = false } = {}) {
         '<< /Title (Evidence chapter) /Parent 8 0 R /Dest [3 0 R /Fit] /First 10 0 R /Last 11 0 R /Count 2 >>',
         '<< /Title (Budget details) /Parent 9 0 R /Next 11 0 R /Dest (budget) >>',
         '<< /Title (External reference) /Parent 9 0 R /Prev 10 0 R /A << /S /URI /URI (https://example.invalid/) >> >>');
+    }
+    if (annotations) {
+      const first = objects.length + 1;
+      objects[2] = objects[2].replace(/>>$/, `/Annots [${[0, 1, 2, 3].map(offset => `${first + offset} 0 R`).join(' ')}] >>`);
+      objects.push(
+        '<< /Type /Annot /Subtype /Link /Rect [72 640 200 660] /Border [0 0 0] /Dest [4 0 R /Fit] >>',
+        '<< /Type /Annot /Subtype /Link /Rect [72 600 200 620] /Border [0 0 0] /A << /S /URI /URI (https://example.invalid/pdf) >> >>',
+        '<< /Type /Annot /Subtype /Text /Rect [250 640 274 664] /T (Review) /Contents (<b>Plain note</b>) >>',
+        '<< /Type /Annot /Subtype /Link /Rect [72 560 200 580] /A << /S /JavaScript /JS (globalThis.pdfInjected=true) >> >>');
     }
     let pdf = '%PDF-1.4\n'; const offsets = [0]; objects.forEach((value, index) => { offsets.push(Buffer.byteLength(pdf)); pdf += `${index + 1} 0 obj\n${value}\nendobj\n`; });
     const xref = Buffer.byteLength(pdf); pdf += `xref\n0 ${offsets.length}\n0000000000 65535 f \n${offsets.slice(1).map((offset) => `${String(offset).padStart(10, '0')} 00000 n \n`).join('')}trailer\n<< /Size ${offsets.length} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;

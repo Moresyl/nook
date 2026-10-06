@@ -16,6 +16,14 @@
 .pdfPreviewPage .textLayer span.markedContent { height: 0; top: 0; }
 .pdfPreviewPage .textLayer ::selection { color: transparent; background: color-mix(in srgb, AccentColor, transparent 75%); }
 .pdfPreviewPage .textLayer br::selection { background: transparent; }
+.pdfPreviewPage .annotationLayer { z-index: 2; pointer-events: none; transform-origin: 0 0; position: absolute; inset: 0; }
+.pdfPreviewPage .annotationLayer section { box-sizing: border-box; text-align: initial; pointer-events: auto; transform-origin: 0 0; position: absolute; }
+.pdfPreviewPage .annotationLayer .linkAnnotation > a { width: 100%; height: 100%; cursor: pointer; position: absolute; inset: 0; }
+.pdfPreviewPage .annotationLayer .linkAnnotation > a:hover { background: #ff03; }
+.pdfPreviewPage .annotationLayer .noteAnnotation { pointer-events: none; }
+.pdf-note-button { position: absolute; top: 0; right: 0; width: 20px; height: 20px; pointer-events: auto; cursor: pointer; border: 1px solid var(--ds-border); border-radius: 4px; background: var(--ds-bg-elevated); color: var(--ds-text); }
+.pdf-note-content { white-space: pre-wrap; overflow-wrap: anywhere; }
+.pdf-note-modal { pointer-events: auto; }
 .pdf-error { color: var(--ds-text); }
 .pdf-attachment-modal.modal { width: min(1000px, calc(100vw - 32px)); height: calc(100dvh - 40px); max-height: 800px; margin: auto; transform: none; }
 .pdf-attachment-modal .modal-content { display: flex; flex-direction: column; overflow: hidden; max-height: none; }
