@@ -59,12 +59,16 @@ describe('provider configuration and destination-bound credentials', () => {
     vi.spyOn(vault, 'setKey').mockRejectedValueOnce(new Error('Credential store failed')); await expect(settings.save(provider, 'new')).rejects.toThrow('Credential store failed'); expect(settings.key(provider)).toBe('bound-key');
   });
 
-  it('serializes config changes, recovers from failures, and selects the next remaining default on removal', async () => {
+  it('serializes concurrent config changes and validates reserved identifiers and key limits', async () => {
     const { vault, settings } = await setup();
     await Promise.all([settings.save(provider, 'first'), settings.save({ ...provider, name: 'Latest' }, 'second')]); expect(settings.key(provider)).toBe('second'); expect(vault.snapshot().providers[0].name).toBe('Latest');
-    await settings.save({ ...provider, id: 'next', models: [] }); await settings.remove(provider.id); expect(vault.snapshot().preferences).toMatchObject({ defaultProviderId: 'next', defaultModel: '' });
-    await settings.remove('next'); expect(vault.snapshot().preferences.defaultProviderId).toBeUndefined(); await settings.remove('missing');
     expect(() => settings.remove('\0mcp:server')).toThrow(); expect(() => settings.save(provider, 'x'.repeat(4097))).toThrow(); expect(() => settings.key(provider, 'x'.repeat(4097))).toThrow();
+  });
+  it('selects the next remaining default on removal and safely removes the last or unknown provider', async () => {
+    const { vault, settings } = await setup();
+    await settings.save(provider, 'second'); await settings.save({ ...provider, id: 'next', models: [] }); expect(vault.snapshot().preferences.defaultProviderId).toBe(provider.id);
+    await settings.remove(provider.id); expect(vault.snapshot().preferences).toMatchObject({ defaultProviderId: 'next', defaultModel: '' }); expect(settings.key(provider)).toBe('');
+    await settings.remove('next'); expect(vault.snapshot().preferences.defaultProviderId).toBeUndefined(); await settings.remove('missing');
   });
 
   it('redacts malformed bound credentials, permits replacement, and leaves configuration untouched if stopping fails', async () => {

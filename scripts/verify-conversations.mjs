@@ -31,6 +31,12 @@ export async function verifyConversations({ page, application, directory, screen
   assert.equal(calls.length, beforeQuote);
   await page.waitForFunction(() => { const input = document.querySelector('textarea[aria-label="消息"]'); return input && document.activeElement === input && input.selectionStart === input.value.length && input.selectionEnd === input.value.length; });
   await composer.fill('保留草稿'); assert.equal(await composer.inputValue(), '保留草稿');
+  await composer.evaluate(async (input) => {
+    input.setSelectionRange(0, 2);
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    if (input.selectionStart !== 0 || input.selectionEnd !== 2) throw new Error('Quote focus changed a later text selection.');
+  });
+  assert.equal(await composer.inputValue(), '保留草稿');
   verified('selected-passage quoting preserves the existing draft, focuses the composer and makes no provider request');
   const user = page.getByLabel('你的消息', { exact: true }).last();
   async function edit() { await user.hover(); await user.getByRole('button', { name: '编辑消息', exact: true }).click(); await page.getByRole('dialog', { name: '编辑消息', exact: true }).waitFor(); }

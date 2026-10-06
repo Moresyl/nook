@@ -20,6 +20,13 @@ async function setup(endpoint = 'http://127.0.0.1:8000/mcp', open = vi.fn(async 
   const store = new McpOAuthStore(vault); const sessions = new McpOAuthSessions(store, open, () => config, timeout);
   return { vault, directory, config, store, sessions, open };
 }
+async function protocol(transport: 'http' | 'sse') {
+  const { oauthFixture } = await import('./oauth-fixture.mjs'); const remote = await oauthFixture(transport); cleanup.push(() => remote.close());
+  const fixture = await setup(remote.endpoint, vi.fn((url: string) => remote.authorize(url)));
+  fixture.config.transport = transport;
+  const manager = new McpConnections(() => fixture.config, () => ({}), () => {}, undefined, (...args) => fixture.sessions.create(...args)); cleanup.push(() => manager.shutdown());
+  return { ...fixture, remote, manager };
+}
 describe('MCP OAuth', () => {
   it('keeps issuer bindings unchanged, encrypts client/tokens and isolates them from provider keys and backups', async () => {
     const { vault, store, config, directory } = await setup();
@@ -65,18 +72,26 @@ describe('MCP OAuth', () => {
     for (const value of ['file:///secret', 'http://auth.example.com/authorize', 'https://user:secret@auth.example.com/authorize', 'http://127.0.0.1/authorize']) expect(() => oauthWebUrl(value, 'https://mcp.example.com/mcp')).toThrow('HTTPS');
     expect(() => mcpServerSchema.parse({ id: 'x', name: 'X', transport: 'stdio', command: 'node', auth: 'oauth' })).toThrow();
   });
-  it.each(['http', 'sse'] as const)('completes real %s discovery, dynamic registration, PKCE authorization/token exchange, refresh and restart reuse', async (transport) => {
-    const { oauthFixture } = await import('./oauth-fixture.mjs'); const remote = await oauthFixture(transport); cleanup.push(() => remote.close());
-    const fixture = await setup(remote.endpoint, vi.fn((url: string) => remote.authorize(url))); const { sessions, store, config } = fixture;
-    config.transport = transport;
-    const manager = new McpConnections(() => config, () => ({}), () => {}, undefined, (...args) => sessions.create(...args)); cleanup.push(() => manager.shutdown());
-    expect((await manager.connect(config.id)).status).toBe('auth-required'); expect(fixture.open).not.toHaveBeenCalled();
-    expect((await manager.connect(config.id, true)).status).toBe('connected'); expect(fixture.open).toHaveBeenCalledOnce();
+  it.each(['http', 'sse'] as const)('completes real %s discovery, registration, PKCE login and authenticated tools without a background redirect', async (transport) => {
+    const { manager, config, open, store, remote } = await protocol(transport);
+    expect((await manager.connect(config.id)).status).toBe('auth-required'); expect(open).not.toHaveBeenCalled();
+    expect((await manager.connect(config.id, true)).status).toBe('connected'); expect(open).toHaveBeenCalledOnce();
     expect((await manager.testTool(config.id, 'authenticated_echo', '{}')).output).toBe('OAUTH_PROTOCOL_EVIDENCE'); expect(store.load(config).tokens?.issuer).toBe(remote.issuer);
-    remote.expire(); expect((await manager.readResource(config.id, 'fixture://authorized')).text).toContain('OAUTH_RESOURCE_EVIDENCE'); expect(remote.requests.some((request) => request.grant === 'refresh_token')).toBe(true);
-    await manager.disconnect(config.id); expect((await manager.connect(config.id)).status).toBe('connected'); expect(fixture.open).toHaveBeenCalledOnce();
-    remote.disableRefresh(); remote.expire(); await expect(manager.readResource(config.id, 'fixture://authorized')).rejects.toThrow('Could not read'); expect(manager.view(config.id).status).toBe('auth-required');
     expect(remote.errors).toEqual([]);
+  });
+  it.each(['http', 'sse'] as const)('refreshes real %s tokens and reconnects with saved login without another browser', async (transport) => {
+    const { manager, config, open, remote } = await protocol(transport);
+    expect((await manager.connect(config.id, true)).status).toBe('connected'); expect(open).toHaveBeenCalledOnce();
+    remote.expire(); expect((await manager.readResource(config.id, 'fixture://authorized')).text).toContain('OAUTH_RESOURCE_EVIDENCE'); expect(remote.requests.some((request) => request.grant === 'refresh_token')).toBe(true);
+    await manager.disconnect(config.id); expect((await manager.connect(config.id)).status).toBe('connected'); expect(open).toHaveBeenCalledOnce();
+    expect(remote.errors).toEqual([]);
+  });
+  it.each(['http', 'sse'] as const)('requires real %s sign-in again when a saved refresh grant is rejected', async (transport) => {
+    const { manager, config, open, remote } = await protocol(transport);
+    expect((await manager.connect(config.id, true)).status).toBe('connected'); expect(open).toHaveBeenCalledOnce();
+    remote.expire(); expect((await manager.readResource(config.id, 'fixture://authorized')).text).toContain('OAUTH_RESOURCE_EVIDENCE'); expect(remote.requests.some((request) => request.grant === 'refresh_token')).toBe(true);
+    remote.disableRefresh(); remote.expire(); await expect(manager.readResource(config.id, 'fixture://authorized')).rejects.toThrow('Could not read'); expect(manager.view(config.id).status).toBe('auth-required');
+    expect(open).toHaveBeenCalledOnce(); expect(remote.errors).toEqual([]);
   });
   it.each(['http', 'sse'] as const)('uses a pre-registered client, issuer, secret and fixed callback through real %s OAuth', async (transport) => {
     const { oauthFixture } = await import('./oauth-fixture.mjs'); const remote = await oauthFixture(transport); cleanup.push(() => remote.close());

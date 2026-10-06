@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { SetStateAction } from 'react';
 import { emptyWorkspace, searchThreads, type ComposerDraft, type Message, type SubmitRequest, type Thread, type Workspace } from '../contracts/workspace';
 import { appendMessageQuote, conversationRevision } from '../contracts/conversations';
@@ -41,6 +41,7 @@ export function Workbench() {
   const [pluginPanel, setPluginPanel] = useState({ pluginId: '', panelId: '' });
   const [composerDraft, setComposerDraft] = useState<ComposerDraft>(() => restoreComposer(emptyWorkspace()));
   const draftRef = useRef(composerDraft);
+  const pendingComposerFocus = useRef<ComposerDraft | undefined>(undefined);
   const draftStore = useRef(new ComposerDraftStore((draft) => window.qiyao.saveComposerDraft(draft)));
   const draftEpoch = useRef(0);
   const draftTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -48,6 +49,13 @@ export function Workbench() {
   const { text, model, mode, attachments, mcpServerIds: serverIds, skillIds, pluginIds, knowledgeCollectionIds = [] } = composerDraft;
   const threadId = composerDraft.threadId ?? ''; const providerId = composerDraft.providerId ?? '';
   const assistantId = composerDraft.assistantId ?? ''; const projectId = composerDraft.projectId ?? '';
+  useLayoutEffect(() => {
+    const requested = pendingComposerFocus.current;
+    pendingComposerFocus.current = undefined;
+    if (requested !== composerDraft || page !== 'chat') return;
+    const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]');
+    input?.focus(); input?.setSelectionRange(input.value.length, input.value.length);
+  }, [composerDraft, page]);
   const [approvals, setApprovals] = useState<ApprovalRequest[]>([]);
   const [sidebar, setSidebar] = useState(true);
   const [startingTemporary, setStartingTemporary] = useState(false);
@@ -206,14 +214,14 @@ export function Workbench() {
     try { const next = await window.qiyao.forkThread(thread.id, message.id); setState(next); openThread(next.threads[next.threads.length - 1]); } catch (problem) { report(problem); }
   }
   function quote(message: Message, selection?: string) {
-    try { setText(appendMessageQuote(text, message, selection)); requestAnimationFrame(() => { const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]'); input?.focus(); input?.setSelectionRange(input.value.length, input.value.length); }); }
+    try { setText(appendMessageQuote(draftRef.current.text, message, selection)); pendingComposerFocus.current = draftRef.current; }
     catch (problem) { report(problem); }
   }
   function insertPrompt(prompt: string, recipeAssistantId?: string): boolean {
     try {
       if (recipeAssistantId && !state?.assistants.some((item) => item.id === recipeAssistantId)) throw new Error('关联的助手已移除。请重新选择模板助手。');
       updateDraft({ text: appendPrompt(draftRef.current.text, prompt), ...(recipeAssistantId ? { assistantId: recipeAssistantId } : {}) }); setPage('chat');
-      requestAnimationFrame(() => { const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]'); input?.focus(); input?.setSelectionRange(input.value.length, input.value.length); }); return true;
+      pendingComposerFocus.current = draftRef.current; return true;
     } catch (problem) { report(problem); return false; }
   }
   async function retry() {

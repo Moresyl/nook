@@ -1,4 +1,4 @@
-import { cloneElement, createElement, isValidElement, useEffect, useId, useImperativeHandle, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
+import { cloneElement, createElement, isValidElement, useLayoutEffect, useId, useImperativeHandle, useRef, type ButtonHTMLAttributes, type ComponentProps, type ReactElement, type ReactNode, type RefObject, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { Glyph, type GlyphName } from './glyphs';
 import { useControlTooltip } from './control-tooltip';
 
@@ -37,7 +37,7 @@ export function Empty({ icon, title, detail, action }: { icon: GlyphName; title:
 export function Modal({ title, children, onClose, footer, className = '', returnFocus }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; className?: string; returnFocus?: RefObject<HTMLElement | null> }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = dialog.current!;
     const previous = document.activeElement as HTMLElement | null;
     element.showModal();
