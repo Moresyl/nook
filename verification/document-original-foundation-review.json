@@ -108,5 +108,16 @@
     "initialNativeFailure": { "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-native.log", "cause": "The verifier assumed a one-page fixture; the existing PDF has two pages. The corrected verifier visits page two, checks its text and boundary, then returns to page one." },
     "licenseCheck": { "passed": false, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-notices.log", "reason": "The shared node_modules junction resolves declared node-pty bundled assets outside this worktree root. Existing PDF CMap/font/decoder legal files are retained; worktree-aware inventory validation remains unresolved." },
     "remaining": "Outline, document search, annotation/link layer, OCR/password workflows, wider samples and accessibility, reference-layout parity, recovery-aware cleanup, complete native/release proof and distribution verification. Native save-dialog UI was intercepted in the test process."
+  },
+  "licensePathFollowUp": {
+    "typesPassed": true,
+    "tests": { "files": 2, "passed": 14, "log": "D:/GR/pi-pc/.firecrawl/nook-license-path-tests.log" },
+    "inventoryCheckPassed": true,
+    "releaseRightsCheckPassed": true,
+    "inventoryLog": "D:/GR/pi-pc/.firecrawl/nook-license-path-notices.log",
+    "releaseRightsLog": "D:/GR/pi-pc/.firecrawl/nook-license-path-release.log",
+    "verified": { "dependencyVersions": 381, "legalDocuments": 401, "bundledAssetGroups": 5, "distributionComponents": 5 },
+    "correction": "Resolve explicitly declared node_modules assets within the canonical installed dependency root; reject nested junction escapes, traversal, absolute paths and project/license-document escapes. Existing complete file-hash checks remain in place.",
+    "scope": "Resolves the earlier shared-dependency worktree inventory failure. Does not establish runtime, distribution or overall release readiness."
   }
 }

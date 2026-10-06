@@ -1,21 +1,17 @@
 import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { parse } from 'yaml';
 import { collectLicenseInventory } from './license-inventory.mjs';
 import { collectDistributionInventory } from './distribution-inventory.mjs';
+import { licenseAssetPath } from './license-asset-path.mjs';
 
 const root = await realpath(fileURLToPath(new URL('..', import.meta.url)));
 const check = process.argv.includes('--check');
 const sha256 = (content) => createHash('sha256').update(content).digest('hex');
-async function assetPath(directory, name) {
-  const path = await realpath(resolve(directory, name)); const scope = relative(directory, path);
-  if (!scope || scope === '..' || scope.startsWith(`..${sep}`) || isAbsolute(scope)) throw new Error('A bundled license asset is outside its declared directory');
-  return path;
-}
 try {
   if (!process.env.npm_execpath) throw new Error('Run the license inventory through pnpm notices or pnpm notices:check');
   const { stdout } = await promisify(execFile)(process.execPath, [process.env.npm_execpath, 'licenses', 'list', '--prod', '--json'], { cwd: root, windowsHide: true, maxBuffer: 32_000_000 });
@@ -28,10 +24,10 @@ try {
   const assetNotices = [];
   for (const asset of assets) {
     for (const file of asset.files) {
-      const path = await assetPath(root, file.path);
+      const path = await licenseAssetPath(root, file.path, true);
       if (sha256(await readFile(path)) !== file.sha256) throw new Error(`Bundled asset does not match its license inventory: ${asset.name}`);
     }
-    const license = await readFile(await assetPath(join(root, 'licenses'), asset.document));
+    const license = await readFile(await licenseAssetPath(join(root, 'licenses'), asset.document));
     if (sha256(license) !== asset.documentSha256) throw new Error(`Bundled asset license document changed: ${asset.name}`);
     assetNotices.push(`${asset.name}\nDeclared license: ${asset.license}\nRedistribution status: ${asset.status}\nSource: ${asset.source}\n\n${license.toString('utf8')}`);
   }
