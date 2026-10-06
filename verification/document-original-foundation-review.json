@@ -1,0 +1,30 @@
+{
+  "baseCommit": "7c9243b",
+  "featureComplete": false,
+  "mergedIntoMain": false,
+  "implemented": [
+    "Bounded PDF original references with canonical SHA-256 identities and matching source metadata",
+    "Atomic durable binary storage, exact-size and content-integrity reads, deduplication and cancellation",
+    "Reference collection from current/archived messages, drafts, knowledge notes and retained citations",
+    "Persistent ownership collection through the existing temporary-conversation filter"
+  ],
+  "validation": {
+    "typesPassed": true,
+    "relatedTests": { "files": 4, "passed": 68, "log": "D:/GR/pi-pc/.firecrawl/nook-document-original-fixed-tests.log", "sha256": "6b5994906a71eefda799dfb170a746252d6532e1e5f6289ec4fd37f6dddd0a58" },
+    "focusedCoverage": { "files": 2, "tests": 12, "statements": 97.72, "branches": 93.75, "functions": 100, "lines": 100, "scope": "The two new desktop services in the emitted coverage table, not renderer or full product coverage", "log": "D:/GR/pi-pc/.firecrawl/nook-document-original-coverage.log", "sha256": "964a9bd7c79b329fc77e664aef0c64479b03b0cb92f2b560f407acc90d62918e" }
+  },
+  "initialFailure": {
+    "log": "D:/GR/pi-pc/.firecrawl/nook-document-original-tests.log",
+    "passed": 65,
+    "failed": 3,
+    "cause": "A valid Windows original was rejected because path lstat reported device 0 while the opened handle stat reported the volume ID.",
+    "correction": "Do not compare those device fields on Windows; retain file identity, exact-size, bounded-read and complete SHA-256 checks."
+  },
+  "remaining": [
+    "Connect original retention to import and ownership-aware persistent/temporary transactions",
+    "Complete backup/export/restore integration and safe unreferenced-original cleanup",
+    "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
+    "Verify provider requests exclude original binary bytes",
+    "Build, complete regression, native UI checks, distribution and hosted release"
+  ]
+}

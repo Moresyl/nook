@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import { documentOriginalLimits, documentOriginalSchema } from './document-originals';
 
-export const attachmentLimits = { count: 12, fileBytes: 12_000_000, batchBytes: 24_000_000, textCharacters: 256_000, imageBytes: 2_000_000, imageDimension: 2000, requestBytes: 16_000_000 } as const;
+export const attachmentLimits = { count: 12, fileBytes: documentOriginalLimits.fileBytes, batchBytes: 24_000_000, textCharacters: 256_000, imageBytes: 2_000_000, imageDimension: 2000, requestBytes: 16_000_000 } as const;
 export const attachmentFormats = ['text', 'pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf', 'png', 'jpeg', 'webp', 'gif'] as const;
 function base64Bytes(value: string): number { return value.length / 4 * 3 - (value.endsWith('==') ? 2 : value.endsWith('=') ? 1 : 0); }
 function validBase64(value: string): boolean {
@@ -47,12 +48,14 @@ export const attachmentSchema = z.object({
   id: z.string().min(1).max(128).refine((value) => !value.includes('\0'), 'Identifiers cannot contain NUL characters'),
   name: z.string().max(512), content: z.string().max(attachmentLimits.textCharacters),
   source: z.object({ format: z.enum(attachmentFormats), bytes: z.number().int().nonnegative().max(attachmentLimits.fileBytes) }).strict().optional(),
+  original: documentOriginalSchema.optional(),
   image: z.object({
     mimeType: z.literal('image/jpeg'), data: z.string().min(4).max(Math.ceil(attachmentLimits.imageBytes / 3) * 4).refine(validBase64, 'Use canonical base64 image data').refine((value) => base64Bytes(value) <= attachmentLimits.imageBytes, 'The image exceeds 2 MB').startsWith('/9j/'),
     width: z.number().int().positive().max(attachmentLimits.imageDimension), height: z.number().int().positive().max(attachmentLimits.imageDimension),
   }).strict().optional(),
   warnings: z.array(z.string().min(1).max(512)).max(8).optional(),
 }).superRefine((file, context) => {
+  if (file.original && (file.image || file.source?.format !== 'pdf' || file.source?.bytes !== file.original.bytes)) context.addIssue({ code: 'custom', path: ['original'], message: 'A PDF original must match its source metadata and cannot contain an image payload' });
   if (file.image && file.content) context.addIssue({ code: 'custom', path: ['content'], message: 'An image attachment cannot also contain extracted document text' });
   if (file.image) {
     const size = jpegSize(file.image.data);
