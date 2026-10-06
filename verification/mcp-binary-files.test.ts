@@ -3,9 +3,12 @@ import { tmpdir } from 'node:os';
 import { isAbsolute, join, relative } from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { mcpBinaryFileName, mcpBinaryImageSupported, mcpBinaryItemSchema, mcpBinaryLimits } from '../contracts/mcp-binary';
+import { mcpBinaryFileName, mcpBinaryImageSupported, mcpBinaryPdfSupported, mcpBinaryItemSchema, mcpBinaryLimits } from '../contracts/mcp-binary';
 import { McpBinaryFiles } from '../desktop/services/mcp-binary-files';
 import { parseAttachment } from '../desktop/services/attachment-parser';
+import { AttachmentImporter } from '../desktop/services/attachment-importer';
+import { originalDocumentIdentity } from '../desktop/services/document-original-store';
+import { documentBytes } from './attachment-fixtures.mjs';
 
 const directories: string[] = [];
 afterEach(async () => { await Promise.all(directories.splice(0).map((path) => {
@@ -26,6 +29,8 @@ describe('MCP binary snapshots', () => {
     expect(mcpBinaryFileName({})).toBe('mcp-resource.bin');
     for (const mimeType of ['image/png', 'image/jpeg', 'image/webp', 'image/gif']) expect(mcpBinaryImageSupported({ mimeType })).toBe(true);
     for (const mimeType of ['image/svg+xml', 'text/html', 'application/pdf', undefined]) expect(mcpBinaryImageSupported({ mimeType })).toBe(false);
+    for (const mimeType of ['application/pdf', ' APPLICATION/PDF ; version=1.4']) expect(mcpBinaryPdfSupported({ mimeType })).toBe(true);
+    for (const mimeType of ['application/pdfx', 'image/png', '__proto__', undefined]) expect(mcpBinaryPdfSupported({ mimeType })).toBe(false);
   });
 
   it('exports exact original bytes through an explicit selected Unicode path and preserves a zero-byte file', async () => {
@@ -45,7 +50,7 @@ describe('MCP binary snapshots', () => {
       await expect(files.export(raw)).rejects.toThrow('valid MCP binary item'); await expect(files.preview(raw)).rejects.toThrow('valid MCP binary item');
     }
     expect(choose).not.toHaveBeenCalled(); expect(parse).not.toHaveBeenCalled();
-    await expect(files.preview(item(Buffer.from('SVG'), 'image/svg+xml'))).rejects.toThrow('no image preview'); expect(parse).not.toHaveBeenCalled();
+    await expect(files.preview(item(Buffer.from('SVG'), 'image/svg+xml'))).rejects.toThrow('no image or PDF preview'); expect(parse).not.toHaveBeenCalled();
   });
 
   it('normalizes a real raster image without rewriting the original export bytes or retaining its image metadata', async () => {
@@ -63,6 +68,30 @@ describe('MCP binary snapshots', () => {
     const failures = new McpBinaryFiles(parse, choose);
     for (let attempt = 0; attempt < 3; attempt++) await expect(failures.preview(item(undefined, 'image/png'))).rejects.toThrow('Could not preview this MCP image');
     expect(choose).not.toHaveBeenCalled();
+  });
+
+  it('parses a real PDF into extracted text and retains the exact original without exporting or persisting a preview', async () => {
+    const pdf = documentBytes('pdf'); const stage = vi.fn((inputs: Uint8Array[]) => inputs.map(originalDocumentIdentity));
+    const importer = new AttachmentImporter(parseAttachment, stage), choose = vi.fn(), write = vi.fn();
+    const files = new McpBinaryFiles(async input => (await importer.importInputs([input]))[0], choose, write);
+    const preview = await files.preview(item(pdf, 'APPLICATION/PDF; version=1.4'));
+    expect(preview.content).toContain('Document evidence'); expect(preview.content).toContain('Budget 42');
+    expect(preview.name).toBe('mcp-resource.pdf'); expect(preview.source).toEqual({ format: 'pdf', bytes: pdf.length });
+    expect(preview.original).toEqual(originalDocumentIdentity(pdf)); expect(preview.image).toBeUndefined();
+    expect(stage).toHaveBeenCalledWith([pdf]); expect(choose).not.toHaveBeenCalled(); expect(write).not.toHaveBeenCalled();
+  });
+
+  it('rejects missing, mismatched or corrupt PDF originals and recovers without exposing parser details', async () => {
+    const pdf = documentBytes('pdf'), original = originalDocumentIdentity(pdf);
+    const parsed = { id: 'pdf', name: 'mcp-resource.pdf', content: 'Document evidence', source: { format: 'pdf', bytes: pdf.length }, original };
+    const parse = vi.fn().mockResolvedValueOnce({ ...parsed, original: undefined })
+      .mockResolvedValueOnce({ ...parsed, original: { ...original, sha256: 'f'.repeat(64) } })
+      .mockResolvedValueOnce({ ...parsed, source: { format: 'pdf', bytes: pdf.length + 1 }, original: { ...original, bytes: pdf.length + 1 } })
+      .mockRejectedValueOnce(new Error('SECRET_PDF_PATH')).mockResolvedValueOnce(parsed).mockResolvedValueOnce(parsed);
+    const files = new McpBinaryFiles(parse, vi.fn());
+    for (let attempt = 0; attempt < 4; attempt++) await expect(files.preview(item(pdf, 'application/pdf'))).rejects.toThrow('Could not preview this MCP PDF. Check its format and size, then retry.');
+    await expect(files.preview(item(Buffer.from('SECRET_NOT_A_PDF'), 'application/pdf'))).rejects.toThrow('Could not preview this MCP PDF');
+    await expect(files.preview(item(pdf, 'application/pdf'))).resolves.toMatchObject({ original });
   });
 
   it('blocks overlapping preview/export while an owned operation is pending and releases the guard after failure or cancellation', async () => {

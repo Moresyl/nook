@@ -51,6 +51,7 @@ import { verifyTemporaryConversations } from './verify-temporary-conversations.m
 import { verifyModelComparisons } from './verify-model-comparisons.mjs';
 import { verifyMcpResourceSubscriptions } from './verify-mcp-resource-subscriptions.mjs';
 import { verifyMcpBinaryFiles } from './verify-mcp-binary-files.mjs';
+import { verifyMcpPdf } from './verify-mcp-pdf.mjs';
 import { modelComparisonFixture } from '../verification/model-comparison-fixture.mjs';
 import { chatNavigationFixture } from '../verification/chat-navigation-fixture.mjs';
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
@@ -519,6 +520,7 @@ let temporaryConversationsResult;
 let modelComparisonsResult;
 let mcpResourceSubscriptionsResult;
 let mcpBinaryFilesResult;
+let mcpPdfResult;
 let assistantRecipesResult;
 let promptTransferResult;
 let fullResult;
@@ -552,6 +554,9 @@ try {
   } else if (process.env.QIYAO_TEST_RECIPES_ONLY) {
     const result = await verifyAssistantRecipes({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; assistantRecipesResult = result.result;
     assert.equal(count, 4); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+  } else if (process.env.QIYAO_TEST_MCP_PDF_ONLY) {
+    const result = await verifyMcpPdf({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, endpoint, calls }); page = result.page; mcpPdfResult = result.result;
+    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_MCP_BINARY_ONLY) {
     const result = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = result.page; mcpBinaryFilesResult = result.result;
     assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
@@ -1130,6 +1135,7 @@ try {
   const mcpSubscriptionsRun = await verifyMcpResourceSubscriptions({ page, application, getApplication: () => application, root, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpSubscriptionsRun.page; mcpResourceSubscriptionsResult = mcpSubscriptionsRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const mcpBinaryRun = await verifyMcpBinaryFiles({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, modelRequests: () => calls.length }); page = mcpBinaryRun.page; mcpBinaryFilesResult = mcpBinaryRun.result;
+  const mcpPdfRun = await verifyMcpPdf({ page, application, getApplication: () => application, root, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); }, endpoint, calls }); page = mcpPdfRun.page; mcpPdfResult = mcpPdfRun.result;
   const recipeRun = await verifyAssistantRecipes({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = recipeRun.page; assistantRecipesResult = recipeRun.result;
   const transferRun = await verifyPromptTransfer({ page, application, getApplication: () => application, directory, screenshots, calls, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = transferRun.page; promptTransferResult = transferRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
@@ -1150,6 +1156,7 @@ try {
   if (fullResult && branchNavigationResult) { fullResult.branchNavigation = branchNavigationResult; fullResult.screenshots.push(...branchNavigationResult.screenshots); }
   if (fullResult && temporaryConversationsResult) { fullResult.temporaryConversations = temporaryConversationsResult; fullResult.screenshots.push(...temporaryConversationsResult.screenshots); }
   if (fullResult && mcpBinaryFilesResult) fullResult.screenshots.push(...mcpBinaryFilesResult.screenshots);
+  if (fullResult && mcpPdfResult) { fullResult.mcpPdf = mcpPdfResult; fullResult.screenshots.push(...mcpPdfResult.screenshots); }
   if (fullResult && assistantRecipesResult) { fullResult.assistantRecipes = assistantRecipesResult; fullResult.screenshots.push(...assistantRecipesResult.screenshots); }
   if (fullResult && promptTransferResult) { fullResult.promptTransfer = promptTransferResult; fullResult.screenshots.push(...promptTransferResult.screenshots); }
   if (fullResult && memoriesResult) { fullResult.memories = memoriesResult; fullResult.screenshots.push(...memoriesResult.screenshots); }
@@ -1189,6 +1196,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'mcp-resource-subscriptions-packaged-result.json' : 'mcp-resource-subscriptions-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused MCP resource-subscription suite' }), ...mcpResourceSubscriptionsResult }, null, 2));
     console.log(`Verified ${mcpResourceSubscriptionsResult.checks} MCP resource-subscription checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && mcpPdfResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'mcp-pdf-packaged-result.json' : 'mcp-pdf-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused MCP PDF suite' }), ...mcpPdfResult }, null, 2));
+    console.log(`Verified ${mcpPdfResult.checks} MCP PDF checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && mcpBinaryFilesResult) {
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);

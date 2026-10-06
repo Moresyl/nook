@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Bridge } from '../../contracts/bridge-contract';
 import type { Provider, Workspace } from '../../contracts/workspace';
+import type { Attachment } from '../../contracts/attachments';
 import { modelInfoSchema } from '../../contracts/models';
 import { Button, Empty, Field, IconButton, Input, Modal, Select, Textarea, Toggle } from '../components/controls';
 import { Emblem, Glyph } from '../components/glyphs';
@@ -11,9 +12,9 @@ import { configuredModels, configuredProvider, discoveredModels } from './model-
 import { DesktopSettings } from './desktop-settings';
 import { MemorySettings } from './memory-settings';
 
-type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onOpenPanel: (pluginId: string, panelId: string) => void };
+type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; onOpenPanel: (pluginId: string, panelId: string) => void };
 const blankProvider = (): Provider => ({ id: crypto.randomUUID(), name: '', kind: 'responses', endpoint: 'https://api.openai.com/v1', models: [], hasKey: false });
-export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onOpenPanel }: Props) {
+export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onUseAttachment, onOpenPanel }: Props) {
   const [tab, setTab] = useState('models');
   const [editing, setEditing] = useState<Provider | null>(null);
   const [key, setKey] = useState('');
@@ -51,7 +52,7 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
     {tab === 'appearance' && <><h3>外观与交互</h3><p className="muted">让工作台适合你的工作方式。</p><Field label="主题"><Select value={state.preferences.theme} onChange={(event) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, theme: event.target.value as Workspace['preferences']['theme'] }), onState); }}><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></Select></Field><Toggle label="按 Enter 发送消息" checked={state.preferences.enterToSend} onChange={(value) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, enterToSend: value }), onState); }} /><div className="shortcut-list"><h4>键盘快捷键</h4><div>新聊天 <kbd>Ctrl N</kbd></div><div>搜索与命令 <kbd>Ctrl K</kbd></div><div>设置 <kbd>Ctrl ,</kbd></div><div>切换侧边栏 <kbd>Ctrl B</kbd></div><div>切换最近聊天 <kbd>Alt 1–9</kbd></div></div><DesktopSettings state={state} onState={onState} report={report} /></>}
     {tab === 'data' && <><h3>数据与备份</h3><p className="muted">对话、项目、助手与资料保存在本机。</p><div className="settings-row"><div><strong>导出工作台</strong><p>默认保存压缩备份，也可选择 JSON；完整内容不包含 API 密钥。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.exportWorkspace()); }}>导出备份…</Button></div><div className="settings-row"><div><strong>恢复工作台</strong><p>支持 JSON 与压缩备份，操作前会确认替换范围。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.importWorkspace(), (next) => { if (next) onRestore(next); }); }}>恢复备份…</Button></div><p className="field-hint">完整内容上限 256 MB，压缩文件上限 64 MB。单个聊天可在聊天顶部导出为 Markdown。</p>{busy && <p className="field-hint" role="status">正在处理备份…</p>}</>}
     {tab === 'about' && <div className="about"><Emblem size={64} /><h3>Nook</h3><p>本地 AI 工作台</p><span className="muted">0.1.0-alpha.1 · 开发中</span><p className="field-hint">一个本地 AI 工作台。你的模型，你的项目，你的工作方式。</p></div>}
-    {tab === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={onUseContent} />}
+    {tab === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={onUseContent} onUseAttachment={onUseAttachment} />}
     {tab === 'skills' && <SkillSettings state={state} onState={onState} report={report} onUse={onUseContent} />}
     {tab === 'plugins' && <PluginSettingsPage state={state} onState={onState} report={report} onOpenPanel={onOpenPanel} />}
   </section></div></Modal>;

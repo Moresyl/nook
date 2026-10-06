@@ -4,6 +4,8 @@ import { emptyWorkspace, searchThreads, type ComposerDraft, type Message, type S
 import { appendMessageQuote, conversationRevision } from '../contracts/conversations';
 import { mergeStreamingState } from '../contracts/streaming-state';
 import { composerContent, composerRevision, restoreComposer } from '../contracts/composer';
+import { appendMcpPdfAttachment } from '../contracts/mcp-attachments';
+import type { Attachment } from '../contracts/attachments';
 import type { ApprovalRequest, ConversationMode } from '../contracts/tools';
 import { Button, Empty, IconButton, Input, Modal } from './components/controls';
 import { Emblem, Glyph, type GlyphName } from './components/glyphs';
@@ -49,18 +51,18 @@ export function Workbench() {
   const { text, model, mode, attachments, mcpServerIds: serverIds, skillIds, pluginIds, knowledgeCollectionIds = [] } = composerDraft;
   const threadId = composerDraft.threadId ?? ''; const providerId = composerDraft.providerId ?? '';
   const assistantId = composerDraft.assistantId ?? ''; const projectId = composerDraft.projectId ?? '';
-  useLayoutEffect(() => {
-    const requested = pendingComposerFocus.current;
-    pendingComposerFocus.current = undefined;
-    if (requested !== composerDraft || page !== 'chat') return;
-    const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]');
-    input?.focus(); input?.setSelectionRange(input.value.length, input.value.length);
-  }, [composerDraft, page]);
   const [approvals, setApprovals] = useState<ApprovalRequest[]>([]);
   const [sidebar, setSidebar] = useState(true);
   const [startingTemporary, setStartingTemporary] = useState(false);
   const [comparison, setComparison] = useState<{ draft: ComposerDraft; source?: Thread; groupId?: string } | null>(null);
   const [settings, setSettings] = useState(false);
+  useLayoutEffect(() => {
+    const requested = pendingComposerFocus.current;
+    pendingComposerFocus.current = undefined;
+    if (requested !== composerDraft || page !== 'chat' || settings) return;
+    const input = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="消息"]');
+    input?.focus(); input?.setSelectionRange(input.value.length, input.value.length);
+  }, [composerDraft, page, settings]);
   const [requestedTaskThread, setRequestedTaskThread] = useState<string | null>(null);
   const [search, setSearch] = useState<string | null>(null);
   const [findRequest, setFindRequest] = useState(0); const findContext = useRef<string | undefined>(undefined);
@@ -91,6 +93,16 @@ export function Workbench() {
   function setPluginIds(value: string[] | ((current: string[]) => string[])) { updateDraft({ pluginIds: typeof value === 'function' ? value(draftRef.current.pluginIds) : value }); }
   function setKnowledgeCollectionIds(ids: string[]) { updateDraft({ knowledgeCollectionIds: ids }); }
   async function flushDrafts() { clearTimeout(draftTimer.current); await draftStore.current.flush(); await activation.current; }
+  async function useMcpAttachment(file: Attachment) {
+    const epoch = draftEpoch.current, owner = draftRef.current.threadId;
+    await flushDrafts();
+    if (epoch !== draftEpoch.current || owner !== draftRef.current.threadId) throw new Error('当前聊天已变化，请重新选择要添加的文档。');
+    updateDraft({ attachments: appendMcpPdfAttachment(draftRef.current, file).attachments });
+    const inserted = draftRef.current;
+    await flushDrafts();
+    if (epoch !== draftEpoch.current || draftRef.current !== inserted) return;
+    pendingComposerFocus.current = inserted; setPage('chat'); setSettings(false);
+  }
   function selectDraft(next: ComposerDraft) {
     draftRef.current = next; setComposerDraft(next); setPage('chat');
     clearTimeout(draftTimer.current);
@@ -262,7 +274,7 @@ export function Workbench() {
     </main>
     {error && state && <Toast message={error} onClose={() => setError('')} />}
     {comparison && state && <ModelComparison state={state} draft={comparison.draft} groupId={comparison.groupId} onClose={() => setComparison(null)} onCompare={compareModels} onOpen={async (id) => { await flushDrafts(); await openReplyVersion(id); }} />}
-    {settings && state && <PreferencesDialog state={state} onState={setState} onRestore={(next) => { clearTimeout(draftTimer.current); draftEpoch.current++; draftStore.current.initialize(next.composerDrafts); setState(next); const target = next.threads.find((item) => item.id === next.activeThreadId); const restored = restoreComposer(next, target, draftStore.current.get(target?.id)); draftRef.current = restored; setComposerDraft(restored); }} onClose={() => setSettings(false)} report={report} onOpenPanel={(pluginId, panelId) => { setPluginPanel({ pluginId, panelId }); setPage('plugin'); setSettings(false); }} onUseContent={(content) => { setText((current) => current ? `${current}\n\n${content}` : content); setPage('chat'); setSettings(false); }} />}
+    {settings && state && <PreferencesDialog state={state} onState={setState} onRestore={(next) => { clearTimeout(draftTimer.current); draftEpoch.current++; draftStore.current.initialize(next.composerDrafts); setState(next); const target = next.threads.find((item) => item.id === next.activeThreadId); const restored = restoreComposer(next, target, draftStore.current.get(target?.id)); draftRef.current = restored; setComposerDraft(restored); }} onClose={() => setSettings(false)} report={report} onOpenPanel={(pluginId, panelId) => { setPluginPanel({ pluginId, panelId }); setPage('plugin'); setSettings(false); }} onUseAttachment={useMcpAttachment} onUseContent={(content) => { setText((current) => current ? `${current}\n\n${content}` : content); setPage('chat'); setSettings(false); }} />}
     {approvals[0] && <ApprovalDialog key={approvals[0].id} request={approvals[0]} onDecision={(allowed) => window.qiyao.resolveApproval(approvals[0].id, allowed)} onStop={() => window.qiyao.stop(approvals[0].threadId)} report={report} />}
     {editing && <MessageEditor key={JSON.stringify([editing.thread.id, editing.message.id, editing.epoch])} thread={editing.thread} message={editing.message} onClose={() => setEditing(null)} onDiscard={() => openMessageEditor(editing.message, editing.thread.id, editing.context)} onSave={async (content, revision) => { await flushDrafts(); const next = await window.qiyao.editMessage({ threadId: editing.thread.id, messageId: editing.message.id, content, revision }); setState(next); setEditing(null); }} onSubmit={async (content, revision) => { await flushDrafts(); const result = await window.qiyao.submit({ ...editing.context, text: content, attachments: [], replay: { messageId: editing.message.id, revision, action: 'edit' } }); selectDraft({ ...draftRef.current, threadId: result.threadId }); updateDraft({}); setEditing(null); }} />}
     {search !== null && state && <CommandPalette state={state} context={{ sidebar, threadId: thread?.id, findThreadId: findContext.current, project: projectContext.current }} query={search} onQuery={setSearch} onState={setState} onClose={() => setSearch(null)} onExecute={executeCommand} onPluginCommand={async (command, args, selectedProject) => { if (command.target.kind !== 'plugin-command') throw new Error('This plugin command is no longer available.'); await flushDrafts(); return window.qiyao.pluginCommand(command.target.pluginId, command.target.commandId, args, selectedProject); }} />}

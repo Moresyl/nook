@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { UriTemplate } from '@modelcontextprotocol/sdk/shared/uriTemplate.js';
 import type { McpCatalog, McpContent, McpServer, McpView } from '../../contracts/extensions';
 import type { Attachment } from '../../contracts/attachments';
-import { mcpBinaryImageSupported } from '../../contracts/mcp-binary';
+import { mcpBinaryImageSupported, mcpBinaryPdfSupported, type McpBinaryItem } from '../../contracts/mcp-binary';
 import { Button, Field, Input, Select } from '../components/controls';
 import { AttachmentPreview } from '../components/attachments';
 import { observeMcpResource } from '../lib/mcp-resource-updates';
 
-export function McpContentBrowser({ server, onUse, report }: { server: McpServer; onUse: (text: string) => void; report: (error: unknown) => void }) {
+export function McpContentBrowser({ server, onUse, onUseAttachment, report }: { server: McpServer; onUse: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; report: (error: unknown) => void }) {
   const [catalog, setCatalog] = useState<McpCatalog>({ resources: [], templates: [], prompts: [] });
   const [tab, setTab] = useState('resources');
   const [busy, setBusy] = useState(false);
@@ -19,16 +19,18 @@ export function McpContentBrowser({ server, onUse, report }: { server: McpServer
   const [content, setContent] = useState<McpContent | null>(null);
   const [view, setView] = useState<McpView | undefined>();
   const [updating, setUpdating] = useState(false);
-  const [binaryPreview, setBinaryPreview] = useState<Attachment | null>(null);
+  const [binaryPreview, setBinaryPreview] = useState<{ file: Attachment; item: McpBinaryItem } | null>(null);
+  const originalBytes = useMemo(() => binaryPreview?.file.original ? Uint8Array.from(atob(binaryPreview.item.data), character => character.charCodeAt(0)) : undefined, [binaryPreview]);
   const [fileNotice, setFileNotice] = useState('');
   const fileSelection = useRef(0);
+  const previewTrigger = useRef<HTMLButtonElement | null>(null);
   const watching = view?.subscribedResources?.includes(uri) === true;
   const catalogRevision = JSON.stringify(catalog);
   const promptArguments = JSON.stringify(argumentsMap);
   useEffect(() => {
     fileSelection.current++; setBinaryPreview(null); setFileNotice('');
     return () => { fileSelection.current++; };
-  }, [server.id, uri, tab, promptName, promptArguments, catalogRevision, view?.status]);
+  }, [server.id, uri, tab, promptName, promptArguments, catalogRevision, view?.status, content]);
   useEffect(() => {
     let live = true; let requests = 0; let events = 0; let revision = '';
     const refresh = () => {
@@ -54,11 +56,11 @@ export function McpContentBrowser({ server, onUse, report }: { server: McpServer
     if (!watching || !uri || tab !== 'resources') return;
     return observeMcpResource(window.qiyao, server.id, uri, { content: setContent, busy: setUpdating, error: report });
   }, [server.id, uri, watching, tab, catalogRevision, report]);
-  async function act<T>(operation: () => Promise<T>, success: (result: T) => void, current: () => boolean = () => true) {
+  async function act<T>(operation: () => Promise<T>, success: (result: T) => void | Promise<void>, current: () => boolean = () => true) {
     if (busy) return;
-    setBusy(true); try { const result = await operation(); if (current()) success(result); } catch (error) { if (current()) report(error); } finally { setBusy(false); }
+    setBusy(true); try { const result = await operation(); if (current()) await success(result); } catch (error) { if (current()) report(error); } finally { setBusy(false); }
   }
-  async function selectedAction<T>(operation: () => Promise<T>, success: (result: T) => void) {
+  async function selectedAction<T>(operation: () => Promise<T>, success: (result: T) => void | Promise<void>) {
     const selection = fileSelection.current;
     await act(operation, success, () => selection === fileSelection.current);
   }
@@ -87,7 +89,24 @@ export function McpContentBrowser({ server, onUse, report }: { server: McpServer
       <Button disabled={busy || !prompt || prompt.arguments.some((argument) => argument.required && !argumentsMap[argument.name])} onClick={() => { void selectedAction(() => window.qiyao.mcpGetPrompt(server.id, promptName, argumentsMap), setContent); }}>{busy ? '加载中…' : '加载提示词'}</Button>
       {!catalog.prompts.length && <p className="field-hint">服务器未提供提示词模板。</p>}
     </>}
-    {content && <section className="extension-content" aria-label="MCP 内容预览"><h4>{content.title}</h4>{content.text && <pre className="extension-preview">{content.text}</pre>}{content.binaryItems.map((item, index) => <div className="list-row" key={index}><div className="row-content"><p className="field-hint">{item.uri} · {item.mimeType ?? '二进制文件'} · {item.bytes} 字节</p><div className="extension-actions">{mcpBinaryImageSupported(item) && <Button disabled={busy || typeof item.data !== 'string'} aria-label={`预览图片 ${item.uri}`} onClick={() => { void selectedAction(() => window.qiyao.mcpPreviewBinary({ ...item, data: item.data! }), setBinaryPreview); }}>预览图片</Button>}<Button disabled={busy || typeof item.data !== 'string'} aria-label={`导出文件 ${item.uri}`} onClick={() => { void selectedAction(() => window.qiyao.mcpExportBinary({ ...item, data: item.data! }), (saved) => setFileNotice(saved ? '已导出所选文件。' : '已取消导出。')); }}>导出文件</Button></div></div></div>)}{fileNotice && <p className="field-hint" role="status">{fileNotice}</p>}<p className="field-hint">用于对话添加当前文本，可在消息框中修改。图片预览使用规范化副本，导出保留原始文件内容。</p><Button disabled={!content.text} onClick={() => onUse(`[${server.name} · ${content.title}]\n\n${content.text}`)}>用于对话</Button></section>}
-    {binaryPreview && <AttachmentPreview file={binaryPreview} onClose={() => setBinaryPreview(null)} />}
+    {content && <section className="extension-content" aria-label="MCP 内容预览">
+      <h4>{content.title}</h4>{content.text && <pre className="extension-preview">{content.text}</pre>}
+      {content.binaryItems.map((item, index) => {
+        const pdf = mcpBinaryPdfSupported(item), image = mcpBinaryImageSupported(item);
+        const snapshot = { ...item, data: item.data! };
+        return <div className="list-row" key={index}><div className="row-content">
+          <p className="field-hint">{item.uri} · {item.mimeType ?? '二进制文件'} · {item.bytes} 字节</p>
+          <div className="extension-actions">
+            {(image || pdf) && <Button disabled={busy || typeof item.data !== 'string'} aria-label={`${pdf ? '预览文档' : '预览图片'} ${item.uri}`} onClick={event => { previewTrigger.current = event.currentTarget; void selectedAction(() => window.qiyao.mcpPreviewBinary(snapshot), file => setBinaryPreview({ file, item: snapshot })); }}>{pdf ? '预览文档' : '预览图片'}</Button>}
+            {pdf && <Button disabled={busy || typeof item.data !== 'string'} aria-label={`添加到聊天 ${item.uri}`} onClick={() => { void selectedAction(() => window.qiyao.mcpPreviewBinary(snapshot), onUseAttachment); }}>添加到聊天</Button>}
+            <Button disabled={busy || typeof item.data !== 'string'} aria-label={`导出文件 ${item.uri}`} onClick={() => { void selectedAction(() => window.qiyao.mcpExportBinary(snapshot), saved => setFileNotice(saved ? '已导出所选文件。' : '已取消导出。')); }}>导出文件</Button>
+          </div>
+        </div></div>;
+      })}
+      {fileNotice && <p className="field-hint" role="status">{fileNotice}</p>}
+      <p className="field-hint">用于对话添加当前文本，可在消息框中修改。PDF 须手动添加到聊天，模型读取提取文本；原件保存在本机。导出保留原始文件内容。</p>
+      <Button disabled={!content.text} onClick={() => onUse(`[${server.name} · ${content.title}]\n\n${content.text}`)}>用于对话</Button>
+    </section>}
+    {binaryPreview && <AttachmentPreview key={binaryPreview.file.id} file={binaryPreview.file} originalBytes={originalBytes} onExportOriginal={() => window.qiyao.mcpExportBinary(binaryPreview.item)} returnFocus={previewTrigger} onClose={() => setBinaryPreview(null)} />}
   </>;
 }

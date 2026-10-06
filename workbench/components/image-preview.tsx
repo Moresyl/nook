@@ -1,10 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent, type RefObject } from 'react';
 import { attachmentImageUrl, type Attachment } from '../../contracts/attachments';
 import { Button, IconButton, Modal } from './controls';
 
 const zoomSteps = [0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8];
 
-export function ImagePreview({ file, images, onSelect, onClose }: { file: Attachment; images: Attachment[]; onSelect: (file: Attachment) => void; onClose: () => void }) {
+export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: { file: Attachment; images: Attachment[]; onSelect: (file: Attachment) => void; onClose: () => void; returnFocus?: RefObject<HTMLElement | null> }) {
   const viewport = useRef<HTMLDivElement>(null);
   const image = useRef<HTMLImageElement>(null);
   const anchor = useRef<{ x: number; y: number; horizontal: number; vertical: number } | null>(null);
@@ -72,7 +72,7 @@ export function ImagePreview({ file, images, onSelect, onClose }: { file: Attach
     return () => element.removeEventListener('wheel', wheel);
   }, [scale, fit, loaded]);
 
-  return <Modal title={file.name} className="image-preview-dialog" onClose={onClose}>
+  return <Modal title={file.name} className="image-preview-dialog" onClose={onClose} returnFocus={returnFocus}>
     <div className="image-preview-layout" onKeyDown={onKeyDown}>
       <div className="image-preview-stage">
         {images.length > 1 && <IconButton icon="right" className="icon-button image-previous" label="上一张图片" disabled={index <= 0} onClick={() => select(-1)} />}

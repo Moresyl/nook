@@ -18,7 +18,8 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 229, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 243, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: { checks: 3 }, projectPreview: { checks: 9, outsideHttpRequests: 0, docked: { checks: 4, floatingTransferVerified: true, projectRemovalVerified: true } },
@@ -37,6 +38,20 @@ function proof(): ReleaseProof {
 }
 
 describe('PDF release evidence', () => {
+  it('requires complete MCP PDF evidence, exact request count and both themes at every zoom', () => {
+    const missing = proof(); delete missing.desktop.mcpPdf; expect(() => verifyRuntimeProof(missing)).toThrow('MCP PDF');
+    for (const [key, value] of [['checks', 7], ['explicitModelRequests', 0], ['explicitModelRequests', 2], ['previewPersisted', true], ['originalSha256', 'invalid'], ['layout', []], ['layout', Array(6).fill(null)]] as const) {
+      const invalid = proof(); (invalid.desktop.mcpPdf as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP PDF');
+    }
+    for (const key of ['exactOriginalVerified', 'promptPdfVerified', 'textOnlyModelTransportVerified', 'staleSubscriptionVerified', 'filesystemRetryVerified', 'restartVerified', 'backupRestoreVerified']) {
+      for (const value of [false, undefined, 'true']) {
+        const invalid = proof(); (invalid.desktop.mcpPdf as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP PDF');
+      }
+    }
+    for (const change of [{ theme: 'light' }, { zoom: 2 }, { controlsVisible: false }, { overflow: true }]) {
+      const invalid = proof(); invalid.desktop.mcpPdf!.layout[5] = { ...invalid.desktop.mcpPdf!.layout[5], ...change }; expect(() => verifyRuntimeProof(invalid)).toThrow('MCP PDF');
+    }
+  });
   it('rejects missing, partial and non-boolean viewer evidence', () => {
     const missing = proof(); delete missing.desktop.pdfPreview;
     expect(() => verifyRuntimeProof(missing)).toThrow('PDF preview');

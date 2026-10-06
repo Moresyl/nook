@@ -81,7 +81,7 @@ const documentOriginalFiles = new DocumentOriginalFiles(reference => vault.readD
   const result = await dialog.showSaveDialog(window!, { defaultPath: 'document.pdf', filters: [{ name: 'PDF 文档', extensions: ['pdf'] }] });
   return result.canceled ? undefined : result.filePath;
 });
-const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
+const mcpBinaryFiles = new McpBinaryFiles(async (input) => (await attachmentImporter.importInputs([input]))[0], async (name) => {
   const result = await dialog.showSaveDialog(window!, { defaultPath: name });
   return result.canceled ? undefined : result.filePath;
 });

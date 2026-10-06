@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 229 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 243 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const completePreview = result => result?.checks === 9 && result.outsideHttpRequests === 0 && result.docked?.checks === 4 && result.docked.floatingTransferVerified === true && result.docked.projectRemovalVerified === true;
@@ -68,6 +68,11 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   const binary = desktop.mcpBinaryFiles;
   if (!binary || binary.checks !== 6 || binary.binaryModelRequests !== 0 || !['realWorkerPreviewVerified', 'exactOriginalExportVerified', 'emptyAndUnsupportedExportVerified', 'promptBinaryTextOnlyVerified', 'staleSelectionVerified', 'zoomKeyboardVerified', 'restartDraftRetainedVerified'].every((key) => binary[key] === true)) {
     throw new Error('Complete MCP binary-file verification is required');
+  }
+  const mcpPdf = desktop.mcpPdf;
+  const completePdfLayout = Array.isArray(mcpPdf?.layout) && mcpPdf.layout.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => mcpPdf.layout.some(row => row?.theme === theme && row.zoom === zoom && row.controlsVisible === true && row.overflow === false)));
+  if (!mcpPdf || mcpPdf.checks !== 8 || mcpPdf.explicitModelRequests !== 1 || mcpPdf.previewPersisted !== false || !/^[a-f0-9]{64}$/.test(mcpPdf.originalSha256 ?? '') || !completePdfLayout || !['exactOriginalVerified', 'promptPdfVerified', 'textOnlyModelTransportVerified', 'staleSubscriptionVerified', 'filesystemRetryVerified', 'restartVerified', 'backupRestoreVerified'].every(key => mcpPdf[key] === true)) {
+    throw new Error('Complete MCP PDF attachment verification is required');
   }
   const recipes = desktop.assistantRecipes;
   if (!recipes || recipes.checks !== 4 || recipes.recipeModelRequests !== 0 || !['assistantBindingVerified', 'defaultOptionalChoicesVerified', 'deletedAssistantRecoveryVerified', 'zoomKeyboardVerified', 'backupRestartVerified', 'originalDraftRetained'].every((key) => recipes[key] === true)) {

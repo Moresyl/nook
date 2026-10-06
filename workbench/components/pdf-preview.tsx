@@ -10,7 +10,7 @@ import { pdfAnnotations, type PdfAnnotation } from './pdf-annotations';
 import { PdfAnnotationLayer } from './pdf-annotation-layer';
 import '../theme/pdf-preview.css';
 
-export default function PdfPreview({ reference }: { reference: DocumentOriginal }) {
+export default function PdfPreview({ reference, originalBytes }: { reference: DocumentOriginal; originalBytes?: Uint8Array }) {
   const [document, setDocument] = useState<PDFDocumentProxy>();
   const [page, setPage] = useState(1), [zoom, setZoom] = useState(1), [width, setWidth] = useState(600);
   const [error, setError] = useState(''), [loading, setLoading] = useState(true), [retry, setRetry] = useState(0);
@@ -43,7 +43,7 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
     let task: ReturnType<typeof getDocument> | undefined, worker: Worker | undefined, wrapper: PDFWorker | undefined;
     setDocument(undefined); setPage(1); setError(''); setLoading(true); setOutline([]); setOutlineError(''); setDestination(undefined); navigationVersion.current++;
     void (async () => {
-      const bytes = await window.qiyao.readDocumentOriginal(reference);
+      const bytes = originalBytes ?? await window.qiyao.readDocumentOriginal(reference);
       if (stopped) return;
       worker = new PdfWorker(); wrapper = PDFWorker.create({ port: worker });
       task = getDocument({ data: new Uint8Array(bytes), worker: wrapper, BinaryDataFactory: EmbeddedPdfResources,
@@ -58,7 +58,7 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
       }
     })().catch(() => { if (!stopped) { setError('无法打开 PDF 原件。请重新导入文件，或查看提取的文本。'); setLoading(false); } });
     return () => { stopped = true; navigationVersion.current++; void task?.destroy().catch(() => {}); wrapper?.destroy(); worker?.terminate(); };
-  }, [reference.sha256, retry]);
+  }, [reference.sha256, originalBytes, retry]);
   useEffect(() => {
     const controller = new AbortController();
     followSearch.current = false;

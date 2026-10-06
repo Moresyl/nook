@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { mcpServerSchema, type McpServer, type McpView, type Skill, type SkillDocument } from '../../contracts/extensions';
 import type { Workspace } from '../../contracts/workspace';
+import type { Attachment } from '../../contracts/attachments';
 import { Button, Empty, Field, IconButton, Input, Select, Textarea, Toggle } from '../components/controls';
 import { McpContentBrowser } from './mcp-content-browser';
 
 type Props = { state: Workspace; onState: (next: Workspace) => void; report: (error: unknown) => void; onUse: (text: string) => void };
 const statusLabel = { connected: '已连接', connecting: '连接中', disconnected: '未连接', error: '连接失败', 'auth-required': '需要登录', authorizing: '等待授权' };
 
-export function McpSettings({ state, onState, report, onUse }: Props) {
+export function McpSettings({ state, onState, report, onUse, onUseAttachment }: Props & { onUseAttachment: (file: Attachment) => Promise<void> }) {
   const [views, setViews] = useState<McpView[]>([]);
   const [editing, setEditing] = useState<McpServer | null>(null);
   const [catalogId, setCatalogId] = useState('');
@@ -43,7 +44,7 @@ export function McpSettings({ state, onState, report, onUse }: Props) {
   const view = views.find((item) => item.id === catalogId);
   const tool = view?.tools.find((item) => item.name === toolName);
   const contentServer = state.mcpServers.find((server) => server.id === contentId);
-  if (contentServer) return <><Button onClick={() => setContentId('')}>← 返回服务器列表</Button><McpContentBrowser key={contentId} server={contentServer} onUse={onUse} report={report} /></>;
+  if (contentServer) return <><Button onClick={() => setContentId('')}>← 返回服务器列表</Button><McpContentBrowser key={contentId} server={contentServer} onUse={onUse} onUseAttachment={onUseAttachment} report={report} /></>;
   if (editing) return <>
     <Button disabled={busy} onClick={() => setEditing(null)}>← 返回服务器列表</Button>
     <Field label="服务器名称"><Input value={editing.name} onChange={(event) => field('name', event.target.value)} /></Field>

@@ -21,3 +21,6 @@ export function mcpBinaryFileName(item: Pick<McpBinaryItem, 'mimeType'>): string
 export function mcpBinaryImageSupported(item: Pick<McpBinaryItem, 'mimeType'>): boolean {
   return ['png', 'jpg', 'webp', 'gif'].includes(mcpBinaryFileName(item).split('.').at(-1)!);
 }
+export function mcpBinaryPdfSupported(item: Pick<McpBinaryItem, 'mimeType'>): boolean {
+  return mcpBinaryFileName(item) === 'mcp-resource.pdf';
+}

@@ -1,7 +1,8 @@
 import { writeFile } from 'node:fs/promises';
 import { isAbsolute } from 'node:path';
 import { attachmentSchema, type Attachment, type AttachmentInput } from '../../contracts/attachments';
-import { mcpBinaryFileName, mcpBinaryImageSupported, mcpBinaryItemSchema, type McpBinaryItem } from '../../contracts/mcp-binary';
+import { mcpBinaryFileName, mcpBinaryImageSupported, mcpBinaryPdfSupported, mcpBinaryItemSchema, type McpBinaryItem } from '../../contracts/mcp-binary';
+import { originalDocumentIdentity } from './document-original-store';
 
 type Parser = (input: AttachmentInput) => Promise<Attachment>;
 type ChooseFile = (name: string) => Promise<string | undefined>;
@@ -23,13 +24,17 @@ export class McpBinaryFiles {
 
   async preview(raw: unknown): Promise<Attachment> {
     const item = this.item(raw);
-    if (!mcpBinaryImageSupported(item)) throw new Error('This file has no image preview. Export it to inspect it locally.');
+    const pdf = mcpBinaryPdfSupported(item);
+    if (!pdf && !mcpBinaryImageSupported(item)) throw new Error('This file has no image or PDF preview. Export it to inspect it locally.');
     this.begin();
     try {
       const file = attachmentSchema.parse(await this.parse({ name: mcpBinaryFileName(item), data: item.data }));
-      if (!file.image) throw new Error('No image');
+      if (pdf) {
+        const reference = originalDocumentIdentity(Buffer.from(item.data, 'base64'));
+        if (file.image || file.source?.format !== 'pdf' || file.source.bytes !== reference.bytes || file.original?.sha256 !== reference.sha256 || file.original.bytes !== reference.bytes) throw new Error('The PDF original does not match.');
+      } else if (!file.image) throw new Error('No image');
       return file;
-    } catch { throw new Error('Could not preview this MCP image. Check its format and size, then retry.'); }
+    } catch { throw new Error(`Could not preview this MCP ${pdf ? 'PDF' : 'image'}. Check its format and size, then retry.`); }
     finally { this.busy = false; }
   }
 
