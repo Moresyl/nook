@@ -53,7 +53,9 @@ try {
   $taskDesktop = Get-Content verification/packaged-result.json -Raw | ConvertFrom-Json
   $taskAudit = Get-Content verification/package-audit-result.json -Raw | ConvertFrom-Json
   $taskInstalledAudit = Get-Content verification/installed-package-audit-result.json -Raw | ConvertFrom-Json
-  if (-not $taskDesktop.normalCloseVerified -or $taskDesktop.runtimeErrors.Count -ne 0 -or $taskDesktop.checks -lt 223 -or $taskDesktop.memories.checks -ne 3 -or $taskDesktop.projectPreview.checks -ne 5 -or $taskDesktop.projectPreview.outsideHttpRequests -ne 0 -or $taskDesktop.executableSha256 -ne $taskAudit.executableSha256 -or $taskDesktop.archiveSha256 -ne $taskAudit.archiveSha256 -or $taskInstalledAudit.executableSha256 -ne $taskAudit.executableSha256 -or $taskInstalledAudit.archiveSha256 -ne $taskAudit.archiveSha256) { throw 'Installed runtime must normally close and match the built application.' }
+  if (-not $taskDesktop.normalCloseVerified -or $taskDesktop.runtimeErrors.Count -ne 0 -or $taskDesktop.checks -lt 229 -or $taskDesktop.memories.checks -ne 3 -or $taskDesktop.projectPreview.checks -ne 9 -or $taskDesktop.projectPreview.outsideHttpRequests -ne 0 -or $taskDesktop.projectPreview.docked.checks -ne 4 -or -not $taskDesktop.projectPreview.docked.floatingTransferVerified -or -not $taskDesktop.projectPreview.docked.projectRemovalVerified -or $taskDesktop.executableSha256 -ne $taskAudit.executableSha256 -or $taskDesktop.archiveSha256 -ne $taskAudit.archiveSha256 -or $taskInstalledAudit.executableSha256 -ne $taskAudit.executableSha256 -or $taskInstalledAudit.archiveSha256 -ne $taskAudit.archiveSha256) { throw 'Installed runtime must normally close and match the built application.' }
+  $taskPdf = $taskDesktop.pdfPreview
+  if ($taskPdf.checks -ne 6 -or -not $taskPdf.canvasTextVerified -or -not $taskPdf.outlineTargetsVerified -or -not $taskPdf.fullDocumentSearchVerified -or -not $taskPdf.linksNotesZoomVerified -or -not $taskPdf.exportOwnershipRestartVerified) { throw 'Installed runtime must include complete PDF reading and original-file verification.' }
   $taskPassed = $true
 } finally {
   if ($taskRegistered) {

@@ -11,14 +11,43 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   const name = `订阅验证 MCP ${id}`; const unsupportedName = `不支持订阅 MCP ${unsupportedId}`; const documentUri = 'fixture://document';
   const profileUri = `fixture://profiles/${encodeURIComponent('订阅中文用户')}`;
   const captures = []; const draft = 'MCP_SUBSCRIPTION_KEEP_DRAFT 中文 <literal>';
-  const connection = await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command }) => {
+  const fixture = join(root, 'verification/mcp-fixture.mjs');
+  await application.evaluateMain(`
+    globalThis.nookMcpProcessObservations = [];
+    globalThis.nookMcpPriorSpawn = require('node:child_process').spawn;
+    require('node:child_process').spawn = function(command, args, ...options) {
+      const requestedAt = Date.now();
+      const child = globalThis.nookMcpPriorSpawn.call(this, command, args, ...options);
+      if (command !== ${JSON.stringify(process.execPath)} || args?.[0] !== ${JSON.stringify(fixture)}) return child;
+      const row = { requestedAt, pid: child.pid, stdoutBytes: 0, stderrBytes: 0 };
+      globalThis.nookMcpProcessObservations.push(row);
+      child.once('spawn', () => { row.spawnedAt = Date.now(); });
+      child.once('error', error => { row.errorAt = Date.now(); row.errorCode = error.code; });
+      child.once('exit', (code, signal) => { row.exitedAt = Date.now(); row.exitCode = code; row.signal = signal; });
+      child.stdout?.on('data', bytes => { row.firstStdoutAt ??= Date.now(); row.lastStdoutAt = Date.now(); row.stdoutBytes += bytes.length; });
+      child.stderr?.on('data', bytes => { row.firstStderrAt ??= Date.now(); row.lastStderrAt = Date.now(); row.stderrBytes += bytes.length; });
+      return child;
+    };
+    require('node:module').syncBuiltinESMExports();
+  `);
+  let connection;
+  try { connection = await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command }) => {
     for (const [serverId, serverName, args] of [[id, name, [fixture]], [unsupportedId, unsupportedName, [fixture, '--no-subscriptions']]]) {
       await window.qiyao.saveMcpServer({ id: serverId, name: serverName, transport: 'stdio', command, args, enabled: true, timeout: 5000 }, { env: {} });
     }
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
     const startedAt = Date.now(); const connected = await window.qiyao.mcpConnect(id);
     return { startedAt, completedAt: Date.now(), status: connected.status, error: connected.error, resourceSubscriptionsSupported: connected.resourceSubscriptionsSupported };
-  }, { id, unsupportedId, name, unsupportedName, fixture: join(root, 'verification/mcp-fixture.mjs'), command: process.execPath });
+  }, { id, unsupportedId, name, unsupportedName, fixture, command: process.execPath }); }
+  finally {
+    const processes = await application.evaluateMain(`
+      require('node:child_process').spawn = globalThis.nookMcpPriorSpawn;
+      require('node:module').syncBuiltinESMExports();
+      delete globalThis.nookMcpPriorSpawn;
+      (() => { const rows = globalThis.nookMcpProcessObservations; delete globalThis.nookMcpProcessObservations; return rows; })();
+    `);
+    console.log('MCP subscription process observations', JSON.stringify(processes));
+  }
   console.log('MCP subscription connection observations', JSON.stringify(connection));
   await page.reload(); await page.keyboard.press('Control+n'); await page.getByLabel('消息', { exact: true }).fill(draft);
   const dialog = () => page.getByRole('dialog');

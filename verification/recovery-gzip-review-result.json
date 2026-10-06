@@ -36,6 +36,34 @@
       "originalBridgeDeadlineMilliseconds": 10000,
       "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-comparison-replay-unique.log",
       "scope": "Actual model-comparison continuation, failures, backup/restore, restart and minimum-window checks on a copied retained workspace; not full desktop or packaged proof"
+    },
+    "mcpFailureReplay": {
+      "passed": true,
+      "checks": 6,
+      "runtimeErrors": [],
+      "modelRequests": 0,
+      "connectionMilliseconds": 431,
+      "normalFinalExitMilliseconds": 1898,
+      "workspaceCopiesDuringScopedReads": 0,
+      "originalWorkspaceHashUnchanged": true,
+      "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-mcp-diagnostic-replay.log",
+      "scope": "Independent copy of the retained complete-run workspace. Process timings and stdout/stderr byte counts only; no process output or credentials recorded. Did not reproduce the original failure and does not prove its cause was fixed."
+    },
+    "fullDesktopAttempt": {
+      "passed": false,
+      "sourceBuildCommit": "f8c6a30",
+      "checksPassed": 214,
+      "normalFinalExitMilliseconds": 4499,
+      "modelComparisonContinuationPartialMilliseconds": 4022,
+      "modelComparisonBackupRestoreRestartPassed": true,
+      "failure": "MCP resource-subscription connection returned a sanitized error in 5005ms; resourceSubscriptionsSupported was false. The underlying connection cause has not been established.",
+      "configuredConnectionTimeoutMilliseconds": 5000,
+      "timeoutsUnchanged": true,
+      "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-full-desktop.log",
+      "logSha256": "acae9221b5210fbb36797a0ba638f8906bf3485101b350cd6e9cd2fe9d2900b7",
+      "retainedDirectory": "E:/NookVerification/Temp/qiyao-electron-oMi1tY",
+      "retainedWorkspaceBytes": 84551418,
+      "retainedWorkspaceSha256": "89882af8ca4bcc4bec8d3a6750006cb611cb439b1bb583191dbe9a0f2a1d5a47"
     }
   },
   "measuredIo": {
@@ -61,5 +89,15 @@
     "initialNativeReplay": { "checksPassed": 4, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-comparison-replay.log", "correction": "The retained seed already had a same-title comparison thread. Use the newly created thread's unique ID in its test title rather than matching either old or new thread ambiguously." },
     "initialRelatedTestFailure": { "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-tests.log", "correction": "A held compressed backup was compared against decoded bytes. Compare raw bytes on both sides for failed-write preservation, retaining complete decoded comparisons for successful revisions.", "correctedLog": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-settings-tests.log" }
   },
-  "remaining": "Full desktop regression on the final build, distribution and release; broader product and UI requirements remain open."
+  "pdfVisualReview": {
+    "scope": "Five actual captures from the failed complete source run, individually inspected for title/footer, controls and reading content. Light 1280x840 and dark 760x540. Not complete design, distribution or physical accessibility acceptance.",
+    "captures": [
+      { "file": "pdf-original-light.png", "sha256": "6639dd6114cd7afb8108823d1bca9ec8a2d7928703b6f4d144e53d2c5bab7381" },
+      { "file": "pdf-original-dark-minimum.png", "sha256": "9325425aeb0b8d363121cce14063d36bd6e378d5711a4bd7658b3b547afaddb4" },
+      { "file": "pdf-outline-light.png", "sha256": "5f9bd4f4c1b558418ec82ae7a32f28c057f3ac799dbc63232856f40e556c9ecb" },
+      { "file": "pdf-search-light.png", "sha256": "803e9752dc74bd21917fe57912135a01cb600eff3428028f37f985fd76c3a016" },
+      { "file": "pdf-note-light.png", "sha256": "3b5c8960b3ea1daa0df656e6b6f73678cfe569f0130e1cdb3c9a4d35144db437" }
+    ]
+  },
+  "remaining": "Successful full desktop regression on the final build, distribution and release; broader product and UI requirements remain open. Latest main GitHub verification did not start because of account payment/spending limits."
 }
