@@ -14,14 +14,15 @@ async function observeSettingsCopies(application) {
     const clone = function (...args) {
       const row = context.getStore();
       if (row && args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) row.workspaceCopies += 1;
+      if (row && typeof args[0]?.id === 'string' && Array.isArray(args[0]?.messages)) row.threadCopies += 1;
       return originalClone.apply(this, args);
     };
     const handler = function (...args) {
       if (!['saveProvider', 'savePreferences'].includes(args[1])) return original.apply(this, args);
-      const row = { operation: args[1], workspaceCopies: 0, startedAt: Date.now() };
+      const row = { operation: args[1], workspaceCopies: 0, threadCopies: 0, startedAt: Date.now() };
       if (events.length < 8) events.push(row);
       return context.run(row, async () => {
-        try { const result = await original.apply(this, args); row.success = true; return result; }
+        try { const result = await original.apply(this, args); row.success = true; row.resultThreadCount = result.threads.length; return result; }
         finally { row.finishedAt = Date.now(); }
       });
     };
@@ -126,10 +127,11 @@ export async function verifyModelComparisons({ page, application, getApplication
     console.log('Comparison settings transactions', JSON.stringify(settingsTransactions));
   }
   assert.deepEqual(settingsTransactions.map(({ operation, workspaceCopies, success }) => ({ operation, workspaceCopies, success })), [
-    { operation: 'saveProvider', workspaceCopies: 1, success: true },
-    { operation: 'saveProvider', workspaceCopies: 1, success: true },
-    { operation: 'savePreferences', workspaceCopies: 1, success: true },
+    { operation: 'saveProvider', workspaceCopies: 0, success: true },
+    { operation: 'saveProvider', workspaceCopies: 0, success: true },
+    { operation: 'savePreferences', workspaceCopies: 0, success: true },
   ]);
+  for (const row of settingsTransactions) assert.equal(row.threadCopies, row.resultThreadCount);
   page = await restart(async () => {
     const path = join(directory, 'workspace.json'); const state = JSON.parse(await readFile(path, 'utf8')); state.threads.push(source); state.activeThreadId = sourceId;
     state.composerDrafts.push({ threadId: sourceId, providerId: providerA, model: 'one', assistantId: 'general', projectId, mode: 'agent', text: question, attachments: [attachment], mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [], updatedAt: 1 }); await writeFile(path, JSON.stringify(state));
@@ -258,15 +260,15 @@ export async function verifyModelComparisons({ page, application, getApplication
     const contents = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/'))?.webContents;
     if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function' || !contents) return false;
     const target = ${JSON.stringify(first.id)};
-    const data = globalThis.qiyaoComparisonContinuationObservations = { installedAt: Date.now(), loads: [], clones: [], sends: [], operations: [] };
+    const data = globalThis.qiyaoComparisonContinuationObservations = { installedAt: Date.now(), loads: [], clones: [], wholeWorkspaceCopies: 0, sends: [], operations: [] };
     const append = (list, row) => { try { list.push(row); if (list.length > 64) list.shift(); } catch {} };
-    const summarize = state => {
-      const thread = state?.threads?.find(item => item.id === target);
+    const summarizeThread = thread => {
       const last = thread?.messages.at(-1);
       return { threadFound: Boolean(thread), messageCount: thread?.messages.length,
         lastUserMatches: thread?.messages.at(-2)?.content === 'COMPARE_SELECTED_CONTINUATION',
         lastStatus: last?.status, contentCharacters: last?.content.length, hasPartial: last?.content.includes('PARTIAL') };
     };
+    const summarize = state => summarizeThread(state?.threads?.find(item => item.id === target));
     const originalHandler = handlers.get('qiyao:invoke');
     const handler = async function (...args) {
       if (['saveComposerDraft', 'activateThread', 'submit'].includes(args[1])) {
@@ -287,8 +289,11 @@ export async function verifyModelComparisons({ page, application, getApplication
     const clone = function (...args) {
       const startedAt = Date.now();
       const result = originalClone.apply(this, args);
-      try { if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) append(data.clones,
-        { startedAt, completedAt: Date.now(), threadCount: args[0].threads.length, thread: summarize(result) }); } catch {}
+      try {
+        if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) data.wholeWorkspaceCopies++;
+        if (args[0]?.id === target && Array.isArray(args[0]?.messages)) append(data.clones,
+          { startedAt, completedAt: Date.now(), thread: summarizeThread(result) });
+      } catch {}
       return result;
     };
     const originalSend = contents.send;
@@ -344,6 +349,8 @@ export async function verifyModelComparisons({ page, application, getApplication
     const continuation = await collectContinuation();
     assert.ok(continuation.native.observations.loads.length > 0);
     assert.ok(continuation.native.observations.clones.length > 0);
+    assert.equal(continuation.native.observations.wholeWorkspaceCopies, 0);
+    assert.ok(continuation.native.observations.clones.some(row => row.thread.hasPartial));
     assert.ok(continuation.native.observations.sends.some(event => event.hasPartialDelta));
     assert.equal(continuation.native.transport.at(-1).statusCode, 200);
     console.log('Comparison continuation completed observations', JSON.stringify(continuation));
