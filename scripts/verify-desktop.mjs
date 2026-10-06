@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { waitForDesktopPage } from './desktop-page.mjs';
 import { drainDesktopOutput } from './desktop-output.mjs';
+import { observeDesktopProcesses } from './desktop-process-observation.mjs';
+import { verifyDesktopExit } from './desktop-exit.mjs';
 import { startStartupProfileExpression, summarizeStartupProfile } from './startup-profile.mjs';
 import { execFile, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -60,6 +62,7 @@ const scratchRoot = resolve(tmpdir());
 const scratchSpace = await statfs(scratchRoot);
 if (scratchSpace.bavail * scratchSpace.bsize < 1_000_000_000) throw new Error('Desktop verification needs at least 1 GB of free temporary disk space. Archive old test workspaces or choose another TMP directory.');
 const directory = await mkdtemp(join(scratchRoot, 'qiyao-electron-'));
+if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop verification workspace', directory);
 if (process.env.QIYAO_TEST_WORKSPACE_SEED) {
   for (const name of ['workspace.json', 'credentials.json', 'skills', 'plugins']) await cp(join(process.env.QIYAO_TEST_WORKSPACE_SEED, name), join(directory, name), { recursive: true });
   const originals = join(process.env.QIYAO_TEST_WORKSPACE_SEED, 'document-originals');
@@ -342,6 +345,7 @@ async function launch() {
     }
   }
   let browser; let page;
+  let forcedClose = false;
   let profiling = false;
   const finishProfile = async () => {
     if (!profiling) return;
@@ -370,18 +374,28 @@ async function launch() {
   }
   currentPage = page;
   application = { evaluateMain, resize: (width, height) => evaluateMain(`require('electron').BrowserWindow.getAllWindows().find(w => w.webContents.getURL().startsWith('qiyao://app/')).setSize(${width}, ${height})`), close: async ({ quit = false } = {}) => {
-    if (child.exitCode === null) {
-      const closeDiagnostic = "({capturedAt:Date.now(),events:globalThis.qiyaoCloseEvents,operations:globalThis.qiyaoCloseOperations,windows:require('electron').BrowserWindow.getAllWindows().map(w=>({id:w.id,destroyed:w.isDestroyed(),visible:w.isVisible()})),handles:process._getActiveHandles().map(h=>h.constructor.name),filesystem:globalThis.qiyaoFilesystemFailures,memory:process.memoryUsage(),cpu:process.cpuUsage()})";
+    if (!forcedClose && child.exitCode === null && child.signalCode === null) {
+      const closeDiagnostic = "({capturedAt:Date.now(),events:globalThis.qiyaoCloseEvents,operations:globalThis.qiyaoCloseOperations,processes:require('electron').app.getAppMetrics().map(p=>({pid:p.pid,type:p.type})),windows:require('electron').BrowserWindow.getAllWindows().map(w=>({id:w.id,destroyed:w.isDestroyed(),visible:w.isVisible()})),handles:process._getActiveHandles().map(h=>h.constructor.name),filesystem:globalThis.qiyaoFilesystemFailures,memory:process.memoryUsage(),cpu:process.cpuUsage()})";
       const closeSnapshot = await evaluateMain(closeDiagnostic).catch(() => undefined);
       const closeStartedAt = Date.now();
+      const observationTimers = [];
+      if (process.platform === 'win32' && process.env.QIYAO_TEST_CLOSE_PROCESS_DIAGNOSTICS) {
+        const pids = closeSnapshot?.processes?.map(p => p.pid) ?? [child.pid];
+        for (const delay of [2000, 6000]) observationTimers.push(setTimeout(() => {
+          void observeDesktopProcesses(pids).then(processes => console.log('Desktop native close observation', JSON.stringify({ requestedAt: closeStartedAt, observedAt: Date.now(), processes }))).catch(error => console.log(error.message));
+        }, delay));
+      }
+      exited.then(() => observationTimers.forEach(clearTimeout));
       if (quit) await evaluateMain("require('electron').app.quit()").catch(() => {}); else await page.evaluate(() => window.qiyao.windowAction('close')).catch(() => {});
       let forced = false;
       // Shutdown must run without a newly attached inspector. Progress is already recorded on stderr.
-      await Promise.race([exited, new Promise((resolve) => { const timer = setTimeout(() => { forced = true; console.error('Desktop close diagnostics', JSON.stringify(closeSnapshot ?? 'Main process unavailable'), diagnostics.slice(-2000).replace(/ws:\/\/[^\s]+/g, '[test debugger]')); child.kill(); resolve(); }, 10_000); exited.then(() => clearTimeout(timer)); })]);
+      await Promise.race([exited, new Promise((resolve) => { const timer = setTimeout(() => { forced = true; forcedClose = true; console.error('Desktop close diagnostics', JSON.stringify(closeSnapshot ?? 'Main process unavailable'), diagnostics.slice(-2000).replace(/ws:\/\/[^\s]+/g, '[test debugger]')); child.kill(); resolve(); }, Math.max(0, 10_000 - (Date.now() - closeStartedAt))); exited.then(() => clearTimeout(timer)); })]);
+      observationTimers.forEach(clearTimeout);
       console.log('Desktop exit observation', JSON.stringify({ elapsedMs: Date.now() - closeStartedAt, forced, exitCode: child.exitCode, signalCode: child.signalCode }));
       for (const line of diagnostics.split('\n').filter(line => line.startsWith('Desktop shutdown resources '))) console.log(line);
       assert.equal(forced, false, 'The desktop must flush drafts and exit without being forcibly killed.');
     }
+    if (!forcedClose) verifyDesktopExit(child.exitCode, child.signalCode);
     await browser.close().catch(() => {});
   } };
   page.on('pageerror', (error) => errors.push(error.message));

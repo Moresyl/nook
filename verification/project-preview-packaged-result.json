@@ -1,33 +1,131 @@
 {
-  "verifiedAt": "2026-10-06T00:00:49.853Z",
+  "verifiedAt": "2026-10-06T07:59:12.828Z",
   "variant": "packaged executable",
-  "executableSha256": "319460168cbdbb7e47cd9f72b18a6acbcaf880e59e05e89d51c457b384e1822b",
-  "archiveSha256": "86e3f218f886276677ff84f9f9db02b9ff28ccb3a1bd42c782c72e199b9af2f4",
+  "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
+  "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870",
   "normalCloseVerified": true,
   "runtimeErrors": [],
-  "checks": 5,
+  "checks": 9,
+  "docked": {
+    "checks": 4,
+    "floatingTransferVerified": true,
+    "layouts": [
+      {
+        "zoom": 1,
+        "x": 868,
+        "y": 342.5,
+        "width": 412,
+        "height": 472,
+        "native": {
+          "x": 868,
+          "y": 343,
+          "width": 412,
+          "height": 471
+        }
+      },
+      {
+        "zoom": 1,
+        "x": 909.796875,
+        "y": 342.5,
+        "width": 370.203125,
+        "height": 472,
+        "native": {
+          "x": 910,
+          "y": 343,
+          "width": 370,
+          "height": 471
+        }
+      },
+      {
+        "zoom": 1,
+        "x": 893.078125,
+        "y": 342.5,
+        "width": 386.921875,
+        "height": 472,
+        "native": {
+          "x": 894,
+          "y": 343,
+          "width": 386,
+          "height": 471
+        }
+      },
+      {
+        "zoom": 1,
+        "x": 220,
+        "y": 302.5,
+        "width": 540,
+        "height": 237.5,
+        "native": {
+          "x": 220,
+          "y": 303,
+          "width": 540,
+          "height": 237
+        }
+      },
+      {
+        "zoom": 1.25,
+        "x": 64,
+        "y": 241.6999969482422,
+        "width": 544,
+        "height": 190.3000030517578,
+        "native": {
+          "x": 80,
+          "y": 303,
+          "width": 680,
+          "height": 237
+        }
+      },
+      {
+        "zoom": 1.5,
+        "x": 64,
+        "y": 241.83334350585938,
+        "width": 442.66668701171875,
+        "height": 118.16667175292969,
+        "native": {
+          "x": 96,
+          "y": 363,
+          "width": 664,
+          "height": 177
+        }
+      }
+    ],
+    "screenshots": [
+      "project-dock-light-shell.png",
+      "project-dock-light-content.png",
+      "project-dock-dark-1-shell.png",
+      "project-dock-dark-1-content.png",
+      "project-dock-dark-1.25-shell.png",
+      "project-dock-dark-1.25-content.png",
+      "project-dock-dark-1.5-shell.png",
+      "project-dock-dark-1.5-content.png"
+    ],
+    "captureBoundary": "Separate actual parent-window and preview-content captures, not a composited full-native-window claim.",
+    "projectRemovalVerified": true
+  },
   "screenshots": [
     "project-html-preview.png",
     "project-preview-editor-light.png",
-    "project-preview-editor-dark-narrow.png"
+    "project-preview-editor-dark-narrow.png",
+    "project-dock-light-shell.png",
+    "project-dock-light-content.png",
+    "project-dock-dark-1-shell.png",
+    "project-dock-dark-1-content.png",
+    "project-dock-dark-1.25-shell.png",
+    "project-dock-dark-1.25-content.png",
+    "project-dock-dark-1.5-shell.png",
+    "project-dock-dark-1.5-content.png"
   ],
   "editorFonts": {
     "computed": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
     "fonts": [
       {
-        "familyName": "Inter Variable",
-        "postScriptName": "InterVariable-Text",
-        "isCustomFont": true,
-        "glyphCount": 5
-      },
-      {
         "familyName": "Microsoft YaHei UI",
         "postScriptName": "MicrosoftYaHeiUI",
         "isCustomFont": false,
-        "glyphCount": 2
+        "glyphCount": 4
       }
     ]
   },
   "outsideHttpRequests": 0,
-  "boundary": "Local project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
+  "boundary": "Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
 }

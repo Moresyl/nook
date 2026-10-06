@@ -25,11 +25,15 @@
 | 新包设置专项首轮 | 四组界面检查通过，但未在原有 10 秒期限内观察到子进程退出，强制关闭，整轮失败；原因尚未证实 |
 | 同一包设置专项重跑 | 四组通过，无运行时错误，正常退出 5477ms，整轮返回 0；首轮失败未复现，原因未被证明消除 |
 | 新包便携运行 | 七组全部通过，两次正常退出 789／2103ms；实际解包文件、原生终端、重启、长路径清理与系统登记保留通过 |
-| 新包实际安装与证据一致性 | 尚未完成 |
+| 新包实际安装首轮 | 包体和快捷方式通过，桌面回归通过 192 组后在重启收尾超过原有 10 秒退出期限，强制关闭，整轮失败；保留现场，未生成完整安装验收记录 |
+| 失败工作台的查找与退出回放 | 五组通过，三次正常退出 3491／819／1244ms，原工作台哈希不变；首次回放在启动前置操作超时，未到达退出阶段 |
+| 原生退出观察 | JS 退出回调之后，2.222 秒时原生主进程仍存在，三个其他应用进程已退出，最终在 3.491 秒正常退出；根因仍未确认。诊断模块与输出消费共 17 项通过，新诊断模块独立覆盖率 100%，类型通过 |
+| 退出状态门槛 | 现在同时要求原生退出码 0、无终止信号；24 项组件测试与类型通过，两项新增验证模块独立覆盖率 100%。原完整未安装运行的 35 次实际退出记录均满足新条件；后续回放仍在输入区显现前超时，清理退出也失败，未算作通过 |
+| 同一应用体的证据一致性 | 尚未通过；完整实际安装记录仍缺失，不能使用旧安装记录补齐 |
 
 首轮默认并发组件测试有三项 5 秒超时，后续两轮通过，原因尚未证实。源码整轮的 MCP 连接在配置的 5 秒期限后返回错误，后续专项通过不能证明其原因已消除；没有放宽测试时限。五张本轮源码 PDF 截图已逐张检查，也不等于完整设计或安装版验收。
 
-详细记录：[恢复与回归](../verification/recovery-gzip-review-result.json)、[新候选](../verification/originals-package-result.json)、[未安装完整运行](../verification/originals-unpacked-desktop-result.json)、[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)。
+详细记录：[恢复与回归](../verification/recovery-gzip-review-result.json)、[新候选](../verification/originals-package-result.json)、[退出调查](../verification/native-close-review-result.json)、[未安装完整运行](../verification/originals-unpacked-desktop-result.json)、[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)。
 
 ## 当前包体
 

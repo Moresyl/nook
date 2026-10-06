@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-06T00:00:41.570Z",
+  "verifiedAt": "2026-10-06T07:58:38.727Z",
   "variant": "packaged executable",
-  "checks": 223,
+  "checks": 235,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -82,8 +82,23 @@
       "odp",
       "rtf"
     ],
+    "pdfOriginal": {
+      "textOnlyProtocols": [
+        "responses",
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama",
+        "azure-responses",
+        "azure-chat",
+        "azure-deployment"
+      ],
+      "restartBytesVerified": true,
+      "deduplicatedBackupVerified": true,
+      "missingFileRestoredVerified": true
+    },
     "cloudCredentialsUsed": false,
-    "scope": "Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used."
+    "scope": "Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup including reconstruction of a missing PDF original. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used."
   },
   "knowledge": {
     "protocols": [
@@ -173,8 +188,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84174023,
-    "compressedBytes": 240387,
+    "expandedBytes": 84181180,
+    "compressedBytes": 242298,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -725,6 +740,29 @@
   },
   "modelComparisons": {
     "checks": 6,
+    "settingsTransactions": [
+      {
+        "operation": "saveProvider",
+        "workspaceCopies": 1,
+        "startedAt": 1791273307201,
+        "success": true,
+        "finishedAt": 1791273309457
+      },
+      {
+        "operation": "saveProvider",
+        "workspaceCopies": 1,
+        "startedAt": 1791273309591,
+        "success": true,
+        "finishedAt": 1791273311709
+      },
+      {
+        "operation": "savePreferences",
+        "workspaceCopies": 1,
+        "startedAt": 1791273314409,
+        "success": true,
+        "finishedAt": 1791273316698
+      }
+    ],
     "comparisonModelRequests": 11,
     "parallelStreamsVerified": true,
     "independentFailureStopVerified": true,
@@ -781,7 +819,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 21.399999856948853,
+    "scopedReadMs": 16.199999809265137,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -809,7 +847,8 @@
         "width": 760,
         "height": 540,
         "headerTop": 1,
-        "footerBottom": 517,
+        "toolbarBottom": 523,
+        "controlsVisible": true,
         "overflow": false
       },
       {
@@ -817,7 +856,8 @@
         "width": 608,
         "height": 432,
         "headerTop": 0.800000011920929,
-        "footerBottom": 408.4000053405762,
+        "toolbarBottom": 415.20001220703125,
+        "controlsVisible": true,
         "overflow": false
       },
       {
@@ -825,7 +865,8 @@
         "width": 507,
         "height": 360,
         "headerTop": 0.6666666865348816,
-        "footerBottom": 336.0000114440918,
+        "toolbarBottom": 343.3333435058594,
+        "controlsVisible": true,
         "overflow": false
       }
     ],
@@ -1040,6 +1081,11 @@
     "105-chat-find-dark-zoom-100.png",
     "105-chat-find-dark-zoom-125.png",
     "105-chat-find-dark-zoom-150.png",
+    "pdf-original-light.png",
+    "pdf-original-dark-minimum.png",
+    "pdf-outline-light.png",
+    "pdf-search-light.png",
+    "pdf-note-light.png",
     "114-branch-order-light.png",
     "115-branch-order-error-light.png",
     "116-branch-order-dark-zoom-100.png",
@@ -1076,8 +1122,34 @@
     "memory-settings-dark.png",
     "project-html-preview.png",
     "project-preview-editor-light.png",
-    "project-preview-editor-dark-narrow.png"
+    "project-preview-editor-dark-narrow.png",
+    "project-dock-light-shell.png",
+    "project-dock-light-content.png",
+    "project-dock-dark-1-shell.png",
+    "project-dock-dark-1-content.png",
+    "project-dock-dark-1.25-shell.png",
+    "project-dock-dark-1.25-content.png",
+    "project-dock-dark-1.5-shell.png",
+    "project-dock-dark-1.5-content.png"
   ],
+  "pdfPreview": {
+    "checks": 6,
+    "pixels": 1064,
+    "originalBytes": 2035,
+    "canvasTextVerified": true,
+    "outlineTargetsVerified": true,
+    "fullDocumentSearchVerified": true,
+    "linksNotesZoomVerified": true,
+    "exportOwnershipRestartVerified": true,
+    "nativeSaveDialogIntercepted": true,
+    "screenshots": [
+      "pdf-original-light.png",
+      "pdf-original-dark-minimum.png",
+      "pdf-outline-light.png",
+      "pdf-search-light.png",
+      "pdf-note-light.png"
+    ]
+  },
   "branchNavigation": {
     "checks": 9,
     "manualOrderingVerified": true,
@@ -1685,33 +1757,131 @@
     "scope": "Explicit CRUD, scope promotion, disabled state, persistence, search, escaped text, theme/narrow layout and project removal. Engine scope and temporary-chat isolation have separate component tests."
   },
   "projectPreview": {
-    "checks": 5,
+    "checks": 9,
+    "docked": {
+      "checks": 4,
+      "floatingTransferVerified": true,
+      "layouts": [
+        {
+          "zoom": 1,
+          "x": 868,
+          "y": 342.5,
+          "width": 412,
+          "height": 472,
+          "native": {
+            "x": 868,
+            "y": 343,
+            "width": 412,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 909.796875,
+          "y": 342.5,
+          "width": 370.203125,
+          "height": 472,
+          "native": {
+            "x": 910,
+            "y": 343,
+            "width": 370,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 893.078125,
+          "y": 342.5,
+          "width": 386.921875,
+          "height": 472,
+          "native": {
+            "x": 894,
+            "y": 343,
+            "width": 386,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 220,
+          "y": 302.5,
+          "width": 540,
+          "height": 237.5,
+          "native": {
+            "x": 220,
+            "y": 303,
+            "width": 540,
+            "height": 237
+          }
+        },
+        {
+          "zoom": 1.25,
+          "x": 64,
+          "y": 241.6999969482422,
+          "width": 544,
+          "height": 190.3000030517578,
+          "native": {
+            "x": 80,
+            "y": 303,
+            "width": 680,
+            "height": 237
+          }
+        },
+        {
+          "zoom": 1.5,
+          "x": 64,
+          "y": 241.83334350585938,
+          "width": 442.66668701171875,
+          "height": 118.16667175292969,
+          "native": {
+            "x": 96,
+            "y": 363,
+            "width": 664,
+            "height": 177
+          }
+        }
+      ],
+      "screenshots": [
+        "project-dock-light-shell.png",
+        "project-dock-light-content.png",
+        "project-dock-dark-1-shell.png",
+        "project-dock-dark-1-content.png",
+        "project-dock-dark-1.25-shell.png",
+        "project-dock-dark-1.25-content.png",
+        "project-dock-dark-1.5-shell.png",
+        "project-dock-dark-1.5-content.png"
+      ],
+      "captureBoundary": "Separate actual parent-window and preview-content captures, not a composited full-native-window claim.",
+      "projectRemovalVerified": true
+    },
     "screenshots": [
       "project-html-preview.png",
       "project-preview-editor-light.png",
-      "project-preview-editor-dark-narrow.png"
+      "project-preview-editor-dark-narrow.png",
+      "project-dock-light-shell.png",
+      "project-dock-light-content.png",
+      "project-dock-dark-1-shell.png",
+      "project-dock-dark-1-content.png",
+      "project-dock-dark-1.25-shell.png",
+      "project-dock-dark-1.25-content.png",
+      "project-dock-dark-1.5-shell.png",
+      "project-dock-dark-1.5-content.png"
     ],
     "editorFonts": {
       "computed": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
       "fonts": [
         {
-          "familyName": "Inter Variable",
-          "postScriptName": "InterVariable-Text",
-          "isCustomFont": true,
-          "glyphCount": 5
-        },
-        {
           "familyName": "Microsoft YaHei UI",
           "postScriptName": "MicrosoftYaHeiUI",
           "isCustomFont": false,
-          "glyphCount": 2
+          "glyphCount": 4
         }
       ]
     },
     "outsideHttpRequests": 0,
-    "boundary": "Local project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
+    "boundary": "Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
   },
   "normalCloseVerified": true,
-  "executableSha256": "319460168cbdbb7e47cd9f72b18a6acbcaf880e59e05e89d51c457b384e1822b",
-  "archiveSha256": "86e3f218f886276677ff84f9f9db02b9ff28ccb3a1bd42c782c72e199b9af2f4"
+  "executableSha256": "fd634127e5f9c7b2b88f67d362cc9766b95d986499e2f9ea302bd1f708af4529",
+  "archiveSha256": "0d1ad74533f484e08e4f5b2642fb930e68e85a6645d30b5eacaaa819ac9d1870"
 }
