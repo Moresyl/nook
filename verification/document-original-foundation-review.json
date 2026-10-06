@@ -33,7 +33,7 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Complete PDF search/annotation interactions and verify complete desktop product flows",
+    "Complete PDF annotation interactions and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Extend offline PDF sample coverage to Chinese CMaps, complex images and annotation layers",
     "Verify provider requests exclude original binary bytes",
@@ -137,5 +137,23 @@
     ],
     "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
     "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
+  },
+  "searchFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "tests": { "files": 3, "passed": 16, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-search-coverage.log" },
+    "focusedCoverage": { "scope": "chat-navigation.ts and pdf-search.ts aggregate; DOM range construction is exercised by the native suite rather than unit instrumentation", "statements": 89.77, "branches": 84.72, "functions": 88.88, "lines": 93.75 },
+    "buildPassed": true,
+    "buildLog": "D:/GR/pi-pc/.firecrawl/nook-pdf-search-final-build.log",
+    "nativeChecks": { "passed": 5, "normalFinalExitMilliseconds": 270, "runtimeErrors": [], "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-search-final-native-retry.log" },
+    "screenshotsReviewed": ["verification/screenshots/pdf-search-light.png", "verification/screenshots/pdf-original-dark-minimum.png"],
+    "startupFailure": { "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-search-final-native.log", "directory": "E:/NookVerification/Temp/qiyao-electron-xT0bmN", "elapsedMilliseconds": 30101, "scope": "Existing startup deadline; no functional assertion ran. Same build passed on retry; root cause is unproven and timeouts were not increased." },
+    "implemented": [
+      "Bounded cancellable cross-page literal search with exact Unicode/text-item offsets and explicit truncation reporting",
+      "CSS range highlights, next/previous wraparound and Ctrl/Cmd+F plus Enter/Shift+Enter navigation",
+      "Preserve search highlighting while giving explicit outline and manual page navigation control over scrolling",
+      "Reuse the existing literal matcher with bounded result collection; preserve existing chat-search behavior"
+    ],
+    "remaining": "Annotations and links, wider PDF samples and accessibility, OCR/password workflows, recovery-aware cleanup, full regression, distribution and release."
   }
 }

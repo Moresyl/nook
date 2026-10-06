@@ -46,6 +46,33 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
   assert.equal(await page.locator('.pdf-scroll').evaluate(element => element.scrollTop), 0);
   verified('nested PDF outline resolves named page coordinates and explicit page targets while external actions remain inactive');
+  const search = page.getByRole('searchbox', { name: '搜索 PDF', exact: true });
+  await page.keyboard.press('Control+f');
+  assert.equal(await search.evaluate(element => element === document.activeElement), true);
+  await search.fill('BUDGET');
+  await page.waitForFunction(() => document.querySelector('.pdf-search [role=status]')?.textContent === '1 / 1' && [...(CSS.highlights.get('nook-pdf-search-current') ?? [])].some(range => range.toString() === 'Budget'));
+  assert.equal(await page.getByRole('spinbutton', { name: 'PDF 页码', exact: true }).inputValue(), '2');
+  await page.screenshot({ path: join(screenshots, 'pdf-search-light.png') });
+  await page.getByRole('button', { name: '目录', exact: true }).click();
+  await outline.getByRole('button', { name: 'Budget details', exact: true }).click();
+  await page.waitForFunction(() => {
+    const canvas = document.querySelector('.pdfPreviewPage canvas'), scroller = document.querySelector('.pdf-scroll');
+    return canvas && scroller && scroller.getAttribute('aria-busy') === 'false' && Math.abs(scroller.scrollTop - parseFloat(canvas.style.width) / 612 * 192) < 2;
+  });
+  await page.locator('.pdf-scroll').evaluate(element => { element.scrollTop = element.scrollHeight; });
+  await page.getByRole('button', { name: '下一个 PDF 匹配', exact: true }).click();
+  await page.waitForFunction(() => { const range = [...(CSS.highlights.get('nook-pdf-search-current') ?? [])][0]; const box = range?.getBoundingClientRect(), scroll = document.querySelector('.pdf-scroll')?.getBoundingClientRect(); return box && scroll && box.top >= scroll.top && box.bottom <= scroll.bottom; });
+  await search.fill('d');
+  await page.waitForFunction(() => document.querySelector('.pdf-search [role=status]')?.textContent === '1 / 3');
+  await search.press('Shift+Enter');
+  await page.waitForFunction(() => document.querySelector('.pdf-search [role=status]')?.textContent === '3 / 3' && document.querySelector('input[aria-label="PDF 页码"]')?.value === '2');
+  await search.fill('[');
+  await page.waitForFunction(() => document.querySelector('.pdf-search [role=status]')?.textContent === '0 / 0' && !CSS.highlights.has('nook-pdf-search-current'));
+  await search.fill('');
+  await page.waitForFunction(() => !CSS.highlights.has('nook-pdf-search'));
+  await page.getByRole('spinbutton', { name: 'PDF 页码', exact: true }).fill('1');
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
+  verified('PDF full-document search jumps across pages, highlights exact literal ranges, cycles backwards and clears obsolete highlights');
   const before = await page.locator('.pdfPreviewPage canvas').evaluate(canvas => canvas.getBoundingClientRect().width);
   await page.getByRole('button', { name: '放大 PDF', exact: true }).click();
   await page.waitForFunction(width => Number.parseFloat(document.querySelector('.pdfPreviewPage canvas')?.style.width ?? '0') > width, before);
@@ -80,5 +107,5 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
   assert.deepEqual(Buffer.from(restored), bytes);
   verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
-  return { page, result: { checks: 4, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png'] } };
+  return { page, result: { checks: 5, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png'] } };
 }

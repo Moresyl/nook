@@ -20,9 +20,15 @@ export function messageMarkerIndex(count: number, current: number, key: string):
   return index;
 }
 
-export function chatTextMatches(text: string, query: string): TextMatch[] {
+export function chatTextMatches(text: string, query: string, limit = Infinity): TextMatch[] {
   if (query.length > 512) throw new Error('Chat search exceeds 512 characters.');
   if (!query) return [];
   const pattern = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'giu');
-  return Array.from(text.matchAll(pattern), (match) => ({ start: match.index, end: match.index + match[0].length }));
+  if (limit !== Infinity && (!Number.isSafeInteger(limit) || limit < 0)) throw new Error('Search match limit must be a nonnegative integer.');
+  const result: TextMatch[] = [];
+  for (const match of text.matchAll(pattern)) {
+    if (result.length >= limit) break;
+    result.push({ start: match.index, end: match.index + match[0].length });
+  }
+  return result;
 }

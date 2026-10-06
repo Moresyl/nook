@@ -5,6 +5,7 @@ import type { DocumentOriginal } from '../../contracts/document-originals';
 import { Button, Input } from './controls';
 import { EmbeddedPdfResources } from './pdf-resources';
 import { pdfOutlineEntries, resolvePdfDestination, type PdfDestination, type PdfOutlineEntry } from './pdf-navigation';
+import { pdfSearchRange, searchPdf, type PdfSearchResult } from './pdf-search';
 import '../theme/pdf-preview.css';
 
 export default function PdfPreview({ reference }: { reference: DocumentOriginal }) {
@@ -14,7 +15,20 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
   const [outline, setOutline] = useState<PdfOutlineEntry[]>([]), [outlineOpen, setOutlineOpen] = useState(false), [outlineError, setOutlineError] = useState('');
   const [destination, setDestination] = useState<PdfDestination>();
   const navigationVersion = useRef(0), outlineId = useId();
+  const [query, setQuery] = useState(''), [searching, setSearching] = useState(false), [searchError, setSearchError] = useState('');
+  const [searchResult, setSearchResult] = useState<PdfSearchResult>({ matches: [], limited: false }), [activeMatch, setActiveMatch] = useState(0), [searchedPage, setSearchedPage] = useState(0);
+  const textDivs = useRef<HTMLElement[]>([]), [renderRevision, setRenderRevision] = useState(0);
+  const [searchJump, setSearchJump] = useState(0);
+  const followSearch = useRef(false), searchInput = useRef<HTMLInputElement>(null);
   const scroll = useRef<HTMLDivElement>(null), surface = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const find = (event: KeyboardEvent) => {
+      if (event.isComposing || !(event.ctrlKey || event.metaKey) || event.altKey || event.key.toLowerCase() !== 'f') return;
+      if (Array.from(window.document.querySelectorAll('dialog[open]')).at(-1) !== scroll.current?.closest('dialog')) return;
+      event.preventDefault(); event.stopPropagation(); searchInput.current?.focus(); searchInput.current?.select();
+    };
+    window.addEventListener('keydown', find); return () => window.removeEventListener('keydown', find);
+  }, []);
   useEffect(() => {
     const element = scroll.current!;
     const observer = new ResizeObserver(() => setWidth(Math.max(120, element.clientWidth - 32)));
@@ -42,9 +56,23 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
     return () => { stopped = true; navigationVersion.current++; void task?.destroy().catch(() => {}); wrapper?.destroy(); worker?.terminate(); };
   }, [reference.sha256, retry]);
   useEffect(() => {
+    const controller = new AbortController();
+    followSearch.current = false;
+    setSearchResult({ matches: [], limited: false }); setSearchError(''); setActiveMatch(0); setSearchedPage(0); setSearching(Boolean(document && query.trim()));
+    if (!document || !query.trim()) return () => controller.abort();
+    const timer = setTimeout(() => {
+      void searchPdf(document, query, controller.signal, setSearchedPage).then(result => {
+        if (controller.signal.aborted) return;
+        setSearchResult(result); setSearching(false);
+        if (result.matches.length) { followSearch.current = true; navigationVersion.current++; setDestination(undefined); setPage(result.matches[0].page); }
+      }).catch(error => { if (!controller.signal.aborted) { setSearching(false); setSearchError(error instanceof Error ? error.message : '搜索失败，请重试。'); } });
+    }, 150);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [document, query]);
+  useEffect(() => {
     if (!document) return;
     let stopped = false, render: RenderTask | undefined, text: TextLayer | undefined;
-    const container = surface.current!; container.replaceChildren(); setLoading(true); setError('');
+    const container = surface.current!; container.replaceChildren(); textDivs.current = []; setLoading(true); setError('');
     void (async () => {
       const selected = await document.getPage(page); if (stopped) return;
       const unscaled = selected.getViewport({ scale: 1 });
@@ -63,6 +91,7 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
       text = new TextLayer({ textContentSource: selected.streamTextContent(), container: layer, viewport });
       await Promise.all([render.promise, text.render()]);
       if (!stopped) {
+        textDivs.current = text.textDivs; setRenderRevision(value => value + 1);
         setLoading(false);
         if (destination?.page === page) {
           const [left, top] = viewport.convertToViewportPoint(destination.x ?? selected.view[0], destination.y ?? selected.view[3]);
@@ -72,16 +101,36 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
     })().catch(() => { if (!stopped) { setError('此页无法完整显示，请重试或查看提取的文本。'); setLoading(false); } });
     return () => { stopped = true; render?.cancel(); text?.cancel(); container.replaceChildren(); };
   }, [document, page, zoom, width, destination]);
+  useEffect(() => {
+    CSS.highlights.delete('nook-pdf-search'); CSS.highlights.delete('nook-pdf-search-current');
+    const ranges = searchResult.matches.map((match, index) => ({ match, index })).filter(({ match }) => match.page === page)
+      .map(({ match, index }) => ({ range: pdfSearchRange(match, textDivs.current), index })).filter(item => item.range);
+    if (ranges.length) CSS.highlights.set('nook-pdf-search', new Highlight(...ranges.map(item => item.range!)));
+    const active = ranges.find(item => item.index === activeMatch)?.range;
+    if (active) {
+      CSS.highlights.set('nook-pdf-search-current', new Highlight(active));
+      if (followSearch.current) {
+        const box = active.getBoundingClientRect(), scroller = scroll.current!;
+        scroller.scrollTo({ top: scroller.scrollTop + box.top - scroller.getBoundingClientRect().top - 32, behavior: 'instant' });
+      }
+    }
+    return () => { CSS.highlights.delete('nook-pdf-search'); CSS.highlights.delete('nook-pdf-search-current'); };
+  }, [searchResult, activeMatch, page, renderRevision, searchJump]);
+  const moveMatch = (direction: number) => {
+    if (!searchResult.matches.length) return;
+    const index = (activeMatch + direction + searchResult.matches.length) % searchResult.matches.length;
+    followSearch.current = true; navigationVersion.current++; setDestination(undefined); setActiveMatch(index); setPage(searchResult.matches[index].page); setSearchJump(value => value + 1);
+  };
   const navigateOutline = async (raw: unknown) => {
     if (!document) return;
     const version = ++navigationVersion.current; setOutlineError('');
     try {
       const target = await resolvePdfDestination(document, raw);
       if (version !== navigationVersion.current) return;
-      setDestination(target); setPage(target.page); setOutlineOpen(false);
+      followSearch.current = false; setDestination(target); setPage(target.page); setOutlineOpen(false);
     } catch (error) { if (version === navigationVersion.current) setOutlineError(error instanceof Error ? error.message : '目录跳转失败。'); }
   };
-  const turnPage = (value: number) => { navigationVersion.current++; setDestination(undefined); setPage(value); scroll.current?.scrollTo({ top: 0, left: 0 }); };
+  const turnPage = (value: number) => { followSearch.current = false; navigationVersion.current++; setDestination(undefined); setPage(value); scroll.current?.scrollTo({ top: 0, left: 0 }); };
   return <section className="pdf-preview" aria-label="PDF 原件预览">
     <div className="pdf-toolbar" role="group" aria-label="PDF 页面与缩放">
       <Button aria-expanded={outlineOpen} aria-controls={outlineId} onClick={() => setOutlineOpen(value => !value)}>目录</Button>
@@ -95,6 +144,15 @@ export default function PdfPreview({ reference }: { reference: DocumentOriginal 
       <Button disabled={zoom >= 3} onClick={() => setZoom(value => Math.min(3, value + .25))} aria-label="放大 PDF">+</Button>
       <Button onClick={() => setZoom(1)}>适合宽度</Button>
     </div>
+    <div className="pdf-search" role="search" aria-label="PDF 全文搜索">
+      <Input ref={searchInput} aria-label="搜索 PDF" type="search" maxLength={512} placeholder="在文档中查找" value={query} onChange={event => setQuery(event.target.value)}
+        onKeyDown={event => { if (event.key === 'Enter') { event.preventDefault(); moveMatch(event.shiftKey ? -1 : 1); } }} />
+      <Button disabled={!searchResult.matches.length || searching} aria-label="上一个 PDF 匹配" onClick={() => moveMatch(-1)}>上一处</Button>
+      <Button disabled={!searchResult.matches.length || searching} aria-label="下一个 PDF 匹配" onClick={() => moveMatch(1)}>下一处</Button>
+      <span role="status">{searching ? `正在搜索 ${searchedPage}/${document?.numPages ?? 0} 页` : query.trim() ? `${searchResult.matches.length ? activeMatch + 1 : 0} / ${searchResult.matches.length}${searchResult.limited ? '+' : ''}` : ''}</span>
+    </div>
+    {searchError && <p role="alert" className="field-hint">{searchError}</p>}
+    {searchResult.limited && <p className="field-hint">仅显示前 10,000 处匹配，请缩小搜索范围。</p>}
     {outlineOpen && <nav id={outlineId} className="pdf-outline" aria-label="PDF 目录">{outline.length ? outline.map((entry, index) => <Button key={index} style={{ paddingInlineStart: `${8 + Math.min(entry.depth, 12) * 12}px` }} disabled={entry.destination == null} onClick={() => { void navigateOutline(entry.destination); }}>{entry.title}</Button>) : <p className="field-hint">{document ? '此文档没有目录。' : '正在读取目录…'}</p>}</nav>}
     {outlineError && <p role="alert" className="field-hint">{outlineError}</p>}
     {loading && <p role="status" className="field-hint">正在显示 PDF…</p>}
