@@ -9,6 +9,7 @@ import type { ToolResult } from './tools';
 import type { PluginUpdate, PluginView } from './plugins';
 import type { ModelInfo, ModelInvocation } from './models';
 import type { AttachmentInput } from './attachments';
+import type { DocumentOriginal } from './document-originals';
 import type { KnowledgeCollection, KnowledgeQuery, KnowledgeSource, KnowledgeView } from './knowledge';
 import type { AutomationInput } from './automations';
 import type { DesktopState } from './desktop-integration';
@@ -108,6 +109,8 @@ export type Bridge = {
   stopKnowledgeSearch(requestId: string): Promise<void>;
   attachFiles(): Promise<Attachment[]>;
   importAttachments(files: AttachmentInput[]): Promise<Attachment[]>;
+  readDocumentOriginal(reference: DocumentOriginal): Promise<Uint8Array>;
+  exportDocumentOriginal(reference: DocumentOriginal): Promise<boolean>;
   listFiles(projectId: string, relativePath: string): Promise<FileEntry[]>;
   listDirectory(projectId: string, request: DirectoryRequest): Promise<DirectoryPage>;
   readFile(projectId: string, relativePath: string): Promise<string>;

@@ -7,6 +7,7 @@ import { spawn as spawnPty } from 'node-pty';
 import { z } from 'zod';
 import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
+import { DocumentOriginalFiles } from './services/document-original-files';
 import { userDataDirectory } from './services/user-data-directory';
 import { StartupDiagnostics } from './services/startup-diagnostics';
 import { ComposerDrafts } from './services/composer-drafts';
@@ -76,6 +77,10 @@ const projectPreviewDock = new ProjectPreviewDock();
 function closeProjectPreviews(id?: string) { projectPreview.close(id); projectPreviewDock.close(id); }
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), bytes => vault.stageDocumentOriginals(bytes));
+const documentOriginalFiles = new DocumentOriginalFiles(reference => vault.readDocumentOriginal(reference), async () => {
+  const result = await dialog.showSaveDialog(window!, { defaultPath: 'document.pdf', filters: [{ name: 'PDF 文档', extensions: ['pdf'] }] });
+  return result.canceled ? undefined : result.filePath;
+});
 const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
   const result = await dialog.showSaveDialog(window!, { defaultPath: name });
   return result.canceled ? undefined : result.filePath;
@@ -333,6 +338,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     return attachmentImporter.importPaths(result.filePaths);
   },
   importAttachments: (raw) => attachmentImporter.importInputs(attachmentInputsSchema.parse(raw)),
+  readDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.read(reference); },
+  exportDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.export(reference); },
   listFiles: (id, path) => projectEntries(workspaceProject(id).path, z.string().max(4096).parse(path)),
   listDirectory: (id, input) => projectDirectory(workspaceProject(id).path, directoryRequestSchema.parse(input)),
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),

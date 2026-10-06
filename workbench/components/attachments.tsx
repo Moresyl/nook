@@ -27,8 +27,18 @@ export function AttachmentList({ files, disabled = false, onRemove }: { files: A
 }
 
 export function AttachmentPreview({ file, images = [file], onSelect = () => {}, onClose }: { file: Attachment; images?: Attachment[]; onSelect?: (file: Attachment) => void; onClose: () => void }) {
+  const [exporting, setExporting] = useState(false);
+  const [error, setError] = useState('');
+  const exportOriginal = async () => {
+    if (!file.original || exporting) return;
+    setExporting(true); setError('');
+    try { await window.qiyao.exportDocumentOriginal(file.original); }
+    catch (error) { setError(error instanceof Error ? error.message : '原件保存失败，请重试。'); }
+    finally { setExporting(false); }
+  };
   if (file.image) return <ImagePreview key={file.id} file={file} images={images} onSelect={onSelect} onClose={onClose} />;
-  return <Modal title={file.name} onClose={onClose} footer={<Button onClick={onClose}>完成</Button>}>
+  return <Modal title={file.name} onClose={onClose} footer={<>{file.original && <Button disabled={exporting} onClick={() => { void exportOriginal(); }}>{exporting ? '正在保存…' : '保存 PDF 原件'}</Button>}<Button onClick={onClose}>完成</Button></>}>
+    {error && <p role="alert">{error}</p>}
     {file.source && <p className="field-hint">{file.source.format.toUpperCase()} · {(file.source.bytes / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} KB · 提取的文本</p>}
     {file.warnings?.map((warning) => <p className="field-hint" key={warning}>{warning}</p>)}
     <pre className="attachment-text-preview">{file.content || '（空文本文件）'}</pre>

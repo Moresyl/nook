@@ -33,7 +33,7 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Connect the preview bridge and verify complete desktop import/product flows",
+    "Integrate offline PDF rendering with the original-read bridge and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
     "Verify provider requests exclude original binary bytes",
@@ -77,5 +77,18 @@
       "Assert that four protocol message assemblers include extracted evidence but exclude original PDF bytes"
     ],
     "remaining": "Offline PDF UI and preview bridge, recovery-aware blob cleanup, provider HTTP capture and full native verification remain open."
+  },
+  "originalAccessFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "relatedTests": { "files": 3, "passed": 13, "log": "D:/GR/pi-pc/.firecrawl/nook-document-files-tests.log" },
+    "implemented": [
+      "Typed original-read and original-export IPC commands with reference validation and current vault ownership checks",
+      "Flush pending composer drafts before original access",
+      "Export exact verified bytes through an atomic file write after the native save dialog",
+      "Expose Save PDF Original in the existing attachment preview with pending and error states"
+    ],
+    "validationLimits": "Service tests cover malformed references, cancellation, exact output, revoked ownership and corrupt originals preserving existing destinations. The native dialog, new button layout and renderer IPC round trip are not yet verified.",
+    "previousImportBuild": { "passed": true, "log": "D:/GR/pi-pc/.firecrawl/nook-document-import-build.log", "scope": "Build at a0661d3 before these access commands and UI additions" }
   }
 }
