@@ -1,0 +1,28 @@
+{
+  "sourceCommit": "d3dd3263c0d45ec7eb11ad026476052f48feec83",
+  "status": "failed",
+  "completedDesktopGroups": 200,
+  "executableSha256": "319460168cbdbb7e47cd9f72b18a6acbcaf880e59e05e89d51c457b384e1822b",
+  "archiveSha256": "86e3f218f886276677ff84f9f9db02b9ff28ccb3a1bd42c782c72e199b9af2f4",
+  "completedSetupChecks": "Installed package hashes, shortcut identity and five shell integration groups passed.",
+  "failure": {
+    "phase": "Continue a selected model-comparison conversation using another model; wait for partial response",
+    "location": "scripts/verify-model-comparisons.mjs:273",
+    "deadlineMs": 10000,
+    "elapsedMs": 10630,
+    "pollDurationsMs": [6216, 4212],
+    "expectedServerRequests": 11,
+    "observedServerRequests": 10,
+    "expectedMessages": 6,
+    "observedMessages": 4,
+    "rootCause": "unproven; the continuation request had not reached the fixture and both polls still saw the prior complete reply. Full workspace loads were slow; this alone does not identify the cause."
+  },
+  "finalClose": { "normal": true, "elapsedMs": 9351, "exitCode": 0, "forced": false },
+  "fixture": "E:/NookVerification/Temp/qiyao-electron-4TBXcJ",
+  "workspaceBytes": 84543958,
+  "workspaceSha256": "d207093ff91d2d131dc047cddedef53e4c5361f31db8728e4de0cffb3eb57ed3",
+  "installerFixture": "E:/NookVerification/NookInstallerAudit-5d238845dbeb4c83ac26eb6ade089afa",
+  "log": "D:/GR/pi-pc/.firecrawl/nook-code-wrap-installed-full.log",
+  "logSha256": "091d445068cd66c11dd44e57854b0aaaca196d025f8b1501196999c3ca4fec7f",
+  "boundary": "Full installed runtime and matching release proof gate did not pass. Later focused tests and source changes must not replace this failure record."
+}
