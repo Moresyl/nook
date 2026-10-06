@@ -137,6 +137,24 @@
     "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
     "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
   },
+  "largeWorkspaceIoFollowUp": {
+    "performanceIssueResolved": false,
+    "seed": "E:/NookVerification/Temp/qiyao-electron-haOCF3",
+    "seedBytes": 84549444,
+    "seedSha256": "39a13e06c883d3a2389807d133b7a18e6d9bb3b56ef008585e590b84a8759ccf",
+    "isolatedMeasurements": {
+      "log": "D:/GR/pi-pc/.firecrawl/nook-vault-originals-io-profile.log",
+      "helper": "D:/GR/pi-pc/.firecrawl/profile-originals-vault.ts",
+      "scope": "Three actual Composer transactions on a copied failed workspace using the current vault code in Node; this is diagnostic evidence, not an Electron performance guarantee.",
+      "serializationMilliseconds": [24.04, 33.84, 34.04],
+      "backupWriteMilliseconds": [24.54, 36.06, 38.86],
+      "backupSyncMilliseconds": [2065.28, 3086.63, 1542.19],
+      "composerTransactionMilliseconds": [2529.49, 3223.60, 1768.88],
+      "finding": "Repeated full previous-revision backup synchronization dominates these measured transactions. Durability and timeout limits are unchanged; no performance fix is claimed."
+    },
+    "seedReplayFix": "Copy the optional original-document directory when replaying retained workspaces; preserve compatibility with older seeds and reject unexpected filesystem errors.",
+    "seededPdfReplay": { "checksPassed": 6, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-seeded-replay.log", "scope": "Actual PDF viewer, ownership/export and restart checks on a copy of the retained large workspace, not a complete product regression." }
+  },
   "releaseGateFollowUp": {
     "featureComplete": false,
     "typesPassed": true,

@@ -60,7 +60,15 @@ const scratchRoot = resolve(tmpdir());
 const scratchSpace = await statfs(scratchRoot);
 if (scratchSpace.bavail * scratchSpace.bsize < 1_000_000_000) throw new Error('Desktop verification needs at least 1 GB of free temporary disk space. Archive old test workspaces or choose another TMP directory.');
 const directory = await mkdtemp(join(scratchRoot, 'qiyao-electron-'));
-if (process.env.QIYAO_TEST_WORKSPACE_SEED) for (const name of ['workspace.json', 'credentials.json', 'skills', 'plugins']) await cp(join(process.env.QIYAO_TEST_WORKSPACE_SEED, name), join(directory, name), { recursive: true });
+if (process.env.QIYAO_TEST_WORKSPACE_SEED) {
+  for (const name of ['workspace.json', 'credentials.json', 'skills', 'plugins']) await cp(join(process.env.QIYAO_TEST_WORKSPACE_SEED, name), join(directory, name), { recursive: true });
+  const originals = join(process.env.QIYAO_TEST_WORKSPACE_SEED, 'document-originals');
+  const info = await stat(originals).catch(error => { if (error.code === 'ENOENT') return undefined; throw error; });
+  if (info) {
+    if (!info.isDirectory()) throw new Error('The verification seed original-document store must be a directory.');
+    await cp(originals, join(directory, 'document-originals'), { recursive: true });
+  }
+}
 const screenshots = join(root, 'verification', 'screenshots');
 const packaged = Boolean(process.env.QIYAO_TEST_EXECUTABLE);
 await mkdir(screenshots, { recursive: true });
