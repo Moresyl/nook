@@ -35,15 +35,18 @@ describe('bounded settings transactions', () => {
     clones.mockRestore(); snapshot.mockRestore(); expect(vault.snapshot()).toEqual(before);
   }, diskCaseBudgetMs);
 
-  it('halves whole-workspace clones while preserving canonical primary/backup bytes and restart state', async () => {
+  it('avoids whole-workspace clones while preserving canonical primary/backup bytes and restart state', async () => {
     const { vault, directory } = await setup();
     const clones = vi.spyOn(globalThis, 'structuredClone');
     const wholeCopies = () => clones.mock.calls.filter(([value]) => value && typeof value === 'object' && 'schemaVersion' in value).length;
-    await vault.update(state => { state.preferences.theme = 'dark'; }); expect(wholeCopies()).toBe(2);
+    await vault.update(state => { state.preferences.theme = 'dark'; }); expect(wholeCopies()).toBe(0);
     const before = vault.snapshot(); clones.mockClear(); const snapshot = vi.spyOn(vault, 'snapshot');
     const result = await vault.updateSettings(state => { state.preferences.theme = 'light'; state.providers[0].name = '中文连接'; });
-    expect(snapshot).not.toHaveBeenCalled(); expect(wholeCopies()).toBe(1);
-    expect(clones.mock.calls.some(([value]) => value && typeof value === 'object' && 'messages' in value)).toBe(false);
+    expect(snapshot).not.toHaveBeenCalled(); expect(wholeCopies()).toBe(0);
+    const historyCopies = clones.mock.calls.filter(([value]) => value && typeof value === 'object' && 'messages' in value);
+    expect(historyCopies).toHaveLength(before.threads.length);
+    expect(historyCopies.map(([value]) => (value as { id: string }).id)).toEqual(before.threads.map(thread => thread.id));
+    expect(clones.mock.calls.some(([value]) => Array.isArray(value) && value.some(record => record && typeof record === 'object' && 'messages' in record))).toBe(false);
     snapshot.mockRestore(); clones.mockRestore();
     expect(result).toEqual(workspaceSchema.parse({ ...before, preferences: { ...before.preferences, theme: 'light' }, providers: [{ ...before.providers[0], name: '中文连接' }] }));
     expectBytes(await readFile(join(directory, 'workspace.backup.json.gz')), canonical(before));
