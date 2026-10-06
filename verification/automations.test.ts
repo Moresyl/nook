@@ -84,7 +84,7 @@ describe('persistent automatic tasks', () => {
   it('limits active jobs to two and dispatches older due plans first when a slot becomes free', async () => {
     const seen: string[] = []; let secondStarted!: () => void; let thirdStarted!: () => void;
     const second = new Promise<void>((resolve) => { secondStarted = resolve; }); const third = new Promise<void>((resolve) => { thirdStarted = resolve; });
-    const { service, vault, advance, now } = await setup(async (task, signal, onThread) => { seen.push(task.name); if (seen.length === 2) secondStarted(); if (seen.length === 3) thirdStarted(); return held(task, signal, onThread); });
+    const { service, vault, advance, now } = await setup(async (task, signal) => { seen.push(task.name); if (seen.length === 2) secondStarted(); if (seen.length === 3) thirdStarted(); signal.throwIfAborted(); await new Promise<void>((_resolve, reject) => signal.addEventListener('abort', () => reject(new Error('stopped')), { once: true })); return 'complete'; });
     const late = task({ name: 'Late', enabled: true, schedule: { kind: 'once', at: now() + 3000 } }); const early = task({ name: 'Early', enabled: true, schedule: { kind: 'once', at: now() + 1000 } }); const middle = task({ name: 'Middle', enabled: true, schedule: { kind: 'once', at: now() + 2000 } });
     for (const input of [late, early, middle]) await service.save(input); advance(3000); service.wake(); await second; expect(seen).toEqual(['Early', 'Middle']);
     await expect(service.runNow(late.id)).rejects.toThrow('Two automatic'); await service.stop(early.id); service.wake(); await third; expect(seen).toEqual(['Early', 'Middle', 'Late']);
@@ -96,8 +96,9 @@ describe('persistent automatic tasks', () => {
     expect(vault.snapshot().automations[0].runs.map((run) => run.status)).toEqual(['error', 'complete']); expect(JSON.stringify(vault.snapshot())).not.toContain('SECRET_PROVIDER'); expect(notify).toHaveBeenCalledTimes(2);
   });
   it('enforces deadlines and keeps an explicit stop distinct from pausing future occurrences', async () => {
-    const { service, vault } = await setup(held); const input = task({ timeoutMinutes: 1, enabled: true }); await service.save(input); vi.useFakeTimers();
-    const running = service.runNow(input.id); await vi.waitFor(() => expect(vault.snapshot().automations[0].runs[0]?.threadId).toBe('held-thread')); await service.setEnabled(input.id, false);
+    let threadSaved!: () => void; const ready = new Promise<void>((resolve) => { threadSaved = resolve; });
+    const { service, vault } = await setup(async (_task, signal, onThread) => { await onThread('held-thread'); threadSaved(); signal.throwIfAborted(); await new Promise<void>((_resolve, reject) => signal.addEventListener('abort', () => reject(new Error('stopped')), { once: true })); return 'complete'; }); const input = task({ timeoutMinutes: 1, enabled: true }); await service.save(input); vi.useFakeTimers();
+    const running = service.runNow(input.id); await ready; expect(vault.snapshot().automations[0].runs[0]?.threadId).toBe('held-thread'); await service.setEnabled(input.id, false);
     await vi.advanceTimersByTimeAsync(60_001); await running; vi.useRealTimers(); expect(vault.snapshot().automations[0].runs[0]).toMatchObject({ status: 'stopped', error: 'The automatic task reached its time limit.' });
     expect(vault.snapshot().automations[0].enabled).toBe(false);
   });

@@ -156,11 +156,14 @@ describe('independent parallel model comparisons', () => {
   });
   it('does not regress a durable partial reply when a later initial-save callback releases an older whole-state snapshot', async () => {
     const { engine, vault, emit } = await setup({ stream: async (model, text) => { text(`${model.model}: PARTIAL`); await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); } }, 10);
+    let checkpointSaved!: () => void; const checkpoint = new Promise<void>((resolve) => { checkpointSaved = resolve; });
+    emit.mockImplementation((event) => { if (event.message?.content.includes('one: PARTIAL')) checkpointSaved(); });
     const update = vault.commit.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
     vi.spyOn(vault, 'commit').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
     const comparing = (async () => { const first = await engine.start({ ...request, model: 'one' }); const second = await engine.start({ ...request, model: 'two' }); return { threadIds: [first.threadId, second.threadId] }; })();
     try {
-      await vi.waitFor(() => { expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true); });
+      await checkpoint;
+      expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true);
       release(); const result = await comparing;
       const laterInitialNotification = emit.mock.calls.map(([event]) => event).find((event) => event.state && event.threadId === result.threadIds[1]);
       expect(laterInitialNotification?.state?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === result.threadIds[0])?.messages.at(-1)?.content).toContain('one: PARTIAL');
