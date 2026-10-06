@@ -85,7 +85,6 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ds-text) 18%, transparent); border-radius: 999px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 3px; min-height: 20px; padding: 0 6px; border: 1px solid transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; text-align: left; transition: background-color .18s ease, color .18s ease; white-space: nowrap; }
 .button:hover:not(:disabled) { background: var(--ghost-hover); }
-.button:focus-visible { outline-offset: -1px; }
 .button-solid { background: var(--ds-text-emphasis); color: var(--ds-bg); }
 .button-solid:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-text-emphasis) 85%, var(--ds-bg)); }
 .button-ghost:active:not(:disabled) { background: var(--ghost-active); }

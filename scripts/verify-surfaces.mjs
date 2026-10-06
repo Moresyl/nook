@@ -106,7 +106,7 @@ async function assertFieldStates(page, dialog, mode, screenshots) {
   assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null), saved, 'Invalid input must not alter the saved desktop preferences');
 }
 
-async function assertControlGeometry(page, dialog, mode) {
+async function assertControlGeometry(page, dialog, mode, application, screenshots) {
   const theme = dialog.getByLabel('主题', { exact: true });
   assert.equal(await theme.evaluate(element => getComputedStyle(element).fontWeight), '500', `${mode} select uses the global medium weight`);
   assert.equal(await dialog.getByRole('heading', { name: '外观与交互', exact: true }).evaluate(element => getComputedStyle(element).fontWeight), '600', `${mode} heading uses the global semibold weight`);
@@ -136,6 +136,17 @@ async function assertControlGeometry(page, dialog, mode) {
     const style = getComputedStyle(element);
     return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap };
   }), { height: '20px', left: '6px', right: '6px', gap: '3px' });
+  const focusButton = dialog.locator('.modal-header').getByRole('button', { name: '关闭', exact: true });
+  assert.equal(await focusButton.isEnabled(), true);
+  await focusButton.focus();
+  await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
+  assert.deepEqual(await focusButton.evaluate(element => {
+    const style = getComputedStyle(element);
+    const probe = document.createElement('span'); probe.style.color = 'var(--color-ring)'; element.append(probe);
+    const expectedColor = getComputedStyle(probe).color; probe.remove();
+    return { focused: document.activeElement === element, visible: element.matches(':focus-visible'), width: style.outlineWidth, offset: style.outlineOffset, style: style.outlineStyle, themed: style.outlineColor === expectedColor };
+  }), { focused: true, visible: true, width: '2px', offset: '2px', style: 'solid', themed: true });
+  await captureSurface(page, application, join(screenshots, `106-button-focus-${mode}.png`));
   // Isolated controls exercise native pressed states without saving settings or sending requests.
   await dialog.evaluate(element => {
     const probe = document.createElement('div'); probe.dataset.controlAudit = '';
@@ -416,7 +427,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     await toggle.focus(); await toggle.press('Space');
     await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
     await assertFieldStates(page, dialog, mode, screenshots);
-    await assertControlGeometry(page, dialog, mode);
+    await assertControlGeometry(page, dialog, mode, application, screenshots);
     await assertIconTooltip(page, dialog, mode, screenshots);
   }
   await theme.selectOption('light');

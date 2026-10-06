@@ -1,0 +1,15 @@
+{
+  "referenceRoot": "E:/txt",
+  "referenceFile": "raw/app-asar/webview/assets/app-shared-6fb15e58cd7f.css",
+  "referenceSha256": "4ea4b25e3f4f3225a3bf212fa767afe7655b16bbd5919ebf4fb12c656f974720",
+  "referenceSelector": "._Button_eg66f_2:focus-visible:after",
+  "referenceDeclarations": { "outline": "2px solid var(--button-ring-color,var(--color-ring))", "outline-offset": "var(--button-ring-offset,2px)" },
+  "finding": "Shared buttons overrode the global 2px outer focus ring with a -1px inset. The current reference uses an outer 2px offset by default. The 20px compact button size remains present in the reference and is not itself evidence of a stale size.",
+  "change": "Remove the shared inset override and retain global themed 2px outline. Add actual keyboard focus, width, offset, style and theme checks to the existing light/dark settings verifier.",
+  "validation": { "types": "passed", "build": "passed", "nativeChecks": 4, "normalCloseMs": 756, "runtimeErrors": [], "verifiedAt": "2026-10-06T00:44:36.974Z", "result": "surfaces-result.json", "themes": ["light", "dark"], "keyboardFocusWidth": "2px", "keyboardFocusOffset": "2px" },
+  "screenshotsReviewed": ["button-focus-light.png", "button-focus-dark.png"],
+  "log": "D:/GR/pi-pc/.firecrawl/nook-button-focus-native-enabled.log",
+  "logSha256": "4c532b41b33cf70c2895fb51f3767530c322df018aa8b488807e82c295baa17e",
+  "priorAttempt": { "status": "failed", "reason": "The new assertion attempted to focus an intentionally disabled Apply shortcut button. Corrected to the enabled dialog close button before testing Tab/Shift+Tab and themed focus geometry.", "fixture": "E:/NookVerification/Temp/qiyao-electron-cDz9A2", "log": "D:/GR/pi-pc/.firecrawl/nook-button-focus-native.log", "logSha256": "08856546c01453c9f5d921c99de342987a918e8870a881cab3a088bab54fd701" },
+  "boundary": "Shared focus geometry only. Does not establish all page sizing, all clipped toolbar edges, physical accessibility or complete reference fidelity."
+}
