@@ -3,10 +3,16 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { documentBytes, imageBytes } from '../verification/attachment-fixtures.mjs';
+import { verifyImagePreview } from './verify-image-preview.mjs';
 
 export async function verifyAttachments({ page, application, getApplication, endpoint, directory, screenshots, verified, waitForBridge, fixture, restart }) {
   const png = await imageBytes(); const document = documentBytes('docx'); const pickerPaths = [join(directory, 'attachment-image.png'), join(directory, 'attachment-document.docx')]; await writeFile(pickerPaths[0], png); await writeFile(pickerPaths[1], document);
-  await application.resize(1280, 840); await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); await window.qiyao.saveComposerDraft({ text: '', attachments: [], model: '', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread(); }); await page.reload();
+  await application.resize(1280, 840); await page.evaluate(async endpoint => {
+    const provider = { id: 'attachment-preview', name: '附件预览测试连接', kind: 'responses', endpoint: new URL('/attachments/responses/v1', endpoint).href, models: ['attachment-model'], modelCatalog: [{ id: 'attachment-model', source: 'manual', supportsImages: true }], hasKey: false };
+    await window.qiyao.saveProvider(provider, 'attachment-fixture-key');
+    const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light', defaultProviderId: provider.id, defaultModel: 'attachment-model' });
+    await window.qiyao.saveComposerDraft({ text: '', attachments: [], providerId: provider.id, model: 'attachment-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread();
+  }, endpoint); await page.reload();
   await application.evaluateMain(`globalThis.qiyaoAttachmentDialog=require('electron').dialog.showOpenDialog; require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:${JSON.stringify(pickerPaths)}});`);
   try { await page.getByRole('button', { name: '添加附件', exact: true }).click(); await page.getByRole('button', { name: '预览 attachment-image.png', exact: true }).waitFor(); }
   finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoAttachmentDialog; delete globalThis.qiyaoAttachmentDialog;"); }
@@ -43,5 +49,6 @@ export async function verifyAttachments({ page, application, getApplication, end
   try { await page.keyboard.press('Control+,'); await page.getByRole('button', { name: '数据与备份', exact: true }).click(); await page.getByRole('button', { name: '恢复备份…', exact: true }).click(); await waitForBridge(page, async () => (await window.qiyao.load()).composerDrafts.find((draft) => !draft.threadId)?.attachments.length === 2); await page.getByRole('dialog', { name: '设置', exact: true }).getByRole('button', { name: '关闭', exact: true }).click(); await page.getByRole('button', { name: '预览 pasted.png', exact: true }).waitFor(); }
   finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoAttachmentOpenDialog; require('electron').dialog.showMessageBox=globalThis.qiyaoAttachmentMessageDialog; delete globalThis.qiyaoAttachmentOpenDialog; delete globalThis.qiyaoAttachmentMessageDialog;"); }
   verified('minimum dark window and complete live backup restore preserve image drafts and sent native image conversations');
+  await verifyImagePreview({ page, application, screenshots, verified, fixture });
   return { page, result: { protocols: [...new Set(fixture.requests.map((item) => item.protocol))], requests: fixture.requests.length, imageSha256: imageHash, documentFormats: rawDocuments.map((file) => file.name.split('.').at(-1)), cloudCredentialsUsed: false, scope: 'Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used.' } };
 }
