@@ -1,0 +1,195 @@
+{
+  "verifiedAt": "2026-10-06T22:32:51.661Z",
+  "productCommit": "b52dc10cfb5cae2d3e6d0d824e76cda0db376bab",
+  "diagnosticOnly": true,
+  "uploadToServer": false,
+  "dump": {
+    "file": "reports\\eddcf970-7c8d-4ae1-b274-246514bd0aec.dmp",
+    "path": "E:\\NookVerification\\Temp\\qiyao-electron-sWFIRs\\local-crash-dumps\\reports\\eddcf970-7c8d-4ae1-b274-246514bd0aec.dmp",
+    "bytes": 550112,
+    "sha256": "075b8c4227b1648ad3af98f92b530ea4dbf20b71674348a023b7126112a1f782",
+    "mdmpSignatureVerified": true,
+    "streamCount": 11
+  },
+  "stack": {
+    "path": "E:/NookVerification/LocalCrashDiagnostics-20261007/controlled-stackwalk.json",
+    "sha256": "2646a9465dcc09c6538bc5cba49b6f8788a27e5f223a2d7a82d4170927be140d"
+  },
+  "status": "OK",
+  "pid": 127280,
+  "module": {
+    "base_addr": "0x00007ff7e7990000",
+    "cert_subject": null,
+    "code_id": "6abc3d83ebb4000",
+    "corrupt_symbols": false,
+    "debug_file": "electron.exe.pdb",
+    "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+    "end_addr": "0x00007ff7f6544000",
+    "filename": "electron.exe",
+    "loaded_symbols": true,
+    "missing_symbols": false,
+    "symbol_url": null,
+    "version": "44.5.1.0"
+  },
+  "crash": {
+    "address": "0x00007ff7f0c093d1",
+    "adjusted_address": null,
+    "assertion": null,
+    "crash_inconsistencies": [],
+    "crashing_thread": 6,
+    "instruction": "int 0x3",
+    "instruction_pointer_update": null,
+    "memory_accesses": [],
+    "possible_bit_flips": null,
+    "type": "EXCEPTION_BREAKPOINT"
+  },
+  "thread": {
+    "id": 78920,
+    "name": "Chrome_ChildIOThread",
+    "frames": [
+      {
+        "function": "blink::DevToolsSession::IOSession::DispatchProtocolCommand(int,blink::String const &,base::span<unsigned char const ,-1,unsigned char const *>,blink::String const &)",
+        "module": "electron.exe",
+        "trust": "context",
+        "file": "W:\\w\\electron\\electron\\src\\third_party\\blink\\renderer\\core\\inspector\\devtools_session.cc",
+        "line": 145
+      },
+      {
+        "function": "blink::mojom::blink::DevToolsSessionStubDispatch::Accept(blink::mojom::blink::DevToolsSession *,mojo::Message *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\out\\Default\\gen\\third_party\\blink\\public\\mojom\\devtools\\devtools_agent.mojom-blink.cc",
+        "line": 1930
+      },
+      {
+        "function": "mojo::InterfaceEndpointClient::HandleIncomingMessageThunk::Accept(mojo::Message *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\interface_endpoint_client.cc",
+        "line": 383
+      },
+      {
+        "function": "mojo::InterfaceEndpointClient::HandleIncomingMessage(mojo::Message *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\interface_endpoint_client.cc",
+        "line": 747
+      },
+      {
+        "function": "mojo::internal::MultiplexRouter::Accept(mojo::Message *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\multiplex_router.cc",
+        "line": 807
+      },
+      {
+        "function": "mojo::MessageDispatcher::Accept(mojo::Message *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\message_dispatcher.cc",
+        "line": 44
+      },
+      {
+        "function": "void base::internal::Invoker<base::internal::FunctorTraits<void (mojo::Connector::*const &)(const char *, unsigned int),mojo::Connector *,const char *const &>,base::internal::BindState<1,1,0,void (mojo::Connector::*)(const char *, unsigned int),base::internal::UnretainedWrapper<mojo::Connector,base::unretained_traits::MayNotDangle,0>,base::internal::UnretainedWrapper<const char,base::unretained_traits::MayNotDangle,0> >,void (unsigned int)>::Run(class base::internal::BindStateBase *, unsigned int)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\functional\\bind_internal.h",
+        "line": 989
+      },
+      {
+        "function": "mojo::core::ipcz_driver::MojoTrap::TrapEventHandler(IpczTrapEvent const *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\core\\ipcz_driver\\mojo_trap.cc",
+        "line": 393
+      },
+      {
+        "function": "ipcz::Router::AcceptInboundParcel(std::__Cr::unique_ptr<ipcz::Parcel,std::__Cr::default_delete<ipcz::Parcel> >)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\third_party\\ipcz\\src\\ipcz\\router.cc",
+        "line": 272
+      },
+      {
+        "function": "ipcz::NodeLink::OnAcceptParcel(ipcz::msg::AcceptParcel &)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\third_party\\ipcz\\src\\ipcz\\node_link.cc",
+        "line": 670
+      },
+      {
+        "function": "ipcz::msg::NodeMessageListener::OnTransportMessage(ipcz::DriverTransport::RawMessage const &,ipcz::DriverTransport const &,unsigned __int64)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\third_party\\ipcz\\src\\ipcz\\node_messages.cc",
+        "line": 746
+      },
+      {
+        "function": "mojo::core::Channel::OnReadComplete(unsigned __int64,unsigned __int64 *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\core\\channel.cc",
+        "line": 1100
+      },
+      {
+        "function": "mojo::core::`anonymous namespace'::ChannelWin::OnIOCompleted(base::MessagePumpForIO::IOContext *,unsigned long,unsigned long)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\mojo\\core\\channel_win.cc",
+        "line": 253
+      },
+      {
+        "function": "base::MessagePumpForIO::WaitForWork(struct base::MessagePump::Delegate::NextWorkInfo)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\message_loop\\message_pump_win.cc",
+        "line": 887
+      },
+      {
+        "function": "base::MessagePumpForIO::DoRunLoop()",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\message_loop\\message_pump_win.cc",
+        "line": 869
+      },
+      {
+        "function": "base::MessagePumpWin::Run(base::MessagePump::Delegate *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\message_loop\\message_pump_win.cc",
+        "line": 82
+      },
+      {
+        "function": "base::sequence_manager::internal::ThreadControllerWithMessagePumpImpl::Run(bool,base::TimeDelta)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\task\\sequence_manager\\thread_controller_with_message_pump_impl.cc",
+        "line": 663
+      },
+      {
+        "function": "base::RunLoop::Run(base::Location const &)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\run_loop.cc",
+        "line": 135
+      },
+      {
+        "function": "base::Thread::Run(base::RunLoop *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\base\\threading\\thread.cc",
+        "line": 356
+      },
+      {
+        "function": "content::`anonymous namespace'::ChildIOThread::Run(base::RunLoop *)",
+        "module": "electron.exe",
+        "trust": "cfi",
+        "file": "W:\\w\\electron\\electron\\src\\content\\child\\child_process.cc",
+        "line": 70
+      }
+    ]
+  },
+  "spontaneousCrashRootCauseEstablished": false,
+  "completeDesktopAccepted": false,
+  "scope": "An actual controlled Page.crash produces a parseable local renderer dump with matching Electron 44.5.1 symbols and the expected intentional breakpoint/DevTools dispatch. Confirms local collection; does not identify the cause of the earlier spontaneous renderer or main-process failures."
+}

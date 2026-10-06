@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-06T21:58:36.010Z",
+  "verifiedAt": "2026-10-06T22:29:42.218Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -8,47 +8,47 @@
   "checks": 2,
   "crash": {
     "reason": "crashed",
-    "exitCode": 2,
-    "capturedAt": 1791323914535,
+    "exitCode": -2147483645,
+    "capturedAt": 1791325779178,
     "memory": {
-      "rss": 136941568,
-      "heapTotal": 17448960,
-      "heapUsed": 11937392,
-      "external": 6789447,
+      "rss": 133312512,
+      "heapTotal": 16924672,
+      "heapUsed": 11892424,
+      "external": 6790709,
       "arrayBuffers": 0
     },
-    "systemFreeMemory": 4754919424,
+    "systemFreeMemory": 2739675136,
     "processes": [
       {
-        "pid": 105972,
+        "pid": 89744,
         "type": "Browser",
         "memory": {
-          "workingSetSize": 133764,
-          "peakWorkingSetSize": 134836,
-          "privateBytes": 94656
+          "workingSetSize": 130220,
+          "peakWorkingSetSize": 130220,
+          "privateBytes": 90944
         }
       },
       {
-        "pid": 133852,
+        "pid": 137024,
         "type": "GPU",
         "memory": {
-          "workingSetSize": 107724,
-          "peakWorkingSetSize": 111432,
-          "privateBytes": 119916
+          "workingSetSize": 108428,
+          "peakWorkingSetSize": 112304,
+          "privateBytes": 121076
         }
       },
       {
-        "pid": 133180,
+        "pid": 129044,
         "type": "Utility",
         "memory": {
-          "workingSetSize": 51584,
-          "peakWorkingSetSize": 51584,
-          "privateBytes": 12336
+          "workingSetSize": 51860,
+          "peakWorkingSetSize": 51860,
+          "privateBytes": 12092
         }
       }
     ]
   },
-  "quitMs": 1471,
+  "quitMs": 3033,
   "persistedDraftRetained": true,
   "conversationsRetained": true,
   "modelRequests": 0,
