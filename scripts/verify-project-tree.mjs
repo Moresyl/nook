@@ -20,14 +20,15 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await writeFile(join(root, '__proto__/note.txt'), 'TREE_PROTOTYPE_SAFE_PATH'); await writeFile(join(root, 'root.txt'), 'TREE_ROOT'); await writeFile(join(second, 'second.txt'), 'SECOND_PROJECT_ONLY');
   for (let index = 0; index < 220; index += 32) await Promise.all(Array.from({ length: Math.min(32, 220 - index) }, (_, offset) => writeFile(join(root, `file-${String(index + offset).padStart(4, '0')}.txt`), 'TREE_PAGE')));
   const projectId = randomUUID(); const secondId = randomUUID();
-  const switcherProjects = Array.from({ length: 6 }, (_, index) => ({ id: randomUUID(), name: `切换验证 ${index + 1} · ${'保留完整项目名称'.repeat(8)}` }));
-  await page.evaluate(async ({ projectId, secondId, root, second, switcherProjects }) => {
+  const projectName = `文件树验证 ${projectId.slice(0, 8)}`, secondName = `第二个目录 ${secondId.slice(0, 8)}`;
+  const switcherProjects = Array.from({ length: 6 }, (_, index) => ({ id: randomUUID(), name: `切换验证 ${index + 1} ${projectId.slice(0, 8)} · ${'保留完整项目名称'.repeat(8)}` }));
+  await page.evaluate(async ({ projectId, secondId, projectName, secondName, root, second, switcherProjects }) => {
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
-    await window.qiyao.saveProject({ id: secondId, name: '第二个目录', path: second, instructions: '', createdAt: Date.now() });
+    await window.qiyao.saveProject({ id: secondId, name: secondName, path: second, instructions: '', createdAt: Date.now() });
     for (const project of switcherProjects) await window.qiyao.saveProject({ ...project, path: second, instructions: '', createdAt: Date.now() });
-    await window.qiyao.saveProject({ id: projectId, name: '文件树验证', path: root, instructions: '', createdAt: Date.now() });
-  }, { projectId, secondId, root, second, switcherProjects });
-  await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: '文件树验证', exact: true }).click();
+    await window.qiyao.saveProject({ id: projectId, name: projectName, path: root, instructions: '', createdAt: Date.now() });
+  }, { projectId, secondId, projectName, secondName, root, second, switcherProjects });
+  await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: projectName, exact: true }).click();
   const tree = () => page.getByRole('tree', { name: '项目文件', exact: true });
   const item = (path) => tree().getByRole('treeitem', { name: path, exact: true });
   const row = (path) => item(path).locator(':scope > .project-tree-row');
@@ -74,12 +75,12 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     await application.evaluateMain("globalThis.qiyaoTreeMode='normal'"); await tree().getByRole('button', { name: '重试目录 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor({ state: 'hidden' });
     await application.evaluateMain("globalThis.qiyaoTreeMode='hold';globalThis.qiyaoTreeHeld=false;globalThis.qiyaoTreeHeldCompleted=false"); await page.getByRole('button', { name: '刷新文件', exact: true }).click();
     await waitForMain('globalThis.qiyaoTreeHeld');
-    await page.locator('.project-list').getByRole('button', { name: '第二个目录', exact: true }).click(); await item('second.txt').waitFor(); await application.evaluateMain("globalThis.qiyaoTreeMode='normal';globalThis.qiyaoTreeRelease()"); await waitForMain('globalThis.qiyaoTreeHeldCompleted'); await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); assert.equal(await tree().getByRole('treeitem').count(), 1); assert.equal(await item('source').count(), 0);
+    await page.locator('.project-list').getByRole('button', { name: secondName, exact: true }).click(); await item('second.txt').waitFor(); await application.evaluateMain("globalThis.qiyaoTreeMode='normal';globalThis.qiyaoTreeRelease()"); await waitForMain('globalThis.qiyaoTreeHeldCompleted'); await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); assert.equal(await tree().getByRole('treeitem').count(), 1); assert.equal(await item('source').count(), 0);
   } finally { await application.evaluateMain("globalThis.qiyaoTreeFs.readdir=globalThis.qiyaoTreeRead;globalThis.qiyaoTreeRelease?.()"); }
-  await page.locator('.project-list').getByRole('button', { name: '文件树验证', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
+  await page.locator('.project-list').getByRole('button', { name: projectName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('actual directory-read failure retains cached rows and dirty editor contents, successful retry recovers, and a delayed old-project response cannot replace the new project tree');
 
-  const longName = `文件树验证 · ${'较长项目名称'.repeat(12)}`;
+  const longName = `${projectName} · ${'较长项目名称'.repeat(12)}`;
   await page.evaluate(async ({ projectId, longName }) => { const state = await window.qiyao.load(); await window.qiyao.saveProject({ ...state.projects.find((project) => project.id === projectId), name: longName }); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }, { projectId, longName }); await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   const heading = page.locator('.project-inspector > .section-heading'); await assertTextHint(page, heading.getByRole('heading', { name: longName, exact: true }), longName); await assertTextHint(page, heading.locator('.path-text'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
   await page.getByRole('button', { name: '终端', exact: true }).click(); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
@@ -240,7 +241,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   assert.equal(await readFile(join(root, 'source/资料/代码.ts'), 'utf8'), originalContents);
   verified('native command-palette keyboard actions synchronize file/review/terminal controls, preserve exact dirty editor text and the same live PowerShell process/output, retain panel choices across navigation and disable project actions outside the project page');
 
-  await executeCommand('隐藏终端'); await page.locator('.project-list').getByRole('button', { name: '第二个目录', exact: true }).click(); await item('second.txt').waitFor(); await openCommand('显示终端');
+  await executeCommand('隐藏终端'); await page.locator('.project-list').getByRole('button', { name: secondName, exact: true }).click(); await item('second.txt').waitFor(); await openCommand('显示终端');
   await application.evaluateMain("globalThis.qiyaoProjectIpc=require('electron').ipcMain;globalThis.qiyaoProjectInvoke=globalThis.qiyaoProjectIpc._invokeHandlers.get('qiyao:invoke');globalThis.qiyaoProjectHold=true;globalThis.qiyaoProjectIpc.removeHandler('qiyao:invoke');globalThis.qiyaoProjectIpc.handle('qiyao:invoke',async(event,command,...args)=>{if(command==='load'&&globalThis.qiyaoProjectHold){globalThis.qiyaoProjectHold=false;globalThis.qiyaoProjectHeld=true;await new Promise(resolve=>{globalThis.qiyaoProjectRelease=resolve;});}return globalThis.qiyaoProjectInvoke(event,command,...args);});");
   try {
     await search().press('Enter'); await waitForMain('globalThis.qiyaoProjectHeld'); await page.evaluate(async (id) => { await window.qiyao.removeProject(id); }, secondId); await application.evaluateMain('globalThis.qiyaoProjectRelease()');
