@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { mkdir, rename, rm, writeFile } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composerRevision } from '../contracts/composer';
@@ -21,7 +22,7 @@ afterEach(async () => { await Promise.all(directories.splice(0).map((path) => rm
 async function setup() { const context = await testVault(); directories.push(context.directory); return { ...context, drafts: new ComposerDrafts(context.vault) }; }
 const draft = (threadId?: string) => composerDraftSchema.parse({ threadId, text: 'TEMPORARY_DRAFT_SECRET', attachments: [{ id: 'attachment', name: '临时资料.txt', content: 'TEMPORARY_ATTACHMENT_SECRET' }], updatedAt: 1 });
 const revision = (thread: ReturnType<typeof sampleThread>) => createHash('sha256').update(conversationHistory(thread)).digest('hex');
-async function files(directory: string) { return Promise.all(['workspace.json', 'workspace.backup.json'].map((name) => readFile(join(directory, name), 'utf8'))); }
+async function files(directory: string) { return Promise.all(['workspace.json', 'workspace.backup.json.gz'].map((name) => readFile(join(directory, name), 'utf8'))); }
 
 describe('temporary conversation persistence boundaries', () => {
   it('keeps earlier snapshots compatible and validates the immutable storage marker', () => {

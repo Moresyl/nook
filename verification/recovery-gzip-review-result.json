@@ -1,0 +1,65 @@
+{
+  "baseCommit": "ee1ce5d",
+  "featureComplete": false,
+  "mergedIntoMain": false,
+  "implementation": {
+    "recoveryFile": "workspace.backup.json.gz",
+    "completePreviousRevision": true,
+    "decodedExactBytesVerified": true,
+    "durableSyncAndAtomicReplacementRetained": true,
+    "legacyPlainBackupRetained": true,
+    "primaryAndCheckpointFormatsUnchanged": true,
+    "timeoutsUnchanged": true
+  },
+  "validation": {
+    "typesPassed": true,
+    "typeLog": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-final-types.log",
+    "buildPassed": true,
+    "buildLog": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-build.log",
+    "fullSerialCoverage": {
+      "passed": true,
+      "files": 92,
+      "tests": 886,
+      "statements": 97.15,
+      "branches": 94.68,
+      "functions": 97.33,
+      "lines": 99.37,
+      "scope": "Configured contracts and desktop services; not renderer or distribution coverage",
+      "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-all-coverage-serial.log"
+    },
+    "fullDefaultCoverageRetry": { "passed": true, "files": 92, "tests": 886, "statements": 97.15, "branches": 94.68, "functions": 97.33, "lines": 99.37, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-all-coverage-default-retry.log", "scope": "Unchanged default two-worker configuration; a passing retry does not prove the earlier timeout cause is eliminated." },
+    "largeWorkspaceNativeReplay": {
+      "checksPassed": 6,
+      "runtimeErrors": [],
+      "normalFinalExitMilliseconds": 1355,
+      "continuationPartialObservedMilliseconds": 2292,
+      "originalBridgeDeadlineMilliseconds": 10000,
+      "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-comparison-replay-unique.log",
+      "scope": "Actual model-comparison continuation, failures, backup/restore, restart and minimum-window checks on a copied retained workspace; not full desktop or packaged proof"
+    }
+  },
+  "measuredIo": {
+    "workspaceBytes": 84549444,
+    "compressedRecoveryBytes": 509459,
+    "previousBackupSyncMilliseconds": [2065.28, 3086.63, 1542.19],
+    "compressedBackupSyncMilliseconds": [42.31, 46.16, 169.97],
+    "previousTransactionMilliseconds": [2529.49, 3223.60, 1768.88],
+    "compressedTransactionMilliseconds": [154.81, 152.62, 293.95],
+    "beforeLog": "D:/GR/pi-pc/.firecrawl/nook-vault-originals-io-profile.log",
+    "afterLog": "D:/GR/pi-pc/.firecrawl/nook-vault-gzip-io-profile.log",
+    "scope": "Three isolated Node vault transactions on copies of the same retained workspace; performance depends on data and storage"
+  },
+  "retainedSeed": {
+    "directory": "E:/NookVerification/Temp/qiyao-electron-haOCF3",
+    "bytes": 84549444,
+    "sha256Unchanged": "39a13e06c883d3a2389807d133b7a18e6d9bb3b56ef008585e590b84a8759ccf"
+  },
+  "earlierResults": {
+    "interruptedCoverage": { "completed": false, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-all-coverage.log", "observation": "The process handle was missing after interruption and no matching process or terminal test result remained; it was not counted as passed." },
+    "defaultCoverageFailures": { "passed": 883, "failed": 3, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-all-coverage-resumed.log", "observation": "Three original 5-second test deadlines expired; a plugin test also reported cleanup ENOTEMPTY after timeout." },
+    "isolatedTimeoutReplay": { "testsPassed": 32, "files": 3, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-timeout-replay.log", "coveragePassed": false, "scope": "All test assertions passed. The command's global coverage thresholds failed because only three files were selected; this is not full coverage evidence." },
+    "initialNativeReplay": { "checksPassed": 4, "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-comparison-replay.log", "correction": "The retained seed already had a same-title comparison thread. Use the newly created thread's unique ID in its test title rather than matching either old or new thread ambiguously." },
+    "initialRelatedTestFailure": { "log": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-tests.log", "correction": "A held compressed backup was compared against decoded bytes. Compare raw bytes on both sides for failed-write preservation, retaining complete decoded comparisons for successful revisions.", "correctedLog": "D:/GR/pi-pc/.firecrawl/nook-recovery-gzip-settings-tests.log" }
+  },
+  "remaining": "Full desktop regression on the final build, distribution and release; broader product and UI requirements remain open."
+}

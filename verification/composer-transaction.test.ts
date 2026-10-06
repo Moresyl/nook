@@ -1,4 +1,5 @@
-import { mkdir, readFile, rename, rm } from 'node:fs/promises';
+import { mkdir, rename, rm } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composerDraftSchema, workspaceSchema } from '../contracts/workspace';
@@ -21,7 +22,7 @@ describe('bounded composer transactions', () => {
     expect(clones.mock.calls.some(([value]) => value && typeof value === 'object' && ('schemaVersion' in value || 'messages' in value))).toBe(false);
     clones.mockRestore(); snapshot.mockRestore();
     expect(vault.snapshot()).toEqual(expected);
-    expect((await readFile(join(directory, 'workspace.backup.json'))).equals(Buffer.from(JSON.stringify(before, null, 2)))).toBe(true);
+    expect((await readFile(join(directory, 'workspace.backup.json.gz'))).equals(Buffer.from(JSON.stringify(before, null, 2)))).toBe(true);
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(expected);
     await vault.flush(); expect((await readFile(join(directory, 'workspace.json'))).equals(Buffer.from(JSON.stringify(expected, null, 2)))).toBe(true);
   });
@@ -57,7 +58,7 @@ describe('bounded composer transactions', () => {
     await expect(vault.commitComposer(state => { state.activeThreadId = 'x'.repeat(129); })).rejects.toThrow();
     await expect(vault.commitComposer(() => { throw new Error('callback failed'); })).rejects.toThrow('callback failed');
     expect(await readFile(primary)).toEqual(bytes); expect(vault.snapshot()).toEqual(before);
-    const backup = join(directory, 'workspace.backup.json'); const held = join(directory, 'held-backup.json'); await rename(backup, held); await mkdir(backup);
+    const backup = join(directory, 'workspace.backup.json.gz'); const held = join(directory, 'held-backup.json'); await rename(backup, held); await mkdir(backup);
     try {
       await expect(vault.commitComposer(state => { state.composerDrafts = [draft()]; })).rejects.toThrow('could not be saved');
       expect(vault.snapshot()).toEqual(before); expect(await readFile(primary)).toEqual(bytes);

@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, rename, rm } from 'node:fs/promises';
+import { mkdir, rename, rm } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { branchReorderSchema, conversationBranches } from '../contracts/conversation-branches';
@@ -102,10 +103,10 @@ describe('persisted sibling branch ordering', () => {
     expect(await reorderConversationBranch(vault, { threadId: 'b', direction: 'up' })).toMatchObject({ activeThreadId: before.activeThreadId, composerDrafts: before.composerDrafts }); expect(ids(vault.snapshot().threads)).toEqual(['root', 'b', 'leaf', 'a', 'c']);
   });
   it('keeps temporary family order volatile in both history files, backups and actual restart', async () => {
-    const { vault, directory } = await setup([sampleThread({ id: 'ordinary' })]); const before = await Promise.all(['workspace.json', 'workspace.backup.json'].map((name) => readFile(join(directory, name))));
+    const { vault, directory } = await setup([sampleThread({ id: 'ordinary' })]); const before = await Promise.all(['workspace.json', 'workspace.backup.json.gz'].map((name) => readFile(join(directory, name))));
     await vault.update((state) => { state.threads.push(sampleThread({ id: 'temporary', temporary: true }), child('ta', 2, 'temporary', { temporary: true }), child('tb', 3, 'temporary', { temporary: true })); });
     await reorderConversationBranch(vault, { threadId: 'tb', direction: 'up' }); expect(ids(vault.snapshot().threads, 'temporary')).toEqual(['temporary', 'tb', 'ta']); expect(vault.backup().threads.map((thread) => thread.id)).toEqual(['ordinary']);
-    expect(await Promise.all(['workspace.json', 'workspace.backup.json'].map((name) => readFile(join(directory, name))))).toEqual(before); const reopened = new WorkspaceVault(directory, codec); await reopened.initialize(); expect(reopened.snapshot().threads.map((thread) => thread.id)).toEqual(['ordinary']);
+    expect(await Promise.all(['workspace.json', 'workspace.backup.json.gz'].map((name) => readFile(join(directory, name))))).toEqual(before); const reopened = new WorkspaceVault(directory, codec); await reopened.initialize(); expect(reopened.snapshot().threads.map((thread) => thread.id)).toEqual(['ordinary']);
   });
   it('retains every peer at the actual 10,000-thread limit with valid ordinals across the last position', async () => {
     const { vault } = await setup(Array.from({ length: 10_000 }, (_, index) => child(String(index), index, 'deleted'))); const next = await reorderConversationBranch(vault, { threadId: '9999', direction: 'up' });

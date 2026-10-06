@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { readFile, rm } from 'node:fs/promises';
+import { rm } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { comparisonReply, comparisonSchema, comparisonThreads } from '../contracts/model-comparisons';
@@ -37,7 +38,7 @@ describe('atomic comparison starts', () => {
     const previous = await readFile(join(directory, 'workspace.json')); const before = vault.snapshot(); const update = vi.spyOn(vault, 'commit');
     const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source), attachments: [attachment], assistantId: 'general', models: [...models, { providerId: 'local', model: 'three' }, { providerId: 'local', model: 'four' }] });
     expect(observed).toHaveLength(4); expect(result.failedThreadIds).toEqual([]); expect(update).toHaveBeenCalledTimes(1);
-    expect(emit.mock.calls.filter(([event]) => event.state)).toHaveLength(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
+    expect(emit.mock.calls.filter(([event]) => event.state)).toHaveLength(1); expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(previous);
     const committed = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')); const parsed = comparisonThreads(committed.threads, result.groupId);
     expect(parsed.map((thread) => thread.messages.at(-1)?.status)).toEqual(['running', 'running', 'running', 'running']);
     expect(parsed.every((thread) => thread.messages.length === 4 && thread.messages.at(-2)?.content === input.text)).toBe(true);
@@ -48,13 +49,13 @@ describe('atomic comparison starts', () => {
 describe('comparison start shutdown', () => {
   it('releases every reserved response and preserves both exact files when shutdown wins the queued atomic group commit', async () => {
     const stream = vi.fn(); const { engine, vault, directory } = await setup({ stream }); const update = vault.commit.bind(vault);
-    const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json'));
+    const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json.gz'));
     let release!: () => void; let queued!: () => void; const held = new Promise<void>((resolve) => { release = resolve; }); const started = new Promise<void>((resolve) => { queued = resolve; });
     vi.spyOn(vault, 'commit').mockImplementationOnce(async (change) => { queued(); await held; return update(change); });
     const comparing = engine.compare({ ...input, models: [...models, { providerId: 'local', model: 'three' }, { providerId: 'local', model: 'four' }] }); await started;
     const closing = engine.shutdown(); release(); await expect(comparing).rejects.toThrow('shutting down'); await closing;
     expect(stream).not.toHaveBeenCalled(); expect(engine.active()).toBe(false); expect(vault.snapshot().threads).toEqual([]);
-    expect(await readFile(join(directory, 'workspace.json'))).toEqual(before); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(backup);
+    expect(await readFile(join(directory, 'workspace.json'))).toEqual(before); expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(backup);
   });
 });
 describe('model comparison contracts', () => {
@@ -242,10 +243,10 @@ describe('independent parallel model comparisons', () => {
   it('keeps a failed atomic start outside both files, preserves an unrelated running response and retries the whole intact group', async () => {
     const stream = vi.fn(async (model: ModelInput, text: (value: string) => void) => { text(model.model); if (model.model === 'three') await new Promise<void>((_resolve, reject) => model.signal.addEventListener('abort', () => reject(new Error('Stopped')), { once: true })); });
     const { engine, vault, directory } = await setup({ stream }, 60_000); const existing = await engine.start({ ...request, model: 'three' });
-    const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json')); const captured = vault.snapshot();
+    const before = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json.gz')); const captured = vault.snapshot();
     vi.spyOn(vault, 'commit').mockRejectedValueOnce(new Error('PRIVATE_CREDENTIAL_OR_PATH'));
     await expect(engine.compare(input)).rejects.toThrow('PRIVATE_CREDENTIAL_OR_PATH'); expect(stream).toHaveBeenCalledTimes(1); expect(engine.active(existing.threadId)).toBe(true);
-    expect(vault.snapshot()).toEqual(captured); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(backup);
+    expect(vault.snapshot()).toEqual(captured); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before); expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(backup);
     const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id))); expect(result.failedThreadIds).toEqual([]);
     const current = vault.snapshot(); expect(comparisonThreads(current.threads, result.groupId).map((thread) => thread.messages.at(-1)?.content)).toEqual(['one', 'two']); expect(JSON.stringify(current)).not.toContain('PRIVATE_CREDENTIAL_OR_PATH'); expect(engine.active(existing.threadId)).toBe(true);
     await engine.stop(existing.threadId);
@@ -260,9 +261,9 @@ describe('independent parallel model comparisons', () => {
   });
   it('keeps temporary comparisons and their new drafts out of both history files and normal restart', async () => {
     const { engine, vault, directory } = await setup(); const source = sampleThread({ temporary: true }); await vault.update((state) => { state.threads.push(source); });
-    const before = await readFile(join(directory, 'workspace.json')); const beforeBackup = await readFile(join(directory, 'workspace.backup.json')); const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source) }); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
+    const before = await readFile(join(directory, 'workspace.json')); const beforeBackup = await readFile(join(directory, 'workspace.backup.json.gz')); const result = await engine.compare({ ...input, threadId: source.id, revision: revision(source) }); await Promise.all(result.threadIds.map((id) => engine.settle(id)));
     expect(comparisonThreads(vault.snapshot().threads, result.groupId).every((thread) => thread.temporary)).toBe(true); expect(await readFile(join(directory, 'workspace.json'))).toEqual(before);
-    expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(beforeBackup); expect(persistentWorkspace(vault.snapshot()).threads).toEqual([]);
+    expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(beforeBackup); expect(persistentWorkspace(vault.snapshot()).threads).toEqual([]);
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot().threads).toEqual([]);
   });
   it('rejects group creation after shutdown and at the exact conversation and message limits', async () => {

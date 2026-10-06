@@ -1,4 +1,5 @@
-import { mkdir, mkdtemp, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rename, rm, writeFile } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -63,7 +64,7 @@ describe('local workspace persistence', () => {
     expect(vault.snapshot().notes).toHaveLength(2);
     const snapshot = vault.snapshot(); snapshot.notes.length = 0;
     expect(vault.snapshot().notes).toHaveLength(2);
-    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json'), 'utf8')).notes).toHaveLength(1);
+    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json.gz'), 'utf8')).notes).toHaveLength(1);
     const reloaded = new WorkspaceVault(directory, codec); await reloaded.initialize();
     expect(reloaded.snapshot().notes).toHaveLength(2);
   });
@@ -78,7 +79,7 @@ describe('local workspace persistence', () => {
     expect(vault.snapshot().notes.map(note => note.id)).toEqual(['committed', 'following']);
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize();
     expect(restarted.snapshot()).toEqual(vault.snapshot());
-    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json'), 'utf8')).notes.map((note: { id: string }) => note.id)).toEqual(['committed']);
+    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json.gz'), 'utf8')).notes.map((note: { id: string }) => note.id)).toEqual(['committed']);
     await expect(vault.commit(state => { state.schemaVersion = 2 as 1; })).rejects.toThrow();
     expect(vault.snapshot()).toEqual(restarted.snapshot());
   });
@@ -100,7 +101,7 @@ describe('local workspace persistence', () => {
   it('rejects failed commits without changing memory or the primary file, then permits retry', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     const before = vault.snapshot(); const primary = join(directory, 'workspace.json');
-    const bytes = await readFile(primary); const backup = join(directory, 'workspace.backup.json');
+    const bytes = await readFile(primary); const backup = join(directory, 'workspace.backup.json.gz');
     const retained = join(directory, 'retained-backup.json');
     await rename(backup, retained); await mkdir(backup);
     try {
@@ -188,7 +189,7 @@ describe('local workspace persistence', () => {
   it('retains exact primary and backup bytes after validation and actual destination failures, then retries from the last committed state', async () => {
     const directory = await freshDirectory(); const vault = new WorkspaceVault(directory, codec);
     await vault.update((draft) => { draft.notes.push({ id: 'one', title: 'First', content: 'Unicode 文档 🧪', createdAt: 1 }); });
-    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json');
+    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json.gz');
     const before = vault.snapshot(); const primaryBytes = await readFile(primary); const backupBytes = await readFile(backup);
     await expect(vault.update((draft) => { draft.schemaVersion = 2 as 1; })).rejects.toThrow(); expect(await readFile(primary)).toEqual(primaryBytes); expect(await readFile(backup)).toEqual(backupBytes);
     const retained = join(directory, 'workspace-retained.json'); await rename(primary, retained); await mkdir(primary);
@@ -201,7 +202,7 @@ describe('local workspace persistence', () => {
   it('keeps both persisted files unchanged for no-op and temporary-only updates while retaining credential normalization and later durable writes', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     await vault.setKey(provider.id, 'PRIVATE_TEST_KEY'); const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot().providers[0].hasKey).toBe(true);
-    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json'); const primaryBytes = await readFile(primary); const backupBytes = await readFile(backup);
+    const primary = join(directory, 'workspace.json'); const backup = join(directory, 'workspace.backup.json.gz'); const primaryBytes = await readFile(primary); const backupBytes = await readFile(backup);
     await restarted.update(() => {});
     await restarted.update((draft) => { draft.threads.push(sampleThread({ id: 'temporary', temporary: true, messages: [{ id: 'temporary-reply', role: 'assistant', content: 'PRIVATE_TEMPORARY_TEXT', attachments: [], status: 'running', createdAt: 1 }] })); draft.activeThreadId = 'temporary'; });
     expect(await readFile(primary)).toEqual(primaryBytes); expect(await readFile(backup)).toEqual(backupBytes); expect(restarted.snapshot().threads[0].temporary).toBe(true);
@@ -234,7 +235,7 @@ describe('local workspace persistence', () => {
     const restored = new WorkspaceVault(directory, codec); await restored.initialize();
     expect(restored.snapshot().threads[0].messages[0]).toMatchObject({ status: 'stopped', content: 'Partial' });
     expect(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')).threads[0].messages[0]).toMatchObject({ status: 'stopped', content: 'Partial' });
-    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json'), 'utf8')).threads[0].messages[0]).toMatchObject({ status: 'running', content: 'Partial' });
+    expect(JSON.parse(await readFile(join(directory, 'workspace.backup.json.gz'), 'utf8')).threads[0].messages[0]).toMatchObject({ status: 'running', content: 'Partial' });
   });
   it('fails clearly on corrupted workspace data instead of silently overwriting it', async () => {
     const directory = await freshDirectory(); await writeFile(join(directory, 'workspace.json'), '{bad');

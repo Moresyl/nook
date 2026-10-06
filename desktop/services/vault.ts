@@ -6,6 +6,7 @@ import type { McpServer } from '../../contracts/extensions';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
+import { writeWorkspaceRecovery } from './workspace-recovery-file';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
 import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serialization';
@@ -220,7 +221,7 @@ export class WorkspaceVault {
         }
       }
       const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer) : undefined;
-      await atomicFile(join(this.directory, 'workspace.backup.json'), (file) => file.writeFile(previousBytes));
+      await writeWorkspaceRecovery(this.directory, previousBytes);
       if (candidate) await this.checkpoints.commit(candidate);
       else {
         await atomicFile(join(this.directory, 'workspace.json'), (file) => file.writeFile(nextBytes));

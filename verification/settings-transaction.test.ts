@@ -1,4 +1,5 @@
-import { mkdir, readFile, rename, rm } from 'node:fs/promises';
+import { mkdir, readFile as readRawFile, rename, rm } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composerDraftSchema, type Preferences, type Provider, workspaceSchema } from '../contracts/workspace';
@@ -45,7 +46,7 @@ describe('bounded settings transactions', () => {
     expect(clones.mock.calls.some(([value]) => value && typeof value === 'object' && 'messages' in value)).toBe(false);
     snapshot.mockRestore(); clones.mockRestore();
     expect(result).toEqual(workspaceSchema.parse({ ...before, preferences: { ...before.preferences, theme: 'light' }, providers: [{ ...before.providers[0], name: '中文连接' }] }));
-    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json.gz')), canonical(before));
     expectBytes(await readFile(join(directory, 'workspace.json')), canonical(result));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(result);
   }, diskCaseBudgetMs);
@@ -78,31 +79,31 @@ describe('bounded settings transactions', () => {
     await vault.update(state => { state.threads.push(sampleThread({ id: 'private', temporary: true, title: 'PRIVATE_TITLE' })); state.activeThreadId = 'private'; state.composerDrafts = [composerDraftSchema.parse({ threadId: 'private', text: 'PRIVATE_DRAFT', updatedAt: 1 })]; });
     const current = await vault.updateSettings(state => { state.preferences.theme = 'dark'; });
     expect(current.activeThreadId).toBe('private'); expect(current.threads).toHaveLength(2); expect(current.composerDrafts[0].text).toBe('PRIVATE_DRAFT');
-    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json.gz')), canonical(before));
     const expected = persistentWorkspace(current, 'thread');
     expectBytes(await readFile(join(directory, 'workspace.json')), canonical(expected));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(expected);
   }, diskCaseBudgetMs);
 
   it('rejects invalid settings and callback failures before disk/state changes, then accepts retry', async () => {
-    const { vault, directory } = await setup(); const before = vault.snapshot(); const primary = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json'));
+    const { vault, directory } = await setup(); const before = vault.snapshot(); const primary = await readFile(join(directory, 'workspace.json')); const backup = await readFile(join(directory, 'workspace.backup.json.gz'));
     await expect(vault.updateSettings(state => { state.preferences.theme = 'invalid' as Preferences['theme']; })).rejects.toThrow();
     await expect(vault.updateSettings(state => { state.providers[0].endpoint = 'not a URL'; })).rejects.toThrow();
     await expect(vault.updateSettings(state => { state.providers = Array.from({ length: 101 }, (_, index): Provider => ({ ...provider, id: `provider-${index}` })); })).rejects.toThrow();
     await expect(vault.updateSettings(() => { throw new Error('Callback failed'); })).rejects.toThrow('Callback failed');
-    expect(vault.snapshot()).toEqual(before); expectBytes(await readFile(join(directory, 'workspace.json')), primary); expectBytes(await readFile(join(directory, 'workspace.backup.json')), backup);
+    expect(vault.snapshot()).toEqual(before); expectBytes(await readFile(join(directory, 'workspace.json')), primary); expectBytes(await readFile(join(directory, 'workspace.backup.json.gz')), backup);
     await vault.updateSettings(state => { state.preferences.theme = 'dark'; }); expect(vault.preferences().theme).toBe('dark');
   }, diskCaseBudgetMs);
 
-  it.each(['workspace.backup.json', 'workspace.json'])('preserves committed state after actual %s write failure and supports retry', async name => {
-    const { vault, directory } = await setup(); const before = vault.snapshot(); const target = join(directory, name), held = join(directory, `held-${name}`); const original = await readFile(target);
+  it.each(['workspace.backup.json.gz', 'workspace.json'])('preserves committed state after actual %s write failure and supports retry', async name => {
+    const { vault, directory } = await setup(); const before = vault.snapshot(); const target = join(directory, name), held = join(directory, `held-${name}`); const original = await readRawFile(target);
     await rename(target, held); await mkdir(target);
     try {
       await expect(vault.updateSettings(state => { state.preferences.theme = 'dark'; })).rejects.toThrow('could not be saved');
-      expect(vault.snapshot()).toEqual(before); expectBytes(await readFile(held), original);
+      expect(vault.snapshot()).toEqual(before); expectBytes(await readRawFile(held), original);
     } finally { await rm(target, { recursive: true }); await rename(held, target); }
     const next = await vault.updateSettings(state => { state.preferences.theme = 'dark'; });
-    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before)); expectBytes(await readFile(join(directory, 'workspace.json')), canonical(next));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json.gz')), canonical(before)); expectBytes(await readFile(join(directory, 'workspace.json')), canonical(next));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.preferences().theme).toBe('dark');
   }, diskCaseBudgetMs);
 });

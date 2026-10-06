@@ -18,7 +18,7 @@ export async function verifyTemporaryConversations({ page, application, getAppli
     await window.qiyao.activateThread(id);
   }, { id: regular.threadId, providerId });
   page = await restart(); application = getApplication(); await application.resize(1280, 840);
-  const input = () => page.getByLabel('消息', { exact: true }); const files = () => Promise.all(['workspace.json', 'workspace.backup.json'].map((name) => readFile(join(directory, name), 'utf8')));
+  const input = () => page.getByLabel('消息', { exact: true }); const files = () => Promise.all(['workspace.json', 'workspace.backup.json.gz'].map(async name => { const bytes = await readFile(join(directory, name)); return (name.endsWith('.gz') ? gunzipSync(bytes) : bytes).toString('utf8'); }));
   const privateData = new Set([prompt, attachmentSecret, draftSecret]); const temporaryIds = new Set();
   const assertPrivateAbsent = (text) => { for (const value of [...privateData, ...temporaryIds]) assert.equal(text.includes(value), false, 'Temporary conversation data must not appear in persistent history or backups.'); };
   const assertHistory = async () => { for (const file of await files()) assertPrivateAbsent(file); };

@@ -403,7 +403,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     if (result.canceled) return null;
     const rawBackup: unknown = await backupFiles.read(result.filePaths[0]);
     parsePersistentWorkspace(rawBackup);
-    const answer = await dialog.showMessageBox(window!, { type: 'question', buttons: ['取消', '恢复备份'], defaultId: 0, cancelId: 0, message: '恢复备份将替换当前本地工作台。', detail: '当前数据会保存在 workspace.backup.json。备份不含密钥；同一提供商已有密钥将继续使用。' });
+    const answer = await dialog.showMessageBox(window!, { type: 'question', buttons: ['取消', '恢复备份'], defaultId: 0, cancelId: 0, message: '恢复备份将替换当前本地工作台。', detail: '当前数据会保存在 workspace.backup.json.gz。备份不含密钥；同一提供商已有密钥将继续使用。' });
     if (answer.response !== 1) return null;
     await automations.suspend();
     try {

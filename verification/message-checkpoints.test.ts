@@ -1,4 +1,5 @@
-import { readFile, rm } from 'node:fs/promises';
+import { rm } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { messageSchema, type Message } from '../contracts/workspace';
@@ -19,7 +20,7 @@ describe('owned message checkpoint batching', () => {
     const { vault, checkpoints, directory } = await setup(); const previous = await readFile(join(directory, 'workspace.json')); const update = vi.spyOn(vault, 'checkpointMessages');
     const one = message('__proto__', 'OLD'); const latest = { ...one, content: 'LATEST 中文😀', status: 'complete' as const }; const two = { ...message('owner😀', 'SECOND'), status: 'stopped' as const };
     const results = await Promise.all([checkpoints.persist('__proto__', one), checkpoints.persist('__proto__', latest), checkpoints.persist('owner😀', two)]);
-    expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
+    expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(previous);
     expect(results).toEqual([latest, latest, two]); expect(results[0]).not.toBe(results[1]); results[0]!.content = 'CALLER_MUTATION';
     expect(results[1]!.content).toBe('LATEST 中文😀'); expect(vault.snapshot().threads[0].messages[0].content).toBe('LATEST 中文😀');
   });

@@ -1,4 +1,5 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ConversationEngine } from '../desktop/services/conversation-engine';
@@ -24,7 +25,7 @@ describe('conversation engine', () => {
     const runs = []; for (let index = 0; index < 4; index++) runs.push(await engine.start({ ...request, text: `ATOMIC_OWNER_${index}` }));
     expect(opened).toBe(4); const previous = await readFile(join(directory, 'workspace.json')); const update = vi.spyOn(vault, 'checkpointMessages');
     finish(); await Promise.all(runs.map(({ threadId }) => engine.settle(threadId)));
-    expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(previous);
+    expect(update).toHaveBeenCalledTimes(1); expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(previous);
     expect(await readFile(join(directory, 'workspace.json'))).toEqual(previous);
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(); const persisted = restored.snapshot();
     for (const [index, { threadId }] of runs.entries()) {

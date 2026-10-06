@@ -1,4 +1,5 @@
-import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { attachmentSchema } from '../contracts/attachments';
@@ -64,7 +65,7 @@ describe('original documents in workspace transactions', () => {
   it('leaves workspace state unchanged after a failed save and keeps staged originals available for retry', async () => {
     const { vault, directory } = await fixture(); const [ref] = vault.stageDocumentOriginals([pdf]);
     const before = vault.snapshot(), primary = await readFile(join(directory, 'workspace.json'));
-    const backup = join(directory, 'workspace.backup.json'), retained = join(directory, 'retained-backup.json');
+    const backup = join(directory, 'workspace.backup.json.gz'), retained = join(directory, 'retained-backup.json');
     await rename(backup, retained); await mkdir(backup);
     const save = () => vault.commitComposer(state => { state.composerDrafts.push(composerDraftSchema.parse({ text: '', attachments: [attachment(ref)], updatedAt: 1 })); });
     try {

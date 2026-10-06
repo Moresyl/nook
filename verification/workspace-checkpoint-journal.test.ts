@@ -1,4 +1,5 @@
-import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { WorkspaceVault } from '../desktop/services/vault';
@@ -17,7 +18,7 @@ const message = (content: string, status: Message['status'] = 'complete'): Messa
 async function fixture() {
   const { vault, directory } = await testVault(); directories.push(directory);
   await vault.update(draft => { draft.threads.push(sampleThread({ messages: [message('Before')] })); });
-  return { vault, directory, primary: join(directory, 'workspace.json'), backup: join(directory, 'workspace.backup.json'), journal: join(directory, 'workspace.checkpoints.json') };
+  return { vault, directory, primary: join(directory, 'workspace.json'), backup: join(directory, 'workspace.backup.json.gz'), journal: join(directory, 'workspace.checkpoints.json') };
 }
 
 describe('durable response checkpoint journal', () => {
