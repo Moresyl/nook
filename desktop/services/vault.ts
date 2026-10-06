@@ -14,6 +14,7 @@ import type { DocumentOriginal } from '../../contracts/document-originals';
 import { DocumentOriginalStore } from './document-original-store';
 import { DocumentOriginalSession } from './document-original-session';
 import { documentOriginalReferences } from './document-original-references';
+import { validateDocumentOriginalBundles, type DocumentOriginalBundle } from './document-original-backups';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
 export type SettingsTransaction = Pick<Workspace, 'providers' | 'preferences'>;
@@ -31,10 +32,12 @@ export class WorkspaceVault {
   private readonly serialization = new WorkspaceSerialization();
   private readonly checkpoints: WorkspaceCheckpointJournal;
   private readonly originals: DocumentOriginalSession;
+  private readonly originalStore: DocumentOriginalStore;
 
   constructor(private readonly directory: string, private readonly codec: SecretCodec) {
     this.checkpoints = new WorkspaceCheckpointJournal(directory);
-    this.originals = new DocumentOriginalSession(new DocumentOriginalStore(join(directory, 'document-originals')));
+    this.originalStore = new DocumentOriginalStore(join(directory, 'document-originals'));
+    this.originals = new DocumentOriginalSession(this.originalStore);
   }
 
   async initialize(onPhase: (phase: string) => void = () => {}): Promise<void> {
@@ -272,5 +275,23 @@ export class WorkspaceVault {
     snapshot.providers.forEach((provider) => { provider.hasKey = false; });
     snapshot.mcpServers.forEach((server) => { server.hasCredentials = false; server.autoConnect = false; });
     return snapshot;
+  }
+
+  /** Capture one persistent snapshot and its verified originals under the same transaction lock. */
+  backupWithOriginals(): Promise<Workspace & { documentOriginals: DocumentOriginalBundle[] }> {
+    const operation = this.tail.then(async () => {
+      const workspace = this.backup(), owners = documentOriginalReferences(workspace);
+      const documentOriginals: DocumentOriginalBundle[] = [];
+      for (const reference of owners) documentOriginals.push({ reference, data: (await this.originals.read(reference, owners)).toString('base64') });
+      return { ...workspace, documentOriginals };
+    });
+    this.tail = operation.catch(() => {});
+    return operation;
+  }
+
+  /** Validated immutable blobs may precede metadata commit; failed restores never replace live ownership. */
+  async prepareOriginalRestore(raw: unknown, workspace: Workspace): Promise<void> {
+    const bundles = validateDocumentOriginalBundles(raw, documentOriginalReferences(workspace));
+    for (const bundle of bundles) await this.originalStore.write(Buffer.from(bundle.data, 'base64'));
   }
 }

@@ -34,7 +34,7 @@
   },
   "remaining": [
     "Connect original retention to imports and the preview bridge; verify complete product flows",
-    "Complete backup/export/restore integration and safe unreferenced-original cleanup",
+    "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
     "Verify provider requests exclude original binary bytes",
     "Build, complete regression, native UI checks, distribution and hosted release"
@@ -50,5 +50,18 @@
       "Real-file tests for temporary isolation, persistent restart, shared ownership, failed-save retry and corrupt originals"
     ],
     "remaining": "Complete backup byte transport and restore before enabling the importer. Stored unreferenced originals are retained until recovery-aware cleanup is implemented."
+  },
+  "backupFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "relatedTests": { "files": 4, "passed": 31, "log": "D:/GR/pi-pc/.firecrawl/nook-document-backup-tests.log" },
+    "focusedCoverage": { "files": 5, "tests": 28, "statements": 97.8, "branches": 95, "functions": 100, "lines": 100, "scope": "The four document-original services only, excluding vault, renderer and full-product coverage", "log": "D:/GR/pi-pc/.firecrawl/nook-document-backup-coverage.log" },
+    "implemented": [
+      "Capture persistent workspace metadata and exact original bytes under one ordered vault operation",
+      "Include deduplicated original bundles in existing complete-backup export",
+      "Validate the complete owner set, canonical encoding, byte lengths and hashes before any restore blob writes",
+      "Real gzip transfer between separate workspaces, restart recovery, temporary-original exclusion and legacy backup compatibility"
+    ],
+    "remaining": "Importer and preview are not enabled. Failed restores may leave unowned immutable blobs; recovery-aware cleanup and full desktop verification remain open."
   }
 }

@@ -84,7 +84,7 @@ export class ExtensionSettings {
   }
 
   async backup() {
-    const workspace = this.vault.backup();
+    const workspace = await this.vault.backupWithOriginals();
     const skillBundles = await Promise.all(workspace.skills.map((skill) => this.skills.bundle(skill.id)));
     if (workspace.plugins.length && !this.plugins) throw new Error('Plugin assets are unavailable for backup.');
     const pluginBundles = await Promise.all(workspace.plugins.map((plugin) => this.plugins!.bundle(plugin.id)));
@@ -95,6 +95,7 @@ export class ExtensionSettings {
 
   async restore(raw: unknown) {
     const backup = parsePersistentWorkspace(raw);
+    await this.vault.prepareOriginalRestore(raw, backup);
     if (backup.preferences.desktop) Object.assign(backup.preferences.desktop, { trayEnabled: false, closeToTray: false, shortcutEnabled: false });
     interruptRuns(backup.threads);
     for (const task of backup.automations) {
