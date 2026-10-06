@@ -308,6 +308,7 @@ async function launch() {
     try {
       return await new Promise((resolve, reject) => {
         const timeoutError = new Error('Main-process test operation timed out');
+        const operationError = new Error('Main-process test operation failed');
         const timer = setTimeout(() => reject(timeoutError), 5000);
         socket.addEventListener('message', (event) => {
           const message = JSON.parse(event.data);
@@ -315,7 +316,8 @@ async function launch() {
             clearTimeout(timer);
             if (message.error || message.result?.exceptionDetails) {
               const detail = String(message.error?.message ?? message.result.exceptionDetails.exception?.description ?? message.result.exceptionDetails.text).split('\n')[0].slice(0, 300);
-              reject(new Error(`Main-process test operation failed: ${detail}`));
+              operationError.message = `Main-process test operation failed: ${detail}`;
+              reject(operationError);
             } else resolve(message.result?.result?.value);
           }
         });
@@ -505,10 +507,10 @@ try {
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
     const treeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = treeRun.page; projectTreeResult = treeRun.result;
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
-    assert.equal(count, 12); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    assert.equal(count, 16); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_ONLY) {
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
-    assert.equal(count, 5); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    assert.equal(count, 9); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_DIFF_ONLY) {
     await page.evaluate((path) => window.qiyao.saveProject({ id: 'verification-project', name: '验证项目', path, instructions: '', createdAt: 1 }), projectDirectory);
     await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.getByRole('button', { name: '验证项目', exact: true }).click();

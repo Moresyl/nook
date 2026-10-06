@@ -124,6 +124,14 @@ const bridge: Bridge = {
   readFile: (id, path) => invoke('readFile', id, path),
   loadDocument: (id, path) => invoke('loadDocument', id, path),
   previewProject: (id, input) => invoke('previewProject', id, input),
+  previewProjectDocked: (id, input) => invoke('previewProjectDocked', id, input),
+  layoutProjectPreview: (id, token, viewport) => invoke('layoutProjectPreview', id, token, viewport),
+  closeProjectPreview: (id, token) => invoke('closeProjectPreview', id, token),
+  onProjectPreviewFailure: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, token: string) => callback(token);
+    ipcRenderer.on('qiyao:preview-failed', listener);
+    return () => { ipcRenderer.removeListener('qiyao:preview-failed', listener); };
+  },
   prepareDocument: (id, path) => invoke('prepareDocument', id, path),
   saveDocument: (id, input) => invoke('saveDocument', id, input),
   saveEditorDraft: (draft) => invoke('saveEditorDraft', draft),

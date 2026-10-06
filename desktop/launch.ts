@@ -47,6 +47,7 @@ import { PromptTemplates } from './services/prompt-templates';
 import { Memories } from './services/memories';
 import { MessageEdits } from './services/message-edits';
 import { ProjectPreviewWindow } from './project-preview-window';
+import { ProjectPreviewDock } from './project-preview-dock';
 
 const bundleDirectory = __dirname;
 let window: BrowserWindow | null = null;
@@ -71,6 +72,8 @@ let promptTemplates: PromptTemplates;
 const taskNotifications = new Set<Notification>();
 const git = new ProjectGit();
 const projectPreview = new ProjectPreviewWindow();
+const projectPreviewDock = new ProjectPreviewDock();
+function closeProjectPreviews(id?: string) { projectPreview.close(id); projectPreviewDock.close(id); }
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input));
 const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
@@ -263,13 +266,13 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       const index = draft.projects.findIndex((item) => item.id === project.id);
       pathChanged = index >= 0 && draft.projects[index].path !== project.path;
       if (index < 0) draft.projects.push(project); else draft.projects[index] = project;
-    }).then(state => { if (pathChanged) projectPreview.close(project.id); return state; });
+    }).then(state => { if (pathChanged) closeProjectPreviews(project.id); return state; });
   },
   removeProject: async (raw) => {
     const id = idSchema.parse(raw);
     if (vault.snapshot().editorDrafts.some((draft) => draft.projectId === id)) throw new Error('Save or discard this project’s unsaved editor drafts before removing it.');
     await Promise.all([engine.stopProject(id), terminals.closeProject(id)]);
-    projectPreview.close(id);
+    closeProjectPreviews(id);
     const scopedPlugins = vault.snapshot().plugins.filter((plugin) => plugin.projectIds.includes(id));
     await Promise.all(scopedPlugins.map(async (plugin) => { await engine.stopPlugin(plugin.id); await plugins.unload(plugin.id); }));
     return vault.update((draft) => {
@@ -335,6 +338,9 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
   previewProject: async (id, input) => { const project = workspaceProject(id); await projectPreview.open(window!, project.id, project.path, input); },
+  previewProjectDocked: async (id, input) => { const project = workspaceProject(id); return projectPreviewDock.open(window!, project.id, project.path, input); },
+  layoutProjectPreview: (id, token, viewport) => projectPreviewDock.layout(z.string().max(100).parse(id), z.uuid().parse(token), viewport),
+  closeProjectPreview: (id, token) => projectPreviewDock.close(z.string().max(100).parse(id), z.uuid().parse(token)),
   prepareDocument: async (id, raw) => {
     const project = workspaceProject(id); const path = pathSchema.parse(raw);
     await writableProjectPath(project.path, path); const current = await optionalProjectDocument(project.path, path);
@@ -398,7 +404,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       await knowledge.stopAll();
       await Promise.all(vault.mcpServers().map((server) => mcp.disconnect(server.id)));
       await Promise.all(vault.snapshot().plugins.map((plugin) => plugins.unload(plugin.id)));
-      projectPreview.close();
+      closeProjectPreviews();
       const restored = await extensions.restore(rawBackup); await desktopIntegration.refresh(); return restored;
     } finally { await automations.resume(); }
   },
@@ -416,7 +422,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
 };
 
 async function finishClose(): Promise<void> {
-  projectPreview.close();
+  closeProjectPreviews();
   if (!quitRequested && desktopIntegration.canHide()) { window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
   if (quit) { quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }

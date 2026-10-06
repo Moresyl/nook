@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { verifyProjectPreviewDock } from './verify-project-preview-dock.mjs';
 
-const previewWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:'))";
-const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents.getURL().includes('index.html') && !w.webContents.getURL().startsWith('nook-preview:'))";
+const previewWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:'))";
+const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().includes('index.html') && !w.webContents.getURL().startsWith('nook-preview:'))";
 export async function verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified }) {
   const root = join(directory, '网页预览'); await mkdir(root);
   const projectId = 'preview-verification'; const requests = [];
@@ -71,12 +72,14 @@ export async function verifyProjectPreview({ page, application, directory, scree
     await writeFile(join(screenshots, 'project-html-preview.png'), Buffer.from(capture, 'base64'));
     verified('preview has no application bridge or Node access and blocks outside HTTP, hidden assets, app resources, popups and navigation');
 
+    const previousWindowId = await application.evaluateMain(`${previewWindow}.id`);
     await page.getByRole('button', { name: '预览 HTML', exact: true }).click();
-    await wait(`(async()=>{const w=${previewWindow};return w && w.webContents.executeJavaScript("document.body.dataset.ready === 'yes'")})()`);
+    await wait(`(async()=>{const w=${previewWindow};return w && w.id !== ${previousWindowId} && w.webContents.executeJavaScript("document.body.dataset.ready === 'yes'")})()`);
     assert.equal(await read('window.previousStorage'), null);
-    assert.equal(await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().filter(w=>w.webContents.getURL().startsWith('nook-preview:')).length"), 1);
+    assert.equal(await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().filter(w=>!w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:')).length"), 1);
     await read("window.onbeforeunload=event=>{event.preventDefault();event.returnValue='keep'};true");
     await application.evaluateMain(`${previewWindow}.close()`); await wait(`!${previewWindow}`);
+    const docked = await verifyProjectPreviewDock({ page, application, projectId, mainWindow, screenshots, verified });
     const fontSession = await page.context().newCDPSession(page);
     try {
       await fontSession.send('DOM.enable'); await fontSession.send('CSS.enable');
@@ -113,6 +116,6 @@ export async function verifyProjectPreview({ page, application, directory, scree
     await page.evaluate(id => window.qiyao.removeProject(id), projectId); await wait(`!${previewWindow}`);
     assert.deepEqual(requests, []);
     verified('removing the owning project closes its preview and leaves the original project files unchanged');
-    return { checks: 5, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png'], editorFonts, outsideHttpRequests: requests.length, boundary: 'Local project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
+    return { checks: 9, docked, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots], editorFonts, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
   } finally { page.context().off('page', onPage); for (const child of observedPages) child.off('dialog', handleDialog); await new Promise(resolve => server.close(resolve)); }
 }

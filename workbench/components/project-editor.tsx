@@ -5,7 +5,8 @@ import { Button, Empty, Field, IconButton, Input, Modal } from './controls';
 import { CodeDiff, CodeEditor } from './code-editor';
 import { persistEditorDraft, registerEditorDrafts } from './editor-drafts';
 import { ProjectExplorer } from './project-explorer';
-import { previewTextPattern } from '../../contracts/project-preview';
+import { previewTextPattern, type ProjectPreviewInput } from '../../contracts/project-preview';
+import { ProjectPreviewLayout } from './project-preview-pane';
 
 type Props = { project: Project; drafts: EditorDraft[]; files: boolean; report: (error: unknown) => void; onSave: () => void };
 export function ProjectEditor({ project, drafts, files, report, onSave }: Props) {
@@ -18,6 +19,7 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
   const [conflict, setConflict] = useState<{ path: string; current: FileDocument | null } | null>(null);
   const [saving, setSaving] = useState(false);
   const [previewing, setPreviewing] = useState(false);
+  const [dockedPreview, setDockedPreview] = useState<ProjectPreviewInput | null>(null);
   const savingRef = useRef(false);
   const [saveNotice, setSaveNotice] = useState('');
   const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
@@ -44,10 +46,15 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
     clearTimeout(timers.current.get(path));
     timers.current.set(path, setTimeout(() => { timers.current.delete(path); const draft = tabsRef.current.find((item) => item.path === path); if (draft) void persistEditorDraft(draft).catch(report); }, 250));
   }
-  async function preview() {
+  function previewInput(path = tab?.path): ProjectPreviewInput | null {
+    const entry = tabsRef.current.find(item => item.path === path);
+    return entry ? { path: entry.path, text: entry.text, drafts: tabsRef.current.filter(item => item.path !== entry.path && previewTextPattern.test(item.path) && (item.text !== item.baseText || item.baseSha256 === null)).map(({ path, text }) => ({ path, text })) } : null;
+  }
+  function refreshPreview() { const next = previewInput(dockedPreview?.path); if (next) setDockedPreview(next); }
+  async function preview(floatingInput?: ProjectPreviewInput) {
     if (!tab || previewing) return;
     setPreviewing(true);
-    try { await window.qiyao.previewProject(project.id, { path: tab.path, text: tab.text, drafts: tabsRef.current.filter(item => item.path !== tab.path && previewTextPattern.test(item.path) && (item.text !== item.baseText || item.baseSha256 === null)).map(({ path, text }) => ({ path, text })) }); }
+    try { await window.qiyao.previewProject(project.id, floatingInput ?? previewInput()!); if (floatingInput) setDockedPreview(null); }
     catch (error) { report(error); }
     finally { setPreviewing(false); }
   }
@@ -79,6 +86,7 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
   }
   saveRef.current = () => { if (active) void save(active); };
   async function close(path: string, discard: boolean) {
+    if (dockedPreview?.path === path) setDockedPreview(null);
     clearTimeout(timers.current.get(path)); timers.current.delete(path);
     if (discard) await window.qiyao.removeEditorDraft(project.id, path);
     const next = tabsRef.current.filter((item) => item.path !== path); tabsRef.current = next; setTabs(next); if (active === path) setActive(next.at(-1)?.path ?? ''); setClosing(null);
@@ -94,7 +102,7 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
       setActive(path); setNewPath(null);
     } catch (error) { report(error); }
   }
-  return <div className="project-editor"><ProjectExplorer projectId={project.id} active={active} revision={refresh} hidden={!files} onOpen={(path) => { void open(path); }} onNew={(directory) => setNewPath(directory ? `${directory}/` : '')} /><div className="editor-body"><div className="editor-tabs" role="tablist" aria-label="打开的文件">{tabs.map((item) => <div className={`editor-tab ${item.path === active ? 'active' : ''}`} key={item.path}><Button role="tab" aria-selected={item.path === active} title={item.path} onClick={() => setActive(item.path)}>{item.path.split('/').at(-1)}{item.text !== item.baseText && <span aria-label="未保存">●</span>}</Button><IconButton icon="close" label={`关闭 ${item.path}`} onClick={() => { if (item.text !== item.baseText) setClosing(item.path); else void close(item.path, false).catch(report); }} /></div>)}</div>{tab ? <><div className="editor-actionbar"><span className="path-text" title={tab.path}>{tab.path}</span><span className="spacer" /><span className="muted" role="status">{saving ? '正在保存…' : tab.text !== tab.baseText ? '草稿自动保存在工作台' : saveNotice}</span>{/\.html?$/i.test(tab.path) && <Button disabled={previewing} title="在独立窗口运行当前草稿；可读取项目内网页资源，不连接外网" onClick={() => { void preview(); }}>{previewing ? "正在打开…" : "预览 HTML"}</Button>}<Button disabled={saving || (tab.text === tab.baseText && tab.baseSha256 !== null)} onClick={() => { void save(tab.path); }}>保存 <kbd>Ctrl S</kbd></Button></div><div className="editor-canvas"><CodeEditor key={tab.path} path={`qiyao-project://${project.id}/${tab.path}`} value={tab.text} onChange={(text) => change(tab.path, text)} onSave={() => saveRef.current()} /></div></> : <Empty icon="file" title="打开文件开始编辑" detail="支持代码高亮、查找替换和 Ctrl S 保存。" />}</div>
+  return <div className="project-editor"><ProjectExplorer projectId={project.id} active={active} revision={refresh} hidden={!files} onOpen={(path) => { void open(path); }} onNew={(directory) => setNewPath(directory ? `${directory}/` : '')} /><div className="editor-body"><div className="editor-tabs" role="tablist" aria-label="打开的文件">{tabs.map((item) => <div className={`editor-tab ${item.path === active ? 'active' : ''}`} key={item.path}><Button role="tab" aria-selected={item.path === active} title={item.path} onClick={() => setActive(item.path)}>{item.path.split('/').at(-1)}{item.text !== item.baseText && <span aria-label="未保存">●</span>}</Button><IconButton icon="close" label={`关闭 ${item.path}`} onClick={() => { if (item.text !== item.baseText) setClosing(item.path); else void close(item.path, false).catch(report); }} /></div>)}</div>{tab ? <><div className="editor-actionbar"><span className="path-text" title={tab.path}>{tab.path}</span><span className="spacer" /><span className="muted" role="status">{saving ? '正在保存…' : tab.text !== tab.baseText ? '草稿自动保存在工作台' : saveNotice}</span>{/\.html?$/i.test(tab.path) && <><Button onClick={() => setDockedPreview(previewInput())}>并排预览</Button><Button disabled={previewing} title="在独立窗口运行当前草稿；可读取项目内网页资源，不连接外网" onClick={() => { void preview(); }}>{previewing ? "正在打开…" : "预览 HTML"}</Button></>}<Button disabled={saving || (tab.text === tab.baseText && tab.baseSha256 !== null)} onClick={() => { void save(tab.path); }}>保存 <kbd>Ctrl S</kbd></Button></div><ProjectPreviewLayout projectId={project.id} input={dockedPreview} onClose={() => setDockedPreview(null)} onRefresh={refreshPreview} onFloating={() => { if (dockedPreview) void preview(previewInput(dockedPreview.path) ?? dockedPreview); }}><div className="editor-canvas"><CodeEditor key={tab.path} path={`qiyao-project://${project.id}/${tab.path}`} value={tab.text} onChange={(text) => change(tab.path, text)} onSave={() => saveRef.current()} /></div></ProjectPreviewLayout></> : <Empty icon="file" title="打开文件开始编辑" detail="支持代码高亮、查找替换和 Ctrl S 保存。" />}</div>
     {closing && <Modal title="保留文件改动？" onClose={() => setClosing(null)} footer={<><Button onClick={() => { void close(closing, true).catch(report); }}>丢弃草稿</Button><span className="spacer" /><Button onClick={() => setClosing(null)}>取消</Button><Button tone="solid" onClick={() => { void save(closing).then((saved) => { if (saved) return close(closing, false); }).catch(report); }}>保存并关闭</Button></>}><p>{closing} 尚未保存到项目文件。</p></Modal>}
     {newPath !== null && <Modal title="新建文件" onClose={() => setNewPath(null)} footer={<><Button onClick={() => setNewPath(null)}>取消</Button><Button tone="solid" disabled={!newPath.trim()} onClick={() => { void create(); }}>创建</Button></>}><Field label="相对路径" hint="父文件夹需要已经存在。文件会在第一次保存时创建。"><Input autoFocus value={newPath} onChange={(event) => setNewPath(event.target.value)} /></Field></Modal>}
     {conflict && <Modal title="文件已被其他操作修改" onClose={() => setConflict(null)} footer={<><Button onClick={() => { const path = conflict.path; void close(path, true).then(() => { setConflict(null); return open(path); }).catch(report); }}>使用磁盘版本</Button><span className="spacer" /><Button onClick={() => setConflict(null)}>继续编辑</Button><Button tone="solid" onClick={() => { const current = conflict.current; const next = tabsRef.current.map((item) => item.path === conflict.path ? { ...item, baseText: current?.text ?? '', baseSha256: current?.sha256 ?? null, updatedAt: Date.now() } : item); tabsRef.current = next; setTabs(next); const draft = next.find((item) => item.path === conflict.path)!; void window.qiyao.saveEditorDraft(draft).catch(report); setConflict(null); }}>保留草稿，更新比较基准</Button></>}><p>左侧是磁盘内容，右侧是你的草稿。确认内容后再次保存。</p><div className="conflict-editor"><CodeDiff path={conflict.path} before={conflict.current?.text ?? ''} after={tabs.find((item) => item.path === conflict.path)?.text ?? ''} /></div></Modal>}
