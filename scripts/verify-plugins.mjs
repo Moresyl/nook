@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createPluginFixture } from '../verification/plugin-fixture.mjs';
+import { crashPluginRuntime } from './verify-plugin-crash.mjs';
 
 export async function verifyPlugins({ page, application, directory, projectDirectory, domain, screenshots, verified, waitForBridge }) {
   const source = join(directory, 'plugin-fixture'); await createPluginFixture(source, domain);
@@ -72,8 +73,9 @@ export async function verifyPlugins({ page, application, directory, projectDirec
   await assert.rejects(page.evaluate((id) => window.qiyao.pluginCommand(id, 'greet', {}), plugin.id), /command failed/);
   await page.evaluate((input) => window.qiyao.savePlugin(input), { ...reduced, grants: plugin.manifest.permissions });
   verified('stopping an in-flight plugin terminates its runtime, clears approval state and enforces revoked storage grants after reload');
-  await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(w => w.webContents.getURL().startsWith('qiyao-plugin:')).webContents.forcefullyCrashRenderer()");
-  await waitForBridge(page, async () => !(await window.qiyao.load()).plugins[0].enabled && (await window.qiyao.pluginViews())[0]?.status === 'error');
+  const finishCrashObservation = await crashPluginRuntime(application, plugin.id);
+  try { await waitForBridge(page, async id => !(await window.qiyao.load()).plugins.find(item => item.id === id)?.enabled && (await window.qiyao.pluginViews()).find(item => item.id === id)?.status === 'error', plugin.id); }
+  finally { console.log('Plugin crash observation', JSON.stringify(await finishCrashObservation())); }
   await page.evaluate((input) => window.qiyao.savePlugin(input), { ...reduced, grants: plugin.manifest.permissions });
   await page.evaluate(async (path) => { await window.qiyao.saveProject({ id: 'plugin-scope-test', name: '临时插件范围', path, instructions: '', createdAt: 1 }); }, source);
   await page.evaluate((input) => window.qiyao.savePlugin(input), { ...reduced, grants: plugin.manifest.permissions, projectIds: ['plugin-scope-test'] });

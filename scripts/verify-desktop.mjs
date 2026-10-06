@@ -14,6 +14,7 @@ import { promisify } from 'node:util';
 import electronExecutable from 'electron';
 import { oauthFixture } from '../verification/oauth-fixture.mjs';
 import { verifyPlugins } from './verify-plugins.mjs';
+import { verifyPluginCrash } from './verify-plugin-crash.mjs';
 import { verifyConversations } from './verify-conversations.mjs';
 import { verifyComposerDrafts } from './verify-composer-drafts.mjs';
 import { verifyPersistence } from './verify-persistence.mjs';
@@ -497,7 +498,11 @@ let promptTransferResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
+  if (process.env.QIYAO_TEST_PLUGIN_CRASH_ONLY) {
+    const result = await verifyPluginCrash({ page, application, directory, domain: new URL(endpoint).host, waitForBridge, verified });
+    assert.deepEqual(errors, []);
+    await writeFile(join(root, 'verification', packaged ? 'plugin-crash-packaged-result.json' : 'plugin-crash-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, ...result }, null, 2));
+  } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
     const treeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = treeRun.page; projectTreeResult = treeRun.result;
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
     assert.equal(count, 12); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);

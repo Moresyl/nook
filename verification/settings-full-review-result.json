@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "578ac126134cfd383f1c7c485ddfbce8d808a6f4",
+  "status": "failed",
+  "checksBeforeFailure": 29,
+  "failure": "Plugin forced-renderer-crash check did not observe both disabled configuration and error runtime state within the unchanged 10-second bridge deadline. Final diagnostic still showed running status. No compiler, coverage or other native test ran concurrently.",
+  "fixture": "E:/NookVerification/Temp/qiyao-electron-N2GOGD",
+  "workspaceBytes": 58233,
+  "workspaceSha256": "701f4c3c58bdd9fcf1af471d41c59a764698e380660f7adc189ebf61c8fe30f8",
+  "finalNormalCloseMs": 9554,
+  "forcedClose": false,
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "log": "nook-settings-transaction-full-source.log",
+  "sha256": "6c61547743d01d6380ad2bdab6e637882141229bd9cd8394e669c3b17f0e712b",
+  "followup": [
+    {
+      "status": "passed",
+      "checks": 3,
+      "description": "Fresh workspace, three actual renderer crashes and explicit recovery. All crash events observed and plugin configuration disabled. Same application build as failed full suite.",
+      "finalNormalCloseMs": 1307,
+      "log": "nook-plugin-crash-focused.log",
+      "sha256": "096c85456e21c2f0cdc237692c5c4d50483cfe84c2fbd99dee9d10e3a45664d4"
+    },
+    {
+      "status": "failed",
+      "checks": 0,
+      "description": "Exact plugin runtime URL selected. First crash event arrived after 15ms, window closed after 1518ms, but disabled/error condition remained false beyond 10 seconds. Final diagnostic showed error status. This narrows this focused failure to durable disable timing after crash handling, unlike the earlier full-run running status; it does not establish a common root cause.",
+      "fixture": "E:/NookVerification/Temp/qiyao-electron-0bwpG0",
+      "finalNormalCloseMs": 6172,
+      "log": "nook-plugin-crash-exact.log",
+      "sha256": "f86fb4caca933fe2c59f560823af8400f530886f387fefa5000a9ad5ccf8045f"
+    }
+  ],
+  "hostedRun": {
+    "id": 37402201143,
+    "verifyJob": 112071660624,
+    "steps": [],
+    "publish": "skipped",
+    "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  },
+  "boundary": "Not a completed full regression, distribution verification, release or proof that earlier startup/continuation/shutdown issues are fixed. Successful earlier focused settings checks remain limited to their recorded scope."
+}

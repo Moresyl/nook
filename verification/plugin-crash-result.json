@@ -1,0 +1,62 @@
+{
+  "verifiedAt": "2026-10-06T02:18:06.230Z",
+  "variant": "development executable",
+  "runtimeErrors": [],
+  "checks": 3,
+  "observations": [
+    {
+      "attempt": 1,
+      "windowId": 2,
+      "contentsId": 2,
+      "processId": 131528,
+      "startedAt": 1791253081472,
+      "events": [
+        {
+          "event": "render-process-gone",
+          "at": 1791253081558,
+          "reason": "crashed",
+          "exitCode": 2
+        }
+      ],
+      "capturedAt": 1791253081828,
+      "destroyed": false,
+      "crashed": true
+    },
+    {
+      "attempt": 2,
+      "windowId": 3,
+      "contentsId": 3,
+      "processId": 61224,
+      "startedAt": 1791253084014,
+      "events": [
+        {
+          "event": "render-process-gone",
+          "at": 1791253084026,
+          "reason": "crashed",
+          "exitCode": 2
+        }
+      ],
+      "capturedAt": 1791253084141,
+      "destroyed": false,
+      "crashed": true
+    },
+    {
+      "attempt": 3,
+      "windowId": 4,
+      "contentsId": 4,
+      "processId": 116408,
+      "startedAt": 1791253086101,
+      "events": [
+        {
+          "event": "render-process-gone",
+          "at": 1791253086111,
+          "reason": "crashed",
+          "exitCode": 2
+        }
+      ],
+      "capturedAt": 1791253086242,
+      "destroyed": false,
+      "crashed": true
+    }
+  ]
+}

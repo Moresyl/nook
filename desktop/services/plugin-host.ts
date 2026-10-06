@@ -69,10 +69,16 @@ export class PluginHost {
   private async fail(session: Session): Promise<void> {
     if (this.sessions.get(session.plugin.id) !== session || session.controller.signal.aborted) return;
     session.controller.abort(); session.status = 'error'; session.error = 'The plugin failed to load or its runtime stopped. Check its package and enable it again.';
-    this.notify(session.plugin.id); await session.process?.close();
+    this.notify(session.plugin.id);
+    // Persist revocation independently of renderer/storage cleanup, which can be slow after a crash.
+    const cleanup = Promise.resolve().then(() => session.process?.close()).catch(() => {
+      session.error = 'The plugin stopped, but its runtime cleanup failed. Restart the app before enabling it again.';
+      this.notify(session.plugin.id);
+    });
     try { await this.vault.update((draft) => { const plugin = draft.plugins.find((item) => item.id === session.plugin.id); if (plugin && identity(plugin) === identity(session.plugin)) plugin.enabled = false; }); }
     catch { session.error = 'The plugin stopped, but its disabled state could not be saved. Check disk space.'; }
     this.notify(session.plugin.id);
+    await cleanup;
   }
 
   async unload(id: string): Promise<void> {

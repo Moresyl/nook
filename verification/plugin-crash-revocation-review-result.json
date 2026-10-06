@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-06T02:18:06.230Z",
+  "variant": "development executable",
+  "change": "On plugin failure, abort the session immediately and persist disabled configuration independently of runtime cleanup. Catch cleanup rejection and expose a redacted recovery message. Do not change production deadlines or automatically re-enable a failed plugin.",
+  "priorEvidence": "verification/settings-full-review-result.json",
+  "typecheck": "passed",
+  "build": "passed",
+  "targetedTests": { "files": 2, "passed": 15, "newCases": ["Pending cleanup does not delay exact on-disk revocation; commands are denied and repeated failure is idempotent.", "Rejected cleanup still persists revocation without an unhandled rejection or private error details."] },
+  "native": {
+    "checks": 3,
+    "runtimeErrors": [],
+    "result": "verification/plugin-crash-result.json",
+    "finalNormalCloseMs": 6940,
+    "forcedClose": false,
+    "observationElapsedMs": [356, 127, 141],
+    "finding": "Three actual renderer crashes emitted render-process-gone. Disabled/error state was observed while each crashed native window still existed, directly demonstrating independence from final window/storage cleanup. Explicit re-enabling waited for cleanup before creating the next runtime.",
+    "boundary": "Run-specific observation intervals include polling and inspector capture. Not a universal latency guarantee, complete full-suite result, or proof of the earlier full-run running-state failure's cause."
+  },
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-plugin-crash-revocation-tests.log", "sha256": "ad3fd32e7014bcb64d1e9e0719645be6d6458c7cba3c247a68340ab615a8d186" },
+    { "name": "nook-plugin-crash-revocation-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-plugin-crash-revocation-build.log", "sha256": "cb86aa58e36553be1356a0e20f32ef4899697b5ce21781251c9baa3f85c51779" },
+    { "name": "nook-plugin-crash-revocation-native.log", "sha256": "b50b243a2aac3bdc6d46fd5186e5eb986a66eabc68353445f2e5a4f59f7ee42a" }
+  ],
+  "environmentObservation": "A separate read-only git diff command reported allocation failure during the build. The original build handle was retained and later completed with exit 0; no build was restarted or run concurrently by this task.",
+  "boundary": "Source change only. Full component regression is recorded separately when terminal; full desktop regression, distribution validation, remaining design/capability work and hosted publication are still required."
+}

@@ -138,6 +138,27 @@ describe('permission checked plugin execution', () => {
     vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk full')); callbacks[1].failed(); await vi.waitFor(() => expect(host.view(plugin.id).error).toContain('disk space'));
     await host.unload(plugin.id); await writeFile(join(directory, 'plugins', plugin.id, 'main.js'), 'Modified'); expect(await host.load(plugin.id)).toMatchObject({ status: 'error' }); expect(factory).toHaveBeenCalledTimes(2); expect(emit).toHaveBeenCalled();
   });
+  it('persists crash revocation while runtime cleanup is pending and rejects further calls immediately', async () => {
+    const { host, plugin, vault, callbacks, close, directory } = await setup();
+    let release!: () => void; const cleanup = new Promise<void>(resolve => { release = resolve; });
+    close.mockImplementationOnce(() => cleanup);
+    try {
+      callbacks[0].failed();
+      await vi.waitFor(() => expect(vault.snapshot().plugins[0].enabled).toBe(false));
+      expect(close).toHaveBeenCalledOnce(); expect(host.view(plugin.id).status).toBe('error');
+      expect(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')).plugins[0].enabled).toBe(false);
+      await expect(host.command(plugin.id, 'greet', {})).rejects.toThrow('permission');
+      callbacks[0].failed(); expect(close).toHaveBeenCalledOnce();
+    } finally { release(); await cleanup; }
+  });
+  it('still persists revocation when runtime cleanup rejects without exposing the cleanup detail', async () => {
+    const { host, plugin, vault, callbacks, close } = await setup();
+    close.mockRejectedValueOnce(new Error('PRIVATE_CLEANUP_DETAIL'));
+    callbacks[0].failed();
+    await vi.waitFor(() => expect(vault.snapshot().plugins[0].enabled).toBe(false));
+    expect(host.view(plugin.id)).toMatchObject({ status: 'error', error: expect.stringContaining('cleanup failed') });
+    expect(host.view(plugin.id).error).not.toContain('PRIVATE_CLEANUP_DETAIL');
+  });
   it('routes plugin tools through conversation approvals, persists selection and stops pending work by plugin', async () => {
     const { host, plugin, vault, directory, call, invoke } = await setup();
     const mcp = { select: () => ({ definitions: [], execute: vi.fn() }) } as unknown as McpConnections;
