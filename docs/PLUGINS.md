@@ -1,4 +1,4 @@
-# Qiyao local plugin packages
+# Nook local plugin packages
 
 This independently defined format supports local tools, commands and isolated HTML panels. It is not a compatibility claim for another application's plugin format. Provider contributions, shared services, event hooks, remote installation, updates and broader contributions remain pending.
 
