@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-export async function verifyProjectPreviewDock({ page, application, projectId, mainWindow, screenshots, verified }) {
+export async function verifyProjectPreviewDock({ page, application, projectId, mainWindow, previewWindow, screenshots, verified }) {
   const view = `${mainWindow}.contentView.children.find(v => v.webContents && !v.webContents.isDestroyed() && v.webContents.getURL().startsWith('nook-preview:'))`;
   const evaluate = code => application.evaluateMain(`(async()=>{const v=${view};return v ? v.webContents.executeJavaScript(${JSON.stringify(code)}) : null})()`);
   const wait = async code => { const end = Date.now() + 10_000; while (!await application.evaluateMain(code)) {
@@ -78,10 +78,17 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   await application.evaluateMain(`${view}.webContents.forcefullyCrashRenderer()`);
   await page.getByText('预览未能打开，草稿已保留。', { exact: true }).waitFor(); await wait(`!${visible}`);
   await page.getByRole('button', { name: '重试', exact: true }).click(); await ready(); assert.equal(await evaluate('window.previousStorage'), null);
+  const draftsBefore = await page.evaluate(async id => (await window.qiyao.load()).editorDrafts.filter(item => item.projectId === id), projectId);
+  await page.getByRole('button', { name: '独立窗口', exact: true }).click();
+  await wait(`(async()=>{const w=${previewWindow};return !${view} && w && w.webContents.executeJavaScript("document.body.dataset.ready === 'yes'")})()`);
+  assert.deepEqual(await application.evaluateMain(`${previewWindow}.webContents.executeJavaScript("({text:document.querySelector('#result').textContent,script:window.relatedDraft,storage:window.previousStorage})")`), { text: 'UNSAVED_DATA_中文😀', script: 'SCRIPT_DRAFT_中文😀', storage: null });
+  assert.deepEqual(await page.evaluate(async id => (await window.qiyao.load()).editorDrafts.filter(item => item.projectId === id), projectId), draftsBefore);
+  await application.evaluateMain(`${previewWindow}.close()`); await wait(`!${previewWindow}`);
+  await page.getByRole('button', { name: '并排预览', exact: true }).click(); await ready();
   await page.getByRole('button', { name: '关闭预览', exact: true }).click(); await wait(`!${view}`);
   await page.waitForFunction(() => document.activeElement?.textContent === '并排预览');
   await page.getByRole('button', { name: '显示文件树', exact: true }).click();
   await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.keyboard.press('Escape');
   verified('a real docked renderer crash shows a recoverable error, explicit retry creates a fresh session, and closing releases the view and returns focus');
-  return { checks: 4, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
+  return { checks: 4, floatingTransferVerified: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
 }

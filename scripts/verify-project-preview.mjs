@@ -79,7 +79,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
     assert.equal(await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().filter(w=>!w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:')).length"), 1);
     await read("window.onbeforeunload=event=>{event.preventDefault();event.returnValue='keep'};true");
     await application.evaluateMain(`${previewWindow}.close()`); await wait(`!${previewWindow}`);
-    const docked = await verifyProjectPreviewDock({ page, application, projectId, mainWindow, screenshots, verified });
+    const docked = await verifyProjectPreviewDock({ page, application, projectId, mainWindow, previewWindow, screenshots, verified });
     const fontSession = await page.context().newCDPSession(page);
     try {
       await fontSession.send('DOM.enable'); await fontSession.send('CSS.enable');
@@ -113,7 +113,12 @@ export async function verifyProjectPreview({ page, application, directory, scree
       await page.getByRole('button', { name: `关闭 ${path}`, exact: true }).click(); await page.getByRole('button', { name: '丢弃草稿', exact: true }).click();
       await page.getByRole('dialog', { name: '保留文件改动？', exact: true }).waitFor({ state: 'hidden' });
     }
-    await page.evaluate(id => window.qiyao.removeProject(id), projectId); await wait(`!${previewWindow}`);
+    const removalToken = await page.evaluate(id => window.qiyao.previewProjectDocked(id, { path: 'index.html', text: '' }), projectId);
+    assert.ok(removalToken);
+    const removalView = `${mainWindow}.contentView.children.find(v => v.webContents && !v.webContents.isDestroyed() && v.webContents.getURL().startsWith('nook-preview:'))`;
+    assert.equal(await application.evaluateMain(`new URL(${removalView}.webContents.getURL()).host`), removalToken);
+    await page.evaluate(id => window.qiyao.removeProject(id), projectId); await wait(`!${previewWindow} && !${removalView}`);
+    docked.projectRemovalVerified = true;
     assert.deepEqual(requests, []);
     verified('removing the owning project closes its preview and leaves the original project files unchanged');
     return { checks: 9, docked, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots], editorFonts, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };

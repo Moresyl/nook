@@ -48,9 +48,10 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   if (!Number.isInteger(desktop.checks) || desktop.checks < 223 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
-  if (preview.checks !== 5 || preview.outsideHttpRequests !== 0) throw new Error('Complete offline project-preview verification is required');
+  const completePreview = result => result?.checks === 9 && result.outsideHttpRequests === 0 && result.docked?.checks === 4 && result.docked.floatingTransferVerified === true && result.docked.projectRemovalVerified === true;
+  if (!completePreview(preview)) throw new Error('Complete offline project-preview verification is required');
   if (desktop.memories?.checks !== 3) throw new Error('Complete memory verification is required');
-  if (desktop.projectPreview?.checks !== 5 || desktop.projectPreview.outsideHttpRequests !== 0) throw new Error('Complete desktop must include offline project-preview verification');
+  if (!completePreview(desktop.projectPreview)) throw new Error('Complete desktop must include offline project-preview verification');
   const subscriptions = desktop.mcpResourceSubscriptions;
   if (!subscriptions || subscriptions.checks !== 6 || subscriptions.modelRequests !== 0 || !['realNotificationsVerified', 'explicitDraftInsertionVerified', 'delayedUnsubscribeFiltered', 'templateSelectionVerified', 'disconnectRestartVerified', 'unsupportedServerVerified', 'zoomKeyboardVerified', 'originalDraftRetained'].every((key) => subscriptions[key] === true)) {
     throw new Error('Complete MCP resource-subscription verification is required');

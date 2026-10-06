@@ -19,11 +19,11 @@ const notes = (version = '1.2.3', newline = '\n') => [
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
   const desktop = { variant: 'packaged executable', checks: 223, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
-    memories: { checks: 3 }, projectPreview: { checks: 5, outsideHttpRequests: 0 },
+    memories: { checks: 3 }, projectPreview: { checks: 9, outsideHttpRequests: 0, docked: { checks: 4, floatingTransferVerified: true, projectRemovalVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
-    preview: { ...desktop, checks: 5, outsideHttpRequests: 0 },
+    preview: { ...desktop, ...structuredClone(desktop.projectPreview) },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
     comparisons: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true },
@@ -109,6 +109,19 @@ describe('Windows release execution evidence', () => {
     const cases = [proof(), proof(), proof()]; cases[0].preview.checks = 4; cases[1].preview.outsideHttpRequests = 1;
     delete (cases[2].preview as Partial<ReleaseProof['preview']>).outsideHttpRequests;
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
+  });
+  it('rejects old floating-only and incomplete docked lifecycle evidence in focused and complete suites', () => {
+    for (const surface of ['preview', 'desktop'] as const) {
+      for (const defect of ['old', 'missing', 'partial', 'transfer', 'removal'] as const) {
+        const value = proof(), result = surface === 'preview' ? value.preview : value.desktop.projectPreview!;
+        if (defect === 'old') result.checks = 5;
+        if (defect === 'missing') delete result.docked;
+        if (defect === 'partial') result.docked!.checks = 3;
+        if (defect === 'transfer') result.docked!.floatingTransferVerified = false;
+        if (defect === 'removal') delete result.docked!.projectRemovalVerified;
+        expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
+      }
+    }
   });
   it('rejects incomplete desktop/settings/portable checks and different portable body', () => {
     const cases = Array.from({ length: 11 }, proof);
