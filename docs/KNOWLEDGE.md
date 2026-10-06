@@ -1,6 +1,6 @@
 # 资料库与对话来源
 
-资料库可保存文本笔记，并将导入文档的提取文本放入资料集。文档使用与聊天附件相同的本地解析工作线程，支持 PDF、DOCX/XLSX/PPTX、ODT/ODS/ODP、RTF 和文本；原始二进制文件及原始页面版式不保存在资料库。格式、单次导入限制及扫描文档限制见 [附件文档](ATTACHMENTS.md)。图片请作为聊天附件导入。
+资料库可保存文本笔记，并将导入文档的提取文本放入资料集。文档使用与聊天附件相同的本地解析工作线程，支持 PDF、DOCX/XLSX/PPTX、ODT/ODS/ODP、RTF 和文本。新导入的 PDF 另在本机保留原件，来源与回答引用可打开原始页面；检索和模型请求继续使用提取文本。其他文档目前不保留原始版式。格式、单次导入限制及扫描文档限制见 [附件文档](ATTACHMENTS.md) 与 [PDF 阅读](PDF-PREVIEW.md)。图片请作为聊天附件导入。
 
 未分类资料和新建资料集默认使用本地关键词检索，不发送网络请求。可在资料集设置中选择语义检索或关键词与语义检索，并明确指定嵌入连接、模型／Azure 部署名称、可选维度。支持 Responses、OpenAI 兼容、Ollama、Azure v1 Responses／Chat 与指定版本部署配置、Gemini 原生嵌入请求；Anthropic 不提供原生嵌入接口，因此不出现在嵌入连接选项中。聊天模型与嵌入模型可以分别选择。
 
@@ -18,6 +18,6 @@
 
 完整工作台备份还包含聊天、附件、来源快照及扩展数据。普通 JSON 与压缩备份的正文最多 256 MB，压缩文件最多 64 MB；实际生成内容在导出前校验，读取与解压也有完整大小校验，见 [备份文档](BACKUPS.md)。分卷、远程同步和最大规模性能仍待完善。
 
-验证包含 35 项新增契约／服务／对话测试，以及真实桌面工作线程、八种原生嵌入配置、索引停止、失败重建保留、来源预览、引用标记、原文删除后的重试、草稿重启和完整备份恢复。桌面测试使用本地 HTTP 服务和合成向量，不使用云端账号；系统文件与备份对话框边界使用隔离测试替身。结果见 `verification/knowledge-result.json` 和完整桌面结果文件。尚未实现 OCR、文档原始版式、向量数据库、重排模型、后台自动增量索引和联网云端质量验证。
+验证包含 35 项新增契约／服务／对话测试，以及真实桌面工作线程、八种原生嵌入配置、索引停止、失败重建保留、来源预览、引用标记、原文删除后的重试、草稿重启和完整备份恢复。桌面测试使用本地 HTTP 服务和合成向量，不使用云端账号；系统文件与备份对话框边界使用隔离测试替身。结果见 `verification/knowledge-result.json` 和完整桌面结果文件。尚未实现 OCR、其他文档原始版式、向量数据库、重排模型、后台自动增量索引和联网云端质量验证。
 
 接口依据：[OpenAI embeddings](https://developers.openai.com/api/docs/guides/embeddings)、[Gemini REST embeddings](https://ai.google.dev/api/embeddings)、[Gemini embeddings guide](https://ai.google.dev/gemini-api/docs/embeddings)、[Ollama OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility)、[Azure embeddings](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/embeddings)。
