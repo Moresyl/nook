@@ -17,16 +17,24 @@ function allowedPath(path: string): boolean {
     && path.split('/').every(part => Boolean(part) && !part.startsWith('.')) && Boolean(types[extname(path).toLowerCase()]);
 }
 
-/** A read-only, offline project origin. The main document comes from the current editor draft. */
+/** A read-only, offline project origin with an immutable snapshot of unsaved text files. */
 export class ProjectPreviewSource {
-  private constructor(readonly origin: string, readonly path: string, private readonly root: string, private readonly text: string) {}
+  private constructor(readonly origin: string, readonly path: string, private readonly root: string, private readonly drafts: ReadonlyMap<string, string>) {}
 
   static async create(root: string, raw: unknown, id: string): Promise<ProjectPreviewSource> {
     const input = projectPreviewSchema.parse(raw);
     if (!/^[a-f0-9-]{36}$/.test(id) || !allowedPath(input.path)) throw new Error('Choose a relative HTML file inside the project.');
     const actualRoot = await realpath(root);
-    await writableProjectPath(actualRoot, input.path);
-    return new ProjectPreviewSource(`nook-preview://${id}`, input.path, actualRoot, input.text);
+    const entry = await writableProjectPath(actualRoot, input.path);
+    if (!allowedPath(relative(actualRoot, entry).split(sep).join('/'))) throw new Error('Preview drafts must remain inside the visible project files.');
+    const drafts = new Map([[input.path, input.text]]);
+    for (const draft of input.drafts ?? []) {
+      if (!allowedPath(draft.path) || drafts.has(draft.path)) throw new Error('Preview draft paths must be unique project files.');
+      const target = await writableProjectPath(actualRoot, draft.path);
+      if (!allowedPath(relative(actualRoot, target).split(sep).join('/'))) throw new Error('Preview drafts must remain inside the visible project files.');
+      drafts.set(draft.path, draft.text);
+    }
+    return new ProjectPreviewSource(`nook-preview://${id}`, input.path, actualRoot, drafts);
   }
 
   get url(): string { return `${this.origin}/${this.path.split('/').map(encodeURIComponent).join('/')}`; }
@@ -39,7 +47,7 @@ export class ProjectPreviewSource {
       const path = decodeURIComponent(url.pathname.slice(1));
       if (!allowedPath(path)) throw new Error();
       let bytes: Uint8Array<ArrayBuffer>;
-      if (path === this.path) bytes = new TextEncoder().encode(this.text);
+      if (this.drafts.has(path)) bytes = new TextEncoder().encode(this.drafts.get(path)!);
       else {
         const target = await scopedPath(this.root, path);
         if (!allowedPath(relative(this.root, target).split(sep).join('/'))) throw new Error();

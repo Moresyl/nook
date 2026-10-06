@@ -1,0 +1,21 @@
+{
+  "baseCommit": "ac5ebbf",
+  "change": "Project HTML preview snapshots related unsaved HTML, CSS, JS/MJS, JSON and SVG tabs. Missing draft resources continue to use bounded project files; explicitly empty drafts remain empty. No project file is written.",
+  "limits": { "relatedDrafts": 32, "charactersPerFile": 256000, "combinedCharacters": 2000000 },
+  "validation": { "types": "passed", "componentFiles": 2, "componentTests": 19, "build": "passed", "native": "passed", "nativeChecks": 5, "verifiedAt": "2026-10-06T00:42:33.320Z", "normalCloseMs": 3781, "outsideHttpRequests": 0, "result": "project-preview-result.json" },
+  "screenshotsReviewed": ["project-html-preview.png", "project-preview-editor-light.png", "project-preview-editor-dark-narrow.png"],
+  "priorAttempts": [
+    { "status": "failed", "fixture": "E:/NookVerification/Temp/qiyao-electron-ImOYuN", "finding": "No CSS draft was created after switching editor tabs; the new test now waits for the target file and its rendered original content before pasting.", "log": "nook-preview-drafts-native.log", "sha256": "8ff84168a4f0061fb996e09921ad89e6ca07713d7358cfe7f4b147df88e20716" },
+    { "status": "failed after four groups", "fixture": "E:/NookVerification/Temp/qiyao-electron-U36mET", "finding": "Project removal correctly rejected remaining unsaved related drafts. The test now discards all of its own edited tabs before removing the project.", "log": "nook-preview-drafts-native-ready.log", "sha256": "8e157a0e700ddf6196b234c721bdaf6531753d782f0570b892d61c9040e39d4c" }
+  ],
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "logs": [
+    { "name": "nook-preview-drafts-types.log", "sha256": "8406b87efee565c7146c140e515fd48f0bf3f1018bd0f00f2531f26baa8aaad7" },
+    { "name": "nook-preview-drafts-tests.log", "sha256": "b60f78a14fb80f4b1615af490050c76951eedb294ff41e0479403c76bff8b01a" },
+    { "name": "nook-preview-drafts-build.log", "sha256": "a15d202a0f511d0e11fe245237234e0d04a1ffab54858711a1e1274e2d75fb48" },
+    { "name": "nook-preview-drafts-native-complete.log", "sha256": "aa1ba4696ebef630141c4789d7663debfc13a563e35a5605dd1eac24246253fd" }
+  ],
+  "testedCases": ["immutable Unicode draft snapshots", "empty related draft overrides disk", "new unsaved resource without disk file", "CSS/script/JSON/SVG content types", "HEAD responses", "unchanged original disk content", "duplicate and entry-colliding draft paths", "hidden and outside paths", "unsupported resource types", "missing parents", "per-file, count and aggregate limits", "junction escapes and aliases to hidden files", "isolated preview window lifecycle"],
+  "nativeTestAdded": "Edit HTML, CSS, JavaScript and JSON in real editor tabs, open preview, verify exact unsaved behavior and unchanged originals; retain the existing isolation, theme, zoom and lifecycle assertions.",
+  "boundary": "Current source and focused native verification only; complete regression and new distribution remain pending. Docked preview, generated-artifact editor, React/JSX compilation, original document rendering and broader design adoption remain unfinished."
+}

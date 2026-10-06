@@ -37,6 +37,33 @@ describe('offline project preview resources', () => {
     }
   });
 
+  it('snapshots related unsaved text including empty files without changing disk or exposing later edits', async () => {
+    const root = await directory(); await mkdir(join(root, '页面'));
+    await writeFile(join(root, '页面', 'styles.css'), 'DISK_CSS');
+    const drafts = [{ path: '页面/styles.css', text: '' }, { path: '页面/app.mjs', text: 'export const text = "草稿😀";' }, { path: '页面/data.json', text: '{"value":7}' }, { path: '页面/icon.svg', text: '<svg />' }];
+    const source = await ProjectPreviewSource.create(root, { path: '页面/index.html', text: '<script type="module" src="app.mjs"></script>', drafts }, id);
+    drafts[1].text = 'LATER_EDIT';
+    expect(await (await request(source, '页面/styles.css')).text()).toBe('');
+    expect(await (await request(source, '页面/app.mjs')).text()).toBe('export const text = "草稿😀";');
+    expect(await (await request(source, '页面/data.json')).json()).toEqual({ value: 7 });
+    expect((await request(source, '页面/icon.svg')).headers.get('Content-Type')).toBe('image/svg+xml');
+    expect(await (await request(source, '页面/app.mjs', 'HEAD')).text()).toBe('');
+    expect(await readFile(join(root, '页面', 'styles.css'), 'utf8')).toBe('DISK_CSS');
+    await expect(readFile(join(root, '页面', 'app.mjs'))).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+
+  it('rejects ambiguous, hidden, outside, unsupported and oversized related drafts', async () => {
+    const root = await directory();
+    for (const drafts of [
+      [{ path: 'index.html', text: '' }],
+      [{ path: 'a.js', text: '' }, { path: 'a.js', text: 'duplicate' }],
+      ...['../outside.js', '.private/a.js', 'missing/a.js', 'a.png', 'folder//a.js', 'a\\b.js'].map(path => [{ path, text: '' }]),
+      Array.from({ length: 33 }, (_, index) => ({ path: `${index}.js`, text: '' })),
+      [{ path: 'large.js', text: 'x'.repeat(256_001) }],
+      Array.from({ length: 8 }, (_, index) => ({ path: `${index}.js`, text: 'x'.repeat(256_000) })),
+    ]) await expect(ProjectPreviewSource.create(root, { path: 'index.html', text: '', drafts }, id)).rejects.toThrow();
+  });
+
   it.each(['../outside.html', '/index.html', 'C:/index.html', '.private/index.html', 'a\\b.html', 'index.txt', 'folder//index.html'])('rejects an invalid entry %s', async path => {
     const root = await directory(); await expect(ProjectPreviewSource.create(root, { path, text: '' }, id)).rejects.toThrow();
   });
@@ -67,5 +94,7 @@ describe('offline project preview resources', () => {
     await expect(ProjectPreviewSource.create(root, { path: 'escape/index.html', text: '' }, id)).rejects.toThrow();
     await mkdir(join(root, '.private')); await writeFile(join(root, '.private', 'secret.js'), 'PRIVATE'); await symlink(join(root, '.private'), join(root, 'alias'), 'junction');
     expect((await request(source, 'alias/secret.js')).status).toBe(404);
+    for (const path of ['escape/secret.js', 'alias/secret.js']) await expect(ProjectPreviewSource.create(root, { path: 'index.html', text: '', drafts: [{ path, text: 'UNSAVED' }] }, id)).rejects.toThrow();
+    await expect(ProjectPreviewSource.create(root, { path: 'alias/index.html', text: '' }, id)).rejects.toThrow();
   });
 });

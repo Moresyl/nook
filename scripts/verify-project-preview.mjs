@@ -40,12 +40,28 @@ export async function verifyProjectPreview({ page, application, directory, scree
     const input = page.locator('.project-main-panel:not([hidden]) .monaco-editor textarea.inputarea'); await input.focus(); await input.press('ControlOrMeta+A');
     await input.evaluate((element, text) => { const data = new DataTransfer(); data.setData('text/plain', text); element.dispatchEvent(new ClipboardEvent('paste', { bubbles: true, cancelable: true, clipboardData: data })); }, draft);
     await waitForBridge(page, async ({ projectId, draft }) => (await window.qiyao.load()).editorDrafts.some(item => item.projectId === projectId && item.text === draft), { projectId, draft });
+    const originalAssets = Object.fromEntries(await Promise.all(['styles.css', 'app.js', 'data.json'].map(async path => [path, await readFile(join(root, path), 'utf8')])));
+    const relatedDrafts = {
+      'styles.css': `${originalAssets['styles.css']} body{background:#e3e8ef}`,
+      'app.js': `${originalAssets['app.js']} window.relatedDraft='SCRIPT_DRAFT_中文😀';`,
+      'data.json': JSON.stringify({ text: 'UNSAVED_DATA_中文😀' }),
+    };
+    for (const [path, text] of Object.entries(relatedDrafts)) {
+      await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: path, exact: true }).click();
+      await page.waitForFunction(({ path, prefix }) => document.querySelector('.editor-actionbar .path-text')?.textContent === path && document.querySelector('.editor-canvas .view-lines')?.textContent.replace(/\s/g, '').includes(prefix), { path, prefix: originalAssets[path].replace(/\s/g, '').slice(0, 40) });
+      await input.focus(); await input.press('ControlOrMeta+A');
+      await input.evaluate((element, text) => { const data = new DataTransfer(); data.setData('text/plain', text); element.dispatchEvent(new ClipboardEvent('paste', { bubbles: true, cancelable: true, clipboardData: data })); }, text);
+      await waitForBridge(page, async ({ projectId, path, text }) => (await window.qiyao.load()).editorDrafts.some(item => item.projectId === projectId && item.path === path && item.text === text), { projectId, path, text });
+    }
+    await page.getByRole('tab', { name: /^index\.html/ }).click();
+    await page.waitForFunction(() => document.querySelector('.editor-actionbar .path-text')?.textContent === 'index.html' && document.querySelector('.editor-canvas .view-lines')?.textContent.includes('当前草稿'));
     await page.getByRole('button', { name: '预览 HTML', exact: true }).click();
     await wait(`(async()=>{const w=${previewWindow};return w && w.webContents.executeJavaScript("document.body.dataset.ready === 'yes'")})()`);
-    assert.deepEqual(await read("({text:document.querySelector('#result').textContent,background:getComputedStyle(document.body).backgroundColor,storage:window.previousStorage})"), { text: 'LOCAL_DATA_中文😀', background: 'rgb(243, 243, 243)', storage: null });
+    assert.deepEqual(await read("({text:document.querySelector('#result').textContent,background:getComputedStyle(document.body).backgroundColor,storage:window.previousStorage,script:window.relatedDraft})"), { text: 'UNSAVED_DATA_中文😀', background: 'rgb(227, 232, 239)', storage: null, script: 'SCRIPT_DRAFT_中文😀' });
     await read("document.querySelector('button').click()"); assert.equal(await read("document.querySelector('button').textContent"), '已交互');
     assert.equal(await readFile(join(root, 'index.html'), 'utf8'), disk);
-    verified('HTML preview executes the current unsaved draft and project CSS, scripts and JSON without changing the file');
+    for (const [path, text] of Object.entries(originalAssets)) assert.equal(await readFile(join(root, path), 'utf8'), text);
+    verified('HTML preview executes the current HTML, CSS, script and JSON draft snapshot without changing any project file');
 
     assert.deepEqual(await read("({node:typeof require,bridge:typeof window.qiyao,remote:window.remoteBlocked,private:window.privateBlocked,origin:window.bridgeOriginBlocked})"), { node: 'undefined', bridge: 'undefined', remote: true, private: true, origin: true });
     assert.equal(await read(`window.open(${JSON.stringify(remote)}) === null`), true);
@@ -90,8 +106,10 @@ export async function verifyProjectPreview({ page, application, directory, scree
     assert.equal(await readFile(join(root, 'index.html'), 'utf8'), disk);
     verified('reopening gets fresh session storage, unload handlers cannot trap the window, and an empty draft stays empty');
 
-    await page.getByRole('button', { name: '关闭 index.html', exact: true }).click(); await page.getByRole('button', { name: '丢弃草稿', exact: true }).click();
-    await page.getByRole('dialog', { name: '保留文件改动？', exact: true }).waitFor({ state: 'hidden' });
+    for (const path of ['index.html', ...Object.keys(relatedDrafts)]) {
+      await page.getByRole('button', { name: `关闭 ${path}`, exact: true }).click(); await page.getByRole('button', { name: '丢弃草稿', exact: true }).click();
+      await page.getByRole('dialog', { name: '保留文件改动？', exact: true }).waitFor({ state: 'hidden' });
+    }
     await page.evaluate(id => window.qiyao.removeProject(id), projectId); await wait(`!${previewWindow}`);
     assert.deepEqual(requests, []);
     verified('removing the owning project closes its preview and leaves the original project files unchanged');

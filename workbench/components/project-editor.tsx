@@ -5,6 +5,7 @@ import { Button, Empty, Field, IconButton, Input, Modal } from './controls';
 import { CodeDiff, CodeEditor } from './code-editor';
 import { persistEditorDraft, registerEditorDrafts } from './editor-drafts';
 import { ProjectExplorer } from './project-explorer';
+import { previewTextPattern } from '../../contracts/project-preview';
 
 type Props = { project: Project; drafts: EditorDraft[]; files: boolean; report: (error: unknown) => void; onSave: () => void };
 export function ProjectEditor({ project, drafts, files, report, onSave }: Props) {
@@ -46,7 +47,7 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
   async function preview() {
     if (!tab || previewing) return;
     setPreviewing(true);
-    try { await window.qiyao.previewProject(project.id, { path: tab.path, text: tab.text }); }
+    try { await window.qiyao.previewProject(project.id, { path: tab.path, text: tab.text, drafts: tabsRef.current.filter(item => item.path !== tab.path && previewTextPattern.test(item.path) && (item.text !== item.baseText || item.baseSha256 === null)).map(({ path, text }) => ({ path, text })) }); }
     catch (error) { report(error); }
     finally { setPreviewing(false); }
   }
