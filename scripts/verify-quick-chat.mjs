@@ -6,7 +6,7 @@ import { gunzipSync } from 'node:zlib';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
 export async function verifyQuickChat({ page, application, getApplication, directory, screenshots, endpoint, calls, errors, verified, waitForBridge, restart }) {
-  const initialCalls = calls.length, layout = [], bytes = documentBytes('pdf', { outline: true, annotations: true });
+  const initialCalls = calls.length, layout = [], captures = [], bytes = documentBytes('pdf', { outline: true, annotations: true });
   const originalSha256 = createHash('sha256').update(bytes).digest('hex'), file = join(directory, 'quick-chat.pdf'); await writeFile(file, bytes);
   const preferences = await page.evaluate(async () => (await window.qiyao.load()).preferences);
   await page.evaluate(async ({ endpoint, directory }) => {
@@ -14,9 +14,12 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     await window.qiyao.saveProject({ id: 'quick-project', name: 'Quick native project', path: `${directory}/project-fixture`, instructions: 'Quick native scope', createdAt: 1 });
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, defaultProviderId: 'quick-native', defaultModel: 'verification-model', theme: 'light' });
   }, { endpoint, directory });
+  await page.reload(); await page.getByRole('textbox', { name: '消息', exact: true }).waitFor();
   await page.getByRole('button', { name: /^新聊天\s*Ctrl/ }).click();
+  await page.getByLabel('模型提供商', { exact: true }).selectOption('quick-native');
+  await page.getByLabel('选择模型', { exact: true }).selectOption('verification-model');
   await page.getByRole('textbox', { name: '消息', exact: true }).fill('MAIN_QUICK_CHAT_RETAINED');
-  await waitForBridge(page, async () => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === 'MAIN_QUICK_CHAT_RETAINED'));
+  await waitForBridge(page, async () => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === 'MAIN_QUICK_CHAT_RETAINED' && draft.providerId === 'quick-native' && draft.model === 'verification-model'));
   const mainDrafts = await page.evaluate(async () => (await window.qiyao.load()).composerDrafts);
   async function open() {
     await page.getByRole('button', { name: '快速聊天', exact: true }).click();
@@ -30,9 +33,16 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     await quick.getByRole('textbox', { name: '消息', exact: true }).waitFor(); return quick;
   }
   let quick = await open();
+  async function capture(filename) {
+    await quick.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const image = await application.evaluateMain("(async()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat');return {png:(await window.capturePage()).toPNG().toString('base64'),size:window.getContentSize()};})()");
+    const png = Buffer.from(image.png, 'base64'); assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], image.size);
+    await writeFile(join(screenshots, filename), png); captures.push({ filename, size: image.size });
+  }
   assert.equal(await quick.evaluate(() => window.qiyao), undefined);
-  const isolation = await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'); const prefs=window.webContents.getLastWebPreferences(); return {sandbox:prefs.sandbox,contextIsolation:prefs.contextIsolation,nodeIntegration:prefs.nodeIntegration,preload:prefs.preload,pinned:window.isAlwaysOnTop()};})()");
-  assert.equal(isolation.sandbox, true); assert.equal(isolation.contextIsolation, true); assert.equal(isolation.nodeIntegration, false); assert.ok(isolation.preload.endsWith('quick-chat-bridge.cjs')); assert.equal(isolation.pinned, true);
+  const isolation = await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'); const prefs=window.webContents.getLastWebPreferences(); return {sandbox:prefs.sandbox,contextIsolation:prefs.contextIsolation,nodeIntegration:prefs.nodeIntegration,pinned:window.isAlwaysOnTop()};})()");
+  assert.equal(isolation.sandbox, true); assert.equal(isolation.contextIsolation, true); assert.equal(isolation.nodeIntegration, false); assert.equal(isolation.pinned, true);
+  assert.deepEqual(await quick.evaluate(() => Object.keys(window.nookQuick).sort()), ['load', 'save', 'send', 'stop', 'activate', 'openWorkspace', 'windowAction', 'attachFiles', 'importAttachments', 'readDocumentOriginal', 'exportDocumentOriginal', 'openExternal', 'pendingApprovals', 'resolveApproval', 'onBeforeClose', 'onRun', 'onRefresh'].sort());
   verified('quick chat opens a separate sandbox and restricted preload without the full workspace bridge');
 
   const input = () => quick.getByRole('textbox', { name: '消息', exact: true });
@@ -46,7 +56,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await quick.getByRole('button', { name: '预览 quick-chat.pdf', exact: true }).click();
   await quick.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
   await quick.getByRole('button', { name: '下一页', exact: true }).click(); await quick.waitForFunction(() => document.querySelector('.textLayer')?.textContent.includes('Budget 42'));
-  await quick.screenshot({ path: join(screenshots, 'quick-chat-pdf.png') }); await quick.getByRole('dialog').getByRole('button', { name: '完成', exact: true }).click();
+  await capture('quick-chat-pdf.png'); await quick.getByRole('dialog').getByRole('button', { name: '完成', exact: true }).click();
   verified('quick-chat drafts and the actual PDF worker/viewer preserve exact originals while retaining every main-window draft and making no model request');
 
   await quick.getByRole('button', { name: '发送消息', exact: true }).click();
@@ -89,7 +99,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     const viewport = await quick.evaluate(() => ({ width: innerWidth, height: innerHeight, overflow: document.documentElement.scrollWidth > innerWidth || document.documentElement.scrollHeight > innerHeight }));
     assert.equal(viewport.overflow, false); assert.ok(bounds.x + bounds.width <= viewport.width + 1 && bounds.y + bounds.height <= viewport.height + 1);
     assert.equal(await hide.evaluate(element => getComputedStyle(element).opacity), '1');
-    await quick.screenshot({ path: join(screenshots, `quick-chat-${theme}-${zoom}.png`) }); layout.push({ theme, zoom, overflow: false, controlsVisible: true });
+    await capture(`quick-chat-${theme}-${zoom}.png`); layout.push({ theme, zoom, overflow: false, controlsVisible: true });
   }
   await quick.emulateMedia({ reducedMotion: 'reduce' }); assert.equal(await quick.getByRole('button', { name: '隐藏快速聊天', exact: true }).evaluate(element => getComputedStyle(element).transitionDuration), '0s');
   verified('quick chat fits its minimum native window in both themes at 100, 125 and 150 percent zoom with keyboard-visible controls and reduced motion');
@@ -97,7 +107,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat');window.webContents.setZoomFactor(1);window.setSize(640,580);})()");
   await quick.getByRole('button', { name: '取消窗口置顶', exact: true }).click(); await quick.getByRole('button', { name: '窗口置顶', exact: true }).waitFor();
   await quick.getByRole('button', { name: '收起快速聊天', exact: true }).click(); await quick.getByRole('button', { name: '展开快速聊天', exact: true }).waitFor();
-  assert.equal(await input().isVisible(), false); await quick.screenshot({ path: join(screenshots, 'quick-chat-collapsed.png') });
+  assert.equal(await input().isVisible(), false); await capture('quick-chat-collapsed.png');
   await quick.getByRole('button', { name: '展开快速聊天', exact: true }).click(); assert.equal(await input().inputValue(), 'QUICK_HANDOFF_UNSENT');
   await quick.keyboard.press('Escape');
   const hiddenDeadline = Date.now() + 5000; let hidden = false;
@@ -106,10 +116,10 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     if (hidden) break; await new Promise(resolve => setTimeout(resolve, 100));
   }
   assert.equal(hidden, true, 'Escape must save and hide quick chat within the operation deadline.');
-  const accelerator = await application.evaluateMain("['Ctrl+Alt+Shift+F12','Ctrl+Alt+Shift+F11','Ctrl+Alt+Shift+F10'].find(key=>!require('electron').globalShortcut.isRegistered(key))"); assert.ok(accelerator);
-  await application.evaluateMain("globalThis.nookQuickShortcutRegister=require('electron').globalShortcut.register;require('electron').globalShortcut.register=(key,callback)=>{const result=globalThis.nookQuickShortcutRegister.call(require('electron').globalShortcut,key,callback);if(result)globalThis.nookQuickShortcutCallback=callback;return result;};");
+  const accelerator = await application.evaluateMain("(()=>{const shortcut=require('electron').globalShortcut;for(const key of ['Ctrl+Alt+Shift+F12','Ctrl+Alt+Shift+F11','Ctrl+Alt+Shift+F10','Ctrl+Alt+Shift+F9']){if(shortcut.isRegistered(key))continue;if(shortcut.register(key,()=>{})){shortcut.unregister(key);return key;}}return null;})()"); assert.ok(accelerator, 'The quick-chat test needs an actually available global accelerator.');
+  await application.evaluateMain("globalThis.nookQuickShortcut=require('electron').globalShortcut;globalThis.nookQuickShortcutRegister=globalThis.nookQuickShortcut.register;globalThis.nookQuickShortcut.register=(key,callback)=>{const result=globalThis.nookQuickShortcutRegister.call(globalThis.nookQuickShortcut,key,callback);if(result)globalThis.nookQuickShortcutCallback=callback;return result;};");
   try { await page.evaluate(async accelerator => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, desktop: { ...(state.preferences.desktop ?? {}), trayEnabled: false, closeToTray: false, shortcutEnabled: true, accelerator, shortcutTarget: 'quick-chat' } }); }, accelerator); }
-  finally { await application.evaluateMain("require('electron').globalShortcut.register=globalThis.nookQuickShortcutRegister;delete globalThis.nookQuickShortcutRegister;"); }
+  finally { await application.evaluateMain("globalThis.nookQuickShortcut.register=globalThis.nookQuickShortcutRegister;delete globalThis.nookQuickShortcutRegister;delete globalThis.nookQuickShortcut;"); }
   await application.evaluateMain("globalThis.nookQuickShortcutCallback();delete globalThis.nookQuickShortcutCallback;");
   assert.equal(await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat').isVisible()"), true);
   const samePage = quick; quick = await open(); assert.equal(quick, samePage); assert.equal(await input().inputValue(), 'QUICK_HANDOFF_UNSENT');
@@ -141,5 +151,6 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   assert.equal(calls.length - initialCalls, 4); await page.evaluate(async preferences => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, ...preferences }); }, preferences);
   verified('combined-window backup deduplicates exact PDFs, restores missing originals and invalidates stale send revisions, then recovers quick input through an actual normal close/restart');
   return { page, result: { checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256, layout, independentDraftsVerified: true, restrictedBridgeVerified: true,
-    exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true } };
+    exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true,
+    captures, screenshotMethod: 'Complete Electron BrowserWindow.capturePage with exact native content-size assertions' } };
 }

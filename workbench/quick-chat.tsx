@@ -116,7 +116,7 @@ export default function QuickChatView() {
             {Boolean(message.invocations?.length) && <ModelUsage invocations={message.invocations!} />}{message.knowledgeSources && <KnowledgeSources sources={message.knowledgeSources} content={message.content} />}
           </article>)}
         </div></div> : <div className="quick-chat-empty"><h1>随时问一句</h1><p>整理想法、读份文档，或继续之前的聊天。</p></div>}
-        <div className="quick-chat-composer"><Composer providers={snapshot.context.providers} assistants={snapshot.context.assistants} projects={snapshot.context.projects} messages={thread?.messages ?? []}
+        <fieldset className="quick-chat-composer" disabled={busy} aria-busy={busy}><Composer providers={snapshot.context.providers} assistants={snapshot.context.assistants} projects={snapshot.context.projects} messages={thread?.messages ?? []}
           providerId={draft.providerId ?? ''} model={draft.model} assistantId={draft.assistantId ?? ''} projectId={draft.projectId ?? ''} text={draft.text} attachments={draft.attachments}
           onText={text => update({ text })} onProvider={providerId => update({ providerId: providerId || undefined })} onModel={model => update({ model })} onAssistant={assistantId => update({ assistantId: assistantId || undefined })} onProject={projectId => update({ projectId: projectId || undefined })}
           onAttachments={attachments => update({ attachments })} importContext={draft.threadId ?? ''} mode={draft.mode} onMode={mode => update({ mode })}
@@ -124,7 +124,7 @@ export default function QuickChatView() {
           plugins={snapshot.context.plugins} pluginIds={draft.pluginIds} onPlugins={pluginIds => update({ pluginIds })} knowledgeCollections={snapshot.context.knowledgeCollections} hasNotes={snapshot.context.hasNotes} knowledgeCollectionIds={draft.knowledgeCollectionIds ?? []} onKnowledgeCollections={knowledgeCollectionIds => update({ knowledgeCollectionIds })}
           running={running} enterToSend={snapshot.context.preferences.enterToSend} onSend={send} onStop={() => { void bridge.stop().catch(report); }} report={report} onConfigure={() => { void bridge.openWorkspace(true).catch(report); }}
           promptTemplates={snapshot.context.promptTemplates} onPrompt={(text, assistantId) => { if (!draftRef.current) return false; try { update({ text: appendPrompt(draftRef.current.text, text), ...(assistantId ? { assistantId } : {}) }); return true; } catch (problem) { report(problem); return false; } }} />
-        </div>
+        </fieldset>
       </>}
       {error && <div className="quick-chat-error" role="alert"><span>{error}</span><Button onClick={() => setError('')}>关闭提示</Button></div>}
     </div>
