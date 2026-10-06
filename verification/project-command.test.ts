@@ -1,4 +1,5 @@
 import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { projectCommand } from '../desktop/services/project-command';
 
@@ -7,7 +8,7 @@ describe('project command lifecycle', () => {
     const progress = vi.fn();
     const result = await projectCommand(process.execPath, ['-e', 'process.stdout.write(process.cwd()+"\\n"+process.argv[1]); process.stderr.write("\\nError stream");', 'literal $(no-shell) & text'], tmpdir(), 5000, new AbortController().signal, progress);
     expect(result).toMatchObject({ exitCode: 0, timedOut: false });
-    expect(result.output).toContain(tmpdir());
+    expect(result.output).toContain(resolve(tmpdir()));
     expect(result.output).toContain('literal $(no-shell) & text');
     expect(result.output).toContain('Error stream');
     expect(progress).toHaveBeenCalled();

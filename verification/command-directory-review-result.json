@@ -1,0 +1,106 @@
+{
+  "productCodeChanged": false,
+  "retainedFailure": {
+    "passed": false,
+    "executorExitCode": 1,
+    "files": 94,
+    "passedTests": 907,
+    "failedTests": 1,
+    "tests": 908,
+    "workers": 2,
+    "reason": "The assertion expected forward slashes from TEMP, while the successful Windows child reported the same current directory using native backslashes.",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-native-close-barrier-parallel-coverage.log",
+      "sha256": "03eb95041a342c417920a247cc8a2ad2715fb63b24b308b3433794ba00e8ad1a"
+    }
+  },
+  "change": {
+    "file": "verification/project-command.test.ts",
+    "scope": "Normalize only the expected temporary-directory path with node:path resolve. The actual raw TEMP is still passed as cwd, and exit, literal argument, stderr, progress, bounded-output, timeout and cancellation assertions remain.",
+    "wholeTestBudgetMilliseconds": 5000,
+    "coverageThresholdPercent": 80
+  },
+  "focused": {
+    "passed": true,
+    "executorExitCode": 0,
+    "tests": 3,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-command-directory-normalized-focused.log",
+      "sha256": "c4e6e57746b0f567437736cc563857b5264a2a4e31ffce26beec95ed7eedcb74"
+    }
+  },
+  "retainedSettingsTimeout": {
+    "passed": false,
+    "executorExitCode": 1,
+    "tests": 908,
+    "passedTests": 907,
+    "failedTests": 1,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-command-directory-normalized-parallel-coverage.log",
+      "sha256": "f90f8e8db154084de23fdf3f2b0deabcd762e6d374f0989f886d6a7222c5cf7e"
+    },
+    "reason": "The path normalization passed. The combined seven-save provider case exceeded its unchanged 5000 ms whole-test budget."
+  },
+  "settingsSplit": {
+    "files": [
+      "verification/provider-settings.test.ts"
+    ],
+    "scope": "Separate Gemini destination/model credential transitions from Azure API/version transitions into independent real-vault cases. Preserve all original operations and assertions; independently assert four and three affected-turn stops. No production fsync or deadline changed."
+  },
+  "splitFocused": {
+    "passed": true,
+    "files": 2,
+    "tests": 12,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-provider-split-focused.log",
+      "sha256": "e24669dac7cdcdb362439e850893ed355ff44d38b084c3c0e79305c69db4b4b2"
+    }
+  },
+  "full": {
+    "passed": true,
+    "executorExitCode": 0,
+    "files": 94,
+    "tests": 909,
+    "workers": 2,
+    "temporaryDirectory": "E:/NookVerification/Temp",
+    "coverageScope": "Configured contracts and desktop services; not renderer/UI coverage.",
+    "coverage": {
+      "lines": {
+        "total": 3508,
+        "covered": 3486,
+        "skipped": 0,
+        "pct": 99.37
+      },
+      "statements": {
+        "total": 5837,
+        "covered": 5671,
+        "skipped": 0,
+        "pct": 97.15
+      },
+      "functions": {
+        "total": 1312,
+        "covered": 1277,
+        "skipped": 0,
+        "pct": 97.33
+      },
+      "branches": {
+        "total": 4063,
+        "covered": 3847,
+        "skipped": 0,
+        "pct": 94.68
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageFile": "E:/NookVerification/ProviderSplitParallelCoverage-20261006/coverage-summary.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-provider-split-parallel-coverage.log",
+      "sha256": "24117ddf56d45868f8707caae6438ad29765368ce1a99e7a638e3f3d9d898d06"
+    }
+  },
+  "scope": "This corrects a verified test path-format mismatch. It is not a product command-execution fix or an explanation of prior timing failures. Native and hosted results remain separate."
+}

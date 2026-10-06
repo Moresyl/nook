@@ -30,8 +30,13 @@ describe('provider configuration and destination-bound credentials', () => {
     expect(settings.key(changed)).toBe(''); expect(settings.key({ ...provider, id: 'missing' })).toBe('');
     await settings.save(changed); expect(settings.key(changed)).toBe(''); expect(vault.snapshot().providers[0].hasKey).toBe(false); expect(stop).toHaveBeenCalledWith(provider.id);
     await settings.save(changed, 'gemini-key'); await settings.save({ ...changed, models: ['different-model'] }); expect(settings.key(changed)).toBe('gemini-key');
+    expect(stop.mock.calls.length).toBe(4);
+  });
+
+  it('retains destination-bound Azure keys across API and version changes while stopping affected turns', async () => {
+    const { settings, stop } = await setup();
     const azure = { ...provider, kind: 'azure' as const }; await settings.save(azure, 'azure-key'); await settings.save({ ...azure, azureApi: 'chat' }); await settings.save({ ...azure, azureApi: 'deployment-chat', apiVersion: '2024-10-21' });
-    expect(settings.key(azure)).toBe('azure-key'); expect(stop.mock.calls.length).toBe(7);
+    expect(settings.key(azure)).toBe('azure-key'); expect(stop.mock.calls.length).toBe(3);
   });
 
   it('migrates legacy keys and refuses to rebind them during backup restoration under a reused ID', async () => {
