@@ -158,11 +158,13 @@ describe('independent parallel model comparisons', () => {
     const update = vault.commit.bind(vault); let calls = 0; let release!: () => void; const held = new Promise<void>((resolve) => { release = resolve; });
     vi.spyOn(vault, 'commit').mockImplementation(async (change) => { const own = ++calls; const saved = await update(change); if (own === 2) await held; return saved; });
     const comparing = (async () => { const first = await engine.start({ ...request, model: 'one' }); const second = await engine.start({ ...request, model: 'two' }); return { threadIds: [first.threadId, second.threadId] }; })();
-    await vi.waitFor(() => { expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true); });
-    release(); const result = await comparing;
-    const laterInitialNotification = emit.mock.calls.map(([event]) => event).find((event) => event.state && event.threadId === result.threadIds[1]);
-    expect(laterInitialNotification?.state?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === result.threadIds[0])?.messages.at(-1)?.content).toContain('one: PARTIAL');
-    await Promise.all(result.threadIds.map((id) => engine.stop(id)));
+    try {
+      await vi.waitFor(() => { expect(vault.snapshot().threads[0]?.messages.at(-1)?.content).toContain('one: PARTIAL'); expect(emit.mock.calls.some(([event]) => event.message?.content.includes('one: PARTIAL'))).toBe(true); });
+      release(); const result = await comparing;
+      const laterInitialNotification = emit.mock.calls.map(([event]) => event).find((event) => event.state && event.threadId === result.threadIds[1]);
+      expect(laterInitialNotification?.state?.threads.find((thread: ReturnType<typeof sampleThread>) => thread.id === result.threadIds[0])?.messages.at(-1)?.content).toContain('one: PARTIAL');
+      await Promise.all(result.threadIds.map((id) => engine.stop(id)));
+    } finally { release(); await comparing.catch(() => {}); await engine.shutdown(); }
   });
   it('retains the recorded comparison origin after an actual continuation changes models and the vault restarts', async () => {
     const { engine, vault, directory } = await setup(); const result = await engine.compare(input); await Promise.all(result.threadIds.map((id) => engine.settle(id)));

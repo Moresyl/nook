@@ -14,6 +14,11 @@ async function setup() {
   return context;
 }
 const canonical = (value: unknown) => Buffer.from(JSON.stringify(value, null, 2));
+// Compare every byte natively instead of treating multi-MB buffers as objects with millions of properties.
+function expectBytes(actual: Buffer, expected: Buffer) {
+  expect(actual.byteLength).toBe(expected.byteLength);
+  expect(actual.equals(expected)).toBe(true);
+}
 // Each new disk-consistency case includes multi-MB fixture creation and repeated fsync/restart.
 // This is a correctness-suite budget, not a production operation deadline or latency assertion.
 const diskCaseBudgetMs = 30_000;
@@ -40,8 +45,8 @@ describe('bounded settings transactions', () => {
     expect(clones.mock.calls.some(([value]) => value && typeof value === 'object' && 'messages' in value)).toBe(false);
     snapshot.mockRestore(); clones.mockRestore();
     expect(result).toEqual(workspaceSchema.parse({ ...before, preferences: { ...before.preferences, theme: 'light' }, providers: [{ ...before.providers[0], name: '中文连接' }] }));
-    expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(canonical(before));
-    expect(await readFile(join(directory, 'workspace.json'))).toEqual(canonical(result));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before));
+    expectBytes(await readFile(join(directory, 'workspace.json')), canonical(result));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(result);
   }, diskCaseBudgetMs);
 
@@ -63,7 +68,7 @@ describe('bounded settings transactions', () => {
     const settings = vault.updateSettings(state => { expect(state.providers).toHaveLength(2); state.preferences.defaultProviderId = 'second'; seen.push('settings'); });
     await Promise.all([history, composer, settings]); expect(seen).toEqual(['history', 'draft', 'settings']);
     const expected = vault.snapshot(); expect(expected.threads[0].title).toBe('Latest'); expect(expected.composerDrafts).toEqual([draft]);
-    expect(await readFile(join(directory, 'workspace.json'))).toEqual(canonical(expected));
+    expectBytes(await readFile(join(directory, 'workspace.json')), canonical(expected));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(expected);
   }, diskCaseBudgetMs);
 
@@ -73,9 +78,9 @@ describe('bounded settings transactions', () => {
     await vault.update(state => { state.threads.push(sampleThread({ id: 'private', temporary: true, title: 'PRIVATE_TITLE' })); state.activeThreadId = 'private'; state.composerDrafts = [composerDraftSchema.parse({ threadId: 'private', text: 'PRIVATE_DRAFT', updatedAt: 1 })]; });
     const current = await vault.updateSettings(state => { state.preferences.theme = 'dark'; });
     expect(current.activeThreadId).toBe('private'); expect(current.threads).toHaveLength(2); expect(current.composerDrafts[0].text).toBe('PRIVATE_DRAFT');
-    expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(canonical(before));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before));
     const expected = persistentWorkspace(current, 'thread');
-    expect(await readFile(join(directory, 'workspace.json'))).toEqual(canonical(expected));
+    expectBytes(await readFile(join(directory, 'workspace.json')), canonical(expected));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.snapshot()).toEqual(expected);
   }, diskCaseBudgetMs);
 
@@ -85,7 +90,7 @@ describe('bounded settings transactions', () => {
     await expect(vault.updateSettings(state => { state.providers[0].endpoint = 'not a URL'; })).rejects.toThrow();
     await expect(vault.updateSettings(state => { state.providers = Array.from({ length: 101 }, (_, index): Provider => ({ ...provider, id: `provider-${index}` })); })).rejects.toThrow();
     await expect(vault.updateSettings(() => { throw new Error('Callback failed'); })).rejects.toThrow('Callback failed');
-    expect(vault.snapshot()).toEqual(before); expect(await readFile(join(directory, 'workspace.json'))).toEqual(primary); expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(backup);
+    expect(vault.snapshot()).toEqual(before); expectBytes(await readFile(join(directory, 'workspace.json')), primary); expectBytes(await readFile(join(directory, 'workspace.backup.json')), backup);
     await vault.updateSettings(state => { state.preferences.theme = 'dark'; }); expect(vault.preferences().theme).toBe('dark');
   }, diskCaseBudgetMs);
 
@@ -94,10 +99,10 @@ describe('bounded settings transactions', () => {
     await rename(target, held); await mkdir(target);
     try {
       await expect(vault.updateSettings(state => { state.preferences.theme = 'dark'; })).rejects.toThrow('could not be saved');
-      expect(vault.snapshot()).toEqual(before); expect(await readFile(held)).toEqual(original);
+      expect(vault.snapshot()).toEqual(before); expectBytes(await readFile(held), original);
     } finally { await rm(target, { recursive: true }); await rename(held, target); }
     const next = await vault.updateSettings(state => { state.preferences.theme = 'dark'; });
-    expect(await readFile(join(directory, 'workspace.backup.json'))).toEqual(canonical(before)); expect(await readFile(join(directory, 'workspace.json'))).toEqual(canonical(next));
+    expectBytes(await readFile(join(directory, 'workspace.backup.json')), canonical(before)); expectBytes(await readFile(join(directory, 'workspace.json')), canonical(next));
     const restarted = new WorkspaceVault(directory, codec); await restarted.initialize(); expect(restarted.preferences().theme).toBe('dark');
   }, diskCaseBudgetMs);
 });
