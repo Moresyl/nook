@@ -1,0 +1,50 @@
+{
+  "sourceCommit": "d3dd3263c0d45ec7eb11ad026476052f48feec83",
+  "wrapperSha256": "000cc76fda3309dd297c875a735de77a46b6aa7d230c5795f1f5563b9dbe6187",
+  "initialRun": {
+    "status": "failed",
+    "completedChecks": 3,
+    "failure": "Portable wrapper did not exit normally",
+    "closeTimeoutMs": 10000,
+    "extractionMs": 13724,
+    "retainedFixture": "E:/NookVerification/Temp/qiyao-portable-jAXxmt",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-code-wrap-portable.log",
+    "logSha256": "f1660652b170ce91d3dcb325d34ccfa5aa0a62cdab80c2e8043345a023fa5181",
+    "passedScope": "Unicode path and arguments; exact extracted package files; real PowerShell PTY output and exit code 7",
+    "postCleanupOwnedProcesses": 0
+  },
+  "firstRerun": {
+    "status": "passed",
+    "verifiedAt": "2026-10-06T00:09:07.419Z",
+    "checks": 7,
+    "normalCloseMs": [2113, 2154],
+    "log": "D:/GR/pi-pc/.firecrawl/nook-portable-close-diagnostic.log",
+    "logSha256": "3d7115b572975d98e0f9c4f2fb4898b1a462a59b83d2773a11ed633f8298687c",
+    "diagnosticLimitation": "The NSIS wrapper did not forward the shutdown observers' stderr; lifecycle assertions passed but the event list was empty."
+  },
+  "fileDiagnosticAttempt": {
+    "status": "failed",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-portable-close-file-diagnostic.log",
+    "logSha256": "ded34b970ba8f4127de298e3a08e6ecfac0312661c7210d9f825dc054e0544c0",
+    "fixture": "E:/NookVerification/Temp/qiyao-portable-UqZ9up",
+    "observation": "Three checks passed; the close request remained pending, no shutdown file appeared, main process 91380 had an Error window and the inspector did not reply. Only fixture-owned Nook processes were force-cleaned, after confirming the error state; harness terminated with exit code 1.",
+    "limitation": "The native error text was not accessible. This instrumented run does not establish a product failure root cause."
+  },
+  "boundedDiagnosticRun": {
+    "status": "passed",
+    "verifiedAt": "2026-10-06T00:15:04.916Z",
+    "checks": 7,
+    "normalCloseMs": [3860, 2508],
+    "applicationCloseEventToExitMs": [79, 146],
+    "processExitEventsObserved": 2,
+    "extractionDirectoriesRemoved": 2,
+    "firstCloseObservedHelperPid": 116832,
+    "helperAbsentOnSubsequentProcessInventory": true,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-portable-close-bounded.log",
+    "logSha256": "f475f65e5717826c79a078157f429b2e2fc8f08b84fcbc402060e8eb0c420e60",
+    "scope": "Same packaged candidate, full portable lifecycle with the original deadline covering close IPC and wrapper exit. No product change; the initial intermittent failure was not reproduced."
+  },
+  "diagnosticChange": "Await inspector disconnect; capture the filesystem function before installing delayed event callbacks; retain bounded scratch-file shutdown observations and owned-process diagnostics. Apply the original 10000 ms deadline to both the close request and wrapper exit, rather than starting after IPC acknowledgement. No product code or increased shutdown deadline.",
+  "rootCause": "unproven",
+  "boundary": "Extraction audit alone does not prove normal portable lifecycle. A later successful rerun cannot establish that the original intermittent failure is fixed."
+}

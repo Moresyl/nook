@@ -103,7 +103,14 @@ async function evaluateMain(endpoint, expression) {
         if (message.id === 1) finish(message.error || message.result?.exceptionDetails ? new Error('Portable main-process operation failed') : null, message.result?.result?.value);
       });
     });
-  } finally { socket.close(); }
+  } finally {
+    await new Promise((resolve, reject) => {
+      if (socket.readyState === WebSocket.CLOSED) { resolve(); return; }
+      const timer = setTimeout(() => reject(new Error('Portable main-process debugger did not disconnect')), 5000);
+      socket.addEventListener('close', () => { clearTimeout(timer); resolve(); }, { once: true });
+      socket.close();
+    });
+  }
 }
 async function launch() {
   const inspector = await freePort();
@@ -118,7 +125,11 @@ async function launch() {
   const capture = (chunk) => { output = (output + chunk.toString()).slice(-65_536); };
   child.stdout.on('data', capture); child.stderr.on('data', capture);
   const exited = new Promise((resolve) => child.once('exit', (code) => resolve(code)));
-  application = { child, exited };
+  const shutdownLog = join(directory, `shutdown-${launches.length + 1}.jsonl`);
+  application = { child, exited, diagnosticOutput: async () => {
+    const content = await readFile(shutdownLog, 'utf8').catch((error) => error.code === 'ENOENT' ? '' : Promise.reject(error));
+    return content.split(/\r?\n/).filter(Boolean).slice(-16).map((line) => JSON.parse(line));
+  } };
   const timing = { wrapperStartedAt: Date.now() }; launches.push(timing);
   // Cold extraction and copying precede the Electron process. Measure them
   // separately, retaining the existing 30-second application startup budget.
@@ -154,6 +165,26 @@ async function launch() {
   assert.equal(main.portableFile, executable); assert.equal(main.portableDirectory, portableDirectory); assert.equal(main.data, data);
   assert.ok(main.arguments.includes(marker), 'Portable wrapper must forward an exact quoted Unicode argument');
   application.endpoint = endpoint; application.extraction = extraction; application.main = main;
+  // Install observers before testing, then disconnect the inspector. Never
+  // attach a new inspector while measuring normal application shutdown.
+  await evaluateMain(endpoint, `
+    const appendPortableShutdown = require('node:fs').appendFileSync;
+    const snapshotPortableShutdown = event => {
+      const handles = process._getActiveHandles().slice(0, 32).map(handle => ({
+        type: handle.constructor.name,
+        ...(handle.constructor.name === 'ChildProcess' ? { pid: handle.pid, exitCode: handle.exitCode, signalCode: handle.signalCode, connected: handle.connected } : {})
+      }));
+      // The NSIS wrapper does not forward Electron's stderr reliably. Keep
+      // bounded test-only observations in this run's owned scratch directory.
+      appendPortableShutdown(${JSON.stringify(shutdownLog)}, JSON.stringify({ event, at: Date.now(), handles, resources: process.getActiveResourcesInfo().slice(0, 64) }) + '\\n');
+    };
+    for (const event of ['before-quit', 'will-quit', 'quit', 'window-all-closed']) require('electron').app.on(event, () => snapshotPortableShutdown(event));
+    for (const window of require('electron').BrowserWindow.getAllWindows()) {
+      window.on('close', () => snapshotPortableShutdown('window-close'));
+      window.on('closed', () => snapshotPortableShutdown('window-closed'));
+    }
+    process.once('exit', () => snapshotPortableShutdown('process-exit'));
+  `);
   application.browser = await chromium.connectOverCDP(endpoints.browser, { timeout: 10_000 });
   const context = application.browser.contexts()[0];
   const page = await waitForDesktopPage(context, { timeoutMs: 10_000, hasExited: () => child.exitCode !== null || child.signalCode !== null });
@@ -167,16 +198,28 @@ async function launch() {
 }
 async function close() {
   const current = application;
+  const startedAt = Date.now();
   assert.equal(current.page.isClosed(), false, 'The portable page must be live before requesting normal close');
-  try { await current.page.evaluate(() => window.qiyao.windowAction('close')); }
-  catch (error) {
-    if (!current.page.isClosed() || !(error instanceof Error) || !/^page\.evaluate: Target page, context or browser has been closed(?:\r?\n|$)/.test(error.message)) throw error;
-    console.log('Portable page closed before acknowledging the requested close; normal wrapper exit and extraction cleanup remain required.');
-  }
-  const exit = await Promise.race([current.exited, new Promise((_, reject) => {
-    const timer = setTimeout(() => reject(new Error('Portable wrapper did not exit normally')), 10_000);
-    current.exited.then(() => clearTimeout(timer));
-  })]);
+  let closeTimer;
+  const requestedExit = async () => {
+    try { await current.page.evaluate(() => window.qiyao.windowAction('close')); }
+    catch (error) {
+      if (!current.page.isClosed() || !(error instanceof Error) || !/^page\.evaluate: Target page, context or browser has been closed(?:\r?\n|$)/.test(error.message)) throw error;
+      console.log('Portable page closed before acknowledging the requested close; normal wrapper exit and extraction cleanup remain required.');
+    }
+    return current.exited;
+  };
+  const exit = await Promise.race([requestedExit(), new Promise((_, reject) => {
+    closeTimer = setTimeout(() => reject(new Error('Portable wrapper did not exit normally')), 10_000);
+  })]).finally(() => clearTimeout(closeTimer)).catch(async (error) => {
+    const elapsedMs = Date.now() - startedAt;
+    const children = await ownedChildren().catch(() => 'Process inventory unavailable');
+    console.error('Portable close failure', JSON.stringify({ elapsedMs, wrapperPid: current.child.pid, wrapperExitCode: current.child.exitCode, wrapperSignalCode: current.child.signalCode, children, events: await current.diagnosticOutput() }));
+    throw error;
+  });
+  const events = await current.diagnosticOutput();
+  console.log('Portable normal close', JSON.stringify({ elapsedMs: Date.now() - startedAt, exitCode: exit, events }));
+  assert.ok(events.some((item) => item.event === 'process-exit'), 'Portable shutdown diagnostics must observe the application exit');
   assert.equal(exit, 0, 'Portable wrapper must propagate the normal application exit');
   await current.browser.close();
   assert.equal(await stat(current.extraction).then(() => true, (error) => error.code === 'ENOENT' ? false : Promise.reject(error)), false, 'Portable extraction must be removed after normal exit');

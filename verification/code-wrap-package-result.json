@@ -10,8 +10,13 @@
     { "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe", "bytes": 238003787, "sha256": "6f6baf94a8ae4e8c3856f47387f5a749e6d9842f9b7d1b45dd78b32e1f648421", "signature": "NotSigned" },
     { "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe", "bytes": 306790381, "sha256": "000cc76fda3309dd297c875a735de77a46b6aa7d230c5795f1f5563b9dbe6187", "signature": "NotSigned" }
   ],
-  "runtimeVerification": { "completeDesktop": "passed", "verifiedAt": "2026-10-06T00:00:41.570Z", "checks": 223, "runtimeErrors": [], "normalCloseVerified": true, "finalCloseMs": 253, "exactCandidateHashesMatch": true, "result": "code-wrap-packaged-result.json", "codeWrapping": true, "memoriesChecks": 3, "previewChecks": 5, "previewExternalRequests": 0, "log": "nook-code-wrap-packaged-full.log", "installedLifecycle": "pending", "portable": "pending", "matchingReleaseProofs": "pending" },
+  "runtimeVerification": { "completeDesktop": "passed", "verifiedAt": "2026-10-06T00:00:41.570Z", "checks": 223, "runtimeErrors": [], "normalCloseVerified": true, "finalCloseMs": 253, "exactCandidateHashesMatch": true, "result": "code-wrap-packaged-result.json", "codeWrapping": true, "memoriesChecks": 3, "previewChecks": 5, "previewExternalRequests": 0, "log": "nook-code-wrap-packaged-full.log", "installedLifecycle": "pending", "portable": "latest reruns passed; initial intermittent failure retained in portable-close-review-result.json", "matchingReleaseProofs": "pending" },
   "packagedScreenshotsReviewed": ["code-wrap-dark-150.png", "checkbox-light.png"],
+  "additionalDistributionChecks": {
+    "surfaces": { "result": "surfaces-packaged-result.json", "checks": 4, "normalCloseMs": 613 },
+    "bootstrap": { "result": "distribution-bootstrap-result.json", "installerPlugins": 6, "uninstallerPlugins": 5, "portablePlugins": 2 },
+    "portableInvestigation": "portable-close-review-result.json"
+  },
   "boundary": "New application and installers include the scoped MCP read, project switcher, checkbox and code wrapping changes. The prior 9575887 package's 223-group pass belongs to different file hashes. Building and legal/identity auditing do not establish native installer interaction, complete runtime, full design alignment, signing or release readiness.",
   "logDirectory": "D:/GR/pi-pc/.firecrawl",
   "logs": [
