@@ -1,17 +1,23 @@
 {
-  "verifiedAt": "2026-10-06T11:26:41.456Z",
+  "verifiedAt": "2026-10-06T12:24:44.737Z",
   "variant": "development executable",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "modelRequests": 0,
-  "checks": 4,
+  "checks": 7,
   "screenshots": [
+    "tree-hints-light-100.png",
+    "branch-hints-light-100.png",
     "text-hints-light-100.png",
+    "annotation-hints-light-100.png",
     "text-hints-light-125.png",
     "text-hints-light-150.png",
     "text-hints-dark-100.png",
     "text-hints-dark-125.png",
-    "text-hints-dark-150.png"
+    "tree-hints-dark-150.png",
+    "branch-hints-dark-150.png",
+    "text-hints-dark-150.png",
+    "annotation-hints-dark-150.png"
   ],
   "themes": [
     "light",
@@ -22,7 +28,7 @@
     1.25,
     1.5
   ],
-  "triggers": 5,
+  "triggers": 12,
   "editorPathStates": [
     {
       "theme": "light",
@@ -61,5 +67,5 @@
       "compactFileTabVerified": true
     }
   ],
-  "scope": "Actual source Electron model-capacity description, project heading/path, editor path and native docked HTML path. At short-window heights the existing file-tab hint exposes the path while the redundant action-bar text is hidden; both responsive states are asserted. Hover, keyboard, literal text, one active hint, 300px bound, reference font/radius/padding, Escape and focus retained; draft and project bytes preserved. Parent capture is not a composited native child-view capture. Other title-bearing elements, physical accessibility and final distribution remain separate."
+  "scope": "Actual source Electron capacity, project heading/path, editor and native docked HTML path, nested file tree/current directory, Git branch and four PDF annotation descriptions. At short-window heights the existing file-tab hint exposes the hidden redundant action-bar path. Hover, keyboard, literal text, single active hint, 300px bound, reference dimensions, Escape and focus retained; draft and project bytes preserved. PDF activations retain native semantics and exact overlay geometry. Parent capture is not a composited native child-view capture. Physical accessibility, complete regression and final distribution remain separate."
 }

@@ -1,0 +1,1887 @@
+{
+  "verifiedAt": "2026-10-06T12:55:43.692Z",
+  "variant": "development executable",
+  "checks": 235,
+  "runtimeErrors": [],
+  "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
+  "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
+  "richContent": {
+    "formulaFaces": [
+      "KaTeX_Caligraphic",
+      "KaTeX_Fraktur",
+      "KaTeX_Main",
+      "KaTeX_Math",
+      "KaTeX_Size2",
+      "KaTeX_Size3"
+    ],
+    "lightGraph": {
+      "viewBox": "4 4 636 61",
+      "style": "max-width: 636px;",
+      "width": 636,
+      "height": 61,
+      "label": 49
+    },
+    "narrowGraph": {
+      "viewBox": "4 4 636 61",
+      "style": "max-width: 636px;",
+      "width": 448,
+      "height": 42.953125,
+      "label": 34.765625
+    },
+    "automaticExternalRequests": [],
+    "codeWrapping": {
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "zoom": [
+        1,
+        1.5
+      ],
+      "keyboard": true,
+      "exactCopyAndStoredSource": true,
+      "boundary": "Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard."
+    }
+  },
+  "nativeProviders": {
+    "protocols": [
+      "gemini",
+      "azure-responses",
+      "azure-chat",
+      "azure-deployment-chat"
+    ],
+    "requests": 17,
+    "cancelledStreams": [
+      "NATIVE_SLOW_gemini",
+      "NATIVE_SLOW_responses",
+      "NATIVE_SLOW_chat",
+      "NATIVE_SLOW_deployment-chat"
+    ],
+    "cloudCredentialsUsed": false
+  },
+  "attachments": {
+    "protocols": [
+      "responses",
+      "openai",
+      "anthropic",
+      "gemini",
+      "ollama",
+      "azure-responses",
+      "azure-chat",
+      "azure-deployment"
+    ],
+    "requests": 8,
+    "imageSha256": "dd486a4f9ebff7221a9d7a6e8eae567d3504438dd2c3bbd3f046a4162f36c743",
+    "documentFormats": [
+      "pdf",
+      "docx",
+      "xlsx",
+      "pptx",
+      "odt",
+      "ods",
+      "odp",
+      "rtf"
+    ],
+    "pdfOriginal": {
+      "textOnlyProtocols": [
+        "responses",
+        "openai",
+        "anthropic",
+        "gemini",
+        "ollama",
+        "azure-responses",
+        "azure-chat",
+        "azure-deployment"
+      ],
+      "restartBytesVerified": true,
+      "deduplicatedBackupVerified": true,
+      "missingFileRestoredVerified": true
+    },
+    "cloudCredentialsUsed": false,
+    "scope": "Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup including reconstruction of a missing PDF original. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used."
+  },
+  "knowledge": {
+    "protocols": [
+      "responses",
+      "openai",
+      "ollama",
+      "azure-responses",
+      "azure-chat",
+      "azure-deployment",
+      "gemini-fields",
+      "gemini-instruction"
+    ],
+    "requests": 24,
+    "cloudCredentialsUsed": false,
+    "sourceFormats": [
+      "docx",
+      "pdf"
+    ],
+    "scope": "Real desktop import workers, local and synthetic-vector hybrid retrieval, eight native embedding configurations, progress/cancellation, preserved failed rebuild, selected chat evidence, unsupported citation detection, archived retry, draft restart and complete backup restoration. Dialog boundaries use isolated fixtures; no live cloud embedding quality is claimed."
+  },
+  "automations": {
+    "checkbox": {
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "keyboardAndLabel": true,
+      "persistedSelection": true,
+      "disabledAndMixedProbes": true,
+      "reducedMotion": true,
+      "forcedColorsCheckedProbe": true,
+      "narrowZoom": 1.5,
+      "screenshots": [
+        "checkbox-light.png",
+        "checkbox-dark.png",
+        "checkbox-dark-narrow.png"
+      ],
+      "boundary": "Real automation form and saved selections; disabled and mixed states are temporary DOM probes. Forced colors are emulated, not physical OS accessibility evidence."
+    },
+    "tasks": 3,
+    "requests": 7,
+    "cancelledRequests": 2,
+    "historyStatuses": [
+      "complete",
+      "complete",
+      "stopped",
+      "error",
+      "complete",
+      "stopped"
+    ],
+    "scope": "Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
+  },
+  "desktop": {
+    "checks": 5,
+    "accelerator": "Ctrl+Alt+Shift+F11",
+    "backgroundTask": "complete",
+    "scope": "Actual desktop UI, real Electron tray creation/menu/hotkey registration/window visibility, hidden-window timed provider HTTP, draft persistence, explicit app quit/restart and complete backup restore. Shortcut/tray callback delivery, occupied-key and filesystem-failure boundaries use isolated test fixtures; physical tray pointer input, OS keyboard delivery, startup conflicts and other platforms remain separate gates."
+  },
+  "assistants": {
+    "checks": 6,
+    "imported": 2,
+    "exported": 4,
+    "scope": "Real assistant UI, JSON/gzip files, exact Unicode/inert preview, atomic new IDs, same-name retention, native HTTP instruction delivery, deleted-profile references, app restart and complete backup. Native picker/confirmation and a filesystem EIO boundary use isolated fixtures; physical picker and other-platform interaction remain separate gates."
+  },
+  "prompts": {
+    "checks": 6,
+    "templates": 2,
+    "scope": "Actual library/composer UI, keyboard tabs, literal variable preview, exact bounded append and retained context/attachments, disk-failure edit retry, native HTTP delivery, deletion, app restart and complete gzip backup. Picker/confirmation dialogs and EIO use isolated test boundaries; maximum template scale, broader accessibility and other platforms remain separate gates."
+  },
+  "replies": {
+    "checks": 6,
+    "versions": 5,
+    "paths": 5,
+    "providerRequests": 6,
+    "scope": "Actual regeneration, inert preview/cancel, selected-version HTTP continuation, atomic archive/replacement failure, independent drafts, native provider failure/stop, exact model/usage preservation, actual restart and complete gzip recovery. File-picker/confirmation and EIO boundaries use isolated fixtures; maximum scale, physical picker, broader accessibility and other platforms remain separate gates."
+  },
+  "messageEdits": {
+    "checks": 7,
+    "archivedPaths": 4,
+    "providerRequests": 5,
+    "scope": "Actual user/assistant plain-save without sending; preserved complete history, attachments, following messages, producing models/usage and manual provenance; selected original/edited HTTP continuation; independent editor drafts, actual close/restart before debounce, stale conflicts and explicit discard; native storage failure rejects close/backup and recovers; exact gzip recovery and owner deletion. Native file/confirmation and filesystem-failure boundaries are isolated fixtures; abrupt termination, maximum scale, broader accessibility and other platforms remain separate gates."
+  },
+  "commands": {
+    "checks": 6,
+    "providerRequests": 2,
+    "commandRuns": 2,
+    "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
+  },
+  "backups": {
+    "expandedBytes": 84181180,
+    "compressedBytes": 242361,
+    "conversations": 20,
+    "messageSha256": [
+      "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
+      "f18d6c86e30b026e0aec4bf39c6a2ba46b457151ea25476d9c23eb8aefce3726",
+      "a32a8dacf36136d7c927590de5e65a008c00c922665f5d908774754b9624147c",
+      "dc1d3f2f7a792c6209549ac5d149242e5c5fccb9ea1921fb6453cb6b02cbcc53",
+      "261a3ac08ac158b86a90bf85f1f554dee7185cd92a0e12168aae910c460d0b62",
+      "d21f8e58cf4b3687d9df9bbdc97f3215ad2649a4cfe9283bf64800819561b46b",
+      "dc8a75cc5c7624d751e46c9b163552f3fa87b0fac65387ac1c0b096fdc09b526",
+      "c9c0bd8f305755323df48e4774b052523570f2e953d3b75ce2362eaea38f8d96",
+      "67b45ff3e3a5d2f8f862e1b2c45b116ac1c4357eceb024890fc4d5613ab071af",
+      "15264b56a9d7b50c2175517328ce7fc5f7dd169a3b9a830d3f540df751cc32cd",
+      "852b0ed2ac30f0005da12ab62f1fce6dae3e959629753923a44ab3f776a7b5b3",
+      "e0a8cce2c32dc609c7ae09a3fe61b56620847c9dda957ee28df20608a45f2cff",
+      "174c031cf587281163db36d4e469b9beef6a01a899300ab17a4dbfe0053ce16e",
+      "40b7040f6837064b98991b879727e6ebda1977a5dbb09dc7afb38192151678aa",
+      "af8597a4a5c243aea3faa82e9c048b39b8852b2b1ced29333bef809cf6f1ca53",
+      "cffdec3aba89a51e19b32f35fd0f00bda362b8199a1634ee66c3335132b7d2f4",
+      "0574fa64b4bb2da71f2493b139d4d8b1ae86eeb0735d093ad106b075f6e49d26",
+      "90847fdef3eecbe30685b60327b081ed4354da77ab03dfc5e740bdda76109d98",
+      "da54b2b4d2819f55acd2d5d64e6ee5a07db1cc95ac93354b1c80ccd07e874b33",
+      "7ac55ca78e5353e1c9e1e1bdae283c0573d8f4af253be016a5381067ebe2be4f"
+    ],
+    "scope": "Real native plain/gzip files above the old 64 MB limit; complete Unicode messages, knowledge records, legacy format, credential exclusion, cancelled consent, actual filesystem failure, CRC rejection, restart and light/dark/minimum-window settings. Native dialogs are intercepted only in the isolated test process."
+  },
+  "projectTree": {
+    "checks": 7,
+    "projectCommandChecks": 2,
+    "rootEntriesBeforeChange": 224,
+    "rootEntriesAfterChange": 225,
+    "zoomFactors": [
+      1,
+      1.25,
+      1.5
+    ],
+    "layout": [
+      {
+        "zoom": 1,
+        "fileTree": true,
+        "sidebar": true,
+        "width": 760,
+        "height": 540,
+        "documentOverflow": false,
+        "terminal": {
+          "top": 390.828125,
+          "bottom": 540,
+          "height": 149.171875
+        },
+        "editor": {
+          "left": 356,
+          "right": 760,
+          "width": 404,
+          "height": 120.328125
+        },
+        "toggleFits": true
+      },
+      {
+        "zoom": 1.25,
+        "fileTree": false,
+        "sidebar": true,
+        "width": 608,
+        "height": 432,
+        "documentOverflow": false,
+        "terminal": {
+          "top": 317.57501220703125,
+          "bottom": 432.00001525878906,
+          "height": 114.42500305175781
+        },
+        "editor": {
+          "left": 64,
+          "right": 608,
+          "width": 544,
+          "height": 107.875
+        },
+        "toggleFits": true
+      },
+      {
+        "zoom": 1.5,
+        "fileTree": false,
+        "sidebar": true,
+        "width": 507,
+        "height": 360,
+        "documentOverflow": false,
+        "terminal": {
+          "top": 272,
+          "bottom": 360,
+          "height": 88
+        },
+        "editor": {
+          "left": 64,
+          "right": 506.66668701171875,
+          "width": 442.66668701171875,
+          "height": 62.16666793823242
+        },
+        "toggleFits": true
+      }
+    ],
+    "projectSwitcher": {
+      "selectedVisibleAtAllZooms": true,
+      "fixedAddAction": true,
+      "manualWheelBrowsing": true,
+      "focusedProjectSurvivesResize": true,
+      "settingsKeyboardReturn": true,
+      "selectedDraftRetained": true
+    },
+    "screenshots": [
+      "94-project-tree-pagination-light.png",
+      "95-project-tree-editor-light.png",
+      "96-project-tree-dark-narrow.png",
+      "97-project-workspace-zoom-100.png",
+      "97-project-workspace-zoom-125.png",
+      "97-project-workspace-zoom-150.png",
+      "98-project-settings-zoom-150.png",
+      "99-project-file-command-dark.png",
+      "100-project-terminal-command-dark.png",
+      "101-project-review-command-dark.png",
+      "102-project-switcher-dark-narrow.png"
+    ],
+    "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures",
+    "scope": "Real project-directory IPC, revision-bound pagination, scoped Unicode directories/junction exclusion, pointer and native ARIA tree keyboard input, selected-folder file creation/save, persisted editor drafts, keyboard file-tree visibility/cache/focus retention, actual application close/restart and dark minimum-window code/PTY input at 100/125/150 percent zoom. The sidebar stays visible; the file tree is manually hidden at 125/150 percent. Short-height layouts retain the add-project action. The populated long-name/path project dialog at 150 percent preserves complete field values and restores focus after Escape. Overflowing project switches retain the selected row and separate add action across zoom; horizontal wheel browsing stays put, focused project buttons survive resize and Tab/Enter/Escape restore settings focus without changing the selected project or editor draft. PTY output is inspected while an actual Read-Host command awaits Enter, then returned to the project PowerShell prompt. Command-palette actions preserve the same live PTY and dirty editor contents, synchronize toolbar labels, retain choices across page navigation and disable unavailable contexts. An isolated held main-process IPC load proves that actual project removal invalidates an in-flight command. Owned read failures and a delayed directory response use isolated main-process fixtures. Physical folder picker, populated maximum-scale performance, full accessibility, full backup restore and other platforms remain separate checks."
+  },
+  "chatNavigation": {
+    "checks": 5,
+    "modelRequests": 1,
+    "layout": [
+      {
+        "zoom": 1,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 536,
+            "right": 564,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 572,
+            "right": 600,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "置顶聊天",
+            "left": 608,
+            "right": 636,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "导出聊天",
+            "left": 644,
+            "right": 672,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "归档聊天",
+            "left": 680,
+            "right": 708,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "删除聊天",
+            "left": 716,
+            "right": 744,
+            "top": 50,
+            "bottom": 78,
+            "width": 28,
+            "height": 28
+          },
+          {
+            "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+            "left": 269,
+            "right": 451.96875,
+            "top": 339,
+            "bottom": 363,
+            "width": 182.96875,
+            "height": 24
+          },
+          {
+            "label": "消息",
+            "left": 252,
+            "right": 688,
+            "top": 378,
+            "bottom": 426,
+            "width": 436,
+            "height": 48
+          },
+          {
+            "label": "发送消息",
+            "left": 696,
+            "right": 728,
+            "top": 394,
+            "bottom": 426,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "label": "模型提供商",
+            "left": 246,
+            "right": 335,
+            "top": 477,
+            "bottom": 501,
+            "width": 89,
+            "height": 24
+          },
+          {
+            "label": "选择模型",
+            "left": 335,
+            "right": 478,
+            "top": 477,
+            "bottom": 501,
+            "width": 143,
+            "height": 24
+          }
+        ],
+        "width": 760,
+        "height": 540,
+        "overflow": false,
+        "bar": {
+          "left": 220,
+          "right": 760,
+          "top": 92,
+          "bottom": 133
+        },
+        "close": {
+          "left": 724,
+          "right": 752,
+          "top": 98,
+          "bottom": 126
+        },
+        "region": {
+          "width": 540,
+          "height": 181
+        },
+        "marker": {
+          "left": 227,
+          "right": 253,
+          "top": 168,
+          "bottom": 170
+        },
+        "rail": {
+          "top": 157,
+          "bottom": 290
+        },
+        "result": {
+          "top": 193,
+          "bottom": 210
+        }
+      },
+      {
+        "zoom": 1.25,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "置顶聊天",
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "导出聊天",
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "归档聊天",
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "删除聊天",
+            "left": 572,
+            "right": 596,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+            "left": 92.80000305175781,
+            "right": 275.3625030517578,
+            "top": 273.20001220703125,
+            "bottom": 297.20001220703125,
+            "width": 182.5625,
+            "height": 24
+          },
+          {
+            "label": "消息",
+            "left": 84,
+            "right": 548,
+            "top": 304,
+            "bottom": 336,
+            "width": 464,
+            "height": 32
+          },
+          {
+            "label": "发送消息",
+            "left": 556,
+            "right": 588,
+            "top": 304,
+            "bottom": 336,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "label": "模型提供商",
+            "left": 76,
+            "right": 164.5999984741211,
+            "top": 382,
+            "bottom": 406,
+            "width": 88.5999984741211,
+            "height": 24
+          },
+          {
+            "label": "选择模型",
+            "left": 164.60000610351562,
+            "right": 307.20001220703125,
+            "top": 382,
+            "bottom": 406,
+            "width": 142.60000610351562,
+            "height": 24
+          }
+        ],
+        "width": 608,
+        "height": 432,
+        "overflow": false,
+        "bar": {
+          "left": 64,
+          "right": 608,
+          "top": 72,
+          "bottom": 112.79999923706055
+        },
+        "close": {
+          "left": 572,
+          "right": 600,
+          "top": 78,
+          "bottom": 106
+        },
+        "region": {
+          "width": 544,
+          "height": 145.60000610351562
+        },
+        "marker": {
+          "left": 71,
+          "right": 97,
+          "top": 131.8000030517578,
+          "bottom": 133.8000030517578
+        },
+        "rail": {
+          "top": 120.80000305175781,
+          "bottom": 250.40000915527344
+        },
+        "result": {
+          "top": 161.8000030517578,
+          "bottom": 178.60000610351562
+        }
+      },
+      {
+        "zoom": 1.5,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "置顶聊天",
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "导出聊天",
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "归档聊天",
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "删除聊天",
+            "left": 470.66668701171875,
+            "right": 494.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+            "left": 92.66667175292969,
+            "right": 274.9583435058594,
+            "top": 201.33334350585938,
+            "bottom": 225.33334350585938,
+            "width": 182.2916717529297,
+            "height": 24
+          },
+          {
+            "label": "消息",
+            "left": 84,
+            "right": 446.66668701171875,
+            "top": 232,
+            "bottom": 264,
+            "width": 362.66668701171875,
+            "height": 32
+          },
+          {
+            "label": "发送消息",
+            "left": 454.66668701171875,
+            "right": 486.66668701171875,
+            "top": 232,
+            "bottom": 264,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "label": "模型提供商",
+            "left": 76,
+            "right": 164.33333587646484,
+            "top": 310,
+            "bottom": 334,
+            "width": 88.33333587646484,
+            "height": 24
+          },
+          {
+            "label": "选择模型",
+            "left": 164.33334350585938,
+            "right": 306.66668701171875,
+            "top": 310,
+            "bottom": 334,
+            "width": 142.33334350585938,
+            "height": 24
+          }
+        ],
+        "width": 507,
+        "height": 360,
+        "overflow": false,
+        "bar": {
+          "left": 64,
+          "right": 506.66668701171875,
+          "top": 72,
+          "bottom": 112.66666793823242
+        },
+        "close": {
+          "left": 470.66668701171875,
+          "right": 498.66668701171875,
+          "top": 78,
+          "bottom": 106
+        },
+        "region": {
+          "width": 442.66668701171875,
+          "height": 74
+        },
+        "marker": {
+          "left": 71,
+          "right": 97,
+          "top": 131.6666717529297,
+          "bottom": 133.6666717529297
+        },
+        "rail": {
+          "top": 120.66667175292969,
+          "bottom": 178.6666717529297
+        },
+        "result": {
+          "top": 137,
+          "bottom": 153.6666717529297
+        }
+      }
+    ],
+    "screenshots": [
+      "102-message-navigation-light.png",
+      "103-chat-find-light.png",
+      "104-chat-find-code-light.png",
+      "105-chat-find-dark-zoom-100.png",
+      "105-chat-find-dark-zoom-125.png",
+      "105-chat-find-dark-zoom-150.png"
+    ],
+    "screenshotMethod": "Complete native Electron BrowserWindow.capturePage with exact content-size assertions",
+    "scope": "Current-chat message-only literal find; native keyboard, pointer and captured-pointer rail navigation; reference 26-by-2-pixel markers and one-rem edge fades; exact original UTF-16 offsets, inline Markdown spans, Unicode/metacharacters and actual code overflow; command context/focus, no-send history/draft/attachment retention; real held HTTP streaming and manual reading position; actual normal close/restart and dark 760x540 layout at 100/125/150 percent zoom. Maximum-scale, full accessibility, cross-platform and richer graphical branch navigation remain separate work."
+  },
+  "modelComparisons": {
+    "checks": 6,
+    "settingsTransactions": [
+      {
+        "operation": "saveProvider",
+        "workspaceCopies": 1,
+        "startedAt": 1791291051401,
+        "success": true,
+        "finishedAt": 1791291053732
+      },
+      {
+        "operation": "saveProvider",
+        "workspaceCopies": 1,
+        "startedAt": 1791291053941,
+        "success": true,
+        "finishedAt": 1791291057624
+      },
+      {
+        "operation": "savePreferences",
+        "workspaceCopies": 1,
+        "startedAt": 1791291061580,
+        "success": true,
+        "finishedAt": 1791291063631
+      }
+    ],
+    "comparisonModelRequests": 11,
+    "parallelStreamsVerified": true,
+    "independentFailureStopVerified": true,
+    "atomicSaveRetryVerified": true,
+    "backupsRestartVerified": true,
+    "temporaryExclusionVerified": true,
+    "originalDraftRetainedVerified": true,
+    "originalModelIdentityVerified": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "headerTop": 1,
+        "footerBottom": 517,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "headerTop": 0.800000011920929,
+        "footerBottom": 408.4000053405762,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "headerTop": 0.6666666865348816,
+        "footerBottom": 336.0000114440918,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "117-model-comparison-config-light.png",
+      "118-model-comparison-stream-light.png",
+      "119-model-comparison-save-error-light.png",
+      "120-model-comparison-config-dark-zoom-100.png",
+      "121-model-comparison-results-dark-zoom-100.png",
+      "120-model-comparison-config-dark-zoom-125.png",
+      "121-model-comparison-results-dark-zoom-125.png",
+      "120-model-comparison-config-dark-zoom-150.png",
+      "121-model-comparison-results-dark-zoom-150.png"
+    ],
+    "scope": "Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate."
+  },
+  "mcpResourceSubscriptions": {
+    "checks": 6,
+    "screenshots": [
+      "122-mcp-subscription-live-light.png",
+      "123-mcp-subscription-dark-zoom-100.png",
+      "123-mcp-subscription-dark-zoom-125.png",
+      "123-mcp-subscription-dark-zoom-150.png"
+    ],
+    "modelRequests": 0,
+    "scopedReadMs": 18.799999952316284,
+    "scopedReadIterations": 8,
+    "workspaceCopiesDuringScopedReads": 0,
+    "realNotificationsVerified": true,
+    "explicitDraftInsertionVerified": true,
+    "delayedUnsubscribeFiltered": true,
+    "templateSelectionVerified": true,
+    "disconnectRestartVerified": true,
+    "unsupportedServerVerified": true,
+    "zoomKeyboardVerified": true,
+    "originalDraftRetained": true
+  },
+  "mcpBinaryFiles": {
+    "checks": 6,
+    "binaryModelRequests": 0,
+    "realWorkerPreviewVerified": true,
+    "exactOriginalExportVerified": true,
+    "emptyAndUnsupportedExportVerified": true,
+    "promptBinaryTextOnlyVerified": true,
+    "staleSelectionVerified": true,
+    "zoomKeyboardVerified": true,
+    "restartDraftRetainedVerified": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "headerTop": 1,
+        "toolbarBottom": 523,
+        "controlsVisible": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "headerTop": 0.800000011920929,
+        "toolbarBottom": 415.20001220703125,
+        "controlsVisible": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "headerTop": 0.6666666865348816,
+        "toolbarBottom": 343.3333435058594,
+        "controlsVisible": true,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "124-mcp-binary-image-light.png",
+      "125-mcp-binary-image-dark-zoom-100.png",
+      "125-mcp-binary-image-dark-zoom-125.png",
+      "125-mcp-binary-image-dark-zoom-150.png"
+    ],
+    "scope": "Actual stdio resource/prompt binaries, actual bounded worker PNG normalization/corrupt failure/retry, original-byte Unicode exports, cancellation/zero-byte/SVG export-only handling, explicit text insertion, real delayed resource/worker completion selection protection, nested preview keyboard/Escape at three dark zoom levels and normal restart. Native save-picker responses are isolated fixtures; physical picker interaction and live external servers remain separate."
+  },
+  "pluginFonts": [
+    {
+      "theme": "light",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "family": "Inter, \"Microsoft YaHei UI\", sans-serif",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 352240,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "weights": [
+        {
+          "weight": 400,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 510,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 590,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        },
+        {
+          "weight": 700,
+          "faces": [
+            {
+              "family": "Inter",
+              "status": "loaded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "richContentScope": "Native streamed inline/display/fenced math with local reference fonts and accessible MathML; reference light/dark syntax colors including PowerShell; exact copy through a clipboard fixture; isolated readonly flowchart, sequence and class diagrams; SVG geometry/path preservation, theme/minimum-window layout and manual-scroll retention; inert hostile directives/HTML/remote math commands and complete malformed/oversized source recovery. Content substitutions are persisted through the bridge and reloaded.",
+  "screenshots": [
+    "01-home-light.png",
+    "02-conversation.png",
+    "03-settings-dark.png",
+    "04-home-dark.png",
+    "05-narrow.png",
+    "06-project-analysis.png",
+    "07-file-approval.png",
+    "08-command-approval.png",
+    "09-narrow-approval.png",
+    "10-project-editor.png",
+    "11-project-git.png",
+    "12-project-terminal.png",
+    "13-draft-restored-dark.png",
+    "14-project-narrow.png",
+    "15-terminal-minimum-window.png",
+    "16-mcp-settings.png",
+    "17-mcp-approval.png",
+    "18-skill-settings.png",
+    "19-skill-conversation.png",
+    "20-mcp-resource.png",
+    "21-mcp-prompt.png",
+    "22-mcp-content-narrow.png",
+    "23-mcp-oauth.png",
+    "24-mcp-resource-dark.png",
+    "25-mcp-prompt-dark-narrow.png",
+    "26-mcp-oauth-dark-narrow.png",
+    "27-plugin-panel-light.png",
+    "28-plugin-panel-dark-narrow.png",
+    "29-plugin-approval.png",
+    "30-message-editor-light.png",
+    "31-message-editor-dark-narrow.png",
+    "32-composer-draft-dark-narrow.png",
+    "33-rich-content-light.png",
+    "34-rich-content-dark-narrow.png",
+    "35-rich-content-error-narrow.png",
+    "36-diagram-light.png",
+    "37-diagram-dark-narrow.png",
+    "38-native-provider-gemini.png",
+    "39-native-provider-responses.png",
+    "40-native-provider-chat.png",
+    "41-native-provider-deployment-chat.png",
+    "42-native-provider-dark-narrow.png",
+    "43-token-usage-light.png",
+    "44-token-usage-dark-narrow.png",
+    "45-token-usage-failed.png",
+    "46-model-capacity-dark-narrow.png",
+    "47-document-preview-light.png",
+    "48-image-preview-light.png",
+    "49-attachment-drag-light.png",
+    "50-image-preview-dark-narrow.png",
+    "51-knowledge-library-light.png",
+    "52-knowledge-source-light.png",
+    "53-knowledge-index-progress.png",
+    "54-knowledge-conversation-light.png",
+    "55-knowledge-source-dark-narrow.png",
+    "56-knowledge-library-dark-narrow.png",
+    "57-knowledge-settings-dark-narrow.png",
+    "58-backup-settings-light.png",
+    "59-backup-settings-dark-narrow.png",
+    "60-backup-export-progress.png",
+    "61-automation-list-light.png",
+    "62-automation-once-form-light.png",
+    "63-automation-history-light.png",
+    "64-automation-cron-dark-narrow.png",
+    "65-sidebar-history-dark-narrow.png",
+    "66-desktop-settings-light.png",
+    "67-desktop-settings-dark-narrow.png",
+    "68-desktop-error-dark-narrow.png",
+    "69-desktop-error-light.png",
+    "70-assistant-transfer-light.png",
+    "71-assistant-import-preview-light.png",
+    "72-assistant-import-error-dark-narrow.png",
+    "73-assistant-transfer-dark-narrow.png",
+    "74-prompt-templates-light.png",
+    "75-prompt-template-editor-light.png",
+    "76-prompt-template-preview-light.png",
+    "77-prompt-template-error-dark-narrow.png",
+    "78-prompt-templates-dark-narrow.png",
+    "79-reply-versions-light.png",
+    "80-reply-version-preview-light.png",
+    "81-reply-version-error-dark-narrow.png",
+    "82-reply-version-preview-dark-narrow.png",
+    "83-message-save-light.png",
+    "84-assistant-edit-preview-light.png",
+    "85-message-draft-conflict-dark-narrow.png",
+    "86-message-edit-save-error-dark-narrow.png",
+    "87-command-palette-light.png",
+    "88-plugin-command-preview-light.png",
+    "89-command-palette-error-dark-narrow.png",
+    "90-command-shortcuts-dark-narrow.png",
+    "94-project-tree-pagination-light.png",
+    "95-project-tree-editor-light.png",
+    "96-project-tree-dark-narrow.png",
+    "97-project-workspace-zoom-100.png",
+    "97-project-workspace-zoom-125.png",
+    "97-project-workspace-zoom-150.png",
+    "98-project-settings-zoom-150.png",
+    "99-project-file-command-dark.png",
+    "100-project-terminal-command-dark.png",
+    "101-project-review-command-dark.png",
+    "102-project-switcher-dark-narrow.png",
+    "102-message-navigation-light.png",
+    "103-chat-find-light.png",
+    "104-chat-find-code-light.png",
+    "105-chat-find-dark-zoom-100.png",
+    "105-chat-find-dark-zoom-125.png",
+    "105-chat-find-dark-zoom-150.png",
+    "pdf-original-light.png",
+    "pdf-original-dark-minimum.png",
+    "pdf-outline-light.png",
+    "pdf-search-light.png",
+    "pdf-note-light.png",
+    "114-branch-order-light.png",
+    "115-branch-order-error-light.png",
+    "116-branch-order-dark-zoom-100.png",
+    "116-branch-order-dark-zoom-125.png",
+    "116-branch-order-dark-zoom-150.png",
+    "106-branch-navigation-light.png",
+    "107-branch-navigation-error-light.png",
+    "108-branch-navigation-dark-zoom-100.png",
+    "108-branch-navigation-dark-zoom-125.png",
+    "108-branch-navigation-dark-zoom-150.png",
+    "109-branch-header-dark-zoom-150.png",
+    "110-branch-header-with-parent-light-zoom-150.png",
+    "111-branch-navigation-ambiguous-dark.png",
+    "112-temporary-chat-light.png",
+    "113-temporary-chat-dark-zoom-100.png",
+    "113-temporary-chat-dark-zoom-125.png",
+    "113-temporary-chat-dark-zoom-150.png",
+    "124-mcp-binary-image-light.png",
+    "125-mcp-binary-image-dark-zoom-100.png",
+    "125-mcp-binary-image-dark-zoom-125.png",
+    "125-mcp-binary-image-dark-zoom-150.png",
+    "126-assistant-recipe-editor-light.png",
+    "126-assistant-recipe-parameters-light.png",
+    "127-assistant-recipe-dark-zoom-100.png",
+    "127-assistant-recipe-dark-zoom-125.png",
+    "127-assistant-recipe-dark-zoom-150.png",
+    "128-prompt-transfer-library-light.png",
+    "129-prompt-import-preview-light.png",
+    "130-prompt-import-write-error-light.png",
+    "131-prompt-import-dark-zoom-100.png",
+    "131-prompt-import-dark-zoom-125.png",
+    "131-prompt-import-dark-zoom-150.png",
+    "memory-settings-light.png",
+    "memory-settings-dark.png",
+    "project-html-preview.png",
+    "project-preview-editor-light.png",
+    "project-preview-editor-dark-narrow.png",
+    "project-dock-light-shell.png",
+    "project-dock-light-content.png",
+    "project-dock-dark-1-shell.png",
+    "project-dock-dark-1-content.png",
+    "project-dock-dark-1.25-shell.png",
+    "project-dock-dark-1.25-content.png",
+    "project-dock-dark-1.5-shell.png",
+    "project-dock-dark-1.5-content.png"
+  ],
+  "pdfPreview": {
+    "checks": 6,
+    "pixels": 1064,
+    "originalBytes": 2035,
+    "canvasTextVerified": true,
+    "outlineTargetsVerified": true,
+    "fullDocumentSearchVerified": true,
+    "linksNotesZoomVerified": true,
+    "exportOwnershipRestartVerified": true,
+    "nativeSaveDialogIntercepted": true,
+    "screenshots": [
+      "pdf-original-light.png",
+      "pdf-original-dark-minimum.png",
+      "pdf-outline-light.png",
+      "pdf-search-light.png",
+      "pdf-note-light.png"
+    ]
+  },
+  "branchNavigation": {
+    "checks": 9,
+    "manualOrderingVerified": true,
+    "orderingFailureRecoveryVerified": true,
+    "orderingBackupRestartVerified": true,
+    "familyThreadsInitially": 205,
+    "survivingThreads": 203,
+    "pageSize": 200,
+    "ambiguousHistoryRecoveryVerified": true,
+    "modelRequests": 0,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "header": {
+          "top": 1,
+          "bottom": 62
+        },
+        "footer": {
+          "top": 472,
+          "bottom": 517
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 500,
+            "right": 528,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 536,
+            "right": 564,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 572,
+            "right": 600,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 608,
+            "right": 636,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 644,
+            "right": 672,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 680,
+            "right": 708,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 716,
+            "right": 744,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "header": {
+          "top": 0.800000011920929,
+          "bottom": 57.599999248981476
+        },
+        "footer": {
+          "top": 359.6000061035156,
+          "bottom": 404.4000053405762
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 416,
+            "right": 440,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 572,
+            "right": 596,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "header": {
+          "top": 0.6666666865348816,
+          "bottom": 57.3333346247673
+        },
+        "footer": {
+          "top": 287.3333435058594,
+          "bottom": 332.0000114440918
+        },
+        "overflow": false,
+        "headerControls": [
+          {
+            "label": "打开命令面板",
+            "left": 314.66668701171875,
+            "right": 338.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 470.66668701171875,
+            "right": 494.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      }
+    ],
+    "parentHeaderLayout": [
+      {
+        "zoom": 1,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 464,
+            "right": 492,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 500,
+            "right": 528,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 536,
+            "right": 564,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 572,
+            "right": 600,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 608,
+            "right": 636,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 644,
+            "right": 672,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 680,
+            "right": 708,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 716,
+            "right": 744,
+            "top": 50,
+            "bottom": 78,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.25,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 390,
+            "right": 414,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 416,
+            "right": 440,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 442,
+            "right": 466,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 468,
+            "right": 492,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 494,
+            "right": 518,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 520,
+            "right": 544,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 546,
+            "right": 570,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 572,
+            "right": 596,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      },
+      {
+        "zoom": 1.5,
+        "controls": [
+          {
+            "label": "打开命令面板",
+            "left": 288.66668701171875,
+            "right": 312.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查找当前聊天",
+            "left": 314.66668701171875,
+            "right": 338.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "打开原对话",
+            "left": 340.66668701171875,
+            "right": 364.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "查看对话分支",
+            "left": 366.66668701171875,
+            "right": 390.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "置顶聊天",
+            "left": 392.66668701171875,
+            "right": 416.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "导出聊天",
+            "left": 418.66668701171875,
+            "right": 442.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "取消归档",
+            "left": 444.66668701171875,
+            "right": 468.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          },
+          {
+            "label": "删除聊天",
+            "left": 470.66668701171875,
+            "right": 494.66668701171875,
+            "top": 42,
+            "bottom": 66,
+            "withinWindow": true
+          }
+        ]
+      }
+    ],
+    "screenshots": [
+      "114-branch-order-light.png",
+      "115-branch-order-error-light.png",
+      "116-branch-order-dark-zoom-100.png",
+      "116-branch-order-dark-zoom-125.png",
+      "116-branch-order-dark-zoom-150.png",
+      "106-branch-navigation-light.png",
+      "107-branch-navigation-error-light.png",
+      "108-branch-navigation-dark-zoom-100.png",
+      "108-branch-navigation-dark-zoom-125.png",
+      "108-branch-navigation-dark-zoom-150.png",
+      "109-branch-header-dark-zoom-150.png",
+      "110-branch-header-with-parent-light-zoom-150.png",
+      "111-branch-navigation-ambiguous-dark.png"
+    ],
+    "scope": "Manual sibling ordering with complete subtree/page-boundary selection, stale-client rejection, actual save failure/retry, preserved history/drafts/attachments, gzip restore/restart and dark minimum-window order controls/keyboard. Complete graph navigation, literal preview/search, archived and missing-parent paths, independent contexts/drafts/attachments, actual filesystem failure/retry and selected-path deletion, gzip recovery/normal restart, exact ambiguous-history failure/recovery and dark minimum-window keyboard/zoom. Original-parent navigation remains available; all eight parent-present and seven parent-absent header controls stay within the window at each zoom. Picker responses are isolated fixtures; no physical system-picker acceptance is claimed."
+  },
+  "temporaryConversations": {
+    "checks": 6,
+    "temporaryModelRequests": 3,
+    "persistenceExcludedVerified": true,
+    "backupsExcludedVerified": true,
+    "restartClearedVerified": true,
+    "storageModeImmutableVerified": true,
+    "regularDraftsRetainedVerified": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "hintTop": 453,
+        "hintBottom": 486,
+        "inputTop": 355,
+        "inputBottom": 403,
+        "sendBottom": 403,
+        "height": 540,
+        "overflow": false,
+        "focus": "消息"
+      },
+      {
+        "zoom": 1.25,
+        "hintTop": 363,
+        "hintBottom": 396,
+        "inputTop": 281,
+        "inputBottom": 313,
+        "sendBottom": 313,
+        "height": 432,
+        "overflow": false,
+        "focus": "消息"
+      },
+      {
+        "zoom": 1.5,
+        "hintTop": 291,
+        "hintBottom": 324,
+        "inputTop": 209,
+        "inputBottom": 241,
+        "sendBottom": 241,
+        "height": 360,
+        "overflow": false,
+        "focus": "消息"
+      }
+    ],
+    "screenshots": [
+      "112-temporary-chat-light.png",
+      "113-temporary-chat-dark-zoom-100.png",
+      "113-temporary-chat-dark-zoom-125.png",
+      "113-temporary-chat-dark-zoom-150.png"
+    ],
+    "scope": "Actual temporary creation, isolated draft/attachment switching, local HTTP sends/retry/stop, native branches/editing drafts, original JSON/gzip backup export, explicit Markdown export, immutable existing storage modes, minimum-window zoom and normal restart. Native file dialog responses are isolated fixtures; model providers and explicit exports/tool/plugin actions retain their own results."
+  },
+  "assistantRecipes": {
+    "checks": 4,
+    "recipeModelRequests": 0,
+    "assistantBindingVerified": true,
+    "defaultOptionalChoicesVerified": true,
+    "deletedAssistantRecoveryVerified": true,
+    "zoomKeyboardVerified": true,
+    "backupRestartVerified": true,
+    "originalDraftRetained": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "top": 1,
+        "bottom": 517,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "top": 0.800000011920929,
+        "bottom": 408.4000053405762,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "top": 0.6666666865348816,
+        "bottom": 336.0000114440918,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "126-assistant-recipe-editor-light.png",
+      "126-assistant-recipe-parameters-light.png",
+      "127-assistant-recipe-dark-zoom-100.png",
+      "127-assistant-recipe-dark-zoom-125.png",
+      "127-assistant-recipe-dark-zoom-150.png"
+    ],
+    "scope": "Actual library/composer recipe forms, keyboard choice editing, literal default/optional/prototype expansion, explicit assistant selection and untouched context, actual stale-assistant rejection/retry, three native zoom/focus/Escape checks, real gzip backup and normal restart. Picker/confirmation responses are isolated fixtures; physical picker and wider platform/accessibility checks remain separate."
+  },
+  "promptTransfer": {
+    "checks": 5,
+    "transferModelRequests": 0,
+    "exportModesVerified": true,
+    "inertPreviewCancelVerified": true,
+    "atomicImportRetryVerified": true,
+    "sharedFreshAssociationsVerified": true,
+    "zoomKeyboardVerified": true,
+    "backupRestartVerified": true,
+    "originalDraftRetained": true,
+    "layout": [
+      {
+        "zoom": 1,
+        "width": 760,
+        "height": 540,
+        "top": 1,
+        "bottom": 517,
+        "scrollable": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.25,
+        "width": 608,
+        "height": 432,
+        "top": 0.800000011920929,
+        "bottom": 408.4000053405762,
+        "scrollable": true,
+        "overflow": false
+      },
+      {
+        "zoom": 1.5,
+        "width": 507,
+        "height": 360,
+        "top": 0.6666666865348816,
+        "bottom": 336.0000114440918,
+        "scrollable": true,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "128-prompt-transfer-library-light.png",
+      "129-prompt-import-preview-light.png",
+      "130-prompt-import-write-error-light.png",
+      "131-prompt-import-dark-zoom-100.png",
+      "131-prompt-import-dark-zoom-125.png",
+      "131-prompt-import-dark-zoom-150.png"
+    ],
+    "scope": "Actual native library exports and plain/gzip/content-detected input, full inert parameter/profile preview, cancellation, actual atomic-write rejection/retry, fresh shared associations, native minimum-window zoom/focus/Escape, complete gzip backup and normal restart with zero model requests. System-picker and confirmation results are intercepted only in this isolated process; physical picker and wider platform checks remain separate."
+  },
+  "memories": {
+    "checks": 3,
+    "screenshots": [
+      "memory-settings-light.png",
+      "memory-settings-dark.png"
+    ],
+    "scope": "Explicit CRUD, scope promotion, disabled state, persistence, search, escaped text, theme/narrow layout and project removal. Engine scope and temporary-chat isolation have separate component tests."
+  },
+  "projectPreview": {
+    "checks": 9,
+    "docked": {
+      "checks": 4,
+      "floatingTransferVerified": true,
+      "layouts": [
+        {
+          "zoom": 1,
+          "x": 868,
+          "y": 342.5,
+          "width": 412,
+          "height": 472,
+          "native": {
+            "x": 868,
+            "y": 343,
+            "width": 412,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 909.796875,
+          "y": 342.5,
+          "width": 370.203125,
+          "height": 472,
+          "native": {
+            "x": 910,
+            "y": 343,
+            "width": 370,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 893.078125,
+          "y": 342.5,
+          "width": 386.921875,
+          "height": 472,
+          "native": {
+            "x": 894,
+            "y": 343,
+            "width": 386,
+            "height": 471
+          }
+        },
+        {
+          "zoom": 1,
+          "x": 220,
+          "y": 302.5,
+          "width": 540,
+          "height": 237.5,
+          "native": {
+            "x": 220,
+            "y": 303,
+            "width": 540,
+            "height": 237
+          }
+        },
+        {
+          "zoom": 1.25,
+          "x": 64,
+          "y": 241.6999969482422,
+          "width": 544,
+          "height": 190.3000030517578,
+          "native": {
+            "x": 80,
+            "y": 303,
+            "width": 680,
+            "height": 237
+          }
+        },
+        {
+          "zoom": 1.5,
+          "x": 64,
+          "y": 241.83334350585938,
+          "width": 442.66668701171875,
+          "height": 118.16667175292969,
+          "native": {
+            "x": 96,
+            "y": 363,
+            "width": 664,
+            "height": 177
+          }
+        }
+      ],
+      "screenshots": [
+        "project-dock-light-shell.png",
+        "project-dock-light-content.png",
+        "project-dock-dark-1-shell.png",
+        "project-dock-dark-1-content.png",
+        "project-dock-dark-1.25-shell.png",
+        "project-dock-dark-1.25-content.png",
+        "project-dock-dark-1.5-shell.png",
+        "project-dock-dark-1.5-content.png"
+      ],
+      "captureBoundary": "Separate actual parent-window and preview-content captures, not a composited full-native-window claim.",
+      "projectRemovalVerified": true
+    },
+    "screenshots": [
+      "project-html-preview.png",
+      "project-preview-editor-light.png",
+      "project-preview-editor-dark-narrow.png",
+      "project-dock-light-shell.png",
+      "project-dock-light-content.png",
+      "project-dock-dark-1-shell.png",
+      "project-dock-dark-1-content.png",
+      "project-dock-dark-1.25-shell.png",
+      "project-dock-dark-1.25-content.png",
+      "project-dock-dark-1.5-shell.png",
+      "project-dock-dark-1.5-content.png"
+    ],
+    "editorFonts": {
+      "computed": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "fonts": [
+        {
+          "familyName": "Microsoft YaHei UI",
+          "postScriptName": "MicrosoftYaHeiUI",
+          "isCustomFont": false,
+          "glyphCount": 4
+        }
+      ]
+    },
+    "outsideHttpRequests": 0,
+    "boundary": "Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
+  },
+  "normalCloseVerified": true,
+  "executableSha256": null,
+  "archiveSha256": null
+}
