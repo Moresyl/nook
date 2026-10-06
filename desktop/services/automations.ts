@@ -32,7 +32,7 @@ export class Automations {
   private fault() { this.suspended = true; clearTimeout(this.timer); try { this.emit({ error: 'Automatic tasks paused because local data could not be saved. Check storage and reopen the workspace.' }); } catch {} }
   private arm() {
     clearTimeout(this.timer); if (this.closed || this.suspended) return;
-    const due = this.vault.snapshot().automations.filter((task) => task.enabled && task.nextRunAt !== undefined && !this.jobs.has(task.id)).map((task) => task.nextRunAt!);
+    const due = this.vault.automations().filter((task) => task.enabled && task.nextRunAt !== undefined && !this.jobs.has(task.id)).map((task) => task.nextRunAt!);
     if (!due.length) return;
     const delay = this.jobs.size >= 2 ? 1000 : Math.max(1, Math.min(30_000, Math.min(...due) - this.now()));
     this.timer = setTimeout(() => this.wake(), delay); this.timer.unref();
@@ -40,8 +40,8 @@ export class Automations {
   async resume(): Promise<void> {
     if (this.closed) throw new Error('Automatic tasks are closing. Reopen the workspace.');
     if (this.jobs.size) throw new Error('Wait for running tasks to stop before resuming schedules.');
-    const state = this.vault.snapshot(); const now = this.now(); let changed = false;
-    for (const task of state.automations) {
+    const tasks = this.vault.automations(); const now = this.now(); let changed = false;
+    for (const task of tasks) {
       for (const run of task.runs) if (run.status === 'running') { run.status = 'stopped'; run.finishedAt = now; run.error = 'The application closed before this run finished. Run it again to retry.'; changed = true; }
       if (task.enabled) {
         try { nextAutomationRun(task.schedule, now, task.nextRunAt); } catch { task.enabled = false; task.nextRunAt = undefined; changed = true; continue; }
@@ -53,7 +53,7 @@ export class Automations {
         changed = true;
       }
     }
-    if (changed) this.publish(await this.vault.update((draft) => { draft.automations = state.automations; }));
+    if (changed) this.publish(await this.vault.update((draft) => { draft.automations = tasks; }));
     this.suspended = false; this.arm();
   }
   async save(raw: AutomationInput): Promise<Workspace> {
@@ -79,12 +79,12 @@ export class Automations {
   runNow(id: string): Promise<void> { this.available(); return this.begin(id, true); }
   wake(): void {
     if (this.closed || this.suspended) return;
-    const due = this.vault.snapshot().automations.filter((task) => task.enabled && task.nextRunAt !== undefined && task.nextRunAt <= this.now() && !this.jobs.has(task.id)).sort((left, right) => left.nextRunAt! - right.nextRunAt!);
+    const due = this.vault.automations().filter((task) => task.enabled && task.nextRunAt !== undefined && task.nextRunAt <= this.now() && !this.jobs.has(task.id)).sort((left, right) => left.nextRunAt! - right.nextRunAt!);
     for (const task of due) if (this.jobs.size < 2) void this.begin(task.id, false).catch(() => {});
     this.arm();
   }
   private begin(id: string, manual: boolean): Promise<void> {
-    if (!this.vault.snapshot().automations.some((task) => task.id === id)) return Promise.reject(new AutomationConflict('This automatic task no longer exists.'));
+    if (!this.vault.automations().some((task) => task.id === id)) return Promise.reject(new AutomationConflict('This automatic task no longer exists.'));
     if (this.jobs.has(id)) return Promise.reject(new Error('This task is already running.'));
     if (this.jobs.size >= 2) return Promise.reject(new Error('Two automatic tasks are running. Wait for one to finish.'));
     const controller = new AbortController(); const job: Job = { controller, promise: Promise.resolve() }; this.jobs.set(id, job);

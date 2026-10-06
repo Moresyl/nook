@@ -8,7 +8,7 @@ import { conversationAutomationRunner } from '../desktop/services/automation-run
 import { ConversationEngine } from '../desktop/services/conversation-engine';
 import { WorkspaceVault } from '../desktop/services/vault';
 import type { ModelGateway } from '../desktop/services/model-gateway';
-import { codec, provider, testVault } from './fixtures';
+import { codec, provider, sampleThread, testVault } from './fixtures';
 
 const directories: string[] = []; const services: Automations[] = [];
 afterEach(async () => { await Promise.all(services.splice(0).map((service) => service.shutdown())); vi.useRealTimers(); vi.restoreAllMocks(); await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
@@ -52,6 +52,30 @@ describe('automation contracts and calendar', () => {
   });
 });
 describe('persistent automatic tasks', () => {
+  it('returns detached task calendars and histories without reading conversation histories', async () => {
+    const { vault, service } = await setup(); const input = task({ schedule: { kind: 'interval', minutes: 2 } }); await service.save(input);
+    await vault.commit(state => { state.threads.push(sampleThread({ messages: [{ id: 'history', role: 'user', content: 'PRIVATE_HISTORY'.repeat(10_000), status: 'complete', attachments: [], createdAt: 1 }] })); state.automations[0].runs.push({ id: randomUUID(), startedAt: 1, finishedAt: 2, trigger: 'manual', status: 'complete' }); });
+    const before = vault.snapshot(); const snapshot = vi.spyOn(vault, 'snapshot'); const clones = vi.spyOn(globalThis, 'structuredClone');
+    const selected = vault.automations(); expect(selected).toEqual(before.automations);
+    selected[0].name = 'Outside'; selected[0].schedule = { kind: 'once', at: 10 }; selected[0].runs[0].status = 'error'; selected.length = 0;
+    expect(vault.automations()).toEqual(before.automations); expect(snapshot).not.toHaveBeenCalled();
+    expect(clones.mock.calls.every(([value]) => Array.isArray(value) && value.every(item => item.id === input.id))).toBe(true);
+    snapshot.mockRestore(); clones.mockRestore(); expect(vault.snapshot()).toEqual(before);
+  });
+  it('resumes and repeatedly checks empty or future schedules without copying the workspace or starting work', async () => {
+    const { service, vault, execute, emit } = await setup();
+    for (const enabled of [false, true]) {
+      if (enabled) await service.save(task({ enabled: true }));
+      await service.suspend(); const before = vault.snapshot(); emit.mockClear();
+      const snapshot = vi.spyOn(vault, 'snapshot').mockImplementation(() => { throw new Error('Read-only scheduler copied conversation histories'); });
+      const clones = vi.spyOn(globalThis, 'structuredClone');
+      await service.resume(); for (let index = 0; index < 20; index++) service.wake();
+      await expect(service.runNow('missing')).rejects.toThrow('no longer exists');
+      expect(snapshot).not.toHaveBeenCalled(); expect(execute).not.toHaveBeenCalled(); expect(emit).not.toHaveBeenCalled();
+      expect(clones.mock.calls.every(([value]) => Array.isArray(value))).toBe(true);
+      snapshot.mockRestore(); clones.mockRestore(); expect(vault.snapshot()).toEqual(before);
+    }
+  });
   it('fires a real one-shot timer automatically without manual dispatch and leaves future monthly timers dormant', async () => {
     const { vault, directory } = await testVault(); directories.push(directory); const execute = vi.fn<AutomationRunner>().mockResolvedValue('complete'); const service = new Automations(vault, execute, vi.fn()); services.push(service); await service.resume();
     const future = task({ enabled: true, schedule: { kind: 'interval', minutes: 43_200 } }); await service.save(future);

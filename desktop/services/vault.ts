@@ -128,6 +128,7 @@ export class WorkspaceVault {
     return server ? structuredClone(server) : undefined;
   }
   mcpServers(): McpServer[] { return structuredClone(this.state.mcpServers); }
+  automations(): Workspace['automations'] { return structuredClone(this.state.automations); }
   async wait(): Promise<void> { await this.tail; }
   async flush(): Promise<void> {
     const operation = this.tail.then(async () => {

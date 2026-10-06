@@ -29,6 +29,22 @@ export async function verifyAutomations({ page, application, getApplication, dir
   await row().getByRole('button', { name: '立即执行', exact: true }).click(); let record = await latest('complete', 1); let thread = await page.evaluate(async (id) => (await window.qiyao.load()).threads.find((thread) => thread.id === id), record.threadId); assert.equal(thread.messages.at(-1).content, 'QIYAO_AUTOMATION_COMPLETE'); assert.equal(thread.messages.at(-1).invocations[0].tokens.totalTokens, 12); assert.ok(fixture.requests[0].messages.some((item) => item.role === 'system' && item.content.includes('AUTOMATION_PROJECT_INSTRUCTIONS') && item.content.includes('careful software engineer'))); assert.ok(fixture.requests[0].tools.length > 0); assert.equal(fixture.requests[0].tools.some((tool) => /write|execute/.test(tool.function.name)), false);
   verified('manual execution uses real provider HTTP and engine IPC, keeps assistant/project instructions and read-only tools, and retains complete output and token usage');
   await row().getByRole('button', { name: '恢复计划', exact: true }).click(); await waitForBridge(page, async (id) => (await window.qiyao.load()).automations.find((task) => task.id === id)?.enabled, id); const natural = await page.evaluate(async (id) => (await window.qiyao.load()).automations.find((task) => task.id === id).nextRunAt, id);
+  const schedulerReads = await application.evaluateMain(`
+    (() => {
+      const prior = globalThis.structuredClone; let workspaceCopies = 0, taskListCopies = 0;
+      globalThis.structuredClone = function(value, ...options) {
+        if (value?.schemaVersion === 1 && Array.isArray(value.threads)) workspaceCopies++;
+        if (Array.isArray(value) && value.some(task => task.id === ${JSON.stringify(id)} && Array.isArray(task.runs))) taskListCopies++;
+        return prior.call(this, value, ...options);
+      };
+      try {
+        for (let index = 0; index < 20; index++) require('electron').powerMonitor.emit('resume');
+        return { wakeEvents: 20, workspaceCopies, taskListCopies };
+      } finally { globalThis.structuredClone = prior; }
+    })();
+  `);
+  assert.equal(schedulerReads.workspaceCopies, 0); assert.equal(schedulerReads.taskListCopies, 40);
+  console.log('Automation scheduler read observations', JSON.stringify(schedulerReads));
   await row().getByRole('button', { name: '立即执行', exact: true }).click(); record = await latest('complete', 2); assert.equal(await page.evaluate(async (id) => (await window.qiyao.load()).automations.find((task) => task.id === id).nextRunAt, id), natural); await row().getByRole('button', { name: '暂停计划', exact: true }).click(); await waitForBridge(page, async (id) => !(await window.qiyao.load()).automations.find((task) => task.id === id).enabled, id);
   await page.screenshot({ path: join(screenshots, '61-automation-list-light.png') });
   verified('native pause/resume persists the next interval and extra manual runs preserve the automatic calendar with distinct result conversations');
@@ -57,5 +73,5 @@ export async function verifyAutomations({ page, application, getApplication, dir
   finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoAutomationOpen; require('electron').dialog.showMessageBox=globalThis.qiyaoAutomationConfirm; delete globalThis.qiyaoAutomationOpen; delete globalThis.qiyaoAutomationConfirm;"); }
   page = await restart(); application = getApplication(); restarted = await page.evaluate(() => window.qiyao.load()); assert.ok(restarted.automations.every((task) => !task.enabled)); assert.deepEqual(fixture.errors, []);
   verified('complete native gzip backup restores task configurations, exact execution history and conversations with every imported schedule paused after real restart');
-  return { page, result: { checkbox, tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
+  return { page, result: { checkbox, schedulerReads, tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
 }
