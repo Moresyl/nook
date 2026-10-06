@@ -69,6 +69,8 @@ jobs:
           try { pnpm test:desktop } finally { Remove-Item Env:QIYAO_TEST_SURFACES_ONLY }
           $env:QIYAO_TEST_TEXT_HINTS_ONLY = '1'
           try { pnpm test:desktop } finally { Remove-Item Env:QIYAO_TEST_TEXT_HINTS_ONLY }
+          $env:NOOK_TEST_RENDERER_CLOSE_ONLY = '1'
+          try { pnpm test:desktop } finally { Remove-Item Env:NOOK_TEST_RENDERER_CLOSE_ONLY }
       - name: Verify actual bootstrap plugins and portable execution
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
