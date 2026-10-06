@@ -1,0 +1,108 @@
+{
+  "verifiedAt": "2026-10-06T13:22:57.257Z",
+  "passed": true,
+  "sourceUiCommit": "ea01d292560a907680e3748ff205ded9d1c7d94f",
+  "reproducedFailure": {
+    "failedTests": 1,
+    "passedTests": 1,
+    "executorExitCode": 1,
+    "ordinaryFailureExitCode": 1,
+    "earlierListenerMaskedFailure": true
+  },
+  "fixed": {
+    "tests": 2,
+    "executorExitCode": 0,
+    "immediateFailureCodeVerified": true,
+    "earlierListenerResetCannotMaskFailure": true
+  },
+  "typesPassed": true,
+  "fullUnitFiles": 96,
+  "fullUnitTests": 915,
+  "fullUnitExitCode": 0,
+  "coverage": {
+    "lines": {
+      "total": 3508,
+      "covered": 3486,
+      "skipped": 0,
+      "pct": 99.37
+    },
+    "statements": {
+      "total": 5837,
+      "covered": 5671,
+      "skipped": 0,
+      "pct": 97.15
+    },
+    "functions": {
+      "total": 1312,
+      "covered": 1277,
+      "skipped": 0,
+      "pct": 97.33
+    },
+    "branches": {
+      "total": 4063,
+      "covered": 3847,
+      "skipped": 0,
+      "pct": 94.68
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "coverageScope": "Configured contracts and desktop-service modules; the packaging CLI is exercised by real child-process tests, not represented as renderer coverage.",
+  "retainedPackagingFailure": {
+    "executorExitCode": 0,
+    "actualCompilerExitCode": 1,
+    "acceptedAsBuildPass": false,
+    "reason": "External orchestration began preparing templates before the old artifact archive completed, so the prepared directory was archived.",
+    "archive": "E:/NookVerification/AllHintsPreviousCandidate-20261006",
+    "correctedBy": "Waited for archive completion, prepared templates again, then built only wrappers around the unchanged app body."
+  },
+  "retainedNativeShutdownFailureRootCauseEstablished": false,
+  "published": false,
+  "artifacts": [
+    {
+      "path": "E:/NookWorktrees/document-originals/scripts/package-windows.mjs",
+      "sha256": "0df92283f7a50bc1d564575ae9686464c625f11abc09ccabe04641f137773bd5"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/package-exit.test.ts",
+      "sha256": "d8248807cb70f20547829e3d72c3c466cdb418bf0dc2a2ba4c06a14f80508fa1"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-package-exit-before-fix.log",
+      "sha256": "a7136f4173e593693cdb3b61af7ccae960c235d33109ae9075680cb4a320376b"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-package-exit-after-fix.log",
+      "sha256": "2a8b90fae99071431502c4a4082d3ee5be9209f076352533a5cfff294be71aaa"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-package-exit-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-package-exit-full-unit-coverage.log",
+      "sha256": "33b425c3e8c529f21d4f6eb78a0be37732ced60c20ca31416134d918f1391c22"
+    },
+    {
+      "path": "E:/NookVerification/AllHintsDistributionCoverage-20261006/coverage-summary.json",
+      "sha256": "e3cfc7000010600eab678922ed1c7c1fd436bcaa87954d01a6de60f3b81e1073"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-new-package.log",
+      "sha256": "64f5d80198b69be7f210f4857e0d4cf69fb59da445b87a0d54f3c35e5366f16b"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-new-installer-inputs-retry.log",
+      "sha256": "3e272adb28f86d52cbc1f9e5cf562c8b9f6fecd2d6c88607639003faa0753932"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-new-wrappers-retry.log",
+      "sha256": "d170b5e59c2af23d0cac8cba3cff0feecb289d2817d30f4a3abbc2cbcb41bef8"
+    }
+  ],
+  "scope": "Failure-status regression and complete unit/type verification. The first failed installer generation and its masked exit status are preserved. Same-body distribution runtime verification remains a separate gate."
+}

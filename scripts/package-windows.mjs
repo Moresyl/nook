@@ -40,4 +40,9 @@ try {
     }
   }
   await build({ projectDir: root, targets: Platform.WINDOWS.createTarget(['nsis', 'portable'], Arch.x64), platformPackagerFactory: (info, platform) => { assert.equal(platform, Platform.WINDOWS); return new QiyaoWinPackager(info); }, publish: 'never', ...(process.argv.includes('--prepackaged') ? { prepackaged: join(root, 'artifacts', 'win-unpacked') } : {}) });
-} catch (error) { console.error(error.message); process.exitCode = 1; }
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
+  // Match the builder CLI: dependency exit listeners must not mask failure.
+  process.once('exit', () => { process.exitCode = 1; });
+}
