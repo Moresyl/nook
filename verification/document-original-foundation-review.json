@@ -33,7 +33,7 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Connect original retention to imports and the preview bridge; verify complete product flows",
+    "Connect the preview bridge and verify complete desktop import/product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
     "Verify provider requests exclude original binary bytes",
@@ -63,5 +63,19 @@
       "Real gzip transfer between separate workspaces, restart recovery, temporary-original exclusion and legacy backup compatibility"
     ],
     "remaining": "Importer and preview are not enabled. Failed restores may leave unowned immutable blobs; recovery-aware cleanup and full desktop verification remain open."
+  },
+  "importFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "relatedTests": { "files": 3, "passed": 59, "log": "D:/GR/pi-pc/.firecrawl/nook-document-import-tests.log" },
+    "realPdfFollowUp": { "files": 1, "passed": 33, "log": "D:/GR/pi-pc/.firecrawl/nook-document-import-real-pdf.log", "scope": "Includes an actual PDF parser to composer persistence and exact-byte restart recovery case added after the 59-test run" },
+    "initialFollowUpTypeFailure": "The new real-PDF test omitted composer model/mode defaults; use the existing composer schema to construct the fixture.",
+    "implemented": [
+      "Stage PDF originals only after the whole mixed import batch parses successfully and its source lengths match",
+      "Connect the main attachment importer to vault staging for file-dialog and renderer-supplied inputs",
+      "Retain original references in knowledge notes and citations after source-note deletion",
+      "Assert that four protocol message assemblers include extracted evidence but exclude original PDF bytes"
+    ],
+    "remaining": "Offline PDF UI and preview bridge, recovery-aware blob cleanup, provider HTTP capture and full native verification remain open."
   }
 }

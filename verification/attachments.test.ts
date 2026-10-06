@@ -7,6 +7,7 @@ import { parseOffice, type OfficeParserAST } from 'officeparser';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { attachmentImageUrl, attachmentInputsSchema, attachmentSchema, type Attachment } from '../contracts/attachments';
 import { composerRevision } from '../contracts/composer';
+import { composerDraftSchema } from '../contracts/workspace';
 import { parseAttachment } from '../desktop/services/attachment-parser';
 import { AttachmentImporter, parseInWorker } from '../desktop/services/attachment-importer';
 import { modelMessage, validateModelAttachments } from '../desktop/services/model-attachments';
@@ -38,6 +39,17 @@ describe('attachment ingestion', () => {
     vi.mocked(parseOffice).mockClear();
     console.info('Attachment parser bootstrap observations', { elapsedMs: Date.now() - startedAt });
   }, 30_000); // Cold PDF initialization gets the existing production worker budget; individual checks keep their normal timeout.
+  it('retains the exact original of a parsed PDF through composer persistence and restart', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const bytes = documentBytes('pdf');
+    const importer = new AttachmentImporter(parseAttachment, values => vault.stageDocumentOriginals(values));
+    const [file] = await importer.importInputs([input('original.pdf', bytes)]);
+    expect(file.content).toContain('Document evidence'); expect(file.original?.bytes).toBe(bytes.length);
+    await vault.commitComposer(state => { state.composerDrafts.push(composerDraftSchema.parse({ text: '', attachments: [file], updatedAt: 1 })); });
+    expect(await vault.readDocumentOriginal(file.original!)).toEqual(bytes);
+    const restarted = new WorkspaceVault(directory, codec); await restarted.initialize();
+    expect(await restarted.readDocumentOriginal(file.original!)).toEqual(bytes);
+  });
   it.each(['pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf'])('extracts actual %s document text and preserves source details', async (format) => {
     const bytes = documentBytes(format); const file = await parseAttachment(input(`document.${format}`, bytes));
     expect(file.content).toContain('Document evidence'); expect(file.content).toContain('42'); expect(file.source).toEqual({ format, bytes: bytes.length }); expect(file.image).toBeUndefined();

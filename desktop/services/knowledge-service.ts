@@ -94,7 +94,7 @@ export class KnowledgeService {
     if (!raw.length || raw.length > 12) return Promise.reject(new Error('Import between 1 and 12 documents at a time.'));
     const files = raw.map((item) => attachmentSchema.parse(item));
     if (files.some((file) => file.image || !file.content.trim())) return Promise.reject(new Error('Choose documents containing readable text. Import images in the conversation instead.'));
-    const notes: Note[] = files.map((file) => ({ id: randomUUID(), title: file.name.slice(0, 160), content: file.content, createdAt: Date.now(), ...(collectionId !== 'notes' ? { collectionId } : {}), ...(file.source ? { source: { name: file.name, ...file.source, extractedHash: createHash('sha256').update(file.content).digest('hex') } } : {}) }));
+    const notes: Note[] = files.map((file) => ({ id: randomUUID(), title: file.name.slice(0, 160), content: file.content, createdAt: Date.now(), ...(collectionId !== 'notes' ? { collectionId } : {}), ...(file.source ? { source: { name: file.name, ...file.source, ...(file.original ? { original: file.original } : {}), extractedHash: createHash('sha256').update(file.content).digest('hex') } } : {}) }));
     return this.vault.update((draft) => {
       if (collectionId !== 'notes') this.collection(draft, collectionId);
       draft.notes.push(...notes); this.checkQuota(draft.notes);

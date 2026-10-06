@@ -2,6 +2,7 @@ import { basename } from 'node:path';
 import { open } from 'node:fs/promises';
 import { Worker } from 'node:worker_threads';
 import { attachmentInputsSchema, attachmentLimits, attachmentSchema, type Attachment, type AttachmentInput } from '../../contracts/attachments';
+import type { DocumentOriginal } from '../../contracts/document-originals';
 
 type Parser = (input: AttachmentInput) => Promise<Attachment>;
 
@@ -30,7 +31,7 @@ export function parseInWorker(path: string, input: AttachmentInput, timeoutMs = 
 
 export class AttachmentImporter {
   private busy = false;
-  constructor(private readonly parser: Parser) {}
+  constructor(private readonly parser: Parser, private readonly stageOriginals?: (bytes: Uint8Array[]) => DocumentOriginal[]) {}
 
   private async importFiles(load: () => Promise<AttachmentInput[]>): Promise<Attachment[]> {
     if (this.busy) throw new Error('Another file import is running. Wait for it to finish.');
@@ -39,6 +40,15 @@ export class AttachmentImporter {
       const inputs = attachmentInputsSchema.parse(await load());
       const files: Attachment[] = [];
       for (const input of inputs) files.push(attachmentSchema.parse(await this.parser(input)));
+      if (this.stageOriginals) {
+        const pdfs = files.flatMap((file, index) => file.source?.format === 'pdf' ? [{ index, bytes: Buffer.from(inputs[index].data, 'base64') }] : []);
+        if (pdfs.some(({ index, bytes }) => files[index].source!.bytes !== bytes.length)) throw new Error('The parsed document does not match its original file. Import it again.');
+        if (pdfs.length) {
+          const originals = this.stageOriginals(pdfs.map(item => item.bytes));
+          if (originals.length !== pdfs.length) throw new Error('The original documents could not be retained. Import them again.');
+          pdfs.forEach(({ index }, position) => { files[index] = attachmentSchema.parse({ ...files[index], original: originals[position] }); });
+        }
+      }
       return files;
     } finally { this.busy = false; }
   }

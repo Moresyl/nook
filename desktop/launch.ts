@@ -75,7 +75,7 @@ const projectPreview = new ProjectPreviewWindow();
 const projectPreviewDock = new ProjectPreviewDock();
 function closeProjectPreviews(id?: string) { projectPreview.close(id); projectPreviewDock.close(id); }
 const gateway = new HttpModelGateway();
-const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input));
+const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), bytes => vault.stageDocumentOriginals(bytes));
 const mcpBinaryFiles = new McpBinaryFiles((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), async (name) => {
   const result = await dialog.showSaveDialog(window!, { defaultPath: name });
   return result.canceled ? undefined : result.filePath;
