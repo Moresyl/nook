@@ -1,0 +1,99 @@
+{
+  "verifiedAt": "2026-10-06T19:27:16.071Z",
+  "sourceCommit": "705e3dd970b52856881b6f1d2b0ed1dade647037",
+  "productCommit": "afb226a538fefe6ee0c32cf77e1ba391f87abbf1",
+  "seed": "E:/NookVerification/Temp/qiyao-electron-CAzy1Q",
+  "diagnosticWorkspace": "E:/NookVerification/Temp/qiyao-electron-6tAJUC",
+  "sourceWorkspace": {
+    "path": "E:/NookVerification/Temp/qiyao-electron-CAzy1Q/workspace.json",
+    "bytes": 84551418,
+    "sha256": "333ec79d1821bb9593223f7bf860ad3676debda97449d7202edec2f6bd09c724"
+  },
+  "passed": true,
+  "checks": 6,
+  "modelRequests": 0,
+  "connection": {
+    "startedAt": 1791314612207,
+    "completedAt": 1791314612433,
+    "status": "connected",
+    "resourceSubscriptionsSupported": true
+  },
+  "connectionMs": 226,
+  "processes": [
+    {
+      "requestedAt": 1791314612216,
+      "pid": 107616,
+      "stdoutBytes": 928,
+      "stderrBytes": 0,
+      "stdinBytes": 436,
+      "stdinWrites": 6,
+      "piped": {
+        "stdin": true,
+        "stdout": true,
+        "stderr": true
+      },
+      "startup": [],
+      "spawnedAt": 1791314612226,
+      "firstStdinWriteAt": 1791314612226,
+      "lastStdinWriteAt": 1791314612397,
+      "stdinBackpressure": false,
+      "firstStdoutAt": 1791314612365,
+      "lastStdoutAt": 1791314612397
+    }
+  ],
+  "scopedReads": {
+    "iterations": 8,
+    "views": 8,
+    "catalogs": 8,
+    "resources": 8,
+    "workspaceCopies": 0,
+    "elapsedMs": 77.40000009536743
+  },
+  "exits": [
+    {
+      "elapsedMs": 4554,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1280,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "optionalStartupObserverEnabled": false,
+  "deadlines": {
+    "startupSeconds": 30,
+    "connectionSeconds": 5,
+    "operationSeconds": 5,
+    "closeSeconds": 10
+  },
+  "inputs": {
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-mcp-seed-native.log",
+      "bytes": 14769,
+      "sha256": "0988e7e8ccd15da37bfd6007a1067069421b09818148b8cffb6531140c3b78a3"
+    },
+    "result": {
+      "path": "E:\\NookWorktrees\\document-originals\\verification\\mcp-resource-subscriptions-result.json",
+      "bytes": 897,
+      "sha256": "454b3185518b4fcb039357a021bba0727a916bb9874d023af83c4a4091fc7b29"
+    },
+    "archivedLog": {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\seeded-mcp-current\\native.log",
+      "bytes": 14769,
+      "sha256": "0988e7e8ccd15da37bfd6007a1067069421b09818148b8cffb6531140c3b78a3"
+    },
+    "archivedResult": {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\seeded-mcp-current\\result.json",
+      "bytes": 897,
+      "sha256": "454b3185518b4fcb039357a021bba0727a916bb9874d023af83c4a4091fc7b29"
+    }
+  },
+  "failureCauseEstablished": false,
+  "productChanged": false,
+  "fullSuitePassed": false,
+  "scope": "Fresh real Electron instance seeded with the retained failed large workspace and existing skills/plugins/originals. Default MCP subscription flow passed all six groups without optional startup import; actual stdin/stdout, no-copy reads, zero model requests and two normal exits were retained. This is a focused replay after standalone probes, without the earlier full-suite journey, so it does not establish the cause or repair of the original 214-group failure."
+}
