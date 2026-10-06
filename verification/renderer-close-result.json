@@ -1,0 +1,56 @@
+{
+  "verifiedAt": "2026-10-06T21:58:36.010Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "checks": 2,
+  "crash": {
+    "reason": "crashed",
+    "exitCode": 2,
+    "capturedAt": 1791323914535,
+    "memory": {
+      "rss": 136941568,
+      "heapTotal": 17448960,
+      "heapUsed": 11937392,
+      "external": 6789447,
+      "arrayBuffers": 0
+    },
+    "systemFreeMemory": 4754919424,
+    "processes": [
+      {
+        "pid": 105972,
+        "type": "Browser",
+        "memory": {
+          "workingSetSize": 133764,
+          "peakWorkingSetSize": 134836,
+          "privateBytes": 94656
+        }
+      },
+      {
+        "pid": 133852,
+        "type": "GPU",
+        "memory": {
+          "workingSetSize": 107724,
+          "peakWorkingSetSize": 111432,
+          "privateBytes": 119916
+        }
+      },
+      {
+        "pid": 133180,
+        "type": "Utility",
+        "memory": {
+          "workingSetSize": 51584,
+          "peakWorkingSetSize": 51584,
+          "privateBytes": 12336
+        }
+      }
+    ]
+  },
+  "quitMs": 1471,
+  "persistedDraftRetained": true,
+  "conversationsRetained": true,
+  "modelRequests": 0,
+  "boundary": "A deliberately crashed owned main renderer and explicit application quit. The last successfully saved state is retained; unflushed input and the cause of spontaneous crashes are not established. Not complete desktop or distribution acceptance."
+}
