@@ -7,6 +7,7 @@ import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mj
 
 const hash = 'a'.repeat(64);
 const otherHash = 'b'.repeat(64);
+const minimumLayout = () => ['empty', 'attachment-long-input', 'conversation'].flatMap(state => ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ state, theme, zoom, nativeSize: [420, 360], controlsVisible: true, overflow: false, toolsKeyboardVerified: true }))));
 const notes = (version = '1.2.3', newline = '\n') => [
   `## [${version}] - 2026-10-03`, '',
   '### 新功能', '消息正文查找支持实际代码块的水平定位。', '',
@@ -19,7 +20,7 @@ const notes = (version = '1.2.3', newline = '\n') => [
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
   const desktop = { variant: 'packaged executable', checks: 252, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
-    quickChat: { checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
+    quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
@@ -49,6 +50,21 @@ describe('PDF release evidence', () => {
     }
     const previous = proof(); previous.desktop.checks = 243; previous.installer.checks = 243; previous.branches.suiteChecks = 243; previous.temporary.suiteChecks = 243; previous.comparisons.suiteChecks = 243;
     expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
+  it('rejects missing, clipped, wrong-size or duplicated minimum-height quick-chat states', () => {
+    for (const layout of [undefined, [], minimumLayout().slice(1), minimumLayout().slice(0, 6), Array(18).fill(minimumLayout()[0])]) {
+      const invalid = proof(); (invalid.desktop.quickChat as unknown as Record<string, unknown>).minimumLayout = layout;
+      expect(() => verifyRuntimeProof(invalid)).toThrow('quick-chat');
+    }
+    for (const change of [{ state: 'empty' }, { theme: 'light' }, { zoom: 1.25 }, { nativeSize: [420, 580] }, { nativeSize: [640, 360] }, { nativeSize: [420, 360, 1] }, { controlsVisible: false }, { overflow: true }, { toolsKeyboardVerified: false }]) {
+      const invalid = proof(); invalid.desktop.quickChat!.minimumLayout[17] = { ...invalid.desktop.quickChat!.minimumLayout[17], ...change };
+      expect(() => verifyRuntimeProof(invalid)).toThrow('quick-chat');
+    }
+    for (const key of ['refreshRaceVerified', 'minimumErrorVerified']) {
+      const invalid = proof(); (invalid.desktop.quickChat as unknown as Record<string, unknown>)[key] = false;
+      expect(() => verifyRuntimeProof(invalid)).toThrow('quick-chat');
+    }
+    expect(() => verifyRuntimeProof(proof())).not.toThrow();
   });
   it('requires complete MCP PDF evidence, exact request count and both themes at every zoom', () => {
     const missing = proof(); delete missing.desktop.mcpPdf; expect(() => verifyRuntimeProof(missing)).toThrow('MCP PDF');

@@ -25,6 +25,7 @@ export default function QuickChatView() {
   const [error, setError] = useState(''), [busy, setBusy] = useState(false), [pinned, setPinned] = useState(true), [collapsed, setCollapsed] = useState(false);
   const [approvals, setApprovals] = useState<ApprovalRequest[]>([]);
   const draftRef = useRef<ComposerDraft | undefined>(undefined), revision = useRef(''), dirty = useRef(false), working = useRef(false), epoch = useRef(0);
+  const refreshGeneration = useRef(0);
   const [saveStatus, setSaveStatus] = useState('输入自动保存');
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined), scroller = useRef<HTMLDivElement>(null), follows = useRef(true);
   const store = useRef(new ComposerDraftStore(async value => { revision.current = await bridge.save(value, revision.current); epoch.current++; }));
@@ -37,8 +38,11 @@ export default function QuickChatView() {
   }
   const refresh = useCallback(async () => {
     if (working.current) return;
-    const captured = epoch.current; const next = await bridge.load(); if (working.current || captured !== epoch.current) return;
-    setSnapshot(next); setThread(current => mergeQuickChatThread(current, next.thread));
+    const generation = ++refreshGeneration.current, captured = epoch.current;
+    const next = await bridge.load(); if (working.current || generation !== refreshGeneration.current) return;
+    setSnapshot(next);
+    if (captured !== epoch.current) return;
+    setThread(current => mergeQuickChatThread(current, next.thread));
     if (dirty.current) {
       if (next.revision !== revision.current) report(new Error('已保存的聊天发生变化，当前输入已保留。请先复制输入，再重新打开快速聊天。'));
       return;
@@ -87,12 +91,12 @@ export default function QuickChatView() {
   }
   async function act(operation: () => Promise<void>) {
     if (working.current) return; epoch.current++; working.current = true; setBusy(true);
-    try { await operation(); } catch (problem) { report(problem); } finally { working.current = false; setBusy(false); }
+    try { await operation(); } catch (problem) { report(problem); } finally { working.current = false; setBusy(false); void refresh().catch(report); }
   }
   async function send(): Promise<boolean> {
     if (working.current) return false; epoch.current++; working.current = true; setBusy(true);
     try { await flush(); await bridge.send(revision.current); install(await bridge.load()); return true; }
-    catch (problem) { report(problem); return false; } finally { working.current = false; setBusy(false); }
+    catch (problem) { report(problem); return false; } finally { working.current = false; setBusy(false); void refresh().catch(report); }
   }
   const running = thread?.messages.some(message => message.status === 'running') ?? false;
   function quote(message: Message) { try { if (draftRef.current) update({ text: appendMessageQuote(draftRef.current.text, message) }); } catch (problem) { report(problem); } }
@@ -126,7 +130,7 @@ export default function QuickChatView() {
           promptTemplates={snapshot.context.promptTemplates} onPrompt={(text, assistantId) => { if (!draftRef.current) return false; try { update({ text: appendPrompt(draftRef.current.text, text), ...(assistantId ? { assistantId } : {}) }); return true; } catch (problem) { report(problem); return false; } }} />
         </fieldset>
       </>}
-      {error && <div className="quick-chat-error" role="alert"><span>{error}</span><Button onClick={() => setError('')}>关闭提示</Button></div>}
+      {error && <div className="quick-chat-error" role="alert" tabIndex={0}><span>{error}</span><Button onClick={() => setError('')}>关闭提示</Button></div>}
     </div>
     {approvals[0] && <ApprovalDialog key={approvals[0].id} request={approvals[0]} report={report} onDecision={allowed => bridge.resolveApproval(approvals[0].id, allowed)} onStop={() => bridge.stop()} />}
   </div></ContentBridgeContext>;
