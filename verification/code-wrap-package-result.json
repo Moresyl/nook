@@ -10,11 +10,13 @@
     { "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe", "bytes": 238003787, "sha256": "6f6baf94a8ae4e8c3856f47387f5a749e6d9842f9b7d1b45dd78b32e1f648421", "signature": "NotSigned" },
     { "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe", "bytes": 306790381, "sha256": "000cc76fda3309dd297c875a735de77a46b6aa7d230c5795f1f5563b9dbe6187", "signature": "NotSigned" }
   ],
-  "runtimeVerification": { "completeDesktop": "started, not yet complete", "log": "nook-code-wrap-packaged-full.log", "installedLifecycle": "pending", "portable": "pending", "matchingReleaseProofs": "pending" },
+  "runtimeVerification": { "completeDesktop": "passed", "verifiedAt": "2026-10-06T00:00:41.570Z", "checks": 223, "runtimeErrors": [], "normalCloseVerified": true, "finalCloseMs": 253, "exactCandidateHashesMatch": true, "result": "code-wrap-packaged-result.json", "codeWrapping": true, "memoriesChecks": 3, "previewChecks": 5, "previewExternalRequests": 0, "log": "nook-code-wrap-packaged-full.log", "installedLifecycle": "pending", "portable": "pending", "matchingReleaseProofs": "pending" },
+  "packagedScreenshotsReviewed": ["code-wrap-dark-150.png", "checkbox-light.png"],
   "boundary": "New application and installers include the scoped MCP read, project switcher, checkbox and code wrapping changes. The prior 9575887 package's 223-group pass belongs to different file hashes. Building and legal/identity auditing do not establish native installer interaction, complete runtime, full design alignment, signing or release readiness.",
   "logDirectory": "D:/GR/pi-pc/.firecrawl",
   "logs": [
     { "name": "nook-code-wrap-package.log", "sha256": "361f82c9bd8781840fc4bfdcd6637cf89ca9e095903aacdf40db321a3ef0382c" },
-    { "name": "nook-code-wrap-package-audit.log", "sha256": "e1d70b87192d773635b975210a11a6b1cc5644832abe10f24431124443cb7b68" }
+    { "name": "nook-code-wrap-package-audit.log", "sha256": "e1d70b87192d773635b975210a11a6b1cc5644832abe10f24431124443cb7b68" },
+    { "name": "nook-code-wrap-packaged-full.log", "sha256": "9b9d09584b5c6b8628ffc16203e25a59d0d88a295642b47353ec86e858baeff3" }
   ]
 }
