@@ -1,0 +1,4906 @@
+{
+  "verifiedAt": "2026-10-06T21:23:30.454Z",
+  "productCommit": "7e2adfa4e89cc4e99f2068e6e8bd2f7cd127f505",
+  "verificationBaseCommit": "29cde93dda87eea69282855dce527de62c7b2747",
+  "passed": false,
+  "checksPassed": 196,
+  "requiredChecks": 252,
+  "sourceUnchanged": true,
+  "compiledUnchanged": true,
+  "source": [
+    {
+      "file": "contracts/quick-chat.ts",
+      "sha256": "3bfc89f03e24957eece24be976dea2c768bfd27f33a58303e7e35419069ec71f"
+    },
+    {
+      "file": "contracts/quick-chat-stream.ts",
+      "sha256": "e74c8bdd19af20b3d6ad227646629b0e2f3d5de344558dd2260865a7c2db5b32"
+    },
+    {
+      "file": "contracts/workspace.ts",
+      "sha256": "c6cac2733dbc1b3612390caa3f182ac44314e8d3eb75d53d07ae9e213d814888"
+    },
+    {
+      "file": "contracts/composer.ts",
+      "sha256": "cad3f702771e591cde3d33797bd480ca9edc7d98725466b061bcb8c041559ad4"
+    },
+    {
+      "file": "contracts/desktop-integration.ts",
+      "sha256": "6da3ebe4a898c0c0d29482a2297f3c76468face532c1a19a16ab6a1e75d23976"
+    },
+    {
+      "file": "contracts/bridge-contract.ts",
+      "sha256": "f3cf5db60224acaa0a524b6b85175b5f52f9678fdeee02d63f13570d641ea256"
+    },
+    {
+      "file": "desktop/launch.ts",
+      "sha256": "bd29769c2d7139b9f326dbb0c54715ed6acb374145136073c19daeb549602e00"
+    },
+    {
+      "file": "desktop/bridge.ts",
+      "sha256": "b32bbecd455d1e3614a0fe8b3a760fbd86fd9712d8991202d4c06eb0bbedb375"
+    },
+    {
+      "file": "desktop/quick-chat-window.ts",
+      "sha256": "e72370e6e7f413e52365211d9710a99247ed2aae46c049578590af267cae0b15"
+    },
+    {
+      "file": "desktop/quick-chat-bridge.ts",
+      "sha256": "85888bc90a77fade450ffb2f2e27650e535059f52c087a266089afe66f295446"
+    },
+    {
+      "file": "desktop/services/quick-chat.ts",
+      "sha256": "bcbd4fbc14ce10f2285cf779cee664dafb1137054211e3595b11447b96ae4cd7"
+    },
+    {
+      "file": "desktop/services/vault.ts",
+      "sha256": "421dea857842e5f0a8f141350997aab1eeccdd53221b306a4b73d8f17c5d6326"
+    },
+    {
+      "file": "desktop/services/conversation-engine.ts",
+      "sha256": "bfe6ac64d17e75124d4fb0b3abd30a7d27386ed4b52e8b7b4180c05ee3d324bf"
+    },
+    {
+      "file": "desktop/services/document-original-references.ts",
+      "sha256": "6fd7f8d3f542f3c0801e4bea587a27b7bce5fdfc64d444c22ec22c7ff5f146d7"
+    },
+    {
+      "file": "desktop/services/temporary-conversations.ts",
+      "sha256": "1d16dbf4ef35935d9a6d7cc2d21e5424230cbc0e9a4203227cc40fa0753a0d99"
+    },
+    {
+      "file": "desktop/services/conversation-extensions.ts",
+      "sha256": "c1fabb7e455fdd32660f96b3a55cd84f735a125348c5ebce046fa1808fbc617d"
+    },
+    {
+      "file": "workbench/quick-chat.tsx",
+      "sha256": "017c100aa9e1665f93420ca556a24692cef77fd2ff46221b061dd6b8f35f2e9d"
+    },
+    {
+      "file": "workbench/theme/quick-chat.css",
+      "sha256": "ddcd93b4190f8f975f2bd557b07750e5288ad900e973d51e8c4b3be2522a6e59"
+    },
+    {
+      "file": "workbench/components/content-bridge.tsx",
+      "sha256": "b1b7f5a986701d80643cfb7a632320b74480029042730e5e9925790eacad8fa3"
+    },
+    {
+      "file": "workbench/components/composer.tsx",
+      "sha256": "b5ab9f9d86481b5b010977a7ab71d2d1c110a1233dc4a91d68be9a6efc7be0e7"
+    },
+    {
+      "file": "workbench/entry.tsx",
+      "sha256": "3e607d63ec94bf390f474dc13fadce1dfe6a4ddecbd53e375c10233e8b919977"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "sha256": "8099082561289f690f283dbb812eea720cf5236ea64c28e18ac16fea31207783"
+    },
+    {
+      "file": "scripts/verify-quick-chat.mjs",
+      "sha256": "78b2f3b50b8c5b898cc62906172ed7b42d849ec549f0ab1da5eda283af5b7c5e"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "5a5d7a08d9ad4f063aaa5f84f80dea655492b5810bb666afa2d790fbb691bb30"
+    },
+    {
+      "file": "scripts/release-policy.d.mts",
+      "sha256": "6623bfb42ad1bed81d826bc8ac907e452309eb59fa7f86274f6b41ecc0649870"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "670dfa8943b43b1d06fd4ec27875913878987daa24f35887e97c64d282342374"
+    },
+    {
+      "file": "desktop/services/terminal-sessions.ts",
+      "sha256": "d8f70afa3cb3ac8a5d6352021ce5da43aeacd9754f5a185d49ab2dd70cab45c7"
+    },
+    {
+      "file": "verification/terminal-sessions.test.ts",
+      "sha256": "63686aec2c164fafddd3a3e44c89cb041cdf7c5ac17a4294428f963042e4b7a1"
+    },
+    {
+      "file": "scripts/verify-terminal-lifecycle.mjs",
+      "sha256": "3e75dc649168947b5ce9dd4990f45147261521aaf1b2ed26db42e0655f24744a"
+    }
+  ],
+  "compiledManifestSha256": "4603d68ed9e710ef6d7a854dad3bc66783f946ebd24d00827828666b5f8b8786",
+  "compiledFiles": 236,
+  "seeded": false,
+  "extraMcpStartupImport": false,
+  "originalDeadlinesRetained": true,
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-kOT2XD",
+  "exits": [
+    {
+      "elapsedMs": 1476,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 722,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 218,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 168,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1239,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 527,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 2213,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 792,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 390,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 336,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 420,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 650,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 958,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 284,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 412,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 160,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 376,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 198,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 330,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1435,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 687,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 588,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 6147,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 10007,
+      "forced": true,
+      "exitCode": null,
+      "signalCode": null
+    }
+  ],
+  "shutdown": [
+    {
+      "event": "will-quit",
+      "at": 1791321283329,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321213468,
+          "onlineAt": 1791321213961,
+          "messageAt": 1791321213961,
+          "exitAt": 1791321222963,
+          "exitCode": 1
+        },
+        {
+          "file": "",
+          "startedAt": 1791321221929,
+          "onlineAt": 1791321221966,
+          "messageAt": 1791321221966,
+          "exitAt": 1791321225188,
+          "exitCode": 1
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321213540,
+          "pid": 81184,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 52,
+          "characters": 5248,
+          "firstDataAt": 1791321213963,
+          "lastDataAt": 1791321220178
+        },
+        {
+          "registeredAt": 1791321221963,
+          "pid": 124972,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 13,
+          "characters": 544,
+          "firstDataAt": 1791321221979,
+          "lastDataAt": 1791321223119,
+          "exitedAt": 1791321224162,
+          "exitCode": 7
+        }
+      ]
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321283330,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321213468,
+          "onlineAt": 1791321213961,
+          "messageAt": 1791321213961,
+          "exitAt": 1791321222963,
+          "exitCode": 1
+        },
+        {
+          "file": "",
+          "startedAt": 1791321221929,
+          "onlineAt": 1791321221966,
+          "messageAt": 1791321221966,
+          "exitAt": 1791321225188,
+          "exitCode": 1
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321213540,
+          "pid": 81184,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 52,
+          "characters": 5248,
+          "firstDataAt": 1791321213963,
+          "lastDataAt": 1791321220178
+        },
+        {
+          "registeredAt": 1791321221963,
+          "pid": 124972,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 13,
+          "characters": 544,
+          "firstDataAt": 1791321221979,
+          "lastDataAt": 1791321223119,
+          "exitedAt": 1791321224162,
+          "exitCode": 7
+        }
+      ]
+    },
+    {
+      "event": "quit",
+      "at": 1791321283330,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321213468,
+          "onlineAt": 1791321213961,
+          "messageAt": 1791321213961,
+          "exitAt": 1791321222963,
+          "exitCode": 1
+        },
+        {
+          "file": "",
+          "startedAt": 1791321221929,
+          "onlineAt": 1791321221966,
+          "messageAt": 1791321221966,
+          "exitAt": 1791321225188,
+          "exitCode": 1
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321213540,
+          "pid": 81184,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 52,
+          "characters": 5248,
+          "firstDataAt": 1791321213963,
+          "lastDataAt": 1791321220178
+        },
+        {
+          "registeredAt": 1791321221963,
+          "pid": 124972,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 13,
+          "characters": 544,
+          "firstDataAt": 1791321221979,
+          "lastDataAt": 1791321223119,
+          "exitedAt": 1791321224162,
+          "exitCode": 7
+        }
+      ]
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321293491,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 94392,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321286841,
+          "onlineAt": 1791321286879,
+          "messageAt": 1791321286879
+        },
+        {
+          "file": "history-evidence.txt",
+          "startedAt": 1791321288573,
+          "onlineAt": 1791321288587,
+          "messageAt": 1791321288720,
+          "exitAt": 1791321288723,
+          "exitCode": 0
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321286870,
+          "pid": 135308,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 6,
+          "characters": 416,
+          "firstDataAt": 1791321286896,
+          "lastDataAt": 1791321287425
+        }
+      ]
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321293491,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 94392,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321286841,
+          "onlineAt": 1791321286879,
+          "messageAt": 1791321286879
+        },
+        {
+          "file": "history-evidence.txt",
+          "startedAt": 1791321288573,
+          "onlineAt": 1791321288587,
+          "messageAt": 1791321288720,
+          "exitAt": 1791321288723,
+          "exitCode": 0
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321286870,
+          "pid": 135308,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 6,
+          "characters": 416,
+          "firstDataAt": 1791321286896,
+          "lastDataAt": 1791321287425
+        }
+      ]
+    },
+    {
+      "event": "quit",
+      "at": 1791321293491,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 94392,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321286841,
+          "onlineAt": 1791321286879,
+          "messageAt": 1791321286879
+        },
+        {
+          "file": "history-evidence.txt",
+          "startedAt": 1791321288573,
+          "onlineAt": 1791321288587,
+          "messageAt": 1791321288720,
+          "exitAt": 1791321288723,
+          "exitCode": 0
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321286870,
+          "pid": 135308,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 6,
+          "characters": 416,
+          "firstDataAt": 1791321286896,
+          "lastDataAt": 1791321287425
+        }
+      ]
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321306998,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "composer-draft.txt",
+          "startedAt": 1791321294605,
+          "onlineAt": 1791321294619,
+          "messageAt": 1791321294704,
+          "exitAt": 1791321294707,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321306998,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "composer-draft.txt",
+          "startedAt": 1791321294605,
+          "onlineAt": 1791321294619,
+          "messageAt": 1791321294704,
+          "exitAt": 1791321294707,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321306998,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "composer-draft.txt",
+          "startedAt": 1791321294605,
+          "onlineAt": 1791321294619,
+          "messageAt": 1791321294704,
+          "exitAt": 1791321294707,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321353467,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321353467,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321353467,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321357046,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "attachment-image.png",
+          "startedAt": 1791321355013,
+          "onlineAt": 1791321355028,
+          "messageAt": 1791321355147,
+          "exitAt": 1791321355149,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-document.docx",
+          "startedAt": 1791321355148,
+          "onlineAt": 1791321355163,
+          "messageAt": 1791321355319,
+          "exitAt": 1791321355321,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-original.pdf",
+          "startedAt": 1791321355320,
+          "onlineAt": 1791321355334,
+          "messageAt": 1791321355696,
+          "exitAt": 1791321355700,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321357046,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "attachment-image.png",
+          "startedAt": 1791321355013,
+          "onlineAt": 1791321355028,
+          "messageAt": 1791321355147,
+          "exitAt": 1791321355149,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-document.docx",
+          "startedAt": 1791321355148,
+          "onlineAt": 1791321355163,
+          "messageAt": 1791321355319,
+          "exitAt": 1791321355321,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-original.pdf",
+          "startedAt": 1791321355320,
+          "onlineAt": 1791321355334,
+          "messageAt": 1791321355696,
+          "exitAt": 1791321355700,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321357046,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "attachment-image.png",
+          "startedAt": 1791321355013,
+          "onlineAt": 1791321355028,
+          "messageAt": 1791321355147,
+          "exitAt": 1791321355149,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-document.docx",
+          "startedAt": 1791321355148,
+          "onlineAt": 1791321355163,
+          "messageAt": 1791321355319,
+          "exitAt": 1791321355321,
+          "exitCode": 0
+        },
+        {
+          "file": "attachment-original.pdf",
+          "startedAt": 1791321355320,
+          "onlineAt": 1791321355334,
+          "messageAt": 1791321355696,
+          "exitAt": 1791321355700,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321383242,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "document.pdf",
+          "startedAt": 1791321365701,
+          "onlineAt": 1791321365730,
+          "messageAt": 1791321366129,
+          "exitAt": 1791321366134,
+          "exitCode": 0
+        },
+        {
+          "file": "document.docx",
+          "startedAt": 1791321366130,
+          "onlineAt": 1791321366163,
+          "messageAt": 1791321366382,
+          "exitAt": 1791321366384,
+          "exitCode": 0
+        },
+        {
+          "file": "document.xlsx",
+          "startedAt": 1791321366383,
+          "onlineAt": 1791321366408,
+          "messageAt": 1791321366621,
+          "exitAt": 1791321366621,
+          "exitCode": 0
+        },
+        {
+          "file": "document.pptx",
+          "startedAt": 1791321366622,
+          "onlineAt": 1791321366648,
+          "messageAt": 1791321366851,
+          "exitAt": 1791321366853,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odt",
+          "startedAt": 1791321366852,
+          "onlineAt": 1791321366875,
+          "messageAt": 1791321367078,
+          "exitAt": 1791321367079,
+          "exitCode": 0
+        },
+        {
+          "file": "document.ods",
+          "startedAt": 1791321367079,
+          "onlineAt": 1791321367102,
+          "messageAt": 1791321367274,
+          "exitAt": 1791321367276,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odp",
+          "startedAt": 1791321367275,
+          "onlineAt": 1791321367299,
+          "messageAt": 1791321367460,
+          "exitAt": 1791321367461,
+          "exitCode": 0
+        },
+        {
+          "file": "document.rtf",
+          "startedAt": 1791321367460,
+          "onlineAt": 1791321367488,
+          "messageAt": 1791321367684,
+          "exitAt": 1791321367687,
+          "exitCode": 0
+        },
+        {
+          "file": "dropped.png",
+          "startedAt": 1791321368244,
+          "onlineAt": 1791321368293,
+          "messageAt": 1791321368462,
+          "exitAt": 1791321368462,
+          "exitCode": 0
+        },
+        {
+          "file": "pasted.png",
+          "startedAt": 1791321368501,
+          "onlineAt": 1791321368529,
+          "messageAt": 1791321368688,
+          "exitAt": 1791321368691,
+          "exitCode": 0
+        },
+        {
+          "file": "project-board.png",
+          "startedAt": 1791321372631,
+          "onlineAt": 1791321372657,
+          "messageAt": 1791321372833,
+          "exitAt": 1791321372836,
+          "exitCode": 0
+        },
+        {
+          "file": "readme.txt",
+          "startedAt": 1791321372835,
+          "onlineAt": 1791321372860,
+          "messageAt": 1791321373015,
+          "exitAt": 1791321373018,
+          "exitCode": 0
+        },
+        {
+          "file": "small-image.png",
+          "startedAt": 1791321373016,
+          "onlineAt": 1791321373040,
+          "messageAt": 1791321373194,
+          "exitAt": 1791321373194,
+          "exitCode": 0
+        },
+        {
+          "file": "preview-original.pdf",
+          "startedAt": 1791321376466,
+          "onlineAt": 1791321376494,
+          "messageAt": 1791321376834,
+          "exitAt": 1791321376840,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321383242,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "document.pdf",
+          "startedAt": 1791321365701,
+          "onlineAt": 1791321365730,
+          "messageAt": 1791321366129,
+          "exitAt": 1791321366134,
+          "exitCode": 0
+        },
+        {
+          "file": "document.docx",
+          "startedAt": 1791321366130,
+          "onlineAt": 1791321366163,
+          "messageAt": 1791321366382,
+          "exitAt": 1791321366384,
+          "exitCode": 0
+        },
+        {
+          "file": "document.xlsx",
+          "startedAt": 1791321366383,
+          "onlineAt": 1791321366408,
+          "messageAt": 1791321366621,
+          "exitAt": 1791321366621,
+          "exitCode": 0
+        },
+        {
+          "file": "document.pptx",
+          "startedAt": 1791321366622,
+          "onlineAt": 1791321366648,
+          "messageAt": 1791321366851,
+          "exitAt": 1791321366853,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odt",
+          "startedAt": 1791321366852,
+          "onlineAt": 1791321366875,
+          "messageAt": 1791321367078,
+          "exitAt": 1791321367079,
+          "exitCode": 0
+        },
+        {
+          "file": "document.ods",
+          "startedAt": 1791321367079,
+          "onlineAt": 1791321367102,
+          "messageAt": 1791321367274,
+          "exitAt": 1791321367276,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odp",
+          "startedAt": 1791321367275,
+          "onlineAt": 1791321367299,
+          "messageAt": 1791321367460,
+          "exitAt": 1791321367461,
+          "exitCode": 0
+        },
+        {
+          "file": "document.rtf",
+          "startedAt": 1791321367460,
+          "onlineAt": 1791321367488,
+          "messageAt": 1791321367684,
+          "exitAt": 1791321367687,
+          "exitCode": 0
+        },
+        {
+          "file": "dropped.png",
+          "startedAt": 1791321368244,
+          "onlineAt": 1791321368293,
+          "messageAt": 1791321368462,
+          "exitAt": 1791321368462,
+          "exitCode": 0
+        },
+        {
+          "file": "pasted.png",
+          "startedAt": 1791321368501,
+          "onlineAt": 1791321368529,
+          "messageAt": 1791321368688,
+          "exitAt": 1791321368691,
+          "exitCode": 0
+        },
+        {
+          "file": "project-board.png",
+          "startedAt": 1791321372631,
+          "onlineAt": 1791321372657,
+          "messageAt": 1791321372833,
+          "exitAt": 1791321372836,
+          "exitCode": 0
+        },
+        {
+          "file": "readme.txt",
+          "startedAt": 1791321372835,
+          "onlineAt": 1791321372860,
+          "messageAt": 1791321373015,
+          "exitAt": 1791321373018,
+          "exitCode": 0
+        },
+        {
+          "file": "small-image.png",
+          "startedAt": 1791321373016,
+          "onlineAt": 1791321373040,
+          "messageAt": 1791321373194,
+          "exitAt": 1791321373194,
+          "exitCode": 0
+        },
+        {
+          "file": "preview-original.pdf",
+          "startedAt": 1791321376466,
+          "onlineAt": 1791321376494,
+          "messageAt": 1791321376834,
+          "exitAt": 1791321376840,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321383242,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "document.pdf",
+          "startedAt": 1791321365701,
+          "onlineAt": 1791321365730,
+          "messageAt": 1791321366129,
+          "exitAt": 1791321366134,
+          "exitCode": 0
+        },
+        {
+          "file": "document.docx",
+          "startedAt": 1791321366130,
+          "onlineAt": 1791321366163,
+          "messageAt": 1791321366382,
+          "exitAt": 1791321366384,
+          "exitCode": 0
+        },
+        {
+          "file": "document.xlsx",
+          "startedAt": 1791321366383,
+          "onlineAt": 1791321366408,
+          "messageAt": 1791321366621,
+          "exitAt": 1791321366621,
+          "exitCode": 0
+        },
+        {
+          "file": "document.pptx",
+          "startedAt": 1791321366622,
+          "onlineAt": 1791321366648,
+          "messageAt": 1791321366851,
+          "exitAt": 1791321366853,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odt",
+          "startedAt": 1791321366852,
+          "onlineAt": 1791321366875,
+          "messageAt": 1791321367078,
+          "exitAt": 1791321367079,
+          "exitCode": 0
+        },
+        {
+          "file": "document.ods",
+          "startedAt": 1791321367079,
+          "onlineAt": 1791321367102,
+          "messageAt": 1791321367274,
+          "exitAt": 1791321367276,
+          "exitCode": 0
+        },
+        {
+          "file": "document.odp",
+          "startedAt": 1791321367275,
+          "onlineAt": 1791321367299,
+          "messageAt": 1791321367460,
+          "exitAt": 1791321367461,
+          "exitCode": 0
+        },
+        {
+          "file": "document.rtf",
+          "startedAt": 1791321367460,
+          "onlineAt": 1791321367488,
+          "messageAt": 1791321367684,
+          "exitAt": 1791321367687,
+          "exitCode": 0
+        },
+        {
+          "file": "dropped.png",
+          "startedAt": 1791321368244,
+          "onlineAt": 1791321368293,
+          "messageAt": 1791321368462,
+          "exitAt": 1791321368462,
+          "exitCode": 0
+        },
+        {
+          "file": "pasted.png",
+          "startedAt": 1791321368501,
+          "onlineAt": 1791321368529,
+          "messageAt": 1791321368688,
+          "exitAt": 1791321368691,
+          "exitCode": 0
+        },
+        {
+          "file": "project-board.png",
+          "startedAt": 1791321372631,
+          "onlineAt": 1791321372657,
+          "messageAt": 1791321372833,
+          "exitAt": 1791321372836,
+          "exitCode": 0
+        },
+        {
+          "file": "readme.txt",
+          "startedAt": 1791321372835,
+          "onlineAt": 1791321372860,
+          "messageAt": 1791321373015,
+          "exitAt": 1791321373018,
+          "exitCode": 0
+        },
+        {
+          "file": "small-image.png",
+          "startedAt": 1791321373016,
+          "onlineAt": 1791321373040,
+          "messageAt": 1791321373194,
+          "exitAt": 1791321373194,
+          "exitCode": 0
+        },
+        {
+          "file": "preview-original.pdf",
+          "startedAt": 1791321376466,
+          "onlineAt": 1791321376494,
+          "messageAt": 1791321376834,
+          "exitAt": 1791321376840,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321393907,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "knowledge-source.docx",
+          "startedAt": 1791321385074,
+          "onlineAt": 1791321385089,
+          "messageAt": 1791321385201,
+          "exitAt": 1791321385203,
+          "exitCode": 0
+        },
+        {
+          "file": "knowledge-source.pdf",
+          "startedAt": 1791321385202,
+          "onlineAt": 1791321385215,
+          "messageAt": 1791321385418,
+          "exitAt": 1791321385424,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321393907,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "knowledge-source.docx",
+          "startedAt": 1791321385074,
+          "onlineAt": 1791321385089,
+          "messageAt": 1791321385201,
+          "exitAt": 1791321385203,
+          "exitCode": 0
+        },
+        {
+          "file": "knowledge-source.pdf",
+          "startedAt": 1791321385202,
+          "onlineAt": 1791321385215,
+          "messageAt": 1791321385418,
+          "exitAt": 1791321385424,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321393908,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "knowledge-source.docx",
+          "startedAt": 1791321385074,
+          "onlineAt": 1791321385089,
+          "messageAt": 1791321385201,
+          "exitAt": 1791321385203,
+          "exitCode": 0
+        },
+        {
+          "file": "knowledge-source.pdf",
+          "startedAt": 1791321385202,
+          "onlineAt": 1791321385215,
+          "messageAt": 1791321385418,
+          "exitAt": 1791321385424,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321400239,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321400240,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321400240,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321423883,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321423883,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321423883,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321424859,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321424859,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321424859,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321432873,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321432874,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321432874,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321438740,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321438741,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321438741,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321448159,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321448160,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321448160,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321458586,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "reply-version-context.txt",
+          "startedAt": 1791321450993,
+          "onlineAt": 1791321451009,
+          "messageAt": 1791321451093,
+          "exitAt": 1791321451096,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321458586,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "reply-version-context.txt",
+          "startedAt": 1791321450993,
+          "onlineAt": 1791321451009,
+          "messageAt": 1791321451093,
+          "exitAt": 1791321451096,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321458586,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "reply-version-context.txt",
+          "startedAt": 1791321450993,
+          "onlineAt": 1791321451009,
+          "messageAt": 1791321451093,
+          "exitAt": 1791321451096,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321466340,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "message-edit-evidence.txt",
+          "startedAt": 1791321460710,
+          "onlineAt": 1791321460724,
+          "messageAt": 1791321460809,
+          "exitAt": 1791321460811,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321466340,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "message-edit-evidence.txt",
+          "startedAt": 1791321460710,
+          "onlineAt": 1791321460724,
+          "messageAt": 1791321460809,
+          "exitAt": 1791321460811,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321466340,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "message-edit-evidence.txt",
+          "startedAt": 1791321460710,
+          "onlineAt": 1791321460724,
+          "messageAt": 1791321460809,
+          "exitAt": 1791321460811,
+          "exitCode": 0
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321480044,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321480044,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321480044,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321499194,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321482516,
+          "onlineAt": 1791321482531,
+          "messageAt": 1791321482615,
+          "exitAt": 1791321482617,
+          "exitCode": 0
+        },
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321491529,
+          "onlineAt": 1791321491554,
+          "messageAt": 1791321491712,
+          "exitAt": 1791321491716,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321499194,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321482516,
+          "onlineAt": 1791321482531,
+          "messageAt": 1791321482615,
+          "exitAt": 1791321482617,
+          "exitCode": 0
+        },
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321491529,
+          "onlineAt": 1791321491554,
+          "messageAt": 1791321491712,
+          "exitAt": 1791321491716,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321499194,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321482516,
+          "onlineAt": 1791321482531,
+          "messageAt": 1791321482615,
+          "exitAt": 1791321482617,
+          "exitCode": 0
+        },
+        {
+          "file": "command-context.txt",
+          "startedAt": 1791321491529,
+          "onlineAt": 1791321491554,
+          "messageAt": 1791321491712,
+          "exitAt": 1791321491716,
+          "exitCode": 1
+        }
+      ],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321500329,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321500329,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321500329,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321529658,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321529658,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321529658,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321594930,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 126228,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321577875,
+          "onlineAt": 1791321577916,
+          "messageAt": 1791321577916
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321577909,
+          "pid": 127820,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 150,
+          "characters": 11152,
+          "firstDataAt": 1791321577925,
+          "lastDataAt": 1791321593763
+        }
+      ]
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321594930,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 126228,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321577875,
+          "onlineAt": 1791321577916,
+          "messageAt": 1791321577916
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321577909,
+          "pid": 127820,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 150,
+          "characters": 11152,
+          "firstDataAt": 1791321577925,
+          "lastDataAt": 1791321593763
+        }
+      ]
+    },
+    {
+      "event": "quit",
+      "at": 1791321594930,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 126228,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321577875,
+          "onlineAt": 1791321577916,
+          "messageAt": 1791321577916
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321577909,
+          "pid": 127820,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 150,
+          "characters": 11152,
+          "firstDataAt": 1791321577925,
+          "lastDataAt": 1791321593763
+        }
+      ]
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321676890,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 136436,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321602741,
+          "onlineAt": 1791321602777,
+          "messageAt": 1791321602777
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321602771,
+          "pid": 130320,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 60,
+          "characters": 4723,
+          "firstDataAt": 1791321602792,
+          "lastDataAt": 1791321614731
+        }
+      ]
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321676890,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 136436,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321602741,
+          "onlineAt": 1791321602777,
+          "messageAt": 1791321602777
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321602771,
+          "pid": 130320,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 60,
+          "characters": 4723,
+          "firstDataAt": 1791321602792,
+          "lastDataAt": 1791321614731
+        }
+      ]
+    },
+    {
+      "event": "quit",
+      "at": 1791321676890,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "MessagePort"
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Pipe"
+        },
+        {
+          "type": "ChildProcess",
+          "pid": 136436,
+          "exitCode": null,
+          "signalCode": null,
+          "connected": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap",
+        "MessagePort",
+        "PipeWrap",
+        "PipeWrap",
+        "PipeWrap",
+        "ProcessWrap",
+        "Timeout",
+        "Timeout"
+      ],
+      "workers": [
+        {
+          "file": "",
+          "startedAt": 1791321602741,
+          "onlineAt": 1791321602777,
+          "messageAt": 1791321602777
+        }
+      ],
+      "terminals": [
+        {
+          "registeredAt": 1791321602771,
+          "pid": 130320,
+          "processName": "xterm-256color",
+          "cols": 80,
+          "rows": 12,
+          "chunks": 60,
+          "characters": 4723,
+          "firstDataAt": 1791321602792,
+          "lastDataAt": 1791321614731
+        }
+      ]
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321700909,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321700909,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321700909,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "will-quit",
+      "at": 1791321707977,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "process-exit",
+      "at": 1791321707978,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    },
+    {
+      "event": "quit",
+      "at": 1791321707978,
+      "handles": [
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        },
+        {
+          "type": "Socket",
+          "destroyed": false,
+          "readable": false,
+          "writable": true
+        }
+      ],
+      "resources": [
+        "PipeWrap",
+        "PipeWrap"
+      ],
+      "workers": [],
+      "terminals": []
+    }
+  ],
+  "observations": [
+    {
+      "requestedAt": 1791321393837,
+      "observedAt": 1791321396114,
+      "processes": [
+        {
+          "pid": 93100,
+          "cpuMilliseconds": 2468.75,
+          "workingSetBytes": 181501952,
+          "threads": [
+            {
+              "id": 91228,
+              "state": "Wait",
+              "reason": "Unknown"
+            }
+          ]
+        },
+        {
+          "pid": 97404,
+          "exited": true
+        },
+        {
+          "pid": 130712,
+          "exited": true
+        },
+        {
+          "pid": 119280,
+          "exited": true
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791321707940,
+      "observedAt": 1791321710205,
+      "processes": [
+        {
+          "pid": 122912,
+          "cpuMilliseconds": 2828.125,
+          "workingSetBytes": 131211264,
+          "threads": [
+            {
+              "id": 123116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118880,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 97168,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 89068,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 115228,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 89876,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 92908,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 101424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85752,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 91896,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 99400,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94016,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 127876,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 51268,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 137032,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 47540,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 62200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 107668,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 69532,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86572,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132176,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 105028,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82904,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124996,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 101100,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128008,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 96128,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 22084,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 73724,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 5716,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129868,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80564,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136952,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 129460,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 137144,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 118300,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 98496,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 104600,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 16380,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 134684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 54148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 52612,
+          "cpuMilliseconds": 578.125,
+          "workingSetBytes": 113729536,
+          "threads": [
+            {
+              "id": 127084,
+              "state": "Ready",
+              "reason": ""
+            }
+          ]
+        },
+        {
+          "pid": 9016,
+          "exited": true
+        },
+        {
+          "pid": 112756,
+          "exited": true
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791321707940,
+      "observedAt": 1791321714201,
+      "processes": [
+        {
+          "pid": 122912,
+          "exited": true
+        },
+        {
+          "pid": 52612,
+          "exited": true
+        },
+        {
+          "pid": 9016,
+          "exited": true
+        },
+        {
+          "pid": 112756,
+          "exited": true
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791321766548,
+      "observedAt": 1791321768801,
+      "processes": [
+        {
+          "pid": 97204,
+          "cpuMilliseconds": 19140.625,
+          "workingSetBytes": 1057345536,
+          "threads": [
+            {
+              "id": 83072,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128340,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 81576,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 112076,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 127256,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9744,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 130164,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124660,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 137136,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119824,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121052,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100052,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 88632,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 92424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 97564,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 40116,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 80256,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 118908,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 69060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124968,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 135024,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 35548,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 42132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 77340,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86848,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 134060,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119056,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 75968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97300,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 107704,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 95536,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110056,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 38424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 88024,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71512,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 106332,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 19432,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118248,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 119264,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 123368,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 92608,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 54316,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94308,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128624,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 107376,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 127732,
+          "cpuMilliseconds": 1593.75,
+          "workingSetBytes": 121036800,
+          "threads": [
+            {
+              "id": 124952,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59736,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 10380,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 133424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 36884,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129628,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 101328,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 73596,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93720,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132900,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80008,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87880,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117504,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 55568,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 114936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103560,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 135936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132396,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 33328,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85108,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118520,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 109880,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 129248,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 126940,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105712,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131144,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116456,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 69548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 92792,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 57012,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 123388,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87024,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80396,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 50148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 43872,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125292,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 114452,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 61380,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97256,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100544,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132644,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118772,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130100,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 98540,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 61796,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 137100,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 33124,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136944,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 127352,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59416,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 5500,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 76744,
+          "cpuMilliseconds": 46.875,
+          "workingSetBytes": 53301248,
+          "threads": [
+            {
+              "id": 137204,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86040,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 77612,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 134080,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 82336,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124632,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 78620,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 113948,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 129220,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 26304,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136476,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 12892,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129320,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 69132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 136868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 126576,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 135684,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791321766548,
+      "observedAt": 1791321772822,
+      "processes": [
+        {
+          "pid": 97204,
+          "cpuMilliseconds": 19265.625,
+          "workingSetBytes": 1060667392,
+          "threads": [
+            {
+              "id": 83072,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128340,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 81576,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 112076,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 127256,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9744,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 130164,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124660,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 137136,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119824,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121052,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100052,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 88632,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 92424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 97564,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 40116,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 80256,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 118908,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 69060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124968,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 135024,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 35548,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 42132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 77340,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86848,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 134060,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119056,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 75968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97300,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 107704,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 95536,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110056,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 38424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 88024,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71512,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 106332,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 19432,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118248,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 119264,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 123368,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 92608,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 54316,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94308,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128624,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 107376,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93520,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 112936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 127732,
+          "cpuMilliseconds": 1593.75,
+          "workingSetBytes": 120840192,
+          "threads": [
+            {
+              "id": 124952,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59736,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 10380,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 133424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 36884,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129628,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 101328,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 73596,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93720,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132900,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80008,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87880,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117504,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 55568,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 114936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103560,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 135936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132396,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 33328,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85108,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118520,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 109880,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 129248,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 126940,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105712,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131144,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116456,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 69548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 92792,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 57012,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 123388,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87024,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 80396,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 50148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 43872,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125292,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 114452,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 61380,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97256,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100544,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132644,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118772,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130100,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 98540,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 61796,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 137100,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 33124,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136944,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 127352,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 59416,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 5500,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 76744,
+          "cpuMilliseconds": 46.875,
+          "workingSetBytes": 53301248,
+          "threads": [
+            {
+              "id": 137204,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86040,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 77612,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 134080,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 82336,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124632,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 78620,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 113948,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 129220,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 26304,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 136476,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 12892,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 129320,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 69132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 136868,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 126576,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 135684,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "file": "verification/assistant-profiles-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "f569b867488da278e433bac29c223cbb0ae4e80d37e584d36df01dd134a3ad70",
+      "checks": 6,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/automations-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\automations-result.json",
+      "bytes": 1401,
+      "sha256": "0f9b725595083f1ae1e62a0cd36202001c616a001e8d14d088f0667f5d283112",
+      "checks": 10,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/backups-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\backups-result.json",
+      "bytes": 1997,
+      "sha256": "5e9a52cd6a570c328a9c1429d78a1eb634ecb7149f89af30562e9c1f7009ec7d",
+      "checks": 6,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/commands-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\commands-result.json",
+      "bytes": 873,
+      "sha256": "7b9137763a32cecefc872dc608324310961781e6acea1cf179da1d3c539a3d77",
+      "checks": 6,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/desktop-integration-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "2e8f7a75e3883db7c3920d13cef486c298a69c275fa61fe1194e1e1837a0b278",
+      "checks": 5,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/knowledge-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\knowledge-result.json",
+      "bytes": 781,
+      "sha256": "7f37fbc994e3834ee6dffabc5669e7fe9a35483abea4aefce40d66c2e744c879",
+      "checks": 19,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/message-edits-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\message-edits-result.json",
+      "bytes": 768,
+      "sha256": "db99028811866f3fe0c21803950ad2965bda50185a1aabf1f0a50b1937517e81",
+      "checks": 7,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/prompt-templates-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "ff23003ccceea8c4ac16495924c2bbf846b1d7788a388d861e408a54bc79a5a7",
+      "checks": 6,
+      "runtimeErrors": []
+    },
+    {
+      "file": "verification/reply-versions-result.json",
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "605079c04c8096c4265b12b6903150ed163a29e736eb2c6f659e74b6e6497cb4",
+      "checks": 6,
+      "runtimeErrors": []
+    }
+  ],
+  "archived": [
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\native.log",
+      "bytes": 120082,
+      "sha256": "be5db53d6a85ba757a3cc5b02448eb52096b95c5501ec39c3da8986d612377c5"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\assistant-profiles-result.json",
+      "bytes": 518,
+      "sha256": "f569b867488da278e433bac29c223cbb0ae4e80d37e584d36df01dd134a3ad70"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\automations-result.json",
+      "bytes": 1401,
+      "sha256": "0f9b725595083f1ae1e62a0cd36202001c616a001e8d14d088f0667f5d283112"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\backups-result.json",
+      "bytes": 1997,
+      "sha256": "5e9a52cd6a570c328a9c1429d78a1eb634ecb7149f89af30562e9c1f7009ec7d"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\commands-result.json",
+      "bytes": 873,
+      "sha256": "7b9137763a32cecefc872dc608324310961781e6acea1cf179da1d3c539a3d77"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\desktop-integration-result.json",
+      "bytes": 628,
+      "sha256": "2e8f7a75e3883db7c3920d13cef486c298a69c275fa61fe1194e1e1837a0b278"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\knowledge-result.json",
+      "bytes": 781,
+      "sha256": "7f37fbc994e3834ee6dffabc5669e7fe9a35483abea4aefce40d66c2e744c879"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\message-edits-result.json",
+      "bytes": 768,
+      "sha256": "db99028811866f3fe0c21803950ad2965bda50185a1aabf1f0a50b1937517e81"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\prompt-templates-result.json",
+      "bytes": 529,
+      "sha256": "ff23003ccceea8c4ac16495924c2bbf846b1d7788a388d861e408a54bc79a5a7"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-full\\reply-versions-result.json",
+      "bytes": 597,
+      "sha256": "605079c04c8096c4265b12b6903150ed163a29e736eb2c6f659e74b6e6497cb4"
+    }
+  ],
+  "failureTail": "id\":98540,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":61796,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":137100,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":33124,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":136944,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":127352,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":59416,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":5500,\"state\":\"Wait\",\"reason\":\"EventPairLow\"}]},{\"pid\":76744,\"cpuMilliseconds\":46.875,\"workingSetBytes\":53301248,\"threads\":[{\"id\":137204,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":86040,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":77612,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":134080,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":82336,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":124632,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":72412,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":78620,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":113948,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":125868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":129220,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":26304,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":136476,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":12892,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":129320,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":69132,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":128868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":136868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":126576,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":135684,\"state\":\"Wait\",\"reason\":\"EventPairLow\"}]}]}\r\nDesktop native close observation {\"requestedAt\":1791321766548,\"observedAt\":1791321772822,\"processes\":[{\"pid\":97204,\"cpuMilliseconds\":19265.625,\"workingSetBytes\":1060667392,\"threads\":[{\"id\":83072,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":128340,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":81576,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":112076,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":127256,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":9744,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":130164,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":124660,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":137136,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":119824,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":121052,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":100052,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":88632,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":92424,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":97564,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":40116,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":80256,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":118908,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":69060,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":124968,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":135024,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":35548,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":42132,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":77340,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":86848,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":82488,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":134060,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":119056,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":75968,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":97300,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":107704,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":95536,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":110056,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":38424,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":121968,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":88024,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":71512,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":106332,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":19432,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":118248,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":119264,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":123368,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":92608,\"state\":\"Wait\",\"reason\":\"Unknown\"},{\"id\":54316,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":71200,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":94308,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":128624,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":107376,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":93520,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":112936,\"state\":\"Wait\",\"reason\":\"UserRequest\"}]},{\"pid\":127732,\"cpuMilliseconds\":1593.75,\"workingSetBytes\":120840192,\"threads\":[{\"id\":124952,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":59736,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":10380,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":133424,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":36884,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":85488,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":129628,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":101328,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":73596,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":93720,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":132900,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":80008,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":87880,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":117504,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":55568,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":114936,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":103560,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":135936,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":132396,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":33328,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":85108,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":118520,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":109880,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":129248,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":126940,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":105712,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":131060,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":131144,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":116456,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":69548,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":92792,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":57012,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":123388,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":87024,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":80396,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":50148,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":83416,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":43872,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":125292,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":114452,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":61380,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":97256,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":100544,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":132644,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":118772,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":130100,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":98540,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":61796,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":137100,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":33124,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":136944,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":127352,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":59416,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":5500,\"state\":\"Wait\",\"reason\":\"EventPairLow\"}]},{\"pid\":76744,\"cpuMilliseconds\":46.875,\"workingSetBytes\":53301248,\"threads\":[{\"id\":137204,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":86040,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":77612,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":134080,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":82336,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":124632,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":72412,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":78620,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":113948,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":125868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":129220,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":26304,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":136476,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":12892,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":129320,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":69132,\"state\":\"Wait\",\"reason\":\"UserRequest\"},{\"id\":128868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":136868,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":126576,\"state\":\"Wait\",\"reason\":\"EventPairLow\"},{\"id\":135684,\"state\":\"Wait\",\"reason\":\"EventPairLow\"}]}]}\r\nDesktop close diagnostics {\"capturedAt\":1791321766547,\"events\":[],\"operations\":[{\"method\":\"load\",\"startedAt\":1791321716619,\"finishedAt\":1791321716702},{\"method\":\"load\",\"startedAt\":1791321719506,\"finishedAt\":1791321719619},{\"method\":\"load\",\"startedAt\":1791321727555,\"finishedAt\":1791321727662},{\"method\":\"load\",\"startedAt\":1791321735943,\"finishedAt\":1791321737575},{\"method\":\"load\",\"startedAt\":1791321737867,\"finishedAt\":1791321737980},{\"method\":\"load\",\"startedAt\":1791321742672,\"finishedAt\":1791321742829},{\"method\":\"load\",\"startedAt\":1791321751947,\"finishedAt\":1791321752060},{\"method\":\"load\",\"startedAt\":1791321757661,\"finishedAt\":1791321759696},{\"method\":\"load\",\"startedAt\":1791321760351,\"finishedAt\":1791321763142},{\"method\":\"saveComposerDraft\",\"startedAt\":1791321763793,\"finishedAt\":1791321764140},{\"method\":\"load\",\"startedAt\":1791321764141,\"finishedAt\":1791321764272},{\"method\":\"activateThread\",\"startedAt\":1791321764507,\"finishedAt\":1791321764925},{\"method\":\"load\",\"startedAt\":1791321764575,\"finishedAt\":1791321764925},{\"method\":\"load\",\"startedAt\":1791321765227,\"finishedAt\":1791321765404}],\"processes\":[{\"pid\":97204,\"type\":\"Browser\"},{\"pid\":127732,\"type\":\"GPU\"},{\"pid\":76744,\"type\":\"Utility\"}],\"windows\":[{\"id\":1,\"destroyed\":false,\"visible\":false}],\"handles\":[\"Socket\",\"Socket\"],\"filesystem\":[],\"memory\":{\"rss\":1057304576,\"heapTotal\":588267520,\"heapUsed\":574686188,\"external\":345623507,\"arrayBuffers\":0},\"cpu\":{\"user\":11859000,\"system\":7281000}} ernal\":345623507,\"arrayBuffers\":0},\"systemFreeMemory\":828289024,\"processes\":[{\"pid\":97204,\"type\":\"Browser\",\"memory\":{\"workingSetSize\":1032424,\"peakWorkingSetSize\":1365236,\"privateBytes\":1004220}},{\"pid\":127732,\"type\":\"GPU\",\"memory\":{\"workingSetSize\":118184,\"peakWorkingSetSize\":130296,\"privateBytes\":116476}},{\"pid\":76744,\"type\":\"Utility\",\"memory\":{\"workingSetSize\":52024,\"peakWorkingSetSize\":52024,\"privateBytes\":12156}}]}\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\nDebugger attached.\r\nQIYAO_TEST_CLOSE {\"event\":\"draft-flush-requested\",\"at\":1791321766551}\r\nError sending from webContents:  Error: Render frame was disposed before WebFrameMain could be accessed\r\n    at WebContents.send (node:electron/js2c/browser_init:1:93961)\r\n    at w.webContents.send (<anonymous>:1:1375)\r\n    at BrowserWindow.<anonymous> (E:\\NookWorktrees\\quick-chat-short-window\\out\\main\\launch.cjs:28922:27)\r\n    at BrowserWindow.emit (node:events:526:24)\r\n    at EventEmitter.<anonymous> (E:\\NookWorktrees\\quick-chat-short-window\\out\\main\\launch.cjs:29155:28)\r\n    at EventEmitter.emit (node:events:526:24)\r\n    at <anonymous>:1:25\r\nQIYAO_TEST_CLOSE {\"event\":\"window-close\",\"at\":1791321766551,\"prevented\":true}\r\nQIYAO_TEST_CLOSE {\"event\":\"before-quit\",\"at\":1791321766552}\r\nDebugger ending on [test debugger]\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\n\r\nDesktop exit observation {\"elapsedMs\":10007,\"forced\":true,\"exitCode\":null,\"signalCode\":null}\r\nnode:internal/modules/run_main:105\r\n    triggerUncaughtException(\r\n    ^\r\n\r\npage.evaluate: Target crashed \r\n    at verifyConversationBranches (E:\\NookWorktrees\\quick-chat-short-window\\scripts\\verify-conversation-branches.mjs:95:31)\r\n    at async file:///E:/NookWorktrees/quick-chat-short-window/scripts/verify-desktop.mjs:1134:31 {\r\n  log: [],\r\n  name: 'Error'\r\n}\r\n\r\nNode.js v24.0.0\r\n",
+  "existingFailureScreenshotTime": "2026-10-06T20:56:19.435Z",
+  "existingFailureScreenshotAccepted": false,
+  "earlierFailuresRetained": [
+    "verification/quick-chat-review-result.json",
+    "verification/quick-chat-full-retry-result.json",
+    "verification/project-tree-large-seed-failure-result.json",
+    "verification/terminal-pending-close-review-result.json"
+  ],
+  "nativeRootCauseEstablished": false,
+  "packaged": false,
+  "published": false,
+  "scope": "A fresh default complete desktop journey failed with unchanged terminal cleanup source/build and original deadlines. Partial feature records and earlier focused passes are archived, not accepted as a full pass. Earlier failures and their workspaces are retained; no distributed application or release was created."
+}
