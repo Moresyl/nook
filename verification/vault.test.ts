@@ -98,6 +98,27 @@ describe('local workspace persistence', () => {
     before.threads.length = 0; after.threads.length = 0;
     expect(vault.snapshot().threads).toHaveLength(1);
   });
+  it('detaches snapshots, transaction replies and backups without a whole-workspace clone', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const message = { id: 'bounded', role: 'assistant' as const, content: '中文😀'.repeat(1000), status: 'complete' as const, attachments: [], createdAt: 1 };
+    await vault.commit(state => { state.threads.push(sampleThread({ messages: [message] })); });
+    const originalClone = globalThis.structuredClone;
+    globalThis.structuredClone = ((value: unknown, options?: StructuredSerializeOptions) => {
+      if (value && typeof value === 'object' && 'schemaVersion' in value && 'threads' in value) throw new Error('Whole-workspace clone');
+      return originalClone(value, options);
+    }) as typeof structuredClone;
+    try {
+      const snapshot = vault.snapshot();
+      const updated = await vault.update(state => { state.threads[0].title = 'Updated'; });
+      const settings = await vault.updateSettings(state => { state.preferences.theme = 'dark'; });
+      const checkpoint = await vault.checkpointMessages([{ threadId: 'thread', message: { ...message, content: 'Saved 中文😀' } }]);
+      const backup = vault.backup();
+      for (const copy of [snapshot, updated, settings, checkpoint, backup]) copy.threads[0].messages[0].content = 'External mutation';
+      expect(vault.thread('thread')?.messages[0].content).toBe('Saved 中文😀');
+      await vault.flush(); const restarted = new WorkspaceVault(directory, codec); await restarted.initialize();
+      expect(restarted.snapshot()).toEqual(vault.snapshot());
+    } finally { globalThis.structuredClone = originalClone; }
+  });
   it('rejects failed commits without changing memory or the primary file, then permits retry', async () => {
     const { vault, directory } = await testVault(); directories.push(directory);
     const before = vault.snapshot(); const primary = join(directory, 'workspace.json');

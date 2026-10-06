@@ -11,6 +11,7 @@ import { writeWorkspaceRecovery } from './workspace-recovery-file';
 import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
 import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serialization';
+import { copyWorkspace } from './workspace-copy';
 import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
 import type { DocumentOriginal } from '../../contracts/document-originals';
 import { DocumentOriginalStore } from './document-original-store';
@@ -100,7 +101,7 @@ export class WorkspaceVault {
     onPhase('runs.recovered');
   }
 
-  snapshot(): Workspace { return structuredClone(this.state); }
+  snapshot(): Workspace { return copyWorkspace(this.state); }
   stageDocumentOriginals(bytes: Uint8Array[]): DocumentOriginal[] { return this.originals.stage(bytes); }
 
   /** Resolve ownership in transaction order without cloning complete conversation histories. */
@@ -151,7 +152,7 @@ export class WorkspaceVault {
   }
 
   update(change: (draft: Workspace) => void, options?: { conversation: boolean }): Promise<Workspace> {
-    return this.save(change, undefined, options?.conversation).then(state => structuredClone(state));
+    return this.save(change, undefined, options?.conversation).then(copyWorkspace);
   }
 
   /** Persist a transaction whose caller only needs durable acknowledgement. */
@@ -168,7 +169,7 @@ export class WorkspaceVault {
       return this.persist({ ...this.state, ...settings });
     });
     this.tail = operation.catch(() => {});
-    return operation.then(state => structuredClone(state));
+    return operation.then(copyWorkspace);
   }
 
   /** Draft-only mutations share validated histories but never expose them to the callback. */
@@ -210,7 +211,7 @@ export class WorkspaceVault {
         const index = target?.messages.findIndex(message => message.id === entry.message.id) ?? -1;
         if (target && index >= 0) { target.messages[index] = structuredClone(entry.message); target.updatedAt = now; }
       }
-    }, captured.map(entry => entry.threadId)).then(state => structuredClone(state));
+    }, captured.map(entry => entry.threadId)).then(copyWorkspace);
   }
 
   private save(change: (draft: Workspace) => void, checkpointIds?: string[], conversation = false): Promise<Workspace> {
@@ -295,7 +296,7 @@ export class WorkspaceVault {
   }
 
   backup(): Workspace {
-    const snapshot = structuredClone(persistentWorkspace(this.state, this.persistentActiveThreadId));
+    const snapshot = copyWorkspace(persistentWorkspace(this.state, this.persistentActiveThreadId));
     snapshot.providers.forEach((provider) => { provider.hasKey = false; });
     snapshot.mcpServers.forEach((server) => { server.hasCredentials = false; server.autoConnect = false; });
     return snapshot;
