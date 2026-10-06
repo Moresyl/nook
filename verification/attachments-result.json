@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-06T01:27:41.072Z",
+  "verifiedAt": "2026-10-06T06:07:34.545Z",
   "variant": "development executable",
   "checks": 16,
   "runtimeErrors": [],
@@ -25,6 +25,21 @@
     "odp",
     "rtf"
   ],
+  "pdfOriginal": {
+    "textOnlyProtocols": [
+      "responses",
+      "openai",
+      "anthropic",
+      "gemini",
+      "ollama",
+      "azure-responses",
+      "azure-chat",
+      "azure-deployment"
+    ],
+    "restartBytesVerified": true,
+    "deduplicatedBackupVerified": true,
+    "missingFileRestoredVerified": true
+  },
   "cloudCredentialsUsed": false,
-  "scope": "Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used."
+  "scope": "Real importer workers, source metadata, native request bytes, previews, drop/paste, rejected unsupported model, restart and complete backup including reconstruction of a missing PDF original. Native file/backup dialog boundaries are intercepted in the isolated test process; no live cloud credentials are used."
 }

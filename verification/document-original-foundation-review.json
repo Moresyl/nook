@@ -36,7 +36,6 @@
     "Broaden PDF annotation samples and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Extend offline PDF sample coverage to Chinese CMaps, complex images and annotation layers",
-    "Verify provider requests exclude original binary bytes",
     "Build, complete regression, native UI checks, distribution and hosted release"
   ],
   "vaultFollowUp": {
@@ -137,6 +136,19 @@
     ],
     "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
     "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
+  },
+  "transportRestoreFollowUp": {
+    "featureComplete": false,
+    "nativeChecks": { "passed": 16, "runtimeErrors": [], "normalFinalExitMilliseconds": 323, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-transport-restore-native.log" },
+    "earlierNativeRun": "D:/GR/pi-pc/.firecrawl/nook-pdf-transport-native.log",
+    "protocols": ["responses", "openai", "anthropic", "gemini", "ollama", "azure-responses", "azure-chat", "azure-deployment"],
+    "verified": [
+      "Real native HTTP requests contain extracted PDF text and exclude original base64, PDF header, local SHA-256 and PDF document/file blocks",
+      "Unsent PDF original survives actual application restart with exact bytes",
+      "Eight sent conversations share one deduplicated original in the exported workspace backup",
+      "Temporarily move the original file in the isolated test directory, verify failed reading, restore through the application UI and compare the reconstructed file and bridge bytes"
+    ],
+    "scope": "Development executable attachment suite with intercepted native file dialogs and a local HTTP server; not full-suite or distribution proof."
   },
   "annotationFollowUp": {
     "featureComplete": false,
