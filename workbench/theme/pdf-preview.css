@@ -1,6 +1,8 @@
 .pdf-preview { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; gap: 8px; }
 .pdf-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; }
 .pdf-toolbar input { width: 64px; }
+.pdf-outline { display: flex; flex-direction: column; flex-shrink: 0; max-height: 160px; overflow: auto; border: 1px solid var(--ds-border); border-radius: 6px; padding: 4px; }
+.pdf-outline .button { justify-content: flex-start; text-align: start; white-space: normal; overflow-wrap: anywhere; height: auto; min-height: 24px; }
 .pdf-scroll { overflow: auto; flex: 1; min-height: 0; padding: 16px; background: var(--ds-bg-secondary); border-radius: 8px; }
 .pdfPreviewPage { position: relative; margin-inline: auto; background: white; --scale-factor: 1; --user-unit: 1; --total-scale-factor: calc(var(--scale-factor) * var(--user-unit)); --scale-round-x: 1px; --scale-round-y: 1px; }
 .pdfPreviewPage canvas { display: block; }

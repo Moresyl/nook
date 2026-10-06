@@ -33,7 +33,7 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Complete PDF outline/search/annotation interactions and verify complete desktop product flows",
+    "Complete PDF search/annotation interactions and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
     "Extend offline PDF sample coverage to Chinese CMaps, complex images and annotation layers",
     "Verify provider requests exclude original binary bytes",
@@ -119,5 +119,23 @@
     "verified": { "dependencyVersions": 381, "legalDocuments": 401, "bundledAssetGroups": 5, "distributionComponents": 5 },
     "correction": "Resolve explicitly declared node_modules assets within the canonical installed dependency root; reject nested junction escapes, traversal, absolute paths and project/license-document escapes. Existing complete file-hash checks remain in place.",
     "scope": "Resolves the earlier shared-dependency worktree inventory failure. Does not establish runtime, distribution or overall release readiness."
+  },
+  "outlineFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "unitTests": { "files": 2, "passed": 8, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-outline-tests.log" },
+    "focusedCoverage": { "scope": "pdf-navigation.ts only", "statements": 97.36, "branches": 98.27, "functions": 100, "lines": 100, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-outline-coverage.log" },
+    "buildPassed": true,
+    "buildLog": "D:/GR/pi-pc/.firecrawl/nook-pdf-outline-build.log",
+    "nativeChecks": { "passed": 4, "normalFinalExitMilliseconds": 664, "runtimeErrors": [], "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-outline-native.log" },
+    "screenshotsReviewed": ["verification/screenshots/pdf-outline-light.png", "verification/screenshots/pdf-original-dark-minimum.png"],
+    "implemented": [
+      "Bounded nested outline navigation with named and explicit internal page targets",
+      "Resolve XYZ and horizontal/vertical destination coordinates into the rendered page viewport",
+      "Reject malformed/cyclic/oversized outlines, invalid page identities and missing destinations",
+      "Keep external actions inactive and discard navigation completions superseded by another page action or document lifetime"
+    ],
+    "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
+    "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
   }
 }

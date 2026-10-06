@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
 export async function verifyPdfPreview({ page, application, directory, screenshots, verified, restart }) {
-  const bytes = documentBytes('pdf');
+  const bytes = documentBytes('pdf', { outline: true });
   const reference = await page.evaluate(async data => {
     const [file] = await window.qiyao.importAttachments([{ name: 'preview-original.pdf', data }]);
     await window.qiyao.activateThread();
@@ -32,6 +32,20 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
   await page.screenshot({ path: join(screenshots, 'pdf-original-light.png') });
   verified('PDF original renders real canvas ink and selectable text from the isolated import worker');
+  await page.getByRole('button', { name: '目录', exact: true }).click();
+  const outline = page.getByRole('navigation', { name: 'PDF 目录', exact: true });
+  await outline.getByRole('button', { name: 'Budget details', exact: true }).waitFor();
+  assert.equal(await outline.getByRole('button', { name: 'External reference', exact: true }).isDisabled(), true);
+  await page.screenshot({ path: join(screenshots, 'pdf-outline-light.png') });
+  await outline.getByRole('button', { name: 'Budget details', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Budget 42'));
+  assert.equal(await page.getByRole('spinbutton', { name: 'PDF 页码', exact: true }).inputValue(), '2');
+  assert.ok(await page.locator('.pdf-scroll').evaluate(element => element.scrollTop) > 0);
+  await page.getByRole('button', { name: '目录', exact: true }).click();
+  await outline.getByRole('button', { name: 'Evidence chapter', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
+  assert.equal(await page.locator('.pdf-scroll').evaluate(element => element.scrollTop), 0);
+  verified('nested PDF outline resolves named page coordinates and explicit page targets while external actions remain inactive');
   const before = await page.locator('.pdfPreviewPage canvas').evaluate(canvas => canvas.getBoundingClientRect().width);
   await page.getByRole('button', { name: '放大 PDF', exact: true }).click();
   await page.waitForFunction(width => Number.parseFloat(document.querySelector('.pdfPreviewPage canvas')?.style.width ?? '0') > width, before);
@@ -66,5 +80,5 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
   assert.deepEqual(Buffer.from(restored), bytes);
   verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
-  return { page, result: { checks: 3, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png'] } };
+  return { page, result: { checks: 4, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png'] } };
 }
