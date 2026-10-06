@@ -1,0 +1,671 @@
+{
+  "verifiedAt": "2026-10-06T16:52:58.955Z",
+  "sourceCommit": "5b2c7286742a43b08b106c145d8a3b14e6ab0c68",
+  "sourceVerified": true,
+  "packagedVerified": false,
+  "hostedVerified": false,
+  "referenceFullyAdopted": false,
+  "focusedNativeChecks": 28,
+  "stages": [
+    {
+      "stage": "mcp-pdf",
+      "checks": 8,
+      "exits": [
+        {
+          "elapsedMs": 7424,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 486,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-native-final.log",
+        "bytes": 11111,
+        "sha256": "337e4edc4bca966422685d760fad4fcfc4f48cb6a45a01e1c8626a8197a64402"
+      }
+    },
+    {
+      "stage": "binary",
+      "checks": 6,
+      "exits": [
+        {
+          "elapsedMs": 3830,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2524,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-binary-regression.log",
+        "bytes": 7278,
+        "sha256": "935edbdc616192d65f1bca7f7ebf177cfb328dffb6db00acbcf323d3a1c0b403"
+      }
+    },
+    {
+      "stage": "conversations",
+      "checks": 8,
+      "exits": [
+        {
+          "elapsedMs": 7126,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 5469,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 773,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-conversation-regression.log",
+        "bytes": 7227,
+        "sha256": "2d5c59aa1a4409c3987ca25497f578cdd5835db0be3423afeb2a87e2149330e3"
+      }
+    },
+    {
+      "stage": "pdf-reader",
+      "checks": 6,
+      "exits": [
+        {
+          "elapsedMs": 457,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 146,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-reader-regression.log",
+        "bytes": 4422,
+        "sha256": "832e119066a702d953b0fcc414856ab13fa848ae4a90e5cd908629157886f675"
+      }
+    }
+  ],
+  "unitRuns": [
+    {
+      "mode": "serial with coverage",
+      "files": 97,
+      "tests": 927,
+      "durationSeconds": 350.67,
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-full-serial.log",
+        "bytes": 4879,
+        "sha256": "b07d0a1523ad74d9073e6e6cd0143a6cdd7cdcaaa930f97f15f3bff0ed300fd1"
+      }
+    },
+    {
+      "mode": "default two workers",
+      "files": 97,
+      "tests": 927,
+      "durationSeconds": 147.97,
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-default-unit.log",
+        "bytes": 330,
+        "sha256": "57496e8fe8445e415a218115f984a4c7458796bd6a478e9fd6b43bcf92a1bd91"
+      }
+    }
+  ],
+  "coverage": {
+    "scope": "Configured contracts and desktop services; renderer behavior is covered by native stages, not these percentages.",
+    "total": {
+      "lines": {
+        "total": 3519,
+        "covered": 3497,
+        "skipped": 0,
+        "pct": 99.37
+      },
+      "statements": {
+        "total": 5853,
+        "covered": 5687,
+        "skipped": 0,
+        "pct": 97.16
+      },
+      "functions": {
+        "total": 1315,
+        "covered": 1280,
+        "skipped": 0,
+        "pct": 97.33
+      },
+      "branches": {
+        "total": 4087,
+        "covered": 3871,
+        "skipped": 0,
+        "pct": 94.71
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "modules": {
+      "E:\\NookWorktrees\\document-originals\\contracts\\mcp-attachments.ts": {
+        "lines": {
+          "total": 6,
+          "covered": 6,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 2,
+          "covered": 2,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 10,
+          "covered": 10,
+          "skipped": 0,
+          "pct": 100
+        },
+        "branches": {
+          "total": 11,
+          "covered": 11,
+          "skipped": 0,
+          "pct": 100
+        }
+      },
+      "E:\\NookWorktrees\\document-originals\\contracts\\mcp-binary.ts": {
+        "lines": {
+          "total": 12,
+          "covered": 12,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 6,
+          "covered": 6,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 13,
+          "covered": 13,
+          "skipped": 0,
+          "pct": 100
+        },
+        "branches": {
+          "total": 12,
+          "covered": 12,
+          "skipped": 0,
+          "pct": 100
+        }
+      },
+      "E:\\NookWorktrees\\document-originals\\desktop\\services\\mcp-binary-files.ts": {
+        "lines": {
+          "total": 29,
+          "covered": 29,
+          "skipped": 0,
+          "pct": 100
+        },
+        "functions": {
+          "total": 5,
+          "covered": 5,
+          "skipped": 0,
+          "pct": 100
+        },
+        "statements": {
+          "total": 39,
+          "covered": 39,
+          "skipped": 0,
+          "pct": 100
+        },
+        "branches": {
+          "total": 26,
+          "covered": 26,
+          "skipped": 0,
+          "pct": 100
+        }
+      }
+    },
+    "receipt": {
+      "path": "E:/NookVerification/McpPdfCoverage-20261007/coverage-summary.json",
+      "bytes": 29194,
+      "sha256": "b738d2104241cdda1516fc5a85d221f0a053c49bd574d96334631ad3f242b9e1"
+    }
+  },
+  "sources": [
+    {
+      "file": "contracts/mcp-attachments.ts",
+      "sha256": "b720bbcf61eda080297ab59203dac9942224910c70d1c35a5f24f1565703d7fb"
+    },
+    {
+      "file": "contracts/mcp-binary.ts",
+      "sha256": "eb1208cdf7f6afc566ed52b0d8e1612446ae835e9723e94c3df9aa9a7868fda4"
+    },
+    {
+      "file": "desktop/launch.ts",
+      "sha256": "1a7cba24132f60e2dff636540b7687d81e62f856c5be021459e7bf840014069e"
+    },
+    {
+      "file": "desktop/services/mcp-binary-files.ts",
+      "sha256": "15fce0da3a9ccdd64d42b53ea1699a9d595628c0d48c45b377f6e8b9a5a2d39f"
+    },
+    {
+      "file": "scripts/release-policy.mjs",
+      "sha256": "ffdf4d782d3440b90568af437edbf95778d478c03c04c70f78a0a72bf6ecf168"
+    },
+    {
+      "file": "scripts/release-policy.d.mts",
+      "sha256": "64b3f5ecbdd7f2cb244f4681f26271b6fe9a7e948848becd51ce21de79a16bce"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "5b42899fcee0b3866eb413b6b65eef324dd64a17fe387cbab22816100ea853d6"
+    },
+    {
+      "file": "scripts/verify-mcp-pdf.mjs",
+      "sha256": "c17cdcc0bad0df059ec670e003d409082fd82e1e5c30411300e85e8b642d20a0"
+    },
+    {
+      "file": "scripts/verify-mcp-binary-files.mjs",
+      "sha256": "fe6abbadf4de10e40a08340a678f961ad0b3e3a08524d0fbe7e6d2c73cd67688"
+    },
+    {
+      "file": "verification/mcp-pdf-fixture.mjs",
+      "sha256": "47579484c5687a5f82b89e948842e814d9b33de4054a575a108785dc78e89a3d"
+    },
+    {
+      "file": "verification/mcp-pdf-fixture-data.mjs",
+      "sha256": "18e8ef1da4e094034f968082358001f8dd52af27e2f80c742c81e8c66a18e33e"
+    },
+    {
+      "file": "verification/mcp-attachments.test.ts",
+      "sha256": "efe62428ad2a824870e7d5f10a1dc8839c48316fc2baed8d924e0027d5f79b9e"
+    },
+    {
+      "file": "verification/mcp-binary-files.test.ts",
+      "sha256": "8054bd64fee84ef91334c3e1435d88df83dbf51ac1acde44fe2dacb82e7ca08f"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "600b8a9ede554b8400ca6bde10ea81974fcec5372eda910b9917ebb997951c96"
+    },
+    {
+      "file": "workbench/components/attachments.tsx",
+      "sha256": "62bfa63b572065e7989ad1b4577321fc4a7c2434ef084736a3b735506bb9d2e1"
+    },
+    {
+      "file": "workbench/components/image-preview.tsx",
+      "sha256": "7a5de25576ee826d0cad7329c873d5c9cd6010e767dbbe67c91f44ac8efe1745"
+    },
+    {
+      "file": "workbench/components/pdf-preview.tsx",
+      "sha256": "c8593edb7422e510ac0e3f41b11947fd8b3d699733b3355b9db23f1bf11fb9b4"
+    },
+    {
+      "file": "workbench/pages/extensions.tsx",
+      "sha256": "d1a2f45cd0d0fe28e5bf2eb2b1954a5cb640f67a8167a36097cb7954372fbbe2"
+    },
+    {
+      "file": "workbench/pages/preferences.tsx",
+      "sha256": "816c363e5a2c363efb404559f59b3f54be59e70e9d9c31f2a3f1a91e8f8f201f"
+    },
+    {
+      "file": "workbench/pages/mcp-content-browser.tsx",
+      "sha256": "f6d58c0ec0ff98059d7450395fdce5d9f1fa26166c57a68e040ff7f522d05651"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "sha256": "09ffccae9886543e0b547d4474ef80082a2b972463e1b95b312de32090e7d273"
+    }
+  ],
+  "focusedReceipts": {
+    "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\snapshot.json",
+    "bytes": 1754,
+    "sha256": "4b428ea8d73356afccb9e5eb3d05b396400c46d791f9ededb7351d9c561e2b93"
+  },
+  "originalResourceOnlyRun": {
+    "path": "E:/NookVerification/McpPdfFirstResourceSource-20261007/snapshot.json",
+    "bytes": 1522,
+    "sha256": "3ec8cb0bef22e3176af6850c17e6c102b083838d2bdfe34da8f15356bb91f4df"
+  },
+  "screenshots": [
+    {
+      "file": "mcp-pdf-light-100.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-light-100.png",
+      "bytes": 21775,
+      "sha256": "5c3b0c66c9598117c65769b80e3f65f9aeca3843da5891052329ee9e52d38b4c",
+      "inspected": true
+    },
+    {
+      "file": "mcp-pdf-light-125.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-light-125.png",
+      "bytes": 26296,
+      "sha256": "ddcb2d5fd30343b0ed7121517cbfa3a9005994c6dea00aa6d9736d5864bb1bd1",
+      "inspected": true
+    },
+    {
+      "file": "mcp-pdf-light-150.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-light-150.png",
+      "bytes": 33504,
+      "sha256": "11d4b2f76660069a5613f8efd216c4be40fddec29401dd581d64c2fd5e4be2d6",
+      "inspected": true
+    },
+    {
+      "file": "mcp-pdf-dark-100.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-dark-100.png",
+      "bytes": 19931,
+      "sha256": "239cfc5e118d60e59960afe104d966d893c78502d6c8a931c9c37b96dba049a4",
+      "inspected": true
+    },
+    {
+      "file": "mcp-pdf-dark-125.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-dark-125.png",
+      "bytes": 23804,
+      "sha256": "582ae66ad05578e984afd320945848699d9226b8c6fae80a5d6c6ba89cb8d875",
+      "inspected": true
+    },
+    {
+      "file": "mcp-pdf-dark-150.png",
+      "path": "E:\\NookVerification\\McpPdfFocusedSource-20261007\\screenshots\\mcp-pdf-dark-150.png",
+      "bytes": 30537,
+      "sha256": "75aedf7b5f5cee1f4be6a0b9fab688aa5b38eb3ab1faefd4f3a3971d7886ef76",
+      "inspected": true
+    }
+  ],
+  "fullSource": {
+    "passed": false,
+    "checks": 214,
+    "exits": [
+      {
+        "elapsedMs": 657,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 678,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 142,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 254,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 251,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 200,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 285,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 264,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 276,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 161,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 299,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 228,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 229,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 271,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 298,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 183,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 368,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 157,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 470,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1272,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1144,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 825,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 894,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 3823,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 421,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 806,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 3747,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1292,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 277,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 287,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2266,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-default-full-source.log",
+      "bytes": 152059,
+      "sha256": "92cf90576977311873a27cd3a78113899777fc871cc8f06084304bf1b9f11833"
+    },
+    "failureTail": "整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称\r\n切换验证 6 · 保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称保留完整项目名称\r\n文件树验证 · 较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称较长项目名称\r\n比较项目\r\n聊天\r\n项目分析\r\n执行任务\r\n工具与技能\r\n资料集\r\n\r\n检查项目、提出修改并验证。文件改动与命令执行会先展示给你审批。\r\n\r\n测试连接\r\nResponses 验证\r\nDraft missing key\r\n内容显示验证\r\nGemini 原生验证\r\nAzure Responses 验证\r\nAzure Chat 验证\r\nAzure 部署接口验证\r\n附件预览测试连接\r\n附件 responses\r\n附件 openai\r\n附件 anthropic\r\n附件 gemini\r\n附件 ollama\r\n附件 azure-responses\r\n附件 azure-chat\r\n附件 azure-deployment\r\n资料嵌入连接\r\n资料 openai\r\n资料 ollama\r\n资料 azure-responses\r\n资料 azure-chat\r\n资料 azure-deployment\r\n资料 gemini-fields\r\n资料 gemini-instruction\r\n自动任务测试连接\r\n后台计划验证\r\n助手传输验证连接\r\n模板验证连接\r\n回复版本验证\r\n消息保存验证\r\n命令面板验证\r\n聊天导航验证\r\n分支导航验证\r\n临时聊天验收\r\n比较连接 A\r\n比较连接 B\r\none\r\ntwo\r\nfail\r\nheld\r\nEnter 发送 · Shift + Enter 换行\r\n[\r\n  {\r\n    id: '0c6e6dfb-804c-4426-9b39-c79ccd8e4cf4',\r\n    status: 'disabled',\r\n    error: undefined\r\n  },\r\n  {\r\n    id: '225032ae-ecf3-4aba-8454-a9c8c5df2847',\r\n    status: 'disabled',\r\n    error: undefined\r\n  }\r\n]\r\nDesktop exit observation {\"elapsedMs\":2266,\"forced\":false,\"exitCode\":0,\"signalCode\":null}\r\nDesktop shutdown resources {\"event\":\"will-quit\",\"at\":1791304774231,\"handles\":[{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true},{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true}],\"resources\":[\"PipeWrap\",\"PipeWrap\"],\"workers\":[],\"terminals\":[]}\r\nDesktop shutdown resources {\"event\":\"process-exit\",\"at\":1791304774231,\"handles\":[{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true},{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true}],\"resources\":[\"PipeWrap\",\"PipeWrap\"],\"workers\":[],\"terminals\":[]}\r\nDesktop shutdown resources {\"event\":\"quit\",\"at\":1791304774231,\"handles\":[{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true},{\"type\":\"Socket\",\"destroyed\":false,\"readable\":false,\"writable\":true}],\"resources\":[\"PipeWrap\",\"PipeWrap\"],\"workers\":[],\"terminals\":[]}\r\nnode:internal/modules/run_main:105\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\nfalse !== true\r\n\r\n    at verifyMcpResourceSubscriptions (file:///E:/NookWorktrees/document-originals/scripts/verify-mcp-resource-subscriptions.mjs:88:10)\r\n    at async file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:1135:31 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: 'strictEqual'\r\n}\r\n\r\nNode.js v24.0.0\r\n"
+  },
+  "retainedFailures": [
+    {
+      "cause": "Original startup deadline expired before UI verification; no passing suite.",
+      "checksBeforeFailure": 0,
+      "exits": [],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-native.log",
+        "bytes": 1325,
+        "sha256": "185f01ac16d0050b9f8fa5b270c2eaf757551cf94829c11ceb1982a9d6b58b20"
+      }
+    },
+    {
+      "cause": "Fixture update resource was absent from the catalog; production catalog validation correctly rejected it.",
+      "checksBeforeFailure": 2,
+      "exits": [
+        {
+          "elapsedMs": 1184,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-native-retry.log",
+        "bytes": 7817,
+        "sha256": "c57910656ef01b2099b40c90888384b961466835f26316af1b8a5162c770a2c8"
+      }
+    },
+    {
+      "cause": "Real async PDF preview close failed to restore its disabled opener; fixed by explicit return-focus reference.",
+      "checksBeforeFailure": 3,
+      "exits": [
+        {
+          "elapsedMs": 2668,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-native-catalog-fix.log",
+        "bytes": 8957,
+        "sha256": "f34bc6cfb585c8767e8b15c9780b99195865f05ba9f5073ce3e35ca72d834efb"
+      }
+    }
+  ],
+  "safeguards": {
+    "startupDeadlineMs": 30000,
+    "bridgeWaitMs": 10000,
+    "operationTimeoutMs": 5000,
+    "defaultUnitTimeoutMs": 5000,
+    "nativeCloseDeadlineMs": 10000,
+    "coverageThreshold": 80,
+    "originalOwnershipChecksRetained": true,
+    "modelReceivesPdfTextOnly": true,
+    "openSourceLicensesRetained": true
+  },
+  "hosted": {
+    "path": "E:\\NookWorktrees\\document-originals\\verification\\hosted-mcp-pdf-block-result.json",
+    "bytes": 2131,
+    "sha256": "5ebbdae52b18ea6f234afd291488b8662932dc5842dc652475f918c42e5d4b5e"
+  },
+  "scope": "New source MCP PDF resources and prompt, original validation/ownership, explicit durable draft insertion and idempotent save retry, real subscription invalidation, local reader/export/search, light/dark zoom and focus/Escape, backup and restart, one explicit local text-only model request; regression of images, conversation drafts and existing PDF reader. Full source, packaged artifacts and hosted pipeline are distinct evidence layers.",
+  "diagnosticOnly": {
+    "purpose": "An isolated copy of the retained 214-check full-run workspace, with optional MCP Node startup markers; it failed before the UI or MCP handshake and cannot replace the failed default full run.",
+    "acceptedDefaultRun": false,
+    "passed": false,
+    "checks": 0,
+    "startupDeadlineMs": 30000,
+    "observedStartupMs": 30066,
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-BXmqvF",
+    "mcpHandshakeReached": false,
+    "rootCauseEstablished": false,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-mcp-pdf-large-subscription-diagnostic.log",
+      "bytes": 1555,
+      "sha256": "ac253ca70064a0dbf2efb3399d8788190c9c49e6f104bb82c9d81074cd8063aa"
+    },
+    "failureTail": "Desktop verification workspace E:\\NookVerification\\Temp\\qiyao-electron-BXmqvF\r\nDesktop spawned {\r\n  pid: 101524,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe'\r\n}\r\nDesktop startup diagnostics {\r\n  pid: 101524,\r\n  executable: 'D:\\\\GR\\\\qiyao\\\\node_modules\\\\.pnpm\\\\electron@44.5.1\\\\node_modules\\\\electron\\\\dist\\\\electron.exe',\r\n  elapsedMs: 30066,\r\n  stdoutBytes: 2\r\n}\r\nRetained failed desktop verification directory: E:\\NookVerification\\Temp\\qiyao-electron-BXmqvF\r\nfile:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:301\r\n    const timeout = setTimeout(() => { console.error('Desktop startup diagnostics', { pid: child.pid, executable: child.spawnfile, elapsedMs: Date.now() - startedAt, stdoutBytes: stdoutBytes() }); child.kill(); reject(new Error(`Desktop startup timed out: ${diagnostics.slice(-4000)}`)); }, 30_000);\r\n                                                                                                                                                                                                                          ^\r\n\r\nError: Desktop startup timed out: Debugger listening on ws://127.0.0.1:57235/a5fe75a5-cbad-428c-a3be-9b711dcd9922\r\n\r\nFor help, see: https://nodejs.org/learn/getting-started/debugging\r\n\r\n\r\n    at Timeout._onTimeout (file:///E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs:301:219)\r\n    at listOnTimeout (node:internal/timers:608:17)\r\n    at process.processTimers (node:internal/timers:543:7)\r\n\r\nNode.js v24.0.0\r\n"
+  }
+}

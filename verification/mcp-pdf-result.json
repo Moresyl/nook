@@ -1,0 +1,103 @@
+{
+  "verifiedAt": "2026-10-06T16:20:19.644Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "focused MCP PDF suite",
+  "checks": 8,
+  "explicitModelRequests": 1,
+  "previewPersisted": false,
+  "originalSha256": "80d6bd2e7536caa1c7fc5833fa6c42a4dda1fe3ab8583f85d4914aeab3e20f32",
+  "exactOriginalVerified": true,
+  "promptPdfVerified": true,
+  "textOnlyModelTransportVerified": true,
+  "staleSubscriptionVerified": true,
+  "filesystemRetryVerified": true,
+  "restartVerified": true,
+  "backupRestoreVerified": true,
+  "layout": [
+    {
+      "theme": "light",
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "left": 16,
+      "top": 20,
+      "right": 744,
+      "bottom": 520,
+      "controlsVisible": true,
+      "overflow": false
+    },
+    {
+      "theme": "light",
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "left": 16,
+      "top": 20,
+      "right": 592,
+      "bottom": 412,
+      "controlsVisible": true,
+      "overflow": false
+    },
+    {
+      "theme": "light",
+      "zoom": 1.5,
+      "width": 507,
+      "height": 360,
+      "left": 16,
+      "top": 20,
+      "right": 490.66668701171875,
+      "bottom": 340,
+      "controlsVisible": true,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "zoom": 1,
+      "width": 760,
+      "height": 540,
+      "left": 16,
+      "top": 20,
+      "right": 744,
+      "bottom": 520,
+      "controlsVisible": true,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "zoom": 1.25,
+      "width": 608,
+      "height": 432,
+      "left": 16,
+      "top": 20,
+      "right": 592,
+      "bottom": 412,
+      "controlsVisible": true,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "zoom": 1.5,
+      "width": 507,
+      "height": 360,
+      "left": 16,
+      "top": 20,
+      "right": 490.66668701171875,
+      "bottom": 340,
+      "controlsVisible": true,
+      "overflow": false
+    }
+  ],
+  "screenshots": [
+    "mcp-pdf-light-100.png",
+    "mcp-pdf-light-125.png",
+    "mcp-pdf-light-150.png",
+    "mcp-pdf-dark-100.png",
+    "mcp-pdf-dark-125.png",
+    "mcp-pdf-dark-150.png"
+  ],
+  "scope": "Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses are isolated fixtures; external servers and physical picker interaction remain separate."
+}
