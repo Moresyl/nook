@@ -24,5 +24,55 @@
     { "name": "nook-plugin-crash-revocation-native.log", "sha256": "b50b243a2aac3bdc6d46fd5186e5eb986a66eabc68353445f2e5a4f59f7ee42a" }
   ],
   "environmentObservation": "A separate read-only git diff command reported allocation failure during the build. The original build handle was retained and later completed with exit 0; no build was restarted or run concurrently by this task.",
+  "fullComponentAttempts": [
+    {
+      "sourceCommit": "b67917e",
+      "workers": 2,
+      "status": "failed",
+      "files": 78,
+      "passed": 808,
+      "failed": 4,
+      "durationSeconds": 272.21,
+      "failures": [
+        "settings-transaction: primary write failure/retry case exceeded its existing 30-second fixture budget",
+        "message-edits: replaced reply drafts case exceeded 5 seconds; cleanup also reported ENOTEMPTY",
+        "provider-settings: changed destination/key case exceeded 5 seconds",
+        "model-comparisons: wait for a durable partial reply observed empty text; its unreleased held commit then caused a 10-second cleanup-hook timeout"
+      ],
+      "log": "nook-plugin-crash-revocation-coverage.log",
+      "sha256": "5bcf88180ff278bb8b859345e2e56b0f3344a53dd1cad6081d6961722275d20f",
+      "followup": "Release the test-owned held commit in finally and await shutdown, retaining its complete assertions and wait budgets. Re-run all 812 cases and the same coverage thresholds with one worker. No production change is inferred from these failures."
+    },
+    {
+      "workers": 1,
+      "status": "failed",
+      "files": 78,
+      "passed": 799,
+      "failed": 13,
+      "durationSeconds": 804.71,
+      "failures": "Settings transaction (1), provider settings (2), composer drafts (1), knowledge (1), MCP OAuth (7) exceeded their existing test budgets. Automation suspension (1) did not observe its expected held thread within the polling budget. Several timeouts also produced fixture cleanup ENOTEMPTY errors. The model-comparison suite passed after its finally cleanup correction.",
+      "log": "nook-plugin-crash-revocation-coverage-serial.log",
+      "sha256": "636c2cd526541b13015603cab1c470c66b906d30ada69fa340cc197bfe396a7e",
+      "boundary": "Reducing worker count did not produce a full pass. Shared D/E physical-disk queue activity was observed, but it does not establish a root cause for all failures."
+    },
+    {
+      "workers": 2,
+      "status": "failed",
+      "files": 78,
+      "passed": 808,
+      "failed": 4,
+      "durationSeconds": 277.58,
+      "changes": "Complete byte comparison uses Buffer.equals; model-comparison fixture releases its held commit in finally. Settings transaction and plugin suites passed. No test deadline, fixture size, assertion scope or coverage threshold changed.",
+      "failures": "Knowledge conversation (2), branch ordering (1) and extension settings (1) exceeded existing test budgets. Remaining test reliability is unresolved; this is not a complete pass.",
+      "log": "nook-plugin-crash-revocation-coverage-bytes.log",
+      "sha256": "38101da1194e2adafcd1dfeb987459eed484a6c9364799c5981c306f71cde9f8"
+    }
+  ],
+  "binaryAssertionInvestigation": {
+    "change": "Use Buffer.equals plus length equality instead of generic deep object comparison for complete multi-MB primary/backup bytes. Same fixture size, disk failure injection, restart checks, all bytes and existing deadlines retained.",
+    "before": { "passed": 1, "testSeconds": 22.96, "ioEvents": 70, "syncCalls": 8, "syncTotalMs": 2561.41, "log": "nook-settings-primary-io.log", "sha256": "9ea422066fdbef259a237cef3a3f4c498d18ddc96ebea99e654d2daf5e68648c" },
+    "after": { "passed": 1, "testSeconds": 3.16, "ioEvents": 70, "syncCalls": 8, "syncTotalMs": 1931.8, "log": "nook-settings-primary-io-bytes.log", "sha256": "03038fbfd9cc6ce876616f6932a70a8c3c0798a9f87e92998576c8bdc2ca9eee" },
+    "scope": "Same single primary-write-failure test with an external bounded I/O observer; seven unselected tests skipped in both diagnostic runs. A sequential local comparison, not a controlled application benchmark or proof that unrelated suite failures are fixed. Default two-worker complete coverage is rerun separately."
+  },
   "boundary": "Source change only. Full component regression is recorded separately when terminal; full desktop regression, distribution validation, remaining design/capability work and hosted publication are still required."
 }
