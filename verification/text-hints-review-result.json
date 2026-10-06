@@ -1,0 +1,184 @@
+{
+  "productCodeChanged": true,
+  "finalDistributionUpdated": false,
+  "featureComplete": false,
+  "reference": {
+    "directory": "E:/txt",
+    "version": "26.930.41038",
+    "build": "13022",
+    "widthSource": "raw/app-asar/webview/assets/app-shared-6fb15e58cd7f.css, ._Tooltip_1cofb_2, max-width:300px"
+  },
+  "changes": "Share the existing safe tooltip lifecycle with heading, paragraph, span and div anchors; migrate five text-information locations while preserving their DOM semantics. Use the latest reference 300px tooltip bound. Compact editor paths remain readable through the existing file tab.",
+  "build": {
+    "passed": true,
+    "executorExitCode": 0,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-build.log",
+      "sha256": "9fca2ef674d04a23737fd6414d73840662c1e1ed728350b9bfe662b71cadaecf"
+    }
+  },
+  "typecheck": {
+    "passed": true,
+    "executorExitCode": 0,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    }
+  },
+  "native": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 4,
+    "informationLocations": 5,
+    "themeZoomCombinations": 6,
+    "runtimeErrors": [],
+    "modelRequests": 0,
+    "normalExit": {
+      "elapsedMs": 1394,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    "report": "verification/text-hints-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-responsive-native.log",
+      "sha256": "2516be10bcb269a349dc05eb0c0b0c400aa6010c7632c8eb049c508fdcb4949e"
+    }
+  },
+  "sharedButtonAndSettingsRegression": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 4,
+    "runtimeErrors": [],
+    "normalExit": {
+      "elapsedMs": 6347,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    "report": "verification/surfaces-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-shared-surfaces-native.log",
+      "sha256": "9f23f4e529595fcdf681ed47bd101458558a4df7a8b7d31dabacad751996a255"
+    },
+    "scope": "All eight settings categories, seven window/zoom combinations and 768px boundary; original button hover/keyboard/modal/edge/disabled/long-title hints, focus, reduced motion and retained draft assertions passed after the generic anchor and shared width change."
+  },
+  "sourceArtifacts": [
+    {
+      "file": "workbench/components/control-tooltip.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/control-tooltip.tsx",
+      "sha256": "3604e63a9db87ea9c074f1ba9a615c5ea9f4f6df73e2e6f1c82fe844f4b46961"
+    },
+    {
+      "file": "workbench/components/composer.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/composer.tsx",
+      "sha256": "4789edd14fe27e1f25644ecea82cfe74f3e950cc8b6e9c4a48883f127a60fd7a"
+    },
+    {
+      "file": "workbench/pages/projects.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/pages/projects.tsx",
+      "sha256": "c3fb3b7be77f28e75591908a4e09d7eb90e34afc7565d94c91fab43d856baec2"
+    },
+    {
+      "file": "workbench/components/project-editor.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/project-editor.tsx",
+      "sha256": "e014321530c1c6d11a4edb18246fb4e1e094f875c13a7633adfda4217abc8a18"
+    },
+    {
+      "file": "workbench/components/project-preview-pane.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/project-preview-pane.tsx",
+      "sha256": "414bac5d2049a9beb1bb1f8da462be414c412b8b5fe3990e479dd94a4e5805a8"
+    },
+    {
+      "file": "workbench/theme/surfaces.css",
+      "path": "E:/NookWorktrees/document-originals/workbench/theme/surfaces.css",
+      "sha256": "cbfd0755166eb5fc83fcca884bd4b3e07a76ea135ac405501ea0f698bd920a75"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/images/text-hints-light-100.png",
+      "sha256": "3dfb883c738379a6dd4080651db5e0761d940624531b95372065ab38aa0d31bb",
+      "individuallyVisuallyInspected": true
+    },
+    {
+      "file": "docs/images/text-hints-light-125.png",
+      "sha256": "a590d3c16f03d5a8a5e959862e5160a94e995c375f8c177c6a60ed483ea5e6de",
+      "individuallyVisuallyInspected": true
+    },
+    {
+      "file": "docs/images/text-hints-light-150.png",
+      "sha256": "54c3e3014130cb1e801db6a66751de27913680cf74c783f9e761e6517fa47fda",
+      "individuallyVisuallyInspected": true
+    },
+    {
+      "file": "docs/images/text-hints-dark-100.png",
+      "sha256": "418651d9e64146981fecfee08e80ae822cd95b8efd6fc51b9e41ef70d435fd66",
+      "individuallyVisuallyInspected": true
+    },
+    {
+      "file": "docs/images/text-hints-dark-125.png",
+      "sha256": "80e86fb700fafa2aebeb3a20d636ea1e3a008be3f8ed48ae96fe1c7321ac70f1",
+      "individuallyVisuallyInspected": true
+    },
+    {
+      "file": "docs/images/text-hints-dark-150.png",
+      "sha256": "94940049dccbecfe8493fb3241610d0309922b859fafc191611fe7bbd8801637",
+      "individuallyVisuallyInspected": true
+    }
+  ],
+  "retainedFailures": [
+    {
+      "passed": false,
+      "executorExitCode": 1,
+      "reason": "The runner loaded the pre-change built application body because a build had not yet been run. No new UI acceptance; build/run sequencing corrected.",
+      "normalExits": [
+        {
+          "elapsedMs": 1281,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-focused-native.log",
+        "sha256": "dd3ae5b1f34ac57240533c747119e5de19cd43135ac38589c443b0b3d80b8873"
+      }
+    },
+    {
+      "passed": false,
+      "executorExitCode": 1,
+      "reason": "The screenshot step attempted to re-hover an unchanged pointer position after Escape. Native hint interaction assertions had reached that step; pointer re-entry added without changing product behavior.",
+      "normalExits": [
+        {
+          "elapsedMs": 725,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-built-focused-native.log",
+        "sha256": "b3293e1c78c4ea00ee844db56321da926f8c250487b8eeb98392681ea83d1b8e"
+      }
+    },
+    {
+      "passed": false,
+      "executorExitCode": 1,
+      "reason": "The test expected the redundant action-bar path to be visible below the established 500px height breakpoint. Both hidden action-bar and keyboard-readable file-tab states are now explicitly asserted; no product visibility rule removed.",
+      "normalExits": [
+        {
+          "elapsedMs": 1456,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-hover-reentry-native.log",
+        "sha256": "7f083b4313d1ecf76da8560dda991afa0cb8733189bfb6c891dbadc5ccc9ddbc"
+      }
+    }
+  ],
+  "scope": "Five actual source UI locations, thirty theme/zoom/location combinations with responsive alternatives asserted. All six parent-window captures inspected for title, focused path, literal tooltip text, fit and compact controls. Preview content is a native sibling and can be hidden when a tooltip overlaps it; parent captures do not prove a composited child view. Other native title elements, full UI, physical accessibility, complete new-source and updated distribution acceptance remain pending."
+}

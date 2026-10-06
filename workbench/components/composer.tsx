@@ -10,6 +10,7 @@ import { AttachmentList, attachmentInputs } from './attachments';
 import type { KnowledgeCollection } from '../../contracts/knowledge';
 import type { PromptTemplate } from '../../contracts/prompt-templates';
 import { PromptUseDialog } from './prompt-use-dialog';
+import { TextHint } from './control-tooltip';
 
 type Props = {
   temporary?: boolean;
@@ -116,10 +117,10 @@ export function Composer(props: Props) {
     {props.mode === 'plan' && <p className="composer-mode-hint">读取项目、搜索代码并查看改动，整理有依据的方案。</p>}
     {props.mode === 'agent' && <p className="composer-mode-hint">检查项目、提出修改并验证。文件改动与命令执行会先展示给你审批。</p>}
     <div className="composer-meta">{provider ? <div className="model-selectors"><Select aria-label="模型提供商" disabled={submitting} value={props.providerId} onChange={(event) => props.onProvider(event.target.value)}>{props.providers.map((item) => <option value={item.id} key={item.id}>{item.name}</option>)}</Select><Select aria-label="选择模型" disabled={submitting} value={props.model} onChange={(event) => props.onModel(event.target.value)}>{provider.models.length === 0 && <option value="">添加模型…</option>}{provider.models.map((model) => <option key={model} value={model}>{model}</option>)}</Select></div> : <Button onClick={props.onConfigure}><span className="status-dot" />连接一个模型，开始工作<Glyph name="right" size={14} /></Button>}<span>{props.enterToSend ? 'Enter 发送 · Shift + Enter 换行' : 'Ctrl + Enter 发送'}</span></div>
-    {context && (context.latest?.tokens?.inputTokens !== undefined || context.info?.inputTokenLimit || context.info?.contextWindow || context.info?.outputTokenLimit || context.info?.maxOutputTokens) && <div className="composer-context" aria-label="模型容量与最近请求" title="最近请求输入是服务返回的实际用量，不是下一次发送的上下文估算。容量来自服务或手动设置。">
+    {context && (context.latest?.tokens?.inputTokens !== undefined || context.info?.inputTokenLimit || context.info?.contextWindow || context.info?.outputTokenLimit || context.info?.maxOutputTokens) && <TextHint as="div" className="composer-context" aria-label="模型容量与最近请求" text="最近请求输入是服务返回的实际用量，不是下一次发送的上下文估算。容量来自服务或手动设置。">
       {context.latest?.tokens?.inputTokens !== undefined && <span>最近请求输入 {context.latest.tokens.inputTokens.toLocaleString('zh-CN')}{context.latest.status !== 'complete' || context.latest.tokens.invalid ? '（部分数据）' : ''}</span>}
       {context.info?.inputTokenLimit && <span>输入上限 {context.info.inputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.contextWindow && <span>上下文窗口 {context.info.contextWindow.toLocaleString('zh-CN')}</span>}{context.info?.outputTokenLimit && <span>输出上限 {context.info.outputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.maxOutputTokens && <span>输出预算 {context.info.maxOutputTokens.toLocaleString('zh-CN')}</span>}
-    </div>}
+    </TextHint>}
     {prompts && <PromptUseDialog templates={props.promptTemplates} assistants={props.assistants} onUse={props.onPrompt} onClose={() => setPrompts(false)} />}
     {extensions && <Modal title="工具与技能" onClose={() => setExtensions(false)} footer={<Button tone="solid" onClick={() => setExtensions(false)}>完成</Button>}>
       <h3>MCP 工具</h3>{props.mode === 'plan' ? <p className="field-hint">项目分析只使用项目读取工具；MCP 工具可在聊天或执行任务中使用。</p> : <><p className="field-hint">请先在设置中连接服务器。每次模型调用都会先请求审批。</p>{props.servers.filter((server) => server.enabled).map((server) => <Toggle key={server.id} label={server.name} checked={props.serverIds.includes(server.id)} onChange={(checked) => props.onServers(checked ? [...props.serverIds, server.id] : props.serverIds.filter((id) => id !== server.id))} />)}</>}

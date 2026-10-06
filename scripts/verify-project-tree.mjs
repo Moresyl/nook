@@ -3,6 +3,7 @@ import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { waitForTerminalPrompt } from './terminal-prompt.mjs';
+import { assertTextHint } from './text-hint-verification.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
   async function waitForMain(expression) {
@@ -80,7 +81,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
 
   const longName = `文件树验证 · ${'较长项目名称'.repeat(12)}`;
   await page.evaluate(async ({ projectId, longName }) => { const state = await window.qiyao.load(); await window.qiyao.saveProject({ ...state.projects.find((project) => project.id === projectId), name: longName }); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }, { projectId, longName }); await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-  const heading = page.locator('.project-inspector > .section-heading'); assert.equal(await heading.getByRole('heading', { name: longName, exact: true }).getAttribute('title'), longName); assert.equal(await heading.locator('.path-text').getAttribute('title'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
+  const heading = page.locator('.project-inspector > .section-heading'); await assertTextHint(page, heading.getByRole('heading', { name: longName, exact: true }), longName); await assertTextHint(page, heading.locator('.path-text'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
   await page.getByRole('button', { name: '终端', exact: true }).click(); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
   try {
     const startup = await waitForTerminalPrompt(() => page.evaluate(async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals; }, projectId));

@@ -508,6 +508,7 @@ async function launch() {
 }
 let suiteCompleted = false;
 let surfaceResult;
+let textHintResult;
 let memoriesResult;
 let projectPreviewResult;
 let projectTreeResult;
@@ -579,6 +580,10 @@ try {
   } else if (process.env.QIYAO_TEST_MEMORIES_ONLY) {
     memoriesResult = await verifyMemories({ page, application, directory, screenshots, projectDirectory, waitForBridge, verified });
     assert.equal(count, 3); assert.deepEqual(errors, []);
+  } else if (process.env.QIYAO_TEST_TEXT_HINTS_ONLY) {
+    const { verifyTextHints } = await import('./verify-text-hints.mjs');
+    textHintResult = await verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge });
+    assert.equal(count, 4); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_SURFACES_ONLY) {
     surfaceResult = await verifySurfaces({ page, application, screenshots, verified, waitForBridge });
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
@@ -1211,6 +1216,10 @@ try {
     const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'memories-packaged-result.json' : 'memories-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...memoriesResult }, null, 2));
+  }
+  if (suiteCompleted && !closeError && textHintResult) {
+    await writeFile(join(root, 'verification', packaged ? 'text-hints-packaged-result.json' : 'text-hints-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, modelRequests: calls.length, ...textHintResult }, null, 2));
+    console.log(`Verified ${textHintResult.checks} focused text-hint checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && surfaceResult) {
     assert.deepEqual(errors, []);

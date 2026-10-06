@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import type { ProjectPreviewInput, PreviewViewport } from '../../contracts/project-preview';
 import { Button } from './controls';
+import { TextHint } from './control-tooltip';
 
 type Props = { projectId: string; input: ProjectPreviewInput | null; children: ReactNode; onClose(): void; onRefresh(): void; onFloating(): void };
 
@@ -62,7 +63,7 @@ function PreviewPane({ projectId, input, onClose, onRefresh, onFloating, onEdit 
   }, [projectId, token]);
 
   return <section className="project-preview-pane" aria-label="项目预览">
-    <header className="project-preview-toolbar"><span title={input.path}>{input.path.split('/').at(-1)}</span>{onEdit && <Button onClick={onEdit}>编辑代码</Button>}<Button onClick={onRefresh}>刷新</Button><Button onClick={onFloating}>独立窗口</Button><Button ref={closeButton} onClick={onClose}>关闭预览</Button></header>
+    <header className="project-preview-toolbar"><TextHint text={input.path}>{input.path.split('/').at(-1)}</TextHint>{onEdit && <Button onClick={onEdit}>编辑代码</Button>}<Button onClick={onRefresh}>刷新</Button><Button onClick={onFloating}>独立窗口</Button><Button ref={closeButton} onClick={onClose}>关闭预览</Button></header>
     <div ref={viewport} className="project-preview-viewport">{(!token || error) && <div className="project-preview-status" role="status">{error ? <><p>预览未能打开，草稿已保留。</p><Button onClick={onRefresh}>重试</Button></> : '正在打开预览…'}</div>}</div>
     <footer>修改后点击刷新 · Esc 返回工作台</footer>
   </section>;

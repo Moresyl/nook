@@ -92,7 +92,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .button-danger { color: var(--ds-danger); }
 .button-danger:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-danger) 10%, transparent); }
 .icon-button { width: 28px; height: 28px; padding: 4px; }
-.control-tooltip { position: fixed; inset: auto; margin: 0; width: max-content; max-width: min(320px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: hidden; padding: 8px 12px; border: 1px solid var(--ds-border); border-radius: 8px; background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: 0 8px 18px #0f172a33; font-size: 14px; font-weight: 400; line-height: 1.45; letter-spacing: -.15px; white-space: normal; overflow-wrap: anywhere; pointer-events: none; }
+.control-tooltip { position: fixed; inset: auto; margin: 0; width: max-content; max-width: min(300px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: hidden; padding: 8px 12px; border: 1px solid var(--ds-border); border-radius: 8px; background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: 0 8px 18px #0f172a33; font-size: 14px; font-weight: 400; line-height: 1.45; letter-spacing: -.15px; white-space: normal; overflow-wrap: anywhere; pointer-events: none; }
 .input { width: 100%; min-height: 22px; padding: 1px 8px; border: 1px solid var(--field-border); border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; outline: none; }
 .input:hover:where(:not(:disabled)) { border-color: var(--field-border-hover); }
 .input:focus { border-color: var(--field-border-focus); }
