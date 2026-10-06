@@ -18,7 +18,9 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 223, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 229, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
+    attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: { checks: 3 }, projectPreview: { checks: 9, outsideHttpRequests: 0, docked: { checks: 4, floatingTransferVerified: true, projectRemovalVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
@@ -33,6 +35,40 @@ function proof(): ReleaseProof {
     installer: { checks: desktop.checks, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
+
+describe('PDF release evidence', () => {
+  it('rejects missing, partial and non-boolean viewer evidence', () => {
+    const missing = proof(); delete missing.desktop.pdfPreview;
+    expect(() => verifyRuntimeProof(missing)).toThrow('PDF preview');
+    const count = proof(); count.desktop.pdfPreview!.checks = 5;
+    expect(() => verifyRuntimeProof(count)).toThrow('PDF preview');
+    for (const key of ['canvasTextVerified', 'outlineTargetsVerified', 'fullDocumentSearchVerified', 'linksNotesZoomVerified', 'exportOwnershipRestartVerified']) {
+      for (const value of [false, undefined, 'true']) {
+        const incomplete = proof(); (incomplete.desktop.pdfPreview as unknown as Record<string, unknown>)[key] = value;
+        expect(() => verifyRuntimeProof(incomplete)).toThrow('PDF preview');
+      }
+    }
+  });
+  it('requires every unique HTTP protocol and exact-byte backup/restart checks', () => {
+    const missing = proof(); delete missing.desktop.attachments;
+    expect(() => verifyRuntimeProof(missing)).toThrow('PDF original');
+    for (const protocols of [[], ['responses'], Array(8).fill('responses'), [...proof().desktop.attachments!.pdfOriginal!.textOnlyProtocols, 'unknown']]) {
+      const incomplete = proof(); incomplete.desktop.attachments!.pdfOriginal!.textOnlyProtocols = protocols;
+      expect(() => verifyRuntimeProof(incomplete)).toThrow('PDF original');
+    }
+    for (const key of ['restartBytesVerified', 'deduplicatedBackupVerified', 'missingFileRestoredVerified']) {
+      for (const value of [false, undefined, 'true']) {
+        const incomplete = proof(); (incomplete.desktop.attachments!.pdfOriginal as unknown as Record<string, unknown>)[key] = value;
+        expect(() => verifyRuntimeProof(incomplete)).toThrow('PDF original');
+      }
+    }
+  });
+  it('rejects a previous suite count even when its other evidence is populated', () => {
+    const old = proof(); old.desktop.checks = 223; old.installer.checks = 223;
+    old.branches.suiteChecks = 223; old.temporary.suiteChecks = 223; old.comparisons.suiteChecks = 223;
+    expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop');
+  });
+});
 
 describe('release version and notes', () => {
   it('distinguishes exact stable and prerelease versions', () => {

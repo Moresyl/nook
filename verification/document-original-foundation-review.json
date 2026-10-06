@@ -137,6 +137,27 @@
     "nativeEvidence": "A real two-page PDF with a nested outline, named XYZ destination and external URI action verified forward/back page navigation, nonzero target scroll, explicit return to page top and disabled external action. Existing render/zoom/export/restart checks passed in the same run.",
     "remaining": "PDF search, annotation/link interactions, broader samples and accessibility, recovery-aware cleanup, full regression and release."
   },
+  "releaseGateFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "releaseTests": { "passed": 47, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-release-gate-tests.log" },
+    "allUnitTests": { "files": 91, "passed": 883, "log": "D:/GR/pi-pc/.firecrawl/nook-document-originals-all-tests.log" },
+    "nativePdfChecks": { "passed": 6, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-release-gate-native.log" },
+    "implemented": "Full desktop suite runs the PDF viewer and embeds its evidence; release validation requires all six PDF checks, eight text-only transport protocols, exact restart bytes and deduplicated/missing-file backup recovery. Previous 223-check reports are rejected; the minimum is now 229.",
+    "fullDesktop": {
+      "passed": false,
+      "checksCompleted": 212,
+      "pdfAndTransportChecksPassed": true,
+      "log": "D:/GR/pi-pc/.firecrawl/nook-document-originals-full-desktop.log",
+      "logSha256": "a6fd04c6da91f2320c858b7becd5c9daca8482e5bddc42cd3f53dcb8e1a98612",
+      "failure": "verify-model-comparisons.mjs:321, selected comparison continuation partial-response predicate exceeded the unchanged 10-second bridge deadline; this was not backup restoration.",
+      "observations": "Three load polls took approximately 3.17, 3.40 and 3.96 seconds. The last snapshot contained the new running reply without text; the native process sent the first partial delta before that poll returned. Eleven expected HTTP requests were observed. Root cause remains unproven.",
+      "normalFinalExitMilliseconds": 7699,
+      "retainedDirectory": "E:/NookVerification/Temp/qiyao-electron-haOCF3",
+      "workspaceBytes": 84549444,
+      "workspaceSha256": "39a13e06c883d3a2389807d133b7a18e6d9bb3b56ef008585e590b84a8759ccf"
+    }
+  },
   "transportRestoreFollowUp": {
     "featureComplete": false,
     "nativeChecks": { "passed": 16, "runtimeErrors": [], "normalFinalExitMilliseconds": 323, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-transport-restore-native.log" },

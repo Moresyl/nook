@@ -6,6 +6,8 @@ import { documentBytes } from '../verification/attachment-fixtures.mjs';
 export async function verifyPdfPreview({ page, application, directory, screenshots, verified, restart }) {
   const bytes = documentBytes('pdf', { outline: true, annotations: true });
   const reference = await page.evaluate(async data => {
+    const preferences = (await window.qiyao.load()).preferences;
+    await window.qiyao.savePreferences({ ...preferences, theme: 'light' });
     const [file] = await window.qiyao.importAttachments([{ name: 'preview-original.pdf', data }]);
     await window.qiyao.activateThread();
     await window.qiyao.saveComposerDraft({ text: '', attachments: [file], model: '', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [], updatedAt: Date.now() });
@@ -139,5 +141,5 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
   assert.deepEqual(Buffer.from(restored), bytes);
   verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
-  return { page, result: { checks: 6, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png', 'pdf-note-light.png'] } };
+  return { page, result: { checks: 6, pixels, originalBytes: bytes.length, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png', 'pdf-note-light.png'] } };
 }
