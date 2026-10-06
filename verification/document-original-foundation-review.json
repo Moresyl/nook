@@ -33,10 +33,22 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Connect original retention to import and ownership-aware persistent/temporary transactions",
+    "Connect original retention to imports and the preview bridge; verify complete product flows",
     "Complete backup/export/restore integration and safe unreferenced-original cleanup",
     "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
     "Verify provider requests exclude original binary bytes",
     "Build, complete regression, native UI checks, distribution and hosted release"
-  ]
+  ],
+  "vaultFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "focusedTests": { "files": 4, "passed": 48, "log": "D:/GR/pi-pc/.firecrawl/nook-document-vault-tests.log" },
+    "initialTypeFailure": "The new shared-owner fixture omitted the required message status; corrected to complete before running tests.",
+    "implemented": [
+      "Prepare persistent originals before workspace or checkpoint writes and confirm ownership only after success",
+      "Read original bytes in vault transaction order using current ownership without cloning the whole workspace",
+      "Real-file tests for temporary isolation, persistent restart, shared ownership, failed-save retry and corrupt originals"
+    ],
+    "remaining": "Complete backup byte transport and restore before enabling the importer. Stored unreferenced originals are retained until recovery-aware cleanup is implemented."
+  }
 }

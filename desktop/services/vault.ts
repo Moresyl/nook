@@ -10,6 +10,10 @@ import { bindProviderKeys, providerKey } from './provider-settings';
 import { interruptRuns } from './interrupted-runs';
 import { sameThreadEncoding, WorkspaceSerialization } from './workspace-serialization';
 import { WorkspaceCheckpointJournal } from './workspace-checkpoint-journal';
+import type { DocumentOriginal } from '../../contracts/document-originals';
+import { DocumentOriginalStore } from './document-original-store';
+import { DocumentOriginalSession } from './document-original-session';
+import { documentOriginalReferences } from './document-original-references';
 
 export type SecretCodec = { seal(value: string): string; open(value: string): string };
 export type SettingsTransaction = Pick<Workspace, 'providers' | 'preferences'>;
@@ -26,8 +30,12 @@ export class WorkspaceVault {
   private persistentBytes?: Buffer;
   private readonly serialization = new WorkspaceSerialization();
   private readonly checkpoints: WorkspaceCheckpointJournal;
+  private readonly originals: DocumentOriginalSession;
 
-  constructor(private readonly directory: string, private readonly codec: SecretCodec) { this.checkpoints = new WorkspaceCheckpointJournal(directory); }
+  constructor(private readonly directory: string, private readonly codec: SecretCodec) {
+    this.checkpoints = new WorkspaceCheckpointJournal(directory);
+    this.originals = new DocumentOriginalSession(new DocumentOriginalStore(join(directory, 'document-originals')));
+  }
 
   async initialize(onPhase: (phase: string) => void = () => {}): Promise<void> {
     await mkdir(this.directory, { recursive: true });
@@ -88,6 +96,15 @@ export class WorkspaceVault {
   }
 
   snapshot(): Workspace { return structuredClone(this.state); }
+  stageDocumentOriginals(bytes: Uint8Array[]): DocumentOriginal[] { return this.originals.stage(bytes); }
+
+  /** Resolve ownership in transaction order without cloning complete conversation histories. */
+  readDocumentOriginal(reference: DocumentOriginal, signal?: AbortSignal): Promise<Buffer> {
+    const captured = { ...reference };
+    const operation = this.tail.then(() => this.originals.read(captured, documentOriginalReferences(this.state), signal));
+    this.tail = operation.catch(() => {});
+    return operation;
+  }
   provider(id: string): Provider | undefined {
     const provider = this.state.providers.find(item => item.id === id);
     return provider ? structuredClone(provider) : undefined;
@@ -185,6 +202,9 @@ export class WorkspaceVault {
     const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
     const previousBytes = this.persistentBytes ?? this.serialization.serialize(previous);
     const nextBytes = this.serialization.serialize(persistent);
+    const liveOriginals = documentOriginalReferences(next);
+    const savedOriginals = documentOriginalReferences(persistent);
+    await this.originals.prepare(savedOriginals, documentOriginalReferences(previous));
     if (!previousBytes.equals(nextBytes)) {
       let ids = checkpointIds;
       let includeComposer = false;
@@ -207,6 +227,7 @@ export class WorkspaceVault {
       await atomicFile(join(this.directory, 'workspace.json'), file => file.writeFile(nextBytes));
       await this.checkpoints.reset(nextBytes);
     }
+    this.originals.committed(liveOriginals, savedOriginals);
     this.state = next;
     this.persistentActiveThreadId = persistent.activeThreadId;
     this.persistentBytes = nextBytes;
