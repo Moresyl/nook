@@ -1,0 +1,1863 @@
+{
+  "verifiedAt": "2026-10-06T15:28:32.745Z",
+  "passed": false,
+  "published": false,
+  "sourceUiCommit": "8e3ef21ef645a6c4dc80d7d3b37fe987b47cc297",
+  "executorExitCode": 1,
+  "checksBeforeFailure": 202,
+  "failure": "Native close exceeded the original 10-second budget during the first temporary-conversation restart. The verification process forcibly terminated its owned application.",
+  "executableSha256": "26f21a750065b182ac967794639108bb7be9fcdd0c1738c7e1fe8831b9246c52",
+  "archiveSha256": "350116641f0517239308a49871237eed8b44aea3985230bd43be84e5cbd21758",
+  "log": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-distribution-unpacked-full.log",
+  "logSha256": "b3c98994a5a5091cbb2f73049411c45da7db30fe70e29048b8286af6648fcf0f",
+  "workspace": "E:/NookVerification/Temp/qiyao-electron-YdX3Ha",
+  "exitObservations": [
+    {
+      "elapsedMs": 2666,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 679,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 213,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 171,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 318,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 221,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 258,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 260,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 414,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 241,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 294,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 730,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 517,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 329,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 356,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 316,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 599,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 651,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 284,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1211,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 2471,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 457,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 324,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 258,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 484,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 658,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 10010,
+      "forced": true,
+      "exitCode": null,
+      "signalCode": null
+    }
+  ],
+  "closeTimeline": {
+    "requestedAt": 1791297747847,
+    "draftFlushRequestedAt": 1791297747851,
+    "preventedWindowCloseAt": 1791297747908,
+    "allowedWindowCloseAt": 1791297753651,
+    "windowClosedAt": 1791297756051,
+    "processExitEventAt": 1791297756126
+  },
+  "nativeObservations": [
+    {
+      "requestedAt": 1791297747847,
+      "observedAt": 1791297750206,
+      "processes": [
+        {
+          "pid": 91472,
+          "cpuMilliseconds": 6140.625,
+          "workingSetBytes": 2187722752,
+          "threads": [
+            {
+              "id": 111732,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 98060,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132564,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 10584,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 59936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83532,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 82156,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 93964,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 90340,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85908,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105588,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 11600,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119484,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100364,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121124,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 120392,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 92296,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 130832,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124064,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120884,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 131344,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86296,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 64768,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132612,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72392,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 115312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85368,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 105936,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 77200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83084,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 56592,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94528,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111660,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 5716,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 123448,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93288,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 19436,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110204,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 75400,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 80876,
+              "state": "Wait",
+              "reason": "Executive"
+            },
+            {
+              "id": 64544,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 93684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 89140,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85112,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87440,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 49492,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 37504,
+          "cpuMilliseconds": 890.625,
+          "workingSetBytes": 117952512,
+          "threads": [
+            {
+              "id": 72168,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111720,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 123032,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117080,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 52276,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9532,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 70424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110644,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 55104,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121784,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 109136,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97544,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118580,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 90312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125872,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 66736,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 108280,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9976,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 57928,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102852,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94100,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124328,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 102020,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86308,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 22092,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102452,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128980,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 26648,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 89312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82612,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110836,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116408,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 75796,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117720,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 28468,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 127900,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111540,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118604,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82040,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 115416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111068,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100600,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130848,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 115424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83192,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72372,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118856,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105976,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 120036,
+          "cpuMilliseconds": 15.625,
+          "workingSetBytes": 52305920,
+          "threads": [
+            {
+              "id": 76840,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119728,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 117440,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94604,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121156,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87496,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 78004,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 117968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 11388,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94244,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 108800,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 122424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94360,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 44548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 8684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 112552,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 81284,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105892,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 51464,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 120956,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 115448,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 67368,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 60188,
+          "cpuMilliseconds": 1859.375,
+          "workingSetBytes": 833781760,
+          "threads": [
+            {
+              "id": 120296,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72880,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 107788,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 38588,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97224,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 116744,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 89112,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 125200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93640,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 112852,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110704,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 13268,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132140,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 126812,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117516,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 13412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100404,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117344,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117748,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 28080,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130376,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 68020,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 51056,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102084,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791297747847,
+      "observedAt": 1791297754082,
+      "processes": [
+        {
+          "pid": 91472,
+          "cpuMilliseconds": 6203.125,
+          "workingSetBytes": 2187788288,
+          "threads": [
+            {
+              "id": 111732,
+              "state": "Wait",
+              "reason": "Executive"
+            },
+            {
+              "id": 98060,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132564,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 10584,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 59936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83532,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 82156,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 93964,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 90340,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85908,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105588,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 11600,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 119484,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100364,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121124,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 120392,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 92296,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 130832,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124064,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120884,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 131344,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86296,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 64768,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 132612,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72392,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 115312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85368,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 105936,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 77200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83084,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 56592,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94528,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111660,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 5716,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 123448,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93288,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 19436,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110204,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 75400,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 80876,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 64544,
+              "state": "Wait",
+              "reason": "Unknown"
+            },
+            {
+              "id": 93684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 89140,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 85112,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87440,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 49492,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        },
+        {
+          "pid": 37504,
+          "cpuMilliseconds": 890.625,
+          "workingSetBytes": 113639424,
+          "threads": [
+            {
+              "id": 72168,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 71116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111720,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 123032,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117080,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 52276,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9532,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128116,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 70424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110644,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 55104,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 121784,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 109136,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97544,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118580,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 90312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 125872,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 66736,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 108280,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 9976,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 57928,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102852,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94100,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 124328,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 102020,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 86308,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 131684,
+              "state": "Wait",
+              "reason": "ExecutionDelay"
+            },
+            {
+              "id": 22092,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102452,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128980,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 26648,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 89312,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82612,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110836,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 116408,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 75796,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117720,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 28468,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 127900,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118060,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111540,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118604,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 82040,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 115416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 111068,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100600,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130848,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 115424,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 83192,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72372,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 118856,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105976,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 120036,
+          "cpuMilliseconds": 15.625,
+          "workingSetBytes": 52305920,
+          "threads": [
+            {
+              "id": 76840,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 119728,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 117440,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94604,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 121156,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 87496,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 78004,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 117968,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 11388,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 120416,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 94244,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 108800,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 122424,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 94360,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 44548,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 8684,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 112552,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 81284,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 105892,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 51464,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 120956,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 115448,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 67368,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            }
+          ]
+        },
+        {
+          "pid": 60188,
+          "cpuMilliseconds": 1859.375,
+          "workingSetBytes": 833781760,
+          "threads": [
+            {
+              "id": 120296,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 124148,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 72880,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 107788,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 38588,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 103132,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 97224,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 116744,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 89112,
+              "state": "Wait",
+              "reason": "EventPairLow"
+            },
+            {
+              "id": 125200,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 93640,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 112852,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 110704,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 13268,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 132140,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102488,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 126812,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117516,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 13412,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 100404,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 128936,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117344,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 117748,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 28080,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 130376,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 68020,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 51056,
+              "state": "Wait",
+              "reason": "UserRequest"
+            },
+            {
+              "id": 102084,
+              "state": "Wait",
+              "reason": "UserRequest"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "preCloseMemory": {
+    "rss": 2187636736,
+    "heapTotal": 1430601728,
+    "heapUsed": 1418386352,
+    "external": 600829836,
+    "arrayBuffers": 0
+  },
+  "rootCauseEstablished": false,
+  "acceptanceBudgetChanged": false,
+  "laterDistributionStagesExecuted": false,
+  "completedFeatureReportsBeforeFailure": [
+    {
+      "report": "verification/assistant-profiles-packaged-result.json",
+      "sha256": "f0f2b90b98edf33e6d28a8547f5d3dbb4e5521bc766800b130a3eea75f8efb57",
+      "checks": 6,
+      "verifiedAt": "2026-10-06T14:35:47.417Z"
+    },
+    {
+      "report": "verification/automations-packaged-result.json",
+      "sha256": "36e4c1e8ceb0db2ec7c555fc61ab70ba30a71a6a2ecb167ad6337e69428c5a07",
+      "checks": 10,
+      "verifiedAt": "2026-10-06T14:35:31.890Z"
+    },
+    {
+      "report": "verification/backups-packaged-result.json",
+      "sha256": "935e826f4cb46820af4856c0dc51c719cfb5524dd7b1fece032f6a4608b93293",
+      "checks": 6,
+      "verifiedAt": "2026-10-06T14:37:07.246Z"
+    },
+    {
+      "report": "verification/commands-packaged-result.json",
+      "sha256": "4c030b26aad347cb10396ffc8a0c2ad1e1f40000a5a3a313d8ab23089ba04497",
+      "checks": 6,
+      "verifiedAt": "2026-10-06T14:36:38.434Z"
+    },
+    {
+      "report": "verification/desktop-integration-packaged-result.json",
+      "sha256": "9ad680b6314ffc455a0e84c5aca10aa9e0476e463764c3d799fe0d0119f5eab5",
+      "checks": 5,
+      "verifiedAt": "2026-10-06T14:35:40.896Z"
+    },
+    {
+      "report": "verification/knowledge-packaged-result.json",
+      "sha256": "3d5a75d4e2f7ca1f38ab97928b579abe6c346d4d9bd1b84c117f641ab56fc448",
+      "checks": 19,
+      "verifiedAt": "2026-10-06T14:35:07.803Z"
+    },
+    {
+      "report": "verification/message-edits-packaged-result.json",
+      "sha256": "7aa782fedb8428458d5817bdf1906c4b888d428927f396c1222113d7c560eeb8",
+      "checks": 7,
+      "verifiedAt": "2026-10-06T14:36:22.850Z"
+    },
+    {
+      "report": "verification/prompt-templates-packaged-result.json",
+      "sha256": "f327bfdd27c9463e808bd0dfdc532db3d0a13194879d34518effe37ab5e10b4a",
+      "checks": 6,
+      "verifiedAt": "2026-10-06T14:35:56.478Z"
+    },
+    {
+      "report": "verification/reply-versions-packaged-result.json",
+      "sha256": "43d93530599c1d87d68c639b150ac6de68452bc7752772b2695b6f43d7520537",
+      "checks": 6,
+      "verifiedAt": "2026-10-06T14:36:04.282Z"
+    }
+  ],
+  "scope": "Default complete unpacked run without focused suite switches. Passing earlier groups do not establish a passing complete run. Portable and installed acceptance were not executed after this failure. JavaScript process-exit events do not prove operating-system process termination."
+}

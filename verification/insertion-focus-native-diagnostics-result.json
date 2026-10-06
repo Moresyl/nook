@@ -1,0 +1,1158 @@
+{
+  "verifiedAt": "2026-10-06T15:26:21.668Z",
+  "diagnosticOnly": true,
+  "acceptedDefaultRun": false,
+  "rootCauseEstablished": false,
+  "productCodeChanged": false,
+  "published": false,
+  "sourceUiCommit": "8e3ef21ef645a6c4dc80d7d3b37fe987b47cc297",
+  "executableSha256": "26f21a750065b182ac967794639108bb7be9fcdd0c1738c7e1fe8831b9246c52",
+  "archiveSha256": "350116641f0517239308a49871237eed8b44aea3985230bd43be84e5cbd21758",
+  "originalFailure": "verification/insertion-focus-packaged-exit-failure-result.json",
+  "exactSymbolId": "205ABBCBDFD937F14C4C44205044422E1",
+  "officialSymbolSource": "https://github.com/electron/electron/releases/download/v44.5.1/electron-v44.5.1-win32-x64-symbols.zip",
+  "symbolArchive": {
+    "path": "E:\\NookVerification\\Tools\\electron-v44.5.1-win32-x64-symbols.zip",
+    "sha256": "a2354108a79d199468c5a6328bd6791ec0c3c52191437575433efa7e5b7c17b4"
+  },
+  "tools": {
+    "procdump": {
+      "version": "12.01",
+      "source": "https://learn.microsoft.com/en-us/sysinternals/downloads/procdump",
+      "binary": {
+        "path": "E:\\NookVerification\\Tools\\ProcDump\\procdump64.exe",
+        "sha256": "d1fc99ae304bd1d2bf28abeb62531da959e2431916194981b88c958fd713a8e6"
+      },
+      "signer": "Microsoft Corporation",
+      "signatureStatus": "Valid"
+    },
+    "debugger": {
+      "source": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "binary": {
+        "path": "E:\\NookVerification\\Tools\\WinDbg\\Unpacked\\amd64\\cdb.exe",
+        "sha256": "5f54abafca3ae5638bbf807d402fabb350a64575c1dfa9fbfc7f5732df5bee67"
+      },
+      "signer": "Microsoft Corporation",
+      "signatureStatus": "Valid"
+    },
+    "stackwalk": {
+      "version": "0.27.0",
+      "source": "https://github.com/rust-minidump/rust-minidump/releases/tag/v0.27.0",
+      "archive": {
+        "path": "E:\\NookVerification\\Tools\\minidump-stackwalk-x86_64-pc-windows-msvc.zip",
+        "sha256": "f6f2d7f1665843c4a270cd13fcd1458fed3b19013ea5dd909e12bc3599b959f4"
+      },
+      "publisherChecksumMatched": true
+    }
+  },
+  "capture": {
+    "capturedAt": "2026-10-06T14:58:41.803Z",
+    "diagnosticOnly": true,
+    "acceptedDefaultRun": false,
+    "originalCloseBudgetMs": 10000,
+    "captures": [
+      {
+        "pid": 50712,
+        "requestedAt": 1791298707796,
+        "delay": 2000,
+        "diagnosticOnly": true,
+        "clone": true,
+        "observerPid": 103064,
+        "exitCode": 1,
+        "signal": null,
+        "finishedAt": 1791298708717
+      },
+      {
+        "pid": 50712,
+        "requestedAt": 1791298711807,
+        "delay": 6000,
+        "diagnosticOnly": true,
+        "clone": true,
+        "observerPid": 106376,
+        "exitCode": 1,
+        "signal": null,
+        "finishedAt": 1791298712106
+      }
+    ]
+  },
+  "samples": [
+    {
+      "observedStage": "close-2000",
+      "pid": 50712,
+      "module": {
+        "base_addr": "0x00007ff6a9300000",
+        "cert_subject": null,
+        "code_id": "6abc3d83ebad000",
+        "corrupt_symbols": false,
+        "debug_file": "electron.exe.pdb",
+        "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+        "end_addr": "0x00007ff6b7ead000",
+        "filename": "Nook.exe",
+        "loaded_symbols": true,
+        "missing_symbols": false,
+        "symbol_url": null,
+        "version": "0.1.0.1"
+      },
+      "dump": {
+        "path": "E:\\NookVerification\\InsertionFocusNativeDiagnosticsRetry-20261006\\main-50712-2000.dmp",
+        "sha256": "9cd61c47d69e322b53e418a855ebc593a3a12e627d393fb1abd35ef587c9a45d"
+      },
+      "stack": {
+        "path": "E:\\NookVerification\\InsertionFocusNativeDiagnosticsRetry-20261006\\stackwalk-2000.json",
+        "sha256": "810077d5d25e160c400d87ab68878fd3b2b1265fbd0036086c0b3d33492301ec"
+      },
+      "main": {
+        "id": 112316,
+        "name": "CrBrowserMain",
+        "frames": [
+          {
+            "function": "partition_alloc::internal::SchedulerLoopQuarantineBranch<1,0>::PurgeInternal(unsigned __int64,bool)",
+            "module": "Nook.exe",
+            "trust": "context",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\scheduler_loop_quarantine.cc",
+            "line": 456
+          }
+        ]
+      },
+      "databaseThreads": [
+        {
+          "id": 111688,
+          "name": "ThreadPoolForegroundWorker",
+          "frames": [
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "context",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "KERNELBASE.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "base::File::Flush()",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\base\\files\\file_win.cc",
+              "line": 520
+            },
+            {
+              "function": "leveldb_env::`anonymous namespace'::ChromiumWritableFile::Sync()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\env_chromium.cc",
+              "line": 397
+            },
+            {
+              "function": "leveldb::DBImpl::NewDB()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\src\\db\\db_impl.cc",
+              "line": 200
+            },
+            {
+              "function": "leveldb::DBImpl::Recover(class leveldb::VersionEdit *, bool *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\src\\db\\db_impl.cc",
+              "line": 309
+            },
+            {
+              "function": "leveldb::DB::Open(leveldb::Options const &,std::__Cr::basic_string<char,std::__Cr::char_traits<char>,std::__Cr::allocator<char> > const &,leveldb::DB * *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\src\\db\\db_impl.cc",
+              "line": 1511
+            },
+            {
+              "function": "leveldb_env::DBTracker::OpenDatabase(const struct leveldb_env::Options & const, const class std::__Cr::basic_string<char,std::__Cr::char_traits<char>,std::__Cr::allocator<char> > & const, class leveldb_env::DBTracker::TrackedDB * *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\env_chromium.cc",
+              "line": 1332
+            },
+            {
+              "function": "leveldb_env::OpenDB(leveldb_env::Options const &,std::__Cr::basic_string<char,std::__Cr::char_traits<char>,std::__Cr::allocator<char> > const &,std::__Cr::unique_ptr<leveldb::DB,std::__Cr::default_delete<leveldb::DB> > *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\leveldatabase\\env_chromium.cc",
+              "line": 1395
+            },
+            {
+              "function": "storage::DomStorageDatabaseLevelDB::InitializeLevelDB()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\leveldb\\dom_storage_database_leveldb.cc",
+              "line": 121
+            },
+            {
+              "function": "storage::DomStorageDatabaseLevelDB::Open(storage::StorageType,base::FilePath const &,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> const &,base::span<unsigned char const ,-1,unsigned char const *>,__int64,__int64,bool)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\leveldb\\dom_storage_database_leveldb.cc",
+              "line": 146
+            },
+            {
+              "function": "storage::SessionStorageLevelDB::Open(base::FilePath const &,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> const &)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\leveldb\\session_storage_leveldb.cc",
+              "line": 179
+            },
+            {
+              "function": "storage::DomStorageDatabaseFactory::InitializeDatabase(storage::StorageType, class std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>, class base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>, bool, bool, storage::DatabaseMetricsType, class base::FilePath, class std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome>)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\dom_storage_database.cc",
+              "line": 356
+            },
+            {
+              "function": "base::internal::DecayedFunctorTraits<void (*)(storage::StorageType, std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>, base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>, bool, bool, storage::DatabaseMetricsType, base::FilePath, std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome>),storage::StorageType &&,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> &&,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)> &&,bool &&,bool &&,storage::DatabaseMetricsType &&,base::FilePath &&,std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome> &&>::Invoke<void (*)(storage::StorageType, std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>, base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>, bool, bool, storage::DatabaseMetricsType, base::FilePath, std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome>),storage::StorageType,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>,bool,bool,storage::DatabaseMetricsType,base::FilePath,std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome> >( * *, storage::StorageType *, class std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> *, class base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)> *, bool *, bool *, storage::DatabaseMetricsType *, class base::FilePath *, class std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome> *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\functional\\bind_internal.h",
+              "line": 673
+            },
+            {
+              "function": "base::internal::Invoker<base::internal::FunctorTraits<void (*&&)(storage::StorageType, std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>, base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>, bool, bool, storage::DatabaseMetricsType, base::FilePath, std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome>),storage::StorageType &&,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> &&,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)> &&,bool &&,bool &&,storage::DatabaseMetricsType &&,base::FilePath &&,std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome> &&>,base::internal::BindState<0,1,0,void (*)(storage::StorageType, std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>, base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>, bool, bool, storage::DatabaseMetricsType, base::FilePath, std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome>),storage::StorageType,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid>,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>,bool,bool,storage::DatabaseMetricsType,base::FilePath,std::__Cr::optional<storage::DomStorageDatabaseFactory::DestroyOutcome> >,void ()>::RunOnce(class base::internal::BindStateBase *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\functional\\bind_internal.h",
+              "line": 982
+            },
+            {
+              "function": "base::TaskAnnotator::RunTaskImpl(base::PendingTask &)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\common\\task_annotator.cc",
+              "line": 229
+            },
+            {
+              "function": "base::internal::TaskTracker::RunBlockShutdown(struct base::internal::Task & const, const class base::TaskTraits & const, class base::internal::TaskSource *, const class base::internal::SequenceToken & const)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+              "line": 683
+            },
+            {
+              "function": "base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+              "line": 393
+            },
+            {
+              "function": "base::internal::WorkerThread::RunWorker()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 480
+            },
+            {
+              "function": "base::internal::WorkerThread::RunPooledWorker()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 357
+            },
+            {
+              "function": "base::`anonymous namespace'::ThreadFunc(void *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\threading\\platform_thread_win.cc",
+              "line": 111
+            },
+            {
+              "function": null,
+              "module": "kernel32.dll",
+              "trust": "cfi",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            }
+          ]
+        },
+        {
+          "id": 125768,
+          "name": "ThreadPoolForegroundWorker",
+          "frames": [
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "context",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "KERNELBASE.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "storage::DomStorageDatabaseFactory::Open(storage::StorageType,base::FilePath const &,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> const &,base::FilePath const &,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>)",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\dom_storage_database.cc",
+              "line": 390
+            },
+            {
+              "function": null,
+              "module": null,
+              "trust": "cfi",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "_tailMerge_dhcpcsvc.dll",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "_tailMerge_dhcpcsvc.dll",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "base::internal::WorkerThread::RunWorker()",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 449
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "observedStage": "close-6000",
+      "pid": 50712,
+      "module": {
+        "base_addr": "0x00007ff6a9300000",
+        "cert_subject": null,
+        "code_id": "6abc3d83ebad000",
+        "corrupt_symbols": false,
+        "debug_file": "electron.exe.pdb",
+        "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+        "end_addr": "0x00007ff6b7ead000",
+        "filename": "Nook.exe",
+        "loaded_symbols": true,
+        "missing_symbols": false,
+        "symbol_url": null,
+        "version": "0.1.0.1"
+      },
+      "dump": {
+        "path": "E:\\NookVerification\\InsertionFocusNativeDiagnosticsRetry-20261006\\main-50712-6000.dmp",
+        "sha256": "9a4e23eb2debb5e2850a046b1d121ceb487ee08b0ac4b451dd2e5613e2eed7c4"
+      },
+      "stack": {
+        "path": "E:\\NookVerification\\InsertionFocusNativeDiagnosticsRetry-20261006\\stackwalk-6000.json",
+        "sha256": "0dceb0d1ce67b5ad01670ab6c45167b6d2d96bf445c2acfb71049f94a0ce9c85"
+      },
+      "main": {
+        "id": 112316,
+        "name": "CrBrowserMain",
+        "frames": [
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "context",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "KERNELBASE.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": "_tailMerge_dhcpcsvc.dll",
+            "module": "Nook.exe",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": "base::WaitableEvent::Wait(base::Location const &)",
+            "module": "Nook.exe",
+            "trust": "scan",
+            "file": "W:\\w\\electron\\electron\\src\\base\\synchronization\\waitable_event.cc",
+            "line": 48
+          },
+          {
+            "function": "base::internal::TaskTracker::CompleteShutdown()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+            "line": 247
+          },
+          {
+            "function": "content::BrowserMainLoop::ShutdownThreadsAndCleanUp()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_loop.cc",
+            "line": 1276
+          },
+          {
+            "function": "content::BrowserMainRunnerImpl::Shutdown()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_runner_impl.cc",
+            "line": 170
+          },
+          {
+            "function": "content::BrowserMain(content::MainFunctionParams)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main.cc",
+            "line": 41
+          },
+          {
+            "function": "content::RunBrowserProcessMain(struct content::MainFunctionParams, class content::ContentMainDelegate *)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+            "line": 710
+          },
+          {
+            "function": "content::ContentMainRunnerImpl::RunBrowser(content::MainFunctionParams,bool)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+            "line": 1344
+          },
+          {
+            "function": "content::ContentMainRunnerImpl::Run()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+            "line": 1175
+          },
+          {
+            "function": "content::RunContentProcess(struct content::ContentMainParams, class content::ContentMainRunner *)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+            "line": 328
+          },
+          {
+            "function": "content::ContentMain(content::ContentMainParams)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+            "line": 341
+          },
+          {
+            "function": "wWinMain",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\electron\\shell\\app\\electron_main_win.cc",
+            "line": 238
+          },
+          {
+            "function": "__scrt_common_main_seh()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl",
+            "line": 288
+          },
+          {
+            "function": null,
+            "module": "kernel32.dll",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      "databaseThreads": [
+        {
+          "id": 122612,
+          "name": "ThreadPoolBackgroundWorker",
+          "frames": [
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "context",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "KERNELBASE.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "KERNELBASE.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "winWrite(struct sqlite3_file *, const void *, int, __int64)",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 51677
+            },
+            {
+              "function": "walCheckpoint(struct Wal *, struct sqlite3 *, int,  *, void *, int, unsigned char *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 69744
+            },
+            {
+              "function": "sqlite3WalCheckpoint(struct Wal *, struct sqlite3 *, int,  *, void *, int, int, unsigned char *, int *, int *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 71818
+            },
+            {
+              "function": "sqlite3WalClose(struct Wal *, struct sqlite3 *, int, int, unsigned char *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 69957
+            },
+            {
+              "function": "sqlite3PagerClose(struct Pager *, struct sqlite3 *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 63786
+            },
+            {
+              "function": "sqlite3BtreeClose(struct Btree *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 76083
+            },
+            {
+              "function": "sqlite3LeaveMutexAndCloseZombie(struct sqlite3 *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 188047
+            },
+            {
+              "function": "sqlite3Close(struct sqlite3 *, int)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+              "line": 187960
+            },
+            {
+              "function": "sql::Database::CloseInternal(bool)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\sql\\database.cc",
+              "line": 667
+            },
+            {
+              "function": "sql::Database::Close()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\sql\\database.cc",
+              "line": 703
+            },
+            {
+              "function": "sql::Database::~Database()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\sql\\database.cc",
+              "line": 553
+            },
+            {
+              "function": "content::BtmDatabase::~BtmDatabase()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_database.cc",
+              "line": 134
+            },
+            {
+              "function": "content::BtmStorage::~BtmStorage()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_storage.cc",
+              "line": 31
+            },
+            {
+              "function": "base::sequence_bound_internal::Storage<content::BtmStorage,base::sequence_bound_internal::CrossThreadTraits>::InternalDestruct(class content::BtmStorage *, void *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\threading\\sequence_bound_internal.h",
+              "line": 145
+            },
+            {
+              "function": "base::internal::TaskTracker::RunSkipOnShutdown(struct base::internal::Task & const, const class base::TaskTraits & const, class base::internal::TaskSource *, const class base::internal::SequenceToken & const)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+              "line": 675
+            },
+            {
+              "function": "base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+              "line": 393
+            },
+            {
+              "function": "base::internal::WorkerThread::RunWorker()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 480
+            },
+            {
+              "function": "base::internal::WorkerThread::RunBackgroundPooledWorker()",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 362
+            },
+            {
+              "function": "base::`anonymous namespace'::ThreadFunc(void *)",
+              "module": "Nook.exe",
+              "trust": "cfi",
+              "file": "W:\\w\\electron\\electron\\src\\base\\threading\\platform_thread_win.cc",
+              "line": 111
+            },
+            {
+              "function": null,
+              "module": "kernel32.dll",
+              "trust": "cfi",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            }
+          ]
+        },
+        {
+          "id": 125768,
+          "name": "ThreadPoolForegroundWorker",
+          "frames": [
+            {
+              "function": null,
+              "module": "ntdll.dll",
+              "trust": "context",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": null,
+              "module": "KERNELBASE.dll",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "storage::DomStorageDatabaseFactory::Open(storage::StorageType,base::FilePath const &,std::__Cr::optional<base::trace_event::MemoryAllocatorDumpGuid> const &,base::FilePath const &,base::OnceCallback<void (storage::DomStorageDatabaseFactory::OpenResult)>)",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\components\\services\\storage\\dom_storage\\dom_storage_database.cc",
+              "line": 390
+            },
+            {
+              "function": null,
+              "module": null,
+              "trust": "cfi",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "_tailMerge_dhcpcsvc.dll",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "_tailMerge_dhcpcsvc.dll",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": null,
+              "line": null
+            },
+            {
+              "function": "base::internal::WorkerThread::RunWorker()",
+              "module": "Nook.exe",
+              "trust": "scan",
+              "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+              "line": 449
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "observedStage": "startup-2000",
+      "pid": 100736,
+      "module": {
+        "base_addr": "0x00007ff606780000",
+        "cert_subject": null,
+        "code_id": "6abc3d83ebad000",
+        "corrupt_symbols": false,
+        "debug_file": "electron.exe.pdb",
+        "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+        "end_addr": "0x00007ff61532d000",
+        "filename": "Nook.exe",
+        "loaded_symbols": true,
+        "missing_symbols": false,
+        "symbol_url": null,
+        "version": "0.1.0.1"
+      },
+      "dump": {
+        "path": "E:\\NookVerification\\InsertionFocusStartupMiniDumpProbe-20261006\\main-100736-startup-2000.dmp",
+        "sha256": "34c2ee2c767dcc67a313f3df21ad05cd4b07b9c01d49bf6ffb6c0b0ec4c5ba0d"
+      },
+      "stack": {
+        "path": "E:\\NookVerification\\InsertionFocusStartupMiniDumpProbe-20261006\\stackwalk.json",
+        "sha256": "f20931bae8583a0e67cfc740d4e014e59d6bc13862b2c5b483fdba78a6050161"
+      },
+      "main": {
+        "id": 127452,
+        "name": null,
+        "frames": [
+          {
+            "function": "partition_alloc::internal::PartitionBucket::Init(unsigned int)",
+            "module": "Nook.exe",
+            "trust": "context",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\partition_bucket.cc",
+            "line": 585
+          },
+          {
+            "function": "partition_alloc::PartitionRoot::Init(partition_alloc::PartitionOptions)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\partition_root.cc",
+            "line": 1127
+          },
+          {
+            "function": "partition_alloc::PartitionRoot::PartitionRoot(partition_alloc::PartitionOptions)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\partition_root.cc",
+            "line": 1184
+          },
+          {
+            "function": "allocator_shim::`anonymous namespace'::LeakySingleton<partition_alloc::PartitionRoot,allocator_shim::`anonymous namespace'::MainPartitionConstructor>::GetSlowPath()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\shim\\allocator_shim_default_dispatch_to_partition_alloc.cc",
+            "line": 146
+          },
+          {
+            "function": "allocator_shim::internal::PartitionAllocFunctionsInternal<16,2>::Calloc(unsigned __int64,unsigned __int64,partition_alloc::internal::base::StrongAlias<allocator_shim::AllocTokenTag,unsigned __int64>,void *)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\shim\\allocator_shim_default_dispatch_to_partition_alloc.cc",
+            "line": 251
+          },
+          {
+            "function": "calloc_base",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\allocator\\partition_allocator\\src\\partition_alloc\\shim\\allocator_shim_override_ucrt_symbols_win.h",
+            "line": 173
+          },
+          {
+            "function": "internal_get_ptd_head_slow()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\out\\Default\\minkernel\\crts\\ucrt\\src\\appcrt\\internal\\per_thread_data.cpp",
+            "line": 245
+          },
+          {
+            "function": "_acrt_getptd_noexit",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\out\\Default\\minkernel\\crts\\ucrt\\src\\appcrt\\internal\\per_thread_data.cpp",
+            "line": 336
+          },
+          {
+            "function": "_acrt_initialize_ptd",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\out\\Default\\minkernel\\crts\\ucrt\\src\\appcrt\\internal\\per_thread_data.cpp",
+            "line": 41
+          },
+          {
+            "function": "_acrt_execute_initializers",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\out\\Default\\minkernel\\crts\\ucrt\\src\\appcrt\\internal\\shared_initialization.cpp",
+            "line": 25
+          },
+          {
+            "function": "_scrt_initialize_crt",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\utility\\utility.cpp",
+            "line": 199
+          },
+          {
+            "function": "__scrt_common_main_seh()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl",
+            "line": 237
+          },
+          {
+            "function": null,
+            "module": "kernel32.dll",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      "databaseThreads": []
+    },
+    {
+      "observedStage": "later-probe-startup-2000",
+      "pid": 121552,
+      "module": {
+        "base_addr": "0x00007ff606780000",
+        "cert_subject": null,
+        "code_id": "6abc3d83ebad000",
+        "corrupt_symbols": false,
+        "debug_file": "electron.exe.pdb",
+        "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+        "end_addr": "0x00007ff61532d000",
+        "filename": "Nook.exe",
+        "loaded_symbols": true,
+        "missing_symbols": false,
+        "symbol_url": null,
+        "version": "0.1.0.1"
+      },
+      "dump": {
+        "path": "E:\\NookVerification\\InsertionFocusLateStartupMiniDumpProbe-20261006\\main-121552-startup-2000.dmp",
+        "sha256": "fc58560c22fd907827fe23251cd7e1f78ee44db8063a16f6b1200a3c10859087"
+      },
+      "stack": {
+        "path": "E:\\NookVerification\\InsertionFocusLateStartupMiniDumpProbe-20261006\\stackwalk-2000.json",
+        "sha256": "fdd6a37c8339ab59025ce7ffb5dcdbfa38638961e6aca5d8bd7f72637256cb0f"
+      },
+      "main": {
+        "id": 5700,
+        "name": null,
+        "frames": [
+          {
+            "function": "memcmp",
+            "module": "Nook.exe",
+            "trust": "context",
+            "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcruntime\\src\\string\\amd64\\memcmp.asm",
+            "line": 158
+          },
+          {
+            "function": "bool base::internal::flat_tree<std::__Cr::basic_string_view<char,std::__Cr::char_traits<char> >,std::__Cr::identity,std::__Cr::less<void>,std::__Cr::array<const std::__Cr::basic_string_view<char,std::__Cr::char_traits<char> >,61> >::contains<const char *>(const char * & const)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\containers\\flat_tree.h",
+            "line": 986
+          },
+          {
+            "function": "base::trace_event::MemoryDumpManager::RegisterDumpProviderInternal(base::trace_event::MemoryDumpProvider *,base::trace_event::MemoryDumpProvider::Name,scoped_refptr<base::SequencedTaskRunner>,base::trace_event::MemoryDumpProvider::Options const &)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\trace_event\\memory_dump_manager.cc",
+            "line": 204
+          },
+          {
+            "function": "base::trace_event::MemoryDumpManager::RegisterDumpProvider(base::trace_event::MemoryDumpProvider *,base::trace_event::MemoryDumpProvider::Name,scoped_refptr<base::SingleThreadTaskRunner>)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\trace_event\\memory_dump_manager.cc",
+            "line": 176
+          },
+          {
+            "function": "discardable_memory::DiscardableSharedMemoryManager::DiscardableSharedMemoryManager()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\components\\discardable_memory\\service\\discardable_shared_memory_manager.cc",
+            "line": 264
+          },
+          {
+            "function": "content::ContentMainRunnerImpl::RunBrowser(content::MainFunctionParams,bool)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+            "line": 1302
+          },
+          {
+            "function": "content::ContentMainRunnerImpl::Run()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+            "line": 1175
+          },
+          {
+            "function": "content::RunContentProcess(struct content::ContentMainParams, class content::ContentMainRunner *)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+            "line": 328
+          },
+          {
+            "function": "content::ContentMain(content::ContentMainParams)",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+            "line": 341
+          },
+          {
+            "function": "wWinMain",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\electron\\shell\\app\\electron_main_win.cc",
+            "line": 238
+          },
+          {
+            "function": "__scrt_common_main_seh()",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl",
+            "line": 288
+          },
+          {
+            "function": null,
+            "module": "kernel32.dll",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      "databaseThreads": []
+    },
+    {
+      "observedStage": "later-probe-startup-20000",
+      "pid": 121552,
+      "module": {
+        "base_addr": "0x00007ff606780000",
+        "cert_subject": null,
+        "code_id": "6abc3d83ebad000",
+        "corrupt_symbols": false,
+        "debug_file": "electron.exe.pdb",
+        "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+        "end_addr": "0x00007ff61532d000",
+        "filename": "Nook.exe",
+        "loaded_symbols": true,
+        "missing_symbols": false,
+        "symbol_url": null,
+        "version": "0.1.0.1"
+      },
+      "dump": {
+        "path": "E:\\NookVerification\\InsertionFocusLateStartupMiniDumpProbe-20261006\\main-121552-startup-20000.dmp",
+        "sha256": "518a3a0b567b33e256719aa12360e2f653aefed44aaa1eb3187edb4955fd79f9"
+      },
+      "stack": {
+        "path": "E:\\NookVerification\\InsertionFocusLateStartupMiniDumpProbe-20261006\\stackwalk-20000.json",
+        "sha256": "9a21f1d7202519a3a6955a8aafc052f1aebd162de49677965e265b9a2deba577"
+      },
+      "main": {
+        "id": 5700,
+        "name": null,
+        "frames": [
+          {
+            "function": "gin_helper::Dispatcher<void (gin_helper::ErrorThrower, v8::Local<v8::Value>)>::DispatchToCallback(const class v8::FunctionCallbackInfo<v8::Value> & const)",
+            "module": "Nook.exe",
+            "trust": "context",
+            "file": "W:\\w\\electron\\electron\\src\\electron\\shell\\common\\gin_helper\\function_template.h",
+            "line": 337
+          },
+          {
+            "function": "Builtins_InterpreterEntryTrampoline",
+            "module": "Nook.exe",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": null,
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      "databaseThreads": []
+    }
+  ],
+  "observation": "In the normally exiting copied-workspace diagnostic, the 6-second main-thread sample unwinds through Chromium TaskTracker shutdown. A background worker unwinds through BTM SQLite checkpoint/database destruction. This narrows the observed shutdown phase but does not establish the cause of the original failed 202-group run.",
+  "originalBudgets": {
+    "startupMs": 30000,
+    "operationMs": 5000,
+    "nativeCloseMs": 10000
+  },
+  "retainedDiagnosticFailures": [
+    {
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-large-close-diagnostic.log",
+        "sha256": "7429edd8c8d96456392aa488bb3f21ae636cd3c0a498494a82f86555bb35cec3"
+      },
+      "failure": "Incorrect focused-suite environment switch caused a default run. The owned diagnostic was deliberately stopped; no acceptance claimed."
+    },
+    {
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-large-close-diagnostic-retry.log",
+        "sha256": "2ac8c8f7f2c4d44994a4cd036d594ae3b2152cf2350b35595874f6ea213fdc3e"
+      },
+      "normalCloseMs": [
+        8102,
+        2721
+      ],
+      "exitCodes": [
+        0,
+        0
+      ],
+      "failure": "Copied history already contained the same regular test conversation title, so the focused locator was ambiguous after the captured close. No focused/full acceptance claimed."
+    },
+    {
+      "result": {
+        "diagnosticOnly": true,
+        "acceptedDefaultRun": false,
+        "rootCauseEstablished": false,
+        "pid": 127828,
+        "seed": "E:/NookVerification/Temp/qiyao-electron-YdX3Ha",
+        "data": "E:\\NookVerification\\InsertionFocusMiniDumpProbe-20261006\\data",
+        "startedAt": 1791299636068,
+        "captures": [],
+        "failure": "Diagnostic startup exceeded 30 seconds",
+        "forcedCleanup": true,
+        "exitCode": null,
+        "signalCode": "SIGTERM"
+      },
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-native-mini-dump-probe.log",
+        "sha256": "c0ce9f00b1309b83848aeeaa7e803a5be581b11ba7cabf3825fadc8f7adc63d3"
+      }
+    },
+    {
+      "result": {
+        "diagnosticOnly": true,
+        "acceptedDefaultRun": false,
+        "rootCauseEstablished": false,
+        "pid": 100736,
+        "seed": "E:/NookVerification/Temp/qiyao-electron-YdX3Ha",
+        "data": "E:\\NookVerification\\InsertionFocusStartupMiniDumpProbe-20261006\\data",
+        "startedAt": 1791299761874,
+        "captures": [
+          {
+            "delay": "startup-2000",
+            "requestedAt": 1791299763889,
+            "observerPid": 122744,
+            "exitCode": 1,
+            "signal": null,
+            "finishedAt": 1791299767653
+          }
+        ],
+        "failure": "Diagnostic startup exceeded 30 seconds",
+        "forcedCleanup": true,
+        "exitCode": null,
+        "signalCode": "SIGTERM"
+      },
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-native-startup-mini-dump-probe.log",
+        "sha256": "9c945353e73b2fdf13fe42d0b373b0f00d6f17b18791fedbf69c682faa7083dd"
+      }
+    },
+    {
+      "result": {
+        "diagnosticOnly": true,
+        "acceptedDefaultRun": false,
+        "rootCauseEstablished": false,
+        "pid": 121552,
+        "seed": "E:/NookVerification/Temp/qiyao-electron-YdX3Ha",
+        "data": "E:\\NookVerification\\InsertionFocusLateStartupMiniDumpProbe-20261006\\data",
+        "startedAt": 1791300200283,
+        "captures": [
+          {
+            "delay": "startup-2000",
+            "requestedAt": 1791300202302,
+            "observerPid": 125564,
+            "exitCode": 1,
+            "signal": null,
+            "finishedAt": 1791300203355
+          },
+          {
+            "delay": "startup-20000",
+            "requestedAt": 1791300220292,
+            "observerPid": 128744,
+            "exitCode": 1,
+            "signal": null,
+            "finishedAt": 1791300220592
+          }
+        ],
+        "failure": "Desktop page discovery timed out after 2333 ms.",
+        "forcedCleanup": true,
+        "exitCode": null,
+        "signalCode": "SIGTERM"
+      },
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-native-late-startup-mini-dump-probe.log",
+        "sha256": "a7f924e9f107b4df407a5fb776df3e0610724aaaa0025592d67bbf8508212f71"
+      }
+    }
+  ],
+  "limitations": [
+    "Dumps are observations from isolated copied workspaces, not the original terminated process.",
+    "Triage dumps sanitize stack values. Reported scan frames are heuristic; call-frame-information frames and exact symbol identity are retained explicitly.",
+    "Native Windows system symbols are incomplete in the stackwalk report.",
+    "A single early-startup snapshot does not establish where the process remained at its deadline.",
+    "No security feature, persistence behavior, production shutdown behavior or acceptance threshold was changed.",
+    "An incomplete optional full-PDB download was stopped; it was not used as evidence."
+  ]
+}
