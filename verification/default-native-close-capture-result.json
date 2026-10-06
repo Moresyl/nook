@@ -1,0 +1,461 @@
+{
+  "verifiedAt": "2026-10-06T22:15:41.832Z",
+  "productCommit": "ded44a86b4783127c444445506321e7e53cd7a40",
+  "compiledManifestSha256": "5b1c18622fbca6c1c87e5f73a11e549c6b9675a6087273e72c01b39c60e67ffd",
+  "sourceAndCompiledMatchFocusedReview": true,
+  "diagnosticOnly": true,
+  "acceptedDefaultRun": false,
+  "passed": false,
+  "checksBeforeFailure": 179,
+  "normalExits": [
+    {
+      "elapsedMs": 707,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 954,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 168,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 271,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 786,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 194,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 252,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 208,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 372,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 175,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 7630,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 749,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 220,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 250,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 326,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 251,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 452,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 266,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 467,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1631,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "abnormalExit": {
+    "elapsedMs": 545,
+    "forced": false,
+    "exitCode": 4294930435,
+    "signalCode": null
+  },
+  "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-7vg5r9",
+  "capture": {
+    "diagnosticOnly": true,
+    "acceptedDefaultRun": false,
+    "rootCauseEstablished": false,
+    "sourceHarnessUnchanged": true,
+    "extraMainInspectorAttached": false,
+    "startupBudgetMs": 30000,
+    "nativeCloseBudgetMs": 10000,
+    "harnessPid": 54976,
+    "result": {
+      "code": 1,
+      "signal": null
+    },
+    "captures": [
+      {
+        "pid": 133944,
+        "observedAt": 1791324557210,
+        "closeRequestedAt": 1791324554934,
+        "requestedAt": 1791324557211,
+        "dump": "E:\\NookVerification\\DefaultNativeCloseCapture-20261007\\main-133944-close.dmp",
+        "captured": false,
+        "error": "Command failed: E:/NookVerification/Tools/ProcDump/procdump64.exe -accepteula -r -mm -at 3 133944 E:\\NookVerification\\DefaultNativeCloseCapture-20261007\\main-133944-close.dmp\n",
+        "finishedAt": 1791324558783
+      }
+    ]
+  },
+  "snapshot": {
+    "pid": 133944,
+    "module": {
+      "base_addr": "0x00007ff69bae0000",
+      "cert_subject": null,
+      "code_id": "6abc3d83ebb4000",
+      "corrupt_symbols": false,
+      "debug_file": "electron.exe.pdb",
+      "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+      "end_addr": "0x00007ff6aa694000",
+      "filename": "electron.exe",
+      "loaded_symbols": true,
+      "missing_symbols": false,
+      "symbol_url": null,
+      "version": "44.5.1.0"
+    },
+    "main": {
+      "id": 127004,
+      "name": "CrBrowserMain",
+      "frames": [
+        {
+          "function": null,
+          "module": "ntdll.dll",
+          "trust": "context",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": null,
+          "module": "KERNELBASE.dll",
+          "trust": "scan",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": "base::WaitableEvent::Wait(base::Location const &)",
+          "module": "electron.exe",
+          "trust": "scan",
+          "file": "W:\\w\\electron\\electron\\src\\base\\synchronization\\waitable_event.cc",
+          "line": 48
+        },
+        {
+          "function": "mojo::`anonymous namespace'::ThreadSafeInterfaceEndpointClientProxy::SendMessageWithResponder(mojo::Message &,std::__Cr::unique_ptr<mojo::MessageReceiver,std::__Cr::default_delete<mojo::MessageReceiver> >)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\interface_endpoint_client.cc",
+          "line": 456
+        },
+        {
+          "function": "mojo::internal::ThreadSafeForwarderBase::AcceptWithResponder(mojo::Message *,std::__Cr::unique_ptr<mojo::MessageReceiver,std::__Cr::default_delete<mojo::MessageReceiver> >)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\thread_safe_forwarder_base.cc",
+          "line": 32
+        },
+        {
+          "function": "mojo::internal::SendMojoMessage(mojo::MessageReceiverWithResponder &,mojo::Message &,std::__Cr::unique_ptr<mojo::MessageReceiver,std::__Cr::default_delete<mojo::MessageReceiver> >)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\mojo\\public\\cpp\\bindings\\lib\\send_message_helper.cc",
+          "line": 41
+        },
+        {
+          "function": "gpu::mojom::GpuChannelProxy::GetSharedMemoryForFlushId(base::ReadOnlySharedMemoryRegion *)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\out\\Default\\gen\\gpu\\ipc\\common\\gpu_channel.mojom.cc",
+          "line": 2887
+        },
+        {
+          "function": "gpu::GpuChannelHost::EstablishSharedMemoryForFlushVerification()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\gpu\\ipc\\client\\gpu_channel_host.cc",
+          "line": 389
+        },
+        {
+          "function": "gpu::GpuChannelHost::VerifyFlush(unsigned int)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\gpu\\ipc\\client\\gpu_channel_host.cc",
+          "line": 332
+        },
+        {
+          "function": "gpu::CommandBufferProxyImpl::DisconnectChannel()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\gpu\\ipc\\client\\command_buffer_proxy_impl.cc",
+          "line": 947
+        },
+        {
+          "function": "gpu::CommandBufferProxyImpl::~CommandBufferProxyImpl()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\gpu\\ipc\\client\\command_buffer_proxy_impl.cc",
+          "line": 211
+        },
+        {
+          "function": "void gpu::CommandBufferProxyImpl::~CommandBufferProxyImpl()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\gpu\\ipc\\client\\command_buffer_proxy_impl.cc",
+          "line": 207
+        },
+        {
+          "function": "viz::ContextProviderCommandBuffer::~ContextProviderCommandBuffer()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\services\\viz\\public\\cpp\\gpu\\context_provider_command_buffer.cc",
+          "line": 204
+        },
+        {
+          "function": "void viz::ContextProviderCommandBuffer::~ContextProviderCommandBuffer()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\services\\viz\\public\\cpp\\gpu\\context_provider_command_buffer.cc",
+          "line": 188
+        },
+        {
+          "function": "content::VizProcessTransportFactory::~VizProcessTransportFactory()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\compositor\\viz_process_transport_factory.cc",
+          "line": 158
+        },
+        {
+          "function": "void content::VizProcessTransportFactory::~VizProcessTransportFactory()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\compositor\\viz_process_transport_factory.cc",
+          "line": 156
+        },
+        {
+          "function": "content::ImageTransportFactory::Terminate()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\compositor\\image_transport_factory.cc",
+          "line": 25
+        },
+        {
+          "function": "content::BrowserMainLoop::ShutdownThreadsAndCleanUp()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_loop.cc",
+          "line": 1235
+        },
+        {
+          "function": "content::BrowserMainRunnerImpl::Shutdown()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_runner_impl.cc",
+          "line": 170
+        },
+        {
+          "function": "content::BrowserMain(content::MainFunctionParams)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main.cc",
+          "line": 41
+        },
+        {
+          "function": "content::RunBrowserProcessMain(struct content::MainFunctionParams, class content::ContentMainDelegate *)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 710
+        },
+        {
+          "function": "content::ContentMainRunnerImpl::RunBrowser(content::MainFunctionParams,bool)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 1344
+        },
+        {
+          "function": "content::ContentMainRunnerImpl::Run()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 1175
+        },
+        {
+          "function": "content::RunContentProcess(struct content::ContentMainParams, class content::ContentMainRunner *)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+          "line": 328
+        },
+        {
+          "function": "content::ContentMain(content::ContentMainParams)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+          "line": 341
+        },
+        {
+          "function": "wWinMain",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\electron\\shell\\app\\electron_main_win.cc",
+          "line": 238
+        },
+        {
+          "function": "__scrt_common_main_seh()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl",
+          "line": 288
+        },
+        {
+          "function": null,
+          "module": "kernel32.dll",
+          "trust": "cfi",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": null,
+          "module": "ntdll.dll",
+          "trust": "scan",
+          "file": null,
+          "line": null
+        }
+      ]
+    },
+    "scope": "Snapshot during an earlier 7630 ms successful native close, not the later crashed process. ProcDump returned failure although a parseable MDMP file was produced. GPU Mojo flush/destruction frames are observed; the cause of either slow close or later main crash is not established."
+  },
+  "artifacts": [
+    {
+      "file": "native.log",
+      "bytes": 87944,
+      "sha256": "c7f2d514cedf2526a8e711292dfc4aa67f1f207edc34043b34d3cae3c15bb224"
+    },
+    {
+      "file": "main-133944-close.dmp",
+      "bytes": 5088972,
+      "sha256": "840bda6d961c6b2191611885b27a5f09f0f14d55284f5235b204b376aa7f29cf"
+    },
+    {
+      "file": "stackwalk-133944.json",
+      "sha256": "71da1a4012c185528b46d0177d9fdbdd0230cf9de32ac4e95dd6d0c9a151ed89"
+    }
+  ],
+  "records": [
+    {
+      "file": "assistant-profiles-result.json",
+      "sha256": "a2de88b2152a23a1d6113884af1cf8880bbf582300956bc6994c73a32a3111ac",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "automations-result.json",
+      "sha256": "4906d8fc48dd5afc625863427f95808d849eb5d8a4dd2dbc4cf6a34e303a1670",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "backups-result.json",
+      "sha256": "dc6295c5ff5717664878550a4cff2a04a6877ac3f96c7a70460837a6b18167d8",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "commands-result.json",
+      "sha256": "6f82e9200d6573ea0aecdafee2120808301923fb0b8e479d8c849b8f4184a386",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "desktop-integration-result.json",
+      "sha256": "93ac05f15cbbd4dbb13a08bbad3881215dc8a0a3d6ac7cc25dfe6ff93c4ac37f",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "knowledge-result.json",
+      "sha256": "13ad0fbf3a61ec13926e04e4014e7796f5ffe96519c18f7e2a9a6e000985de8b",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "message-edits-result.json",
+      "sha256": "e7208da9e051e8f8e3c682c9a57798568735e171491f873e6f4c0c6942fa5d10",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "prompt-templates-result.json",
+      "sha256": "381b2ab47f01ef5c471695b610c03cba5c35e61a1a804afd2b808a0e67ecd44d",
+      "acceptedCompleteSuite": false
+    },
+    {
+      "file": "reply-versions-result.json",
+      "sha256": "1913a31e0ded7ab6de24d96ab5ec635d6243c3e0ba71023710100cb74252b5e1",
+      "acceptedCompleteSuite": false
+    }
+  ],
+  "archive": "E:/NookVerification/DefaultNativeCloseCapture-20261007",
+  "nativeRootCauseEstablished": false,
+  "defaultFullDesktopPassed": false,
+  "packaged": false,
+  "published": false,
+  "scope": "Unmodified fresh full harness with an external owned-process snapshot observer and a read-only browser font query. At 179 checks the main process exited abnormally before project HTML preview; no forced native close and no actual crash dump. Twenty previous exits succeeded. Diagnostic instrumentation does not count as an accepted default complete run."
+}

@@ -56,6 +56,8 @@ MCP 资源与提示词的 PDF 现在可以离线阅读、查找、导出，并�
 
 该修正的默认整轮使用新工作台与相同构建，通过 146 组后在提示模板检查的正常重启前关闭超时；此前十二次退出正常，最终 10002ms 被强制结束。窗口保存、服务清理和 JavaScript 的 will-quit／process-exit／quit 已完成，仅余两个标准输出管道，没有终端或 Worker；这些记录仍不能代表原生进程已经结束。四份阶段记录和原现场保留，没有生成完整通过记录或新分发包。[当前整轮失败证据](../verification/renderer-close-full-native-failure-result.json)
 
+外部快照观察下的隔离整轮继续通过 179 组后，主进程以 `4294930435` 异常退出，未进入 HTML 预览；此前二十次退出正常。该诊断中的一份早期快照可按准确 Electron 符号解析，主线程经过 GPU Mojo 刷新与图形上下文销毁；对应关闭最终正常结束于 7630ms，快照不属于后来的崩溃进程。ProcDump 返回失败但留下可解析文件，原始返回状态保留；不能据此认定 GPU、数据库或内存是故障根因。这轮含外部观察与只读字体查询，不计入默认完整验收。[诊断与九份阶段记录](../verification/default-native-close-capture-result.json)
+
 ## 最近分发包
 
 最近打包的候选仍基于 `8e3ef21`，不含 MCP PDF 与快速聊天功能。包体审计通过，但完整未安装运行在 202 组后的关闭超过原有 10 秒期限，被强制结束；便携和实际安装阶段没有执行。[分发失败记录](../verification/insertion-focus-packaged-exit-failure-result.json)
