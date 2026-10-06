@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-06T19:19:28.976Z",
+  "sourceCommit": "afb226a538fefe6ee0c32cf77e1ba391f87abbf1",
+  "run": {
+    "conclusion": "failure",
+    "createdAt": "2026-10-06T18:52:29Z",
+    "databaseId": 37514644819,
+    "headSha": "afb226a538fefe6ee0c32cf77e1ba391f87abbf1",
+    "status": "completed",
+    "url": "https://github.com/Moresyl/nook/actions/runs/37514644819"
+  },
+  "jobs": [
+    {
+      "id": 112444313520,
+      "name": "verify",
+      "conclusion": "failure",
+      "steps": 0,
+      "url": "https://github.com/Moresyl/nook/actions/runs/37514644819/job/112444313520"
+    },
+    {
+      "id": 112444330912,
+      "name": "publish",
+      "conclusion": "skipped",
+      "steps": 0,
+      "url": "https://github.com/Moresyl/nook/actions/runs/37514644819/job/112444330912"
+    }
+  ],
+  "verifyAnnotations": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/Moresyl/nook/blob/afb226a538fefe6ee0c32cf77e1ba391f87abbf1/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "raw_details": ""
+    }
+  ],
+  "accountSettingsChanged": false,
+  "tagCreated": false,
+  "published": false,
+  "inputs": {
+    "runs": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-final-hosted-runs.json",
+      "bytes": 451,
+      "sha256": "7988bf442fe711530924d595f7c0ea32dfdb17818178eac8f598317d0f2b4b7a"
+    },
+    "jobs": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-final-hosted-jobs.json",
+      "bytes": 1733,
+      "sha256": "4d9ebfb6579dfd41b7fb990844cfb0d17e19bb34e4410ef79b6fb4a6a8b31782"
+    },
+    "annotations": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-final-hosted-annotations.json",
+      "bytes": 431,
+      "sha256": "0a692880eab5c6f4deba228a1354c1a80a842f58b874c828cf7249734bbd641c"
+    }
+  },
+  "scope": "Read-only verification of the exact pushed quick-chat implementation and fixes. Verify executed zero steps due to the annotated account payments/spending limit; development-branch publish skipped. This is not build or release acceptance."
+}

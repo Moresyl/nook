@@ -19,6 +19,7 @@ Nook 按指定的桌面资料调整布局、主题、控件与交互，**尚未�
 | 启动与恢复 | 56px 独立标志、180ms 淡入、60ms 延迟、扫光与减少动效；持续错误、键盘重试、草稿恢复 | 主窗口创建前的等待、真实损坏数据与平台启动故障 |
 | 图片阅读 | 大图适应、小图不放大、同组切换、40px 圆形导航／关闭、36px 缩放；键盘、拖动、滚轮、双击、重试 | 触屏双指、旋转与更多真实图片 |
 | PDF 与 HTML | 离线 PDF 版式、目录、查找、链接与只读批注；HTML 浮动／并排预览和小窗口切换 | 完整参考预览流程、更多格式、复杂中文／图像样本；HTML 面板尺寸与切换阈值是项目实现选择 |
+| 快速聊天 | 按新版原始 CSS 和窗口资料独立实现 6px 外边距、46px 标题栏、收起状态、圆角表面、悬停／键盘可见的隐藏入口和减少动效；复用已有输入与 PDF 控件；九组实际桌面专项及 420×580 窄窗的明暗／缩放截图已检查 | 更短窗口和完整桌面、最终分发包验收；会话选择与独立草稿是项目实现选择，并非全部参考流程复刻 |
 | 字体与品牌 | Inter、系统中文字体、Nook 名称与独立图标 | 未分发 OpenAI Sans；品牌与字体差异明确保留，不能声称逐像素一致 |
 
 控件的具体色值、状态与测量证据见[共享控件对照](CONTROL-AUDIT.md)。功能范围见[能力与边界](CAPABILITIES.md)。
@@ -50,12 +51,15 @@ Nook 按指定的桌面资料调整布局、主题、控件与交互，**尚未�
 | 提示与菜单 | [浅色提示](images/tooltip-light.png)、[深色提示](images/tooltip-dark.png)、[长标题](images/tooltip-long-title.png)、[浅色菜单](images/select-highlight-light.png)、[深色菜单](images/select-highlight-dark.png) |
 | 新源码文字提示 | [浅色 100%](images/text-hints-light-100.png)、[125%](images/text-hints-light-125.png)、[150%](images/text-hints-light-150.png)；[深色最小窗口 100%](images/text-hints-dark-100.png)、[125%](images/text-hints-dark-125.png)、[150%](images/text-hints-dark-150.png) |
 | 后续文件树／分支／PDF 提示 | [文件树浅色](images/all-tree-hints-light-100.png)、[深色 150%](images/all-tree-hints-dark-150.png)；[分支浅色](images/all-branch-hints-light-100.png)、[深色 150%](images/all-branch-hints-dark-150.png)；[PDF 浅色](images/all-annotation-hints-light-100.png)、[深色 150%](images/all-annotation-hints-dark-150.png) |
+| 快速聊天源码 | [浅色 100%](images/quick-chat-light-100.png)、[125%](images/quick-chat-light-125.png)、[150%](images/quick-chat-light-150.png)；[深色 100%](images/quick-chat-dark-100.png)、[125%](images/quick-chat-dark-125.png)、[150%](images/quick-chat-dark-150.png)；[PDF](images/quick-chat-pdf.png)、[收起](images/quick-chat-collapsed.png) |
 
 PDF 五张截图来自当前候选的真实未安装应用体。本轮完整实际安装生成的五张图片哈希也在源码重跑前核对，与这些保留图片一致，详见[安装重跑证据](../verification/native-installed-retry-review-result.json)。其余图片属于对应历史源码／分发批次，只用于查看已检查的设计状态。后续运行会覆盖工作截图目录，不能将其最新内容冒充此前安装截图。图片、PDF 和 HTML 的详细交互与验证边界见[附件](ATTACHMENTS.md)、[PDF 阅读](PDF-PREVIEW.md)和[HTML 预览](PROJECT-PREVIEW.md)。
 
+快速聊天八张图来自当前源码专项的完整原生内容捕获，包含六张 420×580 明暗／缩放图、640×580 PDF 和 640×58 收起状态；它们分别归档并核对内容尺寸。此前 Playwright 缩放截图裁切了内容，已单独保留，未作为完整窗口证据。更短窗口、最大规模内容、物理辅助技术及同一安装包仍需检查。
+
 ## 完整验收仍需完成
 
-- 核对完整页面、控件状态和交互清单，包括独立 Quick Chat、浏览器、分离窗口及其他扩展页面。
+- 核对完整页面、控件状态和交互清单，包括快速聊天的完整流程、浏览器、分离窗口及其他扩展页面。
 - 在最终构建中检查正常、空白、加载、错误、禁用、长内容与最大规模，并覆盖明暗、缩放、键盘和减少动效。
 - 完成原生系统向导／选择器、物理输入与辅助技术验收；当前原生 Computer Use 不可用，静默安装与测试替身不替代这些证据。
 - 将截图与运行记录关联到同一应用体，再完成全面、多轮测试和流水线发布。完整要求见[交付记录](DELIVERY.md)。

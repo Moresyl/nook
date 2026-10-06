@@ -1,0 +1,763 @@
+{
+  "verifiedAt": "2026-10-06T19:19:28.969Z",
+  "sourceCommit": "afb226a538fefe6ee0c32cf77e1ba391f87abbf1",
+  "foundationCommit": "ddc89e4015298d13d8c7691a2b4768977b0f72b1",
+  "windowCommit": "6abb59b82892273bccfd76647e83b0cbe9cf7ec3",
+  "sources": [
+    {
+      "file": "contracts/quick-chat.ts",
+      "bytes": 1559,
+      "sha256": "3bfc89f03e24957eece24be976dea2c768bfd27f33a58303e7e35419069ec71f"
+    },
+    {
+      "file": "contracts/quick-chat-stream.ts",
+      "bytes": 1814,
+      "sha256": "e74c8bdd19af20b3d6ad227646629b0e2f3d5de344558dd2260865a7c2db5b32"
+    },
+    {
+      "file": "contracts/workspace.ts",
+      "bytes": 13005,
+      "sha256": "c6cac2733dbc1b3612390caa3f182ac44314e8d3eb75d53d07ae9e213d814888"
+    },
+    {
+      "file": "contracts/composer.ts",
+      "bytes": 2640,
+      "sha256": "cad3f702771e591cde3d33797bd480ca9edc7d98725466b061bcb8c041559ad4"
+    },
+    {
+      "file": "contracts/desktop-integration.ts",
+      "bytes": 894,
+      "sha256": "6da3ebe4a898c0c0d29482a2297f3c76468face532c1a19a16ab6a1e75d23976"
+    },
+    {
+      "file": "contracts/bridge-contract.ts",
+      "bytes": 9482,
+      "sha256": "f3cf5db60224acaa0a524b6b85175b5f52f9678fdeee02d63f13570d641ea256"
+    },
+    {
+      "file": "desktop/launch.ts",
+      "bytes": 45058,
+      "sha256": "bd29769c2d7139b9f326dbb0c54715ed6acb374145136073c19daeb549602e00"
+    },
+    {
+      "file": "desktop/bridge.ts",
+      "bytes": 10435,
+      "sha256": "b32bbecd455d1e3614a0fe8b3a760fbd86fd9712d8991202d4c06eb0bbedb375"
+    },
+    {
+      "file": "desktop/quick-chat-window.ts",
+      "bytes": 7883,
+      "sha256": "e72370e6e7f413e52365211d9710a99247ed2aae46c049578590af267cae0b15"
+    },
+    {
+      "file": "desktop/quick-chat-bridge.ts",
+      "bytes": 1965,
+      "sha256": "85888bc90a77fade450ffb2f2e27650e535059f52c087a266089afe66f295446"
+    },
+    {
+      "file": "desktop/services/quick-chat.ts",
+      "bytes": 5556,
+      "sha256": "bcbd4fbc14ce10f2285cf779cee664dafb1137054211e3595b11447b96ae4cd7"
+    },
+    {
+      "file": "desktop/services/vault.ts",
+      "bytes": 17321,
+      "sha256": "421dea857842e5f0a8f141350997aab1eeccdd53221b306a4b73d8f17c5d6326"
+    },
+    {
+      "file": "desktop/services/conversation-engine.ts",
+      "bytes": 30548,
+      "sha256": "bfe6ac64d17e75124d4fb0b3abd30a7d27386ed4b52e8b7b4180c05ee3d324bf"
+    },
+    {
+      "file": "desktop/services/document-original-references.ts",
+      "bytes": 1350,
+      "sha256": "6fd7f8d3f542f3c0801e4bea587a27b7bce5fdfc64d444c22ec22c7ff5f146d7"
+    },
+    {
+      "file": "desktop/services/temporary-conversations.ts",
+      "bytes": 771,
+      "sha256": "1d16dbf4ef35935d9a6d7cc2d21e5424230cbc0e9a4203227cc40fa0753a0d99"
+    },
+    {
+      "file": "desktop/services/conversation-extensions.ts",
+      "bytes": 2644,
+      "sha256": "c1fabb7e455fdd32660f96b3a55cd84f735a125348c5ebce046fa1808fbc617d"
+    },
+    {
+      "file": "workbench/quick-chat.tsx",
+      "bytes": 14437,
+      "sha256": "49b1d216fa1403277a1a238b8b90437d9ccb2b00190fb533b68f62633af40f5d"
+    },
+    {
+      "file": "workbench/theme/quick-chat.css",
+      "bytes": 3096,
+      "sha256": "09bee040bb074e5796b30b7d186af44a1ac56ee6244618a3b5a215bad5a3a6f3"
+    },
+    {
+      "file": "workbench/components/content-bridge.tsx",
+      "bytes": 317,
+      "sha256": "b1b7f5a986701d80643cfb7a632320b74480029042730e5e9925790eacad8fa3"
+    },
+    {
+      "file": "workbench/components/composer.tsx",
+      "bytes": 16561,
+      "sha256": "b5ab9f9d86481b5b010977a7ab71d2d1c110a1233dc4a91d68be9a6efc7be0e7"
+    },
+    {
+      "file": "workbench/entry.tsx",
+      "bytes": 1151,
+      "sha256": "3e607d63ec94bf390f474dc13fadce1dfe6a4ddecbd53e375c10233e8b919977"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "bytes": 37015,
+      "sha256": "8099082561289f690f283dbb812eea720cf5236ea64c28e18ac16fea31207783"
+    },
+    {
+      "file": "scripts/verify-quick-chat.mjs",
+      "bytes": 20802,
+      "sha256": "c8eb692242c13ec51da137457a000f463a62edac3008b34d84bf2b5c2d0e2c0f"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "bytes": 147814,
+      "sha256": "5a5d7a08d9ad4f063aaa5f84f80dea655492b5810bb666afa2d790fbb691bb30"
+    }
+  ],
+  "change": "Independent persistent quick-chat drafts, a restricted sandboxed native window and scoped run events; shared composer/PDF controls without the main bridge; owner-only stops/approvals/originals, atomic send acknowledgement and backup revision invalidation. Composer controls now wait for switching/sending to finish.",
+  "fullUnits": {
+    "files": 101,
+    "tests": 963,
+    "passed": true,
+    "workers": 1,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-final-full-unit.log",
+      "bytes": 5254,
+      "sha256": "2c4680b2cac192875554ef78bb02e2dd210c4e83af217e7d1dd2b592a002daa7"
+    },
+    "coverage": {
+      "lines": {
+        "total": 3604,
+        "covered": 3582,
+        "skipped": 0,
+        "pct": 99.38
+      },
+      "statements": {
+        "total": 5989,
+        "covered": 5823,
+        "skipped": 0,
+        "pct": 97.22
+      },
+      "functions": {
+        "total": 1359,
+        "covered": 1324,
+        "skipped": 0,
+        "pct": 97.42
+      },
+      "branches": {
+        "total": 4200,
+        "covered": 3981,
+        "skipped": 0,
+        "pct": 94.78
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "earlierUnits": {
+    "files": 101,
+    "tests": 961,
+    "passed": true,
+    "workers": 2,
+    "scope": "Before the final delayed-close and tool-round test additions.",
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-full-unit.log",
+      "bytes": 5044,
+      "sha256": "4ff34df9a7a07b30e1bb327a372da0b3381114453bc4399bf3efaf0da2ea9f96"
+    }
+  },
+  "typecheck": {
+    "passed": true,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-final-types.log",
+      "bytes": 94,
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    }
+  },
+  "build": {
+    "passed": true,
+    "heapMegabytes": 3072,
+    "rendererSeconds": 121,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-busy-build.log",
+      "bytes": 24260,
+      "sha256": "ee7fb9ce961fff0c663c903936310d44bd023472991cb7038b0b7862918def5c"
+    },
+    "earlierSuccessfulBuild": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-build-bounded.log",
+      "bytes": 24261,
+      "sha256": "64ab48a12c19f2ed9b4f9889390e627d9786aa2044e6adb0e05e21413aaf50b1"
+    },
+    "compiledFiles": 236,
+    "compiledManifestSha256": "3a3a8cf621485712341b529be862de5bb4b79cacb707c8f19144498d469431a4",
+    "compiledManifest": {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\focused-current\\source-and-build-manifest.json",
+      "bytes": 51456,
+      "sha256": "34c1202f9511ab5673177d460e69e9941873fca6ea2fbb2ee5e005687cbc7f47"
+    }
+  },
+  "focusedNative": {
+    "passed": true,
+    "verifiedAt": "2026-10-06T18:45:47.936Z",
+    "variant": "development executable",
+    "executableSha256": null,
+    "archiveSha256": null,
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "verificationRun": "focused quick-chat suite",
+    "checks": 9,
+    "quickModelRequests": 3,
+    "mainFixtureRequests": 1,
+    "originalSha256": "6d63542f9c059a9f0ed1876fcae8f78cbb8b469a3f8e67b217dedf65d49f0be8",
+    "layout": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "overflow": false,
+        "controlsVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "overflow": false,
+        "controlsVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "overflow": false,
+        "controlsVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "overflow": false,
+        "controlsVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "overflow": false,
+        "controlsVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "overflow": false,
+        "controlsVisible": true
+      }
+    ],
+    "independentDraftsVerified": true,
+    "restrictedBridgeVerified": true,
+    "exactOriginalVerified": true,
+    "textOnlyTransportVerified": true,
+    "stopOwnerVerified": true,
+    "approvalScopeVerified": true,
+    "handoffVerified": true,
+    "windowStateVerified": true,
+    "shortcutTargetVerified": true,
+    "filesystemRetryVerified": true,
+    "backupRestartVerified": true,
+    "staleRevisionVerified": true,
+    "captures": [
+      {
+        "filename": "quick-chat-pdf.png",
+        "size": [
+          640,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-light-1.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-light-1.25.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-light-1.5.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-dark-1.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-dark-1.25.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-dark-1.5.png",
+        "size": [
+          420,
+          580
+        ]
+      },
+      {
+        "filename": "quick-chat-collapsed.png",
+        "size": [
+          640,
+          58
+        ]
+      }
+    ],
+    "screenshotMethod": "Complete Electron BrowserWindow.capturePage with exact native content-size assertions",
+    "exits": [
+      {
+        "elapsedMs": 1289,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 580,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "log": {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\focused-current\\nook-quick-chat-native-capture-fix.log",
+      "bytes": 5607,
+      "sha256": "2528c6d0f73ab6d6af76d621b418cc8d245304deda3b2f06b5934c1340e5c909"
+    },
+    "result": {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\focused-current\\quick-chat-result.json",
+      "bytes": 2459,
+      "sha256": "9622527cecfc20e3d393c5e16c02673d74b6a74df6f3a37e3a275106aef044a5"
+    },
+    "scope": "Owned real Electron/CDP, PDF worker, local HTTP requests, exact original bytes, separate draft stores, concurrent main/quick approvals, owner-only stop, normal close/restart, combined gzip restore, actual native hotkey registration with callback delivery invoked in the test. File/confirm dialogs and disk-failure boundary are intercepted; physical OS keyboard delivery is not established."
+  },
+  "fullNative": {
+    "passed": false,
+    "checks": 214,
+    "exits": [
+      {
+        "elapsedMs": 2506,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 843,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 208,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 175,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 423,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 199,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 211,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1076,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1717,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 835,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 764,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 922,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1003,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 749,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1195,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 656,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 705,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 466,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 762,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1060,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2268,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2402,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 5506,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 4302,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 7975,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1970,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 4686,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1810,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 394,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 6555,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 4856,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-full-native.log",
+      "bytes": 192902,
+      "sha256": "76981ee08c072acc58f09a195ae33d8ad670df7ec7e114321ee73ecff9130d9a"
+    },
+    "startupSeconds": 30,
+    "operationSeconds": 5,
+    "closeSeconds": 10,
+    "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-CAzy1Q",
+    "failure": {
+      "stage": "MCP subscription initial capability assertion after connect returned error",
+      "processes": [
+        {
+          "requestedAt": 1791313840370,
+          "pid": 134920,
+          "stdoutBytes": 0,
+          "stderrBytes": 0,
+          "stdinBytes": 301,
+          "stdinWrites": 2,
+          "piped": {
+            "stdin": true,
+            "stdout": true,
+            "stderr": true
+          },
+          "startup": [],
+          "spawnedAt": 1791313840684,
+          "firstStdinWriteAt": 1791313840684,
+          "lastStdinWriteAt": 1791313845372,
+          "stdinBackpressure": false
+        }
+      ],
+      "connection": {
+        "startedAt": 1791313840348,
+        "completedAt": 1791313845373,
+        "status": "error",
+        "error": "Could not connect. Check the program, endpoint and credentials, then retry.",
+        "resourceSubscriptionsSupported": false
+      },
+      "preflight": {
+        "capturedAt": 1791313851117,
+        "status": "error",
+        "error": "Could not connect. Check the program, endpoint and credentials, then retry.",
+        "resourceSubscriptionsSupported": false
+      },
+      "laterGroupsNotReached": [
+        "MCP resource subscriptions",
+        "MCP binary files",
+        "MCP PDF",
+        "assistant recipes",
+        "prompt transfer",
+        "quick chat"
+      ],
+      "causeEstablished": false
+    }
+  },
+  "screenshotReview": {
+    "inspected": [
+      "quick-chat-pdf.png",
+      "quick-chat-light-1.png",
+      "quick-chat-light-1.25.png",
+      "quick-chat-light-1.5.png",
+      "quick-chat-dark-1.png",
+      "quick-chat-dark-1.25.png",
+      "quick-chat-dark-1.5.png",
+      "quick-chat-collapsed.png"
+    ],
+    "nativeSizeChecked": true,
+    "width": 420,
+    "height": 580,
+    "shorterWindowVerified": false,
+    "conclusion": "All six native theme/zoom captures show the input, send, conversation and header actions within the window. PDF and collapsed captures were also inspected. Earlier Playwright zoom captures cropped content and are preserved separately."
+  },
+  "failedAttempts": [
+    {
+      "scope": "Default build failed allocating native memory; not a successful build.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-build.log",
+        "bytes": 3133,
+        "sha256": "743ec3632ac75fd94620cd7463322ad663f631a8665073b4ae68eb757f549f46"
+      }
+    },
+    {
+      "scope": "The bounded 2 GB heap was insufficient; retry exited with heap OOM.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-build-retry.log",
+        "bytes": 4455,
+        "sha256": "f13debbb64dfb9d4b315bbc12dd3f99902b5937c68e3dd14db7ad70a759ad99a"
+      }
+    },
+    {
+      "scope": "The original 30-second startup deadline failed before any checks.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native.log",
+        "bytes": 1724,
+        "sha256": "6f9d8aa37a564d29a8c7eaa28c2eef002f7f8c3efee100dfb6ad679aaa4089bc"
+      }
+    },
+    {
+      "scope": "Harness assumed getLastWebPreferences returned preload; it did not. Restricted API keys and actual isolation are now asserted instead.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native-retry.log",
+        "bytes": 9151,
+        "sha256": "7774067a91e37d94c1c042872be558f4c2d6f8d633eb8ac15417bddea9c88789"
+      }
+    },
+    {
+      "scope": "Model configuration had not been synchronized into the main UI before the draft baseline; the test now loads the configuration and explicitly selects the model first.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native-bridge-fix.log",
+        "bytes": 6281,
+        "sha256": "0bf0388f07fad8e04db489a9ec56903476aff710c8fd6c17304f7768a7c8e9bf"
+      }
+    },
+    {
+      "scope": "Real UI issue: controls remained active during quick-chat switching, allowing a project change to be ignored. The composer fieldset is now disabled during the operation.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native-fixture-fix.log",
+        "bytes": 6797,
+        "sha256": "dc88ef9283a03f4134ea2a4afac77955f30385ee8720732c0f63561baed7c45a"
+      }
+    },
+    {
+      "scope": "Hotkey setup failed; a locally unregistered key is not evidence of OS availability. Actual registration probes were added.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native-busy-fix.log",
+        "bytes": 5695,
+        "sha256": "349f472905c68662f6e3901326c3ee17ebdfea9880275c81768d84e7c3329f3f"
+      }
+    },
+    {
+      "scope": "Hotkey setup still failed with an inspector-context wrapper. The native receiver is now captured before normal IPC execution, following the existing integration test pattern.",
+      "input": {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-native-hotkey-fix.log",
+        "bytes": 5679,
+        "sha256": "a5bcf775f2198104622e54b3ecc413d8d1929c2dc93cae346786138f0721a2f1"
+      }
+    }
+  ],
+  "standaloneMcpDiagnostics": {
+    "record": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-mcp-standalone-diagnostics.json",
+      "bytes": 2777,
+      "sha256": "c1efad71f128c2573fd616acb08da5cc3755e4f7aa35c387bd46306e9d0f61f3"
+    },
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-mcp-standalone-diagnostics.log",
+      "bytes": 350,
+      "sha256": "afa292a01d6fb2042b7727d4f76edba6c6e854df24c75b060cb9cd0503df538d"
+    },
+    "results": [
+      {
+        "mode": "filtered-default-1",
+        "replyMs": 1891,
+        "timedOut": false,
+        "forcedClose": false
+      },
+      {
+        "mode": "filtered-default-2",
+        "replyMs": 137,
+        "timedOut": false,
+        "forcedClose": false
+      },
+      {
+        "mode": "filtered-observer",
+        "replyMs": 149,
+        "timedOut": false,
+        "forcedClose": false
+      }
+    ],
+    "scope": "Three standalone Node initialization probes use the same SDK-filtered environment and original five-second handshake deadline. Default replies were 1891/137ms, optional observer 149ms. They exclude Electron and the large workspace, so they do not establish the cause or repair of the full-suite failure."
+  },
+  "legalFiles": {
+    "passed": true,
+    "dependencyVersions": 381,
+    "legalDocuments": 401,
+    "assetGroups": 5,
+    "distributionComponents": 5,
+    "log": {
+      "path": "D:\\GR\\pi-pc\\.firecrawl\\nook-quick-chat-notices.log",
+      "bytes": 261,
+      "sha256": "93f3532067cd1609b76ced4051c6981956e4f0537c2bbfe2fd09cbdb1f82c87b"
+    }
+  },
+  "releaseGate": {
+    "minimumDesktopChecks": 252,
+    "sameBodyRecords": 11,
+    "quickChatGroups": 9,
+    "shortcutTargetRequired": true,
+    "thresholdsChanged": false
+  },
+  "latestPackageSource": "8e3ef21",
+  "newPackageBuilt": false,
+  "tagCreated": false,
+  "published": false,
+  "completeDesignAdoption": false,
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "css": "css/app-asar/webview/assets/quick-chat-frame-d5e6d925f590.css",
+    "sourceJavaScriptCopied": false,
+    "referenceFontDistributed": false
+  },
+  "boundaries": [
+    "Full feature and design scope remains in CAPABILITIES and DELIVERY.",
+    "All six reviewed quick layouts use native width 420 and height 580; shorter native-height layouts are not verified.",
+    "The previously packaged application does not contain quick chat or MCP PDF.",
+    "Physical system dialogs/input/accessibility, real cloud quality, maximum-scale and target-platform checks remain separate.",
+    "Zero-step hosted failures cannot establish hosted build or release acceptance."
+  ]
+}
