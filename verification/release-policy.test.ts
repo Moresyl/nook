@@ -18,7 +18,8 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 243, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 252, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    quickChat: { checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
@@ -38,6 +39,17 @@ function proof(): ReleaseProof {
 }
 
 describe('PDF release evidence', () => {
+  it('requires independent quick-chat boundaries, original identity, request counts and every minimum-window theme/zoom pair', () => {
+    const missing = proof(); delete missing.desktop.quickChat; expect(() => verifyRuntimeProof(missing)).toThrow('quick-chat');
+    for (const [key, value] of Object.entries({ checks: 8, quickModelRequests: 4, mainFixtureRequests: 0, originalSha256: '', layout: [], independentDraftsVerified: false, restrictedBridgeVerified: false, exactOriginalVerified: false, textOnlyTransportVerified: false, stopOwnerVerified: false, approvalScopeVerified: false, handoffVerified: false, windowStateVerified: false, filesystemRetryVerified: false, backupRestartVerified: false, staleRevisionVerified: false })) {
+      const invalid = proof(); (invalid.desktop.quickChat as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('quick-chat');
+    }
+    for (const change of [{ zoom: 1.25 }, { theme: 'light' }, { controlsVisible: false }, { overflow: true }]) {
+      const invalid = proof(); invalid.desktop.quickChat!.layout[5] = { ...invalid.desktop.quickChat!.layout[5], ...change }; expect(() => verifyRuntimeProof(invalid)).toThrow('quick-chat');
+    }
+    const previous = proof(); previous.desktop.checks = 243; previous.installer.checks = 243; previous.branches.suiteChecks = 243; previous.temporary.suiteChecks = 243; previous.comparisons.suiteChecks = 243;
+    expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
   it('requires complete MCP PDF evidence, exact request count and both themes at every zoom', () => {
     const missing = proof(); delete missing.desktop.mcpPdf; expect(() => verifyRuntimeProof(missing)).toThrow('MCP PDF');
     for (const [key, value] of [['checks', 7], ['explicitModelRequests', 0], ['explicitModelRequests', 2], ['previewPersisted', true], ['originalSha256', 'invalid'], ['layout', []], ['layout', Array(6).fill(null)]] as const) {

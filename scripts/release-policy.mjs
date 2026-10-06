@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 243 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 252 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const completePreview = result => result?.checks === 9 && result.outsideHttpRequests === 0 && result.docked?.checks === 4 && result.docked.floatingTransferVerified === true && result.docked.projectRemovalVerified === true;
@@ -75,6 +75,11 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
     throw new Error('Complete MCP PDF attachment verification is required');
   }
   const recipes = desktop.assistantRecipes;
+  const quickChat = desktop.quickChat;
+  const quickLayout = Array.isArray(quickChat?.layout) && quickChat.layout.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => quickChat.layout.some(row => row?.theme === theme && row.zoom === zoom && row.controlsVisible === true && row.overflow === false)));
+  if (!quickChat || quickChat.checks !== 9 || quickChat.quickModelRequests !== 3 || quickChat.mainFixtureRequests !== 1 || !/^[a-f0-9]{64}$/.test(quickChat.originalSha256 ?? '') || !quickLayout || !['independentDraftsVerified', 'restrictedBridgeVerified', 'exactOriginalVerified', 'textOnlyTransportVerified', 'stopOwnerVerified', 'approvalScopeVerified', 'handoffVerified', 'windowStateVerified', 'filesystemRetryVerified', 'backupRestartVerified', 'staleRevisionVerified'].every(key => quickChat[key] === true)) {
+    throw new Error('Complete independent quick-chat verification is required');
+  }
   if (!recipes || recipes.checks !== 4 || recipes.recipeModelRequests !== 0 || !['assistantBindingVerified', 'defaultOptionalChoicesVerified', 'deletedAssistantRecoveryVerified', 'zoomKeyboardVerified', 'backupRestartVerified', 'originalDraftRetained'].every((key) => recipes[key] === true)) {
     throw new Error('Complete assistant-recipe verification is required');
   }

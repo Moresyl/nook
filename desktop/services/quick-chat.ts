@@ -4,9 +4,12 @@ import { restoreComposer } from '../../contracts/composer';
 import { composerDraftSchema, type ComposerDraft, type QuickChatState } from '../../contracts/workspace';
 import type { ConversationEngine } from './conversation-engine';
 import type { WorkspaceVault } from './vault';
+import type { QuickChatSnapshot } from '../../contracts/quick-chat';
+import { documentOriginalSchema, type DocumentOriginal } from '../../contracts/document-originals';
+import { documentOriginalReferences } from './document-original-references';
 
 export class QuickChat {
-  constructor(private readonly vault: WorkspaceVault, private readonly engine: Pick<ConversationEngine, 'start' | 'stop'>) {}
+  constructor(private readonly vault: WorkspaceVault, private readonly engine: Pick<ConversationEngine, 'start' | 'stop'> & Partial<Pick<ConversationEngine, 'thread'>>) {}
 
   private current(): QuickChatState {
     const state = this.vault.quickChat();
@@ -18,14 +21,14 @@ export class QuickChat {
     const saved = state.composerDrafts.find(draft => draft.threadId === state.activeThreadId);
     return restoreComposer(this.vault.composerContext(), thread?.temporary ? undefined : thread, saved);
   }
-  async load() {
+  async load(): Promise<QuickChatSnapshot> {
     await this.vault.wait();
     if (!this.vault.quickChat()) {
       const draft = restoreComposer(this.vault.composerContext());
       await this.vault.commitQuickChat(state => { state.quickChat ??= { revision: randomUUID(), composerDrafts: [draft] }; });
     }
     const current = this.current(), draft = this.normalized(current);
-    return { revision: current.revision, draft, context: this.vault.composerContext(), thread: draft.threadId ? this.vault.thread(draft.threadId) : undefined };
+    return { revision: current.revision, draft, context: this.vault.composerContext(), thread: draft.threadId ? this.engine.thread?.(draft.threadId) ?? this.vault.thread(draft.threadId) : undefined, conversations: this.vault.conversationChoices() };
   }
   async save(raw: unknown, rawRevision: unknown): Promise<string> {
     const draft = composerDraftSchema.parse(raw), revision = z.uuid().parse(rawRevision), nextRevision = randomUUID();
@@ -67,4 +70,12 @@ export class QuickChat {
     return nextRevision;
   }
   owns(threadId: string): boolean { return this.vault.quickChat()?.activeThreadId === threadId && this.vault.hasPersistentThread(threadId); }
+  assertOriginal(raw: unknown): DocumentOriginal {
+    const reference = documentOriginalSchema.parse(raw), current = this.current(), draft = this.normalized(current);
+    const thread = draft.threadId ? this.vault.thread(draft.threadId) : undefined;
+    if (!documentOriginalReferences({ threads: thread ? [thread] : [], composerDrafts: [draft], notes: [] }).some(item => item.sha256 === reference.sha256 && item.bytes === reference.bytes && item.mimeType === reference.mimeType)) {
+      throw new Error('This document does not belong to the current quick chat.');
+    }
+    return reference;
+  }
 }

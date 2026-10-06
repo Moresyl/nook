@@ -61,6 +61,8 @@ export type Bridge = {
   discoverModelCatalog(provider: Provider, key?: string): Promise<ModelInfo[]>;
   savePreferences(preferences: Preferences): Promise<Workspace>;
   desktopState(): Promise<DesktopState>;
+  openQuickChat(): Promise<void>;
+  onWorkspaceNavigation(callback: (target: { threadId?: string; settings?: boolean }) => void): () => void;
   saveComposerDraft(draft: ComposerDraft): Promise<void>;
   saveMessageDraft(draft: MessageDraft): Promise<void>;
   removeMessageDraft(target: { threadId: string; messageId: string }): Promise<void>;

@@ -18,6 +18,8 @@ ipcRenderer.on('qiyao:before-close', async (_event, token: string) => {
 });
 const bridge: Bridge = {
   load: () => invoke('load'),
+  openQuickChat: () => invoke('openQuickChat'),
+  onWorkspaceNavigation: callback => { const handler = (_event: unknown, target: { threadId?: string; settings?: boolean }) => callback(target); ipcRenderer.on('nook:workspace-navigation', handler); return () => { ipcRenderer.removeListener('nook:workspace-navigation', handler); }; },
   saveProvider: (provider, key) => invoke('saveProvider', provider, key),
   removeProvider: (id) => invoke('removeProvider', id),
   saveMcpServer: (server, credentials) => invoke('saveMcpServer', server, credentials),

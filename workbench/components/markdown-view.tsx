@@ -8,6 +8,7 @@ import { all } from 'lowlight';
 import { codeBlockFromNode, type CodeBlock } from '../lib/rich-content';
 import { DiagramView } from './diagram-view';
 import { IconButton } from './controls';
+import { useContentBridge } from './content-bridge';
 
 type Rendering = { generating: boolean; report: (error: unknown) => void };
 const RenderingContext = createContext<Rendering | null>(null);
@@ -17,8 +18,9 @@ function useRendering(): Rendering {
   return rendering;
 }
 function MarkdownLink({ href, children }: ComponentProps<'a'>) {
+  const bridge = useContentBridge();
   const { report } = useRendering();
-  return <a href={href} onClick={(event) => { event.preventDefault(); if (href) void window.qiyao.openExternal(href).catch(report); }}>{children}</a>;
+  return <a href={href} onClick={(event) => { event.preventDefault(); if (href) void bridge.openExternal(href).catch(report); }}>{children}</a>;
 }
 function MarkdownPre({ node, children }: ComponentProps<'pre'> & ExtraProps) {
   const { generating, report } = useRendering(); const block = codeBlockFromNode(node);

@@ -152,11 +152,28 @@ describe('independent quick chat', () => {
     const attachment = attachmentSchema.parse({ id: 'pdf', name: 'quick.pdf', content: 'Extracted quick PDF text', source: { format: 'pdf', bytes: pdf.length }, original });
     const revision = await quick.save({ ...loaded.draft, text: 'Read this PDF', attachments: [attachment] }, loaded.revision);
     expect(await vault.readDocumentOriginal(original)).toEqual(pdf); expect(await readFile(join(directory, 'document-originals', original.sha256))).toEqual(pdf);
+    expect(quick.assertOriginal(original)).toEqual(original);
+    expect(() => quick.assertOriginal({ ...original, sha256: '0'.repeat(64) })).toThrow('does not belong');
+    expect(() => quick.assertOriginal({ ...original, bytes: original.bytes + 1 })).toThrow('does not belong');
+    expect(() => quick.assertOriginal({ ...original, extra: true })).toThrow();
     const backup = await vault.backupWithOriginals(); expect(backup.documentOriginals).toEqual([{ reference: original, data: pdf.toString('base64') }]);
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(await restored.readDocumentOriginal(original)).toEqual(pdf);
     const result = await quick.send(revision); await engine.settle(result.threadId);
     expect((await quick.load()).draft.attachments).toEqual([]); expect(vault.thread(result.threadId)?.messages[0].attachments[0].original).toEqual(original);
     expect(await vault.readDocumentOriginal(original)).toEqual(pdf); expect((await vault.backupWithOriginals()).documentOriginals).toHaveLength(1);
+    expect(quick.assertOriginal(original)).toEqual(original);
+    const loadedAgain = await quick.load(); await quick.activate(undefined, loadedAgain.revision); expect(() => quick.assertOriginal(original)).toThrow('does not belong');
+  });
+
+  it('loads the actual live response before checkpointing without reading unrelated conversations', async () => {
+    const { quick, engine, vault } = await setup({ stream: async (input, onText) => {
+      onText('Uncheckpointed live text'); await new Promise<void>((_resolve, reject) => input.signal.addEventListener('abort', () => reject(new DOMException('Stopped', 'AbortError')), { once: true }));
+    } });
+    const revision = await saveText(quick, 'Start live response'); const result = await quick.send(revision);
+    const snapshot = vi.spyOn(vault, 'snapshot'); const loaded = await quick.load();
+    expect(snapshot).not.toHaveBeenCalled(); expect(loaded.thread?.messages[1].content).toBe('Uncheckpointed live text');
+    loaded.thread!.messages[1].content = 'Mutated'; expect(engine.thread(result.threadId)?.messages[1].content).toBe('Uncheckpointed live text');
+    expect(engine.thread('missing')).toBeUndefined(); snapshot.mockRestore(); await quick.stop();
   });
 });
 
@@ -173,6 +190,9 @@ describe('bounded quick-chat persistence', () => {
     expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(Buffer.from(JSON.stringify(persistentWorkspace(before), null, 2)));
     const context = vault.composerContext(); context.preferences.defaultModel = 'Changed'; expect(vault.preferences().defaultModel).toBe('test-model');
     expect(vault.hasPersistentThread('thread')).toBe(true); expect(vault.hasPersistentThread('temporary')).toBe(false); expect(vault.hasPersistentThread('missing')).toBe(false);
+    await vault.update(state => { state.threads[0].updatedAt = 10; state.threads[1].archived = true; });
+    const choices = vault.conversationChoices(); expect(choices).toEqual([{ id: 'thread', title: 'A conversation' }]); choices[0].title = 'Injected';
+    expect(vault.conversationChoices()[0].title).toBe('A conversation');
   });
 
   it('rejects invalid mutations and actual disk failure atomically, then permits retry and removal', async () => {

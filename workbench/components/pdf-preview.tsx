@@ -9,8 +9,10 @@ import { pdfSearchRange, searchPdf, type PdfSearchResult } from './pdf-search';
 import { pdfAnnotations, type PdfAnnotation } from './pdf-annotations';
 import { PdfAnnotationLayer } from './pdf-annotation-layer';
 import '../theme/pdf-preview.css';
+import { useContentBridge } from './content-bridge';
 
 export default function PdfPreview({ reference, originalBytes }: { reference: DocumentOriginal; originalBytes?: Uint8Array }) {
+  const bridge = useContentBridge();
   const [document, setDocument] = useState<PDFDocumentProxy>();
   const [page, setPage] = useState(1), [zoom, setZoom] = useState(1), [width, setWidth] = useState(600);
   const [error, setError] = useState(''), [loading, setLoading] = useState(true), [retry, setRetry] = useState(0);
@@ -43,7 +45,7 @@ export default function PdfPreview({ reference, originalBytes }: { reference: Do
     let task: ReturnType<typeof getDocument> | undefined, worker: Worker | undefined, wrapper: PDFWorker | undefined;
     setDocument(undefined); setPage(1); setError(''); setLoading(true); setOutline([]); setOutlineError(''); setDestination(undefined); navigationVersion.current++;
     void (async () => {
-      const bytes = originalBytes ?? await window.qiyao.readDocumentOriginal(reference);
+      const bytes = originalBytes ?? await bridge.readDocumentOriginal(reference);
       if (stopped) return;
       worker = new PdfWorker(); wrapper = PDFWorker.create({ port: worker });
       task = getDocument({ data: new Uint8Array(bytes), worker: wrapper, BinaryDataFactory: EmbeddedPdfResources,

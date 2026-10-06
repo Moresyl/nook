@@ -53,6 +53,10 @@ export class ConversationEngine {
     // Text is live; terminal status remains authoritative only after persistence.
     return { ...structuredClone(live), status: saved.status, error: saved.error };
   }
+  thread(id: string): Thread | undefined {
+    const thread = this.vault.thread(id);
+    return thread && { ...thread, messages: thread.messages.map(message => this.runningMessage(id, message)) };
+  }
 
   async start(raw: SubmitRequest, onCommit?: (draft: Workspace, threadId: string) => void): Promise<{ threadId: string }> {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');

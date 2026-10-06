@@ -11,6 +11,7 @@ import type { KnowledgeCollection } from '../../contracts/knowledge';
 import type { PromptTemplate } from '../../contracts/prompt-templates';
 import { PromptUseDialog } from './prompt-use-dialog';
 import { TextHint } from './control-tooltip';
+import { useContentBridge } from './content-bridge';
 
 type Props = {
   temporary?: boolean;
@@ -25,12 +26,13 @@ type Props = {
   plugins: Plugin[]; pluginIds: string[]; onPlugins: (ids: string[]) => void;
   knowledgeCollections: KnowledgeCollection[]; hasNotes: boolean; knowledgeCollectionIds: string[]; onKnowledgeCollections: (ids: string[]) => void;
   onSend: () => Promise<boolean>; onStop: () => void; running: boolean; enterToSend: boolean;
-  onCompare: () => void; onViewComparison?: () => void;
+  onCompare?: () => void; onViewComparison?: () => void;
   onConfigure: () => void; report: (error: unknown) => void;
   promptTemplates: PromptTemplate[]; onPrompt: (text: string, assistantId?: string) => boolean;
 };
 
 export function Composer(props: Props) {
+  const bridge = useContentBridge();
   const { attachments } = props;
   const [submitting, setSubmitting] = useState(false);
   const [extensions, setExtensions] = useState(false);
@@ -81,7 +83,7 @@ export function Composer(props: Props) {
     const context = importContext.current;
     setImporting(true);
     try {
-      const files = dropped ? await window.qiyao.importAttachments(await attachmentInputs(dropped)) : await window.qiyao.attachFiles();
+      const files = dropped ? await bridge.importAttachments(await attachmentInputs(dropped)) : await bridge.attachFiles();
       if (!files.length) return;
       if (!mounted.current || context !== importContext.current) throw new Error('附件导入期间已切换页面或恢复备份，文件未添加。请在目标会话重新导入。');
       if (attachments.length + files.length > 12) throw new Error('每条消息最多添加 12 个附件。');
@@ -103,7 +105,7 @@ export function Composer(props: Props) {
         <div className="composer-tools" onFocusCapture={(event) => { if (event.currentTarget.scrollWidth > event.currentTarget.clientWidth && event.target instanceof HTMLElement) event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' }); }}><IconButton icon="attach" label="添加附件" disabled={busy} onClick={() => { void attach(); }} />
           <Select aria-label="选择助手" disabled={submitting} value={props.assistantId} onChange={(event) => props.onAssistant(event.target.value)}><option value="">默认助手</option>{props.assistants.map((assistant) => <option key={assistant.id} value={assistant.id}>{assistant.name}</option>)}</Select>
           {props.promptTemplates.length > 0 && <Button className="composer-action" disabled={busy} aria-label="使用提示模板" title="使用提示模板" onClick={() => setPrompts(true)}><Glyph name="compose" size={14} /><span className="composer-tool-label">模板</span></Button>}
-          <Button className="composer-action" disabled={busy || props.running || !props.text.trim()} aria-label="发送给多个模型比较" title="发送给多个模型比较" onClick={props.onCompare}><Glyph name="compare" size={14} /><span className="composer-tool-label">比较</span></Button>
+          {props.onCompare && <Button className="composer-action" disabled={busy || props.running || !props.text.trim()} aria-label="发送给多个模型比较" title="发送给多个模型比较" onClick={props.onCompare}><Glyph name="compare" size={14} /><span className="composer-tool-label">比较</span></Button>}
           {props.onViewComparison && <Button className="composer-action" disabled={busy} aria-label="查看模型比较" title="查看模型比较" onClick={props.onViewComparison}><Glyph name="branch" size={14} /><span className="composer-tool-label">查看比较</span></Button>}
           {props.projects.length > 0 && <Select aria-label="选择项目" disabled={submitting} value={props.projectId} onChange={(event) => props.onProject(event.target.value)}><option value="">独立聊天</option>{props.projects.map((project) => <option key={project.id} value={project.id}>{project.name}</option>)}</Select>}
           {props.projectId && <Select aria-label="工作模式" value={props.mode} disabled={props.running || submitting} onChange={(event) => props.onMode(event.target.value as ConversationMode)}><option value="chat">聊天</option><option value="plan">项目分析</option><option value="agent">执行任务</option></Select>}

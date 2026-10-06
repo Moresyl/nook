@@ -25,6 +25,8 @@ describe('desktop integration contracts and lifecycle', () => {
     expect(workspaceSchema.parse(emptyWorkspace()).preferences.desktop).toBeUndefined(); expect(desktopPreferencesSchema.parse({})).toMatchObject({ trayEnabled: false, closeToTray: false, shortcutEnabled: false });
     for (const input of [{ closeToTray: true }, { accelerator: 'Alt+F4' }, { accelerator: 'Ctrl+Alt+Alt+A' }, { accelerator: 'Ctrl+Alt+space' }, { accelerator: 'Ctrl+Alt+F13' }, { unknown: true }]) expect(desktopPreferencesSchema.safeParse(input).success).toBe(false);
     expect(desktopPreferencesSchema.parse({ accelerator: ' Ctrl+Alt+Shift+F12 ' }).accelerator).toBe('Ctrl+Alt+Shift+F12');
+    expect(desktopPreferencesSchema.parse({}).shortcutTarget).toBeUndefined(); expect(desktopPreferencesSchema.parse({ shortcutTarget: 'quick-chat' }).shortcutTarget).toBe('quick-chat');
+    expect(desktopPreferencesSchema.safeParse({ shortcutTarget: 'unknown' }).success).toBe(false);
   });
   it('starts without desktop side effects and never hides without a working enabled tray', async () => {
     const { service, runtime } = await setup(); await service.refresh(); expect(service.state()).toEqual({ trayEnabled: false, shortcutRegistered: false }); expect(service.canHide()).toBe(false); expect(runtime.createTray).not.toHaveBeenCalled(); expect(runtime.registerShortcut).not.toHaveBeenCalled();

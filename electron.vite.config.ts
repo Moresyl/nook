@@ -10,7 +10,7 @@ export default defineConfig({
   },
   preload: {
     plugins: [externalizeDepsPlugin()],
-    build: { rollupOptions: { input: { bridge: 'desktop/bridge.ts', 'plugin-bridge': 'desktop/plugin-bridge.ts' }, output: { format: 'cjs', entryFileNames: '[name].cjs' } } },
+    build: { rollupOptions: { input: { bridge: 'desktop/bridge.ts', 'plugin-bridge': 'desktop/plugin-bridge.ts', 'quick-chat-bridge': 'desktop/quick-chat-bridge.ts' }, output: { format: 'cjs', entryFileNames: '[name].cjs' } } },
   },
   renderer: {
     root: 'workbench',

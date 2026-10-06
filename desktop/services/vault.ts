@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { composerStateSchema, emptyWorkspace, quickChatStateSchema, settingsStateSchema, workspaceSchema, type Message, type Preferences, type Project, type Provider, type QuickChatState, type Thread, type Workspace } from '../../contracts/workspace';
 import type { McpServer } from '../../contracts/extensions';
+import type { QuickChatContext } from '../../contracts/quick-chat';
 import { parsePersistentWorkspace, persistentWorkspace } from '../../contracts/temporary-conversations';
 import { atomicJson } from './atomic-json';
 import { atomicFile } from './atomic-file';
@@ -120,6 +121,9 @@ export class WorkspaceVault {
     return thread ? structuredClone(thread) : undefined;
   }
   hasPersistentThread(id: string): boolean { return this.state.threads.some(thread => thread.id === id && !thread.temporary); }
+  conversationChoices(): { id: string; title: string }[] {
+    return this.state.threads.filter(thread => !thread.temporary && !thread.archived).sort((one, two) => two.updatedAt - one.updatedAt).slice(0, 100).map(({ id, title }) => ({ id, title }));
+  }
   project(id: string): Project | undefined {
     const project = this.state.projects.find((item) => item.id === id);
     return project ? structuredClone(project) : undefined;
@@ -131,7 +135,7 @@ export class WorkspaceVault {
   mcpServers(): McpServer[] { return structuredClone(this.state.mcpServers); }
   automations(): Workspace['automations'] { return structuredClone(this.state.automations); }
   quickChat(): QuickChatState | undefined { return this.state.quickChat && structuredClone(this.state.quickChat); }
-  composerContext(): Pick<Workspace, 'providers' | 'preferences' | 'projects' | 'assistants' | 'mcpServers' | 'skills' | 'plugins' | 'knowledgeCollections' | 'promptTemplates'> & { hasNotes: boolean } {
+  composerContext(): QuickChatContext {
     const { providers, preferences, projects, assistants, mcpServers, skills, plugins, knowledgeCollections, promptTemplates, notes } = this.state;
     return structuredClone({ providers, preferences, projects, assistants, mcpServers, skills, plugins, knowledgeCollections, promptTemplates, hasNotes: notes.length > 0 });
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Workbench } from './workbench';
 import './theme/reference-tokens.css';
@@ -15,4 +15,6 @@ class Boundary extends React.Component<{ children: React.ReactNode }, { failed: 
     return this.props.children;
   }
 }
-createRoot(document.getElementById('root')!).render(<React.StrictMode><Boundary><Workbench /></Boundary></React.StrictMode>);
+const QuickChatView = lazy(() => import('./quick-chat'));
+const quickChat = new URLSearchParams(window.location.search).get('view') === 'quick-chat';
+createRoot(document.getElementById('root')!).render(<React.StrictMode><Boundary>{quickChat ? <Suspense fallback={<div className="startup" role="status">正在打开快速聊天…</div>}><QuickChatView /></Suspense> : <Workbench />}</Boundary></React.StrictMode>);

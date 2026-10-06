@@ -49,6 +49,8 @@ import { Memories } from './services/memories';
 import { MessageEdits } from './services/message-edits';
 import { ProjectPreviewWindow } from './project-preview-window';
 import { ProjectPreviewDock } from './project-preview-dock';
+import { QuickChat } from './services/quick-chat';
+import { QuickChatWindow } from './quick-chat-window';
 
 const bundleDirectory = __dirname;
 let window: BrowserWindow | null = null;
@@ -56,6 +58,8 @@ let vault: WorkspaceVault;
 let composerDrafts: ComposerDrafts;
 let messageEdits: MessageEdits;
 let engine: ConversationEngine;
+let quickChat: QuickChat;
+let quickChatWindow: QuickChatWindow;
 let providerSettings: ProviderSettings;
 let terminals: TerminalSessions;
 let mcp: McpConnections;
@@ -110,13 +114,19 @@ function assertIdle(id: string): void {
   if (engine.active(id)) throw new Error('Stop the running response before changing this conversation.');
 }
 
-async function flushWorkspaceDrafts(): Promise<void> {
+async function flushMainDrafts(): Promise<void> {
   if (window && !window.isDestroyed()) await new Promise<void>((resolve, reject) => {
     const token = randomUUID();
     const timer = setTimeout(() => { draftFlushRequests.delete(token); reject(new Error('The current drafts could not be saved in time. Retry the backup after checking the workspace.')); }, 5000);
     draftFlushRequests.set(token, { resolve, reject, timer }); window!.webContents.send('qiyao:flush-drafts', token);
   });
-  await vault.flush();
+}
+async function flushWorkspaceDrafts(): Promise<void> {
+  await Promise.all([flushMainDrafts(), quickChatWindow?.flush()]); await vault.flush();
+}
+async function attachFiles(parent: BrowserWindow) {
+  const result = await dialog.showOpenDialog(parent, { title: '添加附件', properties: ['openFile', 'multiSelections'], filters: [{ name: '文档与图片', extensions: ['pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'txt', 'md', 'json', 'csv', 'tsv'] }, { name: '所有文件', extensions: ['*'] }] });
+  return result.canceled ? [] : attachmentImporter.importPaths(result.filePaths);
 }
 
 async function pluginCommand(id: string, name: string, args: unknown, projectId?: string): Promise<unknown> {
@@ -136,6 +146,7 @@ function panelPlugin(id: string) {
 
 const commands: Record<string, (...args: any[]) => unknown> = {
   load: async () => { await vault.wait(); return vault.snapshot(); },
+  openQuickChat: showQuickChat,
   finishDraftFlush: (raw, saved) => {
     const token = idSchema.parse(raw); const request = draftFlushRequests.get(token);
     if (!request) return;
@@ -201,7 +212,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     if (token !== closeToken) return;
     clearTimeout(closeTimer); closeToken = null;
     if (!z.boolean().parse(saved)) { quitRequested = false; await dialog.showMessageBox(window!, { type: 'error', message: '草稿未能保存，窗口已保留。', detail: '请检查磁盘空间和工作台目录权限，然后重试。' }); return; }
-    await finishClose();
+    try { await finishClose(); }
+    catch { quitRequested = false; if (window && !window.isDestroyed()) await dialog.showMessageBox(window, { type: 'error', message: '窗口草稿未能完整保存，应用已保留。', detail: '请检查快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }); }
   },
   saveProvider: (raw, key) => providerSettings.save(providerSchema.parse(raw), key),
   removeProvider: async (raw) => {
@@ -332,11 +344,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   stopKnowledgeIndex: (id) => knowledge.stop(z.uuid().parse(id)),
   searchKnowledge: (raw, id) => knowledge.search(knowledgeQuerySchema.parse(raw), AbortSignal.timeout(30_000), z.uuid().optional().parse(id)),
   stopKnowledgeSearch: (id) => knowledge.stopSearch(z.uuid().parse(id)),
-  attachFiles: async () => {
-    const result = await dialog.showOpenDialog(window!, { title: '添加附件', properties: ['openFile', 'multiSelections'], filters: [{ name: '文档与图片', extensions: ['pdf', 'docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'rtf', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'txt', 'md', 'json', 'csv', 'tsv'] }, { name: '所有文件', extensions: ['*'] }] });
-    if (result.canceled) return [];
-    return attachmentImporter.importPaths(result.filePaths);
-  },
+  attachFiles: () => attachFiles(window!),
   importAttachments: (raw) => attachmentImporter.importInputs(attachmentInputsSchema.parse(raw)),
   readDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.read(reference); },
   exportDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.export(reference); },
@@ -430,9 +438,10 @@ const commands: Record<string, (...args: any[]) => unknown> = {
 
 async function finishClose(): Promise<void> {
   closeProjectPreviews();
-  if (!quitRequested && desktopIntegration.canHide()) { window?.hide(); return; }
+  if (!quitRequested && desktopIntegration.canHide()) { await quickChatWindow?.flush(); window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
-  if (quit) { quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  if (quit) { await quickChatWindow?.shutdown(); quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  else await quickChatWindow?.flush();
   closeAllowed = true; window?.close();
   if (quit) app.quit();
 }
@@ -443,6 +452,7 @@ function showWindow(): void {
   if (!window) { createWindow(); return; }
   if (window.isMinimized()) window.restore(); window.show(); window.focus();
 }
+function showQuickChat(): void { if (!quitting && !quitRequested) quickChatWindow.open(); }
 
 function createWindow(): void {
   closeAllowed = false;
@@ -529,8 +539,25 @@ else {
       (view) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp', view); }, undefined, (config, credentials, signal, interactive, onRedirect) => oauthSessions.create(config, credentials, signal, interactive, onRedirect),
       (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp-resource', event); });
     knowledge = new KnowledgeService(vault, gateway);
-    engine = new ConversationEngine(vault, gateway, (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:run', event); }, undefined, undefined,
+    engine = new ConversationEngine(vault, gateway, (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:run', event); quickChatWindow?.emit(event); }, undefined, undefined,
       new ConversationExtensions(mcp, skills, () => vault.snapshot(), plugins), knowledge);
+    quickChat = new QuickChat(vault, engine);
+    const quickUrl = new URL(process.env.ELECTRON_RENDERER_URL || 'qiyao://app/index.html'); quickUrl.searchParams.set('view', 'quick-chat');
+    quickChatWindow = new QuickChatWindow({ quick: quickChat, engine, preload: join(bundleDirectory, '../preload/quick-chat-bridge.cjs'), url: quickUrl.href, icon: join(app.getAppPath(), 'identity/qiyao.ico'),
+      content: parent => {
+        const originals = new DocumentOriginalFiles(reference => vault.readDocumentOriginal(quickChat.assertOriginal(reference)), async () => {
+          const result = await dialog.showSaveDialog(parent, { defaultPath: 'document.pdf', filters: [{ name: 'PDF 文档', extensions: ['pdf'] }] }); return result.canceled ? undefined : result.filePath;
+        });
+        return { attachFiles: () => attachFiles(parent), importAttachments: raw => attachmentImporter.importInputs(attachmentInputsSchema.parse(raw)),
+          readDocumentOriginal: raw => originals.read(raw), exportDocumentOriginal: raw => originals.export(raw), openExternal: async url => { await commands.openExternal(url); } };
+      },
+      openWorkspace: async settings => {
+        await flushMainDrafts(); const loaded = await quickChat.load();
+        if (loaded.thread) await composerDrafts.activate(loaded.thread.id);
+        showWindow(); window?.webContents.send('nook:workspace-navigation', { threadId: loaded.thread?.id, settings });
+      },
+    });
+    ipcMain.handle('nook:quick-chat', (event, command, ...args) => quickChatWindow.handle(event, command, args));
     messageEdits = new MessageEdits(vault, (id) => engine.active(id));
     automations = new Automations(vault, conversationAutomationRunner(engine, vault), (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:automation', event); }, (task, run) => {
       if (!Notification.isSupported()) return;
@@ -550,17 +577,17 @@ else {
       createTray: (actions) => {
         const tray = new Tray(join(app.getAppPath(), process.platform === 'win32' ? 'identity/qiyao.ico' : 'identity/qiyao.png'));
         try {
-          tray.setToolTip('Nook'); tray.setContextMenu(Menu.buildFromTemplate([{ label: '打开 Nook', click: actions.open }, { type: 'separator' }, { label: '退出 Nook', click: actions.quit }])); tray.on('click', actions.open);
+          tray.setToolTip('Nook'); tray.setContextMenu(Menu.buildFromTemplate([{ label: '打开 Nook', click: actions.open }, { label: '快速聊天', click: showQuickChat }, { type: 'separator' }, { label: '退出 Nook', click: actions.quit }])); tray.on('click', actions.open);
           return { destroy: () => tray.destroy() };
         } catch (error) { tray.destroy(); throw error; }
       },
       registerShortcut: (accelerator, callback) => globalShortcut.register(accelerator, callback), unregisterShortcut: (accelerator) => globalShortcut.unregister(accelerator),
-      open: showWindow, quit: () => app.quit(),
+      open: () => { if (vault.preferences().desktop?.shortcutTarget === 'quick-chat') showQuickChat(); else showWindow(); }, quit: () => app.quit(),
     });
     ipcMain.handle('qiyao:invoke', async (event, command, ...args) => {
       if (event.sender !== window?.webContents || event.senderFrame !== window.webContents.mainFrame) throw new Error('Untrusted application request.');
       if (typeof command !== 'string' || !Object.hasOwn(commands, command)) throw new Error('Unknown application action.');
-      try { return await commands[command](...args); }
+      try { const result = await commands[command](...args); if (!['load', 'finishDraftFlush', 'finishWindowClose'].includes(command)) quickChatWindow.refresh(); return result; }
       catch (error) {
         if (error instanceof z.ZodError) throw new Error('Invalid data. Check the form fields or backup file.');
         throw error;
@@ -569,7 +596,7 @@ else {
     Menu.setApplicationMenu(Menu.buildFromTemplate([
       { label: '文件', submenu: [{ label: '备份工作台…', click: () => { void Promise.resolve(commands.exportWorkspace()).catch((error) => { if (window && !window.isDestroyed()) void dialog.showMessageBox(window, { type: 'error', message: '备份未完成', detail: error instanceof Error ? error.message : 'Could not save the workspace backup.' }).catch(() => {}); }); } }, { type: 'separator' }, { role: 'quit', label: '退出' }] },
       { label: '编辑', submenu: [{ role: 'undo', label: '撤销' }, { role: 'redo', label: '重做' }, { type: 'separator' }, { role: 'cut', label: '剪切' }, { role: 'copy', label: '复制' }, { role: 'paste', label: '粘贴' }, { role: 'selectAll', label: '全选' }] },
-      { label: '视图', submenu: [{ role: 'resetZoom', label: '实际大小' }, { role: 'zoomIn', label: '放大' }, { role: 'zoomOut', label: '缩小' }, { role: 'togglefullscreen', label: '全屏' }] },
+      { label: '视图', submenu: [{ label: '快速聊天', accelerator: 'CommandOrControl+Shift+Space', click: showQuickChat }, { type: 'separator' }, { role: 'resetZoom', label: '实际大小' }, { role: 'zoomIn', label: '放大' }, { role: 'zoomOut', label: '缩小' }, { role: 'togglefullscreen', label: '全屏' }] },
       { label: '帮助', submenu: [{ label: '关于 Nook', click: () => { void dialog.showMessageBox(window!, { message: `Nook ${app.getVersion()}`, detail: '本地 AI 工作台。' }); } }] },
     ]));
     startupDiagnostics.phase('window.create');
