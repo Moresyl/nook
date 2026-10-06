@@ -16,7 +16,7 @@
 
 自动任务资料集复选框已按当前 `checkbox-a29fd55a92ab.css` 声明采用 18px 方框、4px 圆角、14/20px 标签和 8px 间距，补齐主题、悬停、焦点、禁用与半选外观。类型与构建通过，实际自动任务专项十组通过，包含选择保存／重新编辑、键盘操作和长名称缩放检查；最终正常退出 264ms，无运行时错误。[浅色](images/checkbox-light.png)、[深色](images/checkbox-dark.png)、[深色窄窗 150%](images/checkbox-dark-narrow.png)均已查看。禁用／半选是临时 DOM 状态探针，强制颜色通过浏览器模拟，不能代替系统辅助技术验收；详见[本批记录](../verification/checkbox-review-result.json)。
 
-项目切换栏已补上多项目窄窗口状态：新增入口固定在滚动区域外，选择／调整窗口时显示当前项目，保留手动浏览与键盘焦点；源码七组项目专项通过，浅色和深色截图已检查。此修正不代表所有页面对齐，也未进入现有安装候选；[验证与失败历史](../verification/project-switcher-review-result.json)。
+项目切换栏已补上多项目窄窗口状态：新增入口固定在滚动区域外，选择／调整窗口时显示当前项目，保留手动浏览与键盘焦点；源码七组项目专项通过，浅色和深色截图已检查。修正已进入 `d3dd326` 候选并通过未安装应用体完整回归，不代表所有页面对齐；[验证与失败历史](../verification/project-switcher-review-result.json)、[当前包证据](../verification/code-wrap-package-result.json)。
 
 HTML 预览入口复用项目编辑器现有按钮、焦点和紧凑布局，浅色及深色 760×540／150% 缩放的实际截图已检查。其按钮运行时字体由 CDP 实测为 Inter Variable（英文）与 Microsoft YaHei UI（中文）；这只证明该节点的本机渲染，不能推广成所有页面或参考应用的字体结论。预览使用独立原生窗口，尚非参考资料中可停靠预览面板的完整复现。见 [HTML 预览](PROJECT-PREVIEW.md)。
 
