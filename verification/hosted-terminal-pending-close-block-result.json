@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-06T21:09:01.641Z",
+  "productCommit": "7e2adfa4e89cc4e99f2068e6e8bd2f7cd127f505",
+  "runId": 37531649668,
+  "url": "https://github.com/Moresyl/nook/actions/runs/37531649668",
+  "verification": {
+    "jobId": 112502239100,
+    "conclusion": "failure",
+    "steps": 0
+  },
+  "publish": {
+    "jobId": 112502262292,
+    "conclusion": "skipped",
+    "steps": 0
+  },
+  "annotations": [
+    {
+      "level": "failure",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "raw": [
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-terminal-pending-close-hosted-runs.json",
+      "sha256": "67f2714c7260fb7b4b627a3f78a94831ece629aaeb6817ac06f7b7e885809e3c"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-terminal-pending-close-hosted-jobs.json",
+      "sha256": "c2748ccb435d8b22a203c1503c7c758c27b387f5352362611488e258c9532527"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-terminal-pending-close-hosted-annotations.json",
+      "sha256": "f27e17ccdc6b8319c1f39231c40671422c70e8f4b1150006a273a1115ad7c716"
+    }
+  ],
+  "billingSettingsChanged": false,
+  "releaseCreated": false,
+  "acceptanceBypassed": false,
+  "scope": "The exact terminal pending-cleanup source commit was pushed. GitHub verification did not start because of the account payment/spending-limit annotation. No hosted tests ran; publish was skipped, and feature-branch conditions also prevent a release. No tag, release or billing mutation was performed."
+}

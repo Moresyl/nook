@@ -1,0 +1,2641 @@
+{
+  "verifiedAt": "2026-10-06T21:12:49.059Z",
+  "productCommit": "7e2adfa4e89cc4e99f2068e6e8bd2f7cd127f505",
+  "previousProductCommit": "37b3f9576505ad228615065c2f3cdb8a1860c412",
+  "source": [
+    {
+      "file": "contracts/quick-chat.ts",
+      "sha256": "3bfc89f03e24957eece24be976dea2c768bfd27f33a58303e7e35419069ec71f"
+    },
+    {
+      "file": "contracts/quick-chat-stream.ts",
+      "sha256": "e74c8bdd19af20b3d6ad227646629b0e2f3d5de344558dd2260865a7c2db5b32"
+    },
+    {
+      "file": "contracts/workspace.ts",
+      "sha256": "c6cac2733dbc1b3612390caa3f182ac44314e8d3eb75d53d07ae9e213d814888"
+    },
+    {
+      "file": "contracts/composer.ts",
+      "sha256": "cad3f702771e591cde3d33797bd480ca9edc7d98725466b061bcb8c041559ad4"
+    },
+    {
+      "file": "contracts/desktop-integration.ts",
+      "sha256": "6da3ebe4a898c0c0d29482a2297f3c76468face532c1a19a16ab6a1e75d23976"
+    },
+    {
+      "file": "contracts/bridge-contract.ts",
+      "sha256": "f3cf5db60224acaa0a524b6b85175b5f52f9678fdeee02d63f13570d641ea256"
+    },
+    {
+      "file": "desktop/launch.ts",
+      "sha256": "bd29769c2d7139b9f326dbb0c54715ed6acb374145136073c19daeb549602e00"
+    },
+    {
+      "file": "desktop/bridge.ts",
+      "sha256": "b32bbecd455d1e3614a0fe8b3a760fbd86fd9712d8991202d4c06eb0bbedb375"
+    },
+    {
+      "file": "desktop/quick-chat-window.ts",
+      "sha256": "e72370e6e7f413e52365211d9710a99247ed2aae46c049578590af267cae0b15"
+    },
+    {
+      "file": "desktop/quick-chat-bridge.ts",
+      "sha256": "85888bc90a77fade450ffb2f2e27650e535059f52c087a266089afe66f295446"
+    },
+    {
+      "file": "desktop/services/quick-chat.ts",
+      "sha256": "bcbd4fbc14ce10f2285cf779cee664dafb1137054211e3595b11447b96ae4cd7"
+    },
+    {
+      "file": "desktop/services/vault.ts",
+      "sha256": "421dea857842e5f0a8f141350997aab1eeccdd53221b306a4b73d8f17c5d6326"
+    },
+    {
+      "file": "desktop/services/conversation-engine.ts",
+      "sha256": "bfe6ac64d17e75124d4fb0b3abd30a7d27386ed4b52e8b7b4180c05ee3d324bf"
+    },
+    {
+      "file": "desktop/services/document-original-references.ts",
+      "sha256": "6fd7f8d3f542f3c0801e4bea587a27b7bce5fdfc64d444c22ec22c7ff5f146d7"
+    },
+    {
+      "file": "desktop/services/temporary-conversations.ts",
+      "sha256": "1d16dbf4ef35935d9a6d7cc2d21e5424230cbc0e9a4203227cc40fa0753a0d99"
+    },
+    {
+      "file": "desktop/services/conversation-extensions.ts",
+      "sha256": "c1fabb7e455fdd32660f96b3a55cd84f735a125348c5ebce046fa1808fbc617d"
+    },
+    {
+      "file": "workbench/quick-chat.tsx",
+      "sha256": "017c100aa9e1665f93420ca556a24692cef77fd2ff46221b061dd6b8f35f2e9d"
+    },
+    {
+      "file": "workbench/theme/quick-chat.css",
+      "sha256": "ddcd93b4190f8f975f2bd557b07750e5288ad900e973d51e8c4b3be2522a6e59"
+    },
+    {
+      "file": "workbench/components/content-bridge.tsx",
+      "sha256": "b1b7f5a986701d80643cfb7a632320b74480029042730e5e9925790eacad8fa3"
+    },
+    {
+      "file": "workbench/components/composer.tsx",
+      "sha256": "b5ab9f9d86481b5b010977a7ab71d2d1c110a1233dc4a91d68be9a6efc7be0e7"
+    },
+    {
+      "file": "workbench/entry.tsx",
+      "sha256": "3e607d63ec94bf390f474dc13fadce1dfe6a4ddecbd53e375c10233e8b919977"
+    },
+    {
+      "file": "workbench/workbench.tsx",
+      "sha256": "8099082561289f690f283dbb812eea720cf5236ea64c28e18ac16fea31207783"
+    },
+    {
+      "file": "scripts/verify-quick-chat.mjs",
+      "sha256": "78b2f3b50b8c5b898cc62906172ed7b42d849ec549f0ab1da5eda283af5b7c5e"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "5a5d7a08d9ad4f063aaa5f84f80dea655492b5810bb666afa2d790fbb691bb30"
+    },
+    {
+      "file": "scripts/release-policy.d.mts",
+      "sha256": "6623bfb42ad1bed81d826bc8ac907e452309eb59fa7f86274f6b41ecc0649870"
+    },
+    {
+      "file": "verification/release-policy.test.ts",
+      "sha256": "670dfa8943b43b1d06fd4ec27875913878987daa24f35887e97c64d282342374"
+    },
+    {
+      "file": "desktop/services/terminal-sessions.ts",
+      "sha256": "d8f70afa3cb3ac8a5d6352021ce5da43aeacd9754f5a185d49ab2dd70cab45c7"
+    },
+    {
+      "file": "verification/terminal-sessions.test.ts",
+      "sha256": "63686aec2c164fafddd3a3e44c89cb041cdf7c5ac17a4294428f963042e4b7a1"
+    },
+    {
+      "file": "scripts/verify-terminal-lifecycle.mjs",
+      "sha256": "3e75dc649168947b5ce9dd4990f45147261521aaf1b2ed26db42e0655f24744a"
+    }
+  ],
+  "compiled": [
+    {
+      "file": "out/main/attachment-worker.cjs",
+      "sha256": "1fe1757e6647beabe4a9506272ec2a895b9dbed11402edc94cac497c62613ee1"
+    },
+    {
+      "file": "out/main/chunks/attachments-BHvMZdnh.cjs",
+      "sha256": "be0e667a115cf73d31c3e91197acd900d08da50ab2ee9d564e18fd8c4a1686b3"
+    },
+    {
+      "file": "out/main/launch.cjs",
+      "sha256": "14c56360f1c7d85a97994d2e5aa5832cf0e2b0fe815b91bc21fe45d0cd3d491a"
+    },
+    {
+      "file": "out/preload/bridge.cjs",
+      "sha256": "88988089caced0626967459738f5d9a4413fb3302641aa73b78c20e61097d962"
+    },
+    {
+      "file": "out/preload/plugin-bridge.cjs",
+      "sha256": "d4694fdeb39a550b6471edce97f562a13badd071335c35b03a5cfa5f9ead6f53"
+    },
+    {
+      "file": "out/preload/quick-chat-bridge.cjs",
+      "sha256": "5dea3196a1f6a9a48da8672466537bab0e47b545fcb4a9c4993abc6b06caed3e"
+    },
+    {
+      "file": "out/renderer/assets/abap-D5KwWAsZ.js",
+      "sha256": "9a0702f7bbbfed5f5b7956f570bc75e16d14989c1c8e44129cf2aa853ab099b7"
+    },
+    {
+      "file": "out/renderer/assets/abnfDiagram-O67JEVCF-CHkiPfie.js",
+      "sha256": "21970c9118becce93abd95f075209cefcb9893fd49edc24453920e471b46b7c9"
+    },
+    {
+      "file": "out/renderer/assets/apex-DVGUZ64i.js",
+      "sha256": "538edd0491653f45a9b6c117c0a0fc3440b6e14cfdd8d641ea1dcd8df1ec499d"
+    },
+    {
+      "file": "out/renderer/assets/arc-CNJSvGiF.js",
+      "sha256": "fd1a485fb7df49a666e99b5c17212fe3a6b994a0b917a52c5188a24b95e18c79"
+    },
+    {
+      "file": "out/renderer/assets/architectureDiagram-NJMV4G6O-Dy0UH2KV.js",
+      "sha256": "98eebefdfd4b9f461ebdc43e1281a29f24a8de1797b70ac343995b7d6d28d34b"
+    },
+    {
+      "file": "out/renderer/assets/azcli-BEAhqcuE.js",
+      "sha256": "ecd11f534e43af6c8e031893d7a334f90e9e974423eef3290f641f1b1549c265"
+    },
+    {
+      "file": "out/renderer/assets/bat-Bqkp9Cfu.js",
+      "sha256": "3fd52043375275296bdb6c1fbe7c31ff6c92f7ec434ea5959c8ddaa04bc41692"
+    },
+    {
+      "file": "out/renderer/assets/bicep-DIlfshcM.js",
+      "sha256": "7f4fca038a435afc52ad3eccae734b9baba4530976b1e1b852948926f0dd19b8"
+    },
+    {
+      "file": "out/renderer/assets/blockDiagram-BEXU5L5S-CZnD4wVx.js",
+      "sha256": "1a3d9499054c549a44383c57e25614db21ce49d4af9b242e492d04287baa0d36"
+    },
+    {
+      "file": "out/renderer/assets/c4Diagram-YGBWAQC7-Tsy4Ea1H.js",
+      "sha256": "591117285b5cd7ff0b1ad5d32e4cb366e253b016f1371a1ea5a92a0fb8969d16"
+    },
+    {
+      "file": "out/renderer/assets/cameligo-CLaaYNMV.js",
+      "sha256": "96ba53248c85a88929f57e8d5226b8107a82632f466c42405bade1ab8b500f9e"
+    },
+    {
+      "file": "out/renderer/assets/carlito-latin-400-normal-11f827802cc9-R-CeALMm.woff2",
+      "sha256": "a29c4a4e61863753cf6a10831efaa05f849dcaa8f580422dbc41bc058c3b6b64"
+    },
+    {
+      "file": "out/renderer/assets/carlito-latin-400-normal-231061d55c03-jEGHVXAP.woff",
+      "sha256": "5682bcf0a218b3b0f229ecc0440909644517fa29d5aa57978383f87a9f6ef123"
+    },
+    {
+      "file": "out/renderer/assets/carlito-latin-700-normal-a31b730ba98f-CjG3MLqY.woff",
+      "sha256": "c97340859680cc2be316715a367d6966b5cc34df4b74fd4cb9b4b596d2adaad1"
+    },
+    {
+      "file": "out/renderer/assets/carlito-latin-700-normal-d0e833a43e47-DQ6DOkPk.woff2",
+      "sha256": "af249cfe4107221070ff077c29a043004e8f2efea977dcbaaf217a24f3b7680e"
+    },
+    {
+      "file": "out/renderer/assets/channel-Ik8g2cLA.js",
+      "sha256": "8980b0b66d7640cc65ce41e7872c69d1cfbc3832a504029ee52d15eb0a59dab6"
+    },
+    {
+      "file": "out/renderer/assets/chunk-2Q5K7J3B-Dq5mX_9M.js",
+      "sha256": "b4aec98bd2c306174ae6e512829a178655fe60ecc8b8c55f14b5e8e9d0548fb7"
+    },
+    {
+      "file": "out/renderer/assets/chunk-3FUC2YCW-CGECtVNJ.js",
+      "sha256": "60bc201d7cf4b244c8bce5130815888a0f180d00b0a964f5ed67675e8c18b1fe"
+    },
+    {
+      "file": "out/renderer/assets/chunk-5VM5RSS4-DMDQoTo7.js",
+      "sha256": "adafa5208390e204377900c131fbb9e4c55554f4137c018b2bb935bba95a1e91"
+    },
+    {
+      "file": "out/renderer/assets/chunk-GTNCS2PH-DdJlRyj_.js",
+      "sha256": "bb526316f1a84d7ee9b4d11c9c248c278bf3bab92b9372aaf13b266450d76893"
+    },
+    {
+      "file": "out/renderer/assets/chunk-GWA4HPMP-D2g96Bwb.js",
+      "sha256": "b60d6af8e981dd5ede98f70b3f3544dd4d3dcf775a8ca26d0d4e0219d25c2425"
+    },
+    {
+      "file": "out/renderer/assets/chunk-JWPE2WC7-B9ek0LaO.js",
+      "sha256": "e2e2bace9c2fde1eac6e51037c9f7604ee8d9abb9c0e8e5910b192a691cdb6a0"
+    },
+    {
+      "file": "out/renderer/assets/chunk-NETBCI7D-Cq6URFU3.js",
+      "sha256": "7a347a4ba172e049f2930a4c9109ba4f118a8171277673f66d5d93c749ea2f63"
+    },
+    {
+      "file": "out/renderer/assets/chunk-WEXAMYUT-DDOkohgX.js",
+      "sha256": "d4abbfeeee37c9197073226f58607f1f8c87276068476f1816cd6341ef744dde"
+    },
+    {
+      "file": "out/renderer/assets/chunk-XXDRQBXY-DrJecn5P.js",
+      "sha256": "3bdfe51f3f5cd06a43f6c5f2f56aca0ecc01f4ea10e6385c7a4631af0ae47105"
+    },
+    {
+      "file": "out/renderer/assets/classDiagram-v2-NBCMYWYE-DV_J4Zgz.js",
+      "sha256": "cf21ec6724434988e378d928c4cc5c73e9cb3368ed9d82d34ed1cff40a28f40b"
+    },
+    {
+      "file": "out/renderer/assets/clojure-fcgFaMHx.js",
+      "sha256": "c99b6f24163380c1151f7624cb1d9eee131da9670c1d013ffd6c1fdbe3285f8e"
+    },
+    {
+      "file": "out/renderer/assets/codicon-DF1abBS2.ttf",
+      "sha256": "77f902557231f95c4c71ae517d09a1a842753656f5f665086b3e5ad8095538da"
+    },
+    {
+      "file": "out/renderer/assets/coffee-CzJ5oEdj.js",
+      "sha256": "145992ac56cc603f11b7a7ae234b40a92e3655a753e74ae3867e4b24317758ee"
+    },
+    {
+      "file": "out/renderer/assets/cose-bilkent-JH36ORCC-BUYZFcH2.js",
+      "sha256": "8595772203604bf4bbde7774116c3bc353bf7afd959ecb53145a24580b82f3b1"
+    },
+    {
+      "file": "out/renderer/assets/cpp-CcN6f0ik.js",
+      "sha256": "73f96424fd9137735331550679f215d9e0bed8e38ff738b27a07773c6929739a"
+    },
+    {
+      "file": "out/renderer/assets/csharp-BJeIuvde.js",
+      "sha256": "eecfd273316271b620c04842d7b0e503642eb6cac7fc88fe5bd23fff9d6da0d6"
+    },
+    {
+      "file": "out/renderer/assets/csp-D_3BK2Wp.js",
+      "sha256": "d72daddd22b9876b7f43e454adc0c862aa355a2b6621cb67ae9004b799a6b222"
+    },
+    {
+      "file": "out/renderer/assets/css-i3rI3_64.js",
+      "sha256": "b6c08b9befa78e247161c65df931715c7ce576dd52b0d45e2e565caadfea7ca4"
+    },
+    {
+      "file": "out/renderer/assets/css.worker-CrvSo1dL.js",
+      "sha256": "bd2c3ea8c2a3ee20fd17cd3a0c6d1ede63e6639b69c753748660ae20715a31b0"
+    },
+    {
+      "file": "out/renderer/assets/cssMode-FuTDNq4O.js",
+      "sha256": "53ac82b5f4d188a1146215e4f4ed75051577aadb633d7b8ddeb187741eed3a86"
+    },
+    {
+      "file": "out/renderer/assets/cynefin-OW5HDTMX-BhKXam_N.js",
+      "sha256": "7624cc47b151719ce25592cf172002a49a6de87942ad091f5b13240377c8041b"
+    },
+    {
+      "file": "out/renderer/assets/cynefinDiagram-VND7K2PF-I6kGe4Ii.js",
+      "sha256": "a1fe7c2071d589e087c7248afe3576a5c99a4a015545553370fc937ebef5be0b"
+    },
+    {
+      "file": "out/renderer/assets/cypher-D0--_GAN.js",
+      "sha256": "2feea4008eb35be27559e52b375e64a9dcd04ffdd05f6d5d1017f29b0b7e60da"
+    },
+    {
+      "file": "out/renderer/assets/cytoscape.esm-Ct9zsnh1.js",
+      "sha256": "998d450bab91359143f71b378051d05ffbeeeedee54442c16e59952958e83b6f"
+    },
+    {
+      "file": "out/renderer/assets/dagre-6A5THRUB-CxQq89ig.js",
+      "sha256": "4e18bfc4a0e5f4caaa3e3ea565e5e300279386aa1de74bdd39a23112fab2633a"
+    },
+    {
+      "file": "out/renderer/assets/dart-vLMHv35g.js",
+      "sha256": "a3177ce042f793f7d643cf20b88955f3d469751beb93a3ab817d6074a7633028"
+    },
+    {
+      "file": "out/renderer/assets/defaultLocale-B2RvLBDe.js",
+      "sha256": "adb5e701c410866bbb1437380bb188b83fdca516e7788df4f24faf601a470063"
+    },
+    {
+      "file": "out/renderer/assets/diagram-22UHCM2B-CP6g_7Nx.js",
+      "sha256": "e5e09d099ef6f0507307d1965f0abbbeb230eb0220c7e967d7f28613e74e307d"
+    },
+    {
+      "file": "out/renderer/assets/diagram-3UASUU5V-TOmjyEtT.js",
+      "sha256": "020a2f166d242af1547ef5162f3fd393faf648cd3e20dbdcd9a44a8c76dc7a3e"
+    },
+    {
+      "file": "out/renderer/assets/diagram-ATOU4E4O-DQm_qtmp.js",
+      "sha256": "a43f74a21699d8cab30d48e37b584bda6fe82a562fabf3402d389a7b23d1c661"
+    },
+    {
+      "file": "out/renderer/assets/diagram-CDSNMT55-DdlpPpIH.js",
+      "sha256": "66644fafb435aba3b427bfb52eeab5acefec7295a778bf9f11f4f0ae36f881e1"
+    },
+    {
+      "file": "out/renderer/assets/diagram-MLGK6HIB-p3PWUjSv.js",
+      "sha256": "b4c6a63ffdf2c0d8b07a4a2d5ac3896f3dd2e41c86e2465abfbe4073cd5eccad"
+    },
+    {
+      "file": "out/renderer/assets/diagram-MPIPVDR6-D9PUsMz-.js",
+      "sha256": "3d677a7b56d4a0cc9d8b5d9ec4620fc3caca4c09831e6ffbd16c13c3d11195df"
+    },
+    {
+      "file": "out/renderer/assets/dockerfile--oxj0cAH.js",
+      "sha256": "31ed5c0216d0e570f8121af0ad2f80cd214c2ca7f0e75f3f8703b3821d4ad032"
+    },
+    {
+      "file": "out/renderer/assets/ebnfDiagram-ZINNZB2B-BrCiRIvy.js",
+      "sha256": "09b61e903bcfae48658d93706c2b29d7a06f086c85e61dd3a74179e2c9daa073"
+    },
+    {
+      "file": "out/renderer/assets/ecl-CeuUgzaZ.js",
+      "sha256": "139043ade61e1f81decf8df23d5e9c6980d9eb6f18ffa46d44aecb5bc9d9eaac"
+    },
+    {
+      "file": "out/renderer/assets/editor.worker-DD3EztIk.js",
+      "sha256": "385c10003c8544e5073ce8427a84a0307f42b5738b377a563828b66493c16cc8"
+    },
+    {
+      "file": "out/renderer/assets/elixir-eLfY1jWH.js",
+      "sha256": "d956b7475c871fa55e92898a7c80177fb4dcf2a307f073c6f9a1c5b1b473efb8"
+    },
+    {
+      "file": "out/renderer/assets/elk-276RUBZZ-D9enldgw.js",
+      "sha256": "642153c8d190ffa875a736c1fb48607f88878c86bfc3d9d4d73ebdda73ac5860"
+    },
+    {
+      "file": "out/renderer/assets/erDiagram-OPXOYQCR-B_qbgB44.js",
+      "sha256": "e38c40b0c2a078be06bbdd09bec3150d83864d57c002ce0096e409682b081c3a"
+    },
+    {
+      "file": "out/renderer/assets/flow9-ZSTChSMd.js",
+      "sha256": "ed9bd8aa49f1c6d1942d7a6690735b3d0de7d2f9800dd51068c0085329aca398"
+    },
+    {
+      "file": "out/renderer/assets/flowDiagram-KWPJA3E3-CSEyF2zh.js",
+      "sha256": "28f657a2c6bba15143bb4f13260a5c87d21507d33af1f21f081299c4ccb16013"
+    },
+    {
+      "file": "out/renderer/assets/freemarker2-CZw3zol4.js",
+      "sha256": "e64645c0c93c53e5b86f38608b94a9e16e0dc08c25f245d9386688e639914bf2"
+    },
+    {
+      "file": "out/renderer/assets/fsharp-D2uoxuLH.js",
+      "sha256": "53eef949608b983c4c249295ed84d9901a93ab44cc9e6a35caea84eac980f4ec"
+    },
+    {
+      "file": "out/renderer/assets/ganttDiagram-FUAMR5RP-CB9gAhRM.js",
+      "sha256": "b5f53ced34887dcb875152a81d70625feba32f67ec2012cecec9a276ccc951c5"
+    },
+    {
+      "file": "out/renderer/assets/gitGraphDiagram-X574FWY7-Cm6lZgIp.js",
+      "sha256": "61d23da9a11bb48f93d23d8c78fbc7a1e88d718b48326900f6dda9550b629acf"
+    },
+    {
+      "file": "out/renderer/assets/go-brnMpFrj.js",
+      "sha256": "51ec81e3fe4ed722ea25bfa1785dda19bdf69b0b2e642d270a91ccec410cf40f"
+    },
+    {
+      "file": "out/renderer/assets/graph-DRyz16cr.js",
+      "sha256": "d6e190336c22a389048d29379dae160b22c932b5624e46818a05480461ee9471"
+    },
+    {
+      "file": "out/renderer/assets/graphql-BeiGgjIU.js",
+      "sha256": "ab9be553cf7ad12822291b133cfe92bb1e1506a42808bcb71b9ca565c0c787bb"
+    },
+    {
+      "file": "out/renderer/assets/handlebars-DjhPfEIh.js",
+      "sha256": "703cfe176cbff90950602a00072d9cf95d5a26baaec466a7d1f3240ead4a521a"
+    },
+    {
+      "file": "out/renderer/assets/hcl-CrX1Es2W.js",
+      "sha256": "83328b85960a88e4c66c330578ab59b0e0fb1a016967ff6ccb9868af181b82f6"
+    },
+    {
+      "file": "out/renderer/assets/html-CBGz7wA5.js",
+      "sha256": "d70cdd4b62150c73d500b5c8f45f44f363f6a06027391efe2a3b383a0e4fe516"
+    },
+    {
+      "file": "out/renderer/assets/html.worker-B1nGeh6g.js",
+      "sha256": "705a9cda5b9f86f0412963c8be1e01eb79e94b5de019c7568425f353c8c66f23"
+    },
+    {
+      "file": "out/renderer/assets/htmlMode-Bhc2XSmQ.js",
+      "sha256": "3a8326ac7b65dee136f58e37cc3a6707691cb4387f0bab7626cd99b6dfbef6ae"
+    },
+    {
+      "file": "out/renderer/assets/index-BMjzJVqX.js",
+      "sha256": "d647b40b59776b8c52246302dbd7893d0877f333fa007966a6b1c289f1166bd5"
+    },
+    {
+      "file": "out/renderer/assets/index-DUga2hiv.css",
+      "sha256": "0847c295d7e94be4168c4f536760ff0de813b4ed0d9678f8f73c90199ad14cf3"
+    },
+    {
+      "file": "out/renderer/assets/infoDiagram-VRGFBTTK-Bn-Xu0KC.js",
+      "sha256": "54b86baa7a722d1dd32b54f54e71fc0be2099993628f4dc0f32554207cf31c90"
+    },
+    {
+      "file": "out/renderer/assets/ini-BcQysCTb.js",
+      "sha256": "054867421acb33d253b78e466463ad2dbed0a270c463046ed86a5cebeb91e30b"
+    },
+    {
+      "file": "out/renderer/assets/init-ZxktEp_H.js",
+      "sha256": "40ba05c6fb10047a3fc311dfc9da86a80d7d0681a6a33c80cd53b77bbe44c604"
+    },
+    {
+      "file": "out/renderer/assets/InterVariable-693b77d4f32e-DiVDrmQJ.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+    },
+    {
+      "file": "out/renderer/assets/ishikawaDiagram-OU5B5YK6-D4sg_dFw.js",
+      "sha256": "a0fb071a54b670060cc1b157b8ac6e7cc418875b4a2f3875732bf0ac28055598"
+    },
+    {
+      "file": "out/renderer/assets/java-Dt3iMn2o.js",
+      "sha256": "b57d1d340b5587b2cf2c680b95290c00ccced50795d2a3a481d67ebbac1613b1"
+    },
+    {
+      "file": "out/renderer/assets/javascript-DIRnwT9h.js",
+      "sha256": "7f7b0fbaa6ab4bf6ff8d3f594d760a6ad50f444ae4b9ed8f6863aed8da4da2b8"
+    },
+    {
+      "file": "out/renderer/assets/journeyDiagram-ZHPQQLJL-DBNw6HVE.js",
+      "sha256": "6a6eb707632d205d6192277963ae016d829ca8699080f2ad827d77f9afd870ba"
+    },
+    {
+      "file": "out/renderer/assets/json.worker-B6HGQMPc.js",
+      "sha256": "a63894e489594500e1db9d528f9e3a0d1497a3075c857d90922c9856e3dabfc2"
+    },
+    {
+      "file": "out/renderer/assets/jsonMode-eDzgDsU_.js",
+      "sha256": "5cdfbc8936e06f40afa23f070d978639a35fa8e8f04dbf85468231772d3e6b8d"
+    },
+    {
+      "file": "out/renderer/assets/julia-Cm3ItYL_.js",
+      "sha256": "a22d72944935fd6039a40dcea5a818fcd70d016c7e35e321c3cf31d0d9543174"
+    },
+    {
+      "file": "out/renderer/assets/kanban-definition-PNTS6WVX-BfIuU_9y.js",
+      "sha256": "f80f0f5a6e1cc1b0f8fcdda08d5f0fcc6a5c53e030e02572f524bf647928378e"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_AMS-Regular-5085d14c6356-BQhdFMY1.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_AMS-Regular-cc9bd60e01a9-DMm9YOAa.woff",
+      "sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_AMS-Regular-d182002564db-DRggAlZN.ttf",
+      "sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Bold-04d7c5db17d1-ATXxdsX0.ttf",
+      "sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Bold-4489718bbd71-BEiXGLvX.woff",
+      "sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Bold-eafc847daced-Dq_IR9rO.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Regular-305fded40630-wX97UBjC.ttf",
+      "sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Regular-93440fab4cbe-CTRA-rTL.woff",
+      "sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Caligraphic-Regular-e2ea347ec7e1-Di6jR-x-.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Bold-5d9c444d356a-BdnERNNW.ttf",
+      "sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Bold-6c0cfe753859-BsDP51OF.woff",
+      "sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Bold-8bea0fdbdd58-CL6g_b3V.woff2",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Regular-81ff0bab7ac4-CB_wures.ttf",
+      "sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Regular-9362217a940f-CTYiF6lA.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Fraktur-Regular-f175ce1c47d7-Dxdc4cR9.woff",
+      "sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Bold-306a83955cdd-waoOVXN0.ttf",
+      "sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Bold-99b7008cb9f0-Jm3AIy58.woff",
+      "sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Bold-b1f7ce887570-Cx986IdX.woff2",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-BoldItalic-12a522d123de-SpSLRI95.woff",
+      "sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-BoldItalic-f10c9dc0392e-DxDJ3AOS.woff2",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-BoldItalic-f3c4f3261ba5-DzxPMmG6.ttf",
+      "sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Italic-3759e9c6a0df-3WenGoN9.ttf",
+      "sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Italic-4c2ce066f751-BMLOBm91.woff",
+      "sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Italic-d580edee966b-NWA7e6Wa.woff2",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Regular-32a59bcdb555-ypZvNtVU.ttf",
+      "sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Regular-76d8dbe2a29e-B22Nviop.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Main-Regular-ebf7825a0610-Dr94JaBh.woff",
+      "sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-BoldItalic-2263edb0c99e-iY-2wyZ7.woff",
+      "sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-BoldItalic-775d28dfbb83-B3XSjfu4.ttf",
+      "sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-BoldItalic-999ef36c0999-CZnvNsCZ.woff2",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-Italic-1f94eaffd140-flOr_0UB.ttf",
+      "sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-Italic-2de770044ccf-t53AETM-.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Math-Italic-c0d3ffcf5e9f-DA0__PXp.woff",
+      "sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Bold-8531ea67beae-CFMepnvq.ttf",
+      "sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Bold-db22128e8820-DbIhKOiC.woff",
+      "sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Bold-f5b144b4183d-D1sUS0GD.woff2",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Italic-18623275cd29-YYjJ1zSn.ttf",
+      "sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Italic-33768fb75a6c-DN2j7dab.woff",
+      "sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Italic-b71f456a1819-C3H0VqGB.woff2",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Regular-4da3b85121c9-BNo7hRIc.ttf",
+      "sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Regular-92e9fa94a896-CS6fqUqJ.woff",
+      "sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_SansSerif-Regular-c30429e527bc-DDBCnlJ7.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Script-Regular-b9264196a3e0-C5JkGWo-.ttf",
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Script-Regular-f7c0859f17af-D3wIWfF6.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Script-Regular-f9c90562aa5a-D5yQViql.woff",
+      "sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size1-Regular-26083f2603c0-mCD8mA8B.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size1-Regular-b5f79b67eb84-C195tn64.woff",
+      "sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size1-Regular-dbb27b9efc8a-Dbsnue_I.ttf",
+      "sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size2-Regular-280f5b5cfd4d-oD1tc_U0.woff",
+      "sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size2-Regular-7b80a516842b-B7gKUWhC.ttf",
+      "sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size2-Regular-f2e1dc7dd26e-Dy4dx90m.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size3-Regular-73d591271b16-gV2CO0n9.woff2",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size3-Regular-93ab932aa041-CTq5MqoE.woff",
+      "sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size3-Regular-e0a57b34933f-DgpXs0kz.ttf",
+      "sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size4-Regular-45fb882464a4-BF-4gkZK.woff",
+      "sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size4-Regular-d6141bf4e372-DWFBv043.ttf",
+      "sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Size4-Regular-e5e65c59c557-Dl5lxZxV.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Typewriter-Regular-8eeabe219f5c-CO6r4hn1.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Typewriter-Regular-b4c52f663c1d-C0xS9mPB.woff",
+      "sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7"
+    },
+    {
+      "file": "out/renderer/assets/KaTeX_Typewriter-Regular-f721beff1dfa-D3Ib7_Hf.ttf",
+      "sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa"
+    },
+    {
+      "file": "out/renderer/assets/katex-oVG3DVWa.js",
+      "sha256": "2b6ec66674b790af78fec17abd4445695918c58f0ef4273fd3e9e0fbc80b7f38"
+    },
+    {
+      "file": "out/renderer/assets/kotlin-Ddo1SjA5.js",
+      "sha256": "a440f155088f75ffcf627b6aef7d962b941960e0df80913e5746365a2fb1a1fe"
+    },
+    {
+      "file": "out/renderer/assets/less-B7Qaxw-O.js",
+      "sha256": "1766c3efc5a1471c644a68c3cc890f122cfd4aeb32b794b6ff60801d44cb0ed9"
+    },
+    {
+      "file": "out/renderer/assets/lexon-C1U0m2n9.js",
+      "sha256": "3a9a538868ecc7c698bcefced31ce8593d20d0170cab196bd68d9060a018be08"
+    },
+    {
+      "file": "out/renderer/assets/linear-CH_IfEeS.js",
+      "sha256": "880e6d64f91e7c84585eeb1b04bc310ed9fb38223946a418d8f94d7988bf0ae8"
+    },
+    {
+      "file": "out/renderer/assets/liquid-BYnqJ2jm.js",
+      "sha256": "be6cefed92194d040551b9f44395145f6b63b0830a189ddd00ec61b467918a6d"
+    },
+    {
+      "file": "out/renderer/assets/lspLanguageFeatures-Dz8-I6L5.js",
+      "sha256": "bd946902b4bcb495f7f78a2c0ce642615697a3d696edc2828491ca9239f7746b"
+    },
+    {
+      "file": "out/renderer/assets/lua-hNsuGJkO.js",
+      "sha256": "220b07c43bd9c0f89af29ec10523a128cfcb03ebaf48b68c06ad8e4402624fe4"
+    },
+    {
+      "file": "out/renderer/assets/m3-6ko6q9-_.js",
+      "sha256": "89425a42eafffc4cc12f607d8a44de0d8277e1bb8b1963ee455cc267cb001abe"
+    },
+    {
+      "file": "out/renderer/assets/markdown-B0YTnTxW.js",
+      "sha256": "37bcba78f0ca8fd6e723379d9956777e2a31756b3d0339d67322d7e5f8fcaf07"
+    },
+    {
+      "file": "out/renderer/assets/mdx-2YaO5YFK.js",
+      "sha256": "efa5808eb626bf630f540820d56d79e8f4061bd67763609be924ffba5e185d84"
+    },
+    {
+      "file": "out/renderer/assets/mermaid.core-C_YeZ86b.js",
+      "sha256": "395847b1b88d3702b6e3aa52e7a03d930bde580a0c04921ac7ca80a13f0698d9"
+    },
+    {
+      "file": "out/renderer/assets/mindmap-definition-NLK3R4M7-6RyCC6Rx.js",
+      "sha256": "c89b592cd91db09f57d14265ed8c657411b5a7d9f57b3b353f24a77a3e219f70"
+    },
+    {
+      "file": "out/renderer/assets/mips-CJm71dS3.js",
+      "sha256": "223ceb0f1c8ff92e8b65e82ebf798bdf9fb56b9b03a08857541315ee27ad40d2"
+    },
+    {
+      "file": "out/renderer/assets/msdax-BBeIktCY.js",
+      "sha256": "117cbfff7cf0cb9719437332daec4e89844c4b91009f6d486db01efee61b9499"
+    },
+    {
+      "file": "out/renderer/assets/mysql-BWiizXSn.js",
+      "sha256": "7894618f34bb6acf2d537751d4bbebb7f3cdee442c1f8c06e43c7a1c6ed9f5cc"
+    },
+    {
+      "file": "out/renderer/assets/objective-c-B1L1C5EC.js",
+      "sha256": "821604add0e4a82faf7b7e909d06258756e60335f6e4e618f6ca140892b0e222"
+    },
+    {
+      "file": "out/renderer/assets/ordinal-CxptdPJm.js",
+      "sha256": "cc04d7af5afbafce019e6dfdadc4dc6cbd82c32b62a2d0774927c9c079472110"
+    },
+    {
+      "file": "out/renderer/assets/pascal-DMQyD4Xk.js",
+      "sha256": "07f83a1a8671962befa33c312461a4bc31e16fed80b1c5f262a922c3eadea312"
+    },
+    {
+      "file": "out/renderer/assets/pascaligo-VA_LQ1oU.js",
+      "sha256": "5bee66fe65331c0608b764c8f2715b08272ae9669d603713cf27c40707edc8b9"
+    },
+    {
+      "file": "out/renderer/assets/pdf-preview-BFaktcdz.js",
+      "sha256": "1f206369785ed7a84f97fb2ced5531aa8db71d5a2fee08261ea253fb4fd2d8d6"
+    },
+    {
+      "file": "out/renderer/assets/pdf-preview-DfpOJD1C.css",
+      "sha256": "10eaabbdf215132144c2ab41b1ef65f258bc27e0697dbcff4022dd93d6a40864"
+    },
+    {
+      "file": "out/renderer/assets/pdf.worker-CpUu8L-M.js",
+      "sha256": "77177e3b9dc523d803f84281cbc2372354ba5b40abe5467377b9688dbc9209a2"
+    },
+    {
+      "file": "out/renderer/assets/pegDiagram-GJSIUBJH-CI22Rg1S.js",
+      "sha256": "f9fc7dfb837d4ecc173480402d2204df0e64c0abf908b99488e94ea7cf6825a5"
+    },
+    {
+      "file": "out/renderer/assets/perl-DC0Z0tlO.js",
+      "sha256": "7cb374e77ba8ddc64f5c46d669f94b86f94abcd511b6f4db8feeb7805cf8d8ad"
+    },
+    {
+      "file": "out/renderer/assets/pgsql-DaSGFTLp.js",
+      "sha256": "ea7c358b1ec73d96467c6d5115597f0e9783ed32bbf17ef4d698a8d4d890fff9"
+    },
+    {
+      "file": "out/renderer/assets/php-Bkx1qpkQ.js",
+      "sha256": "a4121441f69b5d73a2eb0cb2ff16db2dd4524f4b4ca6fb1dc07c923a9d52045a"
+    },
+    {
+      "file": "out/renderer/assets/pieDiagram-5QR66LMP-B2hENInM.js",
+      "sha256": "06a0b7fa2c8182ff0245c01e01c6f9fb729d55509d4ef3aa476724407ab66c67"
+    },
+    {
+      "file": "out/renderer/assets/pla-DEV89yYj.js",
+      "sha256": "d58a468512e8db8e229654aa18ead7b0c7ab6e1992ee9c3460f87dad7a1bdbbb"
+    },
+    {
+      "file": "out/renderer/assets/postiats-CVVurEnu.js",
+      "sha256": "ce448383d3eca5ad965f363428ec1e886df16d30601be3a40b6f598247fd9fc0"
+    },
+    {
+      "file": "out/renderer/assets/powerquery-BQ_t1ZiQ.js",
+      "sha256": "c8345f3efce17fbe95b3d858fc7a7b4dd7b8a752039ef36ded1326ff88ba2483"
+    },
+    {
+      "file": "out/renderer/assets/powershell-BXiKvz7Z.js",
+      "sha256": "7b17e4299214b17cbece7ffca271239a90226674f1404c59864c5969099a3620"
+    },
+    {
+      "file": "out/renderer/assets/projects-B4VgHT_7.css",
+      "sha256": "50db399921fa5e1b01336a96aa46e743d376964e2310350c4ceb5bd5ec20fd17"
+    },
+    {
+      "file": "out/renderer/assets/projects-D3oTrJ7m.js",
+      "sha256": "9cc9ab114a2110a5f7fe9b7095ae858c129fb1e442e18e8afca25032778d53b3"
+    },
+    {
+      "file": "out/renderer/assets/protobuf-CndvAUGu.js",
+      "sha256": "4112401558cb1f367fbe6a7deb57ce33ac480eba77294e17a686bd8dd9e4145c"
+    },
+    {
+      "file": "out/renderer/assets/pug-BxCXwerb.js",
+      "sha256": "771237a4b27cb262eac010b528a58b3fa0bafc4c302a34274ab55404dc29c721"
+    },
+    {
+      "file": "out/renderer/assets/purify.es-DIKDJ5k3.js",
+      "sha256": "df2284efde7c4bb379ca4d4c1996f63f163b8d3f3497a58309c066742c4e41f1"
+    },
+    {
+      "file": "out/renderer/assets/python-CVFgb4E9.js",
+      "sha256": "ff824d613f08ea8c6cbf58e9594c32672c2d395f5f67fbe252581a47e21c708b"
+    },
+    {
+      "file": "out/renderer/assets/qsharp-BWK6YLKm.js",
+      "sha256": "f4c2d0c49068ec849a632ab9e623f90faa352978561c9df98692de6dbfef3873"
+    },
+    {
+      "file": "out/renderer/assets/quadrantDiagram-O4NWA36T-CVECp7m1.js",
+      "sha256": "71e40e276c2e12a356739a872d5e11ed78e938c5189d9248763b86383ae5584d"
+    },
+    {
+      "file": "out/renderer/assets/quick-chat-Bvsj3_p6.css",
+      "sha256": "ddcd93b4190f8f975f2bd557b07750e5288ad900e973d51e8c4b3be2522a6e59"
+    },
+    {
+      "file": "out/renderer/assets/quick-chat-YMvR5Yz6.js",
+      "sha256": "3a835f5a90f0c158b3103af01d79496fe5ccf0b211b7d057949bb67bed19b1ad"
+    },
+    {
+      "file": "out/renderer/assets/r-CtqYUQ6l.js",
+      "sha256": "40a071c68ac506b7dc02730d1ba1729045dc49c35b97a03000c7ebc9a1bc445a"
+    },
+    {
+      "file": "out/renderer/assets/railroadDiagram-XR7U4H2S-B1igWnPu.js",
+      "sha256": "066242eb3e00647b63e8ba360cb323730bc0bb8b2f88522925a8979be0990ee5"
+    },
+    {
+      "file": "out/renderer/assets/razor-BEufgHRB.js",
+      "sha256": "6c36e4214693b7689aaf709c2136cad716f8dd8ebf291e40092959f65dd023dc"
+    },
+    {
+      "file": "out/renderer/assets/redis-O7gSt3oh.js",
+      "sha256": "42397eb4e0f5dfc0a962388c3f45b78eed9f6e67fd2285d409dbe2402037ec95"
+    },
+    {
+      "file": "out/renderer/assets/redshift-CvYMMYZY.js",
+      "sha256": "4e6847e48c0e499c0d2dcd4e6bcc97cd16dc04d2de82b16821e186888b12a5d6"
+    },
+    {
+      "file": "out/renderer/assets/requirementDiagram-PLB6GJNP-DuztKGcT.js",
+      "sha256": "dc4c2917cf1fb31761b3c546683c9ac7e1f96ff17cd37603a66c6e9f025fff90"
+    },
+    {
+      "file": "out/renderer/assets/restructuredtext-B-KQCVu_.js",
+      "sha256": "22840fbdf575d8fc1072580de88ed5ab7a0c50aacc599380b80bc7863f7fa1a3"
+    },
+    {
+      "file": "out/renderer/assets/ruby-DCd4DmAr.js",
+      "sha256": "8e86381844accf9bdadd1437494022f149c809480f39d4f73b27c4a285be6e92"
+    },
+    {
+      "file": "out/renderer/assets/rust-B1c0VCeq.js",
+      "sha256": "74ddf1037db1c7da8aadda3450880055bf713b901113e238212593a72fe1328f"
+    },
+    {
+      "file": "out/renderer/assets/sankeyDiagram-IPEJSGJF-D_G-nfgf.js",
+      "sha256": "3f18f4bbdbdf49da5911aeec1f4868a5be906a9c9905e642febdb42fa09051b5"
+    },
+    {
+      "file": "out/renderer/assets/sb-Chfc_wZF.js",
+      "sha256": "286ab4fdda66c6be304030289d4741cab495bde64d0b7d5fc3896a3c2562356b"
+    },
+    {
+      "file": "out/renderer/assets/scala-DbVzH-3O.js",
+      "sha256": "3ac928a84b2125e5502c2d0c26b4c9198cc1dfa7114373df41c33130c7a682e2"
+    },
+    {
+      "file": "out/renderer/assets/scheme-D7PxodDG.js",
+      "sha256": "4c8e17df03b509320e0669175ed1da25273d29317234d5bc6e619f050f4d6186"
+    },
+    {
+      "file": "out/renderer/assets/scss-B42qMyAu.js",
+      "sha256": "0cf4c39e29be8c17c2e40ec266866a72828b184a4d9b996982293bc674723431"
+    },
+    {
+      "file": "out/renderer/assets/sequenceDiagram-PO4LG4MO-C0ITrWU1.js",
+      "sha256": "59b9d7f2eaa998a54f5cca1272f3d154c6b1598abe22fee6459f23e3d938868a"
+    },
+    {
+      "file": "out/renderer/assets/shell-vZEubQ82.js",
+      "sha256": "3e8e7f1afc74bab95f19ff67aefe10051cac9fa91354258b8e2db31e9d2c4dd5"
+    },
+    {
+      "file": "out/renderer/assets/sizeCapture-INFHLROL-DVblMMGl.js",
+      "sha256": "4899e20d6e3baa3bf2663d62e275681c435e48235d133a314b19afbd5e165c1f"
+    },
+    {
+      "file": "out/renderer/assets/solidity-yHOxYChb.js",
+      "sha256": "ffc5cb7adb15fc311b95a105aeec9e0ca9f651bb5a8caa219eb522c409f4d70a"
+    },
+    {
+      "file": "out/renderer/assets/sophia-D7pU0Y1d.js",
+      "sha256": "e6ee0236a442d21372c9e6aa0888d4cc95c751b8f4d115859fe13fed3fb4cbca"
+    },
+    {
+      "file": "out/renderer/assets/sparql-DxuVdnRl.js",
+      "sha256": "9a7213c547f075773e06454de65740a1401ba7883f04268532c6059fb9920ef2"
+    },
+    {
+      "file": "out/renderer/assets/sql-BAGepFCR.js",
+      "sha256": "3d8142b5345fb48e8a4bcc26887d334261f6671dc9af96670ccba5268c6acd45"
+    },
+    {
+      "file": "out/renderer/assets/st-C-b0Dh53.js",
+      "sha256": "d0f547cf3a6edf880013ddfe4362e66582b65bcfec253b532fc079ebbe6c64d8"
+    },
+    {
+      "file": "out/renderer/assets/stateDiagram-v2-GCMORJYK-B5vDuWeV.js",
+      "sha256": "efa7ac5ec3b145f4e780d52b2c1511d0da3b0fd269d0302ce902192b50c49280"
+    },
+    {
+      "file": "out/renderer/assets/swift-CbF6f74o.js",
+      "sha256": "29443b66b0f2e7d74953c2a3fa2eb946fd5c70f66ceee4e3f5758324643834f2"
+    },
+    {
+      "file": "out/renderer/assets/swimlanes-2SLR337P-Ct-tJB7v.js",
+      "sha256": "b7c766c1545e81a1fd5852ecdf3cbb4c24ca0819a0cfcd1c012208a5184adefc"
+    },
+    {
+      "file": "out/renderer/assets/swimlanesDiagram-TC7HE7FX-Xu7tMqHi.js",
+      "sha256": "79bde82cdc886fb7b5a430d81926f3c083e277bbfe7d0d308948b6b54084ee7a"
+    },
+    {
+      "file": "out/renderer/assets/systemverilog-BOC0OOdC.js",
+      "sha256": "d71d7dd152324c2c571796d01b7ead2155ab0cc277137e255defa86e57e49921"
+    },
+    {
+      "file": "out/renderer/assets/tcl-Bb4GCwBr.js",
+      "sha256": "dd61ba6dade27e7b7e72dfd6b74b7c2b22acde0d3922c62d68fed6c9024b9ba0"
+    },
+    {
+      "file": "out/renderer/assets/timeline-definition-EJHVYXUP-CpE1ny8y.js",
+      "sha256": "099ffba21bd310a5cd1f37cce3365782f51029f321af3e5d81dcdbb10b263404"
+    },
+    {
+      "file": "out/renderer/assets/ts.worker-DzvQkSf8.js",
+      "sha256": "b1912ba4149a9ba2161ba9f0b3443629d3ad7f0508e341785e655951db41de28"
+    },
+    {
+      "file": "out/renderer/assets/tsMode-Dk7wHgp5.js",
+      "sha256": "03fc651eedfd09664f22afba262f8eed9a45d3c90850815d94e21c62b4c79fe0"
+    },
+    {
+      "file": "out/renderer/assets/twig-DvgEGWAV.js",
+      "sha256": "e8d39bfe95a99cacd368a1048357d3b08621398f995898f8c73b70ca24b65c96"
+    },
+    {
+      "file": "out/renderer/assets/typescript-8pftzOJ0.js",
+      "sha256": "77b1bd0f3fdffc8da8610a292612d3cbaef31a4b96dccd9739a8f419c9ccbebe"
+    },
+    {
+      "file": "out/renderer/assets/typespec-R77Ln7Jb.js",
+      "sha256": "24ff2d88de64a611219d16fb78fc8b6f911968b1806caf6db9e8c75df0d6fa3d"
+    },
+    {
+      "file": "out/renderer/assets/usecaseDiagram-POWQR4AR-DfVm8dAZ.js",
+      "sha256": "ba103c119c0180f13b464cffb2c6620ff9acf4416b002f0b58e647f17fa1b1ee"
+    },
+    {
+      "file": "out/renderer/assets/vb-Bm6ESA0Q.js",
+      "sha256": "dea7c9ad23f5644ebdc84739626fa4ea98fc8af08ba2c5c529fde7b422a126c5"
+    },
+    {
+      "file": "out/renderer/assets/vennDiagram-UO4OBE2U-CZLDM9LP.js",
+      "sha256": "4aa9b381f60d0b3a091b0bcd4bd91b984de39c0e30e420621cda287ab24bcdb4"
+    },
+    {
+      "file": "out/renderer/assets/wardleyDiagram-VNRHLVJA-CPrphmmZ.js",
+      "sha256": "157dd105f017dc014cd984541a2be64754ed2c1cb9909e5d4e56ace7d862e24d"
+    },
+    {
+      "file": "out/renderer/assets/wgsl-_KPae5vw.js",
+      "sha256": "6448968b84cc21319a998e3b356ac1e26104f384526efd21e31d344edb9f1338"
+    },
+    {
+      "file": "out/renderer/assets/workers-Dwoa12Et.js",
+      "sha256": "c6eed89d50c9cb433290ad657746f983a8e87bd831b539cc153f3ad04b5a8e2d"
+    },
+    {
+      "file": "out/renderer/assets/xml-DYBRqqus.js",
+      "sha256": "5a04fb373578f877bd3c5135d16deed79560018e188122a04b871d7241766481"
+    },
+    {
+      "file": "out/renderer/assets/xychartDiagram-PMCCYNJV-dhRVE9Zn.js",
+      "sha256": "fae0cc6cc1425ef0709be314eb0d2e044781d13aedfb13e720cddec9fc010213"
+    },
+    {
+      "file": "out/renderer/assets/yaml-qIWe0hSd.js",
+      "sha256": "bf8a35c72ea58786ae947d9ddd3046e4b21d18f6b4dadf276bb5ebbf87669a35"
+    },
+    {
+      "file": "out/renderer/index.html",
+      "sha256": "1c47022a5e8ed266b7faa1f41901537610451f950254c67e551846ed1f14b4e4"
+    }
+  ],
+  "compiledManifestSha256": "4603d68ed9e710ef6d7a854dad3bc66783f946ebd24d00827828666b5f8b8786",
+  "compiledDifferencesFromMinimumReview": [
+    "out/main/launch.cjs"
+  ],
+  "regression": {
+    "beforeFailed": 4,
+    "beforePassed": 8,
+    "afterFocusedPassed": 24,
+    "focusedCoverage": {
+      "lines": {
+        "total": 54,
+        "covered": 51,
+        "skipped": 0,
+        "pct": 94.44
+      },
+      "statements": {
+        "total": 92,
+        "covered": 83,
+        "skipped": 0,
+        "pct": 90.21
+      },
+      "functions": {
+        "total": 30,
+        "covered": 27,
+        "skipped": 0,
+        "pct": 90
+      },
+      "branches": {
+        "total": 38,
+        "covered": 33,
+        "skipped": 0,
+        "pct": 86.84
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "pendingClosersWait": true,
+    "closeProjectAndShutdownIncludePendingCleanup": true,
+    "closingProcessesCountTowardLimit": true,
+    "concurrentFailureShared": true
+  },
+  "completeUnit": {
+    "files": 101,
+    "passed": 968,
+    "coverage": {
+      "lines": {
+        "total": 3611,
+        "covered": 3589,
+        "skipped": 0,
+        "pct": 99.39
+      },
+      "statements": {
+        "total": 6001,
+        "covered": 5835,
+        "skipped": 0,
+        "pct": 97.23
+      },
+      "functions": {
+        "total": 1364,
+        "covered": 1329,
+        "skipped": 0,
+        "pct": 97.43
+      },
+      "branches": {
+        "total": 4202,
+        "covered": 3983,
+        "skipped": 0,
+        "pct": 94.78
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "typesPassed": true,
+  "buildPassed": true,
+  "baseline": {
+    "productCommit": "37b3f9576505ad228615065c2f3cdb8a1860c412",
+    "freshChecks": 6,
+    "freshExits": [
+      {
+        "elapsedMs": 2964,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 3558,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2735,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 708,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 774,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1442,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 810,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "largeSeedChecks": 0,
+    "largeSeedExits": [
+      {
+        "elapsedMs": 10013,
+        "forced": true,
+        "exitCode": null,
+        "signalCode": null
+      }
+    ],
+    "largeSeedShutdown": [
+      {
+        "event": "will-quit",
+        "at": 1791319756580,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791319753710,
+            "onlineAt": 1791319754210,
+            "messageAt": 1791319754234
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791319754209,
+            "pid": 82264,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 286,
+            "firstDataAt": 1791319754306,
+            "lastDataAt": 1791319754755,
+            "exitedAt": 1791319755821,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 127684,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791319756580,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791319753710,
+            "onlineAt": 1791319754210,
+            "messageAt": 1791319754234
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791319754209,
+            "pid": 82264,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 286,
+            "firstDataAt": 1791319754306,
+            "lastDataAt": 1791319754755,
+            "exitedAt": 1791319755821,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 127684,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791319756580,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791319753710,
+            "onlineAt": 1791319754210,
+            "messageAt": 1791319754234
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791319754209,
+            "pid": 82264,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 286,
+            "firstDataAt": 1791319754306,
+            "lastDataAt": 1791319754755,
+            "exitedAt": 1791319755821,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 127684,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791319756580,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791319753710,
+            "onlineAt": 1791319754210,
+            "messageAt": 1791319754234
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791319754209,
+            "pid": 82264,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 286,
+            "firstDataAt": 1791319754306,
+            "lastDataAt": 1791319754755,
+            "exitedAt": 1791319755821,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 127684,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791319756580,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791319753710,
+            "onlineAt": 1791319754210,
+            "messageAt": 1791319754234
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791319754209,
+            "pid": 82264,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 286,
+            "firstDataAt": 1791319754306,
+            "lastDataAt": 1791319754755,
+            "exitedAt": 1791319755821,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 127684,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      }
+    ],
+    "naturalTerminalExitCode": 7,
+    "rootCauseEstablished": false
+  },
+  "current": {
+    "freshChecks": 6,
+    "freshExits": [
+      {
+        "elapsedMs": 2793,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 879,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 927,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 412,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 439,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1936,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 218,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "freshRecord": {
+      "verifiedAt": "2026-10-06T21:04:36.884Z",
+      "variant": "development executable",
+      "executableSha256": null,
+      "archiveSha256": null,
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "checks": 6,
+      "cases": [
+        {
+          "round": 1,
+          "mode": "natural-exit",
+          "ownedPids": [
+            112356
+          ],
+          "restartMs": 3308,
+          "processesGone": true
+        },
+        {
+          "round": 1,
+          "mode": "explicit-close",
+          "ownedPids": [
+            71420,
+            61364
+          ],
+          "restartMs": 1326,
+          "processesGone": true
+        },
+        {
+          "round": 1,
+          "mode": "application-close",
+          "ownedPids": [
+            120468,
+            92636
+          ],
+          "restartMs": 1371,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "natural-exit",
+          "ownedPids": [
+            121908
+          ],
+          "restartMs": 862,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "explicit-close",
+          "ownedPids": [
+            109136,
+            127952
+          ],
+          "restartMs": 894,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "application-close",
+          "ownedPids": [
+            55880,
+            134628
+          ],
+          "restartMs": 2548,
+          "processesGone": true
+        }
+      ],
+      "boundary": "Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause."
+    },
+    "largeSeedPassed": true,
+    "largeSeedChecks": 6,
+    "largeSeedExits": [
+      {
+        "elapsedMs": 365,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 185,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2103,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1235,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 282,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 645,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 569,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "largeSeedShutdown": [
+      {
+        "event": "will-quit",
+        "at": 1791320763271,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320761761,
+            "onlineAt": 1791320761795,
+            "messageAt": 1791320761796
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320761794,
+            "pid": 81952,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 346,
+            "firstDataAt": 1791320761808,
+            "lastDataAt": 1791320762188,
+            "exitedAt": 1791320763241,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 117236,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320763271,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320761761,
+            "onlineAt": 1791320761795,
+            "messageAt": 1791320761796
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320761794,
+            "pid": 81952,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 346,
+            "firstDataAt": 1791320761808,
+            "lastDataAt": 1791320762188,
+            "exitedAt": 1791320763241,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 117236,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320763271,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320761761,
+            "onlineAt": 1791320761795,
+            "messageAt": 1791320761796
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320761794,
+            "pid": 81952,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 346,
+            "firstDataAt": 1791320761808,
+            "lastDataAt": 1791320762188,
+            "exitedAt": 1791320763241,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 117236,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320766274,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320765261,
+            "onlineAt": 1791320765281,
+            "messageAt": 1791320765281
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320765280,
+            "pid": 120932,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320765289,
+            "lastDataAt": 1791320765668
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 130608,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320766275,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320765261,
+            "onlineAt": 1791320765281,
+            "messageAt": 1791320765281
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320765280,
+            "pid": 120932,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320765289,
+            "lastDataAt": 1791320765668
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 130608,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320766275,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320765261,
+            "onlineAt": 1791320765281,
+            "messageAt": 1791320765281
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320765280,
+            "pid": 120932,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320765289,
+            "lastDataAt": 1791320765668
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 130608,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320769202,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320768143,
+            "onlineAt": 1791320768164,
+            "messageAt": 1791320768164
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320768164,
+            "pid": 136840,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 318,
+            "firstDataAt": 1791320768178,
+            "lastDataAt": 1791320768586
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 15312,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320769202,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320768143,
+            "onlineAt": 1791320768164,
+            "messageAt": 1791320768164
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320768164,
+            "pid": 136840,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 318,
+            "firstDataAt": 1791320768178,
+            "lastDataAt": 1791320768586
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 15312,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320769202,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320768143,
+            "onlineAt": 1791320768164,
+            "messageAt": 1791320768164
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320768164,
+            "pid": 136840,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 318,
+            "firstDataAt": 1791320768178,
+            "lastDataAt": 1791320768586
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 15312,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320773831,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320772329,
+            "onlineAt": 1791320772349,
+            "messageAt": 1791320772349
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320772348,
+            "pid": 99368,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 281,
+            "firstDataAt": 1791320772359,
+            "lastDataAt": 1791320772738,
+            "exitedAt": 1791320773795,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 104408,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320773831,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320772329,
+            "onlineAt": 1791320772349,
+            "messageAt": 1791320772349
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320772348,
+            "pid": 99368,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 281,
+            "firstDataAt": 1791320772359,
+            "lastDataAt": 1791320772738,
+            "exitedAt": 1791320773795,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 104408,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320773832,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320772329,
+            "onlineAt": 1791320772349,
+            "messageAt": 1791320772349
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320772348,
+            "pid": 99368,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 281,
+            "firstDataAt": 1791320772359,
+            "lastDataAt": 1791320772738,
+            "exitedAt": 1791320773795,
+            "exitCode": 7
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 104408,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320777850,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320776659,
+            "onlineAt": 1791320776683,
+            "messageAt": 1791320776683
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320776682,
+            "pid": 124936,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320776694,
+            "lastDataAt": 1791320777098
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 121116,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320777851,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320776659,
+            "onlineAt": 1791320776683,
+            "messageAt": 1791320776683
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320776682,
+            "pid": 124936,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320776694,
+            "lastDataAt": 1791320777098
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 121116,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320777851,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320776659,
+            "onlineAt": 1791320776683,
+            "messageAt": 1791320776683
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320776682,
+            "pid": 124936,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 6,
+            "characters": 319,
+            "firstDataAt": 1791320776694,
+            "lastDataAt": 1791320777098
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 121116,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320780715,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320779761,
+            "onlineAt": 1791320779781,
+            "messageAt": 1791320779781
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320779781,
+            "pid": 115196,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 461,
+            "firstDataAt": 1791320779790,
+            "lastDataAt": 1791320780182
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 131476,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320780715,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320779761,
+            "onlineAt": 1791320779781,
+            "messageAt": 1791320779781
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320779781,
+            "pid": 115196,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 461,
+            "firstDataAt": 1791320779790,
+            "lastDataAt": 1791320780182
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 131476,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "quit",
+        "at": 1791320780715,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap",
+          "MessagePort",
+          "PipeWrap",
+          "PipeWrap",
+          "PipeWrap",
+          "ProcessWrap",
+          "Timeout",
+          "Timeout"
+        ],
+        "workers": [
+          {
+            "file": "",
+            "startedAt": 1791320779761,
+            "onlineAt": 1791320779781,
+            "messageAt": 1791320779781
+          }
+        ],
+        "terminals": [
+          {
+            "registeredAt": 1791320779781,
+            "pid": 115196,
+            "processName": "xterm-256color",
+            "cols": 100,
+            "rows": 24,
+            "chunks": 7,
+            "characters": 461,
+            "firstDataAt": 1791320779790,
+            "lastDataAt": 1791320780182
+          }
+        ],
+        "childProcesses": [
+          {
+            "type": "ChildProcess",
+            "pid": 131476,
+            "exitCode": null,
+            "signalCode": null,
+            "connected": true
+          }
+        ]
+      },
+      {
+        "event": "will-quit",
+        "at": 1791320782488,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap"
+        ],
+        "workers": [],
+        "terminals": [],
+        "childProcesses": []
+      },
+      {
+        "event": "process-exit",
+        "at": 1791320782488,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap"
+        ],
+        "workers": [],
+        "terminals": [],
+        "childProcesses": []
+      },
+      {
+        "event": "quit",
+        "at": 1791320782488,
+        "resources": [
+          "PipeWrap",
+          "PipeWrap"
+        ],
+        "workers": [],
+        "terminals": [],
+        "childProcesses": []
+      }
+    ],
+    "seedRecord": {
+      "verifiedAt": "2026-10-06T21:06:23.047Z",
+      "variant": "development executable",
+      "executableSha256": null,
+      "archiveSha256": null,
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "checks": 6,
+      "cases": [
+        {
+          "round": 1,
+          "mode": "natural-exit",
+          "ownedPids": [
+            81952
+          ],
+          "restartMs": 2004,
+          "processesGone": true
+        },
+        {
+          "round": 1,
+          "mode": "explicit-close",
+          "ownedPids": [
+            120932,
+            110968
+          ],
+          "restartMs": 1873,
+          "processesGone": true
+        },
+        {
+          "round": 1,
+          "mode": "application-close",
+          "ownedPids": [
+            136840,
+            52924
+          ],
+          "restartMs": 3721,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "natural-exit",
+          "ownedPids": [
+            99368
+          ],
+          "restartMs": 2832,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "explicit-close",
+          "ownedPids": [
+            124936,
+            128256
+          ],
+          "restartMs": 1921,
+          "processesGone": true
+        },
+        {
+          "round": 2,
+          "mode": "application-close",
+          "ownedPids": [
+            115196,
+            106408
+          ],
+          "restartMs": 2228,
+          "processesGone": true
+        }
+      ],
+      "boundary": "Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause."
+    }
+  },
+  "retainedSeed": {
+    "path": "E:/NookVerification/Temp/qiyao-electron-4xj119/workspace.json",
+    "bytes": 84254801,
+    "sha256": "bed3134cf5bbecd483dec147907b07ce761747af9712c7fbb9f408308cafa138",
+    "mtime": "2026-10-06T19:37:39.728Z",
+    "unchanged": true
+  },
+  "diagnosticBoundary": "An isolated external harness added a pre-close wait for observed Worker exits. Initial import resolution failed before startup; subsequent runs failed to open a terminal before the added wait was reached. They are not accepted proof, do not diagnose the original exit cause and did not alter product or release acceptance harness. The actual pending-cleanup race was independently reproduced by four unit regressions.",
+  "archived": [
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-lifecycle-large-seed-current.log",
+      "bytes": 7487,
+      "sha256": "46a6e22f47f08ba3f617301724123ad8b873d708571838367d8e428820153a92"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-lifecycle-fresh-current.log",
+      "bytes": 32281,
+      "sha256": "c62bcafbdf46646f2aaead99cce0eb2dfd76d61aef4c9ca376e861a7cdaf2cf8"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-before-fix.log",
+      "bytes": 4301,
+      "sha256": "bf1fa42e982809d655e502e394a93667788d8d9fa85843db3c42499e04712d36"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-focused.log",
+      "bytes": 1083,
+      "sha256": "8fe428902f7643c40be8f995bdcb6aa20e0575217d8c26eca1d199d14b56ada1"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-build.log",
+      "bytes": 24160,
+      "sha256": "7c68a4ea966870e42b684da4ffc0ed47ba82a810442209c8f8e696c6b9a110d9"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-fresh-native.log",
+      "bytes": 27520,
+      "sha256": "a62f34c0fc6ef0612f6d7ae53ba8ddeff59278f388042ad8e9aa6c63ddfb3381"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-large-seed-native.log",
+      "bytes": 26684,
+      "sha256": "4abef948feeec709980237e17e694e33a901dad339e9ebc33635a4cff442484c"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-pending-close-full-unit.log",
+      "bytes": 5049,
+      "sha256": "e385087605b81cf90a540bd0a1f9992a1b4535a656c7f499f9e5c76b26213d97"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-drain-large-seed-diagnostic.log",
+      "bytes": 1005,
+      "sha256": "513368638221f8f2044acb50926e1c8dcdb0236120abb1135aa0720c0629db38"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-drain-large-seed-diagnostic-retry.log",
+      "bytes": 12753,
+      "sha256": "ff9003de0bbad2b11ad86ff1036371d3a590fdb886f402a9e28e2389c1b8951c"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-drain-large-seed-diagnostic-observed.log",
+      "bytes": 8018,
+      "sha256": "1e2cfa64d1acab6aee83ed4228f5f69468580f22db64b7ce117c7ac7f0fe5241"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\nook-terminal-drain-large-seed-diagnostic-captured.log",
+      "bytes": 8044,
+      "sha256": "b05a72cc11d8d97884cf9f18f49b7cfbd7fc6ec42867af7043639e76c9526d67"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\coverage-summary.json",
+      "bytes": 30595,
+      "sha256": "1682c4d84fe9e76c5e2e1fa96cd9a08c9c5cf2f1b75686d7c64af85e16677384"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\focused-coverage-summary.json",
+      "bytes": 653,
+      "sha256": "59e714deda2fefd415427e5eb5fee6f80b7155364b8a62d406b2b4e1897b0fba"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\fresh-result.json",
+      "bytes": 1462,
+      "sha256": "8fa982538b3e5f9f851f932957e2b143179e4b768935da2b515392576aaebe12"
+    },
+    {
+      "path": "E:\\NookVerification\\QuickChatNative-20261007\\terminal-pending-close-final\\large-seed-result.json",
+      "bytes": 1465,
+      "sha256": "9cccab2c74a3eb3a47d2d47499cd94da5f61b8ffd0f4d0353bc6656667d96167"
+    }
+  ],
+  "deadlines": {
+    "startupMs": 30000,
+    "bridgeMs": 10000,
+    "operationMs": 5000,
+    "unitDefaultMs": 5000,
+    "closeMs": 10000,
+    "coveragePct": 80
+  },
+  "nativeRootCauseEstablished": false,
+  "defaultFullDesktopPassed": false,
+  "packaged": false,
+  "published": false,
+  "scope": "This change retains and awaits already-running terminal cleanup promises, releases listeners once, keeps owned process slots until cleanup settles and shares concurrent cleanup outcomes. It does not change the native PTY library, kill strategy or deadlines, does not wait for private SDK workers, and does not establish a fix for prior full-suite/native exit failures. The previously failed natural-exit path was not changed by this race fix, so a later seeded pass cannot establish causality or make the old failure resolved. Fresh and retained large-workspace focused native results are separate from full desktop and distribution acceptance."
+}
