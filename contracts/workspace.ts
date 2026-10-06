@@ -111,6 +111,9 @@ export const composerStateSchema = z.object({
   composerDrafts: z.array(composerDraftSchema).max(100).default([]).refine((drafts) => new Set(drafts.map((draft) => draft.threadId ?? '')).size === drafts.length, 'Conversation drafts must have unique owners'),
   activeThreadId: identifier.optional(),
 }).strict();
+export const quickChatStateSchema = z.object({
+  revision: z.uuid(), ...composerStateSchema.shape,
+}).strict();
 export const workspaceSchema = z.object({
   schemaVersion: z.literal(1),
   providers: settingsStateSchema.shape.providers, threads: z.array(threadSchema).max(10_000),
@@ -119,6 +122,7 @@ export const workspaceSchema = z.object({
   editorDrafts: z.array(editorDraftSchema).max(100).default([]),
   composerDrafts: composerStateSchema.shape.composerDrafts,
   activeThreadId: composerStateSchema.shape.activeThreadId,
+  quickChat: quickChatStateSchema.optional(),
   mcpServers: z.array(mcpServerSchema).max(100).default([]), skills: z.array(skillSchema).max(1000).default([]),
   plugins: z.array(pluginSchema).max(100).default([]),
   automations: automationsSchema,
@@ -160,6 +164,7 @@ export type Workspace = z.infer<typeof workspaceSchema>;
 export type SubmitRequest = z.infer<typeof submitSchema>;
 export type Attachment = z.infer<typeof attachmentSchema>;
 export type ComposerDraft = z.infer<typeof composerDraftSchema>;
+export type QuickChatState = z.infer<typeof quickChatStateSchema>;
 
 export function emptyWorkspace(): Workspace {
   return {

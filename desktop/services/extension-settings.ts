@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { mcpCredentialsSchema, mcpServerSchema, skillBundleSchema, skillSchema, type McpCredentials, type McpServer, type Skill } from '../../contracts/extensions';
 import { parsePersistentWorkspace } from '../../contracts/temporary-conversations';
@@ -95,6 +96,8 @@ export class ExtensionSettings {
 
   async restore(raw: unknown) {
     const backup = parsePersistentWorkspace(raw);
+    const composerDrafts = [...backup.composerDrafts, ...(backup.quickChat?.composerDrafts ?? [])];
+    if (backup.quickChat) backup.quickChat.revision = randomUUID();
     await this.vault.prepareOriginalRestore(raw, backup);
     if (backup.preferences.desktop) Object.assign(backup.preferences.desktop, { trayEnabled: false, closeToTray: false, shortcutEnabled: false });
     interruptRuns(backup.threads);
@@ -117,7 +120,7 @@ export class ExtensionSettings {
           skill.id = restored.id;
         }
         backup.threads.forEach((thread) => { thread.skillIds = thread.skillIds?.map((id) => remap.get(id)).filter((id): id is string => Boolean(id)); });
-        backup.composerDrafts.forEach((draft) => { draft.skillIds = draft.skillIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id)); });
+        composerDrafts.forEach((draft) => { draft.skillIds = draft.skillIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id)); });
         backup.automations.forEach((task) => { task.skillIds = task.skillIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id)); });
       } else {
         for (const skill of backup.skills) { try { await this.skills.document(skill.id); } catch { skill.enabled = false; } }
@@ -132,7 +135,7 @@ export class ExtensionSettings {
           remap.set(plugin.id, restored.id); plugin.id = restored.id; plugin.enabled = false; plugin.grants = [];
         }
         for (const thread of backup.threads) thread.pluginIds = thread.pluginIds?.map((id) => remap.get(id)).filter((id): id is string => Boolean(id));
-        for (const draft of backup.composerDrafts) draft.pluginIds = draft.pluginIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id));
+        for (const draft of composerDrafts) draft.pluginIds = draft.pluginIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id));
         for (const task of backup.automations) task.pluginIds = task.pluginIds.map((id) => remap.get(id)).filter((id): id is string => Boolean(id));
       } else if (pluginBundles?.length) throw new Error('The backup contains unexpected plugin packages.');
       await bindProviderKeys(this.vault);
@@ -146,7 +149,7 @@ export class ExtensionSettings {
         try { server.hasCredentials = Boolean(stored && JSON.parse(stored).destination === mcpDestination(server)); }
         catch { server.hasCredentials = false; }
       });
-      return await this.vault.update((draft) => { Object.assign(draft, backup); draft.activeThreadId = backup.threads.some((thread) => thread.id === backup.activeThreadId) ? backup.activeThreadId : undefined; });
+      return await this.vault.update((draft) => { Object.assign(draft, backup); if (!backup.quickChat) delete draft.quickChat; draft.activeThreadId = backup.threads.some((thread) => thread.id === backup.activeThreadId) ? backup.activeThreadId : undefined; });
     } catch (error) { await Promise.all([...created.map((skill) => this.skills.remove(skill.id)), ...createdPlugins.map((plugin) => this.plugins!.remove(plugin.id))]); throw error; }
   }
 }

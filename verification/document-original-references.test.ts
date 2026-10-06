@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { randomUUID } from 'node:crypto';
 import { attachmentSchema } from '../contracts/attachments';
 import { knowledgeDocumentSourceSchema } from '../contracts/knowledge';
 import { composerDraftSchema, emptyWorkspace, threadSchema } from '../contracts/workspace';
@@ -45,5 +46,19 @@ describe('original document reference ownership', () => {
     state.threads[1].messages[0].attachments = [file('a', 21)];
     expect(() => documentOriginalReferences(state)).toThrow('conflicting metadata');
     expect(documentOriginalReferences(emptyWorkspace())).toEqual([]);
+  });
+
+  it('includes every quick-chat draft while excluding temporary-owned quick input from disk and backup', () => {
+    const state = emptyWorkspace(); state.threads.push(thread('temporary', 'a', true), thread('regular', 'b'));
+    state.quickChat = { revision: randomUUID(), activeThreadId: 'temporary', composerDrafts: [
+      composerDraftSchema.parse({ threadId: 'temporary', text: 'Private input', attachments: [file('c')], updatedAt: 1 }),
+      composerDraftSchema.parse({ threadId: 'regular', text: 'Saved input', attachments: [file('d')], updatedAt: 1 }),
+      composerDraftSchema.parse({ text: 'New input', attachments: [file('e')], updatedAt: 1 }),
+    ] };
+    expect(documentOriginalReferences(state)).toEqual([original('c'), original('d'), original('e'), original('a'), original('b')]);
+    const persistent = persistentWorkspace(state);
+    expect(persistent.quickChat?.activeThreadId).toBeUndefined(); expect(persistent.quickChat?.composerDrafts.map(draft => draft.text)).toEqual(['Saved input', 'New input']);
+    expect(documentOriginalReferences(persistent)).toEqual([original('d'), original('e'), original('b')]);
+    expect(state.quickChat.composerDrafts).toHaveLength(3); expect(state.quickChat.activeThreadId).toBe('temporary');
   });
 });

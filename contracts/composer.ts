@@ -10,7 +10,7 @@ export async function composerRevision(draft: ComposerDraft): Promise<string> {
   return Array.from(new Uint8Array(digest), (value) => value.toString(16).padStart(2, '0')).join('');
 }
 
-export function restoreComposer(workspace: Workspace, thread?: Thread, saved?: ComposerDraft): ComposerDraft {
+export function restoreComposer(workspace: Pick<Workspace, 'providers' | 'preferences' | 'projects' | 'assistants' | 'mcpServers' | 'skills' | 'plugins' | 'knowledgeCollections'>, thread?: Thread, saved?: ComposerDraft): ComposerDraft {
   const providerId = saved?.providerId ?? thread?.providerId ?? workspace.preferences.defaultProviderId;
   const provider = workspace.providers.find((item) => item.id === providerId) ?? workspace.providers.find((item) => item.id === workspace.preferences.defaultProviderId);
   const projectId = saved ? saved.projectId : thread?.projectId;

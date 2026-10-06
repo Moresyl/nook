@@ -54,11 +54,11 @@ export class ConversationEngine {
     return { ...structuredClone(live), status: saved.status, error: saved.error };
   }
 
-  async start(raw: SubmitRequest): Promise<{ threadId: string }> {
+  async start(raw: SubmitRequest, onCommit?: (draft: Workspace, threadId: string) => void): Promise<{ threadId: string }> {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
     const prepared = this.prepareStart(raw, this.vault.snapshot());
     try {
-      await this.vault.commit(prepared.apply, { conversation: true });
+      await this.vault.commit(draft => { onCommit?.(draft, prepared.threadId); prepared.apply(draft); }, { conversation: true });
       this.notify({ threadId: prepared.threadId, messageId: prepared.messageId }, true);
       prepared.launch(); return { threadId: prepared.threadId };
     } catch (error) { prepared.release(); throw error; }

@@ -2,6 +2,7 @@ import { readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { composerDraftSchema } from '../contracts/workspace';
+import { randomUUID } from 'node:crypto';
 import { validateDocumentOriginalBundles } from '../desktop/services/document-original-backups';
 import { originalDocumentIdentity } from '../desktop/services/document-original-store';
 import { ExtensionSettings } from '../desktop/services/extension-settings';
@@ -29,6 +30,18 @@ async function attach(vault: WorkspaceVault, temporary = false) {
 }
 
 describe('complete original document backups', () => {
+  it('restores originals owned only by quick-chat drafts and rejects a missing bundle without replacing current input', async () => {
+    const source = await fixture(), target = await fixture(); const [original] = source.vault.stageDocumentOriginals([bytes]);
+    const revision = randomUUID();
+    await source.vault.commitQuickChat(state => { state.quickChat = { revision, composerDrafts: [composerDraftSchema.parse({ text: 'Quick PDF input', updatedAt: 1,
+      attachments: [{ id: 'original', name: 'quick.pdf', content: 'Extracted text', source: { format: 'pdf', bytes: bytes.length }, original }] })] }; });
+    const backup = await source.settings.backup(); expect(backup.documentOriginals).toEqual([bundle]);
+    await target.settings.restore(backup); expect(await target.vault.readDocumentOriginal(reference)).toEqual(bytes);
+    expect(target.vault.quickChat()?.revision).not.toBe(revision); expect(target.vault.quickChat()?.composerDrafts[0].text).toBe('Quick PDF input');
+    const before = target.vault.snapshot();
+    await expect(target.settings.restore({ ...backup, documentOriginals: [] })).rejects.toThrow(); expect(target.vault.snapshot()).toEqual(before);
+    const restarted = new WorkspaceVault(target.directory, codec); await restarted.initialize(); expect(await restarted.readDocumentOriginal(reference)).toEqual(bytes);
+  });
   it('validates exact owner sets, canonical byte encoding and content integrity while accepting legacy backups', () => {
     expect(validateDocumentOriginalBundles({}, [])).toEqual([]);
     expect(validateDocumentOriginalBundles({ documentOriginals: [bundle] }, [reference])).toEqual([bundle]);

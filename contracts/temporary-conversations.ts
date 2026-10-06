@@ -8,11 +8,17 @@ export function persistentWorkspace(state: Workspace, previousActiveThreadId?: s
   const activeThreadId = temporaryIds.has(state.activeThreadId ?? '')
     ? threads.some((thread) => thread.id === previousActiveThreadId) ? previousActiveThreadId : undefined
     : state.activeThreadId;
-  return {
+  const persistent = {
     ...state, threads, activeThreadId,
     composerDrafts: state.composerDrafts.filter((draft) => !temporaryIds.has(draft.threadId ?? '')),
     messageDrafts: state.messageDrafts.filter((draft) => !temporaryIds.has(draft.threadId)),
   };
+  if (state.quickChat) persistent.quickChat = {
+    ...state.quickChat,
+    activeThreadId: temporaryIds.has(state.quickChat.activeThreadId ?? '') ? undefined : state.quickChat.activeThreadId,
+    composerDrafts: state.quickChat.composerDrafts.filter(draft => !temporaryIds.has(draft.threadId ?? '')),
+  };
+  return persistent;
 }
 
 export function parsePersistentWorkspace(raw: unknown): Workspace {

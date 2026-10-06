@@ -2,7 +2,7 @@ import type { DocumentOriginal } from '../../contracts/document-originals';
 import type { Workspace } from '../../contracts/workspace';
 
 /** Includes archived paths and retained citations; pass persistentWorkspace(state) for disk ownership. */
-export function documentOriginalReferences(state: Pick<Workspace, 'threads' | 'composerDrafts' | 'notes'>): DocumentOriginal[] {
+export function documentOriginalReferences(state: Pick<Workspace, 'threads' | 'composerDrafts' | 'notes' | 'quickChat'>): DocumentOriginal[] {
   const references = new Map<string, DocumentOriginal>();
   const add = (value?: DocumentOriginal) => {
     if (!value) return;
@@ -11,6 +11,7 @@ export function documentOriginalReferences(state: Pick<Workspace, 'threads' | 'c
     references.set(value.sha256, { ...value });
   };
   for (const draft of state.composerDrafts) for (const file of draft.attachments) add(file.original);
+  for (const draft of state.quickChat?.composerDrafts ?? []) for (const file of draft.attachments) add(file.original);
   for (const thread of state.threads) for (const message of thread.messages) {
     for (const file of message.attachments) add(file.original);
     for (const citation of message.knowledgeSources ?? []) add(citation.source?.original);

@@ -2,7 +2,7 @@ import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mcpServerSchema } from '../contracts/extensions';
-import { emptyWorkspace, workspaceSchema } from '../contracts/workspace';
+import { composerDraftSchema, emptyWorkspace, workspaceSchema } from '../contracts/workspace';
 import { ExtensionSettings } from '../desktop/services/extension-settings';
 import { LocalSkills } from '../desktop/services/local-skills';
 import { sampleThread, testVault } from './fixtures';
@@ -67,11 +67,21 @@ describe('extension configuration and backups', () => {
   it('restores skill assets and remaps conversation selection without overwriting original managed folders', async () => {
     const { settings, source, vault, skills } = await setup(); await settings.importSkill(source); const old = vault.snapshot().skills[0];
     await vault.update((draft) => { draft.threads.push({ id: 'thread', title: 'Thread', model: '', pinned: false, archived: false, createdAt: 1, updatedAt: 1, messages: [], skillIds: [old.id] }); draft.composerDrafts.push({ threadId: 'thread', text: 'Unsent', attachments: [], model: '', mode: 'chat', mcpServerIds: [], skillIds: [old.id], pluginIds: [], updatedAt: 1 }); });
+    await vault.commitQuickChat(state => { state.quickChat = { revision: randomUUID(), composerDrafts: [composerDraftSchema.parse({ text: 'Quick skill input', skillIds: [old.id], updatedAt: 1 })] }; });
     const backup = await settings.backup(); const restored = await settings.restore(backup);
     expect(restored.skills[0].id).not.toBe(old.id); expect(restored.threads[0].skillIds).toEqual([restored.skills[0].id]);
     expect(restored.composerDrafts[0].skillIds).toEqual([restored.skills[0].id]);
+    expect(restored.quickChat?.composerDrafts[0].skillIds).toEqual([restored.skills[0].id]);
+    expect(restored.quickChat?.revision).not.toBe(backup.quickChat?.revision); expect(backup.quickChat?.composerDrafts[0].skillIds).toEqual([old.id]);
     expect(await skills.read(restored.skills[0].id, 'LICENSE')).toBe('License'); expect(await skills.read(old.id, 'LICENSE')).toBe('License');
     await expect(settings.restore({ ...backup, skillBundles: [] })).rejects.toThrow('does not match');
+  });
+  it('invalidates old quick-chat windows on backup replacement and clears quick state for a legacy backup', async () => {
+    const { vault, settings } = await setup(); const revision = randomUUID();
+    await vault.commitQuickChat(state => { state.quickChat = { revision, composerDrafts: [composerDraftSchema.parse({ text: 'Backed-up quick input', updatedAt: 1 })] }; });
+    const backup = await settings.backup(); const restored = await settings.restore(backup);
+    expect(restored.quickChat?.revision).not.toBe(revision); expect(restored.quickChat?.composerDrafts[0].text).toBe('Backed-up quick input');
+    await settings.restore(emptyWorkspace()); expect(vault.quickChat()).toBeUndefined();
   });
   it('rolls back newly copied assets on persistence failure and disables missing assets in legacy backups', async () => {
     const { settings, source, vault, directory, skills } = await setup();
