@@ -1,0 +1,70 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { documentBytes } from '../verification/attachment-fixtures.mjs';
+
+export async function verifyPdfPreview({ page, application, directory, screenshots, verified, restart }) {
+  const bytes = documentBytes('pdf');
+  const reference = await page.evaluate(async data => {
+    const [file] = await window.qiyao.importAttachments([{ name: 'preview-original.pdf', data }]);
+    await window.qiyao.activateThread();
+    await window.qiyao.saveComposerDraft({ text: '', attachments: [file], model: '', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [], updatedAt: Date.now() });
+    return file.original;
+  }, bytes.toString('base64'));
+  assert.ok(reference);
+  await page.reload();
+  const open = async () => {
+    await page.getByRole('button', { name: '预览 preview-original.pdf', exact: true }).click();
+    await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.pdfPreviewPage .textLayer')?.textContent.includes('Document evidence'));
+  };
+  await application.resize(1280, 840); await open();
+  const pixels = await page.locator('.pdfPreviewPage canvas').evaluate(canvas => {
+    const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+    let ink = 0; for (let i = 0; i < data.length; i += 4) if (data[i + 3] && data[i] < 200 && data[i + 1] < 200 && data[i + 2] < 200) ink++;
+    return ink;
+  });
+  assert.ok(pixels > 50); assert.equal(await page.getByRole('button', { name: '上一页', exact: true }).isDisabled(), true);
+  assert.equal(await page.getByRole('button', { name: '下一页', exact: true }).isDisabled(), false);
+  await page.getByRole('button', { name: '下一页', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Budget 42'));
+  assert.equal(await page.getByRole('button', { name: '下一页', exact: true }).isDisabled(), true);
+  await page.getByRole('button', { name: '上一页', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false' && document.querySelector('.textLayer')?.textContent.includes('Document evidence'));
+  await page.screenshot({ path: join(screenshots, 'pdf-original-light.png') });
+  verified('PDF original renders real canvas ink and selectable text from the isolated import worker');
+  const before = await page.locator('.pdfPreviewPage canvas').evaluate(canvas => canvas.getBoundingClientRect().width);
+  await page.getByRole('button', { name: '放大 PDF', exact: true }).click();
+  await page.waitForFunction(width => Number.parseFloat(document.querySelector('.pdfPreviewPage canvas')?.style.width ?? '0') > width, before);
+  await page.getByRole('button', { name: '适合宽度', exact: true }).click();
+  await page.getByRole('button', { name: '查看提取文本', exact: true }).click();
+  assert.match(await page.locator('.attachment-text-preview').textContent(), /Document evidence/);
+  await page.getByRole('button', { name: '查看 PDF 原件', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.pdf-scroll')?.getAttribute('aria-busy') === 'false');
+  const selected = await page.locator('.textLayer').evaluate(layer => { const range = document.createRange(); range.selectNodeContents(layer); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); return selection.toString(); });
+  assert.match(selected, /Document evidence/);
+  verified('PDF zoom, text/original switching and native text selection survive viewer disposal and recreation');
+  const exported = join(directory, 'exported-original.pdf');
+  await application.evaluateMain(`globalThis.pdfSaveDialog=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(exported)}});`);
+  try {
+    await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).click();
+    await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).waitFor();
+    assert.deepEqual(await readFile(exported), bytes);
+  } finally { await application.evaluateMain("require('electron').dialog.showSaveDialog=globalThis.pdfSaveDialog;delete globalThis.pdfSaveDialog;"); }
+  await page.getByRole('dialog').getByRole('button', { name: '完成', exact: true }).click();
+  const denied = await page.evaluate(async ref => { try { await window.qiyao.readDocumentOriginal({ ...ref, sha256: '0'.repeat(64) }); return false; } catch { return true; } }, reference);
+  assert.equal(denied, true);
+  await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); });
+  await application.resize(760, 540); await page.reload(); await open();
+  const geometry = await page.getByRole('dialog').evaluate(dialog => {
+    const content = dialog.querySelector('.modal-content'), footer = dialog.querySelector('.modal-footer').getBoundingClientRect(), rect = dialog.getBoundingClientRect();
+    return { outerScroll: content.scrollHeight > content.clientHeight + 1, overflowX: dialog.scrollWidth > dialog.clientWidth + 1, footerVisible: footer.bottom <= innerHeight && footer.top >= 0, fitsWindow: rect.top >= 0 && rect.bottom <= innerHeight };
+  });
+  assert.deepEqual(geometry, { outerScroll: false, overflowX: false, footerVisible: true, fitsWindow: true });
+  await page.screenshot({ path: join(screenshots, 'pdf-original-dark-minimum.png') });
+  await page.getByRole('dialog').getByRole('button', { name: '完成', exact: true }).click();
+  page = await restart();
+  const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
+  assert.deepEqual(Buffer.from(restored), bytes);
+  verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
+  return { page, result: { checks: 3, pixels, originalBytes: bytes.length, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png'] } };
+}

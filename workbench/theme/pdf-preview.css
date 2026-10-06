@@ -1,0 +1,17 @@
+.pdf-preview { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; gap: 8px; }
+.pdf-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; }
+.pdf-toolbar input { width: 64px; }
+.pdf-scroll { overflow: auto; flex: 1; min-height: 0; padding: 16px; background: var(--ds-bg-secondary); border-radius: 8px; }
+.pdfPreviewPage { position: relative; margin-inline: auto; background: white; --scale-factor: 1; --user-unit: 1; --total-scale-factor: calc(var(--scale-factor) * var(--user-unit)); --scale-round-x: 1px; --scale-round-y: 1px; }
+.pdfPreviewPage canvas { display: block; }
+.pdfPreviewPage .textLayer { position: absolute; inset: 0; overflow: clip; z-index: 1; text-align: initial; text-size-adjust: none; forced-color-adjust: none; transform-origin: 0 0; line-height: 1; --min-font-size: 1; --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size)); --min-font-size-inv: calc(1 / var(--min-font-size)); }
+.pdfPreviewPage .textLayer :is(span, br) { position: absolute; color: transparent; white-space: pre; cursor: text; transform-origin: 0 0; }
+.pdfPreviewPage .textLayer > :not(.markedContent), .pdfPreviewPage .textLayer .markedContent span:not(.markedContent) { z-index: 1; --font-height: 0; font-size: calc(var(--text-scale-factor) * var(--font-height)); --scale-x: 1; --rotate: 0deg; transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv)); }
+.pdfPreviewPage .textLayer span.markedContent { height: 0; top: 0; }
+.pdfPreviewPage .textLayer ::selection { color: transparent; background: color-mix(in srgb, AccentColor, transparent 75%); }
+.pdfPreviewPage .textLayer br::selection { background: transparent; }
+.pdf-error { color: var(--ds-text); }
+.pdf-attachment-modal.modal { width: min(1000px, calc(100vw - 32px)); height: calc(100dvh - 40px); max-height: 800px; margin: auto; transform: none; }
+.pdf-attachment-modal .modal-content { display: flex; flex-direction: column; overflow: hidden; max-height: none; }
+.pdf-attachment-modal .modal-content > .button { align-self: flex-start; flex-shrink: 0; }
+.pdf-attachment-modal .attachment-text-preview { overflow: auto; min-height: 0; }

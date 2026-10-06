@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { attachmentImageUrl, attachmentLimits, type Attachment, type AttachmentInput } from '../../contracts/attachments';
 import { Button, IconButton, Modal } from './controls';
 import { Glyph } from './glyphs';
 import { ImagePreview } from './image-preview';
+const PdfPreview = lazy(() => import('./pdf-preview'));
 
 export async function attachmentInputs(files: File[]): Promise<AttachmentInput[]> {
   if (!files.length || files.length > attachmentLimits.count) throw new Error('每条消息最多添加 12 个附件。');
@@ -29,6 +30,7 @@ export function AttachmentList({ files, disabled = false, onRemove }: { files: A
 export function AttachmentPreview({ file, images = [file], onSelect = () => {}, onClose }: { file: Attachment; images?: Attachment[]; onSelect?: (file: Attachment) => void; onClose: () => void }) {
   const [exporting, setExporting] = useState(false);
   const [error, setError] = useState('');
+  const [showOriginal, setShowOriginal] = useState(Boolean(file.original));
   const exportOriginal = async () => {
     if (!file.original || exporting) return;
     setExporting(true); setError('');
@@ -37,10 +39,11 @@ export function AttachmentPreview({ file, images = [file], onSelect = () => {}, 
     finally { setExporting(false); }
   };
   if (file.image) return <ImagePreview key={file.id} file={file} images={images} onSelect={onSelect} onClose={onClose} />;
-  return <Modal title={file.name} onClose={onClose} footer={<>{file.original && <Button disabled={exporting} onClick={() => { void exportOriginal(); }}>{exporting ? '正在保存…' : '保存 PDF 原件'}</Button>}<Button onClick={onClose}>完成</Button></>}>
+  return <Modal title={file.name} className={file.original ? 'pdf-attachment-modal' : ''} onClose={onClose} footer={<>{file.original && <Button disabled={exporting} onClick={() => { void exportOriginal(); }}>{exporting ? '正在保存…' : '保存 PDF 原件'}</Button>}<Button onClick={onClose}>完成</Button></>}>
     {error && <p role="alert">{error}</p>}
-    {file.source && <p className="field-hint">{file.source.format.toUpperCase()} · {(file.source.bytes / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} KB · 提取的文本</p>}
+    {file.source && <p className="field-hint">{file.source.format.toUpperCase()} · {(file.source.bytes / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} KB · {showOriginal ? '原始文档' : '提取的文本'}</p>}
     {file.warnings?.map((warning) => <p className="field-hint" key={warning}>{warning}</p>)}
-    <pre className="attachment-text-preview">{file.content || '（空文本文件）'}</pre>
+    {file.original && <Button aria-pressed={showOriginal} onClick={() => setShowOriginal(value => !value)}>{showOriginal ? '查看提取文本' : '查看 PDF 原件'}</Button>}
+    {showOriginal && file.original ? <Suspense fallback={<p role="status">正在加载 PDF 查看器…</p>}><PdfPreview reference={file.original} /></Suspense> : <pre className="attachment-text-preview">{file.content || '（空文本文件）'}</pre>}
   </Modal>;
 }

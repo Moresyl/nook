@@ -24,6 +24,7 @@ import { nativeProviderFixture } from '../verification/native-provider-fixture.m
 import { verifyNativeProviders, verifyNativeProviderRestart } from './verify-native-providers.mjs';
 import { attachmentProviderFixture } from '../verification/attachment-provider-fixture.mjs';
 import { verifyAttachments } from './verify-attachments.mjs';
+import { verifyPdfPreview } from './verify-pdf-preview.mjs';
 import { knowledgeProviderFixture } from '../verification/knowledge-provider-fixture.mjs';
 import { verifyKnowledge } from './verify-knowledge.mjs';
 import { verifyBackups } from './verify-backups.mjs';
@@ -500,7 +501,11 @@ let promptTransferResult;
 let fullResult;
 try {
   let page = await launch();
-  if (process.env.QIYAO_TEST_PLUGIN_CRASH_ONLY) {
+  if (process.env.QIYAO_TEST_PDF_PREVIEW_ONLY) {
+    const result = await verifyPdfPreview({ page, application, directory, screenshots, verified, restart: async () => { await application.close(); return launch(); } }); page = result.page;
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    await writeFile(join(root, 'verification', 'pdf-preview-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), runtimeErrors: errors, ...result.result }, null, 2));
+  } else if (process.env.QIYAO_TEST_PLUGIN_CRASH_ONLY) {
     const result = await verifyPluginCrash({ page, application, directory, domain: new URL(endpoint).host, waitForBridge, verified });
     assert.deepEqual(errors, []);
     await writeFile(join(root, 'verification', packaged ? 'plugin-crash-packaged-result.json' : 'plugin-crash-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, ...result }, null, 2));

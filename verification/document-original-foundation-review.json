@@ -33,9 +33,9 @@
     "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
   },
   "remaining": [
-    "Integrate offline PDF rendering with the original-read bridge and verify complete desktop product flows",
+    "Complete PDF outline/search/annotation interactions and verify complete desktop product flows",
     "Verify full desktop backup/export/restore flows and implement safe unreferenced-original cleanup",
-    "Bundle and integrate offline PDF rendering, fonts, CMaps, text/annotation layers and controls",
+    "Extend offline PDF sample coverage to Chinese CMaps, complex images and annotation layers",
     "Verify provider requests exclude original binary bytes",
     "Build, complete regression, native UI checks, distribution and hosted release"
   ],
@@ -90,5 +90,23 @@
     ],
     "validationLimits": "Service tests cover malformed references, cancellation, exact output, revoked ownership and corrupt originals preserving existing destinations. The native dialog, new button layout and renderer IPC round trip are not yet verified.",
     "previousImportBuild": { "passed": true, "log": "D:/GR/pi-pc/.firecrawl/nook-document-import-build.log", "scope": "Build at a0661d3 before these access commands and UI additions" }
+  },
+  "pdfViewerFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "resourceTests": { "files": 1, "passed": 4, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-resources-tests.log" },
+    "buildPassed": true,
+    "buildLog": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-layout-build.log",
+    "nativeChecks": { "passed": 3, "runtimeErrors": [], "normalFinalExitMilliseconds": 252, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-layout-native.log", "result": "verification/pdf-preview-result.json" },
+    "screenshotsReviewed": ["verification/screenshots/pdf-original-light.png", "verification/screenshots/pdf-original-dark-minimum.png"],
+    "implemented": [
+      "Lazy offline PDF worker rendering with embedded CMaps, standard fonts and image decoder resources",
+      "Page navigation, fit-width zoom, selectable text, original/extracted-text switching and loading/error states",
+      "Reference text-layer positioning and selection styles, adapted to the installed renderer text API",
+      "Single scrolling page region with visible footer and bounded dialog at the minimum window size"
+    ],
+    "initialNativeFailure": { "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-native.log", "cause": "The verifier assumed a one-page fixture; the existing PDF has two pages. The corrected verifier visits page two, checks its text and boundary, then returns to page one." },
+    "licenseCheck": { "passed": false, "log": "D:/GR/pi-pc/.firecrawl/nook-pdf-preview-notices.log", "reason": "The shared node_modules junction resolves declared node-pty bundled assets outside this worktree root. Existing PDF CMap/font/decoder legal files are retained; worktree-aware inventory validation remains unresolved." },
+    "remaining": "Outline, document search, annotation/link layer, OCR/password workflows, wider samples and accessibility, reference-layout parity, recovery-aware cleanup, complete native/release proof and distribution verification. Native save-dialog UI was intercepted in the test process."
   }
 }
