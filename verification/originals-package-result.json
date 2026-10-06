@@ -20,7 +20,29 @@
   "unresolvedAssets": [],
   "unresolvedDistribution": [],
   "oldProductIdentityMatches": [],
-  "fullPackagedDesktop": { "completed": false, "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-packaged-desktop.log" },
+  "pdfVisualReview": {
+    "scope": "Five individually inspected actual uninstalled-package captures, light 1280x840 and dark 760x540. Exact copied bytes also match the earlier source-run captures. Title, search, outline, literal note and footer are visible; not complete design or accessibility acceptance.",
+    "captures": [
+      { "file": "docs/images/candidate-pdf-original-light.png", "sha256": "6639dd6114cd7afb8108823d1bca9ec8a2d7928703b6f4d144e53d2c5bab7381" },
+      { "file": "docs/images/candidate-pdf-original-dark-minimum.png", "sha256": "9325425aeb0b8d363121cce14063d36bd6e378d5711a4bd7658b3b547afaddb4" },
+      { "file": "docs/images/candidate-pdf-outline-light.png", "sha256": "5f9bd4f4c1b558418ec82ae7a32f28c057f3ac799dbc63232856f40e556c9ecb" },
+      { "file": "docs/images/candidate-pdf-search-light.png", "sha256": "803e9752dc74bd21917fe57912135a01cb600eff3428028f37f985fd76c3a016" },
+      { "file": "docs/images/candidate-pdf-note-light.png", "sha256": "3b5c8960b3ea1daa0df656e6b6f73678cfe569f0130e1cdb3c9a4d35144db437" }
+    ]
+  },
+  "hostedVerification": {
+    "commit": "939d62a8ad47213bb80090019ab2056baf6c1b56",
+    "run": 37432130407,
+    "verifyCheckRun": 112165216798,
+    "conclusion": "failure",
+    "publishConclusion": "skipped",
+    "jobDidNotStart": true,
+    "reason": "GitHub annotation states recent account payments failed or the spending limit needs to be increased. No financial settings changed."
+  },
+  "fullPackagedDesktop": { "completed": true, "passed": true, "checks": 235, "runtimeErrors": [], "normalCloseVerified": true, "normalFinalExitMilliseconds": 360, "report": "verification/originals-unpacked-desktop-result.json", "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-packaged-desktop.log", "scope": "Complete uninstalled application-body regression, exact current executable/ASAR hashes; does not replace the retained failed source run or actual installed lifecycle acceptance." },
   "previousOwnedInstallerSentinels": { "archived": true, "count": 4, "directory": "E:/NookVerification/RetainedInstallerSentinels-9a4fd58ccece4b22b18476fe0a8c5570", "scope": "Only exact retained test sentinel files and otherwise empty profile directories were removed after byte-preserving archival and registration checks. Previous failed installation/workspace evidence remains." },
-  "remaining": "Complete final-build desktop, surface, portable, actual installed lifecycle and matching-runtime verification. Broader product/UI requirements and hosted pipeline acceptance remain open."
+  "packagedSurfacesFirstRun": { "passed": false, "uiChecksPassed": 4, "forcedClose": true, "exitObservedWithinBudget": false, "elapsedMilliseconds": 10008, "closeBudgetMilliseconds": 10000, "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-packaged-settings.log", "logSha256": "b1711b022671379a38540c5c94cdbb7f1a7a6caf7c620cf083546d682bd662e4", "scope": "The four UI groups passed, but the child-process exit was not observed within the unchanged deadline. JavaScript quit callbacks were emitted about 350 ms after close; they do not prove native process termination. Cause remains unverified." },
+  "packagedSurfacesRetry": { "passed": true, "checks": 4, "normalCloseVerified": true, "exitCode": 0, "elapsedMilliseconds": 5477, "closeBudgetMilliseconds": 10000, "report": "verification/surfaces-packaged-result.json", "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-packaged-settings-retry.log", "logSha256": "ba983609827c285559997b40cec662161569c17ef2c9c7553048a78587984a80", "scope": "Same unchanged executable/ASAR; diagnostic spawn logging enabled. Terminal exit 0 and matching result written. Original close failure was not reproduced; its cause has not been established." },
+  "portable": { "passed": true, "checks": 7, "runtimeErrors": [], "normalCloseMilliseconds": [789, 2103], "unpackedFilesVerified": 188, "longPathCleanupVerified": true, "report": "verification/portable-result.json", "audit": "verification/portable-package-audit-result.json", "log": "D:/GR/pi-pc/.firecrawl/nook-originals-gzip-portable.log", "logSha256": "5b513a5fb8050456756c3c49655d750e342b9edbe17ed06a95d889236843b89e", "scope": "Actual current portable wrapper, two cold extractions/restarts, exact application and all unpacked-file hashes, real native PTY, Unicode/space paths, normal wrapper exits and extraction cleanup; existing registration/shortcuts unchanged." },
+  "remaining": "Complete actual installed lifecycle and matching-runtime verification. Investigate retained close and source MCP failures. Broader product/UI requirements and hosted pipeline acceptance remain open."
 }

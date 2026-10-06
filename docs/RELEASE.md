@@ -1,6 +1,6 @@
 # Nook 发布状态
 
-**尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。安装版与便携版已生成，均未签名；最新应用体的完整运行验收正在进行。
+**尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。安装版与便携版已生成，均未签名；最新未安装应用体完整 235 组通过，实际安装等验收仍未完成。
 
 仓库：[Moresyl/nook](https://github.com/Moresyl/nook)。完整交付范围见 [交付要求](DELIVERY.md)，功能与设计缺口见 [能力与边界](CAPABILITIES.md) 和 [设计对照](DESIGN-ALIGNMENT.md)。
 
@@ -21,12 +21,15 @@
 | 同一失败工作台的 MCP 回放 | 六组通过；连接 431ms，正常退出 1898ms，未复现原失败 |
 | 包体审计 | 236 个产品文件、188 个解包文件、401 份依赖法律文档、20 个分发法律／源码文件通过；编译文件匹配实际构建，旧产品身份匹配为空 |
 | 启动器输入审计 | 安装器 6、卸载器 5、便携器 2 个实际插件的原始哈希通过 |
-| 新包完整桌面回归 | 正在执行，尚无整轮通过结论 |
-| 新包实际安装、便携与证据一致性 | 尚未完成 |
+| 新包完整桌面回归 | 235 组全部通过，无运行时错误，正常退出 360ms；EXE／ASAR 哈希与包体审计一致 |
+| 新包设置专项首轮 | 四组界面检查通过，但未在原有 10 秒期限内观察到子进程退出，强制关闭，整轮失败；原因尚未证实 |
+| 同一包设置专项重跑 | 四组通过，无运行时错误，正常退出 5477ms，整轮返回 0；首轮失败未复现，原因未被证明消除 |
+| 新包便携运行 | 七组全部通过，两次正常退出 789／2103ms；实际解包文件、原生终端、重启、长路径清理与系统登记保留通过 |
+| 新包实际安装与证据一致性 | 尚未完成 |
 
 首轮默认并发组件测试有三项 5 秒超时，后续两轮通过，原因尚未证实。源码整轮的 MCP 连接在配置的 5 秒期限后返回错误，后续专项通过不能证明其原因已消除；没有放宽测试时限。五张本轮源码 PDF 截图已逐张检查，也不等于完整设计或安装版验收。
 
-详细记录：[恢复与回归](../verification/recovery-gzip-review-result.json)、[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)。
+详细记录：[恢复与回归](../verification/recovery-gzip-review-result.json)、[新候选](../verification/originals-package-result.json)、[未安装完整运行](../verification/originals-unpacked-desktop-result.json)、[包体审计](../verification/package-audit-result.json)、[启动器审计](../verification/distribution-bootstrap-result.json)。
 
 ## 当前包体
 
@@ -44,6 +47,8 @@
 ## 流水线
 
 主分支 `7c9243b` 的最近核查运行 [37412245647](https://github.com/Moresyl/nook/actions/runs/37412245647) 已失败：验证任务没有执行步骤，发布跳过。GitHub 注释明确为近期账户付款失败或支出额度需要调整；未修改付费设置。仓库没有已发布版本，本地通过不能替代成功的标签流水线。
+
+开发分支已推送至 `939d62a`，其运行 [37432130407](https://github.com/Moresyl/nook/actions/runs/37432130407) 同样未启动验证，发布跳过；已读取验证任务 `112165216798` 的错误注释，仍为付款／支出额度限制。
 
 ## 发布前待完成
 

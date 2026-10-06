@@ -18,6 +18,8 @@
 
 ## 验证边界
 
+当前安装候选的五张实际应用体截图已逐张检查：[浅色阅读](images/candidate-pdf-original-light.png)、[深色最小窗口](images/candidate-pdf-original-dark-minimum.png)、[目录](images/candidate-pdf-outline-light.png)、[全文查找](images/candidate-pdf-search-light.png) 与 [只读批注](images/candidate-pdf-note-light.png)。标题、搜索和底部操作保持可见，批注中的标记按纯文本显示；截图原始字节与此前源码回归一致。对应包体哈希见 [候选记录](../verification/originals-package-result.json)，不代表完整界面或安装版验收。
+
 资源单元测试比对嵌入的 CMap、字体和解码器原始字节。桌面专项使用真实两页 PDF、真实解析 Worker、画布和文字层，检查翻页边界、缩放、视图切换、文字选择、原件导出、拒绝无归属引用与重启恢复。
 
 附件专项还验证八个已发送对话共用一个备份原件，在隔离测试目录中暂移原文件后确认读取失败，再通过应用的恢复备份流程重建文件并逐字节比对。测试调用本地模拟模型服务，不涉及云端凭据。
