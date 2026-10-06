@@ -1,0 +1,430 @@
+{
+  "verifiedAt": "2026-10-06T14:21:28.154Z",
+  "passed": true,
+  "sourceUiCommit": "8e3ef21ef645a6c4dc80d7d3b37fe987b47cc297",
+  "checks": 29,
+  "stages": [
+    {
+      "stage": "prompts",
+      "checks": 6,
+      "exits": [
+        {
+          "elapsedMs": 7177,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1078,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-retry-prompts.log",
+        "sha256": "b94cccc7df6b3b15dd153fe79b8398155bbdc09477247ba65b5c929421f780a6"
+      }
+    },
+    {
+      "stage": "recipes",
+      "checks": 4,
+      "exits": [
+        {
+          "elapsedMs": 8415,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 3624,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-retry-recipes.log",
+        "sha256": "e0c8a6d72b0849e4bd2794e8dea5bd78115cd8e8dfc7203777d9f97a38b1ab33"
+      }
+    },
+    {
+      "stage": "surfaces",
+      "checks": 4,
+      "exits": [
+        {
+          "elapsedMs": 5631,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-retry-surfaces.log",
+        "sha256": "f4e5cd4df4e8be71227c9535111cfc48a374f5a0052d17bc45a4406c530e2cd9"
+      }
+    },
+    {
+      "stage": "conversations",
+      "checks": 8,
+      "exits": [
+        {
+          "elapsedMs": 3825,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 970,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 346,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-retry-conversations.log",
+        "sha256": "11562854a0e36103a2f140d4b303f7b5c7048631b820bf4b0459ee6b2830bcb1"
+      }
+    },
+    {
+      "stage": "text_hints",
+      "checks": 7,
+      "exits": [
+        {
+          "elapsedMs": 9804,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-retry-text_hints.log",
+        "sha256": "2992c986b74cfeb90f168ffb2194c8e67481908cb8f95c001d5bd947ae4f9421"
+      }
+    }
+  ],
+  "changes": [
+    "Focus the exact inserted composer draft during its React layout commit, avoiding deferred caret resets after later editing.",
+    "Open/close modal and restore focus in the layout lifecycle so template insertion can establish its final composer focus.",
+    "Assert that replacement quote text and new quote/template selections survive two real browser animation frames."
+  ],
+  "typesPassed": true,
+  "buildPassed": true,
+  "serialUnitFiles": 96,
+  "serialUnitTests": 920,
+  "serialUnitExitCode": 0,
+  "coverage": {
+    "lines": {
+      "total": 3508,
+      "covered": 3486,
+      "skipped": 0,
+      "pct": 99.37
+    },
+    "statements": {
+      "total": 5837,
+      "covered": 5671,
+      "skipped": 0,
+      "pct": 97.15
+    },
+    "functions": {
+      "total": 1312,
+      "covered": 1277,
+      "skipped": 0,
+      "pct": 97.33
+    },
+    "branches": {
+      "total": 4063,
+      "covered": 3847,
+      "skipped": 0,
+      "pct": 94.68
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "retainedDefaultConcurrentUnitFailure": {
+    "filesFailed": 6,
+    "filesPassed": 90,
+    "failed": 13,
+    "passed": 902,
+    "timeoutFailures": 12,
+    "sseConnectionAssertionFailures": 1,
+    "executorExitCode": 1,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-unit-coverage.log",
+      "sha256": "f1bade8c41634eb7cc353635037ceb3f93dc37a43a08e3f9f730bd72144ed6b9"
+    },
+    "rootCauseEstablished": false
+  },
+  "retainedSerialUnitFailure": {
+    "filesFailed": 2,
+    "filesPassed": 94,
+    "failed": 2,
+    "passed": 913,
+    "executorExitCode": 1,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-serial-unit-coverage.log",
+      "sha256": "ef01dfe0b64fa8772beebf020c40462ee13f82f009c3265a5e3a475b1fd12475"
+    }
+  },
+  "independentCaseSplit": {
+    "focusedTests": 24,
+    "passed": true,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-oauth-config-split-final.log",
+      "sha256": "fa3ab7d16a24c2cf32de8bd59f84e484475c4d617af59e2e09d9ab6c73d091f4"
+    },
+    "originalAssertionsRetained": true,
+    "originalCaseBudgetMs": 5000,
+    "setupAndLoginRemainInsideTimedCases": true,
+    "defaultConcurrentRerunAfterSplitVerified": false,
+    "scope": "Separate real login/tool discovery, refreshed credentials and reconnect, rejected refreshed grant, concurrent provider edits and default-provider removal. Every case creates its own real fixture; keyed removal and successful refresh before grant rejection are retained."
+  },
+  "serialUnitEvidence": [
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-split-full-unit-coverage.log",
+      "sha256": "9ab65bb3f6630765b6108129207ba6a2f444b71fba30f4545ac7f503a1dea3e2"
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSplitCoverage-20261006/coverage-summary.json",
+      "sha256": "e3cfc7000010600eab678922ed1c7c1fd436bcaa87954d01a6de60f3b81e1073"
+    }
+  ],
+  "originalBudgets": {
+    "startupMs": 30000,
+    "closeMs": 10000,
+    "bridgeMs": 10000,
+    "operationMs": 5000,
+    "defaultUnitCaseMs": 5000,
+    "coveragePercent": 80
+  },
+  "maximumFocusedNativeCloseMs": 9804,
+  "retainedFailures": [
+    {
+      "checksBeforeFailure": 0,
+      "acceptedAsPass": false,
+      "kind": "Source Electron startup deadline exceeded before assertions; the 30-second deadline was preserved.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-conversations.log",
+        "sha256": "c914c4f6b9d564d8454346321004f1c95aa9c1319e746ff7f59bfb2f9eec1144"
+      }
+    },
+    {
+      "checksBeforeFailure": 2,
+      "acceptedAsPass": false,
+      "kind": "Intermediate layout focus was overridden by the modal passive cleanup; exact focus assertion failed.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-prompts.log",
+        "sha256": "ba6a1c635bc3b2d56f2376a92ed08357ee2c87f3b900c459eeab6f96c9ff526d"
+      }
+    },
+    {
+      "checksBeforeFailure": 0,
+      "acceptedAsPass": false,
+      "kind": "Final build first source startup exceeded its original deadline before assertions.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-final-prompts.log",
+        "sha256": "bb086b480ae15d47c8de7d3a8aaa8e5454b7149a552e57750dab33dc0af869fd"
+      }
+    }
+  ],
+  "quoteFailure": {
+    "path": "E:/NookWorktrees/document-originals/verification/all-hints-new-unpacked-quote-failure-result.json",
+    "sha256": "6a80d057104ed6e697aaedef2ab3162383ad8b09fb827d6c947435c93c039846"
+  },
+  "receipts": [
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/insertion-focus-prompts-result.json",
+      "sha256": "a477186061ad9398ae342b50d3930bde063314d222a4dda9667cbe7ec2baddae"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/insertion-focus-recipes-result.json",
+      "sha256": "9c4deb69911444890591088bea5a8ea3ea3a283d3f0d5d1e229a64123c424937"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/insertion-focus-surfaces-result.json",
+      "sha256": "1a9bddce60a03c0a33fa1ba9ade69925c8f19b8058110dddb3d458e7dcb753e6"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/insertion-focus-text-hints-result.json",
+      "sha256": "f8adfa04127f49207ab6581e84079fe4ae98f75c18dbe532bda6ef97ab83a959"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/annotation-hints-dark-150.png",
+      "sha256": "cf0cb0cea153ba65ea4a0f0a8ffb8e8d0b3a777d943cd804077f086cf56e24b3",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/annotation-hints-light-100.png",
+      "sha256": "825b3c4abb2617fc300c563500af67d26e249587a9d421f3aae03e09f261ce70",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/branch-hints-dark-150.png",
+      "sha256": "15ee61367b1a6095c4f27016a115ef9a11379aab5721832862ad4d9ea007536e",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/branch-hints-light-100.png",
+      "sha256": "94182574fd1c6f53340aedc750fcbc6361c4e4b82412d1a6803538f308f1e078",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-dark-100.png",
+      "sha256": "e8f1f1b443e28d105321ac4fda6350ec2f71b6f381acd3867c98bf997c23e88e",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-dark-125.png",
+      "sha256": "ee4338db9c5783a3a1cd64f328867718e78ee085173c4aeb0bac70b8144a9014",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-dark-150.png",
+      "sha256": "675d8a1bf8c772f57e62ae504855dcbdc58c05899fcd7605b6b0d098febb309e",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-light-100.png",
+      "sha256": "56da55478fbb93843bb00bc43cd8b9d7a722364af0a0b31c6e9a54238f2c12ef",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-light-125.png",
+      "sha256": "8b109f3e2db4edf4fef8b1eee6b84a70d12840d4ec58fcb8c30f922d15214a60",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/text-hints-light-150.png",
+      "sha256": "ab2e5590f927c80698280fb0e0dbe658ce6d23e8c657ad5ec828c2d0cbfa1b23",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/tree-hints-dark-150.png",
+      "sha256": "5953076256449a537cbae14c8a1d5fcc6db14f0acdad5c33ca14eae0a0bee500",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "path": "E:/NookVerification/InsertionFocusSourceScreenshots-20261006/tree-hints-light-100.png",
+      "sha256": "083f34f11533bbd68a3f5e94dc42292edd69d9042daa9710169f012eb26e8713",
+      "size": [
+        1280,
+        840
+      ]
+    }
+  ],
+  "visuallyReviewedCurrentCaptures": [
+    "annotation-hints-dark-150.png",
+    "text-hints-light-100.png"
+  ],
+  "artifacts": [
+    {
+      "path": "E:/NookWorktrees/document-originals/workbench/workbench.tsx",
+      "sha256": "c7207ec982530449dc90e3241b874f3ec0fc63acf44ef8a7a20f22aaedaafa15"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/workbench/components/controls.tsx",
+      "sha256": "5a271146fe6c0a872b544182bc700786b091f1ae77c36a0d8d38962a8b801222"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-conversations.mjs",
+      "sha256": "ed1fa07af1dec8c91cdd6684b81e49bc1a507860c6322ab9c0c846ec78bee7e3"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-prompt-templates.mjs",
+      "sha256": "a304b443b7d47c74ce481d74cc36da1b088d191b5818b7f40aa21f57bd0b26dd"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/mcp-oauth.test.ts",
+      "sha256": "096dafa14d9cf91fcd4c4032d2849bd33e251570bb69d188dab45f4fb5a28fdf"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/verification/provider-settings.test.ts",
+      "sha256": "0da4e1c79bfe3258ac4187fec1c02650714eba1f518fe1e698e390ccf49ac222"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-build.log",
+      "sha256": "52a44e01993aba35d6d6e3ca0eed27c58fad45ee0de0124599efae140e2b0607"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-modal-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-modal-build.log",
+      "sha256": "dae659c89c147861f52841538e6715728cd2c6259582bec7edbe1c350c697c5b"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-insertion-focus-split-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/out/main/launch.cjs",
+      "sha256": "00f558e9ca5b83455002e16e6d2cb4c0bd6ae2e65e8178ae6fc9d717a40e9c85"
+    },
+    {
+      "path": "E:/NookWorktrees/document-originals/out/renderer/index.html",
+      "sha256": "d352d76b7e36d0a79e1d3f271aaeadaa2bad80201fe804b8d51a93c1aa2fe8bd"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/all-hints-new-unpacked-quote-failure.png",
+      "sha256": "ae62d1d28f2ab958af0fcc8290a4081b1d3eee869795d8f20652bf4552620f01"
+    },
+    {
+      "path": "D:/GR/pi-pc/.firecrawl/insertion-focus-template-modal-failure.png",
+      "sha256": "43229b1a7a2c7d33e6c6e7bbdad63de7a83d3a4137c672a357982ea11bb66919"
+    }
+  ],
+  "historicalNativeStartupOrShutdownRootCauseEstablished": false,
+  "distributionRegenerated": false,
+  "published": false,
+  "scope": "Final source composer/modal lifecycle, 29 focused native groups and serial full unit coverage. Earlier default concurrent and serial failures, intermediate modal regression and startup failures remain explicit. Packaged runtime, physical system UI, all design pages and release are separate gates. Unit coverage covers configured contracts/services, not the renderer. Parent native captures do not composite native child-view content."
+}

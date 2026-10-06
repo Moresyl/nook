@@ -1,0 +1,30 @@
+{
+  "published": false,
+  "expectedDraft": "保留草稿",
+  "sourceUiCommit": "ea01d292560a907680e3748ff205ded9d1c7d94f",
+  "logSha256": "191a2ab2a87313eeaefc23755722949f4fb7f63617c50ded684aa9b9c49a7c51",
+  "archiveSha256": "1cd84282884967435486d863e36aeb8492f8cacb5d475906c30eaedececcc71e",
+  "executableSha256": "d5d513522cd9b057e62ca623d44d34d4df367e350fc8693c311de58a3101d60f",
+  "checksBeforeFailure": 41,
+  "executorExitCode": 1,
+  "passed": false,
+  "verifiedAt": "2026-10-06T13:27:06.4304931Z",
+  "failure": "Replacing the quoted draft produced preserved quote plus appended replacement instead of replacing all text.",
+  "actualDraft": "保留草稿\n\n引用助手回复：\n> 真实流式回复\n\n保留草稿",
+  "normalExits": [
+    {
+      "elapsedMs": 771,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1364,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "rootCauseAtFailureEstablished": false,
+  "workspace": "E:/NookVerification/Temp/qiyao-electron-5JjR6B"
+}
