@@ -215,7 +215,7 @@ export async function verifyModelComparisons({ page, application, getApplication
     const contents = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/'))?.webContents;
     if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function' || !contents) return false;
     const target = ${JSON.stringify(first.id)};
-    const data = globalThis.qiyaoComparisonContinuationObservations = { installedAt: Date.now(), loads: [], clones: [], sends: [] };
+    const data = globalThis.qiyaoComparisonContinuationObservations = { installedAt: Date.now(), loads: [], clones: [], sends: [], operations: [] };
     const append = (list, row) => { try { list.push(row); if (list.length > 64) list.shift(); } catch {} };
     const summarize = state => {
       const thread = state?.threads?.find(item => item.id === target);
@@ -226,6 +226,12 @@ export async function verifyModelComparisons({ page, application, getApplication
     };
     const originalHandler = handlers.get('qiyao:invoke');
     const handler = async function (...args) {
+      if (['saveComposerDraft', 'activateThread', 'submit'].includes(args[1])) {
+        const operation = { method: args[1], startedAt: Date.now() }; append(data.operations, operation);
+        try { const result = await originalHandler.apply(this, args); operation.success = true; return result; }
+        catch (error) { operation.success = false; throw error; }
+        finally { operation.finishedAt = Date.now(); }
+      }
       if (args[1] !== 'load') return originalHandler.apply(this, args);
       const row = { startedAt: Date.now() };
       try {
@@ -267,7 +273,7 @@ export async function verifyModelComparisons({ page, application, getApplication
   const collectContinuation = async () => ({ phase: continuationPhase, sendStartedAt, capturedAt: Date.now(), originalDeadlineMs: 10_000, originalPollIntervalMs: 100,
     expectedServerRequests: beforeRequests + 11, serverRequests: fixture.requests.length, timeline: fixture.timeline.slice(-4),
     rendererPolls: await page.evaluate(() => globalThis.qiyaoComparisonContinuationPolls).catch(() => undefined),
-    native: await getApplication().evaluateMain('({observations:globalThis.qiyaoComparisonContinuationObservations,transport:globalThis.qiyaoModelTransportEvents?.filter(item=>item.path.startsWith("/model-comparison/")).slice(-4),memory:process.memoryUsage(),cpu:process.cpuUsage(),capturedAt:Date.now()})').catch(() => undefined) });
+    native: await getApplication().evaluateMain('({observations:globalThis.qiyaoComparisonContinuationObservations,closeOperations:globalThis.qiyaoCloseOperations?.slice(-16),transport:globalThis.qiyaoModelTransportEvents?.filter(item=>item.path.startsWith("/model-comparison/")).slice(-4),memory:process.memoryUsage(),cpu:process.cpuUsage(),capturedAt:Date.now()})').catch(() => undefined) });
   try {
     await page.getByRole('button', { name: '发送消息', exact: true }).click();
     await waitForBridge(page, async ({ id, count }) => {

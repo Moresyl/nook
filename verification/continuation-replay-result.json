@@ -1,0 +1,19 @@
+{
+  "originalFailure": "code-wrap-installed-review-result.json",
+  "originalFixture": "E:/NookVerification/Temp/qiyao-electron-4TBXcJ",
+  "originalWorkspaceSha256": "d207093ff91d2d131dc047cddedef53e4c5361f31db8728e4de0cffb3eb57ed3",
+  "replaySeed": "E:/NookVerification/ContinuationReplay-yOR82b",
+  "seedPreparation": "Copied workspace, encrypted test credentials and complete skills/plugins into a fresh owned directory. Preserved 303 conversations and all history. Renamed only two prior test conversation titles to avoid exact-label collisions; the original fixture was not modified.",
+  "executable": "artifacts/win-unpacked/Nook.exe",
+  "executableSha256": "319460168cbdbb7e47cd9f72b18a6acbcaf880e59e05e89d51c457b384e1822b",
+  "diagnostics": "Bounded timing records for draft saves, activation and submit, plus preexisting close-operation observations; no prompt or credential content is added to diagnostics, no product code or deadlines changed.",
+  "attempts": [
+    { "status": "failed before test", "phase": "startup", "elapsedMs": 30998, "deadlineMs": 30000, "fixture": "E:/NookVerification/Temp/qiyao-electron-fM05HG", "log": "nook-continuation-original-replay.log", "sha256": "f91c8b17da2d0830fba9e11d0d936408633dfe87db7710a5b2c06abe92757e88" },
+    { "status": "passed", "verifiedAt": "2026-10-06T00:53:42.448Z", "checks": 6, "normalCloseMs": 1674, "runtimeErrors": [], "serverRequests": 11, "partialObservedAfterSendMs": 6772, "completeObservedAfterSendMs": 8830, "activationBeforeSubmitMs": 1517, "draftSaveBeforeSubmitMs": 1094, "submitMs": 1612, "log": "nook-continuation-original-replay-second.log", "sha256": "861719a0cccfd7ea10364c5c0e3c8922044ef0186ee8402e6e81d44894b43e9f", "result": "model-comparisons-packaged-result.json" }
+  ],
+  "logDirectory": "D:/GR/pi-pc/.firecrawl",
+  "status": "focused second attempt passed; original failure not reproduced or fixed",
+  "originalWorkspaceHashUnchangedAfterReplay": true,
+  "nextInvestigation": "The successful run awaited activation and draft persistence before submit. Separate backup flush observations included 823/1057 ms backup-file sync calls. Inspect queue and storage timings under the failing full-run conditions before attributing the original timeout to any one stage.",
+  "boundary": "Startup failure is not a reproduction of continuation timeout. A focused replay cannot replace complete installed-runtime verification or prove a fix for an intermittent failure."
+}
