@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { createHash, randomUUID } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -72,7 +73,7 @@ export async function verifyPromptTransfer({ page, application, getApplication, 
     await importing().getByLabel('查看模板', { exact: true }).selectOption('0'); assert.equal(await importing().locator('img').count(), 0); await capture('129-prompt-import-preview-light.png');
     await importing().getByRole('button', { name: '取消', exact: true }).click(); assert.deepEqual(await inspect(), original);
     await pickOpen(inputPath); await page.getByRole('button', { name: '导入模板', exact: true }).click(); await importing().waitFor(); assert.equal(await importing().getByLabel('模板内容', { exact: true }).inputValue(), content);
-    await page.keyboard.press('Escape'); await importing().waitFor({ state: 'hidden' }); assert.deepEqual(await inspect(), original);
+    await dismissModalWithEscape(page, importing()); assert.deepEqual(await inspect(), original);
     await writeFile(invalidPath, JSON.stringify({ ...bundle, credentials: { key: 'PROMPT_PRIVATE_FIXTURE' } })); await pickOpen(invalidPath); await page.getByRole('button', { name: '导入模板', exact: true }).click();
     await page.getByRole('alert').waitFor(); assert.ok(!(await page.getByRole('alert').innerText()).includes(directory)); assert.equal(await importing().count(), 0); await page.getByRole('button', { name: '关闭提示', exact: true }).click();
     assert.deepEqual(await inspect(), original); assert.equal(calls.length, initialCalls);
@@ -107,7 +108,7 @@ export async function verifyPromptTransfer({ page, application, getApplication, 
       await pickOpen(inputPath); await page.getByRole('button', { name: '导入模板', exact: true }).click(); await importing().waitFor(); const done = importing().getByRole('button', { name: '添加 3 个模板', exact: true }); await done.focus();
       const geometry = await importing().evaluate((dialog) => { const header = dialog.querySelector('.modal-header').getBoundingClientRect(); const footer = dialog.querySelector('.modal-footer').getBoundingClientRect(); const body = dialog.querySelector('.modal-content'); return { width: innerWidth, height: innerHeight, top: header.top, bottom: footer.bottom, scrollable: body.scrollHeight > body.clientHeight, overflow: document.documentElement.scrollWidth > innerWidth + 1 }; });
       assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.height + 1); assert.equal(geometry.overflow, false); assert.equal(geometry.scrollable, true); assert.equal(await done.evaluate((element) => element === document.activeElement), true); layout.push({ zoom, ...geometry });
-      await capture(`131-prompt-import-dark-zoom-${Math.round(zoom * 100)}.png`); await page.keyboard.press('Escape'); await importing().waitFor({ state: 'hidden' });
+      await capture(`131-prompt-import-dark-zoom-${Math.round(zoom * 100)}.png`); await dismissModalWithEscape(page, importing());
       assert.equal(await page.getByRole('button', { name: '导入模板', exact: true }).evaluate((element) => element === document.activeElement), true);
     }
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); assert.equal(calls.length, initialCalls);

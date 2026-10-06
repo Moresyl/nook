@@ -1,0 +1,464 @@
+{
+  "productCodeChanged": true,
+  "finalDistributionUpdated": false,
+  "featureComplete": false,
+  "reference": {
+    "directory": "E:/txt",
+    "version": "26.930.41038",
+    "build": "13022",
+    "tooltipMaximumWidthPixels": 300
+  },
+  "sourceBasisCommit": "dad714ccf24739a0d67a2017753be2d3f183d79c",
+  "changes": "Migrate the seven remaining native tooltip descriptions in file trees, the directory toolbar, Git branches and PDF annotations. Preserve tree roving focus, native PDF elements/direct rectangles, single active hints and existing action handlers. Keep keyboard hints positioned during scroll; Escape dismisses the active tooltip before its modal. Retain iframe titles as accessible document names.",
+  "native": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 7,
+    "normalExits": [
+      {
+        "elapsedMs": 4014,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "report": "verification/all-hints-native-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-native-capture.log",
+      "sha256": "caf509c1edf60b0ee10e8db810f81c13809542a005aab9bf734a725242b3c178"
+    }
+  },
+  "surfaces": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 4,
+    "normalExits": [
+      {
+        "elapsedMs": 1431,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "report": "verification/all-hints-surfaces-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-modal-hierarchy-fixed-surfaces.log",
+      "sha256": "a08df0bbfc5d0110b95eaa439a277b8490470e367eade2ae2ae91445e4686551"
+    }
+  },
+  "pdf": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 6,
+    "normalExits": [
+      {
+        "elapsedMs": 4932,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2713,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "report": "verification/all-hints-pdf-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-pdf-regression.log",
+      "sha256": "d42017d6db3e2c4ff716f09c65f478d796bba2b355ee23dadfb1e719790d3516"
+    }
+  },
+  "tree": {
+    "passed": true,
+    "executorExitCode": 0,
+    "checks": 7,
+    "normalExits": [
+      {
+        "elapsedMs": 869,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 660,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "report": "verification/all-hints-tree-result.json",
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-tree-hierarchy-regression.log",
+      "sha256": "2378c774706766b7ab5021df609d0a853fa53b624fbfc3c37674fe190f3fda52"
+    }
+  },
+  "build": {
+    "passed": true,
+    "executorExitCode": 0,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-scroll-build.log",
+      "sha256": "17f8971ae693bfe0e82c7a36be985d163a7a674b037abb568a079e2264d77756"
+    }
+  },
+  "typecheck": {
+    "passed": true,
+    "executorExitCode": 0,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-final-types.log",
+      "sha256": "7ffb46acb35825f77e313ba5c8623c2c024c1bf9de045bf7532cdf8f328b5f4c"
+    }
+  },
+  "fullUnit": {
+    "passed": true,
+    "files": 95,
+    "tests": 913,
+    "workers": 2,
+    "wholeTestBudgetMilliseconds": 5000,
+    "globalThresholdPercent": 80,
+    "coverage": {
+      "lines": {
+        "total": 3508,
+        "covered": 3486,
+        "skipped": 0,
+        "pct": 99.37
+      },
+      "statements": {
+        "total": 5837,
+        "covered": 5671,
+        "skipped": 0,
+        "pct": 97.15
+      },
+      "functions": {
+        "total": 1312,
+        "covered": 1277,
+        "skipped": 0,
+        "pct": 97.33
+      },
+      "branches": {
+        "total": 4063,
+        "covered": 3847,
+        "skipped": 0,
+        "pct": 94.68
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageArtifact": {
+      "path": "E:/NookVerification/AllHintsCoverage-20261006/coverage-summary.json",
+      "sha256": "e3cfc7000010600eab678922ed1c7c1fd436bcaa87954d01a6de60f3b81e1073"
+    },
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-full-unit-coverage.log",
+      "sha256": "7f9eb33d27d3bfdb26daa0abb992670f5fe5f4bc693c2c06379282ce2fe7a4e1"
+    },
+    "coverageScope": "Configured contracts and desktop services; renderer behavior is covered by the native suites, not this coverage percentage."
+  },
+  "sourceArtifacts": [
+    {
+      "file": "workbench/components/control-tooltip.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/control-tooltip.tsx",
+      "sha256": "3cc3389c45a154a54fb3f253cdbdedfb1bc5b1eaebff010f6d449fe3ab612772"
+    },
+    {
+      "file": "workbench/components/pdf-annotation-layer.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/pdf-annotation-layer.tsx",
+      "sha256": "574ed52a928cc758dc3a0bb63d121125914aa3a90605f8cef609ccec2c6c13c1"
+    },
+    {
+      "file": "workbench/components/project-explorer.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/project-explorer.tsx",
+      "sha256": "6135e86f5e218dbd473a9a9e4fccb945dd7506bd15eb12b97e3b58b2034838d1"
+    },
+    {
+      "file": "workbench/components/project-changes.tsx",
+      "path": "E:/NookWorktrees/document-originals/workbench/components/project-changes.tsx",
+      "sha256": "302439f66193368e5180ab3fcbfac61795293b46a5bf4188634cc62f02afecf5"
+    },
+    {
+      "file": "workbench/theme/surfaces.css",
+      "path": "E:/NookWorktrees/document-originals/workbench/theme/surfaces.css",
+      "sha256": "0234e23e5c80f563aa4918b6d95ce1b814bcaf01c8fcec5404469954eb44fac0"
+    },
+    {
+      "file": "workbench/theme/pdf-preview.css",
+      "path": "E:/NookWorktrees/document-originals/workbench/theme/pdf-preview.css",
+      "sha256": "10eaabbdf215132144c2ab41b1ef65f258bc27e0697dbcff4022dd93d6a40864"
+    },
+    {
+      "file": "scripts/verify-text-hints.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-text-hints.mjs",
+      "sha256": "dc372838a2d8e53e215ac2af245261ddacc976b9ba47f9ead9a18098adfd145f"
+    },
+    {
+      "file": "scripts/verify-annotation-hints.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-annotation-hints.mjs",
+      "sha256": "552e91e90077fb76f6b3813a38fea1bc1b71753a9ed583290cd51fe8f36cc9e0"
+    },
+    {
+      "file": "scripts/text-hint-verification.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/text-hint-verification.mjs",
+      "sha256": "3b0b79ca40ebe772ef82a7e970d43e04945049d06221362713f93a398ab2f8d9"
+    },
+    {
+      "file": "scripts/desktop-screenshot.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/desktop-screenshot.mjs",
+      "sha256": "5928301bf4b0a67f9c988c49360ed6503318ecc8041cc9a0b6ce61d30d2f7a8f"
+    },
+    {
+      "file": "scripts/verify-surfaces.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-surfaces.mjs",
+      "sha256": "8cf3e349a9c010d2dcb782553cd0492e102d9a70941874fe70d33f29c7421900"
+    },
+    {
+      "file": "scripts/desktop-screenshot.d.mts",
+      "path": "E:/NookWorktrees/document-originals/scripts/desktop-screenshot.d.mts",
+      "sha256": "cb6908263bf980371a651cae953fd11cd3e4d23e4ee512f79ce9b2d45892c1d8"
+    },
+    {
+      "file": "verification/desktop-screenshot.test.ts",
+      "path": "E:/NookWorktrees/document-originals/verification/desktop-screenshot.test.ts",
+      "sha256": "d8c57f0deadf11c04bfb41affb8b7b607aa306c51edf76f4008fda8596b90e9a"
+    },
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-desktop.mjs",
+      "sha256": "093270fe1a3884f01f2b5f6bd248ece057d1c9989cb3d62ca78b510585f0d6e9"
+    },
+    {
+      "file": "scripts/verify-assistant-recipes.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-assistant-recipes.mjs",
+      "sha256": "1a76463188299625e43ae3c3dad8213f1d3aa31360366a91c0227f8b8f26f22b"
+    },
+    {
+      "file": "scripts/verify-checkboxes.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-checkboxes.mjs",
+      "sha256": "fe2a93dc4f32847486fde8cd6623294d32a7c5d5ec814a0a48657c1ca359c885"
+    },
+    {
+      "file": "scripts/verify-conversation-branches.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-conversation-branches.mjs",
+      "sha256": "10a36dd431dd74805f224b872fa5f66b7198da0d1102210113f53f7b7cacf271"
+    },
+    {
+      "file": "scripts/verify-mcp-binary-files.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-mcp-binary-files.mjs",
+      "sha256": "55a921fc6e897de2ce9d7f87250cf9132caecad7ac1cb0caaec9822bd84887ba"
+    },
+    {
+      "file": "scripts/verify-memories.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-memories.mjs",
+      "sha256": "b3e286f4d3e2fe8ab75f7fce59eb08774ecd9343a6d83c6fd7b939b5beeee9b9"
+    },
+    {
+      "file": "scripts/verify-model-comparisons.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-model-comparisons.mjs",
+      "sha256": "a6107790f0d078f060a2043393565e788dde13d6502cb283152812ec7e34fdb1"
+    },
+    {
+      "file": "scripts/verify-project-preview-dock.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-project-preview-dock.mjs",
+      "sha256": "f8a2eabf8c7a304f9763dfcfcbb8f0cc5c4bb3111b4a0632816ba8cd8d791863"
+    },
+    {
+      "file": "scripts/verify-project-preview.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-project-preview.mjs",
+      "sha256": "b5c29a7d9dd138c5597b5dd8ee0553712c508ea61ed1d8e62dacfd490ead98f3"
+    },
+    {
+      "file": "scripts/verify-project-tree.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-project-tree.mjs",
+      "sha256": "9048c472e4941a8b137a51a1a1ba287323577f3d8c17324c5e122241e2c5f1ce"
+    },
+    {
+      "file": "scripts/verify-prompt-transfer.mjs",
+      "path": "E:/NookWorktrees/document-originals/scripts/verify-prompt-transfer.mjs",
+      "sha256": "1d9b889a9cc00c7199bbf4b8d14aaae30134e5b659f69d67b90d90fb00e742c8"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/images/all-tree-hints-light-100.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-tree-hints-light-100.png",
+      "sha256": "c4bf480ec57b0f6545707e5c833cd1604d0b94ba9c38e2f12227cf6e958082bb",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-branch-hints-light-100.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-branch-hints-light-100.png",
+      "sha256": "f383cb40bf498cc5df9debc5654ccef3263746966f85a9a1786cbc278d9ec6d5",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-light-100.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-light-100.png",
+      "sha256": "6066d87bbf855bc54057c43cb3a41f9e836d70a8bde4695c1c29d38cdb0c2c63",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-annotation-hints-light-100.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-annotation-hints-light-100.png",
+      "sha256": "825b3c4abb2617fc300c563500af67d26e249587a9d421f3aae03e09f261ce70",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-light-125.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-light-125.png",
+      "sha256": "7df50de007cfb52d51b752f06d11a0d799b9ff19faae4b47d25f0c3fe570b60d",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-light-150.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-light-150.png",
+      "sha256": "11833a71fa4aa0a9b833d5ec5e330c982522e4f12255bf218b7b2496c4951749",
+      "individuallyReviewed": true,
+      "dimensions": [
+        1280,
+        840
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-dark-100.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-dark-100.png",
+      "sha256": "21dfd5f953e008f189d307683856e64cd8ffda149e1fe4fb0fca3e1a194da41c",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-dark-125.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-dark-125.png",
+      "sha256": "e383e7e5e0786cf4c7f042d735c80af872e632bac5dc3b735f35d7a46af3c871",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    },
+    {
+      "file": "docs/images/all-tree-hints-dark-150.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-tree-hints-dark-150.png",
+      "sha256": "5024142094ac07e85eb1ef245322a33ded32bdc8b9adc3538a6237eca40f20bd",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    },
+    {
+      "file": "docs/images/all-branch-hints-dark-150.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-branch-hints-dark-150.png",
+      "sha256": "a48be3144fa21b7e01317e6f243958d35fc1ceed35e3b05fa0d32d64e490edaa",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    },
+    {
+      "file": "docs/images/all-text-hints-dark-150.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-text-hints-dark-150.png",
+      "sha256": "d21e97d328f54a52790a0a603504d1660e0fea0fb1f4c4f205bae6dc7b96a66f",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    },
+    {
+      "file": "docs/images/all-annotation-hints-dark-150.png",
+      "path": "E:/NookWorktrees/document-originals/docs/images/all-annotation-hints-dark-150.png",
+      "sha256": "cf0cb0cea153ba65ea4a0f0a8ffb8e8d0b3a777d943cd804077f086cf56e24b3",
+      "individuallyReviewed": true,
+      "dimensions": [
+        760,
+        540
+      ]
+    }
+  ],
+  "screenshotScope": "Native BrowserWindow capture with exact whole-content PNG bounds in every theme/zoom. Parent docked-preview captures are not composited native child-view captures.",
+  "previousCroppedCaptureRound": {
+    "nativeChecksPassed": 7,
+    "normalCloseMilliseconds": 935,
+    "screenshotAcceptancePassed": false,
+    "log": {
+      "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-scroll-native.log",
+      "sha256": "abfb7c0d7871d418ff9805bdad00bea8003243dc11d7667e207484503a8d64d2"
+    },
+    "report": "verification/all-hints-first-pass-result.json",
+    "retainedImages": "D:/GR/pi-pc/.firecrawl/all-hints-cropped-captures"
+  },
+  "retainedFailures": [
+    {
+      "passed": false,
+      "reason": "A toolbar span rule overrode tooltip typography and wrapping; fixed by excluding role=tooltip from the text rule.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-first-native.log",
+        "sha256": "ad03dd076f39f8faa46436caa4a0ae947585be4c51fbb74855591ff6c8e2b428"
+      }
+    },
+    {
+      "passed": false,
+      "reason": "Light 150% PDF note Escape closed the parent reader. Focused-scroll positioning was added; subsequent six-scenario reruns passed. No sampled blocker trace exists for the failed instant.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-fixed-native.log",
+        "sha256": "62e98fb6f3a93e8f1624b38d99088c77310dc441c4b8728c33cdc80cd703ba3b"
+      }
+    },
+    {
+      "passed": false,
+      "reason": "The old single-Escape modal assertion conflicted with the new tooltip-first dismissal. The revised test verifies hint dismissal, modal visibility and unchanged focus before a second Escape closes the modal.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-surfaces-native.log",
+        "sha256": "a9e16ce8dc3b190aedacd7f39c7024ecf8fbdcfd25a6fc96e1bb252d7f2233f9"
+      }
+    },
+    {
+      "passed": false,
+      "reason": "An accidental self-call in the test helper was detected and the owned run was interrupted. This is a test implementation mistake, excluded from normal-exit acceptance.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-modal-hierarchy-surfaces.log",
+        "sha256": "8183267d9e9af30cf8ba1c9b17062f4101b8222406aebce1ab57053037a9c54f"
+      }
+    },
+    {
+      "passed": false,
+      "reason": "The old project-settings single-Escape assertion failed after three successful tree groups. The shared dismissal verifier now checks hint dismissal and retained focus before closing the actual modal; the complete seven-group rerun passed.",
+      "log": {
+        "path": "D:/GR/pi-pc/.firecrawl/nook-all-hints-tree-regression.log",
+        "sha256": "95d64d7447e8c1e2341d1aa22f3df716f5a1baa4b9374c1e7678c03a9d6e2e42"
+      }
+    }
+  ],
+  "previousCompleteSourceFailure": "verification/text-hints-default-full-failure-result.json",
+  "nativeShutdownRootCauseEstablished": false,
+  "hostedExecutionVerified": false,
+  "published": false
+}

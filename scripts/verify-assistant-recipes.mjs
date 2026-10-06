@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { randomUUID } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -73,7 +74,7 @@ export async function verifyAssistantRecipes({ page, application, getApplication
     const geometry = await using().evaluate((dialog) => { const header = dialog.querySelector('.modal-header').getBoundingClientRect(); const footer = dialog.querySelector('.modal-footer').getBoundingClientRect(); return { width: innerWidth, height: innerHeight, top: header.top, bottom: footer.bottom, overflow: document.documentElement.scrollWidth > innerWidth + 1 }; });
     assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.height + 1); assert.equal(geometry.overflow, false); assert.equal(await done.evaluate((element) => element === document.activeElement), true); layout.push({ zoom, ...geometry });
     await capture(`127-assistant-recipe-dark-zoom-${Math.round(zoom * 100)}.png`);
-    await page.keyboard.press('Escape'); await using().waitFor({ state: 'hidden' }); assert.equal(await row().getByRole('button', { name: '使用模板', exact: true }).evaluate((element) => element === document.activeElement), true);
+    await dismissModalWithEscape(page, using()); assert.equal(await row().getByRole('button', { name: '使用模板', exact: true }).evaluate((element) => element === document.activeElement), true);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); assert.equal(calls.length, initialCalls);
   verified('actual assistant removal clears only its recipe binding; a stale edit fails without discarding entered text or parameter metadata, valid retry succeeds, and dark minimum-window choice controls retain title/footer, native focus and Escape at three zoom levels');

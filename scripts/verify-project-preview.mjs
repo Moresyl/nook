@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { createServer } from 'node:http';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -92,7 +93,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
     await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click();
     const settings = page.getByRole('dialog', { name: '设置', exact: true }); await settings.getByRole('button', { name: '外观与交互', exact: true }).click();
     await settings.getByLabel('主题', { exact: true }).selectOption('dark'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
-    await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' });
+    await dismissModalWithEscape(page, settings);
     await page.getByRole('button', { name: '隐藏文件树', exact: true }).click(); await application.resize(760, 540);
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1.5)`); await page.waitForFunction(() => Math.abs(innerWidth - 760 / 1.5) < 2);
     const bounds = await page.getByRole('button', { name: '预览 HTML', exact: true }).evaluate(element => { const rect = element.getBoundingClientRect(); return { visible: rect.width > 0 && rect.height > 0 && rect.left >= 0 && rect.top >= 0 && rect.right <= innerWidth && rect.bottom <= innerHeight, overflow: document.documentElement.scrollWidth > innerWidth }; });

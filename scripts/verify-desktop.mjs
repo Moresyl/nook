@@ -583,7 +583,7 @@ try {
   } else if (process.env.QIYAO_TEST_TEXT_HINTS_ONLY) {
     const { verifyTextHints } = await import('./verify-text-hints.mjs');
     textHintResult = await verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge });
-    assert.equal(count, 4); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_SURFACES_ONLY) {
     surfaceResult = await verifySurfaces({ page, application, screenshots, verified, waitForBridge });
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);

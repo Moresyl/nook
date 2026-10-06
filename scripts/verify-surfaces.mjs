@@ -3,6 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { verifyStartupFallback } from './verify-startup-fallback.mjs';
 import { verifyStartupRecovery } from './verify-startup-recovery.mjs';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
 
@@ -232,7 +233,7 @@ async function assertButtonTooltips(page, application, screenshots, draft) {
   const dialog = page.getByRole('dialog', { name: '设置', exact: true });
   await dialog.waitFor();
   assert.equal(await settings.getAttribute('aria-describedby'), null, 'Keyboard activation dismisses the button hint');
-  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+  await dismissModalWithEscape(page, dialog);
   assert.equal(await settings.evaluate(element => element === document.activeElement), true);
   const composer = page.getByLabel('消息', { exact: true });
   await composer.fill('');
@@ -287,7 +288,7 @@ async function assertTooltipModalScope(page, draft) {
     await page.waitForTimeout(600);
     assert.equal(await hint.evaluateAll(elements => elements.some(element => !element.closest('dialog:modal'))), false, 'Opening a modal must dismiss active and pending background hints');
     assert.equal(await dialog.evaluate(element => element.contains(document.activeElement)), true);
-    await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+    await dismissModalWithEscape(page, dialog);
     assert.equal(await composer.inputValue(), draft);
     assert.equal(await composer.evaluate(element => element === document.activeElement), true);
   }
@@ -457,7 +458,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
 
   await theme.selectOption('dark');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
-  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+  await dismissModalWithEscape(page, dialog);
   assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   await application.resize(760, 540);
@@ -482,7 +483,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
     if (width === 760 && zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));
     if (width === 1280 && zoom === 1.5) await captureSurface(page, application, join(screenshots, '98-surface-short-wide.png'));
-    await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+    await dismissModalWithEscape(page, dialog);
     assert.equal(await page.locator('dialog .control-tooltip:popover-open').count(), 0, 'Closing a modal must remove its own hints; restored keyboard focus may show the opener hint');
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);

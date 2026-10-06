@@ -3,7 +3,7 @@ import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { waitForTerminalPrompt } from './terminal-prompt.mjs';
-import { assertTextHint } from './text-hint-verification.mjs';
+import { assertTextHint, dismissModalWithEscape } from './text-hint-verification.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
   async function waitForMain(expression) {
@@ -179,7 +179,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     layout.push({ zoom, fileTree: zoom === 1, sidebar: true, ...bounds });
     const add = await page.getByRole('button', { name: '添加项目', exact: true }).boundingBox(); assert.ok(add && add.x >= 0 && add.y >= 0 && add.x + add.width <= bounds.width + 1 && add.y + add.height <= bounds.height + 1, 'The compact layout must retain the add-project action');
     if (zoom === 1.5) {
-      const opener = page.getByRole('button', { name: `编辑 ${longName}`, exact: true }); await opener.focus(); await opener.press('Enter'); const settings = page.getByRole('dialog', { name: '项目设置', exact: true }); await settings.waitFor(); assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), longName); assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await capture('98-project-settings-zoom-150.png'); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' }); assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
+      const opener = page.getByRole('button', { name: `编辑 ${longName}`, exact: true }); await opener.focus(); await opener.press('Enter'); const settings = page.getByRole('dialog', { name: '项目设置', exact: true }); await settings.waitFor(); assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), longName); assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await capture('98-project-settings-zoom-150.png'); await dismissModalWithEscape(page, settings); assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
       await page.locator('.project-tabs').hover(); await page.mouse.wheel(-10_000, 0);
       await page.waitForFunction(() => document.querySelector('.project-tabs').scrollLeft < 1);
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -187,7 +187,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
       await application.evaluateMain(`globalThis.nookSwitcherOpenDialog=require('electron').dialog.showOpenDialog;require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:[${JSON.stringify(root)}]});`);
       try {
         const addProject = page.getByRole('button', { name: '添加项目', exact: true }); await addProject.focus(); await addProject.press('Enter'); await settings.waitFor();
-        assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' });
+        assert.equal(await settings.getByLabel('文件夹', { exact: true }).inputValue(), root); await dismissModalWithEscape(page, settings);
         assert.equal(await addProject.evaluate(element => element === document.activeElement), true);
       } finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.nookSwitcherOpenDialog;delete globalThis.nookSwitcherOpenDialog"); }
       const firstRow = page.locator('.project-tabs .project-row').first(); const firstProject = firstRow.getByRole('button').first(); const firstName = await firstProject.innerText();
@@ -197,7 +197,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
       assert.equal(await firstProject.evaluate(element => { const row = element.closest('.project-row').getBoundingClientRect(); const view = element.closest('.project-tabs').getBoundingClientRect(); return element === document.activeElement && row.left >= view.left - 1 && row.right <= view.right + 1; }), true);
       await firstProject.press('Tab'); const editFirst = firstRow.getByRole('button', { name: `编辑 ${firstName}`, exact: true });
       assert.equal(await editFirst.evaluate(element => element === document.activeElement), true); await editFirst.press('Enter'); await settings.waitFor();
-      assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), firstName); await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' });
+      assert.equal(await settings.getByLabel('项目名称', { exact: true }).inputValue(), firstName); await dismissModalWithEscape(page, settings);
       assert.equal(await editFirst.evaluate(element => element === document.activeElement), true);
       await application.resize(760, 540); await page.waitForFunction(() => Math.abs(innerWidth - 760 / 1.5) < 2);
       await page.locator('.project-row.selected > button').first().focus();

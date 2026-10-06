@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -50,7 +51,7 @@ export async function verifyMemories({ page, application, directory, screenshots
     await window.qiyao.removeProject(projectId);
   }, projectId);
   assert.equal((await page.evaluate(() => window.qiyao.load())).memories.some((entry) => entry.projectId === projectId), false);
-  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+  await dismissModalWithEscape(page, dialog);
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await page.reload(); await application.resize(1280, 840);
   verified('memory deletion supports cancel and confirm, and removing a project removes its scoped memories');

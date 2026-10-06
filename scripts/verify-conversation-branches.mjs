@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { randomUUID } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -152,7 +153,7 @@ export async function verifyConversationBranches({ page, application, getApplica
     assert.equal(bounds.overflow, false); assert.ok(bounds.header.top >= 0 && bounds.footer.bottom <= bounds.height); layout.push({ zoom, ...bounds, headerControls }); await capture(`108-branch-navigation-dark-zoom-${zoom * 100}.png`); await dialog().getByRole('button', { name: '取消', exact: true }).click();
     await open(); const orderControls = dialog().getByRole('group', { name: '调整同层分支顺序', exact: true }); await orderControls.scrollIntoViewIfNeeded();
     const controls = await orderControls.getByRole('button').evaluateAll((buttons) => buttons.map((button) => { const rect = button.getBoundingClientRect(); const content = button.closest('.modal-content').getBoundingClientRect(); return { label: button.getAttribute('aria-label'), visible: rect.width > 0 && rect.height > 0 && rect.left >= 0 && rect.right <= innerWidth && rect.top >= content.top && rect.bottom <= content.bottom }; }));
-    assert.equal(controls.length, 3); assert.ok(controls.every((control) => control.visible), JSON.stringify({ zoom, controls })); await orderButton('下移同层分支').focus(); await page.keyboard.press('Tab'); assert.equal(await orderButton('恢复本层顺序').evaluate((element) => element === document.activeElement), true); await capture(`116-branch-order-dark-zoom-${zoom * 100}.png`); await page.keyboard.press('Escape'); await dialog().waitFor({ state: 'hidden' });
+    assert.equal(controls.length, 3); assert.ok(controls.every((control) => control.visible), JSON.stringify({ zoom, controls })); await orderButton('下移同层分支').focus(); await page.keyboard.press('Tab'); assert.equal(await orderButton('恢复本层顺序').evaluate((element) => element === document.activeElement), true); await capture(`116-branch-order-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog());
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(modelRequests(), beforeRequests);
   verified('real gzip backup replacement and normal restart retain every branch/owner draft, and native dark 760×540 layouts keep dialog controls and keyboard focus accessible at 100/125/150 percent zoom');

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -62,7 +63,7 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   const preservedId = await currentId(); await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click();
   const settings = page.getByRole('dialog', { name: '设置', exact: true }); await settings.waitFor(); await wait(`!${visible}`);
   await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('dark'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
-  await page.keyboard.press('Escape'); await settings.waitFor({ state: 'hidden' }); await ready(); assert.equal(await currentId(), preservedId);
+  await dismissModalWithEscape(page, settings); await ready(); assert.equal(await currentId(), preservedId);
   await page.getByRole('button', { name: '隐藏文件树', exact: true }).click(); await application.resize(760, 540);
   for (const zoom of [1, 1.25, 1.5]) { await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await page.waitForFunction(value => Math.abs(innerWidth - 760 / value) < 2, zoom); await geometry(zoom); await capture(`dark-${zoom}`); }
   const compactId = await currentId(); await page.getByRole('button', { name: '编辑代码', exact: true }).click(); await wait(`!${visible}`);

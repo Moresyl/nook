@@ -1,11 +1,32 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode, type Ref } from 'react';
 import type { FileEntry } from '../../contracts/projects';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
+import { TextHint, useControlTooltip } from './control-tooltip';
 import { ProjectTree, projectTreeKey, projectTreeRows, type ProjectTreeState } from './project-tree';
 
 type Props = { projectId: string; active: string; revision: number; hidden: boolean; onOpen: (path: string) => void; onNew: (directory: string) => void };
 const parent = (path: string) => path.slice(0, Math.max(0, path.lastIndexOf('/')));
+
+function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocus, onKeyDown, onActivate, children }: {
+  entry: FileEntry; level: number; expanded: boolean; selected: boolean; tabIndex: number;
+  register: Ref<HTMLDivElement>; onFocus: () => void; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
+  onActivate: () => void; children: ReactNode;
+}) {
+  const row = useRef<HTMLDivElement>(null);
+  const tooltip = useControlTooltip<HTMLDivElement>(entry.relativePath, row);
+  return <div role="treeitem" aria-label={entry.relativePath} aria-level={level} aria-expanded={entry.directory ? expanded : undefined} aria-selected={selected} aria-describedby={tooltip.description} tabIndex={tabIndex} className="project-tree-item"
+    ref={element => { tooltip.anchor.current = element; if (typeof register === 'function') register(element); else if (register) register.current = element; }}
+    onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(); } }}
+    onBlur={event => { if (event.target === event.currentTarget) tooltip.hide(); }}
+    onKeyDown={onKeyDown}>
+    <div ref={row} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 4 + Math.min(level - 1, 8) * 12 }}
+      onPointerEnter={tooltip.enter} onPointerLeave={tooltip.leave} onPointerDown={tooltip.hide}
+      onClick={event => { tooltip.hide(); event.stopPropagation(); onActivate(); }}>
+      <span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={14} /><span className="project-tree-label">{entry.name}</span>
+    </div>{tooltip.content}{children}
+  </div>;
+}
 
 export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, onNew }: Props) {
   const [state, setState] = useState<ProjectTreeState>({ folders: new Map(), expanded: new Set() });
@@ -52,10 +73,9 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
     return <>
       {value?.page?.entries.map((entry) => {
         const expanded = entry.directory && state.expanded.has(entry.relativePath);
-        return <div key={entry.relativePath} role="treeitem" aria-label={entry.relativePath} aria-level={level} aria-expanded={entry.directory ? expanded : undefined} aria-selected={entry.relativePath === active} tabIndex={entry.relativePath === current ? 0 : -1} className="project-tree-item" ref={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={(event) => { if (event.target === event.currentTarget) focus(entry); }} onKeyDown={(event) => key(entry, event)}>
-          <div className={`project-tree-row ${entry.relativePath === active ? 'selected' : ''}`} style={{ paddingLeft: 4 + Math.min(level - 1, 8) * 12 }} title={entry.relativePath} onClick={(event) => { event.stopPropagation(); activate(entry); }}><span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={14} /><span className="project-tree-label">{entry.name}</span></div>
+        return <TreeItem key={entry.relativePath} entry={entry} level={level} expanded={expanded} selected={entry.relativePath === active} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
           {expanded && <div role="group">{folder(entry.relativePath, level + 1)}</div>}
-        </div>;
+        </TreeItem>;
       })}
       {value?.loading && <p role="status" className="project-tree-status">正在读取目录…</p>}
       {value?.error && <div className="project-tree-status"><span role="alert">目录读取失败或内容已变化，请刷新后重试。</span><Button aria-label={`重试目录 ${path || '项目根目录'}`} onClick={() => { void tree.current?.load(path, 'refresh'); }}>重试</Button></div>}
@@ -63,5 +83,5 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       {value?.page && value.page.nextOffset !== null && <Button className="project-tree-more" disabled={value.loading || value.error} aria-label={`加载更多 ${path || '项目根目录'}`} onClick={() => { void tree.current?.load(path, 'more'); }}>加载更多 · {value.page.entries.length} / {value.page.total}</Button>}
     </>;
   }
-  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><span title={directory}>文件</span><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { const model = tree.current; if (active && model) void model.reveal(active).then((found) => { if (found && tree.current === model && activeRef.current === active) { nodes.current.get(active)?.focus(); nodes.current.get(active)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); } }); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><div className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></div>;
+  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { const model = tree.current; if (active && model) void model.reveal(active).then((found) => { if (found && tree.current === model && activeRef.current === active) { nodes.current.get(active)?.focus(); nodes.current.get(active)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); } }); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><div className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></div>;
 }

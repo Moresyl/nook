@@ -1,8 +1,24 @@
 import assert from 'node:assert/strict';
 
-export async function assertTextHint(page, trigger, text) {
+export async function dismissModalWithEscape(page, dialog) {
+  await page.mouse.move(1, 1);
   const hint = page.locator('.control-tooltip:popover-open');
-  await trigger.hover(); await hint.filter({ hasText: text }).waitFor();
+  if (await hint.count()) {
+    assert.equal(await hint.count(), 1);
+    assert.equal(await hint.evaluate(element => Boolean(element.closest('dialog:modal'))), true);
+    const focused = await page.evaluateHandle(() => document.activeElement);
+    try {
+      await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
+      assert.equal(await dialog.isVisible(), true, 'Escape dismisses the active hint before its parent modal');
+      assert.equal(await focused.evaluate(element => document.activeElement === element), true);
+    } finally { await focused.dispose(); }
+  }
+  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+}
+
+export async function assertTextHint(page, trigger, text, { hoverTarget = trigger } = {}) {
+  const hint = page.locator('.control-tooltip:popover-open');
+  await page.mouse.move(1, 1); await hoverTarget.hover(); await hint.filter({ hasText: text }).waitFor();
   assert.equal(await hint.count(), 1);
   assert.equal(await hint.textContent(), text);
   assert.equal(await hint.locator('img').count(), 0);
@@ -17,6 +33,10 @@ export async function assertTextHint(page, trigger, text) {
   await trigger.focus(); await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
   assert.equal(await trigger.evaluate(element => document.activeElement === element && element.matches(':focus-visible')), true);
   await hint.filter({ hasText: text }).waitFor();
+  if (process.env.QIYAO_TEST_TOOLTIP_DIAGNOSTICS) console.log('Text hint keyboard dismissal', JSON.stringify(await trigger.evaluate(element => ({
+    description: element.getAttribute('aria-describedby'), active: document.activeElement === element,
+    modal: Boolean(element.closest('dialog:modal')), hints: [...document.querySelectorAll('.control-tooltip:popover-open')].map(tip => ({ id: tip.id, text: tip.textContent?.slice(0, 512) })),
+  }))));
   await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
   assert.equal(await trigger.evaluate(element => document.activeElement === element), true);
   assert.equal(await trigger.getAttribute('aria-describedby'), null);

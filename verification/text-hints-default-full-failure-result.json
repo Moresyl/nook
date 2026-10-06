@@ -1,0 +1,100 @@
+{
+  "passed": false,
+  "checksPassedBeforeFailure": 36,
+  "sourceBasisCommit": "dad714ccf24739a0d67a2017753be2d3f183d79c",
+  "sourceUiCommit": "af9efbb",
+  "variant": "Default complete source desktop suite without MCP startup preload",
+  "failure": "Native close exceeded its unchanged 10-second deadline before the first restart; forced termination is rejected.",
+  "closeDeadlineMilliseconds": 10000,
+  "exitObservations": [
+    {
+      "elapsedMs": 10014,
+      "forced": true,
+      "exitCode": null,
+      "signalCode": null
+    }
+  ],
+  "rootCauseEstablished": false,
+  "reachedMcpSubscriptionStage": false,
+  "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-JH0Ao1",
+  "log": {
+    "path": "D:/GR/pi-pc/.firecrawl/nook-text-hints-default-full-native.log",
+    "sha256": "f0a6aa9ff35b4164a1a4744dbba887597d094eadd4baf5a0331fcd7490db4981"
+  },
+  "javascriptProcessExitCallbackDelayMilliseconds": 698,
+  "nativeObservations": [
+    {
+      "requestedAt": 1791287346666,
+      "observedAt": 1791287348951,
+      "delayMilliseconds": 2285,
+      "processes": [
+        {
+          "pid": 114772,
+          "cpuMilliseconds": 10937.5,
+          "workingSetBytes": 151011328,
+          "threadCount": 40,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 86736,
+          "cpuMilliseconds": 4203.125,
+          "workingSetBytes": 144859136,
+          "threadCount": 53,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 53696,
+          "cpuMilliseconds": 156.25,
+          "workingSetBytes": 41271296,
+          "threadCount": 17,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 48776,
+          "exited": true
+        },
+        {
+          "pid": 117072,
+          "exited": true
+        }
+      ]
+    },
+    {
+      "requestedAt": 1791287346666,
+      "observedAt": 1791287352921,
+      "delayMilliseconds": 6255,
+      "processes": [
+        {
+          "pid": 114772,
+          "cpuMilliseconds": 10937.5,
+          "workingSetBytes": 151027712,
+          "threadCount": 40,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 86736,
+          "cpuMilliseconds": 4203.125,
+          "workingSetBytes": 137347072,
+          "threadCount": 52,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 53696,
+          "cpuMilliseconds": 156.25,
+          "workingSetBytes": 42168320,
+          "threadCount": 20,
+          "allObservedThreadsWaiting": true
+        },
+        {
+          "pid": 48776,
+          "exited": true
+        },
+        {
+          "pid": 117072,
+          "exited": true
+        }
+      ]
+    }
+  ],
+  "scope": "Preserves a failed complete run of the newly built first text-hint UI. JavaScript exit callbacks ran while Windows still reported the main, GPU and Utility processes; wait-state samples do not establish the blocker. Earlier focused UI and old package passes remain separate. No new complete success, package acceptance or release is inferred."
+}

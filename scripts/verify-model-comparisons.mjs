@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { randomUUID } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -375,10 +376,10 @@ export async function verifyModelComparisons({ page, application, getApplication
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }); await page.reload(); await application.resize(760, 540); const layout = [];
   for (const zoom of [1, 1.25, 1.5]) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await waitForBridge(page, ({ zoom }) => Math.abs(innerWidth - 760 / zoom) <= 1 && Math.abs(innerHeight - 540 / zoom) <= 1, { zoom }); await open();
-    const send = dialog().getByRole('button', { name: '发送并比较', exact: true }); await send.focus(); assert.equal(await send.evaluate((button) => button === document.activeElement), true); await capture(`120-model-comparison-config-dark-zoom-${zoom * 100}.png`); await page.keyboard.press('Escape'); await dialog().waitFor({ state: 'hidden' });
+    const send = dialog().getByRole('button', { name: '发送并比较', exact: true }); await send.focus(); assert.equal(await send.evaluate((button) => button === document.activeElement), true); await capture(`120-model-comparison-config-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog());
     await page.locator('.thread-list').getByRole('button', { name: first.title, exact: true }).click(); await page.getByRole('button', { name: '查看模型比较', exact: true }).focus(); await page.keyboard.press('Enter'); await dialog().waitFor();
     const bounds = await dialog().evaluate((element) => { const header = element.querySelector('.modal-header').getBoundingClientRect(); const footer = element.querySelector('.modal-footer').getBoundingClientRect(); return { width: innerWidth, height: innerHeight, headerTop: header.top, footerBottom: footer.bottom, overflow: document.documentElement.scrollWidth > innerWidth }; }); assert.equal(bounds.overflow, false); assert.ok(bounds.headerTop >= 0 && bounds.footerBottom <= bounds.height); layout.push({ zoom, ...bounds });
-    const openButton = dialog().locator('.comparison-result').first().getByRole('button', { name: '打开此对话', exact: true }); await openButton.focus(); assert.equal(await openButton.evaluate((button) => button === document.activeElement), true); await capture(`121-model-comparison-results-dark-zoom-${zoom * 100}.png`); await page.keyboard.press('Escape'); await dialog().waitFor({ state: 'hidden' }); await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click();
+    const openButton = dialog().locator('.comparison-result').first().getByRole('button', { name: '打开此对话', exact: true }); await openButton.focus(); assert.equal(await openButton.evaluate((button) => button === document.activeElement), true); await capture(`121-model-comparison-results-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog()); await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click();
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests + 11);
   verified('comparison setup and independently scrollable readonly results retain visible modal title/footer, native keyboard focus and Escape at 100%, 125% and 150% dark minimum-window zoom without making preview requests');

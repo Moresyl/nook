@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -64,7 +65,7 @@ export async function verifyCheckboxes({ page, application, create, fixtures, sc
     assert.deepEqual(saved.knowledgeCollectionIds, [fixtures[0].id]); assert.equal(saved.enabled, false);
     await page.locator(`[data-automation-id="${saved.id}"]`).getByRole('button', { name: '编辑任务', exact: true }).click();
     await dialog.getByText('助手、项目与上下文', { exact: true }).click(); assert.equal(await first.isChecked(), true); assert.equal(await second.isChecked(), false);
-    await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' }); await page.evaluate(id => window.qiyao.removeAutomation(id), saved.id);
+    await dismissModalWithEscape(page, dialog); await page.evaluate(id => window.qiyao.removeAutomation(id), saved.id);
   }
   await theme('light');
   return { themes: ['light', 'dark'], keyboardAndLabel: true, persistedSelection: true, disabledAndMixedProbes: true, reducedMotion: true, forcedColorsCheckedProbe: true, narrowZoom: 1.5, screenshots: captures, boundary: 'Real automation form and saved selections; disabled and mixed states are temporary DOM probes. Forced colors are emulated, not physical OS accessibility evidence.' };

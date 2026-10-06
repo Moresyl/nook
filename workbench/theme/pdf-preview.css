@@ -18,7 +18,9 @@
 .pdfPreviewPage .textLayer br::selection { background: transparent; }
 .pdfPreviewPage .annotationLayer { z-index: 2; pointer-events: none; transform-origin: 0 0; position: absolute; inset: 0; }
 .pdfPreviewPage .annotationLayer section { box-sizing: border-box; text-align: initial; pointer-events: auto; transform-origin: 0 0; position: absolute; }
-.pdfPreviewPage .annotationLayer .linkAnnotation > a { width: 100%; height: 100%; cursor: pointer; position: absolute; inset: 0; }
+.pdfPreviewPage .annotationLayer .linkAnnotation > :is(a, span[aria-label]) { width: 100%; height: 100%; position: absolute; inset: 0; }
+.pdfPreviewPage .annotationLayer .linkAnnotation > a { cursor: pointer; }
+.pdfPreviewPage .annotationLayer .linkAnnotation > span[aria-label] { cursor: not-allowed; }
 .pdfPreviewPage .annotationLayer .linkAnnotation > a:hover { background: #ff03; }
 .pdfPreviewPage .annotationLayer .noteAnnotation { pointer-events: none; }
 .pdf-note-button { position: absolute; top: 0; right: 0; width: 20px; height: 20px; pointer-events: auto; cursor: pointer; border: 1px solid var(--ds-border); border-radius: 4px; background: var(--ds-bg-elevated); color: var(--ds-text); }
