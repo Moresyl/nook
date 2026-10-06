@@ -1,0 +1,50 @@
+{
+  "sourceCommit": "cbfa30d",
+  "variant": "development executable",
+  "completeDesktopPassed": false,
+  "passedGroupsBeforeFailure": 202,
+  "exitCode": 1,
+  "normalFinalCloseVerified": false,
+  "finalClose": { "elapsedMs": 10008, "forced": true },
+  "log": "D:/GR/pi-pc/.firecrawl/nook-docked-full-desktop.log",
+  "logSha256": "a1365b4d8c0a1ef514b36619be2b171477ba79f48b27064b51285f6ccf73271b",
+  "retainedWorkspace": {
+    "directory": "E:/NookVerification/Temp/qiyao-electron-lFXJr0",
+    "fileBytes": 84349335,
+    "sha256": "626aa58989f92153a0e5c57f0ebc0963167981d8463f170907f479bfc9cd8fd1"
+  },
+  "failure": {
+    "operation": "page.evaluate returning the entire workspace to obtain one original composer draft before comparison setup",
+    "location": "scripts/verify-model-comparisons.mjs:187",
+    "message": "Target crashed",
+    "rendererReason": "crashed",
+    "rendererExitCode": -36861,
+    "reportedFreeSystemBytesAtCrash": 1264934912,
+    "causeEstablished": false
+  },
+  "passedBoundaries": [
+    "actual plugin renderer crash disables the plugin",
+    "large JSON/gzip backup and restart preserve complete content",
+    "seven project-tree groups and nine floating/docked preview groups",
+    "branch ordering, actual EIO rollback, backup/restart and duplicate-ID recovery",
+    "temporary conversation persistence exclusion and normal restart"
+  ],
+  "diagnosticChange": "Return the exact complete source draft from page.evaluate without transporting unrelated histories through CDP; retain subsequent complete-history and exact filesystem-byte assertions. Use a unique source title so a retained failed-workspace copy can be replayed without removing prior data.",
+  "independentReplay": {
+    "log": "D:/GR/pi-pc/.firecrawl/nook-comparison-scoped-draft-replay.log",
+    "logSha256": "59a9b170b549c9fbef9a4562f5446df8ed0eb9c9c9931a4f59ffe9139346c62b",
+    "exitCode": 0,
+    "checks": 6,
+    "normalCloseVerified": true,
+    "finalCloseMs": 4166,
+    "originalWorkspaceHashUnchanged": true,
+    "productionCodeChanged": false,
+    "completeSuiteRevalidationStillRequired": true
+  },
+  "boundaries": [
+    "The prior plugin-crash and inspector-timeout failures are not assumed to share this renderer-crash cause.",
+    "Intermediate result files and screenshots do not prove complete-suite success; this run's screenshots have not all been individually inspected.",
+    "No timeout, fixture content size, assertion, application IPC or production behavior was relaxed.",
+    "Independent replay must not modify the retained failed workspace."
+  ]
+}

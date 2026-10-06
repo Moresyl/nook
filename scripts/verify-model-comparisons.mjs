@@ -112,7 +112,7 @@ export async function verifyModelComparisons({ page, application, getApplication
   const attachment = { id: randomUUID(), name: '比较资料.txt', content: 'COMPARE_ATTACHMENT_EXACT' };
   const baseMessages = [{ id: randomUUID(), role: 'user', content: 'COMPARE_PREVIOUS_USER', attachments: [attachment], createdAt: 1, status: 'complete' }, { id: randomUUID(), role: 'assistant', content: 'COMPARE_PREVIOUS_REPLY', attachments: [], createdAt: 2, status: 'complete' }];
   const now = Date.now();
-  const source = { id: sourceId, title: '模型比较原对话', providerId: providerA, model: 'one', assistantId: 'general', projectId, mode: 'agent', messages: baseMessages, pinned: false, archived: false, createdAt: now, updatedAt: now };
+  const source = { id: sourceId, title: `模型比较原对话 ${sourceId.slice(0, 8)}`, providerId: providerA, model: 'one', assistantId: 'general', projectId, mode: 'agent', messages: baseMessages, pinned: false, archived: false, createdAt: now, updatedAt: now };
   await observeSettingsCopies(application); let settingsTransactions;
   try {
   await page.evaluate(async ({ providerA, providerB, endpoint, projectId, directory }) => {
@@ -184,7 +184,8 @@ export async function verifyModelComparisons({ page, application, getApplication
       throw error;
     } finally { await page.evaluate(() => { delete window.__qiyaoComparisonPartialPoll; }).catch(() => {}); }
   }
-  const sourceBefore = await page.evaluate(() => window.qiyao.load()); const originalDraft = sourceBefore.composerDrafts.find((draft) => draft.threadId === sourceId);
+  // Only this complete draft is used here; avoid serializing unrelated large histories through CDP.
+  const originalDraft = await page.evaluate(async id => (await window.qiyao.load()).composerDrafts.find(draft => draft.threadId === id), sourceId);
   async function submitGroup(expectedReplies) {
     await page.evaluate(() => {
       const diagnostic = { installedAt: Date.now(), clicks: [], samples: 0, lastPoll: null };
