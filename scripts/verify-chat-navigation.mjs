@@ -62,10 +62,11 @@ export async function verifyChatNavigation({ page, application, getApplication, 
     const handlers = require('electron').ipcMain._invokeHandlers;
     if (!(handlers instanceof Map) || typeof handlers.get('qiyao:invoke') !== 'function') return false;
     const target = ${JSON.stringify(threadId)};
-    const data = globalThis.qiyaoChatNavigationObservations = { installedAt: Date.now(), loads: [], clones: [], files: [] };
+    const data = globalThis.qiyaoChatNavigationObservations = { installedAt: Date.now(), loads: [], clones: [], wholeWorkspaceCopies: 0, files: [] };
     const append = (list, row) => { list.push(row); if (list.length > 64) list.shift(); };
-    const summarize = state => { const thread = state?.threads?.find(item => item.id === target); const last = thread?.messages.at(-1);
+    const summarizeThread = thread => { const last = thread?.messages.at(-1);
       return { messageCount: thread?.messages.length, status: last?.status, characters: last?.content.length, hasNeedle: last?.content.includes('STREAM_FIND_NEEDLE') }; };
+    const summarize = state => summarizeThread(state?.threads?.find(item => item.id === target));
     const originalHandler = handlers.get('qiyao:invoke');
     const handler = async function (...args) {
       if (args[1] !== 'load') return originalHandler.apply(this, args);
@@ -76,8 +77,9 @@ export async function verifyChatNavigation({ page, application, getApplication, 
     const originalClone = globalThis.structuredClone;
     const clone = function (...args) {
       const startedAt = Date.now(); const result = originalClone.apply(this, args);
-      if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) append(data.clones,
-        { startedAt, completedAt: Date.now(), threads: args[0].threads.length, thread: summarize(result) });
+      if (args[0]?.schemaVersion === 1 && Array.isArray(args[0]?.threads)) data.wholeWorkspaceCopies++;
+      if (args[0]?.id === target && Array.isArray(args[0]?.messages)) append(data.clones,
+        { startedAt, completedAt: Date.now(), thread: summarizeThread(result) });
       return result;
     };
     const fs = require('node:fs/promises'); const path = require('node:path'); const originalOpen = fs.open; const restorers = new Set(); let active = true;
@@ -124,6 +126,8 @@ export async function verifyChatNavigation({ page, application, getApplication, 
     await search('STREAM_FIND_NEEDLE', 2); assert.equal(fixture.requests.length, 1); assert.equal(await rail().getByRole('button').count(), 21); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
     const native = await application.evaluateMain('({observations:globalThis.qiyaoChatNavigationObservations,capturedAt:Date.now()})');
     assert.ok(native.observations.loads.length > 0); assert.ok(native.observations.clones.length > 0); assert.ok(native.observations.files.some(row => row.method === 'sync'));
+    assert.equal(native.observations.wholeWorkspaceCopies, 0);
+    assert.ok(native.observations.clones.some(row => row.thread.hasNeedle));
     console.log('Chat navigation streaming observations', JSON.stringify({ streamStartedAt, completedAt: Date.now(), originalDeadlineMs: 10000, originalPollIntervalMs: 100, requests: fixture.requests.length, native }));
   } catch (error) {
     const failedAt = Date.now();
