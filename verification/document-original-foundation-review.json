@@ -20,6 +20,18 @@
     "cause": "A valid Windows original was rejected because path lstat reported device 0 while the opened handle stat reported the volume ID.",
     "correction": "Do not compare those device fields on Windows; retain file identity, exact-size, bounded-read and complete SHA-256 checks."
   },
+  "sessionFollowUp": {
+    "featureComplete": false,
+    "typesPassed": true,
+    "focusedTests": { "files": 3, "passed": 19, "command": "pnpm exec vitest run verification/document-original-session.test.ts verification/document-original-store.test.ts verification/document-original-references.test.ts" },
+    "implemented": [
+      "Bounded in-memory staging with deduplication and expiry for unclaimed imports",
+      "Keep claimed temporary originals in memory; prepare durable originals before confirming persistent ownership",
+      "Retain staged bytes after failed preparation so a transaction can retry",
+      "Require current ownership before reads and isolate returned bytes and metadata from internal staging"
+    ],
+    "integration": "Session service only; not yet connected to the importer, vault transactions, backups or viewer."
+  },
   "remaining": [
     "Connect original retention to import and ownership-aware persistent/temporary transactions",
     "Complete backup/export/restore integration and safe unreferenced-original cleanup",

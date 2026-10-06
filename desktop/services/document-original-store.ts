@@ -7,6 +7,12 @@ import { atomicFile } from './atomic-file';
 const missing = (error: unknown) => (error as NodeJS.ErrnoException)?.code === 'ENOENT';
 const digest = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 
+export function originalDocumentIdentity(bytes: Uint8Array): DocumentOriginal {
+  if (!(bytes instanceof Uint8Array) || bytes.byteLength < 5 || bytes.byteLength > documentOriginalLimits.fileBytes) throw new Error('Choose a PDF no larger than 12 MB.');
+  if (Buffer.from(bytes.buffer, bytes.byteOffset, 5).toString('ascii') !== '%PDF-') throw new Error('Choose a PDF document.');
+  return { sha256: digest(bytes), bytes: bytes.length, mimeType: 'application/pdf' };
+}
+
 /** Internal immutable storage. Callers must resolve document ownership before reading a reference. */
 export class DocumentOriginalStore {
   constructor(private readonly directory: string) {
@@ -58,11 +64,10 @@ export class DocumentOriginalStore {
 
   async write(input: Uint8Array, signal?: AbortSignal): Promise<DocumentOriginal> {
     signal?.throwIfAborted();
-    if (!(input instanceof Uint8Array) || input.byteLength < 5 || input.byteLength > documentOriginalLimits.fileBytes) throw new Error('Choose a PDF no larger than 12 MB.');
+    originalDocumentIdentity(input);
     // Capture before any await so a caller cannot mutate bytes while a durable write is pending.
     const bytes = Buffer.from(input);
-    if (bytes.subarray(0, 5).toString('ascii') !== '%PDF-') throw new Error('Choose a PDF document.');
-    const reference: DocumentOriginal = { sha256: digest(bytes), bytes: bytes.length, mimeType: 'application/pdf' };
+    const reference = originalDocumentIdentity(bytes);
     try {
       await this.checkDirectory(true);
       const path = join(this.directory, reference.sha256);
