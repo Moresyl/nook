@@ -68,6 +68,44 @@ describe('owned PTY sessions', () => {
     await terminals.close(one.id); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(2); expect(() => terminals.resize(two.id, { cols: 80, rows: 24 })).toThrow('closed');
     await expect(terminals.open('one', root, { cols: 80, rows: 24 })).rejects.toThrow('Close');
   });
+  it.each(['project', 'application'] as const)('waits for an already closing terminal when closing the %s', async (scope) => {
+    const { root, spawn, emit, processes } = await setup(); let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(() => pending);
+    const terminals = new TerminalSessions(spawn, emit, terminate); const session = await terminals.open('one', root, { cols: 80, rows: 24 });
+    const first = terminals.close(session.id); const firstFinished = vi.fn(); void first.then(firstFinished);
+    const again = terminals.close(session.id); const againFinished = vi.fn(); void again.then(againFinished);
+    const closing = scope === 'project' ? terminals.closeProject('one') : terminals.shutdown(); const closingFinished = vi.fn(); void closing.then(closingFinished);
+    try {
+      await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(1)); await Promise.resolve(); await Promise.resolve();
+      expect(terminals.list('one')).toEqual([]); expect(processes[0].dispose).toHaveBeenCalledTimes(2);
+      expect(firstFinished).not.toHaveBeenCalled(); expect(againFinished).not.toHaveBeenCalled(); expect(closingFinished).not.toHaveBeenCalled();
+      processes[0].data('late'); expect(emit).not.toHaveBeenCalled();
+    } finally { release(); await Promise.all([first, again, closing]); }
+    expect(firstFinished).toHaveBeenCalledTimes(1); expect(againFinished).toHaveBeenCalledTimes(1); expect(closingFinished).toHaveBeenCalledTimes(1);
+    await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(1);
+  });
+  it('counts terminals awaiting cleanup toward the sixteen-process limit and releases their slots', async () => {
+    const { root, spawn, emit } = await setup(); let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(() => pending);
+    const terminals = new TerminalSessions(spawn, emit, terminate);
+    const sessions = await Promise.all(Array.from({ length: 16 }, () => terminals.open('one', root, { cols: 80, rows: 24 })));
+    const closing = Promise.all(sessions.map(({ id }) => terminals.close(id)));
+    try {
+      await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(16));
+      await expect(terminals.open('two', root, { cols: 80, rows: 24 })).rejects.toThrow('Close'); expect(spawn).toHaveBeenCalledTimes(16);
+    } finally { release(); await closing; }
+    await terminals.open('two', root, { cols: 80, rows: 24 }); expect(spawn).toHaveBeenCalledTimes(17); await terminals.shutdown();
+  });
+  it('shares a pending cleanup failure with concurrent closers and releases its process slot', async () => {
+    const { root, spawn, emit } = await setup(); let reject!: (error: Error) => void;
+    const pending = new Promise<void>((_resolve, failed) => { reject = failed; }); const failure = new Error('Owned cleanup failed');
+    const terminate = vi.fn(() => pending); const terminals = new TerminalSessions(spawn, emit, terminate);
+    const session = await terminals.open('one', root, { cols: 80, rows: 24 });
+    const first = terminals.close(session.id); const again = terminals.close(session.id); const project = terminals.closeProject('one');
+    const outcomes = Promise.allSettled([first, again, project]); await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(1)); reject(failure);
+    expect(await outcomes).toEqual(Array.from({ length: 3 }, () => ({ status: 'rejected', reason: failure })));
+    await terminals.close(session.id); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(1);
+  });
   it('validates geometry, input, session limits, missing folders and process errors', async () => {
     const { root, terminals } = await setup();
     await expect(terminals.open('p', root, { cols: 1, rows: 24 })).rejects.toThrow();
