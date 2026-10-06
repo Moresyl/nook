@@ -6,6 +6,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { waitForDesktopPage } from './desktop-page.mjs';
+import { mainProcessReadyExpression } from './desktop-main-ready.mjs';
 import { drainDesktopOutput } from './desktop-output.mjs';
 import { observeDesktopProcesses } from './desktop-process-observation.mjs';
 import { verifyDesktopExit } from './desktop-exit.mjs';
@@ -355,6 +356,7 @@ async function launch() {
     console.log('Desktop startup CPU samples', JSON.stringify(summarizeStartupProfile(profile) ?? { unavailable: true }));
   };
   try {
+    assert.equal(await evaluateMain(mainProcessReadyExpression), true);
     const activeRendererSwitches = await evaluateMain(`${JSON.stringify(rendererTestSwitches)}.filter(name => require('electron').app.commandLine.hasSwitch(name))`);
     assert.deepEqual(activeRendererSwitches, rendererTestSwitches, 'The explicit renderer test configuration must be active.');
     console.log('Desktop renderer test switches', JSON.stringify(activeRendererSwitches));
