@@ -4,6 +4,8 @@
 
 ### 新功能
 
+- 工具记录改为操作／路径／查询摘要与真实状态、耗时。运行中默认展开，结束后默认收起；两种展开选择独立保存，流式更新不覆盖手动选择。输入与结果保持完整原文，可分别复制、失败重试；旧复制请求不会把新输出标成已复制。自动收起先将详情内的键盘焦点移回摘要，隐藏详情不再接收焦点。主工作台与快速聊天共用，支持减少动效。恢复自家主文档的剪贴板写入，读取、子框架和非自家窗口仍拒绝。39 项专项单元测试覆盖率 100%，8 组真实桌面专项通过；9 张原图逐张检查，整套参考界面与最终分发验收仍待完成。
+
 - 项目 Git 面板新增本地分支查找、创建和切换，支持中文名称、Enter 提交、当前／工作树占用标记及错误重试。常规切换保护拒绝覆盖改动与未解决冲突；切换前保存编辑草稿，随后刷新文件树和干净文件，保留未保存内容及原始比较基线。关闭该项目预览；Git 钩子在 HEAD 已切换后报错时显示真实分支与中文提示。八组真实桌面专项、219 个分支与两主题三档缩放通过；十三张原图逐张检查，修复了工具栏样式侵入弹窗造成的文字溢出。本地分支功能不包含远程 Git、工作树创建、分支删除或重命名。
 
 - 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。支持最多 16 个独立标签及共享临时网站存储，后台失败与关闭仅影响所属页；原生 Ctrl T／W／Tab 快捷键和标签键盘切换可用。关闭最后一页会清理会话并新建空白页；主工作台重载释放全部标签。保存标签／历史、内置下载、浏览器自动化与同包验收尚未完成。
@@ -63,6 +65,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 新功能
 
+- 工具记录显示操作／路径／查询摘要、真实状态与耗时。运行和结束阶段分别保存展开选择，流式更新尊重手动收起；完整输入与结果可分别复制，保留 JSON 大整数、重复键和文字 HTML，失败可重试。自动收起时先返回摘要焦点，隐藏详情不能继续接收键盘输入。主工作台与快速聊天共用，并支持减少动效；自家主文档可写入剪贴板，读取、子框架和非自家窗口维持拒绝。展开动画保持原文面板的自然高度，不再压缩输入和结果。
+
 - 项目 Git 面板支持查找、创建和切换本地分支，保留中文名称、未保存草稿与原始比较基线，刷新文件树和干净文件并关闭该项目预览。覆盖改动、重复名称、工作树占用和未解决冲突会阻止操作；钩子在切换完成后报错时显示实际分支和受控提示。操作期间暂停取消与重复提交，失败后保留输入供重试。远程 Git、工作树创建、分支删除／重命名仍待实现。
 
 - 临时浏览器支持最多 16 个网页标签，各自保留原生历史、未提交网址与加载错误，同站点共享临时网站存储。提供返回／前进、停止／重试、Ctrl L／F6、Ctrl T／W／Tab／Shift Tab 和标签方向键／Home／End／Delete 操作；切回聊天保留草稿。关闭最后一页创建新的空白会话，主工作台重载释放全部标签，退出不恢复网站存储。网页不能访问工作台桥接或 Node；保存标签／历史、内置下载、权限授权和自动化仍待实现。
@@ -86,6 +90,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - MCP 二进制输入限制单项 2 MB、单次 12 项／合计 12 MB，验证规范编码和文件元数据。模型读取结果只含文本与文件元数据，图片预览和导出操作不会自动调用模型。
 
 ### 修复与完善
+
+- 安装版验收同步当前 283 项完整桌面门槛，要求 10 组 HTML 预览、5 组停靠视图及项目分支、工具记录证据，修正旧组数条件错误拒绝新版回归的问题。安装、包体一致性与卸载检查继续保留。
 
 - 文件标签在窗口调整和缩放后自动显露，支持左右方向键循环、Home／End 及 Delete 关闭；未保存文件保留确认，取消或关闭后恢复焦点。窄编辑器的预览与保存采用 24px 图标操作，仍可查看中文名称和提示。
 - 项目文件保存遇到磁盘或权限错误时显示可恢复的中文提示，保留草稿、标签和原文件；原始系统诊断留在错误原因中，不直接展示到界面，恢复后可重试保存并关闭。文件冲突与范围校验保留原有行为。
@@ -142,6 +148,10 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+Installation verification now requires the current 283-check desktop baseline, including preview reload, project branches and tool activity evidence, while retaining package matching and data-preserving uninstall checks.
+
+Tool records show contextual summaries, explicit execution status and elapsed time, with separate running/completed disclosure choices and exact original input/output copy payloads. Streaming updates preserve manual collapse; stale or rejected clipboard requests support safe retry. Automatic collapse returns keyboard focus before making details inert, and opening animations preserve natural text-panel heights. Main and restricted quick chat share the component and reduced-motion behavior. Clipboard writes are permitted only for owned top-level application documents; reads, child frames and unowned windows remain denied. Full reference UI and final distribution acceptance remain pending.
 
 Adds local project branch search, creation and switching with Unicode names, occupied-worktree markers and normal Git overwrite protection. Refreshes clean editor files and the tree while retaining unsaved drafts and their original comparison baseline; closes project previews after switching. A failing post-checkout hook reports the actual changed branch without raw diagnostics. Remote Git, worktree creation and branch deletion/renaming remain pending.
 

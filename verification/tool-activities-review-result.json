@@ -1,0 +1,1006 @@
+{
+  "verifiedAt": "2026-10-10T19:41:27.656Z",
+  "productSourceCommit": "0e50da03bf283cf0081081a95a0869156fa94db5",
+  "productSourceFiles": 256,
+  "compiledFiles": 236,
+  "fullUnit": {
+    "files": 109,
+    "tests": 1094,
+    "coverageScope": "contracts and desktop/services; frontend helper covered separately",
+    "coverage": {
+      "lines": {
+        "total": 3663,
+        "covered": 3641,
+        "skipped": 0,
+        "pct": 99.39
+      },
+      "statements": {
+        "total": 6082,
+        "covered": 5915,
+        "skipped": 0,
+        "pct": 97.25
+      },
+      "functions": {
+        "total": 1384,
+        "covered": 1348,
+        "skipped": 0,
+        "pct": 97.39
+      },
+      "branches": {
+        "total": 4272,
+        "covered": 4053,
+        "skipped": 0,
+        "pct": 94.87
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "log": "D:/GR/pi-pc/.firecrawl/nook-tool-activity-second-full-unit-20261011.log"
+  },
+  "focusedUnit": {
+    "files": 2,
+    "tests": 39,
+    "coverage": {
+      "lines": {
+        "total": 19,
+        "covered": 19,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 28,
+        "covered": 28,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 8,
+        "covered": 8,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 57,
+        "covered": 57,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "archive": "E:/NookVerification/ToolActivityFinalFocusedCoverage-20261011"
+  },
+  "finalPolicy": {
+    "tests": 61,
+    "log": "D:/GR/pi-pc/.firecrawl/nook-tool-activity-final-policy-20261011.log",
+    "boundary": "Default full unit coverage passed before the final flex:none CSS repair and subsequent native harness refinements. Final types, build, focused native and complete desktop verification passed after the style repair; no subsequent product JavaScript change."
+  },
+  "focusedNative": {
+    "checks": 8,
+    "normalExits": [
+      {
+        "elapsedMs": 1329,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 219,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "archive": "E:/NookVerification/ToolActivitiesContextFocusedPass-20261011",
+    "evidence": {
+      "verifiedAt": "2026-10-10T19:17:58.043Z",
+      "variant": "development executable",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "verificationRun": "focused tool-activity suite",
+      "checks": 8,
+      "nativeStates": [
+        "waiting",
+        "running",
+        "complete",
+        "error",
+        "stopped"
+      ],
+      "scopedClipboardPermission": true,
+      "exactOriginalCopy": true,
+      "staleClipboardGuard": true,
+      "deniedCopyRetry": true,
+      "focusBeforeInert": true,
+      "manualStreamingCollapse": true,
+      "restrictedQuickChat": true,
+      "reducedMotion": true,
+      "actualRestart": true,
+      "commandRequests": 5,
+      "openingPanels": [
+        226.6875,
+        149.9375
+      ],
+      "expandedPanels": [
+        226.6875,
+        149.9375
+      ],
+      "attachmentContexts": [
+        {
+          "marker": "工具记录拒绝验证",
+          "textAttachments": 1
+        },
+        {
+          "marker": "工具记录停止验证",
+          "textAttachments": 1
+        },
+        {
+          "marker": "工具记录完成验证",
+          "textAttachments": 1
+        }
+      ],
+      "layouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 368.515625,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 372.9125061035156,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 271.1770935058594,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 368.515625,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 372.9125061035156,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "fontSize": "14px",
+          "parentFontSize": "14px",
+          "gap": "4px",
+          "padding": "8px 0px 4px 24px",
+          "duration": "0.3s, 0.3s",
+          "contained": true,
+          "controlVisible": true,
+          "summaryWidth": 271.1770935058594,
+          "controlHeight": 24.5,
+          "outputScrollBounded": true,
+          "horizontalOverflow": false
+        }
+      ],
+      "screenshots": [
+        {
+          "filename": "tool-activities-running.png",
+          "size": [
+            1280,
+            840
+          ]
+        },
+        {
+          "filename": "tool-activities-light-100.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-light-125.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-light-150.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-dark-100.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-dark-125.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-dark-150.png",
+          "size": [
+            760,
+            620
+          ]
+        },
+        {
+          "filename": "tool-activities-quick.png",
+          "size": [
+            640,
+            580
+          ]
+        },
+        {
+          "filename": "tool-activities-restart.png",
+          "size": [
+            1280,
+            840
+          ]
+        }
+      ]
+    }
+  },
+  "fullSourceNative": {
+    "checks": 283,
+    "normalExits": [
+      {
+        "elapsedMs": 773,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 342,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 143,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 127,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 258,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 388,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 201,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 138,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 292,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 197,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 167,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 332,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 458,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 199,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 266,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 167,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 357,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 153,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 181,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 506,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1030,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2011,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 571,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 216,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 236,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 210,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1385,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 333,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 442,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 215,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1404,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 448,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 328,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1062,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 364,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 334,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 781,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1173,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2052,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 981,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "runtimeErrors": [],
+    "archive": "E:/NookVerification/ToolActivitiesFullSourcePass-20261011",
+    "changedStageRecords": 26
+  },
+  "visualReview": {
+    "archive": "E:/NookVerification/ToolActivitiesContextFocusedPass-20261011/screenshots",
+    "reviewedOriginals": 9,
+    "images": [
+      {
+        "name": "tool-activities-running.png",
+        "sha256": "4c35d0a4949954f4a2607403f277780417d4fb36a8acafbcc75f128f05a0af42",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "tool-activities-light-100.png",
+        "sha256": "af2936f2263197a9532ae217600e5ee061f18f2ac9487d27b2f6023dc4714ad7",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-light-125.png",
+        "sha256": "7b25f24f7de4fe3c36daf9e7bb524da824cf0b911009cb95b850e778e8605fa2",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-light-150.png",
+        "sha256": "0f3d709b9062e8f4082ea30a67753a2a3d1807cb70be7b2d6ac2c4dcffdf43a9",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-dark-100.png",
+        "sha256": "948d499a44be90ec432e2a06b81666619bb89471ff9baaf01e11c75144c33fb1",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-dark-125.png",
+        "sha256": "75203191aeb4f89da5f4a783131c81c6d2d1550b78f65d809f70fdece1260c9c",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-dark-150.png",
+        "sha256": "777904d51530fa188dd782f3ba90f3186e8c0ed1da37756c94fdbb7b197a1fcc",
+        "width": 760,
+        "height": 620
+      },
+      {
+        "name": "tool-activities-quick.png",
+        "sha256": "52f3cedeb857b610917d35321d37ce10a9c982dce0aa89574ca45a5f38e7bb54",
+        "width": 640,
+        "height": 580
+      },
+      {
+        "name": "tool-activities-restart.png",
+        "sha256": "15f3dbbcef875f7c24a938ffc7c6b1e9f83d65e416fd076905f1ded73dadbec7",
+        "width": 1280,
+        "height": 840
+      }
+    ],
+    "allSummariesVisible": true,
+    "scope": "These nine focused originals were accepted individually after the panel-height repair. Complete-run raw captures are retained separately and are not all individually visually reviewed. The first failed complete run preserves its mid-transition project-analysis capture; the final harness waits for the actual disclosure animation before taking that capture."
+  },
+  "design": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "summaryGap": 4,
+    "summaryFont": "inherits current conversation font",
+    "summaryColor": "60% text in oklab when supported",
+    "bodyInset": "8px 0px 4px 24px",
+    "transition": "300ms cubic-bezier(.19,1,.22,1)",
+    "boundary": "CSS grid animation, badges, duration and original-text panels are independent implementation choices. Whole UI, real system DPI, physical assistive technology and final distribution remain pending."
+  },
+  "clipboardScope": "Owned main/quick top-level documents only. Native queries deny read permissions and both read/write for an unowned window at the same URL. Write payloads retain original strings; Windows system text uses CRLF. Held/rejected clipboard promises are explicit fixtures.",
+  "preservedFailures": [
+    {
+      "archive": "E:/NookVerification/ToolActivitiesFirstFixtureFailure-20261011",
+      "reason": "拒绝命令的夹具预期与实际执行引擎输出不一致",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 294,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesSecondNavigationFailure-20261011",
+      "reason": "新建项目聊天后需要返回项目页再创建下一会话",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 369,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesThirdCheckpointFailure-20261011",
+      "reason": "流式状态应从实际运行界面读取，持久化检查点可能尚未包含活动",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 658,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesFourthClipboardFailure-20261011",
+      "reason": "实际产品默认权限策略也拒绝了自家剪贴板写入，已修复",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 563,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesFifthClipboardNewlineFailure-20261011",
+      "reason": "Windows 系统剪贴板按平台规则转换 CRLF，原始 writeText 参数另作精确校验",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 473,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesSixthThemeWaitFailure-20261011",
+      "reason": "直接持久化偏好不会替代界面的状态更新，改为操作真实设置控件",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 169,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesSeventhOptionalFieldFailure-20261011",
+      "reason": "JSON 重启会省略值为 undefined 的可选字段，按实际持久化格式比较完整会话",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 333,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 196,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesEighthScreenshotFramingFailure-20261011",
+      "reason": "8 组功能检查通过，但保留的滚动位置使截图未包含摘要；保留原图，追加可见性断言并重拍",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 314,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 162,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesFirstFullFailure-20261011",
+      "reason": "完整桌面已有附件随工具请求发送，夹具原先仅识别裸标记；修复后识别真实文本上下文，并逐请求验证附件没有丢失",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 910,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 306,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 152,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 140,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 374,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 288,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 185,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 161,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 305,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 176,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 394,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 372,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 293,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 231,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 265,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 247,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 286,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 262,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 185,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 897,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 362,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 222,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 227,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 141,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 320,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 237,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1915,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 387,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 234,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 186,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1870,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 417,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 409,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 190,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 206,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 462,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 257,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 486,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1470,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesNaturalPanelRegressionFailure-20261011",
+      "reason": "新几何断言检出旧构建在展开时挤压原文面板；修复 flex 收缩后，动画前后保持自然高度",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 282,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesTenthCheckpointFailure-20261011",
+      "reason": "大型工作台的界面完成状态先于持久化检查点，改为在原有桥接时限内等待确切会话的已保存结果",
+      "normalNativeExits": [
+        {
+          "elapsedMs": 1453,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    }
+  ],
+  "distribution": "No new installation/portable candidate for this source. Previous candidate hashes are not this increment.",
+  "hosted": "Local evidence does not imply hosted CI success or publication."
+}
