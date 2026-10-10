@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { contextSummarySchema } from './context-summary-schema';
 import { toolActivitySchema } from './tools';
 import { editorDraftSchema } from './projects';
 import { mcpServerSchema, skillSchema } from './extensions';
@@ -69,6 +70,8 @@ export const threadSchema = z.object({
   pluginIds: z.array(z.uuid()).max(8).optional(),
   knowledgeCollectionIds: knowledgeSelectionSchema.optional(),
   forkedFrom: z.object({ threadId: identifier, messageId: identifier, kind: z.enum(['branch', 'edit', 'reply', 'message']) }).strict().optional(),
+  contextSummaries: z.array(contextSummarySchema).max(20).optional().refine(items => !items || new Set(items.map(item => item.id)).size === items.length, 'Context summary identifiers must be unique.'),
+  activeContextSummaryId: z.uuid().optional(),
   pinned: z.boolean().default(false), archived: z.boolean().default(false),
   createdAt: z.number().int().nonnegative(), updatedAt: z.number().int().nonnegative(),
   messages: z.array(messageSchema).max(5000).default([]),
