@@ -1,0 +1,327 @@
+{
+  "verifiedAt": "2026-10-10T09:41:37.398Z",
+  "sourceHead": "224eb797ebba61dc18302a0b64067e93e23e063f",
+  "productCommit": "4880939",
+  "source": [
+    {
+      "file": "scripts/package-windows.mjs",
+      "sha256": "ea962a93419ba82466f311f2747a3fd11c071b4e9a202440da90e3121c982a7c"
+    },
+    {
+      "file": "scripts/prepare-installer.mjs",
+      "sha256": "c36a1b605a53d2896090a39c5bdddc0ba5bfb9877db4df3ec1d0d9fccd49148d"
+    },
+    {
+      "file": "scripts/prepare-licenses.mjs",
+      "sha256": "5609fba8bf681e997303099908e35d84b8af13d8c4c6184919e4746c6069adc8"
+    },
+    {
+      "file": "scripts/installer-templates.mjs",
+      "sha256": "be1e046ba5fbe5ac0a3a109770fe8acc02efc71df98b9d3c659a9a14de8ccdf9"
+    },
+    {
+      "file": "scripts/distribution-inventory.mjs",
+      "sha256": "fd270fd6b6870087b21a085c990793d496cf7d612509ebaa583201cfce650fe7"
+    },
+    {
+      "file": "scripts/license-inventory.mjs",
+      "sha256": "2a18f32c2b35571e67c627282359e999ed4d253333afb3d97e11f75a0eaefbcf"
+    },
+    {
+      "file": "licenses/distribution.json",
+      "sha256": "2f46f1c02cc61076ac8f23689a87f4360ef2692d81d00a56c951659fb732e4ef"
+    },
+    {
+      "file": "licenses/dependencies.json",
+      "sha256": "d18b180f9cd9a52df0a003737110e64a093dfc6d40c0032444123a6d0e923fcc"
+    },
+    {
+      "file": "licenses/assets.json",
+      "sha256": "0e74389cdfbc14f12e75a6a094d5f3a33e3e155d96a5660996b03364388ef9a3"
+    },
+    {
+      "file": "identity/windows/templates.json",
+      "sha256": "9fac759055dec05a8e6caf8f7096a7478828201300b4d310fdd407eaec497ec0"
+    },
+    {
+      "file": "package.json",
+      "sha256": "6c73fabea1236b0482286b5712d84158a0401636fb5a6ecf5834fbe00d820936"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "sha256": "acea893fe2665d26336ea963ad3f5e2ea1e946ab6588e22d7e6c0cec0f5ff293"
+    },
+    {
+      "file": "LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "file": "COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.txt",
+      "sha256": "8ea267ea9c61c6d61ab02f71d7551b44dd840276b1161adfb3648f7560e7092b"
+    }
+  ],
+  "dependencyVersions": 381,
+  "completeLegalDocuments": 401,
+  "bundledAssetGroups": 5,
+  "distributionComponents": 5,
+  "installer": {
+    "verifiedAt": "2026-10-10T09:35:29.091Z",
+    "builderVersion": "26.15.3",
+    "toolset": "0.0.0",
+    "archiveFilter": "BCJ",
+    "templates": [
+      {
+        "sha256": "8aa1230e9717b428664d613fcc5c6a060883410b34cb7853b517fe11b4ee0a76",
+        "source": "assistedInstaller.nsh",
+        "target": "assistedInstaller.nsh"
+      },
+      {
+        "sha256": "281e8071663d2ef3e9f00bb27e6ef09d2c2b52b85458da07082f2b186100e259",
+        "source": "common.nsh",
+        "target": "common.nsh"
+      },
+      {
+        "sha256": "74c4dbb4163cdd90ca4850b75d304e916235c882d6af7b5cdad63bffbc977072",
+        "source": "installSection.nsh",
+        "target": "installSection.nsh"
+      },
+      {
+        "sha256": "9aca256695c289ec8a875143101fae8c6236bc8c6a7cf369bbe8b4986e09c9cb",
+        "source": "multiUser.nsh",
+        "target": "multiUser.nsh"
+      },
+      {
+        "sha256": "f7a4524244e68dc0782a759e076e5e55fadef0f22bbccf33100a4ab59d69c066",
+        "source": "multiUserUi.nsh",
+        "target": "multiUserUi.nsh"
+      },
+      {
+        "sha256": "87d6c095f37716759c8d9373dcab906394546007abb626c04e1c784158f6de5b",
+        "source": "oneClick.nsh",
+        "target": "oneClick.nsh"
+      },
+      {
+        "sha256": "9ee2dac4593478083e8aa6f8487287ce9401006ccd50ecc538871d133ea4a42c",
+        "source": "uninstaller.nsh",
+        "target": "uninstaller.nsh"
+      },
+      {
+        "sha256": "0e319437dd01dcbf911f3f48f664fde0cefbaef704f1cdb1739f63d563f5d4a0",
+        "source": "include/installer.nsh",
+        "target": "installer.nsh"
+      }
+    ],
+    "portableTemplate": {
+      "source": "portable.nsi",
+      "sha256": "80fa75cf8cb68f4999eb92afc9f37f8e5b605cb1c3a077821bbc350a9b907a48"
+    },
+    "retainedComponents": 5,
+    "binaries": [
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Bin/makensis.exe",
+        "sha256": "e277b7378931b74392015f5ad6b1d744dcd8a347baa4480350a75ebeab8d8e3d"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/uninst",
+        "sha256": "ba82bb5d90262417a18cec6631bbd8b880020eb159b45f264a9145196dfb8f3a"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/bzip2-x86-unicode",
+        "sha256": "4d4199e792448bb59fd68297bbbeb9be148764daddf24a931ed302a9f15a7821"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/bzip2_solid-x86-unicode",
+        "sha256": "ba42e54524083ddd5848cde25669c3c7974821e1d2b7558b1fc4d02b46c03fcf"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/lzma-x86-unicode",
+        "sha256": "d72775320a1365a155a6bab6ac7fb0fecb7eab29ae35e742483bdf749fe423b6"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/lzma_solid-x86-unicode",
+        "sha256": "2a161ccb5801b4d3170ae257a2e3cec0f25ef821fa6d6b3c424e50cda542cfbb"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/zlib-x86-unicode",
+        "sha256": "aed7cb7405345d69121485184cf59b608686e144a19f5cf579b1adf5d97f7328"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Stubs/zlib_solid-x86-unicode",
+        "sha256": "5e2dd27e22064762668c62dafdbe569452c3f6c7d8ca565514a357c7524d65d2"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/AdvSplash.dll",
+        "sha256": "4ef1281cf084598b059d4b6e369e9db820d7e9341a9f1a194556e6c345d1b0b6"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/Banner.dll",
+        "sha256": "6368dec20ad41b43074ee7af476ce092a106b42be47d8f48b63f011ebc58209a"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/BgImage.dll",
+        "sha256": "e27efa5dfde875bd6b826fafb4c7698db6b6e30e68715a1c03eb018e3170fc04"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/Dialer.dll",
+        "sha256": "43b3b9a4ef98a601d233ca13f61e738a98fc9d115cb7110fb5965dcb4de9f65d"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/InstallOptions.dll",
+        "sha256": "ca092ba7f275b0c9000098cdd1a9876fe8dc050fcb40a0e8a1ab8335236e9dc5"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/LangDLL.dll",
+        "sha256": "6f14c8f01f50a30743dac68c5ac813451463dfb427eb4e35fcdfe2410e1a913b"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/Math.dll",
+        "sha256": "39b1bf4c55db3872c7c6f08e5764bac2def6faed0fbcc68d6cce5aab61243ec8"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/nsDialogs.dll",
+        "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/nsExec.dll",
+        "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/NSISdl.dll",
+        "sha256": "9a3c2fe5490c34f73f1a05899ef60cfef05e0c9599cd704e524ef7a46ead67ba"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/Splash.dll",
+        "sha256": "dcbf89e4ab7e558981ab5120eb88c2bdcefe7e21c0ab6430c0fec4f50d40ba24"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/StartMenu.dll",
+        "sha256": "948998c5c1f9bf5cebff627bc397a4641acc23fb9a3d32650df4ea3d87f68ebb"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/System.dll",
+        "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/TypeLib.dll",
+        "sha256": "4c88add8a31ab92c8b9852814e98516c175c8c51d4df62ba64182fe5bb8c97a2"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/UserInfo.dll",
+        "sha256": "9aa388c7de8e96885adcb4325af871b470ac50edb60d4b0d876ad43f5332ffd1"
+      },
+      {
+        "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+        "location": "compiler",
+        "path": "Plugins/x86-unicode/VPatch.dll",
+        "sha256": "622de16d46265d701efafa5e455bbaf53627cecb3c753c2e56e5f38c65c5eda3"
+      },
+      {
+        "component": "StdUtils 1.14",
+        "location": "plugins",
+        "path": "x86-unicode/StdUtils.dll",
+        "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+      },
+      {
+        "component": "UAC plugin",
+        "location": "plugins",
+        "path": "x86-unicode/UAC.dll",
+        "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+      },
+      {
+        "component": "nsis7z 19.00",
+        "location": "plugins",
+        "path": "x86-unicode/nsis7z.dll",
+        "sha256": "b393f05e8ff919ef071181050e1873c9a776e1a0ae8329aefff7007d0cadf592"
+      },
+      {
+        "component": "Johannes Passing Elevate 1.0.0.2894",
+        "location": "elevate",
+        "path": "elevate.exe",
+        "sha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37"
+      }
+    ],
+    "unresolved": [],
+    "scope": "Build-input/template hashes and retained installer legal/source documents. This does not establish that every plugin is embedded or verify installation behavior."
+  },
+  "releaseNoticeCheckPassed": true,
+  "initialDirectNodeNoticeAttempt": {
+    "exitCode": 1,
+    "reason": "The existing guard requires npm_execpath supplied by the pnpm lifecycle. No legal inventory ran in this attempt."
+  },
+  "retry": {
+    "command": "node C:/nvm4w/nodejs/node_modules/pnpm/bin/pnpm.cjs notices:release",
+    "exitCode": 0
+  },
+  "installerCache": "E:/NookVerification/BuilderCache",
+  "tempDirectory": "E:/NookVerification/Temp",
+  "raw": [
+    {
+      "file": "nook-record-copy-installer-preflight-20261010.log",
+      "sha256": "eb8a5ec02a5465ceb43095c5067d3a8c1602d5055cdfe0e6bbc65a0affeec0a3"
+    },
+    {
+      "file": "nook-record-copy-release-notices-20261010.log",
+      "sha256": "87798bbc34352d7e5958c4aceb9f9ef2e971416c43d027dcbea45b8e2b4431f1"
+    },
+    {
+      "file": "nook-record-copy-release-notices-retry-20261010.log",
+      "sha256": "538c58cc18619632f011972a39df42404a7b65f6188869f71a917e089424882b"
+    }
+  ],
+  "packageCompleted": false,
+  "nativePackagedDesktopPassed": false,
+  "installedPassed": false,
+  "portablePassed": false,
+  "published": false,
+  "scope": "Current installer inputs and retained notices pass their existing hash, completeness and redistribution gates. This is packaging preflight only; it does not establish package generation, actual native installation/portable behavior, system-DPI UI acceptance or publication."
+}

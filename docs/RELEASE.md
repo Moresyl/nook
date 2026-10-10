@@ -48,7 +48,7 @@
 | Nook.exe | `26f21a750065b182ac967794639108bb7be9fcdd0c1738c7e1fe8831b9246c52` |
 | app.asar | `350116641f0517239308a49871237eed8b44aea3985230bd43be84e5cbd21758` |
 
-已重新核对逐条复制提交后的 [37543498100](https://github.com/Moresyl/nook/actions/runs/37543498100)：验证任务因 GitHub 账户付款／支出额度限制而零步骤失败；开发分支的发布任务也受分支条件限制。未修改付费设置、创建发布标签或绕过验收。[托管记录](../verification/hosted-workspace-copy-block-result.json)
+完整源码回归证据已推送至 `224eb79`，触发的 [38042090454](https://github.com/Moresyl/nook/actions/runs/38042090454) 已核对：验证任务仍因 GitHub 账户付款／支出额度限制而零步骤失败；开发分支的发布任务也受分支条件限制。未修改付费设置、创建发布标签或绕过验收。[最新托管记录](../verification/hosted-fixed-scale-block-result.json)与[此前逐条复制记录](../verification/hosted-workspace-copy-block-result.json)
 
 ## 发布前待完成
 

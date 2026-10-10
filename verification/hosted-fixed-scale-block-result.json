@@ -1,0 +1,45 @@
+{
+  "verifiedAt": "2026-10-10T09:40:04.412Z",
+  "run": 38042090454,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38042090454",
+  "headSha": "224eb797ebba61dc18302a0b64067e93e23e063f",
+  "branch": "feat/document-originals",
+  "productCommit": "4880939",
+  "jobs": [
+    {
+      "id": 114184189637,
+      "name": "verify",
+      "conclusion": "failure",
+      "steps": 0
+    },
+    {
+      "id": 114184197571,
+      "name": "publish",
+      "conclusion": "skipped",
+      "steps": 0
+    }
+  ],
+  "annotations": [
+    {
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "raw": [
+    {
+      "file": "nook-fixed-scale-hosted-jobs-20261010.json",
+      "sha256": "03bf25c2947d10c42c61d88ee02a02ef6fc78a10380aa4938a2fae750af19da2"
+    },
+    {
+      "file": "nook-fixed-scale-hosted-annotations-20261010.json",
+      "sha256": "b690f912984e77b8f59da6ae926d64d7e566eea97de0c3594a3e5ac8eb64d840"
+    }
+  ],
+  "localFullDesktopChecks": 252,
+  "localFullDesktopDeviceScale": 1,
+  "hostedVerificationPassed": false,
+  "billingChanged": false,
+  "tagCreated": false,
+  "published": false,
+  "boundary": "The new push triggered the configured workflow, but verify did not start due to the stated account payment/spending restriction. The development-branch condition independently skips publish. A complete local test configuration does not replace hosted, distribution, actual system-DPI or remaining full-goal acceptance."
+}
