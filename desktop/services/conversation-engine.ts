@@ -21,6 +21,7 @@ import { knowledgeLimits } from '../../contracts/knowledge';
 import { nextReplyVersion } from '../../contracts/reply-versions';
 import { archiveConversation } from './conversation-archive';
 import { comparisonSchema, type ComparisonResult } from '../../contracts/model-comparisons';
+import { ContextSummaries } from './context-summaries';
 
 type ActiveRun = { controller: AbortController; completion: Promise<void>; message: Message; projectId?: string; providerId: string; embeddingProviderIds: string[]; serverIds: string[]; skillIds: string[]; pluginIds: string[] };
 
@@ -30,10 +31,12 @@ export class ConversationEngine {
   private closing = false;
   private approvals: ApprovalGate;
   private checkpoints: MessageCheckpoints;
+  readonly contextSummaries: ContextSummaries;
   constructor(private readonly vault: WorkspaceVault, private readonly gateway: ModelGateway, private readonly emit: (event: RunEvent) => void,
     private readonly tools: ProjectToolExecutor = new ExecutionTools(), private readonly checkpointInterval = 750, private readonly extensions?: ExtensionRuntime, private readonly knowledge?: Pick<KnowledgeService, 'validateSelection' | 'search'>) {
     this.approvals = new ApprovalGate((event) => this.notify(event));
     this.checkpoints = new MessageCheckpoints(vault);
+    this.contextSummaries = new ContextSummaries(vault, gateway, id => this.closing || this.runs.has(id));
   }
 
   private notify(event: RunEvent, withState = false): void {
@@ -77,7 +80,7 @@ export class ConversationEngine {
     if (provider.kind !== 'ollama' && !key) throw new Error('Add this provider’s API key in settings first.');
     let thread = request.threadId ? state.threads.find((item) => item.id === request.threadId) : undefined;
     if (request.threadId && !thread) throw new Error('This conversation no longer exists. Start a new conversation.');
-    if (thread && this.runs.has(thread.id)) throw new Error('A response is already running in this conversation. Stop it before sending another message.');
+    if (thread && this.active(thread.id)) throw new Error('A response or summary is already running in this conversation. Stop it before sending another message.');
     if (request.projectId && !state.projects.some((project) => project.id === request.projectId)) throw new Error('The selected project no longer exists.');
     if (request.assistantId && !state.assistants.some((assistant) => assistant.id === request.assistantId)) throw new Error('The selected assistant no longer exists.');
     const mode = request.mode ?? thread?.mode ?? 'chat';
@@ -121,7 +124,7 @@ export class ConversationEngine {
       assistantId: request.assistantId, model: request.model, providerId: provider.id,
       createdAt: now, updatedAt: now, messages: [], pinned: false, archived: false,
     };
-    if (this.runs.has(thread.id)) throw new Error('A response is already running in this conversation. Stop it before sending another message.');
+    if (this.active(thread.id)) throw new Error('A response or summary is already running in this conversation. Stop it before sending another message.');
     const knowledgeCollectionIds = request.knowledgeCollectionIds ?? thread.knowledgeCollectionIds ?? [];
     if (thread.temporary && !thread.messages.length && !request.replay) thread = { ...thread, title: request.text.slice(0, 48) };
     const replaySources = request.replay?.action === 'retry' ? replayMessage?.knowledgeSources : undefined;
@@ -131,7 +134,8 @@ export class ConversationEngine {
       this.knowledge.validateSelection(knowledgeCollectionIds);
     }
     const user: Message = request.replay?.action === 'retry' ? structuredClone(replayMessage!) : { id: randomUUID(), role: 'user', content: request.text, attachments: replayMessage?.attachments ?? request.attachments, status: 'complete', createdAt: now };
-    validateModelAttachments(provider, request.model, [...thread.messages, user]);
+    const contextMessages = [...this.contextSummaries.messages(thread), user];
+    validateModelAttachments(provider, request.model, contextMessages);
     const controller = new AbortController();
     let finish!: () => void;
     const assistant: Message = { id: randomUUID(), role: 'assistant', content: '', attachments: [], status: 'running', activities: [], invocations: [], createdAt: now, ...(replyVersion ? { replyVersion } : {}) };
@@ -184,7 +188,7 @@ export class ConversationEngine {
     ].filter(Boolean).join('\n\n');
     this.runs.set(next.id, run);
     return { threadId: next.id, messageId: assistant.id, apply,
-      launch: () => { void this.execute(next, assistant, { provider, key, model: request.model, instructions, messages: next.messages.slice(0, -1), tools: definitions, signal: controller.signal }, extension, { ids: knowledgeCollectionIds, user }).finally(finish); },
+      launch: () => { void this.execute(next, assistant, { provider, key, model: request.model, instructions, messages: contextMessages, tools: definitions, signal: controller.signal }, extension, { ids: knowledgeCollectionIds, user }).finally(finish); },
       release: () => { if (this.runs.get(next.id) === run) this.runs.delete(next.id); finish(); } };
   }
 
@@ -211,7 +215,7 @@ export class ConversationEngine {
         const provider = state.providers.find((provider) => provider.id === selected.providerId);
         if (!provider || !provider.models.includes(selected.model)) throw new Error('A selected provider or model is no longer configured. Refresh the comparison.');
         if (provider.kind !== 'ollama' && !providerKey(this.vault, provider)) throw new Error('Add every selected provider’s API key before comparing models.');
-        validateModelAttachments(provider, selected.model, [...(current?.messages ?? []), { id: 'comparison-validation', role: 'user', content: input.text, attachments: input.attachments, status: 'complete', createdAt: 0 }]);
+        validateModelAttachments(provider, selected.model, [...(current ? this.contextSummaries.messages(current) : []), { id: 'comparison-validation', role: 'user', content: input.text, attachments: input.attachments, status: 'complete', createdAt: 0 }]);
       }
     };
     validate(captured);
@@ -221,6 +225,7 @@ export class ConversationEngine {
       return { id: randomUUID(), title: `${input.text.slice(0, 90)} · ${selected.model.slice(0, 60)}`, ...(source?.temporary ? { temporary: true } : {}),
         ...selected, assistantId: input.assistantId, projectId: input.projectId, mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], knowledgeCollectionIds: [],
         pinned: false, archived: false, createdAt: now, updatedAt: now, messages: structuredClone(source?.messages ?? []),
+        ...(source?.contextSummaries ? { contextSummaries: structuredClone(source.contextSummaries) } : {}), ...(source?.activeContextSummaryId ? { activeContextSummaryId: source.activeContextSummaryId } : {}),
         comparison: { groupId, index, contextLength: source?.messages.length ?? 0 }, ...(source && last ? { forkedFrom: { threadId: source.id, messageId: last.id, kind: 'branch' as const } } : {}) };
     });
     const initial = { ...captured, threads: [...captured.threads, ...branches] };
@@ -364,17 +369,18 @@ export class ConversationEngine {
   }
 
   async stop(threadId: string): Promise<void> {
+    await this.contextSummaries.stopThread(threadId);
     const run = this.runs.get(threadId);
     if (run) { run.controller.abort(); await run.completion; }
   }
 
   async settle(threadId: string): Promise<void> { await this.runs.get(threadId)?.completion; }
 
-  active(threadId?: string): boolean { return threadId === undefined ? this.runs.size > 0 || this.comparisons.size > 0 : this.runs.has(threadId); }
+  active(threadId?: string): boolean { return this.contextSummaries.active(threadId) || (threadId === undefined ? this.runs.size > 0 || this.comparisons.size > 0 : this.runs.has(threadId)); }
 
   async stopProject(projectId: string): Promise<void> { await Promise.all([...this.runs].filter(([, run]) => run.projectId === projectId).map(([id]) => this.stop(id))); }
 
-  async stopProvider(providerId: string): Promise<void> { await Promise.all([...this.runs].filter(([, run]) => run.providerId === providerId || run.embeddingProviderIds.includes(providerId)).map(([id]) => this.stop(id))); }
+  async stopProvider(providerId: string): Promise<void> { await this.contextSummaries.stopProvider(providerId); await Promise.all([...this.runs].filter(([, run]) => run.providerId === providerId || run.embeddingProviderIds.includes(providerId)).map(([id]) => this.stop(id))); }
 
   async stopServer(serverId: string): Promise<void> { await Promise.all([...this.runs].filter(([, run]) => run.serverIds.includes(serverId)).map(([id]) => this.stop(id))); }
 
@@ -385,5 +391,5 @@ export class ConversationEngine {
 
   resolveApproval(id: string, allowed: boolean): void { this.approvals.resolve(id, allowed); }
 
-  async shutdown(): Promise<void> { this.closing = true; await Promise.all([...this.runs.keys()].map((id) => this.stop(id))); await Promise.all(this.comparisons); }
+  async shutdown(): Promise<void> { this.closing = true; await this.contextSummaries.shutdown(); await Promise.all([...this.runs.keys()].map((id) => this.stop(id))); await Promise.all(this.comparisons); }
 }

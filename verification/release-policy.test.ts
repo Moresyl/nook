@@ -6,6 +6,7 @@ import { releaseNotes, releaseVersion, verifyRuntimeProof, type ReleaseProof } f
 import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mjs';
 
 const hash = 'a'.repeat(64);
+const contextSummaries = (): NonNullable<ReleaseProof['desktop']['contextSummaries']> => ({ checks: 6, requestCount: 10, summaryRequests: 3, originalMessages: 6, finalMessages: 14, readonlyPreviewVerified: true, actualContextRequestsVerified: true, cancellationFailureVerified: true, expiredFullContextVerified: true, restartHistoryVerified: true, restrictedQuickChatVerified: true, layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contained: true, horizontalOverflow: false, nativeSize: [760, 620] }))), screenshots: Array.from({ length: 9 }, (_, index) => `context-summary-fixture-${index}.png`) });
 const otherHash = 'b'.repeat(64);
 const toolActivities = (): NonNullable<ReleaseProof['desktop']['toolActivities']> => ({ checks: 8, commandRequests: 5, nativeStates: ['waiting', 'running', 'complete', 'error', 'stopped'], scopedClipboardPermission: true, exactOriginalCopy: true, staleClipboardGuard: true, deniedCopyRetry: true, focusBeforeInert: true, manualStreamingCollapse: true, restrictedQuickChat: true, reducedMotion: true, actualRestart: true, screenshots: Array.from({ length: 9 }, (_, i) => ({ filename: `tool-activities-fixture-${i}.png`, size: [760, 620] })), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, fontSize: '14px', parentFontSize: '14px', gap: '4px', padding: '8px 0px 4px 24px', duration: '0.3s, 0.3s', contained: true, controlVisible: true, summaryWidth: 100, controlHeight: 24, outputScrollBounded: true, horizontalOverflow: false }))) });
 const projectBranches = () => ({ checks: 8, modelRequests: 0, localListSearchVerified: true, creationValidationBusyVerified: true, overwriteRetryVerified: true, editorRefreshDraftConflictVerified: true, worktreeProjectScopeVerified: true, hookStatePreviewCleanupVerified: true, referenceZoomKeyboardVerified: true, restartDraftsVerified: true, screenshots: Array.from({ length: 13 }, (_, i) => `project-branches-${i}-shell.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, overflow: false, fieldPadding: '8px 12px 0px', fieldGap: '4px', fieldBackground: 'rgba(0, 0, 0, 0)', viewport: { width: 500, height: 400 }, dialog: { left: 10, top: 10, right: 490, bottom: 390, width: 480, height: 380 }, controls: Array.from({ length: 7 }, () => ({ visible: true, contentFits: true, width: 24, height: 24 })) }))) });
@@ -23,7 +24,7 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 283, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), toolActivities: toolActivities(),
+  const desktop = { variant: 'packaged executable', checks: 289, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -43,6 +44,21 @@ function proof(): ReleaseProof {
     installer: { checks: desktop.checks, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
+
+describe('context summary release evidence', () => {
+  it('rejects old complete desktop records that did not exercise context summaries', () => {
+    const old = proof(); old.desktop.checks = 283; expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop');
+    const missing = proof(); delete missing.desktop.contextSummaries; expect(() => verifyRuntimeProof(missing)).toThrow('context summary');
+    expect(() => verifyRuntimeProof(proof())).not.toThrow();
+  });
+  it('requires actual requests, source preservation, cancellation, quick-chat isolation and complete native layouts', () => {
+    for (const [key, value] of Object.entries({ checks: 5, requestCount: 9, summaryRequests: 2, originalMessages: 5, finalMessages: 12, readonlyPreviewVerified: false, actualContextRequestsVerified: false, cancellationFailureVerified: false, expiredFullContextVerified: false, restartHistoryVerified: false, restrictedQuickChatVerified: false, layouts: [], screenshots: [] })) {
+      const invalid = proof(); (invalid.desktop.contextSummaries as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('context summary');
+    }
+    const overflow = proof(); overflow.desktop.contextSummaries!.layouts[0].horizontalOverflow = true; expect(() => verifyRuntimeProof(overflow)).toThrow('context summary');
+    const duplicate = proof(); duplicate.desktop.contextSummaries!.screenshots[1] = duplicate.desktop.contextSummaries!.screenshots[0]; expect(() => verifyRuntimeProof(duplicate)).toThrow('context summary');
+  });
+});
 
 describe('tool activity release evidence', () => {
   it('rejects older suites and missing tool activity evidence', () => {

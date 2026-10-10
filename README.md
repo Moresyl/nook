@@ -10,7 +10,7 @@
 
 | 工作 | 可以做什么 |
 | --- | --- |
-| 对话 | 连接多个模型，比较回复，编辑消息，沿分支继续讨论 |
+| 对话 | 连接多个模型，比较回复，编辑消息，管理上下文摘要，沿分支继续讨论 |
 | 资料 | 导入文档与图片，阅读 PDF 原件，检索资料集与引用 |
 | 项目 | 编辑代码、预览 HTML 草稿、审阅 Git 改动、使用项目终端 |
 | 助手 | 保存工作指令与提示模板，连接 MCP，加载本地技能 |
@@ -45,6 +45,7 @@ pnpm dev
 - [内容阅读与代码换行](docs/RICH-CONTENT.md) · [工具记录](docs/TOOL-ACTIVITIES.md) · [记忆](docs/MEMORIES.md) · [临时聊天](docs/TEMPORARY-CHATS.md)
 - [快速聊天](docs/QUICK-CHAT.md) · [桌面入口](docs/DESKTOP-INTEGRATION.md)
 - [项目](docs/PROJECTS.md) · [HTML 预览](docs/PROJECT-PREVIEW.md) · [对话分支](docs/CONVERSATION-BRANCHES.md) · [模型比较](docs/MODEL-COMPARISON.md)
+- [会话上下文与摘要](docs/CONTEXT-SUMMARIES.md)
 - [助手](docs/ASSISTANTS.md) · [自动任务](docs/AUTOMATIONS.md) · [插件](docs/PLUGINS.md)
 - [备份与恢复](docs/BACKUPS.md) · [快捷键](docs/COMMANDS.md) · [发布状态](docs/RELEASE.md)
 

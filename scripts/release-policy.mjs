@@ -45,8 +45,15 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 283 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 289 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
+  }
+  const context = desktop.contextSummaries;
+  if (!context || context.checks !== 6 || context.requestCount !== 10 || context.summaryRequests !== 3 || context.originalMessages !== 6 || context.finalMessages !== 14
+    || !['readonlyPreviewVerified', 'actualContextRequestsVerified', 'cancellationFailureVerified', 'expiredFullContextVerified', 'restartHistoryVerified', 'restrictedQuickChatVerified'].every(key => context[key] === true)
+    || !Array.isArray(context.layouts) || context.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => context.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.horizontalOverflow === false && row.nativeSize?.[0] === 760 && row.nativeSize?.[1] === 620).length === 1))
+    || !Array.isArray(context.screenshots) || context.screenshots.length !== 9 || new Set(context.screenshots).size !== 9 || !context.screenshots.every(name => typeof name === 'string' && /^context-summary-[A-Za-z0-9.-]+\.png$/.test(name))) {
+    throw new Error('Complete context summary verification is required');
   }
   const completeEditorTabs = result => result && ['selectedVisibilityVerified', 'keyboardNavigationVerified', 'dirtyCancelVerified', 'cleanCloseFocusVerified', 'saveFailureRetryVerified', 'originalDraftsRetained'].every(key => result[key] === true)
     && Array.isArray(result.layouts) && result.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => result.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))

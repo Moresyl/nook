@@ -58,6 +58,7 @@ import { modelComparisonFixture } from '../verification/model-comparison-fixture
 import { chatNavigationFixture } from '../verification/chat-navigation-fixture.mjs';
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
 import { toolActivityFixture } from '../verification/tool-activity-fixture.mjs';
+import { contextSummaryFixture } from '../verification/context-summary-fixture.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 // Match Playwright's Electron loader for unattended CDP interaction, without changing product defaults.
@@ -99,6 +100,7 @@ await runFile('git', ['-C', projectDirectory, 'config', 'user.email', 'verificat
 await runFile('git', ['-C', projectDirectory, 'config', 'commit.gpgSign', 'false'], { windowsHide: true });
 const providerErrors = [];
 const toolActivityProviders = toolActivityFixture(directory);
+const contextSummaryProviders = contextSummaryFixture();
 const oauth = await oauthFixture();
 const nativeProviders = nativeProviderFixture();
 const attachmentProviders = attachmentProviderFixture();
@@ -110,6 +112,7 @@ const commandProviders = replyProviderFixture('/commands/');
 const chatNavigationProviders = chatNavigationFixture();
 const modelComparisonProviders = modelComparisonFixture();
 async function providerRequest(request, response) {
+  if (await contextSummaryProviders.handle(request, response)) return;
   if (await toolActivityProviders.handle(request, response)) return;
   if (await chatNavigationProviders.handle(request, response)) return;
   if (await modelComparisonProviders.handle(request, response)) return;
@@ -549,9 +552,15 @@ let systemDpiHomeResult;
 let browserResult;
 let projectBranchesResult;
 let toolActivitiesResult;
+let contextSummariesResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_TOOL_ACTIVITIES_ONLY) {
+  if (process.env.NOOK_TEST_CONTEXT_SUMMARIES_ONLY) {
+    const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
+    const run = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
+    page = run.page; contextSummariesResult = run.result;
+    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_TOOL_ACTIVITIES_ONLY) {
     const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
     const run = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
     page = run.page; toolActivitiesResult = run.result;
@@ -1208,6 +1217,8 @@ try {
   const projectBranchesRun = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectBranchesRun.page; projectBranchesResult = projectBranchesRun.result;
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
+  const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
+  const contextSummariesRun = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = contextSummariesRun.page; contextSummariesResult = contextSummariesRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const data = await readFile(join(directory, 'workspace.json'), 'utf8');
   assert.ok(data.includes('验证资料'));
@@ -1235,6 +1246,7 @@ try {
   if (fullResult && browserResult) { fullResult.browser = browserResult; fullResult.screenshots.push(...browserResult.screenshots, ...browserResult.tabs.screenshots); }
   if (fullResult && projectBranchesResult) { fullResult.projectBranches = projectBranchesResult; fullResult.screenshots.push(...projectBranchesResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
+  if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -1384,6 +1396,11 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && contextSummariesResult) {
+    assert.deepEqual(errors, []);
+    await writeFile(join(root, 'verification', packaged ? 'context-summaries-packaged-result.json' : 'context-summaries-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, verificationRun: 'focused context-summary suite', ...contextSummariesResult }, null, 2));
+    console.log(`Verified ${contextSummariesResult.checks} context summary checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && toolActivitiesResult) {
     assert.deepEqual(errors, []);

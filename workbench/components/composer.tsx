@@ -27,6 +27,7 @@ type Props = {
   knowledgeCollections: KnowledgeCollection[]; hasNotes: boolean; knowledgeCollectionIds: string[]; onKnowledgeCollections: (ids: string[]) => void;
   onSend: () => Promise<boolean>; onStop: () => void; running: boolean; enterToSend: boolean;
   onCompare?: () => void; onViewComparison?: () => void;
+  onContext?: () => void;
   onConfigure: () => void; report: (error: unknown) => void;
   promptTemplates: PromptTemplate[]; onPrompt: (text: string, assistantId?: string) => boolean;
 };
@@ -123,6 +124,7 @@ export function Composer(props: Props) {
       {context.latest?.tokens?.inputTokens !== undefined && <span>最近请求输入 {context.latest.tokens.inputTokens.toLocaleString('zh-CN')}{context.latest.status !== 'complete' || context.latest.tokens.invalid ? '（部分数据）' : ''}</span>}
       {context.info?.inputTokenLimit && <span>输入上限 {context.info.inputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.contextWindow && <span>上下文窗口 {context.info.contextWindow.toLocaleString('zh-CN')}</span>}{context.info?.outputTokenLimit && <span>输出上限 {context.info.outputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.maxOutputTokens && <span>输出预算 {context.info.maxOutputTokens.toLocaleString('zh-CN')}</span>}
     </TextHint>}
+    {props.onContext && <div className="composer-context"><Button className="usage-button" disabled={submitting || props.running} onClick={props.onContext}>管理会话上下文</Button></div>}
     {prompts && <PromptUseDialog templates={props.promptTemplates} assistants={props.assistants} onUse={props.onPrompt} onClose={() => setPrompts(false)} />}
     {extensions && <Modal title="工具与技能" onClose={() => setExtensions(false)} footer={<Button tone="solid" onClick={() => setExtensions(false)}>完成</Button>}>
       <h3>MCP 工具</h3>{props.mode === 'plan' ? <p className="field-hint">项目分析只使用项目读取工具；MCP 工具可在聊天或执行任务中使用。</p> : <><p className="field-hint">请先在设置中连接服务器。每次模型调用都会先请求审批。</p>{props.servers.filter((server) => server.enabled).map((server) => <Toggle key={server.id} label={server.name} checked={props.serverIds.includes(server.id)} onChange={(checked) => props.onServers(checked ? [...props.serverIds, server.id] : props.serverIds.filter((id) => id !== server.id))} />)}</>}

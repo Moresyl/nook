@@ -243,6 +243,9 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   reorderBranch: (raw) => reorderConversationBranch(vault, raw),
   submit: (request) => engine.start(request),
   compareModels: (request) => engine.compare(request),
+  generateContextSummary: (raw) => engine.contextSummaries.generate(raw),
+  changeContextSummary: (raw) => engine.contextSummaries.change(raw),
+  stopContextSummary: (raw) => engine.contextSummaries.stop(raw),
   stop: (id) => engine.stop(idSchema.parse(id)),
   pendingApprovals: () => engine.pendingApprovals(),
   resolveApproval: (id, allowed) => engine.resolveApproval(idSchema.parse(id), z.boolean().parse(allowed)),
@@ -255,6 +258,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       if (thread.temporary !== draft.threads[index].temporary) throw new Error('The storage mode of an existing conversation cannot be changed.');
       if (thread.branchOrder !== draft.threads[index].branchOrder) throw new Error('The branch order changed. Refresh the conversation before changing its details.');
       if (JSON.stringify(thread.comparison) !== JSON.stringify(draft.threads[index].comparison)) throw new Error('Comparison membership cannot be changed. Refresh the conversation before changing its details.');
+      if (JSON.stringify([thread.contextSummaries, thread.activeContextSummaryId]) !== JSON.stringify([draft.threads[index].contextSummaries, draft.threads[index].activeContextSummaryId])) throw new Error('The context summary changed. Refresh the conversation before changing its details.');
       draft.threads[index] = { ...thread, updatedAt: Date.now() };
     });
   },
