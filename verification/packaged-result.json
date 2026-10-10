@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-10T21:06:54.211Z",
+  "verifiedAt": "2026-10-10T23:35:03.245Z",
   "variant": "packaged executable",
-  "checks": 283,
+  "checks": 289,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181170,
-    "compressedBytes": 242357,
+    "expandedBytes": 84181184,
+    "compressedBytes": 242319,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -381,8 +381,8 @@
             "label": "预览 BODY_SCOPE_EXCLUDED.txt",
             "left": 269,
             "right": 451.96875,
-            "top": 339,
-            "bottom": 363,
+            "top": 311.40625,
+            "bottom": 335.40625,
             "width": 182.96875,
             "height": 24
           },
@@ -390,8 +390,8 @@
             "label": "消息",
             "left": 252,
             "right": 688,
-            "top": 378,
-            "bottom": 426,
+            "top": 350.40625,
+            "bottom": 398.40625,
             "width": 436,
             "height": 48
           },
@@ -399,8 +399,8 @@
             "label": "发送消息",
             "left": 696,
             "right": 728,
-            "top": 394,
-            "bottom": 426,
+            "top": 366.40625,
+            "bottom": 398.40625,
             "width": 32,
             "height": 32
           },
@@ -408,8 +408,8 @@
             "label": "模型提供商",
             "left": 246,
             "right": 335,
-            "top": 477,
-            "bottom": 501,
+            "top": 449.40625,
+            "bottom": 473.40625,
             "width": 89,
             "height": 24
           },
@@ -417,8 +417,8 @@
             "label": "选择模型",
             "left": 335,
             "right": 478,
-            "top": 477,
-            "bottom": 501,
+            "top": 449.40625,
+            "bottom": 473.40625,
             "width": 143,
             "height": 24
           }
@@ -440,7 +440,7 @@
         },
         "region": {
           "width": 540,
-          "height": 181
+          "height": 153.40625
         },
         "marker": {
           "left": 227,
@@ -450,11 +450,11 @@
         },
         "rail": {
           "top": 157,
-          "bottom": 290
+          "bottom": 262.40625
         },
         "result": {
-          "top": 193,
-          "bottom": 210
+          "top": 184,
+          "bottom": 201
         }
       },
       {
@@ -518,8 +518,8 @@
             "label": "预览 BODY_SCOPE_EXCLUDED.txt",
             "left": 92.80000305175781,
             "right": 275.3625030517578,
-            "top": 273.20001220703125,
-            "bottom": 297.20001220703125,
+            "top": 246,
+            "bottom": 270,
             "width": 182.5625,
             "height": 24
           },
@@ -527,8 +527,8 @@
             "label": "消息",
             "left": 84,
             "right": 548,
-            "top": 304,
-            "bottom": 336,
+            "top": 276.8000183105469,
+            "bottom": 308.8000183105469,
             "width": 464,
             "height": 32
           },
@@ -536,8 +536,8 @@
             "label": "发送消息",
             "left": 556,
             "right": 588,
-            "top": 304,
-            "bottom": 336,
+            "top": 276.8000183105469,
+            "bottom": 308.8000183105469,
             "width": 32,
             "height": 32
           },
@@ -545,8 +545,8 @@
             "label": "模型提供商",
             "left": 76,
             "right": 164.5999984741211,
-            "top": 382,
-            "bottom": 406,
+            "top": 354.8000183105469,
+            "bottom": 378.8000183105469,
             "width": 88.5999984741211,
             "height": 24
           },
@@ -554,8 +554,8 @@
             "label": "选择模型",
             "left": 164.60000610351562,
             "right": 307.20001220703125,
-            "top": 382,
-            "bottom": 406,
+            "top": 354.8000183105469,
+            "bottom": 378.8000183105469,
             "width": 142.60000610351562,
             "height": 24
           }
@@ -577,7 +577,7 @@
         },
         "region": {
           "width": 544,
-          "height": 145.60000610351562
+          "height": 118.4000015258789
         },
         "marker": {
           "left": 71,
@@ -587,11 +587,11 @@
         },
         "rail": {
           "top": 120.80000305175781,
-          "bottom": 250.40000915527344
+          "bottom": 223.20000457763672
         },
         "result": {
-          "top": 161.8000030517578,
-          "bottom": 178.60000610351562
+          "top": 152.1999969482422,
+          "bottom": 169
         }
       },
       {
@@ -655,8 +655,8 @@
             "label": "预览 BODY_SCOPE_EXCLUDED.txt",
             "left": 92.66667175292969,
             "right": 274.9583435058594,
-            "top": 201.33334350585938,
-            "bottom": 225.33334350585938,
+            "top": 174.40625,
+            "bottom": 198.40625,
             "width": 182.2916717529297,
             "height": 24
           },
@@ -664,8 +664,8 @@
             "label": "消息",
             "left": 84,
             "right": 446.66668701171875,
-            "top": 232,
-            "bottom": 264,
+            "top": 205.0729217529297,
+            "bottom": 237.0729217529297,
             "width": 362.66668701171875,
             "height": 32
           },
@@ -673,8 +673,8 @@
             "label": "发送消息",
             "left": 454.66668701171875,
             "right": 486.66668701171875,
-            "top": 232,
-            "bottom": 264,
+            "top": 205.0729217529297,
+            "bottom": 237.0729217529297,
             "width": 32,
             "height": 32
           },
@@ -682,8 +682,8 @@
             "label": "模型提供商",
             "left": 76,
             "right": 164.33333587646484,
-            "top": 310,
-            "bottom": 334,
+            "top": 283.07293701171875,
+            "bottom": 307.07293701171875,
             "width": 88.33333587646484,
             "height": 24
           },
@@ -691,8 +691,8 @@
             "label": "选择模型",
             "left": 164.33334350585938,
             "right": 306.66668701171875,
-            "top": 310,
-            "bottom": 334,
+            "top": 283.07293701171875,
+            "bottom": 307.07293701171875,
             "width": 142.33334350585938,
             "height": 24
           }
@@ -714,7 +714,7 @@
         },
         "region": {
           "width": 442.66668701171875,
-          "height": 74
+          "height": 47.07291793823242
         },
         "marker": {
           "left": 71,
@@ -724,11 +724,11 @@
         },
         "rail": {
           "top": 120.66667175292969,
-          "bottom": 178.6666717529297
+          "bottom": 151.7395896911621
         },
         "result": {
-          "top": 137,
-          "bottom": 153.6666717529297
+          "top": 128.33334350585938,
+          "bottom": 145
         }
       }
     ],
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791665904516,
+        "startedAt": 1791674758689,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791665906724
+        "finishedAt": 1791674760748
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791665906953,
+        "startedAt": 1791674760991,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791665909107
+        "finishedAt": 1791674762530
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791665911492,
+        "startedAt": 1791674764575,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791665913250
+        "finishedAt": 1791674766048
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 22.399999998509884,
+    "scopedReadMs": 14.799999997019768,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1210,7 +1210,16 @@
     "tool-activities-dark-125.png",
     "tool-activities-dark-150.png",
     "tool-activities-quick.png",
-    "tool-activities-restart.png"
+    "tool-activities-restart.png",
+    "context-summary-preview.png",
+    "context-summary-saved-light-100.png",
+    "context-summary-saved-light-125.png",
+    "context-summary-saved-light-150.png",
+    "context-summary-saved-dark-100.png",
+    "context-summary-saved-dark-125.png",
+    "context-summary-saved-dark-150.png",
+    "context-summary-provider-error.png",
+    "context-summary-expired.png"
   ],
   "pdfPreview": {
     "checks": 6,
@@ -1697,33 +1706,33 @@
     "layout": [
       {
         "zoom": 1,
-        "hintTop": 453,
-        "hintBottom": 486,
-        "inputTop": 355,
-        "inputBottom": 403,
-        "sendBottom": 403,
+        "hintTop": 425.40625,
+        "hintBottom": 458.40625,
+        "inputTop": 327.40625,
+        "inputBottom": 375.40625,
+        "sendBottom": 375.40625,
         "height": 540,
         "overflow": false,
         "focus": "消息"
       },
       {
         "zoom": 1.25,
-        "hintTop": 363,
-        "hintBottom": 396,
-        "inputTop": 281,
-        "inputBottom": 313,
-        "sendBottom": 313,
+        "hintTop": 335.8000183105469,
+        "hintBottom": 368.8000183105469,
+        "inputTop": 253.8000030517578,
+        "inputBottom": 285.8000030517578,
+        "sendBottom": 285.8000030517578,
         "height": 432,
         "overflow": false,
         "focus": "消息"
       },
       {
         "zoom": 1.5,
-        "hintTop": 291,
-        "hintBottom": 324,
-        "inputTop": 209,
-        "inputBottom": 241,
-        "sendBottom": 241,
+        "hintTop": 264.07293701171875,
+        "hintBottom": 297.07293701171875,
+        "inputTop": 182.0729217529297,
+        "inputBottom": 214.0729217529297,
+        "sendBottom": 214.0729217529297,
         "height": 360,
         "overflow": false,
         "focus": "消息"
@@ -2459,120 +2468,70 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.00000000000028
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         }
@@ -4443,7 +4402,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.3125,
+        "summaryWidth": 369.5,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4458,7 +4417,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 370.7124938964844,
+        "summaryWidth": 373.8999938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4473,7 +4432,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 268.97918701171875,
+        "summaryWidth": 272.16668701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4488,7 +4447,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.3125,
+        "summaryWidth": 369.5,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4503,7 +4462,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 370.7124938964844,
+        "summaryWidth": 373.8999938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4518,7 +4477,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 268.97918701171875,
+        "summaryWidth": 272.16668701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -4590,7 +4549,95 @@
       }
     ]
   },
+  "contextSummaries": {
+    "checks": 6,
+    "threadId": "ade8b860-5083-4097-bf9e-b3a140fec8cb",
+    "requestCount": 10,
+    "summaryRequests": 3,
+    "originalMessages": 6,
+    "finalMessages": 14,
+    "readonlyPreviewVerified": true,
+    "actualContextRequestsVerified": true,
+    "cancellationFailureVerified": true,
+    "expiredFullContextVerified": true,
+    "restartHistoryVerified": true,
+    "restrictedQuickChatVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "contained": true,
+        "horizontalOverflow": false,
+        "nativeSize": [
+          760,
+          620
+        ]
+      }
+    ],
+    "screenshots": [
+      "context-summary-preview.png",
+      "context-summary-saved-light-100.png",
+      "context-summary-saved-light-125.png",
+      "context-summary-saved-light-150.png",
+      "context-summary-saved-dark-100.png",
+      "context-summary-saved-dark-125.png",
+      "context-summary-saved-dark-150.png",
+      "context-summary-provider-error.png",
+      "context-summary-expired.png"
+    ],
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-1Rkcu1"
+  },
   "normalCloseVerified": true,
-  "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
-  "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55"
+  "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+  "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e"
 }

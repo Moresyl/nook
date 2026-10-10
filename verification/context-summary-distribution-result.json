@@ -1,0 +1,868 @@
+{
+  "verifiedAt": "2026-10-10T23:36:41.299Z",
+  "sourceHead": "f814800acf29440becff1f8026aa48f2f31e6dad",
+  "productCommit": "160aabc6d02a074842147f8e75f156bfe74f3c3a",
+  "candidate": "E:/NookVerification/ContextSummaryCandidate-20261011",
+  "archive": "E:/NookVerification/ContextSummaryDistribution-20261011",
+  "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+  "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+  "installerSha256": "e812e1608cec46bbec1314d15f1920e402286d2b1f50ec666f4f1b434e3961aa",
+  "portableSha256": "e0b8219025cabce9141b4d058169509705fc037c8d9e6184d7401a00bceecc33",
+  "artifacts": [
+    {
+      "name": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240134881,
+      "sha256": "e812e1608cec46bbec1314d15f1920e402286d2b1f50ec666f4f1b434e3961aa"
+    },
+    {
+      "name": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309643414,
+      "sha256": "e0b8219025cabce9141b4d058169509705fc037c8d9e6184d7401a00bceecc33"
+    },
+    {
+      "name": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09"
+    },
+    {
+      "name": "win-unpacked/resources/app.asar",
+      "bytes": 493831854,
+      "sha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e"
+    }
+  ],
+  "packageAudit": {
+    "verifiedAt": "2026-10-10T22:46:03.097Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+    "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "compiledFiles": 236,
+  "allCompiledFilesMatchVerifiedSource": true,
+  "completeNativeRuns": [
+    {
+      "stage": "unpacked",
+      "checks": 289,
+      "normalExits": [
+        {
+          "elapsedMs": 700,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 511,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 434,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 128,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 285,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 240,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 217,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 482,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 337,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 202,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 236,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 649,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 246,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 284,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 338,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 178,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 373,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 177,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 284,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 686,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 373,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 308,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 362,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 247,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 322,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 224,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1546,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 271,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 268,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 223,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1972,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 855,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 567,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 229,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 259,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1081,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 360,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 468,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2634,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1953,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 191,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\ContextSummaryDistribution-20261011\\unpacked-full"
+    },
+    {
+      "stage": "installed",
+      "checks": 289,
+      "normalExits": [
+        {
+          "elapsedMs": 558,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 369,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 204,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 137,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 301,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 558,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 315,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 240,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 730,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 245,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 263,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 449,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 259,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 514,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 340,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 139,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 432,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 160,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 285,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 696,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 434,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 391,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 236,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 239,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 342,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 148,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1765,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1275,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 289,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 278,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 3153,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 491,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 339,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 245,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 302,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1297,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 308,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 795,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1908,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2346,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 234,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\ContextSummaryDistribution-20261011\\installed-full"
+    }
+  ],
+  "additionalChecks": [
+    {
+      "stage": "surfaces",
+      "checks": 4,
+      "normalExits": [
+        {
+          "elapsedMs": 408,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "stage": "text-hints",
+      "checks": 7,
+      "normalExits": [
+        {
+          "elapsedMs": 452,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "stage": "renderer-close",
+      "checks": 2,
+      "normalExits": [
+        {
+          "elapsedMs": 1984,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    }
+  ],
+  "portableChecks": 7,
+  "portableLaunches": [
+    {
+      "wrapperStartedAt": 1791674020268,
+      "applicationObservedAt": 1791674027671,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791674028936
+    },
+    {
+      "wrapperStartedAt": 1791674042405,
+      "applicationObservedAt": 1791674054423,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791674054449
+    }
+  ],
+  "installation": {
+    "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+    "installerSha256": "e812e1608cec46bbec1314d15f1920e402286d2b1f50ec666f4f1b434e3961aa",
+    "registrationVerified": true,
+    "shortcutsVerified": true,
+    "checks": 289,
+    "scope": "Actual current-user silent install into an owned Unicode path, complete installed-runtime regression, original package hashes, shortcut metadata and silent uninstall with fresh data sentinels. Native wizard interaction remains a separate check.",
+    "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+    "version": "0.1.0-alpha.1",
+    "verifiedAt": "2026-10-10T23:35:19.5863432Z",
+    "userDataRetained": true,
+    "uninstalled": true,
+    "normalCloseVerified": true
+  },
+  "matchingRuntimeRecords": {
+    "audit": {
+      "file": "package-audit-result.json",
+      "sha256": "56b0ac34eaccf05adf8faf88f7b97809fd84542fa93e84d219fbe696520b49e3"
+    },
+    "desktop": {
+      "file": "packaged-result.json",
+      "sha256": "6b27ae5a5a0cdafd47bbcc91b34fdf5be442264eea4989c777bfb0f0d2e6eaf7"
+    },
+    "surfaces": {
+      "file": "surfaces-packaged-result.json",
+      "sha256": "feb1f324814b49a97d34b8a69117bc61cf49bbb4fa61ed7ed795e918f55a2779"
+    },
+    "preview": {
+      "file": "project-preview-packaged-result.json",
+      "sha256": "b5a44c7ba8bc419c18d4dbf1fa587196cd419bd0c6f488876fc354e792fd6c30"
+    },
+    "branches": {
+      "file": "conversation-branches-packaged-result.json",
+      "sha256": "8def99168140167d54488af02ee1c8f8eb6ccb77e4081dc3209df0534535fc3e"
+    },
+    "temporary": {
+      "file": "temporary-conversations-packaged-result.json",
+      "sha256": "b85e7387b3b9e93d811c65fbaef9c5a30414338499d5448222e799a177bfccf5"
+    },
+    "comparisons": {
+      "file": "model-comparisons-packaged-result.json",
+      "sha256": "92c288c60f6f19ece6030abc6f99517cfaa06b59e28c94272376cbe3d340cf48"
+    },
+    "portable": {
+      "file": "portable-result.json",
+      "sha256": "f4b3deb0565c30403f36e7608863b0bf383019130cb815dd070733b49cc66b7f"
+    },
+    "portableAudit": {
+      "file": "portable-package-audit-result.json",
+      "sha256": "87a933611e4887e63905b14e33bac90decc42e53032bd0f91292e51513be998b"
+    },
+    "bootstrap": {
+      "file": "distribution-bootstrap-result.json",
+      "sha256": "9c0b7c7ba7ae0ae3f946ac56845b7338ad7fea590a2fc9762c778aa5965441de"
+    },
+    "installer": {
+      "file": "pipeline-installer-result.json",
+      "sha256": "760fa1c624efc4bf511745ad9bdc03126eb96695e276cdb75f437fe9c33b97ac"
+    }
+  },
+  "allRuntimeProofPassed": true,
+  "visualReviews": [
+    {
+      "verifiedAt": "2026-10-10T23:11:37.549Z",
+      "stage": "unpacked",
+      "archive": "E:/NookVerification/ContextSummaryDistribution-20261011/unpacked-full",
+      "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+      "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+      "reviewedOriginals": 9,
+      "captures": [
+        {
+          "filename": "context-summary-preview.png",
+          "sha256": "4bebe09426b5eb3cf85522a7cb526b3e99847e29be36e1dfa6f67b6fb92f28b4",
+          "bytes": 112880,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-100.png",
+          "sha256": "f6bbd64f087dcf7f8b05b61e8528f799f6ca6dc977fce186d7f7caeb9d2682cf",
+          "bytes": 28912,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-125.png",
+          "sha256": "713eca0375f17dd983aa3f88398453c6b2c40b87e84e31010a22b5d9ae726859",
+          "bytes": 34907,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-150.png",
+          "sha256": "a54fb29d8ed3ab9ce6160bbe9830da163bfaf8439a7602292388539ebd9cbc10",
+          "bytes": 38522,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-100.png",
+          "sha256": "6da328c78a9d1fc22e3278b158eb1a2862d7103b0df6b48c5244cae9a920a08b",
+          "bytes": 28611,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-125.png",
+          "sha256": "8ec60c388ed772a39ec25fdba8e51737c2c262c58e0db5d48b89ccfd32a61cfb",
+          "bytes": 34335,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-150.png",
+          "sha256": "9d1e5686bcf953d6f242d86a4fac22e15f0e01b564bff72d81d8776e5ae2bdc9",
+          "bytes": 37833,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-provider-error.png",
+          "sha256": "58de056f7350d5b404bb7115faca517757cdc0796a6a6af00de631b7325a62b1",
+          "bytes": 115779,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-expired.png",
+          "sha256": "5997deb5910c8dd4dd54da727c10980a0ded7661e0bb3b51e7d227fe983cf599",
+          "bytes": 115824,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        }
+      ],
+      "scope": "Nine context-summary originals individually viewed from the immutable complete-run archive: preview, six light/dark zoom states, actual provider error and expired-source state. Footer actions remain visible; high zoom content uses scrolling. Other complete-run captures are retained but are not all individually reviewed. English provider diagnostics remain visible; this does not establish complete localization, all reference UI, physical system interaction or hosted release."
+    },
+    {
+      "verifiedAt": "2026-10-10T23:36:39.114Z",
+      "stage": "installed",
+      "archive": "E:/NookVerification/ContextSummaryDistribution-20261011/installed-full",
+      "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+      "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+      "reviewedOriginals": 9,
+      "captures": [
+        {
+          "filename": "context-summary-preview.png",
+          "sha256": "4bebe09426b5eb3cf85522a7cb526b3e99847e29be36e1dfa6f67b6fb92f28b4",
+          "bytes": 112880,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-100.png",
+          "sha256": "f6bbd64f087dcf7f8b05b61e8528f799f6ca6dc977fce186d7f7caeb9d2682cf",
+          "bytes": 28912,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-125.png",
+          "sha256": "713eca0375f17dd983aa3f88398453c6b2c40b87e84e31010a22b5d9ae726859",
+          "bytes": 34907,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-light-150.png",
+          "sha256": "a54fb29d8ed3ab9ce6160bbe9830da163bfaf8439a7602292388539ebd9cbc10",
+          "bytes": 38522,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-100.png",
+          "sha256": "6da328c78a9d1fc22e3278b158eb1a2862d7103b0df6b48c5244cae9a920a08b",
+          "bytes": 28611,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-125.png",
+          "sha256": "8ec60c388ed772a39ec25fdba8e51737c2c262c58e0db5d48b89ccfd32a61cfb",
+          "bytes": 34335,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-saved-dark-150.png",
+          "sha256": "9d1e5686bcf953d6f242d86a4fac22e15f0e01b564bff72d81d8776e5ae2bdc9",
+          "bytes": 37833,
+          "width": 760,
+          "height": 620,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-provider-error.png",
+          "sha256": "a578747457f5d2644f7c11e63a5562e7bf6f52ce60a4e3cd04d3ab361ab278ba",
+          "bytes": 115759,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "context-summary-expired.png",
+          "sha256": "5997deb5910c8dd4dd54da727c10980a0ded7661e0bb3b51e7d227fe983cf599",
+          "bytes": 115824,
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        }
+      ],
+      "scope": "Nine context-summary originals individually viewed from the immutable complete-run archive: preview, six light/dark zoom states, actual provider error and expired-source state. Footer actions remain visible; high zoom content uses scrolling. Other complete-run captures are retained but are not all individually reviewed. English provider diagnostics remain visible; this does not establish complete localization, all reference UI, physical system interaction or hosted release."
+    }
+  ],
+  "reviewedCompleteRunContextOriginals": 18,
+  "preservedPriorFailures": [
+    "E:/NookVerification/ToolActivitiesInstalledFirstFailure-20261011",
+    "E:/NookVerification/ToolActivitiesTextHintsSelectorFailure-20261011"
+  ],
+  "priorInstalledVisibilityTimeoutCauseConfirmed": false,
+  "retainedProfiles": "The four exact archived original failure sentinels remain at their original profile paths. The owned installer wrapper validates them, adds four fresh sentinels, verifies both sets after silent uninstall, and removes only fresh owned sentinels on success.",
+  "wholeReferenceUiAccepted": false,
+  "physicalSystemInteractionAccepted": false,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "scope": "Current candidate verified by complete unpacked and installed 289-check runs, 41 normal exits each, three separate packaged native suites, actual bootstrap inventories, two portable launches and eleven matching records. Eighteen context-summary originals individually reviewed; all other retained captures are not necessarily visually reviewed. Actual service requests use local protocol fixtures. These results do not establish all reference UI, physical wizard/input, every target platform, live cloud credentials or successful hosted release."
+}
