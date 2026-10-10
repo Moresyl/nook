@@ -70,7 +70,7 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
       const directoryHint = page.locator('.editor-files-toolbar > span:not([role="tooltip"])').filter({ hasText: /^文件$/ });
       await assertTextHint(page, directoryHint, folder);
       await page.getByRole('button', { name: '查看改动', exact: true }).click();
-      const branchHint = page.locator('.changes-list .editor-files-toolbar > span:not([role="tooltip"])');
+      const branchHint = page.locator('.changes-list').getByRole('button', { name: '管理项目分支', exact: true });
       await branchHint.filter({ hasText: branch }).waitFor(); await assertTextHint(page, branchHint, branch);
       await captureHint(branchHint, 'branch');
       await page.getByRole('button', { name: '文件', exact: true }).click();
