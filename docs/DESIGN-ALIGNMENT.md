@@ -61,10 +61,13 @@ Nook 按指定的桌面资料调整布局、主题、控件与交互，**尚未�
 | 后续文件树／分支／PDF 提示 | [文件树浅色](images/all-tree-hints-light-100.png)、[深色 150%](images/all-tree-hints-dark-150.png)；[分支浅色](images/all-branch-hints-light-100.png)、[深色 150%](images/all-branch-hints-dark-150.png)；[PDF 浅色](images/all-annotation-hints-light-100.png)、[深色 150%](images/all-annotation-hints-dark-150.png) |
 | 快速聊天源码 | [浅色 100%](images/quick-chat-light-100.png)、[125%](images/quick-chat-light-125.png)、[150%](images/quick-chat-light-150.png)；[深色 100%](images/quick-chat-dark-100.png)、[125%](images/quick-chat-dark-125.png)、[150%](images/quick-chat-dark-150.png)；[PDF](images/quick-chat-pdf.png)、[收起](images/quick-chat-collapsed.png) |
 | 快速聊天最小高度 `37b3f95` | [空白浅色 150%](images/quick-chat-short-empty-light-150.png)、[深色 150%](images/quick-chat-short-empty-dark-150.png)；[长输入及 PDF 浅色 150%](images/quick-chat-short-rich-light-150.png)、[深色 150%](images/quick-chat-short-rich-dark-150.png)；[已有会话 150%](images/quick-chat-short-conversation-dark-150.png)、[错误末尾及完整关闭按钮](images/quick-chat-short-save-error-end.png) |
+| 中文错误提示 `d2196b0` | [快速聊天保存失败](images/ui-error-quick-chat.png)、[末端与完整关闭操作](images/ui-error-quick-chat-end.png)；[PDF 导出失败](images/ui-error-pdf-export.png)、[深色最小窗口时区提示](images/ui-error-automation.png) |
 
 PDF 五张截图来自当前候选的真实未安装应用体。本轮完整实际安装生成的五张图片哈希也在源码重跑前核对，与这些保留图片一致，详见[安装重跑证据](../verification/native-installed-retry-review-result.json)。其余图片属于对应历史源码／分发批次，只用于查看已检查的设计状态。后续运行会覆盖工作截图目录，不能将其最新内容冒充此前安装截图。图片、PDF 和 HTML 的详细交互与验证边界见[附件](ATTACHMENTS.md)、[PDF 阅读](PDF-PREVIEW.md)和[HTML 预览](PROJECT-PREVIEW.md)。
 
 第一批快速聊天八张图来自 `afb226a` 专项的完整原生内容捕获，包含六张 420×580 明暗／缩放图、640×580 PDF 和 640×58 收起状态；它们分别归档并核对内容尺寸。此前 Playwright 缩放截图裁切了内容，已单独保留，未作为完整窗口证据。
+
+中文错误提示四张图来自 `d2196b0` 构建的三轮独立原生专项，已逐张检查并与归档哈希核对。快速聊天保留完整原生短窗口捕获，PDF 与时区截图来自实际应用页面；保存失败和恢复重试有真实文件操作断言。它们不替代完整页面、实际系统 DPI 或新安装包验收。[对应源码、构建与范围](../verification/ui-errors-review-result.json)
 
 后续 `37b3f95` 的 28 张完整原生截图已检查，其中 18 组覆盖 420×360 的空白、长输入加 PDF／执行说明及已有会话，均包含明暗与 100%／125%／150%；还有六张 420×580、PDF／收起及保存错误的首尾状态。上表新增的六张来自这批最终归档，旧八张不作新批次证据。实际控件命中、工具栏键盘焦点、错误完整按钮与 Home／End 滚动均检查；原始裁切图继续保留。[对应源码、构建与截图记录](../verification/quick-chat-minimum-review-result.json)完整桌面、最大规模内容、物理辅助技术及同一安装包仍需验收。
 
