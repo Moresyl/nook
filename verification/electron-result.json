@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-10T09:33:03.219Z",
+  "verifiedAt": "2026-10-10T10:32:21.189Z",
   "variant": "development executable",
   "checks": 252,
   "runtimeErrors": [],
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181190,
-    "compressedBytes": 242265,
+    "expandedBytes": 84181170,
+    "compressedBytes": 242304,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791624433158,
+        "startedAt": 1791628017226,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791624435727
+        "finishedAt": 1791628018688
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791624435873,
+        "startedAt": 1791628018837,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791624438097
+        "finishedAt": 1791628020117
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791624440651,
+        "startedAt": 1791628021781,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791624442929
+        "finishedAt": 1791628022889
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 8.399999999906868,
+    "scopedReadMs": 16.90000000037253,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1097,6 +1097,7 @@
     "pdf-outline-light.png",
     "pdf-search-light.png",
     "pdf-note-light.png",
+    "pdf-original-export-save-error.png",
     "114-branch-order-light.png",
     "115-branch-order-error-light.png",
     "116-branch-order-dark-zoom-100.png",
@@ -1158,13 +1159,15 @@
     "fullDocumentSearchVerified": true,
     "linksNotesZoomVerified": true,
     "exportOwnershipRestartVerified": true,
+    "exportFilesystemRetryVerified": true,
     "nativeSaveDialogIntercepted": true,
     "screenshots": [
       "pdf-original-light.png",
       "pdf-original-dark-minimum.png",
       "pdf-outline-light.png",
       "pdf-search-light.png",
-      "pdf-note-light.png"
+      "pdf-note-light.png",
+      "pdf-original-export-save-error.png"
     ]
   },
   "branchNavigation": {
