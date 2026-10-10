@@ -1,14 +1,15 @@
 import { EventEmitter } from 'node:events';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { BrowserWindow } from 'electron';
-import { browserNavigationAllowed, browserUrl } from '../contracts/browser';
+import { browserNavigationAllowed, browserTabLimit, browserUrl } from '../contracts/browser';
 
-const fake = vi.hoisted(() => ({ views: [] as any[], load: vi.fn(), clear: vi.fn() }));
+const fake = vi.hoisted(() => ({ views: [] as any[], sessions: new Map<string, any>(), load: vi.fn(), clear: vi.fn() }));
 vi.mock('electron', () => ({ WebContentsView: class {
   options: any; webContents: any; setVisible = vi.fn(); setBounds = vi.fn(); setBackgroundColor = vi.fn();
   constructor(options: any) {
     this.options = options;
-    const session = Object.assign(new EventEmitter(), { setPermissionRequestHandler: vi.fn(), setPermissionCheckHandler: vi.fn(), clearStorageData: fake.clear, webRequest: { onBeforeRequest: vi.fn() } });
+    const partition = options.webPreferences.partition;
+    const session = fake.sessions.get(partition) ?? Object.assign(new EventEmitter(), { setPermissionRequestHandler: vi.fn(), setPermissionCheckHandler: vi.fn(), clearStorageData: fake.clear, webRequest: { onBeforeRequest: vi.fn() } }); fake.sessions.set(partition, session);
     this.webContents = Object.assign(new EventEmitter(), { session, destroyed: false, crashed: false,
       isDestroyed() { return this.destroyed; }, isCrashed() { return this.crashed; },
       navigationHistory: { canGoBack: vi.fn(() => false), canGoForward: vi.fn(() => false), goBack: vi.fn(), goForward: vi.fn() },
@@ -24,7 +25,7 @@ function parentWindow(zoom = 1) {
     webContents: Object.assign(new EventEmitter(), { getZoomFactor: () => zoom, focus: vi.fn(), send: vi.fn() }), contentView: { addChildView: vi.fn(), removeChildView: vi.fn() } });
 }
 let manager: BrowserPanel;
-beforeEach(() => { vi.useRealTimers(); vi.clearAllMocks(); fake.views.length = 0; fake.load.mockResolvedValue(undefined); fake.clear.mockResolvedValue(undefined); manager = new BrowserPanel(); });
+beforeEach(() => { vi.useRealTimers(); vi.clearAllMocks(); fake.views.length = 0; fake.sessions.clear(); fake.load.mockResolvedValue(undefined); fake.clear.mockResolvedValue(undefined); manager = new BrowserPanel(); });
 afterEach(() => { manager.close(); vi.useRealTimers(); });
 
 describe('browser addresses', () => {
@@ -40,6 +41,63 @@ describe('browser addresses', () => {
 });
 
 describe('isolated website panel', () => {
+  it('keeps multiple live tabs, shared transient storage and independent URL/history/title state', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow), second = manager.open(parent as unknown as BrowserWindow, true);
+    expect(second.token).not.toBe(first.token); expect(fake.views).toHaveLength(2);
+    expect(fake.views[0].options.webPreferences.partition).toBe(fake.views[1].options.webPreferences.partition);
+    expect(fake.views[0].webContents.session).toBe(fake.views[1].webContents.session);
+    manager.navigate(first.token, 'https://first.example'); manager.navigate(second.token, 'https://second.example');
+    fake.views[0].webContents.emit('page-title-updated', {}, 'First'); fake.views[1].webContents.emit('page-title-updated', {}, 'Second');
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ token: second.token, title: 'Second' });
+    expect(manager.activate(first.token)).toMatchObject({ token: first.token, title: 'First', url: 'https://first.example/' });
+    expect(fake.views.every(view => !view.webContents.destroyed)).toBe(true);
+    expect(parent.listenerCount('resize')).toBe(1); expect(parent.webContents.listenerCount('did-start-navigation')).toBe(1);
+  });
+  it('shows only the selected owner and ignores old layout/focus requests after switching', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow), second = manager.open(parent as unknown as BrowserWindow, true), bounds = { x: 0, y: 0, width: 300, height: 200 };
+    manager.navigate(first.token, 'https://first.example'); manager.navigate(second.token, 'https://second.example');
+    manager.layout(second.token, bounds); expect(fake.views[1].setVisible).toHaveBeenLastCalledWith(true);
+    manager.activate(first.token); expect(fake.views[1].setVisible).toHaveBeenLastCalledWith(false); manager.layout(first.token, bounds);
+    manager.layout(second.token, bounds); manager.action(second.token, 'focus');
+    expect(fake.views[1].setVisible).toHaveBeenLastCalledWith(false); expect(fake.views[1].webContents.focus).not.toHaveBeenCalled(); expect(fake.views[0].setVisible).toHaveBeenLastCalledWith(true);
+    expect(() => manager.activate('stale')).toThrow('no longer available');
+  });
+  it('retains shared storage on one-tab close, selects a neighbor and resets it after the last tab', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow), middle = manager.open(parent as unknown as BrowserWindow, true), last = manager.open(parent as unknown as BrowserWindow, true);
+    const partition = fake.views[0].options.webPreferences.partition; manager.activate(middle.token); manager.close(middle.token);
+    expect(manager.open(parent as unknown as BrowserWindow).token).toBe(last.token); expect(fake.clear).not.toHaveBeenCalled(); expect(fake.views[0].webContents.isDestroyed()).toBe(false);
+    manager.close(last.token); expect(manager.open(parent as unknown as BrowserWindow).token).toBe(first.token); expect(fake.clear).not.toHaveBeenCalled();
+    manager.close(first.token); expect(fake.clear).toHaveBeenCalledOnce(); expect(parent.listenerCount('closed')).toBe(0);
+    const fresh = manager.open(parent as unknown as BrowserWindow); expect(fake.views[3].options.webPreferences.partition).not.toBe(partition); manager.close(first.token); expect(manager.open(parent as unknown as BrowserWindow).token).toBe(fresh.token);
+  });
+  it.each(['closed', 'reload', 'crash'])('releases every tab, one session and owned listeners on %s', reason => {
+    const parent = parentWindow(); const tokens = Array.from({ length: 3 }, () => manager.open(parent as unknown as BrowserWindow, true).token);
+    if (reason === 'closed') parent.emit('closed'); else if (reason === 'reload') parent.webContents.emit('did-start-navigation', { isSameDocument: false, isMainFrame: true }); else parent.webContents.emit('render-process-gone');
+    expect(fake.views.every(view => view.webContents.isDestroyed())).toBe(true); expect(fake.clear).toHaveBeenCalledOnce(); expect(parent.listenerCount('resize')).toBe(0);
+    for (const token of tokens) expect(() => manager.activate(token)).toThrow('no longer available');
+  });
+  it('attributes background updates/permission denial to their tab and discards old-session callbacks', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow), second = manager.open(parent as unknown as BrowserWindow, true), session = fake.views[0].webContents.session;
+    const permission = session.setPermissionRequestHandler.mock.calls[0][0], answer = vi.fn(); permission(fake.views[0].webContents, 'camera', answer);
+    expect(answer).toHaveBeenCalledWith(false); expect(parent.webContents.send).toHaveBeenLastCalledWith('qiyao:browser-state', expect.objectContaining({ token: first.token, notice: '网站请求的权限未授予。' }));
+    expect(manager.open(parent as unknown as BrowserWindow).token).toBe(second.token);
+    manager.close(); manager.open(parent as unknown as BrowserWindow); parent.webContents.send.mockClear(); permission(fake.views[0].webContents, 'camera', answer);
+    expect(parent.webContents.send).not.toHaveBeenCalled();
+  });
+  it('forwards create/close/cycle shortcuts only from the selected native tab and ignores repeats/key-up', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow), second = manager.open(parent as unknown as BrowserWindow, true);
+    parent.webContents.send.mockClear(); const oldPrevent = vi.fn(); fake.views[0].webContents.emit('before-input-event', { preventDefault: oldPrevent }, { type: 'keyDown', key: 't', control: true }); expect(oldPrevent).not.toHaveBeenCalled();
+    for (const [key, shift, action] of [['t', false, 'new'], ['w', false, 'close'], ['Tab', false, 'next'], ['Tab', true, 'previous']] as const) {
+      const preventDefault = vi.fn(); fake.views[1].webContents.emit('before-input-event', { preventDefault }, { type: 'keyDown', key, shift, control: true }); expect(preventDefault).toHaveBeenCalledOnce(); expect(parent.webContents.send).toHaveBeenLastCalledWith('qiyao:browser-shortcut', { token: second.token, action });
+    }
+    const count = parent.webContents.send.mock.calls.length; for (const extra of [{ type: 'keyUp' }, { type: 'keyDown', isAutoRepeat: true }, { type: 'keyDown', alt: true }]) fake.views[1].webContents.emit('before-input-event', { preventDefault: vi.fn() }, { key: 't', control: true, ...extra }); expect(parent.webContents.send.mock.calls).toHaveLength(count); expect(first.token).not.toBe(second.token);
+  });
+  it('bounds tab creation without replacing existing pages or multiplying parent listeners', () => {
+    const parent = parentWindow(); for (let index = 0; index < browserTabLimit; index++) manager.open(parent as unknown as BrowserWindow, true);
+    const token = manager.open(parent as unknown as BrowserWindow).token; expect(() => manager.open(parent as unknown as BrowserWindow, true)).toThrow('Close a browser tab');
+    expect(fake.views).toHaveLength(browserTabLimit); expect(fake.views.every(view => !view.webContents.isDestroyed())).toBe(true); expect(parent.listenerCount('resize')).toBe(1);
+    expect(manager.open(parent as unknown as BrowserWindow).token).toBe(token);
+  });
   it('creates a hidden no-preload private sandbox, reuses its owner and returns state copies', () => {
     const parent = parentWindow(), state = manager.open(parent as unknown as BrowserWindow), view = fake.views[0];
     expect(state.token).toMatch(/^[a-f0-9-]{36}$/);

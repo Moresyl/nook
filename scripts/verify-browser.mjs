@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
+import { verifyBrowserTabs } from './verify-browser-tabs.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/') && new URL(window.webContents.getURL()).searchParams.get('view') !== 'quick-chat')";
 
@@ -45,6 +46,7 @@ export async function verifyBrowser({ page, application, getApplication, screens
   };
   const navigate = async path => {
     await page.getByLabel('网址', { exact: true }).fill(origin + path);
+    assert.equal(await page.getByLabel('网址', { exact: true }).inputValue(), origin + path);
     await page.locator('.browser-toolbar').getByRole('button', { name: '打开', exact: true }).click();
   };
   const captures = [], layouts = [];
@@ -123,10 +125,14 @@ export async function verifyBrowser({ page, application, getApplication, screens
     await wait(`!${view}.getVisible()`);
     await page.locator('.primary-nav').getByRole('button', { name: '浏览器', exact: true }).click(); await ready('第二页 · 中文🧭', '/two');
     assert.equal(await site("localStorage.getItem('nook-browser-fixture')"), 'private_中文🧭');
+    const browserTabs = await verifyBrowserTabs({ page, application, mainWindow, originalOrigin: origin, originalContentsId: contentsId, screenshots, verified });
+    view = `${mainWindow}.contentView.children.find(view => view.webContents && !view.webContents.isDestroyed() && view.webContents.id === ${browserTabs.activeContentsId})`;
     const previousToken = (await page.evaluate(() => window.qiyao.openBrowser())).token;
     await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？', exact: true }).waitFor();
     console.log('Browser workbench reload children', await application.evaluateMain(`${mainWindow}.contentView.children.filter(view=>view.webContents && !view.webContents.isDestroyed()).map(view=>({id:view.webContents.id,url:view.webContents.getURL(),visible:view.getVisible()}))`));
     await wait(`!(${view})`);
+    await wait(`${mainWindow}.contentView.children.every(view=>!view.webContents || view.webContents.isDestroyed() || !${JSON.stringify(browserTabs.liveContentsIds)}.includes(view.webContents.id))`);
+    browserTabs.workbenchReloadAllTabsVerified = true;
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
     await page.locator('.primary-nav').getByRole('button', { name: '浏览器', exact: true }).click();
     await page.getByRole('heading', { name: '打开一个网页', exact: true }).waitFor();
@@ -196,7 +202,7 @@ export async function verifyBrowser({ page, application, getApplication, screens
     assert.equal(await site("document.cookie.includes('nook_private=fixture')"), false);
     verified('normal application restart retains the exact chat draft and starts a fresh private browser session without restoring website storage or history');
     assert.equal(modelRequests(), initialModelRequests);
-    return { page, result: { checks: 9, isolation, layouts, screenshots: captures, requests, modelRequests: modelRequests() - initialModelRequests,
+    return { page, result: { checks: 14, isolation, layouts, tabs: browserTabs, screenshots: captures, requests, modelRequests: modelRequests() - initialModelRequests,
       nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true,
       scope: 'Actual private WebContentsView and real local HTTP website, history, redirect, popup/private-scheme rejection, stop/real connection failure/retry, Ctrl L focus, page retention, modal occlusion, six fixed-device-scale theme/zoom cases and normal application restart. Shell and native child content captures remain separate originals. External public services, physical input, permission grants, downloads, saved tabs/history, browser automation, other monitors/platforms and full design acceptance remain separate.' } };
   } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }

@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 export const browserActionSchema = z.enum(['back', 'forward', 'reload', 'stop', 'focus']);
 export type BrowserAction = z.infer<typeof browserActionSchema>;
+export const browserTabLimit = 16;
+export type BrowserShortcut = { token: string; action: 'new' | 'close' | 'next' | 'previous' };
 export type BrowserState = { token: string; sequence: number; url: string; title: string; loading: boolean; canGoBack: boolean; canGoForward: boolean; error: string | null; notice: string | null };
 
 export function browserUrl(input: unknown): string {

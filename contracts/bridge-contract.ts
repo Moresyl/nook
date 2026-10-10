@@ -1,7 +1,7 @@
 import type { Assistant, Attachment, ComposerDraft, Note, Preferences, Project, Provider, SubmitRequest, Thread, Workspace } from './workspace';
 import type { Memory } from './memories';
 import type { ProjectPreviewInput, PreviewViewport } from './project-preview';
-import type { BrowserAction, BrowserState } from './browser';
+import type { BrowserAction, BrowserShortcut, BrowserState } from './browser';
 import type { ApprovalRequest, ToolActivity } from './tools';
 import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
@@ -124,12 +124,15 @@ export type Bridge = {
   closeProjectPreview(projectId: string, token: string): Promise<void>;
   onProjectPreviewFailure(callback: (token: string) => void): () => void;
   openBrowser(): Promise<BrowserState>;
+  newBrowserTab(): Promise<BrowserState>;
+  activateBrowserTab(token: string): Promise<BrowserState>;
   navigateBrowser(token: string, url: string): Promise<BrowserState>;
   browserAction(token: string, action: BrowserAction): Promise<BrowserState>;
   layoutBrowser(token: string, viewport: PreviewViewport | null): Promise<void>;
   closeBrowser(token: string): Promise<void>;
   onBrowserState(callback: (state: BrowserState) => void): () => void;
   onBrowserFocus(callback: (token: string) => void): () => void;
+  onBrowserShortcut(callback: (shortcut: BrowserShortcut) => void): () => void;
   prepareDocument(projectId: string, path: string): Promise<EditorDraft>;
   saveDocument(projectId: string, input: SaveDocument): Promise<FileDocument>;
   saveEditorDraft(draft: EditorDraft): Promise<void>;

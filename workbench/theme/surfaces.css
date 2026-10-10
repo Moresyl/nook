@@ -168,6 +168,15 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .primary-nav { display: flex; flex-direction: column; gap: 2px; }
 .browser-page { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; }
 .browser-page[hidden] { display: none; }
+.browser-tabbar { display: flex; align-items: center; flex: none; min-height: 32px; gap: 4px; padding-inline: 8px; border-bottom: 1px solid var(--ds-border); }
+.browser-tabbar > .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; flex: none; }
+.browser-tabs { display: flex; align-items: center; flex: 1; min-width: 0; overflow-x: auto; overflow-y: hidden; container-type: inline-size; }
+.browser-tab { display: flex; align-items: center; flex: none; border-radius: var(--radius-sm); }
+.browser-tab.active { background: var(--ghost-hover); box-shadow: inset 0 -1px var(--ds-accent); }
+.browser-tab > .button { min-height: 30px; max-width: min(180px, calc(100cqw - 24px)); min-width: 0; padding: 4px 8px; gap: 6px; font-size: var(--control-font-size-sm); }
+.browser-tab > .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; }
+.browser-tab-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.browser-tab-indicator { flex: none; font-size: 10px; }
 .browser-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--ds-border); }
 .browser-toolbar .input { flex: 1; min-width: 120px; }
 .browser-viewport { flex: 1; min-height: 100px; min-width: 0; overflow: hidden; position: relative; background: var(--ds-bg); }

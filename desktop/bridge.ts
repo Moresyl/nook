@@ -129,6 +129,8 @@ const bridge: Bridge = {
   loadDocument: (id, path) => invoke('loadDocument', id, path),
   previewProject: (id, input) => invoke('previewProject', id, input),
   openBrowser: () => invoke('openBrowser'),
+  newBrowserTab: () => invoke('newBrowserTab'),
+  activateBrowserTab: (token) => invoke('activateBrowserTab', token),
   navigateBrowser: (token, url) => invoke('navigateBrowser', token, url),
   browserAction: (token, action) => invoke('browserAction', token, action),
   layoutBrowser: (token, viewport) => invoke('layoutBrowser', token, viewport),
@@ -142,6 +144,11 @@ const bridge: Bridge = {
     const listener = (_event: Electron.IpcRendererEvent, token: string) => callback(token);
     ipcRenderer.on('qiyao:browser-focus', listener);
     return () => { ipcRenderer.removeListener('qiyao:browser-focus', listener); };
+  },
+  onBrowserShortcut: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, shortcut: import('../contracts/browser').BrowserShortcut) => callback(shortcut);
+    ipcRenderer.on('qiyao:browser-shortcut', listener);
+    return () => { ipcRenderer.removeListener('qiyao:browser-shortcut', listener); };
   },
   previewProjectDocked: (id, input) => invoke('previewProjectDocked', id, input),
   layoutProjectPreview: (id, token, viewport) => invoke('layoutProjectPreview', id, token, viewport),

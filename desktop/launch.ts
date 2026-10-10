@@ -357,6 +357,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
   previewProject: async (id, input) => { const project = workspaceProject(id); await projectPreview.open(window!, project.id, project.path, input); },
   openBrowser: () => browserPanel.open(window!),
+  newBrowserTab: () => browserPanel.open(window!, true),
+  activateBrowserTab: (token) => browserPanel.activate(z.uuid().parse(token)),
   navigateBrowser: (token, url) => browserPanel.navigate(z.uuid().parse(token), url),
   browserAction: (token, action) => browserPanel.action(z.uuid().parse(token), action),
   layoutBrowser: (token, viewport) => browserPanel.layout(z.uuid().parse(token), viewport),
