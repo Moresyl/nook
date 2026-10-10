@@ -894,6 +894,7 @@ try {
   assert.equal(await page.locator('.tool-complete').count(), 4);
   await page.locator('.tool-activity-toggle').nth(1).click();
   await page.locator('.tool-detail').getByText(/Total lines: 3/).waitFor();
+  await page.locator('.tool-detail[data-expanded="true"]').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished)));
   await page.screenshot({ path: join(screenshots, '06-project-analysis.png') });
   verified('project file preview, Git diff and four real read-only model tools');
 

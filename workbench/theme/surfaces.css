@@ -370,6 +370,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .tool-detail { display: grid; grid-template-rows: 0fr; opacity: 0; min-width: 0; pointer-events: none; transition: grid-template-rows .3s cubic-bezier(.19, 1, .22, 1), opacity .3s cubic-bezier(.19, 1, .22, 1); }
 .tool-detail[data-expanded="true"] { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
 .tool-detail-inner { min-height: 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 8px; }
+.tool-detail-inner > * { flex: none; }
 .tool-detail[data-expanded="true"] .tool-detail-inner { padding: 8px 0 4px 24px; }
 .tool-text { min-width: 0; overflow: hidden; border: 1px solid var(--ds-border); border-radius: var(--radius-md); background: var(--ds-bg-secondary); }
 .tool-text > header { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-width: 0; padding: 4px 8px; color: var(--ds-text-secondary); font-size: var(--control-font-size-sm); }

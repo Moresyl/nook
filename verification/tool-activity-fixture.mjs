@@ -3,16 +3,18 @@ import { join } from 'node:path';
 import { writeFile } from 'node:fs/promises';
 
 export function toolActivityFixture(directory) {
-  const requests = [], inputs = new Map();
+  const requests = [], contexts = [], inputs = new Map();
   const token = marker => join(directory, `tool-activity-${marker}`);
   const release = (marker, phase) => writeFile(token(`${marker}-${phase}`), 'owned verification gate');
   async function handle(request, response) {
     if (!request.url.startsWith('/tool-activity/v1/')) return false;
     assert.ok(request.url.endsWith('/chat/completions'));
     let raw = ''; for await (const part of request) raw += part;
-    const body = JSON.parse(raw), marker = body.messages.findLast(item => item.role === 'user').content;
-    assert.ok(['工具记录拒绝验证', '工具记录停止验证', '工具记录完成验证'].includes(marker));
-    requests.push(marker);
+    const body = JSON.parse(raw), content = body.messages.findLast(item => item.role === 'user')?.content;
+    const text = typeof content === 'string' ? content : Array.isArray(content) ? content.filter(part => part?.type === 'text' && typeof part.text === 'string').map(part => part.text).join('\n') : '';
+    const marker = ['工具记录拒绝验证', '工具记录停止验证', '工具记录完成验证'].find(marker => text.startsWith(marker));
+    assert.ok(marker, 'The tool fixture requires its explicit user marker, with optional retained attachment context.');
+    requests.push(marker); contexts.push(text);
     response.writeHead(200, { 'Content-Type': 'text/event-stream' });
     const event = value => response.write(`data: ${JSON.stringify(value)}\n\n`);
     const result = body.messages.findLast(item => item.role === 'tool');
@@ -27,5 +29,5 @@ export function toolActivityFixture(directory) {
     }
     response.end('data: [DONE]\n\n'); return true;
   }
-  return { handle, requests, inputs, release };
+  return { handle, requests, contexts, inputs, release };
 }

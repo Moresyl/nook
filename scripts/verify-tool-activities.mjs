@@ -7,7 +7,7 @@ const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w=>!w
 export async function verifyToolActivities({ page, application, getApplication, directory, screenshots, endpoint, fixture, verified, waitForBridge, restart, errors }) {
   page.setDefaultTimeout(5000);
   const original = await page.evaluate(() => window.qiyao.load()), originalGeometry = await application.evaluateMain(`({size:${mainWindow}.getContentSize(),zoom:${mainWindow}.webContents.getZoomFactor()})`);
-  const providerId = 'tool-activity-provider', projectId = 'tool-activity-project', captures = [], layouts = [], threadIds = [];
+  const providerId = 'tool-activity-provider', projectId = 'tool-activity-project', captures = [], layouts = [], threadIds = [], attachmentContexts = [];
   await page.evaluate(async ({ endpoint, directory, providerId, projectId }) => {
     await window.qiyao.saveProvider({ id: providerId, name: '工具记录验证', kind: 'openai', endpoint: new URL('/tool-activity/v1', endpoint).href, models: ['tool-model'], hasKey: false }, 'local-verification-key');
     await window.qiyao.saveProject({ id: projectId, name: '工具记录验证项目', path: `${directory}/project-fixture`, instructions: '', createdAt: 1 });
@@ -15,17 +15,24 @@ export async function verifyToolActivities({ page, application, getApplication, 
   await page.reload(); await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click();
   await page.locator('.project-list').getByRole('button', { name: '工具记录验证项目', exact: true }).click();
   const row = () => page.locator('.tool-activity').last(), toggle = () => row().locator('.tool-activity-toggle'), body = () => row().locator('.tool-detail');
-  async function activity() { return page.evaluate(async () => (await window.qiyao.load()).threads.findLast(thread => thread.providerId === 'tool-activity-provider')?.messages.at(-1)?.activities?.[0]); }
+  async function activity() { return page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id)?.messages.at(-1)?.activities?.[0], threadIds.at(-1)); }
   async function start(marker) {
     await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click();
     await page.locator('.project-list').getByRole('button', { name: '工具记录验证项目', exact: true }).click();
     await page.getByRole('button', { name: '新建项目聊天', exact: true }).click();
     await page.getByLabel('模型提供商', { exact: true }).selectOption(providerId); await page.getByLabel('选择模型', { exact: true }).selectOption('tool-model'); await page.getByLabel('工作模式', { exact: true }).selectOption('agent');
+    await page.evaluate(() => { const transfer = new DataTransfer(); transfer.items.add(new File(['TOOL_ATTACHMENT_CONTEXT_EXACT 中文😀\n'], '工具记录上下文.txt', { type: 'text/plain' })); document.querySelector('.composer').dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer })); });
+    await page.locator('.composer').getByRole('button', { name: '预览 工具记录上下文.txt', exact: true }).waitFor();
     await page.getByLabel('消息', { exact: true }).fill(marker); await page.getByRole('button', { name: '发送消息', exact: true }).click();
     await page.getByRole('dialog', { name: '审批命令执行', exact: true }).waitFor();
-    threadIds.push(await page.evaluate(async () => (await window.qiyao.load()).threads.findLast(thread => thread.providerId === 'tool-activity-provider').id));
+    const thread = await page.evaluate(async () => (await window.qiyao.load()).threads.findLast(thread => thread.providerId === 'tool-activity-provider'));
+    threadIds.push(thread.id);
     assert.equal(await toggle().getAttribute('aria-expanded'), 'false'); assert.equal(await row().locator('.tool-status').textContent(), '等待审批');
     assert.equal(await body().getAttribute('inert'), '');
+    assert.ok(fixture.contexts.at(-1).startsWith(marker));
+    const textAttachments = thread.messages[0].attachments.filter(attachment => !attachment.image && attachment.content);
+    assert.ok(textAttachments.some(attachment => attachment.name === '工具记录上下文.txt' && attachment.content.includes('TOOL_ATTACHMENT_CONTEXT_EXACT 中文😀')));
+    assert.ok(textAttachments.every(attachment => fixture.contexts.at(-1).includes(attachment.content)), 'The native request must retain the actual attached document text.'); attachmentContexts.push({ marker, textAttachments: textAttachments.length });
   }
   async function allow() {
     await page.getByRole('dialog').getByRole('button', { name: '允许这次执行', exact: true }).click();
@@ -41,6 +48,7 @@ export async function verifyToolActivities({ page, application, getApplication, 
   }
   await start('工具记录拒绝验证'); await page.getByRole('dialog').getByRole('button', { name: '拒绝', exact: true }).click();
   await page.getByText('工具记录拒绝验证已结束。', { exact: true }).waitFor();
+  await waitForBridge(page, async id => { const activity = (await window.qiyao.load()).threads.find(thread => thread.id === id)?.messages.at(-1)?.activities?.[0]; return activity?.status === 'error' && activity.output === 'The user denied command execution.' && activity.finishedAt !== undefined; }, threadIds.at(-1));
   assert.equal(await row().locator('.tool-status').textContent(), '失败'); assert.equal(await toggle().getAttribute('aria-expanded'), 'false'); assert.equal((await activity()).output, 'The user denied command execution.');
   verified('tool activity waiting/denied states come from the native approval and execution engine');
   await start('工具记录停止验证'); await allow(); await toggle().click();
@@ -73,7 +81,12 @@ export async function verifyToolActivities({ page, application, getApplication, 
   await page.getByText('工具记录完成验证已结束。', { exact: true }).waitFor();
   assert.equal(await toggle().getAttribute('aria-expanded'), 'false'); assert.equal(await toggle().evaluate(element => element === document.activeElement), true); assert.equal(await body().getAttribute('inert'), '');
   verified('exact native clipboard copy, denied/retried copy, streaming stale completion guard and focus-safe automatic collapse');
-  await toggle().press('Enter'); assert.equal(await toggle().getAttribute('aria-expanded'), 'true'); assert.equal(await body().getAttribute('inert'), null); await toggle().press('Space'); assert.equal(await toggle().getAttribute('aria-expanded'), 'false');
+  await toggle().press('Enter'); assert.equal(await toggle().getAttribute('aria-expanded'), 'true'); assert.equal(await body().getAttribute('inert'), null);
+  const openingPanels = await row().locator('.tool-text').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().height));
+  await body().evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished)));
+  const expandedPanels = await row().locator('.tool-text').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().height));
+  assert.equal(openingPanels.length, 2); assert.ok(openingPanels.every((height, index) => height > 0 && Math.abs(height - expandedPanels[index]) <= 1), 'Opening tool disclosure must reveal natural panels without squeezing original text.');
+  await toggle().press('Space'); assert.equal(await toggle().getAttribute('aria-expanded'), 'false');
   assert.equal(await row().locator('.tool-status').textContent(), '已完成'); assert.match(await row().locator('.tool-duration').getAttribute('aria-label'), /^耗时 \d+\.\d 秒$/);
   await toggle().click(); assert.ok((await activity()).output.includes('TOOL_FINAL_OUTPUT'));
   verified('completed native records provide keyboard disclosure, inert hidden details and genuine elapsed time');
@@ -118,5 +131,5 @@ export async function verifyToolActivities({ page, application, getApplication, 
   await capture('tool-activities-restart.png');
   await page.evaluate(async preferences => { await window.qiyao.savePreferences(preferences); }, original.preferences); await application.evaluateMain(`${mainWindow}.setContentSize(${originalGeometry.size.join(',')});${mainWindow}.webContents.setZoomFactor(${originalGeometry.zoom})`);
   verified('actual restart preserves exact tool inputs/results/timestamps and unsent draft without replaying commands');
-  return { page, result: { checks: 8, nativeStates: ['waiting', 'running', 'complete', 'error', 'stopped'], scopedClipboardPermission: true, exactOriginalCopy: true, staleClipboardGuard: true, deniedCopyRetry: true, focusBeforeInert: true, manualStreamingCollapse: true, restrictedQuickChat: true, reducedMotion: true, actualRestart: true, commandRequests: requestCount, layouts, screenshots: captures } };
+  return { page, result: { checks: 8, nativeStates: ['waiting', 'running', 'complete', 'error', 'stopped'], scopedClipboardPermission: true, exactOriginalCopy: true, staleClipboardGuard: true, deniedCopyRetry: true, focusBeforeInert: true, manualStreamingCollapse: true, restrictedQuickChat: true, reducedMotion: true, actualRestart: true, commandRequests: requestCount, openingPanels, expandedPanels, attachmentContexts, layouts, screenshots: captures } };
 }
