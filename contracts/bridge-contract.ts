@@ -1,6 +1,7 @@
 import type { Assistant, Attachment, ComposerDraft, Note, Preferences, Project, Provider, SubmitRequest, Thread, Workspace } from './workspace';
 import type { Memory } from './memories';
 import type { ProjectPreviewInput, PreviewViewport } from './project-preview';
+import type { BrowserAction, BrowserState } from './browser';
 import type { ApprovalRequest, ToolActivity } from './tools';
 import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
@@ -122,6 +123,13 @@ export type Bridge = {
   layoutProjectPreview(projectId: string, token: string, viewport: PreviewViewport | null): Promise<void>;
   closeProjectPreview(projectId: string, token: string): Promise<void>;
   onProjectPreviewFailure(callback: (token: string) => void): () => void;
+  openBrowser(): Promise<BrowserState>;
+  navigateBrowser(token: string, url: string): Promise<BrowserState>;
+  browserAction(token: string, action: BrowserAction): Promise<BrowserState>;
+  layoutBrowser(token: string, viewport: PreviewViewport | null): Promise<void>;
+  closeBrowser(token: string): Promise<void>;
+  onBrowserState(callback: (state: BrowserState) => void): () => void;
+  onBrowserFocus(callback: (token: string) => void): () => void;
   prepareDocument(projectId: string, path: string): Promise<EditorDraft>;
   saveDocument(projectId: string, input: SaveDocument): Promise<FileDocument>;
   saveEditorDraft(draft: EditorDraft): Promise<void>;

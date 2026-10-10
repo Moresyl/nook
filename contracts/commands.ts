@@ -1,10 +1,10 @@
 import { searchThreads, type Preferences, type Workspace } from './workspace';
 import type { PluginView } from './plugins';
 
-export type WorkspacePage = 'chat' | 'projects' | 'assistants' | 'library' | 'automations' | 'archive';
+export type WorkspacePage = 'chat' | 'projects' | 'assistants' | 'library' | 'automations' | 'archive' | 'browser';
 export type ProjectView = { projectId: string; panel: 'editor' | 'changes'; files: boolean; terminal: boolean };
 export type CommandTarget = { kind: 'action'; action: 'new' | 'settings' | 'sidebar' | 'help' } | { kind: 'page'; page: WorkspacePage } | { kind: 'find'; threadId: string } | { kind: 'project-panel'; projectId: string; panel: 'files' | 'terminal' | 'review'; visible: boolean } | { kind: 'theme'; theme: Preferences['theme'] } | { kind: 'thread'; threadId: string } | { kind: 'thread-action'; threadId: string; action: 'pin' | 'archive' | 'rename' | 'export' } | { kind: 'plugin-command'; pluginId: string; commandId: string } | { kind: 'plugin-panel'; pluginId: string; panelId: string };
-export type WorkspaceCommand = { key: string; title: string; description: string; group: '命令' | '当前项目' | '当前聊天' | '聊天' | '插件'; icon: 'compose' | 'settings' | 'panel' | 'folder' | 'assistant' | 'library' | 'clock' | 'archive' | 'code' | 'branch' | 'find' | 'pin' | 'download'; shortcut?: string; disabled?: string; target: CommandTarget };
+export type WorkspaceCommand = { key: string; title: string; description: string; group: '命令' | '当前项目' | '当前聊天' | '聊天' | '插件'; icon: 'compose' | 'settings' | 'panel' | 'folder' | 'assistant' | 'library' | 'clock' | 'archive' | 'code' | 'branch' | 'find' | 'pin' | 'download' | 'globe'; shortcut?: string; disabled?: string; target: CommandTarget };
 export type CommandContext = { sidebar: boolean; threadId?: string; findThreadId?: string; project?: ProjectView; views: PluginView[] };
 export const workspaceShortcuts = [
   ['搜索聊天与命令', 'Ctrl K'], ['仅搜索命令', 'Ctrl Shift P'], ['查找当前聊天', 'Ctrl F'], ['下一个／上一个匹配', 'Enter / Shift Enter'], ['新聊天', 'Ctrl N'], ['打开设置', 'Ctrl ,'], ['显示或隐藏侧边栏', 'Ctrl B'], ['切换最近聊天', 'Alt 1–9'], ['选择命令', '↑ / ↓ / Home / End'], ['执行所选命令', 'Enter'], ['关闭对话框或查找', 'Esc'],
@@ -17,7 +17,7 @@ export function workspaceCommands(state: Workspace, context: CommandContext): Wo
     { key: 'sidebar', title: context.sidebar ? '隐藏侧边栏' : '显示侧边栏', description: '切换工作台侧边栏', group: '命令', icon: 'panel', shortcut: 'Ctrl B', target: { kind: 'action', action: 'sidebar' } },
     { key: 'help', title: '键盘快捷键', description: '查看工作台和命令面板的快捷键', group: '命令', icon: 'settings', target: { kind: 'action', action: 'help' } },
   ];
-  for (const [page, title, icon] of [['chat', '返回当前聊天', 'compose'], ['projects', '打开项目', 'folder'], ['assistants', '打开助手与模板', 'assistant'], ['library', '打开资料库', 'library'], ['automations', '打开自动任务', 'clock'], ['archive', '打开已归档', 'archive']] as const) commands.push({ key: `page:${page}`, title, description: '切换工作台页面，保留聊天输入', group: '命令', icon, target: { kind: 'page', page } });
+  for (const [page, title, icon] of [['chat', '返回当前聊天', 'compose'], ['projects', '打开项目', 'folder'], ['assistants', '打开助手与模板', 'assistant'], ['library', '打开资料库', 'library'], ['automations', '打开自动任务', 'clock'], ['archive', '打开已归档', 'archive'], ['browser', '打开浏览器', 'globe']] as const) commands.push({ key: `page:${page}`, title, description: '切换工作台页面，保留聊天输入', group: '命令', icon, target: { kind: 'page', page } });
   for (const [theme, title] of [['light', '切换到浅色主题'], ['dark', '切换到深色主题'], ['system', '跟随系统主题']] as const) commands.push({ key: `theme:${theme}`, title, description: '保存工作台外观设置', group: '命令', icon: 'settings', ...(state.preferences.theme === theme ? { disabled: '当前主题' } : {}), target: { kind: 'theme', theme } });
   const findThread = state.threads.find((item) => item.id === context.findThreadId);
   commands.push({ key: JSON.stringify(['find', context.findThreadId ?? '']), title: '查找当前聊天', description: '查找当前聊天的消息正文', group: '命令', icon: 'find', shortcut: 'Ctrl F', ...(!findThread ? { disabled: '请先打开聊天' } : {}), target: { kind: 'find', threadId: context.findThreadId ?? '' } });

@@ -19,7 +19,8 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 252, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 261, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    browser: { checks: 9, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
@@ -38,6 +39,31 @@ function proof(): ReleaseProof {
     installer: { checks: desktop.checks, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
+
+describe('private browser release evidence', () => {
+  it('rejects the previous suite and missing browser behavior or isolation proof', () => {
+    const previous = proof(); previous.desktop.checks = 252; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+    const missing = proof(); delete missing.desktop.browser; expect(() => verifyRuntimeProof(missing)).toThrow('private browser');
+    for (const [key, value] of Object.entries({ checks: 8, modelRequests: 1, nativeHistoryVerified: false, pendingAddressStopVerified: false, sameUrlRedirectVerified: false, unsubmittedAddressRetained: false, popupPrivateNavigationDenied: false, failureRetryVerified: false, keyboardFocusVerified: false, draftRetained: false, modalOcclusionVerified: false, privateRestartVerified: false, workbenchReloadVerified: false, staleOwnerCloseVerified: false })) {
+      const invalid = proof(); (invalid.desktop.browser as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+    for (const [key, value] of Object.entries({ sandbox: false, contextIsolation: false, privateSession: false, nodeIntegration: true, preload: true })) {
+      const invalid = proof(); (invalid.desktop.browser!.isolation as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+  });
+  it('requires every unique theme/zoom case, exact native bounds and original screenshot names', () => {
+    for (const layouts of [[], proof().desktop.browser!.layouts.slice(1), Array(6).fill(proof().desktop.browser!.layouts[0])]) {
+      const invalid = proof(); invalid.desktop.browser!.layouts = layouts; expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+    for (const change of [{ width: 199 }, { height: 149 }, { x: 11 }, { y: 21 }]) {
+      const invalid = proof(); Object.assign(invalid.desktop.browser!.layouts[0].native, change); expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+    const geometry = proof(); delete (geometry.desktop.browser!.layouts[0] as unknown as Record<string, unknown>).expected; expect(() => verifyRuntimeProof(geometry)).toThrow('private browser');
+    for (const screenshots of [[], Array(15).fill('browser-duplicate.png'), Array.from({ length: 15 }, (_, i) => `unrelated-${i}.png`)]) {
+      const invalid = proof(); invalid.desktop.browser!.screenshots = screenshots; expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+  });
+});
 
 describe('PDF release evidence', () => {
   it('requires independent quick-chat boundaries, original identity, request counts and every minimum-window theme/zoom pair', () => {

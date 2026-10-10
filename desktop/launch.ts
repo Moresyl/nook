@@ -50,6 +50,7 @@ import { Memories } from './services/memories';
 import { MessageEdits } from './services/message-edits';
 import { ProjectPreviewWindow } from './project-preview-window';
 import { ProjectPreviewDock } from './project-preview-dock';
+import { BrowserPanel } from './browser-panel';
 import { QuickChat } from './services/quick-chat';
 import { QuickChatWindow } from './quick-chat-window';
 
@@ -79,6 +80,7 @@ const taskNotifications = new Set<Notification>();
 const git = new ProjectGit();
 const projectPreview = new ProjectPreviewWindow();
 const projectPreviewDock = new ProjectPreviewDock();
+const browserPanel = new BrowserPanel();
 function closeProjectPreviews(id?: string) { projectPreview.close(id); projectPreviewDock.close(id); }
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), bytes => vault.stageDocumentOriginals(bytes));
@@ -354,6 +356,11 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
   previewProject: async (id, input) => { const project = workspaceProject(id); await projectPreview.open(window!, project.id, project.path, input); },
+  openBrowser: () => browserPanel.open(window!),
+  navigateBrowser: (token, url) => browserPanel.navigate(z.uuid().parse(token), url),
+  browserAction: (token, action) => browserPanel.action(z.uuid().parse(token), action),
+  layoutBrowser: (token, viewport) => browserPanel.layout(z.uuid().parse(token), viewport),
+  closeBrowser: (token) => browserPanel.close(z.uuid().parse(token)),
   previewProjectDocked: async (id, input) => { const project = workspaceProject(id); return projectPreviewDock.open(window!, project.id, project.path, input); },
   layoutProjectPreview: (id, token, viewport) => projectPreviewDock.layout(z.string().max(100).parse(id), z.uuid().parse(token), viewport),
   closeProjectPreview: (id, token) => projectPreviewDock.close(z.string().max(100).parse(id), z.uuid().parse(token)),
@@ -441,6 +448,7 @@ async function finishClose(): Promise<void> {
   closeProjectPreviews();
   if (!quitRequested && desktopIntegration.canHide()) { await quickChatWindow?.flush(); window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
+  if (quit) browserPanel.close();
   if (quit) { await quickChatWindow?.shutdown(); quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
   else await quickChatWindow?.flush();
   closeAllowed = true; window?.close();

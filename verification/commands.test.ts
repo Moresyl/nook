@@ -13,8 +13,9 @@ const user: Message = { id: 'message', role: 'user', content: 'FULL_TEXT_EVIDENC
 
 describe('workspace command catalog and keyboard selection', () => {
   it('lists only implemented navigation, appearance and shortcut actions with unique stable keys', () => {
-    const state = emptyWorkspace(); const commands = workspaceCommands(state, context); expect(commands).toHaveLength(17); expect(new Set(commands.map((item) => item.key)).size).toBe(17); expect(workspaceCommands(state, context)).toEqual(commands);
-    expect(commands.find((item) => item.key === 'sidebar')?.title).toBe('隐藏侧边栏'); expect(workspaceCommands(state, { ...context, sidebar: false }).find((item) => item.key === 'sidebar')?.title).toBe('显示侧边栏'); expect(commands.find((item) => item.key === 'theme:system')?.disabled).toBe('当前主题'); expect(commands.filter((item) => item.target.kind === 'page').map((item) => item.target)).toHaveLength(6);
+    const state = emptyWorkspace(); const commands = workspaceCommands(state, context); expect(commands).toHaveLength(18); expect(new Set(commands.map((item) => item.key)).size).toBe(18); expect(workspaceCommands(state, context)).toEqual(commands);
+    expect(commands.find(item => item.key === 'page:browser')).toMatchObject({ title: '打开浏览器', target: { kind: 'page', page: 'browser' } });
+    expect(commands.find((item) => item.key === 'sidebar')?.title).toBe('隐藏侧边栏'); expect(workspaceCommands(state, { ...context, sidebar: false }).find((item) => item.key === 'sidebar')?.title).toBe('显示侧边栏'); expect(commands.find((item) => item.key === 'theme:system')?.disabled).toBe('当前主题'); expect(commands.filter((item) => item.target.kind === 'page').map((item) => item.target)).toHaveLength(7);
     expect(workspaceShortcuts.map(([title]) => title)).toContain('仅搜索命令'); expect(new Set(workspaceShortcuts.map(([title]) => title)).size).toBe(workspaceShortcuts.length);
   });
   it('binds chat find to the displayed conversation and retains availability during streaming', () => {

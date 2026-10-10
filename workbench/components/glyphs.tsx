@@ -8,6 +8,9 @@ export function Emblem({ size = 28 }: { size?: number }) {
 }
 
 const paths = {
+  globe: 'M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Z M3 12h18 M12 3c-4 5-4 13 0 18 M12 3c4 5 4 13 0 18',
+  left: 'm15 6-6 6 6 6',
+  external: 'M14 3h7v7 M21 3l-11 11 M10 3H4v17h17v-6',
   compare: 'M3 4h7v16H3V4Z M14 4h7v16h-7V4Z',
   compose: 'M12 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-6 M15 4l5 5 M9 15l1-5 9-9 4 4-9 9-5 1Z',
   search: 'M21 21l-5-5 M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',

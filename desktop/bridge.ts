@@ -128,6 +128,21 @@ const bridge: Bridge = {
   readFile: (id, path) => invoke('readFile', id, path),
   loadDocument: (id, path) => invoke('loadDocument', id, path),
   previewProject: (id, input) => invoke('previewProject', id, input),
+  openBrowser: () => invoke('openBrowser'),
+  navigateBrowser: (token, url) => invoke('navigateBrowser', token, url),
+  browserAction: (token, action) => invoke('browserAction', token, action),
+  layoutBrowser: (token, viewport) => invoke('layoutBrowser', token, viewport),
+  closeBrowser: (token) => invoke('closeBrowser', token),
+  onBrowserState: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, state: import('../contracts/browser').BrowserState) => callback(state);
+    ipcRenderer.on('qiyao:browser-state', listener);
+    return () => { ipcRenderer.removeListener('qiyao:browser-state', listener); };
+  },
+  onBrowserFocus: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, token: string) => callback(token);
+    ipcRenderer.on('qiyao:browser-focus', listener);
+    return () => { ipcRenderer.removeListener('qiyao:browser-focus', listener); };
+  },
   previewProjectDocked: (id, input) => invoke('previewProjectDocked', id, input),
   layoutProjectPreview: (id, token, viewport) => invoke('layoutProjectPreview', id, token, viewport),
   closeProjectPreview: (id, token) => invoke('closeProjectPreview', id, token),
