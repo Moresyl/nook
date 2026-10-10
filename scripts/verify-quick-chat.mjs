@@ -176,6 +176,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await application.evaluateMain("globalThis.nookQuickRename=require('node:fs/promises').rename;require('node:fs/promises').rename=async(from,to)=>{if(String(to).endsWith('workspace.json'))throw Object.assign(new Error('Synthetic quick-chat save failure'),{code:'EIO'});return globalThis.nookQuickRename(from,to);};");
   try {
     await input().fill('QUICK_FILESYSTEM_RETRY'); await quick.getByRole('alert').waitFor(); assert.equal(await input().inputValue(), 'QUICK_FILESYSTEM_RETRY'); assert.equal((await quick.evaluate(() => window.nookQuick.load())).draft.text, 'QUICK_HANDOFF_UNSENT');
+    await quick.getByRole('alert').getByText('本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。', { exact: true }).waitFor();
     await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat');window.setSize(420,360);window.webContents.setZoomFactor(1.5);})()");
     await capture('quick-chat-minimum-save-error.png');
     const controls = await visibleControls(); assert.ok(controls.length >= 5 && controls.every(control => control.visible), `Save errors must keep minimum-window input and model controls usable: ${JSON.stringify(controls)}`);

@@ -5,6 +5,7 @@ import { appendMessageQuote, conversationRevision } from '../contracts/conversat
 import { mergeStreamingState } from '../contracts/streaming-state';
 import { composerContent, composerRevision, restoreComposer } from '../contracts/composer';
 import { appendMcpPdfAttachment } from '../contracts/mcp-attachments';
+import { uiErrorMessage } from '../contracts/ui-errors';
 import type { Attachment } from '../contracts/attachments';
 import type { ApprovalRequest, ConversationMode } from '../contracts/tools';
 import { Button, Empty, IconButton, Input, Modal } from './components/controls';
@@ -72,8 +73,7 @@ export function Workbench() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [editing, setEditing] = useState<{ thread: Thread; message: Message; context: Omit<SubmitRequest, 'text' | 'attachments' | 'replay'>; epoch: number } | null>(null);
   const report = useCallback((problem: unknown) => {
-    const message = problem instanceof Error ? problem.message : String(problem);
-    setError(message.replace(/^Error invoking remote method '[^']+': Error: /, ''));
+    setError(uiErrorMessage(problem));
   }, []);
   function updateDraft(change: Partial<ComposerDraft>) {
     if (change.text && change.text.length > 256_000) { report(new Error('消息草稿超过 256 KB；请选择较短的内容。')); return; }

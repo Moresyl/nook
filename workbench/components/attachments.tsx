@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState, type RefObject } from 'react';
 import { attachmentImageUrl, attachmentLimits, type Attachment, type AttachmentInput } from '../../contracts/attachments';
+import { uiErrorMessage } from '../../contracts/ui-errors';
 import { Button, IconButton, Modal } from './controls';
 import { Glyph } from './glyphs';
 import { ImagePreview } from './image-preview';
@@ -37,7 +38,7 @@ export function AttachmentPreview({ file, images = [file], onSelect = () => {}, 
     if (!file.original || exporting) return;
     setExporting(true); setError('');
     try { if (onExportOriginal) await onExportOriginal(); else await bridge.exportDocumentOriginal(file.original); }
-    catch (error) { setError(error instanceof Error ? error.message : '原件保存失败，请重试。'); }
+    catch (error) { setError(uiErrorMessage(error, '原件保存失败，请重试。')); }
     finally { setExporting(false); }
   };
   if (file.image) return <ImagePreview key={file.id} file={file} images={images} onSelect={onSelect} onClose={onClose} returnFocus={returnFocus} />;

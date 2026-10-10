@@ -5,6 +5,7 @@ import type { ApprovalRequest } from '../contracts/tools';
 import { applyQuickChatEvent, mergeQuickChatThread } from '../contracts/quick-chat-stream';
 import { appendPrompt } from '../contracts/prompt-templates';
 import { appendMessageQuote } from '../contracts/conversations';
+import { uiErrorMessage } from '../contracts/ui-errors';
 import { Composer } from './components/composer';
 import { ComposerDraftStore } from './components/composer-drafts';
 import { ContentBridgeContext } from './components/content-bridge';
@@ -29,7 +30,7 @@ export default function QuickChatView() {
   const [saveStatus, setSaveStatus] = useState('输入自动保存');
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined), scroller = useRef<HTMLDivElement>(null), follows = useRef(true);
   const store = useRef(new ComposerDraftStore(async value => { revision.current = await bridge.save(value, revision.current); epoch.current++; }));
-  const report = useCallback((problem: unknown) => { setError((problem instanceof Error ? problem.message : String(problem)).replace(/^Error invoking remote method '[^']+': Error: /, '')); }, []);
+  const report = useCallback((problem: unknown) => { setError(uiErrorMessage(problem)); }, []);
   const flush = useCallback(async () => { clearTimeout(timer.current); try { await store.current.flush(); dirty.current = false; setSaveStatus('输入已保存'); } catch (problem) { setSaveStatus('输入尚未保存'); throw problem; } }, []);
   function install(next: QuickChatSnapshot) {
     epoch.current++; setSaveStatus('输入已保存');
