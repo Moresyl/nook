@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-10T10:00:45.763Z",
+  "verifiedAt": "2026-10-10T10:52:02.008Z",
   "variant": "packaged executable",
   "checks": 252,
   "runtimeErrors": [],
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181190,
-    "compressedBytes": 242318,
+    "expandedBytes": 84181170,
+    "compressedBytes": 242314,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791626122147,
+        "startedAt": 1791629215006,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791626123586
+        "finishedAt": 1791629216486
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791626123784,
+        "startedAt": 1791629216633,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791626125513
+        "finishedAt": 1791629218217
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791626128537,
+        "startedAt": 1791629220244,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791626130023
+        "finishedAt": 1791629221787
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 14.299999999813735,
+    "scopedReadMs": 11.800000000745058,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1097,6 +1097,7 @@
     "pdf-outline-light.png",
     "pdf-search-light.png",
     "pdf-note-light.png",
+    "pdf-original-export-save-error.png",
     "114-branch-order-light.png",
     "115-branch-order-error-light.png",
     "116-branch-order-dark-zoom-100.png",
@@ -1158,13 +1159,15 @@
     "fullDocumentSearchVerified": true,
     "linksNotesZoomVerified": true,
     "exportOwnershipRestartVerified": true,
+    "exportFilesystemRetryVerified": true,
     "nativeSaveDialogIntercepted": true,
     "screenshots": [
       "pdf-original-light.png",
       "pdf-original-dark-minimum.png",
       "pdf-outline-light.png",
       "pdf-search-light.png",
-      "pdf-note-light.png"
+      "pdf-note-light.png",
+      "pdf-original-export-save-error.png"
     ]
   },
   "branchNavigation": {
@@ -2470,6 +2473,6 @@
     "screenshotMethod": "Complete Electron BrowserWindow.capturePage with exact native content-size assertions"
   },
   "normalCloseVerified": true,
-  "executableSha256": "97dd8a2edd3908898b35a0c0898626bb2c2e1b23f7bc2950a6a90eeded1c8072",
-  "archiveSha256": "ebb128f5f7e38b6130c6411e7a60cb7508112e2ffa52f0256b58ec1062bed87f"
+  "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+  "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd"
 }
