@@ -63,11 +63,13 @@
 
 - 将三项纯 JavaScript 启动依赖纳入主进程构建，减少启动期间逐个读取依赖文件的开销；原生模块保留现有加载方式。设置与记忆专项均可完成启动并正常退出，尚不能证明所有环境的启动问题已消除。
 
-## [0.1.0-alpha.1] - 2026-10-03
+## [0.1.0-alpha.1] - 2026-10-11
 
 Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用其他项目的版本历史。
 
 ### 新功能
+
+- 会话上下文可生成、编辑和选择历史摘要，也可恢复完整上下文。生成预览不会改写聊天；应用后只在请求中使用摘要与近期消息，完整原文、附件和工具记录继续保存。原文变化使旧摘要失效，发送时恢复完整历史。支持取消、失败保留、实际用量和重启恢复，主工作台与受限快速聊天共用已验证的上下文；普通发送、重试、编辑分支及模型比较也采用对应上下文。每次摘要原文请求限 4 MB，暂不自动触发或分段生成。
 
 - 工具记录显示操作／路径／查询摘要、真实状态与耗时。运行和结束阶段分别保存展开选择，流式更新尊重手动收起；完整输入与结果可分别复制，保留 JSON 大整数、重复键和文字 HTML，失败可重试。自动收起时先返回摘要焦点，隐藏详情不能继续接收键盘输入。主工作台与快速聊天共用，并支持减少动效；自家主文档可写入剪贴板，读取、子框架和非自家窗口维持拒绝。展开动画保持原文面板的自然高度，不再压缩输入和结果。
 
@@ -95,9 +97,9 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 修复与完善
 
-- 同包未安装版与实际安装版各 283 组、40 次正常退出，便携、安装／卸载、数据保留及十一份匹配记录通过。文字提示验收使用现有分支管理按钮的语义定位；快速聊天夹具使用每轮唯一草稿与空白会话，原工作区和全新工作区各 9 组回归通过。原有期限与草稿／回复断言保留；首次安装版的部分回复可见性超时原因尚未确认，原始失败继续保留。
+- 新摘要候选的未安装版与实际安装版各通过 289 项完整检查、41 次正常退出；便携 7 项、共享控件 4 项、文字提示 7 项、崩溃退出 2 项及十一份匹配记录通过。安装／卸载、包体一致和用户数据保留均已检查，18 张完整分发轮次摘要原图逐张核验。此前安装版部分回复可见性超时的原因尚未确认，原始失败与哨兵文件继续保留。
 
-- 安装版验收同步当前 283 项完整桌面门槛，要求 10 组 HTML 预览、5 组停靠视图及项目分支、工具记录证据，修正旧组数条件错误拒绝新版回归的问题。安装、包体一致性与卸载检查继续保留。
+- 安装版验收同步 289 项门槛与 6 项摘要证据，检查实际请求、取消、失效、受限快速聊天和重启。完整运行前清除两类专项开关；保留 HTML 预览、项目分支、工具记录、包体一致性与卸载要求。
 
 - 文件标签在窗口调整和缩放后自动显露，支持左右方向键循环、Home／End 及 Delete 关闭；未保存文件保留确认，取消或关闭后恢复焦点。窄编辑器的预览与保存采用 24px 图标操作，仍可查看中文名称和提示。
 - 项目文件保存遇到磁盘或权限错误时显示可恢复的中文提示，保留草稿、标签和原文件；原始系统诊断留在错误原因中，不直接展示到界面，恢复后可重试保存并关闭。文件冲突与范围校验保留原有行为。
@@ -155,9 +157,11 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### English
 
-The current Windows candidate passes 283 checks and 40 normal exits in each unpacked and installed run, portable checks and eleven matching runtime records. Large-workspace and fresh quick-chat replays also pass without extending deadlines. The initial installed partial-response visibility timeout remains recorded with an unconfirmed cause.
+The current Windows candidate passes 289 checks and 41 normal exits in each unpacked and installed run, seven portable checks and eleven matching runtime records. Eighteen complete-run context-summary originals were individually reviewed. The earlier installed partial-response visibility timeout remains recorded with an unconfirmed cause.
 
-Installation verification now requires the current 283-check desktop baseline, including preview reload, project branches and tool activity evidence, while retaining package matching and data-preserving uninstall checks.
+Adds editable, versioned conversation summaries without removing original messages or attachments. Preview, cancellation, provider failure, stale-source fallback and restart retention are verified. Main and restricted quick chat share the validated request context; sending, retry, edited branches and comparison use the selected context. Summary generation uses no project tools or extensions, has a 4 MB source-request limit, and is currently manual rather than automatic or chunked.
+
+Installation verification now requires the 289-check baseline and six context-summary checks, alongside preview reload, project branches and tool activity evidence. It clears both focused-suite switch families and retains package matching and data-preserving uninstall checks.
 
 Tool records show contextual summaries, explicit execution status and elapsed time, with separate running/completed disclosure choices and exact original input/output copy payloads. Streaming updates preserve manual collapse; stale or rejected clipboard requests support safe retry. Automatic collapse returns keyboard focus before making details inert, and opening animations preserve natural text-panel heights. Main and restricted quick chat share the component and reduced-motion behavior. Clipboard writes are permitted only for owned top-level application documents; reads, child frames and unowned windows remain denied. Full reference UI and final distribution acceptance remain pending.
 
