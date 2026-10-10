@@ -3,7 +3,7 @@ import type { Memory } from './memories';
 import type { ProjectPreviewInput, PreviewViewport } from './project-preview';
 import type { BrowserAction, BrowserShortcut, BrowserState } from './browser';
 import type { ApprovalRequest, ToolActivity } from './tools';
-import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
+import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitBranches, GitFile, GitFileView, GitStatus, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
 import type { McpBinaryItem } from './mcp-binary';
 import type { ToolResult } from './tools';
@@ -138,6 +138,9 @@ export type Bridge = {
   saveEditorDraft(draft: EditorDraft): Promise<void>;
   removeEditorDraft(projectId: string, path: string): Promise<void>;
   gitStatus(projectId: string): Promise<GitStatus>;
+  gitBranches(projectId: string): Promise<GitBranches>;
+  gitSwitchBranch(projectId: string, name: string): Promise<GitBranches>;
+  gitCreateBranch(projectId: string, name: string): Promise<GitBranches>;
   gitFileView(projectId: string, file: GitFile, staged: boolean): Promise<GitFileView>;
   gitStage(projectId: string, paths: string[], staged: boolean): Promise<GitStatus>;
   gitCommit(projectId: string, message: string): Promise<GitStatus>;

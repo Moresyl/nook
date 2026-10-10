@@ -10,9 +10,10 @@ import { previewTextPattern, type ProjectPreviewInput } from '../../contracts/pr
 import { ProjectPreviewLayout } from './project-preview-pane';
 import { EditorTabs } from './editor-tabs';
 import { Glyph } from './glyphs';
+import { mergeRefreshedEditorTabs } from './editor-branch-refresh';
 
-type Props = { project: Project; drafts: EditorDraft[]; files: boolean; report: (error: unknown) => void; onSave: () => void };
-export function ProjectEditor({ project, drafts, files, report, onSave }: Props) {
+type Props = { project: Project; drafts: EditorDraft[]; files: boolean; report: (error: unknown) => void; onSave: () => void; branchRevision?: number };
+export function ProjectEditor({ project, drafts, files, report, onSave, branchRevision = 0 }: Props) {
   const tabId = useId(), panelId = `${tabId}-panel`;
   const [tabs, setTabs] = useState<EditorDraft[]>(() => drafts.filter((draft) => draft.projectId === project.id));
   const tabsRef = useRef(tabs); tabsRef.current = tabs;
@@ -26,6 +27,19 @@ export function ProjectEditor({ project, drafts, files, report, onSave }: Props)
   const [dockedPreview, setDockedPreview] = useState<ProjectPreviewInput | null>(null);
   const savingRef = useRef(false);
   const [saveNotice, setSaveNotice] = useState('');
+  const previousBranch = useRef(branchRevision);
+  useEffect(() => {
+    if (previousBranch.current === branchRevision) return;
+    previousBranch.current = branchRevision; let stale = false;
+    setDockedPreview(null); setRefresh(value => value + 1);
+    const clean = tabsRef.current.filter(item => item.text === item.baseText);
+    void Promise.all(clean.map(async before => ({ before, document: await window.qiyao.loadDocument(project.id, before.path).catch(() => null) }))).then(documents => {
+      if (stale) return;
+      const next = mergeRefreshedEditorTabs(tabsRef.current, documents); tabsRef.current = next.tabs; setTabs(next.tabs);
+      setSaveNotice(next.unreadable ? '新分支中有文件无法读取，保留上次内容；请核对文件后继续。' : '已刷新分支文件，未保存草稿仍保留');
+    });
+    return () => { stale = true; };
+  }, [branchRevision]);
   const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   const tab = tabs.find((item) => item.path === active);
   const saveRef = useRef<() => void>(() => {});

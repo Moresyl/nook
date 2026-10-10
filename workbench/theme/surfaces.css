@@ -555,7 +555,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .editor-files, .changes-list { width: 180px; flex: none; overflow: auto; border-right: 1px solid var(--ds-border); }
 .editor-files-toolbar { display: flex; align-items: center; gap: 2px; height: 32px; padding: 2px 4px; border-bottom: 1px solid var(--ds-border); }
 .editor-files-toolbar > span:not([role="tooltip"]) { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 11px; }
-.editor-files-toolbar .button, .editor-tabs .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; }
+.editor-files-toolbar > .button, .editor-tabs .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; }
 .editor-files .file-list { padding: 4px; }
 .editor-files .file-list .button { font-size: 11px; min-height: 28px; padding: 4px; overflow: hidden; }
 .editor-files .file-list .button span { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
@@ -623,6 +623,18 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .terminal-canvas .xterm-viewport::-webkit-scrollbar { width: 10px; }
 .changes-list { padding: 0 8px 8px; width: 240px; }
 .changes-list .editor-files-toolbar { margin: 0 -8px 8px; }
+.editor-files-toolbar .branch-trigger { width: auto; flex: 1; min-width: 0; justify-content: flex-start; gap: 4px; }
+.branch-trigger > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.branch-dialog .modal-content { display: flex; flex-direction: column; gap: 8px; max-height: none; overflow: hidden; }
+.branch-current { margin: 0; overflow-wrap: anywhere; font-weight: var(--font-weight-medium); }
+.branch-modes { display: flex; gap: 4px; align-items: center; }
+.branch-list { display: flex; flex-direction: column; flex: 1; min-height: 28px; max-height: 200px; overflow-y: auto; }
+.branch-row { width: 100%; min-height: 28px; flex-shrink: 0; justify-content: flex-start; padding: 4px 6px; gap: 4px; }
+.branch-name { flex: 1; min-width: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.branch-row[aria-current="true"] { background: var(--ghost-hover); color: var(--ds-text); font-weight: var(--font-weight-medium); }
+.branch-create { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px 0; min-height: 0; overflow-y: auto; }
+.branch-create .input { background: transparent; }
+.branch-validation { margin: 0; font-size: var(--control-font-size-sm); color: var(--ds-danger); overflow-wrap: anywhere; }
 .changes-list .field { gap: 4px; margin-bottom: 8px; }
 .changes-list h4 { font-size: 11px; font-weight: var(--font-weight-medium); margin: 16px 0 6px; }
 .change-row { display: flex; align-items: center; min-width: 0; }

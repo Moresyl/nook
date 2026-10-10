@@ -8,6 +8,7 @@ export const editorDraftSchema = z.object({
 });
 export const saveDocumentSchema = z.object({ path: z.string().min(1).max(4096), text: z.string().max(256_000), expectedSha256: revisionSchema });
 export const terminalGeometrySchema = z.object({ cols: z.number().int().min(2).max(500), rows: z.number().int().min(2).max(300) });
+export const gitBranchNameSchema = z.string().min(1).max(250).refine(value => !value.startsWith('-') && !/[\x00-\x20\x7f]|@\{/.test(value), { message: 'Enter a valid Git branch name.' });
 export const PROJECT_DIRECTORY_PAGE_SIZE = 200;
 export const directoryRequestSchema = z.object({
   path: z.string().max(4096).default(''),
@@ -26,3 +27,5 @@ export type TerminalEvent = { id: string; sequence: number; data?: string; exitC
 export type GitFile = { path: string; originalPath?: string; index: string; working: string; conflict: boolean };
 export type GitStatus = { branch: string; detached: boolean; unborn: boolean; ahead: number; behind: number; files: GitFile[] };
 export type GitFileView = { path: string; before: string; after: string; binary: boolean; patch: string };
+export type GitBranch = { name: string; current: boolean; worktreePath: string };
+export type GitBranches = { status: GitStatus; branches: GitBranch[]; warning?: 'post-switch-error' };

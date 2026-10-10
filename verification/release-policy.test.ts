@@ -7,6 +7,7 @@ import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mj
 
 const hash = 'a'.repeat(64);
 const otherHash = 'b'.repeat(64);
+const projectBranches = () => ({ checks: 8, modelRequests: 0, localListSearchVerified: true, creationValidationBusyVerified: true, overwriteRetryVerified: true, editorRefreshDraftConflictVerified: true, worktreeProjectScopeVerified: true, hookStatePreviewCleanupVerified: true, referenceZoomKeyboardVerified: true, restartDraftsVerified: true, screenshots: Array.from({ length: 13 }, (_, i) => `project-branches-${i}-shell.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, overflow: false, fieldPadding: '8px 12px 0px', fieldGap: '4px', fieldBackground: 'rgba(0, 0, 0, 0)', viewport: { width: 500, height: 400 }, dialog: { left: 10, top: 10, right: 490, bottom: 390, width: 480, height: 380 }, controls: Array.from({ length: 7 }, () => ({ visible: true, contentFits: true, width: 24, height: 24 })) }))) });
 const browserTabs = () => ({ checks: 5, independentHistoryDraftsVerified: true, sharedTransientSessionVerified: true, selectedViewOnlyVerified: true, backgroundFailureCloseVerified: true, nativeShortcutsVerified: true, lastCloseFreshVerified: true, workbenchReloadAllTabsVerified: true, screenshots: Array.from({ length: 16 }, (_, i) => `browser-tabs-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, selectedVisible: true, addVisible: true, addWidth: 24, addHeight: 24, overflow: false, tabCount: 3, panelLinked: true, expected: { x: 10, y: 20, width: 200, height: 150 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) });
 const editorTabs = () => ({ selectedVisibilityVerified: true, keyboardNavigationVerified: true, dirtyCancelVerified: true, cleanCloseFocusVerified: true, saveFailureRetryVerified: true, originalDraftsRetained: true, screenshots: ['editor-tabs-initial.png', 'editor-tabs-close-cancel.png', 'editor-tabs-save-failure.png', ...['light', 'dark'].flatMap(theme => [100, 125, 150].map(zoom => `editor-tabs-${theme}-${zoom}.png`))], layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, selectedVisible: true, overflow: false, compact: true, actions: ['并排预览', '预览 HTML', '保存 Ctrl S'].map(name => ({ name, visible: true, width: 24, height: 24 })) }))) });
 const minimumLayout = () => ['empty', 'attachment-long-input', 'conversation'].flatMap(state => ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ state, theme, zoom, nativeSize: [420, 360], controlsVisible: true, overflow: false, toolsKeyboardVerified: true }))));
@@ -21,7 +22,7 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 267, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+  const desktop = { variant: 'packaged executable', checks: 275, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -41,6 +42,23 @@ function proof(): ReleaseProof {
     installer: { checks: desktop.checks, normalCloseVerified: true, registrationVerified: true, shortcutsVerified: true, uninstalled: true, userDataRetained: true, executableSha256: hash, archiveSha256: otherHash, installerSha256: hash },
   };
 }
+
+describe('project branch release evidence', () => {
+  it('rejects prior suites and missing, incomplete or unsafe branch evidence', () => {
+    const prior = proof(); prior.desktop.checks = 267; expect(() => verifyRuntimeProof(prior)).toThrow('Complete desktop');
+    const missing = proof(); delete missing.desktop.projectBranches; expect(() => verifyRuntimeProof(missing)).toThrow('project branch');
+    for (const [key, value] of Object.entries({ checks: 7, modelRequests: 1, localListSearchVerified: false, creationValidationBusyVerified: false, overwriteRetryVerified: false, editorRefreshDraftConflictVerified: false, worktreeProjectScopeVerified: false, hookStatePreviewCleanupVerified: false, referenceZoomKeyboardVerified: false, restartDraftsVerified: false, layouts: [], screenshots: Array(13).fill('project-branches-duplicate-shell.png') })) {
+      const invalid = proof(); (invalid.desktop.projectBranches as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('project branch');
+    }
+  });
+  it('rejects clipped controls, invalid field tokens, duplicate layouts and malformed captures', () => {
+    for (const [key, value] of Object.entries({ overflow: true, fieldPadding: '0px', fieldGap: '8px', fieldBackground: 'rgb(0, 0, 0)', viewport: { width: 0, height: 0 }, dialog: { left: -1, top: 0, right: 0, bottom: 0, width: 0, height: 0 }, controls: [], zoom: 1.25 })) {
+      const invalid = proof(); (invalid.desktop.projectBranches!.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('project branch');
+    }
+    for (const [key, value] of Object.entries({ contentFits: false, visible: false, width: 0, height: 19 })) { const invalid = proof(); (invalid.desktop.projectBranches!.layouts[0].controls[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('project branch'); }
+    const capture = proof(); capture.desktop.projectBranches!.screenshots[0] = 'other.png'; expect(() => verifyRuntimeProof(capture)).toThrow('project branch');
+  });
+});
 
 describe('private browser release evidence', () => {
   it('rejects old suites and incomplete multi-tab behavior, geometry or screenshots', () => {
