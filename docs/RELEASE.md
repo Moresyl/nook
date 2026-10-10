@@ -23,7 +23,7 @@
 | 完整源码回归 | 显式设备缩放 1 的新整轮 252 组全部通过，37 次正常退出；此前各轮失败继续保留 |
 | 最新诊断 | 98 组后记录中断，恢复时进程与工具句柄均不存在；无最终汇总或退出状态，不计为通过 |
 | 系统缩放 | Windows 125% 下首个精确窗口尺寸断言失败；独立探测确认取整差异，诊断退出也再次超时 |
-| 分发 | 当前功能尚未生成并验收新的安装／便携包 |
+| 分发 | 新安装／便携候选已生成，包体审计通过；完整运行、安装／卸载与便携验收仍待完成 |
 
 本次完整回归包含 MCP PDF 8 组、快速聊天 9 组，以及大型备份、分支、临时聊天、模型比较和实际重启。23 份阶段记录与 215 张截图按同一构建归档，当前逐张检查了其中 4 张；其余不能算已完成视觉验收。短窗口错误操作完整可见，但保存错误仍显示英文，属于待打磨项。[完整回归与截图证据](../verification/workspace-copy-fixed-scale-full-result.json)
 
@@ -41,12 +41,16 @@
 
 ## 分发与流水线
 
-最近候选仍为 `8e3ef21`，不含 MCP PDF 与快速聊天。包体审计通过，完整未安装运行在 202 组后的关闭超时失败；便携和实际安装阶段没有执行。旧候选与历史通过记录不能验收新源码。[分发失败](../verification/insertion-focus-packaged-exit-failure-result.json)
+新候选使用当前逐条复制构建，包含 MCP PDF 与快速聊天。包体审计通过：239 个产品文件、401 份完整依赖法律文档、20 份分发法律／来源文件，以及原生组件完整性、编译内容和 Nook 元数据均已核对。安装器预检为 28 个输入；许可检查保留 381 个依赖版本与五组资源。实际签名状态为未签名，构建日志的签名步骤名称不代表签名成功。[候选及准确哈希](../verification/workspace-copy-package-candidate-result.json)与[打包预检](../verification/workspace-copy-package-preflight-result.json)
 
-| 历史候选文件 | SHA-256 |
+这批包尚未通过完整运行、安装／卸载、便携及真实系统交互验收。此前 `8e3ef21` 候选在 202 组后的关闭超时失败，旧哈希和历史通过不能用于新包。[此前分发失败](../verification/insertion-focus-packaged-exit-failure-result.json)
+
+| 当前候选文件 | SHA-256 |
 | --- | --- |
-| Nook.exe | `26f21a750065b182ac967794639108bb7be9fcdd0c1738c7e1fe8831b9246c52` |
-| app.asar | `350116641f0517239308a49871237eed8b44aea3985230bd43be84e5cbd21758` |
+| 安装包 | `81f4359e6ec83f6d520adfd34a35085dcfc9af23ea57415823e26fc012a4633e` |
+| 便携包 | `64ca2bb0fc0110da4bbb6ef8cbdb0fcb9889edf359b47260199e54cce519d3c6` |
+| Nook.exe | `97dd8a2edd3908898b35a0c0898626bb2c2e1b23f7bc2950a6a90eeded1c8072` |
+| app.asar | `ebb128f5f7e38b6130c6411e7a60cb7508112e2ffa52f0256b58ec1062bed87f` |
 
 完整源码回归证据已推送至 `224eb79`，触发的 [38042090454](https://github.com/Moresyl/nook/actions/runs/38042090454) 已核对：验证任务仍因 GitHub 账户付款／支出额度限制而零步骤失败；开发分支的发布任务也受分支条件限制。未修改付费设置、创建发布标签或绕过验收。[最新托管记录](../verification/hosted-fixed-scale-block-result.json)与[此前逐条复制记录](../verification/hosted-workspace-copy-block-result.json)
 
