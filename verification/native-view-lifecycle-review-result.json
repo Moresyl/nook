@@ -1,0 +1,1099 @@
+{
+  "verifiedAt": "2026-10-10T14:57:24Z",
+  "focusedPreviewVerifiedAt": "2026-10-10T14:48:44.550Z",
+  "productCodeCommit": "476654bf9fa3ba9c39f2829a2d7f2e75e76f51d8",
+  "baseCommit": "c012987d829574ba5f47500c5eb4e2f7f9103bcc",
+  "fullSource": {
+    "baseCommit": "c012987d829574ba5f47500c5eb4e2f7f9103bcc",
+    "checks": 262,
+    "normalNativeExits": 38,
+    "compiledFiles": 236,
+    "productSourceFiles": 249,
+    "changedStageRecords": 24,
+    "recordedScreenshots": 179,
+    "archive": "E:/NookVerification/NativeViewLifecycleFullSourcePass-20261010",
+    "boundary": "One complete functional source round. The source hashes bind the uncommitted product changes; archived harnesses reflect this exact round. All raw PNGs are retained, but only separately listed focused images are visually reviewed. No new distribution or hosted acceptance."
+  },
+  "compiledMatchesFullSourceArchive": true,
+  "productSourceMatchesFullSourceArchive": true,
+  "unit": {
+    "files": 104,
+    "tests": 1015,
+    "defaultCoverage": {
+      "lines": {
+        "total": 3623,
+        "covered": 3601,
+        "skipped": 0,
+        "pct": 99.39
+      },
+      "statements": {
+        "total": 6017,
+        "covered": 5851,
+        "skipped": 0,
+        "pct": 97.24
+      },
+      "functions": {
+        "total": 1367,
+        "covered": 1332,
+        "skipped": 0,
+        "pct": 97.43
+      },
+      "branches": {
+        "total": 4218,
+        "covered": 3999,
+        "skipped": 0,
+        "pct": 94.8
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "defaultScope": "contracts and desktop services; not complete UI or every native manager"
+  },
+  "projectPreviewClass": {
+    "tests": 18,
+    "coverage": {
+      "lines": {
+        "total": 58,
+        "covered": 58,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 111,
+        "covered": 110,
+        "skipped": 0,
+        "pct": 99.09
+      },
+      "functions": {
+        "total": 16,
+        "covered": 15,
+        "skipped": 0,
+        "pct": 93.75
+      },
+      "branches": {
+        "total": 74,
+        "covered": 66,
+        "skipped": 0,
+        "pct": 89.18
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    }
+  },
+  "focused": {
+    "browserChecks": 9,
+    "previewChecks": 10,
+    "normalCloseVerified": true,
+    "previewQuickChatFixtureOpened": true,
+    "previewWorkbenchReloadVerified": true,
+    "previewStaleOwnerCloseVerified": true,
+    "browserLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "x": 264,
+          "y": 141,
+          "width": 1016,
+          "height": 666,
+          "top": 141,
+          "right": 1280,
+          "bottom": 807,
+          "left": 264
+        },
+        "windowViewport": {
+          "width": 1280,
+          "height": 840
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 402,
+            "width": 248,
+            "height": 40,
+            "top": 402,
+            "right": 256,
+            "bottom": 442,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 248,
+            "height": 608,
+            "top": 108,
+            "right": 256,
+            "bottom": 716,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 264,
+          "y": 141,
+          "right": 1280,
+          "bottom": 807
+        },
+        "native": {
+          "x": 264,
+          "y": 141,
+          "width": 1016,
+          "height": 666
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "x": 240,
+          "y": 140.8000030517578,
+          "width": 784,
+          "height": 498.3999938964844,
+          "top": 140.8000030517578,
+          "right": 1024,
+          "bottom": 639.1999969482422,
+          "left": 240
+        },
+        "windowViewport": {
+          "width": 1024,
+          "height": 672
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 402,
+            "width": 218.40000915527344,
+            "height": 40,
+            "top": 402,
+            "right": 226.40000915527344,
+            "bottom": 442,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 224,
+            "height": 440.20001220703125,
+            "top": 108,
+            "right": 232,
+            "bottom": 548.2000122070312,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 300,
+          "y": 177,
+          "right": 1280,
+          "bottom": 798
+        },
+        "native": {
+          "x": 300,
+          "y": 177,
+          "width": 980,
+          "height": 621
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "x": 240,
+          "y": 140.6666717529297,
+          "width": 613.3333740234375,
+          "height": 386.66668701171875,
+          "top": 140.6666717529297,
+          "right": 853.3333740234375,
+          "bottom": 527.3333587646484,
+          "left": 240
+        },
+        "windowViewport": {
+          "width": 853,
+          "height": 560
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 396.66668701171875,
+            "width": 218,
+            "height": 40,
+            "top": 396.66668701171875,
+            "right": 226,
+            "bottom": 436.66668701171875,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 224,
+            "height": 328.3333435058594,
+            "top": 108,
+            "right": 232,
+            "bottom": 436.3333435058594,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 360,
+          "y": 212,
+          "right": 1279,
+          "bottom": 791
+        },
+        "native": {
+          "x": 360,
+          "y": 212,
+          "width": 919,
+          "height": 579
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "x": 220,
+          "y": 141,
+          "width": 540,
+          "height": 366,
+          "top": 141,
+          "right": 760,
+          "bottom": 507,
+          "left": 220
+        },
+        "windowViewport": {
+          "width": 760,
+          "height": 540
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 255,
+            "width": 198,
+            "height": 40,
+            "top": 255,
+            "right": 206,
+            "bottom": 295,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 204,
+            "height": 308,
+            "top": 108,
+            "right": 212,
+            "bottom": 416,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 220,
+          "y": 141,
+          "right": 760,
+          "bottom": 507
+        },
+        "native": {
+          "x": 220,
+          "y": 141,
+          "width": 540,
+          "height": 366
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "x": 64,
+          "y": 140.8000030517578,
+          "width": 544,
+          "height": 258.3999938964844,
+          "top": 140.8000030517578,
+          "right": 608,
+          "bottom": 399.1999969482422,
+          "left": 64
+        },
+        "windowViewport": {
+          "width": 608,
+          "height": 432
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 234.8000030517578,
+            "width": 42.400001525878906,
+            "height": 40,
+            "top": 234.8000030517578,
+            "right": 50.400001525878906,
+            "bottom": 274.8000030517578,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 88,
+            "width": 48,
+            "height": 247.1999969482422,
+            "top": 88,
+            "right": 56,
+            "bottom": 335.1999969482422,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 80,
+          "y": 177,
+          "right": 760,
+          "bottom": 498
+        },
+        "native": {
+          "x": 80,
+          "y": 177,
+          "width": 680,
+          "height": 321
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "x": 64,
+          "y": 140.6666717529297,
+          "width": 442.66668701171875,
+          "height": 186.6666717529297,
+          "top": 140.6666717529297,
+          "right": 506.66668701171875,
+          "bottom": 327.3333435058594,
+          "left": 64
+        },
+        "windowViewport": {
+          "width": 507,
+          "height": 360
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 223.33334350585938,
+            "width": 42,
+            "height": 40,
+            "top": 223.33334350585938,
+            "right": 50,
+            "bottom": 263.3333435058594,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 88,
+            "width": 48,
+            "height": 175.33334350585938,
+            "top": 88,
+            "right": 56,
+            "bottom": 263.3333435058594,
+            "left": 8
+          }
+        },
+        "expected": {
+          "x": 96,
+          "y": 212,
+          "right": 760,
+          "bottom": 491
+        },
+        "native": {
+          "x": 96,
+          "y": 212,
+          "width": 664,
+          "height": 279
+        }
+      }
+    ],
+    "editorAppearance": [
+      {
+        "name": "project-preview-editor-light.png",
+        "theme": "light",
+        "initial": {
+          "theme": "dark",
+          "bodyColor": "rgb(237, 237, 237)",
+          "buttons": [
+            {
+              "text": "新聊天Ctrl N",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "临时聊天",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "搜索聊天Ctrl K",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "项目",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "助手",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "资料库",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "自动任务",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "浏览器",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "已归档",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            },
+            {
+              "text": "设置Ctrl ,",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": []
+            }
+          ]
+        },
+        "settled": {
+          "theme": "light",
+          "bodyColor": "rgb(40, 40, 40)",
+          "buttons": [
+            {
+              "text": "新聊天Ctrl N",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "临时聊天",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "搜索聊天Ctrl K",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "项目",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "助手",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "资料库",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "自动任务",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "浏览器",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "已归档",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            },
+            {
+              "text": "设置Ctrl ,",
+              "disabled": false,
+              "color": "rgb(40, 40, 40)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 178.0859999975597
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "project-preview-editor-dark-narrow.png",
+        "theme": "dark",
+        "initial": {
+          "theme": "dark",
+          "bodyColor": "rgb(237, 237, 237)",
+          "buttons": [
+            {
+              "text": "新聊天Ctrl N",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "临时聊天",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "搜索聊天Ctrl K",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "项目",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "助手",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "资料库",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "自动任务",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "浏览器",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "已归档",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            },
+            {
+              "text": "设置Ctrl ,",
+              "disabled": false,
+              "color": "rgb(214, 214, 214)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 107.49999999999993
+                }
+              ]
+            }
+          ]
+        },
+        "settled": {
+          "theme": "dark",
+          "bodyColor": "rgb(237, 237, 237)",
+          "buttons": [
+            {
+              "text": "新聊天Ctrl N",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "临时聊天",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "搜索聊天Ctrl K",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "项目",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "助手",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "资料库",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "自动任务",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "浏览器",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "已归档",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            },
+            {
+              "text": "设置Ctrl ,",
+              "disabled": false,
+              "color": "rgb(237, 237, 237)",
+              "opacity": "1",
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.80000000000018
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "archive": "E:/NookVerification/NativeViewLifecycleFocusedPass-20261010"
+  },
+  "visualReview": {
+    "originalImagesIndividuallyReviewed": 26,
+    "images": [
+      {
+        "name": "browser-dark-1-content.png",
+        "sha256": "6422a118a5a71a4288dc1f8bac1880eb548021a57150cf64210a5fdc46907c5b",
+        "width": 540,
+        "height": 366
+      },
+      {
+        "name": "browser-dark-1-shell.png",
+        "sha256": "f4a7e7b6bef43b2daaa9f2f43da7125c7d7a3dd1eca3de3842f83aae2748706f",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-dark-1.25-content.png",
+        "sha256": "164c90e984a6fd4c104d605863b3cd6f58968a99fcfaabf41e81e3cf5b05efd3",
+        "width": 680,
+        "height": 321
+      },
+      {
+        "name": "browser-dark-1.25-shell.png",
+        "sha256": "29a320e89a7ac792db41fe1804c41da4b1cd6853150c166e70fb377261fb27ae",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-dark-1.5-content.png",
+        "sha256": "20f858171b90a0c74ac1168317f95d14db950f66e28910f8449f769ffde4f800",
+        "width": 664,
+        "height": 279
+      },
+      {
+        "name": "browser-dark-1.5-shell.png",
+        "sha256": "839ad779f3bd5c1ff1bcee2019d9b5240143a2ddf800f536fc5f53a63e2da39a",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-invalid-address-shell.png",
+        "sha256": "f7d66da340fb31d9749ef20ec9639f555fd59c95887ad1abaafa0e951561d698",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1-content.png",
+        "sha256": "9662801ab4cf3aebb62dd638892432d9115b3559c1ca9a4ebf240a891a5ff6b6",
+        "width": 1016,
+        "height": 666
+      },
+      {
+        "name": "browser-light-1-shell.png",
+        "sha256": "19256dac38d336edef8d356904116bda9f44ea2e97812d24255ba679e66e91aa",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1.25-content.png",
+        "sha256": "787552a9f655da0acc16d5baf2d077117665f468fe99ba2682359d93e9717737",
+        "width": 980,
+        "height": 621
+      },
+      {
+        "name": "browser-light-1.25-shell.png",
+        "sha256": "2f06a5ef7e5013139d29077cb4d0c3060577c368c8782465ad154a4b2d75e6c2",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1.5-content.png",
+        "sha256": "af5e1dd3993bac86b0b00ab81c8cd574ceee7e570b7c8df7a641ca1f93e9342c",
+        "width": 919,
+        "height": 579
+      },
+      {
+        "name": "browser-light-1.5-shell.png",
+        "sha256": "ff6b6673c094fe45e8c3f17805b3025e609e2b055b93ba0c4cfda465ec43f7bd",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-load-error-shell.png",
+        "sha256": "1c4b44f2f02250a2e5b12b3c2bb7c3642ac68afa1b2185dff200897883fcb26b",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-restarted-empty-shell.png",
+        "sha256": "f96132ef207da48b18071ea6dd712927c35358d1e86cfd6561f7f73dbdea3ffe",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "project-dock-dark-1-content.png",
+        "sha256": "1958590d7950c4df4ed0e2ca20c2b3f1027695364e6cfb4602a1c6a53d32b366",
+        "width": 540,
+        "height": 243
+      },
+      {
+        "name": "project-dock-dark-1-shell.png",
+        "sha256": "6b38f6870a8dbccc3f07b6981b5bf9ca8210bb219ffb73ea8be1c27f209037e5",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "project-dock-dark-1.25-content.png",
+        "sha256": "bef175216994d67e0cbd5d5058c608b2319abcc1bc063a518ecb4792db7d4e1d",
+        "width": 680,
+        "height": 244
+      },
+      {
+        "name": "project-dock-dark-1.25-shell.png",
+        "sha256": "5ed09b1381cb6c999165eaa91b112d334bfa2ca00f9241ba0f78f21ad5b81421",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "project-dock-dark-1.5-content.png",
+        "sha256": "88e39df77840dda3aa416d29795080f3665b18f90efd390919d3076eb2fca598",
+        "width": 664,
+        "height": 186
+      },
+      {
+        "name": "project-dock-dark-1.5-shell.png",
+        "sha256": "687f60cb8cb2ac7588c716b631326610e2205d4cc0efb42bdf864129dea4442d",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "project-dock-light-content.png",
+        "sha256": "53286cc6ee1cc1665b6e5297090938df4a4692c398a36a97ce619a56314db748",
+        "width": 412,
+        "height": 477
+      },
+      {
+        "name": "project-dock-light-shell.png",
+        "sha256": "6400859a8e61f527fc3244806a38aa0a31aedeac74b47de2855a1dee1756f8aa",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "project-html-preview.png",
+        "sha256": "101290225248ccc040819a7c590d0670747e4150d7621767ccaa784ec05f4654",
+        "width": 982,
+        "height": 673
+      },
+      {
+        "name": "project-preview-editor-dark-narrow.png",
+        "sha256": "9bb6b50d9697c3a5354a60f21fb6280729cb2fea5b42ece08b752210c574d40f",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "project-preview-editor-light.png",
+        "sha256": "453b01f7a81e87ee0a678cb6f0e4fa1d44c1c1ea45ad3538431591aa4dd9d92f",
+        "width": 1280,
+        "height": 840
+      }
+    ],
+    "captureBoundary": "Actual parent and website/preview contents captured separately; no composite or physical-input claim",
+    "scope": "These 26 focused originals only; full-suite images are not all visually accepted"
+  },
+  "regressions": {
+    "typesPassed": true,
+    "buildPassed": true,
+    "surfacesChecks": 4,
+    "surfacesNormalCloseVerified": true,
+    "licenseDependencyVersions": 381,
+    "completeDependencyLegalDocuments": 401,
+    "bundledAssetGroups": 5,
+    "windowsDistributionComponents": 5
+  },
+  "preservedFailures": "native-view-lifecycle-failures-result.json",
+  "previewCaptureGap": {
+    "archive": "E:/NookVerification/PreviewEditorThemeCaptureGap-20261010",
+    "correctedBy": "Wait for actual requested theme, absence of modal and navigation color equal to body color before synchronizing two paint frames. Original product theme transitions unchanged.",
+    "scope": "Full functional round archived before this capture-only correction; final focused preview repeats all ten checks against identical compiled product files and additionally opens Quick Chat."
+  },
+  "remaining": [
+    "Complete design/page/state acceptance against E:/txt",
+    "New same-build unpacked, installed and portable distribution rounds",
+    "Hosted verification and publication"
+  ],
+  "boundary": "Source and focused desktop evidence only. No new distribution, hosted pass, release or 100 percent design adoption."
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "c012987d829574ba5f47500c5eb4e2f7f9103bcc",
+  "scope": "Two product failures reproduced before their respective fixes, plus a new reload-harness context failure in the first full source round. Each verifier failed; normal native shutdowns are not passing verification results. Original logs and isolated test directories are retained outside the product repository.",
+  "failures": [
+    {
+      "case": "workbench reload leaves docked HTML visible",
+      "checksBeforeFailure": 3,
+      "viewAfterReload": { "contentsId": 4, "visible": true, "bounds": { "x": 868, "y": 337, "width": 412, "height": 477 } },
+      "verifierExitCode": 1,
+      "nativeExit": { "elapsedMs": 300, "forced": false, "exitCode": 0, "signalCode": null },
+      "archive": "E:/NookVerification/PreviewWorkbenchReloadFailure-20261010",
+      "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-MMHa5L"
+    },
+    {
+      "case": "selected browser navigation is clipped after zoom",
+      "checksBeforeFailure": 7,
+      "theme": "light",
+      "zoom": 1.5,
+      "selectedRowBottom": 442,
+      "sidebarViewportBottom": 436.3333435058594,
+      "verifierExitCode": 1,
+      "nativeExit": { "elapsedMs": 436, "forced": false, "exitCode": 0, "signalCode": null },
+      "archive": "E:/NookVerification/SidebarSelectedVisibilityFailure-20261010",
+      "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-r963Yx"
+    },
+    {
+      "case": "focused reload harness incorrectly expects an empty home in a full round with an active conversation",
+      "checksBeforeFailure": 182,
+      "normalNativeExits": 21,
+      "allNativeExitsUnforcedWithCodeZero": true,
+      "savedActiveConversationTitle": "COMMAND_PALETTE_OWNER",
+      "savedProjectDraftPaths": ["index.html", "styles.css", "app.js", "data.json"],
+      "verifierExitCode": 1,
+      "compiledFilesArchived": 236,
+      "archive": "E:/NookVerification/NativeViewLifecycleFirstFullFailure-20261010",
+      "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-oALznF",
+      "correction": "Assert the actual saved conversation or empty home, exact composer text, active owner and project drafts after reload; retain view-release and stale-close assertions and all deadlines."
+    }
+  ],
+  "boundary": "Owned Electron application and CDP input. No timeout extension, assertion removal, forced native exit, physical input claim or packaged-distribution acceptance."
+}

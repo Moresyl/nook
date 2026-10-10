@@ -18,6 +18,9 @@
 
 ### 修复与打磨
 
+- 并排 HTML 预览在主界面重载或渲染进程崩溃时释放旧视图，并取消尚未完成的准备；重新打开使用新会话，保留编辑草稿，旧关闭请求不能影响替代视图。
+- 页面切换、窗口调整和缩放时，侧栏保持当前选中项可见；页面导航增加当前页面标记。保留手动滚动与紧凑图标布局。
+
 - 主工作台、快速聊天与 PDF 原件导出使用中文保存错误提示，自动任务的无效 Cron／时区提示也使用中文。已知错误提供具体恢复操作，未知服务错误保留原始诊断文字。实际保存失败保留输入、原件和既有目标文件，恢复后可重试；源码、未安装版与实际安装版三轮完整回归，以及匹配安装／便携证据均通过。全部参考界面与托管发布仍待验收。
 
 - 工作台快照、事务返回值和备份改为逐条记录复制，避免把全部会话交给一次 `structuredClone` 临时序列化。副本仍与已保存状态隔离，保留完整字段、Unicode、记录顺序和失败后的重试行为；真实桌面及分发验收待完成。
@@ -79,6 +82,9 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 修复与完善
 
+- 并排 HTML 预览在主界面重载或渲染进程崩溃时释放旧视图，取消尚未完成的准备；重新打开保留编辑草稿并使用新会话，拒绝旧视图的关闭请求。
+- 侧栏在页面切换、窗口调整和缩放后保持当前选中项可见，页面导航增加当前页面标记。短窗口继续使用紧凑图标与手动滚动。
+
 - 会话切换与待写草稿合并为一次原子保存，减少重复备份写入；连续排队选择保留最后一次，普通／临时聊天和刷写顺序仍隔离，失败保留待写草稿以便重试。
 
 - 脚本加载前显示居中的 Nook 启动标志，支持系统明暗、淡入扫光及减少动效。首次工作台读取失败时保留明确提示和重新加载入口，避免错误自动消失后停留在加载状态。
@@ -128,6 +134,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+Releases docked HTML previews and cancels pending preparation when the workbench reloads or crashes. Reopening retains editor drafts and rejects stale close requests. Sidebar navigation keeps the selected item visible after page changes, resizing and zoom, with a current-page marker.
 
 Adds a private website panel with HTTP(S) navigation, native back/forward history, stop/retry, address shortcuts and retained chat drafts. Websites receive no application bridge or Node access, and site storage is not restored after exit. Tabs, saved history, downloads, permission grants and browser automation remain outside this implementation.
 

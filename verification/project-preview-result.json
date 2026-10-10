@@ -1,13 +1,15 @@
 {
-  "verifiedAt": "2026-10-10T14:02:06.103Z",
+  "verifiedAt": "2026-10-10T14:48:44.550Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
   "normalCloseVerified": true,
   "runtimeErrors": [],
-  "checks": 9,
+  "checks": 10,
   "docked": {
-    "checks": 4,
+    "checks": 5,
+    "workbenchReloadVerified": true,
+    "staleOwnerCloseVerified": true,
     "floatingTransferVerified": true,
     "layouts": [
       {
@@ -126,6 +128,470 @@
       }
     ]
   },
+  "editorAppearance": [
+    {
+      "name": "project-preview-editor-light.png",
+      "theme": "light",
+      "initial": {
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": []
+          }
+        ]
+      },
+      "settled": {
+        "theme": "light",
+        "bodyColor": "rgb(40, 40, 40)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 178.0859999975597
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "project-preview-editor-dark-narrow.png",
+      "theme": "dark",
+      "initial": {
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(214, 214, 214)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 107.49999999999993
+              }
+            ]
+          }
+        ]
+      },
+      "settled": {
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "colorTransitions": [
+              {
+                "state": "running",
+                "currentTime": 179.80000000000018
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
   "outsideHttpRequests": 0,
   "boundary": "Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit."
 }

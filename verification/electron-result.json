@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-10T13:57:58.228Z",
+  "verifiedAt": "2026-10-10T14:46:41.896Z",
   "variant": "development executable",
-  "checks": 261,
+  "checks": 262,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181170,
-    "compressedBytes": 242302,
+    "expandedBytes": 84181186,
+    "compressedBytes": 242291,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791640336318,
+        "startedAt": 1791643324218,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791640338539
+        "finishedAt": 1791643325427
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791640338691,
+        "startedAt": 1791643325572,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791640340911
+        "finishedAt": 1791643326885
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791640343989,
+        "startedAt": 1791643328571,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791640346935
+        "finishedAt": 1791643329663
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 13.099999997764826,
+    "scopedReadMs": 8.100000001490116,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1888,9 +1888,11 @@
     "scope": "Explicit CRUD, scope promotion, disabled state, persistence, search, escaped text, theme/narrow layout and project removal. Engine scope and temporary-chat isolation have separate component tests."
   },
   "projectPreview": {
-    "checks": 9,
+    "checks": 10,
     "docked": {
-      "checks": 4,
+      "checks": 5,
+      "workbenchReloadVerified": true,
+      "staleOwnerCloseVerified": true,
       "floatingTransferVerified": true,
       "layouts": [
         {
@@ -2518,6 +2520,30 @@
           "width": 1280,
           "height": 840
         },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 402,
+            "width": 248,
+            "height": 40,
+            "top": 402,
+            "right": 256,
+            "bottom": 442,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 248,
+            "height": 608,
+            "top": 108,
+            "right": 256,
+            "bottom": 716,
+            "left": 8
+          }
+        },
         "expected": {
           "x": 264,
           "y": 141,
@@ -2551,6 +2577,30 @@
         "windowViewport": {
           "width": 1024,
           "height": 672
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 402,
+            "width": 218.40000915527344,
+            "height": 40,
+            "top": 402,
+            "right": 226.40000915527344,
+            "bottom": 442,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 224,
+            "height": 440.20001220703125,
+            "top": 108,
+            "right": 232,
+            "bottom": 548.2000122070312,
+            "left": 8
+          }
         },
         "expected": {
           "x": 300,
@@ -2586,6 +2636,30 @@
           "width": 853,
           "height": 560
         },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 396.66668701171875,
+            "width": 218,
+            "height": 40,
+            "top": 396.66668701171875,
+            "right": 226,
+            "bottom": 436.66668701171875,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 224,
+            "height": 328.3333435058594,
+            "top": 108,
+            "right": 232,
+            "bottom": 436.3333435058594,
+            "left": 8
+          }
+        },
         "expected": {
           "x": 360,
           "y": 212,
@@ -2619,6 +2693,30 @@
         "windowViewport": {
           "width": 760,
           "height": 540
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 255,
+            "width": 198,
+            "height": 40,
+            "top": 255,
+            "right": 206,
+            "bottom": 295,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 108,
+            "width": 204,
+            "height": 308,
+            "top": 108,
+            "right": 212,
+            "bottom": 416,
+            "left": 8
+          }
         },
         "expected": {
           "x": 220,
@@ -2654,6 +2752,30 @@
           "width": 608,
           "height": 432
         },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 234.8000030517578,
+            "width": 42.400001525878906,
+            "height": 40,
+            "top": 234.8000030517578,
+            "right": 50.400001525878906,
+            "bottom": 274.8000030517578,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 88,
+            "width": 48,
+            "height": 247.1999969482422,
+            "top": 88,
+            "right": 56,
+            "bottom": 335.1999969482422,
+            "left": 8
+          }
+        },
         "expected": {
           "x": 80,
           "y": 177,
@@ -2687,6 +2809,30 @@
         "windowViewport": {
           "width": 507,
           "height": 360
+        },
+        "navigation": {
+          "current": "page",
+          "selectedVisible": true,
+          "row": {
+            "x": 8,
+            "y": 223.33334350585938,
+            "width": 42,
+            "height": 40,
+            "top": 223.33334350585938,
+            "right": 50,
+            "bottom": 263.3333435058594,
+            "left": 8
+          },
+          "viewport": {
+            "x": 8,
+            "y": 88,
+            "width": 48,
+            "height": 175.33334350585938,
+            "top": 88,
+            "right": 56,
+            "bottom": 263.3333435058594,
+            "left": 8
+          }
         },
         "expected": {
           "x": 96,
