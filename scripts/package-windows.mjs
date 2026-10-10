@@ -24,7 +24,7 @@ try {
   const { WinPackager } = library('./winPackager');
   // Use the supported per-build factory; preserve the upstream target/helper and
   // alter only the verified original portable script before normal compilation.
-  class QiyaoWinPackager extends WinPackager {
+  class NookWinPackager extends WinPackager {
     createTargets(targets, mapper) {
       super.createTargets(targets, (name, factory) => mapper(name, (outDir) => {
         const target = factory(outDir);
@@ -39,7 +39,7 @@ try {
       }));
     }
   }
-  await build({ projectDir: root, targets: Platform.WINDOWS.createTarget(['nsis', 'portable'], Arch.x64), platformPackagerFactory: (info, platform) => { assert.equal(platform, Platform.WINDOWS); return new QiyaoWinPackager(info); }, publish: 'never', ...(process.argv.includes('--prepackaged') ? { prepackaged: join(root, 'artifacts', 'win-unpacked') } : {}) });
+  await build({ projectDir: root, targets: Platform.WINDOWS.createTarget(['nsis', 'portable'], Arch.x64), platformPackagerFactory: (info, platform) => { assert.equal(platform, Platform.WINDOWS); return new NookWinPackager(info); }, publish: 'never', ...(process.argv.includes('--prepackaged') ? { prepackaged: join(root, 'artifacts', 'win-unpacked') } : {}) });
 } catch (error) {
   console.error(error.message);
   process.exitCode = 1;
