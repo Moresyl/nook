@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-10-10T22:46:49.363Z",
+  "sourceHead": "f814800acf29440becff1f8026aa48f2f31e6dad",
+  "productCommit": "160aabc6d02a074842147f8e75f156bfe74f3c3a",
+  "candidate": "E:/NookVerification/ContextSummaryCandidate-20261011",
+  "artifacts": [
+    {
+      "name": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240134881,
+      "sha256": "e812e1608cec46bbec1314d15f1920e402286d2b1f50ec666f4f1b434e3961aa"
+    },
+    {
+      "name": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309643414,
+      "sha256": "e0b8219025cabce9141b4d058169509705fc037c8d9e6184d7401a00bceecc33"
+    },
+    {
+      "name": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09"
+    },
+    {
+      "name": "win-unpacked/resources/app.asar",
+      "bytes": 493831854,
+      "sha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e"
+    }
+  ],
+  "sourceCompiledFiles": 236,
+  "allCompiledFilesMatchVerifiedSourcePass": true,
+  "packageAudit": {
+    "verifiedAt": "2026-10-10T22:46:03.097Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "26aa72bc945302f06b71e7cc0b5a3f9c3faba7a20a146b71d5a439e49839cd09",
+    "archiveSha256": "8b508cccfdc8de0595ae57da50f6dbdc3b1982775b0309d7eeb2c73638030b7e",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "status": "frozen candidate; matching native distribution and installed acceptance still pending",
+  "fullSourceChecks": 289,
+  "fullSourceNormalExits": 41,
+  "hostedStatus": "verification did not start because of account billing; publish skipped",
+  "released": false
+}
