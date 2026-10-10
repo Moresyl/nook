@@ -14,6 +14,8 @@
 
 ## 历史批次与设计映射
 
+中文保存／时区提示构建已通过快速聊天 9 组、自动任务 10 组、PDF 6 组独立原生专项，并检查四张实际错误状态截图。短窗口提示和关闭操作可见，PDF 导出失败保留既有目标与原件并可重试；完整回归、新分发及实际系统 DPI 验收仍待完成。[对应构建与截图](../verification/ui-errors-review-result.json)
+
 以下各批次“当前／最新”仅指相应历史记录。
 
 The current combined template/startup body passes all 215 native checks with normal close. Its final renderer bytes exactly match the six individually reviewed template-transfer captures below; current complete-run captures are not individually reviewed. See [combined source evidence](../verification/template-startup-combined-review-result.json).
