@@ -64,6 +64,8 @@
 
 随后未安装应用体整轮证据 `62fa877` 触发的 [38043683778](https://github.com/Moresyl/nook/actions/runs/38043683778) 也已检查：验证仍因同一账户限制零步骤失败，发布跳过。这是前一构建的托管结果，不能代替中文提示新构建验收。[对应任务与原始注释](../verification/hosted-ui-predecessor-block-result.json)
 
+中文提示新候选与便携证据 `b464e08` 触发的 [38045688272](https://github.com/Moresyl/nook/actions/runs/38045688272) 同样留下实际账户付款／支出限制注释，验证零步骤失败、发布跳过；本地通过不能替代托管通过。[新构建托管记录](../verification/hosted-ui-errors-block-result.json)
+
 ## 发布前待完成
 
 1. 完成保留的功能范围，以及新版设计页面、状态和交互验收。
