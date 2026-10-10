@@ -14,7 +14,9 @@
 
 ## 历史批次与设计映射
 
-中文提示新候选已生成；包体与实际启动组件审计、真实便携包装 7 项检查通过。[匹配候选与原始证据](../verification/ui-errors-package-candidate-result.json)新未安装应用体整轮 252 组通过、37 次正常退出，23 份记录中的 EXE／ASAR 哈希匹配；216 张该轮截图尚未逐张检查，安装／卸载、真实系统交互和全部参考状态仍在验收。[新包完整回归](../verification/ui-errors-packaged-full-result.json)
+中文提示新候选已生成；包体与实际启动组件审计、真实便携包装 7 项检查通过。[匹配候选与原始证据](../verification/ui-errors-package-candidate-result.json)新未安装应用体整轮 252 组通过、37 次正常退出，23 份记录中的 EXE／ASAR 哈希匹配；216 张该轮截图尚未逐张检查，真实系统交互和全部参考状态仍在验收。[新包完整回归](../verification/ui-errors-packaged-full-result.json)
+
+该候选的实际安装版也完成 252 组与 37 次正常退出，并通过包体、真实快捷方式、静默卸载与新建数据哨兵保留检查。独立复核确认安装夹具已清理；216 张安装版截图仍未逐张检查，物理向导、实际系统 DPI 和全部参考页面验收仍未完成。[实际安装版证据](../verification/ui-errors-installed-full-result.json)
 
 中文保存／时区提示构建已通过快速聊天 9 组、自动任务 10 组、PDF 6 组独立原生专项，并检查四张实际错误状态截图。短窗口提示和关闭操作可见，PDF 导出失败保留既有目标与原件并可重试。[对应构建与截图](../verification/ui-errors-review-result.json)随后同一构建的完整 252 组通过、37 次正常退出，23 份阶段记录与 216 张截图归档；完整回归中的四张错误状态已检查，其余 212 张视觉验收、新分发与实际系统 DPI 验收仍待完成。[完整回归](../verification/ui-errors-full-native-result.json)
 
