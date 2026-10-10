@@ -4,6 +4,8 @@
 
 ### 新功能
 
+- 项目 Git 面板新增本地分支查找、创建和切换，支持中文名称、Enter 提交、当前／工作树占用标记及错误重试。常规切换保护拒绝覆盖改动与未解决冲突；切换前保存编辑草稿，随后刷新文件树和干净文件，保留未保存内容及原始比较基线。关闭该项目预览；Git 钩子在 HEAD 已切换后报错时显示真实分支与中文提示。八组真实桌面专项、219 个分支与两主题三档缩放通过；十三张原图逐张检查，修复了工具栏样式侵入弹窗造成的文字溢出。本地分支功能不包含远程 Git、工作树创建、分支删除或重命名。
+
 - 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。支持最多 16 个独立标签及共享临时网站存储，后台失败与关闭仅影响所属页；原生 Ctrl T／W／Tab 快捷键和标签键盘切换可用。关闭最后一页会清理会话并新建空白页；主工作台重载释放全部标签。保存标签／历史、内置下载、浏览器自动化与同包验收尚未完成。
 
 - 新增独立快速聊天窗口，可选择模型、项目与扩展，查看流式回复和 PDF，保存独立的新聊天／会话输入，在主工作台继续同一会话。窗口支持置顶、收起、隐藏和可选全局快捷键目标；停止与审批仅作用于当前快速聊天。受限桥接不开放主工作台的任意文件或终端操作，原件随完整备份保存，恢复后拒绝旧草稿版本的发送。完整桌面、同一包体分发与托管验收待完成。
@@ -60,6 +62,8 @@
 Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用其他项目的版本历史。
 
 ### 新功能
+
+- 项目 Git 面板支持查找、创建和切换本地分支，保留中文名称、未保存草稿与原始比较基线，刷新文件树和干净文件并关闭该项目预览。覆盖改动、重复名称、工作树占用和未解决冲突会阻止操作；钩子在切换完成后报错时显示实际分支和受控提示。操作期间暂停取消与重复提交，失败后保留输入供重试。远程 Git、工作树创建、分支删除／重命名仍待实现。
 
 - 临时浏览器支持最多 16 个网页标签，各自保留原生历史、未提交网址与加载错误，同站点共享临时网站存储。提供返回／前进、停止／重试、Ctrl L／F6、Ctrl T／W／Tab／Shift Tab 和标签方向键／Home／End／Delete 操作；切回聊天保留草稿。关闭最后一页创建新的空白会话，主工作台重载释放全部标签，退出不恢复网站存储。网页不能访问工作台桥接或 Node；保存标签／历史、内置下载、权限授权和自动化仍待实现。
 - 提供本地聊天、流式回复、停止与重新生成，以及 OpenAI Responses／兼容接口、Anthropic、Gemini、Azure 和 Ollama 连接。模型配置、输出预算及实际请求用量可查看和保存。
@@ -138,6 +142,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+Adds local project branch search, creation and switching with Unicode names, occupied-worktree markers and normal Git overwrite protection. Refreshes clean editor files and the tree while retaining unsaved drafts and their original comparison baseline; closes project previews after switching. A failing post-checkout hook reports the actual changed branch without raw diagnostics. Remote Git, worktree creation and branch deletion/renaming remain pending.
 
 File tabs reveal the selected file after resizing or zooming and support arrow keys, Home/End and safe Delete-to-close. Compact editor actions use 24px icons with accessible names. Filesystem save failures retain drafts and original bytes, show a recovery message without raw diagnostics and permit save-and-close retry.
 

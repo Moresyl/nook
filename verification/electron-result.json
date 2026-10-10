@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-10T16:46:36.335Z",
+  "verifiedAt": "2026-10-10T17:52:55.413Z",
   "variant": "development executable",
-  "checks": 267,
+  "checks": 275,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181168,
-    "compressedBytes": 242288,
+    "expandedBytes": 84181176,
+    "compressedBytes": 242307,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791650490188,
+        "startedAt": 1791654443610,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791650491472
+        "finishedAt": 1791654444989
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791650491620,
+        "startedAt": 1791654445137,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791650493024
+        "finishedAt": 1791654446438
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791650494713,
+        "startedAt": 1791654448153,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791650496020
+        "finishedAt": 1791654449508
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 10.200000002980232,
+    "scopedReadMs": 11.800000000745058,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1188,7 +1188,20 @@
     "browser-tabs-dark-125-shell.png",
     "browser-tabs-dark-125-content.png",
     "browser-tabs-dark-150-shell.png",
-    "browser-tabs-dark-150-content.png"
+    "browser-tabs-dark-150-content.png",
+    "project-branches-search-shell.png",
+    "project-branches-invalid-shell.png",
+    "project-branches-busy-shell.png",
+    "project-branches-overwrite-error-shell.png",
+    "project-branches-draft-conflict-shell.png",
+    "project-branches-hook-warning-shell.png",
+    "project-branches-light-100-shell.png",
+    "project-branches-light-125-shell.png",
+    "project-branches-light-150-shell.png",
+    "project-branches-dark-100-shell.png",
+    "project-branches-dark-125-shell.png",
+    "project-branches-dark-150-shell.png",
+    "project-branches-restart-shell.png"
   ],
   "pdfPreview": {
     "checks": 6,
@@ -2437,120 +2450,70 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.56599999953139
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         }
@@ -2565,120 +2528,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.00000000000122
+                  "currentTime": 144.30399999996803
                 }
               ]
             }
@@ -3926,6 +3889,498 @@
     "workbenchReloadVerified": true,
     "staleOwnerCloseVerified": true,
     "scope": "Actual private WebContentsView and real local HTTP website, history, redirect, popup/private-scheme rejection, stop/real connection failure/retry, Ctrl L focus, page retention, modal occlusion, six fixed-device-scale theme/zoom cases and normal application restart. Shell and native child content captures remain separate originals. External public services, physical input, permission grants, downloads, saved tabs/history, browser automation, other monitors/platforms and full design acceptance remain separate."
+  },
+  "projectBranches": {
+    "checks": 8,
+    "modelRequests": 0,
+    "localListSearchVerified": true,
+    "creationValidationBusyVerified": true,
+    "overwriteRetryVerified": true,
+    "editorRefreshDraftConflictVerified": true,
+    "worktreeProjectScopeVerified": true,
+    "hookStatePreviewCleanupVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "restartDraftsVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "width": 1280,
+          "height": 840
+        },
+        "dialog": {
+          "x": 280,
+          "y": 226,
+          "width": 720,
+          "height": 331.5,
+          "top": 226,
+          "right": 1000,
+          "bottom": 557.5,
+          "left": 280
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 654,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 74,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "width": 1024,
+          "height": 672
+        },
+        "dialog": {
+          "x": 152,
+          "y": 151.6888885498047,
+          "width": 720,
+          "height": 330.6999816894531,
+          "top": 151.6888885498047,
+          "right": 872,
+          "bottom": 482.3888702392578,
+          "left": 152
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 654.4000244140625,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 73.5999984741211,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "viewport": {
+          "width": 853,
+          "height": 560
+        },
+        "dialog": {
+          "x": 66.66667175292969,
+          "y": 102.14814758300781,
+          "width": 720,
+          "height": 330.16668701171875,
+          "top": 102.14814758300781,
+          "right": 786.6666717529297,
+          "bottom": 432.31483459472656,
+          "left": 66.66667175292969
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 654.6666870117188,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 73.33333587646484,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "width": 760,
+          "height": 540
+        },
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "right": 760,
+          "bottom": 540,
+          "left": 0
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 694,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 74,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "width": 608,
+          "height": 432
+        },
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "right": 608,
+          "bottom": 432,
+          "left": 0
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 542.4000244140625,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 73.5999984741211,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "requestedSize": [
+          760,
+          540
+        ],
+        "viewport": {
+          "width": 507,
+          "height": 360
+        },
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "right": 506.66668701171875,
+          "bottom": 360,
+          "left": 0
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新分支名称",
+            "width": 441.3333435058594,
+            "height": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "创建并切换",
+            "width": 73.33333587646484,
+            "height": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "fieldPadding": "8px 12px 0px",
+        "fieldGap": "4px",
+        "fieldBackground": "rgba(0, 0, 0, 0)"
+      }
+    ],
+    "screenshots": [
+      "project-branches-search-shell.png",
+      "project-branches-invalid-shell.png",
+      "project-branches-busy-shell.png",
+      "project-branches-overwrite-error-shell.png",
+      "project-branches-draft-conflict-shell.png",
+      "project-branches-hook-warning-shell.png",
+      "project-branches-light-100-shell.png",
+      "project-branches-light-125-shell.png",
+      "project-branches-light-150-shell.png",
+      "project-branches-dark-100-shell.png",
+      "project-branches-dark-125-shell.png",
+      "project-branches-dark-150-shell.png",
+      "project-branches-restart-shell.png"
+    ],
+    "scope": "Real local Git, refs, worktree, hooks, renderer/bridge and Monaco; owned fixtures and scripted input at fixed display scale. Local branch creation/switching only; remote/worktree creation UI, physical input, accessibility, full reference design and distribution remain pending."
   },
   "normalCloseVerified": true,
   "executableSha256": null,
