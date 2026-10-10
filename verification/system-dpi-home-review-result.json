@@ -1,0 +1,552 @@
+{
+  "reviewedAt": "2026-10-10T12:10:55.508Z",
+  "archive": "E:/NookVerification/SystemDpiHomeReview-20261010",
+  "productCommit": "d2196b0",
+  "checks": 13,
+  "independentDefaultSurfaceChecks": 4,
+  "actualHostScaleFactor": 1.25,
+  "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+  "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd",
+  "unchangedArtifacts": [
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240118621,
+      "sha256": "f2cecd2c75ea230f69f956574305665ee49a6d73411cc90665dca662f1514137"
+    },
+    {
+      "file": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309620406,
+      "sha256": "c627babee3cd667699afa99069536ea55d63006ab75940b0301b5cfeb8dae54a"
+    },
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe.blockmap",
+      "bytes": 250126,
+      "sha256": "3ae474fc0cb828e74a3f619488a86ed470f7464bd561dd15e2ce03c063842d4a"
+    },
+    {
+      "file": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b"
+    },
+    {
+      "file": "win-unpacked/resources/app.asar",
+      "bytes": 493733307,
+      "sha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd"
+    }
+  ],
+  "unchangedProductSourceCount": 248,
+  "harness": [
+    {
+      "file": "verify-desktop.mjs",
+      "sha256": "a54e47ca4a45e3e7fa1f679de2db50962cfacd3a4bf5f736f8d2ef261217ad48"
+    },
+    {
+      "file": "verify-system-dpi-home.mjs",
+      "sha256": "a1ec51977c1b1c9e17868291db17275516c94208a1fce45ed4f2eba565fc9adc"
+    },
+    {
+      "file": "text-hint-verification.mjs",
+      "sha256": "3b0b79ca40ebe772ef82a7e970d43e04945049d06221362713f93a398ab2f8d9"
+    }
+  ],
+  "normalExits": [
+    {
+      "elapsedMs": 6512,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 4580,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "transitionSamples": [
+    {
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 180.7999999988824
+    },
+    {
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 178.7000000011176
+    },
+    {
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 169.69999999925494
+    },
+    {
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 180.40000000037253
+    },
+    {
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 209.30000000074506
+    },
+    {
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "initialColor": "rgb(40, 40, 40)",
+      "settledColor": "rgb(237, 237, 237)",
+      "disabled": false,
+      "initialColorTransition": "running",
+      "elapsedMs": 179.09999999962747
+    }
+  ],
+  "captures": [
+    {
+      "filename": "system-dpi-home-light-1280-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "b40d58e0ea5c4f8dbeb06031dd6878b7b220eb74a64146faa6413d859231fd67",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-light-1280-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.25,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 673,
+        "devicePixelRatio": 1.5625,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "1d824487bdd1a03c9b8ce36e75769c9d45e69caf226ac9edaaae1228b45bbcaf",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-light-1280-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.5,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 853,
+        "height": 561,
+        "devicePixelRatio": 1.875,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "215e819d229f5e6490d0c66bf0408c8f81db6b89c7de93a7003d789c25e3e241",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-light-760-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 762,
+        "height": 542,
+        "devicePixelRatio": 1.25,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "82c4bdf73bef7f9c84674c0791bf8f7cd7f978f3b11732e5fb70b0b5390c5226",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-light-760-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.25,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 609,
+        "height": 434,
+        "devicePixelRatio": 1.5625,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "ac9be8544e349acd92dc4fb7877a65be0e6c4b618249cbda235ea58a18f84e0e",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-light-760-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.5,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 508,
+        "height": 361,
+        "devicePixelRatio": 1.875,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "77ecb6bfe6ad976f83aea41f570d4cf4d1ffb51e23162d2950626889fa48bacb",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-1280-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "61d1f65d654ee8ccc209df4693ef998031f6ef7dfd5b3895d35eac8b6296b642",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-1280-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.25,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 673,
+        "devicePixelRatio": 1.5625,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "1376499a57ae0a4732bb3e742f159d30ffe1059a5856fa94fa15d82525b7ef10",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-1280-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.5,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 853,
+        "height": 561,
+        "devicePixelRatio": 1.875,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "sha256": "82f5972f7e62808b61d4f91ec76a85f3100a6e6c9c1dcd3dfeb8183205d8f70b",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-760-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 762,
+        "height": 542,
+        "devicePixelRatio": 1.25,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "aad351435c4036d176b5ddb117d81e771894fd275a22887696a3ee1b8cd6dc8a",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-760-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.25,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 609,
+        "height": 434,
+        "devicePixelRatio": 1.5625,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "fd1d79b00615b68ab441bf6e7c07e6548e43e465720ff232d48a84c285de1d32",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-dark-760-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.5,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 508,
+        "height": 361,
+        "devicePixelRatio": 1.875,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 952,
+        "height": 678
+      },
+      "sha256": "3c1afda227f3a979a2b4b82130cfc584b92bd032efcc8ba74cae1d48017dc805",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-home-restarted-ready.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1282,
+          "height": 842
+        },
+        "contentSize": [
+          1281,
+          842
+        ],
+        "zoom": 1,
+        "displayScale": 1.25
+      },
+      "viewport": {
+        "width": 1282,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "overflow": false
+      },
+      "pngSize": {
+        "width": 1602,
+        "height": 1053
+      },
+      "sha256": "2426680fbdfa70be6e34cd71dfb14a9f305db2465c01815e98b744d761290d4f",
+      "visuallyReviewed": true
+    }
+  ],
+  "representativeImages": [
+    "system-dpi-home-dark-1280-1.png",
+    "system-dpi-home-light-760-1.25.png",
+    "system-dpi-home-dark-760-1.5.png",
+    "system-dpi-home-restarted-ready.png"
+  ],
+  "acceptedHomepageSubset": true,
+  "completeHomepageAcceptance": false,
+  "completeSystemDpiAcceptance": false,
+  "physicalInputAccepted": false,
+  "productChanged": false,
+  "systemScaleChanged": false,
+  "forcedDeviceScale": false,
+  "retainedFailures": [
+    "system-dpi-home-escape-failure-result.json",
+    "system-dpi-home-paint-gap-result.json"
+  ],
+  "finding": "All six dark reload cases record an enabled rgb(40,40,40) navigation button with an active color transition, followed by rgb(237,237,237) matching the dark body. This supports the transient theme-transition explanation for the earlier dark restart snapshot; it does not diagnose unrelated historical faults. The original 180ms product transition remains unchanged. The fixture waits for existing inherited text colors and two animation frames after native modal dismissal before native capture.",
+  "visualReview": "All 13 final full native captures were individually inspected and show the homepage rather than a stale closed dialog. Light/dark navigation text is visible, the exact Chinese draft and send control are retained; minimum windows at 125/150% page zoom use the existing compact icon sidebar and vertical content scrolling. Lower quick-start content remains below the fold in those short views and is not asserted fully visible or independently exercised.",
+  "scope": "Independent same-body homepage subset at actual unforced host 125% scale: two requested native sizes, both themes, three page zooms, keyboard settings opener/semantic Escape/focus return, no horizontal document overflow and exact draft after normal restart. All pages/controls, physical input, screen readers, other displays/scales and full design adoption remain open. The first single-Escape timeout and the subsequent DOM-pass/stale-compositor screenshot gap retain their raw evidence. Default fixed-scale surface regression independently passes four checks with unchanged original assertions/deadlines."
+}

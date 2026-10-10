@@ -41,6 +41,10 @@
 
 首轮专项漏验实际主题，标为深色的截图仍显示浅色；该轮原始记录与截图保留，不计入明暗主题通过。补充重载与实际主题断言后才接受本轮证据。重启截图中的低对比导航尚未诊断，不作为首页就绪状态验收；其他设置分类、页面、显示器、物理输入与完整系统 DPI 验收仍需完成。[首轮证据缺口](../verification/system-dpi-theme-gap-result.json)
 
+随后首页独立专项完成 13 项、两次正常退出，13 张最终原生截图已逐张检查。六个深色重载场景记录按钮始终未禁用，文字从过渡起点的 `rgb(40,40,40)` 变为与深色正文一致的 `rgb(237,237,237)`；这支持先前截图处于 180ms 主题颜色过渡中的解释。测试等待现有颜色稳定，并在弹窗关闭后同步两帧绘制，产品动效未修改。短窗高缩放使用既有紧凑侧栏和纵向滚动；首页全部控件、其他页面与物理交互仍未验收。[首页就绪与完整截图](../verification/system-dpi-home-review-result.json)
+
+首轮首页测试单次 Escape 后等待弹窗关闭超时，改为使用既有的“先关闭提示、再关闭弹窗”验证助手；下一轮 DOM 虽通过，前两张原生截图仍显示已关闭弹窗的旧帧，因此也未计为首页视觉通过。两轮均保留原始失败／缺口记录，最终绘制同步后才接受截图。[Escape 失败](../verification/system-dpi-home-escape-failure-result.json)与[旧帧截图缺口](../verification/system-dpi-home-paint-gap-result.json)
+
 ## 仍在处理的问题
 
 真实转储已确定一次主进程故障来自 Node `structuredClone`／V8 序列化时的 Windows 内存分配提交失败，未记录具体 JavaScript 调用者。逐条复制针对这一峰值问题，不证明其他渲染崩溃、启动、连接或原生关闭超时已解决。[转储证据](../verification/local-crash-full-native-failure-result.json)
@@ -77,6 +81,8 @@
 中文提示新候选与便携证据 `b464e08` 触发的 [38045688272](https://github.com/Moresyl/nook/actions/runs/38045688272) 同样留下实际账户付款／支出限制注释，验证零步骤失败、发布跳过；本地通过不能替代托管通过。[新构建托管记录](../verification/hosted-ui-errors-block-result.json)
 
 系统缩放专项前的最终本地分发记录 `b619670` 触发 [38047856282](https://github.com/Moresyl/nook/actions/runs/38047856282)，只读复核再次确认同一账户限制注释、验证零步骤失败与发布跳过。尚无托管通过或已发布版本。[对应原始任务记录](../verification/hosted-pre-system-dpi-block-result.json)
+
+真实系统缩放设置证据 `7cfc791` 已推送，触发的 [38050448351](https://github.com/Moresyl/nook/actions/runs/38050448351) 也有实际账户付款／支出限制注释；验证零步骤失败，发布跳过。[该次托管证据](../verification/hosted-system-dpi-block-result.json)
 
 ## 发布前待完成
 

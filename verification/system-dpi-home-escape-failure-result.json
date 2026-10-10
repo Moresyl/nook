@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-10T12:05:47.156Z",
+  "archive": "E:/NookVerification/SystemDpiHomeEscapeFailure-20261010",
+  "evidence": [
+    {
+      "file": "verify-system-dpi-home.mjs",
+      "sha256": "18a050bf10998996f032b7c2f7694d515e3f18d6c2ebd6e57cbe6fb768102999"
+    },
+    {
+      "file": "verify-desktop.mjs",
+      "sha256": "a54e47ca4a45e3e7fa1f679de2db50962cfacd3a4bf5f736f8d2ef261217ad48"
+    },
+    {
+      "file": "text-hint-verification.mjs",
+      "sha256": "3b0b79ca40ebe772ef82a7e970d43e04945049d06221362713f93a398ab2f8d9"
+    },
+    {
+      "file": "failure.png",
+      "sha256": "980f695eba481604ac33302315dccc966e2d5ceeb81c05423d302d3c28591d88"
+    },
+    {
+      "file": "nook-system-dpi-home-20261010.log",
+      "sha256": "d230c9572819fef57a5a4564e887da7113f770aaa436e6978e99c45140f3990e"
+    }
+  ],
+  "exitCode": 1,
+  "checksAccepted": 0,
+  "normalCloseVerified": true,
+  "finding": "The initial homepage fixture times out waiting for the settings modal to disappear after a single Escape. The failure screenshot was individually inspected and retains the modal with its close control focused. The existing shared dismissModalWithEscape helper explicitly handles an active in-modal tooltip before closing its parent modal. This fixture will adopt that existing semantic dismissal; no operation timeout or product behavior is changed. The failure alone does not prove a product modal defect or diagnose the earlier low-contrast homepage."
+}
