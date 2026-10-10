@@ -7,6 +7,7 @@ import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mj
 
 const hash = 'a'.repeat(64);
 const otherHash = 'b'.repeat(64);
+const editorTabs = () => ({ selectedVisibilityVerified: true, keyboardNavigationVerified: true, dirtyCancelVerified: true, cleanCloseFocusVerified: true, saveFailureRetryVerified: true, originalDraftsRetained: true, screenshots: ['editor-tabs-initial.png', 'editor-tabs-close-cancel.png', 'editor-tabs-save-failure.png', ...['light', 'dark'].flatMap(theme => [100, 125, 150].map(zoom => `editor-tabs-${theme}-${zoom}.png`))], layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, selectedVisible: true, overflow: false, compact: true, actions: ['并排预览', '预览 HTML', '保存 Ctrl S'].map(name => ({ name, visible: true, width: 24, height: 24 })) }))) });
 const minimumLayout = () => ['empty', 'attachment-long-input', 'conversation'].flatMap(state => ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ state, theme, zoom, nativeSize: [420, 360], controlsVisible: true, overflow: false, toolsKeyboardVerified: true }))));
 const notes = (version = '1.2.3', newline = '\n') => [
   `## [${version}] - 2026-10-03`, '',
@@ -25,7 +26,7 @@ function proof(): ReleaseProof {
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
-    memories: { checks: 3 }, projectPreview: { checks: 10, outsideHttpRequests: 0, docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
+    memories: { checks: 3 }, projectPreview: { checks: 10, outsideHttpRequests: 0, editorTabs: editorTabs(), docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
@@ -235,6 +236,19 @@ describe('Windows release execution evidence', () => {
         if (defect === 'stale') result.docked!.staleOwnerCloseVerified = false;
         expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
       }
+    }
+  });
+  it('requires file tab keyboard, close/retry, original drafts and exact theme/zoom/action evidence in both suites', () => {
+    for (const surface of ['preview', 'desktop'] as const) {
+      const mutate = (update: (result: NonNullable<ReleaseProof['preview']['editorTabs']>) => void) => {
+        const value = proof(), result = surface === 'preview' ? value.preview : value.desktop.projectPreview!; update(result.editorTabs!); expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
+      };
+      for (const key of ['selectedVisibilityVerified', 'keyboardNavigationVerified', 'dirtyCancelVerified', 'cleanCloseFocusVerified', 'saveFailureRetryVerified', 'originalDraftsRetained'] as const) mutate(result => { result[key] = false; });
+      mutate(result => { result.layouts = []; }); mutate(result => { result.layouts[0] = result.layouts[1]; });
+      mutate(result => { result.layouts[0].selectedVisible = false; }); mutate(result => { result.layouts[0].overflow = true; });
+      mutate(result => { result.layouts[0].actions[0].width = 23; }); mutate(result => { result.layouts[0].actions[0].height = 25; }); mutate(result => { result.layouts[0].actions[0].visible = false; }); mutate(result => { result.layouts[0].actions[0].name = 'wrong'; });
+      mutate(result => { result.screenshots.pop(); }); mutate(result => { result.screenshots[0] = result.screenshots[1]; });
+      const old = proof(), result = surface === 'preview' ? old.preview : old.desktop.projectPreview!; delete result.editorTabs; expect(() => verifyRuntimeProof(old)).toThrow('project-preview');
     }
   });
   it('rejects incomplete desktop/settings/portable checks and different portable body', () => {

@@ -4,6 +4,7 @@ const knownErrors = new Map<string, string>([
   ['Assistant profiles could not be saved. Check disk space and directory permissions, or choose fewer assistants.', '助手配置未能保存。请检查磁盘空间和文件夹权限，或减少导出的助手数量。'],
   ['Prompt templates could not be saved. Check disk space and directory permissions, or export fewer templates.', '提示模板未能保存。请检查磁盘空间和文件夹权限，或减少导出的模板数量。'],
   ['The original document could not be saved. Check disk space and directory permissions.', '原始文档未能保存。请检查磁盘空间和文件夹权限，再重试。'],
+  ['The project file could not be saved. Check disk space and directory permissions.', '项目文件未能保存，草稿已保留。请检查磁盘空间和文件夹权限，再重试。'],
 ]);
 
 export function uiErrorMessage(problem: unknown, fallback = '操作失败，请重试。'): string {

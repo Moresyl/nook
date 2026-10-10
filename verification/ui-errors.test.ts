@@ -23,6 +23,7 @@ describe('Chinese UI error copy', () => {
     expect(uiErrorMessage(new Error('Assistant profiles could not be saved. Check disk space and directory permissions, or choose fewer assistants.'))).toBe('助手配置未能保存。请检查磁盘空间和文件夹权限，或减少导出的助手数量。');
     expect(uiErrorMessage(new Error('Prompt templates could not be saved. Check disk space and directory permissions, or export fewer templates.'))).toBe('提示模板未能保存。请检查磁盘空间和文件夹权限，或减少导出的模板数量。');
     expect(uiErrorMessage(new Error('The original document could not be saved. Check disk space and directory permissions.'))).toBe('原始文档未能保存。请检查磁盘空间和文件夹权限，再重试。');
+    expect(uiErrorMessage(new Error('The project file could not be saved. Check disk space and directory permissions.'))).toBe('项目文件未能保存，草稿已保留。请检查磁盘空间和文件夹权限，再重试。');
   });
 
   it('preserves unknown model and Unicode errors literally, including prototype-like messages', () => {

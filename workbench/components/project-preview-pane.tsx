@@ -34,7 +34,7 @@ function PreviewPane({ projectId, input, onClose, onRefresh, onFloating, onEdit 
   </section>;
 }
 
-export function ProjectPreviewLayout({ children, ...props }: Props) {
+export function ProjectPreviewLayout({ children, id, labelledBy, ...props }: Props & { id?: string; labelledBy?: string }) {
   const container = useRef<HTMLDivElement>(null);
   const [vertical, setVertical] = useState(false), [share, setShare] = useState(50), [compact, setCompact] = useState(false), [pane, setPane] = useState('preview');
   useEffect(() => {
@@ -42,7 +42,7 @@ export function ProjectPreviewLayout({ children, ...props }: Props) {
   }, []);
   useEffect(() => { if (props.input) setPane('preview'); }, [props.input]);
   const clamp = (value: number) => Math.max(20, Math.min(80, value));
-  return <div ref={container} className={`editor-workspace ${props.input ? 'with-preview' : ''} ${compact ? 'compact-preview' : ''}`} data-vertical={vertical} data-pane={pane} style={{ '--editor-share': `${share}%` } as CSSProperties}>
+  return <div ref={container} id={id} role={labelledBy ? 'tabpanel' : undefined} aria-labelledby={labelledBy} className={`editor-workspace ${props.input ? 'with-preview' : ''} ${compact ? 'compact-preview' : ''}`} data-vertical={vertical} data-pane={pane} style={{ '--editor-share': `${share}%` } as CSSProperties}>
     {props.input && compact && pane === 'editor' && <div className="project-preview-modebar"><Button onClick={() => setPane('preview')}>查看预览</Button><Button onClick={props.onClose}>关闭预览</Button></div>}
     {children}
     {props.input && <><div className="project-preview-divider" role="separator" tabIndex={0} aria-label="调整编辑器与预览大小" aria-orientation={vertical ? 'horizontal' : 'vertical'} aria-valuemin={20} aria-valuemax={80} aria-valuenow={share}

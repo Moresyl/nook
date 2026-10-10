@@ -25,12 +25,17 @@ export async function optionalProjectDocument(root: string, path: string): Promi
 
 const writes = new Map<string, Promise<unknown>>();
 export async function saveProjectDocument(root: string, path: string, text: string, expectedSha256: string | null, expectedTarget?: string): Promise<FileDocument> {
-  const target = await writableProjectPath(root, path);
-  const key = process.platform === 'win32' ? target.toLowerCase() : target;
-  const operation = (writes.get(key) ?? Promise.resolve()).catch(() => {}).then(() => persistProjectDocument(root, path, text, expectedSha256, expectedTarget));
-  writes.set(key, operation);
-  try { return await operation; }
-  finally { if (writes.get(key) === operation) writes.delete(key); }
+  try {
+    const target = await writableProjectPath(root, path);
+    const key = process.platform === 'win32' ? target.toLowerCase() : target;
+    const operation = (writes.get(key) ?? Promise.resolve()).catch(() => {}).then(() => persistProjectDocument(root, path, text, expectedSha256, expectedTarget));
+    writes.set(key, operation);
+    try { return await operation; }
+    finally { if (writes.get(key) === operation) writes.delete(key); }
+  } catch (cause) {
+    if (cause instanceof Error && /^E[A-Z]+$/.test((cause as NodeJS.ErrnoException).code ?? '')) throw new Error('The project file could not be saved. Check disk space and directory permissions.', { cause });
+    throw cause;
+  }
 }
 
 async function persistProjectDocument(root: string, path: string, text: string, expectedSha256: string | null, expectedTarget?: string): Promise<FileDocument> {

@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { verifyProjectPreviewDock } from './verify-project-preview-dock.mjs';
+import { verifyEditorTabs } from './verify-editor-tabs.mjs';
 
 const previewWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:'))";
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('qiyao://app/') && new URL(w.webContents.getURL()).searchParams.get('view') !== 'quick-chat')";
@@ -20,6 +21,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
   await Promise.all([
     writeFile(join(root, 'index.html'), disk), writeFile(join(root, 'styles.css'), 'body{font:16px system-ui;background:#f3f3f3;color:#181818;padding:40px}h1{font-size:28px}button{padding:8px 16px}'),
     writeFile(join(root, 'data.json'), JSON.stringify({ text: 'LOCAL_DATA_中文😀' })), writeFile(join(root, '.private.json'), 'PRIVATE'),
+    writeFile(join(root, 'notes.txt'), 'EDITOR_NOTES_ORIGINAL'),
     writeFile(join(root, 'app.js'), `window.previousStorage=localStorage.getItem('preview');localStorage.setItem('preview','isolated');Promise.all([fetch('data.json').then(r=>r.json()).then(data=>{document.querySelector('#result').textContent=data.text}),fetch(${JSON.stringify(remote)}).then(()=>{window.remoteBlocked=false},()=>{window.remoteBlocked=true}),fetch('.private.json').then(r=>{window.privateBlocked=r.status===404}),fetch('qiyao://app/index.html').then(()=>{window.bridgeOriginBlocked=false},()=>{window.bridgeOriginBlocked=true})]).then(()=>{document.body.dataset.ready='yes'});`),
   ]);
   const read = expression => application.evaluateMain(`(async()=>{const w=${previewWindow};return w ? w.webContents.executeJavaScript(${JSON.stringify(expression)}) : null})()`);
@@ -74,6 +76,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
       await input.evaluate((element, text) => { const data = new DataTransfer(); data.setData('text/plain', text); element.dispatchEvent(new ClipboardEvent('paste', { bubbles: true, cancelable: true, clipboardData: data })); }, text);
       await waitForBridge(page, async ({ projectId, path, text }) => (await window.qiyao.load()).editorDrafts.some(item => item.projectId === projectId && item.path === path && item.text === text), { projectId, path, text });
     }
+    const editorTabs = await verifyEditorTabs({ page, application, screenshots, projectId, root, waitForBridge });
     await page.getByRole('tab', { name: /^index\.html/ }).click();
     await page.waitForFunction(() => document.querySelector('.editor-actionbar .path-text')?.textContent === 'index.html' && document.querySelector('.editor-canvas .view-lines')?.textContent.includes('当前草稿'));
     await page.getByRole('button', { name: '预览 HTML', exact: true }).click();
@@ -141,6 +144,6 @@ export async function verifyProjectPreview({ page, application, directory, scree
     docked.projectRemovalVerified = true;
     assert.deepEqual(requests, []);
     verified('removing the owning project closes its preview and leaves the original project files unchanged');
-    return { checks: 10, docked, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots], editorFonts, editorAppearance, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
+    return { checks: 10, docked, editorTabs, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots, ...editorTabs.screenshots], editorFonts, editorAppearance, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
   } finally { page.context().off('page', onPage); for (const child of observedPages) child.off('dialog', handleDialog); await new Promise(resolve => server.close(resolve)); }
 }
