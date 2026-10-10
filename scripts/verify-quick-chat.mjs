@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { readFile, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
@@ -7,6 +7,7 @@ import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
 export async function verifyQuickChat({ page, application, getApplication, directory, screenshots, endpoint, calls, errors, verified, waitForBridge, restart }) {
   const initialCalls = calls.length, layout = [], minimumLayout = [], captures = [], bytes = documentBytes('pdf', { outline: true, annotations: true });
+  const retainedMainDraft = `MAIN_QUICK_CHAT_RETAINED ${randomUUID()}`;
   const originalSha256 = createHash('sha256').update(bytes).digest('hex'), file = join(directory, 'quick-chat.pdf'); await writeFile(file, bytes);
   const preferences = await page.evaluate(async () => (await window.qiyao.load()).preferences);
   await page.evaluate(async ({ endpoint, directory }) => {
@@ -18,8 +19,8 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await page.getByRole('button', { name: /^新聊天\s*Ctrl/ }).click();
   await page.getByLabel('模型提供商', { exact: true }).selectOption('quick-native');
   await page.getByLabel('选择模型', { exact: true }).selectOption('verification-model');
-  await page.getByRole('textbox', { name: '消息', exact: true }).fill('MAIN_QUICK_CHAT_RETAINED');
-  await waitForBridge(page, async () => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === 'MAIN_QUICK_CHAT_RETAINED' && draft.providerId === 'quick-native' && draft.model === 'verification-model'));
+  await page.getByRole('textbox', { name: '消息', exact: true }).fill(retainedMainDraft);
+  await waitForBridge(page, async text => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === text && draft.providerId === 'quick-native' && draft.model === 'verification-model'), retainedMainDraft);
   const mainDrafts = await page.evaluate(async () => (await window.qiyao.load()).composerDrafts);
   async function open() {
     await page.getByRole('button', { name: '快速聊天', exact: true }).click();
@@ -46,6 +47,8 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   verified('quick chat opens a separate sandbox and restricted preload without the full workspace bridge');
 
   const input = () => quick.getByRole('textbox', { name: '消息', exact: true });
+  await quick.getByRole('button', { name: '新的快速聊天', exact: true }).click();
+  await waitForBridge(quick, async () => !(await window.nookQuick.load()).draft.threadId);
   await verifyMinimumLayout('empty');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await quick.waitForFunction(() => document.documentElement.dataset.theme === 'light');
@@ -95,7 +98,13 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   verified('quick-chat send consumes only its acknowledged draft, renders the real HTTP stream and sends extracted PDF text without original bytes');
 
   await input().fill('slow QUICK_STOP'); await quick.getByRole('button', { name: '发送消息', exact: true }).click();
-  await quick.getByText('First partial response', { exact: true }).waitFor(); await quick.getByRole('button', { name: '停止生成', exact: true }).click();
+  try { await quick.getByText('First partial response', { exact: true }).waitFor(); }
+  catch (error) {
+    console.error('Quick-chat stream observation', await quick.evaluate(async () => ({ body: document.body.innerText, messages: (await window.nookQuick.load()).thread?.messages, hidden: document.querySelector('.quick-chat-body')?.hidden })).catch(() => 'The quick-chat page is unavailable.'));
+    await quick.screenshot({ path: join(screenshots, 'quick-chat-stream-failure.png') }).catch(() => {});
+    throw error;
+  }
+  await quick.getByRole('button', { name: '停止生成', exact: true }).click();
   await waitForBridge(quick, async () => (await window.nookQuick.load()).thread.messages.at(-1).status === 'stopped');
   const other = await page.evaluate(() => window.qiyao.submit({ providerId: 'quick-native', model: 'verification-model', projectId: 'quick-project', mode: 'agent', text: '停止 MAIN_QUICK_SCOPE', attachments: [] }));
   await waitForBridge(page, async id => (await window.qiyao.pendingApprovals()).some(request => request.threadId === id), other.threadId);
@@ -113,7 +122,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await input().fill('QUICK_HANDOFF_UNSENT'); await quick.getByRole('button', { name: '在工作台中打开', exact: true }).click();
   await waitForBridge(page, async id => (await window.qiyao.load()).activeThreadId === id, threadId);
   await page.locator('.transcript').getByText('QUICK_PDF_READ', { exact: true }).waitFor(); assert.equal(await input().inputValue(), 'QUICK_HANDOFF_UNSENT');
-  assert.ok((await page.evaluate(async () => (await window.qiyao.load()).composerDrafts)).some(draft => !draft.threadId && draft.text === 'MAIN_QUICK_CHAT_RETAINED'));
+  assert.ok(await page.evaluate(async text => (await window.qiyao.load()).composerDrafts.some(draft => !draft.threadId && draft.text === text), retainedMainDraft));
   verified('handoff opens the same saved conversation in the main workbench without consuming quick input or replacing the main new-chat draft');
 
   await verifyMinimumLayout('conversation');
