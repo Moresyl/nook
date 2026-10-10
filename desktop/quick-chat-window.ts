@@ -1,4 +1,4 @@
-import { BrowserWindow, dialog, type IpcMainInvokeEvent } from 'electron';
+import { BrowserWindow, dialog, type IpcMainInvokeEvent, type WebContents } from 'electron';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import type { ContentBridge } from '../contracts/quick-chat';
@@ -69,6 +69,8 @@ export class QuickChatWindow {
     this.window.webContents.send('nook:quick-run', { ...scoped, thread: state?.threads.find(thread => thread.id === event.threadId) });
   }
   async shutdown(): Promise<void> { await this.flush(); this.closed = true; this.window?.destroy(); }
+
+  ownsContents(contents: WebContents | null): boolean { return Boolean(contents && this.window && !this.window.isDestroyed() && contents === this.window.webContents); }
 
   async handle(event: IpcMainInvokeEvent, command: unknown, args: unknown[]): Promise<unknown> {
     const window = this.window;

@@ -57,6 +57,7 @@ import { verifyQuickChat } from './verify-quick-chat.mjs';
 import { modelComparisonFixture } from '../verification/model-comparison-fixture.mjs';
 import { chatNavigationFixture } from '../verification/chat-navigation-fixture.mjs';
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
+import { toolActivityFixture } from '../verification/tool-activity-fixture.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 // Match Playwright's Electron loader for unattended CDP interaction, without changing product defaults.
@@ -97,6 +98,7 @@ await runFile('git', ['-C', projectDirectory, 'config', 'user.name', 'Qiyao veri
 await runFile('git', ['-C', projectDirectory, 'config', 'user.email', 'verification@localhost'], { windowsHide: true });
 await runFile('git', ['-C', projectDirectory, 'config', 'commit.gpgSign', 'false'], { windowsHide: true });
 const providerErrors = [];
+const toolActivityProviders = toolActivityFixture(directory);
 const oauth = await oauthFixture();
 const nativeProviders = nativeProviderFixture();
 const attachmentProviders = attachmentProviderFixture();
@@ -108,6 +110,7 @@ const commandProviders = replyProviderFixture('/commands/');
 const chatNavigationProviders = chatNavigationFixture();
 const modelComparisonProviders = modelComparisonFixture();
 async function providerRequest(request, response) {
+  if (await toolActivityProviders.handle(request, response)) return;
   if (await chatNavigationProviders.handle(request, response)) return;
   if (await modelComparisonProviders.handle(request, response)) return;
   if (await replyProviders.handle(request, response)) return;
@@ -545,9 +548,15 @@ let systemDpiResult;
 let systemDpiHomeResult;
 let browserResult;
 let projectBranchesResult;
+let toolActivitiesResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_PROJECT_BRANCHES_ONLY) {
+  if (process.env.NOOK_TEST_TOOL_ACTIVITIES_ONLY) {
+    const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
+    const run = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
+    page = run.page; toolActivitiesResult = run.result;
+    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_PROJECT_BRANCHES_ONLY) {
     const { verifyProjectBranches } = await import('./verify-project-branches.mjs');
     const result = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
     page = result.page; projectBranchesResult = result.result;
@@ -883,7 +892,7 @@ try {
   await page.getByText('项目证据已确认：文件读取、内容搜索和 Git 改动均成功。', { exact: true }).waitFor();
   await page.getByRole('button', { name: '重新生成', exact: true }).waitFor();
   assert.equal(await page.locator('.tool-complete').count(), 4);
-  await page.locator('.tool-activity summary').nth(1).click();
+  await page.locator('.tool-activity-toggle').nth(1).click();
   await page.locator('.tool-detail').getByText(/Total lines: 3/).waitFor();
   await page.screenshot({ path: join(screenshots, '06-project-analysis.png') });
   verified('project file preview, Git diff and four real read-only model tools');
@@ -1196,6 +1205,8 @@ try {
   const browserRun = await verifyBrowser({ page, application, getApplication: () => application, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = browserRun.page; browserResult = browserRun.result;
   const { verifyProjectBranches } = await import('./verify-project-branches.mjs');
   const projectBranchesRun = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectBranchesRun.page; projectBranchesResult = projectBranchesRun.result;
+  const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
+  const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   const data = await readFile(join(directory, 'workspace.json'), 'utf8');
   assert.ok(data.includes('验证资料'));
@@ -1222,6 +1233,7 @@ try {
   if (fullResult && quickChatResult) fullResult.quickChat = quickChatResult;
   if (fullResult && browserResult) { fullResult.browser = browserResult; fullResult.screenshots.push(...browserResult.screenshots, ...browserResult.tabs.screenshots); }
   if (fullResult && projectBranchesResult) { fullResult.projectBranches = projectBranchesResult; fullResult.screenshots.push(...projectBranchesResult.screenshots); }
+  if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -1371,6 +1383,11 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && toolActivitiesResult) {
+    assert.deepEqual(errors, []);
+    await writeFile(join(root, 'verification', packaged ? 'tool-activities-packaged-result.json' : 'tool-activities-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused tool-activity suite' }), ...toolActivitiesResult }, null, 2));
+    console.log(`Verified ${toolActivitiesResult.checks} tool activity checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && projectBranchesResult) {
     assert.deepEqual(errors, []);

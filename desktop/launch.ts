@@ -11,6 +11,7 @@ import { WorkspaceVault } from './services/vault';
 import { DocumentOriginalFiles } from './services/document-original-files';
 import { userDataDirectory } from './services/user-data-directory';
 import { StartupDiagnostics } from './services/startup-diagnostics';
+import { allowRendererPermission } from './services/renderer-permissions';
 import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
 import { reorderConversationBranch } from './services/branch-order';
@@ -559,8 +560,12 @@ else {
       if (view.status === 'error') void engine?.stopPlugin(view.id);
     });
     protocol.handle('qiyao-plugin', (request) => runtime.response(request));
-    session.defaultSession.setPermissionRequestHandler((_contents, _permission, answer) => answer(false));
-    session.defaultSession.setPermissionCheckHandler(() => false);
+    const rendererPermission = (contents: Electron.WebContents | null, permission: string, details: { isMainFrame: boolean; requestingUrl?: string }) => allowRendererPermission({
+      permission, owned: Boolean(contents && (contents === window?.webContents || quickChatWindow?.ownsContents(contents))),
+      isMainFrame: details.isMainFrame, requestingUrl: details.requestingUrl, mainFrameUrl: contents?.isDestroyed() === false ? contents.mainFrame.url : undefined,
+    });
+    session.defaultSession.setPermissionRequestHandler((contents, permission, answer, details) => answer(rendererPermission(contents, permission, details)));
+    session.defaultSession.setPermissionCheckHandler((contents, permission, _origin, details) => rendererPermission(contents, permission, details));
     oauthStore = new McpOAuthStore(vault);
     const oauthSessions = new McpOAuthSessions(oauthStore, (url) => shell.openExternal(url), (id) => vault.mcpServer(id));
     mcp = new McpConnections((id) => vault.mcpServer(id), (id) => extensions.credentials(id),

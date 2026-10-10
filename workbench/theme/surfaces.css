@@ -352,16 +352,32 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 @media (max-width: 800px) { .capacity-grid { grid-template-columns: 1fr; } }
 .composer-mode-hint { margin: 6px 8px 0; font-size: 11px; color: var(--ds-text-tertiary); }
 .composer-tools { flex-wrap: wrap; }
-.tool-activities { display: grid; gap: 6px; margin: 0 0 16px; }
-.tool-activity { border: 1px solid var(--ds-border); border-radius: 8px; font-size: 12px; }
-.tool-activity summary { display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; list-style: none; color: var(--ds-text-secondary); }
-.tool-activity summary::-webkit-details-marker { display: none; }
-.tool-activity summary:focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; border-radius: 8px; }
-.tool-status { margin-left: auto; color: var(--ds-text-tertiary); font-size: 11px; }
+.tool-activities { display: flex; flex-direction: column; gap: 8px; margin: 0 0 16px; min-width: 0; container: tool-activities / inline-size; }
+.tool-activity { display: flex; flex-direction: column; min-width: 0; font-size: inherit; }
+.tool-activity-header { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.tool-activity-toggle { min-width: 0; max-width: 100%; flex: 1; justify-content: flex-start; gap: 4px; padding: 0; border: 0; font-size: inherit; line-height: inherit; color: var(--ds-text-secondary); border-radius: var(--radius-md); }
+@supports (color: color-mix(in oklab, red, transparent)) { .tool-activity-toggle { color: color-mix(in oklab, var(--ds-text) 60%, transparent); } }
+.tool-activity-toggle:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--color-ring); color: var(--ds-text); }
+@media (hover: hover) { .tool-activity-toggle:hover:not(:disabled) { background: transparent; color: var(--ds-text); } }
+.tool-activity-toggle > svg, .tool-chevron { flex: none; }
+.tool-summary { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tool-target { font-weight: var(--font-weight-normal); }
+.tool-chevron { display: flex; transform: rotate(-90deg); transition: transform .3s cubic-bezier(.19, 1, .22, 1); }
+.tool-activity-toggle[aria-expanded="true"] .tool-chevron { transform: rotate(0); }
+.tool-status, .tool-duration { flex: none; color: var(--ds-text-tertiary); font-size: 11px; }
 .tool-running .tool-status { color: var(--ds-accent); }
 .tool-error .tool-status { color: var(--ds-danger); }
-.tool-detail { border-top: 1px solid var(--ds-border); padding: 8px 12px; }
-.tool-detail pre { max-height: 320px; overflow: auto; white-space: pre-wrap; margin: 6px 0 12px; padding: 10px; font-family: var(--font-code-family); font-size: 11px; }
+.tool-detail { display: grid; grid-template-rows: 0fr; opacity: 0; min-width: 0; pointer-events: none; transition: grid-template-rows .3s cubic-bezier(.19, 1, .22, 1), opacity .3s cubic-bezier(.19, 1, .22, 1); }
+.tool-detail[data-expanded="true"] { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
+.tool-detail-inner { min-height: 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 8px; }
+.tool-detail[data-expanded="true"] .tool-detail-inner { padding: 8px 0 4px 24px; }
+.tool-text { min-width: 0; overflow: hidden; border: 1px solid var(--ds-border); border-radius: var(--radius-md); background: var(--ds-bg-secondary); }
+.tool-text > header { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-width: 0; padding: 4px 8px; color: var(--ds-text-secondary); font-size: var(--control-font-size-sm); }
+.tool-text .icon-button { flex: none; }
+.tool-text pre { max-height: 192px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; padding: 8px 12px; font-family: var(--font-code-family); font-size: var(--control-font-size-sm); line-height: 1.6; }
+.tool-text .inline-error { margin: 0; padding: 4px 12px 8px; }
+@media (prefers-reduced-motion: reduce) { .tool-detail, .tool-chevron { transition-duration: 0s; } }
+@container tool-activities (max-width: 360px) { .tool-duration { display: none; } }
 .approval-path { overflow-wrap: anywhere; font-size: 12px; color: var(--ds-text-secondary); }
 .approval-file-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .approval-file-preview section { min-width: 0; }

@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 275 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 283 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const completeEditorTabs = result => result && ['selectedVisibilityVerified', 'keyboardNavigationVerified', 'dirtyCancelVerified', 'cleanCloseFocusVerified', 'saveFailureRetryVerified', 'originalDraftsRetained'].every(key => result[key] === true)
@@ -54,6 +54,14 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
     && Array.isArray(result.screenshots) && result.screenshots.length === 9 && new Set(result.screenshots).size === 9 && result.screenshots.every(name => typeof name === 'string' && /^editor-tabs-[A-Za-z0-9.-]+\.png$/.test(name));
   const completePreview = result => result?.checks === 10 && result.outsideHttpRequests === 0 && result.docked?.checks === 5 && ["floatingTransferVerified", "projectRemovalVerified", "workbenchReloadVerified", "staleOwnerCloseVerified"].every(key => result.docked[key] === true) && completeEditorTabs(result.editorTabs);
   const browser = desktop.browser;
+  const toolActivities = desktop.toolActivities;
+  if (toolActivities?.checks !== 8 || toolActivities.commandRequests !== 5 || !['scopedClipboardPermission', 'exactOriginalCopy', 'staleClipboardGuard', 'deniedCopyRetry', 'focusBeforeInert', 'manualStreamingCollapse', 'restrictedQuickChat', 'reducedMotion', 'actualRestart'].every(key => toolActivities[key] === true)
+    || !Array.isArray(toolActivities.nativeStates) || toolActivities.nativeStates.length !== 5 || new Set(toolActivities.nativeStates).size !== 5 || !['waiting', 'running', 'complete', 'error', 'stopped'].every(status => toolActivities.nativeStates.includes(status))
+    || !Array.isArray(toolActivities.layouts) || toolActivities.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => toolActivities.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !toolActivities.layouts.every(row => row.fontSize === row.parentFontSize && parseFloat(row.fontSize) > 0 && row.gap === '4px' && row.padding === '8px 0px 4px 24px' && row.duration === '0.3s, 0.3s' && row.contained === true && row.controlVisible === true && row.summaryWidth >= 16 && row.controlHeight >= 20 && row.outputScrollBounded === true && row.horizontalOverflow === false)
+    || !Array.isArray(toolActivities.screenshots) || toolActivities.screenshots.length !== 9 || new Set(toolActivities.screenshots.map(row => row?.filename)).size !== 9 || !toolActivities.screenshots.every(row => typeof row?.filename === 'string' && /^tool-activities-[A-Za-z0-9.-]+\.png$/.test(row.filename) && Array.isArray(row.size) && row.size.length === 2 && row.size.every(value => Number.isInteger(value) && value > 0))) {
+    throw new Error('Complete tool activity verification is required');
+  }
   const projectBranches = desktop.projectBranches;
   if (projectBranches?.checks !== 8 || projectBranches.modelRequests !== 0 || !['localListSearchVerified', 'creationValidationBusyVerified', 'overwriteRetryVerified', 'editorRefreshDraftConflictVerified', 'worktreeProjectScopeVerified', 'hookStatePreviewCleanupVerified', 'referenceZoomKeyboardVerified', 'restartDraftsVerified'].every(key => projectBranches[key] === true)
     || !Array.isArray(projectBranches.layouts) || projectBranches.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => projectBranches.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
