@@ -19,13 +19,13 @@ const notes = (version = '1.2.3', newline = '\n') => [
 
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 261, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
-    browser: { checks: 9, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
+  const desktop = { variant: 'packaged executable', checks: 262, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash,
+    browser: { checks: 9, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     pdfPreview: { checks: 6, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true },
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
-    memories: { checks: 3 }, projectPreview: { checks: 9, outsideHttpRequests: 0, docked: { checks: 4, floatingTransferVerified: true, projectRemovalVerified: true } },
+    memories: { checks: 3 }, projectPreview: { checks: 10, outsideHttpRequests: 0, docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
@@ -41,6 +41,13 @@ function proof(): ReleaseProof {
 }
 
 describe('private browser release evidence', () => {
+  it('rejects a prior suite or browser navigation clipped outside its viewport', () => {
+    const previous = proof(); previous.desktop.checks = 261; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+    for (const [selectedVisible, current] of [[false, 'page'], [true, '']] as const) {
+      const invalid = proof(); invalid.desktop.browser!.layouts[0].navigation = { selectedVisible, current };
+      expect(() => verifyRuntimeProof(invalid)).toThrow('private browser');
+    }
+  });
   it('rejects the previous suite and missing browser behavior or isolation proof', () => {
     const previous = proof(); previous.desktop.checks = 252; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
     const missing = proof(); delete missing.desktop.browser; expect(() => verifyRuntimeProof(missing)).toThrow('private browser');
@@ -217,13 +224,15 @@ describe('Windows release execution evidence', () => {
   });
   it('rejects old floating-only and incomplete docked lifecycle evidence in focused and complete suites', () => {
     for (const surface of ['preview', 'desktop'] as const) {
-      for (const defect of ['old', 'missing', 'partial', 'transfer', 'removal'] as const) {
+      for (const defect of ['old', 'missing', 'partial', 'transfer', 'removal', 'reload', 'stale'] as const) {
         const value = proof(), result = surface === 'preview' ? value.preview : value.desktop.projectPreview!;
         if (defect === 'old') result.checks = 5;
         if (defect === 'missing') delete result.docked;
         if (defect === 'partial') result.docked!.checks = 3;
         if (defect === 'transfer') result.docked!.floatingTransferVerified = false;
         if (defect === 'removal') delete result.docked!.projectRemovalVerified;
+        if (defect === 'reload') delete result.docked!.workbenchReloadVerified;
+        if (defect === 'stale') result.docked!.staleOwnerCloseVerified = false;
         expect(() => verifyRuntimeProof(value)).toThrow('project-preview');
       }
     }

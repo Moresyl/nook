@@ -46,6 +46,32 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   await geometry(1); await capture('light');
   verified('docked preview runs complete unsaved project resources in a separate offline sandbox aligned with its editor viewport');
 
+  const beforeReload = await currentId(), beforeReloadToken = await application.evaluateMain(`new URL(${view}.webContents.getURL()).host`);
+  const beforeReloadState = await page.evaluate(async id => {
+    const state = await window.qiyao.load(), thread = state.threads.find(item => item.id === state.activeThreadId);
+    return { drafts: state.editorDrafts.filter(item => item.projectId === id), activeThreadId: thread?.id ?? null, title: thread?.title ?? null,
+      composerText: state.composerDrafts.find(item => item.threadId === thread?.id)?.text ?? '' };
+  }, projectId);
+  await page.reload();
+  if (beforeReloadState.title !== null) await page.locator('.workspace-header').getByRole('button', { name: beforeReloadState.title, exact: true }).waitFor();
+  else await page.getByRole('heading', { name: '今天想做些什么？', exact: true }).waitFor();
+  console.log('Preview workbench reload children', await application.evaluateMain(`${mainWindow}.contentView.children.filter(v=>v.webContents && !v.webContents.isDestroyed()).map(v=>({id:v.webContents.id,url:v.webContents.getURL(),visible:v.getVisible()}))`));
+  await wait(`!(${view})`);
+  assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), beforeReloadState.composerText);
+  assert.deepEqual(await page.evaluate(async id => {
+    const state = await window.qiyao.load(); return { activeThreadId: state.activeThreadId ?? null, drafts: state.editorDrafts.filter(item => item.projectId === id) };
+  }, projectId), { activeThreadId: beforeReloadState.activeThreadId, drafts: beforeReloadState.drafts });
+  await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click();
+  await page.locator('.project-list').getByRole('button', { name: '网页预览验证', exact: true }).click();
+  await page.getByRole('tree', { name: '项目文件', exact: true }).getByRole('treeitem', { name: 'index.html', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.editor-actionbar .path-text')?.textContent === 'index.html' && document.querySelector('.editor-canvas .view-lines')?.textContent.includes('当前草稿'));
+  await page.getByRole('button', { name: '并排预览', exact: true }).click(); await ready();
+  assert.notEqual(await currentId(), beforeReload); assert.equal(await evaluate('window.previousStorage'), null);
+  await page.evaluate(({ projectId, token }) => window.qiyao.closeProjectPreview(projectId, token), { projectId, token: beforeReloadToken });
+  assert.equal(await application.evaluateMain(visible), true);
+  assert.deepEqual(await evaluate("({text:document.querySelector('#result').textContent,script:window.relatedDraft})"), { text: 'UNSAVED_DATA_中文😀', script: 'SCRIPT_DRAFT_中文😀' });
+  verified('actual workbench reload releases the old dock without losing editor drafts; reopening uses a fresh private session immune to stale close requests');
+
   const divider = page.getByRole('separator', { name: '调整编辑器与预览大小', exact: true });
   const priorShare = Number(await divider.getAttribute('aria-valuenow')); const vertical = await divider.getAttribute('aria-orientation') === 'horizontal';
   await divider.focus(); await divider.press(vertical ? 'ArrowDown' : 'ArrowRight'); assert.equal(Number(await divider.getAttribute('aria-valuenow')), priorShare + 5); await geometry(1);
@@ -91,5 +117,5 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   await page.getByRole('button', { name: '显示文件树', exact: true }).click();
   await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.keyboard.press('Escape');
   verified('a real docked renderer crash shows a recoverable error, explicit retry creates a fresh session, and closing releases the view and returns focus');
-  return { checks: 4, floatingTransferVerified: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
+  return { checks: 5, workbenchReloadVerified: true, staleOwnerCloseVerified: true, floatingTransferVerified: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
 }

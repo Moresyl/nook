@@ -23,11 +23,64 @@ vi.mock('electron', async () => {
 const source = { origin: 'nook-preview://owned', url: 'nook-preview://owned/index.html', response: vi.fn() };
 function parentWindow(zoom = 1) {
   return Object.assign(new EventEmitter(), { isDestroyed: vi.fn(() => false), isMinimized: vi.fn(() => false), getContentSize: () => [800, 600],
-    webContents: { getZoomFactor: () => zoom, focus: vi.fn(), send: vi.fn() }, contentView: { addChildView: vi.fn(), removeChildView: vi.fn() } });
+    webContents: Object.assign(new EventEmitter(), { getZoomFactor: () => zoom, focus: vi.fn(), send: vi.fn() }), contentView: { addChildView: vi.fn(), removeChildView: vi.fn() } });
 }
 beforeEach(() => { vi.useRealTimers(); vi.clearAllMocks(); fake.views.length = 0; fake.create.mockResolvedValue(source); fake.load.mockResolvedValue(undefined); fake.proxy.mockResolvedValue(undefined); });
 
 describe('isolated docked project preview', () => {
+  it.each(['did-start-navigation', 'render-process-gone', 'closed'])('cancels preparation on owner %s without resurrecting the view', async event => {
+    const manager = new ProjectPreviewDock(), parent = parentWindow(); let finish!: (value: unknown) => void;
+    fake.create.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+    const opening = manager.open(parent as unknown as BrowserWindow, 'project', '/project', {});
+    (event === 'closed' ? parent : parent.webContents).emit(event, { isMainFrame: true, isSameDocument: false });
+    finish(source); expect(await opening).toBeNull(); expect(fake.views).toHaveLength(0);
+    expect(parent.listenerCount('closed')).toBe(0); expect(parent.webContents.listenerCount('did-start-navigation')).toBe(0); expect(parent.webContents.listenerCount('render-process-gone')).toBe(0);
+  });
+
+  it.each(['did-start-navigation', 'render-process-gone'])('releases an active view on owner %s and preserves a later replacement from stale close', async event => {
+    const manager = new ProjectPreviewDock(), parent = parentWindow();
+    const first = (await manager.open(parent as unknown as BrowserWindow, 'project', '/project', {}))!;
+    parent.webContents.emit('did-start-navigation', { isMainFrame: false, isSameDocument: false });
+    parent.webContents.emit('did-start-navigation', { isMainFrame: true, isSameDocument: true });
+    expect(fake.views[0].webContents.isDestroyed()).toBe(false);
+    parent.webContents.emit(event, { isMainFrame: true, isSameDocument: false });
+    expect(fake.views[0].webContents.isDestroyed()).toBe(true); expect(parent.contentView.removeChildView).toHaveBeenCalledOnce();
+    expect(parent.webContents.listenerCount('did-start-navigation')).toBe(0); expect(parent.webContents.listenerCount('render-process-gone')).toBe(0);
+    const second = (await manager.open(parent as unknown as BrowserWindow, 'project', '/project', {}))!;
+    manager.close('project', first); expect(fake.views[1].webContents.isDestroyed()).toBe(false); manager.close('project', second);
+  });
+
+  it('releases preparation listeners when source validation fails and lets the owner retry', async () => {
+    const manager = new ProjectPreviewDock(), parent = parentWindow(); fake.create.mockRejectedValueOnce(new Error('Invalid preview source.'));
+    await expect(manager.open(parent as unknown as BrowserWindow, 'project', '/project', {})).rejects.toThrow('Invalid preview source.');
+    expect(parent.listenerCount('closed')).toBe(0); expect(parent.webContents.listenerCount('did-start-navigation')).toBe(0); expect(parent.webContents.listenerCount('render-process-gone')).toBe(0);
+    expect(await manager.open(parent as unknown as BrowserWindow, 'project', '/project', {})).toBeTruthy(); manager.close();
+  });
+
+  it('keeps preparation for same-document and subframe navigation and removes superseded listeners', async () => {
+    const manager = new ProjectPreviewDock(), parent = parentWindow(); let finish!: (value: unknown) => void;
+    fake.create.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+    const first = manager.open(parent as unknown as BrowserWindow, 'old', '/old', {});
+    parent.webContents.emit('did-start-navigation', { isMainFrame: false, isSameDocument: false });
+    parent.webContents.emit('did-start-navigation', { isMainFrame: true, isSameDocument: true });
+    expect(parent.webContents.listenerCount('did-start-navigation')).toBe(1);
+    const second = (await manager.open(parent as unknown as BrowserWindow, 'new', '/new', {}))!;
+    finish(source); expect(await first).toBeNull(); expect(fake.views).toHaveLength(1);
+    expect(parent.webContents.listenerCount('did-start-navigation')).toBe(1);
+    manager.layout('new', second, { x: 0, y: 0, width: 100, height: 100 }); expect(fake.views[0].setVisible).toHaveBeenLastCalledWith(true);
+    manager.close(); expect(parent.webContents.listenerCount('did-start-navigation')).toBe(0);
+  });
+
+  it('does not revive a view when setup finishes after workbench navigation', async () => {
+    const manager = new ProjectPreviewDock(), parent = parentWindow(); let finish!: () => void;
+    fake.proxy.mockImplementationOnce(() => new Promise<void>(resolve => { finish = resolve; }));
+    const opening = manager.open(parent as unknown as BrowserWindow, 'project', '/project', {});
+    await vi.waitFor(() => expect(fake.proxy).toHaveBeenCalledOnce());
+    parent.webContents.emit('did-start-navigation', { isMainFrame: true, isSameDocument: false }); finish();
+    expect(await opening).toBeNull(); expect(fake.views[0].webContents.isDestroyed()).toBe(true); expect(fake.load).not.toHaveBeenCalled();
+    expect(parent.listenerCount('closed')).toBe(0); expect(parent.webContents.listenerCount('did-start-navigation')).toBe(0);
+  });
+
   it('loads in a hidden private sandbox and denies outside resources, permissions and child navigation', async () => {
     const manager = new ProjectPreviewDock(), parent = parentWindow(); const token = await manager.open(parent as unknown as BrowserWindow, 'project', '/project', {});
     expect(token).toMatch(/^[a-f0-9-]{36}$/); const view = fake.views[0], contents = view.webContents, session = contents.session;

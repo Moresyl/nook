@@ -6,11 +6,12 @@ import { join } from 'node:path';
 import { verifyProjectPreviewDock } from './verify-project-preview-dock.mjs';
 
 const previewWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('nook-preview:'))";
-const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().includes('index.html') && !w.webContents.getURL().startsWith('nook-preview:'))";
+const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.webContents && !w.webContents.isDestroyed() && w.webContents.getURL().startsWith('qiyao://app/') && new URL(w.webContents.getURL()).searchParams.get('view') !== 'quick-chat')";
 export async function verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified }) {
   const root = join(directory, '网页预览'); await mkdir(root);
   const projectId = 'preview-verification'; const requests = [];
   let editorFonts;
+  const editorAppearance = [];
   const server = createServer((request, response) => { requests.push(request.url); response.end('REMOTE'); });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const remote = `http://127.0.0.1:${server.address().port}/blocked`;
@@ -29,7 +30,25 @@ export async function verifyProjectPreview({ page, application, directory, scree
   const handleDialog = dialog => { void dialog.dismiss().catch(() => {}); };
   const onPage = child => { observedPages.push(child); child.on('dialog', handleDialog); };
   page.context().on('page', onPage);
-  async function captureEditor(name) {
+  const navigationAppearance = () => page.evaluate(() => ({
+    theme: document.documentElement.dataset.theme, bodyColor: getComputedStyle(document.body).color,
+    buttons: [...document.querySelectorAll('.primary-nav button, .sidebar-footer .nav-row')].map(element => ({
+      text: element.textContent, disabled: element.disabled, color: getComputedStyle(element).color, opacity: getComputedStyle(element).opacity,
+      colorTransitions: element.getAnimations().filter(animation => animation.transitionProperty === 'color').map(animation => ({ state: animation.playState, currentTime: animation.currentTime })),
+    })),
+  }));
+  async function captureEditor(name, theme) {
+    const initial = await navigationAppearance();
+    await page.waitForFunction(theme => {
+      if (document.documentElement.dataset.theme !== theme || document.querySelector('dialog[open],[role="dialog"]')) return false;
+      const buttons = [...document.querySelectorAll('.primary-nav button, .sidebar-footer .nav-row')], color = getComputedStyle(document.body).color;
+      return buttons.length >= 8 && buttons.every(element => !element.disabled && getComputedStyle(element).opacity === '1' && getComputedStyle(element).color === color);
+    }, theme, { timeout: 5_000 });
+    const settled = await navigationAppearance();
+    assert.equal(settled.theme, theme); assert.ok(settled.buttons.length >= 8);
+    for (const button of settled.buttons) { assert.equal(button.disabled, false); assert.equal(button.opacity, '1'); assert.equal(button.color, settled.bodyColor); }
+    editorAppearance.push({ name, theme, initial, settled });
+    console.log('Preview editor capture appearance', JSON.stringify({ name, initial, settled }));
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const image = await application.evaluateMain(`(async()=>{const w=${mainWindow};const image=await w.capturePage();return {png:image.toPNG().toString('base64'),size:w.getContentSize()}})()`);
     const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size);
@@ -89,7 +108,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
       editorFonts = { computed: await page.locator('.editor-actionbar > .button').first().evaluate(element => getComputedStyle(element).fontFamily), ...(await fontSession.send('CSS.getPlatformFontsForNode', { nodeId })) };
       console.log('Preview entry rendered fonts', JSON.stringify(editorFonts));
     } finally { await fontSession.detach(); }
-    await captureEditor('project-preview-editor-light.png');
+    await captureEditor('project-preview-editor-light.png', 'light');
     await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click();
     const settings = page.getByRole('dialog', { name: '设置', exact: true }); await settings.getByRole('button', { name: '外观与交互', exact: true }).click();
     await settings.getByLabel('主题', { exact: true }).selectOption('dark'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
@@ -98,7 +117,7 @@ export async function verifyProjectPreview({ page, application, directory, scree
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1.5)`); await page.waitForFunction(() => Math.abs(innerWidth - 760 / 1.5) < 2);
     const bounds = await page.getByRole('button', { name: '预览 HTML', exact: true }).evaluate(element => { const rect = element.getBoundingClientRect(); return { visible: rect.width > 0 && rect.height > 0 && rect.left >= 0 && rect.top >= 0 && rect.right <= innerWidth && rect.bottom <= innerHeight, overflow: document.documentElement.scrollWidth > innerWidth }; });
     assert.deepEqual(bounds, { visible: true, overflow: false });
-    await page.getByRole('button', { name: '预览 HTML', exact: true }).focus(); await captureEditor('project-preview-editor-dark-narrow.png');
+    await page.getByRole('button', { name: '预览 HTML', exact: true }).focus(); await captureEditor('project-preview-editor-dark-narrow.png', 'dark');
     await page.getByRole('button', { name: '预览 HTML', exact: true }).press('Enter');
     await wait(`(async()=>{const w=${previewWindow};return w && w.webContents.executeJavaScript("document.body.dataset.ready === 'yes'")})()`);
     await application.evaluateMain(`${previewWindow}.close()`); await wait(`!${previewWindow}`);
@@ -122,6 +141,6 @@ export async function verifyProjectPreview({ page, application, directory, scree
     docked.projectRemovalVerified = true;
     assert.deepEqual(requests, []);
     verified('removing the owning project closes its preview and leaves the original project files unchanged');
-    return { checks: 9, docked, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots], editorFonts, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
+    return { checks: 10, docked, screenshots: ['project-html-preview.png', 'project-preview-editor-light.png', 'project-preview-editor-dark-narrow.png', ...docked.screenshots], editorFonts, editorAppearance, outsideHttpRequests: requests.length, boundary: 'Local floating and docked project HTML preview; DOM paste fixture and scripted page interaction. Not physical clipboard evidence, a React bundler, generated-artifact editor, remote browser or complete sandbox audit.' };
   } finally { page.context().off('page', onPage); for (const child of observedPages) child.off('dialog', handleDialog); await new Promise(resolve => server.close(resolve)); }
 }

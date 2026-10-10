@@ -583,10 +583,11 @@ try {
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
     const treeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = treeRun.page; projectTreeResult = treeRun.result;
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
-    assert.equal(count, 16); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    assert.equal(count, 17); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_ONLY) {
+    await page.evaluate(() => window.qiyao.openQuickChat());
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
-    assert.equal(count, 9); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    assert.equal(count, 10); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_DIFF_ONLY) {
     await page.evaluate((path) => window.qiyao.saveProject({ id: 'verification-project', name: '验证项目', path, instructions: '', createdAt: 1 }), projectDirectory);
     await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.getByRole('button', { name: '验证项目', exact: true }).click();

@@ -172,7 +172,14 @@ export async function verifyBrowser({ page, application, getApplication, screens
       await wait(`(()=>{const bounds=${view}.getBounds();return bounds.x===${expected.x} && bounds.y===${expected.y} && bounds.width===${expected.right - expected.x} && bounds.height===${expected.bottom - expected.y}})()`);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       assert.ok(rect.width > 150 && rect.height > 100);
-      layouts.push({ theme, zoom, requestedSize: size, viewport: rect, windowViewport: viewport, expected, native: await application.evaluateMain(`${view}.getBounds()`) });
+      const navigation = await page.locator('.primary-nav .selected').evaluate(element => {
+        const row = element.getBoundingClientRect(), viewport = element.closest('.sidebar-main').getBoundingClientRect();
+        return { current: element.getAttribute('aria-current'), selectedVisible: row.top >= viewport.top - 1 && row.bottom <= viewport.bottom + 1 && row.left >= viewport.left - 1 && row.right <= viewport.right + 1, row: row.toJSON(), viewport: viewport.toJSON() };
+      });
+      console.log('Browser selected navigation', { theme, zoom, ...navigation });
+      assert.equal(navigation.selectedVisible, true, 'The selected browser navigation must remain visible after resize and zoom');
+      assert.equal(navigation.current, 'page');
+      layouts.push({ theme, zoom, requestedSize: size, viewport: rect, windowViewport: viewport, navigation, expected, native: await application.evaluateMain(`${view}.getBounds()`) });
       await capture(`${theme}-${zoom}`);
     }
     verified('both browser shell themes retain reference shared controls and correctly bounded native website views at wide/minimum windows and 100/125/150 percent page zoom');
