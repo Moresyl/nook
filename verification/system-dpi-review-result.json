@@ -1,0 +1,849 @@
+{
+  "reviewedAt": "2026-10-10T11:37:56.320Z",
+  "archive": "E:/NookVerification/SystemDpiReview-20261010",
+  "productCommit": "d2196b0",
+  "checks": 13,
+  "independentDefaultSurfaceChecks": 4,
+  "actualHostScaleFactor": 1.25,
+  "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+  "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd",
+  "unchangedArtifacts": [
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240118621,
+      "sha256": "f2cecd2c75ea230f69f956574305665ee49a6d73411cc90665dca662f1514137"
+    },
+    {
+      "file": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309620406,
+      "sha256": "c627babee3cd667699afa99069536ea55d63006ab75940b0301b5cfeb8dae54a"
+    },
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe.blockmap",
+      "bytes": 250126,
+      "sha256": "3ae474fc0cb828e74a3f619488a86ed470f7464bd561dd15e2ce03c063842d4a"
+    },
+    {
+      "file": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b"
+    },
+    {
+      "file": "win-unpacked/resources/app.asar",
+      "bytes": 493733307,
+      "sha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd"
+    }
+  ],
+  "unchangedProductSourceCount": 248,
+  "unchangedCompiledCount": 236,
+  "harness": [
+    {
+      "file": "verify-desktop.mjs",
+      "sha256": "04812758cfe4dd5289736a028061c300c43d11007b3a76b0dcad320c012da46e"
+    },
+    {
+      "file": "verify-system-dpi.mjs",
+      "sha256": "dfd87e153b1aa53b272fe1f82de6fe8d512796df0fddbaae9a683558d361b2d4"
+    }
+  ],
+  "normalExits": [
+    {
+      "elapsedMs": 429,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 276,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "captures": [
+    {
+      "filename": "system-dpi-settings-light-1280-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "visualWidth": 1280,
+        "visualHeight": 841.5999755859375
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "d9cd1d44c671f6778620581d5c08072d63434088e988d6d02ce0a531336120e2",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-light-1280-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.25,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 673,
+        "devicePixelRatio": 1.5625,
+        "visualWidth": 1024,
+        "visualHeight": 673.280029296875
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "01fb3acb93725019bbb2316269678d08668505cba11892908ee8059a264249af",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-light-1280-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.5,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 853,
+        "height": 561,
+        "devicePixelRatio": 1.875,
+        "visualWidth": 853.3333129882812,
+        "visualHeight": 561.066650390625
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "e6a4010cb0801123617c98722b468e3fbdf591716c53d8b04346901a54ba9303",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-light-760-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 762,
+        "height": 542,
+        "devicePixelRatio": 1.25,
+        "visualWidth": 761.5999755859375,
+        "visualHeight": 542.4000244140625
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "028a14d6aa85b5fc5556e1d5a0fd4bc150968dfdbd413837b04b38d399e40f1f",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-light-760-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.25,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 609,
+        "height": 434,
+        "devicePixelRatio": 1.5625,
+        "visualWidth": 609.280029296875,
+        "visualHeight": 433.9200134277344
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "babe4a930daedd16cf04bf98164fd17af9ef320b43f6c86e5c157cc7497a4746",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-light-760-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.5,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 508,
+        "height": 361,
+        "devicePixelRatio": 1.875,
+        "visualWidth": 507.73333740234375,
+        "visualHeight": 361.6000061035156
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "5f5c1f9e071771ec401b3d119ffbf255ea0e0e6b592efeb8887a8006fe4aa444",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-1280-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "visualWidth": 1280,
+        "visualHeight": 841.5999755859375
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "f6ad89a60ea8e14d612e69a8e6d870b1944c1e484f5cf9c39506288562477ae5",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-1280-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.25,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 673,
+        "devicePixelRatio": 1.5625,
+        "visualWidth": 1024,
+        "visualHeight": 673.280029296875
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "13d0b0455af32a6126a1d1091801ea645725c7d4af02bf3cab77c4db0896f25b",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-1280-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1280,
+          "height": 841
+        },
+        "contentSize": [
+          1280,
+          841
+        ],
+        "zoom": 1.5,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 853,
+        "height": 561,
+        "devicePixelRatio": 1.875,
+        "visualWidth": 853.3333129882812,
+        "visualHeight": 561.066650390625
+      },
+      "pngSize": [
+        1600,
+        1052
+      ],
+      "nativeImageSize": {
+        "width": 1600,
+        "height": 1052
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "d5cba472cfdff33588f383b32ff42f71710b7ca32f10816235c6a38947c340de",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-760-1.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 762,
+        "height": 542,
+        "devicePixelRatio": 1.25,
+        "visualWidth": 761.5999755859375,
+        "visualHeight": 542.4000244140625
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "aee328cb9a1aba918cd36174ba67755ea572279eb5e6ad64cb8ecfc2aa71b01d",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-760-1.25.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.25,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 609,
+        "height": 434,
+        "devicePixelRatio": 1.5625,
+        "visualWidth": 609.280029296875,
+        "visualHeight": 433.9200134277344
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "12d09dd7e3b3e48d79b5b6e9d9faee0bb80d06512e655f5806dcc95a4ec732da",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-settings-dark-760-1.5.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 762,
+          "height": 542
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 761,
+          "height": 542
+        },
+        "contentSize": [
+          761,
+          542
+        ],
+        "zoom": 1.5,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 508,
+        "height": 361,
+        "devicePixelRatio": 1.875,
+        "visualWidth": 507.73333740234375,
+        "visualHeight": 361.6000061035156
+      },
+      "pngSize": [
+        952,
+        678
+      ],
+      "nativeImageSize": {
+        "width": 952,
+        "height": 678
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "3539b7cd1a4a16f12b0506e75e2717f9c41cb85edff1ddf18ab5ac885b3bd367",
+      "visuallyReviewed": true
+    },
+    {
+      "filename": "system-dpi-restarted-draft.png",
+      "native": {
+        "forcedDeviceScale": "",
+        "bounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1282,
+          "height": 842
+        },
+        "contentBounds": {
+          "x": 383,
+          "y": 131,
+          "width": 1281,
+          "height": 842
+        },
+        "contentSize": [
+          1281,
+          842
+        ],
+        "zoom": 1,
+        "display": {
+          "id": 4097432655,
+          "scaleFactor": 1.25,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1152
+          },
+          "workArea": {
+            "x": 0,
+            "y": 0,
+            "width": 2048,
+            "height": 1104
+          }
+        }
+      },
+      "viewport": {
+        "width": 1282,
+        "height": 842,
+        "devicePixelRatio": 1.25,
+        "visualWidth": 1281.5999755859375,
+        "visualHeight": 842.4000244140625
+      },
+      "pngSize": [
+        1602,
+        1053
+      ],
+      "nativeImageSize": {
+        "width": 1602,
+        "height": 1053
+      },
+      "imageScaleFactors": [
+        1
+      ],
+      "sha256": "4101a42d75d8d32c348f2c975c533884f4502b0b795890a01d22f938eef09a04",
+      "visuallyReviewed": true
+    }
+  ],
+  "representativeImages": [
+    "system-dpi-settings-light-1280-1.png",
+    "system-dpi-settings-dark-1280-1.25.png",
+    "system-dpi-settings-light-760-1.25.png",
+    "system-dpi-settings-dark-760-1.5.png"
+  ],
+  "appliedThemeVerified": true,
+  "acceptedSettingsSystemDpiSubset": true,
+  "completeSystemDpiAcceptance": false,
+  "physicalInputAccepted": false,
+  "allPagesAccepted": false,
+  "forcedDeviceScale": false,
+  "systemScaleChanged": false,
+  "productDefaultScaleChanged": false,
+  "rejectedEarlierThemeEvidence": "system-dpi-theme-gap-result.json",
+  "visualReview": "All 13 corrected native captures were individually inspected. The 12 settings captures show their asserted light/dark themes, in-bounds close/navigation, reference geometry and vertical scrolling in short windows. The restart capture shows the exact Chinese draft; its low-contrast navigation has not been diagnosed or accepted as a ready-homepage visual state.",
+  "scope": "Same unchanged d2196b0 product and five candidate artifacts. Actual host 125% scaling without forcing device scale; two requested native sizes and three page zooms in each theme. Observed native dimensions are recorded without coercing them to requested sizes. Existing exact fixed-scale fixtures and deadlines remain intact; separate default surface regression passes four checks. Other settings categories/controls, pages, displays/scales, physical input and complete accessibility remain open. Earlier zero-check geometry/close failures and the rejected missing-theme-assertion run retain their original evidence."
+}

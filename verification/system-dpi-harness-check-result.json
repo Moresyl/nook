@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-10T11:38:36+00:00",
+  "scope": "Verification-script change only; the native 13-check system-DPI integration and separate default 4-check surface run exercise the unchanged packaged product.",
+  "syntaxChecks": ["scripts/verify-system-dpi.mjs", "scripts/verify-desktop.mjs"],
+  "syntaxPassed": true,
+  "diffWhitespacePassed": true,
+  "unitCommand": "node node_modules/vitest/vitest.mjs run verification/desktop-page.test.ts verification/desktop-main-ready.test.ts verification/desktop-exit.test.ts verification/desktop-screenshot.test.ts",
+  "unitFiles": 4,
+  "unitTests": 21,
+  "unitPassed": true,
+  "localDocumentLinks": 224,
+  "localDocuments": 10,
+  "documentRoot": "E:/NookWorktrees/system-dpi",
+  "documentLinksPassed": true,
+  "productSourceChanged": false,
+  "fullProductTestsRepeated": false
+}

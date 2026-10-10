@@ -24,7 +24,7 @@
 | 界面 | 快速聊天 28 张完整原生截图已检查，包含明暗主题与 100%／125%／150% 缩放；全部参考页面仍待验收 |
 | 完整源码回归 | 中文提示新构建在显式设备缩放 1 下整轮 252 组通过，37 次正常退出；此前各轮失败继续保留 |
 | 最新诊断 | 98 组后记录中断，恢复时进程与工具句柄均不存在；无最终汇总或退出状态，不计为通过 |
-| 系统缩放 | Windows 125% 下首个精确窗口尺寸断言失败；独立探测确认取整差异，诊断退出也再次超时 |
+| 系统缩放 | 同一候选在真实 Windows 125% 下独立通过设置专项 13 项、两次正常退出，13 张原生截图已检查；此前精确尺寸失败与关闭超时保留，全部页面与其他显示器仍待验收 |
 | 分发 | 中文提示新候选的包体／启动组件审计、真实便携包装 7 项、未安装版与实际安装版各完整 252 组、卸载与数据保留，以及 11 份匹配发布策略记录通过 |
 
 此前逐条复制构建的完整回归包含 MCP PDF 8 组、快速聊天 9 组，以及大型备份、分支、临时聊天、模型比较和实际重启。23 份阶段记录与 215 张截图按同一构建归档，逐张检查了其中 4 张；其余不能算已完成视觉验收。该旧应用体的保存错误仍显示英文。[此前完整回归与截图证据](../verification/workspace-copy-fixed-scale-full-result.json)
@@ -36,6 +36,10 @@
 当前证据：[构建、测试与覆盖率](../verification/workspace-copy-review-result.json)、[逐条复制原生专项](../verification/workspace-copy-native-observer-review-result.json)、[默认备份与大型聊天](../verification/workspace-copy-scoped-native-review-result.json)、[整轮关闭失败](../verification/workspace-copy-full-close-failure-result.json)、[中断诊断](../verification/workspace-copy-interrupted-diagnostic-result.json)、[系统缩放现场](../verification/workspace-copy-geometry-diagnostic-result.json)。各轮前缀和专项不拼接为完整通过；启动、连接、操作、退出期限与 80% 覆盖率门槛均保持不变。
 
 精确尺寸夹具现在显式固定测试进程设备缩放为 1，保持原有尺寸断言和 100%／125%／150% Electron 页面缩放检查。系统和产品默认设置不变；该配置下的结果不能替代真实系统 DPI、物理输入或全部界面验收。
+
+同一中文提示候选另在未强制设备缩放的真实 Windows 125% 下完成 13 项独立设置检查：明暗主题、请求 1280×840／760×540 的窗口、三档页面缩放、原生模态焦点、背景不可交互、Escape 焦点恢复及中文草稿正常重启保留。两次退出均未强制终止；13 张完整原生截图已逐张检查，窗口与页面取整值按实际测量记录。五个候选文件、248 个产品源码与 236 个编译文件哈希保持一致；原有固定缩放设置 4 项也通过。[真实系统缩放专项](../verification/system-dpi-review-result.json)
+
+首轮专项漏验实际主题，标为深色的截图仍显示浅色；该轮原始记录与截图保留，不计入明暗主题通过。补充重载与实际主题断言后才接受本轮证据。重启截图中的低对比导航尚未诊断，不作为首页就绪状态验收；其他设置分类、页面、显示器、物理输入与完整系统 DPI 验收仍需完成。[首轮证据缺口](../verification/system-dpi-theme-gap-result.json)
 
 ## 仍在处理的问题
 
@@ -71,6 +75,8 @@
 随后未安装应用体整轮证据 `62fa877` 触发的 [38043683778](https://github.com/Moresyl/nook/actions/runs/38043683778) 也已检查：验证仍因同一账户限制零步骤失败，发布跳过。这是前一构建的托管结果，不能代替中文提示新构建验收。[对应任务与原始注释](../verification/hosted-ui-predecessor-block-result.json)
 
 中文提示新候选与便携证据 `b464e08` 触发的 [38045688272](https://github.com/Moresyl/nook/actions/runs/38045688272) 同样留下实际账户付款／支出限制注释，验证零步骤失败、发布跳过；本地通过不能替代托管通过。[新构建托管记录](../verification/hosted-ui-errors-block-result.json)
+
+系统缩放专项前的最终本地分发记录 `b619670` 触发 [38047856282](https://github.com/Moresyl/nook/actions/runs/38047856282)，只读复核再次确认同一账户限制注释、验证零步骤失败与发布跳过。尚无托管通过或已发布版本。[对应原始任务记录](../verification/hosted-pre-system-dpi-block-result.json)
 
 ## 发布前待完成
 

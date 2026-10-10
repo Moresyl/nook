@@ -1,0 +1,1634 @@
+{
+  "verifiedAt": "2026-10-10T11:28:10.384Z",
+  "archive": "E:/NookVerification/SystemDpiThemeGap-20261010",
+  "harness": [
+    {
+      "file": "verify-desktop.mjs",
+      "sha256": "04812758cfe4dd5289736a028061c300c43d11007b3a76b0dcad320c012da46e"
+    },
+    {
+      "file": "verify-system-dpi.mjs",
+      "sha256": "962b825a61adaad1da6f01a7f132eabf42c30a8ee32d76fb36de7f520e28f2e6"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "system-dpi-settings-light-1280-1.png",
+      "sha256": "36e1a0901a0af0256a8df08feb909f96d7050aeee7237cb292fb639b34b33d91"
+    },
+    {
+      "file": "system-dpi-settings-light-1280-1.25.png",
+      "sha256": "bf894e304fa26bab2fdd4cd61350f56843aa6bf5002d0ad9927283211207f11d"
+    },
+    {
+      "file": "system-dpi-settings-light-1280-1.5.png",
+      "sha256": "f0c50ebfdbb5ea9d55d5e509f43e59e32cc55d6da4262bf357770262a1740ef6"
+    },
+    {
+      "file": "system-dpi-settings-light-760-1.png",
+      "sha256": "176272aab6a26b248439671843330bf76630b5f2d60e3ab9f6fc73e31aed5339"
+    },
+    {
+      "file": "system-dpi-settings-light-760-1.25.png",
+      "sha256": "ea20562e75275a239208485a47980db109faf4b941403a5ca51c46ef48a0a779"
+    },
+    {
+      "file": "system-dpi-settings-light-760-1.5.png",
+      "sha256": "c76923e07d0c88be1d568ea0dd265968ea854adc42e2775588ca38b167b9cc61"
+    },
+    {
+      "file": "system-dpi-settings-dark-1280-1.png",
+      "sha256": "a01d695f8933479e8b53b655aefb06b23bfbaa760d70ad0bf83570d442bba861"
+    },
+    {
+      "file": "system-dpi-settings-dark-1280-1.25.png",
+      "sha256": "192dfc35e5d2f0a74befc6bf8fa34b44cfd6b25406225f245eabc23fe1555232"
+    },
+    {
+      "file": "system-dpi-settings-dark-1280-1.5.png",
+      "sha256": "5e123fac4f9fe1ccccfd87833f9ad005e2618d9d2104b1d4acd02af10ac80fa7"
+    },
+    {
+      "file": "system-dpi-settings-dark-760-1.png",
+      "sha256": "176272aab6a26b248439671843330bf76630b5f2d60e3ab9f6fc73e31aed5339"
+    },
+    {
+      "file": "system-dpi-settings-dark-760-1.25.png",
+      "sha256": "ea20562e75275a239208485a47980db109faf4b941403a5ca51c46ef48a0a779"
+    },
+    {
+      "file": "system-dpi-settings-dark-760-1.5.png",
+      "sha256": "c76923e07d0c88be1d568ea0dd265968ea854adc42e2775588ca38b167b9cc61"
+    },
+    {
+      "file": "system-dpi-restarted-draft.png",
+      "sha256": "226f0861b97c051aa7be613e500bef350fa2e5dd83e7e566be0cc2c38d5fa83d"
+    }
+  ],
+  "rawRun": {
+    "verifiedAt": "2026-10-10T11:25:26.597Z",
+    "variant": "packaged executable",
+    "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+    "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd",
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "checks": 13,
+    "initial": {
+      "forcedDeviceScale": "",
+      "bounds": {
+        "x": 383,
+        "y": 131,
+        "width": 1282,
+        "height": 842
+      },
+      "contentBounds": {
+        "x": 383,
+        "y": 131,
+        "width": 1281,
+        "height": 842
+      },
+      "contentSize": [
+        1281,
+        842
+      ],
+      "zoom": 1,
+      "display": {
+        "id": 4097432655,
+        "scaleFactor": 1.25,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 2048,
+          "height": 1152
+        },
+        "workArea": {
+          "x": 0,
+          "y": 0,
+          "width": 2048,
+          "height": 1104
+        }
+      }
+    },
+    "scenarios": [
+      {
+        "theme": "light",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720,
+          "height": 460,
+          "top": 169.60000610351562,
+          "left": 280,
+          "viewportWidth": 1280,
+          "viewportHeight": 842
+        },
+        "screenshot": "system-dpi-settings-light-1280-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 842,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 1280,
+          "visualHeight": 841.5999755859375
+        }
+      },
+      {
+        "theme": "light",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1.25,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720,
+          "height": 460,
+          "top": 94.7911148071289,
+          "left": 152,
+          "viewportWidth": 1024,
+          "viewportHeight": 673
+        },
+        "screenshot": "system-dpi-settings-light-1280-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 673,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 1024,
+          "visualHeight": 673.280029296875
+        }
+      },
+      {
+        "theme": "light",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1.5,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720.0000610351562,
+          "height": 460.0000305175781,
+          "top": 44.918521881103516,
+          "left": 66.66667175292969,
+          "viewportWidth": 853,
+          "viewportHeight": 561
+        },
+        "screenshot": "system-dpi-settings-light-1280-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 853,
+          "height": 561,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 853.3333129882812,
+          "visualHeight": 561.066650390625
+        }
+      },
+      {
+        "theme": "light",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 761.6000366210938,
+          "height": 542.4000244140625,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 762,
+          "viewportHeight": 542
+        },
+        "screenshot": "system-dpi-settings-light-760-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 762,
+          "height": 542,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 761.5999755859375,
+          "visualHeight": 542.4000244140625
+        }
+      },
+      {
+        "theme": "light",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1.25,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 609.2799682617188,
+          "height": 433.91998291015625,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 609,
+          "viewportHeight": 434
+        },
+        "screenshot": "system-dpi-settings-light-760-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 609,
+          "height": 434,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 609.280029296875,
+          "visualHeight": 433.9200134277344
+        }
+      },
+      {
+        "theme": "light",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1.5,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 507.7333679199219,
+          "height": 361.6000061035156,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 508,
+          "viewportHeight": 361
+        },
+        "screenshot": "system-dpi-settings-light-760-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 508,
+          "height": 361,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 507.73333740234375,
+          "visualHeight": 361.6000061035156
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720,
+          "height": 460,
+          "top": 169.60000610351562,
+          "left": 280,
+          "viewportWidth": 1280,
+          "viewportHeight": 842
+        },
+        "screenshot": "system-dpi-settings-dark-1280-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 842,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 1280,
+          "visualHeight": 841.5999755859375
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1.25,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720,
+          "height": 460,
+          "top": 94.7911148071289,
+          "left": 152,
+          "viewportWidth": 1024,
+          "viewportHeight": 673
+        },
+        "screenshot": "system-dpi-settings-dark-1280-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 673,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 1024,
+          "visualHeight": 673.280029296875
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          1280,
+          840
+        ],
+        "zoom": 1.5,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 720.0000610351562,
+          "height": 460.0000305175781,
+          "top": 44.918521881103516,
+          "left": 66.66667175292969,
+          "viewportWidth": 853,
+          "viewportHeight": 561
+        },
+        "screenshot": "system-dpi-settings-dark-1280-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 853,
+          "height": 561,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 853.3333129882812,
+          "visualHeight": 561.066650390625
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 761.6000366210938,
+          "height": 542.4000244140625,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 762,
+          "viewportHeight": 542
+        },
+        "screenshot": "system-dpi-settings-dark-760-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 762,
+          "height": 542,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 761.5999755859375,
+          "visualHeight": 542.4000244140625
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1.25,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 609.2799682617188,
+          "height": 433.91998291015625,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 609,
+          "viewportHeight": 434
+        },
+        "screenshot": "system-dpi-settings-dark-760-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 609,
+          "height": 434,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 609.280029296875,
+          "visualHeight": 433.9200134277344
+        }
+      },
+      {
+        "theme": "dark",
+        "requestedSize": [
+          760,
+          540
+        ],
+        "zoom": 1.5,
+        "layout": {
+          "modal": true,
+          "documentOverflow": false,
+          "contentOverflow": false,
+          "closeVisible": true,
+          "width": 507.7333679199219,
+          "height": 361.6000061035156,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 508,
+          "viewportHeight": 361
+        },
+        "screenshot": "system-dpi-settings-dark-760-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 508,
+          "height": 361,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 507.73333740234375,
+          "visualHeight": 361.6000061035156
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "filename": "system-dpi-settings-light-1280-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 842,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 1280,
+          "visualHeight": 841.5999755859375
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-light-1280-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 673,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 1024,
+          "visualHeight": 673.280029296875
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-light-1280-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 853,
+          "height": 561,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 853.3333129882812,
+          "visualHeight": 561.066650390625
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-light-760-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 762,
+          "height": 542,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 761.5999755859375,
+          "visualHeight": 542.4000244140625
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-light-760-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 609,
+          "height": 434,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 609.280029296875,
+          "visualHeight": 433.9200134277344
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-light-760-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 508,
+          "height": 361,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 507.73333740234375,
+          "visualHeight": 361.6000061035156
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-1280-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 842,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 1280,
+          "visualHeight": 841.5999755859375
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-1280-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 673,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 1024,
+          "visualHeight": 673.280029296875
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-1280-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1280,
+            "height": 841
+          },
+          "contentSize": [
+            1280,
+            841
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 853,
+          "height": 561,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 853.3333129882812,
+          "visualHeight": 561.066650390625
+        },
+        "pngSize": [
+          1600,
+          1052
+        ],
+        "nativeImageSize": {
+          "width": 1600,
+          "height": 1052
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-760-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 762,
+          "height": 542,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 761.5999755859375,
+          "visualHeight": 542.4000244140625
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-760-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.25,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 609,
+          "height": 434,
+          "devicePixelRatio": 1.5625,
+          "visualWidth": 609.280029296875,
+          "visualHeight": 433.9200134277344
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-settings-dark-760-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 762,
+            "height": 542
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 761,
+            "height": 542
+          },
+          "contentSize": [
+            761,
+            542
+          ],
+          "zoom": 1.5,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 508,
+          "height": 361,
+          "devicePixelRatio": 1.875,
+          "visualWidth": 507.73333740234375,
+          "visualHeight": 361.6000061035156
+        },
+        "pngSize": [
+          952,
+          678
+        ],
+        "nativeImageSize": {
+          "width": 952,
+          "height": 678
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      },
+      {
+        "filename": "system-dpi-restarted-draft.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1282,
+            "height": 842
+          },
+          "contentBounds": {
+            "x": 383,
+            "y": 131,
+            "width": 1281,
+            "height": 842
+          },
+          "contentSize": [
+            1281,
+            842
+          ],
+          "zoom": 1,
+          "display": {
+            "id": 4097432655,
+            "scaleFactor": 1.25,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1152
+            },
+            "workArea": {
+              "x": 0,
+              "y": 0,
+              "width": 2048,
+              "height": 1104
+            }
+          }
+        },
+        "viewport": {
+          "width": 1282,
+          "height": 842,
+          "devicePixelRatio": 1.25,
+          "visualWidth": 1281.5999755859375,
+          "visualHeight": 842.4000244140625
+        },
+        "pngSize": [
+          1602,
+          1053
+        ],
+        "nativeImageSize": {
+          "width": 1602,
+          "height": 1053
+        },
+        "imageScaleFactors": [
+          1
+        ]
+      }
+    ],
+    "forcedDeviceScale": false,
+    "productDefaultScaleChanged": false,
+    "systemScaleChanged": false,
+    "completeSystemDpiAcceptance": false,
+    "scope": "Actual host display scaling in the existing candidate, two native requested sizes, both themes and 100/125/150% page zoom. Observed native/renderer geometry, existing settings layout formulas, keyboard/inert background/Escape focus and persisted Chinese draft across normal restart. Full BrowserWindow.capturePage images retain their native representations; physical input, other monitors/scales, all settings controls/pages and complete system-DPI acceptance remain separate."
+  },
+  "bothThemesAccepted": false,
+  "acceptedSystemDpiSuite": false,
+  "finding": "The first run returns exit 0 and 13 checks but does not assert the applied renderer theme. Individual inspection of system-dpi-settings-dark-760-1.5.png shows a light surface and the system theme selection. Direct preferences IPC updates saved data without setting the renderer React state in this test path. The fixture must reload after saving and assert the root data-theme and actual theme selection before labeling or accepting a scenario. This is a test-evidence gap, not proof of a product theme-switch failure."
+}

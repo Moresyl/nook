@@ -12,6 +12,10 @@
 
 实际 Windows 125% 的原生探测留下了窗口外框、内容区域和页面的取整差异；首个完整测试因此零组失败，诊断复测的原生退出也超时。[尺寸失败](../verification/workspace-copy-geometry-failure-result.json)与[独立探测](../verification/workspace-copy-geometry-diagnostic-result.json)保留，当前真实系统缩放、物理交互和最终分发验收仍未完成。
 
+同一中文提示候选现已独立通过真实系统 125% 的设置专项 13 项，未使用强制设备缩放。明暗主题、两种请求窗口大小、100%／125%／150% 页面缩放、模态焦点与背景隔离、Escape 返回焦点和中文草稿正常重启保留均已检查；13 张完整原生截图已逐张复核，两次正常退出，原有固定缩放设置 4 项回归也通过。实际尺寸取整按原值记录，既有精确夹具断言和期限不变。[同一候选与专项范围](../verification/system-dpi-review-result.json)
+
+首轮漏验实际主题的记录不算明暗通过，已保留并补上主题生效断言。[证据缺口](../verification/system-dpi-theme-gap-result.json)本轮仅验收设置子集；其他页面／分类／显示器、物理输入、完整无障碍与重启首页就绪状态仍未验收，不能认定 100% 采用设计资料。
+
 ## 历史批次与设计映射
 
 中文提示新候选已生成；包体与实际启动组件审计、真实便携包装 7 项检查通过。[匹配候选与原始证据](../verification/ui-errors-package-candidate-result.json)新未安装应用体整轮 252 组通过、37 次正常退出，23 份记录中的 EXE／ASAR 哈希匹配；216 张该轮截图尚未逐张检查，真实系统交互和全部参考状态仍在验收。[新包完整回归](../verification/ui-errors-packaged-full-result.json)

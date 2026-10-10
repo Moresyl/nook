@@ -63,7 +63,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const rendererTestSwitches = ['disable-background-timer-throttling', 'disable-backgrounding-occluded-windows', 'disable-renderer-backgrounding'];
 // Keep exact native viewport fixtures independent of the host's fractional display scaling.
 // The suite still exercises Electron zoom; actual system-DPI acceptance is separate.
-const desktopDeviceScaleFactor = '1';
+const desktopDeviceScaleFactor = process.env.NOOK_TEST_SYSTEM_DPI_ONLY ? '' : '1';
 const scratchRoot = resolve(tmpdir());
 const scratchSpace = await statfs(scratchRoot);
 if (scratchSpace.bavail * scratchSpace.bsize < 1_000_000_000) throw new Error('Desktop verification needs at least 1 GB of free temporary disk space. Archive old test workspaces or choose another TMP directory.');
@@ -295,7 +295,7 @@ async function waitForCheckpoint(content) {
 async function launch() {
   application = undefined; currentPage = undefined;
   const startedAt = Date.now();
-  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', `--force-device-scale-factor=${desktopDeviceScaleFactor}`, ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...(desktopDeviceScaleFactor ? [`--force-device-scale-factor=${desktopDeviceScaleFactor}`] : []), ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
   const stdoutBytes = drainDesktopOutput(child.stdout);
   const exited = new Promise((resolve) => child.once('exit', resolve));
@@ -366,7 +366,7 @@ async function launch() {
     console.log('Desktop renderer test switches', JSON.stringify(activeRendererSwitches));
     const activeDeviceScaleFactor = await evaluateMain("require('electron').app.commandLine.getSwitchValue('force-device-scale-factor')");
     assert.equal(activeDeviceScaleFactor, desktopDeviceScaleFactor, 'The native viewport fixture must use its explicit device scale.');
-    console.log('Desktop test device scale factor', activeDeviceScaleFactor);
+    console.log('Desktop test device scale factor', activeDeviceScaleFactor || 'system default');
     profiling = await evaluateMain(startStartupProfileExpression).catch(() => false);
     browser = await chromium.connectOverCDP(debuggerUrl);
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
@@ -541,9 +541,15 @@ let quickChatResult;
 let assistantRecipesResult;
 let promptTransferResult;
 let fullResult;
+let systemDpiResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_RENDERER_CLOSE_ONLY) {
+  if (process.env.NOOK_TEST_SYSTEM_DPI_ONLY) {
+    const { verifySystemDpi } = await import('./verify-system-dpi.mjs');
+    const result = await verifySystemDpi({ page, application, getApplication: () => application, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } });
+    page = result.page; systemDpiResult = result.result;
+    assert.equal(count, 13); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_RENDERER_CLOSE_ONLY) {
     const { verifyRendererClose } = await import('./verify-renderer-close.mjs');
     rendererCloseResult = await verifyRendererClose({ page, application, directory, verified, waitForBridge, modelRequests: () => calls.length });
     assert.equal(count, 2); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
@@ -1318,6 +1324,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'terminal-lifecycle-packaged-result.json' : 'terminal-lifecycle-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...terminalLifecycleResult }, null, 2));
     console.log(`Verified ${terminalLifecycleResult.checks} terminal-lifecycle checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && systemDpiResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'system-dpi-packaged-result.json' : 'system-dpi-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...systemDpiResult }, null, 2));
+    console.log(`Verified ${systemDpiResult.checks} system-DPI checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && rendererCloseResult) {
     assert.deepEqual(errors, []);
