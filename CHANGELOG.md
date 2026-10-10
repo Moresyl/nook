@@ -22,6 +22,8 @@
 
 ### 修复与打磨
 
+- 本轮候选的未安装版与实际安装版分别完成 283 组完整检查、40 次正常退出；便携 7 组、安装／卸载及十一份同包记录通过。27 张工具原图和另外 10 张界面原图已逐张检查。首次安装版的快捷聊天部分回复可见性超时保留，原因未确认。旧工作区重放的测试夹具改用唯一草稿标记并明确新建空白快捷会话，避免误接收上轮输入和回复；约 84 MB 原工作区与全新工作区各 9 组重跑通过，全部断言和原有期限保留。
+
 - 并排 HTML 预览在主界面重载或渲染进程崩溃时释放旧视图，并取消尚未完成的准备；重新打开使用新会话，保留编辑草稿，旧关闭请求不能影响替代视图。
 - 页面切换、窗口调整和缩放时，侧栏保持当前选中项可见；页面导航增加当前页面标记。保留手动滚动与紧凑图标布局。
 
@@ -91,6 +93,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 修复与完善
 
+- 同包未安装版与实际安装版各 283 组、40 次正常退出，便携、安装／卸载、数据保留及十一份匹配记录通过。文字提示验收使用现有分支管理按钮的语义定位；快速聊天夹具使用每轮唯一草稿与空白会话，原工作区和全新工作区各 9 组回归通过。原有期限与草稿／回复断言保留；首次安装版的部分回复可见性超时原因尚未确认，原始失败继续保留。
+
 - 安装版验收同步当前 283 项完整桌面门槛，要求 10 组 HTML 预览、5 组停靠视图及项目分支、工具记录证据，修正旧组数条件错误拒绝新版回归的问题。安装、包体一致性与卸载检查继续保留。
 
 - 文件标签在窗口调整和缩放后自动显露，支持左右方向键循环、Home／End 及 Delete 关闭；未保存文件保留确认，取消或关闭后恢复焦点。窄编辑器的预览与保存采用 24px 图标操作，仍可查看中文名称和提示。
@@ -148,6 +152,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+The current Windows candidate passes 283 checks and 40 normal exits in each unpacked and installed run, portable checks and eleven matching runtime records. Large-workspace and fresh quick-chat replays also pass without extending deadlines. The initial installed partial-response visibility timeout remains recorded with an unconfirmed cause.
 
 Installation verification now requires the current 283-check desktop baseline, including preview reload, project branches and tool activity evidence, while retaining package matching and data-preserving uninstall checks.
 

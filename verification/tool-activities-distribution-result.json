@@ -1,0 +1,887 @@
+{
+  "verifiedAt": "2026-10-10T21:12:18.437Z",
+  "sourceCommit": "0e50da03bf283cf0081081a95a0869156fa94db5",
+  "candidateArchive": "E:/NookVerification/ToolActivitiesCandidate-20261011",
+  "archive": "E:/NookVerification/ToolActivitiesDistribution-20261011",
+  "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
+  "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55",
+  "installationSha256": "194b5e167066ff99e35724d5258004ee050c9d3f4e262f5e55ddf9f7d9258ee1",
+  "portableSha256": "0cb9debc58a213677688e618f1fe4d2e4533eebd72a38c1cb42654495cb9f8ae",
+  "packageAudit": {
+    "verifiedAt": "2026-10-10T19:51:23.853Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
+    "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "signatures": [
+    {
+      "File": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    },
+    {
+      "File": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    },
+    {
+      "File": "artifacts/win-unpacked/Nook.exe",
+      "Status": "NotSigned"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240131998,
+      "sha256": "194b5e167066ff99e35724d5258004ee050c9d3f4e262f5e55ddf9f7d9258ee1"
+    },
+    {
+      "file": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309637356,
+      "sha256": "0cb9debc58a213677688e618f1fe4d2e4533eebd72a38c1cb42654495cb9f8ae"
+    },
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe.blockmap",
+      "bytes": 250017,
+      "sha256": "b3bb957dbd6d3db402e6cdf7d63c7784431de5b1d97f5a58ea0d7b3d5d888246"
+    },
+    {
+      "file": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38"
+    },
+    {
+      "file": "win-unpacked/resources/app.asar",
+      "bytes": 493802210,
+      "sha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55"
+    }
+  ],
+  "completeNativeRuns": [
+    {
+      "stage": "unpacked",
+      "checks": 283,
+      "normalExits": [
+        {
+          "elapsedMs": 652,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 380,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 160,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 187,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 324,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 255,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 267,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 151,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 468,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 170,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 213,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 326,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 237,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 260,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 297,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 157,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 921,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 218,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 472,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1020,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 432,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 468,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 490,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 226,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 291,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 248,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1873,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 607,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 448,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 225,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1515,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 413,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 372,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 279,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 274,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 423,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 417,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 469,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1609,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 356,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\ToolActivitiesDistribution-20261011\\unpacked-full"
+    },
+    {
+      "stage": "installed",
+      "checks": 283,
+      "normalExits": [
+        {
+          "elapsedMs": 947,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 814,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 953,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 288,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 641,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 255,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 330,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 182,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 357,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 199,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 178,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 605,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 241,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1076,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1929,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 587,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 694,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 256,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 781,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 652,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 364,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 358,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 283,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 360,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 621,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 917,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2028,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 366,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 379,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 187,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 3771,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 612,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 498,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 229,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 296,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 350,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 329,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2282,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2665,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 477,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\ToolActivitiesDistribution-20261011\\installed-full"
+    }
+  ],
+  "surfaceChecks": 4,
+  "portableChecks": 7,
+  "portableLaunches": [
+    {
+      "wrapperStartedAt": 1791663447818,
+      "applicationObservedAt": 1791663455541,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791663456272
+    },
+    {
+      "wrapperStartedAt": 1791663464911,
+      "applicationObservedAt": 1791663478987,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791663479050
+    }
+  ],
+  "installation": {
+    "shortcutsVerified": true,
+    "checks": 283,
+    "normalCloseVerified": true,
+    "installerSha256": "194b5e167066ff99e35724d5258004ee050c9d3f4e262f5e55ddf9f7d9258ee1",
+    "registrationVerified": true,
+    "uninstalled": true,
+    "scope": "Actual current-user silent install into an owned Unicode path, complete installed-runtime regression, original package hashes, shortcut metadata and silent uninstall with fresh data sentinels. Native wizard interaction remains a separate check.",
+    "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
+    "verifiedAt": "2026-10-10T21:07:10.9759244Z",
+    "userDataRetained": true,
+    "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55",
+    "version": "0.1.0-alpha.1"
+  },
+  "matchingRuntimeRecords": {
+    "audit": {
+      "key": "audit",
+      "file": "package-audit-result.json",
+      "sha256": "05aec09d51445cfbf39d942168f54a802b240836e001d97df5fc1b7052654f47"
+    },
+    "desktop": {
+      "key": "desktop",
+      "file": "packaged-result.json",
+      "sha256": "264108e8a8fa5786108cdd624cb8fa7308d386db7e669034f74320e72b3f64b5"
+    },
+    "surfaces": {
+      "key": "surfaces",
+      "file": "surfaces-packaged-result.json",
+      "sha256": "8845f586a10001f98e44028b43cf5a5e07fe5cc9222cb6bc9811216d88a10e20"
+    },
+    "preview": {
+      "key": "preview",
+      "file": "project-preview-packaged-result.json",
+      "sha256": "3d3983c7e1bc9820b04a2cb06a8aacb5556b81baa549e0ac8a0b200d1a68e401"
+    },
+    "branches": {
+      "key": "branches",
+      "file": "conversation-branches-packaged-result.json",
+      "sha256": "1a9305607b65dcca5a601565c3b51de18974a53911cedd7736385cb9ec235902"
+    },
+    "temporary": {
+      "key": "temporary",
+      "file": "temporary-conversations-packaged-result.json",
+      "sha256": "f0a94cef39297c2cca67c242bcc4cfbbccd8674de98f4b2dc0ab31fe0c57df59"
+    },
+    "comparisons": {
+      "key": "comparisons",
+      "file": "model-comparisons-packaged-result.json",
+      "sha256": "30dd7ecf9a6b7d965bbc0370a7a71ccda495ff633896de3ee7118eed766c8220"
+    },
+    "portable": {
+      "key": "portable",
+      "file": "portable-result.json",
+      "sha256": "3def46a099b5678ddbdb3c272c5c48c99db9343b5f80f6c8c3cb1ca31a666d69"
+    },
+    "portableAudit": {
+      "key": "portableAudit",
+      "file": "portable-package-audit-result.json",
+      "sha256": "9ba16608b626882d51c5768c5bc9ebaa639f059e842cccaf6d86ab495d55b7c1"
+    },
+    "bootstrap": {
+      "key": "bootstrap",
+      "file": "distribution-bootstrap-result.json",
+      "sha256": "ad5904c22073f0a7cb590569c711687e2d0313c5bb1cb540a7f77c8815b7df8e"
+    },
+    "installer": {
+      "key": "installer",
+      "file": "pipeline-installer-result.json",
+      "sha256": "d23bdba539a0470e5a298df71cd8db3c8a0433ca01eb413dcbd090e66f420dd6"
+    }
+  },
+  "allRuntimeProofPassed": true,
+  "preservedDistributionFailures": [
+    {
+      "archive": "E:/NookVerification/ToolActivitiesTextHintsSelectorFailure-20261011",
+      "normalExitMs": 1063,
+      "cause": "The text-hint harness still selected the former branch span after branch management introduced a semantic button. Only the locator changed; original text, keyboard, focus, dimensions, draft assertions and deadlines remain. Seven native packaged text-hint checks pass after the correction.",
+      "retryLog": "D:/GR/pi-pc/.firecrawl/nook-tool-activity-unpacked-text-hints-retry-20261011.log"
+    },
+    {
+      "archive": "E:/NookVerification/ToolActivitiesInstalledFirstFailure-20261011",
+      "checksBeforeFailure": 247,
+      "normalExitMs": 3278,
+      "cause": "The quick-chat partial-response visibility check exceeded its original five-second deadline. The saved thread contains the exact partial response. The cause is unconfirmed; a subsequent passing run does not establish that it has been fixed.",
+      "retainedProfiles": "The four exact owned failure sentinels remain in their original profile directories and were copied to the failure archive. The retry validates and preserves them while creating separate fresh retention sentinels.",
+      "retryLog": "D:/GR/pi-pc/.firecrawl/nook-tool-activity-installed-full-retry-20261011.log"
+    }
+  ],
+  "quickChatDiagnostics": {
+    "record": "verification/tool-activities-quick-diagnostics-result.json",
+    "runs": [
+      {
+        "kind": "seeded",
+        "archive": "E:/NookVerification/ToolActivitiesQuickSeededPass-20261011",
+        "checks": 9,
+        "normalExits": 2
+      },
+      {
+        "kind": "fresh",
+        "archive": "E:/NookVerification/ToolActivitiesQuickFreshPass-20261011",
+        "checks": 9,
+        "normalExits": 2
+      }
+    ],
+    "preparationFailure": {
+      "archive": "E:/NookVerification/ToolActivitiesQuickSeedFailure-20261011",
+      "originalUpdatedAt": 1791664506788,
+      "replayUpdatedAt": 1791665102768,
+      "allOtherDraftFieldsEqual": true,
+      "cause": "The seed already contained the exact fixed main-draft marker. The old persistence predicate accepted that earlier draft before the new debounced timestamp save, so the later exact snapshot equality failed. Each run now uses a unique marker and explicitly creates its empty quick-chat conversation; all draft, reply and deadline assertions remain."
+    },
+    "initialInstalledVisibilityFailureResolved": false
+  },
+  "productSourceFiles": 256,
+  "compiledFiles": 236,
+  "visualReviews": [
+    {
+      "reviewedAt": "2026-10-10T20:20:38.877Z",
+      "stage": "unpacked",
+      "reviewedOriginals": 9,
+      "images": [
+        {
+          "filename": "tool-activities-running.png",
+          "size": [
+            1280,
+            840
+          ],
+          "sha256": "206ca7831a67dc985a1ffea6020c780b265d42c4961fdb7e8256fe83481eef79"
+        },
+        {
+          "filename": "tool-activities-light-100.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "75c62fbbb815bc219548f57d142934c2b85ff07a1b0c820ef9c87ab0d586fdd9"
+        },
+        {
+          "filename": "tool-activities-light-125.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "255a84a9edc37c2d5f82298a5b3ca974ba7ba5a0520e849c55b471ef5bf36a4f"
+        },
+        {
+          "filename": "tool-activities-light-150.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "f14303702afd6426a69a00a433166108b29addf2df2c675fcc89c4ed73722681"
+        },
+        {
+          "filename": "tool-activities-dark-100.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "dfeedad3c36a3a727fa4bfa0a3986360e44276f849df35d5778f8ff65f813021"
+        },
+        {
+          "filename": "tool-activities-dark-125.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "f52453e0d30ad6796dee785c2bd8de11c764aede109852e264fa9883f50c5cfe"
+        },
+        {
+          "filename": "tool-activities-dark-150.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "f14fc73d336b0304f0a7b50272f43151d1a74c3a1570206d03e3e91b0fc8347d"
+        },
+        {
+          "filename": "tool-activities-quick.png",
+          "size": [
+            640,
+            580
+          ],
+          "sha256": "6e800e9d0ac37b9fb533163b532d79d43ce57247cc2aa2e43b270d66fb65726e"
+        },
+        {
+          "filename": "tool-activities-restart.png",
+          "size": [
+            1280,
+            840
+          ],
+          "sha256": "48d31d89011905383241bd0d952f4715112411dd4494faab6590ba0ab6388400"
+        }
+      ],
+      "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
+      "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55",
+      "scope": "Nine original native tool-activity images individually reviewed: running, six theme/zoom layouts, quick chat and restart. Summaries and focus controls remain visible; long original text scrolls and is not required to fit simultaneously with the composer. Other complete-run images are retained without claiming individual review. Fixed device scale/scripted input, not physical system-DPI or assistive-technology acceptance."
+    },
+    {
+      "reviewedAt": "2026-10-10T21:08:36.401Z",
+      "stage": "installed",
+      "reviewedOriginals": 9,
+      "images": [
+        {
+          "filename": "tool-activities-running.png",
+          "size": [
+            1280,
+            840
+          ],
+          "sha256": "6e2c2ae7326d2f275a2fdb6310b7f32857a0850807ea51de1d668aa8eb000875"
+        },
+        {
+          "filename": "tool-activities-light-100.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "d63ede55089d4f37a093cdb5a88eedea63845f60845f083c2ba989b18e12b563"
+        },
+        {
+          "filename": "tool-activities-light-125.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "188691f60c98ad4cf8a4f5ec8015c33f73ac0979fc4ec634fc28ba3d8b444033"
+        },
+        {
+          "filename": "tool-activities-light-150.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "f15c0b6a53b12675f97174c5512654bc168ae259547feaef7a53ffd9d5fc7bdd"
+        },
+        {
+          "filename": "tool-activities-dark-100.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "333656a7c26b33b84720d3e99abb5f3692de4e58d930032124e8d13e05fa1a85"
+        },
+        {
+          "filename": "tool-activities-dark-125.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "f0b4454efcdeac7c0c1af4f0e7652bb7d6edd79dd29e7f9c1f694df3a590f330"
+        },
+        {
+          "filename": "tool-activities-dark-150.png",
+          "size": [
+            760,
+            620
+          ],
+          "sha256": "94a0a4a4e7f9d6d12dcbd13aeba1d6ddc9a1cbaeb5576d68f4884549bc8b48c1"
+        },
+        {
+          "filename": "tool-activities-quick.png",
+          "size": [
+            640,
+            580
+          ],
+          "sha256": "b292975fadf8abd111706e9b2f20de8efb36bf188610a7506758fc8f404d367d"
+        },
+        {
+          "filename": "tool-activities-restart.png",
+          "size": [
+            1280,
+            840
+          ],
+          "sha256": "1267a485c8c3000ed137e3a512ac018a05474aa6dde6ba774f9c972dd1d3cfee"
+        }
+      ],
+      "executableSha256": "cbb1b197633005ff6b4d6ee4e41325b850524d4df861af296f5490ed46d5df38",
+      "archiveSha256": "f1fb64b814551a00636c2a1ef97f4fc6c7ad6f2cba13cafb926a4ae8f3a25a55",
+      "scope": "Nine original native tool-activity images individually reviewed: running, six theme/zoom layouts, quick chat and restart. Summaries and focus controls remain visible; long original text scrolls and is not required to fit simultaneously with the composer. Other complete-run images are retained without claiming individual review. Fixed device scale/scripted input, not physical system-DPI or assistive-technology acceptance."
+    }
+  ],
+  "reviewedDistributionToolOriginals": 18,
+  "additionalUiReview": {
+    "record": "verification/tool-activities-additional-ui-review-result.json",
+    "reviewedOriginals": 10,
+    "archive": "E:/NookVerification/ToolActivitiesDistribution-20261011/unpacked-full"
+  },
+  "visualScope": "Nine source focused originals and nine originals from each unpacked/installed complete run were individually reviewed for tool activities. Ten additional unpacked complete-run originals were individually reviewed. Other retained originals are not all individually visually reviewed.",
+  "wholeReferenceUiAccepted": false,
+  "physicalSystemInteractionAccepted": false,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "scope": "Complete unpacked and actual installed runs use the exact audited EXE/ASAR; actual bootstrap, two portable launches, current-user install, shortcut metadata, normal exits and data-preserving silent uninstall verified against eleven matching records. These local results do not establish all reference UI states, physical wizard/input, real cloud services, other platforms or successful hosted publication."
+}

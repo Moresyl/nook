@@ -42,7 +42,7 @@ pnpm dev
 
 - [模型连接](docs/MODEL-CONNECTIONS.md) · [附件](docs/ATTACHMENTS.md) · [资料库](docs/KNOWLEDGE.md)
 - [PDF 原件与阅读](docs/PDF-PREVIEW.md) · [本地恢复副本](docs/LOCAL-RECOVERY.md)
-- [内容阅读与代码换行](docs/RICH-CONTENT.md) · [记忆](docs/MEMORIES.md) · [临时聊天](docs/TEMPORARY-CHATS.md)
+- [内容阅读与代码换行](docs/RICH-CONTENT.md) · [工具记录](docs/TOOL-ACTIVITIES.md) · [记忆](docs/MEMORIES.md) · [临时聊天](docs/TEMPORARY-CHATS.md)
 - [快速聊天](docs/QUICK-CHAT.md) · [桌面入口](docs/DESKTOP-INTEGRATION.md)
 - [项目](docs/PROJECTS.md) · [HTML 预览](docs/PROJECT-PREVIEW.md) · [对话分支](docs/CONVERSATION-BRANCHES.md) · [模型比较](docs/MODEL-COMPARISON.md)
 - [助手](docs/ASSISTANTS.md) · [自动任务](docs/AUTOMATIONS.md) · [插件](docs/PLUGINS.md)
