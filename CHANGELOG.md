@@ -82,6 +82,9 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 修复与完善
 
+- 文件标签在窗口调整和缩放后自动显露，支持左右方向键循环、Home／End 及 Delete 关闭；未保存文件保留确认，取消或关闭后恢复焦点。窄编辑器的预览与保存采用 24px 图标操作，仍可查看中文名称和提示。
+- 项目文件保存遇到磁盘或权限错误时显示可恢复的中文提示，保留草稿、标签和原文件；原始系统诊断留在错误原因中，不直接展示到界面，恢复后可重试保存并关闭。文件冲突与范围校验保留原有行为。
+
 - 并排 HTML 预览在主界面重载或渲染进程崩溃时释放旧视图，取消尚未完成的准备；重新打开保留编辑草稿并使用新会话，拒绝旧视图的关闭请求。
 - 侧栏在页面切换、窗口调整和缩放后保持当前选中项可见，页面导航增加当前页面标记。短窗口继续使用紧凑图标与手动滚动。
 
@@ -134,6 +137,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+File tabs reveal the selected file after resizing or zooming and support arrow keys, Home/End and safe Delete-to-close. Compact editor actions use 24px icons with accessible names. Filesystem save failures retain drafts and original bytes, show a recovery message without raw diagnostics and permit save-and-close retry.
 
 Releases docked HTML previews and cancels pending preparation when the workbench reloads or crashes. Reopening retains editor drafts and rejects stale close requests. Sidebar navigation keeps the selected item visible after page changes, resizing and zoom, with a current-page marker.
 

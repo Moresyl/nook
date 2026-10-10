@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-10T15:50:01.553Z",
+  "cases": [
+    {
+      "name": "selected-file-clipped",
+      "archive": "E:/NookVerification/EditorTabsVisibilityFailure-20261010",
+      "codeBase": "c438600e8fb41170bf281c5c66aff017490b2e09",
+      "retainedDirectory": "E:/NookVerification/Temp/qiyao-electron-JfrRvj",
+      "cause": "After native 150% zoom and resize the selected data.json button starts beyond the visible tab strip. Product auto-reveal fixes it without a click or focus workaround.",
+      "normalExit": {
+        "elapsedMs": 371,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    },
+    {
+      "name": "fixture-paste-before-editor-ready",
+      "archive": "E:/NookVerification/EditorTabsFirstNativeFailure-20261010",
+      "retainedDirectory": "E:/NookVerification/Temp/qiyao-electron-4iNmho",
+      "cause": "The harness pasted before the reopened Monaco editor displayed its original content. Added the established actual path/content readiness check; the 10-second bridge deadline and exact draft assertion remain.",
+      "normalExit": {
+        "elapsedMs": 243,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    },
+    {
+      "name": "raw-filesystem-diagnostic-shown",
+      "archive": "E:/NookVerification/EditorTabsSaveErrorFailure-20261010",
+      "retainedDirectory": "E:/NookVerification/Temp/qiyao-electron-6c8EBl",
+      "cause": "An exact owned rename EIO reaches the save-and-close error toast verbatim. Project writes now wrap coded filesystem errors with a recovery message and preserve the diagnostic cause in the main process; UI translation, byte preservation, staging cleanup and retry are checked.",
+      "normalExit": {
+        "elapsedMs": 326,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    }
+  ]
+}
