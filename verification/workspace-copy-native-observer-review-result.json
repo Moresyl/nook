@@ -1,0 +1,1778 @@
+{
+  "verifiedAt": "2026-10-06T23:21:47.564Z",
+  "productCommit": "4880939",
+  "compiledManifestSha256": "88f10262a4d4c7240b5170232267c9724bc06f462a67060432e412ffc91bca4d",
+  "unchangedProductBuild": true,
+  "harnessHead": "b009fbe678e6749aea39ea408b0bf3c3b27fa2e8",
+  "harness": [
+    {
+      "file": "scripts/verify-chat-navigation.mjs",
+      "sha256": "5119a580c9d35196a3917e1ec35cad1efcf4928a0084bae8f5e7f4b62bafa0fd"
+    },
+    {
+      "file": "scripts/verify-model-comparisons.mjs",
+      "sha256": "410ad6a3e62a508cc52b706c51eed12b297f5a365d4e018242eaa84d3430f1a1"
+    }
+  ],
+  "focusedRuns": [
+    {
+      "name": "chat-navigation",
+      "checks": 5,
+      "result": {
+        "verifiedAt": "2026-10-06T23:18:57.832Z",
+        "variant": "development executable",
+        "executableSha256": null,
+        "archiveSha256": null,
+        "runtimeErrors": [],
+        "normalCloseVerified": true,
+        "verificationRun": "focused chat-navigation suite",
+        "checks": 5,
+        "modelRequests": 1,
+        "layout": [
+          {
+            "zoom": 1,
+            "controls": [
+              {
+                "label": "打开命令面板",
+                "left": 536,
+                "right": 564,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "查找当前聊天",
+                "left": 572,
+                "right": 600,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "置顶聊天",
+                "left": 608,
+                "right": 636,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "导出聊天",
+                "left": 644,
+                "right": 672,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "归档聊天",
+                "left": 680,
+                "right": 708,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "删除聊天",
+                "left": 716,
+                "right": 744,
+                "top": 50,
+                "bottom": 78,
+                "width": 28,
+                "height": 28
+              },
+              {
+                "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+                "left": 269,
+                "right": 451.96875,
+                "top": 339,
+                "bottom": 363,
+                "width": 182.96875,
+                "height": 24
+              },
+              {
+                "label": "消息",
+                "left": 252,
+                "right": 688,
+                "top": 378,
+                "bottom": 426,
+                "width": 436,
+                "height": 48
+              },
+              {
+                "label": "发送消息",
+                "left": 696,
+                "right": 728,
+                "top": 394,
+                "bottom": 426,
+                "width": 32,
+                "height": 32
+              },
+              {
+                "label": "模型提供商",
+                "left": 246,
+                "right": 335,
+                "top": 477,
+                "bottom": 501,
+                "width": 89,
+                "height": 24
+              },
+              {
+                "label": "选择模型",
+                "left": 335,
+                "right": 478,
+                "top": 477,
+                "bottom": 501,
+                "width": 143,
+                "height": 24
+              }
+            ],
+            "width": 760,
+            "height": 540,
+            "overflow": false,
+            "bar": {
+              "left": 220,
+              "right": 760,
+              "top": 92,
+              "bottom": 133
+            },
+            "close": {
+              "left": 724,
+              "right": 752,
+              "top": 98,
+              "bottom": 126
+            },
+            "region": {
+              "width": 540,
+              "height": 181
+            },
+            "marker": {
+              "left": 227,
+              "right": 253,
+              "top": 168,
+              "bottom": 170
+            },
+            "rail": {
+              "top": 157,
+              "bottom": 290
+            },
+            "result": {
+              "top": 193,
+              "bottom": 210
+            }
+          },
+          {
+            "zoom": 1.25,
+            "controls": [
+              {
+                "label": "打开命令面板",
+                "left": 442,
+                "right": 466,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "查找当前聊天",
+                "left": 468,
+                "right": 492,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "置顶聊天",
+                "left": 494,
+                "right": 518,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "导出聊天",
+                "left": 520,
+                "right": 544,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "归档聊天",
+                "left": 546,
+                "right": 570,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "删除聊天",
+                "left": 572,
+                "right": 596,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+                "left": 92.80000305175781,
+                "right": 275.3625030517578,
+                "top": 273.20001220703125,
+                "bottom": 297.20001220703125,
+                "width": 182.5625,
+                "height": 24
+              },
+              {
+                "label": "消息",
+                "left": 84,
+                "right": 548,
+                "top": 304,
+                "bottom": 336,
+                "width": 464,
+                "height": 32
+              },
+              {
+                "label": "发送消息",
+                "left": 556,
+                "right": 588,
+                "top": 304,
+                "bottom": 336,
+                "width": 32,
+                "height": 32
+              },
+              {
+                "label": "模型提供商",
+                "left": 76,
+                "right": 164.5999984741211,
+                "top": 382,
+                "bottom": 406,
+                "width": 88.5999984741211,
+                "height": 24
+              },
+              {
+                "label": "选择模型",
+                "left": 164.60000610351562,
+                "right": 307.20001220703125,
+                "top": 382,
+                "bottom": 406,
+                "width": 142.60000610351562,
+                "height": 24
+              }
+            ],
+            "width": 608,
+            "height": 432,
+            "overflow": false,
+            "bar": {
+              "left": 64,
+              "right": 608,
+              "top": 72,
+              "bottom": 112.79999923706055
+            },
+            "close": {
+              "left": 572,
+              "right": 600,
+              "top": 78,
+              "bottom": 106
+            },
+            "region": {
+              "width": 544,
+              "height": 145.60000610351562
+            },
+            "marker": {
+              "left": 71,
+              "right": 97,
+              "top": 131.8000030517578,
+              "bottom": 133.8000030517578
+            },
+            "rail": {
+              "top": 120.80000305175781,
+              "bottom": 250.40000915527344
+            },
+            "result": {
+              "top": 161.8000030517578,
+              "bottom": 178.60000610351562
+            }
+          },
+          {
+            "zoom": 1.5,
+            "controls": [
+              {
+                "label": "打开命令面板",
+                "left": 340.66668701171875,
+                "right": 364.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "查找当前聊天",
+                "left": 366.66668701171875,
+                "right": 390.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "置顶聊天",
+                "left": 392.66668701171875,
+                "right": 416.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "导出聊天",
+                "left": 418.66668701171875,
+                "right": 442.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "归档聊天",
+                "left": 444.66668701171875,
+                "right": 468.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "删除聊天",
+                "left": 470.66668701171875,
+                "right": 494.66668701171875,
+                "top": 42,
+                "bottom": 66,
+                "width": 24,
+                "height": 24
+              },
+              {
+                "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+                "left": 92.66667175292969,
+                "right": 274.9583435058594,
+                "top": 201.33334350585938,
+                "bottom": 225.33334350585938,
+                "width": 182.2916717529297,
+                "height": 24
+              },
+              {
+                "label": "消息",
+                "left": 84,
+                "right": 446.66668701171875,
+                "top": 232,
+                "bottom": 264,
+                "width": 362.66668701171875,
+                "height": 32
+              },
+              {
+                "label": "发送消息",
+                "left": 454.66668701171875,
+                "right": 486.66668701171875,
+                "top": 232,
+                "bottom": 264,
+                "width": 32,
+                "height": 32
+              },
+              {
+                "label": "模型提供商",
+                "left": 76,
+                "right": 164.33333587646484,
+                "top": 310,
+                "bottom": 334,
+                "width": 88.33333587646484,
+                "height": 24
+              },
+              {
+                "label": "选择模型",
+                "left": 164.33334350585938,
+                "right": 306.66668701171875,
+                "top": 310,
+                "bottom": 334,
+                "width": 142.33334350585938,
+                "height": 24
+              }
+            ],
+            "width": 507,
+            "height": 360,
+            "overflow": false,
+            "bar": {
+              "left": 64,
+              "right": 506.66668701171875,
+              "top": 72,
+              "bottom": 112.66666793823242
+            },
+            "close": {
+              "left": 470.66668701171875,
+              "right": 498.66668701171875,
+              "top": 78,
+              "bottom": 106
+            },
+            "region": {
+              "width": 442.66668701171875,
+              "height": 74
+            },
+            "marker": {
+              "left": 71,
+              "right": 97,
+              "top": 131.6666717529297,
+              "bottom": 133.6666717529297
+            },
+            "rail": {
+              "top": 120.66667175292969,
+              "bottom": 178.6666717529297
+            },
+            "result": {
+              "top": 137,
+              "bottom": 153.6666717529297
+            }
+          }
+        ],
+        "screenshots": [
+          "102-message-navigation-light.png",
+          "103-chat-find-light.png",
+          "104-chat-find-code-light.png",
+          "105-chat-find-dark-zoom-100.png",
+          "105-chat-find-dark-zoom-125.png",
+          "105-chat-find-dark-zoom-150.png"
+        ],
+        "screenshotMethod": "Complete native Electron BrowserWindow.capturePage with exact content-size assertions",
+        "scope": "Current-chat message-only literal find; native keyboard, pointer and captured-pointer rail navigation; reference 26-by-2-pixel markers and one-rem edge fades; exact original UTF-16 offsets, inline Markdown spans, Unicode/metacharacters and actual code overflow; command context/focus, no-send history/draft/attachment retention; real held HTTP streaming and manual reading position; actual normal close/restart and dark 760x540 layout at 100/125/150 percent zoom. Maximum-scale, full accessibility, cross-platform and richer graphical branch navigation remain separate work."
+      },
+      "observations": {
+        "streamStartedAt": 1791328732691,
+        "completedAt": 1791328734332,
+        "originalDeadlineMs": 10000,
+        "originalPollIntervalMs": 100,
+        "requests": 1,
+        "native": {
+          "observations": {
+            "installedAt": 1791328732689,
+            "loads": [
+              {
+                "startedAt": 1791328732920,
+                "returnedAt": 1791328732920,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                },
+                "finishedAt": 1791328732920
+              },
+              {
+                "startedAt": 1791328733113,
+                "returnedAt": 1791328733113,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                },
+                "finishedAt": 1791328733113
+              },
+              {
+                "startedAt": 1791328733223,
+                "returnedAt": 1791328733223,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                },
+                "finishedAt": 1791328733223
+              },
+              {
+                "startedAt": 1791328733334,
+                "returnedAt": 1791328733334,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                },
+                "finishedAt": 1791328733334
+              },
+              {
+                "startedAt": 1791328733444,
+                "returnedAt": 1791328733444,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                },
+                "finishedAt": 1791328733444
+              },
+              {
+                "startedAt": 1791328733559,
+                "returnedAt": 1791328733637,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 27,
+                  "hasNeedle": true
+                },
+                "finishedAt": 1791328733637
+              },
+              {
+                "startedAt": 1791328734024,
+                "returnedAt": 1791328734024,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "complete",
+                  "characters": 52,
+                  "hasNeedle": true
+                },
+                "finishedAt": 1791328734024
+              }
+            ],
+            "clones": [
+              {
+                "startedAt": 1791328732701,
+                "completedAt": 1791328732701,
+                "thread": {
+                  "messageCount": 40,
+                  "status": "complete",
+                  "characters": 56,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328732704,
+                "completedAt": 1791328732704,
+                "thread": {
+                  "messageCount": 40,
+                  "status": "complete",
+                  "characters": 56,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328732706,
+                "completedAt": 1791328732706,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328732774,
+                "completedAt": 1791328732774,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328732920,
+                "completedAt": 1791328732920,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733113,
+                "completedAt": 1791328733113,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733223,
+                "completedAt": 1791328733223,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733334,
+                "completedAt": 1791328733334,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733444,
+                "completedAt": 1791328733444,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733538,
+                "completedAt": 1791328733538,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 0,
+                  "hasNeedle": false
+                }
+              },
+              {
+                "startedAt": 1791328733539,
+                "completedAt": 1791328733539,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 27,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328733637,
+                "completedAt": 1791328733637,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 27,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328733637,
+                "completedAt": 1791328733637,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 27,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328733940,
+                "completedAt": 1791328733940,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "running",
+                  "characters": 27,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328733941,
+                "completedAt": 1791328733941,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "complete",
+                  "characters": 52,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328734022,
+                "completedAt": 1791328734022,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "complete",
+                  "characters": 52,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328734022,
+                "completedAt": 1791328734022,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "complete",
+                  "characters": 52,
+                  "hasNeedle": true
+                }
+              },
+              {
+                "startedAt": 1791328734024,
+                "completedAt": 1791328734024,
+                "thread": {
+                  "messageCount": 42,
+                  "status": "complete",
+                  "characters": 52,
+                  "hasNeedle": true
+                }
+              }
+            ],
+            "wholeWorkspaceCopies": 0,
+            "files": [
+              {
+                "file": "backup",
+                "method": "writeFile",
+                "startedAt": 1791328732711,
+                "completedAt": 1791328732714
+              },
+              {
+                "file": "backup",
+                "method": "sync",
+                "startedAt": 1791328732714,
+                "completedAt": 1791328732744
+              },
+              {
+                "file": "journal",
+                "method": "writeFile",
+                "startedAt": 1791328732744,
+                "completedAt": 1791328732745
+              },
+              {
+                "file": "journal",
+                "method": "sync",
+                "startedAt": 1791328732745,
+                "completedAt": 1791328732773
+              },
+              {
+                "file": "backup",
+                "method": "writeFile",
+                "startedAt": 1791328733569,
+                "completedAt": 1791328733572
+              },
+              {
+                "file": "backup",
+                "method": "sync",
+                "startedAt": 1791328733572,
+                "completedAt": 1791328733607
+              },
+              {
+                "file": "journal",
+                "method": "writeFile",
+                "startedAt": 1791328733608,
+                "completedAt": 1791328733608
+              },
+              {
+                "file": "journal",
+                "method": "sync",
+                "startedAt": 1791328733608,
+                "completedAt": 1791328733636
+              },
+              {
+                "file": "backup",
+                "method": "writeFile",
+                "startedAt": 1791328733943,
+                "completedAt": 1791328733943
+              },
+              {
+                "file": "backup",
+                "method": "sync",
+                "startedAt": 1791328733943,
+                "completedAt": 1791328733978
+              },
+              {
+                "file": "journal",
+                "method": "writeFile",
+                "startedAt": 1791328733981,
+                "completedAt": 1791328733982
+              },
+              {
+                "file": "journal",
+                "method": "sync",
+                "startedAt": 1791328733982,
+                "completedAt": 1791328734017
+              }
+            ]
+          },
+          "capturedAt": 1791328734329
+        }
+      },
+      "exits": [
+        {
+          "elapsedMs": 710,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 280,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 265,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "file": "nook-record-copy-chat-navigation-native.log",
+        "sha256": "6c989511d0d06222a5f9fd23d094febe924e542ba2b07f12e303f28b8350c8ab"
+      }
+    },
+    {
+      "name": "model-comparisons",
+      "checks": 6,
+      "result": {
+        "verifiedAt": "2026-10-06T23:20:10.879Z",
+        "variant": "development executable",
+        "executableSha256": null,
+        "archiveSha256": null,
+        "runtimeErrors": [],
+        "normalCloseVerified": true,
+        "verificationRun": "focused model-comparison suite",
+        "checks": 6,
+        "settingsTransactions": [
+          {
+            "operation": "saveProvider",
+            "workspaceCopies": 0,
+            "threadCopies": 0,
+            "startedAt": 1791328797684,
+            "success": true,
+            "resultThreadCount": 0,
+            "finishedAt": 1791328798790
+          },
+          {
+            "operation": "saveProvider",
+            "workspaceCopies": 0,
+            "threadCopies": 0,
+            "startedAt": 1791328798791,
+            "success": true,
+            "resultThreadCount": 0,
+            "finishedAt": 1791328799225
+          },
+          {
+            "operation": "savePreferences",
+            "workspaceCopies": 0,
+            "threadCopies": 0,
+            "startedAt": 1791328799346,
+            "success": true,
+            "resultThreadCount": 0,
+            "finishedAt": 1791328799471
+          }
+        ],
+        "comparisonModelRequests": 11,
+        "parallelStreamsVerified": true,
+        "independentFailureStopVerified": true,
+        "atomicSaveRetryVerified": true,
+        "backupsRestartVerified": true,
+        "temporaryExclusionVerified": true,
+        "originalDraftRetainedVerified": true,
+        "originalModelIdentityVerified": true,
+        "layout": [
+          {
+            "zoom": 1,
+            "width": 760,
+            "height": 540,
+            "headerTop": 1,
+            "footerBottom": 517,
+            "overflow": false
+          },
+          {
+            "zoom": 1.25,
+            "width": 608,
+            "height": 432,
+            "headerTop": 0.800000011920929,
+            "footerBottom": 408.4000053405762,
+            "overflow": false
+          },
+          {
+            "zoom": 1.5,
+            "width": 507,
+            "height": 360,
+            "headerTop": 0.6666666865348816,
+            "footerBottom": 336.0000114440918,
+            "overflow": false
+          }
+        ],
+        "screenshots": [
+          "117-model-comparison-config-light.png",
+          "118-model-comparison-stream-light.png",
+          "119-model-comparison-save-error-light.png",
+          "120-model-comparison-config-dark-zoom-100.png",
+          "121-model-comparison-results-dark-zoom-100.png",
+          "120-model-comparison-config-dark-zoom-125.png",
+          "121-model-comparison-results-dark-zoom-125.png",
+          "120-model-comparison-config-dark-zoom-150.png",
+          "121-model-comparison-results-dark-zoom-150.png"
+        ],
+        "scope": "Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate."
+      },
+      "observations": {
+        "phase": "complete",
+        "sendStartedAt": 1791328805415,
+        "capturedAt": 1791328806616,
+        "originalDeadlineMs": 10000,
+        "originalPollIntervalMs": 100,
+        "expectedServerRequests": 11,
+        "serverRequests": 11,
+        "timeline": [
+          {
+            "receivedAt": 1791328804215,
+            "connection": "a",
+            "model": "one",
+            "messages": 4,
+            "partialSentAt": 1791328804215,
+            "completionQueuedAt": 1791328804256,
+            "completionFlushedAt": 1791328804256,
+            "closedAt": 1791328804256
+          },
+          {
+            "receivedAt": 1791328804731,
+            "connection": "a",
+            "model": "one",
+            "messages": 2,
+            "partialSentAt": 1791328804732,
+            "completionQueuedAt": 1791328804784,
+            "completionFlushedAt": 1791328804786,
+            "closedAt": 1791328804786
+          },
+          {
+            "receivedAt": 1791328804732,
+            "connection": "b",
+            "model": "two",
+            "messages": 2,
+            "partialSentAt": 1791328804732,
+            "completionQueuedAt": 1791328804784,
+            "completionFlushedAt": 1791328804786,
+            "closedAt": 1791328804786
+          },
+          {
+            "receivedAt": 1791328805639,
+            "connection": "b",
+            "model": "two",
+            "messages": 6,
+            "partialSentAt": 1791328805639,
+            "completionQueuedAt": 1791328806531,
+            "completionFlushedAt": 1791328806531,
+            "closedAt": 1791328806531
+          }
+        ],
+        "rendererPolls": [
+          {
+            "phase": "partial",
+            "startedAt": 1791328805503,
+            "completedAt": 1791328805581,
+            "expectedMessageCount": 6,
+            "messageCount": 4,
+            "lastUserMatches": false,
+            "lastStatus": "complete",
+            "hasPartial": true,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328805687,
+            "completedAt": 1791328805688,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328805798,
+            "completedAt": 1791328805798,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328805907,
+            "completedAt": 1791328805908,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328806019,
+            "completedAt": 1791328806020,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328806129,
+            "completedAt": 1791328806130,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328806239,
+            "completedAt": 1791328806240,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328806351,
+            "completedAt": 1791328806352,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": false,
+            "reached": false
+          },
+          {
+            "phase": "partial",
+            "startedAt": 1791328806462,
+            "completedAt": 1791328806515,
+            "expectedMessageCount": 6,
+            "messageCount": 6,
+            "lastUserMatches": true,
+            "lastStatus": "running",
+            "hasPartial": true,
+            "reached": true
+          },
+          {
+            "phase": "complete",
+            "startedAt": 1791328806545,
+            "completedAt": 1791328806617,
+            "messageCount": 6,
+            "lastStatus": "complete",
+            "hasPartial": true,
+            "reached": true
+          }
+        ],
+        "native": {
+          "observations": {
+            "installedAt": 1791328805410,
+            "loads": [
+              {
+                "startedAt": 1791328805502,
+                "returnedAt": 1791328805579,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                },
+                "finishedAt": 1791328805579
+              },
+              {
+                "startedAt": 1791328805686,
+                "returnedAt": 1791328805687,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328805687
+              },
+              {
+                "startedAt": 1791328805797,
+                "returnedAt": 1791328805797,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328805797
+              },
+              {
+                "startedAt": 1791328805907,
+                "returnedAt": 1791328805907,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328805907
+              },
+              {
+                "startedAt": 1791328806018,
+                "returnedAt": 1791328806019,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328806019
+              },
+              {
+                "startedAt": 1791328806129,
+                "returnedAt": 1791328806129,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328806129
+              },
+              {
+                "startedAt": 1791328806239,
+                "returnedAt": 1791328806239,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328806239
+              },
+              {
+                "startedAt": 1791328806350,
+                "returnedAt": 1791328806351,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "finishedAt": 1791328806351
+              },
+              {
+                "startedAt": 1791328806462,
+                "returnedAt": 1791328806508,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 12,
+                  "hasPartial": true
+                },
+                "finishedAt": 1791328806508
+              },
+              {
+                "startedAt": 1791328806548,
+                "returnedAt": 1791328806616,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                },
+                "finishedAt": 1791328806616
+              }
+            ],
+            "clones": [
+              {
+                "startedAt": 1791328805579,
+                "completedAt": 1791328805579,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328805580,
+                "completedAt": 1791328805580,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328805581,
+                "completedAt": 1791328805581,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 4,
+                  "lastUserMatches": false,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328805581,
+                "completedAt": 1791328805581,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328805638,
+                "completedAt": 1791328805638,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328805687,
+                "completedAt": 1791328805687,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328805797,
+                "completedAt": 1791328805797,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328805907,
+                "completedAt": 1791328805907,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806018,
+                "completedAt": 1791328806018,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806129,
+                "completedAt": 1791328806129,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806239,
+                "completedAt": 1791328806239,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806351,
+                "completedAt": 1791328806351,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806397,
+                "completedAt": 1791328806397,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                }
+              },
+              {
+                "startedAt": 1791328806398,
+                "completedAt": 1791328806398,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 12,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806508,
+                "completedAt": 1791328806508,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 12,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806508,
+                "completedAt": 1791328806508,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 12,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806533,
+                "completedAt": 1791328806533,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 12,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806534,
+                "completedAt": 1791328806534,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806615,
+                "completedAt": 1791328806615,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806615,
+                "completedAt": 1791328806615,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              },
+              {
+                "startedAt": 1791328806615,
+                "completedAt": 1791328806615,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                }
+              }
+            ],
+            "wholeWorkspaceCopies": 0,
+            "sends": [
+              {
+                "startedAt": 1791328805639,
+                "hasState": true,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "running",
+                  "contentCharacters": 0,
+                  "hasPartial": false
+                },
+                "completedAt": 1791328805639
+              },
+              {
+                "startedAt": 1791328805639,
+                "hasState": false,
+                "completedAt": 1791328805639
+              },
+              {
+                "startedAt": 1791328805640,
+                "hasState": false,
+                "deltaCharacters": 12,
+                "hasPartialDelta": true,
+                "completedAt": 1791328805640
+              },
+              {
+                "startedAt": 1791328806508,
+                "hasState": false,
+                "completedAt": 1791328806508
+              },
+              {
+                "startedAt": 1791328806532,
+                "hasState": false,
+                "deltaCharacters": 37,
+                "hasPartialDelta": false,
+                "completedAt": 1791328806532
+              },
+              {
+                "startedAt": 1791328806532,
+                "hasState": false,
+                "completedAt": 1791328806532
+              },
+              {
+                "startedAt": 1791328806532,
+                "hasState": false,
+                "completedAt": 1791328806532
+              },
+              {
+                "startedAt": 1791328806615,
+                "hasState": true,
+                "thread": {
+                  "threadFound": true,
+                  "messageCount": 6,
+                  "lastUserMatches": true,
+                  "lastStatus": "complete",
+                  "contentCharacters": 49,
+                  "hasPartial": true
+                },
+                "completedAt": 1791328806616
+              }
+            ],
+            "operations": [
+              {
+                "method": "saveComposerDraft",
+                "startedAt": 1791328805494,
+                "success": true,
+                "finishedAt": 1791328805579
+              },
+              {
+                "method": "submit",
+                "startedAt": 1791328805580,
+                "success": true,
+                "finishedAt": 1791328805639
+              },
+              {
+                "method": "activateThread",
+                "startedAt": 1791328805646,
+                "success": true,
+                "finishedAt": 1791328805646
+              }
+            ]
+          },
+          "closeOperations": [
+            {
+              "method": "activateThread",
+              "startedAt": 1791328804933,
+              "finishedAt": 1791328804933
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328804941,
+              "finishedAt": 1791328804941
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328805142,
+              "finishedAt": 1791328805142
+            },
+            {
+              "method": "activateThread",
+              "startedAt": 1791328805311,
+              "finishedAt": 1791328805409
+            },
+            {
+              "method": "saveComposerDraft",
+              "startedAt": 1791328805494,
+              "finishedAt": 1791328805579
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328805502,
+              "finishedAt": 1791328805579
+            },
+            {
+              "method": "activateThread",
+              "startedAt": 1791328805646,
+              "finishedAt": 1791328805646
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328805686,
+              "finishedAt": 1791328805687
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328805797,
+              "finishedAt": 1791328805797
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328805907,
+              "finishedAt": 1791328805907
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806018,
+              "finishedAt": 1791328806019
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806129,
+              "finishedAt": 1791328806129
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806239,
+              "finishedAt": 1791328806239
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806350,
+              "finishedAt": 1791328806351
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806462,
+              "finishedAt": 1791328806508
+            },
+            {
+              "method": "load",
+              "startedAt": 1791328806548,
+              "finishedAt": 1791328806616
+            }
+          ],
+          "transport": [
+            {
+              "id": 8,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791328804214,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791328804214
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791328804214
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791328804215
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791328804259
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 9,
+              "method": "POST",
+              "path": "/model-comparison/a/v1/chat/completions",
+              "firstObservedAt": 1791328804731,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791328804731
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791328804731
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791328804732
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791328804785
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 10,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791328804731,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791328804731
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791328804731
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791328804732
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791328804788
+                }
+              ],
+              "statusCode": 200
+            },
+            {
+              "id": 11,
+              "method": "POST",
+              "path": "/model-comparison/b/v1/chat/completions",
+              "firstObservedAt": 1791328805639,
+              "phases": [
+                {
+                  "phase": "create",
+                  "at": 1791328805639
+                },
+                {
+                  "phase": "bodySent",
+                  "at": 1791328805639
+                },
+                {
+                  "phase": "headers",
+                  "at": 1791328805640
+                },
+                {
+                  "phase": "trailers",
+                  "at": 1791328806532
+                }
+              ],
+              "statusCode": 200
+            }
+          ],
+          "memory": {
+            "rss": 162324480,
+            "heapTotal": 23216128,
+            "heapUsed": 18548696,
+            "external": 7902433,
+            "arrayBuffers": 0
+          },
+          "cpu": {
+            "user": 968000,
+            "system": 703000
+          },
+          "capturedAt": 1791328806628
+        }
+      },
+      "exits": [
+        {
+          "elapsedMs": 926,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 594,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 454,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "log": {
+        "file": "nook-record-copy-model-comparisons-native.log",
+        "sha256": "c74c4f48e43e9dc36c3e15537465ede7f3fe27f9407de5862343456312bb38a2"
+      }
+    }
+  ],
+  "fullDesktopAccepted": false,
+  "packaged": false,
+  "published": false,
+  "scope": "Native observation assertions match detached target-thread copies and explicitly require zero whole-workspace clones. Settings responses copy one thread record per returned thread. Real HTTP partial/completed streaming, request counts, exact data, saved drafts, backup/restart, manual reading position, disk sync, zoom/keyboard and unchanged deadlines remain checked. Six normal exits across focused runs. Not a substitute for a new complete 252-check run."
+}

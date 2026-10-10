@@ -61,6 +61,9 @@ import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs
 const root = fileURLToPath(new URL('..', import.meta.url));
 // Match Playwright's Electron loader for unattended CDP interaction, without changing product defaults.
 const rendererTestSwitches = ['disable-background-timer-throttling', 'disable-backgrounding-occluded-windows', 'disable-renderer-backgrounding'];
+// Keep exact native viewport fixtures independent of the host's fractional display scaling.
+// The suite still exercises Electron zoom; actual system-DPI acceptance is separate.
+const desktopDeviceScaleFactor = '1';
 const scratchRoot = resolve(tmpdir());
 const scratchSpace = await statfs(scratchRoot);
 if (scratchSpace.bavail * scratchSpace.bsize < 1_000_000_000) throw new Error('Desktop verification needs at least 1 GB of free temporary disk space. Archive old test workspaces or choose another TMP directory.');
@@ -292,7 +295,7 @@ async function waitForCheckpoint(content) {
 async function launch() {
   application = undefined; currentPage = undefined;
   const startedAt = Date.now();
-  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.env.QIYAO_TEST_EXECUTABLE || electronExecutable, ['--inspect=0', '--remote-debugging-port=0', `--force-device-scale-factor=${desktopDeviceScaleFactor}`, ...rendererTestSwitches.map((name) => `--${name}`), ...(packaged ? [] : [root])], { env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) console.log('Desktop spawned', { pid: child.pid, executable: child.spawnfile });
   const stdoutBytes = drainDesktopOutput(child.stdout);
   const exited = new Promise((resolve) => child.once('exit', resolve));
@@ -361,6 +364,9 @@ async function launch() {
     const activeRendererSwitches = await evaluateMain(`${JSON.stringify(rendererTestSwitches)}.filter(name => require('electron').app.commandLine.hasSwitch(name))`);
     assert.deepEqual(activeRendererSwitches, rendererTestSwitches, 'The explicit renderer test configuration must be active.');
     console.log('Desktop renderer test switches', JSON.stringify(activeRendererSwitches));
+    const activeDeviceScaleFactor = await evaluateMain("require('electron').app.commandLine.getSwitchValue('force-device-scale-factor')");
+    assert.equal(activeDeviceScaleFactor, desktopDeviceScaleFactor, 'The native viewport fixture must use its explicit device scale.');
+    console.log('Desktop test device scale factor', activeDeviceScaleFactor);
     profiling = await evaluateMain(startStartupProfileExpression).catch(() => false);
     browser = await chromium.connectOverCDP(debuggerUrl);
     page = await waitForDesktopPage(browser.contexts()[0], { hasExited: () => child.exitCode !== null || child.signalCode !== null });
@@ -1190,10 +1196,24 @@ try {
   if (application) console.error(await application.evaluateMain('globalThis.qiyaoFilesystemFailures').catch(() => 'Filesystem diagnostics unavailable'));
   if (application) console.error('File-worker diagnostics', await application.evaluateMain('({capturedAt:Date.now(),workers:globalThis.qiyaoWorkerEvents})').catch(() => 'Worker diagnostics unavailable'));
   if (application) console.error('Desktop resource diagnostics', JSON.stringify(await application.evaluateMain('({resources:globalThis.nookResourceSnapshot?.(),rendererExits:globalThis.nookRendererExits})').catch(() => ({ unavailable: true }))));
+  if (application) console.error('Desktop geometry diagnostics', JSON.stringify(await application.evaluateMain(`(() => {
+    const { BrowserWindow, screen } = require('electron');
+    return {
+      displays: screen.getAllDisplays().map(({ id, bounds, workArea, scaleFactor }) => ({ id, bounds, workArea, scaleFactor })),
+      windows: BrowserWindow.getAllWindows().map(window => ({
+        id: window.id, bounds: window.getBounds(), contentBounds: window.getContentBounds(),
+        maximized: window.isMaximized(), fullscreen: window.isFullScreen(), zoomFactor: window.webContents.getZoomFactor(),
+      })),
+    };
+  })()`).catch(() => ({ unavailable: true }))));
   if (application && process.env.QIYAO_TEST_SHELL_ONLY) console.error(await application.evaluateMain('globalThis.qiyaoDesktopAudit').catch(() => 'Desktop diagnostics unavailable'));
   if (rendererDiagnostics.length) console.error(rendererDiagnostics.join('\n'));
   if (providerErrors.length) console.error(providerErrors.join('\n'));
   if (currentPage) {
+    console.error('Desktop viewport diagnostics', JSON.stringify(await currentPage.evaluate(() => ({
+      width: innerWidth, height: innerHeight, devicePixelRatio,
+      visualViewport: visualViewport ? { width: visualViewport.width, height: visualViewport.height, scale: visualViewport.scale } : null,
+    })).catch(() => ({ unavailable: true }))));
     await currentPage.screenshot({ path: join(screenshots, 'failure.png') }).catch(() => {});
     console.error(await currentPage.locator('body').innerText().catch(() => 'Could not read failed page.'));
     for (const frame of currentPage.frames().filter((item) => item.url().startsWith('qiyao-plugin:'))) { console.error(await frame.locator('body').innerText().catch(() => 'Could not read plugin frame.')); console.error(await frame.evaluate(() => globalThis.panelEvents).catch(() => [])); }

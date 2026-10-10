@@ -1,0 +1,99 @@
+{
+  "verifiedAt": "2026-10-06T23:34:16.213Z",
+  "sourceHead": "ebfcf30be5b2f6acd471971469cc3de6d07ab3e7",
+  "compiledManifestSha256": "88f10262a4d4c7240b5170232267c9724bc06f462a67060432e412ffc91bca4d",
+  "source": [
+    {
+      "file": "scripts/verify-desktop.mjs",
+      "sha256": "340fffc954bd216c06a6638266defe76dd0e659c0ecf67b1cf63c183c0a6f5d6"
+    },
+    {
+      "file": "scripts/verify-backups.mjs",
+      "sha256": "0baa33fd044669fa2fbe55f7a62391ae982ccf4df6798e0a70999c68f0b87729"
+    }
+  ],
+  "runs": [
+    {
+      "file": "nook-record-copy-backups-local-crash-native.log",
+      "sha256": "c1e83884a9edbc1fc22bf4245ac92b60810d92ccaecea031b8a94e33487b2964",
+      "checks": 6,
+      "expectedChecks": 6,
+      "passed": true,
+      "localCrashReporter": true,
+      "exits": [
+        {
+          "elapsedMs": 5269,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 843,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "file": "nook-record-copy-backups-default-native.log",
+      "sha256": "435fbb3d2a86ba92adc08a3f634b66bb77ad7bf36b573fed22c53da71b081518",
+      "checks": 5,
+      "expectedChecks": 6,
+      "passed": false,
+      "localCrashReporter": false,
+      "exits": [
+        {
+          "elapsedMs": 1379,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "failedWorkspace": "E:\\NookVerification\\Temp\\qiyao-electron-KpzaSm"
+    }
+  ],
+  "enabledResult": {
+    "verifiedAt": "2026-10-06T23:30:44.719Z",
+    "variant": "development executable",
+    "verificationRun": "focused backup suite",
+    "checks": 6,
+    "executableSha256": null,
+    "archiveSha256": null,
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "expandedBytes": 84007717,
+    "compressedBytes": 209854,
+    "conversations": 20,
+    "messageSha256": [
+      "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
+      "f18d6c86e30b026e0aec4bf39c6a2ba46b457151ea25476d9c23eb8aefce3726",
+      "a32a8dacf36136d7c927590de5e65a008c00c922665f5d908774754b9624147c",
+      "dc1d3f2f7a792c6209549ac5d149242e5c5fccb9ea1921fb6453cb6b02cbcc53",
+      "261a3ac08ac158b86a90bf85f1f554dee7185cd92a0e12168aae910c460d0b62",
+      "d21f8e58cf4b3687d9df9bbdc97f3215ad2649a4cfe9283bf64800819561b46b",
+      "dc8a75cc5c7624d751e46c9b163552f3fa87b0fac65387ac1c0b096fdc09b526",
+      "c9c0bd8f305755323df48e4774b052523570f2e953d3b75ce2362eaea38f8d96",
+      "67b45ff3e3a5d2f8f862e1b2c45b116ac1c4357eceb024890fc4d5613ab071af",
+      "15264b56a9d7b50c2175517328ce7fc5f7dd169a3b9a830d3f540df751cc32cd",
+      "852b0ed2ac30f0005da12ab62f1fce6dae3e959629753923a44ab3f776a7b5b3",
+      "e0a8cce2c32dc609c7ae09a3fe61b56620847c9dda957ee28df20608a45f2cff",
+      "174c031cf587281163db36d4e469b9beef6a01a899300ab17a4dbfe0053ce16e",
+      "40b7040f6837064b98991b879727e6ebda1977a5dbb09dc7afb38192151678aa",
+      "af8597a4a5c243aea3faa82e9c048b39b8852b2b1ced29333bef809cf6f1ca53",
+      "cffdec3aba89a51e19b32f35fd0f00bda362b8199a1634ee66c3335132b7d2f4",
+      "0574fa64b4bb2da71f2493b139d4d8b1ae86eeb0735d093ad106b075f6e49d26",
+      "90847fdef3eecbe30685b60327b081ed4354da77ab03dfc5e740bdda76109d98",
+      "da54b2b4d2819f55acd2d5d64e6ee5a07db1cc95ac93354b1c80ccd07e874b33",
+      "7ac55ca78e5353e1c9e1e1bdae283c0573d8f4af253be016a5381067ebe2be4f"
+    ],
+    "scope": "Real native plain/gzip files above the old 64 MB limit; complete Unicode messages, knowledge records, legacy format, credential exclusion, cancelled consent, actual filesystem failure, CRC rejection, restart and light/dark/minimum-window settings. Native dialogs are intercepted only in the isolated test process."
+  },
+  "defaultFocusedPassed": false,
+  "fullDesktopPassed": false,
+  "rendererRootCauseEstablished": false,
+  "packaged": false,
+  "published": false,
+  "scope": "Two separate fresh focused backup replays before changing the unused deleteThread return value. Enabled local crash reporting passes six groups; default reporting mode crashes at the same delete step after five groups, then closes the main process normally. Neither replaces a whole default run; the inconsistent reporting modes do not establish a renderer root cause.",
+  "archive": "E:/NookVerification/RecordCopy-20261007/backup-replays-before"
+}

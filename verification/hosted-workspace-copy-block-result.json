@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-10T09:21:24.419Z",
+  "run": 37543498100,
+  "url": "https://github.com/Moresyl/nook/actions/runs/37543498100",
+  "headSha": "59f8a612fcfe0a455108612d13af673c7089370a",
+  "productCommit": "4880939",
+  "branch": "feat/document-originals",
+  "jobs": [
+    {
+      "id": 112541843781,
+      "name": "verify",
+      "conclusion": "failure",
+      "steps": 0
+    },
+    {
+      "id": 112541862648,
+      "name": "publish",
+      "conclusion": "skipped",
+      "steps": 0
+    }
+  ],
+  "annotations": [
+    {
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "raw": [
+    {
+      "file": "nook-record-copy-hosted-jobs.json",
+      "sha256": "b2084758a692428d6421b1fa9775f70c22b59f6211d1c0c60e97ae654d24d3c3"
+    },
+    {
+      "file": "nook-record-copy-hosted-annotations.json",
+      "sha256": "e357776e554b3cbf95691b4e0a0ac5b3fd1bdb6da569a26323c318ad63d4e678"
+    }
+  ],
+  "hostedVerificationPassed": false,
+  "billingChanged": false,
+  "tagCreated": false,
+  "published": false,
+  "boundary": "The verify job never started due to the stated payment/spending restriction. The development branch independently excludes publication. Local tests and focused results do not replace complete desktop, distribution or hosted acceptance."
+}
