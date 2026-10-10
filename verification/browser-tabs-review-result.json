@@ -1,0 +1,916 @@
+{
+  "sourceCommit": "216d3949cc4cdb84149ef9fbe42c60ce806910c4",
+  "status": "focused and complete source verification passed; final distribution and full goal acceptance pending",
+  "changes": [
+    "Up to 16 independent native tabs with per-tab history, address drafts and errors.",
+    "Shared transient site session; final close creates a fresh blank session.",
+    "Selected page only; background failure/retry/close stays with its owner.",
+    "Native and workbench Ctrl T/W/Tab/Shift Tab; tab arrows/Home/End/Delete.",
+    "All views released on actual workbench reload; stale owner tokens cannot close replacements.",
+    "Address input disabled until native owner is ready, preventing dropped early input."
+  ],
+  "focused": {
+    "checks": 14,
+    "normalNativeExits": [
+      {
+        "elapsedMs": 597,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 200,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "archive": "E:/NookVerification/BrowserTabsFocusedPass-20261011",
+    "compiledFiles": 236,
+    "productSourceFiles": 252,
+    "tabs": {
+      "checks": 5,
+      "independentHistoryDraftsVerified": true,
+      "sharedTransientSessionVerified": true,
+      "selectedViewOnlyVerified": true,
+      "backgroundFailureCloseVerified": true,
+      "nativeShortcutsVerified": true,
+      "lastCloseFreshVerified": true,
+      "layouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634,
+            "top": 173,
+            "right": 1280,
+            "bottom": 807,
+            "left": 264
+          },
+          "windowViewport": {
+            "width": 1280,
+            "height": 840
+          },
+          "expected": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634
+          },
+          "native": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634
+          }
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 240,
+            "y": 172.8000030517578,
+            "width": 784,
+            "height": 466.3999938964844,
+            "top": 172.8000030517578,
+            "right": 1024,
+            "bottom": 639.1999969482422,
+            "left": 240
+          },
+          "windowViewport": {
+            "width": 1024,
+            "height": 672
+          },
+          "expected": {
+            "x": 300,
+            "y": 217,
+            "width": 980,
+            "height": 581
+          },
+          "native": {
+            "x": 300,
+            "y": 217,
+            "width": 980,
+            "height": 581
+          }
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 240,
+            "y": 177.33334350585938,
+            "width": 613.3333740234375,
+            "height": 350,
+            "top": 177.33334350585938,
+            "right": 853.3333740234375,
+            "bottom": 527.3333435058594,
+            "left": 240
+          },
+          "windowViewport": {
+            "width": 853,
+            "height": 560
+          },
+          "expected": {
+            "x": 360,
+            "y": 267,
+            "width": 919,
+            "height": 524
+          },
+          "native": {
+            "x": 360,
+            "y": 267,
+            "width": 919,
+            "height": 524
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329,
+            "top": 178,
+            "right": 760,
+            "bottom": 507,
+            "left": 220
+          },
+          "windowViewport": {
+            "width": 760,
+            "height": 540
+          },
+          "expected": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329
+          },
+          "native": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 64,
+            "y": 177.1999969482422,
+            "width": 544,
+            "height": 222,
+            "top": 177.1999969482422,
+            "right": 608,
+            "bottom": 399.1999969482422,
+            "left": 64
+          },
+          "windowViewport": {
+            "width": 608,
+            "height": 432
+          },
+          "expected": {
+            "x": 80,
+            "y": 222,
+            "width": 680,
+            "height": 276
+          },
+          "native": {
+            "x": 80,
+            "y": 222,
+            "width": 680,
+            "height": 276
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 64,
+            "y": 177.33334350585938,
+            "width": 442.66668701171875,
+            "height": 150,
+            "top": 177.33334350585938,
+            "right": 506.66668701171875,
+            "bottom": 327.3333435058594,
+            "left": 64
+          },
+          "windowViewport": {
+            "width": 507,
+            "height": 360
+          },
+          "expected": {
+            "x": 96,
+            "y": 267,
+            "width": 664,
+            "height": 224
+          },
+          "native": {
+            "x": 96,
+            "y": 267,
+            "width": 664,
+            "height": 224
+          }
+        }
+      ],
+      "screenshots": [
+        "browser-tabs-independent-drafts-shell.png",
+        "browser-tabs-independent-drafts-content.png",
+        "browser-tabs-background-failure-shell.png",
+        "browser-tabs-fresh-last-close-shell.png",
+        "browser-tabs-light-100-shell.png",
+        "browser-tabs-light-100-content.png",
+        "browser-tabs-light-125-shell.png",
+        "browser-tabs-light-125-content.png",
+        "browser-tabs-light-150-shell.png",
+        "browser-tabs-light-150-content.png",
+        "browser-tabs-dark-100-shell.png",
+        "browser-tabs-dark-100-content.png",
+        "browser-tabs-dark-125-shell.png",
+        "browser-tabs-dark-125-content.png",
+        "browser-tabs-dark-150-shell.png",
+        "browser-tabs-dark-150-content.png"
+      ],
+      "activeContentsId": 7,
+      "liveContentsIds": [
+        7,
+        8,
+        9
+      ],
+      "workbenchReloadAllTabsVerified": true
+    }
+  },
+  "units": {
+    "files": 105,
+    "tests": 1034,
+    "coverage": {
+      "lines": {
+        "total": 3627,
+        "covered": 3605,
+        "skipped": 0,
+        "pct": 99.39
+      },
+      "statements": {
+        "total": 6022,
+        "covered": 5856,
+        "skipped": 0,
+        "pct": 97.24
+      },
+      "functions": {
+        "total": 1367,
+        "covered": 1332,
+        "skipped": 0,
+        "pct": 97.43
+      },
+      "branches": {
+        "total": 4224,
+        "covered": 4005,
+        "skipped": 0,
+        "pct": 94.81
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "log": "D:/GR/pi-pc/.firecrawl/nook-browser-tabs-full-unit-20261011.log",
+    "scope": "Default coverage covers contracts and desktop services."
+  },
+  "focusedCoverage": {
+    "tests": 41,
+    "coverage": {
+      "lines": {
+        "total": 138,
+        "covered": 138,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 283,
+        "covered": 283,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 45,
+        "covered": 44,
+        "skipped": 0,
+        "pct": 97.77
+      },
+      "branches": {
+        "total": 217,
+        "covered": 210,
+        "skipped": 0,
+        "pct": 96.77
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "archive": "E:/NookVerification/BrowserTabsFocusedCoverage-20261011",
+    "scope": "Browser native controller and pure tab reducer; React rendering is covered by desktop fixtures, not this percentage."
+  },
+  "visualReview": {
+    "method": "31 separate original PNGs inspected with view_image; shell and native contents were not composited.",
+    "images": [
+      {
+        "name": "browser-invalid-address-shell.png",
+        "sha256": "c1824a632bff27399c8d38690000a40e304edde63c48dda3de36c414bdad4323",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-load-error-shell.png",
+        "sha256": "073748d197884a7ffd1d0c5ea36a8a4e8bb8e6779c8cde1e2a57ba979c59d79e",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-light-1-shell.png",
+        "sha256": "4e2c74a4352267d98f4954ae8cb047c37185ac5898a08a3ab529df2913bedcc2",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-light-1-content.png",
+        "sha256": "4c7391b1550b57d6957877fb2957e98a8429d879a1d3318cc44262cbf1593235",
+        "width": 1016,
+        "height": 634,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-light-1.25-shell.png",
+        "sha256": "da1fc451e9195c3a8bf2577e63b2cd0baadcd3e2193da094fa11520faf184188",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-light-1.25-content.png",
+        "sha256": "3ba2b34f8516d3f149dd5612c2b6a365675e4170e7b1cf639c38033d0d70067f",
+        "width": 980,
+        "height": 581,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-light-1.5-shell.png",
+        "sha256": "cfdbbc4c9a43c78eaf1503f870437cef70f75967ee10e1d2071d63fb2b385394",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-light-1.5-content.png",
+        "sha256": "f6b7f6e697b4e49f196790d164d3494b4720f7a2ba805cfe797713d1f670ed39",
+        "width": 919,
+        "height": 531,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-dark-1-shell.png",
+        "sha256": "3d19a95ce91c27ea9a252203698ca5578558fe1197fdd1b6b05fbcc9a3913e3a",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-dark-1-content.png",
+        "sha256": "fa756f6951ae5c6b45514328f32207e1c1c076b4f6c4642f7fa1da17274bd457",
+        "width": 540,
+        "height": 334,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-dark-1.25-shell.png",
+        "sha256": "ef656ce69ac05d213de5ce47f72327788db9eeefc389a236c27cc0b8ba11a93d",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-dark-1.25-content.png",
+        "sha256": "d2ee63f486de904405878bdb144bfd4988bcb7b35cac738803e1d85e202ef722",
+        "width": 680,
+        "height": 282,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-dark-1.5-shell.png",
+        "sha256": "d534cbde055a199d6fa933957328b2b9a4c0029fe527812c7c9e5aca48e62c43",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-dark-1.5-content.png",
+        "sha256": "f01fd97009d402815af9c3db6cd50b5848289bbe0961f58d60c5d13a2272efb1",
+        "width": 664,
+        "height": 231,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-restarted-empty-shell.png",
+        "sha256": "f012b5537e4dd7858e76983827ea5263c069be9609f917eaa10f5e5d3d541eff",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-independent-drafts-shell.png",
+        "sha256": "28384a3584fee097dd84660cf3282477d368a25691b4d3a5a3d10171b0d4ca82",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-independent-drafts-content.png",
+        "sha256": "28cb893ef34ff5aa40941087b01e48448404995c79aa23f149d18e090a54116a",
+        "width": 1016,
+        "height": 634,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-background-failure-shell.png",
+        "sha256": "0b127f6edbf582cec1e58499d5e876fb9e8d599c748dbac8939e75b8a2b9f983",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-fresh-last-close-shell.png",
+        "sha256": "2fb0f0648528549e0b8d8520a865214573030ec9810fbb1a2a2145b9e526ba17",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-light-100-shell.png",
+        "sha256": "a0fa1374a31ebba0399095f82047951c1de069965c5bd267d121636c240e8e9a",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-light-100-content.png",
+        "sha256": "d576fd55d0f0361cc132295f0f2de29d87256fb4089e38e9875274f6cc219c8c",
+        "width": 1016,
+        "height": 634,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-light-125-shell.png",
+        "sha256": "2fe9f89d6d0b5251d4bda46350192d9f5d9a3cdc0049596ba2a6fe130707bcae",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-light-125-content.png",
+        "sha256": "cbe222257800d4d73224c2b44a3a137e241db2a6f5029db6abfe09d9c95d29f6",
+        "width": 980,
+        "height": 581,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-light-150-shell.png",
+        "sha256": "4b28373305222b2552cc2d8b719527d792550305e2eee76f337e38f65c39ca04",
+        "width": 1280,
+        "height": 840,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-light-150-content.png",
+        "sha256": "6b432f159d9b7d9311b0f3c90019719a85589c7a2bb227a5e48a315447916c7b",
+        "width": 919,
+        "height": 524,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-dark-100-shell.png",
+        "sha256": "7f40c7ffe99adb3671b8846f46799004e17f09ba6c3e057d12400608e09787bb",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-dark-100-content.png",
+        "sha256": "c58bcc64f6d0cbb60a769aa3de01255ea1d35cc637988f56e9591bdea61f64c8",
+        "width": 540,
+        "height": 329,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-dark-125-shell.png",
+        "sha256": "182dbf40a1a558e7144c9ebc80910e96948684e2e3a26a1e73664333ccfc115e",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-dark-125-content.png",
+        "sha256": "adaf89315c6dde98eed7aa3658c6faf6f77998d662c11103ae25e43756482d5b",
+        "width": 680,
+        "height": 276,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      },
+      {
+        "name": "browser-tabs-dark-150-shell.png",
+        "sha256": "66f2d13d781365f913f44a837ff85c9a00e1711322199b7506ae152392bbb8c0",
+        "width": 760,
+        "height": 540,
+        "reviewed": true,
+        "result": "Selected tab, toolbar and applicable recovery controls are visible; long labels truncate and offscreen tabs scroll."
+      },
+      {
+        "name": "browser-tabs-dark-150-content.png",
+        "sha256": "a28f4d358ed40365ad8966f24dd156dc84b0732e433d79624efbd68d2b9e2f31",
+        "width": 664,
+        "height": 224,
+        "reviewed": true,
+        "result": "Fixture page text is legible within captured native bounds."
+      }
+    ],
+    "boundary": "Fixed display scale with light/dark application zoom. This is not whole-product design, physical keyboard or assistive technology acceptance."
+  },
+  "failures": [
+    {
+      "archive": "E:/NookVerification/BrowserTabsFirstGeometryFailure-20261011",
+      "cause": "Harness expected bounds omitted innerWidth clipping at 150%, producing a one-pixel width mismatch.",
+      "resolution": "Use the shared viewport clipping calculation; exact native bounds still required, deadlines unchanged.",
+      "normalExitMs": 528
+    },
+    {
+      "archive": "E:/NookVerification/BrowserTabsReloadFailure-20261011",
+      "cause": "After workbench reload an editable address could receive input before the tab owner was ready; the handler ignored it and submission saw an empty address.",
+      "resolution": "Disable address input until native state exists; assert filled value before submitting. Full focused 14-check suite passes afterward.",
+      "normalExitMs": 312
+    }
+  ],
+  "designEvidence": {
+    "bundle": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "reference": "Browser stylesheet contains local compact-action rules, not a complete tab/address/page layout. New tabs use existing shared controls/tokens and 24px actions.",
+    "deviations": "Nook brand and Inter/system Chinese fallback remain project choices; neither this feature nor these screenshots establish 100% design adoption."
+  },
+  "pending": [
+    "Saved tabs/history, permission grants, internal downloads and browser automation.",
+    "Final same-application distribution and multiple full rounds.",
+    "Remaining functional/design scope, external services, physical input and accessibility.",
+    "Hosted verification and pipeline/browser publication."
+  ],
+  "fullSource": {
+    "checks": 267,
+    "normalNativeExits": [
+      {
+        "elapsedMs": 936,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 306,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 159,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 276,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 264,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 197,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 209,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 152,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 498,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 165,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 241,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 422,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 264,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 304,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 289,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 150,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 293,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 239,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 230,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 541,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 353,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 414,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 207,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 177,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 217,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 206,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1292,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 190,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 265,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 959,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1640,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 320,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 293,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 219,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 526,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 213,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 255,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 208,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "archive": "E:/NookVerification/BrowserTabsFullSourcePass-20261011",
+    "compiledFiles": 236,
+    "productSourceFiles": 252,
+    "changedStageRecords": 24,
+    "scope": "One complete functional source round. Its raw captures remain archived; only the separately hashed focused 31 images were visually reviewed this turn."
+  },
+  "notices": {
+    "dependencyVersions": 381,
+    "legalDocuments": 401,
+    "assetGroups": 5,
+    "windowsComponents": 5,
+    "check": "pnpm notices:release",
+    "log": "D:/GR/pi-pc/.firecrawl/nook-browser-tabs-final-licenses-20261011.log"
+  }
+}

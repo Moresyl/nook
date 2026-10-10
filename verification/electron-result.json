@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-10T15:49:29.100Z",
+  "verifiedAt": "2026-10-10T16:46:36.335Z",
   "variant": "development executable",
-  "checks": 262,
+  "checks": 267,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181174,
-    "compressedBytes": 242313,
+    "expandedBytes": 84181168,
+    "compressedBytes": 242288,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791647080397,
+        "startedAt": 1791650490188,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791647081822
+        "finishedAt": 1791650491472
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791647081967,
+        "startedAt": 1791650491620,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791647083163
+        "finishedAt": 1791650493024
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791647084808,
+        "startedAt": 1791650494713,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791647085976
+        "finishedAt": 1791650496020
       }
     ],
     "comparisonModelRequests": 11,
@@ -830,7 +830,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 9.5,
+    "scopedReadMs": 10.200000002980232,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1172,7 +1172,23 @@
     "browser-dark-1.25-content.png",
     "browser-dark-1.5-shell.png",
     "browser-dark-1.5-content.png",
-    "browser-restarted-empty-shell.png"
+    "browser-restarted-empty-shell.png",
+    "browser-tabs-independent-drafts-shell.png",
+    "browser-tabs-independent-drafts-content.png",
+    "browser-tabs-background-failure-shell.png",
+    "browser-tabs-fresh-last-close-shell.png",
+    "browser-tabs-light-100-shell.png",
+    "browser-tabs-light-100-content.png",
+    "browser-tabs-light-125-shell.png",
+    "browser-tabs-light-125-content.png",
+    "browser-tabs-light-150-shell.png",
+    "browser-tabs-light-150-content.png",
+    "browser-tabs-dark-100-shell.png",
+    "browser-tabs-dark-100-content.png",
+    "browser-tabs-dark-125-shell.png",
+    "browser-tabs-dark-125-content.png",
+    "browser-tabs-dark-150-shell.png",
+    "browser-tabs-dark-150-content.png"
   ],
   "pdfPreview": {
     "checks": 6,
@@ -2424,7 +2440,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2436,7 +2452,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2448,7 +2464,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2460,7 +2476,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2472,7 +2488,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2484,7 +2500,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2496,7 +2512,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2508,7 +2524,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2520,7 +2536,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             },
@@ -2532,7 +2548,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.80000000000018
+                  "currentTime": 179.56599999953139
                 }
               ]
             }
@@ -2554,7 +2570,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2566,7 +2582,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2578,7 +2594,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2590,7 +2606,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2602,7 +2618,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2614,7 +2630,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2626,7 +2642,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2638,7 +2654,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2650,7 +2666,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             },
@@ -2662,7 +2678,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 126.03800000013976
+                  "currentTime": 126.00000000000122
                 }
               ]
             }
@@ -2677,120 +2693,70 @@
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 179.93800000014028
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         }
@@ -3275,7 +3241,7 @@
     "screenshotMethod": "Complete Electron BrowserWindow.capturePage with exact native content-size assertions"
   },
   "browser": {
-    "checks": 9,
+    "checks": 14,
     "isolation": {
       "sandbox": true,
       "contextIsolation": true,
@@ -3293,10 +3259,10 @@
         ],
         "viewport": {
           "x": 264,
-          "y": 141,
+          "y": 173,
           "width": 1016,
-          "height": 666,
-          "top": 141,
+          "height": 634,
+          "top": 173,
           "right": 1280,
           "bottom": 807,
           "left": 264
@@ -3331,15 +3297,15 @@
         },
         "expected": {
           "x": 264,
-          "y": 141,
+          "y": 173,
           "right": 1280,
           "bottom": 807
         },
         "native": {
           "x": 264,
-          "y": 141,
+          "y": 173,
           "width": 1016,
-          "height": 666
+          "height": 634
         }
       },
       {
@@ -3351,10 +3317,10 @@
         ],
         "viewport": {
           "x": 240,
-          "y": 140.8000030517578,
+          "y": 172.8000030517578,
           "width": 784,
-          "height": 498.3999938964844,
-          "top": 140.8000030517578,
+          "height": 466.3999938964844,
+          "top": 172.8000030517578,
           "right": 1024,
           "bottom": 639.1999969482422,
           "left": 240
@@ -3389,15 +3355,15 @@
         },
         "expected": {
           "x": 300,
-          "y": 177,
+          "y": 217,
           "right": 1280,
           "bottom": 798
         },
         "native": {
           "x": 300,
-          "y": 177,
+          "y": 217,
           "width": 980,
-          "height": 621
+          "height": 581
         }
       },
       {
@@ -3409,10 +3375,10 @@
         ],
         "viewport": {
           "x": 240,
-          "y": 140.6666717529297,
+          "y": 172.6666717529297,
           "width": 613.3333740234375,
-          "height": 386.66668701171875,
-          "top": 140.6666717529297,
+          "height": 354.66668701171875,
+          "top": 172.6666717529297,
           "right": 853.3333740234375,
           "bottom": 527.3333587646484,
           "left": 240
@@ -3447,15 +3413,15 @@
         },
         "expected": {
           "x": 360,
-          "y": 212,
+          "y": 260,
           "right": 1279,
           "bottom": 791
         },
         "native": {
           "x": 360,
-          "y": 212,
+          "y": 260,
           "width": 919,
-          "height": 579
+          "height": 531
         }
       },
       {
@@ -3467,10 +3433,10 @@
         ],
         "viewport": {
           "x": 220,
-          "y": 141,
+          "y": 173,
           "width": 540,
-          "height": 366,
-          "top": 141,
+          "height": 334,
+          "top": 173,
           "right": 760,
           "bottom": 507,
           "left": 220
@@ -3505,15 +3471,15 @@
         },
         "expected": {
           "x": 220,
-          "y": 141,
+          "y": 173,
           "right": 760,
           "bottom": 507
         },
         "native": {
           "x": 220,
-          "y": 141,
+          "y": 173,
           "width": 540,
-          "height": 366
+          "height": 334
         }
       },
       {
@@ -3525,12 +3491,12 @@
         ],
         "viewport": {
           "x": 64,
-          "y": 140.8000030517578,
+          "y": 172.8000030517578,
           "width": 544,
-          "height": 258.3999938964844,
-          "top": 140.8000030517578,
+          "height": 226.40000915527344,
+          "top": 172.8000030517578,
           "right": 608,
-          "bottom": 399.1999969482422,
+          "bottom": 399.20001220703125,
           "left": 64
         },
         "windowViewport": {
@@ -3563,15 +3529,15 @@
         },
         "expected": {
           "x": 80,
-          "y": 177,
+          "y": 217,
           "right": 760,
-          "bottom": 498
+          "bottom": 499
         },
         "native": {
           "x": 80,
-          "y": 177,
+          "y": 217,
           "width": 680,
-          "height": 321
+          "height": 282
         }
       },
       {
@@ -3583,10 +3549,10 @@
         ],
         "viewport": {
           "x": 64,
-          "y": 140.6666717529297,
+          "y": 172.6666717529297,
           "width": 442.66668701171875,
-          "height": 186.6666717529297,
-          "top": 140.6666717529297,
+          "height": 154.6666717529297,
+          "top": 172.6666717529297,
           "right": 506.66668701171875,
           "bottom": 327.3333435058594,
           "left": 64
@@ -3621,18 +3587,300 @@
         },
         "expected": {
           "x": 96,
-          "y": 212,
+          "y": 260,
           "right": 760,
           "bottom": 491
         },
         "native": {
           "x": 96,
-          "y": 212,
+          "y": 260,
           "width": 664,
-          "height": 279
+          "height": 231
         }
       }
     ],
+    "tabs": {
+      "checks": 5,
+      "independentHistoryDraftsVerified": true,
+      "sharedTransientSessionVerified": true,
+      "selectedViewOnlyVerified": true,
+      "backgroundFailureCloseVerified": true,
+      "nativeShortcutsVerified": true,
+      "lastCloseFreshVerified": true,
+      "layouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634,
+            "top": 173,
+            "right": 1280,
+            "bottom": 807,
+            "left": 264
+          },
+          "windowViewport": {
+            "width": 1280,
+            "height": 840
+          },
+          "expected": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634
+          },
+          "native": {
+            "x": 264,
+            "y": 173,
+            "width": 1016,
+            "height": 634
+          }
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 240,
+            "y": 172.8000030517578,
+            "width": 784,
+            "height": 466.3999938964844,
+            "top": 172.8000030517578,
+            "right": 1024,
+            "bottom": 639.1999969482422,
+            "left": 240
+          },
+          "windowViewport": {
+            "width": 1024,
+            "height": 672
+          },
+          "expected": {
+            "x": 300,
+            "y": 217,
+            "width": 980,
+            "height": 581
+          },
+          "native": {
+            "x": 300,
+            "y": 217,
+            "width": 980,
+            "height": 581
+          }
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "requestedSize": [
+            1280,
+            840
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 240,
+            "y": 177.33334350585938,
+            "width": 613.3333740234375,
+            "height": 350,
+            "top": 177.33334350585938,
+            "right": 853.3333740234375,
+            "bottom": 527.3333435058594,
+            "left": 240
+          },
+          "windowViewport": {
+            "width": 853,
+            "height": 560
+          },
+          "expected": {
+            "x": 360,
+            "y": 267,
+            "width": 919,
+            "height": 524
+          },
+          "native": {
+            "x": 360,
+            "y": 267,
+            "width": 919,
+            "height": 524
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329,
+            "top": 178,
+            "right": 760,
+            "bottom": 507,
+            "left": 220
+          },
+          "windowViewport": {
+            "width": 760,
+            "height": 540
+          },
+          "expected": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329
+          },
+          "native": {
+            "x": 220,
+            "y": 178,
+            "width": 540,
+            "height": 329
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 64,
+            "y": 177.1999969482422,
+            "width": 544,
+            "height": 222,
+            "top": 177.1999969482422,
+            "right": 608,
+            "bottom": 399.1999969482422,
+            "left": 64
+          },
+          "windowViewport": {
+            "width": 608,
+            "height": 432
+          },
+          "expected": {
+            "x": 80,
+            "y": 222,
+            "width": 680,
+            "height": 276
+          },
+          "native": {
+            "x": 80,
+            "y": 222,
+            "width": 680,
+            "height": 276
+          }
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "requestedSize": [
+            760,
+            540
+          ],
+          "selectedVisible": true,
+          "addVisible": true,
+          "addWidth": 24,
+          "addHeight": 24,
+          "overflow": false,
+          "tabCount": 3,
+          "panelLinked": true,
+          "viewport": {
+            "x": 64,
+            "y": 177.33334350585938,
+            "width": 442.66668701171875,
+            "height": 150,
+            "top": 177.33334350585938,
+            "right": 506.66668701171875,
+            "bottom": 327.3333435058594,
+            "left": 64
+          },
+          "windowViewport": {
+            "width": 507,
+            "height": 360
+          },
+          "expected": {
+            "x": 96,
+            "y": 267,
+            "width": 664,
+            "height": 224
+          },
+          "native": {
+            "x": 96,
+            "y": 267,
+            "width": 664,
+            "height": 224
+          }
+        }
+      ],
+      "screenshots": [
+        "browser-tabs-independent-drafts-shell.png",
+        "browser-tabs-independent-drafts-content.png",
+        "browser-tabs-background-failure-shell.png",
+        "browser-tabs-fresh-last-close-shell.png",
+        "browser-tabs-light-100-shell.png",
+        "browser-tabs-light-100-content.png",
+        "browser-tabs-light-125-shell.png",
+        "browser-tabs-light-125-content.png",
+        "browser-tabs-light-150-shell.png",
+        "browser-tabs-light-150-content.png",
+        "browser-tabs-dark-100-shell.png",
+        "browser-tabs-dark-100-content.png",
+        "browser-tabs-dark-125-shell.png",
+        "browser-tabs-dark-125-content.png",
+        "browser-tabs-dark-150-shell.png",
+        "browser-tabs-dark-150-content.png"
+      ],
+      "activeContentsId": 7,
+      "liveContentsIds": [
+        7,
+        8,
+        9
+      ],
+      "workbenchReloadAllTabsVerified": true
+    },
     "screenshots": [
       "browser-invalid-address-shell.png",
       "browser-load-error-shell.png",
@@ -3654,6 +3902,9 @@
       "/one",
       "/two",
       "/redirect",
+      "/two",
+      "/one",
+      "/two",
       "/two",
       "/two",
       "/slow",

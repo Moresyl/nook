@@ -4,7 +4,7 @@
 
 ### 新功能
 
-- 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。标签页、保存历史、内置下载、浏览器自动化与同包验收尚未完成。
+- 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。支持最多 16 个独立标签及共享临时网站存储，后台失败与关闭仅影响所属页；原生 Ctrl T／W／Tab 快捷键和标签键盘切换可用。关闭最后一页会清理会话并新建空白页；主工作台重载释放全部标签。保存标签／历史、内置下载、浏览器自动化与同包验收尚未完成。
 
 - 新增独立快速聊天窗口，可选择模型、项目与扩展，查看流式回复和 PDF，保存独立的新聊天／会话输入，在主工作台继续同一会话。窗口支持置顶、收起、隐藏和可选全局快捷键目标；停止与审批仅作用于当前快速聊天。受限桥接不开放主工作台的任意文件或终端操作，原件随完整备份保存，恢复后拒绝旧草稿版本的发送。完整桌面、同一包体分发与托管验收待完成。
 
@@ -61,6 +61,7 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 新功能
 
+- 临时浏览器支持最多 16 个网页标签，各自保留原生历史、未提交网址与加载错误，同站点共享临时网站存储。提供返回／前进、停止／重试、Ctrl L／F6、Ctrl T／W／Tab／Shift Tab 和标签方向键／Home／End／Delete 操作；切回聊天保留草稿。关闭最后一页创建新的空白会话，主工作台重载释放全部标签，退出不恢复网站存储。网页不能访问工作台桥接或 Node；保存标签／历史、内置下载、权限授权和自动化仍待实现。
 - 提供本地聊天、流式回复、停止与重新生成，以及 OpenAI Responses／兼容接口、Anthropic、Gemini、Azure 和 Ollama 连接。模型配置、输出预算及实际请求用量可查看和保存。
 - 消息可引用、在新分支重发或仅保存修改。旧回复和完整原文保留；回复版本及分支导航支持预览、搜索和完整分页，各条路径独立保存后续消息、草稿与附件。
 - 临时聊天只在本次应用运行期间保留，消息、附件、草稿、分支及回复版本不进入本机聊天历史或完整工作台备份；退出后清除，普通聊天草稿保持独立。
@@ -142,7 +143,7 @@ File tabs reveal the selected file after resizing or zooming and support arrow k
 
 Releases docked HTML previews and cancels pending preparation when the workbench reloads or crashes. Reopening retains editor drafts and rejects stale close requests. Sidebar navigation keeps the selected item visible after page changes, resizing and zoom, with a current-page marker.
 
-Adds a private website panel with HTTP(S) navigation, native back/forward history, stop/retry, address shortcuts and retained chat drafts. Websites receive no application bridge or Node access, and site storage is not restored after exit. Tabs, saved history, downloads, permission grants and browser automation remain outside this implementation.
+Adds a private multi-tab browser with independent history and address drafts, shared transient site storage, background failure recovery and native create/close/cycle shortcuts. Closing the final tab creates a fresh session; workbench reload releases every view. Websites receive no application bridge or Node access. Saved tabs/history, downloads, permission grants and browser automation remain pending.
 
 First independent prerelease of Nook, a local AI workspace for Windows. Includes multi-provider streaming chat, reply versions and branches, two-to-four-model comparison, temporary chats, document/image input, knowledge retrieval, project editing, Git and native terminals. Assistants, prompt templates, scheduled tasks, MCP tools/resources/OAuth and isolated local extensions use the existing workspace and approval flows. Complete JSON/gzip backups omit credentials.
 
