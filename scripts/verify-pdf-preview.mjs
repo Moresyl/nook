@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
@@ -121,9 +121,22 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   const exported = join(directory, 'exported-original.pdf');
   await application.evaluateMain(`globalThis.pdfSaveDialog=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(exported)}});`);
   try {
+    const predecessor = Buffer.from('KEEP_EXISTING_PDF_DESTINATION');
+    await writeFile(exported, predecessor);
+    await application.evaluateMain(`globalThis.nookPdfRename=require('node:fs/promises').rename;require('node:fs/promises').rename=async(from,to)=>{if(to===${JSON.stringify(exported)})throw Object.assign(new Error('Synthetic PDF export failure'),{code:'EIO'});return globalThis.nookPdfRename(from,to);};`);
+    try {
+      await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).click();
+      await page.getByRole('alert').getByText('本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。', { exact: true }).waitFor();
+      assert.equal(await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).isEnabled(), true);
+      assert.deepEqual(await readFile(exported), predecessor);
+      assert.deepEqual(Buffer.from(await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference)), bytes);
+      assert.equal((await readdir(directory)).some(name => name.startsWith('exported-original.pdf.') && name.endsWith('.tmp')), false);
+      await page.screenshot({ path: join(screenshots, 'pdf-original-export-save-error.png') });
+    } finally { await application.evaluateMain("require('node:fs/promises').rename=globalThis.nookPdfRename;delete globalThis.nookPdfRename;"); }
     await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).click();
     await page.getByRole('button', { name: '保存 PDF 原件', exact: true }).waitFor();
     assert.deepEqual(await readFile(exported), bytes);
+    assert.equal(await page.getByRole('alert').count(), 0);
   } finally { await application.evaluateMain("require('electron').dialog.showSaveDialog=globalThis.pdfSaveDialog;delete globalThis.pdfSaveDialog;"); }
   await page.getByRole('dialog').getByRole('button', { name: '完成', exact: true }).click();
   const denied = await page.evaluate(async ref => { try { await window.qiyao.readDocumentOriginal({ ...ref, sha256: '0'.repeat(64) }); return false; } catch { return true; } }, reference);
@@ -140,6 +153,6 @@ export async function verifyPdfPreview({ page, application, directory, screensho
   page = await restart();
   const restored = await page.evaluate(async ref => Array.from(await window.qiyao.readDocumentOriginal(ref)), reference);
   assert.deepEqual(Buffer.from(restored), bytes);
-  verified('PDF exact-byte native export, denied unowned references and restart recovery work with a dark minimum-window preview');
-  return { page, result: { checks: 6, pixels, originalBytes: bytes.length, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png', 'pdf-note-light.png'] } };
+  verified('PDF native export retains the destination and original after an actual filesystem failure with Chinese recovery copy, retries exact bytes, denies unowned references and survives restart with a dark minimum-window preview');
+  return { page, result: { checks: 6, pixels, originalBytes: bytes.length, canvasTextVerified: true, outlineTargetsVerified: true, fullDocumentSearchVerified: true, linksNotesZoomVerified: true, exportOwnershipRestartVerified: true, exportFilesystemRetryVerified: true, nativeSaveDialogIntercepted: true, screenshots: ['pdf-original-light.png', 'pdf-original-dark-minimum.png', 'pdf-outline-light.png', 'pdf-search-light.png', 'pdf-note-light.png', 'pdf-original-export-save-error.png'] } };
 }
