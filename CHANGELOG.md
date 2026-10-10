@@ -4,6 +4,8 @@
 
 ### 新功能
 
+- 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。标签页、保存历史、内置下载、浏览器自动化与同包验收尚未完成。
+
 - 新增独立快速聊天窗口，可选择模型、项目与扩展，查看流式回复和 PDF，保存独立的新聊天／会话输入，在主工作台继续同一会话。窗口支持置顶、收起、隐藏和可选全局快捷键目标；停止与审批仅作用于当前快速聊天。受限桥接不开放主工作台的任意文件或终端操作，原件随完整备份保存，恢复后拒绝旧草稿版本的发送。完整桌面、同一包体分发与托管验收待完成。
 
 - MCP 资源与提示词的 PDF 可直接阅读原始页面、查找和导出，并显式作为附件加入当前聊天。保留已有草稿与模型选择，保存失败可以重试，原件随备份与重启恢复；模型仍只接收提取文本。订阅更新忽略旧预览结果，关闭异步文件预览后恢复入口焦点。新功能的同一应用体分发与托管验收待完成。
@@ -126,6 +128,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 - 此版本为预发布，Windows 可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步及离线模型下载管理尚未提供。
 
 ### English
+
+Adds a private website panel with HTTP(S) navigation, native back/forward history, stop/retry, address shortcuts and retained chat drafts. Websites receive no application bridge or Node access, and site storage is not restored after exit. Tabs, saved history, downloads, permission grants and browser automation remain outside this implementation.
 
 First independent prerelease of Nook, a local AI workspace for Windows. Includes multi-provider streaming chat, reply versions and branches, two-to-four-model comparison, temporary chats, document/image input, knowledge retrieval, project editing, Git and native terminals. Assistants, prompt templates, scheduled tasks, MCP tools/resources/OAuth and isolated local extensions use the existing workspace and approval flows. Complete JSON/gzip backups omit credentials.
 

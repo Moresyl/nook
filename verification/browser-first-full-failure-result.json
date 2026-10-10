@@ -1,0 +1,12 @@
+{
+  "accepted": false,
+  "completedChecks": 253,
+  "expectedChecks": 261,
+  "normalExits": 37,
+  "allObservedExitsNormal": true,
+  "failure": "Browser verification selected the quick-chat BrowserWindow as the main workbench. Its first shell screenshot confirms the incorrect window, and website lookup failed.",
+  "archive": "E:/NookVerification/BrowserPanelFirstFullNativeFailure-20261010",
+  "retainedRuntime": "E:/NookVerification/Temp/qiyao-electron-XRgU4u",
+  "fix": "Exclude the quick-chat view when selecting or resizing the workbench; keep the same readiness deadline and verify simultaneous windows.",
+  "scope": "Partial development run only. Its completed groups are not a complete suite pass; final lifecycle changes require a new complete run."
+}

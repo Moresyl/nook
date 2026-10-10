@@ -1,0 +1,164 @@
+{
+  "variant": "development executable",
+  "checks": 9,
+  "normalCloseVerified": true,
+  "archive": "E:/NookVerification/BrowserPanelReloadFocusedPass-20261010",
+  "rawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-reload-fixed-native-20261010.log",
+  "screenshotReview": {
+    "individuallyInspected": 15,
+    "shellAndNativeContentKeptSeparate": true,
+    "screenshots": [
+      {
+        "name": "browser-invalid-address-shell.png",
+        "sha256": "f7d66da340fb31d9749ef20ec9639f555fd59c95887ad1abaafa0e951561d698",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-load-error-shell.png",
+        "sha256": "3f112f1da1db3a187771365c45ce13a35a57157d5630eaa90986e905f852228b",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1-shell.png",
+        "sha256": "c089be133e15157dc73117034bb38421c30886d33ffbec57ede4cd68cd81bb79",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1-content.png",
+        "sha256": "9662801ab4cf3aebb62dd638892432d9115b3559c1ca9a4ebf240a891a5ff6b6",
+        "width": 1016,
+        "height": 666
+      },
+      {
+        "name": "browser-light-1.25-shell.png",
+        "sha256": "a3a6aea046c2691c6de60c4b5615a87fb35ec42a610e8de42a2de8792048f87a",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1.25-content.png",
+        "sha256": "787552a9f655da0acc16d5baf2d077117665f468fe99ba2682359d93e9717737",
+        "width": 980,
+        "height": 621
+      },
+      {
+        "name": "browser-light-1.5-shell.png",
+        "sha256": "d490c8d08773892b5ebfc7f29cf4ddf7e88314754cb6103cd7f9748c3f9d1683",
+        "width": 1280,
+        "height": 840
+      },
+      {
+        "name": "browser-light-1.5-content.png",
+        "sha256": "af5e1dd3993bac86b0b00ab81c8cd574ceee7e570b7c8df7a641ca1f93e9342c",
+        "width": 919,
+        "height": 579
+      },
+      {
+        "name": "browser-dark-1-shell.png",
+        "sha256": "2f80c5774ed5fe30ec2a75f5a6dcbf5a1c829ea747c69c006de0b8e06ad3acae",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-dark-1-content.png",
+        "sha256": "6422a118a5a71a4288dc1f8bac1880eb548021a57150cf64210a5fdc46907c5b",
+        "width": 540,
+        "height": 366
+      },
+      {
+        "name": "browser-dark-1.25-shell.png",
+        "sha256": "5a5b5a498173d6ecee6d8c0c9a9ffeccc236827d51cbf0fda7a5d73737a9414f",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-dark-1.25-content.png",
+        "sha256": "164c90e984a6fd4c104d605863b3cd6f58968a99fcfaabf41e81e3cf5b05efd3",
+        "width": 680,
+        "height": 321
+      },
+      {
+        "name": "browser-dark-1.5-shell.png",
+        "sha256": "cf98412a40d30c4c6f5edcc7c64573095da619e7fa44bb6400454170fc75fa9c",
+        "width": 760,
+        "height": 540
+      },
+      {
+        "name": "browser-dark-1.5-content.png",
+        "sha256": "20f858171b90a0c74ac1168317f95d14db950f66e28910f8449f769ffde4f800",
+        "width": 664,
+        "height": 279
+      },
+      {
+        "name": "browser-restarted-empty-shell.png",
+        "sha256": "b2f472d26208edf7fea4b0ad3efc1623e6de6d9425e4c81250abfa0e64c26988",
+        "width": 1280,
+        "height": 840
+      }
+    ]
+  },
+  "unit": {
+    "files": 104,
+    "tests": 1006,
+    "coverage": {
+      "statements": 97.24,
+      "branches": 94.8,
+      "functions": 97.43,
+      "lines": 99.39
+    },
+    "rawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-reload-full-unit-20261010.log"
+  },
+  "browserUnit": {
+    "tests": 27,
+    "coverage": {
+      "statements": 100,
+      "branches": 94.02,
+      "functions": 97.14,
+      "lines": 100
+    },
+    "rawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-reload-focused-coverage-20261010.log"
+  },
+  "regressions": {
+    "htmlPreviewChecks": 9,
+    "surfaceChecks": 4,
+    "normalCloseVerified": true,
+    "scope": "Independent native checks against the final browser lifecycle build.",
+    "htmlPreviewRawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-reload-preview-20261010.log",
+    "surfacesRawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-reload-surfaces-20261010.log"
+  },
+  "observations": [
+    "Browser toolbar, error/retry controls, empty state and native site bounds remain usable in the six inspected theme/zoom cases.",
+    "The application shell capture excludes the sibling native website view; original website captures are retained separately without compositing.",
+    "The short/minimum sidebar scrolls; the selected navigation item can fall below the currently visible sidebar portion.",
+    "Website page colors remain owned by the website rather than forcibly matching the workbench theme."
+  ],
+  "retainedFailures": [
+    "E:/NookVerification/BrowserPanelFirstNativeFailure-20261010",
+    "E:/NookVerification/BrowserPanelHistoryNativeFailure-20261010",
+    "E:/NookVerification/BrowserPanelInputHarnessFailure-20261010",
+    "E:/NookVerification/BrowserPanelStopAddressFailure-20261010",
+    "E:/NookVerification/BrowserPanelNavigationWaitFailure-20261010",
+    "E:/NookVerification/BrowserPanelFractionalBoundsFailure-20261010",
+    "E:/NookVerification/BrowserPanelSameUrlAddressFailure-20261010",
+    "E:/NookVerification/BrowserPanelAddressDiagnosticFailure-20261010",
+    "E:/NookVerification/BrowserPanelFractionalBoundsDiagnosticFailure-20261010",
+    "E:/NookVerification/BrowserPanelCommandHarnessFailure-20261010",
+    "E:/NookVerification/BrowserPanelFirstFullNativeFailure-20261010",
+    "E:/NookVerification/BrowserPanelWorkbenchReloadFailure-20261010"
+  ],
+  "scope": "Source focused browser checks and inspected original screenshots only. Public websites, physical inputs, assistive technology, permissions grants, downloads, tabs/history saving, automation, other platforms/DPI, final installer and full design acceptance remain open. Existing distribution artifacts do not validate this new product.",
+  "reloadedWorkbench": {
+    "oldViewReleased": true,
+    "freshStorageVerified": true,
+    "staleOwnerCloseIgnored": true,
+    "multipleApplicationWindowsVerified": true
+  },
+  "licenses": {
+    "dependencyVersions": 381,
+    "legalDocuments": 401,
+    "rawLog": "D:/GR/pi-pc/.firecrawl/nook-browser-license-check-20261010.log"
+  }
+}
