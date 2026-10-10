@@ -1,0 +1,374 @@
+{
+  "verifiedAt": "2026-10-10T11:13:53.420Z",
+  "productCommit": "d2196b0",
+  "candidateEvidence": {
+    "file": "ui-errors-package-candidate-result.json",
+    "sha256": "e6c6d7460d912387ffe518078d04ce51a400c9e3f51c3ffc1eb6c782717c14e2"
+  },
+  "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+  "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd",
+  "artifacts": [
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240118621,
+      "sha256": "f2cecd2c75ea230f69f956574305665ee49a6d73411cc90665dca662f1514137"
+    },
+    {
+      "file": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309620406,
+      "sha256": "c627babee3cd667699afa99069536ea55d63006ab75940b0301b5cfeb8dae54a"
+    },
+    {
+      "file": "Nook-Setup-0.1.0-alpha.1-x64.exe.blockmap",
+      "bytes": 250126,
+      "sha256": "3ae474fc0cb828e74a3f619488a86ed470f7464bd561dd15e2ce03c063842d4a"
+    },
+    {
+      "file": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b"
+    },
+    {
+      "file": "win-unpacked/resources/app.asar",
+      "bytes": 493733307,
+      "sha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd"
+    }
+  ],
+  "nativeEvidence": [
+    {
+      "file": "ui-errors-full-native-result.json",
+      "sha256": "eafdad5acf1d8b76fdd7e46fcb8d4f2d46f0a9da97b6fceebdbd343fda1a1f60",
+      "checks": 252,
+      "normalExits": 37,
+      "archive": "E:/NookVerification/UiErrorsFullNative-20261010"
+    },
+    {
+      "file": "ui-errors-packaged-full-result.json",
+      "sha256": "c44958500d7c7d1240361f0f777600aa19e220c8740056d526d74d47ff85cede",
+      "checks": 252,
+      "normalExits": 37,
+      "archive": "E:/NookVerification/UiErrorsPackagedFull-20261010"
+    },
+    {
+      "file": "ui-errors-installed-full-result.json",
+      "sha256": "f90664b10dafc2e9da272b16a57ec14d66636afd0a4e5b8e4765953d1c3f9139",
+      "checks": 252,
+      "normalExits": 37,
+      "archive": "E:/NookVerification/UiErrorsInstalledFull-20261010"
+    }
+  ],
+  "focused": [
+    {
+      "phase": "surfaces",
+      "checks": 4,
+      "file": "surfaces-packaged-result.json",
+      "sha256": "1f96f882120971ebf536beb9d8f305d53369f1c511b0fffa7f1b79f61efe2412",
+      "log": {
+        "file": "nook-ui-errors-surfaces-20261010.log",
+        "sha256": "5a9d779aa6eb48b32711e13a5b093f9df463e6cd5de9dc53934c9e4d984c84af"
+      },
+      "normalExits": [
+        {
+          "elapsedMs": 411,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "testDeviceScaleFactor": 1,
+      "recordDeclaresRuntimeHashes": true
+    },
+    {
+      "phase": "text-hints",
+      "checks": 7,
+      "file": "text-hints-packaged-result.json",
+      "sha256": "d2d59bef3f7ad1a386e3777caf4060fb5c1164e25258f67aa7084aabfd1d5625",
+      "log": {
+        "file": "nook-ui-errors-text-hints-20261010.log",
+        "sha256": "aec3c20e2230af495d55f2a3edd9150aec7887905ffc6bb46b80555d01d46b51"
+      },
+      "normalExits": [
+        {
+          "elapsedMs": 4234,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "testDeviceScaleFactor": 1,
+      "recordDeclaresRuntimeHashes": false
+    },
+    {
+      "phase": "renderer-close",
+      "checks": 2,
+      "file": "renderer-close-packaged-result.json",
+      "sha256": "601725e12d964f5a5f16355c2270ca83fcba71fc1201b65a512ceb52d7fd0e13",
+      "log": {
+        "file": "nook-ui-errors-renderer-close-20261010.log",
+        "sha256": "a9c906faa2dbcdc3dabceb80f27f2fa8f4df9110a7775a348c62a8f16c1a9240"
+      },
+      "normalExits": [
+        {
+          "elapsedMs": 1135,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "testDeviceScaleFactor": 1,
+      "recordDeclaresRuntimeHashes": true
+    }
+  ],
+  "matchingRuntimeRecords": 11,
+  "runtimeRecords": [
+    {
+      "key": "audit",
+      "file": "package-audit-result.json",
+      "sha256": "40d834ee2d0932066ae6db2251aafdac75729d02682a9df7c56896989fbb0393"
+    },
+    {
+      "key": "desktop",
+      "file": "packaged-result.json",
+      "sha256": "a5868b4e895eb39e0e0627d2194c7d184d26d73c73df658e0b35a33f59c0d053"
+    },
+    {
+      "key": "surfaces",
+      "file": "surfaces-packaged-result.json",
+      "sha256": "1f96f882120971ebf536beb9d8f305d53369f1c511b0fffa7f1b79f61efe2412"
+    },
+    {
+      "key": "preview",
+      "file": "project-preview-packaged-result.json",
+      "sha256": "c389d191d5d6b5676f7b1cfac8e4069e749332a26f9bff38a4ac1f51cf9cb7a4"
+    },
+    {
+      "key": "branches",
+      "file": "conversation-branches-packaged-result.json",
+      "sha256": "20365914903cabe0ba719a52745ccd49f7d65587f2281372b12eba433e35eb27"
+    },
+    {
+      "key": "temporary",
+      "file": "temporary-conversations-packaged-result.json",
+      "sha256": "7ffdcbd27e264b3c7f776476068fb7fd3ca1c9a24f2eef1eddd9a8925c96bbf2"
+    },
+    {
+      "key": "comparisons",
+      "file": "model-comparisons-packaged-result.json",
+      "sha256": "b4f740b60d82f249608a5553b0ae132059d840673c746444d48f00907de17f77"
+    },
+    {
+      "key": "portable",
+      "file": "portable-result.json",
+      "sha256": "df2e066ae1307e937ac7135719847d0044dd73231ed2be3e352e5af913e15052"
+    },
+    {
+      "key": "portableAudit",
+      "file": "portable-package-audit-result.json",
+      "sha256": "75e5f54bd9b0a3ae31a3971e7851733e736cf41ce40755ff3a3bbb5cfed2eb0b"
+    },
+    {
+      "key": "bootstrap",
+      "file": "distribution-bootstrap-result.json",
+      "sha256": "1623bdfedbcc8c39a2682f34634376a8b76fcb5bdcd71e9f818fc5407c588792"
+    },
+    {
+      "key": "installer",
+      "file": "pipeline-installer-result.json",
+      "sha256": "04315b9696381bc67f31428626167d2804ac72cb5868ddbf33c95281a04f4523"
+    }
+  ],
+  "runtimeProofPassed": true,
+  "portableChecks": 7,
+  "installedAndUninstalled": true,
+  "actualSignatureStatus": "NotSigned",
+  "screenshots": [
+    {
+      "file": "100-tooltip-dark.png",
+      "sha256": "f8d00b210e27159a87040f22134361790f1768a080c02f008b00eb533fb6a0f7",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "100-tooltip-light.png",
+      "sha256": "6b6ac0d74f2625715545a01e401414808d919666c6b2e2f61ab3b2c4fd46552b",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "101-tooltip-edge.png",
+      "sha256": "b8c28c6f034fc25d66968c390efba64f214e40684a9c2bd2a0e92ea2963eb285",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "102-button-tooltip-disabled.png",
+      "sha256": "584d1deebc8b8c5c3cbc449a47ec07fb783940c961ed567e750373217a16e66f",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "103-button-tooltip-long.png",
+      "sha256": "fccdc4b15f0390ff4d7e220186bc875a2cbc001370f0265c99f6ec11adab97a2",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "104-startup-dark.png",
+      "sha256": "6109fcc56304b0a83bf01454189b7d394c3c62e98dee07c59da2d5432eb02484",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "104-startup-light.png",
+      "sha256": "b4f4622a56354945b44e8dcf4c3a15a0f9a916e31afe7ff4f23959456f763b27",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "105-startup-error-narrow.png",
+      "sha256": "38571b92136534a15a943600931ad029ea6659ba7370eaa85ae059405ddc3dfb",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "105-startup-error.png",
+      "sha256": "16af87ea16712fa4141fa1fd95c726463332aec180af302bc80ee467811a49a4",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "106-button-focus-dark.png",
+      "sha256": "0f6e0902c511e83c01293fa415ea5cc201973f1ed30110dcd8cc10594a63a368",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "106-button-focus-light.png",
+      "sha256": "ce6a92cc81c49f0c1c6bfa3e46f4349466ebfcc36878a7736775452ddd972cc6",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "91-surface-controls-light.png",
+      "sha256": "c9f501324da8ba0c01f40b41e95370b3a84e8c2f9b304ad526d0cb46068fabde",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "92-surface-controls-dark-narrow.png",
+      "sha256": "1d1579886816085a17bea5065dc909a6e8f0955f4d86096d9aa776fd6e6682a6",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "93-surface-settings-zoomed.png",
+      "sha256": "60076bb1e77865a1b74f2a27dc592ecae6ec0e9a8af498e2f1962abadd8c1da1",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "94-surface-select-light.png",
+      "sha256": "b234fdc81b3b77786ecd45dbb0934710111c933d5faecfb726e63bba35901177",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "95-surface-select-dark.png",
+      "sha256": "c6159603a887a4f2ebeb23d50f2c0b334db5391ab5fe052e661c1bb3dfbd0b29",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "96-surface-connection-scroll.png",
+      "sha256": "df5cdb439043c135377f5a377745640f5489928974965043555cb4c6df8fabf4",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "96-switch-dark.png",
+      "sha256": "e0624a55965b6db28daeec1336ceb41a1d1c13af8318d0b4cea46124318f24b2",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "96-switch-light.png",
+      "sha256": "f8449a39fcf5c628a942110a21916f5d44b8c586b9679be33a15ae23b1e9473d",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "97-field-invalid-dark.png",
+      "sha256": "4eb81ff90633e512834f04beb42456e879d429ce62e5c681601e7e1c1e39b3f9",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "97-field-invalid-light.png",
+      "sha256": "822e6d947c539453ed840d724369a76b777137cc7b4bb4faf26832bb6d0aee92",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "98-surface-short-wide.png",
+      "sha256": "412521b75bd06a21192915b5176cac06b1e2d74c8ababc69bf2a7825cab7df59",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "99-switch-checked-dark.png",
+      "sha256": "553208edc73bd7aed27f4fd94f0933d325da2de6f9952294df7be821bbfbfade",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "99-switch-checked-light.png",
+      "sha256": "7a17bbb8bb8dd29b00965cd94492eb10fcc8caab15ee561645084bb28b2c5a36",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "annotation-hints-dark-150.png",
+      "sha256": "0b32412dbd5980bcbad2a2cfea3bdee965cf3d1cf3d528ea367aa9dc72509c08",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "annotation-hints-light-100.png",
+      "sha256": "d9921601925f3ecaa2511bf34fca2d25cc861abb43b9c70c7bc7efca33d97fd6",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "branch-hints-dark-150.png",
+      "sha256": "6ebe7e76706435fa46179681d08b9d6573a084101aae5dbc67117cf42dd699d9",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "branch-hints-light-100.png",
+      "sha256": "5bbad74a3097a43058149c3658417dde54c7b5a993f2c9e09c58e06e277206d7",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-dark-100.png",
+      "sha256": "15593c3fcfdcfe93de08a23580495050a9b2cbe0697456419d25c3e5418162dd",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-dark-125.png",
+      "sha256": "fe34db8baf4bbf0213dcbf4ced2e5ed6427652abccdef69557069ec77f64ab06",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-dark-150.png",
+      "sha256": "f6138b101964224ae2d37f968f8d3de32d100eb2a7d0692f65173ddbb8480b99",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-light-100.png",
+      "sha256": "3a014df177ad17c90b4e0149f59c69a14d7aeeae2fe7bd67712b0009efdf784f",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-light-125.png",
+      "sha256": "1e91ba75e9f872527779d9c15ca6a17f7e7e4d861c11e2760b342258ed38ff08",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "text-hints-light-150.png",
+      "sha256": "6550ede0e77459b5a6ce34b7dc9b7a4c5fdd0f9d1629359f9b7366e5e74a5ee7",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "tree-hints-dark-150.png",
+      "sha256": "1eb0a57ea676f0bfc9d86eb82424738959cf613a2f2e2dbe5091d2052cbf55e6",
+      "visuallyReviewed": false
+    },
+    {
+      "file": "tree-hints-light-100.png",
+      "sha256": "466f71cfc9ecfed1c5f4847208e67281f615c7affe7c96ab1b74b30cb8e09bc7",
+      "visuallyReviewed": false
+    }
+  ],
+  "archive": "E:/NookVerification/UiErrorsDistributionFinal-20261010",
+  "actualSystemDpiAccepted": false,
+  "allReferenceUiAccepted": false,
+  "physicalInstallerWizardAccepted": false,
+  "cloudServicesAccepted": false,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "scope": "Final matching local distribution proof for the immutable Chinese error-copy candidate. Three separate complete 252-check source/unpacked/installed runs each closed normally 37 times. Actual portable wrapper, bootstrap/legal audit, owned silent installation/uninstall and independent cleanup checks pass. Fresh surface/text-hint/renderer-crash exit suites and all 11 release-policy runtime records match this body. Text-hint records lack embedded executable hashes, so their launch log and unchanged candidate/source/compiled snapshot are independently checked. This does not complete all reference UI states, physical wizard/input, actual system DPI, cloud services, remaining capabilities or hosted publication. Historical failures remain preserved."
+}

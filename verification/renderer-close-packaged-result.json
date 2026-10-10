@@ -1,0 +1,56 @@
+{
+  "verifiedAt": "2026-10-10T11:11:34.796Z",
+  "variant": "packaged executable",
+  "executableSha256": "69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b",
+  "archiveSha256": "27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd",
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "checks": 2,
+  "crash": {
+    "reason": "crashed",
+    "exitCode": 2,
+    "capturedAt": 1791630692976,
+    "memory": {
+      "rss": 167251968,
+      "heapTotal": 17448960,
+      "heapUsed": 11869000,
+      "external": 5549842,
+      "arrayBuffers": 0
+    },
+    "systemFreeMemory": 14204596224,
+    "processes": [
+      {
+        "pid": 7068,
+        "type": "Browser",
+        "memory": {
+          "workingSetSize": 163364,
+          "peakWorkingSetSize": 166776,
+          "privateBytes": 123788
+        }
+      },
+      {
+        "pid": 24044,
+        "type": "GPU",
+        "memory": {
+          "workingSetSize": 106616,
+          "peakWorkingSetSize": 108888,
+          "privateBytes": 118740
+        }
+      },
+      {
+        "pid": 13232,
+        "type": "Utility",
+        "memory": {
+          "workingSetSize": 50860,
+          "peakWorkingSetSize": 50860,
+          "privateBytes": 12272
+        }
+      }
+    ]
+  },
+  "quitMs": 1138,
+  "persistedDraftRetained": true,
+  "conversationsRetained": true,
+  "modelRequests": 0,
+  "boundary": "A deliberately crashed owned main renderer and explicit application quit. The last successfully saved state is retained; unflushed input and the cause of spontaneous crashes are not established. Not complete desktop or distribution acceptance."
+}
