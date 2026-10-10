@@ -1,6 +1,6 @@
 # Nook 发布状态
 
-**尚未发布。** Windows x64 目标版本为 `0.1.0-alpha.1`。项目名称为 Nook；当前中文提示构建来自 `d2196b0`，类型、构建、977 项单元测试、三轮独立原生专项及完整 252 组桌面回归通过，37 次正常退出。新分发正在生成；安装、便携、全部设计页面和托管流水线尚未完成验收。
+**尚未发布。** Windows x64 目标版本为 `0.1.0-alpha.1`。项目名称为 Nook；当前中文提示构建来自 `d2196b0`，类型、构建、977 项单元测试、三轮独立原生专项及完整 252 组桌面回归通过，37 次正常退出。新候选已生成，包体／实际启动组件审计和真实便携包装 7 项检查通过；新未安装应用体的完整回归正在进行，安装、全部设计页面和托管流水线尚未完成验收。
 
 仓库：[Moresyl/nook](https://github.com/Moresyl/nook)。完整要求见[交付要求](DELIVERY.md)，功能与界面进度见[能力与边界](CAPABILITIES.md)和[设计对照](DESIGN-ALIGNMENT.md)。设计资料使用 `E:\txt`，尚不能认定 100% 采用。
 
@@ -25,13 +25,13 @@
 | 完整源码回归 | 中文提示新构建在显式设备缩放 1 下整轮 252 组通过，37 次正常退出；此前各轮失败继续保留 |
 | 最新诊断 | 98 组后记录中断，恢复时进程与工具句柄均不存在；无最终汇总或退出状态，不计为通过 |
 | 系统缩放 | Windows 125% 下首个精确窗口尺寸断言失败；独立探测确认取整差异，诊断退出也再次超时 |
-| 分发 | 新安装／便携候选已生成，包体审计及未安装应用体 252 组通过；安装／卸载与便携验收仍待完成 |
+| 分发 | 中文提示新候选已生成，包体与实际启动组件审计、真实便携包装 7 项通过；新应用体完整回归及安装／卸载仍待完成 |
 
 此前逐条复制构建的完整回归包含 MCP PDF 8 组、快速聊天 9 组，以及大型备份、分支、临时聊天、模型比较和实际重启。23 份阶段记录与 215 张截图按同一构建归档，逐张检查了其中 4 张；其余不能算已完成视觉验收。该旧应用体的保存错误仍显示英文。[此前完整回归与截图证据](../verification/workspace-copy-fixed-scale-full-result.json)
 
 新中文提示构建已有 25 组独立专项，已检查四张实际截图：短窗口保存错误与滚动末端、PDF 导出失败、最小窗口无效时区提示。实际文件写入失败保留快速聊天输入、PDF 原件和既有目标文件；恢复后同一操作重试成功。[新构建、覆盖率与专项证据](../verification/ui-errors-review-result.json)
 
-同一源码与全部 236 个编译文件哈希已核对，新整轮 252 组全部通过，37 次正常退出；23 份阶段记录与 216 张本轮截图另行归档，这批截图尚未逐张检查。应用默认系统缩放、新分发、安装和便携仍需验收。[中文提示完整回归](../verification/ui-errors-full-native-result.json)
+同一源码与全部 236 个编译文件哈希已核对，新整轮 252 组全部通过，37 次正常退出；23 份阶段记录与 216 张本轮截图另行归档，其中四张错误状态已逐张检查，其余 212 张未完成视觉验收。应用默认系统缩放、新包完整回归与安装仍需验收。[中文提示完整回归](../verification/ui-errors-full-native-result.json)
 
 当前证据：[构建、测试与覆盖率](../verification/workspace-copy-review-result.json)、[逐条复制原生专项](../verification/workspace-copy-native-observer-review-result.json)、[默认备份与大型聊天](../verification/workspace-copy-scoped-native-review-result.json)、[整轮关闭失败](../verification/workspace-copy-full-close-failure-result.json)、[中断诊断](../verification/workspace-copy-interrupted-diagnostic-result.json)、[系统缩放现场](../verification/workspace-copy-geometry-diagnostic-result.json)。各轮前缀和专项不拼接为完整通过；启动、连接、操作、退出期限与 80% 覆盖率门槛均保持不变。
 
@@ -47,18 +47,18 @@
 
 ## 分发与流水线
 
-下方候选使用此前逐条复制构建，包含 MCP PDF 与快速聊天，尚未包含 `d2196b0` 中文提示。包体审计通过：239 个产品文件、401 份完整依赖法律文档、20 份分发法律／来源文件，以及原生组件完整性、编译内容和 Nook 元数据均已核对。安装器预检为 28 个输入；许可检查保留 381 个依赖版本与五组资源。实际签名状态为未签名，构建日志的签名步骤名称不代表签名成功。[候选及准确哈希](../verification/workspace-copy-package-candidate-result.json)与[打包预检](../verification/workspace-copy-package-preflight-result.json)
+当前候选已包含 `d2196b0` 中文提示、逐条复制、MCP PDF 与快速聊天。包体审计通过：239 个产品文件、401 份完整依赖法律文档、20 份分发法律／来源文件，以及原生组件完整性、编译内容和 Nook 元数据均已核对。安装器预检为 28 个输入；许可检查保留 381 个依赖版本与五组资源。实际安装器／卸载器／便携启动组件分别核对 6／5／2 个插件及原始哈希，真实便携包装 7 项检查通过、两次正常退出并清除提取目录。实际签名状态为未签名，构建日志的签名步骤名称不代表签名成功。[当前候选、便携检查及准确哈希](../verification/ui-errors-package-candidate-result.json)
 
-新未安装应用体在固定设备缩放 1 下完成 252 组、37 次正常退出；23 份阶段记录中的应用哈希与新候选匹配，215 张本轮截图单独归档，尚未逐张视觉检查。安装／卸载、便携和真实系统交互验收仍待完成。[新应用体完整回归](../verification/workspace-copy-packaged-full-result.json)
+此前逐条复制候选的未安装应用体在固定设备缩放 1 下完成 252 组、37 次正常退出；23 份阶段记录中的应用哈希仅匹配该旧候选，215 张该轮截图单独归档，尚未逐张视觉检查。该结果不能作为中文提示新包的通过证明。[此前应用体完整回归](../verification/workspace-copy-packaged-full-result.json)与[此前候选](../verification/workspace-copy-package-candidate-result.json)
 
 此前 `8e3ef21` 候选在 202 组后的关闭超时失败，旧哈希和历史通过不能用于新包。[此前分发失败](../verification/insertion-focus-packaged-exit-failure-result.json)
 
 | 当前候选文件 | SHA-256 |
 | --- | --- |
-| 安装包 | `81f4359e6ec83f6d520adfd34a35085dcfc9af23ea57415823e26fc012a4633e` |
-| 便携包 | `64ca2bb0fc0110da4bbb6ef8cbdb0fcb9889edf359b47260199e54cce519d3c6` |
-| Nook.exe | `97dd8a2edd3908898b35a0c0898626bb2c2e1b23f7bc2950a6a90eeded1c8072` |
-| app.asar | `ebb128f5f7e38b6130c6411e7a60cb7508112e2ffa52f0256b58ec1062bed87f` |
+| 安装包 | `f2cecd2c75ea230f69f956574305665ee49a6d73411cc90665dca662f1514137` |
+| 便携包 | `c627babee3cd667699afa99069536ea55d63006ab75940b0301b5cfeb8dae54a` |
+| Nook.exe | `69cd8a050bcb6bd1d62049204c0410109ca5ca77f46ce7dea1e4377fa0d4d90b` |
+| app.asar | `27ed454823a03336265cafb555d4d99c338fc76325fe782dcaaed54519711dfd` |
 
 完整源码回归证据已推送至 `224eb79`，触发的 [38042090454](https://github.com/Moresyl/nook/actions/runs/38042090454) 已核对：验证任务仍因 GitHub 账户付款／支出额度限制而零步骤失败；开发分支的发布任务也受分支条件限制。未修改付费设置、创建发布标签或绕过验收。[最新托管记录](../verification/hosted-fixed-scale-block-result.json)与[此前逐条复制记录](../verification/hosted-workspace-copy-block-result.json)
 
