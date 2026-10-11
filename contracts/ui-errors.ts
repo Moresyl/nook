@@ -1,4 +1,5 @@
 const knownErrors = new Map<string, string>([
+  ['The worktree directory could not be selected. Try again.', '未能选择工作树文件夹，请重试。'],
   ['Local data could not be saved. Check disk space and directory permissions.', '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。'],
   ['Desktop settings could not be saved. Check local storage and try again.', '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。'],
   ['The cron expression or time zone is invalid or has no future run.', 'Cron 表达式或时区无效，或没有未来的执行时间。'],

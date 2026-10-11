@@ -1,0 +1,31 @@
+{
+  "status": "failure preserved before changes",
+  "typeCheck": {
+    "archive": "E:/NookVerification/WorktreePickerTypesFailure-20261011",
+    "cause": "Vitest array rows were interpreted as positional arguments instead of a single directory list. Object rows corrected the test signature; no production change was needed."
+  },
+  "nativeFocus": {
+    "archive": "E:/NookVerification/WorktreePickerFocusFailure-20261011",
+    "checks": 1,
+    "normalExitMs": 1325,
+    "forced": false,
+    "retainedWorkspace": "E:/NookVerification/Temp/qiyao-electron-d3od0U",
+    "originals": 3,
+    "originalsIndividuallyViewed": ["failure.png"],
+    "observation": "The first canceled picker response did not satisfy the enabled-input focus assertion before the unchanged ten-second bridge deadline. The exact underlying scheduling cause was not proven by the initial diagnostics.",
+    "change": "Restore input focus after the React busy-state commit instead of scheduling it independently with requestAnimationFrame. Revalidation remains required."
+  },
+  "repeatedEscape": {
+    "archives": [
+      "E:/NookVerification/WorktreePickerEscapeFailure-20261011",
+      "E:/NookVerification/WorktreePickerCancelDiagnosticFailure-20261011",
+      "E:/NookVerification/WorktreePickerNoncancelableFailure-20261011"
+    ],
+    "checksEach": 1,
+    "normalExitMs": [1291, 1230, 504],
+    "forced": false,
+    "observedCause": "The final diagnostic recorded a native dialog cancel event with cancelable:false and closedBy:closerequest while the header remained disabled. preventDefault could not block this event, and the native dialog closed. Earlier diagnostics did not record cancelable, so their exact cause remains bounded to the observed dialog closure.",
+    "change": "Shared Modal explicitly sets closedby:none while dismissal is disabled and restores closerequest when idle. Actual native picker and save fixtures press Escape three times while held. All original deadlines remain unchanged.",
+    "distributionVerification": "pending"
+  }
+}

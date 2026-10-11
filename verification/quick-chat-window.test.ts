@@ -52,7 +52,7 @@ describe('restricted quick-chat window', () => {
     window.emit('ready-to-show'); expect(window.show).toHaveBeenCalledOnce(); window.minimized = true; manager.open();
     expect(fake.windows).toHaveLength(1); expect(window.restore).toHaveBeenCalledOnce(); expect(window.webContents.send).toHaveBeenCalledWith('nook:quick-refresh');
     quick.load.mockResolvedValue({ scoped: true }); expect(await invoke('load')).toEqual({ scoped: true });
-    for (const command of ['saveProvider', 'loadDocument', 'submit', 'importWorkspace', 'constructor', '__proto__', 1]) await expect(invoke(command)).rejects.toThrow('Unknown quick-chat');
+    for (const command of ['saveProvider', 'loadDocument', 'submit', 'importWorkspace', 'chooseWorktreeRoot', 'constructor', '__proto__', 1]) await expect(invoke(command)).rejects.toThrow('Unknown quick-chat');
   });
   it('rejects another window and embedded frame before any operation', async () => {
     const { manager, event, quick } = setup();

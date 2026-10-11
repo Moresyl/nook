@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
 import { DocumentOriginalFiles } from './services/document-original-files';
+import { chooseWorktreeRoot } from './services/worktree-root-picker';
 import { userDataDirectory } from './services/user-data-directory';
 import { StartupDiagnostics } from './services/startup-diagnostics';
 import { allowRendererPermission } from './services/renderer-permissions';
@@ -285,6 +286,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     if (result.canceled) return null;
     return { id: randomUUID(), name: basename(result.filePaths[0]), path: result.filePaths[0], instructions: '', createdAt: Date.now() };
   },
+  chooseWorktreeRoot: () => chooseWorktreeRoot(() => dialog.showOpenDialog(window!, { title: '选择工作树根目录', properties: ['openDirectory'] })),
   saveProject: (raw) => {
     const project = projectSchema.parse(raw);
     let pathChanged = false;

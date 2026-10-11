@@ -561,7 +561,7 @@ try {
     const { verifyWorktreeSettings } = await import('./verify-worktree-settings.mjs');
     const run = await verifyWorktreeSettings({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
     page = run.page; worktreeSettingsResult = run.result;
-    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_PROJECT_WORKTREES_ONLY) {
     const { verifyProjectWorktrees } = await import('./verify-project-worktrees.mjs');
     const run = await verifyProjectWorktrees({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });

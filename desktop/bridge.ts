@@ -98,6 +98,7 @@ const bridge: Bridge = {
   deleteThread: (id) => invoke('deleteThread', id),
   forkThread: (id, messageId) => invoke('forkThread', id, messageId),
   chooseProject: () => invoke('chooseProject'),
+  chooseWorktreeRoot: () => invoke('chooseWorktreeRoot'),
   saveProject: (project) => invoke('saveProject', project),
   removeProject: (id) => invoke('removeProject', id),
   saveAssistant: (assistant) => invoke('saveAssistant', assistant),
