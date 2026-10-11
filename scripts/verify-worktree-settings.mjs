@@ -22,6 +22,7 @@ export async function verifyWorktreeSettings({ page, application, getApplication
   const input = () => settings().getByLabel('工作树根目录', { exact: true });
   const save = () => settings().getByRole('button', { name: '保存工作树设置', exact: true });
   const choose = () => settings().getByRole('button', { name: '选择工作树文件夹', exact: true });
+  const rootAlert = () => settings().locator('.worktree-settings > .inline-error[role="alert"]');
   async function open() { await page.keyboard.press('Control+,'); await settings().waitFor(); await settings().getByRole('button', { name: '工作树', exact: true }).click(); await input().waitFor(); }
   async function close() { await dismissModalWithEscape(page, settings()); }
   async function reload() { await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); }
@@ -60,8 +61,8 @@ export async function verifyWorktreeSettings({ page, application, getApplication
       catch(error){console.log('Worktree picker focus diagnostics',JSON.stringify(await page.evaluate(()=>({inputDisabled:document.querySelector('.worktree-root-control input')?.disabled,activeTag:document.activeElement?.tagName,activeLabel:document.activeElement?.getAttribute('aria-label'),activeId:document.activeElement?.id,inputId:document.querySelector('.worktree-root-control input')?.id,hasFocus:document.hasFocus()}))));throw error;}
       assert.deepEqual(await readFile(primary),beforeBytes);assert.deepEqual(await state(),beforeState);
       const rejected=failure||(!result.canceled&&(!result.filePaths.length||result.filePaths[0]==='relative'));
-      if(rejected){const alert=settings().getByRole('alert');await alert.waitFor();assert.equal(await alert.textContent(),'未能选择工作树文件夹，请重试。');assert.equal(await input().inputValue(),beforeInput);}
-      else {assert.equal(await settings().getByRole('alert').count(),0);assert.equal(await input().inputValue(),result.canceled?beforeInput:result.filePaths[0]);}
+      if(rejected){const alert=rootAlert();await alert.waitFor();assert.equal(await alert.textContent(),'未能选择工作树文件夹，请重试。');assert.equal(await input().inputValue(),beforeInput);}
+      else {assert.equal(await rootAlert().count(),0);assert.equal(await input().inputValue(),result.canceled?beforeInput:result.filePaths[0]);}
       if(captureName&&captureName!=='picker-cancel-busy-light')await capture(captureName);
       assert.equal(modelRequests(),requestsBefore);
     } finally {await application.evaluateMain("(()=>{const receipt=globalThis.nookRootPickerReceipt;require('electron').dialog.showOpenDialog=receipt.original;receipt.release();delete globalThis.nookRootPickerReceipt;})()");}
@@ -86,7 +87,7 @@ export async function verifyWorktreeSettings({ page, application, getApplication
       for(let attempt=0;attempt<3;attempt++)await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true);
       if (captureBusy) await capture('save-busy-light');
       await application.evaluateMain('globalThis.nookRootSaveReceipt.release()');
-      const alert = settings().getByRole('alert'); await alert.waitFor();
+      const alert = rootAlert(); await alert.waitFor();
       assert.deepEqual(await readFile(primary), beforeBytes); assert.deepEqual(await state(), beforeState);
       assert.equal(await input().inputValue(), captureBusy ? root : alternative);
       const bounds = await alert.evaluate(element => {

@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-11T08:57:27.433Z",
+  "archive": "E:/NookVerification/WorktreeOverviewHosted-20261011",
+  "sourceHead": "c05985e4fe28c8522b7021705d1c163b28e02c28",
+  "runId": 38126506825,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38126506825",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 114431862734,
+      "name": "verify",
+      "conclusion": "failure",
+      "steps": 0
+    },
+    {
+      "id": 114431869332,
+      "name": "publish",
+      "conclusion": "skipped",
+      "steps": 0
+    }
+  ],
+  "annotations": [
+    {
+      "level": "failure",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "released": false,
+  "scope": "Exact worktree overview feature head. Initial immediate API query returned no run; later exact-head query found this completed run. GitHub rejected job startup because of account billing/spending limits; verify and publish executed no steps. No release tag, manual bypass, runner or billing changes were performed. Local source acceptance remains independent."
+}
