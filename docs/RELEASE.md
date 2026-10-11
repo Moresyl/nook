@@ -1,6 +1,6 @@
 # Nook 发布状态
 
-**尚未发布。** 工作树新增本机创建记录，外部浏览与登记不会取得创建权限；实际写入失败保留新树、旧记录并显示安全提示。类型、120 文件／1,331 项完整单元、84 项发布门槛测试与构建通过；覆盖率为语句 97.34%、分支 95.15%、函数 97.52%、行 99.42%，原有四项 80% 门槛和范围保留。五组桌面专项、四次正常退出（最长 514ms）与 10 张原图逐张复核通过；六种警告和焦点使用系统主题的实际媒体变化验收。最低完整桌面门槛提高至 331 项，新的完整源码与当前分发尚待验收。固定界面、快照／恢复与清理继续实现。[创建实际范围与失败保留](../verification/worktree-ownership-review-result.json) · [原图具体范围](../verification/worktree-ownership-originals-review-result.json) · [完整单元](../verification/worktree-ownership-unit-review-result.json)
+**尚未发布。** 工作树新增本机创建记录，外部浏览与登记不会取得创建权限；实际写入失败保留新树、旧记录并显示安全提示。类型、120 文件／1,331 项完整单元、84 项发布门槛测试与构建通过；覆盖率为语句 97.34%、分支 95.15%、函数 97.52%、行 99.42%，原有四项 80% 门槛和范围保留。五组桌面专项、四次正常退出（最长 514ms）与 10 张原图逐张复核通过；六种警告和焦点使用系统主题的实际媒体变化验收。完整源码通过全部 331 项、60 次正常退出（最长 2,215ms），无强制关闭或运行时错误，236 个编译文件与专项一致。创建与归属的 22 张当前原图已逐张复核，另外 120 张保留原图不在本轮视觉范围。当前分发、固定界面、快照／恢复与清理继续完成。[创建实际范围与失败保留](../verification/worktree-ownership-review-result.json) · [专项原图](../verification/worktree-ownership-originals-review-result.json) · [完整单元](../verification/worktree-ownership-unit-review-result.json) · [完整源码](../verification/worktree-ownership-full-review-result.json) · [整轮原图实际范围](../verification/worktree-ownership-full-originals-review-result.json)
 
 已推送登记回归与说明精简提交 `b130ebd` 对应 [38143896580](https://github.com/Moresyl/nook/actions/runs/38143896580)：验证因账户付款／额度限制未启动，分支发布按仅标签条件跳过，均为零步骤。[当前已推送运行与注释](../verification/worktree-registration-hosted-result.json)
 

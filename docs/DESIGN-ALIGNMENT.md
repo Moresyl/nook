@@ -1,6 +1,6 @@
 # Nook 设计对照
 
-本机创建记录写入失败时，创建结果增加保留文件提示，沿用已有文字和表单样式。五组真实桌面专项与 10 张原图逐张复核通过；六种最小窗口主题／缩放由系统主题的实际媒体变化驱动，完整提示和实际 Tab 提交按钮的焦点边框可见。150% 正文独立纵向滚动，底部操作保持可见；重启原图展示五棵实际工作树，记录持久化由文件断言验证。当前固定界面、快照／恢复、清理、完整参考界面与分发继续完成。[创建专项](../verification/worktree-ownership-review-result.json) · [本轮原图范围](../verification/worktree-ownership-originals-review-result.json)
+本机创建记录写入失败时，创建结果增加保留文件提示，沿用已有文字和表单样式。五组真实桌面专项与 10 张原图逐张复核通过；六种最小窗口主题／缩放由系统主题的实际媒体变化驱动，完整提示和实际 Tab 提交按钮的焦点边框可见。150% 正文独立纵向滚动，底部操作保持可见；重启原图展示五棵实际工作树，记录持久化由文件断言验证。完整源码通过 331 项、60 次正常退出（最长 2,215ms），236 个编译文件与专项一致；本轮创建与归属的 22 张原图逐张复核，另外 120 张保留原图不计入本轮视觉验收。项目创建明色矩阵为 1280×840、暗色为 760×540；暗色 150% 下后续字段需正文滚动，不能推断全部明色最小窗口已验收。固定界面、快照／恢复、清理、完整参考界面与分发继续完成。[创建专项](../verification/worktree-ownership-review-result.json) · [专项原图](../verification/worktree-ownership-originals-review-result.json) · [完整源码](../verification/worktree-ownership-full-review-result.json) · [整轮原图实际范围](../verification/worktree-ownership-full-originals-review-result.json)
 
 ## 登记界面
 

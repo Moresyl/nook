@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T13:23:28.650Z",
+  "verifiedAt": "2026-10-11T14:35:41.959Z",
   "variant": "development executable",
-  "checks": 326,
+  "checks": 331,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181186,
-    "compressedBytes": 242324,
+    "expandedBytes": 84181180,
+    "compressedBytes": 242362,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791723505564,
+        "startedAt": 1791727855892,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791723507460
+        "finishedAt": 1791727858329
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791723507694,
+        "startedAt": 1791727858553,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791723509399
+        "finishedAt": 1791727861105
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791723511753,
+        "startedAt": 1791727864482,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791723513305
+        "finishedAt": 1791727866456
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 20.400000005960464,
+    "scopedReadMs": 23.600000008940697,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1442,6 +1442,16 @@
     "worktree-registration-dark-125-error-shell.png",
     "worktree-registration-dark-150-form-shell.png",
     "worktree-registration-dark-150-error-shell.png",
+    "worktree-ownership-external-registration-light-shell.png",
+    "worktree-ownership-created-light-shell.png",
+    "worktree-ownership-existing-branch-light-shell.png",
+    "worktree-ownership-light-100-warning-shell.png",
+    "worktree-ownership-light-125-warning-shell.png",
+    "worktree-ownership-light-150-warning-shell.png",
+    "worktree-ownership-dark-100-warning-shell.png",
+    "worktree-ownership-dark-125-warning-shell.png",
+    "worktree-ownership-dark-150-warning-shell.png",
+    "worktree-ownership-normal-restart-light-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2632,120 +2642,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(41, 41, 41)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 169.10200000000054
+                  "currentTime": 166.96800000000067
                 }
               ]
             }
@@ -5489,10 +5499,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\worktrees/nook-1b2e55b3",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\管理 工作树 🧭/nook-c06769ae",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\worktrees/nook-834f4f80",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\管理 工作树 🧭/nook-9a92359e",
     "errorLayouts": [
       {
         "top": 543.888916015625,
@@ -5731,51 +5741,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "05c18d6a-032c-48a3-bed1-8e6c386d31fa",
-        "67d2d3dc-77b2-4112-86df-f3f5310be399",
-        "f7b6efa9-ad01-4c55-bd62-66ecaa582196",
-        "d2185047-25f3-49e4-9348-a0029df94d5d",
-        "a5b5957e-8983-4e68-bedd-d9852a6191ae",
-        "1588e41d-f8bf-463d-8a21-cf873130dee1",
-        "4ae7f4cb-0263-49dd-828e-9d66a9e534f9",
-        "0e8fa7eb-6e2f-48ec-8976-c33783626db4",
-        "6fbc8d7b-94f4-46f9-896c-de1c65eb1afa",
-        "0223b3b0-5836-4ef1-adfe-61518eb9550e",
-        "d2a6c5dc-6630-4325-8158-79179e6a1e2c",
-        "dfd6f828-260a-427d-8468-5ceff08b7fe0",
-        "225fc2a5-f651-4243-8124-6b0320f25b23",
-        "8fe017c9-f554-4f74-9c75-e80ce8311044",
-        "9da00f76-fbfd-4433-889e-39eac83a2784",
-        "2a94b9ac-2e24-48b6-b392-d91517eb177f",
-        "24e1d752-a872-4810-94be-17a9c27fa73f",
-        "23372f1a-d882-4a75-a7e8-557dc893efd6",
-        "1cfcce85-793d-48e6-9659-2b9c1d545c27",
-        "bf5bdb96-1bdc-4bfc-a433-e66735f5ca2b"
+        "6bddf045-ea7a-4bae-a822-003d7e153def",
+        "b63401a7-7e7f-4aed-99bc-7318302cfea6",
+        "bf73baa6-6849-4d81-8aeb-c5b219bbe42f",
+        "4e664eac-0027-4f76-9fa3-ba5124f5b289",
+        "160ec287-a450-404e-a8a8-f45bfd22c56d",
+        "8a1008c7-3483-4cbe-9028-ed509f9dd98b",
+        "c0c334a7-0690-4c7e-ae85-679499f5af47",
+        "e50b4066-974e-4d01-a7d9-2fbd584f0953",
+        "4f3109fb-df01-44e8-9932-88fdc4e6f21c",
+        "c0ca0ea6-4e4a-40d7-8c36-da5c36825ce6",
+        "2059fea5-2d12-49d8-bc6c-da4eabb9bf97",
+        "a948d29d-35e4-40af-838d-7aabb8c92f1c",
+        "2bef102d-d109-435c-b05a-3fc36f0cb966",
+        "9aa846b3-5b8e-47e6-b48e-659e533e7b60",
+        "19ca31c4-4fab-44cf-9d14-ecbad4b77948",
+        "e5eb23d0-b3bb-4f1d-bcc1-31ff0b22c8d2",
+        "f8866548-8b74-4c12-b968-974738330100",
+        "46a9f5ce-299f-4009-8b35-5f5e3ae08cf8",
+        "07a06fa6-2b3d-4c82-872c-97a819ec8b5c",
+        "226247e1-9b6c-4959-965b-73f9e1de0a3d"
       ],
       [
-        "d1150ab6-f7ad-4926-aac6-a7cc820a6a55"
+        "63312fa0-12db-4cf2-84fe-037ceb935d43"
       ],
       [
-        "05c18d6a-032c-48a3-bed1-8e6c386d31fa",
-        "67d2d3dc-77b2-4112-86df-f3f5310be399",
-        "f7b6efa9-ad01-4c55-bd62-66ecaa582196",
-        "d2185047-25f3-49e4-9348-a0029df94d5d",
-        "a5b5957e-8983-4e68-bedd-d9852a6191ae",
-        "1588e41d-f8bf-463d-8a21-cf873130dee1",
-        "4ae7f4cb-0263-49dd-828e-9d66a9e534f9",
-        "0e8fa7eb-6e2f-48ec-8976-c33783626db4",
-        "6fbc8d7b-94f4-46f9-896c-de1c65eb1afa",
-        "0223b3b0-5836-4ef1-adfe-61518eb9550e",
-        "d2a6c5dc-6630-4325-8158-79179e6a1e2c",
-        "dfd6f828-260a-427d-8468-5ceff08b7fe0",
-        "225fc2a5-f651-4243-8124-6b0320f25b23",
-        "8fe017c9-f554-4f74-9c75-e80ce8311044",
-        "9da00f76-fbfd-4433-889e-39eac83a2784",
-        "2a94b9ac-2e24-48b6-b392-d91517eb177f",
-        "24e1d752-a872-4810-94be-17a9c27fa73f",
-        "23372f1a-d882-4a75-a7e8-557dc893efd6",
-        "1cfcce85-793d-48e6-9659-2b9c1d545c27",
-        "bf5bdb96-1bdc-4bfc-a433-e66735f5ca2b"
+        "6bddf045-ea7a-4bae-a822-003d7e153def",
+        "b63401a7-7e7f-4aed-99bc-7318302cfea6",
+        "bf73baa6-6849-4d81-8aeb-c5b219bbe42f",
+        "4e664eac-0027-4f76-9fa3-ba5124f5b289",
+        "160ec287-a450-404e-a8a8-f45bfd22c56d",
+        "8a1008c7-3483-4cbe-9028-ed509f9dd98b",
+        "c0c334a7-0690-4c7e-ae85-679499f5af47",
+        "e50b4066-974e-4d01-a7d9-2fbd584f0953",
+        "4f3109fb-df01-44e8-9932-88fdc4e6f21c",
+        "c0ca0ea6-4e4a-40d7-8c36-da5c36825ce6",
+        "2059fea5-2d12-49d8-bc6c-da4eabb9bf97",
+        "a948d29d-35e4-40af-838d-7aabb8c92f1c",
+        "2bef102d-d109-435c-b05a-3fc36f0cb966",
+        "9aa846b3-5b8e-47e6-b48e-659e533e7b60",
+        "19ca31c4-4fab-44cf-9d14-ecbad4b77948",
+        "e5eb23d0-b3bb-4f1d-bcc1-31ff0b22c8d2",
+        "f8866548-8b74-4c12-b968-974738330100",
+        "46a9f5ce-299f-4009-8b35-5f5e3ae08cf8",
+        "07a06fa6-2b3d-4c82-872c-97a819ec8b5c",
+        "226247e1-9b6c-4959-965b-73f9e1de0a3d"
       ]
     ],
     "layouts": [
@@ -6556,6 +6566,201 @@
     ],
     "scope": "Actual external worktree project registration, real primary-workspace rename EIO, same-ID retries, duplicate preservation, delayed IPC source revalidation, gzip restoration and normal restart. No Git writes from registration, model requests, app-created ownership, destructive cleanup, physical picker, full reference parity or distribution acceptance is claimed."
   },
+  "worktreeOwnership": {
+    "checks": 5,
+    "modelRequests": 0,
+    "externalNonAdoptionVerified": true,
+    "newBranchReceiptVerified": true,
+    "existingBranchReceiptVerified": true,
+    "atomicFailureRetentionVerified": true,
+    "normalRestartVerified": true,
+    "backupSeparationVerified": true,
+    "sourcePreservationVerified": true,
+    "keyboardWarningLayoutsVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "bounds": {
+          "top": 171,
+          "bottom": 189,
+          "left": 33,
+          "right": 727,
+          "viewportTop": 62,
+          "viewportBottom": 493,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "focus": {
+          "left": 661,
+          "right": 743,
+          "top": 502.5,
+          "bottom": 530.5,
+          "width": 760,
+          "height": 540,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "bounds": {
+          "top": 170.1999969482422,
+          "bottom": 188.1999969482422,
+          "left": 32.79999923706055,
+          "right": 575.200023651123,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 385.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 606.8000000119209,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "focus": {
+          "left": 510.40003662109376,
+          "right": 590.4000350952149,
+          "top": 395.50001220703126,
+          "bottom": 421.90001220703124,
+          "width": 608,
+          "height": 432,
+          "outline": "solid",
+          "outlineWidth": 1.6
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "bounds": {
+          "top": 187.6666717529297,
+          "bottom": 205.6666717529297,
+          "left": 32.66666793823242,
+          "right": 468.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 313.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 499.6666666865349,
+          "contentWidth": 499,
+          "contentScrollWidth": 499,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "focus": {
+          "left": 408.66668701171875,
+          "right": 490.0000228881836,
+          "top": 322.8333435058594,
+          "bottom": 350.8333435058594,
+          "width": 507,
+          "height": 360,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "bounds": {
+          "top": 171,
+          "bottom": 189,
+          "left": 33,
+          "right": 727,
+          "viewportTop": 62,
+          "viewportBottom": 493,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "focus": {
+          "left": 661,
+          "right": 743,
+          "top": 502.5,
+          "bottom": 530.5,
+          "width": 760,
+          "height": 540,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "bounds": {
+          "top": 170.1999969482422,
+          "bottom": 188.1999969482422,
+          "left": 32.79999923706055,
+          "right": 575.200023651123,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 385.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 606.8000000119209,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "focus": {
+          "left": 510.40003662109376,
+          "right": 590.4000350952149,
+          "top": 395.50001220703126,
+          "bottom": 421.90001220703124,
+          "width": 608,
+          "height": 432,
+          "outline": "solid",
+          "outlineWidth": 1.6
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "bounds": {
+          "top": 187.6666717529297,
+          "bottom": 205.6666717529297,
+          "left": 32.66666793823242,
+          "right": 468.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 313.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 499.6666666865349,
+          "contentWidth": 499,
+          "contentScrollWidth": 499,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "focus": {
+          "left": 408.66668701171875,
+          "right": 490.0000228881836,
+          "top": 322.8333435058594,
+          "bottom": 350.8333435058594,
+          "width": 507,
+          "height": 360,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      }
+    ],
+    "screenshots": [
+      "worktree-ownership-external-registration-light-shell.png",
+      "worktree-ownership-created-light-shell.png",
+      "worktree-ownership-existing-branch-light-shell.png",
+      "worktree-ownership-light-100-warning-shell.png",
+      "worktree-ownership-light-125-warning-shell.png",
+      "worktree-ownership-light-150-warning-shell.png",
+      "worktree-ownership-dark-100-warning-shell.png",
+      "worktree-ownership-dark-125-warning-shell.png",
+      "worktree-ownership-dark-150-warning-shell.png",
+      "worktree-ownership-normal-restart-light-shell.png"
+    ],
+    "scope": "Actual desktop creation receipt and retained-file warning integration only. Local pin service has separate unit coverage; pin UI, destructive cleanup, snapshots/restoration, full reference parity and current distribution require separate acceptance."
+  },
   "toolActivities": {
     "checks": 8,
     "nativeStates": [
@@ -6608,7 +6813,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 366.65625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6623,7 +6828,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 371.0500183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6638,7 +6843,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 269.32293701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6653,7 +6858,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 366.65625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6668,7 +6873,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 371.0500183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6683,7 +6888,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 269.32293701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6757,7 +6962,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "dca891ce-84cd-4852-bb4c-9008c2837685",
+    "threadId": "17ec9db3-e93e-49dd-80c0-33f2b9a8b50b",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -6841,7 +7046,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn"
   },
   "normalCloseVerified": true,
   "executableSha256": null,
