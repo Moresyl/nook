@@ -1,0 +1,1047 @@
+{
+  "verifiedAt": "2026-10-11T03:50:47.764Z",
+  "sourceHead": "23ed6899d436a1400838ffff3f45fcf12dbfeb52",
+  "productCommit": "d61592abd90bb5c5063a348f69089c1704528133",
+  "candidate": "E:/NookVerification/RestoreLifecycleCandidate-20261011",
+  "archive": "E:/NookVerification/RestoreLifecycleDistributionRetry-20261011",
+  "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+  "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+  "installerSha256": "2258c85dcc0f0aed18dd54b46c594ecd5e806f5def1eb33c261ef372fa29d1cd",
+  "portableSha256": "8e8b8c2c711d299b5d0614d9c27ecb15ebfca451b9aaaf806c45a1a4d13d6d18",
+  "artifacts": [
+    {
+      "name": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240135938,
+      "sha256": "2258c85dcc0f0aed18dd54b46c594ecd5e806f5def1eb33c261ef372fa29d1cd"
+    },
+    {
+      "name": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309647729,
+      "sha256": "8e8b8c2c711d299b5d0614d9c27ecb15ebfca451b9aaaf806c45a1a4d13d6d18"
+    },
+    {
+      "name": "win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861"
+    },
+    {
+      "name": "win-unpacked/resources/app.asar",
+      "bytes": 493853889,
+      "sha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b"
+    }
+  ],
+  "signatures": {
+    "verifiedAt": "2026-10-11T02:58:28.3857361Z",
+    "scope": "Authenticode status of the three actual restore lifecycle candidate executables; this records status without asserting a signature exists.",
+    "artifacts": [
+      {
+        "file": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+        "sha256": "2258c85dcc0f0aed18dd54b46c594ecd5e806f5def1eb33c261ef372fa29d1cd",
+        "status": "NotSigned"
+      },
+      {
+        "file": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+        "sha256": "8e8b8c2c711d299b5d0614d9c27ecb15ebfca451b9aaaf806c45a1a4d13d6d18",
+        "status": "NotSigned"
+      },
+      {
+        "file": "artifacts/win-unpacked/Nook.exe",
+        "sha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+        "status": "NotSigned"
+      }
+    ]
+  },
+  "packageAudit": {
+    "verifiedAt": "2026-10-11T02:59:56.140Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+    "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "compiledFiles": 236,
+  "allCompiledFilesMatchVerifiedSource": true,
+  "restoreCompletionVerified": true,
+  "completeNativeRuns": [
+    {
+      "stage": "unpacked",
+      "checks": 296,
+      "normalExits": [
+        {
+          "elapsedMs": 612,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 395,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 182,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 169,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 272,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 270,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 201,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 151,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 506,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 179,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 215,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 279,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 228,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 301,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 282,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 144,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 475,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 173,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 189,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 704,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 363,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 450,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 277,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 284,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 254,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 227,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1399,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 280,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 433,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 224,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1505,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 501,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 395,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 255,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 261,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 306,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 414,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 505,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 501,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1557,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1676,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 345,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\RestoreLifecycleDistributionRetry-20261011\\unpacked-full"
+    },
+    {
+      "stage": "installed",
+      "checks": 296,
+      "normalExits": [
+        {
+          "elapsedMs": 731,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 315,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 157,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 168,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 383,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1400,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 600,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 243,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 493,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 130,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 356,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 595,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 614,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 396,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 341,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 123,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 465,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 191,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 221,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 568,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 360,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 323,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 263,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1185,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 258,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 214,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2125,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 335,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 964,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 418,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1822,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 388,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 317,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 521,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 284,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 347,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 368,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 483,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 964,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2273,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2033,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 204,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archive": "E:\\NookVerification\\RestoreLifecycleDistributionRetry-20261011\\installed-full"
+    }
+  ],
+  "additionalChecks": [
+    {
+      "stage": "surfaces",
+      "checks": 4,
+      "normalExits": [
+        {
+          "elapsedMs": 305,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "resultSha256": "d42b2b7ed5c15d3423a6836913ee2c96c86ec2134aeb374be90f209421965834",
+      "bodyHashStoredInNativeResult": true,
+      "bodyScope": "Consumed wrapper explicitly launches the frozen unpacked executable; all four root artifacts are rehashed against the retained candidate before recording final acceptance."
+    },
+    {
+      "stage": "text-hints",
+      "checks": 7,
+      "normalExits": [
+        {
+          "elapsedMs": 374,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "resultSha256": "4036851329cd303177e17429876ee2c2b3adf7bcc17c14a41a89182d1e0f9573",
+      "bodyHashStoredInNativeResult": false,
+      "bodyScope": "Consumed wrapper explicitly launches the frozen unpacked executable; all four root artifacts are rehashed against the retained candidate before recording final acceptance."
+    },
+    {
+      "stage": "renderer-close",
+      "checks": 2,
+      "normalExits": [
+        {
+          "elapsedMs": 1302,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "resultSha256": "4124df24575a435464ee546d624ef9658e6c28dce038fcb833ca6d7c79de6866",
+      "bodyHashStoredInNativeResult": true,
+      "bodyScope": "Consumed wrapper explicitly launches the frozen unpacked executable; all four root artifacts are rehashed against the retained candidate before recording final acceptance."
+    }
+  ],
+  "portableChecks": 7,
+  "portableLaunches": [
+    {
+      "wrapperStartedAt": 1791689016955,
+      "applicationObservedAt": 1791689024847,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791689025842
+    },
+    {
+      "wrapperStartedAt": 1791689038583,
+      "applicationObservedAt": 1791689051089,
+      "longDocumentPathLength": 274,
+      "applicationReadyAt": 1791689051214
+    }
+  ],
+  "installation": {
+    "version": "0.1.0-alpha.1",
+    "installerSha256": "2258c85dcc0f0aed18dd54b46c594ecd5e806f5def1eb33c261ef372fa29d1cd",
+    "checks": 296,
+    "uninstalled": true,
+    "registrationVerified": true,
+    "scope": "Actual current-user silent install into an owned Unicode path, complete installed-runtime regression, original package hashes, shortcut metadata and silent uninstall with four fresh data sentinels; all eight immutable failure sentinels preserved. Native wizard interaction remains a separate check.",
+    "verifiedAt": "2026-10-11T03:46:18.3217773Z",
+    "shortcutsVerified": true,
+    "originalFailureSentinelsRetained": true,
+    "originalFailureSentinelCount": 8,
+    "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+    "normalCloseVerified": true,
+    "restoreCompletionVerified": true,
+    "userDataRetained": true,
+    "freshSentinelCount": 4,
+    "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861"
+  },
+  "matchingRuntimeRecords": {
+    "audit": {
+      "file": "package-audit-result.json",
+      "sha256": "03d5eef64bc32c05acbd692111b98720cdcec63d966816457b229dbd35579f65"
+    },
+    "desktop": {
+      "file": "packaged-result.json",
+      "sha256": "5a98345cb3728ce112250d3ec469b17d683042c3e94e2e692b5bebb46fdcbe75"
+    },
+    "surfaces": {
+      "file": "surfaces-packaged-result.json",
+      "sha256": "d42b2b7ed5c15d3423a6836913ee2c96c86ec2134aeb374be90f209421965834"
+    },
+    "preview": {
+      "file": "project-preview-packaged-result.json",
+      "sha256": "3d71a04d25d030a36c9bfaa4f3c20fd5c3f574d2b915ed309b444b2706207cae"
+    },
+    "branches": {
+      "file": "conversation-branches-packaged-result.json",
+      "sha256": "7edda542771b12ad52eab21d567a0d91edb821a734d2f5e3caf7c0d2b5de8ddc"
+    },
+    "temporary": {
+      "file": "temporary-conversations-packaged-result.json",
+      "sha256": "916eb94155d2471bad2d437ff08e1a025d4725aebe3181d367a825731f923fdf"
+    },
+    "comparisons": {
+      "file": "model-comparisons-packaged-result.json",
+      "sha256": "5fcd0c418bbe6b4a0dea842e6f694405d876b2dc4ae900bc2222fe20cdc66cb0"
+    },
+    "portable": {
+      "file": "portable-result.json",
+      "sha256": "c2e5501afe6ffaa5aff74884381702258c6b0d37f63a9d6e627f88aa33320e0b"
+    },
+    "portableAudit": {
+      "file": "portable-package-audit-result.json",
+      "sha256": "d1e92a2893634bd56d5720958ff4db0f04b4267e1e594743a46cc081e2d71014"
+    },
+    "bootstrap": {
+      "file": "distribution-bootstrap-result.json",
+      "sha256": "4d9f2806d105b7922721ac74491c851e8fa252dd802d667742dabb115a9ebf59"
+    },
+    "installer": {
+      "file": "pipeline-installer-result.json",
+      "sha256": "92aa266ba05eed1691d16d6919b5f016e5ef12de337152965d9fb6ffc0acf535"
+    }
+  },
+  "allRuntimeProofPassed": true,
+  "visualReviews": [
+    {
+      "verifiedAt": "2026-10-11T03:22:57.863Z",
+      "stage": "unpacked",
+      "reviewedOriginals": 19,
+      "captures": [
+        {
+          "filename": "project-worktrees-validation-shell.png",
+          "sha256": "dfd0e504581f8290098e44a13b5b753fe012b7ef04d5c4a5b32e6729905d9743",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-busy-shell.png",
+          "sha256": "79259f58553634eca4eb165dc22fb7b1e85152505487667c8197d65375e37405",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-registration-retry-shell.png",
+          "sha256": "b8e3450ea610efcc29ba81c01021b9a9ffaa9b6ddfe1b999e0737c381acaa347",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-created-shell.png",
+          "sha256": "a5dd5cf133086be1048680d61df4830bc0abee0a6bb16f0700bd15d8d670d457",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-hook-warning-shell.png",
+          "sha256": "7ab3bfe9c1730bdfa33aaddbd5a88f29be7c9806e9293ea6c2bb06dffb0a1fe2",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-100-shell.png",
+          "sha256": "a2d28de8b56bcbea8b4f59fceffd96786cfbddfa49028f7f08fe7fa0d396c028",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-125-shell.png",
+          "sha256": "6ab124eb5ccb2fe3273c6a653507b258b5777677b700705ad352cc1c497247f7",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-150-shell.png",
+          "sha256": "45d66a397a63b0baf031b00fcbcdb87eea8526a5154849bcca5c680334fb2bf4",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-100-shell.png",
+          "sha256": "9c213b7a7e76228a1b7a15282b7a7e748475c8af6feac02dad21ce8d3b1c59ca",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-125-shell.png",
+          "sha256": "0725c49f7af43c16bc6a62b594510a0c19074bbadc749e2299f065be45abe263",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-150-shell.png",
+          "sha256": "19cdc7706ee1e1f0c2c2d074ce5800c27498630c3cd18faaab28560096691edd",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-restart-shell.png",
+          "sha256": "a530efd7fe4e19f07a1ec2f5abb7c7247f33ff9aec30f32d628bc0a9acb92350",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-100.png",
+          "sha256": "5c3b0c66c9598117c65769b80e3f65f9aeca3843da5891052329ee9e52d38b4c",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-125.png",
+          "sha256": "ddcb2d5fd30343b0ed7121517cbfa3a9005994c6dea00aa6d9736d5864bb1bd1",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-150.png",
+          "sha256": "11d4b2f76660069a5613f8efd216c4be40fddec29401dd581d64c2fd5e4be2d6",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-100.png",
+          "sha256": "239cfc5e118d60e59960afe104d966d893c78502d6c8a931c9c37b96dba049a4",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-125.png",
+          "sha256": "582ae66ad05578e984afd320945848699d9226b8c6fae80a5d6c6ba89cb8d875",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-150.png",
+          "sha256": "75aedf7b5f5cee1f4be6a0b9fab688aa5b38eb3ab1faefd4f3a3971d7886ef76",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-restore-busy-shell.png",
+          "sha256": "0d0ea56b3509bb82a9710adbee7f1a64e398365368ab08da985ccc2917ab33f2",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        }
+      ],
+      "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+      "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+      "archive": "E:/NookVerification/RestoreLifecycleDistributionRetry-20261011/unpacked-full",
+      "scope": "Nineteen actual originals individually viewed after this full run: twelve worktree validation/busy/registration/hook/theme/zoom/restart captures plus six PDF theme/zoom views and the held restore acknowledgement settings shell. Long single-line values remain horizontally editable; narrow content scrolls with fixed header/footer. This review does not establish complete reference parity or review of every other captured page."
+    },
+    {
+      "verifiedAt": "2026-10-11T03:50:44.696Z",
+      "stage": "installed",
+      "reviewedOriginals": 19,
+      "captures": [
+        {
+          "filename": "project-worktrees-validation-shell.png",
+          "sha256": "fde377c26d2cdc7c9c144e85c4990cbc3404ff969c83dd56aac7f73302f2fb84",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-busy-shell.png",
+          "sha256": "2f379ca293f5c80b4405baf936c6eb1447a4857651447cb3604376e8c27a6109",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-registration-retry-shell.png",
+          "sha256": "2c0f5ce5a0d9f0639162090621803658fc935ea8ad2347419a423443bf7f4852",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-created-shell.png",
+          "sha256": "10ca781847c787e5e98b90e39403f84268521392a0ed349b50f0bea49c4a2d09",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-hook-warning-shell.png",
+          "sha256": "1dd43f42e0f064cf2fed53534090ee9757c488953c02fce006deaf7c4fc08da6",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-100-shell.png",
+          "sha256": "55ca7d415bc4e6c3da1f472a2dccc5359c4f3fd580ff4d1b4fdcb52322a7662d",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-125-shell.png",
+          "sha256": "1aaed75ccc0196a38b0465426a08c87c39f508ff0cd766f2a63635b4ad4336ab",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-light-150-shell.png",
+          "sha256": "06595e7bafd2b6fee416a75337e33adb696c4a5a7daf66d7f3a8fe604f86d0ba",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-100-shell.png",
+          "sha256": "1bfe044167341a453d5eed4b168f00d15a9bf0c353ccb5515961cb3df0924fa3",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-125-shell.png",
+          "sha256": "a900d1bacc2a94a0b3d0250fabf3e8a2787a0982a842283077f1a90fae520941",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-dark-150-shell.png",
+          "sha256": "19cdc7706ee1e1f0c2c2d074ce5800c27498630c3cd18faaab28560096691edd",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "project-worktrees-restart-shell.png",
+          "sha256": "a27cc125f93d101b6eb327ff31535061c2138a2cc7a8d08066fba3f4df3b1fd2",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-100.png",
+          "sha256": "5c3b0c66c9598117c65769b80e3f65f9aeca3843da5891052329ee9e52d38b4c",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-125.png",
+          "sha256": "ddcb2d5fd30343b0ed7121517cbfa3a9005994c6dea00aa6d9736d5864bb1bd1",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-light-150.png",
+          "sha256": "11d4b2f76660069a5613f8efd216c4be40fddec29401dd581d64c2fd5e4be2d6",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-100.png",
+          "sha256": "239cfc5e118d60e59960afe104d966d893c78502d6c8a931c9c37b96dba049a4",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-125.png",
+          "sha256": "582ae66ad05578e984afd320945848699d9226b8c6fae80a5d6c6ba89cb8d875",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-dark-150.png",
+          "sha256": "75aedf7b5f5cee1f4be6a0b9fab688aa5b38eb3ab1faefd4f3a3971d7886ef76",
+          "width": 760,
+          "height": 540,
+          "individuallyReviewed": true
+        },
+        {
+          "filename": "mcp-pdf-restore-busy-shell.png",
+          "sha256": "c53f4623c67bec38056c1f928e72d1337c7ca9aade9fa0a615c5f3f2a58a1c86",
+          "width": 1280,
+          "height": 840,
+          "individuallyReviewed": true
+        }
+      ],
+      "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+      "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+      "archive": "E:/NookVerification/RestoreLifecycleDistributionRetry-20261011/installed-full",
+      "scope": "Nineteen actual originals individually viewed after this full run: twelve worktree validation/busy/registration/hook/theme/zoom/restart captures plus six PDF theme/zoom views and the held restore acknowledgement settings shell. Long single-line values remain horizontally editable; narrow content scrolls with fixed header/footer. This review does not establish complete reference parity or review of every other captured page."
+    }
+  ],
+  "reviewedCompleteRunOriginals": 38,
+  "preservedPriorFailures": [
+    "E:/NookVerification/RestoreLifecycleDistribution-20261011",
+    "E:/NookVerification/RestoreLifecycleModalSelectorFailure-20261011",
+    "E:/NookVerification/RestoreLifecycleSourcePreviewFailure-20261011",
+    "E:/NookVerification/RestoreDismissBaselineFailure-20261011",
+    "E:/NookVerification/ProjectWorktreesInstalledMcpPdfFailure-20261011",
+    "E:/NookVerification/ProjectWorktreesNativeInitialFailure-20261011",
+    "E:/NookVerification/ProjectWorktreesNativeQuickOcclusionFailure-20261011",
+    "E:/NookVerification/ProjectWorktreesNativeZoomFailure-20261011",
+    "E:/NookVerification/ProjectWorktreesNativeZoomDiagnostics-20261011",
+    "E:/NookVerification/ProjectWorktreesServiceInitialFailure-20261011",
+    "E:/NookVerification/ToolActivitiesInstalledFirstFailure-20261011"
+  ],
+  "priorInstalledVisibilityTimeoutCauseConfirmed": false,
+  "priorInstalledMcpPdfTimeoutCauseConfirmed": false,
+  "retainedProfiles": "All eight exact archived original failure sentinels remain at their original profile paths. The owned installer wrapper validates hashes and content, adds four fresh sentinels, verifies all twelve after silent uninstall, and removes only the four fresh owned sentinels on success.",
+  "wholeReferenceUiAccepted": false,
+  "physicalSystemInteractionAccepted": false,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "scope": "Current restore lifecycle candidate verified by complete unpacked and installed 296-check runs, 42 normal exits each, three separate packaged native suites, actual bootstrap inventories, two portable launches and eleven matching records. Thirty-eight worktree/PDF/held-restore originals individually reviewed; every other retained capture is not necessarily visually reviewed. Actual service requests use local protocol fixtures. These results do not establish all reference UI, physical wizard/input, every target platform, live cloud credentials or successful hosted release."
+}

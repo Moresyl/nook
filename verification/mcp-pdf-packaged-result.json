@@ -1,8 +1,8 @@
 {
-  "verifiedAt": "2026-10-11T01:09:44.753Z",
+  "verifiedAt": "2026-10-11T03:46:04.187Z",
   "variant": "packaged executable",
-  "executableSha256": "72c9da574a65f7739f99da97df77d60dc5fde708ef8672ed74f85d30295d5a28",
-  "archiveSha256": "5275556b244999afca840b88656931e119ec13e4223d658f4eccdaa20768e5dc",
+  "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+  "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "verificationRun": "complete desktop suite",
@@ -18,6 +18,7 @@
   "filesystemRetryVerified": true,
   "restartVerified": true,
   "backupRestoreVerified": true,
+  "restoreCompletionVerified": true,
   "layout": [
     {
       "theme": "light",
@@ -98,7 +99,8 @@
     "mcp-pdf-light-150.png",
     "mcp-pdf-dark-100.png",
     "mcp-pdf-dark-125.png",
-    "mcp-pdf-dark-150.png"
+    "mcp-pdf-dark-150.png",
+    "mcp-pdf-restore-busy-shell.png"
   ],
-  "scope": "Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses are isolated fixtures; external servers and physical picker interaction remain separate."
+  "scope": "Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses and a held restore acknowledgement at the main IPC boundary are isolated fixtures; external servers and physical picker interaction remain separate."
 }

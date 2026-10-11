@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-11T02:58:28.3857361Z",
+  "scope": "Authenticode status of the three actual restore lifecycle candidate executables; this records status without asserting a signature exists.",
+  "artifacts": [
+    {
+      "file": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "2258c85dcc0f0aed18dd54b46c594ecd5e806f5def1eb33c261ef372fa29d1cd",
+      "status": "NotSigned"
+    },
+    {
+      "file": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "8e8b8c2c711d299b5d0614d9c27ecb15ebfca451b9aaaf806c45a1a4d13d6d18",
+      "status": "NotSigned"
+    },
+    {
+      "file": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+      "status": "NotSigned"
+    }
+  ]
+}
