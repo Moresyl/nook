@@ -14,4 +14,4 @@ export const createWorktreeSchema = z.discriminatedUnion('mode', [
 ]);
 export type CreateWorktree = z.infer<typeof createWorktreeSchema>;
 export type GitWorktree = { path: string; head?: string; branch?: string; detached: boolean; bare: boolean; locked?: string; prunable?: string };
-export type WorktreeCreated = { worktree: GitWorktree; branches: GitBranches; warning?: 'post-add-error'; upstreamRefresh?: 'fetched' | 'not-configured' | 'failed' };
+export type WorktreeCreated = { worktree: GitWorktree; branches: GitBranches; warning?: 'post-add-error'; upstreamRefresh?: 'fetched' | 'not-configured' | 'failed'; managedRecord?: 'saved' | 'failed' };

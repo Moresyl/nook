@@ -66,7 +66,7 @@ export function parseGitStatus(output: string): GitStatus {
 }
 
 export class ProjectGit {
-  constructor(private readonly runner: typeof runFile = runFile, private readonly prepareTarget?: (path: string, worktrees: GitWorktree[]) => Promise<void>) {}
+  constructor(private readonly runner: typeof runFile = runFile, private readonly prepareTarget?: (path: string, worktrees: GitWorktree[]) => Promise<void>, private readonly recordCreated?: (root: string, tree: GitWorktree) => Promise<void>) {}
   private pending = new Map<string, Promise<unknown>>();
   private async update<T>(root: string, action: () => Promise<T>): Promise<T> {
     const cwd = await scopedPath(root, '.');
@@ -132,7 +132,12 @@ export class ProjectGit {
       const worktree = (await this.worktrees(root)).find(item => relative(path, resolve(item.path)) === '');
       if (!worktree || worktree.bare || !worktree.head || !worktree.branch || worktree.prunable !== undefined) throw new Error('Git could not create a complete worktree. Check the branch list and target folder before retrying; existing files are retained.');
       const actual = await realpath(path);
-      return { worktree: { ...worktree, path: actual }, branches: await this.branches(root), ...(upstreamRefresh ? { upstreamRefresh } : {}), ...(failed || worktree.branch !== input.branch || worktree.head !== commit ? { warning: 'post-add-error' as const } : {}) };
+      let managedRecord: WorktreeCreated['managedRecord'];
+      if (this.recordCreated) {
+        try { await this.recordCreated(root, { ...worktree, path: actual }); managedRecord = 'saved'; }
+        catch { managedRecord = 'failed'; }
+      }
+      return { worktree: { ...worktree, path: actual }, branches: await this.branches(root), ...(upstreamRefresh ? { upstreamRefresh } : {}), ...(managedRecord ? { managedRecord } : {}), ...(failed || worktree.branch !== input.branch || worktree.head !== commit ? { warning: 'post-add-error' as const } : {}) };
     });
   }
   private async changeBranch(root: string, raw: string, create: boolean): Promise<GitBranches> {
