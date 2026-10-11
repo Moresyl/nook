@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 321 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 326 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const context = desktop.contextSummaries;
@@ -53,6 +53,15 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   const overview = desktop.worktreeOverview;
   const conversations = desktop.worktreeConversations;
   const upstream = desktop.worktreeUpstream;
+  const registration = desktop.worktreeRegistration;
+  if (registration?.checks !== 5 || registration.modelRequests !== 0 || !['inlineValidationCancelVerified', 'actualFailureSameIdRetryVerified', 'duplicatePreservationVerified', 'staleSourceVerified', 'backupRestartVerified', 'referenceZoomKeyboardVerified', 'sourcePreservationVerified'].every(key => registration[key] === true)
+    || !Array.isArray(registration.layouts) || registration.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => registration.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !registration.layouts.every(row => row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left)
+    || !Array.isArray(registration.keyboardLayouts) || registration.keyboardLayouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => registration.keyboardLayouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !registration.keyboardLayouts.every(row => row.label === '登记项目' && row.outline > 0 && row.top - row.outline >= row.viewportTop && row.bottom + row.outline <= row.viewportBottom && row.left - row.outline >= row.viewportLeft && row.right + row.outline <= row.viewportRight && row.bottom > row.top && row.right > row.left)
+    || !Array.isArray(registration.screenshots) || registration.screenshots.length !== 19 || new Set(registration.screenshots).size !== 19 || !registration.screenshots.every(name => typeof name === 'string' && /^worktree-registration-[A-Za-z0-9.-]+-shell\.png$/.test(name))) {
+    throw new Error('Complete worktree registration verification is required');
+  }
   if (upstream?.checks !== 5 || upstream.modelRequests !== 0 || !['preferenceFailureRetryVerified', 'actualFetchPinnedCommitVerified', 'neverAndMissingUpstreamVerified', 'actualFailureRetryVerified', 'backupRestartVerified', 'referenceZoomKeyboardVerified', 'sourcePreservationVerified'].every(key => upstream[key] === true)
     || !Array.isArray(upstream.layouts) || upstream.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => upstream.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     || !upstream.layouts.every(row => row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left)
