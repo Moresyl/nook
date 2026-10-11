@@ -1,0 +1,12 @@
+{
+  "archivedAt": "2026-10-11T16:36:45.222Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotSerialUnitFailure-20261012",
+  "sourceHead": "3b952b5b6cd220b146e22902c93f2f44a4925dae",
+  "command": "vitest run --coverage --maxWorkers=1",
+  "passed": 1421,
+  "failed": 1,
+  "total": 1422,
+  "durationSeconds": 380.81,
+  "failure": "The legacy/never upstream case initializes two complete remote/peer/repository fixtures and executes both policies inside one original five-second case. It exceeded that limit; the other eight prior timeout cases passed with one worker.",
+  "scope": "Failed complete single-worker coverage retry. Source and complete logs retained before separating the two policy cases and selecting a stable worker default. Original wait limits and coverage thresholds unchanged. No accepted coverage percentages, native snapshot, deletion or distribution claim. Temporary unit fixtures cleaned by afterEach."
+}
