@@ -45,10 +45,18 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 296 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 302 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const context = desktop.contextSummaries;
+  const roots = desktop.worktreeSettings;
+  if (roots?.checks !== 6 || roots.modelRequests !== 0 || !['rootValidationVerified', 'busySaveVerified', 'saveFailurePreservationVerified', 'rootCreationVerified', 'backupRestartVerified', 'referenceZoomKeyboardVerified'].every(key => roots[key] === true)
+    || !Array.isArray(roots.layouts) || roots.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => roots.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !roots.layouts.every(row => row.width > 0 && row.width <= 288 && row.left >= 0 && row.right <= row.viewportWidth && row.headingMargin === '8px' && row.descriptionSize === '12px')
+    || !Array.isArray(roots.errorLayouts) || roots.errorLayouts.length !== 7 || !roots.errorLayouts.every(row => row?.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left && row.text === '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。')
+    || !Array.isArray(roots.screenshots) || roots.screenshots.length !== 11 || new Set(roots.screenshots).size !== 11 || !roots.screenshots.every(name => typeof name === 'string' && /^worktree-settings-[A-Za-z0-9.-]+-shell\.png$/.test(name))) {
+    throw new Error('Complete worktree root settings verification is required');
+  }
   const worktrees = desktop.projectWorktrees;
   if (worktrees?.checks !== 7 || worktrees.modelRequests !== 0 || !['bridgeValidationVerified', 'creationBusySourcePreservationVerified', 'registrationRetryVerified', 'existingBranchReuseVerified', 'hookSourcePreviewVerified', 'referenceZoomKeyboardVerified', 'restartDraftsVerified'].every(key => worktrees[key] === true)
     || worktrees.rowLayout?.gap !== '8px' || worktrees.rowLayout.padding !== '12px' || worktrees.rowLayout.titleSize !== '14px' || worktrees.rowLayout.titleWeight !== '500' || worktrees.rowLayout.pathSize !== '12px'

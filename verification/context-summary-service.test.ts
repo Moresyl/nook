@@ -127,19 +127,17 @@ describe('context summary service', () => {
 });
 
 describe('effective model context', () => {
-  it('sends a summary with recent turns across all supported protocols and retains raw disk history', async () => {
+  const variants: Partial<Provider>[] = [...(['responses', 'openai', 'anthropic', 'ollama', 'gemini'] as const).map(kind => ({ kind })), ...(['responses', 'chat', 'deployment-chat'] as const).map(azureApi => ({ kind: 'azure' as const, azureApi, apiVersion: '2024-10-21' }))];
+  it.each(variants)('sends a summary with recent turns through %j and retains raw disk history', async variant => {
     const { vault, service } = await applied(); const saved = structuredClone(vault.thread('thread')!);
-    const variants: Partial<Provider>[] = [...(['responses', 'openai', 'anthropic', 'ollama', 'gemini'] as const).map(kind => ({ kind })), ...(['responses', 'chat', 'deployment-chat'] as const).map(azureApi => ({ kind: 'azure' as const, azureApi, apiVersion: '2024-10-21' }))];
-    for (const variant of variants) {
-      let actual!: ModelInput; const engine = new ConversationEngine(vault, { stream: async (value, text) => { actual = value; text('NEW_REPLY'); } }, () => {});
-      await vault.update(state => { Object.assign(state.providers[0], variant); if (variant.kind === 'ollama') state.providers[0].hasKey = false; });
-      // Non-local providers require the existing credential store, even in mocked tests.
-      await vault.setKey('local', 'fixture-key');
-      await engine.start({ ...request, threadId: 'thread', text: `NEW_${variant.kind}_${variant.azureApi ?? ''}` }); await engine.settle('thread');
-      expect(actual.messages[1].content).toBe(saved.contextSummaries![0].content); expect(actual.messages.map(message => message.id)).not.toContain('m0');
-      const body = JSON.stringify(modelRequest(actual).body); expect(body).toContain('原始决策'); expect(body).not.toContain('ATTACHMENT_ORIGINAL');
-      expect(vault.thread('thread')!.messages.slice(0, 6)).toEqual(saved.messages); await engine.shutdown();
-    }
+    let actual!: ModelInput; const engine = new ConversationEngine(vault, { stream: async (value, text) => { actual = value; text('NEW_REPLY'); } }, () => {});
+    await vault.update(state => { Object.assign(state.providers[0], variant); if (variant.kind === 'ollama') state.providers[0].hasKey = false; });
+    // Non-local providers require the existing credential store, even in mocked tests.
+    await vault.setKey('local', 'fixture-key');
+    await engine.start({ ...request, threadId: 'thread', text: `NEW_${variant.kind}_${variant.azureApi ?? ''}` }); await engine.settle('thread');
+    expect(actual.messages[1].content).toBe(saved.contextSummaries![0].content); expect(actual.messages.map(message => message.id)).not.toContain('m0');
+    const body = JSON.stringify(modelRequest(actual).body); expect(body).toContain('原始决策'); expect(body).not.toContain('ATTACHMENT_ORIGINAL');
+    expect(vault.thread('thread')!.messages.slice(0, 6)).toEqual(saved.messages); await engine.shutdown();
     expect(service.messages(vault.thread('thread')!)[1].content).toBe(saved.contextSummaries![0].content);
   });
   it('restores full model context after original edits and uses only valid summaries in retry and earlier edit branches', async () => {

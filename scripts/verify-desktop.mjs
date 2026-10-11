@@ -554,9 +554,15 @@ let projectBranchesResult;
 let toolActivitiesResult;
 let contextSummariesResult;
 let projectWorktreesResult;
+let worktreeSettingsResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_PROJECT_WORKTREES_ONLY) {
+  if (process.env.NOOK_TEST_WORKTREE_SETTINGS_ONLY) {
+    const { verifyWorktreeSettings } = await import('./verify-worktree-settings.mjs');
+    const run = await verifyWorktreeSettings({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
+    page = run.page; worktreeSettingsResult = run.result;
+    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_PROJECT_WORKTREES_ONLY) {
     const { verifyProjectWorktrees } = await import('./verify-project-worktrees.mjs');
     const run = await verifyProjectWorktrees({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
     page = run.page; projectWorktreesResult = run.result;
@@ -1223,6 +1229,8 @@ try {
   const projectBranchesRun = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectBranchesRun.page; projectBranchesResult = projectBranchesRun.result;
   const { verifyProjectWorktrees } = await import('./verify-project-worktrees.mjs');
   const projectWorktreesRun = await verifyProjectWorktrees({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectWorktreesRun.page; projectWorktreesResult = projectWorktreesRun.result;
+  const { verifyWorktreeSettings } = await import('./verify-worktree-settings.mjs');
+  const worktreeSettingsRun = await verifyWorktreeSettings({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = worktreeSettingsRun.page; worktreeSettingsResult = worktreeSettingsRun.result;
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
@@ -1254,6 +1262,7 @@ try {
   if (fullResult && browserResult) { fullResult.browser = browserResult; fullResult.screenshots.push(...browserResult.screenshots, ...browserResult.tabs.screenshots); }
   if (fullResult && projectBranchesResult) { fullResult.projectBranches = projectBranchesResult; fullResult.screenshots.push(...projectBranchesResult.screenshots); }
   if (fullResult && projectWorktreesResult) { fullResult.projectWorktrees = projectWorktreesResult; fullResult.screenshots.push(...projectWorktreesResult.screenshots); }
+  if (fullResult && worktreeSettingsResult) { fullResult.worktreeSettings = worktreeSettingsResult; fullResult.screenshots.push(...worktreeSettingsResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1405,6 +1414,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && worktreeSettingsResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'worktree-settings-packaged-result.json' : 'worktree-settings-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-settings suite' }), ...worktreeSettingsResult }, null, 2));
+    console.log(`Verified ${worktreeSettingsResult.checks} worktree settings checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && projectWorktreesResult) {
     assert.deepEqual(errors, []);

@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-11T05:20:53.732Z",
+  "archive": "E:/NookVerification/WorktreeSettingsSnapshotFailure-20261011",
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-Q4Dcf2",
+  "checksBeforeFailure": 5,
+  "normalExits": [
+    {
+      "elapsedMs": 401,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 181,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "captures": [
+    "worktree-settings-root-light-shell.png",
+    "worktree-settings-save-busy-light-shell.png",
+    "worktree-settings-save-error-light-shell.png",
+    "worktree-settings-actual-creation-light-shell.png",
+    "worktree-settings-restored-restart-light-shell.png"
+  ],
+  "causeConfirmed": true,
+  "cause": "After backup restoration and restart, an empty composer transaction makes the optional activeThreadId property explicitly undefined. The fixture compared raw IPC object property presence instead of persisted JSON state. Exact workspace bytes remained equal; no defined data difference was reported. Compare full JSON snapshots while retaining exact byte and repository-index assertions.",
+  "sourceAcceptancePassed": false
+}

@@ -3,13 +3,14 @@ import { uiErrorMessage } from '../contracts/ui-errors';
 
 describe('Chinese UI error copy', () => {
   it('localizes the sanitized IPC storage failure without exposing or mutating its diagnostic cause', () => {
-    const message = 'Local data could not be saved. Check disk space and directory permissions.';
-    const cause = Object.assign(new Error('SECRET_PATH and PRIVATE_KEY'), { path: 'SECRET_PATH', key: 'PRIVATE_KEY' });
-    const error = new Error(`Error invoking remote method 'qiyao:invoke': Error: ${message}`, { cause });
-    expect(uiErrorMessage(error)).toBe('本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。');
-    expect(uiErrorMessage(new Error(message))).toBe(uiErrorMessage(error));
-    expect(error.message).toBe(`Error invoking remote method 'qiyao:invoke': Error: ${message}`);
-    expect(error.cause).toBe(cause);
+    for (const message of ['Local data could not be saved. Check disk space and directory permissions.', 'Desktop settings could not be saved. Check local storage and try again.']) {
+      const cause = Object.assign(new Error('SECRET_PATH and PRIVATE_KEY'), { path: 'SECRET_PATH', key: 'PRIVATE_KEY' });
+      const error = new Error(`Error invoking remote method 'qiyao:invoke': Error: ${message}`, { cause });
+      expect(uiErrorMessage(error)).toBe('本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。');
+      expect(uiErrorMessage(new Error(message))).toBe(uiErrorMessage(error));
+      expect(error.message).toBe(`Error invoking remote method 'qiyao:invoke': Error: ${message}`);
+      expect(error.cause).toBe(cause);
+    }
   });
 
   it('keeps schedule validation actionable while translating only its recognized complete message', () => {

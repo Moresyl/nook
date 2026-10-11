@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-10-11T05:16:41.816Z",
+  "archive": "E:/NookVerification/WorktreeSettingsLanguageFailure-20261011",
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-1zVHmB",
+  "checksBeforeFailure": 1,
+  "normalExits": [
+    {
+      "elapsedMs": 750,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "layout": {
+    "top": 452.8888854980469,
+    "bottom": 470.8888854980469,
+    "left": 461,
+    "right": 969,
+    "viewportTop": 230.88888549804688,
+    "viewportBottom": 627.8888854980469,
+    "viewportLeft": 437,
+    "viewportRight": 993,
+    "scrollTop": 0,
+    "theme": "light",
+    "text": "Desktop settings could not be saved. Check local storage and try again."
+  },
+  "captures": [
+    "worktree-settings-root-light-shell.png",
+    "worktree-settings-save-busy-light-shell.png",
+    "worktree-settings-save-error-light-shell.png"
+  ],
+  "causeConfirmed": true,
+  "cause": "The desktop preferences transaction replaces the underlying storage error with its own safe English message. That exact message was missing from the shared Chinese UI error map. Busy and preservation assertions completed before the language assertion failed.",
+  "sourceAcceptancePassed": false
+}

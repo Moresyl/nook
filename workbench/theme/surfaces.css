@@ -331,6 +331,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .branch-order-controls { flex-wrap: wrap; }
 .branch-navigation .inline-error { scroll-margin-block: 4px; }
 .comparison-dialog > .modal-content > .inline-error { scroll-margin-block: 4px; }
+.worktree-settings .input { width: 288px; max-width: 100%; }
+.worktree-settings .inline-error { scroll-margin-block: 4px; }
 .comparison-model-row { display: flex; align-items: end; gap: 8px; flex-wrap: wrap; }
 .comparison-model-row .field { flex: 1; min-width: 160px; }
 .comparison-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -478,8 +480,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .composer-tools .composer-action { min-width: 28px; min-height: 28px; padding: 4px; gap: 2px; }
   .composer-tools .select { max-width: 110px; }
 }
-.settings-detail > h3 { margin-bottom: 8px; }
-.settings-detail > .muted { font-size: 12px; }
+.settings-detail > h3, .worktree-settings > h3 { margin-bottom: 8px; }
+.settings-detail > .muted, .worktree-settings > .muted { font-size: 12px; }
 .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
 .section-heading > div { min-width: 0; overflow-wrap: anywhere; }
 .section-heading > .button { flex: none; }

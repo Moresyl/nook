@@ -5,8 +5,8 @@ import type { Project, Workspace } from '../../contracts/workspace';
 import { Button, Field, IconButton, Input, Modal, Select } from './controls';
 import { TextHint } from './control-tooltip';
 
-type Props = { project: Project; projects: Project[]; status: GitStatus | null; disabled: boolean; beforeCreate(): Promise<void>; onState(next: Workspace): void; onOpen(id: string): void };
-export function ProjectWorktrees({ project, projects, status, disabled, beforeCreate, onState, onOpen }: Props) {
+type Props = { project: Project; projects: Project[]; worktreeRoot?: string; status: GitStatus | null; disabled: boolean; beforeCreate(): Promise<void>; onState(next: Workspace): void; onOpen(id: string): void };
+export function ProjectWorktrees({ project, projects, worktreeRoot, status, disabled, beforeCreate, onState, onOpen }: Props) {
   const [open, setOpen] = useState(false), [mode, setMode] = useState<'new' | 'existing'>('new');
   const [trees, setTrees] = useState<GitWorktree[]>([]), [snapshot, setSnapshot] = useState<GitBranches>();
   const [branch, setBranch] = useState(''), [base, setBase] = useState(''), [path, setPath] = useState('');
@@ -21,7 +21,7 @@ export function ProjectWorktrees({ project, projects, status, disabled, beforeCr
     finally { if (alive.current && revision === request.current) setLoading(false); }
   }
   function close() { request.current++; setLoading(false); setOpen(false); }
-  function show() { setMode('new'); setBranch(''); setBase(''); setPath(''); setResult(undefined); setRegistration(undefined); setRegisteredId(''); setTrees([]); setSnapshot(undefined); setOpen(true); void refresh(); }
+  function show() { setMode('new'); setBranch(''); setBase(''); setPath(worktreeRoot ? `${worktreeRoot.replace(/[\\/]+$/, '')}/nook-${crypto.randomUUID().slice(0, 8)}` : ''); setResult(undefined); setRegistration(undefined); setRegisteredId(''); setTrees([]); setSnapshot(undefined); setOpen(true); void refresh(); }
   function selectResult(next: WorktreeCreated) {
     setResult(next); setSnapshot(next.branches); setRegisteredId('');
     setRegistration({ id: crypto.randomUUID(), name: (next.worktree.branch || '工作树').slice(0, 100), path: next.worktree.path, instructions: '', createdAt: Date.now() });

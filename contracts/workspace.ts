@@ -9,6 +9,7 @@ import { attachmentSchema } from './attachments';
 import { knowledgeCollectionSchema, knowledgeDocumentSourceSchema, knowledgeIndexSchema, knowledgeSelectionSchema, knowledgeSourcesSchema } from './knowledge';
 import { automationsSchema } from './automations';
 import { desktopPreferencesSchema } from './desktop-integration';
+import { worktreePreferencesSchema } from './project-worktrees';
 import { promptTemplatesSchema } from './prompt-templates';
 import { messageDraftsSchema } from './message-edits';
 import { memoriesSchema } from './memories';
@@ -96,6 +97,7 @@ export const preferencesSchema = z.object({
   defaultProviderId: identifier.optional(), defaultModel: shortText.default(''),
   enterToSend: z.boolean().default(true),
   desktop: desktopPreferencesSchema.optional(),
+  worktrees: worktreePreferencesSchema.optional(),
 });
 export const settingsStateSchema = z.object({
   providers: z.array(providerSchema).max(100), preferences: preferencesSchema,

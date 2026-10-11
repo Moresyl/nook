@@ -1,0 +1,8 @@
+{
+  "verifiedAt": "2026-10-11T05:32:28.540Z",
+  "archive": "E:/NookVerification/WorktreeSettingsCoverageScopeFailure-20261011",
+  "testsPassed": true,
+  "acceptancePassed": false,
+  "causeConfirmed": true,
+  "cause": "The focused three-file command incorrectly applied the repository-wide coverage threshold to the whole service tree. Tests passed, including all eight independent protocols; uncovered unrelated services made the command exit with a coverage failure. The unchanged repository-wide eighty-percent threshold will be verified by the fresh full suite, rather than relaxed for this focused command."
+}
