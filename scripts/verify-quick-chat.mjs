@@ -113,7 +113,13 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   const other = await page.evaluate(() => window.qiyao.submit({ providerId: 'quick-native', model: 'verification-model', projectId: 'quick-project', mode: 'agent', text: '停止 MAIN_QUICK_SCOPE', attachments: [] }));
   await waitForBridge(page, async id => (await window.qiyao.pendingApprovals()).some(request => request.threadId === id), other.threadId);
   await quick.getByRole('button', { name: '新的快速聊天', exact: true }).click(); await quick.getByLabel('选择项目', { exact: true }).selectOption('quick-project'); await quick.getByLabel('工作模式', { exact: true }).selectOption('agent');
-  await input().fill('停止 QUICK_APPROVAL_SCOPE'); await quick.getByRole('button', { name: '发送消息', exact: true }).click(); await quick.getByRole('dialog', { name: '审批新建文件', exact: true }).waitFor();
+  await input().fill('停止 QUICK_APPROVAL_SCOPE'); await quick.getByRole('button', { name: '发送消息', exact: true }).click(); const ownApprovalWaitStarted = Date.now();
+  try { await quick.getByRole('dialog', { name: '审批新建文件', exact: true }).waitFor(); }
+  catch (error) {
+    console.error('Quick-chat own approval timeout observation', JSON.stringify({ elapsedMs: Date.now() - ownApprovalWaitStarted, context: await quick.evaluate(async () => { const context = await window.nookQuick.load(); return { threadId: context.thread?.id, title: context.thread?.title, lastMessage: context.thread?.messages.at(-1), approvals: await window.nookQuick.pendingApprovals(), alerts: [...document.querySelectorAll('[role="alert"]')].map(element => element.textContent), dialogs: [...document.querySelectorAll('dialog[open]')].map(element => element.getAttribute('aria-label') || element.textContent.slice(0, 240)) }; }).catch(() => 'The quick-chat page is unavailable.') }));
+    await quick.screenshot({ path: join(screenshots, 'quick-chat-own-approval-timeout.png') }).catch(() => {});
+    throw error;
+  }
   const pending = await quick.evaluate(() => window.nookQuick.pendingApprovals()), all = await page.evaluate(() => window.qiyao.pendingApprovals());
   assert.equal(pending.length, 1); assert.equal(all.length, 2); const foreign = all.find(request => request.threadId === other.threadId); assert.ok(foreign);
   assert.equal(await quick.evaluate(async id => { try { await window.nookQuick.resolveApproval(id, false); return false; } catch { return true; } }, foreign.id), true);

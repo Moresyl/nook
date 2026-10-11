@@ -1,0 +1,19 @@
+{
+  "verifiedAt": "2026-10-11T20:44:58.275Z",
+  "archive": "E:/NookVerification/WorktreeCleanupUIPackagedNativeInitialFailure-20261012",
+  "sourceHead": "4b65a7d07b204337c6250ef93ef2f8e2df0e1a86",
+  "checksPassed": 247,
+  "fullSuitePassed": false,
+  "normalCloses": 36,
+  "maximumCloseMs": 3734,
+  "forcedCloses": 0,
+  "compiledFilesMatchingPackage": 236,
+  "profile": "E:\\NookVerification\\Temp\\qiyao-electron-mQ4FBV",
+  "failure": {
+    "module": "Quick Chat",
+    "location": "scripts/verify-quick-chat.mjs:116",
+    "condition": "Quick-agent own approval dialog for new file was not visible within the original 5000ms wait.",
+    "exactCauseEstablished": false
+  },
+  "scope": "Complete packaged run failed before worktree modules. Exact source, output, partial raw reports, full profile, failure original and log are preserved. No deadline or assertion changed; this is not a passing full run. Actual package executables and legal audit remain in WorktreeCleanupUIPackage-20261012."
+}

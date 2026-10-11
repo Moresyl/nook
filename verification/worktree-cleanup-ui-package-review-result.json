@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-11T20:27:37.198Z",
+  "archive": "E:/NookVerification/WorktreeCleanupUIPackage-20261012",
+  "sourceHead": "4b65a7d07b204337c6250ef93ef2f8e2df0e1a86",
+  "typesPassed": true,
+  "releaseNoticesPassed": true,
+  "packageBuildPassed": true,
+  "packageAuditPassed": true,
+  "audit": {
+    "verifiedAt": "2026-10-11T20:27:17.101Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "d7e57ae304a5e9bb9a3214eb31d4476e0fa0cf433344d7c37163f851b4a5bf4f",
+    "archiveSha256": "a6c59290245813bc35f49bfb88a8ec8c0a334cc2916120c4856eb9c6ff0fb7ea",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "hashes": [
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240158069,
+      "sha256": "26ca18985c59a7b8925ded0faece792297567801625df3d37a163d08cf6f34e6"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309671909,
+      "sha256": "715762218db7536a2b3bbf9858a6350b6997027ff26a3a838f84da9a6113e66b"
+    },
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "d7e57ae304a5e9bb9a3214eb31d4476e0fa0cf433344d7c37163f851b4a5bf4f"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 493982519,
+      "sha256": "a6c59290245813bc35f49bfb88a8ec8c0a334cc2916120c4856eb9c6ff0fb7ea"
+    }
+  ],
+  "scope": "Current UI build and both Windows candidate executables retained with exact source, compiled output and legal/package audit. Complete packaged native, actual install/uninstall, portable/bootstrap and hosted release remain separate gates."
+}
