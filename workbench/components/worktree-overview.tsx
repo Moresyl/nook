@@ -60,7 +60,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
   function restoredSnapshot(result: WorktreeRestored) { setRemoved(undefined); setRestored(result); setRefresh(value => value + 1); }
   function removedWorktree(result: WorktreeRemoved) { setRestored(undefined); setRemoved(result); setRefresh(value => value + 1); }
   return <section className="worktree-overview" aria-label="已登记项目的工作树" aria-busy={loading}>
-    <div className="section-heading"><h3>项目工作树</h3><IconButton icon="retry" label="刷新项目工作树" disabled={disabled || loading} onClick={() => setRefresh(value => value + 1)} /></div>
+    <div className="section-heading"><h3>{loading || groups.length ? '项目工作树' : '暂无项目工作树'}</h3><IconButton icon="retry" label="刷新项目工作树" disabled={disabled || loading} onClick={() => setRefresh(value => value + 1)} /></div>
     <p className="field-hint">列出本页已登记项目所属仓库中的 Git 工作树与关联会话。未登记的仓库可在项目页添加。</p>
     {removed && <p ref={noticeRef} tabIndex={-1} role="status" className={removed.managedRecord === 'saved' ? 'field-hint' : 'inline-error'}>{removed.managedRecord === 'saved' ? '工作树已删除，快照已保存，可从「已保存快照」恢复到新目录。' : '工作树已删除，快照已保存，但本机创建记录未能更新。请刷新列表；原目录不再具有删除权限。'}<TextHint as="span" className="path-text" text={removed.path}>{removed.path}</TextHint></p>}
     {cleanup && <p role="status" className={cleanup.failed || cleanup.receiptFailures ? 'inline-error' : 'field-hint'}>{cleanup.failed ? '自动清理未能执行，请完成其他操作后重试；工作树会保留。' : `自动清理已删除 ${cleanup.removed} 个工作树，并为其保存快照；${cleanup.skipped} 个受保护或无法清理的工作树已跳过。`}{cleanup.receiptFailures > 0 && ` ${cleanup.receiptFailures} 条本机创建记录未能更新，请刷新检查。`}<TextHint as="span" className="path-text" text={cleanup.source.path}>{cleanup.source.path}</TextHint></p>}
@@ -84,7 +84,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
         {!projects.length && source && <WorktreeRegistrationForm tree={tree} source={{ projectId: source.id, path: source.path }} disabled={disabled} onRegister={onRegister} />}
       </article>)}
       {!group.failed && source && saved && <SavedWorktreeSnapshotList source={{ projectId: source.id, path: source.path }} snapshots={saved.snapshots} failed={saved.failed} disabled={disabled} onRestore={onRestore} onRestored={restoredSnapshot} />}
-    </section>; })}</div> : <p className="muted">尚无已登记项目。添加本地 Git 项目后可在这里查看工作树。</p>}
+    </section>; })}</div> : <p className="muted">添加本地 Git 项目后，可在这里查看和管理工作树。</p>}
     {totalPages > 1 && <nav className="worktree-overview-pages" aria-label="项目工作树分页"><Button disabled={disabled || loading || currentPage === 0} onClick={() => setPage(currentPage - 1)}>上一页</Button><span className="muted" role="status">第 {currentPage + 1} / {totalPages} 页 · {state.projects.length} 个项目</span><Button disabled={disabled || loading || currentPage === totalPages - 1} onClick={() => setPage(currentPage + 1)}>下一页</Button></nav>}
   </section>;
 }
