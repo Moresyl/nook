@@ -16,7 +16,7 @@
 
 工作树清理基线已通过 355 项完整源码检查及 74 次正常退出。清理补拍的 27 张原图逐张复核，覆盖两种主题、三档缩放、错误、焦点与页脚；长路径和后续行仍需滚动。完整源码保留的 223 张选定原图没有全部计入视觉验收。
 
-当前新应用体已完成构建和安装／便携包生成；包体审计核实 239 个产品文件、401 份法律文件与 20 份分发许可来源。两次包内完整回归均在第 247 项后失败：首轮等待快速聊天审批超时，复测等待首段流式回复超时，原来的 5 秒时限保持不变。两个现场均保留，精确原因未确定；同包专项重放 9 项通过，28 张原图逐张检查。正在测量大工作区的保存与发送延迟，完整包内回归、安装、卸载保留数据、便携及托管发布仍分别验收。
+快速聊天的检查点保存已重新构建并生成安装／便携包；审计核实 239 个产品文件、401 份法律文件与 20 份分发许可来源。完整单元 1,505 项通过；大历史默认快速聊天专项九项通过，28 张当前原图逐张复核。旧包的两次 247 项失败仍保留。新包整轮分别在 308 项后的登记写入等待和 321 项后的固定错误回焦失败，均保留原时限与现场；原样登记重放五项及19张原图复核通过。固定控件正在改为恢复可用后回焦，尚未验收该新应用体。完整包内回归、安装、卸载保留数据、便携及托管发布继续分别验收。
 
 [清理原图范围](../verification/worktree-cleanup-visual-originals-review-result.json) · [包体审计](../verification/worktree-cleanup-ui-package-review-result.json) · [包内首轮失败](../verification/worktree-cleanup-ui-packaged-native-initial-failure-result.json) · [包内复测失败](../verification/worktree-cleanup-ui-packaged-native-retry-failure-result.json) · [快速聊天重放](../verification/worktree-cleanup-ui-quick-replay-review-result.json) · [28 张原图范围](../verification/worktree-cleanup-ui-quick-originals-review-result.json)
 

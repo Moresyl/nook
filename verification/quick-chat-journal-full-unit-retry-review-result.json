@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-11T21:47:06.102Z",
+  "archive": "E:/NookVerification/QuickJournalFullUnitRetry-20261012",
+  "sourceHead": "41a56710835a2fcd6f6b7f4fab32a7c48d21a979",
+  "sourceArchiveSha256": "39c091690ba9be7d511b5fa08ffb496fd41d14455acd2c77f536313251220e88",
+  "typesPassed": true,
+  "files": "129 passed (129)",
+  "tests": "1505 passed (1505)",
+  "durationSeconds": 389.53,
+  "passed": true,
+  "workerCount": 1,
+  "exitObservation": {
+    "exitCode": 0,
+    "finishedAt": "2026-10-11T21:44:36.8978958Z",
+    "log": "E:/NookVerification/nook-quick-journal-full-unit-retry-20261012.log",
+    "sourceHead": "41a56710835a2fcd6f6b7f4fab32a7c48d21a979",
+    "startedAt": "2026-10-11T21:38:05.1976072Z"
+  },
+  "assertionsRetained": true,
+  "newFilesystemRoundtripBudgetMs": 10000,
+  "originalApplicationBudgetsMs": {
+    "startup": 30000,
+    "normalClose": 10000,
+    "heldOperation": 5000,
+    "bridge": 10000,
+    "quickNativeWait": 5000
+  },
+  "coverage": {
+    "lines": {
+      "total": 4431,
+      "covered": 4405,
+      "skipped": 0,
+      "pct": 99.41
+    },
+    "statements": {
+      "total": 7364,
+      "covered": 7136,
+      "skipped": 0,
+      "pct": 96.9
+    },
+    "functions": {
+      "total": 1641,
+      "covered": 1603,
+      "skipped": 0,
+      "pct": 97.68
+    },
+    "branches": {
+      "total": 5156,
+      "covered": 4867,
+      "skipped": 0,
+      "pct": 94.39
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "originalFailure": "quick-chat-journal-full-unit-initial-review-result.json",
+  "replay": "quick-chat-journal-filesystem-replay-review-result.json",
+  "scope": "Complete current 129-file/1505-test coverage retry. Every assertion and the original one-worker/four-80-percent coverage gates remain. Only the newly authored multi-stage filesystem roundtrip has an explicit 10-second framework budget; all existing startup, shutdown, held-operation, bridge and Quick-native waits remain unchanged. Its initial 1504/1505 timeout and ENOTEMPTY fixture remain preserved. Coverage excludes React; rebuilt native and current distribution are separate."
+}

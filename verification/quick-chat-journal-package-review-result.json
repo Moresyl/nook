@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-11T21:53:12.799Z",
+  "archive": "E:/NookVerification/QuickJournalPackage-20261012",
+  "sourceHead": "41a56710835a2fcd6f6b7f4fab32a7c48d21a979",
+  "typesPassed": true,
+  "releaseNoticesPassed": true,
+  "packageBuildPassed": true,
+  "packageAuditPassed": true,
+  "audit": {
+    "verifiedAt": "2026-10-11T21:52:46.679Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "988f100b9e440ec65f1ba9838967012a019e0c6feb4fcf8fcff56f0837b1641e",
+    "archiveSha256": "c45bf94a32e452b8efc13ab8759a52bcf753fc3e3215aa5417a8f010bcde9335",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "hashes": [
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240158251,
+      "sha256": "30d3998ffb34acdf5cc08f21fd83e23a2246497f0820cf062f5b6128a9f8792c"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309672315,
+      "sha256": "c876a52a643bb1235d6504360987ef2973abb70d30b05cee88f0964b98bb3435"
+    },
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "988f100b9e440ec65f1ba9838967012a019e0c6feb4fcf8fcff56f0837b1641e"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 493983599,
+      "sha256": "c45bf94a32e452b8efc13ab8759a52bcf753fc3e3215aa5417a8f010bcde9335"
+    }
+  ],
+  "scope": "Current quick-checkpoint runtime and both Windows candidate executables retained with exact committed source, compiled output and legal/package audit. This supersedes the earlier UI package for the new persistence implementation. Complete packaged native, actual install/uninstall, portable/bootstrap and hosted release remain separate gates."
+}
