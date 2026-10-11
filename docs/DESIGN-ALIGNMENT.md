@@ -1,5 +1,9 @@
 # Nook 设计对照
 
+工作树未登记行新增项目名称输入和登记／取消操作，沿用现有控件、8px 间距与主题。五组真实桌面专项及 19 张原图逐张复核通过：两主题、三档缩放的实际键盘提交、完整焦点边框和错误提示均已检查，150% 下下方操作需要纵向滚动。完整单元 1,302 项、类型及 80 项发布门槛测试通过；完整源码通过全部 326 项、57 次正常退出（最长 3,240ms）。本轮登记、列表和工作树设置的 57 张原图逐张复核，另外 75 张保留原图不计入本轮视觉验收；长路径输入仅展示可见片段，150% 后续操作与第九分类仍需纵向滚动。当前分发、创建归属、快照／恢复与其他参考页面继续补齐。[登记实际范围](../verification/worktree-registration-review-result.json) · [完整源码](../verification/worktree-registration-full-review-result.json) · [原图具体范围](../verification/worktree-registration-full-originals-review-result.json)
+
+## 上游与聊天界面
+
 当前工作树页增加实际创建前上游开关，沿用共享控件与主题；保存失败保留配置及根目录输入，中文提示完整可见。聊天按钮和开关增加滚动留白，最小窗口实际键盘操作的焦点边框完整显示。五组上游和四组聊天专项、39 张原图逐张复核通过，覆盖两主题和三档缩放。随后完整源码通过 321 项、54 次正常退出及 113 张选定原图逐张复核，236 个编译文件与列表就绪专项一致。150% 下后续操作需要纵向滚动；项目创建的明色原图为 1280×840、暗色为 760×540，不能推断全部最小窗口已验收。分发、清理快照／恢复与剩余参考页面继续验收。[专项](../verification/worktree-upstream-review-result.json) · [完整源码](../verification/worktree-upstream-full-review-result.json) · [原图实际范围](../verification/worktree-upstream-full-originals-review-result.json)
 
 ## 前序对照记录
