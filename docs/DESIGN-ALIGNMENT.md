@@ -1,5 +1,9 @@
 # Nook 设计对照
 
+当前清理集成源码通过 355 项、74 次正常退出（最长 3,889ms）。补正固定行滚动、自动列表完成与浅色替换保护取证后，10 组专项及 27 张原图逐张复核通过；六种明暗缩放的删除错误／键盘焦点／页脚和停用确认完整可见，236 个编译文件与完整回归一致。完整轮的 223 张选定原图仅保留，未全部计入本轮视觉验收；长路径和后续行需要纵向滚动。此前两次测试脚本失败和加强轮两项截图限制继续保留。全部参考页面与当前分发尚未完成。[完整源码](../verification/worktree-cleanup-full-native-review-result.json) · [清理原图范围](../verification/worktree-cleanup-visual-originals-review-result.json)
+
+## 前序快照阶段
+
 当前快照候选完整源码通过 345 项、68 次正常退出（最长 1,985ms）。固定 21 张与快照 33 张共 54 张当前原图逐张复核，两主题三档缩放下的保存、恢复、固定键盘边框、错误及恢复按钮完整可见；另外 142 张选定原图保留但不计本轮视觉验收。150% 上部资料与后续分类需要纵向滚动。当前子报告的完整桌面标签与 345 项总数已实际核实；前序失败和限制继续保留。安全删除与自动清理在独立分支验证，全部参考界面和当前分发尚未完成。[完整源码](../verification/worktree-snapshot-full-native-review-result.json) · [54 张原图范围](../verification/worktree-snapshot-full-originals-review-result.json)
 
 ## 前序固定阶段

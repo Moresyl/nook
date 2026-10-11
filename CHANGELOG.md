@@ -2,7 +2,7 @@
 
 ## 未发布
 
-当前候选增加工作树集中管理、显式项目登记、本机固定状态、私有快照和恢复到新目录。完整验证和分发仍在进行，尚未发布版本；界面采用范围见 [设计对照](docs/DESIGN-ALIGNMENT.md)，验证进度见 [发布状态](docs/RELEASE.md)。
+当前候选增加工作树集中管理、显式项目登记、本机固定状态、私有快照、恢复到新目录、安全删除和创建后自动清理。源码验证通过，完整参考页面与分发仍在验收，尚未发布版本；界面采用范围见 [设计对照](docs/DESIGN-ALIGNMENT.md)，验证进度见 [发布状态](docs/RELEASE.md)。
 
 ## [0.1.0-alpha.1] - 2026-10-11
 
@@ -25,7 +25,8 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 - 网页、预览与插件使用隔离边界；外部网页不能访问工作台桥接或 Node。MCP 文件限制大小和数量，预览或导出不会自动调用模型。
 - 工作树登记重新核实实际 Git 归属、来源与规范路径；拒绝过期入口，保留已有项目数据。外部工作树不会因登记获得自动清理权限。
 - 应用实际创建的工作树单独保留本机创建记录，支持固定与取消固定；目录被移动或替换时拒绝旧记录。创建记录和固定状态不进入共享备份，保存失败保留文件及旧状态。
-- 本机工作树可保存私有快照，保留提交、暂存区、普通文件和忽略文件，并恢复到尚不存在的新目录；不覆盖原工作树。拒绝损坏快照、链接和不支持的索引状态，共享备份不包含私有快照；退出等待已接受的快照操作完成。安全删除和自动清理仍在独立分支验证。
+- 本机工作树可保存私有快照，保留提交、暂存区、普通文件和忽略文件，并恢复到尚不存在的新目录；不覆盖原工作树。拒绝损坏快照、链接和不支持的索引状态，共享备份不包含私有快照；退出等待已接受的快照与清理操作完成。
+- 安全删除先持久保存可恢复快照，保留源仓库与分支；固定、已登记、关联固定聊天、运行回复／终端、草稿、锁定与含改动目录均受保护，外部与身份变化目录无删除权限。自动清理默认关闭，创建后按 1～50 的保留数量处理合格旧树，停用需要确认；快照无法保存或达到 100 份上限时停止清理。
 
 ### 修复与完善
 
@@ -39,7 +40,7 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 
 - 计划提供 Windows x64 安装版 `Nook-Setup-0.1.0-alpha.1-x64.exe` 和便携版 `Nook-Portable-0.1.0-alpha.1-x64.exe`；当前分发与托管发布尚未验收完成。
 - 正式提供文件时附对应源码、验证记录和 `SHA256SUMS.txt`。首次启动自行配置模型连接；迁移已有工作台前可导出完整备份。
-- 候选可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供；工作树删除与自动清理仍在验证。
+- 候选可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供；当前安装／便携验收与全部参考页面仍在进行。
 
 ### English
 
@@ -47,4 +48,6 @@ Nook is a local AI workspace with multi-provider chat, model comparison, convers
 
 The candidate includes fixes for draft persistence, parallel streaming, restore locking, preview lifecycle, keyboard focus and Windows portable cleanup. Credentials stay encrypted locally, previews and plugins remain isolated, and original open-source notices are retained.
 
-The first Windows x64 prerelease has not been published. Current distribution verification and hosted CI remain incomplete; full reference-design parity and worktree snapshot/cleanup support are still in progress. Detailed historical evidence is preserved in [development records](docs/VALIDATION-HISTORY.md).
+Worktrees support private snapshots, restoration to a new directory and snapshot-before-delete cleanup with pinned-chat, active-terminal, dirty-tree and directory-identity protection. Optional post-create cleanup retains a configurable 1–50 recent trees and requires confirmation to disable.
+
+The first Windows x64 prerelease has not been published. Current distribution verification, hosted CI and full reference-design adoption remain incomplete. Detailed historical evidence is preserved in [development records](docs/VALIDATION-HISTORY.md).

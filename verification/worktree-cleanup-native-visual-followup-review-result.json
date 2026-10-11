@@ -1,0 +1,1917 @@
+{
+  "verifiedAt": "2026-10-11T19:57:57.075Z",
+  "archive": "E:/NookVerification/WorktreeCleanupNativeVisualFollowup-20261012",
+  "sourceHead": "9cac493e52ad06d481adfd791bb213f8039a2422",
+  "native": {
+    "verifiedAt": "2026-10-11T19:57:36.765Z",
+    "variant": "development executable",
+    "executableSha256": null,
+    "archiveSha256": null,
+    "runtimeErrors": [],
+    "normalCloseVerified": true,
+    "verificationRun": "focused worktree-cleanup suite",
+    "checks": 10,
+    "modelRequests": 0,
+    "ownedOnlyControlsVerified": true,
+    "dirtyPinLockProtectionVerified": true,
+    "activeTerminalProtectionVerified": true,
+    "replacementRejectionVerified": true,
+    "privateFailureGateVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "exactDeleteRestoreVerified": true,
+    "fixedChatAfterRemovalVerified": true,
+    "metadataFailureVerified": true,
+    "postCreateAutomaticVerified": true,
+    "disableConfirmationVerified": true,
+    "acceptedShutdownVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 134.5,
+          "bottom": 152.5,
+          "left": 21,
+          "right": 739,
+          "viewportTop": 62,
+          "viewportBottom": 472,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 485,
+          "bottom": 505,
+          "left": 595,
+          "right": 633,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 485,
+          "bottom": 505,
+          "left": 641,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 155.10000610351562,
+          "bottom": 173.10000610351562,
+          "left": 20.80000114440918,
+          "right": 587.2000255584717,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 363.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 607.2000244259834,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 444,
+          "right": 481.60000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 489.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 171.33334350585938,
+          "bottom": 207.33334350585938,
+          "left": 20.666667938232422,
+          "right": 486.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 291.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 506.00001019239426,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 304,
+          "bottom": 324,
+          "left": 343.3333435058594,
+          "right": 380.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 304,
+          "bottom": 324,
+          "left": 388.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 134.5,
+          "bottom": 152.5,
+          "left": 21,
+          "right": 739,
+          "viewportTop": 62,
+          "viewportBottom": 472,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 485,
+          "bottom": 505,
+          "left": 595,
+          "right": 633,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 485,
+          "bottom": 505,
+          "left": 641,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 155.10000610351562,
+          "bottom": 173.10000610351562,
+          "left": 20.80000114440918,
+          "right": 587.2000255584717,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 363.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 607.2000244259834,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 444,
+          "right": 481.60000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 489.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 171.33334350585938,
+          "bottom": 207.33334350585938,
+          "left": 20.666667938232422,
+          "right": 486.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 291.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 506.00001019239426,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 304,
+          "bottom": 324,
+          "left": 343.3333435058594,
+          "right": 380.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 304,
+          "bottom": 324,
+          "left": 388.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "保存快照并删除",
+        "top": 485,
+        "bottom": 505,
+        "left": 641,
+        "right": 739,
+        "viewportTop": 0,
+        "viewportBottom": 540,
+        "viewportLeft": 0,
+        "viewportRight": 760,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 758,
+        "contentScrollWidth": 758,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "保存快照并删除",
+        "top": 376.3999938964844,
+        "bottom": 396.3999938964844,
+        "left": 489.6000061035156,
+        "right": 587.2000045776367,
+        "viewportTop": 0,
+        "viewportBottom": 432,
+        "viewportLeft": 0,
+        "viewportRight": 608,
+        "outline": 3.2,
+        "focused": true,
+        "contentWidth": 606,
+        "contentScrollWidth": 606,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "保存快照并删除",
+        "top": 304,
+        "bottom": 324,
+        "left": 388.66668701171875,
+        "right": 486.0000228881836,
+        "viewportTop": 0,
+        "viewportBottom": 360,
+        "viewportLeft": 0,
+        "viewportRight": 506.66668701171875,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 505,
+        "contentScrollWidth": 505,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "保存快照并删除",
+        "top": 485,
+        "bottom": 505,
+        "left": 641,
+        "right": 739,
+        "viewportTop": 0,
+        "viewportBottom": 540,
+        "viewportLeft": 0,
+        "viewportRight": 760,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 758,
+        "contentScrollWidth": 758,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "保存快照并删除",
+        "top": 376.3999938964844,
+        "bottom": 396.3999938964844,
+        "left": 489.6000061035156,
+        "right": 587.2000045776367,
+        "viewportTop": 0,
+        "viewportBottom": 432,
+        "viewportLeft": 0,
+        "viewportRight": 608,
+        "outline": 3.2,
+        "focused": true,
+        "contentWidth": 606,
+        "contentScrollWidth": 606,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "保存快照并删除",
+        "top": 304,
+        "bottom": 324,
+        "left": 388.66668701171875,
+        "right": 486.0000228881836,
+        "viewportTop": 0,
+        "viewportBottom": 360,
+        "viewportLeft": 0,
+        "viewportRight": 506.66668701171875,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 505,
+        "contentScrollWidth": 505,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "disableLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 559,
+          "right": 645,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 653,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 408,
+          "right": 493.5999984741211,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 501.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 307.3333435058594,
+          "right": 392.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 400.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 559,
+          "right": 645,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 653,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 408,
+          "right": 493.5999984741211,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 501.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 307.3333435058594,
+          "right": 392.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 400.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      }
+    ],
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-AvUC9R\\cleanup-evidence-a15b369e",
+    "screenshots": [
+      "worktree-cleanup-cancel-owned-external-light-shell.png",
+      "worktree-cleanup-pinned-protected-light-shell.png",
+      "worktree-cleanup-active-terminal-protected-light-shell.png",
+      "worktree-cleanup-private-save-held-light-shell.png",
+      "worktree-cleanup-private-save-error-light-shell.png",
+      "worktree-cleanup-light-100-keyboard-shell.png",
+      "worktree-cleanup-light-100-error-shell.png",
+      "worktree-cleanup-light-125-keyboard-shell.png",
+      "worktree-cleanup-light-125-error-shell.png",
+      "worktree-cleanup-light-150-keyboard-shell.png",
+      "worktree-cleanup-light-150-error-shell.png",
+      "worktree-cleanup-dark-100-keyboard-shell.png",
+      "worktree-cleanup-dark-100-error-shell.png",
+      "worktree-cleanup-dark-125-keyboard-shell.png",
+      "worktree-cleanup-dark-125-error-shell.png",
+      "worktree-cleanup-dark-150-keyboard-shell.png",
+      "worktree-cleanup-dark-150-error-shell.png",
+      "worktree-cleanup-removed-with-snapshot-light-shell.png",
+      "worktree-cleanup-fixed-chat-after-project-removal-light-shell.png",
+      "worktree-cleanup-automatic-created-cleanup-light-shell.png",
+      "worktree-cleanup-light-100-disable-cancel-shell.png",
+      "worktree-cleanup-light-125-disable-cancel-shell.png",
+      "worktree-cleanup-light-150-disable-cancel-shell.png",
+      "worktree-cleanup-dark-100-disable-cancel-shell.png",
+      "worktree-cleanup-dark-125-disable-cancel-shell.png",
+      "worktree-cleanup-dark-150-disable-cancel-shell.png",
+      "worktree-cleanup-replacement-rejected-light-shell.png"
+    ],
+    "scope": "Real native manual cleanup, strict bridge, active PTY and replaced-receipt protection, durable snapshots/new-folder restoration, associated fixed-chat protection, post-create scheduler, conservative automatic trimming, native confirmation matrix and accepted cleanup drain. External filesystem races are not OS-locked. Complete reference adoption and installed/portable release require separate evidence."
+  },
+  "checks": 10,
+  "releaseCleanupValidatorPassed": true,
+  "normalCloses": 7,
+  "maximumCloseMs": 1493,
+  "forcedCloses": 0,
+  "compiled": [
+    {
+      "path": "out/main/attachment-worker.cjs",
+      "sha256": "1fe1757e6647beabe4a9506272ec2a895b9dbed11402edc94cac497c62613ee1"
+    },
+    {
+      "path": "out/main/chunks/attachments-BHvMZdnh.cjs",
+      "sha256": "be0e667a115cf73d31c3e91197acd900d08da50ab2ee9d564e18fd8c4a1686b3"
+    },
+    {
+      "path": "out/main/launch.cjs",
+      "sha256": "c2921db82531a6e546e163a52f263fbd159cfd1e12cba41def376a95d5fcb79a"
+    },
+    {
+      "path": "out/preload/bridge.cjs",
+      "sha256": "06a2f4f8090697342605330cb83dfa4f280b51b41d87215e7c80090a120e111b"
+    },
+    {
+      "path": "out/preload/plugin-bridge.cjs",
+      "sha256": "d4694fdeb39a550b6471edce97f562a13badd071335c35b03a5cfa5f9ead6f53"
+    },
+    {
+      "path": "out/preload/quick-chat-bridge.cjs",
+      "sha256": "5dea3196a1f6a9a48da8672466537bab0e47b545fcb4a9c4993abc6b06caed3e"
+    },
+    {
+      "path": "out/renderer/assets/abap-D5KwWAsZ.js",
+      "sha256": "9a0702f7bbbfed5f5b7956f570bc75e16d14989c1c8e44129cf2aa853ab099b7"
+    },
+    {
+      "path": "out/renderer/assets/abnfDiagram-O67JEVCF-HnlolPJa.js",
+      "sha256": "29afc3e767b89485c5c7b616bce3966f33f6986550b5ac4d4b75fbe812a80f56"
+    },
+    {
+      "path": "out/renderer/assets/apex-DVGUZ64i.js",
+      "sha256": "538edd0491653f45a9b6c117c0a0fc3440b6e14cfdd8d641ea1dcd8df1ec499d"
+    },
+    {
+      "path": "out/renderer/assets/arc-C9aQkP6K.js",
+      "sha256": "88c93df3acc745e97861c5c2ca1bc83b87bae3061398d3c77e4326bf46b99bdc"
+    },
+    {
+      "path": "out/renderer/assets/architectureDiagram-NJMV4G6O-CFFJEYRy.js",
+      "sha256": "99eb83324131e4ded128663140891fddeabade118847002d6069a0cc0643ac78"
+    },
+    {
+      "path": "out/renderer/assets/azcli-BEAhqcuE.js",
+      "sha256": "ecd11f534e43af6c8e031893d7a334f90e9e974423eef3290f641f1b1549c265"
+    },
+    {
+      "path": "out/renderer/assets/bat-Bqkp9Cfu.js",
+      "sha256": "3fd52043375275296bdb6c1fbe7c31ff6c92f7ec434ea5959c8ddaa04bc41692"
+    },
+    {
+      "path": "out/renderer/assets/bicep-DIlfshcM.js",
+      "sha256": "7f4fca038a435afc52ad3eccae734b9baba4530976b1e1b852948926f0dd19b8"
+    },
+    {
+      "path": "out/renderer/assets/blockDiagram-BEXU5L5S-D3YaSLV5.js",
+      "sha256": "c3ef96a15707e072af71e4cba3aa484d73e766c596569a04da7bbcb34e8c9b1e"
+    },
+    {
+      "path": "out/renderer/assets/c4Diagram-YGBWAQC7-CRVIItuJ.js",
+      "sha256": "234d112b65805781210a5aa7dc1c0b896fa1c30059bfe682fe0b91cd9def998e"
+    },
+    {
+      "path": "out/renderer/assets/cameligo-CLaaYNMV.js",
+      "sha256": "96ba53248c85a88929f57e8d5226b8107a82632f466c42405bade1ab8b500f9e"
+    },
+    {
+      "path": "out/renderer/assets/carlito-latin-400-normal-11f827802cc9-R-CeALMm.woff2",
+      "sha256": "a29c4a4e61863753cf6a10831efaa05f849dcaa8f580422dbc41bc058c3b6b64"
+    },
+    {
+      "path": "out/renderer/assets/carlito-latin-400-normal-231061d55c03-jEGHVXAP.woff",
+      "sha256": "5682bcf0a218b3b0f229ecc0440909644517fa29d5aa57978383f87a9f6ef123"
+    },
+    {
+      "path": "out/renderer/assets/carlito-latin-700-normal-a31b730ba98f-CjG3MLqY.woff",
+      "sha256": "c97340859680cc2be316715a367d6966b5cc34df4b74fd4cb9b4b596d2adaad1"
+    },
+    {
+      "path": "out/renderer/assets/carlito-latin-700-normal-d0e833a43e47-DQ6DOkPk.woff2",
+      "sha256": "af249cfe4107221070ff077c29a043004e8f2efea977dcbaaf217a24f3b7680e"
+    },
+    {
+      "path": "out/renderer/assets/channel-BKxMQdYc.js",
+      "sha256": "6f3938b6583a6d095629318340f10d4c996cebbb333d63033697d1a52cdc3ff3"
+    },
+    {
+      "path": "out/renderer/assets/chunk-2Q5K7J3B-_p16VfVO.js",
+      "sha256": "4b4ed9d13bf15824757e6dba548019e2a776b0f3d7101e5077762ece199c0d9a"
+    },
+    {
+      "path": "out/renderer/assets/chunk-3FUC2YCW-Bc0hAlcH.js",
+      "sha256": "5ce013b0f40e68ac4476b6f6294c94d79d0b0a4ddf18bdc930d5a8b70b80cdfb"
+    },
+    {
+      "path": "out/renderer/assets/chunk-5VM5RSS4-BlYS-61A.js",
+      "sha256": "d79393b140b5c2d79089ebe704b74c397b01dc23e624cc4153c1e77ee36cc184"
+    },
+    {
+      "path": "out/renderer/assets/chunk-GTNCS2PH-CBR_V5Nn.js",
+      "sha256": "1c5de710ba11d6b7af61883f507b67241ad5229a60fa2501464eb3322d0608bb"
+    },
+    {
+      "path": "out/renderer/assets/chunk-GWA4HPMP--SU6kW4A.js",
+      "sha256": "1430a4f580c8b1639f84f4e90023040a750e1cae5d6f1688d5de5f01f460c2bd"
+    },
+    {
+      "path": "out/renderer/assets/chunk-JWPE2WC7-BALgjoEs.js",
+      "sha256": "827aee7118d68d2da04a162aa6ecfc4dc281702ec96d627e3e62452a2758cca5"
+    },
+    {
+      "path": "out/renderer/assets/chunk-NETBCI7D-BOpsg0Jt.js",
+      "sha256": "d42dc3c4016e0d5b888fa96dd8b553a0fe577f8c01f874c79d25722f31ab9e43"
+    },
+    {
+      "path": "out/renderer/assets/chunk-WEXAMYUT-BZofpQCa.js",
+      "sha256": "b967b6550a9f0a790c1852a8bfbf1e8f16f5dd1b171020e00b8ebf8479831920"
+    },
+    {
+      "path": "out/renderer/assets/chunk-XXDRQBXY-mbh1fTZA.js",
+      "sha256": "a59c9ca793bc19396261c91a505748aa7c70beb2ee2ecdc1208fd3a1c4e5efa3"
+    },
+    {
+      "path": "out/renderer/assets/classDiagram-v2-NBCMYWYE-BsTlCRK8.js",
+      "sha256": "1357697bcdec28e4af512edc9cb099533dadf3d52ed9cafdef8e819b76efaae5"
+    },
+    {
+      "path": "out/renderer/assets/clojure-fcgFaMHx.js",
+      "sha256": "c99b6f24163380c1151f7624cb1d9eee131da9670c1d013ffd6c1fdbe3285f8e"
+    },
+    {
+      "path": "out/renderer/assets/codicon-DF1abBS2.ttf",
+      "sha256": "77f902557231f95c4c71ae517d09a1a842753656f5f665086b3e5ad8095538da"
+    },
+    {
+      "path": "out/renderer/assets/coffee-CzJ5oEdj.js",
+      "sha256": "145992ac56cc603f11b7a7ae234b40a92e3655a753e74ae3867e4b24317758ee"
+    },
+    {
+      "path": "out/renderer/assets/cose-bilkent-JH36ORCC-BcWWbaAT.js",
+      "sha256": "bb386f651ee3b7eadfdbc8af306d53ba67a582f47188423dbb6bb3607097dd8f"
+    },
+    {
+      "path": "out/renderer/assets/cpp-CcN6f0ik.js",
+      "sha256": "73f96424fd9137735331550679f215d9e0bed8e38ff738b27a07773c6929739a"
+    },
+    {
+      "path": "out/renderer/assets/csharp-BJeIuvde.js",
+      "sha256": "eecfd273316271b620c04842d7b0e503642eb6cac7fc88fe5bd23fff9d6da0d6"
+    },
+    {
+      "path": "out/renderer/assets/csp-D_3BK2Wp.js",
+      "sha256": "d72daddd22b9876b7f43e454adc0c862aa355a2b6621cb67ae9004b799a6b222"
+    },
+    {
+      "path": "out/renderer/assets/css-i3rI3_64.js",
+      "sha256": "b6c08b9befa78e247161c65df931715c7ce576dd52b0d45e2e565caadfea7ca4"
+    },
+    {
+      "path": "out/renderer/assets/css.worker-CrvSo1dL.js",
+      "sha256": "bd2c3ea8c2a3ee20fd17cd3a0c6d1ede63e6639b69c753748660ae20715a31b0"
+    },
+    {
+      "path": "out/renderer/assets/cssMode-esk_gRun.js",
+      "sha256": "73701298bb14768dd41cc9886cd0b1c75281841509db478397a399e4e85a8f7d"
+    },
+    {
+      "path": "out/renderer/assets/cynefin-OW5HDTMX-CRItoj1K.js",
+      "sha256": "0d50b1e92f021e1b2558648f303de746a0a9abd7848b752a4e44612261577389"
+    },
+    {
+      "path": "out/renderer/assets/cynefinDiagram-VND7K2PF-p81NQuzB.js",
+      "sha256": "aad114a05caefd3a954cca5b079ebac49aa2ef28191bdd3a39983ea2023efbd2"
+    },
+    {
+      "path": "out/renderer/assets/cypher-D0--_GAN.js",
+      "sha256": "2feea4008eb35be27559e52b375e64a9dcd04ffdd05f6d5d1017f29b0b7e60da"
+    },
+    {
+      "path": "out/renderer/assets/cytoscape.esm-Ct9zsnh1.js",
+      "sha256": "998d450bab91359143f71b378051d05ffbeeeedee54442c16e59952958e83b6f"
+    },
+    {
+      "path": "out/renderer/assets/dagre-6A5THRUB-DnO2tJzQ.js",
+      "sha256": "1a98d8376398a6b71520436bc480ed7ecdfd5e5d84298e5d01583c32698e1e86"
+    },
+    {
+      "path": "out/renderer/assets/dart-vLMHv35g.js",
+      "sha256": "a3177ce042f793f7d643cf20b88955f3d469751beb93a3ab817d6074a7633028"
+    },
+    {
+      "path": "out/renderer/assets/defaultLocale-B2RvLBDe.js",
+      "sha256": "adb5e701c410866bbb1437380bb188b83fdca516e7788df4f24faf601a470063"
+    },
+    {
+      "path": "out/renderer/assets/diagram-22UHCM2B-DsadEBK-.js",
+      "sha256": "e75c8215e3ba5ed894486145f250c85b0b4cf62820a5d75c3810b71dd6345a4f"
+    },
+    {
+      "path": "out/renderer/assets/diagram-3UASUU5V-CtalZpDa.js",
+      "sha256": "3cebcff32f35fcfa86528764f17226b5ff31eadd4b9fc0381878f85e58d13bb9"
+    },
+    {
+      "path": "out/renderer/assets/diagram-ATOU4E4O-BmXlQfnv.js",
+      "sha256": "cd6bb5e5056b6f85f1f40a55419496e63db2ff92fba72ae58c1a791cf8adcf93"
+    },
+    {
+      "path": "out/renderer/assets/diagram-CDSNMT55-D4l2khJc.js",
+      "sha256": "c9aa7abfba4572e3ac64c287f9db40e96d8d850983f416130372ed89ad2f9a6d"
+    },
+    {
+      "path": "out/renderer/assets/diagram-MLGK6HIB-CwZrV_Dy.js",
+      "sha256": "6bac596f35a4fb13d4f24a96b0c84af49d590035400f086e2dc68c2fb0afe6ee"
+    },
+    {
+      "path": "out/renderer/assets/diagram-MPIPVDR6-eG8FFWR9.js",
+      "sha256": "a5014b8e5d38630c678c8b8909da3aa1eefb6ddeea53e341a17a285ddbc128d6"
+    },
+    {
+      "path": "out/renderer/assets/dockerfile--oxj0cAH.js",
+      "sha256": "31ed5c0216d0e570f8121af0ad2f80cd214c2ca7f0e75f3f8703b3821d4ad032"
+    },
+    {
+      "path": "out/renderer/assets/ebnfDiagram-ZINNZB2B-DwxgYeEL.js",
+      "sha256": "2bf02237a0669e5052d0e23f0084ed3a82a275e22b35f04d3565fe4cc57307cc"
+    },
+    {
+      "path": "out/renderer/assets/ecl-CeuUgzaZ.js",
+      "sha256": "139043ade61e1f81decf8df23d5e9c6980d9eb6f18ffa46d44aecb5bc9d9eaac"
+    },
+    {
+      "path": "out/renderer/assets/editor.worker-DD3EztIk.js",
+      "sha256": "385c10003c8544e5073ce8427a84a0307f42b5738b377a563828b66493c16cc8"
+    },
+    {
+      "path": "out/renderer/assets/elixir-eLfY1jWH.js",
+      "sha256": "d956b7475c871fa55e92898a7c80177fb4dcf2a307f073c6f9a1c5b1b473efb8"
+    },
+    {
+      "path": "out/renderer/assets/elk-276RUBZZ-BTbDQ2rd.js",
+      "sha256": "bb1a1e600b999f8d71a60cabd07159ef66dbac01d164e221138d81a8bf1c22ad"
+    },
+    {
+      "path": "out/renderer/assets/erDiagram-OPXOYQCR-CDEaKqM_.js",
+      "sha256": "ba97163213a7003cbba68d4106f57b3046b2748580402c50176cd7a5b1966234"
+    },
+    {
+      "path": "out/renderer/assets/flow9-ZSTChSMd.js",
+      "sha256": "ed9bd8aa49f1c6d1942d7a6690735b3d0de7d2f9800dd51068c0085329aca398"
+    },
+    {
+      "path": "out/renderer/assets/flowDiagram-KWPJA3E3-8VWm3IL4.js",
+      "sha256": "ec7ca98e6517a923f25467f5824d8a0fa7fdf77fef1c0995bc39d2f211f7892e"
+    },
+    {
+      "path": "out/renderer/assets/freemarker2-BwjdZ-ai.js",
+      "sha256": "05f2075fa9fb3736bee9d96d1b84dccd9a606bddcf3f8acff7812ede2d80c4d2"
+    },
+    {
+      "path": "out/renderer/assets/fsharp-D2uoxuLH.js",
+      "sha256": "53eef949608b983c4c249295ed84d9901a93ab44cc9e6a35caea84eac980f4ec"
+    },
+    {
+      "path": "out/renderer/assets/ganttDiagram-FUAMR5RP-CHk6ldXb.js",
+      "sha256": "1b537c880b3905eb8f011846b21f6551347872ceb1f8637420a4d522b17b5507"
+    },
+    {
+      "path": "out/renderer/assets/gitGraphDiagram-X574FWY7-BeCc7R3b.js",
+      "sha256": "8402663487698d03deee061d2c4b72b07b97dfe720c0c113798ffde792aad312"
+    },
+    {
+      "path": "out/renderer/assets/go-brnMpFrj.js",
+      "sha256": "51ec81e3fe4ed722ea25bfa1785dda19bdf69b0b2e642d270a91ccec410cf40f"
+    },
+    {
+      "path": "out/renderer/assets/graph-DRyz16cr.js",
+      "sha256": "d6e190336c22a389048d29379dae160b22c932b5624e46818a05480461ee9471"
+    },
+    {
+      "path": "out/renderer/assets/graphql-BeiGgjIU.js",
+      "sha256": "ab9be553cf7ad12822291b133cfe92bb1e1506a42808bcb71b9ca565c0c787bb"
+    },
+    {
+      "path": "out/renderer/assets/handlebars-D8tu4Ou9.js",
+      "sha256": "a7cb7139dda2dbc7fe716f82a20acebe9db917dd0e9e5f75b9add916431b1b00"
+    },
+    {
+      "path": "out/renderer/assets/hcl-CrX1Es2W.js",
+      "sha256": "83328b85960a88e4c66c330578ab59b0e0fb1a016967ff6ccb9868af181b82f6"
+    },
+    {
+      "path": "out/renderer/assets/html-CtBdhaOR.js",
+      "sha256": "ccaee6803f59dde8f6dc5223b3dfe7dcadcd53c9aeb024c33338929efda67f43"
+    },
+    {
+      "path": "out/renderer/assets/html.worker-B1nGeh6g.js",
+      "sha256": "705a9cda5b9f86f0412963c8be1e01eb79e94b5de019c7568425f353c8c66f23"
+    },
+    {
+      "path": "out/renderer/assets/htmlMode-C_0eeRur.js",
+      "sha256": "8761f30e9ffec727801a7001ca4fa11f67c7116ca5cb12b92bf43162561c5fd0"
+    },
+    {
+      "path": "out/renderer/assets/index-BZIOc8wv.js",
+      "sha256": "b5e244079f9db4a36de938af9330d9bf33a9ad487d491a0dfbaf49652ca95c90"
+    },
+    {
+      "path": "out/renderer/assets/index-Dj9ik507.css",
+      "sha256": "c5bccd20ec6995ca3d581b75bab603457460359a43e176c4211f34da1f180854"
+    },
+    {
+      "path": "out/renderer/assets/infoDiagram-VRGFBTTK-Di9__hFc.js",
+      "sha256": "4ab9b54ac82e3c90ee1e9f386380491a6027499c869635aab25b77d9be1d4620"
+    },
+    {
+      "path": "out/renderer/assets/ini-BcQysCTb.js",
+      "sha256": "054867421acb33d253b78e466463ad2dbed0a270c463046ed86a5cebeb91e30b"
+    },
+    {
+      "path": "out/renderer/assets/init-ZxktEp_H.js",
+      "sha256": "40ba05c6fb10047a3fc311dfc9da86a80d7d0681a6a33c80cd53b77bbe44c604"
+    },
+    {
+      "path": "out/renderer/assets/InterVariable-693b77d4f32e-DiVDrmQJ.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+    },
+    {
+      "path": "out/renderer/assets/ishikawaDiagram-OU5B5YK6-Dggw4mJ-.js",
+      "sha256": "f5ba4d10ed6aa02aa5c49a4eebe61803c9f539188986754a43d9da678ad24a06"
+    },
+    {
+      "path": "out/renderer/assets/java-Dt3iMn2o.js",
+      "sha256": "b57d1d340b5587b2cf2c680b95290c00ccced50795d2a3a481d67ebbac1613b1"
+    },
+    {
+      "path": "out/renderer/assets/javascript-DGNuR459.js",
+      "sha256": "9637e5b3e3987f40df8e23ed82f0d180f20250e5cc6ef0dc87fe9fc3c7f3a613"
+    },
+    {
+      "path": "out/renderer/assets/journeyDiagram-ZHPQQLJL-BGtYaWiL.js",
+      "sha256": "0036451342455d012a3b233c1301a98664fe1cf0d27878898456866bb080aa93"
+    },
+    {
+      "path": "out/renderer/assets/json.worker-B6HGQMPc.js",
+      "sha256": "a63894e489594500e1db9d528f9e3a0d1497a3075c857d90922c9856e3dabfc2"
+    },
+    {
+      "path": "out/renderer/assets/jsonMode-bp5tk0gU.js",
+      "sha256": "c056e791a7f314b29a88a632bba8be5406e42114d20ffbc3d2f370bac59e3c09"
+    },
+    {
+      "path": "out/renderer/assets/julia-Cm3ItYL_.js",
+      "sha256": "a22d72944935fd6039a40dcea5a818fcd70d016c7e35e321c3cf31d0d9543174"
+    },
+    {
+      "path": "out/renderer/assets/kanban-definition-PNTS6WVX-DSEcDKw4.js",
+      "sha256": "e37bdb63501275d7701e4a590e81ff947ef3fb026f5fa3f6b09c63a7e160764a"
+    },
+    {
+      "path": "out/renderer/assets/katex-oVG3DVWa.js",
+      "sha256": "2b6ec66674b790af78fec17abd4445695918c58f0ef4273fd3e9e0fbc80b7f38"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_AMS-Regular-5085d14c6356-BQhdFMY1.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_AMS-Regular-cc9bd60e01a9-DMm9YOAa.woff",
+      "sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_AMS-Regular-d182002564db-DRggAlZN.ttf",
+      "sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Bold-04d7c5db17d1-ATXxdsX0.ttf",
+      "sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Bold-4489718bbd71-BEiXGLvX.woff",
+      "sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Bold-eafc847daced-Dq_IR9rO.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Regular-305fded40630-wX97UBjC.ttf",
+      "sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Regular-93440fab4cbe-CTRA-rTL.woff",
+      "sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Caligraphic-Regular-e2ea347ec7e1-Di6jR-x-.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Bold-5d9c444d356a-BdnERNNW.ttf",
+      "sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Bold-6c0cfe753859-BsDP51OF.woff",
+      "sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Bold-8bea0fdbdd58-CL6g_b3V.woff2",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Regular-81ff0bab7ac4-CB_wures.ttf",
+      "sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Regular-9362217a940f-CTYiF6lA.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Fraktur-Regular-f175ce1c47d7-Dxdc4cR9.woff",
+      "sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Bold-306a83955cdd-waoOVXN0.ttf",
+      "sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Bold-99b7008cb9f0-Jm3AIy58.woff",
+      "sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Bold-b1f7ce887570-Cx986IdX.woff2",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-BoldItalic-12a522d123de-SpSLRI95.woff",
+      "sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-BoldItalic-f10c9dc0392e-DxDJ3AOS.woff2",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-BoldItalic-f3c4f3261ba5-DzxPMmG6.ttf",
+      "sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Italic-3759e9c6a0df-3WenGoN9.ttf",
+      "sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Italic-4c2ce066f751-BMLOBm91.woff",
+      "sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Italic-d580edee966b-NWA7e6Wa.woff2",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Regular-32a59bcdb555-ypZvNtVU.ttf",
+      "sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Regular-76d8dbe2a29e-B22Nviop.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Main-Regular-ebf7825a0610-Dr94JaBh.woff",
+      "sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-BoldItalic-2263edb0c99e-iY-2wyZ7.woff",
+      "sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-BoldItalic-775d28dfbb83-B3XSjfu4.ttf",
+      "sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-BoldItalic-999ef36c0999-CZnvNsCZ.woff2",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-Italic-1f94eaffd140-flOr_0UB.ttf",
+      "sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-Italic-2de770044ccf-t53AETM-.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Math-Italic-c0d3ffcf5e9f-DA0__PXp.woff",
+      "sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Bold-8531ea67beae-CFMepnvq.ttf",
+      "sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Bold-db22128e8820-DbIhKOiC.woff",
+      "sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Bold-f5b144b4183d-D1sUS0GD.woff2",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Italic-18623275cd29-YYjJ1zSn.ttf",
+      "sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Italic-33768fb75a6c-DN2j7dab.woff",
+      "sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Italic-b71f456a1819-C3H0VqGB.woff2",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Regular-4da3b85121c9-BNo7hRIc.ttf",
+      "sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Regular-92e9fa94a896-CS6fqUqJ.woff",
+      "sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_SansSerif-Regular-c30429e527bc-DDBCnlJ7.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Script-Regular-b9264196a3e0-C5JkGWo-.ttf",
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Script-Regular-f7c0859f17af-D3wIWfF6.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Script-Regular-f9c90562aa5a-D5yQViql.woff",
+      "sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size1-Regular-26083f2603c0-mCD8mA8B.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size1-Regular-b5f79b67eb84-C195tn64.woff",
+      "sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size1-Regular-dbb27b9efc8a-Dbsnue_I.ttf",
+      "sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size2-Regular-280f5b5cfd4d-oD1tc_U0.woff",
+      "sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size2-Regular-7b80a516842b-B7gKUWhC.ttf",
+      "sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size2-Regular-f2e1dc7dd26e-Dy4dx90m.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size3-Regular-73d591271b16-gV2CO0n9.woff2",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size3-Regular-93ab932aa041-CTq5MqoE.woff",
+      "sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size3-Regular-e0a57b34933f-DgpXs0kz.ttf",
+      "sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size4-Regular-45fb882464a4-BF-4gkZK.woff",
+      "sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size4-Regular-d6141bf4e372-DWFBv043.ttf",
+      "sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Size4-Regular-e5e65c59c557-Dl5lxZxV.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Typewriter-Regular-8eeabe219f5c-CO6r4hn1.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Typewriter-Regular-b4c52f663c1d-C0xS9mPB.woff",
+      "sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7"
+    },
+    {
+      "path": "out/renderer/assets/KaTeX_Typewriter-Regular-f721beff1dfa-D3Ib7_Hf.ttf",
+      "sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa"
+    },
+    {
+      "path": "out/renderer/assets/kotlin-Ddo1SjA5.js",
+      "sha256": "a440f155088f75ffcf627b6aef7d962b941960e0df80913e5746365a2fb1a1fe"
+    },
+    {
+      "path": "out/renderer/assets/less-B7Qaxw-O.js",
+      "sha256": "1766c3efc5a1471c644a68c3cc890f122cfd4aeb32b794b6ff60801d44cb0ed9"
+    },
+    {
+      "path": "out/renderer/assets/lexon-C1U0m2n9.js",
+      "sha256": "3a9a538868ecc7c698bcefced31ce8593d20d0170cab196bd68d9060a018be08"
+    },
+    {
+      "path": "out/renderer/assets/linear-DLiuvvea.js",
+      "sha256": "051e6122956276a4a6e68280b5eb9de1a61d994644f5d5cdb76a84549f67ef2c"
+    },
+    {
+      "path": "out/renderer/assets/liquid-CkzLC1Lo.js",
+      "sha256": "b96fb941152af881d72612c245d1731af5f85196cf679a3e457fdccd577fa4d8"
+    },
+    {
+      "path": "out/renderer/assets/lspLanguageFeatures-gabDFqmi.js",
+      "sha256": "0e397bf666c1fa91e8515e475c6300c7db30bfabe6fd98d8d67dd37dff2eb1cb"
+    },
+    {
+      "path": "out/renderer/assets/lua-hNsuGJkO.js",
+      "sha256": "220b07c43bd9c0f89af29ec10523a128cfcb03ebaf48b68c06ad8e4402624fe4"
+    },
+    {
+      "path": "out/renderer/assets/m3-6ko6q9-_.js",
+      "sha256": "89425a42eafffc4cc12f607d8a44de0d8277e1bb8b1963ee455cc267cb001abe"
+    },
+    {
+      "path": "out/renderer/assets/markdown-B0YTnTxW.js",
+      "sha256": "37bcba78f0ca8fd6e723379d9956777e2a31756b3d0339d67322d7e5f8fcaf07"
+    },
+    {
+      "path": "out/renderer/assets/mdx-D2hpuKHX.js",
+      "sha256": "8bcf59bfec54f0f3be458c36820ef43fa2a27ee18ef344b66ca69ca5a248c0d5"
+    },
+    {
+      "path": "out/renderer/assets/mermaid.core-BI0I_dfu.js",
+      "sha256": "ad1f02b613d80b0d11373fbc3bbb728906091b85a081dbabbbe630bfdb2135b1"
+    },
+    {
+      "path": "out/renderer/assets/mindmap-definition-NLK3R4M7-D4Rcsz1O.js",
+      "sha256": "41d6c22a92721509f97e79338856f937eb732c424a3afb0e01cecceb62a0017b"
+    },
+    {
+      "path": "out/renderer/assets/mips-CJm71dS3.js",
+      "sha256": "223ceb0f1c8ff92e8b65e82ebf798bdf9fb56b9b03a08857541315ee27ad40d2"
+    },
+    {
+      "path": "out/renderer/assets/msdax-BBeIktCY.js",
+      "sha256": "117cbfff7cf0cb9719437332daec4e89844c4b91009f6d486db01efee61b9499"
+    },
+    {
+      "path": "out/renderer/assets/mysql-BWiizXSn.js",
+      "sha256": "7894618f34bb6acf2d537751d4bbebb7f3cdee442c1f8c06e43c7a1c6ed9f5cc"
+    },
+    {
+      "path": "out/renderer/assets/objective-c-B1L1C5EC.js",
+      "sha256": "821604add0e4a82faf7b7e909d06258756e60335f6e4e618f6ca140892b0e222"
+    },
+    {
+      "path": "out/renderer/assets/ordinal-CxptdPJm.js",
+      "sha256": "cc04d7af5afbafce019e6dfdadc4dc6cbd82c32b62a2d0774927c9c079472110"
+    },
+    {
+      "path": "out/renderer/assets/pascal-DMQyD4Xk.js",
+      "sha256": "07f83a1a8671962befa33c312461a4bc31e16fed80b1c5f262a922c3eadea312"
+    },
+    {
+      "path": "out/renderer/assets/pascaligo-VA_LQ1oU.js",
+      "sha256": "5bee66fe65331c0608b764c8f2715b08272ae9669d603713cf27c40707edc8b9"
+    },
+    {
+      "path": "out/renderer/assets/pdf-preview-DfpOJD1C.css",
+      "sha256": "10eaabbdf215132144c2ab41b1ef65f258bc27e0697dbcff4022dd93d6a40864"
+    },
+    {
+      "path": "out/renderer/assets/pdf-preview-DZPrqKvr.js",
+      "sha256": "ebcd33b0853ebc66d16d8ea798893fef8c370982e258de50de1408b7a3788d8a"
+    },
+    {
+      "path": "out/renderer/assets/pdf.worker-CpUu8L-M.js",
+      "sha256": "77177e3b9dc523d803f84281cbc2372354ba5b40abe5467377b9688dbc9209a2"
+    },
+    {
+      "path": "out/renderer/assets/pegDiagram-GJSIUBJH-imQCGIio.js",
+      "sha256": "85f003b648756acbda13b110f0f004638ab1a71320182fa7fc875010a0eaa679"
+    },
+    {
+      "path": "out/renderer/assets/perl-DC0Z0tlO.js",
+      "sha256": "7cb374e77ba8ddc64f5c46d669f94b86f94abcd511b6f4db8feeb7805cf8d8ad"
+    },
+    {
+      "path": "out/renderer/assets/pgsql-DaSGFTLp.js",
+      "sha256": "ea7c358b1ec73d96467c6d5115597f0e9783ed32bbf17ef4d698a8d4d890fff9"
+    },
+    {
+      "path": "out/renderer/assets/php-Bkx1qpkQ.js",
+      "sha256": "a4121441f69b5d73a2eb0cb2ff16db2dd4524f4b4ca6fb1dc07c923a9d52045a"
+    },
+    {
+      "path": "out/renderer/assets/pieDiagram-5QR66LMP-DxsgKPE1.js",
+      "sha256": "7cd3aa78dd8733562e8ebc9b4b163be25ea1baad9250ca8baf4dcaada932667e"
+    },
+    {
+      "path": "out/renderer/assets/pla-DEV89yYj.js",
+      "sha256": "d58a468512e8db8e229654aa18ead7b0c7ab6e1992ee9c3460f87dad7a1bdbbb"
+    },
+    {
+      "path": "out/renderer/assets/postiats-CVVurEnu.js",
+      "sha256": "ce448383d3eca5ad965f363428ec1e886df16d30601be3a40b6f598247fd9fc0"
+    },
+    {
+      "path": "out/renderer/assets/powerquery-BQ_t1ZiQ.js",
+      "sha256": "c8345f3efce17fbe95b3d858fc7a7b4dd7b8a752039ef36ded1326ff88ba2483"
+    },
+    {
+      "path": "out/renderer/assets/powershell-BXiKvz7Z.js",
+      "sha256": "7b17e4299214b17cbece7ffca271239a90226674f1404c59864c5969099a3620"
+    },
+    {
+      "path": "out/renderer/assets/projects-B4VgHT_7.css",
+      "sha256": "50db399921fa5e1b01336a96aa46e743d376964e2310350c4ceb5bd5ec20fd17"
+    },
+    {
+      "path": "out/renderer/assets/projects-Chjrha4S.js",
+      "sha256": "12aa00a1b03da0fe27b8920e1d08eedc9432f2ab33abec0ac14f1a7ef422cfc1"
+    },
+    {
+      "path": "out/renderer/assets/protobuf-CndvAUGu.js",
+      "sha256": "4112401558cb1f367fbe6a7deb57ce33ac480eba77294e17a686bd8dd9e4145c"
+    },
+    {
+      "path": "out/renderer/assets/pug-BxCXwerb.js",
+      "sha256": "771237a4b27cb262eac010b528a58b3fa0bafc4c302a34274ab55404dc29c721"
+    },
+    {
+      "path": "out/renderer/assets/purify.es-DIKDJ5k3.js",
+      "sha256": "df2284efde7c4bb379ca4d4c1996f63f163b8d3f3497a58309c066742c4e41f1"
+    },
+    {
+      "path": "out/renderer/assets/python-hYjnoJal.js",
+      "sha256": "f5d602403096e0ab1ca05ae00c114ce7cee9e7bb039ed38f1e7fdfd266dff538"
+    },
+    {
+      "path": "out/renderer/assets/qsharp-BWK6YLKm.js",
+      "sha256": "f4c2d0c49068ec849a632ab9e623f90faa352978561c9df98692de6dbfef3873"
+    },
+    {
+      "path": "out/renderer/assets/quadrantDiagram-O4NWA36T-DRz7COSh.js",
+      "sha256": "befa52cb383b79a606cf3aa0cddb12e3c9c42db3ed7ecc3548d69a0d7f665464"
+    },
+    {
+      "path": "out/renderer/assets/quick-chat-Bvsj3_p6.css",
+      "sha256": "ddcd93b4190f8f975f2bd557b07750e5288ad900e973d51e8c4b3be2522a6e59"
+    },
+    {
+      "path": "out/renderer/assets/quick-chat-BZLz-Hq2.js",
+      "sha256": "61b6244cfe53ebd94f6544fd08915c31b060f115482548d88b6378ebc837659a"
+    },
+    {
+      "path": "out/renderer/assets/r-CtqYUQ6l.js",
+      "sha256": "40a071c68ac506b7dc02730d1ba1729045dc49c35b97a03000c7ebc9a1bc445a"
+    },
+    {
+      "path": "out/renderer/assets/railroadDiagram-XR7U4H2S-kFK5kUTW.js",
+      "sha256": "fe09c9a7be369ffd9f93e19afb5a7239bb79a0f296e36e08e5d3d0bbfb4c5950"
+    },
+    {
+      "path": "out/renderer/assets/razor-Ci8scSNe.js",
+      "sha256": "a29c5328fc3fa939185a2a06521da7c98bb630dbb586a53efb9b762fd3e91ef5"
+    },
+    {
+      "path": "out/renderer/assets/redis-O7gSt3oh.js",
+      "sha256": "42397eb4e0f5dfc0a962388c3f45b78eed9f6e67fd2285d409dbe2402037ec95"
+    },
+    {
+      "path": "out/renderer/assets/redshift-CvYMMYZY.js",
+      "sha256": "4e6847e48c0e499c0d2dcd4e6bcc97cd16dc04d2de82b16821e186888b12a5d6"
+    },
+    {
+      "path": "out/renderer/assets/requirementDiagram-PLB6GJNP-CaLUb7H3.js",
+      "sha256": "8e7601a449d7e830d9808dc555cdd5227c4b07219b947d03c7a334909af2c689"
+    },
+    {
+      "path": "out/renderer/assets/restructuredtext-B-KQCVu_.js",
+      "sha256": "22840fbdf575d8fc1072580de88ed5ab7a0c50aacc599380b80bc7863f7fa1a3"
+    },
+    {
+      "path": "out/renderer/assets/ruby-DCd4DmAr.js",
+      "sha256": "8e86381844accf9bdadd1437494022f149c809480f39d4f73b27c4a285be6e92"
+    },
+    {
+      "path": "out/renderer/assets/rust-B1c0VCeq.js",
+      "sha256": "74ddf1037db1c7da8aadda3450880055bf713b901113e238212593a72fe1328f"
+    },
+    {
+      "path": "out/renderer/assets/sankeyDiagram-IPEJSGJF-D27kwttn.js",
+      "sha256": "610af0c3e12fcd6922561373cf00f6e5347e3dc77fb80f99d4af46f740b29d71"
+    },
+    {
+      "path": "out/renderer/assets/sb-Chfc_wZF.js",
+      "sha256": "286ab4fdda66c6be304030289d4741cab495bde64d0b7d5fc3896a3c2562356b"
+    },
+    {
+      "path": "out/renderer/assets/scala-DbVzH-3O.js",
+      "sha256": "3ac928a84b2125e5502c2d0c26b4c9198cc1dfa7114373df41c33130c7a682e2"
+    },
+    {
+      "path": "out/renderer/assets/scheme-D7PxodDG.js",
+      "sha256": "4c8e17df03b509320e0669175ed1da25273d29317234d5bc6e619f050f4d6186"
+    },
+    {
+      "path": "out/renderer/assets/scss-B42qMyAu.js",
+      "sha256": "0cf4c39e29be8c17c2e40ec266866a72828b184a4d9b996982293bc674723431"
+    },
+    {
+      "path": "out/renderer/assets/sequenceDiagram-PO4LG4MO-DlgbQUxd.js",
+      "sha256": "ebec02bc2e532d76caef70bc4460e26b4e10f155d260e61ca9c29495f1ac6660"
+    },
+    {
+      "path": "out/renderer/assets/shell-vZEubQ82.js",
+      "sha256": "3e8e7f1afc74bab95f19ff67aefe10051cac9fa91354258b8e2db31e9d2c4dd5"
+    },
+    {
+      "path": "out/renderer/assets/sizeCapture-INFHLROL-BFu6Cnhg.js",
+      "sha256": "d49f41ebf061cd3d8fe1450fe9194d29ad64766bd5e2ed34459eb40a19a2533d"
+    },
+    {
+      "path": "out/renderer/assets/solidity-yHOxYChb.js",
+      "sha256": "ffc5cb7adb15fc311b95a105aeec9e0ca9f651bb5a8caa219eb522c409f4d70a"
+    },
+    {
+      "path": "out/renderer/assets/sophia-D7pU0Y1d.js",
+      "sha256": "e6ee0236a442d21372c9e6aa0888d4cc95c751b8f4d115859fe13fed3fb4cbca"
+    },
+    {
+      "path": "out/renderer/assets/sparql-DxuVdnRl.js",
+      "sha256": "9a7213c547f075773e06454de65740a1401ba7883f04268532c6059fb9920ef2"
+    },
+    {
+      "path": "out/renderer/assets/sql-BAGepFCR.js",
+      "sha256": "3d8142b5345fb48e8a4bcc26887d334261f6671dc9af96670ccba5268c6acd45"
+    },
+    {
+      "path": "out/renderer/assets/st-C-b0Dh53.js",
+      "sha256": "d0f547cf3a6edf880013ddfe4362e66582b65bcfec253b532fc079ebbe6c64d8"
+    },
+    {
+      "path": "out/renderer/assets/stateDiagram-v2-GCMORJYK-p2j1LJz2.js",
+      "sha256": "ad3e7bbce6c478f8483bf1152057029f805f9f0a9fa5f7c73230d9f74b1629d5"
+    },
+    {
+      "path": "out/renderer/assets/swift-CbF6f74o.js",
+      "sha256": "29443b66b0f2e7d74953c2a3fa2eb946fd5c70f66ceee4e3f5758324643834f2"
+    },
+    {
+      "path": "out/renderer/assets/swimlanes-2SLR337P-COYYjQ3D.js",
+      "sha256": "1d7156fb552785d918916726b4cefc10d6a84d2e185f96eba6552efecb1a9387"
+    },
+    {
+      "path": "out/renderer/assets/swimlanesDiagram-TC7HE7FX-BOKmF0Aq.js",
+      "sha256": "bf7b9be28ee7e6d8db2233727245d497c37debf9ab5d352305c1730b41f00936"
+    },
+    {
+      "path": "out/renderer/assets/systemverilog-BOC0OOdC.js",
+      "sha256": "d71d7dd152324c2c571796d01b7ead2155ab0cc277137e255defa86e57e49921"
+    },
+    {
+      "path": "out/renderer/assets/tcl-Bb4GCwBr.js",
+      "sha256": "dd61ba6dade27e7b7e72dfd6b74b7c2b22acde0d3922c62d68fed6c9024b9ba0"
+    },
+    {
+      "path": "out/renderer/assets/timeline-definition-EJHVYXUP-C1XhBlZ9.js",
+      "sha256": "71d154408ae2dfdac917758a81ca84fa05b9dea54be7292d0447675dc2fbea18"
+    },
+    {
+      "path": "out/renderer/assets/ts.worker-DzvQkSf8.js",
+      "sha256": "b1912ba4149a9ba2161ba9f0b3443629d3ad7f0508e341785e655951db41de28"
+    },
+    {
+      "path": "out/renderer/assets/tsMode-CrbXP8Vv.js",
+      "sha256": "1f07fb3e7a09b717852e242589a06ba077bc3e6519503d0aa7efe73a14bb4849"
+    },
+    {
+      "path": "out/renderer/assets/twig-DvgEGWAV.js",
+      "sha256": "e8d39bfe95a99cacd368a1048357d3b08621398f995898f8c73b70ca24b65c96"
+    },
+    {
+      "path": "out/renderer/assets/typescript-UsxCDZ7k.js",
+      "sha256": "55a926d808beb5564aed3abb6f34017d81aac088d41bf31d3083a85034948287"
+    },
+    {
+      "path": "out/renderer/assets/typespec-R77Ln7Jb.js",
+      "sha256": "24ff2d88de64a611219d16fb78fc8b6f911968b1806caf6db9e8c75df0d6fa3d"
+    },
+    {
+      "path": "out/renderer/assets/usecaseDiagram-POWQR4AR-pF5N7iid.js",
+      "sha256": "9a5e2348a6bca409a0d2e1d17d23d6ef0d15ae8fc41d56c9d806a72ade976679"
+    },
+    {
+      "path": "out/renderer/assets/vb-Bm6ESA0Q.js",
+      "sha256": "dea7c9ad23f5644ebdc84739626fa4ea98fc8af08ba2c5c529fde7b422a126c5"
+    },
+    {
+      "path": "out/renderer/assets/vennDiagram-UO4OBE2U-BD4B6-ul.js",
+      "sha256": "448237a3d83e310f91d086ad3522ef41192741e28e8f6f3a55dc0e633b72bfe4"
+    },
+    {
+      "path": "out/renderer/assets/wardleyDiagram-VNRHLVJA-C8EcuhG3.js",
+      "sha256": "c908532ba6db5a3be0261a4558dc06108ec0fe4009d3cc43928bd51ddd792b43"
+    },
+    {
+      "path": "out/renderer/assets/wgsl-_KPae5vw.js",
+      "sha256": "6448968b84cc21319a998e3b356ac1e26104f384526efd21e31d344edb9f1338"
+    },
+    {
+      "path": "out/renderer/assets/workers-CQ2wZeAZ.js",
+      "sha256": "13b6b4e195b6beabb21717409921c75aac4cda3230c9de6398c497e0937d4955"
+    },
+    {
+      "path": "out/renderer/assets/xml-BgVNsstF.js",
+      "sha256": "2fe6b802711711704343a525c6923f1d1495f57d27f794e1348f96e18dcc5dbb"
+    },
+    {
+      "path": "out/renderer/assets/xychartDiagram-PMCCYNJV-DJ4-u7hA.js",
+      "sha256": "e0f62924aa0fecfbb0d164aa45fc9f8b1d1cd3c3d70e5caa404560a349c70dcf"
+    },
+    {
+      "path": "out/renderer/assets/yaml-D69YCM95.js",
+      "sha256": "53206c21c5984fd90b2ae36aa391476ea3375d7ad902ae5ea2760397f1dcfd21"
+    },
+    {
+      "path": "out/renderer/index.html",
+      "sha256": "8e73b4ed1950b0e27d4d5a23529b791c258e2db789b834bda8dc7ad5ee502738"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "worktree-cleanup-cancel-owned-external-light-shell.png",
+      "sha256": "1adf7dbeea9831ec6ec3ad999a38a3bcdc4f487bd5f1d5beadfbb70c3e204066",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-pinned-protected-light-shell.png",
+      "sha256": "6958e61788e17d292471d21294ca915f03d3892038d80a29a45edd284d4949e1",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-active-terminal-protected-light-shell.png",
+      "sha256": "6808e27ca03741fdee282f9cedec4f7ca238006596c41b114df28cb5cf520339",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-private-save-held-light-shell.png",
+      "sha256": "5149a7f041eff5d5b1034637720ca3bfddf2429a4620bafbbcca5b6e03742011",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-private-save-error-light-shell.png",
+      "sha256": "2cf81e00bcd43c9afc6f7ec52c5a8daa76f2edb6922ee5e23a87a22f3206c0b2",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-100-keyboard-shell.png",
+      "sha256": "ef695f066804121252270ab18f2d6b7ba6de94580dd6999122f3d32986798dfc",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-100-error-shell.png",
+      "sha256": "c62e1ee8199cd068deb3ce79b14351ba682bfee06c43b034ff3bd5d19d37b525",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-125-keyboard-shell.png",
+      "sha256": "a70010c6f38dcdc02fbe34c32eeee47394405bc35e51bae54e8b245fd7eb59c8",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-125-error-shell.png",
+      "sha256": "bb2cfc2f55144251a2ecdee8d0aaa5a2ae1226f82b1657eb8b5676874941a225",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-150-keyboard-shell.png",
+      "sha256": "bb6c052f51826afc37f56dec2268b2fee5ee876a70fe2cb75e2b2b3f2abeace7",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-150-error-shell.png",
+      "sha256": "cbab58782478edea157113afe10019a4f10e4838ba2080ffb8e5ea22cb505fdf",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-100-keyboard-shell.png",
+      "sha256": "33b9970833694de4a4eecad9e913a71e62a8927008e0995f31be48fc573a703d",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-100-error-shell.png",
+      "sha256": "014c06b2f0fa6329a27c2d833d948e3e170dfeaaad31437e38af448a9980a8ca",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-125-keyboard-shell.png",
+      "sha256": "27cdf5ff011b686add8d7e54611b0ec5528570ca279dcf151c91c086ef3fd2f5",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-125-error-shell.png",
+      "sha256": "73c2391216cd39de8f1fe3cb4257abe21047d827e19e33dbb2b30d4763b33bc1",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-150-keyboard-shell.png",
+      "sha256": "6ed50129e63033d9ab2b129b769c2fd049dd023607dc1a7f2608bdd044b8bbe9",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-150-error-shell.png",
+      "sha256": "696020fbbd1bbaab82333374e383393a70c5924570f17ccfe03dd56c7f50bbb7",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-removed-with-snapshot-light-shell.png",
+      "sha256": "4d1ff0ca24064110a716c6231b6d1b3166fa904e72fdebc90f7af7d3f6a83229",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-fixed-chat-after-project-removal-light-shell.png",
+      "sha256": "de826c2f3af929ec022bcca49c58b0e98252c96c239675cd434451e5a4c35ee9",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-automatic-created-cleanup-light-shell.png",
+      "sha256": "3bd1b3e65da183c81059538cfc9db7d5467750d5d6e19d683785fab553835b56",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-100-disable-cancel-shell.png",
+      "sha256": "a940fe1c9e4a45decc1f0b8b29233c03e9623ad1efe82505d096f16921a082cf",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-125-disable-cancel-shell.png",
+      "sha256": "0aa8b58110d68ea3b13d71d4feddea3d3b73488eb3f43f752cc2fc518289936e",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-light-150-disable-cancel-shell.png",
+      "sha256": "f665cd9d2e335195514124d14b922b731779264809fa89d3ab102b8a71834bf4",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-100-disable-cancel-shell.png",
+      "sha256": "af138f88b53ac3c8ec33587380676daab997bf60f06cece5287b8f4ed8ed193f",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-125-disable-cancel-shell.png",
+      "sha256": "c759b22aa79d6c812670179bf39dd885d6688ac579ce7899aeb699aa51966b7b",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-dark-150-disable-cancel-shell.png",
+      "sha256": "81f0b0e35a865373fb8fe477e031953e7932ea8a2af14d8f7fe664f9a1bd9bf8",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-cleanup-replacement-rejected-light-shell.png",
+      "sha256": "fee1feed95efd6d0769348d146a7ff91441e69fdd9672869afa50a84070ac799",
+      "size": [
+        1280,
+        840
+      ]
+    }
+  ],
+  "originalsVisuallyReviewed": false,
+  "evidence": [
+    "Pinned row is scrolled into view before capture; automatic overview refresh completes before capture; replacement protection explicitly waits for the light theme.",
+    "236 compiled files are byte-identical to the archived complete 355-check source-native pass. Product code, test assertions and existing deadlines are unchanged."
+  ],
+  "limitations": [
+    "Earlier failure and incomplete visual rounds remain retained.",
+    "Application exclusion does not provide an OS lock against external filesystem processes."
+  ],
+  "scope": "Ten-check corrected capture round. Original review is recorded separately; complete reference, installed/portable distribution and hosted release remain separate."
+}
