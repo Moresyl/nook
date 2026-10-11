@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-10-11T02:04:22.900Z",
+  "archive": "E:/NookVerification/RestoreLifecyclePreviewFocused-20261011",
+  "checks": 10,
+  "normalExits": [
+    {
+      "elapsedMs": 857,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "filename": "project-preview-editor-light.png",
+      "sha256": "f323b64cbdc0bd975528ed40e9a699e222a1ef51c9164c6787687f760983aee8",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "project-preview-editor-dark-narrow.png",
+      "sha256": "96445ad53444df85baccbb2ced2611c990e94b6d5c4362eca9707d3aed41ea6e",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    }
+  ],
+  "productCompiledBodyArchive": "E:/NookVerification/RestoreDismissNativePass-20261011",
+  "precedingFailureArchive": "E:/NookVerification/RestoreLifecycleSourcePreviewFailure-20261011",
+  "precedingFailureStillFailed": true,
+  "fullRegressionVerified": false,
+  "distributionVerified": false,
+  "scope": "Real floating/docked HTML previews, native renderer-crash recovery and editor light/narrow-dark entry. Shared Escape fixture waits up to the existing five seconds for enabled close, then verifies actual keyboard dismissal; delayed backup restore still uses direct Escape and must remain open. Only two editor originals individually inspected in this focused batch."
+}

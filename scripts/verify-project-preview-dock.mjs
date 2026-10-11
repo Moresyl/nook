@@ -115,7 +115,7 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   await page.getByRole('button', { name: '关闭预览', exact: true }).click(); await wait(`!${view}`);
   await page.waitForFunction(() => document.activeElement?.textContent === '并排预览');
   await page.getByRole('button', { name: '显示文件树', exact: true }).click();
-  await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.keyboard.press('Escape');
+  await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'light'); await dismissModalWithEscape(page, settings);
   verified('a real docked renderer crash shows a recoverable error, explicit retry creates a fresh session, and closing releases the view and returns focus');
   return { checks: 5, workbenchReloadVerified: true, staleOwnerCloseVerified: true, floatingTransferVerified: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
 }
