@@ -16,7 +16,7 @@ async function optional(path) { return readFile(path).catch(error => { if (error
 async function exists(path) { return stat(path).then(() => true).catch(error => { if (error.code === 'ENOENT') return false; throw error; }); }
 function modalBounds(element) {
   const rect = element.getBoundingClientRect(), modal = element.closest('dialog'), viewport = modal.getBoundingClientRect(), content = modal.querySelector('.modal-content');
-  const region = element.closest('.modal-content') ? content.getBoundingClientRect() : viewport;
+  const region = element.closest('.modal-content') === content ? content.getBoundingClientRect() : viewport;
   const style = getComputedStyle(element), focused = document.activeElement === element, outline = focused && style.outlineStyle !== 'none' ? parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset) : 0;
   return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: region.top, viewportBottom: region.bottom, viewportLeft: region.left, viewportRight: region.right, outline, focused, contentWidth: content.clientWidth, contentScrollWidth: content.scrollWidth, documentWidth: document.documentElement.scrollWidth, viewportWidth: innerWidth };
 }

@@ -1,0 +1,33 @@
+{
+  "archivedAt": "2026-10-11T19:03:10.458Z",
+  "archive": "E:/NookVerification/WorktreeCleanupNativeInitialFailure-20261012",
+  "sourceHead": "9ecba318ef034834d7ea5ad706a9fb16bb1fa2fb",
+  "passedChecks": 3,
+  "completed": false,
+  "normalCloses": 2,
+  "maximumCloseMs": 646,
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "59aa4526a21e10f1b908be6a6fbaaa74741c1263b835dfed4a5c4b66108411d1"
+    },
+    {
+      "name": "worktree-cleanup-cancel-owned-external-light-shell.png",
+      "sha256": "dff8be7e7882a0a10a71bcb25a35d03ae264a8f71cf771669a456b782867998f"
+    },
+    {
+      "name": "worktree-cleanup-pinned-protected-light-shell.png",
+      "sha256": "c1aae01e4b6235977203cd6a9f8249da8f8e38eccb6d86ac7628d12013125569"
+    },
+    {
+      "name": "worktree-cleanup-private-save-error-light-shell.png",
+      "sha256": "9d9c7ef14a7e6fa0eaab15eb6dc788bbba1b5c70bcb49290d8dbbba4472750f8"
+    },
+    {
+      "name": "worktree-cleanup-private-save-held-light-shell.png",
+      "sha256": "4d575ea2099e6206da63998fdd38aa05089363d1a3bd49fac605de7a33c830f4"
+    }
+  ],
+  "failure": "First light 100-percent confirmation keyboard case rejected footer bounds: button top/bottom 485/505 with focus outline 4 compared against content 62/472. The helper uses closest(.modal-content), which can match the outer settings modal ancestor for the nested confirmation footer. Original screenshot and exact source retained before any correction.",
+  "scope": "First three native checks passed; no complete cleanup/native matrix or automatic scheduling acceptance. Failure imagery requires separate actual visual inspection."
+}
