@@ -26,7 +26,9 @@
 
 ### 修复与打磨
 
-- 本轮候选的未安装版与实际安装版分别完成 283 组完整检查、40 次正常退出；便携 7 组、安装／卸载及十一份同包记录通过。27 张工具原图和另外 10 张界面原图已逐张检查。首次安装版的快捷聊天部分回复可见性超时保留，原因未确认。旧工作区重放的测试夹具改用唯一草稿标记并明确新建空白快捷会话，避免误接收上轮输入和回复；约 84 MB 原工作区与全新工作区各 9 组重跑通过，全部断言和原有期限保留。
+- 恢复备份期间禁用设置弹窗关闭、Esc 与页面导航，等待完整恢复通知和界面更新后再允许操作。延迟真实恢复通知的旧应用体复现失败；修复后的真实桌面 8 项、发布策略 65 项及全量 1,135 项单元测试通过，7 张原图逐张核验。此前工作树安装候选在第 234 项后发送与退出超时，其原因仍未确认；新的完整分发验收继续进行。
+
+- 此前工具记录候选的未安装版与实际安装版分别完成 283 组完整检查、40 次正常退出；便携 7 组、安装／卸载及十一份同包记录通过。27 张工具原图和另外 10 张界面原图已逐张检查。首次安装版的快捷聊天部分回复可见性超时保留，原因未确认。旧工作区重放的测试夹具改用唯一草稿标记并明确新建空白快捷会话，避免误接收上轮输入和回复；约 84 MB 原工作区与全新工作区各 9 组重跑通过，全部断言和原有期限保留。
 
 - 并排 HTML 预览在主界面重载或渲染进程崩溃时释放旧视图，并取消尚未完成的准备；重新打开使用新会话，保留编辑草稿，旧关闭请求不能影响替代视图。
 - 页面切换、窗口调整和缩放时，侧栏保持当前选中项可见；页面导航增加当前页面标记。保留手动滚动与紧凑图标布局。
@@ -101,7 +103,9 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 修复与完善
 
-- 新摘要候选的未安装版与实际安装版各通过 289 项完整检查、41 次正常退出；便携 7 项、共享控件 4 项、文字提示 7 项、崩溃退出 2 项及十一份匹配记录通过。安装／卸载、包体一致和用户数据保留均已检查，18 张完整分发轮次摘要原图逐张核验。此前安装版部分回复可见性超时的原因尚未确认，原始失败与哨兵文件继续保留。
+- 恢复备份期间禁用设置弹窗关闭、Esc 与页面导航，等待完整恢复通知和界面更新。真实桌面 8 项、发布策略 65 项及全量 1,135 项单元测试通过，7 张原图逐张检查；新应用体的完整桌面与分发验收继续进行。上一工作树安装候选的恢复后发送与退出超时仍保留，未宣称原因已查明。
+
+- 此前摘要候选的未安装版与实际安装版各通过 289 项完整检查、41 次正常退出；便携 7 项、共享控件 4 项、文字提示 7 项、崩溃退出 2 项及十一份匹配记录通过。安装／卸载、包体一致和用户数据保留均已检查，18 张完整分发轮次摘要原图逐张核验。此前安装版部分回复可见性超时的原因尚未确认，原始失败与哨兵文件继续保留。
 
 - 新版安装验收同步 296 项门槛，要求 7 项工作树及 6 项摘要证据，检查创建保留、登记失败重试、钩子、受限快速聊天、实际请求和重启。完整运行前清除两类专项开关；保留 HTML 预览、项目分支、工具记录、包体一致性与卸载要求。本次工作树应用体的完整分发验收仍在进行，上方摘要候选的记录仅适用于此前应用体。
 
@@ -163,11 +167,13 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 Adds independent Git worktree creation, listing and explicit project registration from a new or available local branch. Pins the selected base commit and preserves the source branch, index, edits, editor drafts and previews. Refuses existing destinations and force resets, reports actual hook outcomes, retains partial files and retries failed project registration without recreating the worktree. The service/Git regressions pass 25 tests and the native feature suite passes seven groups with twelve reviewed originals; complete verification of the updated distribution is still pending. Worktree removal/pruning, managed roots and task orchestration remain outside this batch.
 
-The current Windows candidate passes 289 checks and 41 normal exits in each unpacked and installed run, seven portable checks and eleven matching runtime records. Eighteen complete-run context-summary originals were individually reviewed. The earlier installed partial-response visibility timeout remains recorded with an unconfirmed cause.
+The earlier context-summary candidate passes 289 checks and 41 normal exits in each unpacked and installed run, seven portable checks and eleven matching runtime records. Eighteen complete-run context-summary originals were individually reviewed. The later worktree candidate passes 296 checks and 42 normal exits in source and unpacked runs but fails installed acceptance after 234 checks, with a send timeout and one forced exit. Those failures remain recorded with unconfirmed causes.
+
+Keeps settings open and disables Escape and navigation until backup restoration finishes. A delayed real restore acknowledgement reproduces the missing guard in the old body. The fix passes eight native checks, 65 release-policy tests and 1,135 full unit tests, with seven individually reviewed originals. New complete runtime and distribution verification remain required.
 
 Adds editable, versioned conversation summaries without removing original messages or attachments. Preview, cancellation, provider failure, stale-source fallback and restart retention are verified. Main and restricted quick chat share the validated request context; sending, retry, edited branches and comparison use the selected context. Summary generation uses no project tools or extensions, has a 4 MB source-request limit, and is currently manual rather than automatic or chunked.
 
-Installation verification now requires the 289-check baseline and six context-summary checks, alongside preview reload, project branches and tool activity evidence. It clears both focused-suite switch families and retains package matching and data-preserving uninstall checks.
+Installation verification now requires the 296-check baseline, seven worktree checks, six context-summary checks and complete backup-restore acknowledgement, alongside preview reload, project branches and tool activity evidence. It clears both focused-suite switch families and retains package matching and data-preserving uninstall checks.
 
 Tool records show contextual summaries, explicit execution status and elapsed time, with separate running/completed disclosure choices and exact original input/output copy payloads. Streaming updates preserve manual collapse; stale or rejected clipboard requests support safe retry. Automatic collapse returns keyboard focus before making details inert, and opening animations preserve natural text-panel heights. Main and restricted quick chat share the component and reduced-motion behavior. Clipboard writes are permitted only for owned top-level application documents; reads, child frames and unowned windows remain denied. Full reference UI and final distribution acceptance remain pending.
 
