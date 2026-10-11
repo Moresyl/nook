@@ -348,6 +348,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .worktree-conversations li > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .worktree-conversations li > .muted { flex-shrink: 0; }
 .worktree-overview-pages { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
+.worktree-conversation-link { display: block; flex: 1; min-width: 0; padding: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.worktree-conversation-actions { display: flex; justify-content: flex-end; }
 .comparison-model-row { display: flex; align-items: end; gap: 8px; flex-wrap: wrap; }
 .comparison-model-row .field { flex: 1; min-width: 160px; }
 .comparison-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }

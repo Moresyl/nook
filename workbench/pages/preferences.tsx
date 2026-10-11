@@ -12,10 +12,11 @@ import { configuredModels, configuredProvider, discoveredModels } from './model-
 import { DesktopSettings } from './desktop-settings';
 import { MemorySettings } from './memory-settings';
 import { WorktreeSettings } from './worktree-settings';
+import type { WorktreeConversationTarget, WorktreeProjectTarget } from '../../contracts/worktree-navigation';
 
-type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; onOpenPanel: (pluginId: string, panelId: string) => void };
+type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; onOpenPanel: (pluginId: string, panelId: string) => void; onOpenWorktreeConversation(target: WorktreeConversationTarget): Promise<void>; onCreateWorktreeConversation(target: WorktreeProjectTarget): Promise<void> };
 const blankProvider = (): Provider => ({ id: crypto.randomUUID(), name: '', kind: 'responses', endpoint: 'https://api.openai.com/v1', models: [], hasKey: false });
-export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onUseAttachment, onOpenPanel }: Props) {
+export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onUseAttachment, onOpenPanel, onOpenWorktreeConversation, onCreateWorktreeConversation }: Props) {
   const [tab, setTab] = useState('models');
   const [editing, setEditing] = useState<Provider | null>(null);
   const [key, setKey] = useState('');
@@ -33,7 +34,7 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
   }
   const tabs = [{ id: 'models', label: '模型连接', icon: 'assistant' }, { id: 'mcp', label: 'MCP 工具', icon: 'code' }, { id: 'skills', label: '本地技能', icon: 'library' }, { id: 'plugins', label: '本地插件', icon: 'code' }, { id: 'memories', label: '记忆', icon: 'library' }, { id: 'worktrees', label: '工作树', icon: 'branch' }, { id: 'appearance', label: '外观与交互', icon: 'sun' }, { id: 'data', label: '数据与备份', icon: 'download' }, { id: 'about', label: '关于 Nook', icon: 'settings' }] as const;
   return <Modal className="settings-dialog" title="设置" dismissible={!busy} onClose={onClose}><div className="settings-layout"><nav className="settings-nav" aria-label="设置分类">{tabs.map((item) => <Button key={item.id} disabled={busy} className={tab === item.id ? 'selected' : ''} onClick={() => { setTab(item.id); setEditing(null); }}><Glyph name={item.icon} size={16} />{item.label}</Button>)}</nav><section key={tab} className="settings-detail" aria-label={tabs.find((item) => item.id === tab)?.label}>
-    {tab === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} />}
+    {tab === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} onOpenConversation={onOpenWorktreeConversation} onCreateConversation={onCreateWorktreeConversation} />}
     {tab === 'memories' && <MemorySettings state={state} onState={onState} report={report} />}
     {tab === 'models' && (editing ? <>
       <div className="section-heading"><Button disabled={busy} onClick={() => setEditing(null)}>← 返回连接列表</Button><span className="muted">{editing.hasKey ? '密钥已保存在系统中' : '新连接'}</span></div>

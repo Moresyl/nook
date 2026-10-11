@@ -5,6 +5,7 @@ import { appendMessageQuote, conversationRevision } from '../contracts/conversat
 import { mergeStreamingState } from '../contracts/streaming-state';
 import { composerContent, composerRevision, restoreComposer } from '../contracts/composer';
 import { appendMcpPdfAttachment } from '../contracts/mcp-attachments';
+import { worktreeNavigationConversation, worktreeNavigationProject, type WorktreeConversationTarget, type WorktreeProjectTarget } from '../contracts/worktree-navigation';
 import { uiErrorMessage } from '../contracts/ui-errors';
 import type { Attachment } from '../contracts/attachments';
 import type { ApprovalRequest, ConversationMode } from '../contracts/tools';
@@ -123,10 +124,10 @@ export function Workbench() {
     if (epoch !== draftEpoch.current || draftRef.current !== inserted) return;
     pendingComposerFocus.current = inserted; setPage('chat'); setSettings(false);
   }
-  function selectDraft(next: ComposerDraft) {
+  function selectDraft(next: ComposerDraft, activate = true) {
     draftRef.current = next; setComposerDraft(next); setPage('chat');
     clearTimeout(draftTimer.current);
-    activation.current = draftStore.current.activate(next.threadId, (id, drafts) => window.qiyao.activateThread(id, drafts), state?.threads.find(item => item.id === next.threadId)?.temporary === true); void activation.current.catch(report);
+    if (activate) { activation.current = draftStore.current.activate(next.threadId, (id, drafts) => window.qiyao.activateThread(id, drafts), state?.threads.find(item => item.id === next.threadId)?.temporary === true); void activation.current.catch(report); }
   }
   const thread = state?.threads.find((item) => item.id === threadId);
   findContext.current = page === 'chat' ? thread?.id : undefined;
@@ -166,7 +167,10 @@ export function Workbench() {
     return () => media.removeEventListener('change', applyTheme);
   }, [state?.preferences.theme]);
   useEffect(() => {
-    if (state && !state.providers.some((item) => item.id === providerId)) { setProviderId(state.preferences.defaultProviderId ?? ''); setModel(state.preferences.defaultModel); }
+    if (state && !state.providers.some((item) => item.id === providerId)) {
+      const nextProviderId = state.preferences.defaultProviderId || undefined, nextModel = state.preferences.defaultModel;
+      if (draftRef.current.providerId !== nextProviderId || draftRef.current.model !== nextModel) updateDraft({ providerId: nextProviderId, model: nextModel });
+    }
   }, [state?.providers, providerId]);
   useEffect(() => window.qiyao?.onPlugin((view) => { if (view.status === 'error') void window.qiyao.load().then(setState).catch(report); }), [report]);
   useEffect(() => window.qiyao?.onAutomation((event) => { if (event.state) setState(event.state); if (event.error) report(new Error(event.error)); if (event.openThreadId) setRequestedTaskThread(event.openThreadId); }), [report]);
@@ -195,6 +199,20 @@ export function Workbench() {
     if (!target) { setState(next); throw new Error('This conversation no longer exists. Select another version or branch.'); }
     const saved = draftStore.current.get(id) ?? next.composerDrafts.find((item) => item.threadId === id);
     const restored = restoreComposer(next, target, saved); draftStore.current.stage(restored); setState(next); selectDraft(restored);
+  }
+  async function navigateWorktree(target: WorktreeProjectTarget | WorktreeConversationTarget) {
+    const originalDraft = draftRef.current;
+    await flushDrafts();
+    const next = await window.qiyao.load(); setState(next);
+    worktreeNavigationProject(next, target);
+    const chosen = 'threadId' in target ? worktreeNavigationConversation(next, target) : undefined;
+    const saved = draftStore.current.get(chosen?.id) ?? next.composerDrafts.find(draft => draft.threadId === chosen?.id);
+    const restored = { ...restoreComposer(next, chosen, saved), ...(!chosen ? { projectId: target.projectId } : {}) };
+    if (draftRef.current !== originalDraft) throw new Error('The current chat changed. Retry the worktree navigation.');
+    draftStore.current.stage(restored);
+    await draftStore.current.activate(restored.threadId, (id, drafts) => window.qiyao.activateThread(id, drafts));
+    if (draftRef.current !== originalDraft) throw new Error('The current chat changed. Retry the worktree navigation.');
+    selectDraft(restored, false); setSearch(null); setSettings(false); pendingComposerFocus.current = restored;
   }
   async function openMessageEditor(message: Message, targetId = thread?.id, context = submissionContext()): Promise<void> {
     const next = await window.qiyao.load(); const target = next.threads.find((item) => item.id === targetId); const selected = target?.messages.find((item) => item.id === message.id);
@@ -297,7 +315,7 @@ export function Workbench() {
     </main>
     {error && state && <Toast message={error} onClose={() => setError('')} />}
     {comparison && state && <ModelComparison state={state} draft={comparison.draft} groupId={comparison.groupId} onClose={() => setComparison(null)} onCompare={compareModels} onOpen={async (id) => { await flushDrafts(); await openReplyVersion(id); }} />}
-    {settings && state && <PreferencesDialog state={state} onState={setState} onRestore={(next) => { clearTimeout(draftTimer.current); draftEpoch.current++; draftStore.current.initialize(next.composerDrafts); setState(next); const target = next.threads.find((item) => item.id === next.activeThreadId); const restored = restoreComposer(next, target, draftStore.current.get(target?.id)); draftRef.current = restored; setComposerDraft(restored); }} onClose={() => setSettings(false)} report={report} onOpenPanel={(pluginId, panelId) => { setPluginPanel({ pluginId, panelId }); setPage('plugin'); setSettings(false); }} onUseAttachment={useMcpAttachment} onUseContent={(content) => { setText((current) => current ? `${current}\n\n${content}` : content); setPage('chat'); setSettings(false); }} />}
+    {settings && state && <PreferencesDialog state={state} onState={setState} onRestore={(next) => { clearTimeout(draftTimer.current); draftEpoch.current++; draftStore.current.initialize(next.composerDrafts); setState(next); const target = next.threads.find((item) => item.id === next.activeThreadId); const restored = restoreComposer(next, target, draftStore.current.get(target?.id)); draftRef.current = restored; setComposerDraft(restored); }} onClose={() => setSettings(false)} report={report} onOpenWorktreeConversation={navigateWorktree} onCreateWorktreeConversation={navigateWorktree} onOpenPanel={(pluginId, panelId) => { setPluginPanel({ pluginId, panelId }); setPage('plugin'); setSettings(false); }} onUseAttachment={useMcpAttachment} onUseContent={(content) => { setText((current) => current ? `${current}\n\n${content}` : content); setPage('chat'); setSettings(false); }} />}
     {approvals[0] && <ApprovalDialog key={approvals[0].id} request={approvals[0]} onDecision={(allowed) => window.qiyao.resolveApproval(approvals[0].id, allowed)} onStop={() => window.qiyao.stop(approvals[0].threadId)} report={report} />}
     {editing && <MessageEditor key={JSON.stringify([editing.thread.id, editing.message.id, editing.epoch])} thread={editing.thread} message={editing.message} onClose={() => setEditing(null)} onDiscard={() => openMessageEditor(editing.message, editing.thread.id, editing.context)} onSave={async (content, revision) => { await flushDrafts(); const next = await window.qiyao.editMessage({ threadId: editing.thread.id, messageId: editing.message.id, content, revision }); setState(next); setEditing(null); }} onSubmit={async (content, revision) => { await flushDrafts(); const result = await window.qiyao.submit({ ...editing.context, text: content, attachments: [], replay: { messageId: editing.message.id, revision, action: 'edit' } }); selectDraft({ ...draftRef.current, threadId: result.threadId }); updateDraft({}); setEditing(null); }} />}
     {search !== null && state && <CommandPalette state={state} context={{ sidebar, threadId: thread?.id, findThreadId: findContext.current, project: projectContext.current }} query={search} onQuery={setSearch} onState={setState} onClose={() => setSearch(null)} onExecute={executeCommand} onPluginCommand={async (command, args, selectedProject) => { if (command.target.kind !== 'plugin-command') throw new Error('This plugin command is no longer available.'); await flushDrafts(); return window.qiyao.pluginCommand(command.target.pluginId, command.target.commandId, args, selectedProject); }} />}

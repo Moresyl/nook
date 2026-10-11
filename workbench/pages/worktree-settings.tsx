@@ -2,11 +2,12 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { worktreePreferencesSchema } from '../../contracts/project-worktrees';
 import { uiErrorMessage } from '../../contracts/ui-errors';
 import type { Workspace } from '../../contracts/workspace';
+import { worktreeNavigationError, type WorktreeConversationTarget, type WorktreeProjectTarget } from '../../contracts/worktree-navigation';
 import { Button, IconButton, Input } from '../components/controls';
 import { WorktreeOverview } from '../components/worktree-overview';
 
-type Props = { state: Workspace; busy: boolean; onBusyChange(value: boolean): void; onState(value: Workspace): void };
-export function WorktreeSettings({ state, busy, onBusyChange, onState }: Props) {
+type Props = { state: Workspace; busy: boolean; onBusyChange(value: boolean): void; onState(value: Workspace): void; onOpenConversation(target: WorktreeConversationTarget): Promise<void>; onCreateConversation(target: WorktreeProjectTarget): Promise<void> };
+export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenConversation, onCreateConversation }: Props) {
   const savedRoot = state.preferences.worktrees?.root ?? '';
   const [root, setRoot] = useState(savedRoot), [error, setError] = useState(''), [saved, setSaved] = useState(false);
   const [defaultRoot, setDefaultRoot] = useState('');
@@ -39,6 +40,13 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState }: Props) 
     } catch (failure) { setError(uiErrorMessage(failure)); }
     finally { working.current = false; restoreInputFocus.current = true; onBusyChange(false); }
   }
+  async function navigate(operation: () => Promise<void>) {
+    if (busy || working.current) return;
+    working.current = true; onBusyChange(true); setError(''); setSaved(false);
+    try { await operation(); }
+    catch (failure) { setError(worktreeNavigationError(failure)); }
+    finally { working.current = false; onBusyChange(false); }
+  }
   return <section className="worktree-settings" aria-label="工作树设置"><h3>工作树</h3>
     <p className="muted">设置新工作树的创建位置，在独立目录中处理项目分支。</p>
     <form onSubmit={event => { event.preventDefault(); void save(); }}>
@@ -52,6 +60,6 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState }: Props) 
     </form>
     {error && <p ref={errorRef} className="inline-error" role="alert">{error}</p>}
     {saved && <p role="status" className="field-hint">已保存工作树设置。</p>}
-    <WorktreeOverview state={state} disabled={busy} />
+    <WorktreeOverview state={state} disabled={busy} onOpenConversation={target => { void navigate(() => onOpenConversation(target)); }} onCreateConversation={target => { void navigate(() => onCreateConversation(target)); }} />
   </section>;
 }

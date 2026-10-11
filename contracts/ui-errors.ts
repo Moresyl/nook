@@ -1,4 +1,7 @@
 const knownErrors = new Map<string, string>([
+  ['The linked worktree project changed. Refresh the worktree list.', '关联项目已变更，请刷新工作树列表后重试。'],
+  ['The linked worktree conversation changed. Refresh the worktree list.', '关联会话已变更，请刷新工作树列表后重试。'],
+  ['The current chat changed. Retry the worktree navigation.', '当前聊天已变更，请重新打开项目聊天。'],
   ['The worktree directory could not be selected. Try again.', '未能选择工作树文件夹，请重试。'],
   ['The default worktree directory could not be prepared. Choose an existing root folder in settings.', '默认工作树目录未能准备。请在设置中选择已有文件夹，再重试。'],
   ['Local data could not be saved. Check disk space and directory permissions.', '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。'],

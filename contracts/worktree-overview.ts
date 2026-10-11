@@ -6,7 +6,7 @@ export type WorktreeSnapshot = { projectId: string; projectPath: string; trees: 
 export type WorktreeOverviewRow = { tree: GitWorktree; projects: Project[]; conversations: Thread[] };
 export type WorktreeOverviewGroup = { path: string; name: string; projectIds: string[]; rows: WorktreeOverviewRow[]; failed: boolean };
 
-function pathKey(path: string): string {
+export function worktreePathKey(path: string): string {
   const normalized = path.replaceAll('\\', '/').replace(/\/+$/, '') || '/';
   return /^[A-Za-z]:(?:\/|$)/.test(normalized) || normalized.startsWith('//') ? normalized.toLowerCase() : normalized;
 }
@@ -20,16 +20,16 @@ export function worktreeOverviewGroups(projects: readonly Project[], threads: re
   const groups = new Map<string, WorktreeOverviewGroup>();
   for (const snapshot of snapshots) {
     const owner = projects.find(project => project.id === snapshot.projectId);
-    if (!owner || pathKey(owner.path) !== pathKey(snapshot.projectPath)) continue;
+    if (!owner || worktreePathKey(owner.path) !== worktreePathKey(snapshot.projectPath)) continue;
     const first = snapshot.trees[0], path = first?.path ?? owner.path;
-    const key = snapshot.failed ? `error:${owner.id}` : pathKey(path);
+    const key = snapshot.failed ? `error:${owner.id}` : worktreePathKey(path);
     let group = groups.get(key);
     if (!group) { group = { path, name: owner.name, projectIds: [], rows: [], failed: snapshot.failed }; groups.set(key, group); }
     if (!group.projectIds.includes(owner.id)) group.projectIds.push(owner.id);
     if (snapshot.failed) continue;
     for (const tree of snapshot.trees) {
-      if (group.rows.some(row => pathKey(row.tree.path) === pathKey(tree.path))) continue;
-      const registered = projects.filter(project => pathKey(project.path) === pathKey(tree.path));
+      if (group.rows.some(row => worktreePathKey(row.tree.path) === worktreePathKey(tree.path))) continue;
+      const registered = projects.filter(project => worktreePathKey(project.path) === worktreePathKey(tree.path));
       const ids = new Set(registered.map(project => project.id));
       const conversations = threads.filter(thread => !thread.temporary && thread.projectId && ids.has(thread.projectId)).slice().sort((left, right) => Number(right.pinned) - Number(left.pinned) || right.updatedAt - left.updatedAt);
       group.rows.push({ tree: { ...tree }, projects: registered, conversations });

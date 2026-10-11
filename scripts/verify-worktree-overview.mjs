@@ -72,7 +72,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   assert.equal(await overview().locator('.worktree-overview-group').count(), 1); assert.equal(await rows().count(), 3);
   const childRow = () => rows().filter({ has: page.getByText('feature/中文', { exact: true }) });
   await childRow().locator('summary').click();
-  assert.deepEqual(await childRow().locator('li > span:not([role="tooltip"])').allTextContents(), ['固定会话 · 中文', '已固定', '归档会话 · 中文', '已归档']);
+  assert.deepEqual(await childRow().locator('li > :is(button,span:not([role="tooltip"]))').allTextContents(), ['固定会话 · 中文', '已固定', '归档会话 · 中文', '已归档']);
   assert.equal(await overview().getByText('临时会话不得关联', { exact: true }).count(), 0); assert.equal(await overview().getByText('其他项目会话', { exact: true }).count(), 0);
   assert.match(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).textContent(), /未登记项目/);
   await childRow().scrollIntoViewIfNeeded(); await capture('associations-light'); await close();
@@ -82,7 +82,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   await page.evaluate(thread => window.qiyao.updateThread(thread), { ...archive, title: '归档会话已更新', archived: false });
   await syncState(); await waitForBridge(page, () => document.querySelector('.worktree-overview')?.textContent.includes('归档会话已更新'));
   const beforeRefresh = await readFile(primary); await refresh().click(); await settled(); assert.equal(await rows().count(), 4);
-  await childRow().locator('summary').click(); await childRow().locator('li > span:not([role="tooltip"])').filter({ hasText: '归档会话已更新' }).waitFor();
+  await childRow().locator('summary').click(); await childRow().getByRole('button', { name: '归档会话已更新', exact: true }).waitFor();
   assert.equal(await childRow().getByText('已归档', { exact: true }).count(), 0); assert.deepEqual(await readFile(primary), beforeRefresh);
   assert.equal((await state()).projects.length, 2); await capture('refresh-light'); await close();
   verified('manual refresh reads actual added worktrees and current conversation details without workspace writes, project creation or model requests');

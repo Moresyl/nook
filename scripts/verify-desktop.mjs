@@ -556,9 +556,15 @@ let contextSummariesResult;
 let projectWorktreesResult;
 let worktreeSettingsResult;
 let worktreeOverviewResult;
+let worktreeConversationsResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_WORKTREE_OVERVIEW_ONLY) {
+  if (process.env.NOOK_TEST_WORKTREE_CONVERSATIONS_ONLY) {
+    const { verifyWorktreeConversations } = await import('./verify-worktree-conversations.mjs');
+    const run = await verifyWorktreeConversations({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
+    page = run.page; worktreeConversationsResult = run.result;
+    assert.equal(count, 4); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_WORKTREE_OVERVIEW_ONLY) {
     const { verifyWorktreeOverview } = await import('./verify-worktree-overview.mjs');
     const run = await verifyWorktreeOverview({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreeOverviewResult = run.result;
@@ -1239,6 +1245,8 @@ try {
   const worktreeSettingsRun = await verifyWorktreeSettings({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = worktreeSettingsRun.page; worktreeSettingsResult = worktreeSettingsRun.result;
   const { verifyWorktreeOverview } = await import('./verify-worktree-overview.mjs');
   const worktreeOverviewRun = await verifyWorktreeOverview({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeOverviewRun.page; worktreeOverviewResult = worktreeOverviewRun.result;
+  const { verifyWorktreeConversations } = await import('./verify-worktree-conversations.mjs');
+  const worktreeConversationsRun = await verifyWorktreeConversations({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeConversationsRun.page; worktreeConversationsResult = worktreeConversationsRun.result;
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
@@ -1272,6 +1280,7 @@ try {
   if (fullResult && projectWorktreesResult) { fullResult.projectWorktrees = projectWorktreesResult; fullResult.screenshots.push(...projectWorktreesResult.screenshots); }
   if (fullResult && worktreeSettingsResult) { fullResult.worktreeSettings = worktreeSettingsResult; fullResult.screenshots.push(...worktreeSettingsResult.screenshots); }
   if (fullResult && worktreeOverviewResult) { fullResult.worktreeOverview = worktreeOverviewResult; fullResult.screenshots.push(...worktreeOverviewResult.screenshots); }
+  if (fullResult && worktreeConversationsResult) { fullResult.worktreeConversations = worktreeConversationsResult; fullResult.screenshots.push(...worktreeConversationsResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1423,6 +1432,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && worktreeConversationsResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'worktree-conversations-packaged-result.json' : 'worktree-conversations-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-conversations suite' }), ...worktreeConversationsResult }, null, 2));
+    console.log(`Verified ${worktreeConversationsResult.checks} worktree conversation checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && worktreeOverviewResult) {
     assert.deepEqual(errors, []);
