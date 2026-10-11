@@ -23,6 +23,7 @@ import type { ComparisonRequest, ComparisonResult } from './model-comparisons';
 import type { GenerateContextSummary, ChangeContextSummary, ContextSummaryPreview } from './context-summary-actions';
 import type { CreateWorktree, GitWorktree, WorktreeCreated } from './project-worktrees';
 import type { WorktreeRegistration } from './worktree-registration';
+import type { ManagedWorktree, WorktreeOwnershipSource, WorktreePinRequest } from './worktree-ownership';
 
 export type RunEvent = { threadId: string; messageId: string; delta?: string; activity?: ToolActivity; invocation?: ModelInvocation; approval?: ApprovalRequest; approvalResolved?: string; message?: import('./workspace').Message; state?: Workspace; error?: string };
 export type { FileEntry } from './projects';
@@ -152,6 +153,8 @@ export type Bridge = {
   gitWorktrees(projectId: string): Promise<GitWorktree[]>;
   gitCreateWorktree(projectId: string, input: CreateWorktree): Promise<WorktreeCreated>;
   registerWorktreeProject(input: WorktreeRegistration): Promise<Workspace>;
+  managedWorktrees(source: WorktreeOwnershipSource): Promise<ManagedWorktree[]>;
+  setWorktreePinned(input: WorktreePinRequest): Promise<void>;
   gitFileView(projectId: string, file: GitFile, staged: boolean): Promise<GitFileView>;
   gitStage(projectId: string, paths: string[], staged: boolean): Promise<GitStatus>;
   gitCommit(projectId: string, message: string): Promise<GitStatus>;

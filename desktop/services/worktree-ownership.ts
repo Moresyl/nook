@@ -16,6 +16,7 @@ const recordSchema = z.object({ id: z.uuid(), createdAt: z.number().int().nonneg
 const ledgerSchema = z.object({ version: z.literal(1), records: z.array(recordSchema).max(1000) }).strict().refine(value => new Set(value.records.map(row => row.id)).size === value.records.length && new Set(value.records.map(row => worktreePathKey(row.identity.directory.path))).size === value.records.length, 'Managed worktree records must have unique identities.');
 type Identity = z.infer<typeof identitySchema>;
 type Ledger = z.infer<typeof ledgerSchema>;
+type IdentitySnapshot = { trees: GitWorktree[]; common: z.infer<typeof fileIdentitySchema> };
 const same = (one: Identity, two: Identity) => JSON.stringify(one) === JSON.stringify(two);
 
 /** Local creation receipts are deliberately separate from shareable workspace backups. */
@@ -64,14 +65,14 @@ export class WorktreeOwnership {
     return { common: await this.directory(paths[0]), admin: await this.directory(paths[1]) };
   }
 
-  private async identity(root: string, path: string): Promise<Identity> {
+  private async identity(root: string, path: string, snapshot?: IdentitySnapshot): Promise<Identity> {
     ownedWorktreePathSchema.parse(root); ownedWorktreePathSchema.parse(path);
-    const trees = await this.readWorktrees(root), tree = trees.find(row => worktreePathKey(row.path) === worktreePathKey(path));
+    const trees = snapshot?.trees ?? await this.readWorktrees(root), tree = trees.find(row => worktreePathKey(row.path) === worktreePathKey(path));
     if (!tree || tree === trees[0] || tree.bare || !tree.head || tree.prunable !== undefined) throw new Error();
     const directory = await this.directory(path), marker = join(directory.path, '.git'), details = await lstat(marker);
     if (!details.isFile() || details.isSymbolicLink() || details.size > 8192) throw new Error();
-    const bytes = await readFile(marker), source = await this.gitDirectories(root), target = await this.gitDirectories(path);
-    if (JSON.stringify(source.common) !== JSON.stringify(target.common) || worktreePathKey(target.admin.path) === worktreePathKey(target.common.path)) throw new Error();
+    const bytes = await readFile(marker), sourceCommon = snapshot?.common ?? (await this.gitDirectories(root)).common, target = await this.gitDirectories(path);
+    if (JSON.stringify(sourceCommon) !== JSON.stringify(target.common) || worktreePathKey(target.admin.path) === worktreePathKey(target.common.path)) throw new Error();
     return { directory, common: target.common, admin: target.admin, gitFileSha256: createHash('sha256').update(bytes).digest('hex') };
   }
 
@@ -102,17 +103,18 @@ export class WorktreeOwnership {
       try { common = (await this.gitDirectories(root)).common; }
       catch (cause) { throw new Error('The managed worktree repository could not be checked. Refresh the list.', { cause }); }
       const records = ledger.records.filter(row => worktreePathKey(row.identity.common.path) === worktreePathKey(common.path));
+      const snapshot = { common, trees: records.length ? await this.readWorktrees(root).catch(() => []) : [] };
       const result: ManagedWorktree[] = [];
       for (const record of records) {
         let verified = false;
-        try { verified = same(record.identity, await this.identity(root, record.identity.directory.path)); } catch { /* A stale receipt never grants ownership. */ }
+        try { verified = same(record.identity, await this.identity(root, record.identity.directory.path, snapshot)); } catch { /* A stale receipt never grants ownership. */ }
         result.push({ id: record.id, path: record.identity.directory.path, createdAt: record.createdAt, pinned: record.pinned, verified });
       }
       return result;
     });
   }
 
-  async setPinned(root: string, raw: unknown): Promise<void> {
+  async setPinned(root: string, raw: unknown, validateSource: () => void = () => {}): Promise<void> {
     ownedWorktreePathSchema.parse(root); const input = worktreePinSchema.parse(raw);
     await this.ordered(async () => {
       const ledger = await this.read(), record = ledger.records.find(row => worktreePathKey(row.identity.directory.path) === worktreePathKey(input.path));
@@ -121,6 +123,7 @@ export class WorktreeOwnership {
       try { identity = await this.identity(root, input.path); }
       catch (cause) { throw new Error('The managed worktree folder changed. Its files were retained.', { cause }); }
       if (!same(record.identity, identity)) throw new Error('The managed worktree folder changed. Its files were retained.');
+      validateSource();
       if (record.pinned === input.pinned) return;
       record.pinned = input.pinned; await this.save(ledger);
     });

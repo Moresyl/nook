@@ -6,6 +6,7 @@ import { worktreeNavigationError, type WorktreeConversationTarget, type Worktree
 import { Button, IconButton, Input, Toggle } from '../components/controls';
 import { WorktreeOverview } from '../components/worktree-overview';
 import type { WorktreeRegistration } from '../../contracts/worktree-registration';
+import type { WorktreePinRequest } from '../../contracts/worktree-ownership';
 
 type Props = { state: Workspace; busy: boolean; onBusyChange(value: boolean): void; onState(value: Workspace): void; onOpenConversation(target: WorktreeConversationTarget): Promise<void>; onCreateConversation(target: WorktreeProjectTarget): Promise<void> };
 export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenConversation, onCreateConversation }: Props) {
@@ -61,6 +62,12 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
     try { onState(await window.qiyao.registerWorktreeProject(input)); }
     finally { working.current = false; onBusyChange(false); }
   }
+  async function pin(input: WorktreePinRequest) {
+    if (busy || working.current) throw new Error('A worktree settings operation is already running.');
+    working.current = true; onBusyChange(true); setError(''); setSaved(false);
+    try { await window.qiyao.setWorktreePinned(input); }
+    finally { working.current = false; onBusyChange(false); }
+  }
   return <section className="worktree-settings" aria-label="工作树设置"><h3>工作树</h3>
     <p className="muted">设置新工作树的创建位置，在独立目录中处理项目分支。</p>
     <form onSubmit={event => { event.preventDefault(); void save(); }}>
@@ -76,6 +83,6 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
     <p className="field-hint">创建前获取所选分支的远程更新。仍从已选本地提交创建，不合并或改写原分支；获取失败时继续使用本地提交，完成后显示提示。</p>
     {error && <p ref={errorRef} className="inline-error" role="alert">{error}</p>}
     {saved && <p role="status" className="field-hint">已保存工作树设置。</p>}
-    <WorktreeOverview state={state} disabled={busy} onOpenConversation={target => { void navigate(() => onOpenConversation(target)); }} onCreateConversation={target => { void navigate(() => onCreateConversation(target)); }} onRegister={register} />
+    <WorktreeOverview state={state} disabled={busy} onOpenConversation={target => { void navigate(() => onOpenConversation(target)); }} onCreateConversation={target => { void navigate(() => onCreateConversation(target)); }} onRegister={register} onPin={pin} />
   </section>;
 }

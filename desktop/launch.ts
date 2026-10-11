@@ -27,6 +27,7 @@ import { directoryRequestSchema, editorDraftSchema, saveDocumentSchema, terminal
 import { ProjectGit } from './services/project-git';
 import { createWorktreeSchema } from '../contracts/project-worktrees';
 import { registerWorktreeProject } from './services/worktree-registration';
+import { managedWorktrees, setWorktreePinned } from './services/worktree-pinning';
 import { WorktreeOwnership } from './services/worktree-ownership';
 import { TerminalSessions } from './services/terminal-sessions';
 import { appAssetPath } from './services/app-assets';
@@ -410,6 +411,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitWorktrees: id => git.worktrees(workspaceProject(id).path),
   gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'),
   registerWorktreeProject: input => registerWorktreeProject(vault, root => git.worktrees(root), input),
+  managedWorktrees: source => managedWorktrees(vault, worktreeOwnership, source),
+  setWorktreePinned: input => setWorktreePinned(vault, worktreeOwnership, input),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),
