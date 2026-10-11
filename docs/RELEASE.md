@@ -4,6 +4,8 @@
 
 已复现另一个具体问题：恢复备份的通知尚未返回时，设置弹窗可以关闭或切换页面。修复后的独立源码专项通过 8 项、2 次正常退出，发布策略 65 项通过；7 张原图逐张核验。新的全量回归正在进行，这些专项结果不证明原安装版超时原因已经查明或分发已通过。
 
+修复后的全量单元 112 个文件／1,135 项通过。首轮完整桌面在第 186 项后超时：预览夹具切换主题后立即按 Esc，没有等待设置保存，截图检查发现设置仍打开；21 次退出均正常。原始失败已归档，夹具改为等待关闭操作可用后按 Esc，仍保留 5 秒期限；预览专项 10 项通过，2 张编辑器原图逐张检查。完整回归须重新完成。
+
 ## 本轮更新
 
 新增独立 Git 工作树创建、列表与项目登记：选择新分支及起始版本，或使用未占用的已有分支。拒绝已有目标文件夹及强制重置，保护原项目的分支、暂存区、文件改动、编辑草稿和预览。钩子报错后展示实际创建结果，保留部分文件；项目登记失败可重试而不重复执行 Git 创建。[使用说明](PROJECT-WORKTREES.md)
@@ -24,12 +26,17 @@
 | 失败后恢复清理 | 精确核对自有安装与无存活进程后卸载；8 份原始失败哨兵保留且内容与哈希一致，失败仍计为失败 |
 | 恢复通知缺陷复现 | 旧应用体在延迟真实恢复通知时未禁用关闭按钮，断言失败；原日志、工作区和截图保留 |
 | 恢复通知修复专项 | 真实桌面 8 项、2 次正常退出，发布策略 65 项通过；7 张原图逐张检查；新的全量与分发验收待完成 |
+| 恢复修复后的单元全量 | 112 个文件／1,135 项通过；语句 97.31%、分支 95.07%、函数 97.43%、行 99.42% |
+| 恢复修复后的完整桌面首轮 | 186 项通过后预览截图前置检查超时，21 次正常退出；失败保留，不计入完整通过 |
+| 设置保存完成后的预览专项 | 10 项通过，1 次正常退出；2 张编辑器原图逐张检查；完整回归重跑待完成 |
 | 法律与身份审计 | 工作树候选 239 个产品文件、401 份依赖法律文档、20 个分发法律／源码文件通过；无旧产品显示身份或已移除字体引用 |
 | 可执行文件签名 | 工作树候选安装器、便携程序与应用 EXE 均为 `NotSigned` |
 
 覆盖率对应表中的实际基线或模块，不能代表后续修订后的全量结果。原始截图已归档，逐张检查的范围仅限表中明确列出的原图。原生选择器与延迟通知使用隔离夹具；本地协议服务验证请求和生命周期，不证明真实云服务的模型质量或账户行为。
 
 [工作树源码专项](../verification/project-worktrees-review-result.json) · [完整源码](../verification/project-worktrees-full-review-result.json) · [完整源码原图](../verification/project-worktrees-full-originals-review-result.json) · [冻结候选与哈希](../verification/project-worktrees-package-candidate-result.json) · [安装版失败](../verification/project-worktrees-installed-failure-result.json)
+
+[恢复通知修复专项](../verification/restore-dismiss-review-result.json) · [修复后全量单元](../verification/restore-lifecycle-unit-review-result.json) · [修复后完整桌面首轮失败](../verification/restore-lifecycle-source-preview-failure-result.json) · [设置保存等待与预览专项](../verification/restore-lifecycle-preview-focused-review-result.json)
 
 恢复通知修复的完整源代码、实际编译体、消费的测试与发布策略、日志和 7 张原图归档于 `E:/NookVerification/RestoreDismissNativePass-20261011`；原失败分别保留于 `RestoreDismissBaselineFailure-20261011` 和 `ProjectWorktreesInstalledMcpPdfFailure-20261011`。失败清理只移除经过身份核对的自有安装，未移除任一失败哨兵。
 
