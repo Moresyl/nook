@@ -1,0 +1,120 @@
+{
+  "verifiedAt": "2026-10-11T17:19:04.016Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotNativeFocusFailure-20261012",
+  "sourceHead": "a0908715df1e08e1428c4b72260b9d4571eebd50",
+  "source": [
+    {
+      "path": "desktop/services/worktree-snapshots.ts",
+      "sha256": "0f8ad128a924ce565d80cf9d795e462be3b07ee17fbf6a40730e381e6ba9720c"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-store.ts",
+      "sha256": "aa172cd991389a3e29b050f594d57d93a36dc5216b71cb3e69da503ea6357a4b"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "3cce996d34596e550e40634a7b65e3964d945fbddda33112ab37a8f6ae9112ee"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "17032e394d93a0aa556dce7717c50b65087c06a95115c261d6236f5cddfca8c2"
+    },
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "956f587801b08b763dbea84e09718fd1e9f450efc5a84ce926f0b778d8af2d51"
+    },
+    {
+      "path": "workbench/components/worktree-snapshots.tsx",
+      "sha256": "451c3e27ec9ec789ad87cd9fe5ce02ff98636fcc88d74b72f0e7b155c7d5166e"
+    },
+    {
+      "path": "workbench/components/worktree-overview.tsx",
+      "sha256": "c29dd430da6848c7d21ef3f96603aa1d685bb24df1234354aad3dea71eca6211"
+    },
+    {
+      "path": "workbench/pages/worktree-settings.tsx",
+      "sha256": "61e1759d08c7de3ef54f206da439105083c3bb2f0d8b15e5829619a21ea5377f"
+    },
+    {
+      "path": "scripts/verify-worktree-snapshots.mjs",
+      "sha256": "f3140d6b6b1170c3def75cd9c19a2f15f6dda7362d264f3a81e37346ec5a87b3"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "90f7c5ce63fed4fde7e5aa80690d90ca979d85eee867b34fb35934661ee9d467"
+    }
+  ],
+  "passedChecks": 4,
+  "failure": "The original bridge-state wait failed for the complete positive button focus outline after injected save failure in the dark 125 percent case.",
+  "normalCloses": 3,
+  "maximumCloseMs": 1486,
+  "forcedCloses": 0,
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "e63f7e91b367b1fab20f841e2f7a6a08ecc49118337dcd65c4bb94fc7e40370f"
+    },
+    {
+      "name": "worktree-snapshots-dark-100-error-shell.png",
+      "sha256": "c11e20093495290be2a3c017e1f64756c25edc4c22052c0f16b926019a4e5124"
+    },
+    {
+      "name": "worktree-snapshots-dark-100-keyboard-shell.png",
+      "sha256": "cd6c7527fc2c6b7a9b7557d902619c512ba636384f489db87f216526ff733886"
+    },
+    {
+      "name": "worktree-snapshots-dark-125-keyboard-shell.png",
+      "sha256": "836c08aa084ecda2881745a2a191c27078cbd6412cd127036048f85592e5445b"
+    },
+    {
+      "name": "worktree-snapshots-existing-target-rejected-light-shell.png",
+      "sha256": "1de4fff94fa90414d734695620b89fe84e55a2a32648b39327b96a539d080403"
+    },
+    {
+      "name": "worktree-snapshots-light-100-error-shell.png",
+      "sha256": "c6e2d8d4d44d2509348719c53630738cb405a215ba75545c2da8da7f66a59340"
+    },
+    {
+      "name": "worktree-snapshots-light-100-keyboard-shell.png",
+      "sha256": "ffc77258555f9b455df7fe5192b9c5bcc3556c7d0e94d0b4bd40fad8f2b1aa8a"
+    },
+    {
+      "name": "worktree-snapshots-light-125-error-shell.png",
+      "sha256": "7a4e1eaa4763983c5b15f288731525b4cca60db52a5964010c4987024cc831f8"
+    },
+    {
+      "name": "worktree-snapshots-light-125-keyboard-shell.png",
+      "sha256": "f9c6ae871aed9a652cef2008b7a59aa1b9c38ef4e6acfa6d8d864c7dd7769763"
+    },
+    {
+      "name": "worktree-snapshots-light-150-error-shell.png",
+      "sha256": "5f43261f1cdf6de4f4c494264f6d04698a5b37aaa074c734586417c4251be4dc"
+    },
+    {
+      "name": "worktree-snapshots-light-150-keyboard-shell.png",
+      "sha256": "8b42d34e209c8e192a3d6e0d3b168942544593659c884d9c02511df38212015a"
+    },
+    {
+      "name": "worktree-snapshots-normal-restart-light-shell.png",
+      "sha256": "5c5a05fa1cbeadfac87fcc0aa97152a8990d106e823ad189272888e5e272b3e8"
+    },
+    {
+      "name": "worktree-snapshots-restored-new-folder-light-shell.png",
+      "sha256": "619c9761018025efc706ce2240b03e740e517803f76bb47176ef42cf589c97f2"
+    },
+    {
+      "name": "worktree-snapshots-save-failure-light-shell.png",
+      "sha256": "7d1bbfdc0c3b86173a28ab3dc585adc61d5bec182ba59d522b20eaf09fa5337e"
+    },
+    {
+      "name": "worktree-snapshots-saved-light-shell.png",
+      "sha256": "b3f0597e1acae16bd7177aefabc73a2a3c14ced47423e01ff2e5497d2307b605"
+    }
+  ],
+  "failureOriginalVisuallyReviewed": true,
+  "evidence": [
+    "Real save, held write failure, private backup/restart separation and staged/working/untracked/ignored detached new-folder restore pass before focus failure.",
+    "Delayed inspector require diagnostic succeeds; the earlier held-save timeout root cause remains unestablished."
+  ],
+  "scope": "Failed focused source desktop run only. Compiled output, source, profile and fifteen PNGs retained before further changes. Six-case complete keyboard/layout, corrupt read, replacement and distribution are not accepted."
+}

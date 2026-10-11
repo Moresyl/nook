@@ -1,0 +1,98 @@
+{
+  "reviewedAt": "2026-10-11T17:25:39.544Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotNativeDiagnosticPass-20261012",
+  "individuallyReviewedOriginals": 20,
+  "originalResolution": true,
+  "acceptedAllRequiredViews": false,
+  "observations": [
+    "All twelve current save keyboard/error PNGs show complete positive blue focus outlines, whole safe errors and wrapped paths in explicit light/dark 100/125/150 cases.",
+    "Existing-target rejection safely preserves its input and error; footer buttons are partly below the viewport and remain reachable by vertical scrolling.",
+    "Saved and normal-restart views expose snapshot summary at the viewport bottom but do not show the full saved snapshot row.",
+    "Read-failure screenshot shows summary but not the actual error paragraph. Read-failure, read-recovered and replacement filenames say light although the retained screenshots are dark.",
+    "Replacement rejects management and capture, preserves the moved original row, and shows the complete unverified-receipt hint.",
+    "Earlier intermittent save wait and dark-125 focus failures remain unresolved; this passing replay is not a fix claim."
+  ],
+  "screenshots": [
+    {
+      "name": "worktree-snapshots-saved-light-shell.png",
+      "sha256": "767b25490581f9b116e6cc8bd1ba1f6d7c7559a43bad322c4e3aa9134a09a4bc"
+    },
+    {
+      "name": "worktree-snapshots-save-failure-light-shell.png",
+      "sha256": "fb88918922fbf4c813f8032d03a35d5b9d892587a4caaf3078c43b4f80252ae4"
+    },
+    {
+      "name": "worktree-snapshots-normal-restart-light-shell.png",
+      "sha256": "237f6686dd2f56c46617cb2a4acdc95aab141ab0078f8c555fbe09543e6971dd"
+    },
+    {
+      "name": "worktree-snapshots-existing-target-rejected-light-shell.png",
+      "sha256": "8795a75dde40b4cc1a8043fe00db66e877f7acf6d00a7b1594e876e296135e53"
+    },
+    {
+      "name": "worktree-snapshots-restored-new-folder-light-shell.png",
+      "sha256": "8f68db53eadd183609fac7be8eb837df51743ecea638c855c7fe25f9d80c1547"
+    },
+    {
+      "name": "worktree-snapshots-light-100-keyboard-shell.png",
+      "sha256": "6f094349e0462713ee6e7726715dfd26402228c87a93a20e2f6ed73d70a2589f"
+    },
+    {
+      "name": "worktree-snapshots-light-100-error-shell.png",
+      "sha256": "65bb2812241eb60a0a558e7bca4ebce524d7b0644b61bdf709290e987442669f"
+    },
+    {
+      "name": "worktree-snapshots-light-125-keyboard-shell.png",
+      "sha256": "a1889d10c5615226b282299085cac913f590db101c981321e71df535bd41776b"
+    },
+    {
+      "name": "worktree-snapshots-light-125-error-shell.png",
+      "sha256": "b665649617c33a35cd62052ad72f4e52f6cbfb3f35eaabad964e6ee3f6ddf9fe"
+    },
+    {
+      "name": "worktree-snapshots-light-150-keyboard-shell.png",
+      "sha256": "74be5b22bea838f59b5eaac578474ae71174f5bddc276913b1d8ed79c178c1b4"
+    },
+    {
+      "name": "worktree-snapshots-light-150-error-shell.png",
+      "sha256": "1c1b3bed273faac28bdc999da8617426fa0e0e2e343b829aaa084ffc32570645"
+    },
+    {
+      "name": "worktree-snapshots-dark-100-keyboard-shell.png",
+      "sha256": "d3c3473ee282d40878d97e8fc13d6e4c23ffd47b32138973296beec82b65bd7b"
+    },
+    {
+      "name": "worktree-snapshots-dark-100-error-shell.png",
+      "sha256": "9931a3f237a0ad14b23715941b3ec0bf49453f866d1517726b4f7e1778b93839"
+    },
+    {
+      "name": "worktree-snapshots-dark-125-keyboard-shell.png",
+      "sha256": "8a37ecc3e752db4b30b74aac3dd2797f2781c1ca7d9b19df95f9111f9d42fcf5"
+    },
+    {
+      "name": "worktree-snapshots-dark-125-error-shell.png",
+      "sha256": "91d8f5caf55dd87219b26a91267bc850224d8554d64c8cd61e42a0c0d2128986"
+    },
+    {
+      "name": "worktree-snapshots-dark-150-keyboard-shell.png",
+      "sha256": "ae3043095ceaf9af90fd6cea90956248985229b792e1b71bb9646a3dd2841949"
+    },
+    {
+      "name": "worktree-snapshots-dark-150-error-shell.png",
+      "sha256": "8c646c0f14592989996a4e5f2ec3b68871c4fa3ca992bc6eb2f192f7063b2f73"
+    },
+    {
+      "name": "worktree-snapshots-read-failure-light-shell.png",
+      "sha256": "97e97b93f05530c2bd2f4a0685e51cbcea421b61cae663009677699d794e9a6d"
+    },
+    {
+      "name": "worktree-snapshots-read-recovered-light-shell.png",
+      "sha256": "c67e0b566102e49df2ccc6a39f5112b2c9abb685a75e54b8f5c846f92f870a55"
+    },
+    {
+      "name": "worktree-snapshots-replacement-rejected-light-shell.png",
+      "sha256": "3a3e18f9b5212a4061a5fdd5d0706ebeb681c54ef9f9cd87022cb9706acffead"
+    }
+  ],
+  "scope": "Twenty diagnostic-round originals individually inspected only. Incomplete notice/list/footer views and mislabeled theme require follow-up before visual acceptance. No full reference or distribution claim."
+}
