@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gitBranchNameSchema, type GitBranches, type GitStatus } from '../../contracts/projects';
 import { createWorktreeSchema, type GitWorktree, type WorktreeCreated } from '../../contracts/project-worktrees';
+import { uiErrorMessage } from '../../contracts/ui-errors';
 import type { Project, Workspace } from '../../contracts/workspace';
 import { Button, Field, IconButton, Input, Modal, Select } from './controls';
 import { TextHint } from './control-tooltip';
@@ -14,14 +15,14 @@ export function ProjectWorktrees({ project, projects, worktreeRoot, status, disa
   const [error, setError] = useState(''), [loading, setLoading] = useState(false), [busy, setBusy] = useState(false), [registeredId, setRegisteredId] = useState('');
   const alive = useRef(true), request = useRef(0), working = useRef(false);
   useEffect(() => { alive.current = true; return () => { alive.current = false; request.current++; }; }, []);
-  async function refresh() {
+  async function refresh(defaultPath = false) {
     const revision = ++request.current; setLoading(true); setError('');
-    try { const [nextTrees, nextBranches] = await Promise.all([window.qiyao.gitWorktrees(project.id), window.qiyao.gitBranches(project.id)]); if (alive.current && revision === request.current) { setTrees(nextTrees); setSnapshot(nextBranches); } }
+    try { const [nextTrees, nextBranches, defaultRoot] = await Promise.all([window.qiyao.gitWorktrees(project.id), window.qiyao.gitBranches(project.id), defaultPath && !worktreeRoot ? window.qiyao.defaultWorktreeRoot() : Promise.resolve(undefined)]); if (alive.current && revision === request.current) { setTrees(nextTrees); setSnapshot(nextBranches); if (defaultRoot) setPath(current => current || `${defaultRoot.replace(/[\\/]+$/, '')}/nook-${crypto.randomUUID().slice(0, 8)}`); } }
     catch { if (alive.current && revision === request.current) setError('无法读取工作树，请检查仓库与 Git 后重试。'); }
     finally { if (alive.current && revision === request.current) setLoading(false); }
   }
   function close() { request.current++; setLoading(false); setOpen(false); }
-  function show() { setMode('new'); setBranch(''); setBase(''); setPath(worktreeRoot ? `${worktreeRoot.replace(/[\\/]+$/, '')}/nook-${crypto.randomUUID().slice(0, 8)}` : ''); setResult(undefined); setRegistration(undefined); setRegisteredId(''); setTrees([]); setSnapshot(undefined); setOpen(true); void refresh(); }
+  function show() { setMode('new'); setBranch(''); setBase(''); setPath(worktreeRoot ? `${worktreeRoot.replace(/[\\/]+$/, '')}/nook-${crypto.randomUUID().slice(0, 8)}` : ''); setResult(undefined); setRegistration(undefined); setRegisteredId(''); setTrees([]); setSnapshot(undefined); setOpen(true); void refresh(true); }
   function selectResult(next: WorktreeCreated) {
     setResult(next); setSnapshot(next.branches); setRegisteredId('');
     setRegistration({ id: crypto.randomUUID(), name: (next.worktree.branch || '工作树').slice(0, 100), path: next.worktree.path, instructions: '', createdAt: Date.now() });
@@ -43,7 +44,7 @@ export function ProjectWorktrees({ project, projects, worktreeRoot, status, disa
     } catch (problem) {
       if (alive.current) {
         const message = String(problem);
-        setError(!prepared ? '未能保存编辑草稿，工作树尚未创建。请重试。' : message.includes('target folder already exists') ? '目标文件夹已存在，请选择新的文件夹。' : message.includes('outside') ? '请选择现有工作树之外的文件夹。' : message.includes('parent folder') ? '目标文件夹的父目录必须已存在。' : message.includes('absolute') ? '请输入目标文件夹的完整绝对路径。' : message.includes('another worktree') ? '此分支已在其他工作树中使用，请刷新列表。' : message.includes('already exists') ? '分支已存在，请修改名称或选择已有分支。' : message.includes('valid Git branch') ? '分支名称无效，请修改后重试。' : message.includes('Create a commit') ? '请先在仓库中创建一次提交。' : '工作树操作未能完成。请刷新列表并检查目标文件夹与 Git 钩子；已有文件会保留。');
+        setError(!prepared ? '未能保存编辑草稿，工作树尚未创建。请重试。' : message.includes('The default worktree directory could not be prepared.') ? uiErrorMessage(problem) : message.includes('target folder already exists') ? '目标文件夹已存在，请选择新的文件夹。' : message.includes('outside') ? '请选择现有工作树之外的文件夹。' : message.includes('parent folder') ? '目标文件夹的父目录必须已存在。' : message.includes('absolute') ? '请输入目标文件夹的完整绝对路径。' : message.includes('another worktree') ? '此分支已在其他工作树中使用，请刷新列表。' : message.includes('already exists') ? '分支已存在，请修改名称或选择已有分支。' : message.includes('valid Git branch') ? '分支名称无效，请修改后重试。' : message.includes('Create a commit') ? '请先在仓库中创建一次提交。' : '工作树操作未能完成。请刷新列表并检查目标文件夹与 Git 钩子；已有文件会保留。');
       }
     }
   }
@@ -67,7 +68,7 @@ export function ProjectWorktrees({ project, projects, worktreeRoot, status, disa
         <Field label="工作树分支">{mode === 'new' ? <Input key="new" autoFocus value={branch} disabled={busy} aria-invalid={Boolean(branch && (!gitBranchNameSchema.safeParse(branch.trim()).success || duplicate))} placeholder="feature/新功能" onChange={event => { setBranch(event.target.value); setError(''); }} /> : <Select key="existing" autoFocus value={branch} disabled={busy || loading} onChange={event => { setBranch(event.target.value); setError(''); }}><option value="">选择未占用的本地分支…</option>{available.map(item => <option key={item.name} value={item.name}>{item.name}</option>)}</Select>}</Field>
         {duplicate && <p className="branch-validation" role="alert">分支已存在</p>}
         {mode === 'new' && <Field label="起始版本"><Select value={base} disabled={busy || loading} onChange={event => setBase(event.target.value)}><option value="">当前提交{snapshot?.status.branch ? ` · ${snapshot.status.detached ? '游离 HEAD' : snapshot.status.branch}` : ''}</option>{snapshot?.branches.map(item => <option key={item.name} value={item.name}>{item.name}</option>)}</Select></Field>}
-        <Field label="工作树文件夹" hint="填写尚不存在的文件夹完整路径，父目录必须已存在。"><Input value={path} disabled={busy} placeholder="C:\Projects\新工作树" onChange={event => { setPath(event.target.value); setError(''); }} /></Field>
+        <Field label="工作树文件夹" hint="填写尚不存在的文件夹完整路径。默认目录在创建时准备，其他父目录须已存在。"><Input value={path} disabled={busy} placeholder="C:\Projects\新工作树" onChange={event => { setPath(event.target.value); setError(''); }} /></Field>
       </form>
       {snapshot?.status.unborn && <p className="field-hint">仓库尚无提交。请先创建一次提交，再创建工作树。</p>}
       <details className="worktree-existing"><summary>已有工作树 · {trees.length}</summary><div className="worktree-list">{trees.map(item => <div className="worktree-row" key={item.path}><div className="worktree-row-heading"><TextHint as="span" className="worktree-title" text={item.branch || (item.bare ? '裸仓库' : '游离 HEAD')}>{item.branch || (item.bare ? '裸仓库' : '游离 HEAD')}</TextHint><Button disabled={busy || loading || item.bare || item.prunable !== undefined || !snapshot} onClick={() => { if (snapshot) selectResult({ worktree: item, branches: snapshot }); }}>查看</Button></div><TextHint as="p" className="path-text" text={item.path}>{item.path}</TextHint>{item.locked !== undefined && <span className="muted">已锁定</span>}{item.prunable !== undefined && <span className="muted">文件夹不可用</span>}</div>)}</div></details>

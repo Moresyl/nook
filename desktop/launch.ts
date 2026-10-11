@@ -10,6 +10,7 @@ import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Works
 import { WorkspaceVault } from './services/vault';
 import { DocumentOriginalFiles } from './services/document-original-files';
 import { chooseWorktreeRoot } from './services/worktree-root-picker';
+import { ManagedWorktreeRoots } from './services/managed-worktree-roots';
 import { userDataDirectory } from './services/user-data-directory';
 import { StartupDiagnostics } from './services/startup-diagnostics';
 import { allowRendererPermission } from './services/renderer-permissions';
@@ -60,6 +61,7 @@ import { QuickChatWindow } from './quick-chat-window';
 const bundleDirectory = __dirname;
 let window: BrowserWindow | null = null;
 let vault: WorkspaceVault;
+let worktreeRoots: ManagedWorktreeRoots;
 let composerDrafts: ComposerDrafts;
 let messageEdits: MessageEdits;
 let engine: ConversationEngine;
@@ -80,7 +82,7 @@ let desktopIntegration: DesktopIntegration;
 let assistantProfiles: AssistantProfiles;
 let promptTemplates: PromptTemplates;
 const taskNotifications = new Set<Notification>();
-const git = new ProjectGit();
+const git = new ProjectGit(undefined, (path, worktrees) => worktreeRoots.prepare(vault.preferences().worktrees?.root ?? '', path, worktrees.map(tree => tree.path)));
 const projectPreview = new ProjectPreviewWindow();
 const projectPreviewDock = new ProjectPreviewDock();
 const browserPanel = new BrowserPanel();
@@ -287,6 +289,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     return { id: randomUUID(), name: basename(result.filePaths[0]), path: result.filePaths[0], instructions: '', createdAt: Date.now() };
   },
   chooseWorktreeRoot: () => chooseWorktreeRoot(() => dialog.showOpenDialog(window!, { title: '选择工作树根目录', properties: ['openDirectory'] })),
+  defaultWorktreeRoot: () => worktreeRoots.defaultRoot,
   saveProject: (raw) => {
     const project = projectSchema.parse(raw);
     let pathChanged = false;
@@ -555,6 +558,7 @@ else {
       open: (value) => safeStorage.decryptString(Buffer.from(value, 'base64')),
     });
     await vault.initialize((phase) => startupDiagnostics.phase(`vault.${phase}`));
+    worktreeRoots = new ManagedWorktreeRoots(join(app.getPath('userData'), 'worktrees'));
     startupDiagnostics.phase('services.create');
     composerDrafts = new ComposerDrafts(vault);
     assistantProfiles = new AssistantProfiles(vault);

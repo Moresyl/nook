@@ -6,6 +6,7 @@ import { dirname, join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createWorktreeSchema } from '../contracts/project-worktrees';
 import { parseGitWorktrees, ProjectGit } from '../desktop/services/project-git';
+import { ManagedWorktreeRoots } from '../desktop/services/managed-worktree-roots';
 
 const run = promisify(execFile), git = new ProjectGit(), directories: string[] = [];
 async function fixture(commit = true) {
@@ -121,6 +122,37 @@ describe('real Git worktree creation', () => {
     const service = new ProjectGit(runner as unknown as ConstructorParameters<typeof ProjectGit>[0]);
     await expect(service.createWorktree(root, { mode: 'new', path, branch: 'failed' })).rejects.toThrow('existing files are retained');
     expect(await readFile(join(path, 'partial'), 'utf8')).toBe('KEEP'); await expect(service.createBranch(root, 'next')).resolves.toMatchObject({ status: { branch: 'next' } });
+  });
+  it('prepares a missing managed root inside the serialized Git operation while preserving the source', async () => {
+    const { root, directory } = await fixture(), profile = join(directory, 'managed-profile'); await mkdir(profile);
+    const manager = new ManagedWorktreeRoots(join(profile, 'worktrees')), path = join(manager.defaultRoot, 'nook-managed');
+    await writeFile(join(root, '文件.txt'), 'DIRTY_KEEP\n'); await writeFile(join(root, '未跟踪.txt'), 'UNTRACKED_KEEP\n');
+    const before = await git.status(root), index = await readFile(join(root, '.git/index'));
+    const prepare = vi.fn(async (target: string, worktrees: { path: string }[]) => {
+      expect(target).toBe(path); expect(worktrees.map(tree => resolve(tree.path))).toContain(await realpath(root));
+      await manager.prepare('', target, worktrees.map(tree => tree.path));
+    });
+    const service = new ProjectGit(undefined, prepare), result = await service.createWorktree(root, { mode: 'new', path, branch: 'feature/managed-root' });
+    expect(resolve(result.worktree.path)).toBe(resolve(path)); expect(prepare).toHaveBeenCalledTimes(1);
+    expect(await readFile(join(path, '文件.txt'), 'utf8')).toBe('BASE\n'); expect(await git.status(root)).toEqual(before);
+    expect(await readFile(join(root, '.git/index'))).toEqual(index); expect(await readFile(join(root, '未跟踪.txt'), 'utf8')).toBe('UNTRACKED_KEEP\n');
+  });
+  it('does not prepare directories before rejecting invalid, duplicate or unborn worktree requests', async () => {
+    const { root, path } = await fixture(), unborn = await fixture(false), prepare = vi.fn(async () => {}), service = new ProjectGit(undefined, prepare);
+    await expect(service.createWorktree(root, { mode: 'new', path, branch: 'main' })).rejects.toThrow('already exists');
+    await expect(service.createWorktree(root, { mode: 'new', path: 'relative', branch: 'valid' })).rejects.toThrow('absolute');
+    await expect(service.createWorktree(unborn.root, { mode: 'new', path: unborn.path, branch: 'valid' })).rejects.toThrow('Create a commit');
+    expect(prepare).not.toHaveBeenCalled();
+  });
+  it('retains source and conflicting default-root bytes when preparation fails and releases the Git queue', async () => {
+    const { root, directory } = await fixture(), defaultRoot = join(directory, 'conflicting-root'); await writeFile(defaultRoot, 'EXACT_ROOT_KEEP\n');
+    const manager = new ManagedWorktreeRoots(defaultRoot), path = join(defaultRoot, 'nook-managed');
+    await writeFile(join(root, '文件.txt'), 'SOURCE_KEEP\n'); const before = await git.status(root), index = await readFile(join(root, '.git/index'));
+    const service = new ProjectGit(undefined, (target, worktrees) => manager.prepare('', target, worktrees.map(tree => tree.path)));
+    await expect(service.createWorktree(root, { mode: 'new', path, branch: 'failed-preparation' })).rejects.toThrow('The default worktree directory could not be prepared.');
+    expect(await readFile(defaultRoot, 'utf8')).toBe('EXACT_ROOT_KEEP\n'); expect(await git.status(root)).toEqual(before); expect(await readFile(join(root, '.git/index'))).toEqual(index);
+    expect((await service.branches(root)).branches.some(branch => branch.name === 'failed-preparation')).toBe(false);
+    await expect(service.createBranch(root, 'next-after-preparation')).resolves.toMatchObject({ status: { branch: 'next-after-preparation' } });
   });
   it('serializes worktree creation with source mutations and allows independent projects to proceed', async () => {
     const { root, path } = await fixture(), other = await fixture(); let release!: () => void, entered!: () => void;

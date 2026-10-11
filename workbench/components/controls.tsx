@@ -19,7 +19,7 @@ export function IconButton({ icon, label, ...props }: ButtonHTMLAttributes<HTMLB
 }
 export function Input(props: ComponentProps<'input'>) { return <input {...props} className={`input ${props.className ?? ''}`} />; }
 export function Textarea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) { return <textarea {...props} className={`input textarea ${props.className ?? ''}`} />; }
-export function Select({ children, ...props }: SelectHTMLAttributes<HTMLSelectElement>) { return <select {...props} className={`input select ${props.className ?? ''}`}><button type="button">{createElement('selectedcontent')}</button>{children}</select>; }
+export function Select({ children, ...props }: SelectHTMLAttributes<HTMLSelectElement>) { return <select {...props} className={`input select ${props.className ?? ''}`}><button type="button" disabled={props.disabled}>{createElement('selectedcontent')}</button>{children}</select>; }
 export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   const id = useId();
   const control = isValidElement(children) ? cloneElement(children as ReactElement<{ 'aria-labelledby'?: string; 'aria-describedby'?: string }>, { 'aria-labelledby': id, 'aria-describedby': hint ? `${id}-hint` : undefined }) : children;

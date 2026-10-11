@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
@@ -126,7 +126,7 @@ export async function verifyWorktreeSettings({ page, application, getApplication
   verified('successful retry and renderer reload retain the explicit root without moving files or changing the original repository HEAD, index or working state');
   await page.locator('.primary-nav').getByRole('button',{name:'项目',exact:true}).click(); await page.locator('.project-list').getByRole('button',{name:projectName,exact:true}).click();
   await page.getByRole('button',{name:'查看改动',exact:true}).click(); await page.getByRole('button',{name:'管理项目工作树',exact:true}).click();
-  const treeDialog=page.getByRole('dialog',{name:'项目工作树',exact:true}); await treeDialog.waitFor();
+  let treeDialog=page.getByRole('dialog',{name:'项目工作树',exact:true}); await treeDialog.waitFor();
   await waitForBridge(page,()=>{const button=document.querySelector('.worktree-dialog button[aria-label="刷新工作树列表"]');return Boolean(button&&!button.disabled);});
   const target=await treeDialog.getByLabel('工作树文件夹',{exact:true}).inputValue(); assert.equal(resolve(dirname(target)),resolve(root)); assert.match(target.split(/[\\/]/).at(-1),/^nook-[a-f0-9]{8}$/);
   await treeDialog.getByLabel('工作树分支',{exact:true}).fill('feature/root-managed'); await treeDialog.getByRole('button',{name:'创建工作树',exact:true}).click(); await treeDialog.getByLabel('工作树项目名称',{exact:true}).waitFor();
@@ -144,6 +144,61 @@ export async function verifyWorktreeSettings({ page, application, getApplication
   page=await restart(); application=getApplication(); await open(); assert.equal(await input().inputValue(),root); await capture('restored-restart-light'); await close();
   assert.equal(await readFile(join(source,'保留.txt'),'utf8'),'SOURCE_DIRTY_中文\n'); assert.deepEqual(await readFile(join(source,'.git/index')),originalIndex);
   verified('real gzip backup, explicit restoration and normal native restart retain the saved root while keeping existing repository bytes and staged state intact');
+  const defaultRoot=join(directory,'worktrees');
+  treeDialog=page.getByRole('dialog',{name:'项目工作树',exact:true});
+  const absent=async path=>{await assert.rejects(lstat(path),{code:'ENOENT'});};
+  const beforeDefaultQuery=await readFile(primary), beforeDefaultState=await state();
+  assert.equal(await page.evaluate(()=>window.qiyao.defaultWorktreeRoot()),defaultRoot);
+  await absent(defaultRoot); assert.deepEqual(await readFile(primary),beforeDefaultQuery); assert.deepEqual(await state(),beforeDefaultState);
+  const defaultUntrusted=await application.evaluateMain(`(async()=>{try{await require('electron').ipcMain._invokeHandlers.get('qiyao:invoke')({sender:${mainWindow}.webContents,senderFrame:{}},'defaultWorktreeRoot');return 'unexpected';}catch(error){return error.message;}})()`);
+  assert.equal(defaultUntrusted,'Untrusted application request.');
+  await open(); await input().fill(''); await save().click(); await settings().getByRole('status').getByText('已保存工作树设置。',{exact:true}).waitFor();
+  await waitForBridge(page,expected=>document.querySelector('.worktree-root-control input')?.placeholder===expected,defaultRoot);
+  assert.equal((await state()).preferences.worktrees.root,''); await absent(defaultRoot); await capture('default-root-light'); await close();
+  await page.locator('.primary-nav').getByRole('button',{name:'项目',exact:true}).click(); await page.locator('.project-list').getByRole('button',{name:projectName,exact:true}).click();
+  await page.getByRole('button',{name:'查看改动',exact:true}).click(); await page.getByRole('button',{name:'管理项目工作树',exact:true}).click(); await treeDialog.waitFor();
+  await waitForBridge(page,()=>{const button=document.querySelector('.worktree-dialog button[aria-label="刷新工作树列表"]');return Boolean(button&&!button.disabled);});
+  const defaultTarget=await treeDialog.getByLabel('工作树文件夹',{exact:true}).inputValue(); assert.equal(resolve(dirname(defaultTarget)),resolve(defaultRoot)); assert.match(defaultTarget.split(/[\\/]/).at(-1),/^nook-[a-f0-9]{8}$/);
+  await absent(defaultRoot); await capture('default-proposal-light');
+  for(const request of [{mode:'new',path:defaultTarget,branch:'main'},{mode:'new',path:'relative',branch:'feature/default-invalid'}])await assert.rejects(page.evaluate(({id,input})=>window.qiyao.gitCreateWorktree(id,input),{id:projectId,input:request}));
+  await absent(defaultRoot); assert.equal(await git(source,['status','--porcelain=v1','-z']),originalStatus); assert.deepEqual(await readFile(join(source,'.git/index')),originalIndex);
+  verified('the main-only default root query is read-only, blank settings show the profile-owned path and the real form proposes an editable child without creating files; duplicate and relative IPC requests leave the default directory absent');
+  await treeDialog.getByLabel('工作树分支',{exact:true}).fill('feature/default-managed');
+  await application.evaluateMain(`(()=>{const fs=require('node:fs/promises');let release;const held=new Promise(resolve=>{release=resolve;});globalThis.nookDefaultRootReceipt={original:fs.mkdir,release,entered:false,calls:0};fs.mkdir=async(path,...args)=>{if(path===${JSON.stringify(defaultRoot)}){const receipt=globalThis.nookDefaultRootReceipt;receipt.entered=true;receipt.calls++;await held;throw Object.assign(new Error('PRIVATE_KEY SECRET_PATH default directory EIO'),{code:'EIO'});}return globalThis.nookDefaultRootReceipt.original(path,...args);};})()`);
+  try {
+    await treeDialog.getByRole('button',{name:'创建工作树',exact:true}).click();
+    await application.evaluateMain(`(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookDefaultRootReceipt.entered){if(Date.now()>=deadline)throw new Error('The held default root preparation was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()`);
+    const heldBytes=await readFile(primary),heldState=await state();
+    console.log('Default root held control diagnostics',JSON.stringify(await treeDialog.evaluate(dialog=>[...dialog.querySelectorAll('input,select,button')].map(element=>({tag:element.tagName,label:element.getAttribute('aria-label'),text:element.textContent,disabled:element.disabled})))));
+    assert.equal(await treeDialog.evaluate(dialog=>dialog.closedBy),'none');
+    assert.equal(await treeDialog.evaluate(dialog=>[...dialog.querySelectorAll('input,select,button')].every(element=>element.disabled)),true);
+    for(let attempt=0;attempt<3;attempt++)await page.keyboard.press('Escape'); assert.equal(await treeDialog.isVisible(),true);
+    assert.deepEqual(await readFile(primary),heldBytes); assert.deepEqual(await state(),heldState); await absent(defaultRoot); await capture('default-busy-light');
+    assert.equal(await application.evaluateMain('globalThis.nookDefaultRootReceipt.calls'),1);
+    await application.evaluateMain('globalThis.nookDefaultRootReceipt.release()'); await treeDialog.getByRole('alert').waitFor();
+    assert.equal(await treeDialog.getByRole('alert').textContent(),'默认工作树目录未能准备。请在设置中选择已有文件夹，再重试。');
+    assert.equal(await treeDialog.getByLabel('工作树文件夹',{exact:true}).inputValue(),defaultTarget); assert.equal(await treeDialog.getByLabel('工作树分支',{exact:true}).inputValue(),'feature/default-managed');
+    assert.deepEqual(await readFile(primary),heldBytes); assert.deepEqual(await state(),heldState); await absent(defaultRoot);
+    assert.equal((await git(source,['branch','--list','feature/default-managed'])).trim(),''); assert.equal(await git(source,['status','--porcelain=v1','-z']),originalStatus); assert.deepEqual(await readFile(join(source,'.git/index')),originalIndex);
+    await capture('default-error-light'); assert.equal(modelRequests(),requestsBefore);
+  } finally {await application.evaluateMain("(()=>{const receipt=globalThis.nookDefaultRootReceipt;require('node:fs/promises').mkdir=receipt.original;receipt.release();delete globalThis.nookDefaultRootReceipt;})()");}
+  verified('held actual default mkdir rejects with sanitized Chinese feedback, locks all create controls and three Escape attempts, preserves exact workspace bytes, source index, staged and dirty files, typed path and branch, and creates no directory or branch');
+  await treeDialog.getByRole('button',{name:'创建工作树',exact:true}).click(); await treeDialog.getByLabel('工作树项目名称',{exact:true}).waitFor();
+  assert.equal((await lstat(defaultRoot)).isDirectory(),true); assert.equal((await lstat(defaultRoot)).isSymbolicLink(),false); assert.equal(await readFile(join(defaultTarget,'保留.txt'),'utf8'),'BASE\n');
+  assert.equal((await state()).preferences.worktrees.root,''); assert.equal((await state()).projects.some(project=>resolve(project.path)===resolve(defaultTarget)),false);
+  assert.equal(await git(source,['status','--porcelain=v1','-z']),originalStatus); assert.deepEqual(await readFile(join(source,'.git/index')),originalIndex); assert.equal(await readFile(join(source,'未跟踪.txt'),'utf8'),'UNTRACKED_KEEP\n'); assert.equal((await git(source,['branch','--show-current'])).trim(),'main');
+  await capture('default-created-light'); await dismissModalWithEscape(page,treeDialog);
+  const defaultBackup=join(directory,'worktree-default-root.nook.json.gz');
+  await application.evaluateMain(`globalThis.nookRootSaveDialog=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(defaultBackup)}});`);
+  try {assert.equal(await page.evaluate(()=>window.qiyao.exportWorkspace()),true);} finally {await application.evaluateMain("require('electron').dialog.showSaveDialog=globalThis.nookRootSaveDialog;delete globalThis.nookRootSaveDialog;");}
+  assert.ok(JSON.stringify(JSON.parse(gunzipSync(await readFile(defaultBackup)).toString('utf8'))).includes(JSON.stringify({root:''})));
+  await page.evaluate(async root=>{const state=await window.qiyao.load();await window.qiyao.savePreferences({...state.preferences,worktrees:{root}});},root);
+  await application.evaluateMain(`globalThis.nookRootOpenDialog=require('electron').dialog.showOpenDialog;globalThis.nookRootMessageDialog=require('electron').dialog.showMessageBox;require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:[${JSON.stringify(defaultBackup)}]});require('electron').dialog.showMessageBox=async()=>({response:1});`);
+  try {assert.ok(await page.evaluate(()=>window.qiyao.importWorkspace()));} finally {await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.nookRootOpenDialog;require('electron').dialog.showMessageBox=globalThis.nookRootMessageDialog;delete globalThis.nookRootOpenDialog;delete globalThis.nookRootMessageDialog;");}
+  page=await restart(); application=getApplication(); await open(); assert.equal(await input().inputValue(),''); assert.equal(await input().getAttribute('placeholder'),defaultRoot); assert.equal(await page.evaluate(()=>window.qiyao.defaultWorktreeRoot()),defaultRoot);
+  assert.equal(await readFile(join(defaultTarget,'保留.txt'),'utf8'),'BASE\n'); assert.equal(await git(source,['status','--porcelain=v1','-z']),originalStatus); assert.deepEqual(await readFile(join(source,'.git/index')),originalIndex); await capture('default-restored-light');
+  await input().fill(root); await save().click(); await settings().getByRole('status').getByText('已保存工作树设置。',{exact:true}).waitFor(); await close();
+  verified('retry prepares only the profile-owned default directory and creates a committed Git worktree without persisting the derived root or registering a project; real gzip restore and normal restart retain blank configuration and existing local Git files without copying them into the workspace backup');
   for (const theme of ['light','dark']) for (const zoom of [1,1.25,1.5]) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
     await page.evaluate(async theme=>{const state=await window.qiyao.load();await window.qiyao.savePreferences({...state.preferences,theme});},theme); await reload();
@@ -161,5 +216,5 @@ export async function verifyWorktreeSettings({ page, application, getApplication
   await page.evaluate(async theme=>{const state=await window.qiyao.load();await window.qiyao.savePreferences({...state.preferences,theme});},originalPreferences.theme); await reload();
   await waitForBridge(page,theme=>document.documentElement.dataset.theme===theme,originalTheme); assert.equal(modelRequests(),requestsBefore);
   verified('all six actual light/dark minimum-window zoom cases retain the bounded root input, complete save errors, nine-category shell and modal keyboard containment without extra model requests');
-  return {page,result:{checks:7,modelRequests:modelRequests()-requestsBefore,rootValidationVerified:true,busySaveVerified:true,saveFailurePreservationVerified:true,rootCreationVerified:true,backupRestartVerified:true,referenceZoomKeyboardVerified:true,directoryPickerVerified:true,pickerCases:5,root,target,errorLayouts,layouts,screenshots:captures,scope:'Real settings IPC with five isolated held native-directory responses, sanitized failure, cancellation and untrusted-frame rejection; held atomic-save EIO, real Git creation with source preservation, gzip backup/restore and normal restart; six native zoom/theme cases with fixed test display scale. Root is an explicit existing directory; blank retains manual path entry. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate.'}};
+  return {page,result:{checks:10,modelRequests:modelRequests()-requestsBefore,rootValidationVerified:true,busySaveVerified:true,saveFailurePreservationVerified:true,rootCreationVerified:true,backupRestartVerified:true,referenceZoomKeyboardVerified:true,directoryPickerVerified:true,pickerCases:5,defaultRootVerified:true,defaultRootFailureVerified:true,defaultRootBackupRestartVerified:true,defaultRoot,defaultTarget,root,target,errorLayouts,layouts,screenshots:captures,scope:'Real settings IPC with five isolated held directory responses; explicit and blank profile-owned roots, read-only default discovery, invalid request rejection before mkdir, held sanitized mkdir and atomic-save EIO with source preservation, real Git retries, two gzip restore cycles and normal restarts; six native zoom/theme cases. Workspace backups retain preferences and do not contain Git worktree files. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate.'}};
 }

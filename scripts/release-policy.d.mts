@@ -25,6 +25,7 @@ export type WorktreeSettingsProof = {
   checks: number; modelRequests: number; rootValidationVerified: boolean; busySaveVerified: boolean;
   saveFailurePreservationVerified: boolean; rootCreationVerified: boolean; backupRestartVerified: boolean;
   referenceZoomKeyboardVerified: boolean; directoryPickerVerified: boolean; pickerCases: number; screenshots: string[];
+  defaultRootVerified: boolean; defaultRootFailureVerified: boolean; defaultRootBackupRestartVerified: boolean;
   layouts: { theme: string; zoom: number; width: number; left: number; right: number; viewportWidth: number; headingMargin: string; descriptionSize: string; pickerLeft: number; pickerRight: number; pickerTop: number; pickerBottom: number; contentLeft: number; contentRight: number; contentTop: number; contentBottom: number }[];
   errorLayouts: { top: number; bottom: number; left: number; right: number; viewportTop: number; viewportBottom: number; viewportLeft: number; viewportRight: number; text: string }[];
 };

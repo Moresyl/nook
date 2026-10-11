@@ -66,7 +66,7 @@ export function parseGitStatus(output: string): GitStatus {
 }
 
 export class ProjectGit {
-  constructor(private readonly runner: typeof runFile = runFile) {}
+  constructor(private readonly runner: typeof runFile = runFile, private readonly prepareTarget?: (path: string, worktrees: GitWorktree[]) => Promise<void>) {}
   private pending = new Map<string, Promise<unknown>>();
   private async update<T>(root: string, action: () => Promise<T>): Promise<T> {
     const cwd = await scopedPath(root, '.');
@@ -104,6 +104,7 @@ export class ProjectGit {
       const commit = (await this.run(root, ['rev-parse', '--verify', input.mode === 'existing' ? `refs/heads/${input.branch}^{commit}` : input.baseBranch ? `refs/heads/${input.baseBranch}^{commit}` : 'HEAD^{commit}'])).trim();
       if (!/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(commit)) throw new Error('Git returned an invalid worktree base commit.');
       if (!isAbsolute(input.path) || ['.', '..'].includes(basename(input.path))) throw new Error('Choose an absolute worktree folder path.');
+      await this.prepareTarget?.(input.path, await this.worktrees(root));
       let parent: string;
       try { parent = await realpath(dirname(input.path)); if (!(await stat(parent)).isDirectory()) throw new Error(); }
       catch { throw new Error('Choose an existing parent folder for the new worktree.'); }

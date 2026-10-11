@@ -1,13 +1,12 @@
 {
-  "verifiedAt": "2026-10-11T07:06:18.816Z",
+  "verifiedAt": "2026-10-11T07:34:25.226Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
   "runtimeErrors": [],
   "normalCloseVerified": true,
-  "verificationRun": "complete desktop suite",
-  "suiteChecks": 303,
-  "checks": 7,
+  "verificationRun": "focused worktree-settings suite",
+  "checks": 10,
   "modelRequests": 0,
   "rootValidationVerified": true,
   "busySaveVerified": true,
@@ -17,8 +16,13 @@
   "referenceZoomKeyboardVerified": true,
   "directoryPickerVerified": true,
   "pickerCases": 5,
-  "root": "E:\\NookVerification\\Temp\\qiyao-electron-pCsMF9\\管理 工作树 🧭",
-  "target": "E:\\NookVerification\\Temp\\qiyao-electron-pCsMF9\\管理 工作树 🧭/nook-27acfcaf",
+  "defaultRootVerified": true,
+  "defaultRootFailureVerified": true,
+  "defaultRootBackupRestartVerified": true,
+  "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-j8oD1H\\worktrees",
+  "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-j8oD1H\\worktrees/nook-b522089f",
+  "root": "E:\\NookVerification\\Temp\\qiyao-electron-j8oD1H\\管理 工作树 🧭",
+  "target": "E:\\NookVerification\\Temp\\qiyao-electron-j8oD1H\\管理 工作树 🧭/nook-75f7a2dc",
   "errorLayouts": [
     {
       "top": 463.8888854980469,
@@ -231,6 +235,12 @@
     "worktree-settings-save-error-light-shell.png",
     "worktree-settings-actual-creation-light-shell.png",
     "worktree-settings-restored-restart-light-shell.png",
+    "worktree-settings-default-root-light-shell.png",
+    "worktree-settings-default-proposal-light-shell.png",
+    "worktree-settings-default-busy-light-shell.png",
+    "worktree-settings-default-error-light-shell.png",
+    "worktree-settings-default-created-light-shell.png",
+    "worktree-settings-default-restored-light-shell.png",
     "worktree-settings-light-100-shell.png",
     "worktree-settings-light-125-shell.png",
     "worktree-settings-light-150-shell.png",
@@ -238,5 +248,5 @@
     "worktree-settings-dark-125-shell.png",
     "worktree-settings-dark-150-shell.png"
   ],
-  "scope": "Real settings IPC with five isolated held native-directory responses, sanitized failure, cancellation and untrusted-frame rejection; held atomic-save EIO, real Git creation with source preservation, gzip backup/restore and normal restart; six native zoom/theme cases with fixed test display scale. Root is an explicit existing directory; blank retains manual path entry. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate."
+  "scope": "Real settings IPC with five isolated held directory responses; explicit and blank profile-owned roots, read-only default discovery, invalid request rejection before mkdir, held sanitized mkdir and atomic-save EIO with source preservation, real Git retries, two gzip restore cycles and normal restarts; six native zoom/theme cases. Workspace backups retain preferences and do not contain Git worktree files. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate."
 }

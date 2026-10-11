@@ -86,6 +86,7 @@ export type Bridge = {
   forkThread(id: string, messageId: string): Promise<Workspace>;
   chooseProject(): Promise<Project | null>;
   chooseWorktreeRoot(): Promise<string | null>;
+  defaultWorktreeRoot(): Promise<string>;
   saveProject(project: Project): Promise<Workspace>;
   removeProject(id: string): Promise<Workspace>;
   saveAssistant(assistant: Assistant): Promise<Workspace>;

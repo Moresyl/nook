@@ -99,6 +99,7 @@ const bridge: Bridge = {
   forkThread: (id, messageId) => invoke('forkThread', id, messageId),
   chooseProject: () => invoke('chooseProject'),
   chooseWorktreeRoot: () => invoke('chooseWorktreeRoot'),
+  defaultWorktreeRoot: () => invoke('defaultWorktreeRoot'),
   saveProject: (project) => invoke('saveProject', project),
   removeProject: (id) => invoke('removeProject', id),
   saveAssistant: (assistant) => invoke('saveAssistant', assistant),
