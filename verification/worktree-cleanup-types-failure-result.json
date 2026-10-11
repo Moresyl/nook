@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-11T18:41:11.911Z",
+  "archive": "E:/NookVerification/WorktreeCleanupTypesFailure-20261012",
+  "sourceBase": "593a80a88a3add9715e0009b094b9c4b4f053aff",
+  "sourceOverlay": [
+    "contracts/bridge-contract.ts",
+    "contracts/project-worktrees.ts",
+    "contracts/ui-errors.ts",
+    "contracts/worktree-ownership.ts",
+    "desktop/bridge.ts",
+    "desktop/launch.ts",
+    "desktop/services/conversation-engine.ts",
+    "desktop/services/worktree-ownership.ts",
+    "verification/conversation-engine.test.ts",
+    "verification/worktree-ownership.test.ts",
+    "verification/worktree-settings.test.ts",
+    "workbench/components/worktree-overview.tsx",
+    "workbench/pages/worktree-settings.tsx",
+    "contracts/worktree-cleanup.ts",
+    "desktop/services/worktree-activity.ts",
+    "desktop/services/worktree-cleanup.ts",
+    "verification/worktree-activity.test.ts",
+    "verification/worktree-cleanup.test.ts",
+    "workbench/components/worktree-removal.tsx"
+  ],
+  "typesPassed": false,
+  "unitExecuted": false,
+  "cause": "A comparator typed for physical Git directory identities was mistakenly used for conversation ID arrays; TypeScript rejected the call before the related unit suite could start.",
+  "scope": "Cleanup integration type failure, retained before correction. No claim of integrated cleanup, native or distribution acceptance."
+}

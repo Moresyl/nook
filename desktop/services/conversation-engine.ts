@@ -33,7 +33,7 @@ export class ConversationEngine {
   private checkpoints: MessageCheckpoints;
   readonly contextSummaries: ContextSummaries;
   constructor(private readonly vault: WorkspaceVault, private readonly gateway: ModelGateway, private readonly emit: (event: RunEvent) => void,
-    private readonly tools: ProjectToolExecutor = new ExecutionTools(), private readonly checkpointInterval = 750, private readonly extensions?: ExtensionRuntime, private readonly knowledge?: Pick<KnowledgeService, 'validateSelection' | 'search'>) {
+    private readonly tools: ProjectToolExecutor = new ExecutionTools(), private readonly checkpointInterval = 750, private readonly extensions?: ExtensionRuntime, private readonly knowledge?: Pick<KnowledgeService, 'validateSelection' | 'search'>, private readonly beforeStart: () => void = () => {}) {
     this.approvals = new ApprovalGate((event) => this.notify(event));
     this.checkpoints = new MessageCheckpoints(vault);
     this.contextSummaries = new ContextSummaries(vault, gateway, id => this.closing || this.runs.has(id));
@@ -73,6 +73,7 @@ export class ConversationEngine {
 
   private prepareStart(raw: SubmitRequest, state: Workspace) {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
+    this.beforeStart();
     const request = submitSchema.parse(raw);
     const provider = state.providers.find((item) => item.id === request.providerId);
     if (!provider) throw new Error('Configure a provider in settings before sending a message.');
@@ -194,6 +195,7 @@ export class ConversationEngine {
 
   async compare(raw: unknown): Promise<ComparisonResult> {
     if (this.closing) throw new Error('The workspace is shutting down. Reopen it before starting a response.');
+    this.beforeStart();
     let finish!: () => void; const completion = new Promise<void>((resolve) => { finish = resolve; });
     this.comparisons.add(completion);
     try { return await this.startComparison(raw); } finally { this.comparisons.delete(completion); finish(); }

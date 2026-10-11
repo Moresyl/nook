@@ -12,7 +12,8 @@ import { atomicJson } from './atomic-json';
 const runFile = promisify(execFile);
 const fileIdentitySchema = z.object({ path: ownedWorktreePathSchema, device: z.string().regex(/^\d+$/), inode: z.string().regex(/^[1-9]\d*$/) }).strict();
 const identitySchema = z.object({ directory: fileIdentitySchema, common: fileIdentitySchema, admin: fileIdentitySchema, gitFileSha256: z.string().regex(/^[a-f0-9]{64}$/) }).strict();
-const recordSchema = z.object({ id: z.uuid(), createdAt: z.number().int().nonnegative(), pinned: z.boolean(), identity: identitySchema }).strict();
+const conversationIdsSchema = z.array(z.string().min(1).max(128)).max(10_000);
+const recordSchema = z.object({ id: z.uuid(), createdAt: z.number().int().nonnegative(), pinned: z.boolean(), identity: identitySchema, conversationIds: conversationIdsSchema.optional().refine(ids => !ids || new Set(ids).size === ids.length, 'Conversation associations must be unique.') }).strict();
 const ledgerSchema = z.object({ version: z.literal(1), records: z.array(recordSchema).max(1000) }).strict().refine(value => new Set(value.records.map(row => row.id)).size === value.records.length && new Set(value.records.map(row => worktreePathKey(row.identity.directory.path))).size === value.records.length, 'Managed worktree records must have unique identities.');
 type Identity = z.infer<typeof identitySchema>;
 type Ledger = z.infer<typeof ledgerSchema>;
@@ -46,7 +47,7 @@ export class WorktreeOwnership {
   }
 
   private async save(ledger: Ledger): Promise<void> {
-    try { await this.writer(this.file, ledger); }
+    try { ledgerSchema.parse(ledger); if (Buffer.byteLength(JSON.stringify(ledger), 'utf8') > 2_000_000) throw new Error(); await this.writer(this.file, ledger); }
     catch (cause) { throw new Error('Managed worktree records could not be saved. Existing worktrees were retained.', { cause }); }
   }
 
@@ -86,7 +87,7 @@ export class WorktreeOwnership {
       const ledger = await this.read(), existing = ledger.records.find(row => worktreePathKey(row.identity.directory.path) === worktreePathKey(path));
       if (existing) {
         if (!same(existing.identity, identity)) throw new Error('The managed worktree folder changed. Its files were retained.');
-        return { id: existing.id, path: identity.directory.path, createdAt: existing.createdAt, pinned: existing.pinned, verified: true };
+        return { id: existing.id, path: identity.directory.path, createdAt: existing.createdAt, pinned: existing.pinned, verified: true, ...(existing.conversationIds ? { conversationIds: [...existing.conversationIds] } : {}) };
       }
       const record = recordSchema.parse({ id: randomUUID(), createdAt: Date.now(), pinned: false, identity });
       ledger.records.push(record); ledgerSchema.parse(ledger);
@@ -108,9 +109,19 @@ export class WorktreeOwnership {
       for (const record of records) {
         let verified = false;
         try { verified = same(record.identity, await this.identity(root, record.identity.directory.path, snapshot)); } catch { /* A stale receipt never grants ownership. */ }
-        result.push({ id: record.id, path: record.identity.directory.path, createdAt: record.createdAt, pinned: record.pinned, verified });
+        result.push({ id: record.id, path: record.identity.directory.path, createdAt: record.createdAt, pinned: record.pinned, verified, ...(record.conversationIds ? { conversationIds: [...record.conversationIds] } : {}) });
       }
       return result;
+    });
+  }
+
+  /** Preserve local chat associations before project metadata is removed; never create a receipt. */
+  async rememberConversations(path: string, raw: unknown): Promise<void> {
+    ownedWorktreePathSchema.parse(path); const ids = conversationIdsSchema.parse(raw); if (!ids.length) return;
+    await this.ordered(async () => {
+      const ledger = await this.read(), record = ledger.records.find(row => worktreePathKey(row.identity.directory.path) === worktreePathKey(path)); if (!record) return;
+      const next = [...new Set([...(record.conversationIds ?? []), ...ids])]; if (record.conversationIds?.length === next.length && next.every((id, index) => id === record.conversationIds![index])) return;
+      record.conversationIds = next; await this.save(ledger);
     });
   }
 
@@ -126,6 +137,25 @@ export class WorktreeOwnership {
       validateSource();
       if (record.pinned === input.pinned) return;
       record.pinned = input.pinned; await this.save(ledger);
+    });
+  }
+
+  /** Keep pin changes ordered with the final identity check, removal and receipt update. */
+  async removeVerified(root: string, path: string, receiptId: string, remove: (verify: () => Promise<void>) => Promise<void>, validateSource: () => void): Promise<'saved' | 'failed'> {
+    ownedWorktreePathSchema.parse(root); ownedWorktreePathSchema.parse(path); z.uuid().parse(receiptId);
+    return this.ordered(async () => {
+      const ledger = await this.read(), record = ledger.records.find(row => row.id === receiptId && worktreePathKey(row.identity.directory.path) === worktreePathKey(path));
+      if (!record || record.pinned) throw new Error('This worktree is pinned or has no matching local creation receipt. Its files were retained.');
+      const verify = async () => {
+        let identity: Identity;
+        try { identity = await this.identity(root, path); }
+        catch (cause) { throw new Error('The managed worktree folder changed. Its files were retained.', { cause }); }
+        if (!same(record.identity, identity)) throw new Error('The managed worktree folder changed. Its files were retained.');
+        validateSource();
+      };
+      await verify(); await remove(verify);
+      ledger.records = ledger.records.filter(row => row.id !== receiptId);
+      try { await this.save(ledger); return 'saved'; } catch { return 'failed'; }
     });
   }
 }

@@ -19,6 +19,13 @@ async function setup(gateway: ModelGateway, tools?: ProjectToolExecutor, interva
 const call = { id: 'call', name: 'read_file', arguments: '{"path":"README.md","start_line":1,"max_lines":20}' };
 function reply(): ModelReply { return { kind: 'ollama', items: [{ role: 'assistant', tool_calls: [{ id: call.id, type: 'function', function: { name: call.name, arguments: call.arguments } }] }], toolCalls: [call] }; }
 describe('conversation engine', () => {
+  it('blocks background starts and comparisons before reserving runs or persisting conversations while cleanup is exclusive', async () => {
+    const { vault, directory } = await testVault(); directories.push(directory);
+    const stream = vi.fn(), guard = vi.fn(() => { throw new Error('Cleanup is active'); });
+    const engine = new ConversationEngine(vault, { stream }, vi.fn(), undefined, undefined, undefined, undefined, guard), before = vault.snapshot();
+    await expect(engine.start(request)).rejects.toThrow('Cleanup is active'); await expect(engine.compare({})).rejects.toThrow('Cleanup is active');
+    expect(engine.active()).toBe(false); expect(vault.snapshot()).toEqual(before); expect(stream).not.toHaveBeenCalled(); expect(guard).toHaveBeenCalledTimes(2); await engine.shutdown();
+  });
   it('persists concurrent completed replies in one atomic checkpoint while retaining every owner and the previous complete file', async () => {
     let finish!: () => void; let opened = 0; const completion = new Promise<void>((resolve) => { finish = resolve; });
     const { engine, vault, directory } = await setup({ stream: async (_input, onText) => { const index = opened++; await completion; onText(`FINAL_${index}`); } }, undefined, 60_000);

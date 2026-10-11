@@ -4,9 +4,12 @@ import { gitBranchNameSchema, type GitBranches } from './projects';
 const pathSchema = z.string().min(1).max(4096).refine(value => !/[\x00-\x1f\x7f]/.test(value), 'Enter a valid worktree folder path.');
 export const worktreeUpstreamPolicySchema = z.enum(['best-effort', 'never']);
 export type WorktreeUpstreamPolicy = z.infer<typeof worktreeUpstreamPolicySchema>;
+export const worktreeKeepCountSchema = z.number().int().min(1).max(50);
 export const worktreePreferencesSchema = z.object({
   root: z.string().max(4096).refine(value => value === '' || (!/[\x00-\x1f\x7f]/.test(value) && (/^[A-Za-z]:[\\/]/.test(value) || /^\/(?!\/)/.test(value) || /^[\\/]{2}[^\\/]+[\\/][^\\/]+(?:[\\/]|$)/.test(value))), 'Enter an absolute worktree root folder path.').default(''),
   upstreamRefresh: worktreeUpstreamPolicySchema.optional(),
+  autoCleanup: z.boolean().optional(),
+  keepCount: worktreeKeepCountSchema.optional(),
 }).strict();
 export const createWorktreeSchema = z.discriminatedUnion('mode', [
   z.object({ mode: z.literal('new'), path: pathSchema, branch: gitBranchNameSchema, baseBranch: gitBranchNameSchema.optional() }).strict(),

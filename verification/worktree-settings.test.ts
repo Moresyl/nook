@@ -19,4 +19,11 @@ describe('worktree root preferences', () => {
   it('rejects unsupported deletion or force preferences', () => {
     for (const field of ['force', 'automaticDeletion', 'fetchUpstream']) expect(worktreePreferencesSchema.safeParse({ root: 'C:/root', [field]: true }).success).toBe(false);
   });
+  it('keeps cleanup disabled implicitly for legacy settings and accepts only explicit bounded cleanup settings', () => {
+    expect(worktreePreferencesSchema.parse({}).autoCleanup).toBeUndefined();
+    expect(worktreePreferencesSchema.parse({ autoCleanup: false, keepCount: 5 })).toEqual({ root: '', autoCleanup: false, keepCount: 5 });
+    for (const keepCount of [1, 50]) expect(worktreePreferencesSchema.safeParse({ autoCleanup: true, keepCount }).success).toBe(true);
+    for (const keepCount of [0, 51, 1.5, '5', NaN, Infinity]) expect(worktreePreferencesSchema.safeParse({ keepCount }).success).toBe(false);
+    expect(worktreePreferencesSchema.safeParse({ autoCleanup: 'true' }).success).toBe(false);
+  });
 });

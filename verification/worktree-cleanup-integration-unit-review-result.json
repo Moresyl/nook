@@ -1,0 +1,97 @@
+{
+  "verifiedAt": "2026-10-11T18:44:06.288Z",
+  "archive": "E:/NookVerification/WorktreeCleanupIntegrationUnitPass-20261012",
+  "sourceBase": "593a80a88a3add9715e0009b094b9c4b4f053aff",
+  "sourceOverlay": [
+    {
+      "path": "contracts/bridge-contract.ts",
+      "sha256": "3b115352c40cbaf87bf4bfe8ec2d5b03dfbc86461bc4deb64afa1b97ddb17cd3"
+    },
+    {
+      "path": "contracts/project-worktrees.ts",
+      "sha256": "d027b4fdd137f0d248036b78ca4e3ebc82e4f8034c63dbf20d8034793283b3ce"
+    },
+    {
+      "path": "contracts/ui-errors.ts",
+      "sha256": "4ba70dcfeb7d08b8760b104e45a23eb092872ea66552d3fcf0705a29ed42be79"
+    },
+    {
+      "path": "contracts/worktree-ownership.ts",
+      "sha256": "89f41947ed099ee5d7f473f8474adb8b50360bd1b3ae03770ff07ffe829ddae8"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "sha256": "5736fc599f666cbc6ecdeef917b76cee53fe6694fac451054021a26838ed4043"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "050a1f8cb053fdd3a54842d33ec4628f377d590bf754ef0ea320b23d4de59f38"
+    },
+    {
+      "path": "desktop/services/conversation-engine.ts",
+      "sha256": "cf5aacd5dd8d19af5fc8c98ad5846cce1645cfcedc208c919d4f512a40e0887d"
+    },
+    {
+      "path": "desktop/services/worktree-ownership.ts",
+      "sha256": "ddd35b456807b48964310eef994bc5b49bfa689deb3baa6461f564a947cb4549"
+    },
+    {
+      "path": "verification/conversation-engine.test.ts",
+      "sha256": "0a7bdec2bcdf8008f474ef41560fd220f7d86e02a2416475ca2e5329e8af6b31"
+    },
+    {
+      "path": "verification/worktree-ownership.test.ts",
+      "sha256": "13140dbb95381bfd44b5778e9f980e0974f00dca91fc14bbf7a9b1d084759f73"
+    },
+    {
+      "path": "verification/worktree-settings.test.ts",
+      "sha256": "d07c8d960d03ce5def62a46a1f9aaa6b95c8ae695856a5a1b13d481a2739c672"
+    },
+    {
+      "path": "workbench/components/worktree-overview.tsx",
+      "sha256": "f2066cfc092e735b5bdb32b92b2943c5d8297e2917ed4ffe3c9e9ea680ac2ec8"
+    },
+    {
+      "path": "workbench/pages/worktree-settings.tsx",
+      "sha256": "05e5aa1b8aec21f72d6334d03d1f936044d397e19125760871ca3f7efceaae2d"
+    },
+    {
+      "path": "contracts/worktree-cleanup.ts",
+      "sha256": "c19894725cb3f798e2517a88d523a7b72cc546128b6fddf76802efe9f7ff0cd4"
+    },
+    {
+      "path": "desktop/services/worktree-activity.ts",
+      "sha256": "c974cd62da2e00d9ed529041d35a0b85c5c741b871ed6bab41af9db37f375847"
+    },
+    {
+      "path": "desktop/services/worktree-cleanup.ts",
+      "sha256": "c7c00ca2774de2cf99f61d35df3aaa7e252304be2de0d7593c1d9d6e1c62d28e"
+    },
+    {
+      "path": "verification/worktree-activity.test.ts",
+      "sha256": "df6e39530dd2022a32703aa734ccc644dd5288d6b00533732389048b204db5f0"
+    },
+    {
+      "path": "verification/worktree-cleanup.test.ts",
+      "sha256": "3f974123d30924108a0c9ada1343dcac65ef2665ab01f9ef1703f17f13ff3fee"
+    },
+    {
+      "path": "workbench/components/worktree-removal.tsx",
+      "sha256": "f7daf62aabfeed8e6d28b0a4f806e96fae2f4d52b6b0a0902746e5c5e29d905a"
+    }
+  ],
+  "typesPassed": true,
+  "testFiles": 7,
+  "tests": 143,
+  "durationSeconds": 110.61,
+  "unchangedTestDeadlines": true,
+  "evidence": [
+    "Real Git clean-worktree deletion keeps branch/main bytes, stores a verified private snapshot and restores it into a new detached folder.",
+    "Modified/staged/untracked/ignored files, pinned/registered/locked/replaced trees, busy actions, draft state and privately remembered fixed chats are protected.",
+    "An accepted held removal drains during shutdown; failed private publication retains files, receipt publication failure distinguishes completed deletion, and oldest-only trimming preserves newer/protected trees.",
+    "Conversation association writes never create receipts or grant ownership, preserve no-op/failure bytes and reject writes exceeding the readable private ledger budget.",
+    "Application bridge, confirmation/retention controls, post-create scheduling and background engine guard compile; they have not yet been verified in the native application."
+  ],
+  "previousFailure": "verification/worktree-cleanup-types-failure-result.json",
+  "scope": "Current cleanup integration types and seven related unit files only. Full coverage, scheduler/native UI rounds, complete reference adoption, distribution and release remain pending; temporary Git fixtures were cleaned by afterEach."
+}

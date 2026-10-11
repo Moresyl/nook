@@ -31,6 +31,9 @@ import { managedWorktrees, setWorktreePinned } from './services/worktree-pinning
 import { WorktreeOwnership } from './services/worktree-ownership';
 import { WorktreeSnapshots } from './services/worktree-snapshots';
 import { WorktreeSnapshotStore } from './services/worktree-snapshot-store';
+import { WorktreeCleanup } from './services/worktree-cleanup';
+import { WorktreeActivity } from './services/worktree-activity';
+import { worktreePathKey } from '../contracts/worktree-overview';
 import { TerminalSessions } from './services/terminal-sessions';
 import { appAssetPath } from './services/app-assets';
 import { McpConnections } from './services/mcp-connections';
@@ -69,6 +72,9 @@ let vault: WorkspaceVault;
 let worktreeRoots: ManagedWorktreeRoots;
 let worktreeOwnership: WorktreeOwnership;
 let worktreeSnapshots: WorktreeSnapshots;
+let worktreeCleanup: WorktreeCleanup;
+const worktreeActivity = new WorktreeActivity();
+const cleanupTimers = new Map<string, ReturnType<typeof setTimeout>>();
 let composerDrafts: ComposerDrafts;
 let messageEdits: MessageEdits;
 let engine: ConversationEngine;
@@ -89,6 +95,19 @@ let desktopIntegration: DesktopIntegration;
 let assistantProfiles: AssistantProfiles;
 let promptTemplates: PromptTemplates;
 const taskNotifications = new Set<Notification>();
+function scheduleWorktreeCleanup(root: string, retry = 0): void {
+  if (quitting || quitRequested || !vault.preferences().worktrees?.autoCleanup) return;
+  const key = worktreePathKey(root), existing = cleanupTimers.get(key); if (existing) clearTimeout(existing);
+  cleanupTimers.set(key, setTimeout(() => {
+    cleanupTimers.delete(key);
+    if (quitting || quitRequested || !vault.preferences().worktrees?.autoCleanup) return;
+    const project = vault.snapshot().projects.find(project => worktreePathKey(project.path) === key); if (!project) return;
+    const source = { projectId: project.id, path: project.path }, keepCount = vault.preferences().worktrees?.keepCount ?? 5;
+    const notify = (removed: number, skipped: number, failed: boolean, receiptFailures = 0) => { if (window && !window.isDestroyed()) window.webContents.send('nook:worktree-cleanup', { source, removed, skipped, failed, receiptFailures, completedAt: Date.now() }); };
+    if (!worktreeActivity.idle) { if (retry < 20) scheduleWorktreeCleanup(root, retry + 1); else notify(0, 0, true); return; }
+    void worktreeCleanup.trim(source, keepCount).then(result => notify(result.removed.length, result.skipped, false, result.removed.filter(row => row.managedRecord === 'failed').length), () => notify(0, 0, true));
+  }, 250));
+}
 const git = new ProjectGit(undefined, (path, worktrees) => worktreeRoots.prepare(vault.preferences().worktrees?.root ?? '', path, worktrees.map(tree => tree.path)), async (root, tree) => { await worktreeOwnership.recordCreated(root, tree.path); });
 const projectPreview = new ProjectPreviewWindow();
 const projectPreviewDock = new ProjectPreviewDock();
@@ -313,6 +332,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     closeProjectPreviews(id);
     const scopedPlugins = vault.snapshot().plugins.filter((plugin) => plugin.projectIds.includes(id));
     await Promise.all(scopedPlugins.map(async (plugin) => { await engine.stopPlugin(plugin.id); await plugins.unload(plugin.id); }));
+    const project = vault.project(id);
+    if (project) await worktreeOwnership.rememberConversations(project.path, vault.snapshot().threads.filter(thread => thread.projectId === id).map(thread => thread.id));
     return vault.update((draft) => {
       draft.projects = draft.projects.filter((project) => project.id !== id);
       draft.memories = draft.memories.filter((memory) => memory.projectId !== id);
@@ -412,13 +433,14 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitSwitchBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.switchBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitCreateBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.createBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitWorktrees: id => git.worktrees(workspaceProject(id).path),
-  gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'),
+  gitCreateWorktree: async (id, input) => { const root = workspaceProject(id).path, result = await git.createWorktree(root, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'); if (result.managedRecord === 'saved') scheduleWorktreeCleanup(root); return result; },
   registerWorktreeProject: input => registerWorktreeProject(vault, root => git.worktrees(root), input),
   managedWorktrees: source => managedWorktrees(vault, worktreeOwnership, source),
   setWorktreePinned: input => setWorktreePinned(vault, worktreeOwnership, input),
   captureWorktreeSnapshot: input => worktreeSnapshots.capture(input),
   worktreeSnapshots: source => worktreeSnapshots.list(source),
   restoreWorktreeSnapshot: input => worktreeSnapshots.restore(input),
+  removeManagedWorktree: input => worktreeCleanup.remove(input),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),
@@ -475,12 +497,18 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   },
 };
 
+// Wrap the handlers themselves so menu actions and internal callers share the same activity protection.
+for (const [name, handler] of Object.entries(commands)) {
+  if (['removeManagedWorktree', 'finishDraftFlush', 'finishWindowClose'].includes(name)) continue;
+  commands[name] = (...args) => name === 'removeProject' ? worktreeActivity.exclusive(() => handler(...args)) : worktreeActivity.run(() => handler(...args));
+}
+
 async function finishClose(): Promise<void> {
   closeProjectPreviews();
   if (!quitRequested && desktopIntegration.canHide()) { await quickChatWindow?.flush(); window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
   if (quit) browserPanel.close();
-  if (quit) { await quickChatWindow?.shutdown(); quitting = true; await worktreeSnapshots.shutdown(); await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  if (quit) { cleanupTimers.forEach(timer => clearTimeout(timer)); cleanupTimers.clear(); await worktreeCleanup.shutdown(); await quickChatWindow?.shutdown(); quitting = true; await worktreeSnapshots.shutdown(); await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
   else await quickChatWindow?.flush();
   closeAllowed = true; window?.close();
   if (quit) app.quit();
@@ -573,7 +601,9 @@ else {
     await vault.initialize((phase) => startupDiagnostics.phase(`vault.${phase}`));
     worktreeRoots = new ManagedWorktreeRoots(join(app.getPath('userData'), 'worktrees'));
     worktreeOwnership = new WorktreeOwnership(join(app.getPath('userData'), 'managed-worktrees.json'), root => git.worktrees(root));
-    worktreeSnapshots = new WorktreeSnapshots(vault, worktreeOwnership, git, new WorktreeSnapshotStore(join(app.getPath('userData'), 'worktree-snapshots')), (path, trees) => worktreeRoots.prepare(vault.preferences().worktrees?.root ?? '', path, trees.map(tree => tree.path)));
+    const snapshotStore = new WorktreeSnapshotStore(join(app.getPath('userData'), 'worktree-snapshots'));
+    worktreeSnapshots = new WorktreeSnapshots(vault, worktreeOwnership, git, snapshotStore, (path, trees) => worktreeRoots.prepare(vault.preferences().worktrees?.root ?? '', path, trees.map(tree => tree.path)));
+    worktreeCleanup = new WorktreeCleanup(vault, worktreeOwnership, git, worktreeSnapshots, snapshotStore, worktreeActivity, () => engine?.active() || terminals?.active() || false);
     startupDiagnostics.phase('services.create');
     composerDrafts = new ComposerDrafts(vault);
     assistantProfiles = new AssistantProfiles(vault);
@@ -601,7 +631,7 @@ else {
       (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:mcp-resource', event); });
     knowledge = new KnowledgeService(vault, gateway);
     engine = new ConversationEngine(vault, gateway, (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:run', event); quickChatWindow?.emit(event); }, undefined, undefined,
-      new ConversationExtensions(mcp, skills, () => vault.snapshot(), plugins), knowledge);
+      new ConversationExtensions(mcp, skills, () => vault.snapshot(), plugins), knowledge, () => worktreeActivity.assertAvailable());
     quickChat = new QuickChat(vault, engine);
     const quickUrl = new URL(process.env.ELECTRON_RENDERER_URL || 'qiyao://app/index.html'); quickUrl.searchParams.set('view', 'quick-chat');
     quickChatWindow = new QuickChatWindow({ quick: quickChat, engine, preload: join(bundleDirectory, '../preload/quick-chat-bridge.cjs'), url: quickUrl.href, icon: join(app.getAppPath(), 'identity/qiyao.ico'),
@@ -618,7 +648,7 @@ else {
         showWindow(); window?.webContents.send('nook:workspace-navigation', { threadId: loaded.thread?.id, settings });
       },
     });
-    ipcMain.handle('nook:quick-chat', (event, command, ...args) => quickChatWindow.handle(event, command, args));
+    ipcMain.handle('nook:quick-chat', (event, command, ...args) => command === 'finishFlush' ? quickChatWindow.handle(event, command, args) : worktreeActivity.run(() => quickChatWindow.handle(event, command, args)));
     messageEdits = new MessageEdits(vault, (id) => engine.active(id));
     automations = new Automations(vault, conversationAutomationRunner(engine, vault), (event) => { if (window && !window.isDestroyed()) window.webContents.send('qiyao:automation', event); }, (task, run) => {
       if (!Notification.isSupported()) return;

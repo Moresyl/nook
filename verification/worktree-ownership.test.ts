@@ -1,4 +1,5 @@
 import { execFile } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { lstat, mkdir, mkdtemp, open, readFile, realpath, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
@@ -32,6 +33,32 @@ afterEach(async () => {
 });
 
 describe('local worktree creation receipts', () => {
+  it('retains private chat associations without creating authority for an external folder and preserves legacy no-op bytes', async () => {
+    const { manager, root, path, file, readTrees } = await fixture();
+    await manager.rememberConversations(path, ['external-chat']); await expect(lstat(file)).rejects.toMatchObject({ code: 'ENOENT' });
+    const receipt = await manager.recordCreated(root, path), before = await readFile(file);
+    await manager.rememberConversations(path, []); expect(await readFile(file)).toEqual(before);
+    await manager.rememberConversations(path, ['one', 'one', 'two']);
+    const rows = await new WorktreeOwnership(file, readTrees).list(root); expect(rows).toEqual([{ ...receipt, conversationIds: ['one', 'two'] }]);
+    const remembered = await readFile(file); await manager.rememberConversations(path, ['two']); expect(await readFile(file)).toEqual(remembered);
+    expect(await manager.recordCreated(root, path)).toEqual(rows[0]); rows[0].conversationIds!.push('mutated-copy'); expect((await manager.list(root))[0].conversationIds).toEqual(['one', 'two']);
+  });
+  it('rejects invalid or oversized association publication while preserving exact receipts on writer failure', async () => {
+    const { manager, root, path, file, readTrees } = await fixture(); await manager.recordCreated(root, path); const before = await readFile(file);
+    for (const raw of [null, [1], [''], ['x'.repeat(129)]]) await expect(manager.rememberConversations(path, raw)).rejects.toThrow();
+    const failed = new WorktreeOwnership(file, readTrees, async () => { throw new Error('private write failed'); });
+    await expect(failed.rememberConversations(path, ['chat'])).rejects.toThrow('could not be saved'); expect(await readFile(file)).toEqual(before);
+    await manager.rememberConversations(path, Array.from({ length: 10000 }, (_, index) => `chat-${index}`)); const full = await readFile(file);
+    await expect(manager.rememberConversations(path, ['extra'])).rejects.toThrow('could not be saved'); expect(await readFile(file)).toEqual(full);
+  });
+  it('refuses a new ledger larger than its readable limit without overwriting the last readable receipts', async () => {
+    const { manager, root, path, file } = await fixture(); await manager.recordCreated(root, path);
+    const ledger = JSON.parse(await readFile(file, 'utf8')), original = ledger.records[0];
+    for (let index = 0; index < 200; index++) ledger.records.push({ ...structuredClone(original), id: randomUUID(), identity: { ...structuredClone(original.identity), directory: { ...original.identity.directory, path: join(dirname(path), String(index).padStart(3, '0') + 'x'.repeat(3900)) } } });
+    await atomicJson(file, ledger); const before = await readFile(file); expect(before.length).toBeLessThan(2_000_000);
+    await expect(manager.rememberConversations(path, Array.from({ length: 10000 }, (_, index) => String(index).padStart(5, '0') + 'x'.repeat(120)))).rejects.toThrow('could not be saved');
+    expect(await readFile(file)).toEqual(before);
+  });
   it.each(['', 'relative', 'C:relative', 'E:\\bad\npath'])('rejects invalid receipt paths before filesystem work: %j', path => {
     expect(ownedWorktreePathSchema.safeParse(path).success).toBe(false);
     expect(() => new WorktreeOwnership(path, vi.fn())).toThrow();

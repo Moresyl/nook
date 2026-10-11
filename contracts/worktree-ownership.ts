@@ -8,7 +8,7 @@ export const worktreeOwnershipSourceSchema = z.object({ projectId: projectSchema
 export const worktreePinRequestSchema = worktreePinSchema.extend({ source: worktreeOwnershipSourceSchema });
 export type WorktreeOwnershipSource = z.infer<typeof worktreeOwnershipSourceSchema>;
 export type WorktreePinRequest = z.infer<typeof worktreePinRequestSchema>;
-export type ManagedWorktree = { id: string; path: string; createdAt: number; pinned: boolean; verified: boolean };
+export type ManagedWorktree = { id: string; path: string; createdAt: number; pinned: boolean; verified: boolean; conversationIds?: string[] };
 
 export function worktreePinError(problem: unknown): string {
   const message = uiErrorMessage(problem);

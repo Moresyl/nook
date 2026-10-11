@@ -1,4 +1,6 @@
 const knownErrors = new Map<string, string>([
+  ['Worktree cleanup is running. Retry after it finishes.', '工作树管理正在处理其他操作，请完成后重试。'],
+  ['The workspace is busy. Retry worktree cleanup after current actions finish.', '工作区正在处理其他操作，请完成后重试。'],
   ['The linked worktree project changed. Refresh the worktree list.', '关联项目已变更，请刷新工作树列表后重试。'],
   ['The linked worktree conversation changed. Refresh the worktree list.', '关联会话已变更，请刷新工作树列表后重试。'],
   ['The current chat changed. Retry the worktree navigation.', '当前聊天已变更，请重新打开项目聊天。'],

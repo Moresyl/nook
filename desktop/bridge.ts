@@ -179,6 +179,11 @@ const bridge: Bridge = {
   captureWorktreeSnapshot: input => invoke('captureWorktreeSnapshot', input),
   worktreeSnapshots: source => invoke('worktreeSnapshots', source),
   restoreWorktreeSnapshot: input => invoke('restoreWorktreeSnapshot', input),
+  removeManagedWorktree: input => invoke('removeManagedWorktree', input),
+  onWorktreeCleanup: listener => {
+    const handler = (_event: Electron.IpcRendererEvent, report: Parameters<typeof listener>[0]) => listener(report);
+    ipcRenderer.on('nook:worktree-cleanup', handler); return () => ipcRenderer.removeListener('nook:worktree-cleanup', handler);
+  },
   gitFileView: (id, file, staged) => invoke('gitFileView', id, file, staged),
   gitStage: (id, paths, staged) => invoke('gitStage', id, paths, staged),
   gitCommit: (id, message) => invoke('gitCommit', id, message),
