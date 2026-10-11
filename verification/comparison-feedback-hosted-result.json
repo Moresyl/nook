@@ -1,0 +1,26 @@
+{
+  "verifiedAt": "2026-10-11T04:30:52.420Z",
+  "archive": "E:/NookVerification/ComparisonFeedbackHosted-20261011",
+  "sourceHead": "0ba29a33e079322434ad1ddf6429877c84fb705e",
+  "runId": 38111720209,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38111720209",
+  "verification": {
+    "id": 114388499886,
+    "conclusion": "failure",
+    "steps": 0
+  },
+  "publication": {
+    "id": 114388507342,
+    "conclusion": "skipped",
+    "steps": 0
+  },
+  "annotations": [
+    {
+      "annotation_level": "failure",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    }
+  ],
+  "hostedVerificationPassed": false,
+  "released": false,
+  "scope": "Exact new source-head push workflow. GitHub explicitly prevented verification from starting due account payments/spending limit; this is not a failed executed application test. Publish also requires a release tag; no tag or release was created. Local test results do not substitute for successful hosted verification."
+}
