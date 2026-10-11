@@ -1,0 +1,39 @@
+{
+  "verifiedAt": "2026-10-11T17:08:34.387Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotDrainPass-20261012",
+  "source": [
+    {
+      "path": "desktop/services/worktree-snapshots.ts",
+      "sha256": "0f8ad128a924ce565d80cf9d795e462be3b07ee17fbf6a40730e381e6ba9720c"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-store.ts",
+      "sha256": "aa172cd991389a3e29b050f594d57d93a36dc5216b71cb3e69da503ea6357a4b"
+    },
+    {
+      "path": "desktop/services/project-git.ts",
+      "sha256": "e2345ce034505007cea815b5cb77e0f533950bf612ed81cb13f461f7ed33dbf0"
+    },
+    {
+      "path": "contracts/worktree-snapshots.ts",
+      "sha256": "9bfce89f6e5d3eb099f2255c236ebcaf6dfc8bfc4ab379a561d20d885d1764b1"
+    },
+    {
+      "path": "verification/worktree-snapshots.test.ts",
+      "sha256": "f867d796f177ff22064150fa6a8e30b7e3b58f0e71e2175eae77a1322bb4fb4a"
+    },
+    {
+      "path": "verification/worktree-snapshot-store.test.ts",
+      "sha256": "42b2e2142a72e046b810291a632a3ad5d4d98811da6a5e3873629aebb7e536af"
+    }
+  ],
+  "typesPassed": true,
+  "testFiles": 2,
+  "tests": 33,
+  "durationSeconds": 56.85,
+  "evidence": [
+    "Accepted held capture completes and is readable after reopening storage; shutdown waits and rejects all new actions during and after closing.",
+    "Missing-store list and read do not create storage directories; actual source/restore service and store checks pass."
+  ],
+  "scope": "Application-service and storage checks only. Source retained before further service edits. Temporary unit fixtures cleaned by afterEach. No native/renderer, deletion, automatic cleanup or distribution acceptance."
+}

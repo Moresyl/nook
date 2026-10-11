@@ -36,9 +36,13 @@ export class WorktreeSnapshotStore {
     });
     this.pending = operation; return operation;
   }
-  private async root(): Promise<string> {
-    await mkdir(this.directory, { recursive: true });
-    const actual = await realpath(this.directory), info = await lstat(this.directory);
+  private root(): Promise<string>;
+  private root(create: false): Promise<string | undefined>;
+  private async root(create = true): Promise<string | undefined> {
+    if (create) await mkdir(this.directory, { recursive: true });
+    const info = await lstat(this.directory).catch(error => { if (!create && error.code === 'ENOENT') return undefined; throw error; });
+    if (!info) return undefined;
+    const actual = await realpath(this.directory);
     if (!info.isDirectory() || info.isSymbolicLink() || canonicalKey(actual) !== canonicalKey(resolve(this.directory))) throw new Error(failure);
     return actual;
   }
@@ -68,10 +72,11 @@ export class WorktreeSnapshotStore {
       return worktreeSnapshotSummary(stored);
     });
   }
-  read(id: string): Promise<WorktreeSnapshot> { return this.run(async () => { z.uuid().parse(id); return this.readAt(await this.root(), id); }); }
+  read(id: string): Promise<WorktreeSnapshot> { return this.run(async () => { z.uuid().parse(id); const root = await this.root(false); if (!root) throw new Error(failure); return this.readAt(root, id); }); }
   list(): Promise<WorktreeSnapshotSummary[]> {
     return this.run(async () => {
-      const root = await this.root(), summaries: WorktreeSnapshotSummary[] = [];
+      const root = await this.root(false), summaries: WorktreeSnapshotSummary[] = [];
+      if (!root) return summaries;
       for (const name of await this.names(root)) summaries.push(worktreeSnapshotSummary(await this.readAt(root, name.slice(0, -8))));
       return summaries.sort((a, b) => b.createdAt - a.createdAt || a.id.localeCompare(b.id));
     });

@@ -5,7 +5,7 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'nod
 import { gitBranchNameSchema, type GitBranch, type GitBranches, type GitFile, type GitFileView, type GitStatus } from '../../contracts/projects';
 import { createWorktreeSchema, worktreeUpstreamPolicySchema, type CreateWorktree, type GitWorktree, type WorktreeCreated, type WorktreeUpstreamPolicy } from '../../contracts/project-worktrees';
 import { projectDocument, scopedPath } from './project-files';
-import { GitOperationQueue, type GitDirectoryIdentity } from './git-operation-queue';
+import { GitOperationQueue, type GitDirectoryIdentity, type GitRepositoryIdentity } from './git-operation-queue';
 
 const runFile = promisify(execFile);
 export function parseGitWorktrees(output: string): GitWorktree[] {
@@ -72,7 +72,10 @@ export class ProjectGit {
   private async update<T>(root: string, action: () => Promise<T>): Promise<T> {
     return this.operations.run(root, action);
   }
-  private async repositoryIdentity(root: string) {
+  async exclusive<T>(root: string, action: (identity: GitRepositoryIdentity) => Promise<T>): Promise<T> {
+    return this.update(root, async () => action(await this.repositoryIdentity(root)));
+  }
+  async repositoryIdentity(root: string) {
     try {
       const cwd = await scopedPath(root, '.');
       const common = (await this.run(root, ['rev-parse', '--path-format=absolute', '--git-common-dir'])).replace(/\r?\n$/, '');

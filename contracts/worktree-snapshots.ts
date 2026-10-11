@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { ownedWorktreePathSchema } from './worktree-ownership';
+import { ownedWorktreePathSchema, worktreeOwnershipSourceSchema } from './worktree-ownership';
+import type { GitWorktree } from './project-worktrees';
 import { worktreeSnapshotFilesSchema } from './worktree-snapshot-files';
 
 export const worktreeSnapshotStorageLimits = { indexBytes: 8 * 1024 * 1024, packBytes: 64 * 1024 * 1024, textBytes: 192 * 1024 * 1024, compressedBytes: 128 * 1024 * 1024, snapshots: 100 } as const;
@@ -12,3 +13,8 @@ export const worktreeSnapshotSchema = z.object({
 }).strict();
 export type WorktreeSnapshot = z.infer<typeof worktreeSnapshotSchema>;
 export type WorktreeSnapshotSummary = Omit<WorktreeSnapshot, 'files' | 'index' | 'pack'> & { entries: number; fileBytes: number };
+export const createWorktreeSnapshotSchema = z.object({ source: worktreeOwnershipSourceSchema, path: ownedWorktreePathSchema }).strict();
+export const restoreWorktreeSnapshotSchema = z.object({ source: worktreeOwnershipSourceSchema, snapshotId: z.uuid(), path: ownedWorktreePathSchema }).strict();
+export type CreateWorktreeSnapshot = z.infer<typeof createWorktreeSnapshotSchema>;
+export type RestoreWorktreeSnapshot = z.infer<typeof restoreWorktreeSnapshotSchema>;
+export type WorktreeRestored = { worktree: GitWorktree; managedRecord: 'saved' | 'failed' };

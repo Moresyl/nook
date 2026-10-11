@@ -24,6 +24,7 @@ import type { GenerateContextSummary, ChangeContextSummary, ContextSummaryPrevie
 import type { CreateWorktree, GitWorktree, WorktreeCreated } from './project-worktrees';
 import type { WorktreeRegistration } from './worktree-registration';
 import type { ManagedWorktree, WorktreeOwnershipSource, WorktreePinRequest } from './worktree-ownership';
+import type { CreateWorktreeSnapshot, RestoreWorktreeSnapshot, WorktreeRestored, WorktreeSnapshotSummary } from './worktree-snapshots';
 
 export type RunEvent = { threadId: string; messageId: string; delta?: string; activity?: ToolActivity; invocation?: ModelInvocation; approval?: ApprovalRequest; approvalResolved?: string; message?: import('./workspace').Message; state?: Workspace; error?: string };
 export type { FileEntry } from './projects';
@@ -155,6 +156,9 @@ export type Bridge = {
   registerWorktreeProject(input: WorktreeRegistration): Promise<Workspace>;
   managedWorktrees(source: WorktreeOwnershipSource): Promise<ManagedWorktree[]>;
   setWorktreePinned(input: WorktreePinRequest): Promise<void>;
+  captureWorktreeSnapshot(input: CreateWorktreeSnapshot): Promise<WorktreeSnapshotSummary>;
+  worktreeSnapshots(source: WorktreeOwnershipSource): Promise<WorktreeSnapshotSummary[]>;
+  restoreWorktreeSnapshot(input: RestoreWorktreeSnapshot): Promise<WorktreeRestored>;
   gitFileView(projectId: string, file: GitFile, staged: boolean): Promise<GitFileView>;
   gitStage(projectId: string, paths: string[], staged: boolean): Promise<GitStatus>;
   gitCommit(projectId: string, message: string): Promise<GitStatus>;

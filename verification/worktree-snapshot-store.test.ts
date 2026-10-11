@@ -27,6 +27,10 @@ async function fixture(files?: WorkspaceBackupFiles) {
   return { root, directory, store };
 }
 describe('private durable worktree snapshot store', () => {
+  it('reads an empty missing store without creating its folder and retains missing-snapshot errors', async () => {
+    const { directory, store } = await fixture(); expect(await store.list()).toEqual([]);
+    await expect(store.read(randomUUID())).rejects.toThrow('retained'); await expect(readdir(directory)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
   it('atomically saves bounded gzip bytes, verifies readback, lists summaries and reopens exact state', async () => {
     const { root, directory, store } = await fixture(), original = snapshot(root, 1), newer = snapshot(root, 2);
     const summary = await store.save(original); expect(summary).toEqual(worktreeSnapshotSummary(original));

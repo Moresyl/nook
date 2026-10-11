@@ -561,9 +561,15 @@ let worktreeUpstreamResult;
 let worktreeRegistrationResult;
 let worktreeOwnershipResult;
 let worktreePinningResult;
+let worktreeSnapshotsResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_WORKTREE_PINNING_ONLY) {
+  if (process.env.NOOK_TEST_WORKTREE_SNAPSHOTS_ONLY) {
+    const { verifyWorktreeSnapshots } = await import('./verify-worktree-snapshots.mjs');
+    const run = await verifyWorktreeSnapshots({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
+    page = run.page; worktreeSnapshotsResult = run.result;
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_WORKTREE_PINNING_ONLY) {
     const { verifyWorktreePinning } = await import('./verify-worktree-pinning.mjs');
     const run = await verifyWorktreePinning({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreePinningResult = run.result;
@@ -1284,6 +1290,8 @@ try {
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const { verifyWorktreePinning } = await import('./verify-worktree-pinning.mjs');
   const worktreePinningRun = await verifyWorktreePinning({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreePinningRun.page; worktreePinningResult = worktreePinningRun.result;
+  const { verifyWorktreeSnapshots } = await import('./verify-worktree-snapshots.mjs');
+  const worktreeSnapshotsRun = await verifyWorktreeSnapshots({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeSnapshotsRun.page; worktreeSnapshotsResult = worktreeSnapshotsRun.result;
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
   const contextSummariesRun = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = contextSummariesRun.page; contextSummariesResult = contextSummariesRun.result;
@@ -1321,6 +1329,7 @@ try {
   if (fullResult && worktreeRegistrationResult) { fullResult.worktreeRegistration = worktreeRegistrationResult; fullResult.screenshots.push(...worktreeRegistrationResult.screenshots); }
   if (fullResult && worktreeOwnershipResult) { fullResult.worktreeOwnership = worktreeOwnershipResult; fullResult.screenshots.push(...worktreeOwnershipResult.screenshots); }
   if (fullResult && worktreePinningResult) { fullResult.worktreePinning = worktreePinningResult; fullResult.screenshots.push(...worktreePinningResult.screenshots); }
+  if (fullResult && worktreeSnapshotsResult) { fullResult.worktreeSnapshots = worktreeSnapshotsResult; fullResult.screenshots.push(...worktreeSnapshotsResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1472,6 +1481,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && worktreeSnapshotsResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'worktree-snapshots-packaged-result.json' : 'worktree-snapshots-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-snapshots suite' }), ...worktreeSnapshotsResult }, null, 2));
+    console.log(`Verified ${worktreeSnapshotsResult.checks} worktree snapshot checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && worktreePinningResult) {
     assert.deepEqual(errors, []);

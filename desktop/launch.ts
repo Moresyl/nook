@@ -29,6 +29,8 @@ import { createWorktreeSchema } from '../contracts/project-worktrees';
 import { registerWorktreeProject } from './services/worktree-registration';
 import { managedWorktrees, setWorktreePinned } from './services/worktree-pinning';
 import { WorktreeOwnership } from './services/worktree-ownership';
+import { WorktreeSnapshots } from './services/worktree-snapshots';
+import { WorktreeSnapshotStore } from './services/worktree-snapshot-store';
 import { TerminalSessions } from './services/terminal-sessions';
 import { appAssetPath } from './services/app-assets';
 import { McpConnections } from './services/mcp-connections';
@@ -66,6 +68,7 @@ let window: BrowserWindow | null = null;
 let vault: WorkspaceVault;
 let worktreeRoots: ManagedWorktreeRoots;
 let worktreeOwnership: WorktreeOwnership;
+let worktreeSnapshots: WorktreeSnapshots;
 let composerDrafts: ComposerDrafts;
 let messageEdits: MessageEdits;
 let engine: ConversationEngine;
@@ -413,6 +416,9 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   registerWorktreeProject: input => registerWorktreeProject(vault, root => git.worktrees(root), input),
   managedWorktrees: source => managedWorktrees(vault, worktreeOwnership, source),
   setWorktreePinned: input => setWorktreePinned(vault, worktreeOwnership, input),
+  captureWorktreeSnapshot: input => worktreeSnapshots.capture(input),
+  worktreeSnapshots: source => worktreeSnapshots.list(source),
+  restoreWorktreeSnapshot: input => worktreeSnapshots.restore(input),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),
@@ -474,7 +480,7 @@ async function finishClose(): Promise<void> {
   if (!quitRequested && desktopIntegration.canHide()) { await quickChatWindow?.flush(); window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
   if (quit) browserPanel.close();
-  if (quit) { await quickChatWindow?.shutdown(); quitting = true; await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  if (quit) { await quickChatWindow?.shutdown(); quitting = true; await worktreeSnapshots.shutdown(); await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
   else await quickChatWindow?.flush();
   closeAllowed = true; window?.close();
   if (quit) app.quit();
@@ -567,6 +573,7 @@ else {
     await vault.initialize((phase) => startupDiagnostics.phase(`vault.${phase}`));
     worktreeRoots = new ManagedWorktreeRoots(join(app.getPath('userData'), 'worktrees'));
     worktreeOwnership = new WorktreeOwnership(join(app.getPath('userData'), 'managed-worktrees.json'), root => git.worktrees(root));
+    worktreeSnapshots = new WorktreeSnapshots(vault, worktreeOwnership, git, new WorktreeSnapshotStore(join(app.getPath('userData'), 'worktree-snapshots')), (path, trees) => worktreeRoots.prepare(vault.preferences().worktrees?.root ?? '', path, trees.map(tree => tree.path)));
     startupDiagnostics.phase('services.create');
     composerDrafts = new ComposerDrafts(vault);
     assistantProfiles = new AssistantProfiles(vault);
