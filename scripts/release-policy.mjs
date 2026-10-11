@@ -15,6 +15,22 @@ function completeWorktreeSnapshots(proof) {
     && Array.isArray(proof.screenshots) && proof.screenshots.length === 33 && new Set(proof.screenshots).size === 33 && proof.screenshots.every(name => typeof name === 'string' && /^worktree-snapshots-[a-z0-9-]+-shell\.png$/.test(name));
 }
 
+export function verifyWorktreeCleanupProof(proof) {
+  const six = rows => Array.isArray(rows) && rows.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => rows.filter(row => row?.theme === theme && row.zoom === zoom).length === 1));
+  const whole = row => row && ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight', 'outline', 'contentWidth', 'contentScrollWidth', 'documentWidth', 'viewportWidth'].every(key => Number.isFinite(row[key]))
+    && typeof row.focused === 'boolean' && row.outline >= 0 && row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth
+    && row.top - row.outline >= row.viewportTop && row.bottom + row.outline <= row.viewportBottom && row.left - row.outline >= row.viewportLeft && row.right + row.outline <= row.viewportRight && row.bottom > row.top && row.right > row.left;
+  const focused = (row, label) => whole(row) && row.focused === true && row.outline > 0 && row.label === label;
+  const flags = ['ownedOnlyControlsVerified', 'dirtyPinLockProtectionVerified', 'activeTerminalProtectionVerified', 'replacementRejectionVerified', 'privateFailureGateVerified', 'referenceZoomKeyboardVerified', 'exactDeleteRestoreVerified', 'fixedChatAfterRemovalVerified', 'metadataFailureVerified', 'postCreateAutomaticVerified', 'disableConfirmationVerified', 'acceptedShutdownVerified', 'sourcePreservationVerified'];
+  if (proof?.checks !== 10 || proof.modelRequests !== 0 || !flags.every(key => proof[key] === true)
+    || !six(proof.layouts) || !proof.layouts.every(row => focused(row.error, '工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。') && whole(row.cancel) && row.cancel.label === '取消' && whole(row.submit) && row.submit.label === '保存快照并删除')
+    || !six(proof.keyboardLayouts) || !proof.keyboardLayouts.every(row => focused(row, '保存快照并删除'))
+    || !six(proof.disableLayouts) || !proof.disableLayouts.every(row => focused(row.cancel, '保留自动清理') && whole(row.submit) && row.submit.label === '停用自动清理')
+    || !Array.isArray(proof.screenshots) || proof.screenshots.length !== 27 || new Set(proof.screenshots).size !== 27 || !proof.screenshots.every(name => typeof name === 'string' && /^worktree-cleanup-[a-z0-9-]+-shell\.png$/.test(name))) {
+    throw new Error('Complete worktree cleanup verification is required');
+  }
+}
+
 export function releaseVersion(tag, version) {
   if (typeof tag !== 'string' || tag !== tag.trim() || !new RegExp(`^v${versionPattern}$`).test(tag) || tag !== `v${version}`) {
     throw new Error('The release tag must exactly match the package version');
@@ -59,7 +75,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 345 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 355 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const context = desktop.contextSummaries;
@@ -71,6 +87,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   const ownership = desktop.worktreeOwnership;
   const pinning = desktop.worktreePinning;
   if (!completeWorktreeSnapshots(desktop.worktreeSnapshots)) throw new Error('Complete worktree snapshot verification is required');
+  verifyWorktreeCleanupProof(desktop.worktreeCleanup);
   if (pinning?.checks !== 6 || pinning.modelRequests !== 0 || !['ownedOnlyControlsVerified', 'heldFailureRetryVerified', 'staleSourceReadRecoveryVerified', 'backupSeparationVerified', 'normalRestartVerified', 'referenceZoomKeyboardVerified', 'replacementRejectionVerified', 'sourcePreservationVerified'].every(key => pinning[key] === true)
     || !Array.isArray(pinning.layouts) || pinning.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => pinning.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     || !pinning.layouts.every(row => ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight', 'contentWidth', 'contentScrollWidth', 'documentWidth', 'viewportWidth'].every(key => Number.isFinite(row[key])) && row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left)

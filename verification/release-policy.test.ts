@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { releaseNotes, releaseVersion, verifyRuntimeProof, type ReleaseProof } from '../scripts/release-policy.mjs';
+import { releaseNotes, releaseVersion, verifyRuntimeProof, verifyWorktreeCleanupProof, type ReleaseProof } from '../scripts/release-policy.mjs';
 import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mjs';
 
 const hash = 'a'.repeat(64);
@@ -43,9 +43,20 @@ const worktreeSnapshots = (): NonNullable<ReleaseProof['desktop']['worktreeSnaps
   restoreLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, error: snapshotBounds(), cancel: snapshotBounds(), submit: snapshotBounds(), draftRetained: true, cancelFocusVerified: true }))),
   screenshots: Array.from({ length: 33 }, (_, index) => `worktree-snapshots-fixture-${index}-shell.png`),
 });
+function worktreeCleanup(): NonNullable<ReleaseProof['desktop']['worktreeCleanup']> {
+  const bounds = (label: string, focused = false) => ({ ...snapshotBounds(), label, focused, outline: focused ? 4 : 0 });
+  const cases = ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom })));
+  return {
+    checks: 10, modelRequests: 0, ownedOnlyControlsVerified: true, dirtyPinLockProtectionVerified: true, activeTerminalProtectionVerified: true, replacementRejectionVerified: true, privateFailureGateVerified: true, referenceZoomKeyboardVerified: true, exactDeleteRestoreVerified: true, fixedChatAfterRemovalVerified: true, metadataFailureVerified: true, postCreateAutomaticVerified: true, disableConfirmationVerified: true, acceptedShutdownVerified: true, sourcePreservationVerified: true,
+    layouts: cases.map(row => ({ ...row, error: bounds('工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。', true), cancel: bounds('取消'), submit: bounds('保存快照并删除') })),
+    keyboardLayouts: cases.map(row => ({ ...row, ...bounds('保存快照并删除', true) })),
+    disableLayouts: cases.map(row => ({ ...row, cancel: bounds('保留自动清理', true), submit: bounds('停用自动清理') })),
+    screenshots: Array.from({ length: 27 }, (_, index) => `worktree-cleanup-fixture-${index}-shell.png`),
+  };
+}
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 345, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 355, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), worktreeCleanup: worktreeCleanup(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -97,6 +108,46 @@ function worktreePinning(): NonNullable<ReleaseProof['desktop']['worktreePinning
     keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '固定工作树' })),
   };
 }
+
+describe('worktree cleanup release evidence', () => {
+  it('requires all real safety, scheduler, preservation and shutdown outcomes', () => {
+    expect(() => verifyWorktreeCleanupProof(undefined)).toThrow('worktree cleanup');
+    const missing = proof(); delete missing.desktop.worktreeCleanup; expect(() => verifyRuntimeProof(missing)).toThrow('worktree cleanup');
+    for (const [key, value] of Object.entries(worktreeCleanup())) {
+      if (typeof value !== 'boolean') continue;
+      const invalid = worktreeCleanup(); (invalid as unknown as Record<string, unknown>)[key] = false; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup');
+    }
+    for (const [key, value] of Object.entries({ checks: 9, modelRequests: 1 })) { const invalid = worktreeCleanup(); (invalid as unknown as Record<string, unknown>)[key] = value; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup'); }
+    expect(() => verifyWorktreeCleanupProof(worktreeCleanup())).not.toThrow(); expect(() => verifyRuntimeProof(proof())).not.toThrow();
+  });
+  it('rejects previous complete-suite counts without the ten cleanup checks', () => {
+    for (const checks of [345, 354]) { const invalid = proof(); invalid.desktop.checks = checks; expect(() => verifyRuntimeProof(invalid)).toThrow('Complete desktop'); }
+  });
+  it('requires distinct theme and zoom cases in deletion, focus and disable confirmation arrays', () => {
+    for (const key of ['layouts', 'keyboardLayouts', 'disableLayouts'] as const) {
+      const missing = worktreeCleanup(); missing[key] = []; expect(() => verifyWorktreeCleanupProof(missing)).toThrow('worktree cleanup');
+      const duplicate = worktreeCleanup(); duplicate[key][1].zoom = 1; expect(() => verifyWorktreeCleanupProof(duplicate)).toThrow('worktree cleanup');
+      const wrong = worktreeCleanup(); wrong[key][0].theme = 'unknown'; expect(() => verifyWorktreeCleanupProof(wrong)).toThrow('worktree cleanup');
+    }
+  });
+  it('rejects clipped, overflowing and nonfinite confirmation errors or footer controls', () => {
+    for (const key of ['error', 'cancel', 'submit'] as const) for (const [dimension, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501, contentWidth: 0, contentScrollWidth: 351, documentWidth: 501, viewportWidth: 0, outline: NaN, viewportTop: Infinity })) {
+      const invalid = worktreeCleanup(); (invalid.layouts[0][key] as unknown as Record<string, unknown>)[dimension] = value; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup');
+    }
+    for (const key of ['cancel', 'submit'] as const) { const invalid = worktreeCleanup(); invalid.disableLayouts[0][key].bottom = 361; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup'); }
+  });
+  it('rejects lost focus or mislabeled deletion and disable actions', () => {
+    for (const [key, value] of Object.entries({ outline: 0, focused: false, label: 'Another action', top: 63 })) {
+      for (const kind of ['keyboard', 'error', 'disable'] as const) { const invalid = worktreeCleanup(); const row = kind === 'keyboard' ? invalid.keyboardLayouts[0] : kind === 'error' ? invalid.layouts[0].error : invalid.disableLayouts[0].cancel; (row as unknown as Record<string, unknown>)[key] = value; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup'); }
+    }
+    const wrong = worktreeCleanup(); wrong.disableLayouts[0].submit.label = 'Cancel'; expect(() => verifyWorktreeCleanupProof(wrong)).toThrow('worktree cleanup');
+  });
+  it('requires twenty-seven safe distinct native originals', () => {
+    const missing = worktreeCleanup(); missing.screenshots.pop(); expect(() => verifyWorktreeCleanupProof(missing)).toThrow('worktree cleanup');
+    const duplicate = worktreeCleanup(); duplicate.screenshots[1] = duplicate.screenshots[0]; expect(() => verifyWorktreeCleanupProof(duplicate)).toThrow('worktree cleanup');
+    for (const name of ['../escape-shell.png', 'worktree-snapshots-error-shell.png', 'worktree-cleanup-error.png']) { const invalid = worktreeCleanup(); invalid.screenshots[0] = name; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup'); }
+  });
+});
 
 describe('worktree snapshot release evidence', () => {
   it('requires real private capture, exact restore, restart, backup separation and accepted quit drainage', () => {

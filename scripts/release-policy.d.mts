@@ -92,7 +92,7 @@ export type WorktreeSnapshotsProof = {
 };
 export type ReleaseProof = {
   audit: { compiledAssetsMatchVerifiedBuild: boolean; removedUiFontReferencesVerified: boolean; oldProductIdentityMatches: string[]; unresolvedAssets: string[]; unresolvedDistribution: string[]; executableSha256: string; archiveSha256: string };
-  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
+  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; worktreeCleanup?: WorktreeCleanupProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
   surfaces: ReleaseProof['desktop'];
   preview: ReleaseProof['desktop'] & ProjectPreviewProof;
   branches: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; modelRequests: number; ambiguousHistoryRecoveryVerified: boolean; manualOrderingVerified: boolean; orderingFailureRecoveryVerified: boolean; orderingBackupRestartVerified: boolean };
@@ -104,3 +104,15 @@ export type ReleaseProof = {
   installer: { checks: number; normalCloseVerified: boolean; registrationVerified: boolean; shortcutsVerified: boolean; uninstalled: boolean; userDataRetained: boolean; executableSha256: string; archiveSha256: string; installerSha256: string };
 };
 export function verifyRuntimeProof(proof: ReleaseProof): void;
+type WorktreeCleanupBounds = Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'> & { label: string; outline: number; focused: boolean };
+export type WorktreeCleanupProof = {
+  checks: number; modelRequests: number; ownedOnlyControlsVerified: boolean; dirtyPinLockProtectionVerified: boolean;
+  activeTerminalProtectionVerified: boolean; replacementRejectionVerified: boolean; privateFailureGateVerified: boolean;
+  referenceZoomKeyboardVerified: boolean; exactDeleteRestoreVerified: boolean; fixedChatAfterRemovalVerified: boolean;
+  metadataFailureVerified: boolean; postCreateAutomaticVerified: boolean; disableConfirmationVerified: boolean;
+  acceptedShutdownVerified: boolean; sourcePreservationVerified: boolean; screenshots: string[];
+  layouts: { theme: string; zoom: number; error: WorktreeCleanupBounds; cancel: WorktreeCleanupBounds; submit: WorktreeCleanupBounds }[];
+  keyboardLayouts: (WorktreeCleanupBounds & { theme: string; zoom: number })[];
+  disableLayouts: { theme: string; zoom: number; cancel: WorktreeCleanupBounds; submit: WorktreeCleanupBounds }[];
+};
+export function verifyWorktreeCleanupProof(proof: WorktreeCleanupProof | undefined): void;

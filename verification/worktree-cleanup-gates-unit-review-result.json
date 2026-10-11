@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-10-11T19:12:41.035Z",
+  "archive": "E:/NookVerification/WorktreeCleanupGatesUnitPass-20261012",
+  "baseHead": "8d6bd6a39d6377eca86a0b88cfa9b634d6b0e6fd",
+  "overlay": [
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "745f8a6297978047e43167c8952f5a05363275c1760cfbfdef01473dd8d0f6c3"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "fc2fece6fab3dc0f232f307e394f07676f0b0de7130685d8c2243857e0922ed7"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "1d11f4ded02690c8bd29e6788454e3e139fb8656badf99709eed03e420e9a05b"
+    },
+    {
+      "path": "scripts/verify-worktree-cleanup.mjs",
+      "sha256": "f6aded4376b62dc5fbccb1f005a9a6d0e345fad5cdc20172dd8ce424321fc4e5"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "4e62e664e8be42f91418a2fabfbf0bef4f640858686f2c79038d6ad364e23534"
+    }
+  ],
+  "tests": 101,
+  "typesPassed": true,
+  "installerSyntaxPassed": true,
+  "evidence": [
+    "Six new release-gate cases require ten native cleanup checks and all safety/scheduling/quit flags, unique six-case confirmation matrices, whole finite geometry and actual labeled focus, and 27 safe unique screenshots.",
+    "Complete suite minimum is 355. Installer invokes the same cleanup proof validator and retains its eight existing data-preservation sentinels unchanged."
+  ],
+  "scope": "Release policy and type/syntax validation only. Stronger native terminal/replacement checks and updated 27-image report are not yet executed; no installed distribution acceptance."
+}
