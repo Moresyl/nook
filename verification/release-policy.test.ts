@@ -37,7 +37,7 @@ const worktreeOverview = (): NonNullable<ReleaseProof['desktop']['worktreeOvervi
 });
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 331, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 337, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -78,6 +78,47 @@ function worktreeUpstream(): NonNullable<ReleaseProof['desktop']['worktreeUpstre
     keyboardLayouts: worktreeKeyboardLayouts(),
   };
 }
+
+function worktreePinning(): NonNullable<ReleaseProof['desktop']['worktreePinning']> {
+  return {
+    checks: 6, modelRequests: 0, ownedOnlyControlsVerified: true, heldFailureRetryVerified: true,
+    staleSourceReadRecoveryVerified: true, backupSeparationVerified: true, normalRestartVerified: true,
+    referenceZoomKeyboardVerified: true, replacementRejectionVerified: true, sourcePreservationVerified: true,
+    screenshots: Array.from({ length: 21 }, (_, index) => `worktree-pinning-${index}-shell.png`),
+    layouts: worktreeConversations().layouts,
+    keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '固定工作树' })),
+  };
+}
+
+describe('worktree pinning release evidence', () => {
+  it('requires the complete count and all actual local-pin, failure, replacement and recovery guarantees', () => {
+    for (const checks of [331, 336]) { const invalid = proof(); invalid.desktop.checks = checks; expect(() => verifyRuntimeProof(invalid)).toThrow('Complete desktop'); }
+    const missing = proof(); delete missing.desktop.worktreePinning; expect(() => verifyRuntimeProof(missing)).toThrow('worktree pinning');
+    for (const [key, value] of Object.entries({ checks: 5, modelRequests: 1, ownedOnlyControlsVerified: false, heldFailureRetryVerified: false, staleSourceReadRecoveryVerified: false, backupSeparationVerified: false, normalRestartVerified: false, referenceZoomKeyboardVerified: false, replacementRejectionVerified: false, sourcePreservationVerified: false, layouts: [], keyboardLayouts: [], screenshots: [] })) {
+      const invalid = proof(); (invalid.desktop.worktreePinning as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree pinning');
+    }
+  });
+  it('rejects clipped errors, overflow, non-finite bounds and missing theme/zoom cases', () => {
+    for (const [key, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501, contentWidth: 0, contentScrollWidth: 351, viewportWidth: 0, documentWidth: 501, viewportBottom: Infinity, viewportLeft: NaN })) {
+      const invalid = proof(); (invalid.desktop.worktreePinning!.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree pinning');
+    }
+    const reversed = proof(); reversed.desktop.worktreePinning!.layouts[0].bottom = 99; expect(() => verifyRuntimeProof(reversed)).toThrow('worktree pinning');
+    const duplicate = proof(); duplicate.desktop.worktreePinning!.layouts[1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree pinning');
+  });
+  it('requires the actual pin label and complete finite keyboard outline bounds', () => {
+    for (const [key, value] of Object.entries({ label: '其他按钮', outline: 0, top: 62, bottom: 360, left: 128, right: 500, viewportBottom: Infinity, viewportLeft: NaN })) {
+      const invalid = proof(); (invalid.desktop.worktreePinning!.keyboardLayouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree pinning');
+    }
+    const reversed = proof(); reversed.desktop.worktreePinning!.keyboardLayouts[0].bottom = 99; expect(() => verifyRuntimeProof(reversed)).toThrow('worktree pinning');
+    const duplicate = proof(); duplicate.desktop.worktreePinning!.keyboardLayouts[1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree pinning');
+  });
+  it('requires 21 safe unique originals from this feature', () => {
+    const duplicate = proof(); duplicate.desktop.worktreePinning!.screenshots[1] = duplicate.desktop.worktreePinning!.screenshots[0]; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree pinning');
+    for (const filename of ['../escape-shell.png', 'worktree-ownership-error-shell.png', 'worktree-pinning-error.png', 'worktree-pinning-秘密-shell.png']) {
+      const invalid = proof(); invalid.desktop.worktreePinning!.screenshots[0] = filename; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree pinning');
+    }
+  });
+});
 
 function worktreeOwnership(): NonNullable<ReleaseProof['desktop']['worktreeOwnership']> {
   return {
