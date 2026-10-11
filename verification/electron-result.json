@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T12:19:19.572Z",
+  "verifiedAt": "2026-10-11T13:23:28.650Z",
   "variant": "development executable",
-  "checks": 321,
+  "checks": 326,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181178,
-    "compressedBytes": 242337,
+    "expandedBytes": 84181186,
+    "compressedBytes": 242324,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791719923487,
+        "startedAt": 1791723505564,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791719924944
+        "finishedAt": 1791723507460
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791719925171,
+        "startedAt": 1791723507694,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791719926681
+        "finishedAt": 1791723509399
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791719928714,
+        "startedAt": 1791723511753,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791719930156
+        "finishedAt": 1791723513305
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 10.5,
+    "scopedReadMs": 20.400000005960464,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1423,6 +1423,25 @@
     "worktree-upstream-dark-125-error-shell.png",
     "worktree-upstream-dark-150-setting-shell.png",
     "worktree-upstream-dark-150-error-shell.png",
+    "worktree-registration-invalid-light-shell.png",
+    "worktree-registration-cancel-focus-light-shell.png",
+    "worktree-registration-save-held-light-shell.png",
+    "worktree-registration-save-error-light-shell.png",
+    "worktree-registration-registered-light-shell.png",
+    "worktree-registration-stale-source-light-shell.png",
+    "worktree-registration-restore-restart-light-shell.png",
+    "worktree-registration-light-100-form-shell.png",
+    "worktree-registration-light-100-error-shell.png",
+    "worktree-registration-light-125-form-shell.png",
+    "worktree-registration-light-125-error-shell.png",
+    "worktree-registration-light-150-form-shell.png",
+    "worktree-registration-light-150-error-shell.png",
+    "worktree-registration-dark-100-form-shell.png",
+    "worktree-registration-dark-100-error-shell.png",
+    "worktree-registration-dark-125-form-shell.png",
+    "worktree-registration-dark-125-error-shell.png",
+    "worktree-registration-dark-150-form-shell.png",
+    "worktree-registration-dark-150-error-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2615,70 +2634,120 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 169.10200000000054
+                }
+              ]
             }
           ]
         },
@@ -5420,10 +5489,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-xHK3tQ\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-xHK3tQ\\worktrees/nook-dba21e69",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-xHK3tQ\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-xHK3tQ\\管理 工作树 🧭/nook-39464e79",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\worktrees/nook-1b2e55b3",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A\\管理 工作树 🧭/nook-c06769ae",
     "errorLayouts": [
       {
         "top": 543.888916015625,
@@ -5662,51 +5731,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "2ff7824b-963a-4363-9750-c467acd3ff50",
-        "526856b8-b1b4-4292-a68d-b5f0204d377b",
-        "a6ccae8c-f3ec-47d5-b545-b7b65d73e944",
-        "3c3beca0-beda-405a-9c5e-5ef167a35322",
-        "907ba7b8-5305-45b7-a783-f3b8830a4372",
-        "bc77d8ee-253a-44d8-b9ac-9fec52154786",
-        "807a9f92-c0cc-4e2b-ba41-79ffa1e6edf3",
-        "222194c2-9a00-4280-a5bc-aa6ffae0c278",
-        "eedae01d-e459-4057-9372-01c940ea5ec2",
-        "0230bdbc-5d12-4ba0-96ea-72500e418a78",
-        "3865be3c-f2a0-4380-8c2c-650eac2b339b",
-        "9e46abb7-035f-424b-8fab-1f94ce4accd5",
-        "e2552a7f-1a3b-42c7-ac94-cda531faa12d",
-        "8fe9e27e-0745-4023-9245-2b8c5617fc92",
-        "5a8c0af7-3996-449f-abd4-016a87ee4b63",
-        "e4ee4364-9ce0-4c9d-8050-07b9d64e5333",
-        "1fdb4815-ec66-4e4d-afe6-c61d3aa5a4e1",
-        "b1b962cf-8872-41ec-a3a7-a0a4aa50938f",
-        "520d1473-5704-4329-9acd-23f545178cfe",
-        "14606e6e-9bd1-4238-b78c-1eeaff832460"
+        "05c18d6a-032c-48a3-bed1-8e6c386d31fa",
+        "67d2d3dc-77b2-4112-86df-f3f5310be399",
+        "f7b6efa9-ad01-4c55-bd62-66ecaa582196",
+        "d2185047-25f3-49e4-9348-a0029df94d5d",
+        "a5b5957e-8983-4e68-bedd-d9852a6191ae",
+        "1588e41d-f8bf-463d-8a21-cf873130dee1",
+        "4ae7f4cb-0263-49dd-828e-9d66a9e534f9",
+        "0e8fa7eb-6e2f-48ec-8976-c33783626db4",
+        "6fbc8d7b-94f4-46f9-896c-de1c65eb1afa",
+        "0223b3b0-5836-4ef1-adfe-61518eb9550e",
+        "d2a6c5dc-6630-4325-8158-79179e6a1e2c",
+        "dfd6f828-260a-427d-8468-5ceff08b7fe0",
+        "225fc2a5-f651-4243-8124-6b0320f25b23",
+        "8fe017c9-f554-4f74-9c75-e80ce8311044",
+        "9da00f76-fbfd-4433-889e-39eac83a2784",
+        "2a94b9ac-2e24-48b6-b392-d91517eb177f",
+        "24e1d752-a872-4810-94be-17a9c27fa73f",
+        "23372f1a-d882-4a75-a7e8-557dc893efd6",
+        "1cfcce85-793d-48e6-9659-2b9c1d545c27",
+        "bf5bdb96-1bdc-4bfc-a433-e66735f5ca2b"
       ],
       [
-        "97e9b79a-2bb1-488f-9b01-37c1722c626c"
+        "d1150ab6-f7ad-4926-aac6-a7cc820a6a55"
       ],
       [
-        "2ff7824b-963a-4363-9750-c467acd3ff50",
-        "526856b8-b1b4-4292-a68d-b5f0204d377b",
-        "a6ccae8c-f3ec-47d5-b545-b7b65d73e944",
-        "3c3beca0-beda-405a-9c5e-5ef167a35322",
-        "907ba7b8-5305-45b7-a783-f3b8830a4372",
-        "bc77d8ee-253a-44d8-b9ac-9fec52154786",
-        "807a9f92-c0cc-4e2b-ba41-79ffa1e6edf3",
-        "222194c2-9a00-4280-a5bc-aa6ffae0c278",
-        "eedae01d-e459-4057-9372-01c940ea5ec2",
-        "0230bdbc-5d12-4ba0-96ea-72500e418a78",
-        "3865be3c-f2a0-4380-8c2c-650eac2b339b",
-        "9e46abb7-035f-424b-8fab-1f94ce4accd5",
-        "e2552a7f-1a3b-42c7-ac94-cda531faa12d",
-        "8fe9e27e-0745-4023-9245-2b8c5617fc92",
-        "5a8c0af7-3996-449f-abd4-016a87ee4b63",
-        "e4ee4364-9ce0-4c9d-8050-07b9d64e5333",
-        "1fdb4815-ec66-4e4d-afe6-c61d3aa5a4e1",
-        "b1b962cf-8872-41ec-a3a7-a0a4aa50938f",
-        "520d1473-5704-4329-9acd-23f545178cfe",
-        "14606e6e-9bd1-4238-b78c-1eeaff832460"
+        "05c18d6a-032c-48a3-bed1-8e6c386d31fa",
+        "67d2d3dc-77b2-4112-86df-f3f5310be399",
+        "f7b6efa9-ad01-4c55-bd62-66ecaa582196",
+        "d2185047-25f3-49e4-9348-a0029df94d5d",
+        "a5b5957e-8983-4e68-bedd-d9852a6191ae",
+        "1588e41d-f8bf-463d-8a21-cf873130dee1",
+        "4ae7f4cb-0263-49dd-828e-9d66a9e534f9",
+        "0e8fa7eb-6e2f-48ec-8976-c33783626db4",
+        "6fbc8d7b-94f4-46f9-896c-de1c65eb1afa",
+        "0223b3b0-5836-4ef1-adfe-61518eb9550e",
+        "d2a6c5dc-6630-4325-8158-79179e6a1e2c",
+        "dfd6f828-260a-427d-8468-5ceff08b7fe0",
+        "225fc2a5-f651-4243-8124-6b0320f25b23",
+        "8fe017c9-f554-4f74-9c75-e80ce8311044",
+        "9da00f76-fbfd-4433-889e-39eac83a2784",
+        "2a94b9ac-2e24-48b6-b392-d91517eb177f",
+        "24e1d752-a872-4810-94be-17a9c27fa73f",
+        "23372f1a-d882-4a75-a7e8-557dc893efd6",
+        "1cfcce85-793d-48e6-9659-2b9c1d545c27",
+        "bf5bdb96-1bdc-4bfc-a433-e66735f5ca2b"
       ]
     ],
     "layouts": [
@@ -6270,6 +6339,223 @@
     ],
     "scope": "Real settings persistence/EIO, local bare-repository fetches, pinned local creation, missing/unavailable remotes, never policy, gzip restore and normal restart. Creation hold is an isolated IPC boundary before the actual fetch; actual fetch queue locking has separate unit coverage. Native Tab/Shift+Tab reach the switch and Space invokes actual failed saves in all six theme/zoom cases, with complete focus outlines. No live external network, credential dialog, destructive cleanup or full reference acceptance is claimed."
   },
+  "worktreeRegistration": {
+    "checks": 5,
+    "modelRequests": 0,
+    "inlineValidationCancelVerified": true,
+    "actualFailureSameIdRetryVerified": true,
+    "duplicatePreservationVerified": true,
+    "staleSourceVerified": true,
+    "backupRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 490,
+        "bottom": 508,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 382.5,
+        "bottom": 400.5,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 310.66668701171875,
+        "bottom": 346.66668701171875,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 490,
+        "bottom": 508,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 382.5,
+        "bottom": 400.5,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 310.66668701171875,
+        "bottom": 346.66668701171875,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 490,
+        "bottom": 510,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "登记项目",
+        "outline": 3.2,
+        "top": 382.5,
+        "bottom": 402.5,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 310.66668701171875,
+        "bottom": 330.66668701171875,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 490,
+        "bottom": 510,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "登记项目",
+        "outline": 3.2,
+        "top": 382.5,
+        "bottom": 402.5,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 310.66668701171875,
+        "bottom": 330.66668701171875,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-registration-invalid-light-shell.png",
+      "worktree-registration-cancel-focus-light-shell.png",
+      "worktree-registration-save-held-light-shell.png",
+      "worktree-registration-save-error-light-shell.png",
+      "worktree-registration-registered-light-shell.png",
+      "worktree-registration-stale-source-light-shell.png",
+      "worktree-registration-restore-restart-light-shell.png",
+      "worktree-registration-light-100-form-shell.png",
+      "worktree-registration-light-100-error-shell.png",
+      "worktree-registration-light-125-form-shell.png",
+      "worktree-registration-light-125-error-shell.png",
+      "worktree-registration-light-150-form-shell.png",
+      "worktree-registration-light-150-error-shell.png",
+      "worktree-registration-dark-100-form-shell.png",
+      "worktree-registration-dark-100-error-shell.png",
+      "worktree-registration-dark-125-form-shell.png",
+      "worktree-registration-dark-125-error-shell.png",
+      "worktree-registration-dark-150-form-shell.png",
+      "worktree-registration-dark-150-error-shell.png"
+    ],
+    "scope": "Actual external worktree project registration, real primary-workspace rename EIO, same-ID retries, duplicate preservation, delayed IPC source revalidation, gzip restoration and normal restart. No Git writes from registration, model requests, app-created ownership, destructive cleanup, physical picker, full reference parity or distribution acceptance is claimed."
+  },
   "toolActivities": {
     "checks": 8,
     "nativeStates": [
@@ -6322,7 +6608,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.515625,
+        "summaryWidth": 368.703125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6337,7 +6623,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 372.9125061035156,
+        "summaryWidth": 373.1000061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6352,7 +6638,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.1770935058594,
+        "summaryWidth": 271.3645935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6367,7 +6653,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.515625,
+        "summaryWidth": 368.703125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6382,7 +6668,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 372.9125061035156,
+        "summaryWidth": 373.1000061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6397,7 +6683,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.1770935058594,
+        "summaryWidth": 271.3645935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6471,7 +6757,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "14df7a16-c51e-4a5e-a810-3662b341cfab",
+    "threadId": "dca891ce-84cd-4852-bb4c-9008c2837685",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -6555,7 +6841,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-xHK3tQ"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-ogmm1A"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

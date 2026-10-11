@@ -1,5 +1,11 @@
 # Nook 发布状态
 
+**尚未发布。** 新增「设置 → 工作树 → 添加为项目」行内登记，保留取消输入、失败重试 ID 和已有项目记录；来源或 Git 归属变更时拒绝过期入口，不改写仓库或把外部工作树纳入清理。五组原生专项、四次正常退出（最长 394ms）及 19 张原图逐张复核通过。完整单元 119 个文件／1,302 项通过，覆盖率依次为语句 97.35%、分支 95.18%、函数 97.48%、行 99.43%；原有四项 80% 门槛保留，React 界面另由原生专项覆盖。80 项发布门槛测试通过，最低桌面检查提高至 326 项。完整源码已通过全部 326 项、57 次正常退出（最长 3,240ms），无强制关闭或运行时错误，236 个编译文件与登记专项一致；登记、列表和工作树设置的 57 张当前原图已逐张复核，另外 75 张保留原图不在本轮视觉复核范围。当前分发仍待验收。[登记专项与范围](../verification/worktree-registration-review-result.json) · [完整单元](../verification/worktree-registration-unit-review-result.json) · [完整源码](../verification/worktree-registration-full-review-result.json) · [原图实际范围](../verification/worktree-registration-full-originals-review-result.json)
+
+已推送的完整回归证据提交 `91126fa` 对应 [38140426883](https://github.com/Moresyl/nook/actions/runs/38140426883)。验证任务因账户付款／额度限制未启动；分支发布任务按仅标签条件跳过，均为零步骤。本地通过不能代替托管或当前分发验收。[实际运行与注释](../verification/worktree-upstream-full-hosted-result.json)
+
+## 上游功能验证
+
 **尚未发布。** 目标为 Windows x64 `0.1.0-alpha.1`。当前新增创建前刷新上游，并修正工作树聊天按钮的焦点边框；五组上游和四组聊天原生专项通过，236 个编译文件一致、八次正常退出，39 张当前原图逐张复核。覆盖真实本地裸仓库获取、固定本地提交、无上游和关闭策略、获取失败重试、设置保存 EIO、gzip 恢复和重启；两主题三档缩放中的键盘操作、完整焦点与错误边界通过。[本轮证据与范围](../verification/worktree-upstream-review-result.json)
 
 发布门禁提高至至少 321 项完整桌面检查，并要求新增上游结果、六种键盘布局及完整焦点边框。类型检查、76 项门禁测试和完整单元 118 个文件／1,267 项通过，语句 97.33%、分支 95.15%、函数 97.46%、行 99.43%，保留四项 80% 门槛；React 界面不计入这些百分比。完整源码重跑通过 321 项、54 次正常退出，最长 1,998ms，无强制结束或运行时错误；236 个编译文件与列表就绪专项一致，113 张选定原图逐张复核。当前分发和剩余参考界面继续验收，不能宣称 100% 已完成。[完整单元与统计范围](../verification/worktree-upstream-unit-review-result.json) · [完整源码](../verification/worktree-upstream-full-review-result.json) · [原图及实际范围](../verification/worktree-upstream-full-originals-review-result.json)

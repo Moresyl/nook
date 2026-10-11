@@ -48,7 +48,7 @@ pnpm dev
 - [会话上下文与摘要](docs/CONTEXT-SUMMARIES.md)
 - [独立项目工作树](docs/PROJECT-WORKTREES.md)
 - [助手](docs/ASSISTANTS.md) · [自动任务](docs/AUTOMATIONS.md) · [插件](docs/PLUGINS.md)
-- [备份与恢复](docs/BACKUPS.md) · [快捷键](docs/COMMANDS.md) · [发布状态](docs/RELEASE.md)
+- [备份与恢复](docs/BACKUPS.md) · [快捷键](docs/COMMANDS.md) · [更新记录](CHANGELOG.md) · [发布状态](docs/RELEASE.md)
 
 ## 开发与验证
 

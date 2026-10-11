@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-11T12:47:45.108Z",
+  "archive": "E:/NookVerification/WorktreeUpstreamFullHosted-20261011",
+  "head": "91126fa61f18c0b6c7ccdaef1065ed4cbaa1ea66",
+  "runId": 38140426883,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38140426883",
+  "verify": {
+    "id": 114473003528,
+    "conclusion": "failure",
+    "steps": 0,
+    "annotations": [
+      {
+        "level": "failure",
+        "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+      }
+    ]
+  },
+  "publish": {
+    "id": 114473012327,
+    "conclusion": "skipped",
+    "steps": 0,
+    "condition": "startsWith(github.ref, 'refs/tags/')",
+    "scope": "This branch run is not a release tag and independently skips publishing."
+  },
+  "scope": "Hosted verification did not start due to account billing/limit rejection. Local acceptance is separately recorded; no hosted pass, tag, release or current distribution is claimed."
+}
