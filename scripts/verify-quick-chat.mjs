@@ -52,7 +52,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await verifyMinimumLayout('empty');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await quick.waitForFunction(() => document.documentElement.dataset.theme === 'light');
-  await application.evaluateMain("globalThis.nookRefreshIpc=require('electron').ipcMain;globalThis.nookRefreshInvoke=globalThis.nookRefreshIpc._invokeHandlers.get('nook:quick-chat');globalThis.nookRefreshHold=true;globalThis.nookRefreshHeld=false;globalThis.nookRefreshIpc.removeHandler('nook:quick-chat');globalThis.nookRefreshIpc.handle('nook:quick-chat',async(event,command,...args)=>{const result=await globalThis.nookRefreshInvoke(event,command,...args);if(command==='load'&&globalThis.nookRefreshHold){globalThis.nookRefreshHold=false;globalThis.nookRefreshHeld=true;await new Promise(resolve=>{globalThis.nookRefreshRelease=resolve;});}return result;});");
+  await application.evaluateMain("globalThis.nookRefreshIpc=require('electron').ipcMain;globalThis.nookRefreshInvoke=globalThis.nookRefreshIpc._invokeHandlers.get('nook:quick-chat');globalThis.nookRefreshTrace=[];globalThis.nookRefreshHold=true;globalThis.nookRefreshHeld=false;globalThis.nookRefreshIpc.removeHandler('nook:quick-chat');globalThis.nookRefreshIpc.handle('nook:quick-chat',async(event,command,...args)=>{const result=await globalThis.nookRefreshInvoke(event,command,...args);if(command==='load')globalThis.nookRefreshTrace.push({event:'captured',theme:result.context.preferences.theme,at:Date.now()});if(command==='load'&&globalThis.nookRefreshHold){globalThis.nookRefreshHold=false;globalThis.nookRefreshHeld=true;await new Promise(resolve=>{globalThis.nookRefreshRelease=resolve;});}if(command==='load')globalThis.nookRefreshTrace.push({event:'returned',theme:result.context.preferences.theme,at:Date.now()});return result;});");
   try {
     await quick.evaluate(() => window.dispatchEvent(new Event('focus')));
     const deadline = Date.now() + 5000;
@@ -64,8 +64,12 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     await quick.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.equal(await quick.evaluate(() => document.documentElement.dataset.theme), 'dark'); assert.equal(await input().inputValue(), 'QUICK_REFRESH_DRAFT_RETAINED');
     assert.equal(calls.length, initialCalls); assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).composerDrafts), mainDrafts);
+    if (process.env.NOOK_TEST_QUICK_REFRESH_DIAGNOSTICS) console.log('Quick refresh success trace', JSON.stringify(await application.evaluateMain('globalThis.nookRefreshTrace')));
+  } catch (error) {
+    if (process.env.NOOK_TEST_QUICK_REFRESH_DIAGNOSTICS) console.log('Quick refresh failure trace', JSON.stringify({ trace: await application.evaluateMain('globalThis.nookRefreshTrace'), renderer: await quick.evaluate(() => ({ theme: document.documentElement.dataset.theme, focused: document.hasFocus(), status: document.querySelector('[role=status]')?.textContent })) }));
+    throw error;
   } finally {
-    await application.evaluateMain("globalThis.nookRefreshRelease?.();globalThis.nookRefreshIpc.removeHandler('nook:quick-chat');globalThis.nookRefreshIpc.handle('nook:quick-chat',globalThis.nookRefreshInvoke);delete globalThis.nookRefreshIpc;delete globalThis.nookRefreshInvoke;delete globalThis.nookRefreshHold;delete globalThis.nookRefreshHeld;delete globalThis.nookRefreshRelease;");
+    await application.evaluateMain("globalThis.nookRefreshRelease?.();globalThis.nookRefreshIpc.removeHandler('nook:quick-chat');globalThis.nookRefreshIpc.handle('nook:quick-chat',globalThis.nookRefreshInvoke);delete globalThis.nookRefreshIpc;delete globalThis.nookRefreshInvoke;delete globalThis.nookRefreshHold;delete globalThis.nookRefreshHeld;delete globalThis.nookRefreshRelease;delete globalThis.nookRefreshTrace;");
   }
   await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat');window.webContents.setZoomFactor(1);window.setSize(640,580);})()");
   await input().fill('QUICK_PDF_READ');

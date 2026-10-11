@@ -13,9 +13,11 @@
 | 固定桌面专项 | 六组通过、五次正常退出，最长 993ms；236 个编译文件与首轮一致 |
 | 固定原图 | 当前 21 张逐张复核；两主题三档缩放的键盘边框与错误完整可见 |
 | 前序完整源码 | 创建记录版本 331 项、60 次正常退出，最长 2,215ms；22 张相关原图逐张复核 |
-| 当前完整源码／分发 | 加入固定功能的整轮源码正在运行；当前分发尚待验收 |
+| 当前完整源码／分发 | 首轮在 245 项后快速聊天等待超时；失败工作区重放九项通过，正在重新运行整轮；当前分发尚待验收 |
 
 覆盖率仅统计契约与主进程服务，沿用四项 80% 门槛和排除范围；React 界面另由桌面检查覆盖。固定专项使用实际 Git、原子写入 EIO、来源变更、损坏记录、gzip 恢复和正常重启。首轮读取错误截图没有显示提示，原图和限制保留；纠正截图后重新通过六组检查。第二轮暗色 150% 错误图未显示焦点，提交前键盘图有完整边框；当前整轮增加失败后实际焦点等待验证。
+
+整轮首轮快速聊天的旧快照等待检查超过原有五秒期限，245 项通过后停止；36 次退出均正常（最长 2,545ms）。完整失败现场保留。使用该工作区共享状态重放九项通过、两次正常退出（最长 424ms），产品编译体和期限未改变；超时根因尚未确定，专项通过不代替整轮通过。[失败现场](../verification/worktree-pinning-source-failure-result.json) · [快速聊天重放](../verification/worktree-pinning-quick-replay-result.json)
 
 [完整单元与范围](../verification/worktree-pinning-unit-review-result.json) · [固定专项](../verification/worktree-pinning-notice-review-result.json) · [当前原图](../verification/worktree-pinning-notice-originals-review-result.json) · [首轮图像限制](../verification/worktree-pinning-originals-review-result.json) · [前序整轮源码](../verification/worktree-ownership-full-review-result.json) · [前序原图范围](../verification/worktree-ownership-full-originals-review-result.json)
 
