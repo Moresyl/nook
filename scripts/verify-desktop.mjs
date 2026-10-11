@@ -560,7 +560,11 @@ let worktreeConversationsResult;
 let worktreeUpstreamResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_WORKTREE_UPSTREAM_ONLY) {
+  if (process.env.NOOK_TEST_WORKTREE_UPSTREAM_FOCUS_DIAGNOSTIC_ONLY) {
+    const { observeWorktreeUpstreamFocus } = await import('./verify-worktree-upstream-focus.mjs');
+    await observeWorktreeUpstreamFocus({ page, application, directory, waitForBridge });
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_WORKTREE_UPSTREAM_ONLY) {
     const { verifyWorktreeUpstream } = await import('./verify-worktree-upstream.mjs');
     const run = await verifyWorktreeUpstream({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreeUpstreamResult = run.result;
