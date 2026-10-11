@@ -197,7 +197,7 @@ export class WorkspaceVault {
       const quickChat = draft.quickChat === undefined ? undefined : quickChatStateSchema.parse(draft.quickChat);
       const merged = { ...this.state, quickChat };
       const next = Object.fromEntries(Object.keys(workspaceSchema.shape).filter(key => Object.hasOwn(merged, key)).map(key => [key, merged[key as keyof Workspace]])) as Workspace;
-      await this.persist(next);
+      await this.persist(next, [], false, true);
     });
     this.tail = operation.catch(() => {}); await operation;
   }
@@ -225,7 +225,7 @@ export class WorkspaceVault {
     return operation;
   }
 
-  private async persist(next: Workspace, checkpointIds?: string[], conversation = false): Promise<Workspace> {
+  private async persist(next: Workspace, checkpointIds?: string[], conversation = false, quickChat = false): Promise<Workspace> {
     const persistent = persistentWorkspace(next, this.persistentActiveThreadId);
     const previous = persistentWorkspace(this.state, this.persistentActiveThreadId);
     const previousBytes = this.persistentBytes ?? this.serialization.serialize(previous);
@@ -236,15 +236,17 @@ export class WorkspaceVault {
     if (!previousBytes.equals(nextBytes)) {
       let ids = checkpointIds;
       let includeComposer = false;
+      let includeQuickChat = quickChat;
       if (conversation) {
-        const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, ...oldHeader } = previous;
-        const { threads, composerDrafts, activeThreadId, ...header } = persistent;
+        const { threads: oldThreads, composerDrafts: oldDrafts, activeThreadId: oldActive, quickChat: oldQuickChat, ...oldHeader } = previous;
+        const { threads, composerDrafts, activeThreadId, quickChat: nextQuickChat, ...header } = persistent;
         if (isDeepStrictEqual(oldHeader, header) && oldThreads.length === threads.length && threads.every((thread, index) => thread.id === oldThreads[index].id)) {
           ids = threads.filter((thread, index) => !sameThreadEncoding(thread, oldThreads[index])).map(thread => thread.id);
           includeComposer = !isDeepStrictEqual(oldDrafts, composerDrafts) || oldActive !== activeThreadId;
+          includeQuickChat = !isDeepStrictEqual(oldQuickChat, nextQuickChat);
         }
       }
-      const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer) : undefined;
+      const candidate = ids ? await this.checkpoints.prepare(persistent, ids, includeComposer, includeQuickChat) : undefined;
       await writeWorkspaceRecovery(this.directory, previousBytes);
       if (candidate) await this.checkpoints.commit(candidate);
       else {

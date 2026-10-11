@@ -1,0 +1,30 @@
+{
+  "files": 6,
+  "failed": 1,
+  "typesPassed": true,
+  "tests": 104,
+  "baseHead": "e164cc8ee6f2ea8144b9379bd93434abcdc64211",
+  "verifiedAt": "2026-10-11T21:23:29.5435550Z",
+  "archive": "E:/NookVerification/QuickJournalUnitInitialFailure-20261012",
+  "scope": "Exact base source and changed source files, type log and failing unit log retained before correcting the storage-layout assertion. Fixture directories were removed by normal afterEach; no coverage or product-native pass is claimed.",
+  "uncommittedSources": [
+    {
+      "sha256": "ebfa05546c809abf7a95667fba38c714f718b34033ec12eb5a90e8e3a9fb64b8",
+      "path": "desktop/services/vault.ts"
+    },
+    {
+      "sha256": "41dd2292ee86bac40f304c26c4ea43bbf2fc9834d592508c427e616980e0f069",
+      "path": "desktop/services/workspace-checkpoint-journal.ts"
+    },
+    {
+      "sha256": "f629bb490d9c780320cdb811a60ad80496d92ea2d043af0c1de23fde9966e523",
+      "path": "scripts/verify-quick-chat.mjs"
+    },
+    {
+      "sha256": "a398f6de0afd0c346887eac67d5696d2587009f4947c6db28a92dca86269b11b",
+      "path": "verification/workspace-checkpoint-journal.test.ts"
+    }
+  ],
+  "passed": 103,
+  "failure": "The old quick-chat test expected immediate primary-file materialization; the new checkpoint implementation left base bytes intact. Its canonical-byte assertion must still be verified after explicit flush, with added restart and base-retention assertions."
+}

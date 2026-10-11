@@ -23,6 +23,8 @@
 
 两次包内失败的源码、日志、完整资料目录、原始失败图和部分报告均已保留，236 个编译文件与已审计的新包一致。复测现场工作区约 84.6 MB；超时后原图已显示首段回复，正在测量草稿保存与请求启动，精确原因尚未确定。原来的 5 秒等待未更改，专项通过不代替完整通过。[首轮现场](../verification/worktree-cleanup-ui-packaged-native-initial-failure-result.json) · [复测现场](../verification/worktree-cleanup-ui-packaged-native-retry-failure-result.json) · [专项重放](../verification/worktree-cleanup-ui-quick-replay-review-result.json) · [28 张原图范围](../verification/worktree-cleanup-ui-quick-originals-review-result.json)
 
+大工作区耗时重放 9 项通过，记录到草稿保存约 1.1～2.9 秒、发送约 1.4～1.5 秒；两次原失败的精确原因仍未完全确定。快速聊天保存已接入原文件版本绑定的小型检查点，相关 6 文件／105 项测试通过，覆盖独立草稿、完整前一版本备份、重启与规范字节落盘、真实写入失败重试、外部替换、无效元数据及原有 8 MB 上限回退。原整文件字节断言保留到显式落盘后，并增加基线字节和重启断言；此前 103／104 的测试布局失败已保留。完整覆盖率、新构建和实际延迟仍待重新核验，不将旧包结果计为这项改动通过。[改动前耗时](../verification/worktree-cleanup-ui-quick-timing-initial-review-result.json)
+
 此前的嵌套页脚定位、隐藏开关点击测试失败和截图取证遗漏均保留。应用内操作排他不等于对外部文件进程加锁；Git 删除失败可能留下部分处理结果，已保存快照保留，应刷新检查后恢复到新目录。私有快照最多 100 份，达到上限或保存失败时停止清理。
 
 快照和清理已合入交付分支并推送 `b275e43`。新托管运行 [38170454226](https://github.com/Moresyl/nook/actions/runs/38170454226) 仍因账户付款／支出额度限制而验证零步骤失败，分支发布按仅标签条件跳过；没有已发布版本。本地通过不能代替托管验收。[新运行证据](../verification/worktree-cleanup-hosted-result.json)

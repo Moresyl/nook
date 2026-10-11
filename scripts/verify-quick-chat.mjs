@@ -214,7 +214,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   const samePage = quick; quick = await open(); assert.equal(quick, samePage); assert.equal(await input().inputValue(), 'QUICK_HANDOFF_UNSENT');
   verified('pin, native compact resize, Escape hide/reopen and the actually registered quick-chat-target hotkey callback retain the same window and unsent draft');
 
-  await application.evaluateMain("globalThis.nookQuickRename=require('node:fs/promises').rename;require('node:fs/promises').rename=async(from,to)=>{if(String(to).endsWith('workspace.json'))throw Object.assign(new Error('Synthetic quick-chat save failure'),{code:'EIO'});return globalThis.nookQuickRename(from,to);};");
+  await application.evaluateMain("globalThis.nookQuickRename=require('node:fs/promises').rename;require('node:fs/promises').rename=async(from,to)=>{if(String(to).endsWith('workspace.json')||String(to).endsWith('workspace.checkpoints.json'))throw Object.assign(new Error('Synthetic quick-chat save failure'),{code:'EIO'});return globalThis.nookQuickRename(from,to);};");
   try {
     await input().fill('QUICK_FILESYSTEM_RETRY'); await quick.getByRole('alert').waitFor(); assert.equal(await input().inputValue(), 'QUICK_FILESYSTEM_RETRY'); assert.equal((await quick.evaluate(() => window.nookQuick.load())).draft.text, 'QUICK_HANDOFF_UNSENT');
     await quick.getByRole('alert').getByText('本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。', { exact: true }).waitFor();
@@ -234,7 +234,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   finally { await application.evaluateMain("require('node:fs/promises').rename=globalThis.nookQuickRename;delete globalThis.nookQuickRename;"); }
   await quick.getByRole('button', { name: '隐藏快速聊天', exact: true }).focus(); await quick.getByRole('button', { name: '隐藏快速聊天', exact: true }).click(); quick = await open();
   assert.equal(await input().inputValue(), 'QUICK_FILESYSTEM_RETRY'); assert.equal((await quick.evaluate(() => window.nookQuick.load())).draft.text, 'QUICK_FILESYSTEM_RETRY');
-  verified('an actual workspace rename failure retains quick input and its saved predecessor, then the same draft saves successfully on retry');
+  verified('an actual workspace or checkpoint rename failure retains quick input and its saved predecessor, then the same draft saves successfully on retry');
 
   const backup = join(directory, 'quick-chat-backup.json.gz');
   await application.evaluateMain(`globalThis.nookQuickSave=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(backup)}});`);

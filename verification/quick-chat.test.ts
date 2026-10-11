@@ -178,7 +178,7 @@ describe('independent quick chat', () => {
 });
 
 describe('bounded quick-chat persistence', () => {
-  it('retains canonical bytes, previous complete backup and isolated callbacks without cloning unrelated histories', async () => {
+  it('retains checkpoint recovery, canonical flush bytes, previous complete backup and isolated callbacks without cloning unrelated histories', async () => {
     const { vault, directory } = await setup(); const before = vault.snapshot(); let held!: { quickChat?: QuickChatState };
     const quickChat = { revision: randomUUID(), composerDrafts: [composerDraftSchema.parse({ text: 'Scoped', updatedAt: 1 })] };
     const expected = workspaceSchema.parse({ ...before, quickChat });
@@ -186,8 +186,10 @@ describe('bounded quick-chat persistence', () => {
     await vault.commitQuickChat(state => { held = state; state.quickChat = quickChat; (state as unknown as { threads: unknown[] }).threads = []; });
     expect(snapshot).not.toHaveBeenCalled(); expect(clones.mock.calls.some(([value]) => value && typeof value === 'object' && ('schemaVersion' in value || 'messages' in value))).toBe(false);
     clones.mockRestore(); snapshot.mockRestore(); held.quickChat!.composerDrafts[0].text = 'Mutated';
-    expect(vault.snapshot()).toEqual(expected); expect(await readFile(join(directory, 'workspace.json'))).toEqual(Buffer.from(JSON.stringify(persistentWorkspace(expected), null, 2)));
+    expect(vault.snapshot()).toEqual(expected); expect(await readFile(join(directory, 'workspace.json'))).toEqual(Buffer.from(JSON.stringify(persistentWorkspace(before), null, 2)));
     expect(await readFile(join(directory, 'workspace.backup.json.gz'))).toEqual(Buffer.from(JSON.stringify(persistentWorkspace(before), null, 2)));
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(persistentWorkspace(expected));
+    await vault.flush(); expect(await readFile(join(directory, 'workspace.json'))).toEqual(Buffer.from(JSON.stringify(persistentWorkspace(expected), null, 2)));
     const context = vault.composerContext(); context.preferences.defaultModel = 'Changed'; expect(vault.preferences().defaultModel).toBe('test-model');
     expect(vault.hasPersistentThread('thread')).toBe(true); expect(vault.hasPersistentThread('temporary')).toBe(false); expect(vault.hasPersistentThread('missing')).toBe(false);
     await vault.update(state => { state.threads[0].updatedAt = 10; state.threads[1].archived = true; });

@@ -1,10 +1,11 @@
 import { mkdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { readWorkspaceFile as readFile } from './read-workspace-file';
 import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { WorkspaceVault } from '../desktop/services/vault';
 import { ComposerDrafts } from '../desktop/services/composer-drafts';
-import type { Message } from '../contracts/workspace';
+import { composerDraftSchema, type Message } from '../contracts/workspace';
 import { codec, sampleThread, testVault } from './fixtures';
 
 const directories: string[] = [];
@@ -15,6 +16,7 @@ afterEach(async () => {
   await Promise.all(directories.splice(0).map(path => rm(path, { recursive: true, force: true })));
 });
 const message = (content: string, status: Message['status'] = 'complete'): Message => ({ id: 'reply', role: 'assistant', content, status, attachments: [], createdAt: 1 });
+const quickState = (text: string) => ({ revision: randomUUID(), activeThreadId: 'thread', composerDrafts: [composerDraftSchema.parse({ threadId: 'thread', text, updatedAt: 1 })] });
 async function fixture() {
   const { vault, directory } = await testVault(); directories.push(directory);
   await vault.update(draft => { draft.threads.push(sampleThread({ messages: [message('Before')] })); });
@@ -22,6 +24,92 @@ async function fixture() {
 }
 
 describe('durable response checkpoint journal', () => {
+  it('journals a quick draft without replacing unrelated large history and retains exact backup, restart and flush bytes', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture();
+    await vault.update(draft => { draft.threads.push(sampleThread({ id: 'large', messages: [message('Unchanged 中文 😀\n'.repeat(50_000))] })); });
+    const original = await readFile(primary), quickChat = quickState('Quick 未发送 😀');
+    await vault.commitQuickChat(draft => { draft.quickChat = quickChat; });
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup)).toEqual(original);
+    const saved = JSON.parse(await readFile(journal, 'utf8')); expect(saved.schemaVersion).toBe(3); expect(saved.quickChat).toEqual(quickChat);
+    expect(saved.threads).toEqual([]); expect((await stat(journal)).size).toBeLessThan(10_000);
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());
+    await restored.flush(); expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+    await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+  it('atomically clears quick-chat state without reviving its saved predecessor after restart or flush', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture();
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('Retained before clearing'); });
+    await vault.flush(); const original = await readFile(primary), previous = vault.snapshot();
+    await vault.commitQuickChat(draft => { draft.quickChat = undefined; });
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(previous, null, 2));
+    expect(JSON.parse(await readFile(journal, 'utf8')).quickChat).toBeNull();
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.quickChat()).toBeUndefined();
+    await restored.flush(); expect(JSON.parse(await readFile(primary, 'utf8')).quickChat).toBeUndefined();
+    await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+  it('retains independent main and quick drafts across reply checkpoints and consumes only the quick draft when continuing', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture(); const original = await readFile(primary);
+    await new ComposerDrafts(vault).save(composerDraftSchema.parse({ threadId: 'thread', text: 'Main retained', updatedAt: 1 }));
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('Quick question'); });
+    await vault.checkpointMessages([{ threadId: 'thread', message: message('Checkpoint reply') }]); const previous = vault.snapshot();
+    await vault.commit(draft => {
+      draft.threads[0].messages.push({ ...message('Quick question'), id: 'question', role: 'user' });
+      draft.quickChat = quickState('');
+    }, { conversation: true });
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(previous, null, 2));
+    const saved = JSON.parse(await readFile(journal, 'utf8')); expect(saved.schemaVersion).toBe(3);
+    expect(saved.composer.composerDrafts[0].text).toBe('Main retained'); expect(saved.quickChat.composerDrafts[0].text).toBe('');
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());
+  });
+  it('preserves the previous quick revision and journal through an actual replacement failure and retries exactly', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture();
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('Previous quick'); });
+    const before = vault.snapshot(), original = await readFile(primary), saved = await readFile(journal);
+    const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');
+    vi.mocked(rename).mockImplementation(async (from, to) => { if (to === journal) throw Object.assign(new Error('PRIVATE_QUICK_EIO'), { code: 'EIO' }); return actual.rename(from, to); });
+    const next = quickState('Unacknowledged quick');
+    await expect(vault.commitQuickChat(draft => { draft.quickChat = next; })).rejects.toThrow('Local data could not be saved');
+    expect(vault.snapshot()).toEqual(before); expect(await readFile(primary)).toEqual(original); expect(await readFile(journal)).toEqual(saved);
+    expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(before, null, 2));
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(before);
+    vi.mocked(rename).mockImplementation(actual.rename); await vault.commitQuickChat(draft => { draft.quickChat = next; });
+    const retried = new WorkspaceVault(directory, codec); await retried.initialize(); expect(retried.quickChat()).toEqual(next);
+  });
+  it('materializes a quick save when identical primary bytes have been externally replaced, retaining the exact prior backup', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture();
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('Previous quick'); });
+    const previous = vault.snapshot(), original = await readFile(primary);
+    await rename(primary, join(directory, 'retired-quick-primary.json')); await writeFile(primary, original);
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('Latest quick'); });
+    expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+    expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(previous, null, 2)); await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());
+  });
+  it('falls back to a complete durable save when independent quick drafts exceed the unchanged journal size limit', async () => {
+    const { vault, directory, primary, backup, journal } = await fixture();
+    const owners = Array.from({ length: 45 }, (_, index) => `quick-owner-${index}`);
+    await vault.update(draft => { draft.threads.push(...owners.map(id => sampleThread({ id, messages: [] }))); });
+    const previous = vault.snapshot();
+    const quickChat = { revision: randomUUID(), composerDrafts: owners.map(threadId => composerDraftSchema.parse({ threadId, text: '保留'.repeat(100_000), updatedAt: 1 })) };
+    await vault.commitQuickChat(draft => { draft.quickChat = quickChat; });
+    expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
+    expect(await readFile(backup, 'utf8')).toBe(JSON.stringify(previous, null, 2)); await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.quickChat()).toEqual(quickChat);
+  });
+  it.each(['owner', 'active', 'duplicate', 'legacy1', 'legacy2', 'revision'])('rejects malformed quick journal metadata (%s), preserving both files and hiding private contents', async kind => {
+    const { vault, directory, primary, journal } = await fixture();
+    await vault.commitQuickChat(draft => { draft.quickChat = quickState('PRIVATE_QUICK_DRAFT_BODY'); });
+    const original = await readFile(primary), saved = JSON.parse(await readFile(journal, 'utf8'));
+    if (kind === 'owner') saved.quickChat.composerDrafts[0].threadId = 'missing';
+    if (kind === 'active') saved.quickChat.activeThreadId = 'missing';
+    if (kind === 'duplicate') saved.quickChat.composerDrafts.push(saved.quickChat.composerDrafts[0]);
+    if (kind === 'legacy1') saved.schemaVersion = 1;
+    if (kind === 'legacy2') saved.schemaVersion = 2;
+    if (kind === 'revision') saved.quickChat.revision = 'PRIVATE_INVALID_REVISION';
+    await writeFile(journal, JSON.stringify(saved)); const malformed = await readFile(journal);
+    await expect(new WorkspaceVault(directory, codec).initialize()).rejects.toThrow('Saved response checkpoints could not be read');
+    expect(await readFile(primary)).toEqual(original); expect(await readFile(journal)).toEqual(malformed);
+  });
   it('saves composer metadata without re-encoding unrelated history and retains exact backup and restart state', async () => {
     const { vault, directory, primary, backup } = await fixture();
     await vault.update(draft => { draft.threads.push(sampleThread({ id: 'large', messages: [message('Unchanged 中文 😀\n'.repeat(50_000))] })); });
