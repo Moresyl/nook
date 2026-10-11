@@ -1,0 +1,25 @@
+{
+  "reviewedAt": "2026-10-11T04:20:13.992Z",
+  "captures": [
+    {
+      "archive": "E:/NookVerification/ComparisonFeedbackErrorMatrixFailure-20261011",
+      "filename": "model-comparison-save-error-light-zoom-125.png",
+      "sha256": "7fffa88426c585b16844077dfdaf6468886df3f42aea505e173ecc4f526dc2a8",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "observation": "The light 125% alert is readable in the image but its measured box exceeds the client viewport by 0.10001 CSS pixels. This failed strict geometry is preserved; the image alone is not evidence of missing glyphs."
+    },
+    {
+      "archive": "E:/NookVerification/ComparisonFeedbackRetryScrollFailure-20261011",
+      "filename": "model-comparison-retry-first-reply-dark-150.png",
+      "sha256": "7247470ad2625ec23058c9b28369b8a538e93bd03c48404e2c135a1347324116",
+      "width": 760,
+      "height": 540,
+      "individuallyReviewed": true,
+      "observation": "The first reply heading and status are above the visible content. The image starts partway through its textarea and shows the second reply heading lower down, matching the retained error-form scroll position."
+    }
+  ],
+  "failureRemainsFailure": true,
+  "scope": "Two explicitly captured failing-case originals individually viewed. Other raw snapshot images and generic driver failure screenshots are not included."
+}

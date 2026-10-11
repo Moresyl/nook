@@ -245,7 +245,9 @@ export async function verifyModelComparisons({ page, application, getApplication
   assert.deepEqual((await group(fourGroup)).map((thread) => thread.messages.at(-1).status), ['error', 'stopped', 'complete', 'complete']); assert.ok((await dialog().locator('.comparison-result').nth(1).getByLabel('回复 2', { exact: true }).inputValue()).includes('held: PARTIAL')); await close(); assert.equal(await composer().inputValue(), question);
   verified('four independent real requests retain an actual HTTP failure and stopped partial response while the other two complete; native stopping targets only its selected reply');
 
-  await open(); const primary = join(directory, 'workspace.json'); const beforeFailure = await readFile(primary); const beforeState = await page.evaluate(() => window.qiyao.load());
+  const primary = join(directory, 'workspace.json'); const failureLayouts = [];
+  async function failSave(theme, zoom, filename, captureBusy = false) {
+  const beforeFailure = await readFile(primary); const beforeState = await page.evaluate(() => window.qiyao.load());
   await application.evaluateMain(`(() => {
     const fs = require('node:fs/promises'); const original = fs.rename;
     let release; const held = new Promise(resolve => { release = resolve; });
@@ -269,7 +271,7 @@ export async function verifyModelComparisons({ page, application, getApplication
     assert.equal(await dialog().locator(':scope > .modal-footer').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
     assert.equal(await dialog().getByRole('button', { name: '发送并比较', exact: true }).isDisabled(), true);
     assert.equal(await dialog().getByLabel('比较连接 1', { exact: true }).isDisabled(), true);
-    await capture('model-comparison-save-busy-light.png');
+    if (captureBusy) await capture('model-comparison-save-busy-light.png');
     await page.keyboard.press('Escape'); assert.equal(await dialog().isVisible(), true);
     assert.equal(fixture.requests.length, beforeRequests + 6);
     await application.evaluateMain('globalThis.nookComparisonSaveReceipt.release()');
@@ -277,15 +279,41 @@ export async function verifyModelComparisons({ page, application, getApplication
     assert.equal(fixture.requests.length, beforeRequests + 6); assert.deepEqual(await readFile(primary), beforeFailure); assert.deepEqual(await page.evaluate(() => window.qiyao.load()), beforeState); assert.equal(await dialog().getByLabel('本次比较问题', { exact: true }).inputValue(), question);
     const feedbackBounds = await alert.evaluate((element) => {
       const content = element.closest('.modal-content'); const rect = element.getBoundingClientRect(); const container = content.getBoundingClientRect();
-      return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: container.top + content.clientTop, viewportBottom: container.top + content.clientTop + content.clientHeight, viewportLeft: container.left + content.clientLeft, viewportRight: container.left + content.clientLeft + content.clientWidth, scrollTop: content.scrollTop, text: element.textContent };
+      return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: container.top + content.clientTop, viewportBottom: container.top + content.clientTop + content.clientHeight, viewportLeft: container.left + content.clientLeft, viewportRight: container.left + content.clientLeft + content.clientWidth, scrollTop: content.scrollTop, text: element.textContent, width: innerWidth, height: innerHeight, theme: document.documentElement.dataset.theme };
     });
     console.log('Comparison save failure viewport', JSON.stringify(feedbackBounds));
-    await capture('119-model-comparison-save-error-light.png');
+    await capture(filename); failureLayouts.push({ zoom, ...feedbackBounds });
+    assert.equal(feedbackBounds.theme, theme);
     assert.equal(feedbackBounds.text, '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。');
     assert.ok(feedbackBounds.top >= feedbackBounds.viewportTop && feedbackBounds.bottom <= feedbackBounds.viewportBottom && feedbackBounds.left >= feedbackBounds.viewportLeft && feedbackBounds.right <= feedbackBounds.viewportRight, 'The actual save error must be fully readable within the modal content viewport without manual scrolling.');
   }
   finally { await application.evaluateMain("(() => {const receipt=globalThis.nookComparisonSaveReceipt;require('node:fs/promises').rename=receipt.original;receipt.release();delete globalThis.nookComparisonSaveReceipt;})()"); }
-  await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const retryGroup = await currentGroup(); groups.push(retryGroup); fixture.finish(); await waitCompleted(retryGroup); await close();
+  }
+  await open(); await failSave('light', 1, '119-model-comparison-save-error-light.png', true);
+  for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
+    await close(); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
+    await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
+    await page.reload(); await composer().waitFor(); await application.resize(760, 540);
+    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
+    await waitForBridge(page, ({ theme, zoom }) => document.documentElement.dataset.theme === theme && Math.abs(innerWidth - 760 / zoom) <= 1 && Math.abs(innerHeight - 540 / zoom) <= 1, { theme, zoom });
+    await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); await open();
+    await failSave(theme, zoom, `model-comparison-save-error-${theme}-zoom-${zoom * 100}.png`);
+  }
+  await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor();
+  const retryHeading = await dialog().locator('.comparison-result').first().getByRole('heading', { level: 3 }).evaluate(element => {
+    const rect = element.getBoundingClientRect(); const content = element.closest('.modal-content'); const viewport = content.getBoundingClientRect();
+    return { top: rect.top, bottom: rect.bottom, viewportTop: viewport.top + content.clientTop, viewportBottom: viewport.top + content.clientTop + content.clientHeight, scrollTop: content.scrollTop };
+  });
+  console.log('Comparison retry first heading viewport', JSON.stringify(retryHeading)); await capture('model-comparison-retry-first-reply-dark-150.png');
+  assert.ok(retryHeading.top >= retryHeading.viewportTop && retryHeading.bottom <= retryHeading.viewportBottom, 'A successful retry must reveal the first reply heading without retaining the error-form scroll position.');
+  await waitPartial(); const retryGroup = await currentGroup(); groups.push(retryGroup);
+  const manualScroll = await dialog().locator(':scope > .modal-content').evaluate(content => { content.scrollTop = Math.min(80, (content.scrollHeight - content.clientHeight) / 2); return content.scrollTop; });
+  assert.ok(manualScroll > 0, 'The narrow result viewport must permit manual scrolling.');
+  fixture.finish(); await waitCompleted(retryGroup);
+  const completedScroll = await dialog().locator(':scope > .modal-content').evaluate(content => content.scrollTop);
+  assert.equal(completedScroll, manualScroll, 'Completing streamed replies must preserve the user-selected scroll position within the same group.');
+  await close();
+  await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
   verified('held actual group save disables header/footer close and settings, rejects Escape, then exposes the complete Chinese EIO alert within the scroll viewport while preserving original history/draft/selections and zero requests; retry creates exactly two independent responses');
 
   await page.getByRole('button', { name: '临时聊天', exact: true }).click(); await page.getByLabel('临时聊天说明', { exact: true }).waitFor(); await composer().fill('COMPARE_TEMP_PRIVATE_QUESTION'); await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const temporaryGroup = await currentGroup(); fixture.finish(); await waitCompleted(temporaryGroup); assert.ok((await group(temporaryGroup)).every((thread) => thread.temporary)); await close();
@@ -426,5 +454,5 @@ export async function verifyModelComparisons({ page, application, getApplication
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests + 11);
   verified('comparison setup and independently scrollable readonly results retain visible modal title/footer, native keyboard focus and Escape at 100%, 125% and 150% dark minimum-window zoom without making preview requests');
-  return { page, result: { checks: 6, settingsTransactions, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, busyDismissalVerified: true, saveFailureViewportVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
+  return { page, result: { checks: 6, settingsTransactions, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, busyDismissalVerified: true, saveFailureViewportVerified: true, saveFailureLayouts: failureLayouts, retryHeading, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
 }

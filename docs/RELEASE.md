@@ -1,6 +1,6 @@
 # Nook 发布状态
 
-**尚未发布。** 目标版本为 Windows x64 `0.1.0-alpha.1`。本轮模型比较修复已通过类型、30 项相关单元测试及 6 项真实桌面专项：11 次本地 HTTP 请求、3 次正常退出、无运行时错误，10 张原图逐张核验。中文保存错误完整进入浅色 100% 的可视区域，忙碌关闭状态与行为一致；其他错误主题／缩放、完整源码与新分发仍须验收。
+**尚未发布。** 目标版本为 Windows x64 `0.1.0-alpha.1`。本轮模型比较修复已通过类型及 6 项真实桌面专项：11 次本地 HTTP 请求、3 次正常退出、无运行时错误，17 张原图逐张核验。中文保存错误在明暗窄窗口的 100%／125%／150% 缩放下完整可读，忙碌关闭状态与行为一致；重试从第一条回复开始，同组更新保留手动滚动。完整新单元、源码回归与分发仍须验收。
 
 此前恢复通知修复候选的完整源码、未安装版及实际安装版各通过 296 项、42 次正常退出，安装器、便携、实际安装与卸载及十一份同包运行记录通过，三轮 57 张原图逐张核验。它证明冻结的恢复候选，不能代替新增模型比较修复后的完整回归与分发。全部参考界面与托管发布仍未完成。
 
@@ -64,6 +64,10 @@
 模型比较现采用共享中文错误转换与布局阶段的提示定位，忙碌时禁用共享弹窗的关闭入口。暂停实际文件替换后，头部／底部关闭、重复提交和连接选择禁用，Esc 保留弹窗；失败后错误上下沿 564.39／582.39px，均处于 230.89–582.89px 的可视区域，保留原数据、草稿与选择，重试成功。首次等待夹具因异步恢复后调用临时 `require` 失败，三项先行检查及两次正常退出；原场景保留，改用标准计时器后按原有 5 秒期限通过。这里的结果只证明源码专项。
 
 [模型比较原缺陷](../verification/comparison-feedback-baseline-failure-result.json) · [等待夹具失败](../verification/comparison-feedback-main-poll-failure-result.json) · [模型比较修复专项](../verification/comparison-feedback-focused-review-result.json) · [十张原图](../verification/comparison-feedback-originals-review-result.json)
+
+窄窗口扩展检查保留了两次失败：浅色 125% 的错误矩形超过可视边界约 0.1 个 CSS 像素；增加现有 4px 滚动留白后七个错误场景通过，但成功重试沿用表单滚动位置，将第一条回复标题放在可视区上方。原始工作区、应用体、日志及两张实际失败原图保留。结果滚动仅在切换比较组时复位，修复后七个错误场景、重试首条标题和同组更新保留手动滚动均通过，未修改原有期限或放宽矩形断言。
+
+[错误边界失败](../verification/comparison-feedback-error-matrix-failure-result.json) · [重试滚动失败](../verification/comparison-feedback-retry-scroll-failure-result.json) · [两张失败原图](../verification/comparison-feedback-matrix-failure-originals-result.json) · [修复后的主题／缩放检查](../verification/comparison-feedback-error-matrix-review-result.json) · [十七张原图](../verification/comparison-feedback-error-matrix-originals-result.json)
 
 恢复通知修复的完整源代码、实际编译体、消费的测试与发布策略、日志和 7 张原图归档于 `E:/NookVerification/RestoreDismissNativePass-20261011`；原失败分别保留于 `RestoreDismissBaselineFailure-20261011` 和 `ProjectWorktreesInstalledMcpPdfFailure-20261011`。失败清理只移除经过身份核对的自有安装，未移除任一失败哨兵。
 

@@ -1,0 +1,73 @@
+{
+  "verifiedAt": "2026-10-11T04:16:33.278Z",
+  "archive": "E:/NookVerification/ComparisonFeedbackErrorMatrixFailure-20261011",
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-dzj79o",
+  "checksBeforeFailure": 3,
+  "normalExits": [
+    {
+      "elapsedMs": 729,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1558,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "layouts": [
+    {
+      "top": 564.388916015625,
+      "bottom": 582.388916015625,
+      "left": 301,
+      "right": 973,
+      "viewportTop": 230.88888549804688,
+      "viewportBottom": 582.8888854980469,
+      "viewportLeft": 281,
+      "viewportRight": 993,
+      "scrollTop": 54,
+      "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+      "width": 1280,
+      "height": 840,
+      "theme": "light"
+    },
+    {
+      "top": 449.5,
+      "bottom": 467.5,
+      "left": 21,
+      "right": 733,
+      "viewportTop": 62,
+      "viewportBottom": 472,
+      "viewportLeft": 1,
+      "viewportRight": 753,
+      "scrollTop": 0,
+      "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+      "width": 760,
+      "height": 540,
+      "theme": "light"
+    },
+    {
+      "top": 345.70001220703125,
+      "bottom": 363.70001220703125,
+      "left": 20.80000114440918,
+      "right": 581.5999889373779,
+      "viewportTop": 61.60000228881836,
+      "viewportBottom": 363.60000228881836,
+      "viewportLeft": 0.800000011920929,
+      "viewportRight": 601.8000000119209,
+      "scrollTop": 102.4000015258789,
+      "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+      "width": 608,
+      "height": 432,
+      "theme": "light"
+    }
+  ],
+  "causeConfirmed": true,
+  "cause": "At the actual 760 x 540 light window with native 125% zoom, nearest scrolling leaves the alert bounding box 0.10001 CSS pixels beyond the content client viewport. The error has no scroll margin. Preserve strict complete-box assertion and add the existing four-pixel error scroll-margin pattern.",
+  "actualFailedCaseScreenshot": "model-comparison-save-error-light-zoom-125.png",
+  "individuallyReviewed": false,
+  "rawSnapshotIncludesPreexistingFiles": true,
+  "sourceAcceptancePassed": false
+}
