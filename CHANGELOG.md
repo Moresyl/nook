@@ -4,11 +4,13 @@
 
 ### 新功能
 
+- 新增独立 Git 工作树创建、列表与项目登记：选择新分支及起始版本，或使用未占用的已有分支；创建保留原项目分支、暂存区、文件改动、编辑草稿与预览。目标文件夹已存在时拒绝操作，不强制重置分支；钩子报错后读取实际结果，部分文件保留。项目登记失败可单独重试，不重复创建。服务及已有 Git 回归 25 项、桌面专项 7 组通过，12 张原图逐张检查；完整新版分发验收继续进行。
+
 - 新增会话上下文摘要：选择模型与保留轮数，生成只读预览、编辑并应用、选择历史摘要或恢复完整上下文。完整消息、附件和工具记录继续保存；原文变化后旧摘要失效，后续请求恢复完整历史。普通发送、重试、编辑分支、模型比较与受限快速聊天共用已验证的请求上下文。支持取消、失败保留和实际服务用量；暂不自动触发或分段生成。新增能力的最终安装包和流水线验收仍在继续。
 
 - 工具记录改为操作／路径／查询摘要与真实状态、耗时。运行中默认展开，结束后默认收起；两种展开选择独立保存，流式更新不覆盖手动选择。输入与结果保持完整原文，可分别复制、失败重试；旧复制请求不会把新输出标成已复制。自动收起先将详情内的键盘焦点移回摘要，隐藏详情不再接收焦点。主工作台与快速聊天共用，支持减少动效。恢复自家主文档的剪贴板写入，读取、子框架和非自家窗口仍拒绝。39 项专项单元测试覆盖率 100%，8 组真实桌面专项通过；9 张原图逐张检查，整套参考界面与最终分发验收仍待完成。
 
-- 项目 Git 面板新增本地分支查找、创建和切换，支持中文名称、Enter 提交、当前／工作树占用标记及错误重试。常规切换保护拒绝覆盖改动与未解决冲突；切换前保存编辑草稿，随后刷新文件树和干净文件，保留未保存内容及原始比较基线。关闭该项目预览；Git 钩子在 HEAD 已切换后报错时显示真实分支与中文提示。八组真实桌面专项、219 个分支与两主题三档缩放通过；十三张原图逐张检查，修复了工具栏样式侵入弹窗造成的文字溢出。本地分支功能不包含远程 Git、工作树创建、分支删除或重命名。
+- 项目 Git 面板新增本地分支查找、创建和切换，支持中文名称、Enter 提交、当前／工作树占用标记及错误重试。常规切换保护拒绝覆盖改动与未解决冲突；切换前保存编辑草稿，随后刷新文件树和干净文件，保留未保存内容及原始比较基线。关闭该项目预览；Git 钩子在 HEAD 已切换后报错时显示真实分支与中文提示。八组真实桌面专项、219 个分支与两主题三档缩放通过；十三张原图逐张检查，修复了工具栏样式侵入弹窗造成的文字溢出。本地分支功能不包含远程 Git、工作树删除／修剪、分支删除或重命名。
 
 - 新增侧栏浏览器：在独立临时网页会话中打开 HTTP(S) 地址，支持原生返回／前进、刷新、停止、错误重试和 `Ctrl L`／`F6` 地址栏焦点。切换页面保留网页与聊天草稿；退出后不恢复网站存储。网页不开放工作台桥接或 Node，弹窗、私有协议和网站权限请求受限；下载与授权可使用系统浏览器。支持最多 16 个独立标签及共享临时网站存储，后台失败与关闭仅影响所属页；原生 Ctrl T／W／Tab 快捷键和标签键盘切换可用。关闭最后一页会清理会话并新建空白页；主工作台重载释放全部标签。保存标签／历史、内置下载、浏览器自动化与同包验收尚未完成。
 
@@ -69,11 +71,13 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### 新功能
 
+- 项目可创建独立 Git 工作树，选择新分支及起始本地分支，或使用未被占用的已有分支。创建固定起始提交，保留原项目分支、暂存区、文件改动、编辑草稿与预览；完成后显式登记并打开另一个项目。登记失败保留创建结果和名称，重试不会重复创建；已有登记可直接打开。钩子报错或改变分支时显示实际状态，未完成的文件保留。工作树删除／修剪、管理根目录和自动任务编排仍待实现。
+
 - 会话上下文可生成、编辑和选择历史摘要，也可恢复完整上下文。生成预览不会改写聊天；应用后只在请求中使用摘要与近期消息，完整原文、附件和工具记录继续保存。原文变化使旧摘要失效，发送时恢复完整历史。支持取消、失败保留、实际用量和重启恢复，主工作台与受限快速聊天共用已验证的上下文；普通发送、重试、编辑分支及模型比较也采用对应上下文。每次摘要原文请求限 4 MB，暂不自动触发或分段生成。
 
 - 工具记录显示操作／路径／查询摘要、真实状态与耗时。运行和结束阶段分别保存展开选择，流式更新尊重手动收起；完整输入与结果可分别复制，保留 JSON 大整数、重复键和文字 HTML，失败可重试。自动收起时先返回摘要焦点，隐藏详情不能继续接收键盘输入。主工作台与快速聊天共用，并支持减少动效；自家主文档可写入剪贴板，读取、子框架和非自家窗口维持拒绝。展开动画保持原文面板的自然高度，不再压缩输入和结果。
 
-- 项目 Git 面板支持查找、创建和切换本地分支，保留中文名称、未保存草稿与原始比较基线，刷新文件树和干净文件并关闭该项目预览。覆盖改动、重复名称、工作树占用和未解决冲突会阻止操作；钩子在切换完成后报错时显示实际分支和受控提示。操作期间暂停取消与重复提交，失败后保留输入供重试。远程 Git、工作树创建、分支删除／重命名仍待实现。
+- 项目 Git 面板支持查找、创建和切换本地分支，保留中文名称、未保存草稿与原始比较基线，刷新文件树和干净文件并关闭该项目预览。覆盖改动、重复名称、工作树占用和未解决冲突会阻止操作；钩子在切换完成后报错时显示实际分支和受控提示。操作期间暂停取消与重复提交，失败后保留输入供重试。远程 Git、工作树删除／修剪、分支删除／重命名仍待实现。
 
 - 临时浏览器支持最多 16 个网页标签，各自保留原生历史、未提交网址与加载错误，同站点共享临时网站存储。提供返回／前进、停止／重试、Ctrl L／F6、Ctrl T／W／Tab／Shift Tab 和标签方向键／Home／End／Delete 操作；切回聊天保留草稿。关闭最后一页创建新的空白会话，主工作台重载释放全部标签，退出不恢复网站存储。网页不能访问工作台桥接或 Node；保存标签／历史、内置下载、权限授权和自动化仍待实现。
 - 提供本地聊天、流式回复、停止与重新生成，以及 OpenAI Responses／兼容接口、Anthropic、Gemini、Azure 和 Ollama 连接。模型配置、输出预算及实际请求用量可查看和保存。
@@ -99,7 +103,7 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 - 新摘要候选的未安装版与实际安装版各通过 289 项完整检查、41 次正常退出；便携 7 项、共享控件 4 项、文字提示 7 项、崩溃退出 2 项及十一份匹配记录通过。安装／卸载、包体一致和用户数据保留均已检查，18 张完整分发轮次摘要原图逐张核验。此前安装版部分回复可见性超时的原因尚未确认，原始失败与哨兵文件继续保留。
 
-- 安装版验收同步 289 项门槛与 6 项摘要证据，检查实际请求、取消、失效、受限快速聊天和重启。完整运行前清除两类专项开关；保留 HTML 预览、项目分支、工具记录、包体一致性与卸载要求。
+- 新版安装验收同步 296 项门槛，要求 7 项工作树及 6 项摘要证据，检查创建保留、登记失败重试、钩子、受限快速聊天、实际请求和重启。完整运行前清除两类专项开关；保留 HTML 预览、项目分支、工具记录、包体一致性与卸载要求。本次工作树应用体的完整分发验收仍在进行，上方摘要候选的记录仅适用于此前应用体。
 
 - 文件标签在窗口调整和缩放后自动显露，支持左右方向键循环、Home／End 及 Delete 关闭；未保存文件保留确认，取消或关闭后恢复焦点。窄编辑器的预览与保存采用 24px 图标操作，仍可查看中文名称和提示。
 - 项目文件保存遇到磁盘或权限错误时显示可恢复的中文提示，保留草稿、标签和原文件；原始系统诊断留在错误原因中，不直接展示到界面，恢复后可重试保存并关闭。文件冲突与范围校验保留原有行为。
@@ -157,6 +161,8 @@ Nook 的首次独立预发布版本。独立仓库没有上一版本，不沿用
 
 ### English
 
+Adds independent Git worktree creation, listing and explicit project registration from a new or available local branch. Pins the selected base commit and preserves the source branch, index, edits, editor drafts and previews. Refuses existing destinations and force resets, reports actual hook outcomes, retains partial files and retries failed project registration without recreating the worktree. The service/Git regressions pass 25 tests and the native feature suite passes seven groups with twelve reviewed originals; complete verification of the updated distribution is still pending. Worktree removal/pruning, managed roots and task orchestration remain outside this batch.
+
 The current Windows candidate passes 289 checks and 41 normal exits in each unpacked and installed run, seven portable checks and eleven matching runtime records. Eighteen complete-run context-summary originals were individually reviewed. The earlier installed partial-response visibility timeout remains recorded with an unconfirmed cause.
 
 Adds editable, versioned conversation summaries without removing original messages or attachments. Preview, cancellation, provider failure, stale-source fallback and restart retention are verified. Main and restricted quick chat share the validated request context; sending, retry, edited branches and comparison use the selected context. Summary generation uses no project tools or extensions, has a 4 MB source-request limit, and is currently manual rather than automatic or chunked.
@@ -165,7 +171,7 @@ Installation verification now requires the 289-check baseline and six context-su
 
 Tool records show contextual summaries, explicit execution status and elapsed time, with separate running/completed disclosure choices and exact original input/output copy payloads. Streaming updates preserve manual collapse; stale or rejected clipboard requests support safe retry. Automatic collapse returns keyboard focus before making details inert, and opening animations preserve natural text-panel heights. Main and restricted quick chat share the component and reduced-motion behavior. Clipboard writes are permitted only for owned top-level application documents; reads, child frames and unowned windows remain denied. Full reference UI and final distribution acceptance remain pending.
 
-Adds local project branch search, creation and switching with Unicode names, occupied-worktree markers and normal Git overwrite protection. Refreshes clean editor files and the tree while retaining unsaved drafts and their original comparison baseline; closes project previews after switching. A failing post-checkout hook reports the actual changed branch without raw diagnostics. Remote Git, worktree creation and branch deletion/renaming remain pending.
+Adds local project branch search, creation and switching with Unicode names, occupied-worktree markers and normal Git overwrite protection. Refreshes clean editor files and the tree while retaining unsaved drafts and their original comparison baseline; closes project previews after switching. A failing post-checkout hook reports the actual changed branch without raw diagnostics. Remote Git, worktree removal/pruning and branch deletion/renaming remain pending.
 
 File tabs reveal the selected file after resizing or zooming and support arrow keys, Home/End and safe Delete-to-close. Compact editor actions use 24px icons with accessible names. Filesystem save failures retain drafts and original bytes, show a recovery message without raw diagnostics and permit save-and-close retry.
 

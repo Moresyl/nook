@@ -553,9 +553,15 @@ let browserResult;
 let projectBranchesResult;
 let toolActivitiesResult;
 let contextSummariesResult;
+let projectWorktreesResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_CONTEXT_SUMMARIES_ONLY) {
+  if (process.env.NOOK_TEST_PROJECT_WORKTREES_ONLY) {
+    const { verifyProjectWorktrees } = await import('./verify-project-worktrees.mjs');
+    const run = await verifyProjectWorktrees({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
+    page = run.page; projectWorktreesResult = run.result;
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_CONTEXT_SUMMARIES_ONLY) {
     const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
     const run = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
     page = run.page; contextSummariesResult = run.result;
@@ -1215,6 +1221,8 @@ try {
   const browserRun = await verifyBrowser({ page, application, getApplication: () => application, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = browserRun.page; browserResult = browserRun.result;
   const { verifyProjectBranches } = await import('./verify-project-branches.mjs');
   const projectBranchesRun = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectBranchesRun.page; projectBranchesResult = projectBranchesRun.result;
+  const { verifyProjectWorktrees } = await import('./verify-project-worktrees.mjs');
+  const projectWorktreesRun = await verifyProjectWorktrees({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } }); page = projectWorktreesRun.page; projectWorktreesResult = projectWorktreesRun.result;
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
@@ -1245,6 +1253,7 @@ try {
   if (fullResult && quickChatResult) fullResult.quickChat = quickChatResult;
   if (fullResult && browserResult) { fullResult.browser = browserResult; fullResult.screenshots.push(...browserResult.screenshots, ...browserResult.tabs.screenshots); }
   if (fullResult && projectBranchesResult) { fullResult.projectBranches = projectBranchesResult; fullResult.screenshots.push(...projectBranchesResult.screenshots); }
+  if (fullResult && projectWorktreesResult) { fullResult.projectWorktrees = projectWorktreesResult; fullResult.screenshots.push(...projectWorktreesResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1396,6 +1405,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && projectWorktreesResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'project-worktrees-packaged-result.json' : 'project-worktrees-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused project-worktree suite' }), ...projectWorktreesResult }, null, 2));
+    console.log(`Verified ${projectWorktreesResult.checks} project worktree checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && contextSummariesResult) {
     assert.deepEqual(errors, []);

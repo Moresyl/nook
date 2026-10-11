@@ -21,6 +21,7 @@ import type { MessageDraft, MessageEdit } from './message-edits';
 import type { BranchReorder } from './conversation-branches';
 import type { ComparisonRequest, ComparisonResult } from './model-comparisons';
 import type { GenerateContextSummary, ChangeContextSummary, ContextSummaryPreview } from './context-summary-actions';
+import type { CreateWorktree, GitWorktree, WorktreeCreated } from './project-worktrees';
 
 export type RunEvent = { threadId: string; messageId: string; delta?: string; activity?: ToolActivity; invocation?: ModelInvocation; approval?: ApprovalRequest; approvalResolved?: string; message?: import('./workspace').Message; state?: Workspace; error?: string };
 export type { FileEntry } from './projects';
@@ -145,6 +146,8 @@ export type Bridge = {
   gitBranches(projectId: string): Promise<GitBranches>;
   gitSwitchBranch(projectId: string, name: string): Promise<GitBranches>;
   gitCreateBranch(projectId: string, name: string): Promise<GitBranches>;
+  gitWorktrees(projectId: string): Promise<GitWorktree[]>;
+  gitCreateWorktree(projectId: string, input: CreateWorktree): Promise<WorktreeCreated>;
   gitFileView(projectId: string, file: GitFile, staged: boolean): Promise<GitFileView>;
   gitStage(projectId: string, paths: string[], staged: boolean): Promise<GitStatus>;
   gitCommit(projectId: string, message: string): Promise<GitStatus>;

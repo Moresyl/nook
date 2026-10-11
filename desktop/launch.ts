@@ -23,6 +23,7 @@ import { projectDiff, projectDirectory, projectDocument, projectEntries, project
 import { optionalProjectDocument, saveProjectDocument, writableProjectPath } from './services/project-writes';
 import { directoryRequestSchema, editorDraftSchema, saveDocumentSchema, terminalGeometrySchema } from '../contracts/projects';
 import { ProjectGit } from './services/project-git';
+import { createWorktreeSchema } from '../contracts/project-worktrees';
 import { TerminalSessions } from './services/terminal-sessions';
 import { appAssetPath } from './services/app-assets';
 import { McpConnections } from './services/mcp-connections';
@@ -398,6 +399,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitBranches: (id) => git.branches(workspaceProject(id).path),
   gitSwitchBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.switchBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitCreateBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.createBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
+  gitWorktrees: id => git.worktrees(workspaceProject(id).path),
+  gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input)),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),
