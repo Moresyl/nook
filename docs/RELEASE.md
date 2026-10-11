@@ -25,7 +25,7 @@
 
 ## 流水线
 
-已推送 `ecb5c36` 的 [38148748716](https://github.com/Moresyl/nook/actions/runs/38148748716) 未启动验证：GitHub 注释明确指出账户付款／支出额度限制。验证失败、分支发布按仅标签条件跳过，均为零步骤。未创建发布标签或已发布版本；本地通过不能代替托管验收。[精确运行与注释](../verification/worktree-ownership-hosted-result.json)
+固定整轮证据已随 `fc680b7` 推送；[38155087287](https://github.com/Moresyl/nook/actions/runs/38155087287) 未启动验证，GitHub 注释明确指出账户付款／支出额度限制。验证失败、分支发布按仅标签条件跳过，均为零步骤。未创建发布标签或已发布版本；本地通过不能代替托管验收。[当前精确运行与注释](../verification/worktree-pinning-hosted-result.json) · [前序创建记录运行](../verification/worktree-ownership-hosted-result.json)
 
 ## 继续完成
 
