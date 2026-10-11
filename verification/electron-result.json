@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T14:35:41.959Z",
+  "verifiedAt": "2026-10-11T16:08:02.947Z",
   "variant": "development executable",
-  "checks": 331,
+  "checks": 337,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181180,
-    "compressedBytes": 242362,
+    "expandedBytes": 84181176,
+    "compressedBytes": 242345,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791727855892,
+        "startedAt": 1791733678151,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791727858329
+        "finishedAt": 1791733679538
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791727858553,
+        "startedAt": 1791733679764,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791727861105
+        "finishedAt": 1791733681215
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791727864482,
+        "startedAt": 1791733683351,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791727866456
+        "finishedAt": 1791733685217
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 23.600000008940697,
+    "scopedReadMs": 12,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1452,6 +1452,27 @@
     "worktree-ownership-dark-125-warning-shell.png",
     "worktree-ownership-dark-150-warning-shell.png",
     "worktree-ownership-normal-restart-light-shell.png",
+    "worktree-pinning-owned-external-light-shell.png",
+    "worktree-pinning-save-held-light-shell.png",
+    "worktree-pinning-save-error-light-shell.png",
+    "worktree-pinning-pinned-light-shell.png",
+    "worktree-pinning-stale-source-light-shell.png",
+    "worktree-pinning-record-read-error-light-shell.png",
+    "worktree-pinning-backup-restored-light-shell.png",
+    "worktree-pinning-normal-restart-pinned-light-shell.png",
+    "worktree-pinning-light-100-keyboard-shell.png",
+    "worktree-pinning-light-100-error-shell.png",
+    "worktree-pinning-light-125-keyboard-shell.png",
+    "worktree-pinning-light-125-error-shell.png",
+    "worktree-pinning-light-150-keyboard-shell.png",
+    "worktree-pinning-light-150-error-shell.png",
+    "worktree-pinning-dark-100-keyboard-shell.png",
+    "worktree-pinning-dark-100-error-shell.png",
+    "worktree-pinning-dark-125-keyboard-shell.png",
+    "worktree-pinning-dark-125-error-shell.png",
+    "worktree-pinning-dark-150-keyboard-shell.png",
+    "worktree-pinning-dark-150-error-shell.png",
+    "worktree-pinning-replacement-rejected-dark-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2642,120 +2663,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(41, 41, 41)",
+              "color": "rgb(60, 60, 60)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 166.96800000000067
+                  "currentTime": 112.30199999999968
                 }
               ]
             }
@@ -5499,10 +5520,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\worktrees/nook-834f4f80",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn\\管理 工作树 🧭/nook-9a92359e",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\worktrees/nook-e412b1fe",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\管理 工作树 🧭/nook-28179989",
     "errorLayouts": [
       {
         "top": 543.888916015625,
@@ -5741,51 +5762,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "6bddf045-ea7a-4bae-a822-003d7e153def",
-        "b63401a7-7e7f-4aed-99bc-7318302cfea6",
-        "bf73baa6-6849-4d81-8aeb-c5b219bbe42f",
-        "4e664eac-0027-4f76-9fa3-ba5124f5b289",
-        "160ec287-a450-404e-a8a8-f45bfd22c56d",
-        "8a1008c7-3483-4cbe-9028-ed509f9dd98b",
-        "c0c334a7-0690-4c7e-ae85-679499f5af47",
-        "e50b4066-974e-4d01-a7d9-2fbd584f0953",
-        "4f3109fb-df01-44e8-9932-88fdc4e6f21c",
-        "c0ca0ea6-4e4a-40d7-8c36-da5c36825ce6",
-        "2059fea5-2d12-49d8-bc6c-da4eabb9bf97",
-        "a948d29d-35e4-40af-838d-7aabb8c92f1c",
-        "2bef102d-d109-435c-b05a-3fc36f0cb966",
-        "9aa846b3-5b8e-47e6-b48e-659e533e7b60",
-        "19ca31c4-4fab-44cf-9d14-ecbad4b77948",
-        "e5eb23d0-b3bb-4f1d-bcc1-31ff0b22c8d2",
-        "f8866548-8b74-4c12-b968-974738330100",
-        "46a9f5ce-299f-4009-8b35-5f5e3ae08cf8",
-        "07a06fa6-2b3d-4c82-872c-97a819ec8b5c",
-        "226247e1-9b6c-4959-965b-73f9e1de0a3d"
+        "67234d0e-ec60-45f4-b7ce-c3f24ced9aad",
+        "6646211a-5b1b-43b7-b8ea-b6f602e03ae6",
+        "75f70ac3-307f-45e6-9dad-8f51aad07d04",
+        "038ffa1f-a39b-4e47-b7a8-bc0805c8cb27",
+        "d9c5d766-5128-4fb9-b052-455422b82ee3",
+        "44042aee-5aef-4596-b78e-1fa56e508695",
+        "97c51f01-ad8a-439d-a874-b43a53607e03",
+        "0ea539fd-16c0-4257-a468-be18883c293b",
+        "23dd9e59-3210-42cc-993d-6ea8e459590a",
+        "3d61cfd9-6a5d-4bdd-9021-ed889713fbc4",
+        "696eb06f-32a8-4fcf-a5d4-e52b52707c4b",
+        "21d197ae-a534-47a8-9950-7e9dcd2aaf28",
+        "58443cb4-45b0-4862-a0d4-668abeb5e1fe",
+        "6a24aff3-6480-4153-ae6d-cb03ca154837",
+        "fd7b8dc3-cc6a-4c61-9871-864e95389e27",
+        "c1dc6525-448b-474a-951a-8f9a70ea3704",
+        "5392478f-9264-4843-975d-45df45e2dbe6",
+        "222b87fd-d5d8-47e0-b15c-60be74e95e21",
+        "54d71084-794c-4a9b-9413-f11d7f20efdd",
+        "9705dce3-3b97-4d3e-b0ff-bfe6782b6f35"
       ],
       [
-        "63312fa0-12db-4cf2-84fe-037ceb935d43"
+        "698ac2c7-49a9-423b-bfad-ceb80b1cc022"
       ],
       [
-        "6bddf045-ea7a-4bae-a822-003d7e153def",
-        "b63401a7-7e7f-4aed-99bc-7318302cfea6",
-        "bf73baa6-6849-4d81-8aeb-c5b219bbe42f",
-        "4e664eac-0027-4f76-9fa3-ba5124f5b289",
-        "160ec287-a450-404e-a8a8-f45bfd22c56d",
-        "8a1008c7-3483-4cbe-9028-ed509f9dd98b",
-        "c0c334a7-0690-4c7e-ae85-679499f5af47",
-        "e50b4066-974e-4d01-a7d9-2fbd584f0953",
-        "4f3109fb-df01-44e8-9932-88fdc4e6f21c",
-        "c0ca0ea6-4e4a-40d7-8c36-da5c36825ce6",
-        "2059fea5-2d12-49d8-bc6c-da4eabb9bf97",
-        "a948d29d-35e4-40af-838d-7aabb8c92f1c",
-        "2bef102d-d109-435c-b05a-3fc36f0cb966",
-        "9aa846b3-5b8e-47e6-b48e-659e533e7b60",
-        "19ca31c4-4fab-44cf-9d14-ecbad4b77948",
-        "e5eb23d0-b3bb-4f1d-bcc1-31ff0b22c8d2",
-        "f8866548-8b74-4c12-b968-974738330100",
-        "46a9f5ce-299f-4009-8b35-5f5e3ae08cf8",
-        "07a06fa6-2b3d-4c82-872c-97a819ec8b5c",
-        "226247e1-9b6c-4959-965b-73f9e1de0a3d"
+        "67234d0e-ec60-45f4-b7ce-c3f24ced9aad",
+        "6646211a-5b1b-43b7-b8ea-b6f602e03ae6",
+        "75f70ac3-307f-45e6-9dad-8f51aad07d04",
+        "038ffa1f-a39b-4e47-b7a8-bc0805c8cb27",
+        "d9c5d766-5128-4fb9-b052-455422b82ee3",
+        "44042aee-5aef-4596-b78e-1fa56e508695",
+        "97c51f01-ad8a-439d-a874-b43a53607e03",
+        "0ea539fd-16c0-4257-a468-be18883c293b",
+        "23dd9e59-3210-42cc-993d-6ea8e459590a",
+        "3d61cfd9-6a5d-4bdd-9021-ed889713fbc4",
+        "696eb06f-32a8-4fcf-a5d4-e52b52707c4b",
+        "21d197ae-a534-47a8-9950-7e9dcd2aaf28",
+        "58443cb4-45b0-4862-a0d4-668abeb5e1fe",
+        "6a24aff3-6480-4153-ae6d-cb03ca154837",
+        "fd7b8dc3-cc6a-4c61-9871-864e95389e27",
+        "c1dc6525-448b-474a-951a-8f9a70ea3704",
+        "5392478f-9264-4843-975d-45df45e2dbe6",
+        "222b87fd-d5d8-47e0-b15c-60be74e95e21",
+        "54d71084-794c-4a9b-9413-f11d7f20efdd",
+        "9705dce3-3b97-4d3e-b0ff-bfe6782b6f35"
       ]
     ],
     "layouts": [
@@ -6761,6 +6782,226 @@
     ],
     "scope": "Actual desktop creation receipt and retained-file warning integration only. Local pin service has separate unit coverage; pin UI, destructive cleanup, snapshots/restoration, full reference parity and current distribution require separate acceptance."
   },
+  "worktreePinning": {
+    "checks": 6,
+    "modelRequests": 0,
+    "ownedOnlyControlsVerified": true,
+    "heldFailureRetryVerified": true,
+    "staleSourceReadRecoveryVerified": true,
+    "backupSeparationVerified": true,
+    "normalRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "replacementRejectionVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 455.5,
+        "bottom": 473.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 348.20001220703125,
+        "bottom": 366.20001220703125,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 276.66668701171875,
+        "bottom": 294.66668701171875,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 455.5,
+        "bottom": 473.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 348.20001220703125,
+        "bottom": 366.20001220703125,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 276.66668701171875,
+        "bottom": 294.66668701171875,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 434.5,
+        "bottom": 455.5,
+        "left": 650,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "固定工作树",
+        "outline": 3.2,
+        "top": 327.20001220703125,
+        "bottom": 348.20001220703125,
+        "left": 499.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 255.6666717529297,
+        "bottom": 276.6666717529297,
+        "left": 398,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 434.5,
+        "bottom": 455.5,
+        "left": 650,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "固定工作树",
+        "outline": 3.2,
+        "top": 327.20001220703125,
+        "bottom": 348.20001220703125,
+        "left": 499.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 255.6666717529297,
+        "bottom": 276.6666717529297,
+        "left": 398,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-pinning-owned-external-light-shell.png",
+      "worktree-pinning-save-held-light-shell.png",
+      "worktree-pinning-save-error-light-shell.png",
+      "worktree-pinning-pinned-light-shell.png",
+      "worktree-pinning-stale-source-light-shell.png",
+      "worktree-pinning-record-read-error-light-shell.png",
+      "worktree-pinning-backup-restored-light-shell.png",
+      "worktree-pinning-normal-restart-pinned-light-shell.png",
+      "worktree-pinning-light-100-keyboard-shell.png",
+      "worktree-pinning-light-100-error-shell.png",
+      "worktree-pinning-light-125-keyboard-shell.png",
+      "worktree-pinning-light-125-error-shell.png",
+      "worktree-pinning-light-150-keyboard-shell.png",
+      "worktree-pinning-light-150-error-shell.png",
+      "worktree-pinning-dark-100-keyboard-shell.png",
+      "worktree-pinning-dark-100-error-shell.png",
+      "worktree-pinning-dark-125-keyboard-shell.png",
+      "worktree-pinning-dark-125-error-shell.png",
+      "worktree-pinning-dark-150-keyboard-shell.png",
+      "worktree-pinning-dark-150-error-shell.png",
+      "worktree-pinning-replacement-rejected-dark-shell.png"
+    ],
+    "scope": "Actual local worktree pin UI, strict full-window bridge, write/source/read failures, same-profile gzip restore separation, local restart and replaced-directory rejection. Quick Chat restrictions, cross-profile creation-authority transfer, snapshots, destructive cleanup, full reference parity and current distribution require separate evidence."
+  },
   "toolActivities": {
     "checks": 8,
     "nativeStates": [
@@ -6813,7 +7054,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.65625,
+        "summaryWidth": 368.890625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6828,7 +7069,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 371.0500183105469,
+        "summaryWidth": 373.2875061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6843,7 +7084,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 269.32293701171875,
+        "summaryWidth": 271.5520935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6858,7 +7099,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.65625,
+        "summaryWidth": 368.890625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6873,7 +7114,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 371.0500183105469,
+        "summaryWidth": 373.2875061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6888,7 +7129,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 269.32293701171875,
+        "summaryWidth": 271.5520935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -6962,7 +7203,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "17ec9db3-e93e-49dd-80c0-33f2b9a8b50b",
+    "threadId": "434448a3-c896-4aee-b97d-a6d787fd30f4",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -7046,7 +7287,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-20QBQn"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

@@ -1,10 +1,10 @@
 # Nook 设计对照
 
-本轮「设置 → 工作树」增加本机固定与取消固定，沿用共享按钮、主题和行内错误；外部树不显示入口，未核验记录显示保留文件说明并禁用固定。两轮各六组真实桌面专项通过，当前 21 张原图逐张复核，236 个编译文件一致；显式明暗外观与三档缩放中的提交前完整键盘边框、失败提示、重启状态和替换目录拒绝均已检查。纠正读取错误截图后，完整提示实际可见；第二轮暗色 150% 错误图未显示焦点，当前整轮增加失败后实际焦点等待验证。150% 内容和后续分类需纵向滚动。完整参考界面、快照／恢复、清理及当前分发继续完成。[固定专项](../verification/worktree-pinning-notice-review-result.json) · [当前原图范围](../verification/worktree-pinning-notice-originals-review-result.json)
+当前固定版本整轮首次在快速聊天主题刷新等待处超时，固定模块尚未执行；失败工作区的快速聊天九项重放通过，随后整轮 337 项、64 次正常退出通过（最长 2,121ms）。整轮当前固定 21 张原图逐张复核，六种明暗缩放中提交前及失败后的蓝色键盘边框与完整错误均实际可见；另外 142 张选定原图保留但不计本轮视觉验收。前序暗色 150% 错误图的焦点限制和原整轮失败仍保留；全部参考界面及当前分发继续完成。[整轮结果与报告标签限制](../verification/worktree-pinning-full-review-result.json) · [当前原图范围](../verification/worktree-pinning-full-originals-review-result.json) · [整轮失败](../verification/worktree-pinning-source-failure-result.json) · [重放范围](../verification/worktree-pinning-quick-replay-result.json)
+
+「设置 → 工作树」的本机固定与取消固定沿用共享按钮、主题和行内错误；外部树不显示入口，未核验记录显示保留文件说明并禁用固定。此前两轮各六组桌面专项通过，第二轮 21 张原图逐张复核；236 个编译文件与本轮整轮一致。首轮读取错误图遗漏提示、第二轮暗色 150% 错误图未显示焦点的限制保留；整轮已验证完整提示与失败后实际焦点。150% 内容和后续分类需纵向滚动。完整参考界面、快照／恢复、清理及当前分发继续完成。[前序固定专项](../verification/worktree-pinning-notice-review-result.json) · [前序原图范围](../verification/worktree-pinning-notice-originals-review-result.json)
 
 ## 前序创建记录界面
-
-当前固定版本整轮首次在快速聊天主题刷新等待处超时，固定模块尚未执行；失败工作区的快速聊天九项重放通过，完整回归正在重跑。两轮固定专项的视觉范围仍单独保留，不能据此认定完整界面已通过。[整轮失败](../verification/worktree-pinning-source-failure-result.json) · [重放范围](../verification/worktree-pinning-quick-replay-result.json)
 
 本机创建记录写入失败时，创建结果增加保留文件提示，沿用已有文字和表单样式。五组真实桌面专项与 10 张原图逐张复核通过；六种最小窗口主题／缩放由系统主题的实际媒体变化驱动，完整提示和实际 Tab 提交按钮的焦点边框可见。150% 正文独立纵向滚动，底部操作保持可见；重启原图展示五棵实际工作树，记录持久化由文件断言验证。完整源码通过 331 项、60 次正常退出（最长 2,215ms），236 个编译文件与专项一致；本轮创建与归属的 22 张原图逐张复核，另外 120 张保留原图不计入本轮视觉验收。项目创建明色矩阵为 1280×840、暗色为 760×540；暗色 150% 下后续字段需正文滚动，不能推断全部明色最小窗口已验收。固定界面、快照／恢复、清理、完整参考界面与分发继续完成。[创建专项](../verification/worktree-ownership-review-result.json) · [专项原图](../verification/worktree-ownership-originals-review-result.json) · [完整源码](../verification/worktree-ownership-full-review-result.json) · [整轮原图实际范围](../verification/worktree-ownership-full-originals-review-result.json)
 
