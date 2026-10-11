@@ -26,6 +26,7 @@
     "forced": false,
     "observedCause": "The final diagnostic recorded a native dialog cancel event with cancelable:false and closedBy:closerequest while the header remained disabled. preventDefault could not block this event, and the native dialog closed. Earlier diagnostics did not record cancelable, so their exact cause remains bounded to the observed dialog closure.",
     "change": "Shared Modal explicitly sets closedby:none while dismissal is disabled and restores closerequest when idle. Actual native picker and save fixtures press Escape three times while held. All original deadlines remain unchanged.",
-    "distributionVerification": "pending"
+    "distributionVerification": "pending",
+    "screenshotScope": "Three selected originals were retained for each failed native attempt. The intermediate selected-path image from the two final diagnostic failures was not separately archived before the next attempt overwrote the live file. Raw logs, failure images, compiled/source snapshots and complete failed workspaces remain preserved; no claim is made that every intermediate screenshot from those failures was retained."
   }
 }

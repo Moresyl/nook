@@ -1,0 +1,68 @@
+{
+  "verifiedAt": "2026-10-11T06:39:13.781Z",
+  "archive": "E:/NookVerification/WorktreePickerUnitPass-20261011",
+  "sourceHead": "274b77f26302910bcebb72988787e0778ed1fab6",
+  "testFiles": 114,
+  "tests": 1179,
+  "duration": "278.32s (transform 2.84s, setup 0ms, import 10.91s, tests 249.08s, environment 7ms)",
+  "thresholdsPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 3838,
+      "covered": 3816,
+      "skipped": 0,
+      "pct": 99.42
+    },
+    "statements": {
+      "total": 6379,
+      "covered": 6208,
+      "skipped": 0,
+      "pct": 97.31
+    },
+    "functions": {
+      "total": 1444,
+      "covered": 1407,
+      "skipped": 0,
+      "pct": 97.43
+    },
+    "branches": {
+      "total": 4518,
+      "covered": 4296,
+      "skipped": 0,
+      "pct": 95.08
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "pickerCoverage": {
+    "lines": {
+      "total": 6,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 8,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 6,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "scope": "Complete single-worker V8 coverage of configured contracts and desktop/services, excluding bridge-contract as before. React UI remains outside the percentage; native acceptance covers it separately. Original picker/focus/noncancelable-Escape failures remain preserved. This pass does not establish current distribution, hosted or release acceptance."
+}

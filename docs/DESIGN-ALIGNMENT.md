@@ -2,6 +2,8 @@
 
 工作树根目录新增文件夹选择按钮，与上限 288px 的输入并排，窄窗口可收缩且键盘可达。选择成功暂存输入，取消或失败保留输入与数据；操作期间禁止关闭，连续 Escape 也不能触发浏览器原生关闭。117 项相关测试和七组桌面专项通过，14 张原图逐张核验；物理系统窗口、完整新版分发和全部参考界面仍待验收。[目录选择证据与失败记录](../verification/worktree-picker-review-result.json)
 
+该主体随后通过完整单元 114 个文件／1,179 项与完整源码 303 项／43 次正常退出，无运行时错误或强制结束；50 张选定原图逐张核验，236 个编译文件与专项一致。配置与回复的下方内容在窄窗口仍通过滚动访问，不能将单张截图写成所有控件同时可见。[完整源码](../verification/worktree-picker-full-review-result.json) · [本轮原图范围](../verification/worktree-picker-full-originals-review-result.json)
+
 此前新增工作树设置分类：根目录输入宽度上限 288px，采用共享标题下间距 8px 和说明字号 12px。真实保存失败在明暗最小窗口的 100%／125%／150% 页面缩放下完整可读，分类栏独立滚动；实际创建、备份恢复与重启通过。六组专项与 11 张原图逐张核验，不等于完整设置页或全部参考界面完成。[设置证据](../verification/worktree-settings-review-result.json)
 
 包含该设置的完整新版源码随后通过 302 项、43 次正常退出，无运行时错误；47 张选定原图逐张复核，236 个编译文件与专项一致。参考的剩余页面、状态和交互仍继续对照，新分发尚未验收。[完整源码](../verification/worktree-settings-full-review-result.json) · [原图范围](../verification/worktree-settings-full-originals-review-result.json)
