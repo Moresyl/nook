@@ -568,7 +568,7 @@ try {
     const { verifyWorktreeSnapshots } = await import('./verify-worktree-snapshots.mjs');
     const run = await verifyWorktreeSnapshots({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreeSnapshotsResult = run.result;
-    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_WORKTREE_PINNING_ONLY) {
     const { verifyWorktreePinning } = await import('./verify-worktree-pinning.mjs');
     const run = await verifyWorktreePinning({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });

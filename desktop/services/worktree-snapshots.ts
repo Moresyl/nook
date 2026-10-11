@@ -68,8 +68,10 @@ export class WorktreeSnapshots {
     const snapshots = await this.store.list(); this.project(source);
     if (!snapshots.length) return [];
     const identity = await this.git.repositoryIdentity(root);
+    this.project(source);
     const current = await this.git.repositoryIdentity(root);
-    if (!sameDirectory(identity.common, current.common)) throw new Error(failure);
+    this.project(source);
+    if (!same(identity, current)) throw new Error(failure);
     return snapshots.filter(snapshot => sameDirectory(snapshot.common, current.common));
   }
   private async restoreSnapshot(raw: unknown): Promise<WorktreeRestored> {

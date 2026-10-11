@@ -78,9 +78,21 @@ export type WorktreePinningProof = {
   screenshots: string[]; layouts: WorktreeConversationsProof['layouts'];
   keyboardLayouts: (WorktreeFocusLayout & { label: string })[];
 };
+export type WorktreeSnapshotsProof = {
+  checks: number; modelRequests: number; ownedOnlyCaptureVerified: boolean; privateSaveFailureVerified: boolean;
+  backupSeparationVerified: boolean; normalRestartVerified: boolean; detachedExactRestoreVerified: boolean;
+  referenceZoomKeyboardVerified: boolean; restoreKeyboardVerified: boolean; acceptedShutdownVerified: boolean;
+  corruptReadRecoveryVerified: boolean; replacementRejectionVerified: boolean; sourcePreservationVerified: boolean;
+  screenshots: string[]; layouts: WorktreeConversationsProof['layouts'];
+  keyboardLayouts: (WorktreeFocusLayout & { label: string })[];
+  restoreKeyboardLayouts: (WorktreeFocusLayout & { label: string })[];
+  restoreLayouts: { theme: string; zoom: number; error: Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'>;
+    cancel: Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'>; submit: Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'>;
+    draftRetained: boolean; cancelFocusVerified: boolean }[];
+};
 export type ReleaseProof = {
   audit: { compiledAssetsMatchVerifiedBuild: boolean; removedUiFontReferencesVerified: boolean; oldProductIdentityMatches: string[]; unresolvedAssets: string[]; unresolvedDistribution: string[]; executableSha256: string; archiveSha256: string };
-  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
+  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
   surfaces: ReleaseProof['desktop'];
   preview: ReleaseProof['desktop'] & ProjectPreviewProof;
   branches: ReleaseProof['desktop'] & { verificationRun: string; suiteChecks: number; modelRequests: number; ambiguousHistoryRecoveryVerified: boolean; manualOrderingVerified: boolean; orderingFailureRecoveryVerified: boolean; orderingBackupRestartVerified: boolean };

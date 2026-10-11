@@ -1,6 +1,6 @@
 import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { lstat, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { promisify } from 'node:util';
@@ -54,6 +54,32 @@ describe('explicit snapshot contracts', () => {
 describe('actual local worktree snapshot lifecycle', () => {
   let f: Awaited<ReturnType<typeof fixture>>;
   beforeEach(async () => { f = await fixture(); });
+  it('lists an absent private store without Git reads or creating a folder', async () => {
+    const path = join(f.profile, 'absent-snapshots'), store = new WorktreeSnapshotStore(path); stores.push(store);
+    const service = new WorktreeSnapshots(f.vault, f.ownership, f.git, store), identity = vi.spyOn(f.git, 'repositoryIdentity');
+    expect(await service.list(f.source)).toEqual([]); expect(identity).not.toHaveBeenCalled(); await expect(lstat(path)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+  it('discards saved summaries when the source changes during a held repository identity read', async () => {
+    const held = gate(), entered = gate(), identity = f.git.repositoryIdentity.bind(f.git);
+    vi.spyOn(f.git, 'repositoryIdentity').mockImplementationOnce(async root => { const result = await identity(root); entered.release(); await held.promise; return result; });
+    const pending = f.service.list(f.source), rejected = expect(pending).rejects.toThrow('linked worktree project changed'); await entered.promise;
+    await f.vault.update(state => { state.projects[0].path = join(f.directory, 'relocated'); state.projects[0].instructions = 'INTERVENING'; }); held.release(); await rejected;
+    expect(f.vault.snapshot().projects[0].instructions).toBe('INTERVENING'); expect(await f.store.list()).toHaveLength(1);
+  });
+  it('rejects summaries when the actual common directory is replaced during an identity read and retains the previous index and snapshots', async () => {
+    const held = gate(), entered = gate(), identity = f.git.repositoryIdentity.bind(f.git), index = await readFile(join(f.root, '.git', 'index'));
+    vi.spyOn(f.git, 'repositoryIdentity').mockImplementationOnce(async root => { const result = await identity(root); entered.release(); await held.promise; return result; });
+    const pending = f.service.list(f.source), rejected = expect(pending).rejects.toThrow('retained'); await entered.promise;
+    await rename(join(f.root, '.git'), join(f.root, '.git-original')); await command(f.root, 'init', '-q', '-b', 'main'); held.release(); await rejected;
+    expect(await readFile(join(f.root, '.git-original', 'index'))).toEqual(index); expect(await readFile(join(f.root, 'file.txt'), 'utf8')).toBe('MAIN WORKING\r\n'); expect(await f.store.list()).toHaveLength(1);
+  });
+  it('rejects a rehashed truncated Git pack before creating a destination and preserves the malformed snapshot for inspection', async () => {
+    const snapshot = await f.store.read(f.saved.id), bytes = Buffer.from(snapshot.pack.data, 'base64').subarray(0, -1);
+    snapshot.pack = { bytes: bytes.length, data: bytes.toString('base64'), sha256: createHash('sha256').update(bytes).digest('hex') };
+    const path = join(f.directoryStore, `${snapshot.id}.json.gz`), stored = gzipSync(JSON.stringify(snapshot)), trees = await f.git.worktrees(f.root), index = await readFile(join(f.root, '.git', 'index'));
+    await writeFile(path, stored); await expect(f.service.restore({ source: f.source, snapshotId: snapshot.id, path: f.target })).rejects.toThrow('retained');
+    expect(await f.git.worktrees(f.root)).toEqual(trees); expect(await readFile(join(f.root, '.git', 'index'))).toEqual(index); expect(await readFile(path)).toEqual(stored); await expect(lstat(f.target)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
   it('drains an accepted capture before closing storage and rejects new actions during and after shutdown', async () => {
     const entered = gate(), release = gate(), original = f.ownership.list.bind(f.ownership);
     vi.spyOn(f.ownership, 'list').mockImplementationOnce(async root => { entered.release(); await release.promise; return original(root); });
@@ -67,6 +93,13 @@ describe('actual local worktree snapshot lifecycle', () => {
     const reopened = new WorktreeSnapshotStore(f.directoryStore); stores.push(reopened);
     expect((await reopened.list()).map(row => row.id)).toContain(saved.id);
     await expect(f.service.list(f.source)).rejects.toThrow('closing');
+  });
+  it('closes after a failed accepted capture without discarding the previous private snapshot', async () => {
+    const path = join(f.directoryStore, `${f.saved.id}.json.gz`), bytes = await readFile(path);
+    vi.spyOn(f.ownership, 'list').mockRejectedValueOnce(new Error('PRIVATE_READ_FAILURE'));
+    const pending = f.service.capture({ source: f.source, path: f.path }), rejected = expect(pending).rejects.toThrow();
+    await f.service.shutdown(); await rejected; expect(await readFile(path)).toEqual(bytes);
+    const reopened = new WorktreeSnapshotStore(f.directoryStore); stores.push(reopened); expect(await reopened.read(f.saved.id)).toBeDefined();
   });
   it('captures an owned pinned tree without changing files, index, workspace or pin metadata and lists durable summaries after reopen', async () => {
     await f.ownership.setPinned(f.root, { path: f.path, pinned: true });

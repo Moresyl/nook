@@ -1,0 +1,44 @@
+{
+  "verifiedAt": "2026-10-11T17:40:16.114Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotIntegrationUnitPass-20261012",
+  "sourceHead": "0c7310c3fc0f1ae7e391942a0aea18cfe272c3fc",
+  "sourceArchiveSha256": "bdff34999109fd7a858e06d90be66024e4108abb66dbe8fac2b3efaf53d6deed",
+  "testFiles": 127,
+  "tests": 1443,
+  "durationSeconds": 413.41,
+  "typesPassed": true,
+  "coverage": {
+    "lines": {
+      "total": 4322,
+      "covered": 4298,
+      "skipped": 0,
+      "pct": 99.44
+    },
+    "statements": {
+      "total": 7157,
+      "covered": 6935,
+      "skipped": 0,
+      "pct": 96.89
+    },
+    "functions": {
+      "total": 1596,
+      "covered": 1558,
+      "skipped": 0,
+      "pct": 97.61
+    },
+    "branches": {
+      "total": 5022,
+      "covered": 4739,
+      "skipped": 0,
+      "pct": 94.36
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "sourceChangeNote": "Focus/harness and evidence commit completed during the run, with no source edits. Archive is the clean resulting commit; sixteen native-source hashes are unchanged.",
+  "scope": "Complete integration type/unit/coverage pass with unchanged four 80-percent thresholds and one worker. React and bridge exclusions unchanged. Ordinary unit fixtures cleaned by afterEach; source, coverage and logs retained. No complete-source native, destructive/automatic cleanup, full reference or distribution acceptance."
+}

@@ -1,6 +1,20 @@
 const identifier = '(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)';
 const versionPattern = `(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-${identifier}(?:\\.${identifier})*)?`;
 
+function completeWorktreeSnapshots(proof) {
+  if (proof?.checks !== 8 || proof.modelRequests !== 0 || !['ownedOnlyCaptureVerified', 'privateSaveFailureVerified', 'backupSeparationVerified', 'normalRestartVerified', 'detachedExactRestoreVerified', 'referenceZoomKeyboardVerified', 'restoreKeyboardVerified', 'acceptedShutdownVerified', 'corruptReadRecoveryVerified', 'replacementRejectionVerified', 'sourcePreservationVerified'].every(key => proof[key] === true)) return false;
+  const six = rows => Array.isArray(rows) && rows.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => rows.filter(row => row?.theme === theme && row.zoom === zoom).length === 1));
+  const whole = row => row && ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight', 'contentWidth', 'contentScrollWidth', 'documentWidth', 'viewportWidth'].every(key => Number.isFinite(row[key]))
+    && row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left;
+  const focused = (row, label) => row && ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight', 'outline'].every(key => Number.isFinite(row[key]))
+    && row.label === label && row.outline > 0 && row.top - row.outline >= row.viewportTop && row.bottom + row.outline <= row.viewportBottom && row.left - row.outline >= row.viewportLeft && row.right + row.outline <= row.viewportRight && row.bottom > row.top && row.right > row.left;
+  return six(proof.layouts) && proof.layouts.every(whole)
+    && six(proof.keyboardLayouts) && proof.keyboardLayouts.every(row => focused(row, '保存工作树快照'))
+    && six(proof.restoreKeyboardLayouts) && proof.restoreKeyboardLayouts.every(row => focused(row, '恢复快照'))
+    && six(proof.restoreLayouts) && proof.restoreLayouts.every(row => row.draftRetained === true && row.cancelFocusVerified === true && whole(row.error) && whole(row.cancel) && whole(row.submit))
+    && Array.isArray(proof.screenshots) && proof.screenshots.length === 33 && new Set(proof.screenshots).size === 33 && proof.screenshots.every(name => typeof name === 'string' && /^worktree-snapshots-[a-z0-9-]+-shell\.png$/.test(name));
+}
+
 export function releaseVersion(tag, version) {
   if (typeof tag !== 'string' || tag !== tag.trim() || !new RegExp(`^v${versionPattern}$`).test(tag) || tag !== `v${version}`) {
     throw new Error('The release tag must exactly match the package version');
@@ -45,7 +59,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 337 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 345 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const context = desktop.contextSummaries;
@@ -56,6 +70,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   const registration = desktop.worktreeRegistration;
   const ownership = desktop.worktreeOwnership;
   const pinning = desktop.worktreePinning;
+  if (!completeWorktreeSnapshots(desktop.worktreeSnapshots)) throw new Error('Complete worktree snapshot verification is required');
   if (pinning?.checks !== 6 || pinning.modelRequests !== 0 || !['ownedOnlyControlsVerified', 'heldFailureRetryVerified', 'staleSourceReadRecoveryVerified', 'backupSeparationVerified', 'normalRestartVerified', 'referenceZoomKeyboardVerified', 'replacementRejectionVerified', 'sourcePreservationVerified'].every(key => pinning[key] === true)
     || !Array.isArray(pinning.layouts) || pinning.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => pinning.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     || !pinning.layouts.every(row => ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight', 'contentWidth', 'contentScrollWidth', 'documentWidth', 'viewportWidth'].every(key => Number.isFinite(row[key])) && row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left)

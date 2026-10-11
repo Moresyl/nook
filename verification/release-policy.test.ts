@@ -35,9 +35,17 @@ const worktreeOverview = (): NonNullable<ReleaseProof['desktop']['worktreeOvervi
   screenshots: Array.from({ length: 18 }, (_, index) => `worktree-overview-${index}-shell.png`),
   layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contentWidth: 350, contentScrollWidth: 350, viewportWidth: 500, documentWidth: 500, error: { top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 } }))),
 });
+const snapshotBounds = () => ({ top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500, contentWidth: 350, contentScrollWidth: 350, documentWidth: 500, viewportWidth: 500 });
+const snapshotFocus = (label: string) => ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, label, outline: 4, ...snapshotBounds() })));
+const worktreeSnapshots = (): NonNullable<ReleaseProof['desktop']['worktreeSnapshots']> => ({
+  checks: 8, modelRequests: 0, ownedOnlyCaptureVerified: true, privateSaveFailureVerified: true, backupSeparationVerified: true, normalRestartVerified: true, detachedExactRestoreVerified: true, referenceZoomKeyboardVerified: true, restoreKeyboardVerified: true, acceptedShutdownVerified: true, corruptReadRecoveryVerified: true, replacementRejectionVerified: true, sourcePreservationVerified: true,
+  layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, ...snapshotBounds() }))), keyboardLayouts: snapshotFocus('保存工作树快照'), restoreKeyboardLayouts: snapshotFocus('恢复快照'),
+  restoreLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, error: snapshotBounds(), cancel: snapshotBounds(), submit: snapshotBounds(), draftRetained: true, cancelFocusVerified: true }))),
+  screenshots: Array.from({ length: 33 }, (_, index) => `worktree-snapshots-fixture-${index}-shell.png`),
+});
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 337, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 345, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -89,6 +97,47 @@ function worktreePinning(): NonNullable<ReleaseProof['desktop']['worktreePinning
     keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '固定工作树' })),
   };
 }
+
+describe('worktree snapshot release evidence', () => {
+  it('requires real private capture, exact restore, restart, backup separation and accepted quit drainage', () => {
+    const missing = proof(); delete missing.desktop.worktreeSnapshots; expect(() => verifyRuntimeProof(missing)).toThrow('worktree snapshot');
+    for (const [key, value] of Object.entries({ checks: 7, modelRequests: 1, ownedOnlyCaptureVerified: false, privateSaveFailureVerified: false, backupSeparationVerified: false, normalRestartVerified: false, detachedExactRestoreVerified: false, referenceZoomKeyboardVerified: false, restoreKeyboardVerified: false, acceptedShutdownVerified: false, corruptReadRecoveryVerified: false, replacementRejectionVerified: false, sourcePreservationVerified: false })) {
+      const invalid = proof(); (invalid.desktop.worktreeSnapshots as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot');
+    }
+    expect(() => verifyRuntimeProof(proof())).not.toThrow();
+  });
+  it('rejects previous complete-suite counts that omit the new native snapshot checks', () => {
+    for (const checks of [337, 344]) { const invalid = proof(); invalid.desktop.checks = checks; expect(() => verifyRuntimeProof(invalid)).toThrow('Complete desktop'); }
+  });
+  it('requires six distinct explicit theme/zoom cases for all save and restore evidence arrays', () => {
+    for (const key of ['layouts', 'keyboardLayouts', 'restoreLayouts', 'restoreKeyboardLayouts'] as const) {
+      const missing = proof(); missing.desktop.worktreeSnapshots![key] = []; expect(() => verifyRuntimeProof(missing)).toThrow('worktree snapshot');
+      const duplicate = proof(); duplicate.desktop.worktreeSnapshots![key][1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree snapshot');
+      const wrong = proof(); wrong.desktop.worktreeSnapshots![key][0].theme = 'unknown'; expect(() => verifyRuntimeProof(wrong)).toThrow('worktree snapshot');
+    }
+  });
+  it('rejects clipped, overflowing, empty or nonfinite save feedback', () => {
+    for (const [key, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501, contentWidth: 0, contentScrollWidth: 351, viewportWidth: 0, documentWidth: 501, viewportTop: NaN })) {
+      const invalid = proof(); (invalid.desktop.worktreeSnapshots!.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot');
+    }
+  });
+  it('rejects clipped restore errors or footer buttons and lost target drafts or cancel focus', () => {
+    for (const kind of ['error', 'cancel', 'submit'] as const) for (const [key, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501, documentWidth: 501, viewportTop: Infinity })) {
+      const invalid = proof(); (invalid.desktop.worktreeSnapshots!.restoreLayouts[0][kind] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot');
+    }
+    for (const key of ['draftRetained', 'cancelFocusVerified'] as const) { const invalid = proof(); invalid.desktop.worktreeSnapshots!.restoreLayouts[0][key] = false; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot'); }
+  });
+  it('rejects missing, misplaced, nonfinite or mislabeled actual keyboard focus outlines', () => {
+    for (const kind of ['keyboardLayouts', 'restoreKeyboardLayouts'] as const) for (const [key, value] of Object.entries({ outline: 0, top: 63, bottom: 358, left: 130, right: 498, viewportTop: NaN, label: 'Other control' })) {
+      const invalid = proof(); (invalid.desktop.worktreeSnapshots![kind][0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot');
+    }
+  });
+  it('requires thirty-three distinct safe snapshot originals', () => {
+    const missing = proof(); missing.desktop.worktreeSnapshots!.screenshots.pop(); expect(() => verifyRuntimeProof(missing)).toThrow('worktree snapshot');
+    const duplicate = proof(); duplicate.desktop.worktreeSnapshots!.screenshots[1] = duplicate.desktop.worktreeSnapshots!.screenshots[0]; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree snapshot');
+    for (const name of ['../escape-shell.png', 'worktree-pinning-error-shell.png', 'worktree-snapshots-error.png', 'worktree-snapshots-秘密-shell.png']) { const invalid = proof(); invalid.desktop.worktreeSnapshots!.screenshots[0] = name; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree snapshot'); }
+  });
+});
 
 describe('worktree pinning release evidence', () => {
   it('requires the complete count and all actual local-pin, failure, replacement and recovery guarantees', () => {

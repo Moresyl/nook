@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-11T17:43:37.230Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotListGuardPass-20261012",
+  "source": [
+    {
+      "path": "desktop/services/worktree-snapshots.ts",
+      "sha256": "c2ae4f743b93f57c6dac8ba98d64d68902d1a487b640dc38f016275b9373ec3c"
+    },
+    {
+      "path": "verification/worktree-snapshots.test.ts",
+      "sha256": "9c484f7a795ab40bb73dbd08221f21d3571bb520efcaedaaca6f8855176bd6ff"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-store.ts",
+      "sha256": "aa172cd991389a3e29b050f594d57d93a36dc5216b71cb3e69da503ea6357a4b"
+    }
+  ],
+  "typesPassed": true,
+  "tests": 19,
+  "durationSeconds": 38.99,
+  "evidence": [
+    "Absent store returns no summaries without any Git reads or creating a folder.",
+    "Held actual identity read rejects a changed source and a replaced actual common Git directory, retaining intervening workspace/index/snapshot data.",
+    "A rehashed truncated Git pack is rejected by actual Git before a destination is created; the malformed private snapshot and original index/worktrees remain exact."
+  ],
+  "scope": "Application-service type/unit checks only, with unchanged test deadlines. Ordinary temporary unit fixtures cleaned by afterEach. Complete native, new release gates, destructive/automatic cleanup and distribution remain separate."
+}
