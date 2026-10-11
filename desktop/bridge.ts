@@ -173,6 +173,7 @@ const bridge: Bridge = {
   gitCreateBranch: (id, name) => invoke('gitCreateBranch', id, name),
   gitWorktrees: id => invoke('gitWorktrees', id),
   gitCreateWorktree: (id, input) => invoke('gitCreateWorktree', id, input),
+  registerWorktreeProject: input => invoke('registerWorktreeProject', input),
   gitFileView: (id, file, staged) => invoke('gitFileView', id, file, staged),
   gitStage: (id, paths, staged) => invoke('gitStage', id, paths, staged),
   gitCommit: (id, message) => invoke('gitCommit', id, message),

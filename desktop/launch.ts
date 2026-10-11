@@ -26,6 +26,7 @@ import { optionalProjectDocument, saveProjectDocument, writableProjectPath } fro
 import { directoryRequestSchema, editorDraftSchema, saveDocumentSchema, terminalGeometrySchema } from '../contracts/projects';
 import { ProjectGit } from './services/project-git';
 import { createWorktreeSchema } from '../contracts/project-worktrees';
+import { registerWorktreeProject } from './services/worktree-registration';
 import { TerminalSessions } from './services/terminal-sessions';
 import { appAssetPath } from './services/app-assets';
 import { McpConnections } from './services/mcp-connections';
@@ -406,6 +407,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitCreateBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.createBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitWorktrees: id => git.worktrees(workspaceProject(id).path),
   gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'),
+  registerWorktreeProject: input => registerWorktreeProject(vault, root => git.worktrees(root), input),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),
