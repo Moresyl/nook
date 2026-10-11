@@ -1,0 +1,22 @@
+{
+  "exitCode": 0,
+  "newFilesystemRoundtripBudgetMs": 10000,
+  "originalApplicationBudgets": {
+    "bridge": 10000,
+    "startup": 30000,
+    "quickNativeWait": 5000,
+    "heldOperation": 5000,
+    "normalClose": 10000
+  },
+  "files": 1,
+  "baseHead": "ccefe302a5176b5fcc0865581d5ea7493a66a33c",
+  "originalFailure": "quick-chat-journal-full-unit-initial-review-result.json",
+  "workerCount": 1,
+  "passed": true,
+  "scope": "All 45 checkpoint cases pass. Only the newly authored multi-stage large-file unit roundtrip receives an explicit 10-second framework budget; its fixture and every assertion remain unchanged. All existing application and held-operation deadlines remain unchanged. The original 1504/1505 full failure, ENOTEMPTY log and surviving fixture are preserved. This replay does not replace full coverage or rebuilt native verification.",
+  "archive": "E:/NookVerification/QuickJournalFilesystemReplay-20261012",
+  "tests": 45,
+  "testSourceSha256": "511d9a844a722474efbdec20cf8957713bc191654550560485d3daa6e1f829ce",
+  "durationSeconds": 27.99,
+  "verifiedAt": "2026-10-11T21:37:58.7460409Z"
+}

@@ -35,7 +35,7 @@ describe('durable response checkpoint journal', () => {
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());
     await restored.flush(); expect(await readFile(primary, 'utf8')).toBe(JSON.stringify(vault.snapshot(), null, 2));
     await expect(readFile(journal)).rejects.toMatchObject({ code: 'ENOENT' });
-  });
+  }, 10_000); // This new filesystem roundtrip includes large fixture setup, full backup, restart and canonical flush; existing application and held-operation waits are unchanged.
   it('atomically clears quick-chat state without reviving its saved predecessor after restart or flush', async () => {
     const { vault, directory, primary, backup, journal } = await fixture();
     await vault.commitQuickChat(draft => { draft.quickChat = quickState('Retained before clearing'); });

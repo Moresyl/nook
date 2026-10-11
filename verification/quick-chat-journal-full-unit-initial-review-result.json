@@ -1,0 +1,31 @@
+{
+  "verifiedAt": "2026-10-11T21:35:25.745Z",
+  "archive": "E:/NookVerification/QuickJournalFullUnitInitial-20261012",
+  "sourceHead": "ccefe302a5176b5fcc0865581d5ea7493a66a33c",
+  "sourceArchiveSha256": "e743f945d59c46578b68ddbd62ed3e3759e86f849b3abc7a83e3788d1eeb80da",
+  "typesPassed": true,
+  "files": "1 failed | 128 passed (129)",
+  "tests": "1 failed | 1504 passed (1505)",
+  "durationSeconds": 398.69,
+  "passed": false,
+  "retainedFixtures": [
+    {
+      "path": "E:\\NookVerification\\Temp\\qiyao-verification-7QAkqR",
+      "survivingFilesRetained": true,
+      "originalChanged": false
+    }
+  ],
+  "workerCount": 1,
+  "exitObservation": {
+    "startedAt": "2026-10-11T21:26:43.3672322Z",
+    "log": "E:/NookVerification/nook-quick-journal-full-unit-initial-20261012.log",
+    "sourceHead": "ccefe302a5176b5fcc0865581d5ea7493a66a33c",
+    "exitCode": 1,
+    "finishedAt": "2026-10-11T21:33:24.2378315Z"
+  },
+  "assertionScope": "Twelve additional quick-checkpoint cases. The original canonical-primary assertion remains after explicit flush, with added base-byte and real restart assertions. No original wait or installer protection was weakened.",
+  "deadlinesChanged": false,
+  "originalTargetedFailure": "quick-chat-journal-unit-initial-failure-result.json",
+  "previousFullFailure": "worktree-cleanup-final-unit-initial-review-result.json",
+  "scope": "Complete current 129-file/1505-test coverage run on the committed quick-checkpoint change. Previous unit layout and held-fetch failures remain preserved. Coverage excludes React and keeps the original four 80-percent gates and one worker. Rebuilt native and current distribution remain separate."
+}
