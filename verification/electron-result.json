@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T04:51:13.077Z",
+  "verifiedAt": "2026-10-11T06:02:39.897Z",
   "variant": "development executable",
-  "checks": 296,
+  "checks": 302,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181182,
-    "compressedBytes": 242365,
+    "expandedBytes": 84181178,
+    "compressedBytes": 242340,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791693538669,
+        "startedAt": 1791697685532,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791693540317
+        "finishedAt": 1791697688245
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791693540555,
+        "startedAt": 1791697688461,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791693542386
+        "finishedAt": 1791697691638
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791693544597,
+        "startedAt": 1791697694867,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791693545871
+        "finishedAt": 1791697697906
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 16.900000005960464,
+    "scopedReadMs": 16,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1346,6 +1346,17 @@
     "project-worktrees-dark-125-shell.png",
     "project-worktrees-dark-150-shell.png",
     "project-worktrees-restart-shell.png",
+    "worktree-settings-root-light-shell.png",
+    "worktree-settings-save-busy-light-shell.png",
+    "worktree-settings-save-error-light-shell.png",
+    "worktree-settings-actual-creation-light-shell.png",
+    "worktree-settings-restored-restart-light-shell.png",
+    "worktree-settings-light-100-shell.png",
+    "worktree-settings-light-125-shell.png",
+    "worktree-settings-light-150-shell.png",
+    "worktree-settings-dark-100-shell.png",
+    "worktree-settings-dark-125-shell.png",
+    "worktree-settings-dark-150-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2538,70 +2549,120 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 170.40199999999928
+                }
+              ]
             }
           ]
         },
@@ -5329,6 +5390,187 @@
     ],
     "scope": "Real Git repositories/worktrees/hooks and native main/Quick bridges, Monaco, atomic project-save EIO and restart; fixed display scale and scripted input. Worktree deletion/pruning, managed roots, task orchestration, broader accessibility and complete reference parity remain separate gates."
   },
+  "worktreeSettings": {
+    "checks": 6,
+    "modelRequests": 0,
+    "rootValidationVerified": true,
+    "busySaveVerified": true,
+    "saveFailurePreservationVerified": true,
+    "rootCreationVerified": true,
+    "backupRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-6b9QSK\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-6b9QSK\\管理 工作树 🧭/nook-c82e9279",
+    "errorLayouts": [
+      {
+        "top": 457.8888854980469,
+        "bottom": 475.8888854980469,
+        "left": 461,
+        "right": 969,
+        "viewportTop": 230.88888549804688,
+        "viewportBottom": 627.8888854980469,
+        "viewportLeft": 437,
+        "viewportRight": 993,
+        "scrollTop": 0,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 285,
+        "bottom": 303,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "scrollTop": 0,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 301.1000061035156,
+        "bottom": 319.1000061035156,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "scrollTop": 0,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 317.3333435058594,
+        "bottom": 335.3333435058594,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "scrollTop": 0,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 285,
+        "bottom": 303,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "scrollTop": 0,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 301.1000061035156,
+        "bottom": 319.1000061035156,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "scrollTop": 0,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 317.3333435058594,
+        "bottom": 335.3333435058594,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "scrollTop": 0,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      }
+    ],
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "width": 288,
+        "left": 145,
+        "right": 433,
+        "viewportWidth": 760,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "width": 288,
+        "left": 144.8000030517578,
+        "right": 432.8000030517578,
+        "viewportWidth": 608,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "width": 288,
+        "left": 144.6666717529297,
+        "right": 432.6666717529297,
+        "viewportWidth": 507,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "width": 288,
+        "left": 145,
+        "right": 433,
+        "viewportWidth": 760,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "width": 288,
+        "left": 144.8000030517578,
+        "right": 432.8000030517578,
+        "viewportWidth": 608,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "width": 288,
+        "left": 144.6666717529297,
+        "right": 432.6666717529297,
+        "viewportWidth": 507,
+        "headingMargin": "8px",
+        "descriptionSize": "12px"
+      }
+    ],
+    "screenshots": [
+      "worktree-settings-root-light-shell.png",
+      "worktree-settings-save-busy-light-shell.png",
+      "worktree-settings-save-error-light-shell.png",
+      "worktree-settings-actual-creation-light-shell.png",
+      "worktree-settings-restored-restart-light-shell.png",
+      "worktree-settings-light-100-shell.png",
+      "worktree-settings-light-125-shell.png",
+      "worktree-settings-light-150-shell.png",
+      "worktree-settings-dark-100-shell.png",
+      "worktree-settings-dark-125-shell.png",
+      "worktree-settings-dark-150-shell.png"
+    ],
+    "scope": "Real settings IPC, held atomic-save EIO, real Git creation with source preservation, gzip backup/restore and normal restart; six native zoom/theme cases with fixed test display scale. Root is an explicit existing directory; blank retains manual path entry. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate."
+  },
   "toolActivities": {
     "checks": 8,
     "nativeStates": [
@@ -5381,7 +5623,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.1875,
+        "summaryWidth": 366.3125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5396,7 +5638,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.5874938964844,
+        "summaryWidth": 370.7124938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5411,7 +5653,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.85418701171875,
+        "summaryWidth": 268.97918701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5426,7 +5668,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.1875,
+        "summaryWidth": 366.3125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5441,7 +5683,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.5874938964844,
+        "summaryWidth": 370.7124938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5456,7 +5698,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.85418701171875,
+        "summaryWidth": 268.97918701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5530,7 +5772,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "2423c6cf-742a-491e-8ea5-4ba2a1ced018",
+    "threadId": "a9bb846a-7662-4b0a-856c-57f341c381b1",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -5614,7 +5856,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-z7zwsE"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-6b9QSK"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

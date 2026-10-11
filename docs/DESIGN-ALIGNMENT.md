@@ -2,6 +2,8 @@
 
 新增工作树设置分类：根目录输入宽度上限 288px，采用共享标题下间距 8px 和说明字号 12px。真实保存失败在明暗最小窗口的 100%／125%／150% 页面缩放下完整可读，分类栏独立滚动；实际创建、备份恢复与重启通过。六组专项与 11 张原图逐张核验，不等于完整设置页或全部参考界面完成。[设置证据](../verification/worktree-settings-review-result.json)
 
+包含该设置的完整新版源码随后通过 302 项、43 次正常退出，无运行时错误；47 张选定原图逐张复核，236 个编译文件与专项一致。参考的剩余页面、状态和交互仍继续对照，新分发尚未验收。[完整源码](../verification/worktree-settings-full-review-result.json) · [原图范围](../verification/worktree-settings-full-originals-review-result.json)
+
 本次新增项目工作树创建与列表，采用新版工作树行的 8px 间距、12px 内边距、14px 中等字重名称和 12px 次要路径；表单延续共享分支控件的 4px／12px／8px 间距。7 组真实桌面专项、两主题三档缩放及 12 张原图核验通过。完整工作树设置页、删除与会话关联尚未完成。[使用与范围](PROJECT-WORKTREES.md)
 
 模型比较的错误定位、忙碌关闭状态和重试滚动修复已通过源码专项 6 项及完整桌面 296 项／42 次正常退出；两轮各 17 张比较原图逐张检查。保存错误在明暗 760×540 窗口的 100%／125%／150% 原生页面缩放下完整可读；成功重试从第一条回复开始，后续同组流式更新保留手动滚动。两轮扩展检查失败已保留。恢复通知修复候选此前三轮完整回归各 296 项、42 次正常退出，57 张原图与匹配分发通过；新的分发与完整工作树设置仍待验收。[本轮测量与范围](../verification/comparison-feedback-error-matrix-review-result.json) · [完整源码](../verification/comparison-feedback-full-review-result.json)
