@@ -47,8 +47,8 @@ describe('real upstream fetching before worktree creation', () => {
     const fetch = runner.mock.calls.find(([, args]) => args.includes('fetch'))!; expect(fetch[1]).toContain('refs/heads/main:refs/remotes/origin/main'); expect(fetch[1]).toContain('--no-write-fetch-head'); expect(fetch[1]).toContain('credential.interactive=false'); expect(fetch[2]).toMatchObject({ timeout: 30_000, env: { GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'never' } });
     await expect(readFile(join(root, '.git/FETCH_HEAD'))).rejects.toMatchObject({ code: 'ENOENT' });
   });
-  it('does not fetch under the legacy or explicit never policy', async () => {
-    for (const policy of [undefined, 'never'] as const) { const { root, path, head } = await fixture(true), runner = trackedRunner(); const result = await service(runner).createWorktree(root, { mode: 'new', path, branch: 'feature/local' }, policy); expect(result.upstreamRefresh).toBeUndefined(); expect(runner.mock.calls.some(([, args]) => args.includes('fetch'))).toBe(false); expect(await command(root, ['rev-parse', 'refs/remotes/origin/main'])).toBe(head); }
+  it.each([['legacy', undefined], ['explicit never', 'never']] as const)('does not fetch under the %s policy', async (_name, policy) => {
+    const { root, path, head } = await fixture(true), runner = trackedRunner(); const result = await service(runner).createWorktree(root, { mode: 'new', path, branch: 'feature/local' }, policy); expect(result.upstreamRefresh).toBeUndefined(); expect(runner.mock.calls.some(([, args]) => args.includes('fetch'))).toBe(false); expect(await command(root, ['rev-parse', 'refs/remotes/origin/main'])).toBe(head);
   });
   it.each(['new', 'existing'] as const)('fetches the selected %s branch upstream instead of the current branch', async mode => {
     const { root, path, head } = await fixture(true), runner = trackedRunner();
