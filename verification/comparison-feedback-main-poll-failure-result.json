@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-10-11T04:01:24.402Z",
+  "archive": "E:/NookVerification/ComparisonFeedbackMainPollFailure-20261011",
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-6zbZ0H",
+  "checksBeforeFailure": 3,
+  "normalExits": [
+    {
+      "elapsedMs": 1473,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 1406,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "causeConfirmed": true,
+  "cause": "The new asynchronous main-evaluator polling fixture called the temporarily injected require after an await. The main operation therefore failed before busy-state or viewport assertions. Use the standard global timer without changing the five-second deadline.",
+  "actualFailureScreenshot": "failure.png",
+  "rawSnapshotIncludesPreexistingFiles": true,
+  "sourceAcceptancePassed": false
+}

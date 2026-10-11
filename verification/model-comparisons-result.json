@@ -1,46 +1,47 @@
 {
-  "verifiedAt": "2026-10-11T02:45:10.652Z",
+  "verifiedAt": "2026-10-11T04:01:58.185Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
   "runtimeErrors": [],
   "normalCloseVerified": true,
-  "verificationRun": "complete desktop suite",
-  "suiteChecks": 296,
+  "verificationRun": "focused model-comparison suite",
   "checks": 6,
   "settingsTransactions": [
     {
       "operation": "saveProvider",
       "workspaceCopies": 0,
-      "threadCopies": 294,
-      "startedAt": 1791686102957,
+      "threadCopies": 0,
+      "startedAt": 1791691304623,
       "success": true,
-      "resultThreadCount": 294,
-      "finishedAt": 1791686104676
+      "resultThreadCount": 0,
+      "finishedAt": 1791691305712
     },
     {
       "operation": "saveProvider",
       "workspaceCopies": 0,
-      "threadCopies": 294,
-      "startedAt": 1791686104892,
+      "threadCopies": 0,
+      "startedAt": 1791691305712,
       "success": true,
-      "resultThreadCount": 294,
-      "finishedAt": 1791686106359
+      "resultThreadCount": 0,
+      "finishedAt": 1791691306026
     },
     {
       "operation": "savePreferences",
       "workspaceCopies": 0,
-      "threadCopies": 294,
-      "startedAt": 1791686108917,
+      "threadCopies": 0,
+      "startedAt": 1791691306173,
       "success": true,
-      "resultThreadCount": 294,
-      "finishedAt": 1791686110250
+      "resultThreadCount": 0,
+      "finishedAt": 1791691306355
     }
   ],
   "comparisonModelRequests": 11,
   "parallelStreamsVerified": true,
   "independentFailureStopVerified": true,
   "atomicSaveRetryVerified": true,
+  "busyDismissalVerified": true,
+  "saveFailureViewportVerified": true,
   "backupsRestartVerified": true,
   "temporaryExclusionVerified": true,
   "originalDraftRetainedVerified": true,
@@ -74,6 +75,7 @@
   "screenshots": [
     "117-model-comparison-config-light.png",
     "118-model-comparison-stream-light.png",
+    "model-comparison-save-busy-light.png",
     "119-model-comparison-save-error-light.png",
     "120-model-comparison-config-dark-zoom-100.png",
     "121-model-comparison-results-dark-zoom-100.png",

@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-10-11T03:49:04.462Z",
+  "archive": "E:/NookVerification/ComparisonFeedbackBaselineFailure-20261011",
+  "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-HRGBwa",
+  "checksBeforeFailure": 3,
+  "normalExits": [
+    {
+      "elapsedMs": 1105,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 672,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "bounds": {
+    "top": 618.388916015625,
+    "bottom": 636.388916015625,
+    "left": 301,
+    "right": 973,
+    "viewportTop": 230.88888549804688,
+    "viewportBottom": 582.8888854980469,
+    "viewportLeft": 281,
+    "viewportRight": 993,
+    "scrollTop": 0,
+    "text": "Local data could not be saved. Check disk space and directory permissions."
+  },
+  "captures": [
+    {
+      "filename": "119-model-comparison-save-error-light.png",
+      "sha256": "22276ea97fad4c2f437bbc97f705d8106bd44cc68ce4f0c73c4bd30298ceee17",
+      "individuallyReviewed": false
+    },
+    {
+      "filename": "failure.png",
+      "sha256": "d578074f36ba7b8b0000248f0ded12c27a78c7d5060110f1637f8fa57e00213d",
+      "individuallyReviewed": false
+    }
+  ],
+  "causeConfirmed": true,
+  "candidate": "E:/NookVerification/RestoreLifecycleCandidate-20261011",
+  "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
+  "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b",
+  "scope": "New viewport assertion against the unchanged frozen restore candidate. Actual EIO alert is below the scroll viewport while original history/draft/selections and request count remain intact. Two normal exits; this expected baseline failure is not acceptance of the feedback fix."
+}

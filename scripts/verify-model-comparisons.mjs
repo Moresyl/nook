@@ -246,11 +246,47 @@ export async function verifyModelComparisons({ page, application, getApplication
   verified('four independent real requests retain an actual HTTP failure and stopped partial response while the other two complete; native stopping targets only its selected reply');
 
   await open(); const primary = join(directory, 'workspace.json'); const beforeFailure = await readFile(primary); const beforeState = await page.evaluate(() => window.qiyao.load());
-  await application.evaluateMain(`{const fs=require('node:fs/promises');globalThis.qiyaoComparisonRename=fs.rename;fs.rename=async(source,target)=>{if(target===${JSON.stringify(primary)})throw Object.assign(new Error('Fixture comparison write failure'),{code:'EIO'});return globalThis.qiyaoComparisonRename(source,target);};}`);
-  try { await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().locator('.modal-content').getByRole('alert').waitFor(); assert.equal(fixture.requests.length, beforeRequests + 6); assert.deepEqual(await readFile(primary), beforeFailure); assert.deepEqual(await page.evaluate(() => window.qiyao.load()), beforeState); assert.equal(await dialog().getByLabel('本次比较问题', { exact: true }).inputValue(), question); await capture('119-model-comparison-save-error-light.png'); }
-  finally { await application.evaluateMain("require('node:fs/promises').rename=globalThis.qiyaoComparisonRename;delete globalThis.qiyaoComparisonRename;"); }
+  await application.evaluateMain(`(() => {
+    const fs = require('node:fs/promises'); const original = fs.rename;
+    let release; const held = new Promise(resolve => { release = resolve; });
+    globalThis.nookComparisonSaveReceipt = { original, release, entered: false };
+    fs.rename = async (source, target) => {
+      if (target === ${JSON.stringify(primary)}) { globalThis.nookComparisonSaveReceipt.entered = true; await held; throw Object.assign(new Error('Fixture comparison write failure'), { code: 'EIO' }); }
+      return original(source, target);
+    };
+  })()`);
+  try {
+    await dialog().getByRole('button', { name: '发送并比较', exact: true }).click();
+    assert.equal(await application.evaluateMain(`(async () => {
+      const deadline = Date.now() + 5000;
+      while (!globalThis.nookComparisonSaveReceipt.entered) {
+        if (Date.now() >= deadline) throw new Error('The actual comparison save did not reach the held rename within five seconds.');
+        await new Promise(resolve => setTimeout(resolve, 25));
+      }
+      return true;
+    })()`), true);
+    assert.equal(await dialog().locator(':scope > .modal-header').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
+    assert.equal(await dialog().locator(':scope > .modal-footer').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
+    assert.equal(await dialog().getByRole('button', { name: '发送并比较', exact: true }).isDisabled(), true);
+    assert.equal(await dialog().getByLabel('比较连接 1', { exact: true }).isDisabled(), true);
+    await capture('model-comparison-save-busy-light.png');
+    await page.keyboard.press('Escape'); assert.equal(await dialog().isVisible(), true);
+    assert.equal(fixture.requests.length, beforeRequests + 6);
+    await application.evaluateMain('globalThis.nookComparisonSaveReceipt.release()');
+    const alert = dialog().locator('.modal-content').getByRole('alert'); await alert.waitFor();
+    assert.equal(fixture.requests.length, beforeRequests + 6); assert.deepEqual(await readFile(primary), beforeFailure); assert.deepEqual(await page.evaluate(() => window.qiyao.load()), beforeState); assert.equal(await dialog().getByLabel('本次比较问题', { exact: true }).inputValue(), question);
+    const feedbackBounds = await alert.evaluate((element) => {
+      const content = element.closest('.modal-content'); const rect = element.getBoundingClientRect(); const container = content.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: container.top + content.clientTop, viewportBottom: container.top + content.clientTop + content.clientHeight, viewportLeft: container.left + content.clientLeft, viewportRight: container.left + content.clientLeft + content.clientWidth, scrollTop: content.scrollTop, text: element.textContent };
+    });
+    console.log('Comparison save failure viewport', JSON.stringify(feedbackBounds));
+    await capture('119-model-comparison-save-error-light.png');
+    assert.equal(feedbackBounds.text, '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。');
+    assert.ok(feedbackBounds.top >= feedbackBounds.viewportTop && feedbackBounds.bottom <= feedbackBounds.viewportBottom && feedbackBounds.left >= feedbackBounds.viewportLeft && feedbackBounds.right <= feedbackBounds.viewportRight, 'The actual save error must be fully readable within the modal content viewport without manual scrolling.');
+  }
+  finally { await application.evaluateMain("(() => {const receipt=globalThis.nookComparisonSaveReceipt;require('node:fs/promises').rename=receipt.original;receipt.release();delete globalThis.nookComparisonSaveReceipt;})()"); }
   await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const retryGroup = await currentGroup(); groups.push(retryGroup); fixture.finish(); await waitCompleted(retryGroup); await close();
-  verified('actual group-save EIO preserves original history bytes, every live thread, original draft and comparison selections without any HTTP request; retry creates exactly two independent responses');
+  verified('held actual group save disables header/footer close and settings, rejects Escape, then exposes the complete Chinese EIO alert within the scroll viewport while preserving original history/draft/selections and zero requests; retry creates exactly two independent responses');
 
   await page.getByRole('button', { name: '临时聊天', exact: true }).click(); await page.getByLabel('临时聊天说明', { exact: true }).waitFor(); await composer().fill('COMPARE_TEMP_PRIVATE_QUESTION'); await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const temporaryGroup = await currentGroup(); fixture.finish(); await waitCompleted(temporaryGroup); assert.ok((await group(temporaryGroup)).every((thread) => thread.temporary)); await close();
   await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question);
@@ -390,5 +426,5 @@ export async function verifyModelComparisons({ page, application, getApplication
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests + 11);
   verified('comparison setup and independently scrollable readonly results retain visible modal title/footer, native keyboard focus and Escape at 100%, 125% and 150% dark minimum-window zoom without making preview requests');
-  return { page, result: { checks: 6, settingsTransactions, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
+  return { page, result: { checks: 6, settingsTransactions, comparisonModelRequests: 11, parallelStreamsVerified: true, independentFailureStopVerified: true, atomicSaveRetryVerified: true, busyDismissalVerified: true, saveFailureViewportVerified: true, backupsRestartVerified: true, temporaryExclusionVerified: true, originalDraftRetainedVerified: true, originalModelIdentityVerified: true, layout, screenshots: captures, scope: 'Native two/four-model setup, duplicate exclusion/cancel, identical complete contexts/attachments/instructions over real HTTP, held streams, actual service failure and targeted stop, actual atomic-save EIO/retry, selected continuation and independent drafts, complete JSON/gzip export/restore, temporary persistence exclusion and normal restart, dark minimum-window zoom/keyboard and inert readonly previews. Native picker/confirmation responses are isolated fixtures; live external providers and physical system dialogs remain separate.' } };
 }
