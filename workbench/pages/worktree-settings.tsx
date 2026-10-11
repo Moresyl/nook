@@ -3,6 +3,7 @@ import { worktreePreferencesSchema } from '../../contracts/project-worktrees';
 import { uiErrorMessage } from '../../contracts/ui-errors';
 import type { Workspace } from '../../contracts/workspace';
 import { Button, IconButton, Input } from '../components/controls';
+import { WorktreeOverview } from '../components/worktree-overview';
 
 type Props = { state: Workspace; busy: boolean; onBusyChange(value: boolean): void; onState(value: Workspace): void };
 export function WorktreeSettings({ state, busy, onBusyChange, onState }: Props) {
@@ -51,5 +52,6 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState }: Props) 
     </form>
     {error && <p ref={errorRef} className="inline-error" role="alert">{error}</p>}
     {saved && <p role="status" className="field-hint">已保存工作树设置。</p>}
+    <WorktreeOverview state={state} disabled={busy} />
   </section>;
 }
