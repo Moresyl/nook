@@ -5,6 +5,7 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'nod
 import { gitBranchNameSchema, type GitBranch, type GitBranches, type GitFile, type GitFileView, type GitStatus } from '../../contracts/projects';
 import { createWorktreeSchema, worktreeUpstreamPolicySchema, type CreateWorktree, type GitWorktree, type WorktreeCreated, type WorktreeUpstreamPolicy } from '../../contracts/project-worktrees';
 import { projectDocument, scopedPath } from './project-files';
+import { GitOperationQueue, type GitDirectoryIdentity } from './git-operation-queue';
 
 const runFile = promisify(execFile);
 export function parseGitWorktrees(output: string): GitWorktree[] {
@@ -67,12 +68,22 @@ export function parseGitStatus(output: string): GitStatus {
 
 export class ProjectGit {
   constructor(private readonly runner: typeof runFile = runFile, private readonly prepareTarget?: (path: string, worktrees: GitWorktree[]) => Promise<void>, private readonly recordCreated?: (root: string, tree: GitWorktree) => Promise<void>) {}
-  private pending = new Map<string, Promise<unknown>>();
+  private operations = new GitOperationQueue(root => this.repositoryIdentity(root));
   private async update<T>(root: string, action: () => Promise<T>): Promise<T> {
-    const cwd = await scopedPath(root, '.');
-    const operation = (this.pending.get(cwd) ?? Promise.resolve()).catch(() => {}).then(action);
-    this.pending.set(cwd, operation);
-    try { return await operation; } finally { if (this.pending.get(cwd) === operation) this.pending.delete(cwd); }
+    return this.operations.run(root, action);
+  }
+  private async repositoryIdentity(root: string) {
+    try {
+      const cwd = await scopedPath(root, '.');
+      const common = (await this.run(root, ['rev-parse', '--path-format=absolute', '--git-common-dir'])).replace(/\r?\n$/, '');
+      if (!isAbsolute(common)) throw new Error('Git could not verify this repository. Refresh the project before retrying.');
+      const directory = async (path: string): Promise<GitDirectoryIdentity> => {
+        const actual = await realpath(path), details = await lstat(path, { bigint: true });
+        if (!details.isDirectory() || details.isSymbolicLink() || details.ino === 0n) throw new Error('Git could not verify this repository. Existing files were retained.');
+        return { path: process.platform === 'win32' ? actual.toLowerCase() : actual, device: String(details.dev), inode: String(details.ino) };
+      };
+      return { root: await directory(cwd), common: await directory(common) };
+    } catch (cause) { throw new Error('Git could not verify this repository. Existing files were retained.', { cause }); }
   }
   private async run(root: string, args: string[], strictUtf8 = true, nonInteractive = false): Promise<string> {
     const cwd = await scopedPath(root, '.');

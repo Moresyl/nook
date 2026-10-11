@@ -1,0 +1,23 @@
+{
+  "verifiedAt": "2026-10-11T15:36:00Z",
+  "scope": "Types and five related unit files only. Common Git metadata serializes mutating operations across linked worktrees; independent repositories continue. This is preparation for snapshots and does not establish snapshot, deletion, native or distribution acceptance.",
+  "typesPassed": true,
+  "testFiles": 5,
+  "testsPassed": 81,
+  "durationSeconds": 27.72,
+  "typesLog": "E:/NookVerification/nook-git-common-queue-types-20261011.log",
+  "testLog": "E:/NookVerification/nook-git-common-queue-related-20261011.log",
+  "files": [
+    "verification/git-operation-queue.test.ts",
+    "verification/project-git.test.ts",
+    "verification/project-worktrees.test.ts",
+    "verification/worktree-ownership.test.ts",
+    "verification/worktree-pinning.test.ts"
+  ],
+  "meaningfulCases": [
+    "Failed held action releases shared queue without blocking independent repository",
+    "Replaced root and common directory identities reject queued mutations",
+    "Identity lookup failures reject writes and allow subsequent retry",
+    "Actual Unicode main and linked worktrees serialize while another repository switches independently; source HEAD, index and staged bytes remain exact"
+  ]
+}

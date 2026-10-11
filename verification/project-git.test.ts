@@ -48,7 +48,7 @@ describe('project Git workflow', () => {
   it('serializes mutations within one project, permits other projects and releases failed queues', async () => {
     const root = await repository(), other = await repository(); let release!: () => void; let started!: () => void;
     const entered = new Promise<void>(resolve => { started = resolve; }), held = new Promise<void>(resolve => { release = resolve; });
-    const runner = vi.fn(async (_file, args) => { if (args.includes('commit')) { started(); await held; throw new Error('private'); } return { stdout: args.includes('status') ? '# branch.head main\0' + '1 A. N... 100644 100644 100644 a b file.txt\0' : 'main\0*\0\0\n' }; });
+    const runner = vi.fn(async (_file, args) => { if (args.includes('--git-common-dir')) return run(_file, args); if (args.includes('commit')) { started(); await held; throw new Error('private'); } return { stdout: args.includes('status') ? '# branch.head main\0' + '1 A. N... 100644 100644 100644 a b file.txt\0' : 'main\0*\0\0\n' }; });
     const queued = new ProjectGit(runner as unknown as ConstructorParameters<typeof ProjectGit>[0]);
     const commit = queued.commit(root, 'Held'); const failed = expect(commit).rejects.toThrow('Git could not'); await entered;
     const waiting = queued.createBranch(root, 'next'); await queued.createBranch(other, 'parallel');
@@ -122,7 +122,7 @@ describe('project Git workflow', () => {
     await expect(git.fileView(root, { path: 'missing', index: 'M', working: '.', conflict: false }, true)).rejects.toThrow('no longer');
     const failed = new ProjectGit(vi.fn().mockRejectedValue(new Error('Private credential output')));
     await expect(failed.status(root)).rejects.toThrow('Git could not');
-    const conflict = new ProjectGit(vi.fn().mockResolvedValue({ stdout: 'u UU N... 100644 100644 100644 100644 a b c merge.txt\0' }));
+    const conflict = new ProjectGit(vi.fn(async (file, args) => args.includes('--git-common-dir') ? run(file, args) : { stdout: 'u UU N... 100644 100644 100644 100644 a b c merge.txt\0' }) as unknown as ConstructorParameters<typeof ProjectGit>[0]);
     await expect(conflict.commit(root, 'Conflict')).rejects.toThrow('Resolve merge');
   });
 });
