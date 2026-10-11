@@ -1,0 +1,12 @@
+{
+  "archivedAt": "2026-10-11T16:24:27.725Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotFullUnitFailure-20261012",
+  "sourceHead": "77376edc28b9b62fadee24e972c0893728a9974d",
+  "sourceChanges": "?? contracts/worktree-snapshot-files.ts\n?? contracts/worktree-snapshots.ts\n?? desktop/services/snapshot-file-identity.ts\n?? desktop/services/worktree-snapshot-files.ts\n?? desktop/services/worktree-snapshot-git.ts\n?? desktop/services/worktree-snapshot-store.ts\n?? verification/worktree-snapshot-files.test.ts\n?? verification/worktree-snapshot-git.test.ts\n?? verification/worktree-snapshot-initial-failure-result.json\n?? verification/worktree-snapshot-stat-retry-failure-result.json\n?? verification/worktree-snapshot-store.test.ts\n",
+  "passed": 1413,
+  "failed": 9,
+  "total": 1422,
+  "durationSeconds": 297.85,
+  "failure": "Six worktree upstream and three context-summary cases exceeded their original five-second unit wait. All new snapshot tests passed. Exact timeout root cause not established.",
+  "scope": "Failed full coverage run using unchanged maxWorkers=2 and four 80 percent thresholds. Source and complete logs retained before any retry. No accepted coverage percentages, native snapshot, deletion or distribution claim. Ordinary temporary unit fixtures were already removed by afterEach."
+}

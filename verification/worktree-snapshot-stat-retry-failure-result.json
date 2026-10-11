@@ -1,0 +1,22 @@
+{
+  "archivedAt": "2026-10-11T16:15:38.618Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotStatRetryFailure-20261012",
+  "typesPassed": true,
+  "testFiles": 5,
+  "passed": 75,
+  "failed": 1,
+  "durationSeconds": 15.56,
+  "source": [
+    "contracts/worktree-snapshot-files.ts",
+    "contracts/worktree-snapshots.ts",
+    "desktop/services/worktree-snapshot-files.ts",
+    "desktop/services/worktree-snapshot-git.ts",
+    "desktop/services/worktree-snapshot-store.ts",
+    "desktop/services/snapshot-file-identity.ts",
+    "verification/worktree-snapshot-files.test.ts",
+    "verification/worktree-snapshot-git.test.ts",
+    "verification/worktree-snapshot-store.test.ts"
+  ],
+  "failure": "Actual canonical Windows path uses backslashes while Git output uses slashes; the linked-common test compared the textual spellings instead of resolving both paths.",
+  "scope": "Stat correction retry unit failure. Source and complete logs retained before test correction. All content/Git restoration checks passed but the complete related suite remains failed. Temporary unit fixtures were already removed by afterEach; no retained-fixture claim. No desktop, full coverage, deletion or distribution acceptance."
+}

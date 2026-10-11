@@ -1,0 +1,20 @@
+{
+  "archivedAt": "2026-10-11T16:11:29.633Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotInitialFailure-20261012",
+  "typesPassed": true,
+  "testFiles": 5,
+  "passed": 66,
+  "failed": 10,
+  "durationSeconds": 12.56,
+  "source": [
+    "contracts/worktree-snapshot-files.ts",
+    "contracts/worktree-snapshots.ts",
+    "desktop/services/worktree-snapshot-files.ts",
+    "desktop/services/worktree-snapshot-git.ts",
+    "desktop/services/worktree-snapshot-store.ts",
+    "verification/worktree-snapshot-files.test.ts",
+    "verification/worktree-snapshot-git.test.ts",
+    "verification/worktree-snapshot-store.test.ts"
+  ],
+  "scope": "Initial snapshot unit failure. Source and complete logs retained before fixes. Ordinary test afterEach cleanup already removed the temporary unit fixtures; no retained-fixture claim. No snapshot, Git restoration or deletion acceptance. Existing shared Git queue acceptance remains separate."
+}

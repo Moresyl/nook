@@ -1,0 +1,78 @@
+{
+  "verifiedAt": "2026-10-11T16:26:21.750Z",
+  "archive": "E:/NookVerification/WorktreeSnapshotRelatedPass-20261012",
+  "typesPassed": true,
+  "testFiles": 5,
+  "tests": 76,
+  "durationSeconds": 18.82,
+  "source": [
+    {
+      "path": "contracts/worktree-snapshot-files.ts",
+      "sha256": "10c2706d4834296524b9995e694774767a6791286ab52204de14486c3b7eb64d"
+    },
+    {
+      "path": "contracts/worktree-snapshots.ts",
+      "sha256": "01daecd7458dc79dc624e6cfd7f3bc1b9d93808e4abd80bb7af62a050d6669c4"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-files.ts",
+      "sha256": "37acc174450471b4482a84973004a583f961fe8e17171ec3d1d4842d032ebfc6"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-git.ts",
+      "sha256": "e476034518702599c5f5d32f682f2a0ddb4a358dd2a4b41d5e9a01334d7fe2e5"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-store.ts",
+      "sha256": "2662fc97a0a6e062142a2e903d5ae77cf0dec34d6de512334afbe5b9badba6e5"
+    },
+    {
+      "path": "desktop/services/snapshot-file-identity.ts",
+      "sha256": "a26e94405ac121bafd359c13f3d10a2b7de4b33bc9c182b0125471b8d56e4eee"
+    },
+    {
+      "path": "desktop/services/git-operation-queue.ts",
+      "sha256": "2e715efa2df63320a3d984f2b9471b1158c133d98a842f5a9c9bf20d81993b43"
+    },
+    {
+      "path": "desktop/services/project-git.ts",
+      "sha256": "a0bc7eb2ec6d4113784e489abf4000bfe71cae51f918f04cdd9a2982abed4647"
+    },
+    {
+      "path": "verification/worktree-snapshot-files.test.ts",
+      "sha256": "d10724fafab2f8d2f48f5bf57298c52fd57e1e0bca53d3169e5a4d2647f5338b"
+    },
+    {
+      "path": "verification/worktree-snapshot-git.test.ts",
+      "sha256": "f256a00240a5336d86e71ccc306991ee0fce2d897487a72bc9f14dd3f52f7e20"
+    },
+    {
+      "path": "verification/worktree-snapshot-store.test.ts",
+      "sha256": "2aebd439fa7a109b2e02282e03ca9ef87fb353a91f8cf457f3fa3920ce379358"
+    },
+    {
+      "path": "verification/git-operation-queue.test.ts",
+      "sha256": "cf725bf95436593ccfa90cd483fa570b612cc9cfb3da0beab2237e55d30ccf27"
+    },
+    {
+      "path": "verification/project-git.test.ts",
+      "sha256": "f44da08674733a855968f22514bf99e490fac348a6e57500d1d6bbb324fa7c54"
+    }
+  ],
+  "fixes": [
+    "Windows lstat dev=0 differs from the opened-handle volume serial; inode, size, times, mode, links and same-handle device comparisons remain enforced.",
+    "Resolve both actual and Git-reported common directory spellings in the linked-index fixture."
+  ],
+  "evidence": [
+    "Actual independent Git recovery retains HEAD ancestry, unreachable staged blobs, ordinary raw index and exact working/ignored/untracked bytes.",
+    "Actual three-stage conflicts and SHA-256 packed history recover.",
+    "Capture refuses changed HEAD/index, unsupported links/split/sparse/monitored indexes, oversized data and unsafe/conflicting paths.",
+    "Private atomic gzip store verifies readback, survives restart, retains failures and rejects damaged/oversized gzip and concurrent failures."
+  ],
+  "priorFailures": [
+    "WorktreeSnapshotInitialFailure-20261012",
+    "WorktreeSnapshotStatRetryFailure-20261012",
+    "WorktreeSnapshotFullUnitFailure-20261012"
+  ],
+  "scope": "Five-file related type/unit acceptance only. First full configured coverage run remains failed at 1413/1422 with nine existing five-second timeouts; serial retry is separate. Temporary unit fixtures cleaned by afterEach. Git capture is read-only; no application bridge, snapshot UI, worktree deletion, automatic cleanup, native or distribution acceptance."
+}
