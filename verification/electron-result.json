@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T16:08:02.947Z",
+  "verifiedAt": "2026-10-11T18:39:01.327Z",
   "variant": "development executable",
-  "checks": 337,
+  "checks": 345,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181176,
-    "compressedBytes": 242345,
+    "expandedBytes": 84181202,
+    "compressedBytes": 242300,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791733678151,
+        "startedAt": 1791742709868,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791733679538
+        "finishedAt": 1791742711137
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791733679764,
+        "startedAt": 1791742711290,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791733681215
+        "finishedAt": 1791742712549
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791733683351,
+        "startedAt": 1791742714360,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791733685217
+        "finishedAt": 1791742715584
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 12,
+    "scopedReadMs": 11.700000002980232,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1473,6 +1473,39 @@
     "worktree-pinning-dark-150-keyboard-shell.png",
     "worktree-pinning-dark-150-error-shell.png",
     "worktree-pinning-replacement-rejected-dark-shell.png",
+    "worktree-snapshots-saved-light-shell.png",
+    "worktree-snapshots-save-failure-light-shell.png",
+    "worktree-snapshots-normal-restart-light-shell.png",
+    "worktree-snapshots-existing-target-rejected-light-shell.png",
+    "worktree-snapshots-restored-new-folder-light-shell.png",
+    "worktree-snapshots-light-100-keyboard-shell.png",
+    "worktree-snapshots-light-100-error-shell.png",
+    "worktree-snapshots-light-100-restore-keyboard-shell.png",
+    "worktree-snapshots-light-100-restore-error-shell.png",
+    "worktree-snapshots-light-125-keyboard-shell.png",
+    "worktree-snapshots-light-125-error-shell.png",
+    "worktree-snapshots-light-125-restore-keyboard-shell.png",
+    "worktree-snapshots-light-125-restore-error-shell.png",
+    "worktree-snapshots-light-150-keyboard-shell.png",
+    "worktree-snapshots-light-150-error-shell.png",
+    "worktree-snapshots-light-150-restore-keyboard-shell.png",
+    "worktree-snapshots-light-150-restore-error-shell.png",
+    "worktree-snapshots-dark-100-keyboard-shell.png",
+    "worktree-snapshots-dark-100-error-shell.png",
+    "worktree-snapshots-dark-100-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-100-restore-error-shell.png",
+    "worktree-snapshots-dark-125-keyboard-shell.png",
+    "worktree-snapshots-dark-125-error-shell.png",
+    "worktree-snapshots-dark-125-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-125-restore-error-shell.png",
+    "worktree-snapshots-dark-150-keyboard-shell.png",
+    "worktree-snapshots-dark-150-error-shell.png",
+    "worktree-snapshots-dark-150-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-150-restore-error-shell.png",
+    "worktree-snapshots-read-failure-light-shell.png",
+    "worktree-snapshots-read-recovered-light-shell.png",
+    "worktree-snapshots-accepted-shutdown-reopen-light-shell.png",
+    "worktree-snapshots-replacement-rejected-light-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2663,122 +2696,72 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(60, 60, 60)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 112.30199999999968
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         },
@@ -2869,72 +2852,122 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 161.8799999987246
+                }
+              ]
             }
           ]
         },
@@ -5520,10 +5553,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\worktrees/nook-e412b1fe",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi\\管理 工作树 🧭/nook-28179989",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7\\worktrees/nook-4f7c23f9",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7\\管理 工作树 🧭/nook-cade8340",
     "errorLayouts": [
       {
         "top": 543.888916015625,
@@ -5762,51 +5795,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "67234d0e-ec60-45f4-b7ce-c3f24ced9aad",
-        "6646211a-5b1b-43b7-b8ea-b6f602e03ae6",
-        "75f70ac3-307f-45e6-9dad-8f51aad07d04",
-        "038ffa1f-a39b-4e47-b7a8-bc0805c8cb27",
-        "d9c5d766-5128-4fb9-b052-455422b82ee3",
-        "44042aee-5aef-4596-b78e-1fa56e508695",
-        "97c51f01-ad8a-439d-a874-b43a53607e03",
-        "0ea539fd-16c0-4257-a468-be18883c293b",
-        "23dd9e59-3210-42cc-993d-6ea8e459590a",
-        "3d61cfd9-6a5d-4bdd-9021-ed889713fbc4",
-        "696eb06f-32a8-4fcf-a5d4-e52b52707c4b",
-        "21d197ae-a534-47a8-9950-7e9dcd2aaf28",
-        "58443cb4-45b0-4862-a0d4-668abeb5e1fe",
-        "6a24aff3-6480-4153-ae6d-cb03ca154837",
-        "fd7b8dc3-cc6a-4c61-9871-864e95389e27",
-        "c1dc6525-448b-474a-951a-8f9a70ea3704",
-        "5392478f-9264-4843-975d-45df45e2dbe6",
-        "222b87fd-d5d8-47e0-b15c-60be74e95e21",
-        "54d71084-794c-4a9b-9413-f11d7f20efdd",
-        "9705dce3-3b97-4d3e-b0ff-bfe6782b6f35"
+        "88de748b-3613-406f-9958-6e5b0bac3b02",
+        "b6b243ec-3072-45dd-a0bf-e4ed19e14677",
+        "e87ed499-858b-4844-a3c1-3cf1b1a1369d",
+        "6750e296-48bd-44f2-86f5-10a9f27511c0",
+        "a2173ee8-2033-44ab-9a22-d0869649006a",
+        "6e50ee97-abb9-4f2b-8cab-bb50dab48464",
+        "1734fe73-c91b-427a-a25f-98b88996d64f",
+        "e439af9c-eee8-4f90-a0b5-451bc04e000a",
+        "ed6aa3ab-95d9-40d9-984c-fad7bb842c38",
+        "0ec677d6-6230-4703-8b59-306bdd1e445c",
+        "9490a4c3-31c6-444f-8012-1326ba10af54",
+        "854c90df-3b03-47a3-af15-ee94b622ab39",
+        "6823c6c1-4c9b-4c23-bdca-ff3da21ba9fa",
+        "73edeb9a-8485-4cb7-8ba4-c8db91b61cf9",
+        "e1696e6d-fba0-489a-8486-b1fdc0c7ca94",
+        "8b65f40d-3461-4491-939d-e7dab6c5a4a2",
+        "1b3cc5ab-e702-42c1-961c-5506f4f4db96",
+        "ea040b5e-6594-443c-89fa-54fcd42d10b4",
+        "a45eac72-4fee-40c7-9e5e-7bc3dc1c3589",
+        "0df1b640-991e-41fb-9f3d-eff830ae5714"
       ],
       [
-        "698ac2c7-49a9-423b-bfad-ceb80b1cc022"
+        "3078621b-ec54-4329-b8ac-4ab6955fef46"
       ],
       [
-        "67234d0e-ec60-45f4-b7ce-c3f24ced9aad",
-        "6646211a-5b1b-43b7-b8ea-b6f602e03ae6",
-        "75f70ac3-307f-45e6-9dad-8f51aad07d04",
-        "038ffa1f-a39b-4e47-b7a8-bc0805c8cb27",
-        "d9c5d766-5128-4fb9-b052-455422b82ee3",
-        "44042aee-5aef-4596-b78e-1fa56e508695",
-        "97c51f01-ad8a-439d-a874-b43a53607e03",
-        "0ea539fd-16c0-4257-a468-be18883c293b",
-        "23dd9e59-3210-42cc-993d-6ea8e459590a",
-        "3d61cfd9-6a5d-4bdd-9021-ed889713fbc4",
-        "696eb06f-32a8-4fcf-a5d4-e52b52707c4b",
-        "21d197ae-a534-47a8-9950-7e9dcd2aaf28",
-        "58443cb4-45b0-4862-a0d4-668abeb5e1fe",
-        "6a24aff3-6480-4153-ae6d-cb03ca154837",
-        "fd7b8dc3-cc6a-4c61-9871-864e95389e27",
-        "c1dc6525-448b-474a-951a-8f9a70ea3704",
-        "5392478f-9264-4843-975d-45df45e2dbe6",
-        "222b87fd-d5d8-47e0-b15c-60be74e95e21",
-        "54d71084-794c-4a9b-9413-f11d7f20efdd",
-        "9705dce3-3b97-4d3e-b0ff-bfe6782b6f35"
+        "88de748b-3613-406f-9958-6e5b0bac3b02",
+        "b6b243ec-3072-45dd-a0bf-e4ed19e14677",
+        "e87ed499-858b-4844-a3c1-3cf1b1a1369d",
+        "6750e296-48bd-44f2-86f5-10a9f27511c0",
+        "a2173ee8-2033-44ab-9a22-d0869649006a",
+        "6e50ee97-abb9-4f2b-8cab-bb50dab48464",
+        "1734fe73-c91b-427a-a25f-98b88996d64f",
+        "e439af9c-eee8-4f90-a0b5-451bc04e000a",
+        "ed6aa3ab-95d9-40d9-984c-fad7bb842c38",
+        "0ec677d6-6230-4703-8b59-306bdd1e445c",
+        "9490a4c3-31c6-444f-8012-1326ba10af54",
+        "854c90df-3b03-47a3-af15-ee94b622ab39",
+        "6823c6c1-4c9b-4c23-bdca-ff3da21ba9fa",
+        "73edeb9a-8485-4cb7-8ba4-c8db91b61cf9",
+        "e1696e6d-fba0-489a-8486-b1fdc0c7ca94",
+        "8b65f40d-3461-4491-939d-e7dab6c5a4a2",
+        "1b3cc5ab-e702-42c1-961c-5506f4f4db96",
+        "ea040b5e-6594-443c-89fa-54fcd42d10b4",
+        "a45eac72-4fee-40c7-9e5e-7bc3dc1c3589",
+        "0df1b640-991e-41fb-9f3d-eff830ae5714"
       ]
     ],
     "layouts": [
@@ -5955,8 +5988,8 @@
       {
         "theme": "light",
         "zoom": 1,
-        "top": 106,
-        "bottom": 124,
+        "top": 91,
+        "bottom": 109,
         "left": 145,
         "right": 737,
         "viewportTop": 62,
@@ -6003,8 +6036,8 @@
       {
         "theme": "dark",
         "zoom": 1,
-        "top": 106,
-        "bottom": 124,
+        "top": 91,
+        "bottom": 109,
         "left": 145,
         "right": 737,
         "viewportTop": 62,
@@ -6055,8 +6088,8 @@
         "zoom": 1,
         "label": "新建项目聊天",
         "outline": 4,
-        "top": 510.5,
-        "bottom": 530.5,
+        "top": 495.5,
+        "bottom": 515.5,
         "left": 638,
         "right": 724,
         "viewportTop": 62,
@@ -6069,8 +6102,8 @@
         "zoom": 1.25,
         "label": "新建项目聊天",
         "outline": 3.2,
-        "top": 403,
-        "bottom": 423,
+        "top": 388.6000061035156,
+        "bottom": 408.6000061035156,
         "left": 487.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6083,8 +6116,8 @@
         "zoom": 1.5,
         "label": "新建项目聊天",
         "outline": 4,
-        "top": 331.3333435058594,
-        "bottom": 351.3333435058594,
+        "top": 316.66668701171875,
+        "bottom": 336.66668701171875,
         "left": 386,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -6097,8 +6130,8 @@
         "zoom": 1,
         "label": "新建项目聊天",
         "outline": 4,
-        "top": 510.5,
-        "bottom": 530.5,
+        "top": 495.5,
+        "bottom": 515.5,
         "left": 638,
         "right": 724,
         "viewportTop": 62,
@@ -6111,8 +6144,8 @@
         "zoom": 1.25,
         "label": "新建项目聊天",
         "outline": 3.2,
-        "top": 403,
-        "bottom": 423,
+        "top": 388.6000061035156,
+        "bottom": 408.6000061035156,
         "left": 487.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6125,8 +6158,8 @@
         "zoom": 1.5,
         "label": "新建项目聊天",
         "outline": 4,
-        "top": 331.3333435058594,
-        "bottom": 351.3333435058594,
+        "top": 316.66668701171875,
+        "bottom": 336.66668701171875,
         "left": 386,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -6384,8 +6417,8 @@
       {
         "theme": "light",
         "zoom": 1,
-        "top": 490,
-        "bottom": 508,
+        "top": 460,
+        "bottom": 478,
         "left": 158,
         "right": 724,
         "viewportTop": 62,
@@ -6400,8 +6433,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 382.5,
-        "bottom": 400.5,
+        "top": 352.1000061035156,
+        "bottom": 370.1000061035156,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6416,8 +6449,8 @@
       {
         "theme": "light",
         "zoom": 1.5,
-        "top": 310.66668701171875,
-        "bottom": 346.66668701171875,
+        "top": 280.66668701171875,
+        "bottom": 316.66668701171875,
         "left": 157.33334350585938,
         "right": 471.3333435058594,
         "viewportTop": 61.333335876464844,
@@ -6432,8 +6465,8 @@
       {
         "theme": "dark",
         "zoom": 1,
-        "top": 490,
-        "bottom": 508,
+        "top": 460,
+        "bottom": 478,
         "left": 158,
         "right": 724,
         "viewportTop": 62,
@@ -6448,8 +6481,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 382.5,
-        "bottom": 400.5,
+        "top": 352.1000061035156,
+        "bottom": 370.1000061035156,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6464,8 +6497,8 @@
       {
         "theme": "dark",
         "zoom": 1.5,
-        "top": 310.66668701171875,
-        "bottom": 346.66668701171875,
+        "top": 280.66668701171875,
+        "bottom": 316.66668701171875,
         "left": 157.33334350585938,
         "right": 471.3333435058594,
         "viewportTop": 61.333335876464844,
@@ -6484,8 +6517,8 @@
         "zoom": 1,
         "label": "登记项目",
         "outline": 4,
-        "top": 490,
-        "bottom": 510,
+        "top": 460,
+        "bottom": 480,
         "left": 662,
         "right": 724,
         "viewportTop": 62,
@@ -6498,8 +6531,8 @@
         "zoom": 1.25,
         "label": "登记项目",
         "outline": 3.2,
-        "top": 382.5,
-        "bottom": 402.5,
+        "top": 352.1000061035156,
+        "bottom": 372.1000061035156,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -6512,8 +6545,8 @@
         "zoom": 1.5,
         "label": "登记项目",
         "outline": 4,
-        "top": 310.66668701171875,
-        "bottom": 330.66668701171875,
+        "top": 280.66668701171875,
+        "bottom": 300.66668701171875,
         "left": 410,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -6526,8 +6559,8 @@
         "zoom": 1,
         "label": "登记项目",
         "outline": 4,
-        "top": 490,
-        "bottom": 510,
+        "top": 460,
+        "bottom": 480,
         "left": 662,
         "right": 724,
         "viewportTop": 62,
@@ -6540,8 +6573,8 @@
         "zoom": 1.25,
         "label": "登记项目",
         "outline": 3.2,
-        "top": 382.5,
-        "bottom": 402.5,
+        "top": 352.1000061035156,
+        "bottom": 372.1000061035156,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -6554,8 +6587,8 @@
         "zoom": 1.5,
         "label": "登记项目",
         "outline": 4,
-        "top": 310.66668701171875,
-        "bottom": 330.66668701171875,
+        "top": 280.66668701171875,
+        "bottom": 300.66668701171875,
         "left": 410,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -6797,8 +6830,8 @@
       {
         "theme": "light",
         "zoom": 1,
-        "top": 455.5,
-        "bottom": 473.5,
+        "top": 397.5,
+        "bottom": 415.5,
         "left": 158,
         "right": 724,
         "viewportTop": 62,
@@ -6813,8 +6846,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 348.20001220703125,
-        "bottom": 366.20001220703125,
+        "top": 290.6000061035156,
+        "bottom": 308.6000061035156,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6829,8 +6862,8 @@
       {
         "theme": "light",
         "zoom": 1.5,
-        "top": 276.66668701171875,
-        "bottom": 294.66668701171875,
+        "top": 220.6666717529297,
+        "bottom": 238.6666717529297,
         "left": 157.33334350585938,
         "right": 471.3333435058594,
         "viewportTop": 61.333335876464844,
@@ -6845,8 +6878,8 @@
       {
         "theme": "dark",
         "zoom": 1,
-        "top": 455.5,
-        "bottom": 473.5,
+        "top": 397.5,
+        "bottom": 415.5,
         "left": 158,
         "right": 724,
         "viewportTop": 62,
@@ -6861,8 +6894,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 348.20001220703125,
-        "bottom": 366.20001220703125,
+        "top": 290.6000061035156,
+        "bottom": 308.6000061035156,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6877,8 +6910,8 @@
       {
         "theme": "dark",
         "zoom": 1.5,
-        "top": 276.66668701171875,
-        "bottom": 294.66668701171875,
+        "top": 220.6666717529297,
+        "bottom": 238.6666717529297,
         "left": 157.33334350585938,
         "right": 471.3333435058594,
         "viewportTop": 61.333335876464844,
@@ -6897,8 +6930,8 @@
         "zoom": 1,
         "label": "固定工作树",
         "outline": 4,
-        "top": 434.5,
-        "bottom": 455.5,
+        "top": 376.5,
+        "bottom": 397.5,
         "left": 650,
         "right": 724,
         "viewportTop": 62,
@@ -6911,8 +6944,8 @@
         "zoom": 1.25,
         "label": "固定工作树",
         "outline": 3.2,
-        "top": 327.20001220703125,
-        "bottom": 348.20001220703125,
+        "top": 269.6000061035156,
+        "bottom": 290.6000061035156,
         "left": 499.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6925,8 +6958,8 @@
         "zoom": 1.5,
         "label": "固定工作树",
         "outline": 4,
-        "top": 255.6666717529297,
-        "bottom": 276.6666717529297,
+        "top": 199.6666717529297,
+        "bottom": 220.6666717529297,
         "left": 398,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -6939,8 +6972,8 @@
         "zoom": 1,
         "label": "固定工作树",
         "outline": 4,
-        "top": 434.5,
-        "bottom": 455.5,
+        "top": 376.5,
+        "bottom": 397.5,
         "left": 650,
         "right": 724,
         "viewportTop": 62,
@@ -6953,8 +6986,8 @@
         "zoom": 1.25,
         "label": "固定工作树",
         "outline": 3.2,
-        "top": 327.20001220703125,
-        "bottom": 348.20001220703125,
+        "top": 269.6000061035156,
+        "bottom": 290.6000061035156,
         "left": 499.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6967,8 +7000,8 @@
         "zoom": 1.5,
         "label": "固定工作树",
         "outline": 4,
-        "top": 255.6666717529297,
-        "bottom": 276.6666717529297,
+        "top": 199.6666717529297,
+        "bottom": 220.6666717529297,
         "left": 398,
         "right": 471.33333587646484,
         "viewportTop": 61.333335876464844,
@@ -7001,6 +7034,618 @@
       "worktree-pinning-replacement-rejected-dark-shell.png"
     ],
     "scope": "Actual local worktree pin UI, strict full-window bridge, write/source/read failures, same-profile gzip restore separation, local restart and replaced-directory rejection. Quick Chat restrictions, cross-profile creation-authority transfer, snapshots, destructive cleanup, full reference parity and current distribution require separate evidence."
+  },
+  "worktreeSnapshots": {
+    "checks": 8,
+    "modelRequests": 0,
+    "ownedOnlyCaptureVerified": true,
+    "privateSaveFailureVerified": true,
+    "backupSeparationVerified": true,
+    "normalRestartVerified": true,
+    "detachedExactRestoreVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "restoreKeyboardVerified": true,
+    "acceptedShutdownVerified": true,
+    "corruptReadRecoveryVerified": true,
+    "replacementRejectionVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 433.5,
+        "bottom": 451.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 326.6000061035156,
+        "bottom": 362.6000061035156,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 254.6666717529297,
+        "bottom": 290.6666717529297,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 433.5,
+        "bottom": 451.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 326.6000061035156,
+        "bottom": 362.6000061035156,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 254.6666717529297,
+        "bottom": 290.6666717529297,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 405.5,
+        "bottom": 425.5,
+        "left": 626,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "保存工作树快照",
+        "outline": 3.2,
+        "top": 298.6000061035156,
+        "bottom": 318.6000061035156,
+        "left": 475.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 226.6666717529297,
+        "bottom": 246.6666717529297,
+        "left": 374,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 405.5,
+        "bottom": 425.5,
+        "left": 626,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "保存工作树快照",
+        "outline": 3.2,
+        "top": 298.6000061035156,
+        "bottom": 318.6000061035156,
+        "left": 475.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 226.6666717529297,
+        "bottom": 246.6666717529297,
+        "left": 374,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "restoreLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "error": {
+          "top": 485,
+          "bottom": 503,
+          "left": 158,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "top": 511,
+          "bottom": 531,
+          "left": 158,
+          "right": 220,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "top": 511,
+          "bottom": 531,
+          "left": 662,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "error": {
+          "top": 358.8999938964844,
+          "bottom": 394.8999938964844,
+          "left": 157.60000610351562,
+          "right": 572.8000183105469,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "top": 402.8999938964844,
+          "bottom": 422.8999938964844,
+          "left": 157.60000610351562,
+          "right": 219.20000839233398,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "top": 402.8999938964844,
+          "bottom": 422.8999938964844,
+          "left": 511.20001220703125,
+          "right": 572.8000144958496,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "error": {
+          "top": 287,
+          "bottom": 323,
+          "left": 157.33334350585938,
+          "right": 471.3333435058594,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "top": 331,
+          "bottom": 351,
+          "left": 157.33334350585938,
+          "right": 218.66667938232422,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "top": 331,
+          "bottom": 351,
+          "left": 410,
+          "right": 471.33333587646484,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "error": {
+          "top": 485,
+          "bottom": 503,
+          "left": 158,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "top": 511,
+          "bottom": 531,
+          "left": 158,
+          "right": 220,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "top": 511,
+          "bottom": 531,
+          "left": 662,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "error": {
+          "top": 358.8999938964844,
+          "bottom": 394.8999938964844,
+          "left": 157.60000610351562,
+          "right": 572.8000183105469,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "top": 402.8999938964844,
+          "bottom": 422.8999938964844,
+          "left": 157.60000610351562,
+          "right": 219.20000839233398,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "top": 402.8999938964844,
+          "bottom": 422.8999938964844,
+          "left": 511.20001220703125,
+          "right": 572.8000144958496,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "error": {
+          "top": 287,
+          "bottom": 323,
+          "left": 157.33334350585938,
+          "right": 471.3333435058594,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "top": 331,
+          "bottom": 351,
+          "left": 157.33334350585938,
+          "right": 218.66667938232422,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "top": 331,
+          "bottom": 351,
+          "left": 410,
+          "right": 471.33333587646484,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      }
+    ],
+    "restoreKeyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 490,
+        "bottom": 510,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "恢复快照",
+        "outline": 3.2,
+        "top": 382.1000061035156,
+        "bottom": 402.1000061035156,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 310.3333435058594,
+        "bottom": 330.3333435058594,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 490,
+        "bottom": 510,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "恢复快照",
+        "outline": 3.2,
+        "top": 382.1000061035156,
+        "bottom": 402.1000061035156,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 310.3333435058594,
+        "bottom": 330.3333435058594,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7\\snapshot-evidence-3781c0ea",
+    "screenshots": [
+      "worktree-snapshots-saved-light-shell.png",
+      "worktree-snapshots-save-failure-light-shell.png",
+      "worktree-snapshots-normal-restart-light-shell.png",
+      "worktree-snapshots-existing-target-rejected-light-shell.png",
+      "worktree-snapshots-restored-new-folder-light-shell.png",
+      "worktree-snapshots-light-100-keyboard-shell.png",
+      "worktree-snapshots-light-100-error-shell.png",
+      "worktree-snapshots-light-100-restore-keyboard-shell.png",
+      "worktree-snapshots-light-100-restore-error-shell.png",
+      "worktree-snapshots-light-125-keyboard-shell.png",
+      "worktree-snapshots-light-125-error-shell.png",
+      "worktree-snapshots-light-125-restore-keyboard-shell.png",
+      "worktree-snapshots-light-125-restore-error-shell.png",
+      "worktree-snapshots-light-150-keyboard-shell.png",
+      "worktree-snapshots-light-150-error-shell.png",
+      "worktree-snapshots-light-150-restore-keyboard-shell.png",
+      "worktree-snapshots-light-150-restore-error-shell.png",
+      "worktree-snapshots-dark-100-keyboard-shell.png",
+      "worktree-snapshots-dark-100-error-shell.png",
+      "worktree-snapshots-dark-100-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-100-restore-error-shell.png",
+      "worktree-snapshots-dark-125-keyboard-shell.png",
+      "worktree-snapshots-dark-125-error-shell.png",
+      "worktree-snapshots-dark-125-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-125-restore-error-shell.png",
+      "worktree-snapshots-dark-150-keyboard-shell.png",
+      "worktree-snapshots-dark-150-error-shell.png",
+      "worktree-snapshots-dark-150-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-150-restore-error-shell.png",
+      "worktree-snapshots-read-failure-light-shell.png",
+      "worktree-snapshots-read-recovered-light-shell.png",
+      "worktree-snapshots-accepted-shutdown-reopen-light-shell.png",
+      "worktree-snapshots-replacement-rejected-light-shell.png"
+    ],
+    "scope": "Actual local snapshot save/list/new-folder restore, safe failures, private/shared-backup separation, normal restart, accepted publication drain during actual application quit, and native save/restore theme/zoom keyboard checks. Destructive/automatic cleanup, complete reference adoption and current distribution require separate evidence."
   },
   "toolActivities": {
     "checks": 8,
@@ -7054,7 +7699,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.890625,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7069,7 +7714,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.2875061035156,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7084,7 +7729,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.5520935058594,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7099,7 +7744,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.890625,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7114,7 +7759,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.2875061035156,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7129,7 +7774,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.5520935058594,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -7203,7 +7848,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "434448a3-c896-4aee-b97d-a6d787fd30f4",
+    "threadId": "e5f9f36e-ece5-40f0-bd6e-4722ad8aa0cd",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -7287,7 +7932,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-yuJjVi"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-Hxtlm7"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

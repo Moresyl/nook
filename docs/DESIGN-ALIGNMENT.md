@@ -1,5 +1,9 @@
 # Nook 设计对照
 
+当前快照候选完整源码通过 345 项、68 次正常退出（最长 1,985ms）。固定 21 张与快照 33 张共 54 张当前原图逐张复核，两主题三档缩放下的保存、恢复、固定键盘边框、错误及恢复按钮完整可见；另外 142 张选定原图保留但不计本轮视觉验收。150% 上部资料与后续分类需要纵向滚动。当前子报告的完整桌面标签与 345 项总数已实际核实；前序失败和限制继续保留。安全删除与自动清理在独立分支验证，全部参考界面和当前分发尚未完成。[完整源码](../verification/worktree-snapshot-full-native-review-result.json) · [54 张原图范围](../verification/worktree-snapshot-full-originals-review-result.json)
+
+## 前序固定阶段
+
 当前固定版本整轮首次在快速聊天主题刷新等待处超时，固定模块尚未执行；失败工作区的快速聊天九项重放通过，随后整轮 337 项、64 次正常退出通过（最长 2,121ms）。整轮当前固定 21 张原图逐张复核，六种明暗缩放中提交前及失败后的蓝色键盘边框与完整错误均实际可见；另外 142 张选定原图保留但不计本轮视觉验收。前序暗色 150% 错误图的焦点限制和原整轮失败仍保留；全部参考界面及当前分发继续完成。[整轮结果与报告标签限制](../verification/worktree-pinning-full-review-result.json) · [当前原图范围](../verification/worktree-pinning-full-originals-review-result.json) · [整轮失败](../verification/worktree-pinning-source-failure-result.json) · [重放范围](../verification/worktree-pinning-quick-replay-result.json)
 
 「设置 → 工作树」的本机固定与取消固定沿用共享按钮、主题和行内错误；外部树不显示入口，未核验记录显示保留文件说明并禁用固定。此前两轮各六组桌面专项通过，第二轮 21 张原图逐张复核；236 个编译文件与本轮整轮一致。首轮读取错误图遗漏提示、第二轮暗色 150% 错误图未显示焦点的限制保留；整轮已验证完整提示与失败后实际焦点。150% 内容和后续分类需纵向滚动。完整参考界面、快照／恢复、清理及当前分发继续完成。[前序固定专项](../verification/worktree-pinning-notice-review-result.json) · [前序原图范围](../verification/worktree-pinning-notice-originals-review-result.json)
