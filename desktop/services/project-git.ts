@@ -1,10 +1,40 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { isAbsolute, relative, resolve, sep } from 'node:path';
+import { lstat, realpath, stat } from 'node:fs/promises';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { gitBranchNameSchema, type GitBranch, type GitBranches, type GitFile, type GitFileView, type GitStatus } from '../../contracts/projects';
+import { createWorktreeSchema, type CreateWorktree, type GitWorktree, type WorktreeCreated } from '../../contracts/project-worktrees';
 import { projectDocument, scopedPath } from './project-files';
 
 const runFile = promisify(execFile);
+export function parseGitWorktrees(output: string): GitWorktree[] {
+  const worktrees: GitWorktree[] = [];
+  let record: GitWorktree | undefined;
+  let seen = new Set<string>();
+  for (const field of output.split('\0')) {
+    if (!field) {
+      if (!record) continue;
+      if (!record.path || record.bare && Boolean(record.head || record.branch || record.detached) || !record.bare && (!record.head || Boolean(record.branch) === record.detached)) throw new Error('Git returned an invalid worktree record.');
+      worktrees.push(record); record = undefined; seen = new Set(); continue;
+    }
+    const space = field.indexOf(' '), key = space < 0 ? field : field.slice(0, space), value = space < 0 ? '' : field.slice(space + 1);
+    if (seen.has(key)) throw new Error('Git returned an invalid worktree record.');
+    seen.add(key);
+    if (key === 'worktree' && !record && value) record = { path: value, bare: false, detached: false };
+    else if (!record) throw new Error('Git returned an invalid worktree record.');
+    else if (key === 'HEAD' && /^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(value)) record.head = value;
+    else if (key === 'branch' && value.startsWith('refs/heads/') && gitBranchNameSchema.safeParse(value.slice(11)).success) record.branch = value.slice(11);
+    else if (key === 'bare' && !value) record.bare = true;
+    else if (key === 'detached' && !value) record.detached = true;
+    else if (key === 'locked') record.locked = value;
+    else if (key === 'prunable') record.prunable = value;
+    else throw new Error('Git returned an invalid worktree record.');
+  }
+  if (record) throw new Error('Git returned an unterminated worktree record.');
+  if (!worktrees.length) throw new Error('Git returned an empty worktree list.');
+  if (new Set(worktrees.map(item => item.path)).size !== worktrees.length) throw new Error('Git returned duplicate worktree paths.');
+  return worktrees;
+}
 export function parseGitBranches(output: string): GitBranch[] {
   const fields = output.split('\0'), branches: GitBranch[] = [];
   for (let index = 0; index < fields.length; index += 3) {
@@ -60,6 +90,38 @@ export class ProjectGit {
   }
   async switchBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, false); }
   async createBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, true); }
+  async worktrees(root: string): Promise<GitWorktree[]> { return parseGitWorktrees(await this.run(root, ['worktree', 'list', '--porcelain', '-z'])); }
+  async createWorktree(root: string, raw: CreateWorktree): Promise<WorktreeCreated> {
+    const input = createWorktreeSchema.parse(raw);
+    return this.update(root, async () => {
+      try { await this.run(root, ['check-ref-format', '--branch', input.branch]); } catch { throw new Error('Enter a valid Git branch name.'); }
+      const snapshot = await this.branches(root), target = snapshot.branches.find(branch => branch.name === input.branch);
+      if (input.mode === 'new' && target) throw new Error('This branch already exists.');
+      if (input.mode === 'existing' && !target) throw new Error('This local branch no longer exists. Refresh the branch list.');
+      if (input.mode === 'existing' && (target?.current || target?.worktreePath)) throw new Error('This branch is in use by another worktree.');
+      if (snapshot.status.unborn) throw new Error('Create a commit before creating a worktree.');
+      if (input.mode === 'new' && input.baseBranch && !snapshot.branches.some(branch => branch.name === input.baseBranch)) throw new Error('This base branch no longer exists. Refresh the branch list.');
+      const commit = (await this.run(root, ['rev-parse', '--verify', input.mode === 'existing' ? `refs/heads/${input.branch}^{commit}` : input.baseBranch ? `refs/heads/${input.baseBranch}^{commit}` : 'HEAD^{commit}'])).trim();
+      if (!/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(commit)) throw new Error('Git returned an invalid worktree base commit.');
+      if (!isAbsolute(input.path) || ['.', '..'].includes(basename(input.path))) throw new Error('Choose an absolute worktree folder path.');
+      let parent: string;
+      try { parent = await realpath(dirname(input.path)); if (!(await stat(parent)).isDirectory()) throw new Error(); }
+      catch { throw new Error('Choose an existing parent folder for the new worktree.'); }
+      const path = join(parent, basename(input.path));
+      for (const worktree of await this.worktrees(root)) {
+        const displacement = relative(resolve(worktree.path), path);
+        if (!displacement || displacement !== '..' && !displacement.startsWith(`..${sep}`) && !isAbsolute(displacement)) throw new Error('Choose a folder outside this repository’s existing worktrees.');
+      }
+      if (await lstat(path).then(() => true, error => { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw new Error('The target folder could not be checked. Choose another folder.'); })) throw new Error('The target folder already exists. Choose a new folder.');
+      let failed = false;
+      try { await this.run(root, ['worktree', 'add', ...(input.mode === 'new' ? ['--no-track', '-b', input.branch] : []), '--', path, input.mode === 'new' ? commit : input.branch]); }
+      catch { failed = true; }
+      const worktree = (await this.worktrees(root)).find(item => relative(path, resolve(item.path)) === '');
+      if (!worktree || worktree.bare || !worktree.head || !worktree.branch || worktree.prunable !== undefined) throw new Error('Git could not create a complete worktree. Check the branch list and target folder before retrying; existing files are retained.');
+      const actual = await realpath(path);
+      return { worktree: { ...worktree, path: actual }, branches: await this.branches(root), ...(failed || worktree.branch !== input.branch || worktree.head !== commit ? { warning: 'post-add-error' as const } : {}) };
+    });
+  }
   private async changeBranch(root: string, raw: string, create: boolean): Promise<GitBranches> {
     const name = gitBranchNameSchema.parse(raw);
     return this.update(root, async () => {
