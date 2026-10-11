@@ -1,8 +1,16 @@
 # Nook 发布状态
 
+**尚未发布。** 目标为 Windows x64 `0.1.0-alpha.1`。当前新增创建前刷新上游，并修正工作树聊天按钮的焦点边框；五组上游和四组聊天原生专项通过，236 个编译文件一致、八次正常退出，39 张当前原图逐张复核。覆盖真实本地裸仓库获取、固定本地提交、无上游和关闭策略、获取失败重试、设置保存 EIO、gzip 恢复和重启；两主题三档缩放中的键盘操作、完整焦点与错误边界通过。[本轮证据与范围](../verification/worktree-upstream-review-result.json)
+
+发布门禁提高至至少 321 项完整桌面检查，并要求新增上游结果、六种键盘布局及完整焦点边框。类型检查、76 项门禁测试和完整单元 118 个文件／1,267 项通过，语句 97.33%、分支 95.15%、函数 97.46%、行 99.43%，保留四项 80% 门槛；React 界面不计入这些百分比。新完整源码、当前分发和剩余参考界面继续验收，不能宣称 100% 已完成。[完整单元与统计范围](../verification/worktree-upstream-unit-review-result.json)
+
+最新已核实的托管提交 `8ac1607` 对应 [38132589513](https://github.com/Moresyl/nook/actions/runs/38132589513)。GitHub 账户付款／额度限制使验证未启动、发布跳过，均为零步骤。[原始运行与任务证据](../verification/worktree-conversations-full-hosted-result.json)
+
+## 前序验证记录
+
 聊天入口提交 `b3cde09` 的完整源码桌面回归通过 316 项、51 次正常退出，最长 2,840ms，无强制关闭和运行时错误。236 个编译文件与已接受的专项应用体逐项一致，93 张选定原图逐张复核；最小窗口聊天按钮的焦点边框贴近滚动底部，已记录为后续细节修正，不能据此宣称完整参考界面已完成。新分发仍待验收。[完整源码证据](../verification/worktree-conversations-full-review-result.json) · [93 张原图与实际范围](../verification/worktree-conversations-full-originals-review-result.json)
 
-工作树列表内聊天入口四组、列表回归六组与九次正常退出通过；236 个编译文件一致，37 张专项原图逐张复核。78 项相关测试、类型与构建通过，完整单元 117 个文件／1,252 项通过：语句 97.33%、分支 95.13%、函数 97.46%、行 99.43%，新增导航契约四项均为 100%，原有四项 80% 门槛保留；React 界面不计入该百分比。当前发布门禁至少 316 项，要求关联会话、新聊天草稿、检查点失败保留与重试／重启、旧入口拒绝和中文错误证据。[本轮专项与失败保留](../verification/worktree-conversations-review-result.json) · [完整单元证据](../verification/worktree-conversations-unit-review-result.json)
+工作树列表内聊天入口四组、列表回归六组与九次正常退出通过；236 个编译文件一致，37 张专项原图逐张复核。78 项相关测试、类型与构建通过，完整单元 117 个文件／1,252 项通过：语句 97.33%、分支 95.13%、函数 97.46%、行 99.43%，新增导航契约四项均为 100%，原有四项 80% 门槛保留；React 界面不计入该百分比。该批次门禁至少 316 项，要求关联会话、新聊天草稿、检查点失败保留与重试／重启、旧入口拒绝和中文错误证据。[前序专项与失败保留](../verification/worktree-conversations-review-result.json) · [完整单元证据](../verification/worktree-conversations-unit-review-result.json)
 
 最新已核实的聊天入口提交 `b3cde09` 对应 [38129842766](https://github.com/Moresyl/nook/actions/runs/38129842766)。GitHub 账户付款／额度限制使验证没有启动，发布跳过，均为零步骤；没有已发布版本。[精确提交证据](../verification/worktree-conversations-hosted-result.json)保留原始运行、任务和注释；根目录验收提交 `689f313` 的 [38128867399](https://github.com/Moresyl/nook/actions/runs/38128867399) 与[保留证据](../verification/worktree-root-retry-hosted-result.json)继续保留。
 

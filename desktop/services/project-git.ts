@@ -3,7 +3,7 @@ import { promisify } from 'node:util';
 import { lstat, realpath, stat } from 'node:fs/promises';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { gitBranchNameSchema, type GitBranch, type GitBranches, type GitFile, type GitFileView, type GitStatus } from '../../contracts/projects';
-import { createWorktreeSchema, type CreateWorktree, type GitWorktree, type WorktreeCreated } from '../../contracts/project-worktrees';
+import { createWorktreeSchema, worktreeUpstreamPolicySchema, type CreateWorktree, type GitWorktree, type WorktreeCreated, type WorktreeUpstreamPolicy } from '../../contracts/project-worktrees';
 import { projectDocument, scopedPath } from './project-files';
 
 const runFile = promisify(execFile);
@@ -74,10 +74,10 @@ export class ProjectGit {
     this.pending.set(cwd, operation);
     try { return await operation; } finally { if (this.pending.get(cwd) === operation) this.pending.delete(cwd); }
   }
-  private async run(root: string, args: string[], strictUtf8 = true): Promise<string> {
+  private async run(root: string, args: string[], strictUtf8 = true, nonInteractive = false): Promise<string> {
     const cwd = await scopedPath(root, '.');
     try {
-      const result = await this.runner('git', ['--no-pager', '--literal-pathspecs', '-C', cwd, ...args], { encoding: 'buffer', windowsHide: true, timeout: 30_000, maxBuffer: 2_000_000, env: { ...process.env, LC_ALL: 'C', GIT_TERMINAL_PROMPT: '0' } });
+      const result = await this.runner('git', ['--no-pager', '--literal-pathspecs', '-C', cwd, ...args], { encoding: 'buffer', windowsHide: true, timeout: 30_000, maxBuffer: 2_000_000, env: { ...process.env, LC_ALL: 'C', GIT_TERMINAL_PROMPT: '0', ...(nonInteractive ? { GCM_INTERACTIVE: 'never' } : {}) } });
       return new TextDecoder('utf-8', { fatal: strictUtf8, ignoreBOM: true }).decode(Buffer.isBuffer(result.stdout) ? result.stdout : Buffer.from(String(result.stdout), 'utf8'));
     } catch { throw new Error('Git could not complete this action. Check the repository, Git identity, permissions and hooks.'); }
   }
@@ -91,8 +91,19 @@ export class ProjectGit {
   async switchBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, false); }
   async createBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, true); }
   async worktrees(root: string): Promise<GitWorktree[]> { return parseGitWorktrees(await this.run(root, ['worktree', 'list', '--porcelain', '-z'])); }
-  async createWorktree(root: string, raw: CreateWorktree): Promise<WorktreeCreated> {
+  private async refreshWorktreeUpstream(root: string, branch: string | undefined): Promise<NonNullable<WorktreeCreated['upstreamRefresh']>> {
+    if (!branch) return 'not-configured';
+    try {
+      const fields = (await this.run(root, ['for-each-ref', '--format=%(upstream:remotename)%00%(upstream:remoteref)%00%(upstream)', `refs/heads/${branch}`])).trim().split('\0');
+      const [remote, remoteRef, tracking] = fields;
+      if (fields.length !== 3 || !remote || remote === '.' || !remoteRef.startsWith('refs/heads/') || !tracking.startsWith('refs/remotes/')) return 'not-configured';
+      await this.run(root, ['-c', 'credential.interactive=false', '-c', 'core.askPass=', 'fetch', '--quiet', '--no-tags', '--no-recurse-submodules', '--no-write-fetch-head', '--', remote, `${remoteRef}:${tracking}`], true, true);
+      return 'fetched';
+    } catch { return 'failed'; }
+  }
+  async createWorktree(root: string, raw: CreateWorktree, rawPolicy: WorktreeUpstreamPolicy = 'never'): Promise<WorktreeCreated> {
     const input = createWorktreeSchema.parse(raw);
+    const policy = worktreeUpstreamPolicySchema.parse(rawPolicy);
     return this.update(root, async () => {
       try { await this.run(root, ['check-ref-format', '--branch', input.branch]); } catch { throw new Error('Enter a valid Git branch name.'); }
       const snapshot = await this.branches(root), target = snapshot.branches.find(branch => branch.name === input.branch);
@@ -114,13 +125,14 @@ export class ProjectGit {
         if (!displacement || displacement !== '..' && !displacement.startsWith(`..${sep}`) && !isAbsolute(displacement)) throw new Error('Choose a folder outside this repository’s existing worktrees.');
       }
       if (await lstat(path).then(() => true, error => { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw new Error('The target folder could not be checked. Choose another folder.'); })) throw new Error('The target folder already exists. Choose a new folder.');
+      const upstreamRefresh = policy === 'best-effort' ? await this.refreshWorktreeUpstream(root, input.mode === 'existing' ? input.branch : input.baseBranch ?? (snapshot.status.detached ? undefined : snapshot.status.branch)) : undefined;
       let failed = false;
       try { await this.run(root, ['worktree', 'add', ...(input.mode === 'new' ? ['--no-track', '-b', input.branch] : []), '--', path, input.mode === 'new' ? commit : input.branch]); }
       catch { failed = true; }
       const worktree = (await this.worktrees(root)).find(item => relative(path, resolve(item.path)) === '');
       if (!worktree || worktree.bare || !worktree.head || !worktree.branch || worktree.prunable !== undefined) throw new Error('Git could not create a complete worktree. Check the branch list and target folder before retrying; existing files are retained.');
       const actual = await realpath(path);
-      return { worktree: { ...worktree, path: actual }, branches: await this.branches(root), ...(failed || worktree.branch !== input.branch || worktree.head !== commit ? { warning: 'post-add-error' as const } : {}) };
+      return { worktree: { ...worktree, path: actual }, branches: await this.branches(root), ...(upstreamRefresh ? { upstreamRefresh } : {}), ...(failed || worktree.branch !== input.branch || worktree.head !== commit ? { warning: 'post-add-error' as const } : {}) };
     });
   }
   private async changeBranch(root: string, raw: string, create: boolean): Promise<GitBranches> {

@@ -1,0 +1,42 @@
+{
+  "verifiedAt": "2026-10-11T10:45:11.987Z",
+  "sourceHead": "8ac1607c2d8f8a48b641deae4d1354b95eb5d06f",
+  "runId": 38132589513,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38132589513",
+  "archive": "E:\\NookVerification\\WorktreeConversationsFullHosted-20261011",
+  "verify": {
+    "completedAt": "2026-10-11T10:37:08Z",
+    "conclusion": "failure",
+    "databaseId": 114449808283,
+    "name": "verify",
+    "startedAt": "2026-10-11T10:37:06Z",
+    "status": "completed",
+    "steps": [],
+    "url": "https://github.com/Moresyl/nook/actions/runs/38132589513/job/114449808283"
+  },
+  "publish": {
+    "completedAt": "2026-10-11T10:37:08Z",
+    "conclusion": "skipped",
+    "databaseId": 114449815658,
+    "name": "publish",
+    "startedAt": "2026-10-11T10:37:08Z",
+    "status": "completed",
+    "steps": [],
+    "url": "https://github.com/Moresyl/nook/actions/runs/38132589513/job/114449815658"
+  },
+  "annotations": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/Moresyl/nook/blob/8ac1607c2d8f8a48b641deae4d1354b95eb5d06f/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "raw_details": ""
+    }
+  ],
+  "scope": "The exact complete-source acceptance commit reached CI, but verification did not start and publishing was skipped due to the reported account payments/spending limit. This is not a hosted verification or release pass. Local b3cde09 source runtime acceptance remains independently recorded. No billing changes, runner replacement or release bypass was performed."
+}

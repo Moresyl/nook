@@ -405,7 +405,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitSwitchBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.switchBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitCreateBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.createBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitWorktrees: id => git.worktrees(workspaceProject(id).path),
-  gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input)),
+  gitCreateWorktree: (id, input) => git.createWorktree(workspaceProject(id).path, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'),
   gitFileView: (id, file, staged) => git.fileView(workspaceProject(id).path, gitFileSchema.parse(file), z.boolean().parse(staged)),
   gitStage: (id, paths, staged) => git.stage(workspaceProject(id).path, z.array(pathSchema).min(1).max(1000).parse(paths), z.boolean().parse(staged)),
   gitCommit: (id, message) => git.commit(workspaceProject(id).path, z.string().min(1).max(16_000).parse(message)),

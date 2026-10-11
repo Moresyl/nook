@@ -37,7 +37,7 @@ const worktreeOverview = (): NonNullable<ReleaseProof['desktop']['worktreeOvervi
 });
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 316, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 321, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -62,9 +62,49 @@ function worktreeConversations(): NonNullable<ReleaseProof['desktop']['worktreeC
   return {
     checks: 4, modelRequests: 0, linkedConversationVerified: true, projectDraftVerified: true, heldFailureRetryRestartVerified: true, staleTargetsVerified: true, sanitizedErrorsVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
     screenshots: Array.from({ length: 19 }, (_, index) => `worktree-conversations-${index}-shell.png`),
+    keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '新建项目聊天' })),
     layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contentWidth: 350, contentScrollWidth: 350, viewportWidth: 500, documentWidth: 500, top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 }))),
   };
 }
+
+function worktreeKeyboardLayouts() {
+  return ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, outline: 4, top: 100, bottom: 124, left: 400, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 })));
+}
+function worktreeUpstream(): NonNullable<ReleaseProof['desktop']['worktreeUpstream']> {
+  return {
+    checks: 5, modelRequests: 0, preferenceFailureRetryVerified: true, actualFetchPinnedCommitVerified: true, neverAndMissingUpstreamVerified: true, actualFailureRetryVerified: true, backupRestartVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
+    screenshots: Array.from({ length: 20 }, (_, index) => `worktree-upstream-${index}-shell.png`),
+    layouts: worktreeConversations().layouts,
+    keyboardLayouts: worktreeKeyboardLayouts(),
+  };
+}
+
+describe('worktree upstream release evidence', () => {
+  it('requires every native policy, real-fetch, recovery and preservation guarantee', () => {
+    const missing = proof(); delete missing.desktop.worktreeUpstream; expect(() => verifyRuntimeProof(missing)).toThrow('worktree upstream');
+    for (const [key, value] of Object.entries({ checks: 4, modelRequests: 1, preferenceFailureRetryVerified: false, actualFetchPinnedCommitVerified: false, neverAndMissingUpstreamVerified: false, actualFailureRetryVerified: false, backupRestartVerified: false, referenceZoomKeyboardVerified: false, sourcePreservationVerified: false, layouts: [], keyboardLayouts: [], screenshots: [] })) {
+      const invalid = proof(); (invalid.desktop.worktreeUpstream as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree upstream');
+    }
+  });
+  it('rejects clipped errors, horizontal overflow, missing zooms and duplicate originals', () => {
+    for (const [key, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501, contentWidth: 0, contentScrollWidth: 351, viewportWidth: 0, documentWidth: 501 })) {
+      const invalid = proof(); (invalid.desktop.worktreeUpstream!.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree upstream');
+    }
+    const duplicate = proof(); duplicate.desktop.worktreeUpstream!.layouts[1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree upstream');
+    const screenshot = proof(); screenshot.desktop.worktreeUpstream!.screenshots[1] = screenshot.desktop.worktreeUpstream!.screenshots[0]; expect(() => verifyRuntimeProof(screenshot)).toThrow('worktree upstream');
+  });
+});
+
+describe.each(['worktreeUpstream', 'worktreeConversations'] as const)('%s focus outline release evidence', key => {
+  it('rejects missing keyboard measurements, duplicate zooms and partially clipped outlines', () => {
+    const missing = proof(); delete (missing.desktop[key] as unknown as Record<string, unknown>).keyboardLayouts; expect(() => verifyRuntimeProof(missing)).toThrow('Complete worktree');
+    for (const [field, value] of Object.entries({ outline: 0, top: 62, bottom: 360, left: 128, right: 500 })) {
+      const invalid = proof(); (invalid.desktop[key]!.keyboardLayouts[0] as unknown as Record<string, unknown>)[field] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('Complete worktree');
+    }
+    const duplicate = proof(); duplicate.desktop[key]!.keyboardLayouts[1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('Complete worktree');
+    const reversed = proof(); reversed.desktop[key]!.keyboardLayouts[0].bottom = 99; expect(() => verifyRuntimeProof(reversed)).toThrow('Complete worktree');
+  });
+});
 describe('worktree conversation release evidence', () => {
   it('rejects missing native navigation and every incomplete preservation guarantee', () => {
     const missing = proof(); delete missing.desktop.worktreeConversations; expect(() => verifyRuntimeProof(missing)).toThrow('worktree conversation');
@@ -107,7 +147,7 @@ describe('worktree overview release evidence', () => {
 
 describe('worktree root settings release evidence', () => {
   it('rejects the previous suite and requires all actual root, failure, creation and restoration guarantees', () => {
-    for (const checks of [303,305,306,311,312,315]) { const old = proof(); old.desktop.checks = checks; expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop'); }
+    for (const checks of [303,305,306,311,312,315,316,320]) { const old = proof(); old.desktop.checks = checks; expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop'); }
     const missing = proof(); delete missing.desktop.worktreeSettings; expect(() => verifyRuntimeProof(missing)).toThrow('worktree root settings');
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
     for (const [key, value] of Object.entries({ checks: 7, modelRequests: 1, rootValidationVerified: false, busySaveVerified: false, saveFailurePreservationVerified: false, rootCreationVerified: false, backupRestartVerified: false, referenceZoomKeyboardVerified: false, directoryPickerVerified: false, pickerCases: 4, defaultRootVerified: false, defaultRootFailureVerified: false, defaultRootBackupRestartVerified: false, layouts: [], errorLayouts: [], screenshots: [] })) {

@@ -3,7 +3,7 @@ import { worktreePreferencesSchema } from '../../contracts/project-worktrees';
 import { uiErrorMessage } from '../../contracts/ui-errors';
 import type { Workspace } from '../../contracts/workspace';
 import { worktreeNavigationError, type WorktreeConversationTarget, type WorktreeProjectTarget } from '../../contracts/worktree-navigation';
-import { Button, IconButton, Input } from '../components/controls';
+import { Button, IconButton, Input, Toggle } from '../components/controls';
 import { WorktreeOverview } from '../components/worktree-overview';
 
 type Props = { state: Workspace; busy: boolean; onBusyChange(value: boolean): void; onState(value: Workspace): void; onOpenConversation(target: WorktreeConversationTarget): Promise<void>; onCreateConversation(target: WorktreeProjectTarget): Promise<void> };
@@ -27,7 +27,7 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
   async function save() {
     if (busy || working.current || !valid || root === savedRoot) return;
     working.current = true; onBusyChange(true); setError(''); setSaved(false);
-    try { onState(await window.qiyao.savePreferences({ ...state.preferences, worktrees: worktreePreferencesSchema.parse({ root }) })); setSaved(true); }
+    try { onState(await window.qiyao.savePreferences({ ...state.preferences, worktrees: worktreePreferencesSchema.parse({ ...state.preferences.worktrees, root }) })); setSaved(true); }
     catch (failure) { setError(uiErrorMessage(failure)); }
     finally { working.current = false; onBusyChange(false); }
   }
@@ -47,6 +47,13 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
     catch (failure) { setError(worktreeNavigationError(failure)); }
     finally { working.current = false; onBusyChange(false); }
   }
+  async function saveUpstream(enabled: boolean) {
+    if (busy || working.current) return;
+    working.current = true; onBusyChange(true); setError(''); setSaved(false);
+    try { onState(await window.qiyao.savePreferences({ ...state.preferences, worktrees: worktreePreferencesSchema.parse({ ...state.preferences.worktrees, root: savedRoot, upstreamRefresh: enabled ? 'best-effort' : 'never' }) })); setSaved(true); }
+    catch { setError('未能保存上游刷新设置，请检查磁盘空间和文件夹权限，再重试。'); }
+    finally { working.current = false; onBusyChange(false); }
+  }
   return <section className="worktree-settings" aria-label="工作树设置"><h3>工作树</h3>
     <p className="muted">设置新工作树的创建位置，在独立目录中处理项目分支。</p>
     <form onSubmit={event => { event.preventDefault(); void save(); }}>
@@ -58,6 +65,8 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
       <p className="field-hint">设置只影响之后新建工作树的默认路径。已创建的工作树保留当前位置，新建时仍可修改目标路径。</p>
       <div className="form-actions"><Button tone="solid" type="submit" disabled={busy || !valid || root === savedRoot}>保存工作树设置</Button></div>
     </form>
+    <Toggle label="创建工作树前刷新上游" disabled={busy} checked={state.preferences.worktrees?.upstreamRefresh === 'best-effort'} onChange={value => { void saveUpstream(value); }} />
+    <p className="field-hint">创建前获取所选分支的远程更新。仍从已选本地提交创建，不合并或改写原分支；获取失败时继续使用本地提交，完成后显示提示。</p>
     {error && <p ref={errorRef} className="inline-error" role="alert">{error}</p>}
     {saved && <p role="status" className="field-hint">已保存工作树设置。</p>}
     <WorktreeOverview state={state} disabled={busy} onOpenConversation={target => { void navigate(() => onOpenConversation(target)); }} onCreateConversation={target => { void navigate(() => onCreateConversation(target)); }} />
