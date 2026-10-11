@@ -1477,7 +1477,7 @@ try {
     assert.deepEqual(errors, []);
     const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
-    await writeFile(join(root, 'verification', packaged ? 'worktree-pinning-packaged-result.json' : 'worktree-pinning-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, verificationRun: 'focused worktree-pinning suite', ...worktreePinningResult }, null, 2));
+    await writeFile(join(root, 'verification', packaged ? 'worktree-pinning-packaged-result.json' : 'worktree-pinning-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-pinning suite' }), ...worktreePinningResult }, null, 2));
     console.log(`Verified ${worktreePinningResult.checks} worktree pinning checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && worktreeOwnershipResult) {
