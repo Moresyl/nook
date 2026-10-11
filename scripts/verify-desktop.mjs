@@ -559,9 +559,15 @@ let worktreeOverviewResult;
 let worktreeConversationsResult;
 let worktreeUpstreamResult;
 let worktreeRegistrationResult;
+let worktreeOwnershipResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_WORKTREE_REGISTRATION_ONLY) {
+  if (process.env.NOOK_TEST_WORKTREE_OWNERSHIP_ONLY) {
+    const { verifyWorktreeOwnership } = await import('./verify-worktree-ownership.mjs');
+    const run = await verifyWorktreeOwnership({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
+    page = run.page; worktreeOwnershipResult = run.result;
+    assert.equal(count, 5); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_WORKTREE_REGISTRATION_ONLY) {
     const { verifyWorktreeRegistration } = await import('./verify-worktree-registration.mjs');
     const run = await verifyWorktreeRegistration({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreeRegistrationResult = run.result;
@@ -1267,6 +1273,8 @@ try {
   const worktreeUpstreamRun = await verifyWorktreeUpstream({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeUpstreamRun.page; worktreeUpstreamResult = worktreeUpstreamRun.result;
   const { verifyWorktreeRegistration } = await import('./verify-worktree-registration.mjs');
   const worktreeRegistrationRun = await verifyWorktreeRegistration({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeRegistrationRun.page; worktreeRegistrationResult = worktreeRegistrationRun.result;
+  const { verifyWorktreeOwnership } = await import('./verify-worktree-ownership.mjs');
+  const worktreeOwnershipRun = await verifyWorktreeOwnership({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeOwnershipRun.page; worktreeOwnershipResult = worktreeOwnershipRun.result;
   const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
@@ -1303,6 +1311,7 @@ try {
   if (fullResult && worktreeConversationsResult) { fullResult.worktreeConversations = worktreeConversationsResult; fullResult.screenshots.push(...worktreeConversationsResult.screenshots); }
   if (fullResult && worktreeUpstreamResult) { fullResult.worktreeUpstream = worktreeUpstreamResult; fullResult.screenshots.push(...worktreeUpstreamResult.screenshots); }
   if (fullResult && worktreeRegistrationResult) { fullResult.worktreeRegistration = worktreeRegistrationResult; fullResult.screenshots.push(...worktreeRegistrationResult.screenshots); }
+  if (fullResult && worktreeOwnershipResult) { fullResult.worktreeOwnership = worktreeOwnershipResult; fullResult.screenshots.push(...worktreeOwnershipResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1454,6 +1463,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'browser-packaged-result.json' : 'browser-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused browser suite' }), ...browserResult }, null, 2));
     console.log(`Verified ${browserResult.checks} browser checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && worktreeOwnershipResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'worktree-ownership-packaged-result.json' : 'worktree-ownership-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-ownership suite' }), ...worktreeOwnershipResult }, null, 2));
+    console.log(`Verified ${worktreeOwnershipResult.checks} worktree ownership checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && worktreeRegistrationResult) {
     assert.deepEqual(errors, []);

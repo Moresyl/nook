@@ -1,0 +1,97 @@
+{
+  "reviewedAt": "2026-10-11T13:54:41.628Z",
+  "archive": "E:/NookVerification/WorktreeOwnershipFocusedPass-20261011",
+  "sourceHead": "81f19714108fe098af9fa68ed2786ce1c9da9e6d",
+  "originalsReviewed": true,
+  "reviewMethod": "All ten retained originals individually opened at original resolution and inspected.",
+  "screenshots": [
+    {
+      "name": "worktree-ownership-external-registration-light-shell.png",
+      "sha256": "2748f36a086d7ebb31fcf1cb64e636d6ef0aca997fd2a9a0c97b82fee4bd2026",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-ownership-created-light-shell.png",
+      "sha256": "dd2a3ba0a76bc808404782cb67255f89cd7cafd834004030ff7099cafff4fa57",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-ownership-existing-branch-light-shell.png",
+      "sha256": "9d50dc74ebfefd18f5873af5391dba63a608b183043fa5ff8b64fb2827ff3965",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "worktree-ownership-light-100-warning-shell.png",
+      "sha256": "5e261945417d402752cae2a30d0d40ccce54415578b23077263ed0c94130e955",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-light-125-warning-shell.png",
+      "sha256": "e224066bd5b62de40a72929e5cb70fc865e3e3aa2e3dc566695d7ea0b88a9fe3",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-light-150-warning-shell.png",
+      "sha256": "6326935fa89226fd7e766b0d0a9eab31565cc8e140ca7ade656019fe078e4d9f",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-dark-100-warning-shell.png",
+      "sha256": "2b99e019d97f79f092ad9b2a296b847927575bf3ea9ad4fabe68e00753217653",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-dark-125-warning-shell.png",
+      "sha256": "72ed80708a274804cc29f684da75a01f73579c84daeac24d1c83524db78ddab4",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-dark-150-warning-shell.png",
+      "sha256": "d00e7a64a0b00ab6b108df3c9126d6ddf0e3ad3782e839ba833aa827b48695e4",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "worktree-ownership-normal-restart-light-shell.png",
+      "sha256": "2608cda9fe0e1262cd5129de84ebde43f1b1d18a1501dc7a04debbbf10321873",
+      "size": [
+        1280,
+        840
+      ]
+    }
+  ],
+  "observations": [
+    "External registration and successful new/existing-branch receipt creation show the actual completed worktree UI in the light theme.",
+    "All six minimum-window warning images show the complete safe notice and the full blue keyboard submit outline. At 150 percent the modal body has its own vertical scrollbar while the action footer remains visible.",
+    "Native dark/light cases use system theme with actual media changes; this does not claim the explicit appearance selector was tested by this ownership module.",
+    "The restart image shows the creation form and five actual worktrees, rather than exposing local receipt contents in the UI. Receipt persistence and shared-backup separation are checked by native filesystem assertions.",
+    "Pin UI, snapshots/restoration, destructive cleanup, complete reference parity and current distribution remain outside this review."
+  ],
+  "scope": "Five source-native ownership integration checks only. Actual owned fixture retained after deliberate restoration of the original workspace, credentials and ledger; created Git trees and backup fixtures remain. System-theme media changes drive six real renderer theme/zoom cases. Visual original review, pin UI, snapshots/cleanup, full current source and distribution remain separate."
+}

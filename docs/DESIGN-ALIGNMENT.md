@@ -1,5 +1,9 @@
 # Nook 设计对照
 
+本机创建记录写入失败时，创建结果增加保留文件提示，沿用已有文字和表单样式。五组真实桌面专项与 10 张原图逐张复核通过；六种最小窗口主题／缩放由系统主题的实际媒体变化驱动，完整提示和实际 Tab 提交按钮的焦点边框可见。150% 正文独立纵向滚动，底部操作保持可见；重启原图展示五棵实际工作树，记录持久化由文件断言验证。当前固定界面、快照／恢复、清理、完整参考界面与分发继续完成。[创建专项](../verification/worktree-ownership-review-result.json) · [本轮原图范围](../verification/worktree-ownership-originals-review-result.json)
+
+## 登记界面
+
 工作树未登记行新增项目名称输入和登记／取消操作，沿用现有控件、8px 间距与主题。五组真实桌面专项及 19 张原图逐张复核通过：两主题、三档缩放的实际键盘提交、完整焦点边框和错误提示均已检查，150% 下下方操作需要纵向滚动。完整单元 1,302 项、类型及 80 项发布门槛测试通过；完整源码通过全部 326 项、57 次正常退出（最长 3,240ms）。本轮登记、列表和工作树设置的 57 张原图逐张复核，另外 75 张保留原图不计入本轮视觉验收；长路径输入仅展示可见片段，150% 后续操作与第九分类仍需纵向滚动。当前分发、创建归属、快照／恢复与其他参考页面继续补齐。[登记实际范围](../verification/worktree-registration-review-result.json) · [完整源码](../verification/worktree-registration-full-review-result.json) · [原图具体范围](../verification/worktree-registration-full-originals-review-result.json)
 
 ## 上游与聊天界面

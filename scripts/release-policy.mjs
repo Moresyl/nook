@@ -45,7 +45,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 326 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 331 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const context = desktop.contextSummaries;
@@ -54,6 +54,13 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   const conversations = desktop.worktreeConversations;
   const upstream = desktop.worktreeUpstream;
   const registration = desktop.worktreeRegistration;
+  const ownership = desktop.worktreeOwnership;
+  if (ownership?.checks !== 5 || ownership.modelRequests !== 0 || !['externalNonAdoptionVerified', 'newBranchReceiptVerified', 'existingBranchReceiptVerified', 'atomicFailureRetentionVerified', 'normalRestartVerified', 'backupSeparationVerified', 'sourcePreservationVerified', 'keyboardWarningLayoutsVerified'].every(key => ownership[key] === true)
+    || !Array.isArray(ownership.layouts) || ownership.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => ownership.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !ownership.layouts.every(({ bounds: row, focus }) => row && focus && Object.values(row).every(Number.isFinite) && ['left', 'right', 'top', 'bottom', 'width', 'height', 'outlineWidth'].every(key => Number.isFinite(focus[key])) && row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left && focus.outlineWidth > 0 && focus.outline !== 'none' && focus.width > 0 && focus.height > 0 && focus.left >= 0 && focus.top >= 0 && focus.right <= focus.width && focus.bottom <= focus.height && focus.bottom > focus.top && focus.right > focus.left)
+    || !Array.isArray(ownership.screenshots) || ownership.screenshots.length !== 10 || new Set(ownership.screenshots).size !== 10 || !ownership.screenshots.every(name => typeof name === 'string' && /^worktree-ownership-[a-z0-9-]+-shell\.png$/.test(name))) {
+    throw new Error('Complete worktree ownership verification is required');
+  }
   if (registration?.checks !== 5 || registration.modelRequests !== 0 || !['inlineValidationCancelVerified', 'actualFailureSameIdRetryVerified', 'duplicatePreservationVerified', 'staleSourceVerified', 'backupRestartVerified', 'referenceZoomKeyboardVerified', 'sourcePreservationVerified'].every(key => registration[key] === true)
     || !Array.isArray(registration.layouts) || registration.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => registration.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     || !registration.layouts.every(row => row.contentWidth > 0 && row.contentScrollWidth <= row.contentWidth && row.viewportWidth > 0 && row.documentWidth <= row.viewportWidth && row.top >= row.viewportTop && row.bottom <= row.viewportBottom && row.left >= row.viewportLeft && row.right <= row.viewportRight && row.bottom > row.top && row.right > row.left)
