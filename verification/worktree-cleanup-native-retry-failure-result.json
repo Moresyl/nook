@@ -1,0 +1,89 @@
+{
+  "archivedAt": "2026-10-11T19:05:14.651Z",
+  "archive": "E:/NookVerification/WorktreeCleanupNativeRetryFailure-20261012",
+  "sourceHead": "e2a424d466eb4ed457df654317f7aba56708d5ea",
+  "passedChecks": 7,
+  "completed": false,
+  "normalCloses": 4,
+  "maximumCloseMs": 519,
+  "screenshots": [
+    {
+      "name": "failure.png",
+      "sha256": "6d09b25b54d609333c5dbf67be72953522683935bcb659244e390607abb8384c"
+    },
+    {
+      "name": "worktree-cleanup-cancel-owned-external-light-shell.png",
+      "sha256": "9edff2547c1e7918419a48ffaea9ae45dedbefbb0f706a19fcb0d0ceaccdeaee"
+    },
+    {
+      "name": "worktree-cleanup-dark-100-error-shell.png",
+      "sha256": "7b5991242a8fa99fac78af7143fcbbac153897da460b51112593821315c9014b"
+    },
+    {
+      "name": "worktree-cleanup-dark-100-keyboard-shell.png",
+      "sha256": "09a8cf0a5b4bb9c86ffcfc9c331594be95facf8f0bdf16aeb309febc0231a991"
+    },
+    {
+      "name": "worktree-cleanup-dark-125-error-shell.png",
+      "sha256": "2f5fbcab52b431a18595bf584bdc8794f99ad90fc7261ad785312dab189470d0"
+    },
+    {
+      "name": "worktree-cleanup-dark-125-keyboard-shell.png",
+      "sha256": "dfca68e9f90c2976b0b51edda46254558f7cc9d6b87394f898d2a2e6131fc3ff"
+    },
+    {
+      "name": "worktree-cleanup-dark-150-error-shell.png",
+      "sha256": "9d96587d2e40bc9f423aafa6dcd17ed7cd21ffc0203b87efb5562c2208352794"
+    },
+    {
+      "name": "worktree-cleanup-dark-150-keyboard-shell.png",
+      "sha256": "1ec98a9b9e28159fefbafc31d9e6b07a23d55f7e3c2b6c3f10943c70aa842218"
+    },
+    {
+      "name": "worktree-cleanup-fixed-chat-after-project-removal-light-shell.png",
+      "sha256": "feb169d7fc975386f16877e9f6eacadd65e3c1fd7d671bfa590cb2788deadb8e"
+    },
+    {
+      "name": "worktree-cleanup-light-100-error-shell.png",
+      "sha256": "1b81842d5c81d9959032a70ae809d02d2672e10286c6f77d0b4e67f6d4b3d4c1"
+    },
+    {
+      "name": "worktree-cleanup-light-100-keyboard-shell.png",
+      "sha256": "db504ba4426f3bd2eb00ec241bca0a22a88ac4529b3d5087a5da3ebb154cbabc"
+    },
+    {
+      "name": "worktree-cleanup-light-125-error-shell.png",
+      "sha256": "826f9dce41b5cd4781bf96ec553efefb8dbc2f551bfb17903cf4788f2e5c4ec0"
+    },
+    {
+      "name": "worktree-cleanup-light-125-keyboard-shell.png",
+      "sha256": "df6c62bc91f5d5b9fa39817df889403b0776db5c0fa198f44b074056e34def59"
+    },
+    {
+      "name": "worktree-cleanup-light-150-error-shell.png",
+      "sha256": "cebe9ff0ea30273a0f6c95904267b991fd540a6d066bd031fe053dde98bfb7c4"
+    },
+    {
+      "name": "worktree-cleanup-light-150-keyboard-shell.png",
+      "sha256": "d26b6a87120c852dbd411c55f5ca647285c72ca6772c5eb29eea04a065abae89"
+    },
+    {
+      "name": "worktree-cleanup-pinned-protected-light-shell.png",
+      "sha256": "4cbde8de381352ff5b9473ca95fdffeaa248a4d66fe0eaaa59388c2c0c48bc2e"
+    },
+    {
+      "name": "worktree-cleanup-private-save-error-light-shell.png",
+      "sha256": "f48fac4126173ba6a202b23919e73b11e99a3e2d657ea66bd471336e70276ebd"
+    },
+    {
+      "name": "worktree-cleanup-private-save-held-light-shell.png",
+      "sha256": "4364c77e20fe9ce305e3f6a2af45eb7f914063f9e4ab03914680f910cc17ef9d"
+    },
+    {
+      "name": "worktree-cleanup-removed-with-snapshot-light-shell.png",
+      "sha256": "70b163a57437ed5783b3e39bf9517b7093f42bd45f71c34c734dc1d56c65a403"
+    }
+  ],
+  "failure": "Automation setup tried clicking the visually hidden native checkbox input directly. Existing shared Toggle uses a visible enclosing label. No automation or disable acceptance reached; click action failed under its existing timeout.",
+  "scope": "Seven native checks passed including the six deletion theme/zoom cases, real snapshot-first deletion/restoration, pinned chat persistence after project removal/restart and receipt-write warning. Originals retained; no complete visual/native or automation acceptance."
+}
