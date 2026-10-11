@@ -1,0 +1,98 @@
+{
+  "verifiedAt": "2026-10-11T02:23:18.913Z",
+  "archive": "E:/NookVerification/RestoreLifecycleComparisonFocused-20261011",
+  "checks": 6,
+  "comparisonModelRequests": 11,
+  "normalExits": [
+    {
+      "elapsedMs": 401,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 274,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 307,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "runtimeErrors": [],
+  "captures": [
+    {
+      "filename": "117-model-comparison-config-light.png",
+      "sha256": "9ed53fad9bbd38b763f6d6cad10af9b3d351c25b1cdd5699c3e1753b9f1611ae",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "118-model-comparison-stream-light.png",
+      "sha256": "48ce3a75bc2e415e7a535baff606858fc7659fcf2434dae532865e54758e900d",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "119-model-comparison-save-error-light.png",
+      "sha256": "b37e50be92f16a6642c1dda194da2537711edcfc3c2cb4735fccb1dea7ef94ce",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "120-model-comparison-config-dark-zoom-100.png",
+      "sha256": "788be290001444358636c8ed7b50eeeb8a5fa1d217714eccb5b632b10be205bc",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "121-model-comparison-results-dark-zoom-100.png",
+      "sha256": "3b45177f0201aa4eb4cef859122fa3dffb033cb72b1328e08efcfc90b8d4d83f",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "120-model-comparison-config-dark-zoom-125.png",
+      "sha256": "d31c2ab8359990b946cb42071b3d4b6497480e76eded79786349b1a1a4282beb",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "121-model-comparison-results-dark-zoom-125.png",
+      "sha256": "fdc0e9bd7f3c1f9b8a63c61ce98f49db80f977733d03567e163775eae214cfa4",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "120-model-comparison-config-dark-zoom-150.png",
+      "sha256": "9be5119dfe4da79e6c025a384741909f56b2d998c7e35ef50a44f0298d5105dc",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "filename": "121-model-comparison-results-dark-zoom-150.png",
+      "sha256": "0c247ff655f597c21be09f892e96f54f5bcfa5e8d069e12ff45680ef0ab6bf8b",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    }
+  ],
+  "productCompiledBodyArchive": "E:/NookVerification/RestoreDismissNativePass-20261011",
+  "precedingFailureArchive": "E:/NookVerification/RestoreLifecycleModalSelectorFailure-20261011",
+  "precedingFailureStillFailed": true,
+  "fullRegressionVerified": false,
+  "distributionVerified": false,
+  "scope": "Real model comparison native regression after constraining close-readiness to the single shared modal header. Nine original captures individually inspected: config, stream, save rejection, three dark config/result zoom pairs. Scrolled content remains separate from fixed header/footer; save-error capture shows the form at its scroll position and does not establish alert visibility inside the viewport."
+}

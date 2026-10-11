@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 
 export async function dismissModalWithEscape(page, dialog) {
-  const close = await dialog.getByRole('button', { name: '关闭', exact: true }).elementHandle();
+  const close = await dialog.locator(':scope > .modal-header').getByRole('button', { name: '关闭', exact: true }).elementHandle();
   assert.ok(close, 'The modal must expose its close control');
   try {
     await page.waitForFunction(button => button.isConnected && !button.disabled, close, { timeout: 5_000 });
