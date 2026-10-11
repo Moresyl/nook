@@ -1,12 +1,11 @@
 {
-  "verifiedAt": "2026-10-10T22:37:40.512Z",
+  "verifiedAt": "2026-10-11T01:43:48.324Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
   "runtimeErrors": [],
   "normalCloseVerified": true,
-  "verificationRun": "complete desktop suite",
-  "suiteChecks": 289,
+  "verificationRun": "focused MCP PDF suite",
   "checks": 8,
   "explicitModelRequests": 1,
   "previewPersisted": false,
@@ -18,6 +17,7 @@
   "filesystemRetryVerified": true,
   "restartVerified": true,
   "backupRestoreVerified": true,
+  "restoreCompletionVerified": true,
   "layout": [
     {
       "theme": "light",
@@ -98,7 +98,8 @@
     "mcp-pdf-light-150.png",
     "mcp-pdf-dark-100.png",
     "mcp-pdf-dark-125.png",
-    "mcp-pdf-dark-150.png"
+    "mcp-pdf-dark-150.png",
+    "mcp-pdf-restore-busy-shell.png"
   ],
-  "scope": "Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses are isolated fixtures; external servers and physical picker interaction remain separate."
+  "scope": "Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses and a held restore acknowledgement at the main IPC boundary are isolated fixtures; external servers and physical picker interaction remain separate."
 }

@@ -103,15 +103,41 @@ export async function verifyMcpPdf({ page, application, getApplication, root, di
   const bundle = JSON.parse(await readFile(backup, 'utf8')), originals = bundle.documentOriginals.filter(item => item.reference.sha256 === sha256); assert.equal(originals.length, 1); assert.equal(originals[0].data, bytes.toString('base64'));
   const originalPath = join(directory, 'document-originals', sha256); await rename(originalPath, join(directory, 'mcp-pdf-before-restore.bin'));
   await application.evaluateMain(`globalThis.nookPdfOpen=require('electron').dialog.showOpenDialog;globalThis.nookPdfConfirm=require('electron').dialog.showMessageBox;require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:[${JSON.stringify(backup)}]});require('electron').dialog.showMessageBox=async()=>({response:1});`);
-  try { await page.keyboard.press('Control+,'); await page.getByRole('button', { name: '数据与备份', exact: true }).click(); await page.getByRole('button', { name: '恢复备份…', exact: true }).click(); await waitForBridge(page, async reference => { try { return (await window.qiyao.load()).composerDrafts.some(draft => draft.attachments.some(file => file.original?.sha256 === reference.sha256)) && (await window.qiyao.readDocumentOriginal(reference)).length > 0; } catch { return false; } }, pdf.original); }
-  finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.nookPdfOpen;require('electron').dialog.showMessageBox=globalThis.nookPdfConfirm;delete globalThis.nookPdfOpen;delete globalThis.nookPdfConfirm;"); }
+  await application.evaluateMain(`(() => {
+    const handlers = require('electron').ipcMain._invokeHandlers;
+    const original = handlers.get('qiyao:invoke');
+    let release; const held = new Promise(resolve => { release = resolve; });
+    globalThis.nookPdfRestoreReceipt = { original, release, entered: false };
+    handlers.set('qiyao:invoke', async (...args) => {
+      const result = await original(...args);
+      if (args[1] === 'importWorkspace') { globalThis.nookPdfRestoreReceipt.entered = true; await held; }
+      return result;
+    });
+  })()`);
+  try {
+    await page.keyboard.press('Control+,');
+    await page.getByRole('button', { name: '数据与备份', exact: true }).click();
+    await page.getByRole('button', { name: '恢复备份…', exact: true }).click();
+    await page.getByText('正在处理备份…', { exact: true }).waitFor();
+    await waitForBridge(page, async reference => { try { return (await window.qiyao.load()).composerDrafts.some(draft => draft.attachments.some(file => file.original?.sha256 === reference.sha256)) && (await window.qiyao.readDocumentOriginal(reference)).length > 0; } catch { return false; } }, pdf.original);
+    await capture('mcp-pdf-restore-busy-shell.png');
+    assert.equal(await settings().getByRole('button', { name: '关闭', exact: true }).isDisabled(), true, 'Backup recovery must retain the modal until its complete restore acknowledgement reaches the UI');
+    assert.equal(await settings().getByRole('button', { name: '模型连接', exact: true }).isDisabled(), true, 'Pending restore must retain its settings page');
+    await page.keyboard.press('Escape');
+    assert.equal(await settings().isVisible(), true, 'Escape must not dismiss an in-progress workspace restore');
+  } finally {
+    await application.evaluateMain("(() => {const receipt=globalThis.nookPdfRestoreReceipt;require('electron').ipcMain._invokeHandlers.set('qiyao:invoke',receipt.original);receipt.release();require('electron').dialog.showOpenDialog=globalThis.nookPdfOpen;require('electron').dialog.showMessageBox=globalThis.nookPdfConfirm;delete globalThis.nookPdfOpen;delete globalThis.nookPdfConfirm;})()");
+  }
+  await waitForBridge(page, () => !document.querySelector('.settings-detail [role="status"]'));
+  assert.equal(await application.evaluateMain('globalThis.nookPdfRestoreReceipt.entered'), true);
+  await application.evaluateMain('delete globalThis.nookPdfRestoreReceipt');
   await settings().getByRole('button', { name: '关闭', exact: true }).click(); assert.deepEqual(await readFile(originalPath), bytes); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draftText);
-  verified('complete backup deduplicates the exact MCP PDF and live restore reconstructs a missing original while preserving the unsent draft');
+  verified('complete backup deduplicates the exact MCP PDF, live restore reconstructs a missing original, and delayed acknowledgement keeps close, Escape and navigation blocked until the restored UI preserves the unsent draft');
 
   await page.getByLabel('消息', { exact: true }).fill('MCP_PDF_SEND_EXTRACTED_TEXT'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await waitForBridge(page, async () => (await window.qiyao.load()).threads.some(thread => thread.messages.at(-1)?.status === 'complete' && thread.messages.some(message => message.content === 'MCP_PDF_SEND_EXTRACTED_TEXT')));
   assert.equal(calls.length, beforeRequests + 1); const raw = JSON.stringify(calls.at(-1)); assert.ok(raw.includes('Document evidence') && raw.includes('Budget 42') && raw.includes('KEEP_EXISTING_ATTACHMENT'));
   for (const forbidden of [bytes.toString('base64'), sha256, '%PDF-', 'application/pdf']) assert.equal(raw.includes(forbidden), false);
   verified('only an explicit send makes one actual local model HTTP request containing extracted PDF text and the existing attachment, with no PDF bytes, hash or local identity');
-  return { page, result: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: sha256, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, layout, screenshots: captures, scope: 'Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses are isolated fixtures; external servers and physical picker interaction remain separate.' } };
+  return { page, result: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: sha256, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout, screenshots: captures, scope: 'Real stdio PDF resources and binary-only prompt, actual import/PDF renderer workers, corrupt-file recovery, delayed worker/subscription invalidation, local ownership, exact export, light/dark minimum-window zoom and keyboard/Escape, real filesystem draft-save rejection and idempotent retry, restart, complete backup/live missing-original restore and one explicit local model request. Native picker responses and a held restore acknowledgement at the main IPC boundary are isolated fixtures; external servers and physical picker interaction remain separate.' } };
 }

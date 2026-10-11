@@ -117,7 +117,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   }
   const mcpPdf = desktop.mcpPdf;
   const completePdfLayout = Array.isArray(mcpPdf?.layout) && mcpPdf.layout.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => mcpPdf.layout.some(row => row?.theme === theme && row.zoom === zoom && row.controlsVisible === true && row.overflow === false)));
-  if (!mcpPdf || mcpPdf.checks !== 8 || mcpPdf.explicitModelRequests !== 1 || mcpPdf.previewPersisted !== false || !/^[a-f0-9]{64}$/.test(mcpPdf.originalSha256 ?? '') || !completePdfLayout || !['exactOriginalVerified', 'promptPdfVerified', 'textOnlyModelTransportVerified', 'staleSubscriptionVerified', 'filesystemRetryVerified', 'restartVerified', 'backupRestoreVerified'].every(key => mcpPdf[key] === true)) {
+  if (!mcpPdf || mcpPdf.checks !== 8 || mcpPdf.explicitModelRequests !== 1 || mcpPdf.previewPersisted !== false || !/^[a-f0-9]{64}$/.test(mcpPdf.originalSha256 ?? '') || !completePdfLayout || !['exactOriginalVerified', 'promptPdfVerified', 'textOnlyModelTransportVerified', 'staleSubscriptionVerified', 'filesystemRetryVerified', 'restartVerified', 'backupRestoreVerified', 'restoreCompletionVerified'].every(key => mcpPdf[key] === true)) {
     throw new Error('Complete MCP PDF attachment verification is required');
   }
   const recipes = desktop.assistantRecipes;
