@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-11T11:05:20.076Z",
+  "sourceHead": "79adefadc69b84b8953ddad2ab7ba6a1aeff73e1",
+  "runId": 38134157177,
+  "url": "https://github.com/Moresyl/nook/actions/runs/38134157177",
+  "archive": "E:\\NookVerification\\WorktreeUpstreamHosted-20261011",
+  "verify": {
+    "completedAt": "2026-10-11T11:03:17Z",
+    "conclusion": "failure",
+    "databaseId": 114454479727,
+    "name": "verify",
+    "startedAt": "2026-10-11T11:03:13Z",
+    "status": "completed",
+    "steps": [],
+    "url": "https://github.com/Moresyl/nook/actions/runs/38134157177/job/114454479727"
+  },
+  "publish": {
+    "completedAt": "2026-10-11T11:03:17Z",
+    "conclusion": "skipped",
+    "databaseId": 114454495432,
+    "name": "publish",
+    "startedAt": "2026-10-11T11:03:18Z",
+    "status": "completed",
+    "steps": [],
+    "url": "https://github.com/Moresyl/nook/actions/runs/38134157177/job/114454495432"
+  },
+  "annotations": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/Moresyl/nook/blob/79adefadc69b84b8953ddad2ab7ba6a1aeff73e1/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "raw_details": ""
+    }
+  ],
+  "publishCondition": "The workflow publishes only refs/tags/. This branch-push run independently skips publication; the verify job separately has the actual account payments/spending-limit rejection annotation.",
+  "scope": "The exact upstream feature commit reached CI, but verification did not start because of the reported account payments/spending limit. The branch run's tag-only publish job was skipped. This is not hosted verification or release acceptance. Local focused runtime and unit evidence are separate; complete source and distribution acceptance remain pending. No billing changes, runner replacement or release bypass was performed."
+}

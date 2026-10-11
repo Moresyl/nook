@@ -2,9 +2,11 @@
 
 **尚未发布。** 目标为 Windows x64 `0.1.0-alpha.1`。当前新增创建前刷新上游，并修正工作树聊天按钮的焦点边框；五组上游和四组聊天原生专项通过，236 个编译文件一致、八次正常退出，39 张当前原图逐张复核。覆盖真实本地裸仓库获取、固定本地提交、无上游和关闭策略、获取失败重试、设置保存 EIO、gzip 恢复和重启；两主题三档缩放中的键盘操作、完整焦点与错误边界通过。[本轮证据与范围](../verification/worktree-upstream-review-result.json)
 
-发布门禁提高至至少 321 项完整桌面检查，并要求新增上游结果、六种键盘布局及完整焦点边框。类型检查、76 项门禁测试和完整单元 118 个文件／1,267 项通过，语句 97.33%、分支 95.15%、函数 97.46%、行 99.43%，保留四项 80% 门槛；React 界面不计入这些百分比。新完整源码、当前分发和剩余参考界面继续验收，不能宣称 100% 已完成。[完整单元与统计范围](../verification/worktree-upstream-unit-review-result.json)
+发布门禁提高至至少 321 项完整桌面检查，并要求新增上游结果、六种键盘布局及完整焦点边框。类型检查、76 项门禁测试和完整单元 118 个文件／1,267 项通过，语句 97.33%、分支 95.15%、函数 97.46%、行 99.43%，保留四项 80% 门槛；React 界面不计入这些百分比。完整源码重跑通过 321 项、54 次正常退出，最长 1,998ms，无强制结束或运行时错误；236 个编译文件与列表就绪专项一致，113 张选定原图逐张复核。当前分发和剩余参考界面继续验收，不能宣称 100% 已完成。[完整单元与统计范围](../verification/worktree-upstream-unit-review-result.json) · [完整源码](../verification/worktree-upstream-full-review-result.json) · [原图及实际范围](../verification/worktree-upstream-full-originals-review-result.json)
 
-最新已核实的托管提交 `8ac1607` 对应 [38132589513](https://github.com/Moresyl/nook/actions/runs/38132589513)。GitHub 账户付款／额度限制使验证未启动、发布跳过，均为零步骤。[原始运行与任务证据](../verification/worktree-conversations-full-hosted-result.json)
+首次完整源码在 306 项通过、51 次正常退出后因列表加载改变 Tab 顺序而焦点断言失败，现场保留。确定性重放确认原因后，仅修正验证脚本等待列表就绪；新五组专项、四次正常退出（最长 443ms）、20 张原图逐张复核通过，测试资料完整归档。原运行继续计为失败，随后完整源码通过上述 321 项。此前两个键盘专项误用了资料保留变量前缀，测试资料未保留；已补充更正，源码、运行时、日志和截图仍保留。新专项与完整重跑均保留实际测试资料副本。[失败、诊断、重试与更正](../verification/worktree-upstream-focus-retry-result.json)
+
+最新已核实的托管提交 `79adefa` 对应 [38134157177](https://github.com/Moresyl/nook/actions/runs/38134157177)。验证因 GitHub 账户付款／额度限制未启动；此次分支运行的发布任务按仅标签发布条件跳过，二者均为零步骤。[原始运行、任务与发布条件](../verification/worktree-upstream-hosted-result.json)
 
 ## 前序验证记录
 
