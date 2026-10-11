@@ -1,0 +1,29 @@
+{
+  "verifiedAt": "2026-10-11T21:09:16.681Z",
+  "archive": "E:/NookVerification/WorktreeCleanupUIPackagedNativeRetryFailure-20261012",
+  "sourceHead": "0b5fb3303cc87e0ed407722436e3df1830e45e09",
+  "runtimeBuiltHead": "4b65a7d07b204337c6250ef93ef2f8e2df0e1a86",
+  "exitObservation": {
+    "log": "E:/NookVerification/nook-worktree-cleanup-ui-packaged-native-retry-20261012.log",
+    "pid": 35168,
+    "exitCode": 1,
+    "scope": "Independent read-only OS observation of the already-running original desktop verifier. No process, deadline or assertion was changed.",
+    "sourceHead": "0b5fb3303cc87e0ed407722436e3df1830e45e09",
+    "processStarted": "2026-10-11T20:52:34.4849520Z",
+    "observedAt": "2026-10-11T21:07:58.8038637Z"
+  },
+  "checksPassed": 247,
+  "fullSuitePassed": false,
+  "normalCloses": 36,
+  "maximumCloseMs": 3382,
+  "forcedCloses": 0,
+  "compiledFilesMatchingPackage": 236,
+  "profile": "E:\\NookVerification\\Temp\\qiyao-electron-WPI6HQ",
+  "failure": {
+    "module": "Quick Chat",
+    "location": "scripts/verify-quick-chat.mjs:105",
+    "condition": "The first partial slow response was not visible within the original 5000ms wait. This retry did not reach the original own-approval wait.",
+    "exactCauseEstablished": false
+  },
+  "scope": "Second complete packaged run failed before worktree modules, at a different wait in the same Quick Chat check. Exact source, output, partial raw reports, whole profile, both original failure images and log are preserved. The timeout-only approval diagnostic was not reached. No deadline or assertion changed; the earlier initial failure and passing focused replay remain separate evidence."
+}

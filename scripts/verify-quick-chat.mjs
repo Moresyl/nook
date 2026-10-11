@@ -6,6 +6,23 @@ import { gunzipSync } from 'node:zlib';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
 
 export async function verifyQuickChat({ page, application, getApplication, directory, screenshots, endpoint, calls, errors, verified, waitForBridge, restart }) {
+  if (process.env.NOOK_TEST_QUICK_CHAT_TIMING) {
+    await application.evaluateMain(`(() => {
+      const handlers = require('electron').ipcMain._invokeHandlers, original = handlers.get('nook:quick-chat');
+      if (typeof original !== 'function') throw new Error('The original Quick Chat handler is required for timing observation.');
+      globalThis.nookQuickTiming = [];
+      handlers.set('nook:quick-chat', async function(...args) {
+        const row = { command: args[1], startedAt: Date.now() };
+        if (globalThis.nookQuickTiming.length >= 128) globalThis.nookQuickTiming.shift();
+        globalThis.nookQuickTiming.push(row);
+        try { return await original.apply(this, args); }
+        finally { row.finishedAt = Date.now(); row.elapsedMs = row.finishedAt - row.startedAt; }
+      });
+    })()`);
+  }
+  async function observeTiming(stage) {
+    if (process.env.NOOK_TEST_QUICK_CHAT_TIMING) console.log('Quick-chat IPC timing', JSON.stringify({ stage, observedAt: Date.now(), operations: await application.evaluateMain('globalThis.nookQuickTiming ?? []') }));
+  }
   const initialCalls = calls.length, layout = [], minimumLayout = [], captures = [], bytes = documentBytes('pdf', { outline: true, annotations: true });
   const retainedMainDraft = `MAIN_QUICK_CHAT_RETAINED ${randomUUID()}`;
   const originalSha256 = createHash('sha256').update(bytes).digest('hex'), file = join(directory, 'quick-chat.pdf'); await writeFile(file, bytes);
@@ -98,16 +115,19 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   assert.equal(sent.draft.text, ''); assert.equal(sent.draft.attachments.length, 0); assert.equal(calls.length, initialCalls + 1);
   const request = JSON.stringify(calls.at(-1)); assert.ok(request.includes('QUICK_PDF_READ') && request.includes('Budget 42')); assert.ok(!request.includes(bytes.toString('base64')) && !request.includes(originalSha256));
   await quick.locator('.assistant-prose').getByText('真实流式回复', { exact: true }).waitFor();
+  await observeTiming('first-send-complete');
   assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).composerDrafts), mainDrafts);
   verified('quick-chat send consumes only its acknowledged draft, renders the real HTTP stream and sends extracted PDF text without original bytes');
 
   await input().fill('slow QUICK_STOP'); await quick.getByRole('button', { name: '发送消息', exact: true }).click();
   try { await quick.getByText('First partial response', { exact: true }).waitFor(); }
   catch (error) {
+    await observeTiming('partial-stream-timeout').catch(() => {});
     console.error('Quick-chat stream observation', await quick.evaluate(async () => ({ body: document.body.innerText, messages: (await window.nookQuick.load()).thread?.messages, hidden: document.querySelector('.quick-chat-body')?.hidden })).catch(() => 'The quick-chat page is unavailable.'));
     await quick.screenshot({ path: join(screenshots, 'quick-chat-stream-failure.png') }).catch(() => {});
     throw error;
   }
+  await observeTiming('first-partial-visible');
   await quick.getByRole('button', { name: '停止生成', exact: true }).click();
   await waitForBridge(quick, async () => (await window.nookQuick.load()).thread.messages.at(-1).status === 'stopped');
   const other = await page.evaluate(() => window.qiyao.submit({ providerId: 'quick-native', model: 'verification-model', projectId: 'quick-project', mode: 'agent', text: '停止 MAIN_QUICK_SCOPE', attachments: [] }));
@@ -116,10 +136,12 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   await input().fill('停止 QUICK_APPROVAL_SCOPE'); await quick.getByRole('button', { name: '发送消息', exact: true }).click(); const ownApprovalWaitStarted = Date.now();
   try { await quick.getByRole('dialog', { name: '审批新建文件', exact: true }).waitFor(); }
   catch (error) {
+    await observeTiming('own-approval-timeout').catch(() => {});
     console.error('Quick-chat own approval timeout observation', JSON.stringify({ elapsedMs: Date.now() - ownApprovalWaitStarted, context: await quick.evaluate(async () => { const context = await window.nookQuick.load(); return { threadId: context.thread?.id, title: context.thread?.title, lastMessage: context.thread?.messages.at(-1), approvals: await window.nookQuick.pendingApprovals(), alerts: [...document.querySelectorAll('[role="alert"]')].map(element => element.textContent), dialogs: [...document.querySelectorAll('dialog[open]')].map(element => element.getAttribute('aria-label') || element.textContent.slice(0, 240)) }; }).catch(() => 'The quick-chat page is unavailable.') }));
     await quick.screenshot({ path: join(screenshots, 'quick-chat-own-approval-timeout.png') }).catch(() => {});
     throw error;
   }
+  await observeTiming('own-approval-visible');
   const pending = await quick.evaluate(() => window.nookQuick.pendingApprovals()), all = await page.evaluate(() => window.qiyao.pendingApprovals());
   assert.equal(pending.length, 1); assert.equal(all.length, 2); const foreign = all.find(request => request.threadId === other.threadId); assert.ok(foreign);
   assert.equal(await quick.evaluate(async id => { try { await window.nookQuick.resolveApproval(id, false); return false; } catch { return true; } }, foreign.id), true);
