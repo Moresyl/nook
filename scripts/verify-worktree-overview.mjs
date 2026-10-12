@@ -110,7 +110,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
       const before = await readFile(primary);
       await page.keyboard.press('Control+,'); await settings().getByRole('button', { name: '工作树', exact: true }).click();
       await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookOverviewReceipt.heldEntered){if(Date.now()>=deadline)throw new Error('The second overview query was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
-      await waitForBridge(page, () => Boolean(document.querySelector('.worktree-overview-pending')));
+      await waitForBridge(page, () => document.querySelectorAll('.worktree-overview-pending').length === 1);
       assert.equal(await overview().getAttribute('aria-busy'), 'true'); assert.equal(await refresh().isDisabled(), true);
       const pending = overview().locator('.worktree-overview-pending');
       assert.equal(await pending.count(), 1); assert.equal(await pending.getAttribute('data-project-id'), childProject.id);
@@ -125,6 +125,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
       await pending.scrollIntoViewIfNeeded(); await capture(failed ? 'partial-error' : 'partial-results');
       await release(); await settled(); assert.equal(await overview().locator('.worktree-overview-pending').count(), 0);
       assert.equal(await rows().count(), 4); assert.equal(await overview().locator('.worktree-overview-group').count(), failed ? 2 : 1);
+      if (!failed) assert.equal(await childRow().locator('details').getAttribute('open'), '', 'Merging a later project from the same repository must retain the expanded conversation list.');
       await close();
     } finally { await restoreHandler(); }
   }

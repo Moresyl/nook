@@ -71,7 +71,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
       const source = state.projects.find(project => project.id === group.projectIds[0]);
       const local = source ? ownership.find(snapshot => snapshot.source.projectId === source.id && worktreePathKey(snapshot.source.path) === worktreePathKey(source.path)) : undefined;
       const saved = source ? savedSnapshots.find(snapshot => snapshot.source.projectId === source.id && worktreePathKey(snapshot.source.path) === worktreePathKey(source.path)) : undefined;
-      return <section className="worktree-overview-group" key={`${group.failed ? 'error:' : ''}${group.path}:${group.projectIds.join(',')}`}>
+      return <section className="worktree-overview-group" key={group.failed ? `error:${group.projectIds[0]}` : worktreePathKey(group.path)}>
       <div className="worktree-row-heading"><h4 className="worktree-title"><TextHint text={group.name}>{group.name}</TextHint></h4><span className="muted">{group.failed ? '读取失败' : `${group.rows.length} 个工作树`}</span></div>
       {local?.failed && <p className="inline-error" role="alert">未能读取本机创建记录。已有文件会保留，请刷新重试。</p>}
       {group.failed ? <p className="inline-error" role="alert">未能读取此项目的工作树。请检查仓库与 Git，然后刷新重试。</p> : group.rows.map(({ tree, projects, conversations }) => <article className="worktree-row" key={tree.path}>
