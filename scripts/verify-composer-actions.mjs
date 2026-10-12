@@ -13,7 +13,7 @@ export async function verifyComposerActions({ page, application, projectDirector
   const layouts = [], images = [], captures = [];
   await page.evaluate(async ({ template, fixed, project }) => { await window.qiyao.savePromptTemplate(template); await window.qiyao.savePromptTemplate(fixed); await window.qiyao.saveProject(project); }, { template, fixed, project }); await page.reload();
   const list = () => page.getByRole('listbox', { name: '输入区快捷选择', exact: true });
-  const choose = async (query, title) => { await input().fill(query); await page.getByRole('option', { name: title, exact: true }).click(); };
+  const choose = async (query, title, index = 0, matches = 1) => { await input().fill(query); const options = page.getByRole('option', { name: title, exact: true }); await options.first().waitFor(); assert.equal(await options.count(), matches); await options.nth(index).click(); };
   const capture = async name => {
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await page.evaluate(async () => { const animations = document.querySelector('.composer-actions').getAnimations({ subtree: true }).filter(animation => animation.effect?.getComputedTiming().iterations !== Infinity); await Promise.allSettled(animations.map(animation => animation.finished)); });
@@ -41,7 +41,8 @@ export async function verifyComposerActions({ page, application, projectDirector
   verified('composer template cancellation retains the exact draft and variable application inserts at the caret without trimming surrounding text or sending');
 
   const assistant = original.assistants.find(item => item.id !== oldAssistant) ?? original.assistants[0]; assert.ok(assistant);
-  await choose('KEEP /' + assistant.name, `${assistant.name}，助手`); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择助手', { exact: true }).inputValue(), assistant.id);
+  const sameName = original.assistants.filter(item => item.name === assistant.name); const defaultOffset = assistant.name === '默认助手' ? 1 : 0;
+  await choose('KEEP /' + assistant.name, `${assistant.name}，助手`, sameName.findIndex(item => item.id === assistant.id) + defaultOffset, sameName.length + defaultOffset); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择助手', { exact: true }).inputValue(), assistant.id);
   await choose('KEEP /' + project.name, `${project.name}，项目`); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择项目', { exact: true }).inputValue(), project.id);
   assert.equal(calls.length, initialCalls); verified('composer assistant and project choices consume only the slash query and preserve the surrounding draft without model requests');
 

@@ -1,0 +1,176 @@
+{
+  "verifiedAt": "2026-10-12T17:14:28.910Z",
+  "archive": "E:/NookVerification/ComposerActionsSource-retry11-20261013",
+  "baselineSourceAcceptance": "E:/NookVerification/ComposerActionsAcceptance-20261013",
+  "failedCompleteSourceArchive": "E:/NookVerification/ComposerActionsFullSourceFailure-initial-20261013",
+  "failedCompleteSourceChecks": 149,
+  "failedCompleteSourceNormalExits": 14,
+  "failedCompleteSourceOriginalVisuallyReviewed": "failure.png",
+  "testOverlay": {
+    "sha256": "a849e6217b25b085bd62365e5d7c3fb3848cdc255b411a006fbde3e0cfcb673a",
+    "path": "scripts/verify-composer-actions.mjs"
+  },
+  "previousTestSha256": "4427b90b0c6397820d3de132f225220d87d64cdb23e17e2ac0729c3e9b646e60",
+  "nativeActualExit": 0,
+  "nativeChecks": 7,
+  "modelRequests": 0,
+  "normalExits": [
+    {
+      "elapsedMs": 405,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "nativeCaptures": [
+    {
+      "filename": "composer-actions-light-100.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-light-100.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "composer-actions-light-125.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-light-125.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "composer-actions-light-150.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-light-150.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "composer-actions-dark-100.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-dark-100.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "composer-actions-dark-125.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-dark-125.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "composer-actions-dark-150.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/快捷",
+      "selectedLabel": "快捷项目测试，项目",
+      "optionCount": 3
+    },
+    {
+      "filename": "composer-actions-empty-dark-150.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": "/NO_MATCH_QUICK_ACTION",
+      "selectedLabel": null,
+      "optionCount": 0
+    }
+  ],
+  "latestCapturesIndividuallyViewed": false,
+  "compiledMatchesAcceptedProduct": true,
+  "priorUnitTests": 1533,
+  "priorRelatedTests": 135,
+  "scope": "Only the native verifier locator changed. It now checks the exact number of same-name choices and uses the selected assistant ID to derive its stable occurrence; the resulting selected ID is asserted. Focused seven-check retry passed without product or compiled changes. Twelve actually viewed product originals remain bound to retry10 and the same compiled bytes; these new captures are not claimed visually reviewed. Complete-source retry with duplicated imported names, new package, installation and publication remain required."
+}
