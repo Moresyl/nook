@@ -2,19 +2,22 @@
 
 **尚未发布。** Windows x64 候选为 `0.1.0-alpha.1`。项目、图标和产品说明统一为 **Nook**，原始开源许可证完整保留。界面依据最新 `E:\txt` 资料持续完善，尚未达到全部页面 100% 还原。
 
+[设置原生检查](../verification/settings-search-native-review-result.json) · [18 张设置原图](../verification/settings-search-originals-review-result.json) · [1,514 项单元](../verification/settings-search-unit-review-result.json)
+
 | 验证 | 当前结果 |
 | --- | --- |
-| 完整单元 | 129 文件／1,505 项通过；语句 96.90%、分支 94.39%、函数 97.68%、行 99.41% |
-| 类型与构建 | 当前固定回焦修正的类型、构建及安装／便携打包通过 |
-| 包体审计 | 239 个产品文件、401 份法律文件、20 份分发许可来源；无未解决身份或许可项；可执行文件未签名 |
-| 完整包内回归 | 355 项通过；74 次正常退出，最长 2,638ms；无强制关闭或运行时错误 |
-| 同包分发专项 | 控件 4 项、文字提示 7 项、窗口关闭 2 项、三种启动器审计、便携 7 项全部通过；便携实际启动两次 |
-| 视觉复核 | 当前固定专项 21 张、控件 24 张、文字提示 12 张、列表 18 张、空列表 6 张原图逐张检查；完整轮其他原图仅保留 |
-| 实际安装 | 完整 355 项通过；74 次正常退出，最长 2,341ms；卸载保留数据通过，原 8 个标记恢复且哈希一致 |
-| 同包运行记录 | 原 11 份匹配记录校验通过，安装／未安装／便携应用体与启动器哈希一致 |
+| 完整单元 | 130 文件／1,514 项通过；语句 96.92%、分支 94.43%、函数 97.69%、行 99.41%；单 worker 与四项 80% 门槛保留 |
+| 类型与构建 | 新增设置搜索的类型与构建通过；此前固定回焦包的安装／便携打包通过 |
+| 设置搜索 | 新增 6 项源码原生检查通过，385ms 正常退出；18 张明暗缩放原图逐张复核；新版完整包内、安装与分发待重验 |
+| 包体审计 | 上一冻结包：239 个产品文件、401 份法律文件、20 份分发许可来源；无未解决身份或许可项；可执行文件未签名 |
+| 完整包内回归 | 上一冻结包：355 项通过；74 次正常退出，最长 2,638ms；无强制关闭或运行时错误 |
+| 同包分发专项 | 上一冻结包：控件 4 项、文字提示 7 项、窗口关闭 2 项、三种启动器审计、便携 7 项通过；便携实际启动两次 |
+| 视觉复核 | 此前固定专项 21 张、控件 24 张、文字提示 12 张、列表 18 张、空列表 6 张原图逐张检查；完整轮其他原图仅保留 |
+| 实际安装 | 上一冻结包：355 项通过；74 次正常退出，最长 2,341ms；卸载保留数据通过，原 8 个标记恢复且哈希一致 |
+| 同包运行记录 | 上一冻结包：原 11 份匹配记录校验通过，安装／未安装／便携应用体与启动器哈希一致 |
 | 托管流水线 | 当前提交已推送；GitHub 因账户付款／支出额度限制未开始验证，没有已发布版本 |
 
-当前应用体来自 `cf22dd0`。完整包内回归、实际安装与各分发专项的 236 个编译文件均匹配审计包；安装登记、快捷方式、保留数据卸载及正常退出已核验。安装原生向导仍是独立待验项。[包体](../verification/worktree-pin-focus-package-review-result.json) · [355 项回归](../verification/worktree-pin-focus-packaged-native-review-result.json) · [实际安装](../verification/worktree-pin-focus-installed-native-review-result.json) · [便携](../verification/worktree-pin-focus-portable-review-result.json)
+上一完成分发验收的应用体来自 `cf22dd0`。该包完整回归、实际安装与分发专项的 236 个编译文件均匹配审计包，安装登记、快捷方式及保留数据卸载已核验。新增设置搜索改变了应用体，旧记录不作为新版通过凭据；完整发布门槛保留原条件，并增加设置搜索至至少 361 项。新版完整包内、实际安装与分发待重验，安装原生向导仍是独立待验项。[上一包体](../verification/worktree-pin-focus-package-review-result.json) · [上一包 355 项回归](../verification/worktree-pin-focus-packaged-native-review-result.json) · [上一包实际安装](../verification/worktree-pin-focus-installed-native-review-result.json) · [上一包便携](../verification/worktree-pin-focus-portable-review-result.json)
 
 快速聊天保存已接入绑定原文件版本的小型检查点，保留独立草稿、完整前一版本备份与重启恢复。结构改变、外部替换或达到原有 8 MB 上限时完整保存。大历史默认专项 9 项与 28 张原图复核通过；完整包内回归也通过该段，不据此承诺全部延迟。[完整单元](../verification/quick-chat-journal-full-unit-retry-review-result.json) · [大历史重放](../verification/quick-chat-journal-large-history-replay-review-result.json)
 

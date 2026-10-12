@@ -1,0 +1,84 @@
+{
+  "verifiedAt": "2026-10-12T00:54:15.823Z",
+  "archive": "E:/NookVerification/SettingsSearchNative-20261012",
+  "baseSourceHead": "610cb00023632df904e4fba422100ff0b0136a97",
+  "sourceManifestSha256": "f4c4b6453c5f1113aae72698e1e87025839848142476daa5b35612eac8b18571",
+  "toolExitCode": 0,
+  "checks": 6,
+  "normalExits": [
+    {
+      "elapsedMs": 385,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "modelRequests": 0,
+  "screenshots": 18,
+  "sourceOverlayFiles": 14,
+  "successfulWorkspaceRetained": false,
+  "successfulWorkspaceLifecycle": "The original verification harness removed its successful temporary workspace after normal close.",
+  "fullDistributionForNewApplication": "pending",
+  "originalDeadlinesMs": {
+    "startup": 30000,
+    "close": 10000,
+    "held": 5000,
+    "bridge": 10000,
+    "quick": 5000
+  },
+  "logs": [
+    {
+      "filename": "settings-search-build-20261012.log",
+      "sha256": "12dafaae63b269a461ddd65c05d2106495e67199693b86309ec6e61af4c909fa"
+    },
+    {
+      "filename": "settings-search-focus-build-20261012.log",
+      "sha256": "e8c6c8fa02e7c25737c6b3e7ff7dd9bac8235343f96a65edc077e865422e3d67"
+    },
+    {
+      "filename": "settings-search-full-unit-20261012.log",
+      "sha256": "9d3401da6d749bf52f3b04c3b18c458a06c888a8527b794ed11102a247ac0c74"
+    },
+    {
+      "filename": "settings-search-native-20261012.log",
+      "sha256": "7d29ca201bb619242c08ffbae6f8d2b8a9a5056db2f34c39224752b4d56ac532"
+    },
+    {
+      "filename": "settings-search-native-focus-layout-20261012.log",
+      "sha256": "c88729dc769b30a6bf5d300763d9a6fe412969ea7325f5e515020a86c539b49d"
+    },
+    {
+      "filename": "settings-search-native-focus-retry-20261012.log",
+      "sha256": "134c84402d04a8908a83a9b6d2620c3721df63b1ee1852e42d84342996429e88"
+    },
+    {
+      "filename": "settings-search-native-initial-failure-20261012.log",
+      "sha256": "7d29ca201bb619242c08ffbae6f8d2b8a9a5056db2f34c39224752b4d56ac532"
+    },
+    {
+      "filename": "settings-search-native-ready-retry-20261012.log",
+      "sha256": "9e94a77608bed96ab39317011e71938c6d586d691ba5337d2254137939fcf099"
+    },
+    {
+      "filename": "settings-search-native-scoped-retry-20261012.log",
+      "sha256": "9daf9916521e7f887922ce037da817d6683da9fdc10587e0a62c97aba27dc389"
+    },
+    {
+      "filename": "settings-search-native-scroll-retry-20261012.log",
+      "sha256": "efe1979094163e9406941c279ce7cd5cad488ca85a45b3b1412c6f86fa623072"
+    },
+    {
+      "filename": "settings-search-native-selector-retry-20261012.log",
+      "sha256": "3011a1e64a71fb0caf3c80760369a2112ff489bdfcad41ecde757ae4b2b44fec"
+    },
+    {
+      "filename": "settings-search-scroll-build-20261012.log",
+      "sha256": "39c4ee08074ca9a81a5ee2c55d34f6eada64eb1c28dbaa4fe1890f973245bc66"
+    },
+    {
+      "filename": "settings-search-typecheck-20261012.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Real renderer, preload and main bridge. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
+}

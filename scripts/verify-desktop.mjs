@@ -563,9 +563,15 @@ let worktreeOwnershipResult;
 let worktreePinningResult;
 let worktreeSnapshotsResult;
 let worktreeCleanupResult;
+let settingsSearchResult;
 try {
   let page = await launch();
-  if (process.env.NOOK_TEST_WORKTREE_CLEANUP_ONLY) {
+  if (process.env.NOOK_TEST_SETTINGS_SEARCH_ONLY) {
+    const { verifySettingsSearch } = await import('./verify-settings-search.mjs');
+    const run = await verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length });
+    page = run.page; settingsSearchResult = run.result;
+    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_WORKTREE_CLEANUP_ONLY) {
     const { verifyWorktreeCleanup } = await import('./verify-worktree-cleanup.mjs');
     const run = await verifyWorktreeCleanup({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
     page = run.page; worktreeCleanupResult = run.result;
@@ -1252,8 +1258,12 @@ try {
   const messageEditsResult = await verifyMessageEdits({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: messageEditProviders, restart: async () => { await application.close(); return launch(); } }); page = messageEditsResult.page;
   await writeFile(join(root, 'verification', packaged ? 'message-edits-packaged-result.json' : 'message-edits-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - messageEditsStart, runtimeErrors: errors, ...messageEditsResult.result }, null, 2));
   const commandsStart = count;
+  const { verifySettingsSearch } = await import('./verify-settings-search.mjs');
+  const searchRun = await verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length }); page = searchRun.page; settingsSearchResult = searchRun.result;
+  const settingsSearchEnd = count;
   const commandResult = await verifyCommands({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: commandProviders, restart: async () => { await application.close(); return launch(); } }); page = commandResult.page;
-  await writeFile(join(root, 'verification', packaged ? 'commands-packaged-result.json' : 'commands-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - commandsStart, runtimeErrors: errors, ...commandResult.result }, null, 2));
+  assert.equal(settingsSearchEnd - commandsStart, 6);
+  await writeFile(join(root, 'verification', packaged ? 'commands-packaged-result.json' : 'commands-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - settingsSearchEnd, runtimeErrors: errors, ...commandResult.result }, null, 2));
   const backupsStart = count;
   const backupsResult = await verifyBackups({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = backupsResult.page;
   await writeFile(join(root, 'verification', packaged ? 'backups-packaged-result.json' : 'backups-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - backupsStart, runtimeErrors: errors, ...backupsResult.result }, null, 2));
@@ -1339,6 +1349,7 @@ try {
   if (fullResult && worktreePinningResult) { fullResult.worktreePinning = worktreePinningResult; fullResult.screenshots.push(...worktreePinningResult.screenshots); }
   if (fullResult && worktreeSnapshotsResult) { fullResult.worktreeSnapshots = worktreeSnapshotsResult; fullResult.screenshots.push(...worktreeSnapshotsResult.screenshots); }
   if (fullResult && worktreeCleanupResult) { fullResult.worktreeCleanup = worktreeCleanupResult; fullResult.screenshots.push(...worktreeCleanupResult.screenshots); }
+  if (fullResult && settingsSearchResult) { fullResult.settingsSearch = settingsSearchResult; fullResult.screenshots.push(...settingsSearchResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
@@ -1504,6 +1515,13 @@ try {
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'worktree-cleanup-packaged-result.json' : 'worktree-cleanup-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused worktree-cleanup suite' }), ...worktreeCleanupResult }, null, 2));
     console.log(`Verified ${worktreeCleanupResult.checks} worktree cleanup checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && settingsSearchResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'settings-search-packaged-result.json' : 'settings-search-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused settings-search suite' }), ...settingsSearchResult }, null, 2));
+    console.log(`Verified ${settingsSearchResult.checks} settings search checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && worktreePinningResult) {
     assert.deepEqual(errors, []);

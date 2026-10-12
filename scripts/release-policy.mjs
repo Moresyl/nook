@@ -75,8 +75,13 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 355 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 361 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
+  }
+  const settings = desktop.settingsSearch;
+  const sixSettingsLayouts = Array.isArray(settings?.layouts) && settings.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => settings.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.sidebarOverflow === false && row.panelOverflow === false).length === 1));
+  if (settings?.checks !== 6 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 18 || new Set(settings.screenshots).size !== 18 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
+    throw new Error('Complete settings search, draft retention and native layout verification is required');
   }
   const context = desktop.contextSummaries;
   const roots = desktop.worktreeSettings;

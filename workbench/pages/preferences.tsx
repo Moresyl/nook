@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { Bridge } from '../../contracts/bridge-contract';
 import type { Provider, Workspace } from '../../contracts/workspace';
 import type { Attachment } from '../../contracts/attachments';
@@ -13,15 +13,27 @@ import { DesktopSettings } from './desktop-settings';
 import { MemorySettings } from './memory-settings';
 import { WorktreeSettings } from './worktree-settings';
 import type { WorktreeConversationTarget, WorktreeProjectTarget } from '../../contracts/worktree-navigation';
+import { settingsTabs, type SettingsDestination, type SettingsTab } from '../../contracts/settings-search';
+import { SettingsNavigation } from '../components/settings-navigation';
+import { focusSettingsDestination } from '../lib/settings-focus';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; onOpenPanel: (pluginId: string, panelId: string) => void; onOpenWorktreeConversation(target: WorktreeConversationTarget): Promise<void>; onCreateWorktreeConversation(target: WorktreeProjectTarget): Promise<void> };
 const blankProvider = (): Provider => ({ id: crypto.randomUUID(), name: '', kind: 'responses', endpoint: 'https://api.openai.com/v1', models: [], hasKey: false });
 export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onUseAttachment, onOpenPanel, onOpenWorktreeConversation, onCreateWorktreeConversation }: Props) {
-  const [tab, setTab] = useState('models');
+  const [tab, setTab] = useState<SettingsTab>('models');
+  const [visited, setVisited] = useState<SettingsTab[]>(['models']);
+  const [destination, setDestination] = useState<SettingsDestination | null>(null);
+  const search = useRef<HTMLInputElement>(null); const detail = useRef<HTMLElement>(null);
   const [editing, setEditing] = useState<Provider | null>(null);
   const [key, setKey] = useState('');
   const [models, setModels] = useState('');
   const [busy, setBusy] = useState(false);
+  useLayoutEffect(() => { search.current?.focus(); }, []);
+  function navigate(next: SettingsTab, target?: SettingsDestination) {
+    if (busy) return;
+    setVisited(current => current.includes(next) ? current : [...current, next]); setTab(next); setDestination(target ? { ...target } : null);
+  }
+  useLayoutEffect(() => { if (destination && detail.current) focusSettingsDestination(detail.current, destination); }, [destination]);
   async function act<T>(operation: () => Promise<T>, success?: (value: T) => void) {
     setBusy(true);
     try { const value = await operation(); success?.(value); }
@@ -32,11 +44,10 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
   function updateProvider(field: keyof Provider, value: string) {
     setEditing((current) => current ? { ...current, [field]: value, ...(field === 'endpoint' && value !== current.endpoint ? { modelCatalog: undefined } : {}) } : null);
   }
-  const tabs = [{ id: 'models', label: '模型连接', icon: 'assistant' }, { id: 'mcp', label: 'MCP 工具', icon: 'code' }, { id: 'skills', label: '本地技能', icon: 'library' }, { id: 'plugins', label: '本地插件', icon: 'code' }, { id: 'memories', label: '记忆', icon: 'library' }, { id: 'worktrees', label: '工作树', icon: 'branch' }, { id: 'appearance', label: '外观与交互', icon: 'sun' }, { id: 'data', label: '数据与备份', icon: 'download' }, { id: 'about', label: '关于 Nook', icon: 'settings' }] as const;
-  return <Modal className="settings-dialog" title="设置" dismissible={!busy} onClose={onClose}><div className="settings-layout"><nav className="settings-nav" aria-label="设置分类">{tabs.map((item) => <Button key={item.id} disabled={busy} className={tab === item.id ? 'selected' : ''} onClick={() => { setTab(item.id); setEditing(null); }}><Glyph name={item.icon} size={16} />{item.label}</Button>)}</nav><section key={tab} className="settings-detail" aria-label={tabs.find((item) => item.id === tab)?.label}>
-    {tab === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} onOpenConversation={onOpenWorktreeConversation} onCreateConversation={onCreateWorktreeConversation} />}
-    {tab === 'memories' && <MemorySettings state={state} onState={onState} report={report} />}
-    {tab === 'models' && (editing ? <>
+  return <Modal className="settings-dialog" title="设置" dismissible={!busy} onClose={onClose}><div className="settings-layout" onKeyDown={event => { if (!busy && !event.nativeEvent.isComposing && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'f' && (event.target as HTMLElement).closest('dialog')?.classList.contains('settings-dialog')) { event.preventDefault(); event.stopPropagation(); search.current?.focus(); search.current?.select(); } }}><SettingsNavigation tab={tab} busy={busy} provider={editing} inputRef={search} onNavigate={navigate} />{visited.map(panel => <section key={panel} ref={panel === tab ? detail : undefined} hidden={panel !== tab} inert={panel !== tab} tabIndex={-1} className="settings-detail" aria-label={settingsTabs.find(item => item.id === panel)?.label}>
+    {panel === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} onOpenConversation={onOpenWorktreeConversation} onCreateConversation={onCreateWorktreeConversation} />}
+    {panel === 'memories' && <MemorySettings state={state} onState={onState} report={report} />}
+    {panel === 'models' && (editing ? <>
       <div className="section-heading"><Button disabled={busy} onClick={() => setEditing(null)}>← 返回连接列表</Button><span className="muted">{editing.hasKey ? '密钥已保存在系统中' : '新连接'}</span></div>
       <Field label="连接名称"><Input disabled={busy} value={editing.name} placeholder="例如：我的模型" onChange={(event) => updateProvider('name', event.target.value)} /></Field>
       <Field label="API 类型"><Select disabled={busy} value={editing.kind} onChange={(event) => { const kind = event.target.value as Provider['kind']; setEditing({ ...editing, kind, modelCatalog: undefined, streamUsage: undefined, azureApi: undefined, apiVersion: undefined, endpoint: kind === 'anthropic' ? 'https://api.anthropic.com/v1' : kind === 'ollama' ? 'http://localhost:11434/v1' : kind === 'gemini' ? 'https://generativelanguage.googleapis.com/v1beta' : kind === 'azure' ? 'https://RESOURCE.openai.azure.com/openai/v1' : 'https://api.openai.com/v1' }); }}><option value="responses">OpenAI Responses</option><option value="openai">OpenAI 兼容 API</option><option value="anthropic">Anthropic Messages</option><option value="ollama">Ollama 本地模型</option><option value="gemini">Google Gemini</option><option value="azure">Azure OpenAI / Foundry</option></Select></Field>
@@ -52,11 +63,11 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
       <div className="section-heading"><div><h3>模型连接</h3><p>连接云端或本地模型，自由切换。</p></div><Button onClick={() => edit(blankProvider())}><Glyph name="plus" size={16} />添加连接</Button></div>
       {state.providers.length ? <div className="item-list">{state.providers.map((provider) => <div className="list-row" key={provider.id}><span className="row-symbol"><Glyph name="assistant" /></span><Button className="row-content" onClick={() => edit(provider)}><strong>{provider.name}</strong><span>{provider.models.length} 个模型 · {provider.kind === 'ollama' ? '本地' : provider.hasKey ? '已保存密钥' : '需要密钥'}</span></Button><IconButton icon="trash" label={`移除 ${provider.name}`} disabled={busy} onClick={() => { void act(() => window.qiyao.removeProvider(provider.id), onState); }} /></div>)}</div> : <Empty icon="assistant" title="从连接一个模型开始" detail="支持 OpenAI、Anthropic、Gemini、Azure 和 Ollama。" action={<Button tone="solid" onClick={() => edit(blankProvider())}>添加模型连接</Button>} />}
     </>)}
-    {tab === 'appearance' && <><h3>外观与交互</h3><p className="muted">让工作台适合你的工作方式。</p><Field label="主题"><Select value={state.preferences.theme} onChange={(event) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, theme: event.target.value as Workspace['preferences']['theme'] }), onState); }}><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></Select></Field><Toggle label="按 Enter 发送消息" checked={state.preferences.enterToSend} onChange={(value) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, enterToSend: value }), onState); }} /><div className="shortcut-list"><h4>键盘快捷键</h4><div>新聊天 <kbd>Ctrl N</kbd></div><div>搜索与命令 <kbd>Ctrl K</kbd></div><div>设置 <kbd>Ctrl ,</kbd></div><div>切换侧边栏 <kbd>Ctrl B</kbd></div><div>切换最近聊天 <kbd>Alt 1–9</kbd></div></div><DesktopSettings state={state} onState={onState} report={report} /></>}
-    {tab === 'data' && <><h3>数据与备份</h3><p className="muted">对话、项目、助手与资料保存在本机。</p><div className="settings-row"><div><strong>导出工作台</strong><p>默认保存压缩备份，也可选择 JSON；完整内容不包含 API 密钥。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.exportWorkspace()); }}>导出备份…</Button></div><div className="settings-row"><div><strong>恢复工作台</strong><p>支持 JSON 与压缩备份，操作前会确认替换范围。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.importWorkspace(), (next) => { if (next) onRestore(next); }); }}>恢复备份…</Button></div><p className="field-hint">完整内容上限 256 MB，压缩文件上限 64 MB。单个聊天可在聊天顶部导出为 Markdown。</p>{busy && <p className="field-hint" role="status">正在处理备份…</p>}</>}
-    {tab === 'about' && <div className="about"><Emblem size={64} /><h3>Nook</h3><p>本地 AI 工作台</p><span className="muted">0.1.0-alpha.1 · 开发中</span><p className="field-hint">一个本地 AI 工作台。你的模型，你的项目，你的工作方式。</p></div>}
-    {tab === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={onUseContent} onUseAttachment={onUseAttachment} />}
-    {tab === 'skills' && <SkillSettings state={state} onState={onState} report={report} onUse={onUseContent} />}
-    {tab === 'plugins' && <PluginSettingsPage state={state} onState={onState} report={report} onOpenPanel={onOpenPanel} />}
-  </section></div></Modal>;
+    {panel === 'appearance' && <><h3>外观与交互</h3><p className="muted">让工作台适合你的工作方式。</p><Field label="主题"><Select disabled={busy} value={state.preferences.theme} onChange={(event) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, theme: event.target.value as Workspace['preferences']['theme'] }), onState); }}><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></Select></Field><Toggle disabled={busy} label="按 Enter 发送消息" checked={state.preferences.enterToSend} onChange={(value) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, enterToSend: value }), onState); }} /><div className="shortcut-list"><h4>键盘快捷键</h4><div>新聊天 <kbd>Ctrl N</kbd></div><div>搜索与命令 <kbd>Ctrl K</kbd></div><div>设置 <kbd>Ctrl ,</kbd></div><div>切换侧边栏 <kbd>Ctrl B</kbd></div><div>切换最近聊天 <kbd>Alt 1–9</kbd></div></div><DesktopSettings state={state} onState={onState} report={report} /></>}
+    {panel === 'data' && <><h3>数据与备份</h3><p className="muted">对话、项目、助手与资料保存在本机。</p><div className="settings-row"><div><strong>导出工作台</strong><p>默认保存压缩备份，也可选择 JSON；完整内容不包含 API 密钥。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.exportWorkspace()); }}>导出备份…</Button></div><div className="settings-row"><div><strong>恢复工作台</strong><p>支持 JSON 与压缩备份，操作前会确认替换范围。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.importWorkspace(), (next) => { if (next) onRestore(next); }); }}>恢复备份…</Button></div><p className="field-hint">完整内容上限 256 MB，压缩文件上限 64 MB。单个聊天可在聊天顶部导出为 Markdown。</p>{busy && <p className="field-hint" role="status">正在处理备份…</p>}</>}
+    {panel === 'about' && <div className="about"><Emblem size={64} /><h3>Nook</h3><p>本地 AI 工作台</p><span className="muted">0.1.0-alpha.1 · 开发中</span><p className="field-hint">一个本地 AI 工作台。你的模型，你的项目，你的工作方式。</p></div>}
+    {panel === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={onUseContent} onUseAttachment={onUseAttachment} />}
+    {panel === 'skills' && <SkillSettings state={state} onState={onState} report={report} onUse={onUseContent} />}
+    {panel === 'plugins' && <PluginSettingsPage state={state} onState={onState} report={report} onOpenPanel={onOpenPanel} />}
+  </section>)}</div></Modal>;
 }

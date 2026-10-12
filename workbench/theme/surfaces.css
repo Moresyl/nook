@@ -485,9 +485,20 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-dialog { height: min(460px, calc(100dvh - 40px)); }
 .settings-dialog > .modal-content { display: flex; padding: 0; max-height: none; overflow: hidden; }
 .settings-dialog .settings-layout { flex: 1; min-height: 0; gap: 0; }
-.settings-dialog .settings-nav { min-height: 0; padding: 12px 8px; border-right: 1px solid var(--ds-border); overflow-y: auto; overscroll-behavior: contain; }
+.settings-sidebar { display: flex; flex-direction: column; gap: 8px; min-height: 0; min-width: 0; padding: 12px 8px; border-right: 1px solid var(--ds-border); }
+.settings-search-control { display: flex; align-items: center; gap: 4px; min-width: 0; flex-shrink: 0; }
+.settings-search-control > svg { flex-shrink: 0; color: var(--ds-text-secondary); }
+.settings-search-control .input { min-width: 0; width: 100%; }
+.settings-search-control .icon-button { width: 22px; height: 22px; flex-shrink: 0; }
+.settings-dialog .settings-nav { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .settings-dialog .settings-nav .button { flex-shrink: 0; }
+.settings-search-results { display: flex; flex-direction: column; gap: 2px; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.settings-search-results .button { flex-direction: column; align-items: flex-start; flex-shrink: 0; height: auto; min-height: 32px; padding: 6px; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+.settings-search-results .button[aria-selected="true"] { background: var(--ghost-hover); }
+.settings-search-results small, .settings-search-status { color: var(--ds-text-secondary); font-size: 11px; }
+.settings-search-status { padding: 4px 6px; flex-shrink: 0; }
 .settings-dialog .settings-detail { min-height: 0; padding: 20px 24px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.settings-dialog .settings-detail[hidden] { display: none; }
 .settings-dialog .empty { padding: 40px 8px; }
 .extension-server { padding-bottom: 12px; border-bottom: 1px solid var(--ds-border); }
 .extension-server .list-row { border-bottom: 0; }
