@@ -2,7 +2,9 @@
 
 当前参考为 `E:\txt` 的带上下文变量、CSS 规则与原始样式；旧批次使用桌面 txt 中的人工规范。下表保留历史证据，对应源码及分发批次见[设计对照](DESIGN-ALIGNMENT.md)。静态对照只证明代码差异，不代替实际窗口验收。
 
-当前源码的工作树键盘刷新，在真实成功及错误读取后保留完整蓝色焦点圈，等待期间切换到关闭按钮时不抢焦点。两种主题三档 Electron 缩放的宽度、偏移和完整可见边界已实测，八张原图逐张原尺寸复核并匹配哈希；新包验收仍在进行。这些源码图不计入下方上一冻结包的控件图，也不证明真实 Windows DPI 或物理输入。[当前焦点证据](../verification/worktree-refresh-focus-acceptance-review-result.json)
+当前源码的工作树键盘刷新，在真实成功及错误读取后保留完整蓝色焦点圈，等待期间切换到关闭按钮时不抢焦点。两种主题三档 Electron 缩放的宽度、偏移和完整可见边界已实测，八张源码原图逐张原尺寸复核并匹配哈希。这些源码图不计入下面的新包原图，也不证明真实 Windows DPI 或物理输入。[当前源码焦点证据](../verification/worktree-refresh-focus-acceptance-review-result.json)
+
+当前 `9d7bb625` 新冻结包的原控件 4 项、文字提示 7 项、关闭 2 项、完整包内及安装各 361 项通过，十一份匹配运行记录核验退出 0。26 张控件、12 张文字提示和 17 张工作树原图逐张原尺寸查看并匹配归档哈希，共 55 张不同原图。明暗菜单、非法字段、开关保存后键盘焦点、启动错误和长文字提示均按实际画面记录；PDF 高缩放仅验当前滚动切片。其他完整回归原图和安装原图未全部复核。[新包控件与文字提示](../verification/worktree-refresh-focus-distribution-originals-review-result.json) · [新包工作树焦点及渐进状态](../verification/worktree-refresh-focus-package-originals-review-result.json)
 
 新 `d32f595` 冻结包的原控件 4 项、文字提示 7 项和完整桌面 361 项通过；控件 26 张、文字提示 12 张原图已全部逐张原尺寸复核并匹配冻结哈希，覆盖明暗菜单、开关、非法字段、提示、启动错误与键盘焦点。PDF 高缩放图仅显示当前滚动切片，其他内容仍需滚动，不计全部页面与真实系统 DPI 通过。[新包控件与文字提示原图](../verification/worktree-progressive-distribution-originals-review-result.json)
 
