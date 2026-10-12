@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T03:46:00.930Z",
+  "verifiedAt": "2026-10-12T00:14:46.759Z",
   "variant": "packaged executable",
-  "checks": 296,
+  "checks": 355,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -193,8 +193,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181178,
-    "compressedBytes": 242353,
+    "expandedBytes": 84181176,
+    "compressedBytes": 242322,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,34 +750,157 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791689706543,
+        "startedAt": 1791762702072,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791689709691
+        "finishedAt": 1791762703781
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791689709906,
+        "startedAt": 1791762703931,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791689712113
+        "finishedAt": 1791762705700
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791689715605,
+        "startedAt": 1791762708737,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791689718682
+        "finishedAt": 1791762710002
       }
     ],
     "comparisonModelRequests": 11,
     "parallelStreamsVerified": true,
     "independentFailureStopVerified": true,
     "atomicSaveRetryVerified": true,
+    "busyDismissalVerified": true,
+    "saveFailureViewportVerified": true,
+    "saveFailureLayouts": [
+      {
+        "zoom": 1,
+        "top": 560.388916015625,
+        "bottom": 578.388916015625,
+        "left": 301,
+        "right": 973,
+        "viewportTop": 230.88888549804688,
+        "viewportBottom": 582.8888854980469,
+        "viewportLeft": 281,
+        "viewportRight": 993,
+        "scrollTop": 58,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 1280,
+        "height": 840,
+        "theme": "light"
+      },
+      {
+        "zoom": 1,
+        "top": 449.5,
+        "bottom": 467.5,
+        "left": 21,
+        "right": 733,
+        "viewportTop": 62,
+        "viewportBottom": 472,
+        "viewportLeft": 1,
+        "viewportRight": 753,
+        "scrollTop": 0,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 760,
+        "height": 540,
+        "theme": "light"
+      },
+      {
+        "zoom": 1.25,
+        "top": 341.70001220703125,
+        "bottom": 359.70001220703125,
+        "left": 20.80000114440918,
+        "right": 581.5999889373779,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 363.60000228881836,
+        "viewportLeft": 0.800000011920929,
+        "viewportRight": 601.8000000119209,
+        "scrollTop": 106.4000015258789,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 608,
+        "height": 432,
+        "theme": "light"
+      },
+      {
+        "zoom": 1.5,
+        "top": 269,
+        "bottom": 287,
+        "left": 20.666667938232422,
+        "right": 480.0000114440918,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 291.33333587646484,
+        "viewportLeft": 0.6666666865348816,
+        "viewportRight": 499.6666666865349,
+        "scrollTop": 194.6666717529297,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 507,
+        "height": 360,
+        "theme": "light"
+      },
+      {
+        "zoom": 1,
+        "top": 449.5,
+        "bottom": 467.5,
+        "left": 21,
+        "right": 733,
+        "viewportTop": 62,
+        "viewportBottom": 472,
+        "viewportLeft": 1,
+        "viewportRight": 753,
+        "scrollTop": 0,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 760,
+        "height": 540,
+        "theme": "dark"
+      },
+      {
+        "zoom": 1.25,
+        "top": 341.70001220703125,
+        "bottom": 359.70001220703125,
+        "left": 20.80000114440918,
+        "right": 581.5999889373779,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 363.60000228881836,
+        "viewportLeft": 0.800000011920929,
+        "viewportRight": 601.8000000119209,
+        "scrollTop": 106.4000015258789,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 608,
+        "height": 432,
+        "theme": "dark"
+      },
+      {
+        "zoom": 1.5,
+        "top": 269,
+        "bottom": 287,
+        "left": 20.666667938232422,
+        "right": 480.0000114440918,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 291.33333587646484,
+        "viewportLeft": 0.6666666865348816,
+        "viewportRight": 499.6666666865349,
+        "scrollTop": 194.6666717529297,
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。",
+        "width": 507,
+        "height": 360,
+        "theme": "dark"
+      }
+    ],
+    "retryHeading": {
+      "top": 114.33333587646484,
+      "bottom": 138.33333587646484,
+      "viewportTop": 61.333335876464844,
+      "viewportBottom": 291.33333587646484,
+      "scrollTop": 0
+    },
     "backupsRestartVerified": true,
     "temporaryExclusionVerified": true,
     "originalDraftRetainedVerified": true,
@@ -811,7 +934,15 @@
     "screenshots": [
       "117-model-comparison-config-light.png",
       "118-model-comparison-stream-light.png",
+      "model-comparison-save-busy-light.png",
       "119-model-comparison-save-error-light.png",
+      "model-comparison-save-error-light-zoom-100.png",
+      "model-comparison-save-error-light-zoom-125.png",
+      "model-comparison-save-error-light-zoom-150.png",
+      "model-comparison-save-error-dark-zoom-100.png",
+      "model-comparison-save-error-dark-zoom-125.png",
+      "model-comparison-save-error-dark-zoom-150.png",
+      "model-comparison-retry-first-reply-dark-150.png",
       "120-model-comparison-config-dark-zoom-100.png",
       "121-model-comparison-results-dark-zoom-100.png",
       "120-model-comparison-config-dark-zoom-125.png",
@@ -830,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 16.5,
+    "scopedReadMs": 9.800000011920929,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1215,6 +1346,193 @@
     "project-worktrees-dark-125-shell.png",
     "project-worktrees-dark-150-shell.png",
     "project-worktrees-restart-shell.png",
+    "worktree-settings-root-light-shell.png",
+    "worktree-settings-picker-cancel-busy-light-shell.png",
+    "worktree-settings-picker-selected-light-shell.png",
+    "worktree-settings-picker-error-light-shell.png",
+    "worktree-settings-save-busy-light-shell.png",
+    "worktree-settings-save-error-light-shell.png",
+    "worktree-settings-actual-creation-light-shell.png",
+    "worktree-settings-restored-restart-light-shell.png",
+    "worktree-settings-default-root-light-shell.png",
+    "worktree-settings-default-proposal-light-shell.png",
+    "worktree-settings-default-busy-light-shell.png",
+    "worktree-settings-default-error-light-shell.png",
+    "worktree-settings-default-created-light-shell.png",
+    "worktree-settings-default-restored-light-shell.png",
+    "worktree-settings-light-100-shell.png",
+    "worktree-settings-light-125-shell.png",
+    "worktree-settings-light-150-shell.png",
+    "worktree-settings-dark-100-shell.png",
+    "worktree-settings-dark-125-shell.png",
+    "worktree-settings-dark-150-shell.png",
+    "worktree-overview-associations-light-shell.png",
+    "worktree-overview-refresh-light-shell.png",
+    "worktree-overview-error-light-shell.png",
+    "worktree-overview-loading-light-shell.png",
+    "worktree-overview-retry-light-shell.png",
+    "worktree-overview-page-two-light-shell.png",
+    "worktree-overview-light-100-error-shell.png",
+    "worktree-overview-light-100-rows-shell.png",
+    "worktree-overview-light-125-error-shell.png",
+    "worktree-overview-light-125-rows-shell.png",
+    "worktree-overview-light-150-error-shell.png",
+    "worktree-overview-light-150-rows-shell.png",
+    "worktree-overview-dark-100-error-shell.png",
+    "worktree-overview-dark-100-rows-shell.png",
+    "worktree-overview-dark-125-error-shell.png",
+    "worktree-overview-dark-125-rows-shell.png",
+    "worktree-overview-dark-150-error-shell.png",
+    "worktree-overview-dark-150-rows-shell.png",
+    "worktree-conversations-archived-open-light-shell.png",
+    "worktree-conversations-new-project-chat-light-shell.png",
+    "worktree-conversations-navigation-held-light-shell.png",
+    "worktree-conversations-navigation-error-light-shell.png",
+    "worktree-conversations-retry-restart-light-shell.png",
+    "worktree-conversations-stale-conversation-light-shell.png",
+    "worktree-conversations-stale-project-light-shell.png",
+    "worktree-conversations-light-100-links-shell.png",
+    "worktree-conversations-light-100-error-shell.png",
+    "worktree-conversations-light-125-links-shell.png",
+    "worktree-conversations-light-125-error-shell.png",
+    "worktree-conversations-light-150-links-shell.png",
+    "worktree-conversations-light-150-error-shell.png",
+    "worktree-conversations-dark-100-links-shell.png",
+    "worktree-conversations-dark-100-error-shell.png",
+    "worktree-conversations-dark-125-links-shell.png",
+    "worktree-conversations-dark-125-error-shell.png",
+    "worktree-conversations-dark-150-links-shell.png",
+    "worktree-conversations-dark-150-error-shell.png",
+    "worktree-upstream-setting-held-light-shell.png",
+    "worktree-upstream-setting-error-light-shell.png",
+    "worktree-upstream-setting-saved-light-shell.png",
+    "worktree-upstream-create-held-light-shell.png",
+    "worktree-upstream-fetched-light-shell.png",
+    "worktree-upstream-not-configured-light-shell.png",
+    "worktree-upstream-fetch-failed-light-shell.png",
+    "worktree-upstream-fetch-retried-light-shell.png",
+    "worktree-upstream-light-100-setting-shell.png",
+    "worktree-upstream-light-100-error-shell.png",
+    "worktree-upstream-light-125-setting-shell.png",
+    "worktree-upstream-light-125-error-shell.png",
+    "worktree-upstream-light-150-setting-shell.png",
+    "worktree-upstream-light-150-error-shell.png",
+    "worktree-upstream-dark-100-setting-shell.png",
+    "worktree-upstream-dark-100-error-shell.png",
+    "worktree-upstream-dark-125-setting-shell.png",
+    "worktree-upstream-dark-125-error-shell.png",
+    "worktree-upstream-dark-150-setting-shell.png",
+    "worktree-upstream-dark-150-error-shell.png",
+    "worktree-registration-invalid-light-shell.png",
+    "worktree-registration-cancel-focus-light-shell.png",
+    "worktree-registration-save-held-light-shell.png",
+    "worktree-registration-save-error-light-shell.png",
+    "worktree-registration-registered-light-shell.png",
+    "worktree-registration-stale-source-light-shell.png",
+    "worktree-registration-restore-restart-light-shell.png",
+    "worktree-registration-light-100-form-shell.png",
+    "worktree-registration-light-100-error-shell.png",
+    "worktree-registration-light-125-form-shell.png",
+    "worktree-registration-light-125-error-shell.png",
+    "worktree-registration-light-150-form-shell.png",
+    "worktree-registration-light-150-error-shell.png",
+    "worktree-registration-dark-100-form-shell.png",
+    "worktree-registration-dark-100-error-shell.png",
+    "worktree-registration-dark-125-form-shell.png",
+    "worktree-registration-dark-125-error-shell.png",
+    "worktree-registration-dark-150-form-shell.png",
+    "worktree-registration-dark-150-error-shell.png",
+    "worktree-ownership-external-registration-light-shell.png",
+    "worktree-ownership-created-light-shell.png",
+    "worktree-ownership-existing-branch-light-shell.png",
+    "worktree-ownership-light-100-warning-shell.png",
+    "worktree-ownership-light-125-warning-shell.png",
+    "worktree-ownership-light-150-warning-shell.png",
+    "worktree-ownership-dark-100-warning-shell.png",
+    "worktree-ownership-dark-125-warning-shell.png",
+    "worktree-ownership-dark-150-warning-shell.png",
+    "worktree-ownership-normal-restart-light-shell.png",
+    "worktree-pinning-owned-external-light-shell.png",
+    "worktree-pinning-save-held-light-shell.png",
+    "worktree-pinning-save-error-light-shell.png",
+    "worktree-pinning-pinned-light-shell.png",
+    "worktree-pinning-stale-source-light-shell.png",
+    "worktree-pinning-record-read-error-light-shell.png",
+    "worktree-pinning-backup-restored-light-shell.png",
+    "worktree-pinning-normal-restart-pinned-light-shell.png",
+    "worktree-pinning-light-100-keyboard-shell.png",
+    "worktree-pinning-light-100-error-shell.png",
+    "worktree-pinning-light-125-keyboard-shell.png",
+    "worktree-pinning-light-125-error-shell.png",
+    "worktree-pinning-light-150-keyboard-shell.png",
+    "worktree-pinning-light-150-error-shell.png",
+    "worktree-pinning-dark-100-keyboard-shell.png",
+    "worktree-pinning-dark-100-error-shell.png",
+    "worktree-pinning-dark-125-keyboard-shell.png",
+    "worktree-pinning-dark-125-error-shell.png",
+    "worktree-pinning-dark-150-keyboard-shell.png",
+    "worktree-pinning-dark-150-error-shell.png",
+    "worktree-pinning-replacement-rejected-dark-shell.png",
+    "worktree-snapshots-saved-light-shell.png",
+    "worktree-snapshots-save-failure-light-shell.png",
+    "worktree-snapshots-normal-restart-light-shell.png",
+    "worktree-snapshots-existing-target-rejected-light-shell.png",
+    "worktree-snapshots-restored-new-folder-light-shell.png",
+    "worktree-snapshots-light-100-keyboard-shell.png",
+    "worktree-snapshots-light-100-error-shell.png",
+    "worktree-snapshots-light-100-restore-keyboard-shell.png",
+    "worktree-snapshots-light-100-restore-error-shell.png",
+    "worktree-snapshots-light-125-keyboard-shell.png",
+    "worktree-snapshots-light-125-error-shell.png",
+    "worktree-snapshots-light-125-restore-keyboard-shell.png",
+    "worktree-snapshots-light-125-restore-error-shell.png",
+    "worktree-snapshots-light-150-keyboard-shell.png",
+    "worktree-snapshots-light-150-error-shell.png",
+    "worktree-snapshots-light-150-restore-keyboard-shell.png",
+    "worktree-snapshots-light-150-restore-error-shell.png",
+    "worktree-snapshots-dark-100-keyboard-shell.png",
+    "worktree-snapshots-dark-100-error-shell.png",
+    "worktree-snapshots-dark-100-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-100-restore-error-shell.png",
+    "worktree-snapshots-dark-125-keyboard-shell.png",
+    "worktree-snapshots-dark-125-error-shell.png",
+    "worktree-snapshots-dark-125-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-125-restore-error-shell.png",
+    "worktree-snapshots-dark-150-keyboard-shell.png",
+    "worktree-snapshots-dark-150-error-shell.png",
+    "worktree-snapshots-dark-150-restore-keyboard-shell.png",
+    "worktree-snapshots-dark-150-restore-error-shell.png",
+    "worktree-snapshots-read-failure-light-shell.png",
+    "worktree-snapshots-read-recovered-light-shell.png",
+    "worktree-snapshots-accepted-shutdown-reopen-light-shell.png",
+    "worktree-snapshots-replacement-rejected-light-shell.png",
+    "worktree-cleanup-cancel-owned-external-light-shell.png",
+    "worktree-cleanup-pinned-protected-light-shell.png",
+    "worktree-cleanup-active-terminal-protected-light-shell.png",
+    "worktree-cleanup-private-save-held-light-shell.png",
+    "worktree-cleanup-private-save-error-light-shell.png",
+    "worktree-cleanup-light-100-keyboard-shell.png",
+    "worktree-cleanup-light-100-error-shell.png",
+    "worktree-cleanup-light-125-keyboard-shell.png",
+    "worktree-cleanup-light-125-error-shell.png",
+    "worktree-cleanup-light-150-keyboard-shell.png",
+    "worktree-cleanup-light-150-error-shell.png",
+    "worktree-cleanup-dark-100-keyboard-shell.png",
+    "worktree-cleanup-dark-100-error-shell.png",
+    "worktree-cleanup-dark-125-keyboard-shell.png",
+    "worktree-cleanup-dark-125-error-shell.png",
+    "worktree-cleanup-dark-150-keyboard-shell.png",
+    "worktree-cleanup-dark-150-error-shell.png",
+    "worktree-cleanup-removed-with-snapshot-light-shell.png",
+    "worktree-cleanup-fixed-chat-after-project-removal-light-shell.png",
+    "worktree-cleanup-automatic-created-cleanup-light-shell.png",
+    "worktree-cleanup-light-100-disable-cancel-shell.png",
+    "worktree-cleanup-light-125-disable-cancel-shell.png",
+    "worktree-cleanup-light-150-disable-cancel-shell.png",
+    "worktree-cleanup-dark-100-disable-cancel-shell.png",
+    "worktree-cleanup-dark-125-disable-cancel-shell.png",
+    "worktree-cleanup-dark-150-disable-cancel-shell.png",
+    "worktree-cleanup-replacement-rejected-light-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2405,72 +2723,122 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(103, 103, 103)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 71.99999999999918
+                }
+              ]
             }
           ]
         },
@@ -2483,70 +2851,120 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.4999999999991
+                }
+              ]
             }
           ]
         }
@@ -2561,72 +2979,122 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 144.0000000000001
+                }
+              ]
             }
           ]
         },
@@ -2639,70 +3107,120 @@
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.89999999999995
+                }
+              ]
             }
           ]
         }
@@ -5198,6 +5716,2840 @@
     ],
     "scope": "Real Git repositories/worktrees/hooks and native main/Quick bridges, Monaco, atomic project-save EIO and restart; fixed display scale and scripted input. Worktree deletion/pruning, managed roots, task orchestration, broader accessibility and complete reference parity remain separate gates."
   },
+  "worktreeSettings": {
+    "checks": 10,
+    "modelRequests": 0,
+    "rootValidationVerified": true,
+    "busySaveVerified": true,
+    "saveFailurePreservationVerified": true,
+    "rootCreationVerified": true,
+    "backupRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "directoryPickerVerified": true,
+    "pickerCases": 5,
+    "defaultRootVerified": true,
+    "defaultRootFailureVerified": true,
+    "defaultRootBackupRestartVerified": true,
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\worktrees/nook-ed5bc0fb",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\管理 工作树 🧭/nook-01d167be",
+    "errorLayouts": [
+      {
+        "top": 605.388916015625,
+        "bottom": 623.388916015625,
+        "left": 461,
+        "right": 969,
+        "viewportTop": 230.88888549804688,
+        "viewportBottom": 627.8888854980469,
+        "viewportLeft": 437,
+        "viewportRight": 993,
+        "scrollTop": 143,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 516.5,
+        "bottom": 534.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "scrollTop": 59,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "scrollTop": 199.1999969482422,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 337.5,
+        "bottom": 355.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "scrollTop": 303.3333435058594,
+        "theme": "light",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 516.5,
+        "bottom": 534.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "scrollTop": 59,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "scrollTop": 199.1999969482422,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      },
+      {
+        "top": 337.5,
+        "bottom": 355.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "scrollTop": 303.3333435058594,
+        "theme": "dark",
+        "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
+      }
+    ],
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "width": 288,
+        "left": 145,
+        "right": 433,
+        "viewportWidth": 760,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 441,
+        "pickerRight": 469,
+        "pickerTop": 109,
+        "pickerBottom": 137,
+        "contentLeft": 129,
+        "contentRight": 753,
+        "contentTop": 62,
+        "contentBottom": 539
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "width": 288,
+        "left": 144.8000030517578,
+        "right": 432.8000030517578,
+        "viewportWidth": 608,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 440.8000183105469,
+        "pickerRight": 468.8000183105469,
+        "pickerTop": 167.60000610351562,
+        "pickerBottom": 195.60000610351562,
+        "contentLeft": 128.8000030517578,
+        "contentRight": 601.8000030517578,
+        "contentTop": 61.60000228881836,
+        "contentBottom": 431.60000228881836
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "width": 288,
+        "left": 144.6666717529297,
+        "right": 432.6666717529297,
+        "viewportWidth": 507,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 440.66668701171875,
+        "pickerRight": 468.66668701171875,
+        "pickerTop": 167.33334350585938,
+        "pickerBottom": 195.33334350585938,
+        "contentLeft": 128.6666717529297,
+        "contentRight": 499.6666717529297,
+        "contentTop": 61.333335876464844,
+        "contentBottom": 359.33333587646484
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "width": 288,
+        "left": 145,
+        "right": 433,
+        "viewportWidth": 760,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 441,
+        "pickerRight": 469,
+        "pickerTop": 109,
+        "pickerBottom": 137,
+        "contentLeft": 129,
+        "contentRight": 753,
+        "contentTop": 62,
+        "contentBottom": 539
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "width": 288,
+        "left": 144.8000030517578,
+        "right": 432.8000030517578,
+        "viewportWidth": 608,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 440.8000183105469,
+        "pickerRight": 468.8000183105469,
+        "pickerTop": 167.60000610351562,
+        "pickerBottom": 195.60000610351562,
+        "contentLeft": 128.8000030517578,
+        "contentRight": 601.8000030517578,
+        "contentTop": 61.60000228881836,
+        "contentBottom": 431.60000228881836
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "width": 288,
+        "left": 144.6666717529297,
+        "right": 432.6666717529297,
+        "viewportWidth": 507,
+        "headingMargin": "8px",
+        "descriptionSize": "12px",
+        "pickerLeft": 440.66668701171875,
+        "pickerRight": 468.66668701171875,
+        "pickerTop": 167.33334350585938,
+        "pickerBottom": 195.33334350585938,
+        "contentLeft": 128.6666717529297,
+        "contentRight": 499.6666717529297,
+        "contentTop": 61.333335876464844,
+        "contentBottom": 359.33333587646484
+      }
+    ],
+    "screenshots": [
+      "worktree-settings-root-light-shell.png",
+      "worktree-settings-picker-cancel-busy-light-shell.png",
+      "worktree-settings-picker-selected-light-shell.png",
+      "worktree-settings-picker-error-light-shell.png",
+      "worktree-settings-save-busy-light-shell.png",
+      "worktree-settings-save-error-light-shell.png",
+      "worktree-settings-actual-creation-light-shell.png",
+      "worktree-settings-restored-restart-light-shell.png",
+      "worktree-settings-default-root-light-shell.png",
+      "worktree-settings-default-proposal-light-shell.png",
+      "worktree-settings-default-busy-light-shell.png",
+      "worktree-settings-default-error-light-shell.png",
+      "worktree-settings-default-created-light-shell.png",
+      "worktree-settings-default-restored-light-shell.png",
+      "worktree-settings-light-100-shell.png",
+      "worktree-settings-light-125-shell.png",
+      "worktree-settings-light-150-shell.png",
+      "worktree-settings-dark-100-shell.png",
+      "worktree-settings-dark-125-shell.png",
+      "worktree-settings-dark-150-shell.png"
+    ],
+    "scope": "Real settings IPC with five isolated held directory responses; explicit and blank profile-owned roots, read-only default discovery, invalid request rejection before mkdir, held sanitized mkdir and atomic-save EIO with source preservation, real Git retries, two gzip restore cycles and normal restarts; six native zoom/theme cases. Workspace backups retain preferences and do not contain Git worktree files. Automatic deletion, upstream fetching, snapshots, complete reference parity and physical system picker interaction remain separate."
+  },
+  "worktreeOverview": {
+    "checks": 6,
+    "modelRequests": 0,
+    "actualRepositoryAssociationVerified": true,
+    "refreshReadOnlyVerified": true,
+    "errorRetryCloseVerified": true,
+    "boundedPagingVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "sourcePreservationVerified": true,
+    "queryPages": [
+      [
+        "34db8425-969d-4635-948c-06b5453c466a",
+        "ee3fa6f2-d67e-45f1-bd54-6cd7ac42230c",
+        "9cca543d-1f0c-4f1d-b394-42327aa798eb",
+        "907d8bea-5e96-4ba6-a3cf-3d7d3c93b8e8",
+        "bc317c7a-acf6-4a4d-9d3f-9ca73b7acf78",
+        "9f80fd90-32a0-48ab-9d1e-46023589567c",
+        "87ad2721-ef0e-4494-a773-cab070584751",
+        "0ea9df3e-2442-45a8-ad23-dad2deb948ef",
+        "1b6b368a-3ff1-4c94-a7f3-cb7788ade40b",
+        "22996c5b-7bdc-4a04-b2d7-d9fd43ca1f5a",
+        "70197a1f-c581-40ad-9a2c-a1a8d1a8117b",
+        "9ebbe8f1-d5e1-4fcd-bc2a-eb283d67af4d",
+        "43c179ff-96e1-461b-9eef-c4b58a0f1920",
+        "ee44434c-0fef-43a5-b50b-1ed13faa349d",
+        "f0263518-1a2f-4295-ba17-6b9676faf823",
+        "e51de571-29a0-4c83-a922-f653f43c2fd7",
+        "1f0910dc-248e-4541-8a49-5de62130e9e4",
+        "0a93df58-b5a4-4b6c-9ba9-620a846a1a99",
+        "8af733ed-a141-476c-a409-65feb9564d4c",
+        "6d05a44f-36dc-4115-a2f5-b1a96b4fc426"
+      ],
+      [
+        "e41b2ed7-307d-4ba3-972c-c2dd77f7124b"
+      ],
+      [
+        "34db8425-969d-4635-948c-06b5453c466a",
+        "ee3fa6f2-d67e-45f1-bd54-6cd7ac42230c",
+        "9cca543d-1f0c-4f1d-b394-42327aa798eb",
+        "907d8bea-5e96-4ba6-a3cf-3d7d3c93b8e8",
+        "bc317c7a-acf6-4a4d-9d3f-9ca73b7acf78",
+        "9f80fd90-32a0-48ab-9d1e-46023589567c",
+        "87ad2721-ef0e-4494-a773-cab070584751",
+        "0ea9df3e-2442-45a8-ad23-dad2deb948ef",
+        "1b6b368a-3ff1-4c94-a7f3-cb7788ade40b",
+        "22996c5b-7bdc-4a04-b2d7-d9fd43ca1f5a",
+        "70197a1f-c581-40ad-9a2c-a1a8d1a8117b",
+        "9ebbe8f1-d5e1-4fcd-bc2a-eb283d67af4d",
+        "43c179ff-96e1-461b-9eef-c4b58a0f1920",
+        "ee44434c-0fef-43a5-b50b-1ed13faa349d",
+        "f0263518-1a2f-4295-ba17-6b9676faf823",
+        "e51de571-29a0-4c83-a922-f653f43c2fd7",
+        "1f0910dc-248e-4541-8a49-5de62130e9e4",
+        "0a93df58-b5a4-4b6c-9ba9-620a846a1a99",
+        "8af733ed-a141-476c-a409-65feb9564d4c",
+        "6d05a44f-36dc-4115-a2f5-b1a96b4fc426"
+      ]
+    ],
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "error": {
+          "top": 291,
+          "bottom": 309,
+          "left": 145,
+          "right": 737,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753
+        },
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "viewportWidth": 760,
+        "documentWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "error": {
+          "top": 237.1999969482422,
+          "bottom": 255.1999969482422,
+          "left": 144.8000030517578,
+          "right": 585.6000213623047,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578
+        },
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "viewportWidth": 608,
+        "documentWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "error": {
+          "top": 201.5,
+          "bottom": 219.5,
+          "left": 144.6666717529297,
+          "right": 484.00001525878906,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297
+        },
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "viewportWidth": 507,
+        "documentWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "error": {
+          "top": 291,
+          "bottom": 309,
+          "left": 145,
+          "right": 737,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753
+        },
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "viewportWidth": 760,
+        "documentWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "error": {
+          "top": 237.1999969482422,
+          "bottom": 255.1999969482422,
+          "left": 144.8000030517578,
+          "right": 585.6000213623047,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578
+        },
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "viewportWidth": 608,
+        "documentWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "error": {
+          "top": 201.5,
+          "bottom": 219.5,
+          "left": 144.6666717529297,
+          "right": 484.00001525878906,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297
+        },
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "viewportWidth": 507,
+        "documentWidth": 507
+      }
+    ],
+    "screenshots": [
+      "worktree-overview-associations-light-shell.png",
+      "worktree-overview-refresh-light-shell.png",
+      "worktree-overview-error-light-shell.png",
+      "worktree-overview-loading-light-shell.png",
+      "worktree-overview-retry-light-shell.png",
+      "worktree-overview-page-two-light-shell.png",
+      "worktree-overview-light-100-error-shell.png",
+      "worktree-overview-light-100-rows-shell.png",
+      "worktree-overview-light-125-error-shell.png",
+      "worktree-overview-light-125-rows-shell.png",
+      "worktree-overview-light-150-error-shell.png",
+      "worktree-overview-light-150-rows-shell.png",
+      "worktree-overview-dark-100-error-shell.png",
+      "worktree-overview-dark-100-rows-shell.png",
+      "worktree-overview-dark-125-error-shell.png",
+      "worktree-overview-dark-125-rows-shell.png",
+      "worktree-overview-dark-150-error-shell.png",
+      "worktree-overview-dark-150-rows-shell.png"
+    ],
+    "scope": "Real isolated Git fixtures and main-process worktree IPC; persisted fixture workspace is seeded only in the suite-owned profile and restored on success. Git error/held-read responses are intercepted only in the test process. Known-project inventory and persistent conversation labels are read-only. Opening/creating/deleting conversations, automatic cleanup, upstream refresh and full reference parity are separate."
+  },
+  "worktreeConversations": {
+    "checks": 4,
+    "modelRequests": 0,
+    "linkedConversationVerified": true,
+    "projectDraftVerified": true,
+    "heldFailureRetryRestartVerified": true,
+    "staleTargetsVerified": true,
+    "sanitizedErrorsVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 91.5,
+        "bottom": 109.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 65.70000457763672,
+        "bottom": 83.70000457763672,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 65.5,
+        "bottom": 83.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 91.5,
+        "bottom": 109.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 65.70000457763672,
+        "bottom": 83.70000457763672,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 65.5,
+        "bottom": 83.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "新建项目聊天",
+        "outline": 4,
+        "top": 496,
+        "bottom": 516,
+        "left": 638,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "新建项目聊天",
+        "outline": 3.2,
+        "top": 388,
+        "bottom": 408,
+        "left": 487.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "新建项目聊天",
+        "outline": 4,
+        "top": 316.8333435058594,
+        "bottom": 336.8333435058594,
+        "left": 386,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "新建项目聊天",
+        "outline": 4,
+        "top": 496,
+        "bottom": 516,
+        "left": 638,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "新建项目聊天",
+        "outline": 3.2,
+        "top": 388,
+        "bottom": 408,
+        "left": 487.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "新建项目聊天",
+        "outline": 4,
+        "top": 316.8333435058594,
+        "bottom": 336.8333435058594,
+        "left": 386,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-conversations-archived-open-light-shell.png",
+      "worktree-conversations-new-project-chat-light-shell.png",
+      "worktree-conversations-navigation-held-light-shell.png",
+      "worktree-conversations-navigation-error-light-shell.png",
+      "worktree-conversations-retry-restart-light-shell.png",
+      "worktree-conversations-stale-conversation-light-shell.png",
+      "worktree-conversations-stale-project-light-shell.png",
+      "worktree-conversations-light-100-links-shell.png",
+      "worktree-conversations-light-100-error-shell.png",
+      "worktree-conversations-light-125-links-shell.png",
+      "worktree-conversations-light-125-error-shell.png",
+      "worktree-conversations-light-150-links-shell.png",
+      "worktree-conversations-light-150-error-shell.png",
+      "worktree-conversations-dark-100-links-shell.png",
+      "worktree-conversations-dark-100-error-shell.png",
+      "worktree-conversations-dark-125-links-shell.png",
+      "worktree-conversations-dark-125-error-shell.png",
+      "worktree-conversations-dark-150-links-shell.png",
+      "worktree-conversations-dark-150-error-shell.png"
+    ],
+    "scope": "Actual registered-project conversation navigation and draft persistence; suite-owned workspace and Git fixtures, real atomic rename EIO and isolated held/load error boundaries. New project chat selects an existing draft and creates no persistent conversation until normal explicit sending. Git deletion, unregistered-path registration, upstream fetching and complete reference parity remain separate."
+  },
+  "worktreeUpstream": {
+    "checks": 5,
+    "modelRequests": 0,
+    "preferenceFailureRetryVerified": true,
+    "actualFetchPinnedCommitVerified": true,
+    "neverAndMissingUpstreamVerified": true,
+    "actualFailureRetryVerified": true,
+    "backupRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 516.5,
+        "bottom": 534.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 319.5,
+        "bottom": 355.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 516.5,
+        "bottom": 534.5,
+        "left": 145,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
+        "left": 144.8000030517578,
+        "right": 585.6000213623047,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 319.5,
+        "bottom": 355.5,
+        "left": 144.6666717529297,
+        "right": 484.00001525878906,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "outline": 5,
+        "top": 319,
+        "bottom": 338,
+        "left": 705,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "outline": 4,
+        "top": 335.1000061035156,
+        "bottom": 354.1000061035156,
+        "left": 553.6000366210938,
+        "right": 585.6000366210938,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "outline": 4.66667,
+        "top": 332,
+        "bottom": 351,
+        "left": 452,
+        "right": 484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "outline": 5,
+        "top": 319,
+        "bottom": 338,
+        "left": 705,
+        "right": 737,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "outline": 4,
+        "top": 335.1000061035156,
+        "bottom": 354.1000061035156,
+        "left": 553.6000366210938,
+        "right": 585.6000366210938,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "outline": 4.66667,
+        "top": 332,
+        "bottom": 351,
+        "left": 452,
+        "right": 484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-upstream-setting-held-light-shell.png",
+      "worktree-upstream-setting-error-light-shell.png",
+      "worktree-upstream-setting-saved-light-shell.png",
+      "worktree-upstream-create-held-light-shell.png",
+      "worktree-upstream-fetched-light-shell.png",
+      "worktree-upstream-not-configured-light-shell.png",
+      "worktree-upstream-fetch-failed-light-shell.png",
+      "worktree-upstream-fetch-retried-light-shell.png",
+      "worktree-upstream-light-100-setting-shell.png",
+      "worktree-upstream-light-100-error-shell.png",
+      "worktree-upstream-light-125-setting-shell.png",
+      "worktree-upstream-light-125-error-shell.png",
+      "worktree-upstream-light-150-setting-shell.png",
+      "worktree-upstream-light-150-error-shell.png",
+      "worktree-upstream-dark-100-setting-shell.png",
+      "worktree-upstream-dark-100-error-shell.png",
+      "worktree-upstream-dark-125-setting-shell.png",
+      "worktree-upstream-dark-125-error-shell.png",
+      "worktree-upstream-dark-150-setting-shell.png",
+      "worktree-upstream-dark-150-error-shell.png"
+    ],
+    "scope": "Real settings persistence/EIO, local bare-repository fetches, pinned local creation, missing/unavailable remotes, never policy, gzip restore and normal restart. Creation hold is an isolated IPC boundary before the actual fetch; actual fetch queue locking has separate unit coverage. Native Tab/Shift+Tab reach the switch and Space invokes actual failed saves in all six theme/zoom cases, with complete focus outlines. No live external network, credential dialog, destructive cleanup or full reference acceptance is claimed."
+  },
+  "worktreeRegistration": {
+    "checks": 5,
+    "modelRequests": 0,
+    "inlineValidationCancelVerified": true,
+    "actualFailureSameIdRetryVerified": true,
+    "duplicatePreservationVerified": true,
+    "staleSourceVerified": true,
+    "backupRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 459.5,
+        "bottom": 477.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 352.3000183105469,
+        "bottom": 370.3000183105469,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 280.8333435058594,
+        "bottom": 316.8333435058594,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 459.5,
+        "bottom": 477.5,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 352.3000183105469,
+        "bottom": 370.3000183105469,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 280.8333435058594,
+        "bottom": 316.8333435058594,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 459.5,
+        "bottom": 479.5,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "登记项目",
+        "outline": 3.2,
+        "top": 352.3000183105469,
+        "bottom": 372.3000183105469,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 280.8333435058594,
+        "bottom": 300.8333435058594,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 459.5,
+        "bottom": 479.5,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "登记项目",
+        "outline": 3.2,
+        "top": 352.3000183105469,
+        "bottom": 372.3000183105469,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "登记项目",
+        "outline": 4,
+        "top": 280.8333435058594,
+        "bottom": 300.8333435058594,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-registration-invalid-light-shell.png",
+      "worktree-registration-cancel-focus-light-shell.png",
+      "worktree-registration-save-held-light-shell.png",
+      "worktree-registration-save-error-light-shell.png",
+      "worktree-registration-registered-light-shell.png",
+      "worktree-registration-stale-source-light-shell.png",
+      "worktree-registration-restore-restart-light-shell.png",
+      "worktree-registration-light-100-form-shell.png",
+      "worktree-registration-light-100-error-shell.png",
+      "worktree-registration-light-125-form-shell.png",
+      "worktree-registration-light-125-error-shell.png",
+      "worktree-registration-light-150-form-shell.png",
+      "worktree-registration-light-150-error-shell.png",
+      "worktree-registration-dark-100-form-shell.png",
+      "worktree-registration-dark-100-error-shell.png",
+      "worktree-registration-dark-125-form-shell.png",
+      "worktree-registration-dark-125-error-shell.png",
+      "worktree-registration-dark-150-form-shell.png",
+      "worktree-registration-dark-150-error-shell.png"
+    ],
+    "scope": "Actual external worktree project registration, real primary-workspace rename EIO, same-ID retries, duplicate preservation, delayed IPC source revalidation, gzip restoration and normal restart. No Git writes from registration, model requests, app-created ownership, destructive cleanup, physical picker, full reference parity or distribution acceptance is claimed."
+  },
+  "worktreeOwnership": {
+    "checks": 5,
+    "modelRequests": 0,
+    "externalNonAdoptionVerified": true,
+    "newBranchReceiptVerified": true,
+    "existingBranchReceiptVerified": true,
+    "atomicFailureRetentionVerified": true,
+    "normalRestartVerified": true,
+    "backupSeparationVerified": true,
+    "sourcePreservationVerified": true,
+    "keyboardWarningLayoutsVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "bounds": {
+          "top": 171,
+          "bottom": 189,
+          "left": 33,
+          "right": 727,
+          "viewportTop": 62,
+          "viewportBottom": 493,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "focus": {
+          "left": 661,
+          "right": 743,
+          "top": 502.5,
+          "bottom": 530.5,
+          "width": 760,
+          "height": 540,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "bounds": {
+          "top": 170.1999969482422,
+          "bottom": 188.1999969482422,
+          "left": 32.79999923706055,
+          "right": 575.200023651123,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 385.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 606.8000000119209,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "focus": {
+          "left": 510.40003662109376,
+          "right": 590.4000350952149,
+          "top": 395.50001220703126,
+          "bottom": 421.90001220703124,
+          "width": 608,
+          "height": 432,
+          "outline": "solid",
+          "outlineWidth": 1.6
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "bounds": {
+          "top": 187.6666717529297,
+          "bottom": 205.6666717529297,
+          "left": 32.66666793823242,
+          "right": 468.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 313.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 499.6666666865349,
+          "contentWidth": 499,
+          "contentScrollWidth": 499,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "focus": {
+          "left": 408.66668701171875,
+          "right": 490.0000228881836,
+          "top": 322.8333435058594,
+          "bottom": 350.8333435058594,
+          "width": 507,
+          "height": 360,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "bounds": {
+          "top": 171,
+          "bottom": 189,
+          "left": 33,
+          "right": 727,
+          "viewportTop": 62,
+          "viewportBottom": 493,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "focus": {
+          "left": 661,
+          "right": 743,
+          "top": 502.5,
+          "bottom": 530.5,
+          "width": 760,
+          "height": 540,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "bounds": {
+          "top": 170.1999969482422,
+          "bottom": 188.1999969482422,
+          "left": 32.79999923706055,
+          "right": 575.200023651123,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 385.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 606.8000000119209,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "focus": {
+          "left": 510.40003662109376,
+          "right": 590.4000350952149,
+          "top": 395.50001220703126,
+          "bottom": 421.90001220703124,
+          "width": 608,
+          "height": 432,
+          "outline": "solid",
+          "outlineWidth": 1.6
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "bounds": {
+          "top": 187.6666717529297,
+          "bottom": 205.6666717529297,
+          "left": 32.66666793823242,
+          "right": 468.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 313.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 499.6666666865349,
+          "contentWidth": 499,
+          "contentScrollWidth": 499,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "focus": {
+          "left": 408.66668701171875,
+          "right": 490.0000228881836,
+          "top": 322.8333435058594,
+          "bottom": 350.8333435058594,
+          "width": 507,
+          "height": 360,
+          "outline": "solid",
+          "outlineWidth": 2
+        }
+      }
+    ],
+    "screenshots": [
+      "worktree-ownership-external-registration-light-shell.png",
+      "worktree-ownership-created-light-shell.png",
+      "worktree-ownership-existing-branch-light-shell.png",
+      "worktree-ownership-light-100-warning-shell.png",
+      "worktree-ownership-light-125-warning-shell.png",
+      "worktree-ownership-light-150-warning-shell.png",
+      "worktree-ownership-dark-100-warning-shell.png",
+      "worktree-ownership-dark-125-warning-shell.png",
+      "worktree-ownership-dark-150-warning-shell.png",
+      "worktree-ownership-normal-restart-light-shell.png"
+    ],
+    "scope": "Actual desktop creation receipt and retained-file warning integration only. Local pin service has separate unit coverage; pin UI, destructive cleanup, snapshots/restoration, full reference parity and current distribution require separate acceptance."
+  },
+  "worktreePinning": {
+    "checks": 6,
+    "modelRequests": 0,
+    "ownedOnlyControlsVerified": true,
+    "heldFailureRetryVerified": true,
+    "staleSourceReadRecoveryVerified": true,
+    "backupSeparationVerified": true,
+    "normalRestartVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "replacementRejectionVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 370,
+        "bottom": 388,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 262,
+        "bottom": 280,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 220.83334350585938,
+        "bottom": 238.83334350585938,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 370,
+        "bottom": 388,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 262,
+        "bottom": 280,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 220.83334350585938,
+        "bottom": 238.83334350585938,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 349,
+        "bottom": 370,
+        "left": 650,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "固定工作树",
+        "outline": 3.2,
+        "top": 241,
+        "bottom": 262,
+        "left": 499.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 199.83334350585938,
+        "bottom": 220.83334350585938,
+        "left": 398,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 349,
+        "bottom": 370,
+        "left": 650,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "固定工作树",
+        "outline": 3.2,
+        "top": 241,
+        "bottom": 262,
+        "left": 499.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "固定工作树",
+        "outline": 4,
+        "top": 199.83334350585938,
+        "bottom": 220.83334350585938,
+        "left": 398,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "screenshots": [
+      "worktree-pinning-owned-external-light-shell.png",
+      "worktree-pinning-save-held-light-shell.png",
+      "worktree-pinning-save-error-light-shell.png",
+      "worktree-pinning-pinned-light-shell.png",
+      "worktree-pinning-stale-source-light-shell.png",
+      "worktree-pinning-record-read-error-light-shell.png",
+      "worktree-pinning-backup-restored-light-shell.png",
+      "worktree-pinning-normal-restart-pinned-light-shell.png",
+      "worktree-pinning-light-100-keyboard-shell.png",
+      "worktree-pinning-light-100-error-shell.png",
+      "worktree-pinning-light-125-keyboard-shell.png",
+      "worktree-pinning-light-125-error-shell.png",
+      "worktree-pinning-light-150-keyboard-shell.png",
+      "worktree-pinning-light-150-error-shell.png",
+      "worktree-pinning-dark-100-keyboard-shell.png",
+      "worktree-pinning-dark-100-error-shell.png",
+      "worktree-pinning-dark-125-keyboard-shell.png",
+      "worktree-pinning-dark-125-error-shell.png",
+      "worktree-pinning-dark-150-keyboard-shell.png",
+      "worktree-pinning-dark-150-error-shell.png",
+      "worktree-pinning-replacement-rejected-dark-shell.png"
+    ],
+    "scope": "Actual local worktree pin UI, strict full-window bridge, write/source/read failures, same-profile gzip restore separation, local restart and replaced-directory rejection. Quick Chat restrictions, cross-profile creation-authority transfer, snapshots, destructive cleanup, full reference parity and current distribution require separate evidence."
+  },
+  "worktreeSnapshots": {
+    "checks": 8,
+    "modelRequests": 0,
+    "ownedOnlyCaptureVerified": true,
+    "privateSaveFailureVerified": true,
+    "backupSeparationVerified": true,
+    "normalRestartVerified": true,
+    "detachedExactRestoreVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "restoreKeyboardVerified": true,
+    "acceptedShutdownVerified": true,
+    "corruptReadRecoveryVerified": true,
+    "replacementRejectionVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "top": 406,
+        "bottom": 424,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "top": 298,
+        "bottom": 334,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "top": 228.1666717529297,
+        "bottom": 264.1666717529297,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "top": 406,
+        "bottom": 424,
+        "left": 158,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753,
+        "contentWidth": 624,
+        "contentScrollWidth": 624,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "top": 298,
+        "bottom": 334,
+        "left": 157.60000610351562,
+        "right": 572.8000183105469,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578,
+        "contentWidth": 473,
+        "contentScrollWidth": 473,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "top": 228.1666717529297,
+        "bottom": 264.1666717529297,
+        "left": 157.33334350585938,
+        "right": 471.3333435058594,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297,
+        "contentWidth": 371,
+        "contentScrollWidth": 371,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 378,
+        "bottom": 398,
+        "left": 626,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "保存工作树快照",
+        "outline": 3.2,
+        "top": 270,
+        "bottom": 290,
+        "left": 475.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 200.1666717529297,
+        "bottom": 220.1666717529297,
+        "left": 374,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 378,
+        "bottom": 398,
+        "left": 626,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "保存工作树快照",
+        "outline": 3.2,
+        "top": 270,
+        "bottom": 290,
+        "left": 475.20001220703125,
+        "right": 572.8000106811523,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "保存工作树快照",
+        "outline": 4,
+        "top": 200.1666717529297,
+        "bottom": 220.1666717529297,
+        "left": 374,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "restoreLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "error": {
+          "top": 484.5,
+          "bottom": 502.5,
+          "left": 158,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "top": 510.5,
+          "bottom": 530.5,
+          "left": 158,
+          "right": 220,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "top": 510.5,
+          "bottom": 530.5,
+          "left": 662,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "error": {
+          "top": 359.1000061035156,
+          "bottom": 395.1000061035156,
+          "left": 157.60000610351562,
+          "right": 572.8000183105469,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
+          "left": 157.60000610351562,
+          "right": 219.20000839233398,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
+          "left": 511.20001220703125,
+          "right": 572.8000144958496,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "error": {
+          "top": 287.16668701171875,
+          "bottom": 323.16668701171875,
+          "left": 157.33334350585938,
+          "right": 471.3333435058594,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "top": 331.16668701171875,
+          "bottom": 351.16668701171875,
+          "left": 157.33334350585938,
+          "right": 218.66667938232422,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "top": 331.16668701171875,
+          "bottom": 351.16668701171875,
+          "left": 410,
+          "right": 471.33333587646484,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "error": {
+          "top": 484.5,
+          "bottom": 502.5,
+          "left": 158,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "top": 510.5,
+          "bottom": 530.5,
+          "left": 158,
+          "right": 220,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "top": 510.5,
+          "bottom": 530.5,
+          "left": 662,
+          "right": 724,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753,
+          "contentWidth": 624,
+          "contentScrollWidth": 624,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "error": {
+          "top": 359.1000061035156,
+          "bottom": 395.1000061035156,
+          "left": 157.60000610351562,
+          "right": 572.8000183105469,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
+          "left": 157.60000610351562,
+          "right": 219.20000839233398,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
+          "left": 511.20001220703125,
+          "right": 572.8000144958496,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578,
+          "contentWidth": 473,
+          "contentScrollWidth": 473,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "error": {
+          "top": 287.16668701171875,
+          "bottom": 323.16668701171875,
+          "left": 157.33334350585938,
+          "right": 471.3333435058594,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "top": 331.16668701171875,
+          "bottom": 351.16668701171875,
+          "left": 157.33334350585938,
+          "right": 218.66667938232422,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "top": 331.16668701171875,
+          "bottom": 351.16668701171875,
+          "left": 410,
+          "right": 471.33333587646484,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297,
+          "contentWidth": 371,
+          "contentScrollWidth": 371,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "draftRetained": true,
+        "cancelFocusVerified": true
+      }
+    ],
+    "restoreKeyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 489.5,
+        "bottom": 509.5,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "恢复快照",
+        "outline": 3.2,
+        "top": 382.3000183105469,
+        "bottom": 402.3000183105469,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 310.5,
+        "bottom": 330.5,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 489.5,
+        "bottom": 509.5,
+        "left": 662,
+        "right": 724,
+        "viewportTop": 62,
+        "viewportBottom": 539,
+        "viewportLeft": 129,
+        "viewportRight": 753
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "恢复快照",
+        "outline": 3.2,
+        "top": 382.3000183105469,
+        "bottom": 402.3000183105469,
+        "left": 511.20001220703125,
+        "right": 572.8000144958496,
+        "viewportTop": 61.60000228881836,
+        "viewportBottom": 431.60000228881836,
+        "viewportLeft": 128.8000030517578,
+        "viewportRight": 601.8000030517578
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "恢复快照",
+        "outline": 4,
+        "top": 310.5,
+        "bottom": 330.5,
+        "left": 410,
+        "right": 471.33333587646484,
+        "viewportTop": 61.333335876464844,
+        "viewportBottom": 359.33333587646484,
+        "viewportLeft": 128.6666717529297,
+        "viewportRight": 499.6666717529297
+      }
+    ],
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\snapshot-evidence-a3f07052",
+    "screenshots": [
+      "worktree-snapshots-saved-light-shell.png",
+      "worktree-snapshots-save-failure-light-shell.png",
+      "worktree-snapshots-normal-restart-light-shell.png",
+      "worktree-snapshots-existing-target-rejected-light-shell.png",
+      "worktree-snapshots-restored-new-folder-light-shell.png",
+      "worktree-snapshots-light-100-keyboard-shell.png",
+      "worktree-snapshots-light-100-error-shell.png",
+      "worktree-snapshots-light-100-restore-keyboard-shell.png",
+      "worktree-snapshots-light-100-restore-error-shell.png",
+      "worktree-snapshots-light-125-keyboard-shell.png",
+      "worktree-snapshots-light-125-error-shell.png",
+      "worktree-snapshots-light-125-restore-keyboard-shell.png",
+      "worktree-snapshots-light-125-restore-error-shell.png",
+      "worktree-snapshots-light-150-keyboard-shell.png",
+      "worktree-snapshots-light-150-error-shell.png",
+      "worktree-snapshots-light-150-restore-keyboard-shell.png",
+      "worktree-snapshots-light-150-restore-error-shell.png",
+      "worktree-snapshots-dark-100-keyboard-shell.png",
+      "worktree-snapshots-dark-100-error-shell.png",
+      "worktree-snapshots-dark-100-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-100-restore-error-shell.png",
+      "worktree-snapshots-dark-125-keyboard-shell.png",
+      "worktree-snapshots-dark-125-error-shell.png",
+      "worktree-snapshots-dark-125-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-125-restore-error-shell.png",
+      "worktree-snapshots-dark-150-keyboard-shell.png",
+      "worktree-snapshots-dark-150-error-shell.png",
+      "worktree-snapshots-dark-150-restore-keyboard-shell.png",
+      "worktree-snapshots-dark-150-restore-error-shell.png",
+      "worktree-snapshots-read-failure-light-shell.png",
+      "worktree-snapshots-read-recovered-light-shell.png",
+      "worktree-snapshots-accepted-shutdown-reopen-light-shell.png",
+      "worktree-snapshots-replacement-rejected-light-shell.png"
+    ],
+    "scope": "Actual local snapshot save/list/new-folder restore, safe failures, private/shared-backup separation, normal restart, accepted publication drain during actual application quit, and native save/restore theme/zoom keyboard checks. Destructive/automatic cleanup, complete reference adoption and current distribution require separate evidence."
+  },
+  "worktreeCleanup": {
+    "checks": 10,
+    "modelRequests": 0,
+    "ownedOnlyControlsVerified": true,
+    "dirtyPinLockProtectionVerified": true,
+    "activeTerminalProtectionVerified": true,
+    "replacementRejectionVerified": true,
+    "privateFailureGateVerified": true,
+    "referenceZoomKeyboardVerified": true,
+    "exactDeleteRestoreVerified": true,
+    "fixedChatAfterRemovalVerified": true,
+    "metadataFailureVerified": true,
+    "postCreateAutomaticVerified": true,
+    "disableConfirmationVerified": true,
+    "acceptedShutdownVerified": true,
+    "sourcePreservationVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 134.5,
+          "bottom": 152.5,
+          "left": 21,
+          "right": 739,
+          "viewportTop": 62,
+          "viewportBottom": 472,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 485,
+          "bottom": 505,
+          "left": 595,
+          "right": 633,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 485,
+          "bottom": 505,
+          "left": 641,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 155.10000610351562,
+          "bottom": 173.10000610351562,
+          "left": 20.80000114440918,
+          "right": 587.2000255584717,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 363.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 607.2000244259834,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 444,
+          "right": 481.60000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 489.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 171.33334350585938,
+          "bottom": 207.33334350585938,
+          "left": 20.666667938232422,
+          "right": 486.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 291.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 506.00001019239426,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 304,
+          "bottom": 324,
+          "left": 343.3333435058594,
+          "right": 380.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 304,
+          "bottom": 324,
+          "left": 388.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 134.5,
+          "bottom": 152.5,
+          "left": 21,
+          "right": 739,
+          "viewportTop": 62,
+          "viewportBottom": 472,
+          "viewportLeft": 1,
+          "viewportRight": 759,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 485,
+          "bottom": 505,
+          "left": 595,
+          "right": 633,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 485,
+          "bottom": 505,
+          "left": 641,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 155.10000610351562,
+          "bottom": 173.10000610351562,
+          "left": 20.80000114440918,
+          "right": 587.2000255584717,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 363.60000228881836,
+          "viewportLeft": 0.800000011920929,
+          "viewportRight": 607.2000244259834,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 444,
+          "right": 481.60000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 489.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "error": {
+          "label": "工作树包含修改、未跟踪或忽略文件，文件已保留。请先提交或移走这些文件，再重试。",
+          "top": 171.33334350585938,
+          "bottom": 207.33334350585938,
+          "left": 20.666667938232422,
+          "right": 486.0000114440918,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 291.33333587646484,
+          "viewportLeft": 0.6666666865348816,
+          "viewportRight": 506.00001019239426,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "cancel": {
+          "label": "取消",
+          "top": 304,
+          "bottom": 324,
+          "left": 343.3333435058594,
+          "right": 380.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "保存快照并删除",
+          "top": 304,
+          "bottom": 324,
+          "left": 388.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      }
+    ],
+    "keyboardLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "label": "保存快照并删除",
+        "top": 485,
+        "bottom": 505,
+        "left": 641,
+        "right": 739,
+        "viewportTop": 0,
+        "viewportBottom": 540,
+        "viewportLeft": 0,
+        "viewportRight": 760,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 758,
+        "contentScrollWidth": 758,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "label": "保存快照并删除",
+        "top": 376.3999938964844,
+        "bottom": 396.3999938964844,
+        "left": 489.6000061035156,
+        "right": 587.2000045776367,
+        "viewportTop": 0,
+        "viewportBottom": 432,
+        "viewportLeft": 0,
+        "viewportRight": 608,
+        "outline": 3.2,
+        "focused": true,
+        "contentWidth": 606,
+        "contentScrollWidth": 606,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "label": "保存快照并删除",
+        "top": 304,
+        "bottom": 324,
+        "left": 388.66668701171875,
+        "right": 486.0000228881836,
+        "viewportTop": 0,
+        "viewportBottom": 360,
+        "viewportLeft": 0,
+        "viewportRight": 506.66668701171875,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 505,
+        "contentScrollWidth": 505,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "label": "保存快照并删除",
+        "top": 485,
+        "bottom": 505,
+        "left": 641,
+        "right": 739,
+        "viewportTop": 0,
+        "viewportBottom": 540,
+        "viewportLeft": 0,
+        "viewportRight": 760,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 758,
+        "contentScrollWidth": 758,
+        "documentWidth": 760,
+        "viewportWidth": 760
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "label": "保存快照并删除",
+        "top": 376.3999938964844,
+        "bottom": 396.3999938964844,
+        "left": 489.6000061035156,
+        "right": 587.2000045776367,
+        "viewportTop": 0,
+        "viewportBottom": 432,
+        "viewportLeft": 0,
+        "viewportRight": 608,
+        "outline": 3.2,
+        "focused": true,
+        "contentWidth": 606,
+        "contentScrollWidth": 606,
+        "documentWidth": 608,
+        "viewportWidth": 608
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "label": "保存快照并删除",
+        "top": 304,
+        "bottom": 324,
+        "left": 388.66668701171875,
+        "right": 486.0000228881836,
+        "viewportTop": 0,
+        "viewportBottom": 360,
+        "viewportLeft": 0,
+        "viewportRight": 506.66668701171875,
+        "outline": 4,
+        "focused": true,
+        "contentWidth": 505,
+        "contentScrollWidth": 505,
+        "documentWidth": 507,
+        "viewportWidth": 507
+      }
+    ],
+    "disableLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 559,
+          "right": 645,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 653,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 408,
+          "right": 493.5999984741211,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 501.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 307.3333435058594,
+          "right": 392.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 400.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 559,
+          "right": 645,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 485,
+          "bottom": 505,
+          "left": 653,
+          "right": 739,
+          "viewportTop": 0,
+          "viewportBottom": 540,
+          "viewportLeft": 0,
+          "viewportRight": 760,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 758,
+          "contentScrollWidth": 758,
+          "documentWidth": 760,
+          "viewportWidth": 760
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 408,
+          "right": 493.5999984741211,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 3.2,
+          "focused": true,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 376.3999938964844,
+          "bottom": 396.3999938964844,
+          "left": 501.6000061035156,
+          "right": 587.2000045776367,
+          "viewportTop": 0,
+          "viewportBottom": 432,
+          "viewportLeft": 0,
+          "viewportRight": 608,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 606,
+          "contentScrollWidth": 606,
+          "documentWidth": 608,
+          "viewportWidth": 608
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "cancel": {
+          "label": "保留自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 307.3333435058594,
+          "right": 392.6666793823242,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 4,
+          "focused": true,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        },
+        "submit": {
+          "label": "停用自动清理",
+          "top": 304,
+          "bottom": 324,
+          "left": 400.66668701171875,
+          "right": 486.0000228881836,
+          "viewportTop": 0,
+          "viewportBottom": 360,
+          "viewportLeft": 0,
+          "viewportRight": 506.66668701171875,
+          "outline": 0,
+          "focused": false,
+          "contentWidth": 505,
+          "contentScrollWidth": 505,
+          "documentWidth": 507,
+          "viewportWidth": 507
+        }
+      }
+    ],
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K\\cleanup-evidence-311eaa2e",
+    "screenshots": [
+      "worktree-cleanup-cancel-owned-external-light-shell.png",
+      "worktree-cleanup-pinned-protected-light-shell.png",
+      "worktree-cleanup-active-terminal-protected-light-shell.png",
+      "worktree-cleanup-private-save-held-light-shell.png",
+      "worktree-cleanup-private-save-error-light-shell.png",
+      "worktree-cleanup-light-100-keyboard-shell.png",
+      "worktree-cleanup-light-100-error-shell.png",
+      "worktree-cleanup-light-125-keyboard-shell.png",
+      "worktree-cleanup-light-125-error-shell.png",
+      "worktree-cleanup-light-150-keyboard-shell.png",
+      "worktree-cleanup-light-150-error-shell.png",
+      "worktree-cleanup-dark-100-keyboard-shell.png",
+      "worktree-cleanup-dark-100-error-shell.png",
+      "worktree-cleanup-dark-125-keyboard-shell.png",
+      "worktree-cleanup-dark-125-error-shell.png",
+      "worktree-cleanup-dark-150-keyboard-shell.png",
+      "worktree-cleanup-dark-150-error-shell.png",
+      "worktree-cleanup-removed-with-snapshot-light-shell.png",
+      "worktree-cleanup-fixed-chat-after-project-removal-light-shell.png",
+      "worktree-cleanup-automatic-created-cleanup-light-shell.png",
+      "worktree-cleanup-light-100-disable-cancel-shell.png",
+      "worktree-cleanup-light-125-disable-cancel-shell.png",
+      "worktree-cleanup-light-150-disable-cancel-shell.png",
+      "worktree-cleanup-dark-100-disable-cancel-shell.png",
+      "worktree-cleanup-dark-125-disable-cancel-shell.png",
+      "worktree-cleanup-dark-150-disable-cancel-shell.png",
+      "worktree-cleanup-replacement-rejected-light-shell.png"
+    ],
+    "scope": "Real native manual cleanup, strict bridge, active PTY and replaced-receipt protection, durable snapshots/new-folder restoration, associated fixed-chat protection, post-create scheduler, conservative automatic trimming, native confirmation matrix and accepted cleanup drain. External filesystem races are not OS-locked. Complete reference adoption and installed/portable release require separate evidence."
+  },
   "toolActivities": {
     "checks": 8,
     "nativeStates": [
@@ -5250,7 +8602,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.5,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5265,7 +8617,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.8999938964844,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5280,7 +8632,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 272.16668701171875,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5295,7 +8647,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.5,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5310,7 +8662,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.8999938964844,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5325,7 +8677,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 272.16668701171875,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -5399,7 +8751,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "f0eaaa44-dea0-4ea9-a206-bf88dcc25444",
+    "threadId": "cb15b1f9-8e30-4d15-a925-5ff626bb02d4",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -5483,9 +8835,9 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-jLg3Bi"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-pZir5K"
   },
   "normalCloseVerified": true,
-  "executableSha256": "17f97e4eda7ac0aafd939ebcc36df99ff35126784fea2b781413da5b0ebe7861",
-  "archiveSha256": "d54b9d550455608b7094324aadd92ca7cd7b879b7fc496165c4bbd8ef8d2634b"
+  "executableSha256": "4a14a089efabc97f94967cbff3e277977ba7f7988d5283624a852725f62c0cb3",
+  "archiveSha256": "9e7491f437d88500e0e3b2864b1b2bb8482fc9366c9f63cd751fc320ea2a161a"
 }
