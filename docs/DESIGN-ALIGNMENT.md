@@ -15,8 +15,8 @@
 
 快捷浮层当前宽度上限为 420px。参考中的 520px 属于 `.command-menu-dialog` 的静态居中对话框上限，尚未证明它对应输入区锚定浮层；继续核对入口与调用链，不将两者直接等同。
 
-最新光标恢复修复已通过 1,533 项单元、135 项相关检查和完整源码 368 项；74 次正常退出、最长 1,634ms，无强制。本轮保留 39 份新报告和 548 张原图，其中 12 张完整 760×540 快捷菜单图逐张原尺寸检查。明暗主题各三档 Electron 应用缩放下，选中行、焦点及视口约束通过；其余原图未全部视觉复核。这些结果不替代新包、实际安装、物理系统 DPI 或全部参考流程验收。
+最新输出通知修复已通过 1,539 项单元、51 项相关检查和完整源码 368 项；74 次正常退出、最长 1,845ms，无强制。本轮保留 39 份新报告和 548 张原图，其中 12 张完整 760×540 快捷菜单图及九张工具原图逐张原尺寸检查。明暗主题各三档 Electron 应用缩放下，菜单选中行与本次工具摘要焦点均可见；其余原图未全部视觉复核。首次工具专项浅色 150% 捕获的视口差异尚未唯一诊断，不将重放通过写成界面修复。这些结果不替代新包、实际安装、物理系统 DPI 或全部参考流程验收。
 
-[最新源码证据](../verification/composer-selection-focus-full-source-review-result.json) · [修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)
+[最新源码证据](../verification/command-progress-full-source-review-result.json) · [光标修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)
 
 整理前的全部记录逐字保留在[设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-13.md)，SHA-256 为 `5312c3f524b04370df8a46b8031bcc8d8757ef8073ba1d017886c85cec3e17fd`；其中各旧包的通过范围、失败现场和剩余要求继续有效。

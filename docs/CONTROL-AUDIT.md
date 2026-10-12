@@ -16,10 +16,10 @@
 | 输入快捷选择 | elevated-secondary 表面、圆角、阴影、独立滚动；420px 上限，避开窗口栏 | 参考 520px 是命令对话框候选，不直接套给锚定浮层 |
 | 焦点恢复 | 设置保存、工作树刷新完成后回焦；用户已移到其他控件时保持其选择 | 最新助手／项目光标恢复在匹配草稿的布局提交时完成 |
 
-最新源码 368 项、74 次正常退出通过，最长 1,634ms；12 张本轮快捷菜单原图逐张原尺寸检查并匹配哈希。旧包在 149 项后出现重复输入，精确受控对照已复现；修正版保留用户后续全选范围，实际输入完整替换，三轮连续切换通过。此前方向键超时的唯一原因仍未确认。
+最新源码 368 项、74 次正常退出通过，最长 1,845ms；本轮 12 张快捷菜单及九张工具原图逐张原尺寸检查并匹配哈希。命令最后一段输出的通知已补齐；本次六组工具摘要和焦点均可见，首次专项浅色 150% 的捕获差异未唯一诊断。此前光标修复保留用户后续全选范围、实际输入完整替换，三轮连续切换通过；此前方向键超时的唯一原因仍未确认。
 
 新包的控件、文字提示、完整原生回归与实际安装仍需完成；不把旧包或部分原图写成全部页面、全部无障碍和真实系统缩放通过。
 
-[最新源码回归](../verification/composer-selection-focus-full-source-review-result.json) · [光标修复与对照](../verification/composer-selection-focus-acceptance-review-result.json) · [设计范围](DESIGN-ALIGNMENT.md) · [发布状态](RELEASE.md)
+[最新源码回归](../verification/command-progress-full-source-review-result.json) · [光标修复与对照](../verification/composer-selection-focus-acceptance-review-result.json) · [设计范围](DESIGN-ALIGNMENT.md) · [发布状态](RELEASE.md)
 
 整理前的详细数值、旧包原图与失败记录逐字保留在[控件历史](CONTROL-AUDIT-HISTORY-2026-10-13.md)，SHA-256 为 `daa72af4fd6871649e97b4d5435daf7563f98628df080737571801a9b495cc03`。历史中的剩余要求没有取消。

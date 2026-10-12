@@ -2,7 +2,7 @@
 
 ## 未发布
 
-修复命令输出节流遗漏最后一段更新的问题：连续输出间隔不足 100 毫秒时，最后一段也会在执行期间显示；关闭、报错和取消后不再通知。旧实现两个确定性测试失败，修正版六项时序／生命周期测试、51 项相关、完整 1,539 项单元、类型、构建及八项真实工具专项通过。覆盖率为语句 97.02%、分支 94.57%、函数 97.77%、行 99.48%。此前 `557cc83b` 包在 355 项后输出等待超时的现场保留；当前修复的完整源码、新包、安装和分发继续待验收。九张工具原图已检查，浅色 150% 捕获未显示摘要控件，不能据此声明全部布局完成。[输出修复](verification/command-progress-acceptance-review-result.json) · [失败包](verification/composer-selection-focus-package-initial-failure-review-result.json)
+修复命令输出节流遗漏最后一段更新的问题：连续输出间隔不足 100 毫秒时，最后一段也会在执行期间显示；关闭、报错和取消后不再通知。旧实现两个确定性测试失败，修正版六项时序／生命周期、51 项相关、完整 1,539 项单元、类型、构建及八项真实工具专项通过。覆盖率为语句 97.02%、分支 94.57%、函数 97.77%、行 99.48%。最新完整源码 `58e6b8ca` 368 项、74 次正常退出、最长 1,845ms 通过，无强制；39 份新报告、548 张原图及匹配编译文件归档，12 张菜单和九张工具原图逐张复核。本次六组工具摘要可见，首次专项浅色 150% 捕获差异保留且未唯一诊断，不称重放为界面修复。此前 `557cc83b` 包在 355 项后输出等待超时的现场保留；新包、安装和分发继续待验收。[完整源码](verification/command-progress-full-source-review-result.json) · [输出修复](verification/command-progress-acceptance-review-result.json) · [失败包](verification/composer-selection-focus-package-initial-failure-review-result.json)
 
 修复选择助手或项目后，延后的光标恢复覆盖用户全选范围、导致下一次输入重复前缀的问题。恢复改在匹配草稿与上下文的布局提交时执行；精确旧包与新源码的受控原生对照分别复现失败和通过，实际输入完整替换、连续三轮切换及原七项专项通过。类型、135 项相关、完整 1,533 项单元和重新构建通过；最新完整源码 368 项、74 次正常退出通过，最长 1,634ms，无强制，39 份新报告、548 张原图与 236 个匹配编译文件归档，12 张菜单原图逐张复核。新包与实际安装仍待完成，旧包 149 项后失败的现场保留，此前方向键超时原因仍未确认。[修复与对照](verification/composer-selection-focus-acceptance-review-result.json) · [最新完整源码](verification/composer-selection-focus-full-source-review-result.json) · [旧包失败](verification/composer-actions-package-initial-failure-review-result.json)
 

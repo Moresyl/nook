@@ -12,12 +12,14 @@
 | 相关单元 | 命令、执行和工具记录 51 项通过 |
 | 完整单元与覆盖率 | 132 文件／1,539 项通过；语句 97.02%、分支 94.57%、函数 97.77%、行 99.48% |
 | 工具记录专项 | 八项通过；第二段输出、取消、原文复制、快速聊天和实际重启；两次正常退出 674ms／150ms |
-| 完整源码回归 | 输出修复待完整回归；此前光标修复 `28c39234` 的 368 项／74 次正常退出只属于旧应用体 |
-| 本轮证据 | 236 个新编译文件、17 份源码及测试文件匹配；九张工具原图逐张检查。浅色 150% 捕获未显示摘要控件，尚不接受为六组完整可见截图 |
+| 完整源码回归 | 最新输出修复 `58e6b8ca`：368 项、74 次正常退出、最长 1,845ms，无强制结束 |
+| 本轮证据 | 39 份新报告、548 张原图、236 个编译文件与 17 份源码／测试文件匹配；21 张原图逐张检查，包括 12 张菜单、九张工具；本次六组工具摘要及焦点圈可见 |
 | 新包、实际安装及分发 | 待完成；原五个分发专项、安装／卸载及十一份匹配运行记录继续必需 |
 | 托管流水线 | 最新本地提交尚未推送；此前运行因账户付款／支出额度限制，验证零步骤失败、发布跳过 |
 
-[输出修复与单元对照](../verification/command-progress-acceptance-review-result.json) · [当前包失败现场](../verification/composer-selection-focus-package-initial-failure-review-result.json) · [此前光标修复](../verification/composer-selection-focus-acceptance-review-result.json) · [此前完整源码](../verification/composer-selection-focus-full-source-review-result.json)
+[最新完整源码](../verification/command-progress-full-source-review-result.json) · [输出修复与单元对照](../verification/command-progress-acceptance-review-result.json) · [当前包失败现场](../verification/composer-selection-focus-package-initial-failure-review-result.json) · [此前光标修复](../verification/composer-selection-focus-acceptance-review-result.json)
+
+首次工具专项的浅色 150% 捕获未显示摘要控件，原图独立保留；完整回归的新原图中六组均可见，但捕获差异原因尚未唯一确认，不将重放通过称作界面修复。其他 527 张完整回归原图未全部视觉复核。
 
 此前光标修复将助手／项目选择后的恢复绑定对应草稿与上下文的布局提交，避免覆盖用户随后全选的范围；旧包 `[0,5]`→`[5,5]` 与修正版保持 `[0,5]` 的受控原生对照保留。旧包 149 项后失败及四轮源码失败均不计入当前包验收。
 
