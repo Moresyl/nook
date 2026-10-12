@@ -2,6 +2,8 @@
 
 Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
 
+最新全局搜索的尺寸、表面与定位修正已通过源码命令专项；下文完整本机分发结果属于此前 `f71dc034` 应用体，新界面仍需重新打包与实际安装验收。[搜索专项](../verification/command-palette-acceptance-review-result.json)
+
 | 能力 | 已有实现 | 主要边界 |
 | --- | --- | --- |
 | 聊天与模型 | 流式回复、停止与重试、回复版本、编辑、分支、临时聊天、独立草稿及 2–4 模型比较；Responses、兼容 API、Anthropic、Gemini GenerateContent、Azure、Ollama | 真实云服务质量、完整能力元数据与上下文计数；Gemini Interactions／Entra ID 未提供 |

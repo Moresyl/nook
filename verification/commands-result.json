@@ -1,9 +1,484 @@
 {
-  "verifiedAt": "2026-10-12T21:04:10.807Z",
+  "verifiedAt": "2026-10-12T23:11:03.507Z",
   "variant": "development executable",
-  "checks": 6,
   "runtimeErrors": [],
+  "checks": 6,
   "providerRequests": 2,
   "commandRuns": 2,
-  "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
+  "layouts": [
+    {
+      "theme": "light",
+      "zoom": 1,
+      "left": 120,
+      "right": 640,
+      "top": 27,
+      "bottom": 513,
+      "width": 520,
+      "viewportWidth": 760,
+      "viewportHeight": 540,
+      "documentWidth": 760,
+      "contentWidth": 518,
+      "contentScrollWidth": 518,
+      "background": "rgb(249, 249, 249)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 141,
+        "right": 619,
+        "top": 109,
+        "bottom": 131
+      },
+      "footer": {
+        "left": 121,
+        "right": 639,
+        "top": 467,
+        "bottom": 512
+      },
+      "list": {
+        "left": 141,
+        "right": 619,
+        "top": 143,
+        "bottom": 430.5
+      },
+      "selected": {
+        "left": 141,
+        "right": 613,
+        "top": 373.5,
+        "bottom": 429
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(0, 0, 0, 0.05)",
+      "empty": {
+        "top": 147,
+        "bottom": 163.5,
+        "dialogTop": 27,
+        "dialogBottom": 229.5,
+        "viewportHeight": 540,
+        "overflow": false
+      }
+    },
+    {
+      "theme": "light",
+      "zoom": 1.25,
+      "left": 44,
+      "right": 564,
+      "top": 21.600000381469727,
+      "bottom": 410.4000186920166,
+      "width": 520,
+      "viewportWidth": 608,
+      "viewportHeight": 432,
+      "documentWidth": 608,
+      "contentWidth": 518,
+      "contentScrollWidth": 518,
+      "background": "rgb(249, 249, 249)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 64.80000305175781,
+        "right": 543.1999969482422,
+        "top": 103.20000457763672,
+        "bottom": 125.20000457763672
+      },
+      "footer": {
+        "left": 44.79999923706055,
+        "right": 563.200023651123,
+        "top": 364.8000183105469,
+        "bottom": 409.6000175476074
+      },
+      "list": {
+        "left": 64.80000305175781,
+        "right": 543.1999969482422,
+        "top": 137.1999969482422,
+        "bottom": 328.3000030517578
+      },
+      "selected": {
+        "left": 64.80000305175781,
+        "right": 537.6000213623047,
+        "top": 271.1000061035156,
+        "bottom": 326.200008392334
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(0, 0, 0, 0.05)",
+      "empty": {
+        "top": 141.1999969482422,
+        "bottom": 157.6999969482422,
+        "dialogTop": 21.600000381469727,
+        "dialogBottom": 223.2999973297119,
+        "viewportHeight": 432,
+        "overflow": false
+      }
+    },
+    {
+      "theme": "light",
+      "zoom": 1.5,
+      "left": 20.27083396911621,
+      "right": 486.3958339691162,
+      "top": 18,
+      "bottom": 342,
+      "width": 466.125,
+      "viewportWidth": 507,
+      "viewportHeight": 360,
+      "documentWidth": 507,
+      "contentWidth": 465,
+      "contentScrollWidth": 465,
+      "background": "rgb(249, 249, 249)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 40.9375,
+        "right": 465.72918701171875,
+        "top": 99.33333587646484,
+        "bottom": 121.33333587646484
+      },
+      "footer": {
+        "left": 20.9375,
+        "right": 485.72918701171875,
+        "top": 296.66668701171875,
+        "bottom": 341.3333549499512
+      },
+      "list": {
+        "left": 40.9375,
+        "right": 465.72918701171875,
+        "top": 133.33334350585938,
+        "bottom": 260.1666793823242
+      },
+      "selected": {
+        "left": 40.9375,
+        "right": 459.72918701171875,
+        "top": 203.5,
+        "bottom": 258.33333587646484
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(0, 0, 0, 0.05)",
+      "empty": {
+        "top": 137.33334350585938,
+        "bottom": 153.83334350585938,
+        "dialogTop": 18,
+        "dialogBottom": 219.1666717529297,
+        "viewportHeight": 360,
+        "overflow": false
+      }
+    },
+    {
+      "theme": "dark",
+      "zoom": 1,
+      "left": 120,
+      "right": 640,
+      "top": 27,
+      "bottom": 513,
+      "width": 520,
+      "viewportWidth": 760,
+      "viewportHeight": 540,
+      "documentWidth": 760,
+      "contentWidth": 518,
+      "contentScrollWidth": 518,
+      "background": "rgb(65, 65, 65)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 141,
+        "right": 619,
+        "top": 109,
+        "bottom": 131
+      },
+      "footer": {
+        "left": 121,
+        "right": 639,
+        "top": 467,
+        "bottom": 512
+      },
+      "list": {
+        "left": 141,
+        "right": 619,
+        "top": 143,
+        "bottom": 430.5
+      },
+      "selected": {
+        "left": 141,
+        "right": 613,
+        "top": 373.5,
+        "bottom": 429
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(255, 255, 255, 0.07)",
+      "empty": {
+        "top": 147,
+        "bottom": 163.5,
+        "dialogTop": 27,
+        "dialogBottom": 229.5,
+        "viewportHeight": 540,
+        "overflow": false
+      }
+    },
+    {
+      "theme": "dark",
+      "zoom": 1.25,
+      "left": 44,
+      "right": 564,
+      "top": 21.600000381469727,
+      "bottom": 410.4000186920166,
+      "width": 520,
+      "viewportWidth": 608,
+      "viewportHeight": 432,
+      "documentWidth": 608,
+      "contentWidth": 518,
+      "contentScrollWidth": 518,
+      "background": "rgb(65, 65, 65)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 64.80000305175781,
+        "right": 543.1999969482422,
+        "top": 103.20000457763672,
+        "bottom": 125.20000457763672
+      },
+      "footer": {
+        "left": 44.79999923706055,
+        "right": 563.200023651123,
+        "top": 364.8000183105469,
+        "bottom": 409.6000175476074
+      },
+      "list": {
+        "left": 64.80000305175781,
+        "right": 543.1999969482422,
+        "top": 137.1999969482422,
+        "bottom": 328.3000030517578
+      },
+      "selected": {
+        "left": 64.80000305175781,
+        "right": 537.6000213623047,
+        "top": 271.1000061035156,
+        "bottom": 326.200008392334
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(255, 255, 255, 0.07)",
+      "empty": {
+        "top": 141.1999969482422,
+        "bottom": 157.6999969482422,
+        "dialogTop": 21.600000381469727,
+        "dialogBottom": 223.2999973297119,
+        "viewportHeight": 432,
+        "overflow": false
+      }
+    },
+    {
+      "theme": "dark",
+      "zoom": 1.5,
+      "left": 20.27083396911621,
+      "right": 486.3958339691162,
+      "top": 18,
+      "bottom": 342,
+      "width": 466.125,
+      "viewportWidth": 507,
+      "viewportHeight": 360,
+      "documentWidth": 507,
+      "contentWidth": 465,
+      "contentScrollWidth": 465,
+      "background": "rgb(65, 65, 65)",
+      "radius": "16px",
+      "focused": true,
+      "input": {
+        "left": 40.9375,
+        "right": 465.72918701171875,
+        "top": 99.33333587646484,
+        "bottom": 121.33333587646484
+      },
+      "footer": {
+        "left": 20.9375,
+        "right": 485.72918701171875,
+        "top": 296.66668701171875,
+        "bottom": 341.3333549499512
+      },
+      "list": {
+        "left": 40.9375,
+        "right": 465.72918701171875,
+        "top": 133.33334350585938,
+        "bottom": 260.1666793823242
+      },
+      "selected": {
+        "left": 40.9375,
+        "right": 459.72918701171875,
+        "top": 203.5,
+        "bottom": 258.33333587646484
+      },
+      "selectedLabel": "导出聊天",
+      "selectedOpacity": "1",
+      "selectedBackground": "rgba(255, 255, 255, 0.07)",
+      "empty": {
+        "top": 137.33334350585938,
+        "bottom": 153.83334350585938,
+        "dialogTop": 18,
+        "dialogBottom": 219.1666717529297,
+        "viewportHeight": 360,
+        "overflow": false
+      }
+    }
+  ],
+  "captures": [
+    {
+      "filename": "command-palette-light-100-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-light-100-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "command-palette-light-125-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-light-125-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "command-palette-light-150-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-light-150-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "command-palette-dark-100-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-dark-100-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "command-palette-dark-125-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-dark-125-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    },
+    {
+      "filename": "command-palette-dark-150-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">",
+      "selectedLabel": "导出聊天",
+      "optionCount": 22
+    },
+    {
+      "filename": "command-palette-empty-dark-150-shell.png",
+      "width": 760,
+      "height": 540,
+      "nativeSize": [
+        760,
+        540
+      ],
+      "query": ">NO_MATCH_COMMAND_LAYOUT",
+      "selectedLabel": null,
+      "optionCount": 0
+    }
+  ],
+  "screenshots": [
+    "command-palette-light-100-shell.png",
+    "command-palette-empty-light-100-shell.png",
+    "command-palette-light-125-shell.png",
+    "command-palette-empty-light-125-shell.png",
+    "command-palette-light-150-shell.png",
+    "command-palette-empty-light-150-shell.png",
+    "command-palette-dark-100-shell.png",
+    "command-palette-empty-dark-100-shell.png",
+    "command-palette-dark-125-shell.png",
+    "command-palette-empty-dark-125-shell.png",
+    "command-palette-dark-150-shell.png",
+    "command-palette-empty-dark-150-shell.png"
+  ],
+  "sixThemeZoomLayoutsVerified": true,
+  "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, six theme/zoom root and empty layouts with twelve whole native captures, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
 }
