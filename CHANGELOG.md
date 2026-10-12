@@ -2,6 +2,8 @@
 
 ## 未发布
 
+修复命令输出节流遗漏最后一段更新的问题：连续输出间隔不足 100 毫秒时，最后一段也会在执行期间显示；关闭、报错和取消后不再通知。旧实现两个确定性测试失败，修正版六项时序／生命周期测试、51 项相关、完整 1,539 项单元、类型、构建及八项真实工具专项通过。覆盖率为语句 97.02%、分支 94.57%、函数 97.77%、行 99.48%。此前 `557cc83b` 包在 355 项后输出等待超时的现场保留；当前修复的完整源码、新包、安装和分发继续待验收。九张工具原图已检查，浅色 150% 捕获未显示摘要控件，不能据此声明全部布局完成。[输出修复](verification/command-progress-acceptance-review-result.json) · [失败包](verification/composer-selection-focus-package-initial-failure-review-result.json)
+
 修复选择助手或项目后，延后的光标恢复覆盖用户全选范围、导致下一次输入重复前缀的问题。恢复改在匹配草稿与上下文的布局提交时执行；精确旧包与新源码的受控原生对照分别复现失败和通过，实际输入完整替换、连续三轮切换及原七项专项通过。类型、135 项相关、完整 1,533 项单元和重新构建通过；最新完整源码 368 项、74 次正常退出通过，最长 1,634ms，无强制，39 份新报告、548 张原图与 236 个匹配编译文件归档，12 张菜单原图逐张复核。新包与实际安装仍待完成，旧包 149 项后失败的现场保留，此前方向键超时原因仍未确认。[修复与对照](verification/composer-selection-focus-acceptance-review-result.json) · [最新完整源码](verification/composer-selection-focus-full-source-review-result.json) · [旧包失败](verification/composer-actions-package-initial-failure-review-result.json)
 
 新增输入区 `/` 快捷选择，共用主工作台与快速聊天，支持模板变量、助手和项目筛选、键盘选择与光标处插入。取消和无匹配回车保留原文，过期查询拒绝修改新草稿。类型、135 项相关及完整 1,533 项单元、构建、七项原生专项与完整源码 368 项通过；74 次正常退出、最长 1,742ms，无强制。覆盖率四项均超过 94%，本轮保留 39 份新报告和 548 张原图，其中 12 张完整快捷菜单原图逐张复核。此前四轮完整回归失败现场保留，键盘循环原失败原因尚未确认，不把诊断重放通过写成修复。新包和实际安装待完成。原发布及安装门槛提高至 368 项，并要求六组明暗缩放布局和 12 份匹配的完整窗口捕获。下方 `25254c839` 等记录属于之前的冻结包，不计入本次改动的发行验收。[源码专项](verification/composer-actions-acceptance-review-result.json) · [完整源码回归](verification/composer-actions-full-source-review-result.json)
@@ -52,6 +54,7 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 ### 修复与完善
 
 - 修复选择助手或项目后的延后光标恢复覆盖用户新选区、导致后续输入重复前缀的问题；恢复绑定对应草稿与上下文，后续全选和实际输入保持用户选择。
+- 修复执行中命令连续输出的最后一段延迟至下一段或结束才更新的问题；保留原通知频率及退出、报错、取消后的回调清理。
 - 统一明暗主题、Inter 字体、共享控件、工具提示与键盘焦点；调整输入区展开、长模型名称省略、窄窗口导航，以及设置分类和内容独立滚动。尚未达到全部参考界面 100% 还原。
 - 修复草稿保存、分支导航及多路流式检查点的竞争，保留失败后的输入、原文和重试能力；损坏的恢复资料保留并显示可恢复错误。
 - 修复恢复等待期间设置仍可关闭或切换的问题，释放重载后旧预览和浏览器视图，保留独立草稿与资源原件。
@@ -69,6 +72,8 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 ### English
 
 The composer adds searchable slash choices for templates, assistants and projects in both the workbench and Quick Chat. Variable templates replace the query at the caret; cancellation retains the original text, and selection does not send a message.
+
+Command progress now delivers the final burst at the existing 100 ms cadence while execution remains active, even when no later output arrives. Closing, startup failure and cancellation suppress pending notifications.
 
 Nook is a local AI workspace with multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Worktree settings add a managed root, optional upstream fetching, linked conversations and explicit project registration with same-ID retry and duplicate preservation.
 

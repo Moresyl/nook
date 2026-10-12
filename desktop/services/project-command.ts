@@ -20,20 +20,30 @@ export function projectCommand(program: string, args: string[], cwd: string, tim
     let output = '';
     let truncated = false;
     let timedOut = false;
-    let lastProgress = 0;
+    let lastProgress = -Infinity;
+    let progressTimer: ReturnType<typeof setTimeout> | undefined;
+    const notifyProgress = () => {
+      if (progressTimer) clearTimeout(progressTimer);
+      progressTimer = undefined;
+      if (signal.aborted) return;
+      lastProgress = Date.now();
+      onProgress(output);
+    };
     const report = (text: string) => {
       if (!truncated) {
         const remaining = 60_000 - output.length;
         output += text.slice(0, remaining);
         if (text.length > remaining) { output += '\n[Command output truncated.]'; truncated = true; }
       }
-      if (Date.now() - lastProgress >= 100) { lastProgress = Date.now(); onProgress(output); }
+      const remainingDelay = 100 - (Date.now() - lastProgress);
+      if (remainingDelay <= 0) notifyProgress();
+      else if (!progressTimer) progressTimer = setTimeout(notifyProgress, remainingDelay);
     };
     child.stdout.setEncoding('utf8'); child.stderr.setEncoding('utf8');
     child.stdout.on('data', report); child.stderr.on('data', report);
     const abort = () => terminate(child);
     const timer = setTimeout(() => { timedOut = true; terminate(child); }, timeout);
-    const clean = () => { clearTimeout(timer); signal.removeEventListener('abort', abort); };
+    const clean = () => { clearTimeout(timer); if (progressTimer) clearTimeout(progressTimer); signal.removeEventListener('abort', abort); };
     signal.addEventListener('abort', abort, { once: true });
     child.once('error', () => { clean(); reject(new Error('Could not start the command. Check the program and executable path.')); });
     child.once('close', (exitCode) => {

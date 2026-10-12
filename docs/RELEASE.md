@@ -4,20 +4,22 @@
 
 输入区快捷选择支持主工作台与快速聊天共用 `/` 筛选，模板在光标处插入，取消保留原文；选择助手或项目不发送消息。[使用说明](COMPOSER-ACTIONS.md)
 
-最新修复取消了助手／项目选择后的延后光标恢复，改在对应草稿与上下文的布局提交时执行，避免覆盖用户随后全选的范围。精确旧包在受控调度下将 `[0,5]` 改为 `[5,5]`；修正版保留 `[0,5]`，实际输入完整替换草稿，连续三轮切换通过。旧包完整验收在 149 项后失败，现场独立保留；最新修复的完整源码通过，新包仍待验收。
+最新修复补齐命令输出节流的最后一次通知：100 毫秒内到达的第二段输出，即使没有后续输出，也会更新执行中的记录；关闭、报错和取消后不会继续通知。旧实现的两个确定性回归测试失败，修正版六项时序测试及真实工具专项通过。`557cc83b` 包的完整验收在 355 项后等待第二段输出超时，72 次应用退出均正常；失败包、原目录、释放文件和截图完整保留。
 
 | 当前验证 | 实际结果 |
 | --- | --- |
 | 类型与构建 | 通过；236 个编译文件与原生验收逐文件匹配 |
-| 相关单元 | 135 项通过 |
-| 完整单元与覆盖率 | 131 文件／1,533 项通过；语句 96.94%、分支 94.48%、函数 97.71%、行 99.42% |
-| 快捷选择专项 | 最新修复七项通过，无模型请求，正常退出 334ms；明暗主题各三档应用缩放 |
-| 完整源码回归 | `28c39234` 最新修复：368 项、74 次正常退出、最长 1,634ms，无强制结束 |
-| 本轮证据 | 39 份新报告、548 张原图、236 个匹配编译文件；12 张完整 760×540 菜单原图逐张检查，其他原图未全部视觉复核 |
+| 相关单元 | 命令、执行和工具记录 51 项通过 |
+| 完整单元与覆盖率 | 132 文件／1,539 项通过；语句 97.02%、分支 94.57%、函数 97.77%、行 99.48% |
+| 工具记录专项 | 八项通过；第二段输出、取消、原文复制、快速聊天和实际重启；两次正常退出 674ms／150ms |
+| 完整源码回归 | 输出修复待完整回归；此前光标修复 `28c39234` 的 368 项／74 次正常退出只属于旧应用体 |
+| 本轮证据 | 236 个新编译文件、17 份源码及测试文件匹配；九张工具原图逐张检查。浅色 150% 捕获未显示摘要控件，尚不接受为六组完整可见截图 |
 | 新包、实际安装及分发 | 待完成；原五个分发专项、安装／卸载及十一份匹配运行记录继续必需 |
 | 托管流水线 | 最新本地提交尚未推送；此前运行因账户付款／支出额度限制，验证零步骤失败、发布跳过 |
 
-[最新完整源码回归](../verification/composer-selection-focus-full-source-review-result.json) · [专项、单元与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [旧包验收失败现场](../verification/composer-actions-package-initial-failure-review-result.json) · [旧代码源码回归](../verification/composer-actions-full-source-review-result.json)
+[输出修复与单元对照](../verification/command-progress-acceptance-review-result.json) · [当前包失败现场](../verification/composer-selection-focus-package-initial-failure-review-result.json) · [此前光标修复](../verification/composer-selection-focus-acceptance-review-result.json) · [此前完整源码](../verification/composer-selection-focus-full-source-review-result.json)
+
+此前光标修复将助手／项目选择后的恢复绑定对应草稿与上下文的布局提交，避免覆盖用户随后全选的范围；旧包 `[0,5]`→`[5,5]` 与修正版保持 `[0,5]` 的受控原生对照保留。旧包 149 项后失败及四轮源码失败均不计入当前包验收。
 
 完整回归此前四轮失败及原始目录均独立保留。同名助手和保留旧模型选择的测试定位已修正；快捷菜单方向键等待曾持续超时，增加事件诊断后的本轮通过，但原失败原因尚未确认，不能把重放通过写成已修复。原等待期限和断言保留。[同名选项复测](../verification/composer-actions-integration-retry-review-result.json) · [模型选择复测](../verification/quick-chat-retained-model-integration-review-result.json) · [键盘同步复测](../verification/composer-actions-keyboard-integration-review-result.json) · [键盘事件诊断](../verification/composer-actions-keyboard-diagnostic-review-result.json)
 
