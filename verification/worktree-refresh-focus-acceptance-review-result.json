@@ -1,0 +1,184 @@
+{
+  "verifiedAt": "2026-10-12T11:34:44.784Z",
+  "archive": "E:/NookVerification/WorktreeRefreshFocusAcceptance-20261012",
+  "sourceHead": "9780b1ecfafcab954af3df8ec8fc23578863f9e5",
+  "overlays": [
+    {
+      "path": "workbench/components/worktree-overview.tsx",
+      "sha256": "644fd6a51da818fdee093e3207feca46539ad4c6dbf00395f2a0a41c442b34d6",
+      "nativeSnapshotSha256": "644fd6a51da818fdee093e3207feca46539ad4c6dbf00395f2a0a41c442b34d6"
+    },
+    {
+      "path": "scripts/verify-worktree-overview.mjs",
+      "sha256": "e82828227374cc04cc614d136de01ce9d7ab2e57b8c6cb6f5572c2f81f97f424",
+      "nativeSnapshotSha256": "e82828227374cc04cc614d136de01ce9d7ab2e57b8c6cb6f5572c2f81f97f424"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "61f1c2d0d5a2b4c04b19a9e302fb08e06ec811c2fc7ec0073e617975e72f84ff",
+      "nativeSnapshotSha256": "4b9fab1b3ae697bf812d54658088df25b4745c3ab34f9fd8f58e1cb61b0cb35f"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "a0a2e3f9a568a8e0644b806b01930c07f4ef97c8ccb7e1127f275c5a8ee6becc",
+      "nativeSnapshotSha256": "a0a2e3f9a568a8e0644b806b01930c07f4ef97c8ccb7e1127f275c5a8ee6becc"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "4644f798253b48e22e54a1f2189d1c49b84e688fd4ac45b981e32993f10f60ab",
+      "nativeSnapshotSha256": "480d5e169c6533a351e3fdc959d3caac4034a6a7f399296cf3e880990e6dc809"
+    }
+  ],
+  "nativeArchive": "E:/NookVerification/WorktreeRefreshFocusStablePass-20261012",
+  "nativeReceipt": {
+    "completedAt": "2026-10-12T11:19:38.4316471Z",
+    "exitCode": 0,
+    "startedAt": "2026-10-12T11:19:17.6679201Z"
+  },
+  "nativeChecks": 6,
+  "normalExits": 5,
+  "longestNormalExitMs": 568,
+  "retainedOriginals": 35,
+  "compiledFilesMatchingFirstBuild": 236,
+  "receipts": {
+    "check": {
+      "startedAt": "2026-10-12T11:27:15.2437325Z",
+      "completedAt": "2026-10-12T11:27:21.7648469Z",
+      "exitCode": 0
+    },
+    "focused": {
+      "startedAt": "2026-10-12T11:27:21.7820116Z",
+      "completedAt": "2026-10-12T11:27:23.8692326Z",
+      "exitCode": 0
+    },
+    "coverage": {
+      "startedAt": "2026-10-12T11:27:23.8733664Z",
+      "completedAt": "2026-10-12T11:34:15.9597006Z",
+      "exitCode": 0
+    }
+  },
+  "unit": {
+    "files": 130,
+    "tests": 1524,
+    "relatedTests": 137,
+    "coverage": {
+      "lines": {
+        "total": 4455,
+        "covered": 4429,
+        "skipped": 0,
+        "pct": 99.41
+      },
+      "statements": {
+        "total": 7405,
+        "covered": 7177,
+        "skipped": 0,
+        "pct": 96.92
+      },
+      "functions": {
+        "total": 1651,
+        "covered": 1613,
+        "skipped": 0,
+        "pct": 97.69
+      },
+      "branches": {
+        "total": 5191,
+        "covered": 4902,
+        "skipped": 0,
+        "pct": 94.43
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "originalVisuallyReviewed": 8,
+  "fixedDeviceScaleFactor": 1,
+  "images": [
+    {
+      "name": "worktree-overview-refresh-keyboard-success-shell.png",
+      "sha256": "be0005cabae3d572d46e1498a32ccc1081656c8940644e29f220eea28a823a50",
+      "size": [
+        1280,
+        840
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and complete hint after the actual successful read. The first arrived row is visible in this scrolled slice."
+    },
+    {
+      "name": "worktree-overview-refresh-keyboard-other-control-shell.png",
+      "sha256": "34f20aef0db0b942b408fca457263e119c86fd99ab7de73065354bbbb35c5b20",
+      "size": [
+        1280,
+        840
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The close button retains the complete blue keyboard ring after the held worktree read finishes; the refresh control is unfocused."
+    },
+    {
+      "name": "worktree-overview-light-100-refresh-keyboard-shell.png",
+      "sha256": "23f972dc655120344e367141140d59da951aa8be0d23c5b453042e942f97cfa6",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    },
+    {
+      "name": "worktree-overview-light-125-refresh-keyboard-shell.png",
+      "sha256": "c23d87cecf26258e4fbcfb433c6c13c48491e82ebee8d361d6d256333b788043",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    },
+    {
+      "name": "worktree-overview-light-150-refresh-keyboard-shell.png",
+      "sha256": "270d58f6e8e92b530e2ae651b56bec4e2f9fb4cc25981d6b963d3dbcb22c821c",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    },
+    {
+      "name": "worktree-overview-dark-100-refresh-keyboard-shell.png",
+      "sha256": "74970ec581e231416eb854dd5674cc7e991c78431e5c7a3d7bf766fbf2921b92",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    },
+    {
+      "name": "worktree-overview-dark-125-refresh-keyboard-shell.png",
+      "sha256": "0844055d53554986417c5acca7ecb6b74455e17501f57b202a1919f449750bdb",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    },
+    {
+      "name": "worktree-overview-dark-150-refresh-keyboard-shell.png",
+      "sha256": "f4df5d35a5fff7d60f0d75ce970385d606ed645e3b30c84c19d886635c562810",
+      "size": [
+        760,
+        540
+      ],
+      "originalVisuallyReviewed": true,
+      "observations": "The refresh control retains its complete blue keyboard ring and hint after an actual failed read. The complete sanitized reading error and the next project heading are visible in this theme and Electron zoom; lower rows are outside this slice."
+    }
+  ],
+  "preservedDiagnostic": "E:/NookVerification/WorktreeRefreshFocusDiagnostic-20261012",
+  "preservedInitialSourceFailure": "E:/NookVerification/WorktreeRefreshFocusFirstSourceFailure-20261012",
+  "scope": "The original six-check native suite and all original deadlines remain. Success, failed-read focus restoration and held-read focus migration are verified. Eight originals were individually viewed at original dimensions and matched by SHA-256. Six light/dark Electron zoom rings include their outline offset within the scroll viewport. The final two-file standalone parser overlay additionally rejects coerced string measurements; the product and native harness match the stable native snapshot. Full desktop, new-package installation, physical input, Windows DPI and complete reference adoption remain separate."
+}

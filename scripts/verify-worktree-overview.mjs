@@ -23,7 +23,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   const sourceProject = makeProject('列表源项目', source), childProject = makeProject('中文工作树项目', child);
   const makeThread = (title, projectId, extra = {}) => ({ id: randomUUID(), title, projectId, model: '', pinned: false, archived: false, createdAt: 1, updatedAt: 2, messages: [], ...extra });
   const pin = makeThread('固定会话 · 中文', childProject.id, { pinned: true }), archive = makeThread('归档会话 · 中文', childProject.id, { archived: true }), normal = makeThread('源项目会话', sourceProject.id), unrelated = makeThread('其他项目会话', randomUUID());
-  const captures = [], layouts = [], requestsBefore = modelRequests(), queryPages = [];
+  const captures = [], layouts = [], refreshKeyboardLayouts = [], requestsBefore = modelRequests(), queryPages = [];
   const settings = () => page.getByRole('dialog', { name: '设置', exact: true });
   const overview = () => settings().getByRole('region', { name: '已登记项目的工作树', exact: true });
   const refresh = () => overview().getByRole('button', { name: '刷新项目工作树', exact: true });
@@ -33,6 +33,22 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   async function settled() {
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await waitForBridge(page, () => document.querySelector('.worktree-overview')?.getAttribute('aria-busy') === 'false');
+  }
+  async function keyboardRefresh() {
+    await refresh().focus(); await page.keyboard.press('Enter'); await settled();
+    const zoom = await application.evaluateMain(`${mainWindow}.webContents.getZoomFactor()`);
+    const focus = await refresh().evaluate(button => {
+      const content = button.closest('.settings-detail'), rect = button.getBoundingClientRect(), viewport = content.getBoundingClientRect(), style = getComputedStyle(button);
+      return { theme: document.documentElement.dataset.theme, focused: document.activeElement === button, focusVisible: button.matches(':focus-visible'), outline: parseFloat(style.outlineWidth), outlineOffset: parseFloat(style.outlineOffset), outlineColor: style.outlineColor,
+        top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: viewport.top + content.clientTop, viewportBottom: viewport.top + content.clientTop + content.clientHeight, viewportLeft: viewport.left + content.clientLeft, viewportRight: viewport.left + content.clientLeft + content.clientWidth };
+    });
+    console.log('Keyboard refresh focus geometry', JSON.stringify({ ...focus, zoom }));
+    assert.equal(focus.focused, true, 'A completed keyboard refresh must retain its available control.'); assert.equal(focus.focusVisible, true); assert.ok(Math.abs(focus.outline - Math.floor(2 * zoom) / zoom) < 0.001);
+    assert.ok(Math.abs(focus.outlineOffset - Math.floor(2 * zoom) / zoom) < 0.001);
+    assert.equal(focus.outlineColor, focus.theme === 'dark' ? 'rgb(2, 133, 255)' : 'rgb(1, 105, 204)');
+    const extent = focus.outline + focus.outlineOffset;
+    assert.ok(focus.top - extent >= focus.viewportTop && focus.bottom + extent <= focus.viewportBottom && focus.left - extent >= focus.viewportLeft && focus.right + extent <= focus.viewportRight, 'The complete keyboard refresh outline and offset must fit the settings viewport.');
+    return focus;
   }
   async function open() { await page.keyboard.press('Control+,'); await settings().waitFor(); await settings().getByRole('button', { name: '工作树', exact: true }).click(); await overview().waitFor(); await settled(); }
   async function close() { await dismissModalWithEscape(page, settings()); }
@@ -83,7 +99,15 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   await git(source, ['worktree', 'add', '-q', '-b', 'feature/refreshed', added]); await open();
   await page.evaluate(thread => window.qiyao.updateThread(thread), { ...archive, title: '归档会话已更新', archived: false });
   await syncState(); await waitForBridge(page, () => document.querySelector('.worktree-overview')?.textContent.includes('归档会话已更新'));
-  const beforeRefresh = await readFile(primary); await refresh().click(); await settled(); assert.equal(await rows().count(), 4);
+  const beforeRefresh = await readFile(primary); await keyboardRefresh(); assert.equal(await rows().count(), 4); await capture('refresh-keyboard-success');
+  await intercept({ held: true });
+  try {
+    await refresh().focus(); await page.keyboard.press('Enter');
+    await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookOverviewReceipt.heldEntered){if(Date.now()>=deadline)throw new Error('The keyboard refresh query was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
+    const otherControl = settings().getByRole('button', { name: '关闭', exact: true }); await otherControl.focus();
+    await release(); await settled(); assert.equal(await otherControl.evaluate(button => document.activeElement === button), true, 'Refreshing must not steal focus from a control selected while the query is held.');
+    await capture('refresh-keyboard-other-control');
+  } finally { await restoreHandler(); }
   await childRow().locator('summary').click(); await childRow().getByRole('button', { name: '归档会话已更新', exact: true }).waitFor();
   assert.equal(await childRow().getByText('已归档', { exact: true }).count(), 0); assert.deepEqual(await readFile(primary), beforeRefresh);
   assert.equal((await state()).projects.length, 2); await capture('refresh-light'); await close();
@@ -178,6 +202,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
       assert.ok(pendingBounds.top >= pendingBounds.viewportTop && pendingBounds.bottom <= pendingBounds.viewportBottom && pendingBounds.left >= pendingBounds.viewportLeft && pendingBounds.right <= pendingBounds.viewportRight, 'The complete pending project must fit the actual content viewport.');
       assert.equal(await overview().getAttribute('aria-busy'), 'true'); assert.equal(await refresh().isDisabled(), true); assert.doesNotMatch(await overview().innerText(), /PRIVATE_KEY|SECRET_PATH/);
       await capture(`${theme}-${zoom * 100}-pending`); await release(); await settled();
+      const refreshBounds = await keyboardRefresh(); refreshKeyboardLayouts.push({ ...refreshBounds, zoom }); await capture(`${theme}-${zoom * 100}-refresh-keyboard`);
       const alert = overview().getByRole('alert'); await alert.scrollIntoViewIfNeeded();
       const bounds = await alert.evaluate(element => { const content = element.closest('.settings-detail'), rect = element.getBoundingClientRect(), viewport = content.getBoundingClientRect(); return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: viewport.top + content.clientTop, viewportBottom: viewport.top + content.clientTop + content.clientHeight, viewportLeft: viewport.left + content.clientLeft, viewportRight: viewport.left + content.clientLeft + content.clientWidth }; });
       assert.ok(bounds.top >= bounds.viewportTop && bounds.bottom <= bounds.viewportBottom && bounds.left >= bounds.viewportLeft && bounds.right <= bounds.viewportRight, 'The complete overview error must fit the actual content viewport.'); await capture(`${theme}-${zoom * 100}-error`);
@@ -194,5 +219,5 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   page = await restart(() => writeFile(primary, originalBytes)); application = getApplication();
   assert.deepEqual((await state()).projects, originalState.projects); assert.equal((await state()).threads.some(thread => thread.id === pin.id), false); assert.equal(modelRequests(), requestsBefore);
   verified('normal restart restores the pre-test workspace and all real source branch, index, dirty and untracked bytes remain intact with zero model requests');
-  return { page, result: { checks: 6, modelRequests: modelRequests() - requestsBefore, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true, queryPages, layouts, screenshots: captures, scope: 'Real isolated Git fixtures and main-process worktree IPC; persisted fixture workspace is seeded only in the suite-owned profile and restored on success. Git error/held-read responses are intercepted only in the test process. Known-project inventory and persistent conversation labels are read-only. Opening/creating/deleting conversations, automatic cleanup, upstream refresh and full reference parity are separate.' } };
+  return { page, result: { checks: 6, modelRequests: modelRequests() - requestsBefore, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, refreshKeyboardFocusVerified: true, refreshDoesNotStealFocusVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true, queryPages, layouts, refreshKeyboardLayouts, screenshots: captures, scope: 'Real isolated Git fixtures and main-process worktree IPC; persisted fixture workspace is seeded only in the suite-owned profile and restored on success. Git error/held-read responses are intercepted only in the test process. Known-project inventory and persistent conversation labels are read-only. Opening/creating/deleting conversations, automatic cleanup, upstream refresh and full reference parity are separate.' } };
 }

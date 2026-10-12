@@ -32,8 +32,10 @@ export type WorktreeSettingsProof = {
 export type WorktreeOverviewProof = {
   checks: number; modelRequests: number; actualRepositoryAssociationVerified: boolean; refreshReadOnlyVerified: boolean;
   progressiveProjectResultsVerified: boolean; progressiveSanitizedErrorsVerified: boolean; managementLoadingProtectionVerified: boolean;
+  refreshKeyboardFocusVerified: boolean; refreshDoesNotStealFocusVerified: boolean;
   errorRetryCloseVerified: boolean; boundedPagingVerified: boolean; referenceZoomKeyboardVerified: boolean; sourcePreservationVerified: boolean;
   queryPages: string[][]; screenshots: string[];
+  refreshKeyboardLayouts: (WorktreeFocusLayout & { focused: boolean; focusVisible: boolean; outlineOffset: number; outlineColor: string })[];
   layouts: { theme: string; zoom: number; contentWidth: number; contentScrollWidth: number; viewportWidth: number; documentWidth: number;
     pending: { top: number; bottom: number; left: number; right: number; viewportTop: number; viewportBottom: number; viewportLeft: number; viewportRight: number };
     error: { top: number; bottom: number; left: number; right: number; viewportTop: number; viewportBottom: number; viewportLeft: number; viewportRight: number } }[];

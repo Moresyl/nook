@@ -1,0 +1,69 @@
+{
+  "archivedAt": "2026-10-12T11:01:53.248Z",
+  "archive": "E:/NookVerification/WorktreeRefreshFocusDiagnostic-20261012",
+  "sourceHead": "9780b1ecfafcab954af3df8ec8fc23578863f9e5",
+  "runtimeBuiltSourceHead": "d32f5957443ba87b12f5d7ca6e6ba34d3456dbdc",
+  "receipt": {
+    "completedAt": "2026-10-12T11:00:28.4904221Z",
+    "runtimeBuiltSourceHead": "d32f5957443ba87b12f5d7ca6e6ba34d3456dbdc",
+    "startedAt": "2026-10-12T11:00:21.9800036Z",
+    "exitCode": 1,
+    "sourceHead": "9780b1ecfafcab954af3df8ec8fc23578863f9e5",
+    "diagnosticLoader": "D:/GR/pi-pc/.firecrawl/diagnose-worktree-refresh-focus-loader-20261012.mjs"
+  },
+  "observation": {
+    "focused": false,
+    "disabled": false,
+    "activeTag": "BODY",
+    "activeLabel": null
+  },
+  "normalExits": [
+    {
+      "elapsedMs": 628,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 201,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "originalProfile": "E:\\NookVerification\\Temp\\qiyao-electron-uZsyx5",
+  "originalProfileRetained": true,
+  "loaderSha256": "e4289c26334b41a08766fc07d206766e53592587c4fc56cc7867e95a65489166",
+  "images": [
+    {
+      "name": "worktree-overview-associations-light-shell.png",
+      "sha256": "da513e4b6bb979af461b2f8984c237782c3ec835daf1609e16f13ed5b0d34a09",
+      "size": [
+        1280,
+        840
+      ],
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "worktree-overview-refresh-keyboard-after-shell.png",
+      "sha256": "ad608552be9ebb655e62b32e220fa829c2c4e43d877322392aa31c499b3bcba9",
+      "size": [
+        1280,
+        840
+      ],
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "worktree-overview-refresh-keyboard-before-shell.png",
+      "sha256": "ad608552be9ebb655e62b32e220fa829c2c4e43d877322392aa31c499b3bcba9",
+      "size": [
+        1280,
+        840
+      ],
+      "originalVisuallyReviewed": false
+    }
+  ],
+  "bootstrapFailureSeparated": true,
+  "actualChecksBeforeFailure": 1,
+  "scope": "A private loader changes only the original manual refresh input to keyboard Enter and adds before/after observations. After actual Git and management reads settle, the available refresh control has lost focus to BODY. The diagnostic exited 1; its original product/source, exact loader, actual normal exit records, three fresh originals and original profile are retained. The earlier Windows import-URL startup failure is separate. Native deadlines and original assertions were not changed; no stale raw report counts as this diagnostic."
+}

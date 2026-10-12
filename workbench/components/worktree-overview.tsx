@@ -24,6 +24,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
   const [restored, setRestored] = useState<WorktreeRestored>();
   const [removed, setRemoved] = useState<WorktreeRemoved>(), [cleanup, setCleanup] = useState<WorktreeCleanupReport>();
   const noticeRef = useRef<HTMLParagraphElement>(null);
+  const refreshFocus = useRef<HTMLButtonElement | null>(null);
   const request = useRef(0), totalPages = Math.max(1, Math.ceil(state.projects.length / worktreeOverviewPageSize));
   const currentPage = Math.min(page, totalPages - 1);
   const projectsKey = JSON.stringify(state.projects.map(project => [project.id, project.path]));
@@ -49,6 +50,12 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
     })();
     return () => { active = false; };
   }, [projectsKey, currentPage, refresh]);
+  useLayoutEffect(() => {
+    if (disabled || loading) return;
+    const control = refreshFocus.current; refreshFocus.current = null;
+    const active = document.activeElement;
+    if (control?.isConnected && !control.disabled && !control.closest('[hidden]') && (active === document.body || active === control.closest('dialog'))) control.focus({ preventScroll: true });
+  }, [disabled, loading]);
   useLayoutEffect(() => { if ((restored || removed) && !loading) { noticeRef.current?.focus(); noticeRef.current?.scrollIntoView({ block: 'nearest' }); } }, [restored, removed, loading]);
   const groups = useMemo(() => worktreeOverviewGroups(state.projects, state.threads, snapshots), [state.projects, state.threads, snapshots]);
   const pendingProjects = loading ? worktreeOverviewPage(state.projects, currentPage).filter(project => !snapshots.some(snapshot => snapshot.projectId === project.id && worktreePathKey(snapshot.projectPath) === worktreePathKey(project.path))) : [];
@@ -61,7 +68,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
   function restoredSnapshot(result: WorktreeRestored) { setRemoved(undefined); setRestored(result); setRefresh(value => value + 1); }
   function removedWorktree(result: WorktreeRemoved) { setRestored(undefined); setRemoved(result); setRefresh(value => value + 1); }
   return <section className="worktree-overview" aria-label="已登记项目的工作树" aria-busy={loading}>
-    <div className="section-heading"><h3>{loading || groups.length ? '项目工作树' : '暂无项目工作树'}</h3><IconButton icon="retry" label="刷新项目工作树" disabled={disabled || loading} onClick={() => setRefresh(value => value + 1)} /></div>
+    <div className="section-heading"><h3>{loading || groups.length ? '项目工作树' : '暂无项目工作树'}</h3><IconButton icon="retry" label="刷新项目工作树" disabled={disabled || loading} onClick={event => { refreshFocus.current = document.activeElement === event.currentTarget ? event.currentTarget : null; setLoading(true); setRefresh(value => value + 1); }} /></div>
     <p className="field-hint">列出本页已登记项目所属仓库中的 Git 工作树与关联会话。未登记的仓库可在项目页添加。</p>
     {removed && <p ref={noticeRef} tabIndex={-1} role="status" className={removed.managedRecord === 'saved' ? 'field-hint' : 'inline-error'}>{removed.managedRecord === 'saved' ? '工作树已删除，快照已保存，可从「已保存快照」恢复到新目录。' : '工作树已删除，快照已保存，但本机创建记录未能更新。请刷新列表；原目录不再具有删除权限。'}<TextHint as="span" className="path-text" text={removed.path}>{removed.path}</TextHint></p>}
     {cleanup && <p role="status" className={cleanup.failed || cleanup.receiptFailures ? 'inline-error' : 'field-hint'}>{cleanup.failed ? '自动清理未能执行，请完成其他操作后重试；工作树会保留。' : `自动清理已删除 ${cleanup.removed} 个工作树，并为其保存快照；${cleanup.skipped} 个受保护或无法清理的工作树已跳过。`}{cleanup.receiptFailures > 0 && ` ${cleanup.receiptFailures} 条本机创建记录未能更新，请刷新检查。`}<TextHint as="span" className="path-text" text={cleanup.source.path}>{cleanup.source.path}</TextHint></p>}

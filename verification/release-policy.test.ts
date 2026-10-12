@@ -30,11 +30,12 @@ const worktreeSettings = (): NonNullable<ReleaseProof['desktop']['worktreeSettin
   errorLayouts: Array.from({ length: 7 }, () => ({ top: 280, bottom: 316, left: 144, right: 490, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500, text: '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。' })),
 });
 const worktreeOverview = (): NonNullable<ReleaseProof['desktop']['worktreeOverview']> => ({
-  checks: 6, modelRequests: 0, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
+  checks: 6, modelRequests: 0, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, refreshKeyboardFocusVerified: true, refreshDoesNotStealFocusVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
   queryPages: [Array.from({ length: 20 }, (_, index) => `project-${index}`), ['project-20'], Array.from({ length: 20 }, (_, index) => `project-${index}`)],
-  screenshots: ['associations-light', 'refresh-light', 'error-light', 'loading-light', 'retry-light', 'partial-results', 'partial-error', 'management-loading', 'page-two-light',
-    ...['light', 'dark'].flatMap(theme => [100, 125, 150].flatMap(zoom => ['pending', 'error', 'rows'].map(state => `${theme}-${zoom}-${state}`)))
+  screenshots: ['associations-light', 'refresh-light', 'refresh-keyboard-success', 'refresh-keyboard-other-control', 'error-light', 'loading-light', 'retry-light', 'partial-results', 'partial-error', 'management-loading', 'page-two-light',
+    ...['light', 'dark'].flatMap(theme => [100, 125, 150].flatMap(zoom => ['pending', 'refresh-keyboard', 'error', 'rows'].map(state => `${theme}-${zoom}-${state}`)))
   ].map(name => `worktree-overview-${name}-shell.png`),
+  refreshKeyboardLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, focused: true, focusVisible: true, outline: Math.floor(2 * zoom) / zoom, outlineOffset: Math.floor(2 * zoom) / zoom, outlineColor: theme === 'dark' ? 'rgb(2, 133, 255)' : 'rgb(1, 105, 204)', top: 100, bottom: 128, left: 452, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 }))),
   layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contentWidth: 350, contentScrollWidth: 350, viewportWidth: 500, documentWidth: 500, pending: { top: 160, bottom: 210, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 }, error: { top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 } }))),
 });
 const snapshotBounds = () => ({ top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500, contentWidth: 350, contentScrollWidth: 350, documentWidth: 500, viewportWidth: 500 });
@@ -402,9 +403,38 @@ describe('worktree overview release evidence', () => {
       }
     }
   });
-  it('rejects the old eighteen originals and substituted required progressive state images', () => {
-    const stale = proof(); stale.desktop.worktreeOverview!.screenshots = stale.desktop.worktreeOverview!.screenshots.slice(0, 18); expect(() => verifyRuntimeProof(stale)).toThrow('worktree overview');
+  it('rejects old original sets and substituted required progressive state images', () => {
+    for (const count of [18, 27]) { const stale = proof(); stale.desktop.worktreeOverview!.screenshots = stale.desktop.worktreeOverview!.screenshots.slice(0, count); expect(() => verifyRuntimeProof(stale)).toThrow('worktree overview'); }
     for (const name of ['partial-results', 'partial-error', 'management-loading', ...['light', 'dark'].flatMap(theme => [100, 125, 150].map(zoom => `${theme}-${zoom}-pending`))]) {
+      const invalid = proof(), images = invalid.desktop.worktreeOverview!.screenshots;
+      images[images.indexOf(`worktree-overview-${name}-shell.png`)] = 'worktree-overview-unverified-shell.png'; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+  });
+  it('requires refresh focus guarantees and all six unique native focus layouts', () => {
+    for (const key of ['refreshKeyboardFocusVerified', 'refreshDoesNotStealFocusVerified', 'refreshKeyboardLayouts']) {
+      for (const value of [undefined, false, []]) {
+        const invalid = proof(); (invalid.desktop.worktreeOverview as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+      }
+    }
+    const missing = proof(); missing.desktop.worktreeOverview!.refreshKeyboardLayouts.pop(); expect(() => verifyRuntimeProof(missing)).toThrow('worktree overview');
+    const duplicate = proof(); duplicate.desktop.worktreeOverview!.refreshKeyboardLayouts[1].zoom = 1; expect(() => verifyRuntimeProof(duplicate)).toThrow('worktree overview');
+  });
+  it('rejects refresh focus loss, hidden or incorrect rings and clipped or non-finite outlines', () => {
+    for (const [key, value] of Object.entries({ focused: false, focusVisible: false, outline: 0, outlineOffset: -1, outlineColor: 'rgb(0, 0, 0)', top: 65, bottom: 357, left: 131, right: 497 })) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.refreshKeyboardLayouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (const key of ['outline', 'outlineOffset', 'top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight']) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.refreshKeyboardLayouts[0] as unknown as Record<string, unknown>)[key] = NaN; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (const value of [0, 1, 3, undefined, Infinity]) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.refreshKeyboardLayouts[1] as unknown as Record<string, unknown>).outlineOffset = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (const key of ['outline', 'outlineOffset']) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.refreshKeyboardLayouts[0] as unknown as Record<string, unknown>)[key] = '2'; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+  });
+  it('requires the actual successful, other-control and six themed keyboard refresh originals', () => {
+    for (const name of ['refresh-keyboard-success', 'refresh-keyboard-other-control', ...['light', 'dark'].flatMap(theme => [100, 125, 150].map(zoom => `${theme}-${zoom}-refresh-keyboard`))]) {
       const invalid = proof(), images = invalid.desktop.worktreeOverview!.screenshots;
       images[images.indexOf(`worktree-overview-${name}-shell.png`)] = 'worktree-overview-unverified-shell.png'; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
     }
