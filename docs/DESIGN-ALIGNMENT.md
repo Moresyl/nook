@@ -1,61 +1,22 @@
 # Nook 设计对照
 
-界面以 `E:\txt` 的新版资料为依据（26.930.41038／构建 13022）。主题、控件和布局已逐步采用，**尚未达到全界面 100% 还原**。静态 CSS、字符串数量与历史截图不能代替当前应用的实际验收。
+界面以最新版 `E:/txt`（26.930.41038／build 13022）的作用域 CSS、主题和实际调用证据为依据。旧 `DESIGN.md` 只作历史索引。**全部页面与交互尚未达到 100% 对齐。**
 
-输入区新增快捷菜单，采用当前参考的 elevated-secondary 表面、圆角、阴影与独立滚动约束。当前布局保留 420px 宽度上限，与参考静态 520px 上限仍有差异。七项源码原生专项和两种主题三档应用缩放的 12 张完整窗口原图通过；浮层避开窗口栏，选中行完整可见，其他结果可滚动。已等待有限动画结束再原生捕获，页面截图在缩放下裁切的旧结果保留为非最终证据。全部界面、物理输入法、系统 DPI、新包和实际安装仍须各自验收。[功能与边界](COMPOSER-ACTIONS.md) [源码专项及原图证据](../verification/composer-actions-acceptance-review-result.json)
-
-最新标签修正将文件名和关闭按钮的焦点轮廓置于内侧，38px 标签栏保留滚动条空间。类型、116 项相关及 1,524 项完整单元、构建、实际预览 10 项／停靠 5 项通过。源码及 `25254c839` 冻结包内、实际安装各 361 项／74 次正常退出通过，最长分别为 1,661ms／2,352ms／1,682ms，无强制；各保留 38 份新报告、536 张原图和匹配的 236 编译文件。五个分发专项、十一份运行记录与原八个标记恢复通过。新包 12 张标签焦点、17 张工作树、26 张控件和 12 张文字提示原图已逐张原尺寸核验，共 67 张不同原图；源码焦点图另计。窄窗口及高缩放 PDF 仅验当前滚动切片，其他完整回归与安装原图未全部视觉复核，物理输入和全参考采用尚未完成。真实诊断及修复期间四轮失败独立保留。[标签源码证据](../verification/editor-tab-focus-acceptance-review-result.json) · [新包完整回归](../verification/editor-tab-focus-full-unpacked-review-result.json) · [新包标签原图](../verification/editor-tab-focus-editor-originals-review-result.json) · [工作树原图](../verification/editor-tab-focus-package-originals-review-result.json) · [控件与文字提示原图](../verification/editor-tab-focus-distribution-originals-review-result.json) · [实际安装](../verification/editor-tab-focus-full-installed-review-result.json)
-
-当前 `cd5e1bf` 修复工作树键盘刷新回焦，等待期间用户移到其他控件时不抢焦点。六组原生专项及八张焦点原图复核通过；完整 1,524 项单元和源码 361 项／74 正常退出／最长 1,603ms／无强制通过，38 份新报告与 530 张原图保留。六组明暗缩放测量包括轮廓和偏移的完整区域，125% 的实际取整值为 1.6 CSS px；发布门槛要求 35 张指定原图及有限数值。[当前专项与原图](../verification/worktree-refresh-focus-acceptance-review-result.json) · [当前完整源码](../verification/worktree-refresh-focus-full-source-review-result.json)
-
-同源码 `9d7bb625` 新冻结包的包内与实际安装各 361 项／74 正常退出／无强制，最长分别为 1,867ms／1,701ms；五个原分发专项、十一份匹配运行记录和原八个标记恢复通过，236 编译文件逐一匹配。17 张工作树、26 张控件和 12 张文字提示原图逐张原尺寸查看并匹配归档哈希，共 55 张不同原图；两张未标主题的刷新成功／其他控件保焦图实际按深色记录。PDF 高缩放仅验当前滚动切片，其他完整回归原图和安装原图未全部复核，不证明真实系统 DPI、物理输入或全参考采用。下方记录保留各自历史应用体范围。[新包完整回归](../verification/worktree-refresh-focus-full-unpacked-review-result.json) · [新包实际安装](../verification/worktree-refresh-focus-full-installed-review-result.json) · [17 张工作树原图](../verification/worktree-refresh-focus-package-originals-review-result.json) · [38 张控件与文字提示原图](../verification/worktree-refresh-focus-distribution-originals-review-result.json)
-
-最新源码逐项目显示工作树结果、错误和等待状态，管理记录未完成时保持写操作禁用；合并同仓库项目保留已展开会话。完整 1,518 项单元和六组原生专项通过，六组明暗缩放的等待项及三张结果／错误／管理加载原图已逐张复核，共九张。会话来自已有内存状态，不伪造异步加载；完整源码 361 项／74 正常退出／最长 1,629ms／无强制通过，38 份报告和 522 张原图保留。[源码与原图范围](../verification/worktree-progressive-source-review-result.json) · [完整源码回归](../verification/worktree-progressive-full-source-review-result.json)
-
-新 `d32f595` 冻结包的产品与桌面测试源码和 `3de2a63` 一致，236 编译文件逐一匹配；完整包内与实际安装各 361 项／74 正常退出／无强制，最长分别为 1,802ms／2,525ms，五个原分发专项通过。包内九张渐进状态、26 张控件与 12 张文字提示原图已逐张原尺寸复核并匹配冻结哈希，共 47 张不同原图；选择菜单与保存后焦点属于控件图，不重复计数。PDF 高缩放仅验当前滚动切片，完整回归的其他原图和安装原图没有全部复核，不能据此扩大为全部页面或真实系统 DPI 通过。[新包完整回归](../verification/worktree-progressive-full-unpacked-review-result.json) · [完整实际安装](../verification/worktree-progressive-full-installed-review-result.json) · [渐进状态与焦点原图](../verification/worktree-progressive-package-originals-review-result.json) · [控件与文字提示原图](../verification/worktree-progressive-distribution-originals-review-result.json)
-
-上一 `4277c07` 冻结包的未安装与实际安装各 361 项通过，各 74 次正常退出，最长分别为 2,516ms／1,787ms、无强制；五个原分发专项与十一份匹配运行记录通过，保留数据卸载与原八个标记恢复均核验。包内搜索 18、控件 26、文本提示 12、工作树列表 18 张不同原图已逐张复核并匹配哈希，共 74 张。列表六张旧文件名写作浅色，实际按深色计入；滚动切片和 PDF 局部视图不冒充完整页面。物理输入和全参考采用仍待完成。[同包完整回归](../verification/settings-action-focus-full-unpacked-review-result.json) · [实际安装与运行记录](../verification/settings-action-focus-runtime-review-result.json) · [设置原图](../verification/settings-action-focus-package-originals-review-result.json) · [列表原图](../verification/settings-action-focus-overview-originals-review-result.json)
-
-独立的发布解析器随后补齐 27 张指定列表图、三项渐进保证及六组完整等待区域；类型、107 项策略专项和完整 1,521 项单元通过，原十一份匹配命令复验退出 0。此三文件修正不改变上述冻结应用或桌面测试源码，初轮旧 18 张要求导致的真实失败保留。[精确校验修正](../verification/worktree-progressive-policy-review-result.json) · [最终匹配运行记录](../verification/worktree-progressive-runtime-review-result.json)
-
-| 表面 | 已采用 | 仍需完成 |
+| 表面 | 已采用 | 尚待验收或补齐 |
 | --- | --- | --- |
-| 主题与控件 | 中性灰与蓝色强调、明暗主题；共享按钮、输入、下拉框、开关、焦点和文字提示 | 每页的全部状态、复杂表单、物理辅助技术与真实系统缩放 |
-| 首页与对话 | 大输入区、展开式输入、附件、消息导航、查找、工具记录和用量 | 更复杂输入配置、最大规模内容及全部参考流程 |
-| 侧栏与项目 | 264px 常规／64px 紧凑导航、项目文件树、编辑器、终端和并排预览 | 更多复杂工作区、完整图标对照与跨平台操作 |
-| 工作树 | 根目录、上游刷新、集中列表、关联聊天、项目登记、固定、私有快照、新目录恢复、安全删除和自动清理；逐项目结果、等待与错误状态，六组明暗缩放原图已核验 | 会话取数方式、仓库来源和完整参考操作仍有差异 |
-| 设置与弹窗 | 侧栏搜索、九类与字段定位、输入法与键盘选择、搜索清空；分类切换保留已打开表单的草稿；共享间距、独立滚动与视口适配 | 更多长表单及异步状态、物理原生目录选择器与安装向导 |
-| 文档与图片 | 离线 PDF 阅读、目录、搜索、链接和批注；图片缩放、切换与键盘操作 | 更多真实中文／图像样本、复杂格式、触屏与完整产物流程 |
-| 快速聊天 | 独立窗口、共享控件、收起栏、独立草稿、受限桥接和 PDF 阅读；当前完整安装回归通过 | 全部参考流程与最大规模内容 |
-| 浏览器 | 独立标签、导航、失败重试、快捷键与草稿保留 | 历史、下载、网站权限、自动化及完整参考布局 |
-| 字体与品牌 | Nook 名称、独立图标、合法分发的 Inter 和系统中文字体 | 与参考字体和品牌存在明确差异；不能宣称逐像素一致 |
+| 主题与控件 | 明暗主题、中性灰与蓝色强调；共享按钮、输入、选择器、开关、文字提示和键盘焦点 | 每页全部状态、长表单、物理无障碍与系统 DPI |
+| 对话与输入 | 展开式输入、附件、消息导航、查找、工具记录；主窗口与快速聊天共用 `/` 快捷选择 | 完整参考富文本与输入流程、最大规模内容 |
+| 导航与项目 | 264px 常规／64px 紧凑侧栏；文件树、编辑器、终端和独立／并排 HTML 预览 | 完整图标对照、更多预览格式与跨平台操作 |
+| 工作树 | 项目列表、会话、登记、固定、私有快照、新目录恢复、安全删除和自动清理；逐项目等待与错误 | 完整参考入口、取数方式和远程 Git 流程 |
+| 设置与弹窗 | 九类与字段搜索、键盘定位、独立滚动、分类切换保留草稿、保存后回焦 | 所有异步表单状态、物理选择器与安装向导 |
+| 文档与图片 | 离线 PDF 原件阅读、目录、查找、链接与只读批注；图片缩放与键盘操作 | 更多真实中文／图像样本、OCR、复杂原件版式与触屏 |
+| 快速聊天与浏览器 | 独立草稿、受限桥接；临时网页标签、导航、停止和重试 | 全部参考流程、持久历史、下载与网站权限 |
+| 字体与品牌 | Nook 独立图标、合法 Inter 与系统中文字体 | 与参考字体和品牌有明确差异，不能宣称逐像素一致 |
 
-工作树清理基线已通过 355 项完整源码检查及 74 次正常退出。清理补拍的 27 张原图逐张复核，覆盖两种主题、三档缩放、错误、焦点与页脚；长路径和后续行仍需滚动。完整源码保留的 223 张选定原图没有全部计入视觉验收。
+快捷浮层当前宽度上限为 420px。参考中的 520px 属于 `.command-menu-dialog` 的静态居中对话框上限，尚未证明它对应输入区锚定浮层；继续核对入口与调用链，不将两者直接等同。
 
-快速聊天检查点与固定回焦修正已重新构建并生成安装／便携包；审计核实 239 个产品文件、401 份法律文件与 20 份分发许可来源。完整单元 1,505 项通过；大历史默认快速聊天专项九项通过，28 张当前原图逐张复核。旧包的两次 247 项失败和检查点包的 308／321 项失败均保留原时限与现场。
+最新光标恢复修复已通过 1,533 项单元、135 项相关检查和完整源码 368 项；74 次正常退出、最长 1,634ms，无强制。本轮保留 39 份新报告和 548 张原图，其中 12 张完整 760×540 快捷菜单图逐张原尺寸检查。明暗主题各三档 Electron 应用缩放下，选中行、焦点及视口约束通过；其余原图未全部视觉复核。这些结果不替代新包、实际安装、物理系统 DPI 或全部参考流程验收。
 
-当前修正包的未安装与实际安装完整回归各 355 项通过、各 74 次正常退出，最长分别 2,638ms 与 2,341ms；236 个编译文件与审计包一致。固定专项 21 张、控件 24 张、文字提示 12 张及工作树列表 18 张原图已逐张复核。六组明暗缩放的固定错误与键盘边框可见；列表早期六张虽带浅色文件名，实际为深色，按实际画面记录。空列表另补六组原生检查与六张原图，完整标题和正文均可见；大缩放仍需滚动。完整轮其余原图没有全部计入视觉验收。便携、启动器、保留数据卸载及原 11 份匹配运行记录校验通过；原生向导、全部参考采用及托管发布仍待完成。
+[最新源码证据](../verification/composer-selection-focus-full-source-review-result.json) · [修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)
 
-[当前固定原图](../verification/worktree-pin-focus-originals-review-result.json) · [控件原图](../verification/worktree-pin-focus-surfaces-originals-review-result.json) · [文字提示原图](../verification/worktree-pin-focus-text-hints-originals-review-result.json) · [列表原图](../verification/worktree-pin-focus-overview-originals-review-result.json)
-
-[空列表原生检查](../verification/worktree-pin-focus-empty-overview-review-result.json) · [六张空列表原图](../verification/worktree-pin-focus-empty-overview-originals-review-result.json) · [实际安装与保留数据](../verification/worktree-pin-focus-installed-native-review-result.json)
-
-[清理原图范围](../verification/worktree-cleanup-visual-originals-review-result.json) · [包体审计](../verification/worktree-cleanup-ui-package-review-result.json) · [包内首轮失败](../verification/worktree-cleanup-ui-packaged-native-initial-failure-result.json) · [包内复测失败](../verification/worktree-cleanup-ui-packaged-native-retry-failure-result.json) · [快速聊天重放](../verification/worktree-cleanup-ui-quick-replay-review-result.json) · [28 张原图范围](../verification/worktree-cleanup-ui-quick-originals-review-result.json)
-
-固定设备缩放的测试与真实 Windows 系统缩放分开记录。此前系统 125% 下的设置和首页各有 13 项专项、13 张原图，不能据此认定其他页面、显示器或全部缩放通过。
-
-设置搜索新增六项真实桌面专项通过，应用在 385ms 内正常退出，无额外模型请求。模型连接、密钥、模型列表、桌面快捷键、工作树根目录及记忆草稿在分类切换后保留；定位现有控件不执行动作。18 张当前原图逐张核验，覆盖明暗主题和 100%／125%／150% 缩放下的结果、目标和空状态。大缩放时长结果与正文分别滚动，输入框内部可横向查看长查询；这些原图不作为蓝色焦点边框或完整参考布局的通过证据。初始聚焦和下方开关定位裁切已修正；首轮失败、测试选择器修正与重载就绪等待记录完整保留。
-
-新增设置版本的类型、构建与完整 130 文件／1,514 项单元通过；四项覆盖率门槛和单 worker 保留。应用体尚待完整包内、安装与分发回归，上一冻结包的 355 项证据不计为新版通过。发布完整门槛在保留原条件的基础上增加六项设置检查至至少 361 项。[设置原生检查](../verification/settings-search-native-review-result.json) · [18 张设置原图](../verification/settings-search-originals-review-result.json) · [完整单元](../verification/settings-search-unit-review-result.json)
-
-最新修正沿设置页实际调用核对专用侧栏搜索，采用 36px 高、14px 字、18px 行高、12px 内边距、8px 间距和胶囊圆角；明暗背景分别沿当前主题链解析为前景 5%／白色 8%。两种主题三档缩放的六项源码专项通过，393ms 正常退出；18 张新原图已逐张原尺寸复核，搜索结果及空状态的完整蓝色焦点圈可见，目标表单使用自身灰色边框。125% 时描边按设备像素取整，不能要求计算值恒为 2px；长查询、长结果和下方表单仍需各自滚动。工作树根目录专项 10 项通过、三次正常退出，最长 557ms。Windows 应用标识也统一为 Nook；当前完整覆盖率、新包、安装及分发仍在验收。[搜索外观原生检查](../verification/settings-search-sidebar-native-pass-review-result.json) · [18 张当前原图](../verification/settings-search-sidebar-originals-review-result.json) · [目录重放](../verification/settings-search-sidebar-roots-pass-review-result.json)
-
-此前逐批实现、失败现场、截图表格与未完成范围完整保留于[设计验收历史](DESIGN-ALIGNMENT-HISTORY-2026-10-12.md)。正文整理没有取消其中的交付要求。详细控件见[控件对照](CONTROL-AUDIT.md)，功能范围见[能力与边界](CAPABILITIES.md)，当前交付见[发布状态](RELEASE.md)。
-
-最新设置修正保留草稿缓存，使普通分类切换回到标题，并恢复保存中临时禁用后丢失的控件焦点。类型、构建与完整 1,515 项单元通过，391.54 秒；控件 4／搜索 6／固定 6／MCP PDF 8 项原生专项通过，9 次正常退出最长 492ms。控件第二轮 4 项加强明暗主题保存后焦点断言并通过，293ms 正常退出；两张新原图逐张原尺寸确认完整蓝色 2px 圈，其余原图未全部计入视觉验收。初始选择器失败和焦点丢失诊断保留；新包完整回归、安装、分发与全部参考采用仍待完成。[最新源码验收](../verification/settings-action-focus-build-review-result.json) · [两张焦点原图](../verification/settings-action-focus-originals-review-result.json)
-
-上一侧栏搜索修正源码通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。其包构建与审计通过，后续完整回归失败记录按该应用体保留，不替代当前 `4277c07` 的通过证据。[该轮完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json) · [该轮包体审计](../verification/settings-search-sidebar-package-review-result.json)
-
-物理目录选择器的两次独立尝试未形成通过证据：桌面工具无法截图或读取 Nook 控件；可见测试窗口退出超过原预算并出现错误对话框，原因尚未确认。两个测试进程均按路径、创建时间和父子关系核实后清理，原始日志、隔离配置与强制清理记录保留。这些尝试不替代正常关闭、原生选择器或物理输入验收。[失败现场](../verification/settings-search-sidebar-physical-attempts-result.json)
-
-上一搜索包完整回归在 312 项后因原 5 秒内未进入上游保存钩子而失败，51 次退出均正常。当轮搜索六项日志通过，18 张原图已逐张复核；失败时独立设置报告尚未写出。保留的 84.6 MB 现场副本另通过上游五项与六组键盘／缩放，四次正常退出最长 369ms。当前 `4277c07` 已完成完整 361 项；历史超时的唯一原因仍未确认，不将原样重放写成修复。[旧包搜索原图](../verification/settings-search-sidebar-packaged-originals-result.json) · [完整失败现场](../verification/settings-search-sidebar-full-unpacked-initial-failure-result.json) · [现场副本重放](../verification/settings-search-sidebar-upstream-seed-replay-result.json)
+整理前的全部记录逐字保留在[设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-13.md)，SHA-256 为 `5312c3f524b04370df8a46b8031bcc8d8757ef8073ba1d017886c85cec3e17fd`；其中各旧包的通过范围、失败现场和剩余要求继续有效。

@@ -4,7 +4,7 @@
 
 输入区快捷选择支持主工作台与快速聊天共用 `/` 筛选，模板在光标处插入，取消保留原文；选择助手或项目不发送消息。[使用说明](COMPOSER-ACTIONS.md)
 
-最新修复取消了助手／项目选择后的延后光标恢复，改在对应草稿与上下文的布局提交时执行，避免覆盖用户随后全选的范围。精确旧包在受控调度下将 `[0,5]` 改为 `[5,5]`；修正版保留 `[0,5]`，实际输入完整替换草稿，连续三轮切换通过。旧包完整验收在第 149 项后失败，现场独立保留；最新修复尚待完整源码与新包验收。
+最新修复取消了助手／项目选择后的延后光标恢复，改在对应草稿与上下文的布局提交时执行，避免覆盖用户随后全选的范围。精确旧包在受控调度下将 `[0,5]` 改为 `[5,5]`；修正版保留 `[0,5]`，实际输入完整替换草稿，连续三轮切换通过。旧包完整验收在 149 项后失败，现场独立保留；最新修复的完整源码通过，新包仍待验收。
 
 | 当前验证 | 实际结果 |
 | --- | --- |
@@ -12,16 +12,16 @@
 | 相关单元 | 135 项通过 |
 | 完整单元与覆盖率 | 131 文件／1,533 项通过；语句 96.94%、分支 94.48%、函数 97.71%、行 99.42% |
 | 快捷选择专项 | 最新修复七项通过，无模型请求，正常退出 334ms；明暗主题各三档应用缩放 |
-| 完整源码回归 | 最新修复待验证；`e70d4c63` 的旧代码为 368 项、74 次正常退出、最长 1,742ms，无强制结束 |
-| 本轮证据 | 最新修复 12 张完整 760×540 原图逐张检查；旧代码完整回归的 39 份报告与 548 张原图保留，其他原图未全部视觉复核 |
+| 完整源码回归 | `28c39234` 最新修复：368 项、74 次正常退出、最长 1,634ms，无强制结束 |
+| 本轮证据 | 39 份新报告、548 张原图、236 个匹配编译文件；12 张完整 760×540 菜单原图逐张检查，其他原图未全部视觉复核 |
 | 新包、实际安装及分发 | 待完成；原五个分发专项、安装／卸载及十一份匹配运行记录继续必需 |
 | 托管流水线 | 最新本地提交尚未推送；此前运行因账户付款／支出额度限制，验证零步骤失败、发布跳过 |
 
-[最新修复专项、单元与旧包对照证据](../verification/composer-selection-focus-acceptance-review-result.json) · [旧包完整验收失败现场](../verification/composer-actions-package-initial-failure-review-result.json) · [旧代码完整源码回归](../verification/composer-actions-full-source-review-result.json)
+[最新完整源码回归](../verification/composer-selection-focus-full-source-review-result.json) · [专项、单元与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [旧包验收失败现场](../verification/composer-actions-package-initial-failure-review-result.json) · [旧代码源码回归](../verification/composer-actions-full-source-review-result.json)
 
 完整回归此前四轮失败及原始目录均独立保留。同名助手和保留旧模型选择的测试定位已修正；快捷菜单方向键等待曾持续超时，增加事件诊断后的本轮通过，但原失败原因尚未确认，不能把重放通过写成已修复。原等待期限和断言保留。[同名选项复测](../verification/composer-actions-integration-retry-review-result.json) · [模型选择复测](../verification/quick-chat-retained-model-integration-review-result.json) · [键盘同步复测](../verification/composer-actions-keyboard-integration-review-result.json) · [键盘事件诊断](../verification/composer-actions-keyboard-diagnostic-review-result.json)
 
-界面依据最新版 `E:\txt`（26.930.41038／build 13022）逐项采用，**尚未达到全部页面与交互 100% 对齐**。当前快捷浮层宽度上限 420px，与参考静态 520px 有差异；合法 Inter／系统中文字体及独立品牌也保留差异。物理输入、系统 DPI、无障碍、真实服务及其他目标平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
+界面依据最新版 `E:\txt`（26.930.41038／build 13022）逐项采用，**尚未达到全部页面与交互 100% 对齐**。当前快捷浮层宽度上限 420px；参考 520px 属于居中命令对话框，尚不能直接等同锚定输入浮层。合法 Inter／系统中文字体及独立品牌保留差异。物理输入、系统 DPI、无障碍、真实服务及其他目标平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
 
 此前 `25254c839` 冻结包已通过本机分发，结果只属于该旧应用体；最后已核对的托管运行 [38272492271](https://github.com/Moresyl/nook/actions/runs/38272492271) 属于 `d42376dd`，受账户付款／支出额度限制，仓库版本列表为空。最新提交推送后需读取其精确运行结果。
 
