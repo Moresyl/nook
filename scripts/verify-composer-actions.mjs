@@ -13,7 +13,7 @@ export async function verifyComposerActions({ page, application, projectDirector
   const layouts = [], images = [], captures = [];
   await page.evaluate(async ({ template, fixed, project }) => { await window.qiyao.savePromptTemplate(template); await window.qiyao.savePromptTemplate(fixed); await window.qiyao.saveProject(project); }, { template, fixed, project }); await page.reload();
   const list = () => page.getByRole('listbox', { name: '输入区快捷选择', exact: true });
-  const fill = async text => { await input().fill(text); await input().press('Control+End'); };
+  const fill = async text => { await input().fill(text); await input().press('Control+End'); assert.equal(await input().inputValue(), text, 'Native query input must replace the previous exact draft once.'); };
   const choose = async (query, title, index = 0, matches = 1) => { await fill(query); const options = page.getByRole('option', { name: title, exact: true }); await options.first().waitFor(); assert.equal(await options.count(), matches); await options.nth(index).click(); };
   const capture = async name => {
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -43,8 +43,33 @@ export async function verifyComposerActions({ page, application, projectDirector
 
   const assistant = original.assistants.find(item => item.id !== oldAssistant) ?? original.assistants[0]; assert.ok(assistant);
   const sameName = original.assistants.filter(item => item.name === assistant.name); const defaultOffset = assistant.name === '默认助手' ? 1 : 0;
-  await choose('KEEP /' + assistant.name, `${assistant.name}，助手`, sameName.findIndex(item => item.id === assistant.id) + defaultOffset, sameName.length + defaultOffset); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择助手', { exact: true }).inputValue(), assistant.id);
-  await choose('KEEP /' + project.name, `${project.name}，项目`); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择项目', { exact: true }).inputValue(), project.id);
+  for (let repeat = 0; repeat < 3; repeat++) {
+    if (repeat === 0) await page.evaluate(() => {
+      window.__composerSelectionFrames = [];
+      window.__composerSelectionOriginalFrame = window.requestAnimationFrame;
+      window.__composerSelectionClickCaptured = false;
+      document.addEventListener('click', event => {
+        if (!event.target.closest?.('.composer-actions [role="option"]')) return;
+        window.__composerSelectionClickCaptured = true;
+        window.requestAnimationFrame = callback => { window.__composerSelectionFrames.push(callback); return -1; };
+      }, { capture: true, once: true });
+    });
+    try { await choose('KEEP /' + assistant.name, `${assistant.name}，助手`, sameName.findIndex(item => item.id === assistant.id) + defaultOffset, sameName.length + defaultOffset); }
+    finally { if (repeat === 0) await page.evaluate(() => { window.requestAnimationFrame = window.__composerSelectionOriginalFrame; }); }
+    assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择助手', { exact: true }).inputValue(), assistant.id);
+    if (repeat === 0) {
+      await input().press('Control+A');
+      const selection = await page.evaluate(() => {
+        const node = document.querySelector('.composer textarea'), before = [node.selectionStart, node.selectionEnd], frames = window.__composerSelectionFrames;
+        for (const callback of frames) callback(performance.now());
+        return { before, after: [node.selectionStart, node.selectionEnd], deferredFrames: frames.length, selectionClickCaptured: window.__composerSelectionClickCaptured };
+      });
+      console.log('Composer scope caret restore observations', JSON.stringify(selection));
+      assert.equal(selection.selectionClickCaptured, true); assert.deepEqual(selection.before, [0, 5]); assert.deepEqual(selection.after, selection.before, 'Choosing a scope must not overwrite the subsequent user selection.');
+      await page.keyboard.type('AFTER_SCOPE_SELECTION'); assert.equal(await input().inputValue(), 'AFTER_SCOPE_SELECTION');
+    }
+    await choose('KEEP /' + project.name, `${project.name}，项目`); assert.equal(await input().inputValue(), 'KEEP '); assert.equal(await page.getByLabel('选择项目', { exact: true }).inputValue(), project.id);
+  }
   assert.equal(calls.length, initialCalls); verified('composer assistant and project choices consume only the slash query and preserve the surrounding draft without model requests');
 
   await fill('/快捷'); await list().waitFor(); await input().press('Control+Home'); assert.equal(await input().evaluate(node => node.selectionStart), 0); await input().press('Control+End'); assert.equal(await input().evaluate(node => node.selectionStart), 3); await list().waitFor();

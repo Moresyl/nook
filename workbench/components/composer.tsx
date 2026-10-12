@@ -54,6 +54,7 @@ export function Composer(props: Props) {
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const count = (props.mode === 'plan' ? 0 : props.serverIds.length + props.pluginIds.length) + props.skillIds.length;
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const pendingSelection = useRef<{ text: string; context: string; caret: number } | undefined>(undefined);
   const query = focused && !composing && !busy && !props.running ? composerQuery(props.text, selection.start, selection.end) : null;
   const queryKey = JSON.stringify([props.importContext, query]);
   const showActions = Boolean(query && queryKey !== dismissedAction && !prompts && !extensions && !knowledge);
@@ -65,16 +66,24 @@ export function Composer(props: Props) {
     setSelection(previous => previous.start === start && previous.end === end ? previous : { start, end });
     setFocused(document.activeElement === node);
   }
+  useLayoutEffect(() => {
+    const requested = pendingSelection.current;
+    pendingSelection.current = undefined;
+    const node = textarea.current;
+    if (!requested || !node || requested.text !== props.text || requested.context !== props.importContext || node.value !== requested.text) return;
+    node.focus(); node.setSelectionRange(requested.caret, requested.caret); updateSelection(node);
+  }, [props.text, props.importContext]);
   function chooseAction(item: ComposerAction) {
     if (!query || busy || props.running || !actions.some(current => current.key === item.key)) return;
     setDismissedAction(queryKey);
     if (item.kind === 'template') { setPrompts({ id: item.id, replacement: query, context: props.importContext }); return; }
-    const text = consumeComposerQuery(props.text, query); props.onText(text);
+    const text = consumeComposerQuery(props.text, query);
+    if (item.kind === 'assistant' || item.kind === 'project') pendingSelection.current = { text, context: props.importContext, caret: query.start };
+    props.onText(text);
     if (item.kind === 'assistant') props.onAssistant(item.id);
     else if (item.kind === 'project') props.onProject(item.id);
     else if (item.kind === 'tools') setExtensions(true);
     else setKnowledge(true);
-    if (item.kind === 'assistant' || item.kind === 'project') requestAnimationFrame(() => { textarea.current?.focus(); textarea.current?.setSelectionRange(query.start, query.start); });
   }
   const provider = props.providers.find((item) => item.id === props.providerId);
   const context = provider ? modelContext(provider, props.model, props.messages) : undefined;
