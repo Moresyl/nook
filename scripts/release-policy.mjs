@@ -63,6 +63,26 @@ export function releaseNotes(changelog, version) {
   return `${body}\n`;
 }
 
+export function verifyComposerActionsProof(proof) {
+  const flags = ['queryKeyboardVerified', 'templateCancellationVerified', 'caretInsertionVerified', 'scopeSelectionVerified', 'sixThemeZoomLayoutsVerified', 'quickChatVerified', 'fixtureCleanupVerified'];
+  const themes = ['light', 'dark'];
+  const zooms = [1, 1.25, 1.5];
+  const expected = themes.flatMap(theme => zooms.flatMap(zoom => ['', '-empty'].map(state => `composer-actions${state}-${theme}-${zoom * 100}.png`)));
+  const whole = row => row && ['left', 'right', 'top', 'bottom', 'chromeBottom', 'viewportWidth', 'viewportHeight', 'width', 'scrollWidth', 'activeTop', 'activeBottom', 'clipTop', 'clipBottom'].every(key => Number.isFinite(row[key]))
+    && row.viewportWidth > 0 && row.viewportHeight > 0 && row.width > 0 && row.scrollWidth > 0 && row.scrollWidth <= row.width
+    && row.left >= 0 && row.right <= row.viewportWidth && row.right > row.left && row.chromeBottom >= 0 && row.top >= row.chromeBottom + 8 && row.bottom <= row.viewportHeight && row.bottom > row.top
+    && row.clipTop >= row.top && row.clipBottom <= row.bottom && row.clipBottom > row.clipTop && row.activeTop >= row.clipTop && row.activeBottom <= row.clipBottom && row.activeBottom > row.activeTop
+    && row.focused === true && row.opacity === '1' && row.fontSize === '14px' && row.minHeight === '24px' && row.background === (row.theme === 'light' ? 'rgb(249, 249, 249)' : 'rgb(65, 65, 65)');
+  const layouts = Array.isArray(proof?.layouts) && proof.layouts.length === 6 && themes.every(theme => zooms.every(zoom => proof.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1)) && proof.layouts.every(whole);
+  const images = Array.isArray(proof?.screenshots) && proof.screenshots.length === expected.length && expected.every(name => proof.screenshots.filter(filename => filename === name).length === 1);
+  const captures = Array.isArray(proof?.captures) && proof.captures.length === expected.length && expected.every(name => proof.captures.filter(row => row?.filename === name).length === 1) && proof.captures.every(row =>
+    row.width === 760 && row.height === 540 && Array.isArray(row.nativeSize) && row.nativeSize.length === 2 && row.nativeSize[0] === row.width && row.nativeSize[1] === row.height
+    && (row.filename.includes('-empty-') ? row.query === '/NO_MATCH_QUICK_ACTION' && row.selectedLabel === null && row.optionCount === 0 : row.query === '/快捷' && typeof row.selectedLabel === 'string' && row.selectedLabel.trim().length > 0 && Number.isInteger(row.optionCount) && row.optionCount > 0));
+  if (proof?.checks !== 7 || proof.modelRequests !== 0 || !flags.every(key => proof[key] === true) || !layouts || !images || !captures) {
+    throw new Error('Complete composer actions, draft retention and whole native capture verification is required');
+  }
+}
+
 export function verifySettingsSearchProof(settings) {
   const sixSettingsLayouts = Array.isArray(settings?.layouts) && settings.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => settings.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.sidebarOverflow === false && row.panelOverflow === false && row.searchStyleVerified === true).length === 1));
   if (settings?.checks !== 6 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 18 || new Set(settings.screenshots).size !== 18 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
@@ -82,9 +102,10 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 361 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 368 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
+  verifyComposerActionsProof(desktop.composerActions);
   verifySettingsSearchProof(desktop.settingsSearch);
   const context = desktop.contextSummaries;
   const roots = desktop.worktreeSettings;

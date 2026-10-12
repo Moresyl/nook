@@ -2,6 +2,8 @@
 
 ## 未发布
 
+新增输入区 `/` 快捷选择，共用主工作台与快速聊天，支持模板变量、助手和项目筛选、键盘选择与光标处插入。取消和无匹配回车保留原文，过期查询拒绝修改新草稿。当前类型、135 项相关及完整 1,533 项单元、构建与七项原生专项通过，覆盖率四项均超过 94%，12 张完整窗口原图已按原尺寸复核；完整源码回归、新包和实际安装正在验收。原发布及安装门槛提高至 368 项，并要求六组明暗缩放布局和 12 份匹配的完整窗口捕获。下方 `25254c839` 等记录属于之前的冻结包，不计入本次改动的发行验收。 [源码专项及原图证据](verification/composer-actions-acceptance-review-result.json)
+
 修复编辑器文件标签及关闭按钮的键盘焦点圈裁切：轮廓改为控件内侧，标签栏保留横向滚动条空间。类型、116 项相关单元、完整 1,524 项单元、重新构建和实际预览 10 项／停靠预览 5 项通过。源码、`25254c839` 冻结包内及实际安装各 361 项／74 次正常退出通过，最长分别为 1,661ms／2,352ms／1,682ms，无强制；各保留 38 份新报告、536 张原图和匹配的 236 编译文件。五个原分发专项、法律审计、登记、快捷方式、保留数据卸载、原八个标记恢复及十一份匹配运行记录通过。包内 67 张不同原图逐张原尺寸核验，其他完整回归与安装原图未全部视觉复核。发布门槛要求 15 张指定标签图和六组各两个完整有限轮廓，保留原草稿、取消、保存重试和预算；真实诊断及修复期间四轮失败独立保留。托管发布与全部参考界面验收仍未完成。
 
 工作树键盘刷新完成后恢复原按钮焦点，等待期间移到其他控件时保持用户选择；成功和错误刷新均在实际 Electron 中验证。类型、137 项相关单元、完整 1,524 项单元及六组原生专项通过，八张明暗缩放源码焦点原图逐张复核。完整源码、新包内和实际安装各 361 项／74 次正常退出通过，最长分别为 1,603ms／1,867ms／1,701ms，无强制；五个原分发专项、法律审计、保留数据卸载、八个原标记恢复及十一份匹配运行记录通过。包内 55 张不同原图逐张核验，源码、包内和安装各保留 38 份新报告与 530 张原图；其他完整回归原图与安装原图未全部视觉复核。发布解析器要求 35 张指定原图和六组完整数值轮廓边界，110 项策略测试通过；真实失焦诊断及首轮缩放测量失败保留。下文安装结果按各自历史应用体保存。
@@ -26,6 +28,7 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 
 ### 新功能
 
+- **输入区快捷选择**：主工作台与快速聊天输入 `/` 查找模板、助手和项目；键盘选择、光标处插入变量模板、取消保留原文。选择操作不发送消息，工具、技能和资料集可通过已有入口选择。
 - **对话与模型**：连接 Responses、OpenAI 兼容、Anthropic、Gemini、Azure 和 Ollama。支持流式回复、停止与重试、回复版本、消息编辑、分支排序、独立草稿，以及同一问题的 2–4 模型比较。
 - **上下文与工具**：生成、编辑和选择上下文摘要，完整原文继续保存；原文变化时恢复完整历史。工具记录展示状态、耗时和操作摘要，支持展开、复制与失败重试。主工作台和快速聊天共用相应能力。
 - **资料阅读**：提取 PDF、Office、OpenDocument 与文本，输入图片，管理资料集和关键词／向量／混合检索。保留 PDF 原件，支持离线版式阅读、目录、查找、原字节导出和备份恢复；MCP PDF 可显式加入聊天。
@@ -56,11 +59,13 @@ Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版
 
 ### 安装
 
-- Windows x64 候选安装版 `Nook-Setup-0.1.0-alpha.1-x64.exe` 和便携版 `Nook-Portable-0.1.0-alpha.1-x64.exe` 已完成本机分发验收；账户付款／支出额度限制使原托管验证任务未启动，尚无已发布版本。
+- 上一冻结包的 Windows x64 安装版 `Nook-Setup-0.1.0-alpha.1-x64.exe` 和便携版 `Nook-Portable-0.1.0-alpha.1-x64.exe` 已完成本机分发验收；新增输入区快捷选择后的新包仍在验收。账户付款／支出额度限制使此前原托管验证任务未启动，尚无已发布版本。
 - 正式提供文件时附对应源码、验证记录和 `SHA256SUMS.txt`。首次启动自行配置模型连接；迁移已有工作台前可导出完整备份。
 - 候选可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供；全部参考页面、物理系统交互与真实服务继续独立验收。
 
 ### English
+
+The composer adds searchable slash choices for templates, assistants and projects in both the workbench and Quick Chat. Variable templates replace the query at the caret; cancellation retains the original text, and selection does not send a message.
 
 Nook is a local AI workspace with multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Worktree settings add a managed root, optional upstream fetching, linked conversations and explicit project registration with same-ID retry and duplicate preservation.
 

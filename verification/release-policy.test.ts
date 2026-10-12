@@ -2,7 +2,13 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { releaseNotes, releaseVersion, verifyRuntimeProof, verifySettingsSearchProof, verifyWorktreeCleanupProof, type ReleaseProof } from '../scripts/release-policy.mjs';
+import { releaseNotes, releaseVersion, verifyRuntimeProof, verifyComposerActionsProof, verifySettingsSearchProof, verifyWorktreeCleanupProof, type ComposerActionsProof, type ReleaseProof } from '../scripts/release-policy.mjs';
+
+function composerActions(): ComposerActionsProof {
+  const layouts = ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, left: 8, right: 428, top: 44, bottom: 300, chromeBottom: 36, viewportWidth: 507, viewportHeight: 360, width: 412, scrollWidth: 412, activeTop: 100, activeBottom: 156, clipTop: 80, clipBottom: 270, opacity: '1', fontSize: '14px', minHeight: '24px', background: theme === 'light' ? 'rgb(249, 249, 249)' : 'rgb(65, 65, 65)', focused: true })));
+  const captures = layouts.flatMap(({ theme, zoom }) => [false, true].map(empty => ({ filename: `composer-actions${empty ? '-empty' : ''}-${theme}-${zoom * 100}.png`, width: 760, height: 540, nativeSize: [760, 540], query: empty ? '/NO_MATCH_QUICK_ACTION' : '/快捷', selectedLabel: empty ? null : '项目', optionCount: empty ? 0 : 3 })));
+  return { checks: 7, modelRequests: 0, queryKeyboardVerified: true, templateCancellationVerified: true, caretInsertionVerified: true, scopeSelectionVerified: true, sixThemeZoomLayoutsVerified: true, quickChatVerified: true, fixtureCleanupVerified: true, layouts, captures, screenshots: captures.map(row => row.filename) };
+}
 import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mjs';
 
 const hash = 'a'.repeat(64);
@@ -59,7 +65,7 @@ function worktreeCleanup(): NonNullable<ReleaseProof['desktop']['worktreeCleanup
 }
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 361, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, settingsSearch: { checks: 6, modelRequests: 0, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contained: true, sidebarOverflow: false, panelOverflow: false, searchStyleVerified: true }))), screenshots: Array.from({ length: 18 }, (_, index) => `settings-search-${index}-shell.png`) }, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), worktreeCleanup: worktreeCleanup(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 368, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, composerActions: composerActions(), settingsSearch: { checks: 6, modelRequests: 0, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contained: true, sidebarOverflow: false, panelOverflow: false, searchStyleVerified: true }))), screenshots: Array.from({ length: 18 }, (_, index) => `settings-search-${index}-shell.png`) }, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), worktreeCleanup: worktreeCleanup(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -149,6 +155,47 @@ describe('worktree cleanup release evidence', () => {
     const missing = worktreeCleanup(); missing.screenshots.pop(); expect(() => verifyWorktreeCleanupProof(missing)).toThrow('worktree cleanup');
     const duplicate = worktreeCleanup(); duplicate.screenshots[1] = duplicate.screenshots[0]; expect(() => verifyWorktreeCleanupProof(duplicate)).toThrow('worktree cleanup');
     for (const name of ['../escape-shell.png', 'worktree-snapshots-error-shell.png', 'worktree-cleanup-error.png']) { const invalid = worktreeCleanup(); invalid.screenshots[0] = name; expect(() => verifyWorktreeCleanupProof(invalid)).toThrow('worktree cleanup'); }
+  });
+});
+
+describe('composer actions release evidence', () => {
+  it('requires the new native behaviors in release and installation proof', () => {
+    expect(() => verifyComposerActionsProof(composerActions())).not.toThrow();
+    expect(() => verifyComposerActionsProof(undefined)).toThrow('composer actions');
+    const old = proof(); old.desktop.checks = 361; expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop');
+    const missing = proof(); delete missing.desktop.composerActions; expect(() => verifyRuntimeProof(missing)).toThrow('composer actions');
+    for (const [key, value] of Object.entries({ checks: 6, modelRequests: 1, queryKeyboardVerified: false, templateCancellationVerified: false, caretInsertionVerified: false, scopeSelectionVerified: false, sixThemeZoomLayoutsVerified: false, quickChatVerified: false, fixtureCleanupVerified: false })) {
+      const invalid = composerActions(); (invalid as unknown as Record<string, unknown>)[key] = value; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+  });
+  it('rejects duplicate or incomplete theme and zoom layouts', () => {
+    const missing = composerActions(); missing.layouts.pop(); expect(() => verifyComposerActionsProof(missing)).toThrow('composer actions');
+    const duplicate = composerActions(); duplicate.layouts[1] = duplicate.layouts[0]; expect(() => verifyComposerActionsProof(duplicate)).toThrow('composer actions');
+  });
+  it('rejects invalid, clipped, overflowing or unfocused selected rows', () => {
+    const values = { left: -1, right: 508, top: 43, bottom: 361, chromeBottom: -1, viewportWidth: 0, viewportHeight: 0, width: 0, scrollWidth: 413, activeTop: 79, activeBottom: 271, clipTop: 43, clipBottom: 301, opacity: '0.75', fontSize: '13px', minHeight: '0px', background: 'transparent', focused: false };
+    for (const [key, value] of Object.entries(values)) {
+      const invalid = composerActions(); (invalid.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+    for (const key of ['left', 'right', 'top', 'bottom', 'chromeBottom', 'viewportWidth', 'viewportHeight', 'width', 'scrollWidth', 'activeTop', 'activeBottom', 'clipTop', 'clipBottom']) for (const value of [NaN, Infinity]) {
+      const invalid = composerActions(); (invalid.layouts[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+    for (const [start, end] of [['left', 'right'], ['top', 'bottom'], ['clipTop', 'clipBottom'], ['activeTop', 'activeBottom']]) {
+      const invalid = composerActions(); const row = invalid.layouts[0] as unknown as Record<string, unknown>; row[end] = row[start]; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+  });
+  it('rejects cropped, duplicate, missing or stale native captures', () => {
+    for (const field of ['screenshots', 'captures'] as const) {
+      const missing = composerActions(); missing[field].pop(); expect(() => verifyComposerActionsProof(missing)).toThrow('composer actions');
+      const duplicate = composerActions(); duplicate[field][1] = duplicate[field][0] as never; expect(() => verifyComposerActionsProof(duplicate)).toThrow('composer actions');
+    }
+    for (const [key, value] of Object.entries({ filename: '../old.png', width: 608, height: 432, nativeSize: [608, 432], query: '/previous', selectedLabel: '', optionCount: 0 })) {
+      const invalid = composerActions(); (invalid.captures[0] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+    for (const [key, value] of Object.entries({ query: '/快捷', selectedLabel: '项目', optionCount: 1 })) {
+      const invalid = composerActions(); (invalid.captures[1] as unknown as Record<string, unknown>)[key] = value; expect(() => verifyComposerActionsProof(invalid)).toThrow('composer actions');
+    }
+    const wrong = composerActions(); wrong.screenshots[0] = 'old.png'; expect(() => verifyComposerActionsProof(wrong)).toThrow('composer actions');
   });
 });
 

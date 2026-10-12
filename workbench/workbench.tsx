@@ -30,7 +30,7 @@ import { KnowledgeLibrary } from './pages/knowledge-library';
 import { AutomationsPage } from './pages/automations';
 import { BrowserPage } from './pages/browser';
 import { Toast } from './components/toast';
-import { appendPrompt } from '../contracts/prompt-templates';
+import { insertComposerPrompt, type ComposerQuery } from '../contracts/composer-actions';
 import { workspaceCommands, type ProjectView, type WorkspaceCommand, type WorkspacePage } from '../contracts/commands';
 import { CommandPalette } from './components/command-palette';
 
@@ -268,10 +268,10 @@ export function Workbench() {
     try { setText(appendMessageQuote(draftRef.current.text, message, selection)); pendingComposerFocus.current = draftRef.current; }
     catch (problem) { report(problem); }
   }
-  function insertPrompt(prompt: string, recipeAssistantId?: string): boolean {
+  function insertPrompt(prompt: string, recipeAssistantId?: string, replacement?: ComposerQuery): boolean {
     try {
       if (recipeAssistantId && !state?.assistants.some((item) => item.id === recipeAssistantId)) throw new Error('关联的助手已移除。请重新选择模板助手。');
-      updateDraft({ text: appendPrompt(draftRef.current.text, prompt), ...(recipeAssistantId ? { assistantId: recipeAssistantId } : {}) }); setPage('chat');
+      updateDraft({ text: insertComposerPrompt(draftRef.current.text, prompt, replacement), ...(recipeAssistantId ? { assistantId: recipeAssistantId } : {}) }); setPage('chat');
       pendingComposerFocus.current = draftRef.current; return true;
     } catch (problem) { report(problem); return false; }
   }

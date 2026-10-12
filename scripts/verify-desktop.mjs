@@ -36,6 +36,7 @@ import { automationProviderFixture } from '../verification/automation-provider-f
 import { verifyDesktopIntegration } from './verify-desktop-integration.mjs';
 import { verifyAssistantProfiles } from './verify-assistant-profiles.mjs';
 import { verifyPromptTemplates } from './verify-prompt-templates.mjs';
+import { verifyComposerActions } from './verify-composer-actions.mjs';
 import { verifyAssistantRecipes } from './verify-assistant-recipes.mjs';
 import { verifyPromptTransfer } from './verify-prompt-transfer.mjs';
 import { verifyReplyVersions } from './verify-reply-versions.mjs';
@@ -532,6 +533,7 @@ let surfaceResult;
 let textHintResult;
 let memoriesResult;
 let projectPreviewResult;
+let composerActionsResult;
 let projectTreeResult;
 let terminalLifecycleResult;
 let rendererCloseResult;
@@ -745,6 +747,9 @@ try {
     const replies = await verifyReplyVersions({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: replyProviders, restart: async () => { await application.close(); return launch(); } }); page = replies.page;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
     await writeFile(join(root, 'verification', packaged ? 'reply-versions-packaged-result.json' : 'reply-versions-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, ...replies.result }, null, 2));
+  } else if (process.env.QIYAO_TEST_COMPOSER_ACTIONS_ONLY) {
+    composerActionsResult = await verifyComposerActions({ page, application, projectDirectory, screenshots, calls, verified, waitForBridge });
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_PROMPTS_ONLY) {
     const prompts = await verifyPromptTemplates({ page, application, getApplication: () => application, directory, projectDirectory, endpoint, screenshots, calls, waitForBridge, verified, restart: async () => { await application.close(); return launch(); } }); page = prompts.page;
     assert.deepEqual(errors, []);
@@ -1250,6 +1255,7 @@ try {
   const promptsStart = count;
   const promptsResult = await verifyPromptTemplates({ page, application, getApplication: () => application, directory, projectDirectory, endpoint, screenshots, calls, waitForBridge, verified, restart: async () => { await application.close(); return launch(); } }); page = promptsResult.page;
   await writeFile(join(root, 'verification', packaged ? 'prompt-templates-packaged-result.json' : 'prompt-templates-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - promptsStart, runtimeErrors: errors, ...promptsResult.result }, null, 2));
+  composerActionsResult = await verifyComposerActions({ page, application, projectDirectory, screenshots, calls, verified, waitForBridge });
   const repliesStart = count;
   const repliesResult = await verifyReplyVersions({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: replyProviders, restart: async () => { await application.close(); return launch(); } }); page = repliesResult.page;
   await writeFile(join(root, 'verification', packaged ? 'reply-versions-packaged-result.json' : 'reply-versions-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - repliesStart, runtimeErrors: errors, ...repliesResult.result }, null, 2));
@@ -1320,6 +1326,7 @@ try {
   const credentials = await readFile(join(directory, 'credentials.json'), 'utf8'); assert.ok(!credentials.includes('access-') && !credentials.includes('refresh-'));
   const screenshotNames = ['home-light', 'conversation', 'settings-dark', 'home-dark', 'narrow', 'project-analysis', 'file-approval', 'command-approval', 'narrow-approval', 'project-editor', 'project-git', 'project-terminal', 'draft-restored-dark', 'project-narrow', 'terminal-minimum-window', 'mcp-settings', 'mcp-approval', 'skill-settings', 'skill-conversation', 'mcp-resource', 'mcp-prompt', 'mcp-content-narrow', 'mcp-oauth', 'mcp-resource-dark', 'mcp-prompt-dark-narrow', 'mcp-oauth-dark-narrow', 'plugin-panel-light', 'plugin-panel-dark-narrow', 'plugin-approval', 'message-editor-light', 'message-editor-dark-narrow'];
   fullResult = { verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count, runtimeErrors: errors,
+    composerActions: composerActionsResult,
     scope: 'Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.',
     composerDraftScope: 'Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.',
     richContent, nativeProviders: nativeProviderResult, attachments: attachmentResult.result, knowledge: knowledgeResult.result, automations: automationsResult.result, desktop: desktopResult.result, assistants: assistantsResult.result, prompts: promptsResult.result, replies: repliesResult.result, messageEdits: messageEditsResult.result, commands: commandResult.result, backups: backupsResult.result, projectTree: projectTreeRun.result, chatNavigation: chatNavigationRun.result, modelComparisons: modelComparisonRun.result, mcpResourceSubscriptions: mcpSubscriptionsRun.result, mcpBinaryFiles: mcpBinaryRun.result, pluginFonts: pluginVerification.fonts,
@@ -1349,6 +1356,7 @@ try {
   if (fullResult && worktreePinningResult) { fullResult.worktreePinning = worktreePinningResult; fullResult.screenshots.push(...worktreePinningResult.screenshots); }
   if (fullResult && worktreeSnapshotsResult) { fullResult.worktreeSnapshots = worktreeSnapshotsResult; fullResult.screenshots.push(...worktreeSnapshotsResult.screenshots); }
   if (fullResult && worktreeCleanupResult) { fullResult.worktreeCleanup = worktreeCleanupResult; fullResult.screenshots.push(...worktreeCleanupResult.screenshots); }
+  if (fullResult && composerActionsResult) fullResult.screenshots.push(...composerActionsResult.screenshots);
   if (fullResult && settingsSearchResult) { fullResult.settingsSearch = settingsSearchResult; fullResult.screenshots.push(...settingsSearchResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
@@ -1622,6 +1630,10 @@ try {
     const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
     const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
     await writeFile(join(root, 'verification', packaged ? 'project-preview-packaged-result.json' : 'project-preview-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, normalCloseVerified: true, runtimeErrors: errors, ...projectPreviewResult }, null, 2));
+  }
+  if (suiteCompleted && !closeError && composerActionsResult) {
+    assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    await writeFile(join(root, 'verification', packaged ? 'composer-actions-packaged-result.json' : 'composer-actions-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', normalCloseVerified: true, runtimeErrors: errors, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused composer-actions suite' }), ...composerActionsResult }, null, 2));
   }
   if (suiteCompleted && !closeError && fullResult) {
     assert.deepEqual(errors, []);

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import type { Assistant, Attachment, Message, Project, Provider } from '../../contracts/workspace';
 import type { ConversationMode } from '../../contracts/tools';
 import { Button, IconButton, Modal, Select, Toggle } from './controls';
@@ -12,6 +12,8 @@ import type { PromptTemplate } from '../../contracts/prompt-templates';
 import { PromptUseDialog } from './prompt-use-dialog';
 import { TextHint } from './control-tooltip';
 import { useContentBridge } from './content-bridge';
+import { composerActions, composerQuery, consumeComposerQuery, moveComposerAction, type ComposerAction, type ComposerQuery } from '../../contracts/composer-actions';
+import { ComposerActions } from './composer-actions';
 
 type Props = {
   temporary?: boolean;
@@ -29,7 +31,7 @@ type Props = {
   onCompare?: () => void; onViewComparison?: () => void;
   onContext?: () => void;
   onConfigure: () => void; report: (error: unknown) => void;
-  promptTemplates: PromptTemplate[]; onPrompt: (text: string, assistantId?: string) => boolean;
+  promptTemplates: PromptTemplate[]; onPrompt: (text: string, assistantId?: string, replacement?: ComposerQuery) => boolean;
 };
 
 export function Composer(props: Props) {
@@ -38,7 +40,9 @@ export function Composer(props: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [extensions, setExtensions] = useState(false);
   const [knowledge, setKnowledge] = useState(false);
-  const [prompts, setPrompts] = useState(false);
+  const [prompts, setPrompts] = useState<{ id?: string; replacement?: ComposerQuery; context: string } | null>(null);
+  const [focused, setFocused] = useState(false); const [composing, setComposing] = useState(false);
+  const [selection, setSelection] = useState({ start: 0, end: 0 }); const [activeAction, setActiveAction] = useState(''); const [dismissedAction, setDismissedAction] = useState(''); const actionsId = useId();
   const [importing, setImporting] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [singleLine, setSingleLine] = useState(true);
@@ -50,6 +54,28 @@ export function Composer(props: Props) {
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const count = (props.mode === 'plan' ? 0 : props.serverIds.length + props.pluginIds.length) + props.skillIds.length;
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const query = focused && !composing && !busy && !props.running ? composerQuery(props.text, selection.start, selection.end) : null;
+  const queryKey = JSON.stringify([props.importContext, query]);
+  const showActions = Boolean(query && queryKey !== dismissedAction && !prompts && !extensions && !knowledge);
+  const actions = showActions ? composerActions({ templates: props.promptTemplates, assistants: props.assistants, projects: props.projects, tools: Boolean(props.servers.length || props.skills.length || props.plugins.length), knowledge: Boolean(props.hasNotes || props.knowledgeCollections.length) }, query!.query) : [];
+  const currentAction = actions.find(item => item.key === activeAction) ?? actions[0];
+  useEffect(() => { setPrompts(null); setActiveAction(''); setDismissedAction(''); }, [props.importContext]);
+  function updateSelection(node: HTMLTextAreaElement) {
+    const start = node.selectionStart, end = node.selectionEnd;
+    setSelection(previous => previous.start === start && previous.end === end ? previous : { start, end });
+    setFocused(document.activeElement === node);
+  }
+  function chooseAction(item: ComposerAction) {
+    if (!query || busy || props.running || !actions.some(current => current.key === item.key)) return;
+    setDismissedAction(queryKey);
+    if (item.kind === 'template') { setPrompts({ id: item.id, replacement: query, context: props.importContext }); return; }
+    const text = consumeComposerQuery(props.text, query); props.onText(text);
+    if (item.kind === 'assistant') props.onAssistant(item.id);
+    else if (item.kind === 'project') props.onProject(item.id);
+    else if (item.kind === 'tools') setExtensions(true);
+    else setKnowledge(true);
+    if (item.kind === 'assistant' || item.kind === 'project') requestAnimationFrame(() => { textarea.current?.focus(); textarea.current?.setSelectionRange(query.start, query.start); });
+  }
   const provider = props.providers.find((item) => item.id === props.providerId);
   const context = provider ? modelContext(provider, props.model, props.messages) : undefined;
   useLayoutEffect(() => {
@@ -96,7 +122,14 @@ export function Composer(props: Props) {
     <div className="composer" data-composer-utility-bar-variant={props.running ? 'thread' : 'home'} data-composer-rows={singleLine && !attachments.length ? 'single' : 'stacked'} data-composer-drag-active={dragging || undefined} aria-busy={importing} onDragEnter={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current++; setDragging(true); }} onDragOver={(event) => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); event.dataTransfer.dropEffect = busy ? 'none' : 'copy'; } }} onDragLeave={(event) => { if (!event.dataTransfer.types.includes('Files')) return; if (--dragDepth.current <= 0) { dragDepth.current = 0; setDragging(false); } }} onDrop={(event) => { if (!event.dataTransfer.types.includes('Files')) return; event.preventDefault(); dragDepth.current = 0; setDragging(false); void attach([...event.dataTransfer.files]); }}>
       {attachments.length > 0 && <AttachmentList files={attachments} disabled={busy} onRemove={(id) => props.onAttachments(attachments.filter((item) => item.id !== id))} />}
       <div className="composer-entry">
-      <textarea rows={1} ref={textarea} aria-label="消息" placeholder={dragging ? '松开以添加附件' : '有什么想一起完成的？'} maxLength={256_000} disabled={submitting} value={props.text} onChange={(event) => props.onText(event.target.value)} onPaste={(event) => { const files = [...event.clipboardData.files].filter((file) => file.type.startsWith('image/')); if (files.length) { event.preventDefault(); void attach(files); } }} onKeyDown={(event) => {
+      <textarea rows={1} ref={textarea} aria-label="消息" title="输入 / 快捷选择模板、助手或项目" aria-autocomplete="list" aria-controls={showActions ? actionsId : undefined} aria-activedescendant={showActions && currentAction ? `${actionsId}-${actions.indexOf(currentAction)}` : undefined} aria-describedby={showActions ? `${actionsId}-hint` : undefined} placeholder={dragging ? '松开以添加附件' : '有什么想一起完成的？'} maxLength={256_000} disabled={submitting} value={props.text} onFocus={event => updateSelection(event.currentTarget)} onBlur={() => setFocused(false)} onSelect={event => updateSelection(event.currentTarget)} onKeyUp={event => updateSelection(event.currentTarget)} onPointerUp={event => updateSelection(event.currentTarget)} onCompositionStart={() => setComposing(true)} onCompositionEnd={event => { setComposing(false); updateSelection(event.currentTarget); }} onChange={(event) => { updateSelection(event.target); setActiveAction(''); setDismissedAction(''); props.onText(event.target.value); }} onPaste={(event) => { const files = [...event.clipboardData.files].filter((file) => file.type.startsWith('image/')); if (files.length) { event.preventDefault(); void attach(files); } }} onKeyDown={(event) => {
+        if (event.nativeEvent.isComposing || event.key === 'Process' || event.keyCode === 229) return;
+        if (showActions) {
+          if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setDismissedAction(queryKey); return; }
+          if (!event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); setActiveAction(moveComposerAction(actions, currentAction?.key ?? '', event.key)); return; }
+          if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); event.stopPropagation(); if (currentAction) chooseAction(currentAction); return; }
+          if (event.key === 'Tab') setDismissedAction(queryKey);
+        }
         if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing && (props.enterToSend || event.ctrlKey || event.metaKey)) { event.preventDefault(); void send(); }
       }} />
         {props.running ? <Button className="send-button" aria-label="停止生成" onClick={props.onStop}><Glyph name="stop" size={16} /></Button> : <Button className="send-button" tone="solid" aria-label="发送消息" disabled={!props.text.trim() || busy} onClick={() => { void send(); }}><Glyph name="send" size={18} /></Button>}
@@ -105,7 +138,7 @@ export function Composer(props: Props) {
       <div className="composer-toolbar">
         <div className="composer-tools" onFocusCapture={(event) => { if (event.currentTarget.scrollWidth > event.currentTarget.clientWidth && event.target instanceof HTMLElement) event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' }); }}><IconButton icon="attach" label="添加附件" disabled={busy} onClick={() => { void attach(); }} />
           <Select aria-label="选择助手" disabled={submitting} value={props.assistantId} onChange={(event) => props.onAssistant(event.target.value)}><option value="">默认助手</option>{props.assistants.map((assistant) => <option key={assistant.id} value={assistant.id}>{assistant.name}</option>)}</Select>
-          {props.promptTemplates.length > 0 && <Button className="composer-action" disabled={busy} aria-label="使用提示模板" title="使用提示模板" onClick={() => setPrompts(true)}><Glyph name="compose" size={14} /><span className="composer-tool-label">模板</span></Button>}
+          {props.promptTemplates.length > 0 && <Button className="composer-action" disabled={busy} aria-label="使用提示模板" title="使用提示模板" onClick={() => setPrompts({ context: props.importContext })}><Glyph name="compose" size={14} /><span className="composer-tool-label">模板</span></Button>}
           {props.onCompare && <Button className="composer-action" disabled={busy || props.running || !props.text.trim()} aria-label="发送给多个模型比较" title="发送给多个模型比较" onClick={props.onCompare}><Glyph name="compare" size={14} /><span className="composer-tool-label">比较</span></Button>}
           {props.onViewComparison && <Button className="composer-action" disabled={busy} aria-label="查看模型比较" title="查看模型比较" onClick={props.onViewComparison}><Glyph name="branch" size={14} /><span className="composer-tool-label">查看比较</span></Button>}
           {props.projects.length > 0 && <Select aria-label="选择项目" disabled={submitting} value={props.projectId} onChange={(event) => props.onProject(event.target.value)}><option value="">独立聊天</option>{props.projects.map((project) => <option key={project.id} value={project.id}>{project.name}</option>)}</Select>}
@@ -125,7 +158,8 @@ export function Composer(props: Props) {
       {context.info?.inputTokenLimit && <span>输入上限 {context.info.inputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.contextWindow && <span>上下文窗口 {context.info.contextWindow.toLocaleString('zh-CN')}</span>}{context.info?.outputTokenLimit && <span>输出上限 {context.info.outputTokenLimit.toLocaleString('zh-CN')}</span>}{context.info?.maxOutputTokens && <span>输出预算 {context.info.maxOutputTokens.toLocaleString('zh-CN')}</span>}
     </TextHint>}
     {props.onContext && <div className="composer-context"><Button className="usage-button" disabled={submitting || props.running} onClick={props.onContext}>管理会话上下文</Button></div>}
-    {prompts && <PromptUseDialog templates={props.promptTemplates} assistants={props.assistants} onUse={props.onPrompt} onClose={() => setPrompts(false)} />}
+    {showActions && <ComposerActions id={actionsId} anchor={textarea} items={actions} active={currentAction?.key ?? ''} onActive={setActiveAction} onChoose={chooseAction} />}
+    {prompts && <PromptUseDialog templates={props.promptTemplates} assistants={props.assistants} initialId={prompts.id} applyLabel={prompts.replacement ? '插入到草稿' : undefined} onUse={(text, assistantId) => { if (prompts.context !== importContext.current) return false; return props.onPrompt(text, assistantId, prompts.replacement); }} onClose={() => setPrompts(null)} />}
     {extensions && <Modal title="工具与技能" onClose={() => setExtensions(false)} footer={<Button tone="solid" onClick={() => setExtensions(false)}>完成</Button>}>
       <h3>MCP 工具</h3>{props.mode === 'plan' ? <p className="field-hint">项目分析只使用项目读取工具；MCP 工具可在聊天或执行任务中使用。</p> : <><p className="field-hint">请先在设置中连接服务器。每次模型调用都会先请求审批。</p>{props.servers.filter((server) => server.enabled).map((server) => <Toggle key={server.id} label={server.name} checked={props.serverIds.includes(server.id)} onChange={(checked) => props.onServers(checked ? [...props.serverIds, server.id] : props.serverIds.filter((id) => id !== server.id))} />)}</>}
       <h3>本地技能</h3>{props.skills.filter((skill) => skill.enabled).map((skill) => <div className="extension-tool" key={skill.id}><Toggle label={skill.name} checked={props.skillIds.includes(skill.id)} onChange={(checked) => props.onSkills(checked ? [...props.skillIds, skill.id] : props.skillIds.filter((id) => id !== skill.id))} /><p>{skill.description}</p></div>)}

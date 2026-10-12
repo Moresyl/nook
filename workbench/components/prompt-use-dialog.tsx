@@ -3,8 +3,8 @@ import { promptParameters, renderPrompt, type PromptTemplate } from '../../contr
 import type { Assistant } from '../../contracts/workspace';
 import { Button, Empty, Field, Modal, Select, Textarea } from './controls';
 
-type Props = { templates: PromptTemplate[]; assistants: Assistant[]; initialId?: string; onUse: (text: string, assistantId?: string) => boolean; onClose: () => void };
-export function PromptUseDialog({ templates, assistants, initialId, onUse, onClose }: Props) {
+type Props = { templates: PromptTemplate[]; assistants: Assistant[]; initialId?: string; applyLabel?: string; onUse: (text: string, assistantId?: string) => boolean; onClose: () => void };
+export function PromptUseDialog({ templates, assistants, initialId, applyLabel = '追加到草稿', onUse, onClose }: Props) {
   const [id, setId] = useState(initialId ?? templates[0]?.id ?? '');
   const [values, setValues] = useState<Record<string, string>>({});
   const template = templates.find((item) => item.id === id); const parameters = template ? promptParameters(template.content, template.parameters) : [];
@@ -14,7 +14,7 @@ export function PromptUseDialog({ templates, assistants, initialId, onUse, onClo
   useEffect(() => { setValues({}); }, [template?.id, template?.content, parameterRevision]);
   let preview: string | null = null;
   if (template) try { preview = renderPrompt(template.content, values, template.parameters); } catch { /* Keep the incomplete form available. */ }
-  return <Modal title="使用提示模板" onClose={onClose} footer={<><Button onClick={onClose}>取消</Button><Button tone="solid" disabled={preview === null || missingAssistant} onClick={() => { if (preview !== null && !missingAssistant && onUse(preview, template?.assistantId)) onClose(); }}>追加到草稿</Button></>}>
+  return <Modal title="使用提示模板" onClose={onClose} footer={<><Button onClick={onClose}>取消</Button><Button tone="solid" disabled={preview === null || missingAssistant} onClick={() => { if (preview !== null && !missingAssistant && onUse(preview, template?.assistantId)) onClose(); }}>{applyLabel}</Button></>}>
     <Field label="选择提示模板"><Select autoFocus value={id} onChange={(event) => setId(event.target.value)}><option value="">请选择模板</option>{templates.map((item) => <option value={item.id} key={item.id}>{item.title}</option>)}</Select></Field>
     {template ? <><p className="field-hint">{template.description || '填写变量后查看完整内容。追加会保留现有消息与附件，之后可自行发送。'}</p>
       {assistant && <p className="field-hint">追加时选择助手：{assistant.name}。现有消息和附件会保留。</p>}

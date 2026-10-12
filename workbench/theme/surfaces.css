@@ -213,6 +213,20 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .home-description { color: var(--ds-text-secondary); font-size: 14px; margin: 12px 0 28px; text-align: center; }
 .home .composer-entry > textarea { min-height: 88px; }
 .composer-wrap { width: 100%; container: composer / inline-size; }
+.composer-actions { position: fixed; z-index: 60; display: flex; flex-direction: column; min-height: 0; overflow: hidden; border: 1px solid transparent; border-radius: var(--radius-2xl); background: var(--gray-50); color: var(--ds-text); box-shadow: var(--shadow-2xl); }
+[data-theme="dark"] .composer-actions { border-color: var(--ds-border); background: var(--gray-400); }
+.composer-actions-hint, .composer-actions-status { flex-shrink: 0; padding: 8px 12px; font-size: 11px; color: var(--ds-text-secondary); overflow-wrap: anywhere; }
+.composer-actions-hint { display: flex; flex-wrap: wrap; gap: 4px 12px; border-bottom: 1px solid var(--ds-border); }
+.composer-actions-hint > span { margin-left: auto; color: var(--ds-text-tertiary); }
+.composer-actions-list { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: 4px; padding: 4px; }
+.composer-actions-list > .button { display: flex; width: 100%; min-height: 24px; flex-shrink: 0; justify-content: flex-start; gap: 8px; padding: 8px; font-size: 14px; border-radius: var(--radius-lg); opacity: .75; text-align: left; }
+.composer-actions-list > .button[aria-selected="true"] { background: var(--ghost-hover); opacity: 1; }
+.composer-actions-list > .button > svg { flex-shrink: 0; }
+.composer-action-text { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.composer-action-text > strong, .composer-action-text > small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.composer-action-text > strong { font-weight: var(--font-weight-normal); }
+.composer-action-text > small, .composer-action-group { font-size: 11px; color: var(--ds-text-secondary); }
+.composer-action-group { flex-shrink: 0; }
 .composer { padding: 14px 12px 10px; border-radius: var(--composer-radius); background: color-mix(in srgb, var(--ds-bg) 90%, transparent); box-shadow: var(--elevation-composer); backdrop-filter: blur(16px); }
 [data-theme="dark"] .composer { background: color-mix(in srgb, var(--ds-bg-elevated) 60%, var(--ds-bg)); box-shadow: var(--elevation-composer-dark), 0 0 0 1px var(--ds-border); }
 .composer:focus-within { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ds-accent) 35%, var(--ds-border)), 0 2px 8px #0000000a; }

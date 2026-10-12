@@ -3,7 +3,7 @@ import type { ComposerDraft, Message, Thread } from '../contracts/workspace';
 import type { QuickChatSnapshot } from '../contracts/quick-chat';
 import type { ApprovalRequest } from '../contracts/tools';
 import { applyQuickChatEvent, mergeQuickChatThread } from '../contracts/quick-chat-stream';
-import { appendPrompt } from '../contracts/prompt-templates';
+import { insertComposerPrompt } from '../contracts/composer-actions';
 import { appendMessageQuote } from '../contracts/conversations';
 import { uiErrorMessage } from '../contracts/ui-errors';
 import { Composer } from './components/composer';
@@ -128,7 +128,7 @@ export default function QuickChatView() {
           servers={snapshot.context.mcpServers} skills={snapshot.context.skills} serverIds={draft.mcpServerIds} skillIds={draft.skillIds} onServers={mcpServerIds => update({ mcpServerIds })} onSkills={skillIds => update({ skillIds })}
           plugins={snapshot.context.plugins} pluginIds={draft.pluginIds} onPlugins={pluginIds => update({ pluginIds })} knowledgeCollections={snapshot.context.knowledgeCollections} hasNotes={snapshot.context.hasNotes} knowledgeCollectionIds={draft.knowledgeCollectionIds ?? []} onKnowledgeCollections={knowledgeCollectionIds => update({ knowledgeCollectionIds })}
           running={running} enterToSend={snapshot.context.preferences.enterToSend} onSend={send} onStop={() => { void bridge.stop().catch(report); }} report={report} onConfigure={() => { void bridge.openWorkspace(true).catch(report); }}
-          promptTemplates={snapshot.context.promptTemplates} onPrompt={(text, assistantId) => { if (!draftRef.current) return false; try { update({ text: appendPrompt(draftRef.current.text, text), ...(assistantId ? { assistantId } : {}) }); return true; } catch (problem) { report(problem); return false; } }} />
+          promptTemplates={snapshot.context.promptTemplates} onPrompt={(text, assistantId, replacement) => { if (!draftRef.current) return false; try { update({ text: insertComposerPrompt(draftRef.current.text, text, replacement), ...(assistantId ? { assistantId } : {}) }); return true; } catch (problem) { report(problem); return false; } }} />
         </fieldset>
       </>}
       {error && <div className="quick-chat-error" role="alert" tabIndex={0}><span>{error}</span><Button onClick={() => setError('')}>关闭提示</Button></div>}
