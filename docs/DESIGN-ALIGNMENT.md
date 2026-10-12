@@ -36,4 +36,8 @@
 
 此前逐批实现、失败现场、截图表格与未完成范围完整保留于[设计验收历史](DESIGN-ALIGNMENT-HISTORY-2026-10-12.md)。正文整理没有取消其中的交付要求。详细控件见[控件对照](CONTROL-AUDIT.md)，功能范围见[能力与边界](CAPABILITIES.md)，当前交付见[发布状态](RELEASE.md)。
 
-当前修正源码已通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。新包、实际安装和分发仍待同包验证。[当前完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json)
+当前修正源码已通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。新包构建与包体审计通过，完整包内、实际安装和分发仍待同包验证。[当前完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json) · [当前包体审计](../verification/settings-search-sidebar-package-review-result.json)
+
+物理目录选择器的两次独立尝试未形成通过证据：桌面工具无法截图或读取 Nook 控件；可见测试窗口退出超过原预算并出现错误对话框，原因尚未确认。两个测试进程均按路径、创建时间和父子关系核实后清理，原始日志、隔离配置与强制清理记录保留。这些尝试不替代正常关闭、原生选择器或物理输入验收。[失败现场](../verification/settings-search-sidebar-physical-attempts-result.json)
+
+当前包体完整回归在 312 项后因原 5 秒内未进入上游保存钩子而失败，51 次退出均正常。搜索模块此前的六项日志通过，当前包内 18 张原图已逐张复核；失败时新版独立设置报告尚未写出。保留的 84.6 MB 现场副本另通过上游五项与六组键盘／缩放，四次正常退出最长 369ms；未复现不代表已修复，完整回归仍需通过。[当前包内搜索原图](../verification/settings-search-sidebar-packaged-originals-result.json) · [完整失败现场](../verification/settings-search-sidebar-full-unpacked-initial-failure-result.json) · [现场副本重放](../verification/settings-search-sidebar-upstream-seed-replay-result.json)

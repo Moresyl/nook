@@ -1,0 +1,90 @@
+{
+  "verifiedAt": "2026-10-12T03:21:09.696Z",
+  "sourceHead": "fb9f1aaeda1a810e7c1cb6db170e3e650acb4131",
+  "attempts": [
+    {
+      "archive": "E:/NookVerification/SettingsSearchSidebarPhysicalPicker-20261012",
+      "pid": 30440,
+      "profile": "E:\\NookVerification\\Temp\\NookPhysicalPicker-3036226a-2334-4a0d-a3f4-e0ae664c5c3f",
+      "sourceHead": "fb9f1aaeda1a810e7c1cb6db170e3e650acb4131",
+      "executableSha256": "266939a33c553476a24bfdebea671c25e28e7037ffd3dc1cfee2476b627aecd2",
+      "archiveSha256": "23526465300bd435b01802b246839756fee884a3164e142274209a2e767865ff",
+      "rawExit": {
+        "exitCode": 4294967295,
+        "signalCode": null,
+        "exitedAt": "2026-10-12T03:04:02.043Z",
+        "forced": false,
+        "closeRequested": false,
+        "elapsedCloseMs": null,
+        "normalCloseWithinOriginalBudget": false
+      },
+      "forcedCleanup": true,
+      "cleanup": {
+        "guardRecovery": "The first cleanup guard reparsed an already UTC DateTime and rejected before any action. The typed UTC timestamp now matches creation within 0.006 seconds.",
+        "forcedCleanup": true,
+        "pid": 30440,
+        "recordedAt": "2026-10-12T03:04:02.0092136Z",
+        "childPids": [
+          12920,
+          21872,
+          34484
+        ],
+        "visibleWindowFound": false,
+        "reason": "No targetable window was returned by either desktop tool. Only this verified isolated test process tree is cleaned up; its profile and all launch records remain. This is not a normal-close or physical-picker pass.",
+        "uiActionsPerformed": 0,
+        "passed": false
+      },
+      "passed": false,
+      "physicalPickerVerified": false,
+      "rawForcedFieldCorrection": "The original first launcher hardcoded forced:false; the retained cleanup record proves forced cleanup. The raw receipt remains unchanged."
+    },
+    {
+      "archive": "E:/NookVerification/SettingsSearchSidebarPhysicalPickerVisible-20261012",
+      "pid": 35648,
+      "profile": "E:\\NookVerification\\Temp\\NookPhysicalPicker-63a68cbd-7d0e-456f-a21e-c0769a90f77f",
+      "sourceHead": "fb9f1aaeda1a810e7c1cb6db170e3e650acb4131",
+      "executableSha256": "266939a33c553476a24bfdebea671c25e28e7037ffd3dc1cfee2476b627aecd2",
+      "archiveSha256": "23526465300bd435b01802b246839756fee884a3164e142274209a2e767865ff",
+      "rawExit": {
+        "exitCode": 4294967295,
+        "signalCode": null,
+        "exitedAt": "2026-10-12T03:19:47.792Z",
+        "forced": true,
+        "closeRequested": true,
+        "elapsedCloseMs": 509054,
+        "normalCloseWithinOriginalBudget": false
+      },
+      "forcedCleanup": true,
+      "cleanup": {
+        "guardRecovery": "Earlier guards rejected before any action; both absolute paths and typed UTC creation time now match.",
+        "pid": 35648,
+        "pickerInteractionsPerformed": 0,
+        "passed": false,
+        "reportedDismissalClick": 1,
+        "reason": "Normal quit attempt exceeded the original ten-second budget and an owned Error dialog remained. Desktop screenshot and effective control were unavailable. Only the verified test-owned process tree is stopped; profile and evidence remain.",
+        "recordedAt": "2026-10-12T03:19:47.7561177+00:00",
+        "normalCloseWithinOriginalBudget": false,
+        "childPids": [
+          29304,
+          31804,
+          17932
+        ],
+        "forcedCleanup": true,
+        "errorCause": "Unconfirmed; diagnostic helper scheduled command-line require in later callback. Not attributed to product without separate reproduction."
+      },
+      "passed": false,
+      "physicalPickerVerified": false,
+      "rawForcedFieldCorrection": null
+    }
+  ],
+  "physicalPickerVerified": false,
+  "passed": false,
+  "forcedCleanups": 2,
+  "desktopToolLimitations": [
+    "Computer Use native pipe unavailable, including one reset/reinitialization retry.",
+    "Windows MCP desktop screenshot failed; the Nook application controls were unavailable.",
+    "The visible attempt later exposed an owned Error dialog. A reported dismissal click did not remove it."
+  ],
+  "attribution": "The diagnostic helper used a deferred command-line require callback before the Error dialog appeared. Its cause is unconfirmed; this attempt does not establish a product shutdown regression.",
+  "retention": "Both isolated profiles, launch logs, raw exit receipts and guarded cleanup records remain. Original automated verification budgets and public user profiles are unchanged."
+}
