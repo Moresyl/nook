@@ -5,6 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
+import { settingsInteractionsBlocked } from './settings-interaction-verification.mjs';
 
 const runFile = promisify(execFile);
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().startsWith('qiyao://app/')&&new URL(window.webContents.getURL()).searchParams.get('view')!=='quick-chat')";
@@ -41,7 +42,7 @@ export async function verifyWorktreeUpstream({ page, application, getApplication
   async function entered(expression) { await application.evaluateMain(`(async()=>{const deadline=Date.now()+4500;while(!(${expression})){if(Date.now()>=deadline)throw new Error('The upstream fixture did not enter within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()`); }
 
   await openSettings(); assert.equal(await control().isChecked(), false); await input().fill(typedRoot); const beforeSave = await readFile(primary), beforeState = await state(); await holdSave();
-  try { await control().locator('..').click(); await entered('globalThis.nookUpstreamSave.entered'); assert.equal(await settings().evaluate(element => [...element.querySelectorAll('button,input')].every(control => control.disabled)), true); assert.equal(await settings().evaluate(element => element.closedBy), 'none'); for (let attempt = 0; attempt < 3; attempt++) await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); await capture('setting-held-light'); await releaseSave(); await alert().waitFor(); assert.equal(await alert().textContent(), saveError); assert.equal(await control().isChecked(), false); assert.equal(await input().inputValue(), typedRoot); assert.deepEqual(await readFile(primary), beforeSave); assert.deepEqual(await state(), beforeState); await capture('setting-error-light'); } finally { await restoreSave(); }
+  try { await control().locator('..').click(); await entered('globalThis.nookUpstreamSave.entered'); assert.equal(await settingsInteractionsBlocked(settings()), true); assert.equal(await settings().evaluate(element => element.closedBy), 'none'); for (let attempt = 0; attempt < 3; attempt++) await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); await capture('setting-held-light'); await releaseSave(); await alert().waitFor(); assert.equal(await alert().textContent(), saveError); assert.equal(await control().isChecked(), false); assert.equal(await input().inputValue(), typedRoot); assert.deepEqual(await readFile(primary), beforeSave); assert.deepEqual(await state(), beforeState); await capture('setting-error-light'); } finally { await restoreSave(); }
   await setPolicy(true); assert.equal((await state()).preferences.worktrees.root, ''); assert.equal(await input().inputValue(), typedRoot); await capture('setting-saved-light'); await closeSettings();
   verified('real held upstream preference EIO locks settings and Escape, retains exact workspace and unsaved root input, safely reports failure and retries without implicitly saving the typed root');
 

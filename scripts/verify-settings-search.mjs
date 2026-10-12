@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
+import { settingsInteractionsBlocked } from './settings-interaction-verification.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().startsWith('qiyao://app/')&&new URL(window.webContents.getURL()).searchParams.get('view')!=='quick-chat')";
 export async function verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests = () => 0 }) {
@@ -29,6 +30,7 @@ export async function verifySettingsSearch({ page, application, directory, scree
     assert.equal(layout.contained, true, JSON.stringify({ label, ...layout }));
   }
   await open(); assert.equal(await search().evaluate(element => document.activeElement === element), true);
+  assert.equal(await settingsInteractionsBlocked(settings()), false);
   assert.equal(await settings().locator('.settings-nav button').count(), 9);
   await search().fill('主题'); assert.equal(await search().getAttribute('aria-activedescendant'), null);
   await search().press('Enter'); assert.equal(await panel().getAttribute('aria-label'), '模型连接');
@@ -69,6 +71,7 @@ export async function verifySettingsSearch({ page, application, directory, scree
     await panel().getByRole('button', { name: '选择工作树文件夹', exact: true }).click();
     await application.evaluateMain(`(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookSettingsSearchPicker.entered){if(Date.now()>=deadline)throw new Error('Settings picker was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()`);
     assert.equal(await search().isDisabled(), true); assert.equal(await settings().locator('.settings-nav button').evaluateAll(buttons => buttons.length === 9 && buttons.every(button => button.disabled)), true);
+    assert.equal(await settingsInteractionsBlocked(settings()), true);
     await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); assert.equal(await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
     await application.evaluateMain('globalThis.nookSettingsSearchPicker.release()'); await waitForBridge(page, () => { const search = document.querySelector('.settings-search-control input'); return Boolean(search && !search.disabled); });
   } finally { await application.evaluateMain("(()=>{const receipt=globalThis.nookSettingsSearchPicker;require('electron').dialog.showOpenDialog=receipt.original;receipt.release();delete globalThis.nookSettingsSearchPicker;})()"); }

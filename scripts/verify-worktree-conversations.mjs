@@ -5,6 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
+import { settingsInteractionsBlocked } from './settings-interaction-verification.mjs';
 
 const runFile = promisify(execFile);
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().startsWith('qiyao://app/')&&new URL(window.webContents.getURL()).searchParams.get('view')!=='quick-chat')";
@@ -72,7 +73,7 @@ export async function verifyWorktreeConversations({ page, application, getApplic
   await application.evaluateMain(`(()=>{const fs=require('node:fs/promises'),original=fs.rename;let release;const pending=new Promise(resolve=>{release=resolve;});globalThis.nookConversationSave={original,release,entered:false};fs.rename=async(source,target)=>{if(target===${JSON.stringify(checkpoint)}){globalThis.nookConversationSave.entered=true;await pending;throw Object.assign(new Error('Fixture navigation EIO'),{code:'EIO'});}return original(source,target);};})()`);
   try {
     await linkedChat().click(); await entered('globalThis.nookConversationSave.entered');
-    assert.equal(await settings().evaluate(dialog => [...dialog.querySelectorAll('button')].every(button => button.disabled)), true); assert.equal(await settings().getByLabel('工作树根目录', { exact: true }).isDisabled(), true);
+    assert.equal(await settingsInteractionsBlocked(settings()), true); assert.equal(await settings().getByLabel('工作树根目录', { exact: true }).isDisabled(), true);
     assert.equal(await settings().evaluate(dialog => dialog.closedBy), 'none'); for (let attempt = 0; attempt < 3; attempt++) await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); await capture('navigation-held-light');
     await application.evaluateMain('globalThis.nookConversationSave.release()'); await settings().getByRole('alert').waitFor(); assert.equal(await settings().getByRole('alert').textContent(), '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。'); assert.deepEqual(await readFile(primary), beforeFailure); assert.deepEqual(await readFile(checkpoint), beforeCheckpoint); assert.deepEqual(await state(), beforeState); assert.equal(await input().inputValue(), newDraft.text); await capture('navigation-error-light');
   } finally { await application.evaluateMain("(()=>{const receipt=globalThis.nookConversationSave;require('node:fs/promises').rename=receipt.original;receipt.release();delete globalThis.nookConversationSave;})()"); }
