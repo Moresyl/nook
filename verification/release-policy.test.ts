@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { releaseNotes, releaseVersion, verifyRuntimeProof, verifyWorktreeCleanupProof, type ReleaseProof } from '../scripts/release-policy.mjs';
+import { releaseNotes, releaseVersion, verifyRuntimeProof, verifySettingsSearchProof, verifyWorktreeCleanupProof, type ReleaseProof } from '../scripts/release-policy.mjs';
 import { readRuntimeProof, runtimeProofFiles } from '../scripts/runtime-proof.mjs';
 
 const hash = 'a'.repeat(64);
@@ -56,7 +56,7 @@ function worktreeCleanup(): NonNullable<ReleaseProof['desktop']['worktreeCleanup
 }
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
-  const desktop = { variant: 'packaged executable', checks: 361, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, settingsSearch: { checks: 6, modelRequests: 0, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contained: true, sidebarOverflow: false, panelOverflow: false }))), screenshots: Array.from({ length: 18 }, (_, index) => `settings-search-${index}-shell.png`) }, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), worktreeCleanup: worktreeCleanup(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
+  const desktop = { variant: 'packaged executable', checks: 361, normalCloseVerified: true, runtimeErrors: [], executableSha256: hash, archiveSha256: otherHash, settingsSearch: { checks: 6, modelRequests: 0, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contained: true, sidebarOverflow: false, panelOverflow: false, searchStyleVerified: true }))), screenshots: Array.from({ length: 18 }, (_, index) => `settings-search-${index}-shell.png`) }, projectBranches: projectBranches(), projectWorktrees: projectWorktrees(), worktreeSettings: worktreeSettings(), worktreeOverview: worktreeOverview(), worktreeConversations: worktreeConversations(), worktreeUpstream: worktreeUpstream(), worktreeRegistration: worktreeRegistration(), worktreeOwnership: worktreeOwnership(), worktreePinning: worktreePinning(), worktreeSnapshots: worktreeSnapshots(), worktreeCleanup: worktreeCleanup(), toolActivities: toolActivities(), contextSummaries: contextSummaries(),
     browser: { tabs: browserTabs(), checks: 14, modelRequests: 0, isolation: { sandbox: true, contextIsolation: true, nodeIntegration: false, preload: false, privateSession: true }, nativeHistoryVerified: true, pendingAddressStopVerified: true, sameUrlRedirectVerified: true, unsubmittedAddressRetained: true, popupPrivateNavigationDenied: true, failureRetryVerified: true, keyboardFocusVerified: true, draftRetained: true, modalOcclusionVerified: true, privateRestartVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true, screenshots: Array.from({ length: 15 }, (_, i) => `browser-${i}.png`), layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, viewport: { width: 200, height: 150 }, navigation: { selectedVisible: true, current: 'page' }, expected: { x: 10, y: 20, right: 210, bottom: 170 }, native: { x: 10, y: 20, width: 200, height: 150 } }))) },
     quickChat: { refreshRaceVerified: true, minimumErrorVerified: true, checks: 9, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256: hash, minimumLayout: minimumLayout(), independentDraftsVerified: true, restrictedBridgeVerified: true, exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
     mcpPdf: { checks: 8, explicitModelRequests: 1, previewPersisted: false, originalSha256: hash, exactOriginalVerified: true, promptPdfVerified: true, textOnlyModelTransportVerified: true, staleSubscriptionVerified: true, filesystemRetryVerified: true, restartVerified: true, backupRestoreVerified: true, restoreCompletionVerified: true, layout: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, controlsVisible: true, overflow: false }))) },
@@ -150,6 +150,12 @@ describe('worktree cleanup release evidence', () => {
 });
 
 describe('settings search release evidence', () => {
+  it('shares the complete settings gate with actual installation verification', () => {
+    expect(() => verifySettingsSearchProof(proof().desktop.settingsSearch)).not.toThrow();
+    expect(() => verifySettingsSearchProof(undefined)).toThrow('settings search');
+    const incomplete = proof().desktop.settingsSearch!; incomplete.heldPickerVerified = false;
+    expect(() => verifySettingsSearchProof(incomplete)).toThrow('settings search');
+  });
   it('requires all original checks plus the six new native checks', () => {
     const old = proof(); old.desktop.checks = 355; expect(() => verifyRuntimeProof(old)).toThrow('Complete desktop');
     const missing = proof(); delete missing.desktop.settingsSearch; expect(() => verifyRuntimeProof(missing)).toThrow('settings search');
@@ -160,6 +166,7 @@ describe('settings search release evidence', () => {
       const invalid = proof(); (invalid.desktop.settingsSearch as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('settings search');
     }
     const overflow = proof(); overflow.desktop.settingsSearch!.layouts[0].sidebarOverflow = true; expect(() => verifyRuntimeProof(overflow)).toThrow('settings search');
+    const oldStyle = proof(); oldStyle.desktop.settingsSearch!.layouts[0].searchStyleVerified = false; expect(() => verifyRuntimeProof(oldStyle)).toThrow('settings search');
     const duplicateLayout = proof(); duplicateLayout.desktop.settingsSearch!.layouts[1] = duplicateLayout.desktop.settingsSearch!.layouts[0]; expect(() => verifyRuntimeProof(duplicateLayout)).toThrow('settings search');
     const duplicateImage = proof(); duplicateImage.desktop.settingsSearch!.screenshots[1] = duplicateImage.desktop.settingsSearch!.screenshots[0]; expect(() => verifyRuntimeProof(duplicateImage)).toThrow('settings search');
     const missingImage = proof(); missingImage.desktop.settingsSearch!.screenshots.pop(); expect(() => verifyRuntimeProof(missingImage)).toThrow('settings search');

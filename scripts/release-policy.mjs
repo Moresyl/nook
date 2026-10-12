@@ -63,6 +63,13 @@ export function releaseNotes(changelog, version) {
   return `${body}\n`;
 }
 
+export function verifySettingsSearchProof(settings) {
+  const sixSettingsLayouts = Array.isArray(settings?.layouts) && settings.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => settings.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.sidebarOverflow === false && row.panelOverflow === false && row.searchStyleVerified === true).length === 1));
+  if (settings?.checks !== 6 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 18 || new Set(settings.screenshots).size !== 18 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
+    throw new Error('Complete settings search, draft retention and native layout verification is required');
+  }
+}
+
 export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches, temporary, comparisons, portable, portableAudit, bootstrap, installer }) {
   if (![audit.executableSha256, audit.archiveSha256, portable.wrapperSha256].every((hash) => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash))) {
     throw new Error('Release proof requires complete SHA-256 values');
@@ -78,11 +85,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   if (!Number.isInteger(desktop.checks) || desktop.checks < 361 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
-  const settings = desktop.settingsSearch;
-  const sixSettingsLayouts = Array.isArray(settings?.layouts) && settings.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => settings.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.sidebarOverflow === false && row.panelOverflow === false).length === 1));
-  if (settings?.checks !== 6 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 18 || new Set(settings.screenshots).size !== 18 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
-    throw new Error('Complete settings search, draft retention and native layout verification is required');
-  }
+  verifySettingsSearchProof(desktop.settingsSearch);
   const context = desktop.contextSummaries;
   const roots = desktop.worktreeSettings;
   const overview = desktop.worktreeOverview;

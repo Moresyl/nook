@@ -571,7 +571,7 @@ function createWindow(): void {
 app.setName('Nook');
 const startupDiagnostics = new StartupDiagnostics(Boolean(process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS));
 if (process.env.QIYAO_TEST_STARTUP_DIAGNOSTICS) Object.defineProperty(globalThis, 'qiyaoStartupDiagnostics', { value: () => startupDiagnostics.snapshot() });
-app.setAppUserModelId('app.qiyao.workspace');
+app.setAppUserModelId('app.nook.workspace');
 app.setPath('userData', userDataDirectory(app.getPath('appData'), process.env.NOOK_DATA_DIRECTORY || process.env.QIYAO_DATA_DIRECTORY));
 const locked = app.requestSingleInstanceLock();
 if (!locked) app.quit();

@@ -90,7 +90,7 @@ export type WorktreeSnapshotsProof = {
     cancel: Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'>; submit: Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'>;
     draftRetained: boolean; cancelFocusVerified: boolean }[];
 };
-export type SettingsSearchProof = { checks: number; modelRequests: number; keyboardVerified: boolean; destinationFocusVerified: boolean; draftRetentionVerified: boolean; heldPickerVerified: boolean; sessionResetVerified: boolean; screenshots: string[]; layouts: { theme: string; zoom: number; contained: boolean; sidebarOverflow: boolean; panelOverflow: boolean }[] };
+export type SettingsSearchProof = { checks: number; modelRequests: number; keyboardVerified: boolean; destinationFocusVerified: boolean; draftRetentionVerified: boolean; heldPickerVerified: boolean; sessionResetVerified: boolean; screenshots: string[]; layouts: { theme: string; zoom: number; contained: boolean; sidebarOverflow: boolean; panelOverflow: boolean; searchStyleVerified: boolean }[] };
 export type ReleaseProof = {
   audit: { compiledAssetsMatchVerifiedBuild: boolean; removedUiFontReferencesVerified: boolean; oldProductIdentityMatches: string[]; unresolvedAssets: string[]; unresolvedDistribution: string[]; executableSha256: string; archiveSha256: string };
   desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; settingsSearch?: SettingsSearchProof; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; worktreeCleanup?: WorktreeCleanupProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
@@ -105,6 +105,7 @@ export type ReleaseProof = {
   installer: { checks: number; normalCloseVerified: boolean; registrationVerified: boolean; shortcutsVerified: boolean; uninstalled: boolean; userDataRetained: boolean; executableSha256: string; archiveSha256: string; installerSha256: string };
 };
 export function verifyRuntimeProof(proof: ReleaseProof): void;
+export function verifySettingsSearchProof(proof: SettingsSearchProof | undefined): void;
 type WorktreeCleanupBounds = Omit<WorktreeConversationsProof['layouts'][number], 'theme' | 'zoom'> & { label: string; outline: number; focused: boolean };
 export type WorktreeCleanupProof = {
   checks: number; modelRequests: number; ownedOnlyControlsVerified: boolean; dirtyPinLockProtectionVerified: boolean;

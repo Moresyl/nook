@@ -10,7 +10,7 @@ export function SettingsNavigation({ tab, busy, provider, inputRef, onNavigate }
   const results = settingsMatches(query, provider ?? undefined); const current = results.find(item => item.id === active); const index = current ? results.indexOf(current) : -1;
   useEffect(() => { if (index >= 0) document.getElementById(`${id}-${index}`)?.scrollIntoView({ block: 'nearest' }); }, [id, index]);
   function clear() { setQuery(''); setActive(''); inputRef.current?.focus(); }
-  return <aside className="settings-sidebar"><div className="settings-search-control"><Glyph name="search" size={14} /><Input ref={inputRef} autoFocus role="searchbox" aria-label="搜索设置" aria-controls={`${id}-results`} aria-activedescendant={index < 0 ? undefined : `${id}-${index}`} placeholder="搜索设置" maxLength={512} disabled={busy} value={query} onChange={event => { setQuery(event.target.value); setActive(''); }} onKeyDown={event => {
+  return <aside className="settings-sidebar"><div className="settings-search-control"><Glyph name="search" size={16} /><Input ref={inputRef} autoFocus role="searchbox" aria-label="搜索设置" aria-controls={`${id}-results`} aria-activedescendant={index < 0 ? undefined : `${id}-${index}`} placeholder="搜索" maxLength={512} disabled={busy} value={query} onChange={event => { setQuery(event.target.value); setActive(''); }} onKeyDown={event => {
     if (event.nativeEvent.isComposing || busy) return;
     if (event.key === 'Escape' && query) { event.preventDefault(); event.stopPropagation(); clear(); }
     else if (query.trim() && ['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) { event.preventDefault(); setActive(moveSettingsSelection(results, active, event.key)); }

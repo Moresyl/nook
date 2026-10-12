@@ -1,0 +1,96 @@
+{
+  "verifiedAt": "2026-10-12T02:45:14.262Z",
+  "archive": "E:/NookVerification/SettingsSearchSidebarUnits-20261012",
+  "baseSourceHead": "262909ec8affc505280ce5674863ce4d9d773490",
+  "exactSourceOverlayRetained": true,
+  "sources": [
+    {
+      "path": "desktop/launch.ts",
+      "sha256": "4bd5de904f40fa647e84b3bd61243b733774f8b7c98c7e495d2f113a294cdfc5"
+    },
+    {
+      "path": "package.json",
+      "sha256": "8640b2bbcd3767a1fc65c1e13cf2df882e9f2bc51dd327f68344c600a0c70763"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "9ed4dd61bcf791ffbb32873f49b070b1e31daa6bfaed63c63fc37b1d3e0fb706"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "bf2742119a8988cea4b00206f6f961882186e59c16b94625bd70ec8e9f258b9b"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "f6c200eab5d3b453e128b850c4dbb134ff2fd530bddc4b609fc9992854f4a236"
+    },
+    {
+      "path": "scripts/verify-settings-search.mjs",
+      "sha256": "4ba953994bda57b8469f44cfc35ed89f403bee7a2cd54d1ebd46eff019ec16db"
+    },
+    {
+      "path": "scripts/verify-worktree-settings.mjs",
+      "sha256": "250aaaa5bf2ba4c99bd607e54ae81082c784f642d607647b10cb0fa0b1e58953"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "5ada56d66ecd5e69daaad46bd311ce3b56f1cbc15d634b28979b042b75c72441"
+    },
+    {
+      "path": "workbench/components/settings-navigation.tsx",
+      "sha256": "b3f41b39f7c10463168eae38ebd1247395de7da90604f8545a2106dbf2a1538c"
+    },
+    {
+      "path": "workbench/theme/reference-tokens.css",
+      "sha256": "5020099ff6f91d04fd879e32bbdf5b111d961bfcaf26f5c418be571772d06ebb"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "4ba89c255c3ce12ac5a59fb1f46e0cf92ba8337eff425b17fc698ff0986dafa9"
+    }
+  ],
+  "toolExitCode": 0,
+  "typesPassed": true,
+  "focusedUnitFiles": 2,
+  "focusedUnitTests": 111,
+  "fullUnitFiles": 130,
+  "fullUnitTests": 1515,
+  "durationSeconds": 376.72,
+  "coverage": {
+    "lines": {
+      "total": 4455,
+      "covered": 4429,
+      "skipped": 0,
+      "pct": 99.41
+    },
+    "statements": {
+      "total": 7405,
+      "covered": 7177,
+      "skipped": 0,
+      "pct": 96.92
+    },
+    "functions": {
+      "total": 1651,
+      "covered": 1613,
+      "skipped": 0,
+      "pct": 97.69
+    },
+    "branches": {
+      "total": 5191,
+      "covered": 4902,
+      "skipped": 0,
+      "pct": 94.43
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "singleWorkerRetained": true,
+  "allFourOriginalCoverageGatesRetained": true,
+  "coverageArchiveIntegrityVerified": true,
+  "coverageArchiveSha256": "7c404928a46e77ebdd7e32c738915c811a451753814230dcd8d401d5f7a7f84c",
+  "scope": "Complete current-source type and unit coverage verification. The one added public release checker test is included; original worker, coverage gates and application budgets are unchanged. Native, package, installation and hosted publication are separate."
+}

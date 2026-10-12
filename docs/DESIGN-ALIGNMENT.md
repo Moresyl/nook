@@ -32,4 +32,8 @@
 
 新增设置版本的类型、构建与完整 130 文件／1,514 项单元通过；四项覆盖率门槛和单 worker 保留。应用体尚待完整包内、安装与分发回归，上一冻结包的 355 项证据不计为新版通过。发布完整门槛在保留原条件的基础上增加六项设置检查至至少 361 项。[设置原生检查](../verification/settings-search-native-review-result.json) · [18 张设置原图](../verification/settings-search-originals-review-result.json) · [完整单元](../verification/settings-search-unit-review-result.json)
 
+最新修正沿设置页实际调用核对专用侧栏搜索，采用 36px 高、14px 字、18px 行高、12px 内边距、8px 间距和胶囊圆角；明暗背景分别沿当前主题链解析为前景 5%／白色 8%。两种主题三档缩放的六项源码专项通过，393ms 正常退出；18 张新原图已逐张原尺寸复核，搜索结果及空状态的完整蓝色焦点圈可见，目标表单使用自身灰色边框。125% 时描边按设备像素取整，不能要求计算值恒为 2px；长查询、长结果和下方表单仍需各自滚动。工作树根目录专项 10 项通过、三次正常退出，最长 557ms。Windows 应用标识也统一为 Nook；当前完整覆盖率、新包、安装及分发仍在验收。[搜索外观原生检查](../verification/settings-search-sidebar-native-pass-review-result.json) · [18 张当前原图](../verification/settings-search-sidebar-originals-review-result.json) · [目录重放](../verification/settings-search-sidebar-roots-pass-review-result.json)
+
 此前逐批实现、失败现场、截图表格与未完成范围完整保留于[设计验收历史](DESIGN-ALIGNMENT-HISTORY-2026-10-12.md)。正文整理没有取消其中的交付要求。详细控件见[控件对照](CONTROL-AUDIT.md)，功能范围见[能力与边界](CAPABILITIES.md)，当前交付见[发布状态](RELEASE.md)。
+
+当前修正源码已通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。新包、实际安装和分发仍待同包验证。[当前完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json)
