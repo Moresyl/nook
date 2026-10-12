@@ -30,10 +30,12 @@ const worktreeSettings = (): NonNullable<ReleaseProof['desktop']['worktreeSettin
   errorLayouts: Array.from({ length: 7 }, () => ({ top: 280, bottom: 316, left: 144, right: 490, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500, text: '本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。' })),
 });
 const worktreeOverview = (): NonNullable<ReleaseProof['desktop']['worktreeOverview']> => ({
-  checks: 6, modelRequests: 0, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
+  checks: 6, modelRequests: 0, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true,
   queryPages: [Array.from({ length: 20 }, (_, index) => `project-${index}`), ['project-20'], Array.from({ length: 20 }, (_, index) => `project-${index}`)],
-  screenshots: Array.from({ length: 18 }, (_, index) => `worktree-overview-${index}-shell.png`),
-  layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contentWidth: 350, contentScrollWidth: 350, viewportWidth: 500, documentWidth: 500, error: { top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 } }))),
+  screenshots: ['associations-light', 'refresh-light', 'error-light', 'loading-light', 'retry-light', 'partial-results', 'partial-error', 'management-loading', 'page-two-light',
+    ...['light', 'dark'].flatMap(theme => [100, 125, 150].flatMap(zoom => ['pending', 'error', 'rows'].map(state => `${theme}-${zoom}-${state}`)))
+  ].map(name => `worktree-overview-${name}-shell.png`),
+  layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, contentWidth: 350, contentScrollWidth: 350, viewportWidth: 500, documentWidth: 500, pending: { top: 160, bottom: 210, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 }, error: { top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500 } }))),
 });
 const snapshotBounds = () => ({ top: 100, bottom: 140, left: 150, right: 480, viewportTop: 62, viewportBottom: 360, viewportLeft: 128, viewportRight: 500, contentWidth: 350, contentScrollWidth: 350, documentWidth: 500, viewportWidth: 500 });
 const snapshotFocus = (label: string) => ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, label, outline: 4, ...snapshotBounds() })));
@@ -369,7 +371,7 @@ describe('worktree conversation release evidence', () => {
 describe('worktree overview release evidence', () => {
   it('requires the actual overview and all read-only, retry, paging and source guarantees', () => {
     const missing = proof(); delete missing.desktop.worktreeOverview; expect(() => verifyRuntimeProof(missing)).toThrow('worktree overview');
-    for (const [key, value] of Object.entries({ checks: 5, modelRequests: 1, actualRepositoryAssociationVerified: false, refreshReadOnlyVerified: false, errorRetryCloseVerified: false, boundedPagingVerified: false, referenceZoomKeyboardVerified: false, sourcePreservationVerified: false, queryPages: [], layouts: [], screenshots: [] })) {
+    for (const [key, value] of Object.entries({ checks: 5, modelRequests: 1, actualRepositoryAssociationVerified: false, refreshReadOnlyVerified: false, progressiveProjectResultsVerified: false, progressiveSanitizedErrorsVerified: false, managementLoadingProtectionVerified: false, errorRetryCloseVerified: false, boundedPagingVerified: false, referenceZoomKeyboardVerified: false, sourcePreservationVerified: false, queryPages: [], layouts: [], screenshots: [] })) {
       const invalid = proof(); (invalid.desktop.worktreeOverview as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
     }
     expect(() => verifyRuntimeProof(proof())).not.toThrow();
@@ -378,6 +380,34 @@ describe('worktree overview release evidence', () => {
     const mutate = (change: (pages: string[][]) => void) => { const invalid = proof(); change(invalid.desktop.worktreeOverview!.queryPages); expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview'); };
     mutate(pages => pages[0].push('extra')); mutate(pages => pages[0][1] = pages[0][0]); mutate(pages => pages[0][0] = '');
     mutate(pages => pages[1][0] = pages[0][0]); mutate(pages => pages[2].reverse()); mutate(pages => pages[1].push('extra'));
+  });
+  it('requires progressive receipts and real pending bounds in every theme and zoom', () => {
+    for (const key of ['progressiveProjectResultsVerified', 'progressiveSanitizedErrorsVerified', 'managementLoadingProtectionVerified']) {
+      const invalid = proof(); delete (invalid.desktop.worktreeOverview as unknown as Record<string, unknown>)[key]; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (let index = 0; index < 6; index++) {
+      const invalid = proof(); delete (invalid.desktop.worktreeOverview!.layouts[index] as unknown as Record<string, unknown>).pending; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+  });
+  it('rejects clipped, empty, inverted and non-finite pending project rectangles', () => {
+    for (const [key, value] of Object.entries({ top: 61, bottom: 361, left: 127, right: 501 })) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.layouts[0].pending as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (const [key, value] of Object.entries({ bottom: 160, right: 150, top: 211, left: 481 })) {
+      const invalid = proof(); (invalid.desktop.worktreeOverview!.layouts[0].pending as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
+    for (const key of ['top', 'bottom', 'left', 'right', 'viewportTop', 'viewportBottom', 'viewportLeft', 'viewportRight']) {
+      for (const value of [undefined, NaN, Infinity, -Infinity]) {
+        const invalid = proof(); (invalid.desktop.worktreeOverview!.layouts[0].pending as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+      }
+    }
+  });
+  it('rejects the old eighteen originals and substituted required progressive state images', () => {
+    const stale = proof(); stale.desktop.worktreeOverview!.screenshots = stale.desktop.worktreeOverview!.screenshots.slice(0, 18); expect(() => verifyRuntimeProof(stale)).toThrow('worktree overview');
+    for (const name of ['partial-results', 'partial-error', 'management-loading', ...['light', 'dark'].flatMap(theme => [100, 125, 150].map(zoom => `${theme}-${zoom}-pending`))]) {
+      const invalid = proof(), images = invalid.desktop.worktreeOverview!.screenshots;
+      images[images.indexOf(`worktree-overview-${name}-shell.png`)] = 'worktree-overview-unverified-shell.png'; expect(() => verifyRuntimeProof(invalid)).toThrow('worktree overview');
+    }
   });
   it('rejects clipped errors, horizontal overflow and duplicate layouts or originals', () => {
     for (const [key, value] of Object.entries({ contentWidth: 0, contentScrollWidth: 351, viewportWidth: 0, documentWidth: 501 })) {

@@ -2,9 +2,13 @@
 
 界面以 `E:\txt` 的新版资料为依据（26.930.41038／构建 13022）。主题、控件和布局已逐步采用，**尚未达到全界面 100% 还原**。静态 CSS、字符串数量与历史截图不能代替当前应用的实际验收。
 
-最新源码逐项目显示工作树结果、错误和等待状态，管理记录未完成时保持写操作禁用；合并同仓库项目保留已展开会话。完整 1,518 项单元和六组原生专项通过，六组明暗缩放的等待项及三张结果／错误／管理加载原图已逐张复核，共九张。会话来自已有内存状态，不伪造异步加载；完整源码 361 项／74 正常退出／最长 1,629ms／无强制通过，38 份报告和 522 张原图保留。整轮原图没有全部复核，新包分发仍待验证。[源码与原图范围](../verification/worktree-progressive-source-review-result.json) · [完整源码回归](../verification/worktree-progressive-full-source-review-result.json)
+最新源码逐项目显示工作树结果、错误和等待状态，管理记录未完成时保持写操作禁用；合并同仓库项目保留已展开会话。完整 1,518 项单元和六组原生专项通过，六组明暗缩放的等待项及三张结果／错误／管理加载原图已逐张复核，共九张。会话来自已有内存状态，不伪造异步加载；完整源码 361 项／74 正常退出／最长 1,629ms／无强制通过，38 份报告和 522 张原图保留。[源码与原图范围](../verification/worktree-progressive-source-review-result.json) · [完整源码回归](../verification/worktree-progressive-full-source-review-result.json)
+
+新 `d32f595` 冻结包的产品与桌面测试源码和 `3de2a63` 一致，236 编译文件逐一匹配；完整包内与实际安装各 361 项／74 正常退出／无强制，最长分别为 1,802ms／2,525ms，五个原分发专项通过。包内九张渐进状态、26 张控件与 12 张文字提示原图已逐张原尺寸复核并匹配冻结哈希，共 47 张不同原图；选择菜单与保存后焦点属于控件图，不重复计数。PDF 高缩放仅验当前滚动切片，完整回归的其他原图和安装原图没有全部复核，不能据此扩大为全部页面或真实系统 DPI 通过。[新包完整回归](../verification/worktree-progressive-full-unpacked-review-result.json) · [完整实际安装](../verification/worktree-progressive-full-installed-review-result.json) · [渐进状态与焦点原图](../verification/worktree-progressive-package-originals-review-result.json) · [控件与文字提示原图](../verification/worktree-progressive-distribution-originals-review-result.json)
 
 上一 `4277c07` 冻结包的未安装与实际安装各 361 项通过，各 74 次正常退出，最长分别为 2,516ms／1,787ms、无强制；五个原分发专项与十一份匹配运行记录通过，保留数据卸载与原八个标记恢复均核验。包内搜索 18、控件 26、文本提示 12、工作树列表 18 张不同原图已逐张复核并匹配哈希，共 74 张。列表六张旧文件名写作浅色，实际按深色计入；滚动切片和 PDF 局部视图不冒充完整页面。物理输入和全参考采用仍待完成。[同包完整回归](../verification/settings-action-focus-full-unpacked-review-result.json) · [实际安装与运行记录](../verification/settings-action-focus-runtime-review-result.json) · [设置原图](../verification/settings-action-focus-package-originals-review-result.json) · [列表原图](../verification/settings-action-focus-overview-originals-review-result.json)
+
+独立的发布解析器随后补齐 27 张指定列表图、三项渐进保证及六组完整等待区域；类型、107 项策略专项和完整 1,521 项单元通过，原十一份匹配命令复验退出 0。此三文件修正不改变上述冻结应用或桌面测试源码，初轮旧 18 张要求导致的真实失败保留。[精确校验修正](../verification/worktree-progressive-policy-review-result.json) · [最终匹配运行记录](../verification/worktree-progressive-runtime-review-result.json)
 
 | 表面 | 已采用 | 仍需完成 |
 | --- | --- | --- |

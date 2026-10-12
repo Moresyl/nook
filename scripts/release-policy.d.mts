@@ -31,9 +31,11 @@ export type WorktreeSettingsProof = {
 };
 export type WorktreeOverviewProof = {
   checks: number; modelRequests: number; actualRepositoryAssociationVerified: boolean; refreshReadOnlyVerified: boolean;
+  progressiveProjectResultsVerified: boolean; progressiveSanitizedErrorsVerified: boolean; managementLoadingProtectionVerified: boolean;
   errorRetryCloseVerified: boolean; boundedPagingVerified: boolean; referenceZoomKeyboardVerified: boolean; sourcePreservationVerified: boolean;
   queryPages: string[][]; screenshots: string[];
   layouts: { theme: string; zoom: number; contentWidth: number; contentScrollWidth: number; viewportWidth: number; documentWidth: number;
+    pending: { top: number; bottom: number; left: number; right: number; viewportTop: number; viewportBottom: number; viewportLeft: number; viewportRight: number };
     error: { top: number; bottom: number; left: number; right: number; viewportTop: number; viewportBottom: number; viewportLeft: number; viewportRight: number } }[];
 };
 export type WorktreeConversationsProof = {

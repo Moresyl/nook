@@ -1,54 +1,54 @@
 {
-  "verifiedAt": "2026-10-12T06:35:56.563Z",
+  "verifiedAt": "2026-10-12T10:09:00.205Z",
   "variant": "packaged executable",
-  "executableSha256": "17e614505151f37a95307c9c9a78767d4b9c4ea1e2c2f90cebd202b69b8492df",
-  "archiveSha256": "221e886752e17dda49ee574992e9e625b458713cb4e702406c89ed37320ba199",
+  "executableSha256": "eef63acaee224e460dd0b4dc219e3ee2af0cea1d96dd9f3ed626362a39765a26",
+  "archiveSha256": "184011429fd320479e9a0d28342f5c69d3b5ff7d018f2b13f9cc5787c1c743fb",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "checks": 2,
   "crash": {
     "reason": "crashed",
     "exitCode": 2,
-    "capturedAt": 1791786954883,
+    "capturedAt": 1791799738514,
     "memory": {
-      "rss": 170749952,
+      "rss": 169279488,
       "heapTotal": 17448960,
-      "heapUsed": 12453532,
+      "heapUsed": 12788196,
       "external": 5658541,
       "arrayBuffers": 0
     },
-    "systemFreeMemory": 13267808256,
+    "systemFreeMemory": 13529083904,
     "processes": [
       {
-        "pid": 58964,
+        "pid": 55888,
         "type": "Browser",
         "memory": {
-          "workingSetSize": 166780,
-          "peakWorkingSetSize": 166896,
-          "privateBytes": 127292
+          "workingSetSize": 165344,
+          "peakWorkingSetSize": 165360,
+          "privateBytes": 125856
         }
       },
       {
-        "pid": 22936,
+        "pid": 34868,
         "type": "GPU",
         "memory": {
-          "workingSetSize": 106708,
-          "peakWorkingSetSize": 108576,
-          "privateBytes": 119280
+          "workingSetSize": 106624,
+          "peakWorkingSetSize": 108560,
+          "privateBytes": 116836
         }
       },
       {
-        "pid": 55808,
+        "pid": 33248,
         "type": "Utility",
         "memory": {
-          "workingSetSize": 50920,
-          "peakWorkingSetSize": 50920,
-          "privateBytes": 12132
+          "workingSetSize": 50844,
+          "peakWorkingSetSize": 50844,
+          "privateBytes": 12196
         }
       }
     ]
   },
-  "quitMs": 1081,
+  "quitMs": 1082,
   "persistedDraftRetained": true,
   "conversationsRetained": true,
   "modelRequests": 0,
