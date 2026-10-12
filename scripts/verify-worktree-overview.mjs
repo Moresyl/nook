@@ -46,13 +46,15 @@ export async function verifyWorktreeOverview({ page, application, getApplication
     const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size);
     const filename = `worktree-overview-${name}-shell.png`; await writeFile(join(screenshots, filename), bytes); captures.push(filename);
   }
-  async function intercept({ failed = false, held = false } = {}) {
+  async function intercept({ failed = false, held = false, heldProject = null, heldMethod = 'gitWorktrees' } = {}) {
     await application.evaluateMain(`(() => {
       const ipc=require('electron').ipcMain, original=ipc._invokeHandlers.get('qiyao:invoke');let release;const pending=new Promise(resolve=>{release=resolve;});
-      globalThis.nookOverviewReceipt={original,release,calls:[],failed:${failed},held:${held}};
+      globalThis.nookOverviewReceipt={original,release,calls:[],failed:${failed},held:${held},heldEntered:false};
       ipc._invokeHandlers.set('qiyao:invoke',async(event,method,...args)=>{
         const receipt=globalThis.nookOverviewReceipt;
-        if(method==='gitWorktrees'){receipt.calls.push(args[0]);if(receipt.held)await pending;if(receipt.failed&&args[0]===${JSON.stringify(sourceProject.id)})throw new Error('PRIVATE_KEY SECRET_PATH overview fixture');}
+        if(method==='gitWorktrees')receipt.calls.push(args[0]);
+        if(method===${JSON.stringify(heldMethod)}&&receipt.held&&(${JSON.stringify(heldProject)}===null||(typeof args[0]==='string'?args[0]:args[0]?.projectId)===${JSON.stringify(heldProject)})){receipt.heldEntered=true;await pending;}
+        if(method==='gitWorktrees'&&receipt.failed&&args[0]===${JSON.stringify(sourceProject.id)})throw new Error('PRIVATE_KEY SECRET_PATH overview fixture');
         return original(event,method,...args);
       });
     })()`);
@@ -102,7 +104,42 @@ export async function verifyWorktreeOverview({ page, application, getApplication
     assert.deepEqual(await receipt(), [sourceProject.id]);
     await application.evaluateMain('globalThis.nookOverviewReceipt.held=false;'); await open(); assert.equal(await rows().count(), 4); assert.equal(await overview().getByRole('alert').count(), 0); await capture('retry-light'); await close();
   } finally { await restoreHandler(); }
-  verified('sanitized per-project errors preserve healthy repository rows, retry succeeds and closing a held read prevents the next project query');
+  for (const failed of [false, true]) {
+    await intercept({ failed, held: true, heldProject: childProject.id });
+    try {
+      const before = await readFile(primary);
+      await page.keyboard.press('Control+,'); await settings().getByRole('button', { name: '工作树', exact: true }).click();
+      await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookOverviewReceipt.heldEntered){if(Date.now()>=deadline)throw new Error('The second overview query was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
+      await waitForBridge(page, () => Boolean(document.querySelector('.worktree-overview-pending')));
+      assert.equal(await overview().getAttribute('aria-busy'), 'true'); assert.equal(await refresh().isDisabled(), true);
+      const pending = overview().locator('.worktree-overview-pending');
+      assert.equal(await pending.count(), 1); assert.equal(await pending.getAttribute('data-project-id'), childProject.id);
+      assert.match(await pending.innerText(), /中文工作树项目[\s\S]*正在读取/);
+      assert.equal(await rows().count(), failed ? 0 : 4);
+      if (failed) assert.equal(await overview().getByRole('alert').textContent(), '未能读取此项目的工作树。请检查仓库与 Git，然后刷新重试。');
+      else {
+        assert.equal(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).getByRole('button', { name: '添加为项目', exact: true }).isDisabled(), true);
+        await childRow().locator('summary').click(); await childRow().getByRole('button', { name: '固定会话 · 中文', exact: true }).waitFor();
+      }
+      assert.doesNotMatch(await overview().innerText(), /PRIVATE_KEY|SECRET_PATH/); assert.deepEqual(await readFile(primary), before);
+      await pending.scrollIntoViewIfNeeded(); await capture(failed ? 'partial-error' : 'partial-results');
+      await release(); await settled(); assert.equal(await overview().locator('.worktree-overview-pending').count(), 0);
+      assert.equal(await rows().count(), 4); assert.equal(await overview().locator('.worktree-overview-group').count(), failed ? 2 : 1);
+      await close();
+    } finally { await restoreHandler(); }
+  }
+  await intercept({ held: true, heldProject: sourceProject.id, heldMethod: 'managedWorktrees' });
+  try {
+    await page.keyboard.press('Control+,'); await settings().getByRole('button', { name: '工作树', exact: true }).click();
+    await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookOverviewReceipt.heldEntered){if(Date.now()>=deadline)throw new Error('The overview management query was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
+    await overview().getByText('正在读取本机管理记录与快照…', { exact: true }).waitFor();
+    assert.equal(await rows().count(), 4); assert.equal(await overview().locator('.worktree-overview-pending').count(), 0);
+    assert.equal(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).getByRole('button', { name: '添加为项目', exact: true }).isDisabled(), true);
+    assert.equal(await overview().getAttribute('aria-busy'), 'true'); await overview().scrollIntoViewIfNeeded(); await capture('management-loading');
+    await release(); await settled();
+    assert.equal(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).getByRole('button', { name: '添加为项目', exact: true }).isDisabled(), false); await close();
+  } finally { await restoreHandler(); }
+  verified('progressive project results and sanitized errors remain visible during held reads; management stays disabled until metadata completes, retry succeeds and closing a held read prevents the next project query');
 
   const extraProjects = [];
   for (let index = 0; index < 19; index++) {
@@ -147,5 +184,5 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   page = await restart(() => writeFile(primary, originalBytes)); application = getApplication();
   assert.deepEqual((await state()).projects, originalState.projects); assert.equal((await state()).threads.some(thread => thread.id === pin.id), false); assert.equal(modelRequests(), requestsBefore);
   verified('normal restart restores the pre-test workspace and all real source branch, index, dirty and untracked bytes remain intact with zero model requests');
-  return { page, result: { checks: 6, modelRequests: modelRequests() - requestsBefore, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true, queryPages, layouts, screenshots: captures, scope: 'Real isolated Git fixtures and main-process worktree IPC; persisted fixture workspace is seeded only in the suite-owned profile and restored on success. Git error/held-read responses are intercepted only in the test process. Known-project inventory and persistent conversation labels are read-only. Opening/creating/deleting conversations, automatic cleanup, upstream refresh and full reference parity are separate.' } };
+  return { page, result: { checks: 6, modelRequests: modelRequests() - requestsBefore, actualRepositoryAssociationVerified: true, refreshReadOnlyVerified: true, progressiveProjectResultsVerified: true, progressiveSanitizedErrorsVerified: true, managementLoadingProtectionVerified: true, errorRetryCloseVerified: true, boundedPagingVerified: true, referenceZoomKeyboardVerified: true, sourcePreservationVerified: true, queryPages, layouts, screenshots: captures, scope: 'Real isolated Git fixtures and main-process worktree IPC; persisted fixture workspace is seeded only in the suite-owned profile and restored on success. Git error/held-read responses are intercepted only in the test process. Known-project inventory and persistent conversation labels are read-only. Opening/creating/deleting conversations, automatic cleanup, upstream refresh and full reference parity are separate.' } };
 }

@@ -108,17 +108,47 @@ describe('serial cancellable worktree reads', () => {
     expect(result[0]).toEqual({ projectId: 'first', projectPath: projects[0].path, trees: [], failed: true }); expect(result[1].failed).toBe(false);
     expect(JSON.stringify(result)).not.toMatch(/PRIVATE_KEY|SECRET_PATH/);
   });
+  it('publishes completed repositories before the next held read resolves without mutating earlier progress arrays', async () => {
+    const projects = [project('first'), project('second', 'E:/Other')];
+    let release!: (value: GitWorktree[]) => void;
+    const held = new Promise<GitWorktree[]>(resolve => { release = resolve; });
+    const progress = vi.fn(), read = vi.fn().mockResolvedValueOnce([tree()]).mockReturnValueOnce(held);
+    const pending = loadWorktreeOverview(projects, read, () => true, progress);
+    await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(2));
+    expect(progress).toHaveBeenCalledTimes(1);
+    const first = progress.mock.calls[0][0];
+    expect(first.map((item: WorktreeSnapshot) => item.projectId)).toEqual(['first']);
+    release([tree('E:/Other')]); const result = await pending;
+    expect(progress).toHaveBeenCalledTimes(2); expect(progress.mock.calls[1][0]).toEqual(result);
+    expect(first).toHaveLength(1); expect(progress.mock.calls[1][0]).not.toBe(result);
+  });
+  it('publishes a sanitized failure immediately while the next repository is still loading', async () => {
+    let release!: (value: GitWorktree[]) => void;
+    const held = new Promise<GitWorktree[]>(resolve => { release = resolve; });
+    const read = vi.fn().mockRejectedValueOnce(new Error('PRIVATE_KEY SECRET_PATH')).mockReturnValueOnce(held), progress = vi.fn();
+    const pending = loadWorktreeOverview([project('first'), project('second')], read, () => true, progress);
+    await vi.waitFor(() => expect(read).toHaveBeenCalledTimes(2));
+    expect(progress.mock.calls[0][0]).toEqual([{ projectId: 'first', projectPath: 'E:/Repo', trees: [], failed: true }]);
+    expect(JSON.stringify(progress.mock.calls)).not.toMatch(/PRIVATE_KEY|SECRET_PATH/);
+    release([]); await pending;
+  });
+  it('stops before the next project when the progress observer closes the owner', async () => {
+    let active = true;
+    const read = vi.fn().mockResolvedValue([tree()]), progress = vi.fn(() => { active = false; });
+    const result = await loadWorktreeOverview([project(), project('next')], read, () => active, progress);
+    expect(result).toHaveLength(1); expect(read).toHaveBeenCalledTimes(1); expect(progress).toHaveBeenCalledTimes(1);
+  });
   it('does not start reads for an already closed owner', async () => {
     const read = vi.fn(); expect(await loadWorktreeOverview([project()], read, () => false)).toEqual([]); expect(read).not.toHaveBeenCalled();
   });
   it.each([false, true])('ignores a late %s failure/success receipt after close and never starts the next project', async failed => {
     let active = true, release!: (value: GitWorktree[]) => void, reject!: (error: Error) => void;
     const held = new Promise<GitWorktree[]>((resolve, fail) => { release = resolve; reject = fail; });
-    const read = vi.fn().mockReturnValue(held), pending = loadWorktreeOverview([project(), project('next')], read, () => active);
+    const read = vi.fn().mockReturnValue(held), progress = vi.fn(), pending = loadWorktreeOverview([project(), project('next')], read, () => active, progress);
     active = false; if (failed) reject(new Error('PRIVATE fixture error')); else release([tree()]);
-    expect(await pending).toEqual([]); expect(read).toHaveBeenCalledTimes(1);
+    expect(await pending).toEqual([]); expect(read).toHaveBeenCalledTimes(1); expect(progress).not.toHaveBeenCalled();
   });
   it('returns no receipts for an empty project page', async () => {
-    const read = vi.fn(); expect(await loadWorktreeOverview([], read, () => true)).toEqual([]); expect(read).not.toHaveBeenCalled();
+    const read = vi.fn(), progress = vi.fn(); expect(await loadWorktreeOverview([], read, () => true, progress)).toEqual([]); expect(read).not.toHaveBeenCalled(); expect(progress).not.toHaveBeenCalled();
   });
 });

@@ -34,7 +34,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
     setLoading(true); setSnapshots([]); setOwnership([]); setSavedSnapshots([]);
     const current = () => active && request.current === revision;
     void (async () => {
-      const next = await loadWorktreeOverview(worktreeOverviewPage(state.projects, currentPage), id => window.qiyao.gitWorktrees(id), current);
+      const next = await loadWorktreeOverview(worktreeOverviewPage(state.projects, currentPage), id => window.qiyao.gitWorktrees(id), current, setSnapshots);
       if (!current()) return;
       setSnapshots(next);
       const sources = worktreeOverviewGroups(state.projects, state.threads, next).filter(group => !group.failed).flatMap(group => {
@@ -51,6 +51,7 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
   }, [projectsKey, currentPage, refresh]);
   useLayoutEffect(() => { if ((restored || removed) && !loading) { noticeRef.current?.focus(); noticeRef.current?.scrollIntoView({ block: 'nearest' }); } }, [restored, removed, loading]);
   const groups = useMemo(() => worktreeOverviewGroups(state.projects, state.threads, snapshots), [state.projects, state.threads, snapshots]);
+  const pendingProjects = loading ? worktreeOverviewPage(state.projects, currentPage).filter(project => !snapshots.some(snapshot => snapshot.projectId === project.id && worktreePathKey(snapshot.projectPath) === worktreePathKey(project.path))) : [];
   function savedPin(source: WorktreeOwnershipSource, path: string, pinned: boolean) {
     setOwnership(current => current.map(snapshot => snapshot.source.projectId === source.projectId && worktreePathKey(snapshot.source.path) === worktreePathKey(source.path) ? { ...snapshot, records: snapshot.records.map(record => worktreePathKey(record.path) === worktreePathKey(path) ? { ...record, pinned } : record) } : snapshot));
   }
@@ -65,7 +66,8 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
     {removed && <p ref={noticeRef} tabIndex={-1} role="status" className={removed.managedRecord === 'saved' ? 'field-hint' : 'inline-error'}>{removed.managedRecord === 'saved' ? '工作树已删除，快照已保存，可从「已保存快照」恢复到新目录。' : '工作树已删除，快照已保存，但本机创建记录未能更新。请刷新列表；原目录不再具有删除权限。'}<TextHint as="span" className="path-text" text={removed.path}>{removed.path}</TextHint></p>}
     {cleanup && <p role="status" className={cleanup.failed || cleanup.receiptFailures ? 'inline-error' : 'field-hint'}>{cleanup.failed ? '自动清理未能执行，请完成其他操作后重试；工作树会保留。' : `自动清理已删除 ${cleanup.removed} 个工作树，并为其保存快照；${cleanup.skipped} 个受保护或无法清理的工作树已跳过。`}{cleanup.receiptFailures > 0 && ` ${cleanup.receiptFailures} 条本机创建记录未能更新，请刷新检查。`}<TextHint as="span" className="path-text" text={cleanup.source.path}>{cleanup.source.path}</TextHint></p>}
     {restored && <p ref={noticeRef} tabIndex={-1} role="status" className={restored.managedRecord === 'saved' ? 'field-hint' : 'inline-error'}>{restored.managedRecord === 'saved' ? '快照已恢复，可在列表中将新工作树添加为项目。' : '快照已恢复，但本机创建记录未能保存。请保留已恢复文件；该工作树暂不支持本机管理操作。'}<TextHint as="span" className="path-text" text={restored.worktree.path}>{restored.worktree.path}</TextHint></p>}
-    {loading ? <p className="muted" role="status">正在读取项目工作树…</p> : groups.length ? <div className="worktree-overview-groups">{groups.map(group => {
+    {loading && <p className="muted" role="status">{pendingProjects.length ? '正在读取项目工作树…' : '正在读取本机管理记录与快照…'}</p>}
+    {Boolean(groups.length || pendingProjects.length) && <div className="worktree-overview-groups">{groups.map(group => {
       const source = state.projects.find(project => project.id === group.projectIds[0]);
       const local = source ? ownership.find(snapshot => snapshot.source.projectId === source.id && worktreePathKey(snapshot.source.path) === worktreePathKey(source.path)) : undefined;
       const saved = source ? savedSnapshots.find(snapshot => snapshot.source.projectId === source.id && worktreePathKey(snapshot.source.path) === worktreePathKey(source.path)) : undefined;
@@ -75,16 +77,20 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
       {group.failed ? <p className="inline-error" role="alert">未能读取此项目的工作树。请检查仓库与 Git，然后刷新重试。</p> : group.rows.map(({ tree, projects, conversations }) => <article className="worktree-row" key={tree.path}>
         <div className="worktree-row-heading"><TextHint as="span" className="worktree-title" text={tree.branch || (tree.bare ? '裸仓库' : '游离 HEAD')}>{tree.branch || (tree.bare ? '裸仓库' : '游离 HEAD')}</TextHint><span className="muted">{tree.locked !== undefined ? '已锁定' : tree.prunable !== undefined ? '文件夹不可用' : projects.length ? '已登记项目' : '未登记项目'}</span></div>
         <TextHint as="p" className="path-text" text={tree.path}>{tree.path}</TextHint>
-        {source && <WorktreePinControl record={local?.records.find(record => worktreePathKey(record.path) === worktreePathKey(tree.path))} source={{ projectId: source.id, path: source.path }} disabled={disabled} onPin={onPin} onSaved={pinned => savedPin({ projectId: source.id, path: source.path }, tree.path, pinned)} />}
-        {source && local?.records.some(record => record.verified && worktreePathKey(record.path) === worktreePathKey(tree.path)) && <WorktreeSnapshotCapture source={{ projectId: source.id, path: source.path }} path={tree.path} disabled={disabled} onCapture={onCapture} onSaved={snapshot => savedSnapshot({ projectId: source.id, path: source.path }, snapshot)} />}
-        {source && local?.records.filter(record => record.verified && worktreePathKey(record.path) === worktreePathKey(tree.path)).map(record => <WorktreeRemovalControl key={record.id} record={record} source={{ projectId: source.id, path: source.path }} disabled={disabled} protectedTree={Boolean(projects.length || tree.locked !== undefined || tree.prunable !== undefined || record.conversationIds?.some(id => state.threads.some(thread => thread.id === id && thread.pinned)))} onRemove={onRemove} onRemoved={removedWorktree} />)}
+        {source && <WorktreePinControl record={local?.records.find(record => worktreePathKey(record.path) === worktreePathKey(tree.path))} source={{ projectId: source.id, path: source.path }} disabled={disabled || loading} onPin={onPin} onSaved={pinned => savedPin({ projectId: source.id, path: source.path }, tree.path, pinned)} />}
+        {source && local?.records.some(record => record.verified && worktreePathKey(record.path) === worktreePathKey(tree.path)) && <WorktreeSnapshotCapture source={{ projectId: source.id, path: source.path }} path={tree.path} disabled={disabled || loading} onCapture={onCapture} onSaved={snapshot => savedSnapshot({ projectId: source.id, path: source.path }, snapshot)} />}
+        {source && local?.records.filter(record => record.verified && worktreePathKey(record.path) === worktreePathKey(tree.path)).map(record => <WorktreeRemovalControl key={record.id} record={record} source={{ projectId: source.id, path: source.path }} disabled={disabled || loading} protectedTree={Boolean(projects.length || tree.locked !== undefined || tree.prunable !== undefined || record.conversationIds?.some(id => state.threads.some(thread => thread.id === id && thread.pinned)))} onRemove={onRemove} onRemoved={removedWorktree} />)}
         {local?.records.some(record => worktreePathKey(record.path) === worktreePathKey(tree.path) && record.conversationIds?.some(id => state.threads.some(thread => thread.id === id && thread.pinned))) && <p className="field-hint">关联聊天已固定，删除已暂停。请在聊天列表中取消固定后重试。</p>}
         <details className="worktree-conversations"><summary>关联会话 · {conversations.length}</summary>{conversations.length ? <ul>{conversations.map(thread => <li key={thread.id}><Button className="worktree-conversation-link" title={thread.title || '未命名会话'} disabled={disabled} onClick={() => onOpenConversation({ threadId: thread.id, projectId: thread.projectId ?? '', path: tree.path })}>{thread.title || '未命名会话'}</Button>{thread.pinned && <span className="muted">已固定</span>}{thread.archived && <span className="muted">已归档</span>}</li>)}</ul> : <p className="field-hint">此工作树还没有关联会话。</p>}</details>
         {projects[0] && <div className="worktree-conversation-actions"><Button disabled={disabled} onClick={() => onCreateConversation({ projectId: projects[0].id, path: tree.path })}>新建项目聊天</Button></div>}
-        {!projects.length && source && <WorktreeRegistrationForm tree={tree} source={{ projectId: source.id, path: source.path }} disabled={disabled} onRegister={onRegister} />}
+        {!projects.length && source && <WorktreeRegistrationForm tree={tree} source={{ projectId: source.id, path: source.path }} disabled={disabled || loading} onRegister={onRegister} />}
       </article>)}
-      {!group.failed && source && saved && <SavedWorktreeSnapshotList source={{ projectId: source.id, path: source.path }} snapshots={saved.snapshots} failed={saved.failed} disabled={disabled} onRestore={onRestore} onRestored={restoredSnapshot} />}
-    </section>; })}</div> : <p className="muted">添加本地 Git 项目后，可在这里查看和管理工作树。</p>}
+      {!group.failed && source && saved && <SavedWorktreeSnapshotList source={{ projectId: source.id, path: source.path }} snapshots={saved.snapshots} failed={saved.failed} disabled={disabled || loading} onRestore={onRestore} onRestored={restoredSnapshot} />}
+    </section>; })}{pendingProjects.map(project => <section className="worktree-overview-group worktree-overview-pending" key={`pending:${project.id}`} data-project-id={project.id} aria-busy="true">
+      <div className="worktree-row-heading"><h4 className="worktree-title"><TextHint text={project.name}>{project.name}</TextHint></h4><span className="muted" role="status">正在读取…</span></div>
+      <TextHint as="p" className="path-text" text={project.path}>{project.path}</TextHint>
+    </section>)}</div>}
+    {!loading && !groups.length && <p className="muted">添加本地 Git 项目后，可在这里查看和管理工作树。</p>}
     {totalPages > 1 && <nav className="worktree-overview-pages" aria-label="项目工作树分页"><Button disabled={disabled || loading || currentPage === 0} onClick={() => setPage(currentPage - 1)}>上一页</Button><span className="muted" role="status">第 {currentPage + 1} / {totalPages} 页 · {state.projects.length} 个项目</span><Button disabled={disabled || loading || currentPage === totalPages - 1} onClick={() => setPage(currentPage + 1)}>下一页</Button></nav>}
   </section>;
 }
