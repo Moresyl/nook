@@ -1,0 +1,209 @@
+{
+  "reviewedAt": "2026-10-12T08:30:45.951Z",
+  "sourceHead": "3de2a637e3ea5ffe704e794973716ea1d25b377d",
+  "builtProductHead": "d2bd15eee7807eb406d7042988f5b08aab0cfb8f",
+  "archive": "E:/NookVerification/WorktreeProgressiveZoomPass-20261012",
+  "compiledFiles": 236,
+  "compiledOutputMatchesStableBuild": true,
+  "sourceSnapshotSha256": "2a1e31a2e50c845955ad2990821fb10e11341d0cb82a2a979fab6bb43a74c5ea",
+  "receipts": [
+    {
+      "phase": "check-retry2",
+      "startedAt": "2026-10-12T08:12:11.4437216Z",
+      "completedAt": "2026-10-12T08:12:17.3579302Z",
+      "exitCode": 0,
+      "logSha256": "8a8d0e2cf32c77fee831f1226c3f98e811d355e2e298f92906c5f038fd38badc"
+    },
+    {
+      "phase": "focused-retry2",
+      "startedAt": "2026-10-12T08:12:17.3753849Z",
+      "completedAt": "2026-10-12T08:12:18.5779758Z",
+      "exitCode": 0,
+      "logSha256": "91ef3646e30387327854778f601b49f50b7e9dae11ce9e2c214c42833f93702c"
+    },
+    {
+      "phase": "coverage",
+      "completedAt": "2026-10-12T08:20:22.3817416Z",
+      "exitCode": 0,
+      "startedAt": "2026-10-12T08:13:56.2018646Z",
+      "logSha256": "b8e95459de8a325c9daba9ea5cba0b44682d1bce0e77976b186beb278eccfa31"
+    },
+    {
+      "phase": "build-retry2",
+      "startedAt": "2026-10-12T08:12:18.5798714Z",
+      "completedAt": "2026-10-12T08:12:54.8085290Z",
+      "exitCode": 0,
+      "logSha256": "a33e6ac0b3a2f7a99f4b712b7ed882cb048eb0f605ce2ec3a96c6ed0f40a1fde"
+    },
+    {
+      "phase": "overview-retry3",
+      "exitCode": 0,
+      "startedAt": "2026-10-12T08:20:50.1205270Z",
+      "completedAt": "2026-10-12T08:21:08.5109372Z",
+      "logSha256": "c94794ffc4a6c571160259b808faec75f5ff15c8915a652cdda26f497eae35cb"
+    }
+  ],
+  "unit": {
+    "files": 130,
+    "tests": 1518,
+    "coverage": {
+      "lines": {
+        "total": 4455,
+        "covered": 4429,
+        "skipped": 0,
+        "pct": 99.41
+      },
+      "statements": {
+        "total": 7405,
+        "covered": 7177,
+        "skipped": 0,
+        "pct": 96.92
+      },
+      "functions": {
+        "total": 1651,
+        "covered": 1613,
+        "skipped": 0,
+        "pct": 97.69
+      },
+      "branches": {
+        "total": 5191,
+        "covered": 4902,
+        "skipped": 0,
+        "pct": 94.43
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "workers": 1,
+    "thresholds": {
+      "lines": 80,
+      "functions": 80,
+      "statements": 80,
+      "branches": 80
+    }
+  },
+  "native": {
+    "checks": 6,
+    "normalExits": [
+      {
+        "elapsedMs": 502,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 157,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 198,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 179,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 170,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "maximumNormalCloseMs": 502,
+    "runtimeErrors": [],
+    "screenshotCount": 27,
+    "reviewedOriginals": [
+      {
+        "name": "worktree-overview-partial-results-shell.png",
+        "bytes": 112931,
+        "sha256": "14bde121451a61baded64ee461695f006dc3b8ac264fa00b80c1ce679c9a091a",
+        "width": 1280,
+        "height": 840,
+        "review": "Visible completed conversation rows and disabled registration coexist with the named pending project; this is a scrolled slice."
+      },
+      {
+        "name": "worktree-overview-partial-error-shell.png",
+        "bytes": 120489,
+        "sha256": "fd121cbc46bc65adabb4dbc1909b239d14680e2406f0865012605d9a780db753",
+        "width": 1280,
+        "height": 840,
+        "review": "Complete sanitized project error and the pending project are visible together."
+      },
+      {
+        "name": "worktree-overview-management-loading-shell.png",
+        "bytes": 113782,
+        "sha256": "2fc7c9eddbfccbc7edbcd8166349d57e82566ab152bb8fc31dfeced5c469c2e4",
+        "width": 1280,
+        "height": 840,
+        "review": "Complete management-loading caption and the first completed row are visible; lower rows are outside this slice."
+      },
+      {
+        "name": "worktree-overview-light-100-pending-shell.png",
+        "bytes": 47076,
+        "sha256": "562aed3457f1978ff3a45afdbb369be87043f117ff25e5cec4394af4af66b13a",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      },
+      {
+        "name": "worktree-overview-light-125-pending-shell.png",
+        "bytes": 43027,
+        "sha256": "167640a39f2f0617d7c56ac5555a2190ebc228da28642064f7657dd5aa6a5e19",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      },
+      {
+        "name": "worktree-overview-light-150-pending-shell.png",
+        "bytes": 41178,
+        "sha256": "f1a45d39a3a5ddd576fb91beb68ab88f4440f3162bec3e924bc5a09e868ff328",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      },
+      {
+        "name": "worktree-overview-dark-100-pending-shell.png",
+        "bytes": 46074,
+        "sha256": "d7fa1fd153c2f7cea6f231e86e3cdf7cca1b73d5184e0d2944dbeb32dc5074ae",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      },
+      {
+        "name": "worktree-overview-dark-125-pending-shell.png",
+        "bytes": 41986,
+        "sha256": "e673171a88c8ad1e9fc27ec0c8e94608c984baafa7fe8e1a0112c4b655077430",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      },
+      {
+        "name": "worktree-overview-dark-150-pending-shell.png",
+        "bytes": 40223,
+        "sha256": "ca335c1b0132be3543aede009fddaf33a07491daf2b71252c76c8b2ad35ab739",
+        "width": 760,
+        "height": 540,
+        "review": "Complete pending project title, loading caption and path fit the actual settings viewport; the long path wraps at 150%."
+      }
+    ]
+  },
+  "initialFailure": {
+    "archive": "E:/NookVerification/WorktreeProgressiveInitialFailure-20261012",
+    "nativeExitCode": 1,
+    "completedChecks": 2,
+    "retainedOriginalProfile": "E:/NookVerification/Temp/qiyao-electron-zbkd3l",
+    "cause": "The test inspected pending rows before React committed the first completed receipt; the exact one-pending-row assertion and original five-second query budget remain."
+  },
+  "scope": "Current progressive-loading source validation and nine individually viewed native originals. The six minimum-window pending states use actual Electron zoom and fixed device scale factor 1. This does not verify system DPI, physical input, all reference pages, or a distribution package containing this new product body. Complete source desktop verification is a separate gate."
+}

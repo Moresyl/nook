@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T19:47:53.847Z",
+  "verifiedAt": "2026-10-12T08:52:35.873Z",
   "variant": "development executable",
-  "checks": 355,
+  "checks": 361,
   "runtimeErrors": [],
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
@@ -194,7 +194,7 @@
   },
   "backups": {
     "expandedBytes": 84181176,
-    "compressedBytes": 242242,
+    "compressedBytes": 242263,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791746628203,
+        "startedAt": 1791793823766,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791746629881
+        "finishedAt": 1791793825359
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791746630026,
+        "startedAt": 1791793825509,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791746631558
+        "finishedAt": 1791793826975
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791746633484,
+        "startedAt": 1791793828739,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791746636217
+        "finishedAt": 1791793829948
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 8.5,
+    "scopedReadMs": 8.800000011920929,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1371,17 +1371,26 @@
     "worktree-overview-error-light-shell.png",
     "worktree-overview-loading-light-shell.png",
     "worktree-overview-retry-light-shell.png",
+    "worktree-overview-partial-results-shell.png",
+    "worktree-overview-partial-error-shell.png",
+    "worktree-overview-management-loading-shell.png",
     "worktree-overview-page-two-light-shell.png",
+    "worktree-overview-light-100-pending-shell.png",
     "worktree-overview-light-100-error-shell.png",
     "worktree-overview-light-100-rows-shell.png",
+    "worktree-overview-light-125-pending-shell.png",
     "worktree-overview-light-125-error-shell.png",
     "worktree-overview-light-125-rows-shell.png",
+    "worktree-overview-light-150-pending-shell.png",
     "worktree-overview-light-150-error-shell.png",
     "worktree-overview-light-150-rows-shell.png",
+    "worktree-overview-dark-100-pending-shell.png",
     "worktree-overview-dark-100-error-shell.png",
     "worktree-overview-dark-100-rows-shell.png",
+    "worktree-overview-dark-125-pending-shell.png",
     "worktree-overview-dark-125-error-shell.png",
     "worktree-overview-dark-125-rows-shell.png",
+    "worktree-overview-dark-150-pending-shell.png",
     "worktree-overview-dark-150-error-shell.png",
     "worktree-overview-dark-150-rows-shell.png",
     "worktree-conversations-archived-open-light-shell.png",
@@ -1533,6 +1542,24 @@
     "worktree-cleanup-dark-125-disable-cancel-shell.png",
     "worktree-cleanup-dark-150-disable-cancel-shell.png",
     "worktree-cleanup-replacement-rejected-light-shell.png",
+    "settings-search-light-1-results-shell.png",
+    "settings-search-light-1-target-shell.png",
+    "settings-search-light-1-empty-shell.png",
+    "settings-search-light-1.25-results-shell.png",
+    "settings-search-light-1.25-target-shell.png",
+    "settings-search-light-1.25-empty-shell.png",
+    "settings-search-light-1.5-results-shell.png",
+    "settings-search-light-1.5-target-shell.png",
+    "settings-search-light-1.5-empty-shell.png",
+    "settings-search-dark-1-results-shell.png",
+    "settings-search-dark-1-target-shell.png",
+    "settings-search-dark-1-empty-shell.png",
+    "settings-search-dark-1.25-results-shell.png",
+    "settings-search-dark-1.25-target-shell.png",
+    "settings-search-dark-1.25-empty-shell.png",
+    "settings-search-dark-1.5-results-shell.png",
+    "settings-search-dark-1.5-target-shell.png",
+    "settings-search-dark-1.5-empty-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -2723,120 +2750,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(40, 40, 40)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 178.16600000000005
+                  "currentTime": 90.19999999999939
                 }
               ]
             }
@@ -2851,70 +2878,120 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5
+                }
+              ]
             }
           ]
         }
@@ -2929,72 +3006,122 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(232, 232, 232)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 143.57999999853809
+                }
+              ]
             }
           ]
         },
@@ -3007,70 +3134,120 @@
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.5799999985377
+                }
+              ]
             }
           ]
         }
@@ -5580,10 +5757,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\worktrees/nook-17be8d90",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\管理 工作树 🧭/nook-4ae88ae3",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\worktrees/nook-f7528a39",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\管理 工作树 🧭/nook-bc4df6a6",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -5612,15 +5789,15 @@
         "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
       },
       {
-        "top": 409.3999938964844,
-        "bottom": 427.3999938964844,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
         "viewportBottom": 431.60000228881836,
         "viewportLeft": 128.8000030517578,
         "viewportRight": 601.8000030517578,
-        "scrollTop": 215.1999969482422,
+        "scrollTop": 199.1999969482422,
         "theme": "light",
         "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
       },
@@ -5651,15 +5828,15 @@
         "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
       },
       {
-        "top": 409.3999938964844,
-        "bottom": 427.3999938964844,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
         "viewportBottom": 431.60000228881836,
         "viewportLeft": 128.8000030517578,
         "viewportRight": 601.8000030517578,
-        "scrollTop": 215.1999969482422,
+        "scrollTop": 199.1999969482422,
         "theme": "dark",
         "text": "本地数据未能保存。请检查磁盘空间和文件夹权限，再重试。"
       },
@@ -5816,66 +5993,79 @@
     "modelRequests": 0,
     "actualRepositoryAssociationVerified": true,
     "refreshReadOnlyVerified": true,
+    "progressiveProjectResultsVerified": true,
+    "progressiveSanitizedErrorsVerified": true,
+    "managementLoadingProtectionVerified": true,
     "errorRetryCloseVerified": true,
     "boundedPagingVerified": true,
     "referenceZoomKeyboardVerified": true,
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "eaede899-54ba-42d3-b646-8fd331730945",
-        "02219094-4441-4876-8b21-0bcf1b08c0fd",
-        "1830edce-f264-435e-86ce-594d18b6b618",
-        "72984bec-67f9-466e-8c1c-af54642af02b",
-        "01066ba0-ce3c-4a88-a513-8f530942281e",
-        "d3c6d3a8-5e27-4e8e-a4e0-e122ccf8cc46",
-        "beb95982-2084-41a9-9af3-c38cd40bf3b3",
-        "75ca0be7-70f6-4ea3-a7fc-0d715eaa1a57",
-        "442b3332-6505-44e0-9fc7-c244e9968528",
-        "aecf5d1c-2268-42cc-913c-9c8895b73e6a",
-        "498d8c7e-ec89-4a94-be40-5eef128d9d3e",
-        "13151690-2c44-4a1f-ac7f-d72f41e003a1",
-        "0eff4ed9-1e73-479e-b9b0-cf568341fb97",
-        "69331729-229f-452e-8e23-114652386e33",
-        "36431777-e60f-417c-a334-b8ca35358200",
-        "397e18f4-4f98-4b33-a043-c06602e69401",
-        "4fde2209-575e-4c05-afd5-c6235ca6fbba",
-        "b7c51761-a30d-4c3f-a0fa-4d1d26e7cf9e",
-        "910129a2-66d1-47dd-9aea-ba444c4756ed",
-        "ab9b394f-a9ce-49a6-b78c-eba08e8a4aeb"
+        "ddb58620-5863-48f8-894d-458f5a833da4",
+        "9fbe166f-7462-4e12-962e-58ad75029da8",
+        "c77bb854-7be8-46d1-bf6f-5b9dcdca1146",
+        "20dc20b4-8c89-4503-92ed-a4c2ba39daac",
+        "e6c48659-3d47-4db9-abcc-cbf3cf72c5d8",
+        "94f06aa5-2979-41f6-a822-9f7a8a5a6b9a",
+        "40d41db2-4afd-4bac-84ff-f5ef6a05f57f",
+        "f3a6f6b1-ae18-492f-b6cb-e4a10d143055",
+        "def9452e-a239-4463-9385-dd3a194ae118",
+        "0e53dd34-91f4-406f-9d52-0f15ba3646b6",
+        "43f42454-8795-4f74-9741-ee1a5253ebac",
+        "aba09126-a33c-4dfe-a47a-b986f0e28612",
+        "7ed3a80d-ae1d-4264-9e16-d4bef14ee596",
+        "ade18d05-fe8b-4d25-bb9d-019dfc00a658",
+        "07a98f90-6ca7-42b4-a781-1b0130b63035",
+        "0a017ba1-eccd-4bcc-8a1d-4eaac5bfbede",
+        "60023be8-e35d-4468-aa34-61aaf922f3d8",
+        "e8735f11-069b-44f0-a06f-9dc4d462fdc1",
+        "6319a463-ae80-4f84-9be6-e48c6579fd68",
+        "63375f3a-80f8-4042-882a-286a7071f80c"
       ],
       [
-        "b392a7f8-ca3e-4cdd-84b6-d81a8ac29fb3"
+        "21f150fa-7d44-4963-9d46-f84ba1cd2593"
       ],
       [
-        "eaede899-54ba-42d3-b646-8fd331730945",
-        "02219094-4441-4876-8b21-0bcf1b08c0fd",
-        "1830edce-f264-435e-86ce-594d18b6b618",
-        "72984bec-67f9-466e-8c1c-af54642af02b",
-        "01066ba0-ce3c-4a88-a513-8f530942281e",
-        "d3c6d3a8-5e27-4e8e-a4e0-e122ccf8cc46",
-        "beb95982-2084-41a9-9af3-c38cd40bf3b3",
-        "75ca0be7-70f6-4ea3-a7fc-0d715eaa1a57",
-        "442b3332-6505-44e0-9fc7-c244e9968528",
-        "aecf5d1c-2268-42cc-913c-9c8895b73e6a",
-        "498d8c7e-ec89-4a94-be40-5eef128d9d3e",
-        "13151690-2c44-4a1f-ac7f-d72f41e003a1",
-        "0eff4ed9-1e73-479e-b9b0-cf568341fb97",
-        "69331729-229f-452e-8e23-114652386e33",
-        "36431777-e60f-417c-a334-b8ca35358200",
-        "397e18f4-4f98-4b33-a043-c06602e69401",
-        "4fde2209-575e-4c05-afd5-c6235ca6fbba",
-        "b7c51761-a30d-4c3f-a0fa-4d1d26e7cf9e",
-        "910129a2-66d1-47dd-9aea-ba444c4756ed",
-        "ab9b394f-a9ce-49a6-b78c-eba08e8a4aeb"
+        "ddb58620-5863-48f8-894d-458f5a833da4",
+        "9fbe166f-7462-4e12-962e-58ad75029da8",
+        "c77bb854-7be8-46d1-bf6f-5b9dcdca1146",
+        "20dc20b4-8c89-4503-92ed-a4c2ba39daac",
+        "e6c48659-3d47-4db9-abcc-cbf3cf72c5d8",
+        "94f06aa5-2979-41f6-a822-9f7a8a5a6b9a",
+        "40d41db2-4afd-4bac-84ff-f5ef6a05f57f",
+        "f3a6f6b1-ae18-492f-b6cb-e4a10d143055",
+        "def9452e-a239-4463-9385-dd3a194ae118",
+        "0e53dd34-91f4-406f-9d52-0f15ba3646b6",
+        "43f42454-8795-4f74-9741-ee1a5253ebac",
+        "aba09126-a33c-4dfe-a47a-b986f0e28612",
+        "7ed3a80d-ae1d-4264-9e16-d4bef14ee596",
+        "ade18d05-fe8b-4d25-bb9d-019dfc00a658",
+        "07a98f90-6ca7-42b4-a781-1b0130b63035",
+        "0a017ba1-eccd-4bcc-8a1d-4eaac5bfbede",
+        "60023be8-e35d-4468-aa34-61aaf922f3d8",
+        "e8735f11-069b-44f0-a06f-9dc4d462fdc1",
+        "6319a463-ae80-4f84-9be6-e48c6579fd68",
+        "63375f3a-80f8-4042-882a-286a7071f80c"
       ]
     ],
     "layouts": [
       {
         "theme": "light",
         "zoom": 1,
+        "pending": {
+          "top": 467,
+          "bottom": 523,
+          "left": 145,
+          "right": 737,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753
+        },
         "error": {
-          "top": 291,
-          "bottom": 309,
+          "top": 416,
+          "bottom": 434,
           "left": 145,
           "right": 737,
           "viewportTop": 62,
@@ -5891,9 +6081,19 @@
       {
         "theme": "light",
         "zoom": 1.25,
+        "pending": {
+          "top": 359.3999938964844,
+          "bottom": 415.3999938964844,
+          "left": 144.8000030517578,
+          "right": 585.6000213623047,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578
+        },
         "error": {
-          "top": 237.6999969482422,
-          "bottom": 255.6999969482422,
+          "top": 308.3999938964844,
+          "bottom": 326.3999938964844,
           "left": 144.8000030517578,
           "right": 585.6000213623047,
           "viewportTop": 61.60000228881836,
@@ -5909,9 +6109,19 @@
       {
         "theme": "light",
         "zoom": 1.5,
+        "pending": {
+          "top": 272.5,
+          "bottom": 343.5,
+          "left": 144.6666717529297,
+          "right": 484.00001525878906,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297
+        },
         "error": {
-          "top": 201.5,
-          "bottom": 219.5,
+          "top": 221.5,
+          "bottom": 239.5,
           "left": 144.6666717529297,
           "right": 484.00001525878906,
           "viewportTop": 61.333335876464844,
@@ -5927,9 +6137,19 @@
       {
         "theme": "dark",
         "zoom": 1,
+        "pending": {
+          "top": 467,
+          "bottom": 523,
+          "left": 145,
+          "right": 737,
+          "viewportTop": 62,
+          "viewportBottom": 539,
+          "viewportLeft": 129,
+          "viewportRight": 753
+        },
         "error": {
-          "top": 291,
-          "bottom": 309,
+          "top": 416,
+          "bottom": 434,
           "left": 145,
           "right": 737,
           "viewportTop": 62,
@@ -5945,9 +6165,19 @@
       {
         "theme": "dark",
         "zoom": 1.25,
+        "pending": {
+          "top": 359.3999938964844,
+          "bottom": 415.3999938964844,
+          "left": 144.8000030517578,
+          "right": 585.6000213623047,
+          "viewportTop": 61.60000228881836,
+          "viewportBottom": 431.60000228881836,
+          "viewportLeft": 128.8000030517578,
+          "viewportRight": 601.8000030517578
+        },
         "error": {
-          "top": 237.6999969482422,
-          "bottom": 255.6999969482422,
+          "top": 308.3999938964844,
+          "bottom": 326.3999938964844,
           "left": 144.8000030517578,
           "right": 585.6000213623047,
           "viewportTop": 61.60000228881836,
@@ -5963,9 +6193,19 @@
       {
         "theme": "dark",
         "zoom": 1.5,
+        "pending": {
+          "top": 272.5,
+          "bottom": 343.5,
+          "left": 144.6666717529297,
+          "right": 484.00001525878906,
+          "viewportTop": 61.333335876464844,
+          "viewportBottom": 359.33333587646484,
+          "viewportLeft": 128.6666717529297,
+          "viewportRight": 499.6666717529297
+        },
         "error": {
-          "top": 201.5,
-          "bottom": 219.5,
+          "top": 221.5,
+          "bottom": 239.5,
           "left": 144.6666717529297,
           "right": 484.00001525878906,
           "viewportTop": 61.333335876464844,
@@ -5985,17 +6225,26 @@
       "worktree-overview-error-light-shell.png",
       "worktree-overview-loading-light-shell.png",
       "worktree-overview-retry-light-shell.png",
+      "worktree-overview-partial-results-shell.png",
+      "worktree-overview-partial-error-shell.png",
+      "worktree-overview-management-loading-shell.png",
       "worktree-overview-page-two-light-shell.png",
+      "worktree-overview-light-100-pending-shell.png",
       "worktree-overview-light-100-error-shell.png",
       "worktree-overview-light-100-rows-shell.png",
+      "worktree-overview-light-125-pending-shell.png",
       "worktree-overview-light-125-error-shell.png",
       "worktree-overview-light-125-rows-shell.png",
+      "worktree-overview-light-150-pending-shell.png",
       "worktree-overview-light-150-error-shell.png",
       "worktree-overview-light-150-rows-shell.png",
+      "worktree-overview-dark-100-pending-shell.png",
       "worktree-overview-dark-100-error-shell.png",
       "worktree-overview-dark-100-rows-shell.png",
+      "worktree-overview-dark-125-pending-shell.png",
       "worktree-overview-dark-125-error-shell.png",
       "worktree-overview-dark-125-rows-shell.png",
+      "worktree-overview-dark-150-pending-shell.png",
       "worktree-overview-dark-150-error-shell.png",
       "worktree-overview-dark-150-rows-shell.png"
     ],
@@ -6031,8 +6280,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 65.4000015258789,
-        "bottom": 83.4000015258789,
+        "top": 65.70000457763672,
+        "bottom": 83.70000457763672,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
@@ -6079,8 +6328,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 65.4000015258789,
-        "bottom": 83.4000015258789,
+        "top": 65.70000457763672,
+        "bottom": 83.70000457763672,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
@@ -6129,8 +6378,8 @@
         "zoom": 1.25,
         "label": "新建项目聊天",
         "outline": 3.2,
-        "top": 388.5,
-        "bottom": 408.5,
+        "top": 388,
+        "bottom": 408,
         "left": 487.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6171,8 +6420,8 @@
         "zoom": 1.25,
         "label": "新建项目聊天",
         "outline": 3.2,
-        "top": 388.5,
-        "bottom": 408.5,
+        "top": 388,
+        "bottom": 408,
         "left": 487.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -6248,8 +6497,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 409.3999938964844,
-        "bottom": 427.3999938964844,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
@@ -6296,8 +6545,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 409.3999938964844,
-        "bottom": 427.3999938964844,
+        "top": 408.8999938964844,
+        "bottom": 426.8999938964844,
         "left": 144.8000030517578,
         "right": 585.6000213623047,
         "viewportTop": 61.60000228881836,
@@ -6460,8 +6709,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 352,
-        "bottom": 370,
+        "top": 352.3000183105469,
+        "bottom": 370.3000183105469,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6508,8 +6757,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 352,
-        "bottom": 370,
+        "top": 352.3000183105469,
+        "bottom": 370.3000183105469,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6558,8 +6807,8 @@
         "zoom": 1.25,
         "label": "登记项目",
         "outline": 3.2,
-        "top": 352,
-        "bottom": 372,
+        "top": 352.3000183105469,
+        "bottom": 372.3000183105469,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -6600,8 +6849,8 @@
         "zoom": 1.25,
         "label": "登记项目",
         "outline": 3.2,
-        "top": 352,
-        "bottom": 372,
+        "top": 352.3000183105469,
+        "bottom": 372.3000183105469,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -6873,8 +7122,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 262.5,
-        "bottom": 280.5,
+        "top": 262,
+        "bottom": 280,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6921,8 +7170,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 262.5,
-        "bottom": 280.5,
+        "top": 262,
+        "bottom": 280,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -6971,8 +7220,8 @@
         "zoom": 1.25,
         "label": "固定工作树",
         "outline": 3.2,
-        "top": 241.5,
-        "bottom": 262.5,
+        "top": 241,
+        "bottom": 262,
         "left": 499.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -7013,8 +7262,8 @@
         "zoom": 1.25,
         "label": "固定工作树",
         "outline": 3.2,
-        "top": 241.5,
-        "bottom": 262.5,
+        "top": 241,
+        "bottom": 262,
         "left": 499.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -7096,8 +7345,8 @@
       {
         "theme": "light",
         "zoom": 1.25,
-        "top": 298.5,
-        "bottom": 334.5,
+        "top": 298,
+        "bottom": 334,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -7144,8 +7393,8 @@
       {
         "theme": "dark",
         "zoom": 1.25,
-        "top": 298.5,
-        "bottom": 334.5,
+        "top": 298,
+        "bottom": 334,
         "left": 157.60000610351562,
         "right": 572.8000183105469,
         "viewportTop": 61.60000228881836,
@@ -7194,8 +7443,8 @@
         "zoom": 1.25,
         "label": "保存工作树快照",
         "outline": 3.2,
-        "top": 270.5,
-        "bottom": 290.5,
+        "top": 270,
+        "bottom": 290,
         "left": 475.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -7236,8 +7485,8 @@
         "zoom": 1.25,
         "label": "保存工作树快照",
         "outline": 3.2,
-        "top": 270.5,
-        "bottom": 290.5,
+        "top": 270,
+        "bottom": 290,
         "left": 475.20001220703125,
         "right": 572.8000106811523,
         "viewportTop": 61.60000228881836,
@@ -7313,8 +7562,8 @@
         "theme": "light",
         "zoom": 1.25,
         "error": {
-          "top": 358.8000183105469,
-          "bottom": 394.8000183105469,
+          "top": 359.1000061035156,
+          "bottom": 395.1000061035156,
           "left": 157.60000610351562,
           "right": 572.8000183105469,
           "viewportTop": 61.60000228881836,
@@ -7327,8 +7576,8 @@
           "viewportWidth": 608
         },
         "cancel": {
-          "top": 402.8000183105469,
-          "bottom": 422.8000183105469,
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
           "left": 157.60000610351562,
           "right": 219.20000839233398,
           "viewportTop": 61.60000228881836,
@@ -7341,8 +7590,8 @@
           "viewportWidth": 608
         },
         "submit": {
-          "top": 402.8000183105469,
-          "bottom": 422.8000183105469,
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
           "left": 511.20001220703125,
           "right": 572.8000144958496,
           "viewportTop": 61.60000228881836,
@@ -7457,8 +7706,8 @@
         "theme": "dark",
         "zoom": 1.25,
         "error": {
-          "top": 358.8000183105469,
-          "bottom": 394.8000183105469,
+          "top": 359.1000061035156,
+          "bottom": 395.1000061035156,
           "left": 157.60000610351562,
           "right": 572.8000183105469,
           "viewportTop": 61.60000228881836,
@@ -7471,8 +7720,8 @@
           "viewportWidth": 608
         },
         "cancel": {
-          "top": 402.8000183105469,
-          "bottom": 422.8000183105469,
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
           "left": 157.60000610351562,
           "right": 219.20000839233398,
           "viewportTop": 61.60000228881836,
@@ -7485,8 +7734,8 @@
           "viewportWidth": 608
         },
         "submit": {
-          "top": 402.8000183105469,
-          "bottom": 422.8000183105469,
+          "top": 403.1000061035156,
+          "bottom": 423.1000061035156,
           "left": 511.20001220703125,
           "right": 572.8000144958496,
           "viewportTop": 61.60000228881836,
@@ -7570,8 +7819,8 @@
         "zoom": 1.25,
         "label": "恢复快照",
         "outline": 3.2,
-        "top": 382,
-        "bottom": 402,
+        "top": 382.3000183105469,
+        "bottom": 402.3000183105469,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -7612,8 +7861,8 @@
         "zoom": 1.25,
         "label": "恢复快照",
         "outline": 3.2,
-        "top": 382,
-        "bottom": 402,
+        "top": 382.3000183105469,
+        "bottom": 402.3000183105469,
         "left": 511.20001220703125,
         "right": 572.8000144958496,
         "viewportTop": 61.60000228881836,
@@ -7636,7 +7885,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\snapshot-evidence-19b84105",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\snapshot-evidence-624fc1ca",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -8368,7 +8617,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S\\cleanup-evidence-a3af070a",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH\\cleanup-evidence-13f471bf",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -8399,6 +8648,164 @@
       "worktree-cleanup-replacement-rejected-light-shell.png"
     ],
     "scope": "Real native manual cleanup, strict bridge, active PTY and replaced-receipt protection, durable snapshots/new-folder restoration, associated fixed-chat protection, post-create scheduler, conservative automatic trimming, native confirmation matrix and accepted cleanup drain. External filesystem races are not OS-locked. Complete reference adoption and installed/portable release require separate evidence."
+  },
+  "settingsSearch": {
+    "checks": 6,
+    "modelRequests": 0,
+    "keyboardVerified": true,
+    "destinationFocusVerified": true,
+    "draftRetentionVerified": true,
+    "heldPickerVerified": true,
+    "sessionResetVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.159065 0.00000723451 0.00000317395 / 0.05)",
+          "focusOutline": "2px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.159065 0.00000723451 0.00000317395 / 0.05)",
+          "focusOutline": "1.6px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.159065 0.00000723451 0.00000317395 / 0.05)",
+          "focusOutline": "2px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+          "focusOutline": "2px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+          "focusOutline": "1.6px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "contained": true,
+        "sidebarOverflow": false,
+        "panelOverflow": false,
+        "search": {
+          "height": 36,
+          "paddingLeft": "12px",
+          "paddingRight": "12px",
+          "gap": "8px",
+          "radius": "999px",
+          "fontSize": "14px",
+          "lineHeight": "18px",
+          "inputBorder": "0px",
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+          "focusOutline": "2px",
+          "focusContained": true
+        },
+        "searchStyleVerified": true
+      }
+    ],
+    "screenshots": [
+      "settings-search-light-1-results-shell.png",
+      "settings-search-light-1-target-shell.png",
+      "settings-search-light-1-empty-shell.png",
+      "settings-search-light-1.25-results-shell.png",
+      "settings-search-light-1.25-target-shell.png",
+      "settings-search-light-1.25-empty-shell.png",
+      "settings-search-light-1.5-results-shell.png",
+      "settings-search-light-1.5-target-shell.png",
+      "settings-search-light-1.5-empty-shell.png",
+      "settings-search-dark-1-results-shell.png",
+      "settings-search-dark-1-target-shell.png",
+      "settings-search-dark-1-empty-shell.png",
+      "settings-search-dark-1.25-results-shell.png",
+      "settings-search-dark-1.25-target-shell.png",
+      "settings-search-dark-1.25-empty-shell.png",
+      "settings-search-dark-1.5-results-shell.png",
+      "settings-search-dark-1.5-target-shell.png",
+      "settings-search-dark-1.5-empty-shell.png"
+    ],
+    "scope": "Real renderer, preload and main bridge. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
   },
   "toolActivities": {
     "checks": 8,
@@ -8452,7 +8859,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 369.1875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8467,7 +8874,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 373.5874938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8482,7 +8889,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 271.85418701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8497,7 +8904,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 369.1875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8512,7 +8919,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 373.5874938964844,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8527,7 +8934,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 271.85418701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8601,7 +9008,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "21efc0c3-de51-4c7f-b21f-288cd5f2b0ab",
+    "threadId": "b971b4a2-cd90-4b41-9102-8d68027b3c61",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -8685,7 +9092,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-SpOs8S"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-pvYXiH"
   },
   "normalCloseVerified": true,
   "executableSha256": null,
