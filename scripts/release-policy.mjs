@@ -171,10 +171,18 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
     || !Array.isArray(context.screenshots) || context.screenshots.length !== 9 || new Set(context.screenshots).size !== 9 || !context.screenshots.every(name => typeof name === 'string' && /^context-summary-[A-Za-z0-9.-]+\.png$/.test(name))) {
     throw new Error('Complete context summary verification is required');
   }
-  const completeEditorTabs = result => result && ['selectedVisibilityVerified', 'keyboardNavigationVerified', 'dirtyCancelVerified', 'cleanCloseFocusVerified', 'saveFailureRetryVerified', 'originalDraftsRetained'].every(key => result[key] === true)
+  const completeTabFocus = (focus, kind, theme, zoom) => focus?.kind === kind && focus.focused === true && focus.focusVisible === true && focus.outlineStyle === 'solid'
+    && focus.outlineColor === (theme === 'light' ? 'rgb(1, 105, 204)' : 'rgb(2, 133, 255)')
+    && [focus.outlineWidth, focus.outlineOffset, ...['ring', 'viewport'].flatMap(key => ['left', 'right', 'top', 'bottom'].map(edge => focus[key]?.[edge]))].every(value => typeof value === 'number' && Number.isFinite(value))
+    && Math.abs(focus.outlineWidth - Math.floor(2 * zoom) / zoom) < .001 && Math.abs(focus.outlineOffset + Math.floor(2 * zoom) / zoom) < .001
+    && focus.ring.left < focus.ring.right && focus.ring.top < focus.ring.bottom && focus.viewport.left < focus.viewport.right && focus.viewport.top < focus.viewport.bottom
+    && focus.ring.left >= focus.viewport.left - .001 && focus.ring.right <= focus.viewport.right + .001 && focus.ring.top >= focus.viewport.top - .001 && focus.ring.bottom <= focus.viewport.bottom + .001;
+  const editorTabImages = ['editor-tabs-initial.png', 'editor-tabs-close-cancel.png', 'editor-tabs-save-failure.png', ...['light', 'dark'].flatMap(theme => [100, 125, 150].flatMap(zoom => [`editor-tabs-${theme}-${zoom}.png`, `editor-tabs-close-focus-${theme}-${zoom}.png`]))];
+  const completeEditorTabs = result => result && ['selectedVisibilityVerified', 'keyboardNavigationVerified', 'focusOutlinesVerified', 'dirtyCancelVerified', 'cleanCloseFocusVerified', 'saveFailureRetryVerified', 'originalDraftsRetained'].every(key => result[key] === true)
     && Array.isArray(result.layouts) && result.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => result.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     && result.layouts.every(row => row.selectedVisible === true && row.overflow === false && typeof row.compact === 'boolean' && Array.isArray(row.actions) && row.actions.length === 3 && ['并排预览', '预览 HTML', '保存 Ctrl S'].every(name => row.actions.filter(action => action?.name === name && action.visible === true && action.width >= 24 && action.height >= 24 && (!row.compact || (action.width === 24 && action.height === 24))).length === 1))
-    && Array.isArray(result.screenshots) && result.screenshots.length === 9 && new Set(result.screenshots).size === 9 && result.screenshots.every(name => typeof name === 'string' && /^editor-tabs-[A-Za-z0-9.-]+\.png$/.test(name));
+    && result.layouts.every(row => Array.isArray(row.focus) && row.focus.length === 2 && ['tab', 'close'].every(kind => row.focus.filter(focus => completeTabFocus(focus, kind, row.theme, row.zoom)).length === 1))
+    && Array.isArray(result.screenshots) && result.screenshots.length === editorTabImages.length && new Set(result.screenshots).size === editorTabImages.length && editorTabImages.every(name => result.screenshots.includes(name));
   const completePreview = result => result?.checks === 10 && result.outsideHttpRequests === 0 && result.docked?.checks === 5 && ["floatingTransferVerified", "projectRemovalVerified", "workbenchReloadVerified", "staleOwnerCloseVerified"].every(key => result.docked[key] === true) && completeEditorTabs(result.editorTabs);
   const browser = desktop.browser;
   const toolActivities = desktop.toolActivities;

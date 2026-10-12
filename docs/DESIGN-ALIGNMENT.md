@@ -2,6 +2,8 @@
 
 界面以 `E:\txt` 的新版资料为依据（26.930.41038／构建 13022）。主题、控件和布局已逐步采用，**尚未达到全界面 100% 还原**。静态 CSS、字符串数量与历史截图不能代替当前应用的实际验收。
 
+最新标签修正沿真实原生诊断将文件名和关闭按钮的焦点轮廓置于内侧，标签栏增加滚动条空间。原两种主题三档缩放的完整轮廓实测及 12 张原图逐张核验通过，预览 10 项／停靠 5 项、类型、116 项相关和 1,524 项完整单元、构建通过。窄窗口仍展示横向滚动切片，不能视为全部文件或完整编辑内容；新应用体的完整源码和分发验收仍待完成。真实诊断与修复期间四轮失败独立保留。[当前标签源码证据](../verification/editor-tab-focus-acceptance-review-result.json)
+
 当前 `cd5e1bf` 修复工作树键盘刷新回焦，等待期间用户移到其他控件时不抢焦点。六组原生专项及八张焦点原图复核通过；完整 1,524 项单元和源码 361 项／74 正常退出／最长 1,603ms／无强制通过，38 份新报告与 530 张原图保留。六组明暗缩放测量包括轮廓和偏移的完整区域，125% 的实际取整值为 1.6 CSS px；发布门槛要求 35 张指定原图及有限数值。[当前专项与原图](../verification/worktree-refresh-focus-acceptance-review-result.json) · [当前完整源码](../verification/worktree-refresh-focus-full-source-review-result.json)
 
 同源码 `9d7bb625` 新冻结包的包内与实际安装各 361 项／74 正常退出／无强制，最长分别为 1,867ms／1,701ms；五个原分发专项、十一份匹配运行记录和原八个标记恢复通过，236 编译文件逐一匹配。17 张工作树、26 张控件和 12 张文字提示原图逐张原尺寸查看并匹配归档哈希，共 55 张不同原图；两张未标主题的刷新成功／其他控件保焦图实际按深色记录。PDF 高缩放仅验当前滚动切片，其他完整回归原图和安装原图未全部复核，不证明真实系统 DPI、物理输入或全参考采用。下方记录保留各自历史应用体范围。[新包完整回归](../verification/worktree-refresh-focus-full-unpacked-review-result.json) · [新包实际安装](../verification/worktree-refresh-focus-full-installed-review-result.json) · [17 张工作树原图](../verification/worktree-refresh-focus-package-originals-review-result.json) · [38 张控件与文字提示原图](../verification/worktree-refresh-focus-distribution-originals-review-result.json)

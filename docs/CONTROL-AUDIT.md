@@ -2,6 +2,8 @@
 
 当前参考为 `E:\txt` 的带上下文变量、CSS 规则与原始样式；旧批次使用桌面 txt 中的人工规范。下表保留历史证据，对应源码及分发批次见[设计对照](DESIGN-ALIGNMENT.md)。静态对照只证明代码差异，不代替实际窗口验收。
 
+最新源码的文件标签及关闭按钮采用 2px 内侧键盘轮廓，标签栏为 38px，避免窄窗口横向滚动条挤压 30px 按钮。两种主题三档 Electron 缩放的两种控件均测量实际轮廓、偏移及所有裁切祖先的可用区域，12 张原图逐张核验；发布校验要求原九张与六张新增关闭焦点原图。完整源码和新包分发尚待完成，不沿用下方上一应用体的安装记录。[当前标签源码与原图](../verification/editor-tab-focus-acceptance-review-result.json)
+
 当前源码的工作树键盘刷新，在真实成功及错误读取后保留完整蓝色焦点圈，等待期间切换到关闭按钮时不抢焦点。两种主题三档 Electron 缩放的宽度、偏移和完整可见边界已实测，八张源码原图逐张原尺寸复核并匹配哈希。这些源码图不计入下面的新包原图，也不证明真实 Windows DPI 或物理输入。[当前源码焦点证据](../verification/worktree-refresh-focus-acceptance-review-result.json)
 
 当前 `9d7bb625` 新冻结包的原控件 4 项、文字提示 7 项、关闭 2 项、完整包内及安装各 361 项通过，十一份匹配运行记录核验退出 0。26 张控件、12 张文字提示和 17 张工作树原图逐张原尺寸查看并匹配归档哈希，共 55 张不同原图。明暗菜单、非法字段、开关保存后键盘焦点、启动错误和长文字提示均按实际画面记录；PDF 高缩放仅验当前滚动切片。其他完整回归原图和安装原图未全部复核。[新包控件与文字提示](../verification/worktree-refresh-focus-distribution-originals-review-result.json) · [新包工作树焦点及渐进状态](../verification/worktree-refresh-focus-package-originals-review-result.json)

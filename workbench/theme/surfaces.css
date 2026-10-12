@@ -640,10 +640,11 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .editor-body, .changes-preview { display: flex; flex-direction: column; flex: 1; min-width: 0; min-height: 0; }
 .editor-body { container-type: inline-size; container-name: editor; }
 .editor-tabs, .terminal-tabs { display: flex; flex: none; min-height: 32px; align-items: center; overflow: auto; border-bottom: 1px solid var(--ds-border); background: var(--ds-bg); }
-.editor-tabs { container-type: inline-size; overflow-y: hidden; min-width: 0; }
+.editor-tabs { container-type: inline-size; overflow-y: hidden; min-width: 0; min-height: 38px; }
 .editor-tab { display: flex; align-items: center; border-right: 1px solid var(--ds-border); flex: none; }
 .editor-tab.active { background: var(--ghost-hover); box-shadow: inset 0 -1px var(--ds-accent); }
 .editor-tab > .button { font-size: var(--control-font-size-sm); min-height: 30px; padding: 4px 8px; gap: 6px; min-width: 0; max-width: min(180px, calc(100cqw - 25px)); }
+.editor-tab > .button:focus-visible { outline-offset: -2px; }
 .editor-tab-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .editor-tab > .icon-button { width: 24px; height: 24px; min-height: 24px; padding: 4px; }
 .editor-actionbar { display: flex; align-items: center; flex: none; min-height: 30px; padding: 2px 8px; gap: 8px; border-bottom: 1px solid var(--ds-border); }

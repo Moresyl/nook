@@ -16,6 +16,29 @@ export async function verifyEditorTabs({ page, application, screenshots, project
     const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size);
     await writeFile(join(screenshots, name), bytes); captures.push(name);
   }
+  async function measureFocus(control, kind, theme, zoom) {
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const focus = await control.evaluate((button, kind) => {
+      const style = getComputedStyle(button), rect = button.getBoundingClientRect();
+      const outlineWidth = parseFloat(style.outlineWidth), outlineOffset = parseFloat(style.outlineOffset), extent = Math.max(0, outlineWidth + outlineOffset);
+      const ring = { left: rect.left - extent, right: rect.right + extent, top: rect.top - extent, bottom: rect.bottom + extent };
+      const viewport = { left: 0, right: innerWidth, top: 0, bottom: innerHeight }, ancestors = [];
+      for (let parent = button.parentElement; parent; parent = parent.parentElement) {
+        const css = getComputedStyle(parent), bounds = parent.getBoundingClientRect();
+        if (/^(auto|scroll|hidden|clip)$/.test(css.overflowX) || /^(auto|scroll|hidden|clip)$/.test(css.overflowY)) ancestors.push({ className: parent.className, rect: bounds.toJSON(), scrollTop: parent.scrollTop, clientHeight: parent.clientHeight, scrollHeight: parent.scrollHeight });
+        if (/^(auto|scroll|hidden|clip)$/.test(css.overflowX)) { const left = bounds.left + parseFloat(css.borderLeftWidth); viewport.left = Math.max(viewport.left, left); viewport.right = Math.min(viewport.right, left + parent.clientWidth); }
+        if (/^(auto|scroll|hidden|clip)$/.test(css.overflowY)) { const top = bounds.top + parseFloat(css.borderTopWidth); viewport.top = Math.max(viewport.top, top); viewport.bottom = Math.min(viewport.bottom, top + parent.clientHeight); }
+      }
+      return { kind, focused: document.activeElement === button, focusVisible: button.matches(':focus-visible'), outlineStyle: style.outlineStyle, outlineColor: style.outlineColor, outlineWidth, outlineOffset, ring, viewport, ancestors };
+    }, kind);
+    console.log('Editor tab keyboard outline', JSON.stringify({ theme, zoom, ...focus }));
+    assert.equal(focus.focused, true); assert.equal(focus.focusVisible, true); assert.equal(focus.outlineStyle, 'solid');
+    assert.equal(focus.outlineColor, theme === 'light' ? 'rgb(1, 105, 204)' : 'rgb(2, 133, 255)');
+    const width = Math.floor(2 * zoom) / zoom;
+    assert.ok(Math.abs(focus.outlineWidth - width) < .001); assert.ok(Math.abs(focus.outlineOffset + width) < .001);
+    assert.ok(focus.ring.left >= focus.viewport.left - .001 && focus.ring.right <= focus.viewport.right + .001 && focus.ring.top >= focus.viewport.top - .001 && focus.ring.bottom <= focus.viewport.bottom + .001, 'The complete file-tab keyboard outline must remain inside every clipping ancestor.');
+    return focus;
+  }
   await page.getByRole('button', { name: '隐藏文件树', exact: true }).click();
   await application.resize(760, 540);
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1.5)`);
@@ -59,7 +82,13 @@ export async function verifyEditorTabs({ page, application, screenshots, project
     });
     assert.equal(geometry.selectedVisible, true); assert.equal(geometry.overflow, false); assert.equal(geometry.actions.length, 3);
     for (const action of geometry.actions) { assert.equal(action.visible, true); if (geometry.compact) { assert.equal(action.width, 24); assert.equal(action.height, 24); } }
-    layouts.push({ theme, zoom, ...geometry }); await capture(`editor-tabs-${theme}-${zoom * 100}.png`);
+    await selected().press('End'); await selected().press('Home');
+    const tabFocus = await measureFocus(selected(), 'tab', theme, zoom); await capture(`editor-tabs-${theme}-${zoom * 100}.png`);
+    await selected().press('Tab');
+    const close = page.getByRole('button', { name: '关闭 index.html', exact: true });
+    const closeFocus = await measureFocus(close, 'close', theme, zoom); await capture(`editor-tabs-close-focus-${theme}-${zoom * 100}.png`);
+    await close.press('Shift+Tab'); assert.equal(await selected().evaluate(element => element === document.activeElement), true);
+    layouts.push({ theme, zoom, ...geometry, focus: [tabFocus, closeFocus] });
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
   await page.getByRole('button', { name: '显示文件树', exact: true }).click();
@@ -88,5 +117,5 @@ export async function verifyEditorTabs({ page, application, screenshots, project
   for (const original of originalDrafts) assert.deepEqual(finalDrafts.find(item => item.path === original.path), original);
   await page.keyboard.press('Control+,'); const settings = page.getByRole('dialog', { name: '设置', exact: true }); await settings.waitFor(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'light'); await dismissModalWithEscape(page, settings);
   console.log('Editor tab layouts', JSON.stringify(layouts));
-  return { selectedVisibilityVerified: true, keyboardNavigationVerified: true, dirtyCancelVerified: true, cleanCloseFocusVerified: true, saveFailureRetryVerified: true, originalDraftsRetained: true, layouts, screenshots: captures };
+  return { selectedVisibilityVerified: true, keyboardNavigationVerified: true, focusOutlinesVerified: true, dirtyCancelVerified: true, cleanCloseFocusVerified: true, saveFailureRetryVerified: true, originalDraftsRetained: true, layouts, screenshots: captures };
 }
