@@ -56,7 +56,7 @@ export async function verifyNativeProviders({ page, application, endpoint, proje
     }
   }
   const last = variants.at(-1); await page.getByRole('button', { name: /^设置/ }).click(); await page.getByRole('dialog').getByRole('button', { name: new RegExp(`^${last.name}`) }).click();
-  await page.getByRole('button', { name: '外观与交互', exact: true }).click(); await page.getByLabel('主题', { exact: true }).selectOption('dark'); await page.getByRole('button', { name: '模型连接', exact: true }).click(); await page.getByRole('dialog').getByRole('button', { name: new RegExp(`^${last.name}`) }).click();
+  await page.getByRole('button', { name: '外观与交互', exact: true }).click(); await page.getByLabel('主题', { exact: true }).selectOption('dark'); await page.getByRole('button', { name: '模型连接', exact: true }).click(); assert.equal(await page.getByLabel('连接名称', { exact: true }).inputValue(), last.name);
   await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && document.documentElement.dataset.theme === 'dark');
   await page.getByLabel('API 版本', { exact: true }).scrollIntoViewIfNeeded(); await page.screenshot({ path: join(screenshots, '42-native-provider-dark-narrow.png') }); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   await page.getByLabel('本次输出预算', { exact: true }).scrollIntoViewIfNeeded(); await page.screenshot({ path: join(screenshots, '46-model-capacity-dark-narrow.png') }); assert.equal(await page.evaluate(() => [...document.querySelectorAll('.capacity-grid input')].some((node) => node.getBoundingClientRect().right > innerWidth)), false);

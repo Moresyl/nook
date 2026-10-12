@@ -1,0 +1,64 @@
+{
+  "verifiedAt": "2026-10-12T01:06:08.542Z",
+  "archive": "E:/NookVerification/SettingsSearchPackage-20261012",
+  "sourceHead": "47f910d2b40e898577c9a65bee86fbe41f5e0e2b",
+  "sourceArchiveSha256": "97ba70fe76acbee12289cc39c2ac88d52327cbe207fdbdc23540ed670250cf17",
+  "typesPassed": true,
+  "releaseNoticesPassed": true,
+  "packageBuildPassed": true,
+  "packageAuditPassed": true,
+  "audit": {
+    "verifiedAt": "2026-10-12T01:04:38.530Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "99fadd57f4714e7e3782ff602c13552f1aa81689fa9b119c775dd86778f23edf",
+    "archiveSha256": "1c5ed80de64108091d3dcff13ff853d64e3bd6c6e0aeaf11ec006997406c98df",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "hashes": [
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240157727,
+      "sha256": "365e081f4e090d73d0dd0782e87a4f73b96453330aada91cfb3f1f88bf9ad244"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309675386,
+      "sha256": "29a6d1df462d4e287977d532a00e80f194569cdc63b0afd0b20ff34ecd07c41f"
+    },
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "bytes": 245726720,
+      "sha256": "99fadd57f4714e7e3782ff602c13552f1aa81689fa9b119c775dd86778f23edf"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "bytes": 493995033,
+      "sha256": "1c5ed80de64108091d3dcff13ff853d64e3bd6c6e0aeaf11ec006997406c98df"
+    }
+  ],
+  "scope": "New settings search application body, original Windows installation and portable targets with exact committed source and compiled output. All original legal and packaging assertions retained. Complete packaged native, installed native, portable/bootstrap and hosted publication remain separate gates."
+}
