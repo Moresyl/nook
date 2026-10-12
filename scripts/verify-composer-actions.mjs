@@ -49,13 +49,22 @@ export async function verifyComposerActions({ page, application, projectDirector
 
   await fill('/快捷'); await list().waitFor(); await input().press('Control+Home'); assert.equal(await input().evaluate(node => node.selectionStart), 0); await input().press('Control+End'); assert.equal(await input().evaluate(node => node.selectionStart), 3); await list().waitFor();
   const firstId = await list().getByRole('option').first().getAttribute('id'), lastId = await list().getByRole('option').last().getAttribute('id'); assert.notEqual(firstId, lastId);
+  await page.evaluate(() => {
+    window.__composerKeyboardEvents = [];
+    for (const type of ['keydown', 'keyup', 'pointerover', 'pointermove', 'pointerout', 'mouseover', 'mouseout']) document.addEventListener(type, event => {
+      if (!event.target.closest?.('.composer textarea, .composer-actions')) return;
+      const events = window.__composerKeyboardEvents; events.push({ type, key: event.key, ctrl: event.ctrlKey, shift: event.shiftKey, alt: event.altKey, meta: event.metaKey, x: event.clientX, y: event.clientY, target: event.target.closest('[role="option"]')?.id ?? event.target.tagName, active: document.querySelector('.composer textarea')?.getAttribute('aria-activedescendant') }); if (events.length > 100) events.shift();
+    }, true);
+    new MutationObserver(records => { for (const record of records) if (record.attributeName === 'aria-activedescendant') window.__composerKeyboardEvents.push({ type: 'selection', active: record.target.getAttribute('aria-activedescendant') }); }).observe(document.querySelector('.composer textarea'), { attributes: true, attributeFilter: ['aria-activedescendant'] });
+  });
   const selected = async id => {
     try { await page.waitForFunction(expected => document.querySelector('.composer textarea')?.getAttribute('aria-activedescendant') === expected, id); }
-    catch (problem) { console.error('Composer keyboard selection state', JSON.stringify(await page.evaluate(() => { const node = document.querySelector('.composer textarea'); return { focused: document.activeElement === node, selectionStart: node?.selectionStart, active: node?.getAttribute('aria-activedescendant'), options: [...document.querySelectorAll('.composer-actions [role="option"]')].map(row => ({ id: row.id, selected: row.getAttribute('aria-selected') })) }; }))); throw problem; }
+    catch (problem) { console.error('Composer keyboard selection state', JSON.stringify(await page.evaluate(() => { const node = document.querySelector('.composer textarea'); return { focused: document.activeElement === node, selectionStart: node?.selectionStart, active: node?.getAttribute('aria-activedescendant'), events: window.__composerKeyboardEvents, options: [...document.querySelectorAll('.composer-actions [role="option"]')].map(row => ({ id: row.id, selected: row.getAttribute('aria-selected') })) }; }))); throw problem; }
   };
   await page.keyboard.press('End'); await selected(lastId); const last = await input().getAttribute('aria-activedescendant');
   await page.keyboard.press('ArrowDown'); await selected(firstId); const first = await input().getAttribute('aria-activedescendant'); assert.notEqual(first, last); assert.equal(first, firstId);
   await page.keyboard.press('ArrowUp'); await selected(lastId); assert.equal(await input().getAttribute('aria-activedescendant'), last);
+  console.log('Composer keyboard event observations', JSON.stringify(await page.evaluate(() => ({ width: innerWidth, height: innerHeight, events: window.__composerKeyboardEvents }))));
   await fill('/NO_MATCH_QUICK_ACTION'); await list().waitFor(); assert.equal(await list().getByRole('option').count(), 0); await page.keyboard.press('Enter'); assert.equal(await input().inputValue(), '/NO_MATCH_QUICK_ACTION'); assert.equal(calls.length, initialCalls); await page.keyboard.press('Escape');
   verified('composer keyboard selection cycles current results and empty-result Enter preserves text without sending');
 

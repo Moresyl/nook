@@ -1,0 +1,99 @@
+{
+  "verifiedAt": "2026-10-12T18:20:13.811Z",
+  "archive": "E:/NookVerification/ComposerActionsSource-retry17-20261013",
+  "testOverlay": {
+    "path": "scripts/verify-composer-actions.mjs",
+    "sha256": "5a9f698f39f76366a0e26e79540ad5c04cb93dd02fe85e667876c65118d7c423"
+  },
+  "nativeActualExit": 0,
+  "nativeChecks": 7,
+  "modelRequests": 0,
+  "normalExits": [
+    {
+      "elapsedMs": 378,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "keyboardEventObservation": {
+    "width": 1280,
+    "height": 840,
+    "events": [
+      {
+        "type": "keydown",
+        "key": "End",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-2"
+      },
+      {
+        "type": "keyup",
+        "key": "End",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-2"
+      },
+      {
+        "type": "keydown",
+        "key": "ArrowDown",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-2"
+      },
+      {
+        "type": "selection",
+        "active": "_r_2r_-0"
+      },
+      {
+        "type": "keyup",
+        "key": "ArrowDown",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-0"
+      },
+      {
+        "type": "keydown",
+        "key": "ArrowUp",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-0"
+      },
+      {
+        "type": "selection",
+        "active": "_r_2r_-2"
+      },
+      {
+        "type": "keyup",
+        "key": "ArrowUp",
+        "ctrl": false,
+        "shift": false,
+        "alt": false,
+        "meta": false,
+        "target": "TEXTAREA",
+        "active": "_r_2r_-2"
+      }
+    ]
+  },
+  "compiledMatchesAcceptedProduct": true,
+  "priorUnitTests": 1533,
+  "priorRelatedTests": 135,
+  "originalCapturesIndividuallyViewed": false,
+  "latestCompleteFailureArchive": "E:/NookVerification/ComposerActionsFullSourceFailure-retry3-20261013",
+  "scope": "Diagnostic-only native fixture overlay records actual keyboard modifiers, pointer events and selection changes. Existing assertions, deadlines, product and compiled bytes remain unchanged. Seven seeded checks pass, but the repeated complete-context ArrowDown failure is not yet explained or claimed fixed. This report authorizes exact-byte complete diagnostic replay, not release acceptance."
+}
