@@ -1,0 +1,67 @@
+{
+  "verifiedAt": "2026-10-12T06:05:07.971Z",
+  "archive": "E:/NookVerification/SettingsActionFocusHosted-20261012",
+  "sourceHead": "4277c0740293028604b6715f4ab4ada62973460e",
+  "runs": [
+    {
+      "conclusion": "failure",
+      "databaseId": 38209149404,
+      "headBranch": "feat/worktree-cleanup",
+      "headSha": "4277c0740293028604b6715f4ab4ada62973460e",
+      "status": "completed",
+      "url": "https://github.com/Moresyl/nook/actions/runs/38209149404"
+    },
+    {
+      "conclusion": "failure",
+      "databaseId": 38209087695,
+      "headBranch": "feat/document-originals",
+      "headSha": "4277c0740293028604b6715f4ab4ada62973460e",
+      "status": "completed",
+      "url": "https://github.com/Moresyl/nook/actions/runs/38209087695"
+    }
+  ],
+  "deliveryRunId": 38209087695,
+  "verifyJobId": 114679015908,
+  "verifySteps": 0,
+  "verifyConclusion": "failure",
+  "publishJobId": 114679024438,
+  "publishSteps": 0,
+  "publishConclusion": "skipped",
+  "annotations": [
+    {
+      "path": ".github",
+      "blob_href": "https://github.com/Moresyl/nook/blob/4277c0740293028604b6715f4ab4ada62973460e/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "raw_details": ""
+    }
+  ],
+  "observedReleases": [],
+  "files": [
+    {
+      "name": "runs.json",
+      "sha256": "3cd0907a8b9e7c4a1a5ddf30242d6e8319e072326adcd24b80bc962fce107ebb"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "af8224bd942d2ba08340a76c7cc230fa06ebbd4b6d72da991254f296a291ab33"
+    },
+    {
+      "name": "annotations.json",
+      "sha256": "3ccfd1099ffc1cf4d8383cb1d10279540b398ec81fab70b213702fe59b3aaecb"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ],
+  "accountBillingChanged": false,
+  "originalPipelinePreserved": true,
+  "releasePublished": false,
+  "scope": "Authenticated read-only receipts for both pushed branches at this exact source commit. The delivery verification job never started because of the stated payments/spending-limit restriction; this is not a software-test failure. Branch publication was skipped. A fresh release listing was empty. No billing, runner replacement, tag or manual publishing bypass was performed."
+}

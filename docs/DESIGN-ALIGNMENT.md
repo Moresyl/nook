@@ -2,6 +2,8 @@
 
 界面以 `E:\txt` 的新版资料为依据（26.930.41038／构建 13022）。主题、控件和布局已逐步采用，**尚未达到全界面 100% 还原**。静态 CSS、字符串数量与历史截图不能代替当前应用的实际验收。
 
+当前 `4277c07` 冻结包的未安装与实际安装各 361 项通过，各 74 次正常退出，最长分别为 2,516ms／1,787ms、无强制；五个原分发专项与十一份匹配运行记录通过，保留数据卸载与原八个标记恢复均核验。包内搜索 18、控件 26、文本提示 12、工作树列表 18 张不同原图已逐张复核并匹配哈希，共 74 张。列表六张旧文件名写作浅色，实际按深色计入；滚动切片和 PDF 局部视图不冒充完整页面。物理输入和全参考采用仍待完成。[同包完整回归](../verification/settings-action-focus-full-unpacked-review-result.json) · [实际安装与运行记录](../verification/settings-action-focus-runtime-review-result.json) · [设置原图](../verification/settings-action-focus-package-originals-review-result.json) · [列表原图](../verification/settings-action-focus-overview-originals-review-result.json)
+
 | 表面 | 已采用 | 仍需完成 |
 | --- | --- | --- |
 | 主题与控件 | 中性灰与蓝色强调、明暗主题；共享按钮、输入、下拉框、开关、焦点和文字提示 | 每页的全部状态、复杂表单、物理辅助技术与真实系统缩放 |
@@ -38,8 +40,8 @@
 
 最新设置修正保留草稿缓存，使普通分类切换回到标题，并恢复保存中临时禁用后丢失的控件焦点。类型、构建与完整 1,515 项单元通过，391.54 秒；控件 4／搜索 6／固定 6／MCP PDF 8 项原生专项通过，9 次正常退出最长 492ms。控件第二轮 4 项加强明暗主题保存后焦点断言并通过，293ms 正常退出；两张新原图逐张原尺寸确认完整蓝色 2px 圈，其余原图未全部计入视觉验收。初始选择器失败和焦点丢失诊断保留；新包完整回归、安装、分发与全部参考采用仍待完成。[最新源码验收](../verification/settings-action-focus-build-review-result.json) · [两张焦点原图](../verification/settings-action-focus-originals-review-result.json)
 
-当前修正源码已通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。新包构建与包体审计通过，完整包内、实际安装和分发仍待同包验证。[当前完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json) · [当前包体审计](../verification/settings-search-sidebar-package-review-result.json)
+上一侧栏搜索修正源码通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。其包构建与审计通过，后续完整回归失败记录按该应用体保留，不替代当前 `4277c07` 的通过证据。[该轮完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json) · [该轮包体审计](../verification/settings-search-sidebar-package-review-result.json)
 
 物理目录选择器的两次独立尝试未形成通过证据：桌面工具无法截图或读取 Nook 控件；可见测试窗口退出超过原预算并出现错误对话框，原因尚未确认。两个测试进程均按路径、创建时间和父子关系核实后清理，原始日志、隔离配置与强制清理记录保留。这些尝试不替代正常关闭、原生选择器或物理输入验收。[失败现场](../verification/settings-search-sidebar-physical-attempts-result.json)
 
-当前包体完整回归在 312 项后因原 5 秒内未进入上游保存钩子而失败，51 次退出均正常。搜索模块此前的六项日志通过，当前包内 18 张原图已逐张复核；失败时新版独立设置报告尚未写出。保留的 84.6 MB 现场副本另通过上游五项与六组键盘／缩放，四次正常退出最长 369ms；未复现不代表已修复，完整回归仍需通过。[当前包内搜索原图](../verification/settings-search-sidebar-packaged-originals-result.json) · [完整失败现场](../verification/settings-search-sidebar-full-unpacked-initial-failure-result.json) · [现场副本重放](../verification/settings-search-sidebar-upstream-seed-replay-result.json)
+上一搜索包完整回归在 312 项后因原 5 秒内未进入上游保存钩子而失败，51 次退出均正常。当轮搜索六项日志通过，18 张原图已逐张复核；失败时独立设置报告尚未写出。保留的 84.6 MB 现场副本另通过上游五项与六组键盘／缩放，四次正常退出最长 369ms。当前 `4277c07` 已完成完整 361 项；历史超时的唯一原因仍未确认，不将原样重放写成修复。[旧包搜索原图](../verification/settings-search-sidebar-packaged-originals-result.json) · [完整失败现场](../verification/settings-search-sidebar-full-unpacked-initial-failure-result.json) · [现场副本重放](../verification/settings-search-sidebar-upstream-seed-replay-result.json)
