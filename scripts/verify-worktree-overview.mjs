@@ -136,7 +136,7 @@ export async function verifyWorktreeOverview({ page, application, getApplication
     await overview().getByText('正在读取本机管理记录与快照…', { exact: true }).waitFor();
     assert.equal(await rows().count(), 4); assert.equal(await overview().locator('.worktree-overview-pending').count(), 0);
     assert.equal(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).getByRole('button', { name: '添加为项目', exact: true }).isDisabled(), true);
-    assert.equal(await overview().getAttribute('aria-busy'), 'true'); await overview().scrollIntoViewIfNeeded(); await capture('management-loading');
+    assert.equal(await overview().getAttribute('aria-busy'), 'true'); await overview().getByText('正在读取本机管理记录与快照…', { exact: true }).scrollIntoViewIfNeeded(); await capture('management-loading');
     await release(); await settled();
     assert.equal(await rows().filter({ has: page.getByText('feature/unregistered', { exact: true }) }).getByRole('button', { name: '添加为项目', exact: true }).isDisabled(), false); await close();
   } finally { await restoreHandler(); }
@@ -163,21 +163,30 @@ export async function verifyWorktreeOverview({ page, application, getApplication
   } finally { await restoreHandler(); }
   verified('twenty-one real registered worktrees query only twenty projects per page, navigate in both directions and retain the clamped first page when a removed project returns');
 
-  await seed([sourceProject, childProject]); await intercept({ failed: true });
-  try {
+  await seed([sourceProject, childProject]);
     for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
       await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
       await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); await application.resize(760, 540); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
-      await waitForBridge(page, ({ theme, zoom }) => document.documentElement.dataset.theme === theme && Math.abs(innerWidth - 760 / zoom) <= 1, { theme, zoom }); await open();
+      await waitForBridge(page, ({ theme, zoom }) => document.documentElement.dataset.theme === theme && Math.abs(innerWidth - 760 / zoom) <= 1, { theme, zoom });
+      await intercept({ failed: true, held: true, heldProject: childProject.id });
+      try {
+      await page.keyboard.press('Control+,'); await settings().getByRole('button', { name: '工作树', exact: true }).click();
+      await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookOverviewReceipt.heldEntered){if(Date.now()>=deadline)throw new Error('The zoomed second overview query was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
+      await waitForBridge(page, () => document.querySelectorAll('.worktree-overview-pending').length === 1 && Boolean(document.querySelector('.worktree-overview [role=alert]')));
+      const pending = overview().locator('.worktree-overview-pending'); await pending.scrollIntoViewIfNeeded();
+      const pendingBounds = await pending.evaluate(element => { const content = element.closest('.settings-detail'), rect = element.getBoundingClientRect(), viewport = content.getBoundingClientRect(); return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: viewport.top + content.clientTop, viewportBottom: viewport.top + content.clientTop + content.clientHeight, viewportLeft: viewport.left + content.clientLeft, viewportRight: viewport.left + content.clientLeft + content.clientWidth }; });
+      assert.ok(pendingBounds.top >= pendingBounds.viewportTop && pendingBounds.bottom <= pendingBounds.viewportBottom && pendingBounds.left >= pendingBounds.viewportLeft && pendingBounds.right <= pendingBounds.viewportRight, 'The complete pending project must fit the actual content viewport.');
+      assert.equal(await overview().getAttribute('aria-busy'), 'true'); assert.equal(await refresh().isDisabled(), true); assert.doesNotMatch(await overview().innerText(), /PRIVATE_KEY|SECRET_PATH/);
+      await capture(`${theme}-${zoom * 100}-pending`); await release(); await settled();
       const alert = overview().getByRole('alert'); await alert.scrollIntoViewIfNeeded();
       const bounds = await alert.evaluate(element => { const content = element.closest('.settings-detail'), rect = element.getBoundingClientRect(), viewport = content.getBoundingClientRect(); return { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, viewportTop: viewport.top + content.clientTop, viewportBottom: viewport.top + content.clientTop + content.clientHeight, viewportLeft: viewport.left + content.clientLeft, viewportRight: viewport.left + content.clientLeft + content.clientWidth }; });
       assert.ok(bounds.top >= bounds.viewportTop && bounds.bottom <= bounds.viewportBottom && bounds.left >= bounds.viewportLeft && bounds.right <= bounds.viewportRight, 'The complete overview error must fit the actual content viewport.'); await capture(`${theme}-${zoom * 100}-error`);
       const summary = rows().first().locator('summary'); await summary.focus(); await page.keyboard.press('Enter'); assert.equal(await rows().first().locator('details').getAttribute('open'), '');
       const geometry = await overview().evaluate(element => { const content = element.closest('.settings-detail'); return { contentWidth: content.clientWidth, contentScrollWidth: content.scrollWidth, viewportWidth: innerWidth, documentWidth: document.documentElement.scrollWidth }; });
-      assert.ok(geometry.contentScrollWidth <= geometry.contentWidth && geometry.documentWidth <= geometry.viewportWidth); layouts.push({ theme, zoom, error: bounds, ...geometry }); await capture(`${theme}-${zoom * 100}-rows`); await close();
+      assert.ok(geometry.contentScrollWidth <= geometry.contentWidth && geometry.documentWidth <= geometry.viewportWidth); layouts.push({ theme, zoom, pending: pendingBounds, error: bounds, ...geometry }); await capture(`${theme}-${zoom * 100}-rows`); await close();
+      } finally { await restoreHandler(); }
     }
-  } finally { await restoreHandler(); }
-  verified('six light/dark minimum-window zoom cases expose complete errors through vertical scrolling and keyboard-operable conversation rows without horizontal overflow');
+  verified('six light/dark minimum-window zoom cases expose complete pending projects and errors through vertical scrolling and keyboard-operable conversation rows without horizontal overflow');
 
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${originalWindow.zoom})`); await application.resize(...originalWindow.size);
   assert.equal(await git(source, ['status', '--porcelain=v1', '-z']), status); assert.deepEqual(await readFile(join(source, '.git/index')), index);
