@@ -36,6 +36,8 @@
 
 此前逐批实现、失败现场、截图表格与未完成范围完整保留于[设计验收历史](DESIGN-ALIGNMENT-HISTORY-2026-10-12.md)。正文整理没有取消其中的交付要求。详细控件见[控件对照](CONTROL-AUDIT.md)，功能范围见[能力与边界](CAPABILITIES.md)，当前交付见[发布状态](RELEASE.md)。
 
+最新设置修正保留草稿缓存，使普通分类切换回到标题，并恢复保存中临时禁用后丢失的控件焦点。类型、构建与完整 1,515 项单元通过，391.54 秒；控件 4／搜索 6／固定 6／MCP PDF 8 项原生专项通过，9 次正常退出最长 492ms。控件第二轮 4 项加强明暗主题保存后焦点断言并通过，293ms 正常退出；两张新原图逐张原尺寸确认完整蓝色 2px 圈，其余原图未全部计入视觉验收。初始选择器失败和焦点丢失诊断保留；新包完整回归、安装、分发与全部参考采用仍待完成。[最新源码验收](../verification/settings-action-focus-build-review-result.json) · [两张焦点原图](../verification/settings-action-focus-originals-review-result.json)
+
 当前修正源码已通过类型、构建与完整 130 文件／1,515 项单元，耗时 376.72 秒；四项覆盖率为 96.92%／94.43%／97.69%／99.41%。原单 worker、覆盖率门槛及所有应用预算不变。新包构建与包体审计通过，完整包内、实际安装和分发仍待同包验证。[当前完整覆盖率](../verification/settings-search-sidebar-unit-review-result.json) · [当前包体审计](../verification/settings-search-sidebar-package-review-result.json)
 
 物理目录选择器的两次独立尝试未形成通过证据：桌面工具无法截图或读取 Nook 控件；可见测试窗口退出超过原预算并出现错误对话框，原因尚未确认。两个测试进程均按路径、创建时间和父子关系核实后清理，原始日志、隔离配置与强制清理记录保留。这些尝试不替代正常关闭、原生选择器或物理输入验收。[失败现场](../verification/settings-search-sidebar-physical-attempts-result.json)

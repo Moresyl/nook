@@ -1,0 +1,114 @@
+{
+  "verifiedAt": "2026-10-12T05:21:18.504Z",
+  "archive": "E:\\NookVerification\\SettingsScrollHeading-20261012\\surfaces-focus-diagnostic-failure",
+  "buildArchive": "E:/NookVerification/SettingsScrollHeading-20261012",
+  "baseSourceHead": "9a519579dcdd089cd88f5628972fcf45810ad764",
+  "toolExitCode": 1,
+  "checks": 1,
+  "completedFocusedSuite": false,
+  "normalExits": 1,
+  "longestNormalExitMs": 209,
+  "forcedExits": 0,
+  "retainedWorkspace": "E:\\NookVerification\\Temp\\qiyao-electron-RVRe4V",
+  "profileArchiveIntegrityVerified": true,
+  "compiledAssetsMatchFrozenBuild": true,
+  "images": [
+    {
+      "name": "100-tooltip-dark.png",
+      "sha256": "a82c479014c8a85cde0dfca14f0d2662fcf9cbc92280c62e95c0e74eecdbb364",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "100-tooltip-light.png",
+      "sha256": "f6140374620098e13ccd075a736b2c949fb7346b17601f65dc06f27b57547625",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "104-startup-dark.png",
+      "sha256": "6109fcc56304b0a83bf01454189b7d394c3c62e98dee07c59da2d5432eb02484",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "104-startup-light.png",
+      "sha256": "b4f4622a56354945b44e8dcf4c3a15a0f9a916e31afe7ff4f23959456f763b27",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "105-startup-error-narrow.png",
+      "sha256": "aac42f860bcbca14bcb99aa4ebf89a19a237cb963638d62a893e0b147556a75c",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "105-startup-error.png",
+      "sha256": "3dcff5e4f9b8e725c5f6eb34a73b38157d579f904c4234a439eb4101af71e307",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "106-button-focus-dark.png",
+      "sha256": "9ebebd159479eabacd6c50cc88262cdf881d6b78627e92655f54c742caa0caef",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "106-button-focus-light.png",
+      "sha256": "3903d80f1dc53d5bab96aa7c3ffaa62f03d5f577a202a21793d0cd9184e5c4f5",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "91-surface-controls-light.png",
+      "sha256": "3b4f948936e0c73b2ae865507af4bf668b4ff20a01951f8913b0e3a167b31282",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "94-surface-select-light.png",
+      "sha256": "a021e26a8a65ee7ba2eab5079caa2c72acee7a058b019bfdd2159fd2b5d150f2",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "95-surface-select-dark.png",
+      "sha256": "eec4fe3c5b6fb9f32368fa3ee1da6224d6a0ec43ac197a46e39c83ea3930004f",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "96-surface-connection-scroll.png",
+      "sha256": "cfcf701142a9a1efd995d93eb4547502a00f2db1fd2f34a873a3d7a9f6926558",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "96-switch-dark.png",
+      "sha256": "f2d02b3c330b2f0a6b24dd869ec47a5df1ab038717d461dcfbba5a45d668f5ee",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "96-switch-light.png",
+      "sha256": "54b1ddc05f5a4de4a5a0c72937b757ddd38e72cd92e9105826449c670544ae77",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "97-field-invalid-dark.png",
+      "sha256": "7317abd57974d48a203d70dcfd87a2e696c99476e36c59c9fcb656405ff10052",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "97-field-invalid-light.png",
+      "sha256": "c093a0988219cbd19168e3875368a7579538e7816f21483704ecdff39287ce91",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "99-switch-checked-dark.png",
+      "sha256": "ef72bf8552dd465dcecec7b700c2d7c5455a81d202150a15295677835f6f94e1",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "99-switch-checked-light.png",
+      "sha256": "28688b53562eed820b76625ef756d7adff1a32ac4500a214468db6cb336fe697",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "failure.png",
+      "sha256": "ca8d8a986deeb6fb4ad1d90ca4b880cd2e1616a09bce823ec6af59df549fec07",
+      "originalVisuallyReviewed": true
+    }
+  ],
+  "originalDeadlinesRetained": true,
+  "scope": "Native receipts show the original keyboard save starts with the switch focused, focus-visible and a solid 2px ring. After the original persisted-value checks, focus is on BODY, the switch is enabled but not focus-visible and its outline style is none. The original outline assertion fails. Exact frozen product and current diagnostic harness, exit, original screenshots and profile are retained before a product focus-restoration fix. The disable/save lifecycle is the implementation explanation; no full surfaces pass is claimed."
+}

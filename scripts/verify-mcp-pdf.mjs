@@ -128,7 +128,7 @@ export async function verifyMcpPdf({ page, application, getApplication, root, di
   } finally {
     await application.evaluateMain("(() => {const receipt=globalThis.nookPdfRestoreReceipt;require('electron').ipcMain._invokeHandlers.set('qiyao:invoke',receipt.original);receipt.release();require('electron').dialog.showOpenDialog=globalThis.nookPdfOpen;require('electron').dialog.showMessageBox=globalThis.nookPdfConfirm;delete globalThis.nookPdfOpen;delete globalThis.nookPdfConfirm;})()");
   }
-  await waitForBridge(page, () => !document.querySelector('.settings-detail [role="status"]'));
+  await waitForBridge(page, () => !document.querySelector('.settings-detail:not([hidden]) [role="status"]'));
   assert.equal(await application.evaluateMain('globalThis.nookPdfRestoreReceipt.entered'), true);
   await application.evaluateMain('delete globalThis.nookPdfRestoreReceipt');
   await settings().getByRole('button', { name: '关闭', exact: true }).click(); assert.deepEqual(await readFile(originalPath), bytes); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draftText);

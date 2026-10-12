@@ -24,6 +24,7 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
   const [visited, setVisited] = useState<SettingsTab[]>(['models']);
   const [destination, setDestination] = useState<SettingsDestination | null>(null);
   const search = useRef<HTMLInputElement>(null); const detail = useRef<HTMLElement>(null);
+  const restoreActionFocus = useRef<HTMLElement | null>(null);
   const [editing, setEditing] = useState<Provider | null>(null);
   const [key, setKey] = useState('');
   const [models, setModels] = useState('');
@@ -33,8 +34,16 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
     if (busy) return;
     setVisited(current => current.includes(next) ? current : [...current, next]); setTab(next); setDestination(target ? { ...target } : null);
   }
-  useLayoutEffect(() => { if (destination && detail.current) focusSettingsDestination(detail.current, destination); }, [destination]);
+  useLayoutEffect(() => { if (!detail.current) return; if (destination) focusSettingsDestination(detail.current, destination); else detail.current.scrollTop = 0; }, [tab, destination]);
+  useLayoutEffect(() => {
+    if (busy) return;
+    const target = restoreActionFocus.current; restoreActionFocus.current = null;
+    const active = document.activeElement;
+    if (target?.isConnected && detail.current?.contains(target) && !target.matches(':disabled') && (active === document.body || active === detail.current.closest('dialog'))) target.focus({ preventScroll: true });
+  }, [busy]);
   async function act<T>(operation: () => Promise<T>, success?: (value: T) => void) {
+    const active = document.activeElement;
+    restoreActionFocus.current = active instanceof HTMLElement && detail.current?.contains(active) ? active : null;
     setBusy(true);
     try { const value = await operation(); success?.(value); }
     catch (error) { report(error); }

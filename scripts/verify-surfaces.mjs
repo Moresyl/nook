@@ -330,7 +330,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await page.screenshot({ path: join(screenshots, '96-surface-connection-scroll.png') });
   await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
   assert.deepEqual(await dialog.evaluate((element) => { const rect = element.getBoundingClientRect(); return [Math.round(rect.width), Math.round(rect.height)]; }), [720, 460]);
-  const detail = dialog.locator('.settings-detail');
+  const detail = dialog.locator('.settings-detail:not([hidden])');
   const navigationBefore = await dialog.locator('.settings-nav').boundingBox();
   await detail.evaluate((element) => { element.scrollTop = element.scrollHeight; });
   assert.ok(await detail.evaluate((element) => element.scrollTop > 0), 'Long settings must scroll inside their detail pane');
@@ -344,7 +344,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   const originalOptionText = await selectedOption.textContent();
   const longOptionText = '长名称应在收起时保持单行并保留下拉箭头'.repeat(8);
   await changeOptionLabel(longOptionText);
-  await page.waitForFunction((text) => document.querySelector('.settings-detail selectedcontent')?.textContent === text, longOptionText);
+  await page.waitForFunction((text) => document.querySelector('.settings-detail:not([hidden]) selectedcontent')?.textContent === text, longOptionText);
   assert.equal(await theme.evaluate((element) => element.getBoundingClientRect().height), 22, 'Long selected content must not stretch a shared control');
   assert.equal(await theme.locator('selectedcontent').evaluate((element) => getComputedStyle(element).textOverflow === 'ellipsis' && element.scrollWidth > element.clientWidth), true, 'Only the closed display truncates the full option label');
   await changeOptionLabel(originalOptionText);
@@ -358,14 +358,14 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await theme.focus(); await theme.press('Space'); await page.keyboard.press('End'); await page.keyboard.press('Enter');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark');
   assert.equal(await page.evaluate(async () => (await window.qiyao.load()).preferences.theme), 'dark');
-  await page.waitForFunction(() => document.querySelector('.modal select')?.value === 'dark' && document.querySelector('.modal')?.getAnimations({ subtree: true }).every((animation) => animation.playState !== 'running'));
+  await page.waitForFunction(() => document.querySelector('.modal .settings-detail:not([hidden]) select')?.value === 'dark' && document.querySelector('.modal')?.getAnimations({ subtree: true }).every((animation) => animation.playState !== 'running'));
   await theme.click();
   await page.waitForFunction(() => { const option = document.querySelector('select:open option'); return option && option.getBoundingClientRect().height > 0 && option.checkVisibility({ visibilityProperty: true }); });
   await captureSurface(page, application, join(screenshots, '95-surface-select-dark.png'));
   await page.keyboard.press('Escape');
   await theme.selectOption('light');
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
-  assert.deepEqual(await dialog.locator('.toggle-track').first().evaluate((element) => { const track = getComputedStyle(element); const thumb = getComputedStyle(element.firstElementChild); return [track.width, track.height, thumb.width, thumb.height]; }), ['32px', '19px', '13px', '13px']);
+  assert.deepEqual(await detail.locator('.toggle-track').first().evaluate((element) => { const track = getComputedStyle(element); const thumb = getComputedStyle(element.firstElementChild); return [track.width, track.height, thumb.width, thumb.height]; }), ['32px', '19px', '13px', '13px']);
   await assertModalLayout(page, dialog);
   await captureSurface(page, application, join(screenshots, '91-surface-controls-light.png'));
   verified('shared labeled controls and native light dialog retain the reference input/toggle dimensions and visible close action');
@@ -376,7 +376,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   // Exercise the real switch in both themes; disabled is a temporary CSS-state probe.
   if (original) {
     await toggle.focus(); await toggle.press('Space');
-    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.settings-detail:not([hidden]) .toggle-label input').checked);
   }
   for (const [mode, off, hover, disabled] of [
     ['light', 'rgb(223, 223, 223)', 'rgb(205, 205, 205)', 'rgb(237, 237, 237)'],
@@ -403,10 +403,12 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     assert.equal(await toggle.evaluate((element) => getComputedStyle(element.nextElementSibling).outlineColor), mode === 'light' ? 'rgb(1, 105, 204)' : 'rgb(2, 133, 255)', 'Switch keyboard focus uses the reference ring color');
     await toggle.press('Space');
     await page.waitForFunction(() => {
-      const input = document.querySelector('.toggle-label input');
+      const input = document.querySelector('.settings-detail:not([hidden]) .toggle-label input');
       return input.checked && getComputedStyle(input.nextElementSibling).backgroundColor === 'rgb(51, 156, 255)';
     });
     assert.equal(await page.evaluate(async () => (await window.qiyao.load()).preferences.enterToSend), true);
+    assert.equal(await toggle.evaluate(element => document.activeElement === element && !element.disabled && element.matches(':focus-visible') && getComputedStyle(element.nextElementSibling).outlineWidth === '2px' && getComputedStyle(element.nextElementSibling).outlineStyle === 'solid'), true, `${mode} keyboard preference save retains the enabled switch and complete focus ring`);
+    await captureSurface(page, application, join(screenshots, `107-switch-keyboard-save-${mode}.png`));
     assert.equal(await trackColor(), 'rgb(51, 156, 255)', `${mode} checked switch follows the desktop application accent override`);
     await toggle.locator('..').hover();
     assert.equal(await trackColor(), 'rgb(51, 156, 255)', 'Checked hover preserves its enabled color');
@@ -426,7 +428,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     } finally { await toggle.evaluate(element => { element.disabled = false; element.closest('label').classList.remove('disabled'); }); }
     await captureSurface(page, application, join(screenshots, `99-switch-checked-${mode}.png`));
     await toggle.focus(); await toggle.press('Space');
-    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => !(await window.qiyao.load()).preferences.enterToSend && !document.querySelector('.settings-detail:not([hidden]) .toggle-label input').checked);
     await assertFieldStates(page, dialog, mode, screenshots);
     await assertControlGeometry(page, dialog, mode, application, screenshots);
     await assertIconTooltip(page, dialog, mode, screenshots);
@@ -435,14 +437,17 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light');
   if (original) {
     await toggle.focus(); await toggle.press('Space');
-    await waitForBridge(page, async () => (await window.qiyao.load()).preferences.enterToSend && document.querySelector('.toggle-label input').checked);
+    await waitForBridge(page, async () => (await window.qiyao.load()).preferences.enterToSend && document.querySelector('.settings-detail:not([hidden]) .toggle-label input').checked);
   }
-  await toggle.focus(); await toggle.press('Space');
-  await page.waitForFunction((expected) => document.querySelector('.toggle-label input').checked === expected, !original);
+  await toggle.focus();
+  console.log('Settings switch before keyboard save', await toggle.evaluate(element => ({ focused: document.activeElement === element, activeTag: document.activeElement?.tagName, disabled: element.disabled, focusVisible: element.matches(':focus-visible'), outlineWidth: getComputedStyle(element.nextElementSibling).outlineWidth, outlineStyle: getComputedStyle(element.nextElementSibling).outlineStyle })));
+  await toggle.press('Space');
+  await page.waitForFunction((expected) => document.querySelector('.settings-detail:not([hidden]) .toggle-label input').checked === expected, !original);
   assert.equal(await page.evaluate(async () => (await window.qiyao.load()).preferences.enterToSend), !original);
+  console.log('Settings switch after keyboard save', await toggle.evaluate(element => ({ focused: document.activeElement === element, activeTag: document.activeElement?.tagName, disabled: element.disabled, focusVisible: element.matches(':focus-visible'), outlineWidth: getComputedStyle(element.nextElementSibling).outlineWidth, outlineStyle: getComputedStyle(element.nextElementSibling).outlineStyle })));
   assert.equal(await toggle.evaluate((element) => getComputedStyle(element.nextElementSibling).outlineWidth), '2px');
   await toggle.press('Space');
-  await page.waitForFunction((expected) => document.querySelector('.toggle-label input').checked === expected, original);
+  await page.waitForFunction((expected) => document.querySelector('.settings-detail:not([hidden]) .toggle-label input').checked === expected, original);
   assert.equal(await page.evaluate(async () => (await window.qiyao.load()).preferences.enterToSend), original);
   await assertFocusBoundary(page, dialog);
   verified('native keyboard toggles persist and restore the preference, show the focus ring, and modal Tab/Shift Tab skip disabled controls while the background stays inert');

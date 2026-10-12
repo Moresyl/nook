@@ -1044,7 +1044,7 @@ try {
   await page.getByLabel('提示词参数 topic（必填）').fill('桌面验证主题'); await page.getByRole('button', { name: '加载提示词', exact: true }).click();
   await page.getByLabel('MCP 内容预览').getByText(/MCP_PROMPT_EVIDENCE:桌面验证主题/).waitFor(); await page.screenshot({ path: join(screenshots, '21-mcp-prompt.png') });
   await application.resize(760, 540); await page.waitForFunction(() => window.innerHeight === 540 && window.innerWidth === 760);
-  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail'); return panel.scrollWidth > panel.clientWidth; }), false);
+  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail:not([hidden])'); return panel.scrollWidth > panel.clientWidth; }), false);
   await page.getByRole('button', { name: '用于对话', exact: true }).scrollIntoViewIfNeeded(); await page.screenshot({ path: join(screenshots, '22-mcp-content-narrow.png') });
   await page.getByRole('button', { name: '用于对话', exact: true }).click();
   const addedContent = await page.getByRole('textbox', { name: '消息' }).inputValue(); assert.ok(addedContent.startsWith('保留原有草稿')); assert.ok(addedContent.includes('[user]')); assert.ok(addedContent.includes('PROMPT_EMBEDDED_RESOURCE'));
@@ -1084,10 +1084,10 @@ try {
   await page.getByLabel('服务器资源').selectOption('fixture://document'); await page.getByRole('button', { name: '读取资源', exact: true }).click(); await page.getByLabel('MCP 内容预览').waitFor(); await page.screenshot({ path: join(screenshots, '24-mcp-resource-dark.png') });
   await application.resize(760, 540); await page.waitForFunction(() => window.innerWidth === 760 && window.innerHeight === 540);
   await page.getByLabel('资源模板', { exact: true }).selectOption('fixture://profiles/{user}'); await page.getByLabel('资源参数 user', { exact: true }).fill('x'.repeat(400)); await page.getByRole('button', { name: '读取资源', exact: true }).click(); await page.getByLabel('MCP 内容预览').waitFor();
-  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail'); return panel.scrollWidth > panel.clientWidth; }), false);
+  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail:not([hidden])'); return panel.scrollWidth > panel.clientWidth; }), false);
   await page.getByRole('button', { name: '提示词', exact: true }).click(); await page.getByLabel('服务器提示词').selectOption('review'); await page.getByLabel('提示词参数 topic（必填）').fill('深色窄窗口'); await page.getByRole('button', { name: '加载提示词', exact: true }).click(); await page.getByLabel('MCP 内容预览').waitFor(); await page.screenshot({ path: join(screenshots, '25-mcp-prompt-dark-narrow.png') });
   await page.getByRole('button', { name: '← 返回服务器列表', exact: true }).click(); await oauthRow.locator('.row-content').click(); await page.getByLabel('身份验证').waitFor(); await page.screenshot({ path: join(screenshots, '26-mcp-oauth-dark-narrow.png') });
-  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail'); return panel.scrollWidth > panel.clientWidth; }), false);
+  assert.equal(await page.evaluate(() => { const panel = document.querySelector('.settings-detail:not([hidden])'); return panel.scrollWidth > panel.clientWidth; }), false);
   await page.getByRole('button', { name: '保存服务器', exact: true }).scrollIntoViewIfNeeded(); assert.equal(await page.getByRole('button', { name: '保存服务器', exact: true }).isEnabled(), true);
   await page.getByRole('button', { name: '外观与交互', exact: true }).click(); await page.getByLabel('主题').selectOption('light'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'light'); await page.getByRole('dialog').getByRole('button', { name: '关闭', exact: true }).click();
   await application.resize(1280, 840); await page.waitForFunction(() => window.innerWidth === 1280);

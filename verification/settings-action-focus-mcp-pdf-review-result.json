@@ -1,0 +1,77 @@
+{
+  "verifiedAt": "2026-10-12T05:35:42.494Z",
+  "archive": "E:\\NookVerification\\SettingsActionFocus-20261012\\mcp-pdf",
+  "buildArchive": "E:/NookVerification/SettingsActionFocus-20261012",
+  "baseSourceHead": "9a519579dcdd089cd88f5628972fcf45810ad764",
+  "exactSourceOverlayRetained": true,
+  "harnessSources": [
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5fce3a9c97b9aebf1e08495ab10c41c949c508bfc173b328c769571f00832e1b"
+    },
+    {
+      "path": "scripts/verify-surfaces.mjs",
+      "sha256": "efdec1a113d22713acf83512326a58599dfd6f64e259f92e4cf6f9af5bd8fa37"
+    },
+    {
+      "path": "scripts/verify-worktree-pinning.mjs",
+      "sha256": "5a793ca0c75d89c1700dbafa96aba49ab5da7fa7cd586bdc9b82cabd1cf7f168"
+    },
+    {
+      "path": "scripts/verify-mcp-pdf.mjs",
+      "sha256": "d5eae53a54b178225ca557053d01ac7c9241f1be71a2a1f6a32ad7278ee5d227"
+    }
+  ],
+  "toolExitCode": 0,
+  "checks": 8,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "normalExits": 2,
+  "longestNormalExitMs": 492,
+  "forcedExits": 0,
+  "originalWorkspace": "E:\\NookVerification\\Temp\\qiyao-electron-453zdH",
+  "retainedWorkspace": null,
+  "originalHarnessCleanedSuccessfulProfile": true,
+  "profileArchiveIntegrityVerified": false,
+  "profileArchiveSha256": null,
+  "compiledAssetsMatchFrozenBuild": true,
+  "images": [
+    {
+      "name": "mcp-pdf-dark-100.png",
+      "sha256": "4571c3f1f8ee8fbc579cd1a7c82c74087a957812658dcf61760cafb3db4d5c46",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-dark-125.png",
+      "sha256": "b888d2c0146a6db0fa21405de654686f9d81e1e292c16d0a34e0467c2049e88f",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-dark-150.png",
+      "sha256": "9d3203de18eb22aa51c84ebd1178b9ac59dd6b323d8fe2af62facf62b0f7eac0",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-light-100.png",
+      "sha256": "d8c440cf7a01e5401c3aed5593e62671e4ecdc4c00ca447af84b3c9fb4547efc",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-light-125.png",
+      "sha256": "42d94e91e39c6131b4af8f3e942279d0453c4ee7907427dee09c12af8af22215",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-light-150.png",
+      "sha256": "0dd8d5a088149580c70925e688e949c681a5df9b804840ce3d50308c1b53e0ab",
+      "originalVisuallyReviewed": false
+    },
+    {
+      "name": "mcp-pdf-restore-busy-shell.png",
+      "sha256": "fce6f9c779d45160219c60157af89963f377a3b8fc4f5ba6fd31e65b08dea25f",
+      "originalVisuallyReviewed": false
+    }
+  ],
+  "originalDeadlinesRetained": true,
+  "scope": "Focused current-source native check using the frozen new product build with the exact current harness overlay retained. The original verifier cleans successful development profiles; missing profiles are explicitly recorded and are not claimed as retained. Images have not yet been individually reviewed. This is not packaged, installed, full-suite or physical-desktop acceptance."
+}
