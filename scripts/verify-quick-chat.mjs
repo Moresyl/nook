@@ -66,6 +66,9 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   const input = () => quick.getByRole('textbox', { name: '消息', exact: true });
   await quick.getByRole('button', { name: '新的快速聊天', exact: true }).click();
   await waitForBridge(quick, async () => !(await window.nookQuick.load()).draft.threadId);
+  await quick.getByLabel('模型提供商', { exact: true }).selectOption('quick-native');
+  await quick.getByLabel('选择模型', { exact: true }).selectOption('verification-model');
+  await waitForBridge(quick, async () => { const draft = (await window.nookQuick.load()).draft; return draft.providerId === 'quick-native' && draft.model === 'verification-model'; });
   await verifyMinimumLayout('empty');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await quick.waitForFunction(() => document.documentElement.dataset.theme === 'light');
