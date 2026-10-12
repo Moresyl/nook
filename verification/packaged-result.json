@@ -1,8 +1,314 @@
 {
-  "verifiedAt": "2026-10-12T15:40:20.610Z",
+  "verifiedAt": "2026-10-12T22:49:25.596Z",
   "variant": "packaged executable",
-  "checks": 361,
+  "checks": 368,
   "runtimeErrors": [],
+  "composerActions": {
+    "checks": 7,
+    "modelRequests": 0,
+    "queryKeyboardVerified": true,
+    "templateCancellationVerified": true,
+    "caretInsertionVerified": true,
+    "scopeSelectionVerified": true,
+    "sixThemeZoomLayoutsVerified": true,
+    "quickChatVerified": true,
+    "fixtureCleanupVerified": true,
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "left": 252,
+        "right": 672,
+        "top": 137.40625,
+        "bottom": 379.90625,
+        "chromeBottom": 36,
+        "viewportWidth": 760,
+        "viewportHeight": 540,
+        "width": 418,
+        "scrollWidth": 418,
+        "activeTop": 286.90625,
+        "activeBottom": 342.40625,
+        "clipTop": 171.90625,
+        "clipBottom": 346.40625,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(249, 249, 249)",
+        "focused": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "left": 88,
+        "right": 508,
+        "top": 45.79999923706055,
+        "bottom": 286.49999618530273,
+        "chromeBottom": 36,
+        "viewportWidth": 608,
+        "viewportHeight": 432,
+        "width": 418,
+        "scrollWidth": 418,
+        "activeTop": 194.10000610351562,
+        "activeBottom": 249.20000839233398,
+        "clipTop": 79.9000015258789,
+        "clipBottom": 253.20000457763672,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(249, 249, 249)",
+        "focused": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "left": 79,
+        "right": 499,
+        "top": 45.07291793823242,
+        "bottom": 214.1458396911621,
+        "chromeBottom": 36,
+        "viewportWidth": 507,
+        "viewportHeight": 360,
+        "width": 413,
+        "scrollWidth": 413,
+        "activeTop": 121.90625,
+        "activeBottom": 176.73958587646484,
+        "clipTop": 78.90625,
+        "clipBottom": 180.9791717529297,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(249, 249, 249)",
+        "focused": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "left": 252,
+        "right": 672,
+        "top": 137.40625,
+        "bottom": 379.90625,
+        "chromeBottom": 36,
+        "viewportWidth": 760,
+        "viewportHeight": 540,
+        "width": 418,
+        "scrollWidth": 418,
+        "activeTop": 286.90625,
+        "activeBottom": 342.40625,
+        "clipTop": 171.90625,
+        "clipBottom": 346.40625,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(65, 65, 65)",
+        "focused": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "left": 88,
+        "right": 508,
+        "top": 45.79999923706055,
+        "bottom": 286.49999618530273,
+        "chromeBottom": 36,
+        "viewportWidth": 608,
+        "viewportHeight": 432,
+        "width": 418,
+        "scrollWidth": 418,
+        "activeTop": 194.10000610351562,
+        "activeBottom": 249.20000839233398,
+        "clipTop": 79.9000015258789,
+        "clipBottom": 253.20000457763672,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(65, 65, 65)",
+        "focused": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "left": 79,
+        "right": 499,
+        "top": 45.07291793823242,
+        "bottom": 214.1458396911621,
+        "chromeBottom": 36,
+        "viewportWidth": 507,
+        "viewportHeight": 360,
+        "width": 413,
+        "scrollWidth": 413,
+        "activeTop": 121.90625,
+        "activeBottom": 176.73958587646484,
+        "clipTop": 78.90625,
+        "clipBottom": 180.9791717529297,
+        "opacity": "1",
+        "fontSize": "14px",
+        "minHeight": "24px",
+        "background": "rgb(65, 65, 65)",
+        "focused": true
+      }
+    ],
+    "screenshots": [
+      "composer-actions-light-100.png",
+      "composer-actions-empty-light-100.png",
+      "composer-actions-light-125.png",
+      "composer-actions-empty-light-125.png",
+      "composer-actions-light-150.png",
+      "composer-actions-empty-light-150.png",
+      "composer-actions-dark-100.png",
+      "composer-actions-empty-dark-100.png",
+      "composer-actions-dark-125.png",
+      "composer-actions-empty-dark-125.png",
+      "composer-actions-dark-150.png",
+      "composer-actions-empty-dark-150.png"
+    ],
+    "captures": [
+      {
+        "filename": "composer-actions-light-100.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-light-100.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "composer-actions-light-125.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-light-125.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "composer-actions-light-150.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-light-150.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "composer-actions-dark-100.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-dark-100.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "composer-actions-dark-125.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-dark-125.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "composer-actions-dark-150.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/快捷",
+        "selectedLabel": "快捷项目测试，项目",
+        "optionCount": 3
+      },
+      {
+        "filename": "composer-actions-empty-dark-150.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": "/NO_MATCH_QUICK_ACTION",
+        "selectedLabel": null,
+        "optionCount": 0
+      }
+    ],
+    "scope": "Actual native composer and Quick Chat, owned template fixtures, literal insertion and cancellation, IME event boundary, keyboard results, six Electron zoom layouts and exact cleanup. Whole BrowserWindow captures retain exact native content dimensions. Physical IME and system DPI remain separate checks; draft-conflict rejection is covered by unit tests."
+  },
   "scope": "Desktop foundation, native model tools, approved execution, local code editing/drafts, Git review/stage/commit, interactive PTY terminals, MCP tools/resources/prompts/OAuth, local skills and core local plugin packages. Conversation checks cover selected-text quoting without sending, retained drafts/attachments, linked edit branches, validated retry, concurrent-history rejection, dark minimum-window dialogs and actual restart. Plugin checks use real sandboxed runtimes and isolated panels, model approvals, scoped file writes, stop/reload, grant revocation, renderer crash, startup deadline, complete backup restore and actual app restart. OAuth consent uses isolated Chrome; its external-launch boundary and native file/backup dialogs are intercepted only in the test process. Native picker/default-browser interaction, broader capabilities and release remain pending.",
   "composerDraftScope": "Per-owner text, attachments and selections; live backup restoration and fresh extension IDs; real filesystem rejection; close failure/timeout/cancellation/late receipt and actual restart; provider validation; sending during navigation and owner deletion. Native picker/confirmation dialogs and a close callback/filesystem replacement delay use isolated test fixtures.",
   "richContent": {
@@ -193,8 +499,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181176,
-    "compressedBytes": 242294,
+    "expandedBytes": 84181487,
+    "compressedBytes": 242341,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -750,28 +1056,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791818308033,
+        "startedAt": 1791844021698,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791818309496
+        "finishedAt": 1791844023151
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791818309637,
+        "startedAt": 1791844023304,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791818310859
+        "finishedAt": 1791844024675
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791818312627,
+        "startedAt": 1791844026537,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791818314048
+        "finishedAt": 1791844027978
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +1267,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 8.5,
+    "scopedReadMs": 8.200000017881393,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1556,6 +1862,18 @@
     "worktree-cleanup-dark-125-disable-cancel-shell.png",
     "worktree-cleanup-dark-150-disable-cancel-shell.png",
     "worktree-cleanup-replacement-rejected-light-shell.png",
+    "composer-actions-light-100.png",
+    "composer-actions-empty-light-100.png",
+    "composer-actions-light-125.png",
+    "composer-actions-empty-light-125.png",
+    "composer-actions-light-150.png",
+    "composer-actions-empty-light-150.png",
+    "composer-actions-dark-100.png",
+    "composer-actions-empty-dark-100.png",
+    "composer-actions-dark-125.png",
+    "composer-actions-empty-dark-125.png",
+    "composer-actions-dark-150.png",
+    "composer-actions-empty-dark-150.png",
     "settings-search-light-1-results-shell.png",
     "settings-search-light-1-target-shell.png",
     "settings-search-light-1-empty-shell.png",
@@ -4217,120 +4535,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(79, 79, 79)",
+              "color": "rgb(62, 62, 62)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 90.09999999999962
+                  "currentTime": 108.20000000000007
                 }
               ]
             }
@@ -4423,120 +4741,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(225, 225, 225)",
+              "color": "rgb(234, 234, 234)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 125.66200000299155
+                  "currentTime": 153.4000000000013
                 }
               ]
             }
@@ -4554,7 +4872,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4566,7 +4884,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4578,7 +4896,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4590,7 +4908,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4602,7 +4920,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4614,7 +4932,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4626,7 +4944,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4638,7 +4956,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4650,7 +4968,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             },
@@ -4662,7 +4980,7 @@
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 179.86200000299135
+                  "currentTime": 172.0000000000006
                 }
               ]
             }
@@ -7174,10 +7492,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\worktrees/nook-ef8f921e",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\管理 工作树 🧭/nook-601e9ff1",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\worktrees/nook-f24b3b31",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\管理 工作树 🧭/nook-41c4594f",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -7421,51 +7739,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "a536a41d-6cfd-471d-9060-7dad1712e982",
-        "2a0d836a-24dd-497b-9c87-cf5c96e07bf0",
-        "6c29f23c-62e7-419c-9afd-0f77c72190f4",
-        "a6128676-4c29-4a3b-87bb-a61d526b74a4",
-        "d5d581e0-a24b-4728-8732-d76c3b48aabc",
-        "8e5d3c5c-a660-482d-ad09-e383e1f0f5c2",
-        "67297c64-3c35-4ec5-8e54-d7293cdc0573",
-        "55f58798-89e9-4f98-a183-fae4a07a4157",
-        "cbe20084-dd43-4f30-b018-cd61c2307c76",
-        "2aed75b5-0d47-4a1d-b329-055f2ea80705",
-        "52e3fc82-5239-4aa1-937f-2fcecaf0d1ab",
-        "c40ac7ea-fd90-4c97-95b5-20f45c7259d6",
-        "8aa40ef3-b3d3-488e-8825-caa24fd2bb65",
-        "1704200d-2386-45e3-9d70-7861b44954ae",
-        "c83341f4-f111-4f0f-8005-1095708dfff1",
-        "d79cb1ce-680b-4d6a-bfee-ac20390468cc",
-        "f67b3c5e-7afa-4743-81cb-f83215417b1e",
-        "bf3b8012-4e8d-4858-b609-628e574d583a",
-        "d7654d72-f0e6-4c9d-a910-5c9923387b25",
-        "f7b39bf4-0067-4f11-9950-bedc05e3f7d5"
+        "9159d7bc-9d00-46b4-8215-40c51679de1c",
+        "21067984-edce-4fbb-bb06-38fa962d3c1a",
+        "f44c0288-dd62-488b-a81e-2dc9fe3e62b4",
+        "755ec72e-42f9-470c-b7de-3e89fff41f72",
+        "f60ea4e7-d5fa-41d6-9ddf-0c55f899cdbf",
+        "1a750e0a-2f11-465c-b66e-886c2f05b80f",
+        "f5fa86dd-b364-46b5-b986-17b40d1e19d2",
+        "061c9566-4a73-48ab-9003-73dc48a64b10",
+        "08dfc656-4fb0-4aac-b0dc-17de4849b3c5",
+        "971b4155-fa90-471d-8c9c-1254c9abf33f",
+        "e0f4ba9f-42f0-4210-bf31-94d7ad718ace",
+        "a6e48dd5-2d27-4932-b8f8-0f096afc5cfe",
+        "24e6e005-4b89-4a80-be9a-5a9716f1ec71",
+        "8b5ffcbb-18be-4f77-8ad1-cdc679963008",
+        "e3bce023-9a59-48aa-aa84-fb176a51e2ff",
+        "f17d5c85-f0b9-4a72-a1a4-98ff846ca896",
+        "9914e30e-fb3f-46ac-923d-820bc9117beb",
+        "94188c65-3987-41a5-800b-70d60b7de0dd",
+        "b9337e22-30fd-47f0-9eb0-3cad6c305139",
+        "0d0286cf-6a44-41f4-b3d3-37f1248bf305"
       ],
       [
-        "97df5be8-4610-4be1-a300-70b77fe1807c"
+        "56181913-f02a-431d-89f5-6e14a2d845b8"
       ],
       [
-        "a536a41d-6cfd-471d-9060-7dad1712e982",
-        "2a0d836a-24dd-497b-9c87-cf5c96e07bf0",
-        "6c29f23c-62e7-419c-9afd-0f77c72190f4",
-        "a6128676-4c29-4a3b-87bb-a61d526b74a4",
-        "d5d581e0-a24b-4728-8732-d76c3b48aabc",
-        "8e5d3c5c-a660-482d-ad09-e383e1f0f5c2",
-        "67297c64-3c35-4ec5-8e54-d7293cdc0573",
-        "55f58798-89e9-4f98-a183-fae4a07a4157",
-        "cbe20084-dd43-4f30-b018-cd61c2307c76",
-        "2aed75b5-0d47-4a1d-b329-055f2ea80705",
-        "52e3fc82-5239-4aa1-937f-2fcecaf0d1ab",
-        "c40ac7ea-fd90-4c97-95b5-20f45c7259d6",
-        "8aa40ef3-b3d3-488e-8825-caa24fd2bb65",
-        "1704200d-2386-45e3-9d70-7861b44954ae",
-        "c83341f4-f111-4f0f-8005-1095708dfff1",
-        "d79cb1ce-680b-4d6a-bfee-ac20390468cc",
-        "f67b3c5e-7afa-4743-81cb-f83215417b1e",
-        "bf3b8012-4e8d-4858-b609-628e574d583a",
-        "d7654d72-f0e6-4c9d-a910-5c9923387b25",
-        "f7b39bf4-0067-4f11-9950-bedc05e3f7d5"
+        "9159d7bc-9d00-46b4-8215-40c51679de1c",
+        "21067984-edce-4fbb-bb06-38fa962d3c1a",
+        "f44c0288-dd62-488b-a81e-2dc9fe3e62b4",
+        "755ec72e-42f9-470c-b7de-3e89fff41f72",
+        "f60ea4e7-d5fa-41d6-9ddf-0c55f899cdbf",
+        "1a750e0a-2f11-465c-b66e-886c2f05b80f",
+        "f5fa86dd-b364-46b5-b986-17b40d1e19d2",
+        "061c9566-4a73-48ab-9003-73dc48a64b10",
+        "08dfc656-4fb0-4aac-b0dc-17de4849b3c5",
+        "971b4155-fa90-471d-8c9c-1254c9abf33f",
+        "e0f4ba9f-42f0-4210-bf31-94d7ad718ace",
+        "a6e48dd5-2d27-4932-b8f8-0f096afc5cfe",
+        "24e6e005-4b89-4a80-be9a-5a9716f1ec71",
+        "8b5ffcbb-18be-4f77-8ad1-cdc679963008",
+        "e3bce023-9a59-48aa-aa84-fb176a51e2ff",
+        "f17d5c85-f0b9-4a72-a1a4-98ff846ca896",
+        "9914e30e-fb3f-46ac-923d-820bc9117beb",
+        "94188c65-3987-41a5-800b-70d60b7de0dd",
+        "b9337e22-30fd-47f0-9eb0-3cad6c305139",
+        "0d0286cf-6a44-41f4-b3d3-37f1248bf305"
       ]
     ],
     "layouts": [
@@ -9416,7 +9734,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\snapshot-evidence-b8be7399",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\snapshot-evidence-0c64e423",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -10148,7 +10466,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe\\cleanup-evidence-6503e14f",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk\\cleanup-evidence-35dc1f50",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -10390,7 +10708,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.1875,
+        "summaryWidth": 368.515625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10405,7 +10723,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.5874938964844,
+        "summaryWidth": 372.9125061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10420,7 +10738,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.85418701171875,
+        "summaryWidth": 271.1770935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10435,7 +10753,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 369.1875,
+        "summaryWidth": 368.515625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10450,7 +10768,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.5874938964844,
+        "summaryWidth": 372.9125061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10465,7 +10783,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.85418701171875,
+        "summaryWidth": 271.1770935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10539,7 +10857,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "d2237db9-3560-445b-8bb1-d866e8c45066",
+    "threadId": "caff86b8-8b20-4bd2-b365-f296cfda2e85",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -10623,9 +10941,9 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-d36Epe"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-yEeiCk"
   },
   "normalCloseVerified": true,
-  "executableSha256": "198b632ff775c7e165476d3abab212d82ab754d68d9040b18790c26dfd0a62ec",
-  "archiveSha256": "3e87c596804525113ee9558584df68ebd422d38a86a76b0276a08e07803ce524"
+  "executableSha256": "fbefe13b923c5366e99da23f2c2e61df83c8649c7607fb7acb343844ac39b629",
+  "archiveSha256": "325c97194a842f9a762b92bb3d5afb345c553c769ee611eb49824ebacbdcd67b"
 }

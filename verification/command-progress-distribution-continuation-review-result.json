@@ -1,0 +1,79 @@
+{
+  "verifiedAt": "2026-10-12T22:51:04.102Z",
+  "archive": "E:/NookVerification/CommandProgressDistributionContinuation-20261013",
+  "runtimeBuiltSourceHead": "f71dc0346ca5b2c34d2dc128ce4cfdf1b6a71625",
+  "initialFlow": {
+    "exitCode": 1,
+    "completedAt": "2026-10-12T22:14:17.1527583Z",
+    "startedAt": "2026-10-12T21:36:40.9072778Z",
+    "sourceHead": "f71dc0346ca5b2c34d2dc128ce4cfdf1b6a71625",
+    "lastStep": "phases"
+  },
+  "resumedFlow": {
+    "sourceHead": "f71dc0346ca5b2c34d2dc128ce4cfdf1b6a71625",
+    "startedAt": "2026-10-12T22:17:20.0128968Z",
+    "exitCode": 0,
+    "lastStep": "runtime",
+    "completedAt": "2026-10-12T22:50:02.0581569Z",
+    "preservedPriorFlow": "command-progress-distribution-flow-exit-20261013.json"
+  },
+  "storageConversions": [
+    {
+      "name": "command-progress-unpacked-profile-json-storage-20261013.json",
+      "files": 16,
+      "freedBytes": 1179611136
+    },
+    {
+      "name": "command-progress-portable-headroom-storage-20261013.json",
+      "files": 9,
+      "freedBytes": 663552000
+    }
+  ],
+  "originalDistributionPhases": 5,
+  "matchingRuntimeRecords": 11,
+  "selectedOriginals": 88,
+  "records": [
+    {
+      "name": "command-progress-distribution-flow-exit-20261013.json",
+      "bytes": 180,
+      "sha256": "93f5153ec3997e7e75a9769430c2386f331e5a7c72633c76b5971d87f7557ba2"
+    },
+    {
+      "name": "command-progress-distribution-flow-failure-20261013.log",
+      "bytes": 369,
+      "sha256": "04688ffa74d34971322ce370576f1fa1bef286c53e814d1ad49f5ec7fde0bc0b"
+    },
+    {
+      "name": "command-progress-distribution-resume-exit-20261013.json",
+      "bytes": 258,
+      "sha256": "6a98cc550a7bc9b9414cd5439418dee9290b57c6b9937a930070b95a08fad022"
+    },
+    {
+      "name": "command-progress-unpacked-profile-json-storage-20261013.json",
+      "bytes": 5884,
+      "sha256": "133f421bc7f7241ce1dc1b7bd9f0b3feab0c423d67b6200efa4a9307fd70e18e"
+    },
+    {
+      "name": "command-progress-portable-headroom-storage-20261013.json",
+      "bytes": 3445,
+      "sha256": "b2783576d0d1633e84a8ae67e7288ff935de3646f150c82b2ef7ecd1aac722db"
+    },
+    {
+      "name": "verify-command-progress-distribution-resume-20261013.ps1",
+      "bytes": 3191,
+      "sha256": "63f13e0ea7a0eecc3ba5aec0f08d04a1b08952fbab57be4c1e38a5c03d765d6e"
+    },
+    {
+      "name": "compress-command-progress-portable-headroom-20261013.ps1",
+      "bytes": 4797,
+      "sha256": "2a834fc9b7d4fc422649b94bf7b0a6905f40391a85d7226f17536484f4f372c9"
+    },
+    {
+      "name": "command-progress-package-viewed-originals-20261013.json",
+      "bytes": 34201,
+      "sha256": "d04f042240036787398b33113d09c518627850e9a581dd278f817db8dac1319d"
+    }
+  ],
+  "passed": true,
+  "scope": "The initial serial flow remains exit 1 at the unchanged 2.8 GB pre-portable storage gate. Nine additional closed historical originals were losslessly compressed; only the previously unstarted portable phase, actual installation and original runtime verification were resumed. The resumed flow actually exited 0. No completed native/phase check was discarded or rerun for this storage-only interruption. These receipts do not claim reference/physical or hosted publication completion."
+}

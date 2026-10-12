@@ -13,11 +13,15 @@
 | 完整单元与覆盖率 | 132 文件／1,539 项通过；语句 97.02%、分支 94.57%、函数 97.77%、行 99.48% |
 | 工具记录专项 | 八项通过；第二段输出、取消、原文复制、快速聊天和实际重启；两次正常退出 674ms／150ms |
 | 完整源码回归 | 最新输出修复 `58e6b8ca`：368 项、74 次正常退出、最长 1,845ms，无强制结束 |
-| 本轮证据 | 39 份新报告、548 张原图、236 个编译文件与 17 份源码／测试文件匹配；21 张原图逐张检查，包括 12 张菜单、九张工具；本次六组工具摘要及焦点圈可见 |
-| 新包、实际安装及分发 | 待完成；原五个分发专项、安装／卸载及十一份匹配运行记录继续必需 |
+| 包内完整回归 | `f71dc034`：368 项、74 次正常退出、最长 1,829ms，无强制结束 |
+| 实际安装后完整回归 | 同一应用体：368 项、74 次正常退出、最长 1,928ms，无强制结束 |
+| 分发与数据保留 | 原五个分发专项通过，便携七项通过；注册、快捷方式、卸载保留数据与八个原始标记恢复通过，十一份运行记录匹配 |
+| 本轮证据 | 源码、包内、安装后三轮各保留 39 份新报告与 548 张原图；236 个编译文件及 17 份源码／测试文件匹配。源码 21 张、包内与分发专项选定 88 张原图逐张检查；未将其余原图计作视觉复核 |
 | 托管流水线 | 最新本地提交尚未推送；此前运行因账户付款／支出额度限制，验证零步骤失败、发布跳过 |
 
-[最新完整源码](../verification/command-progress-full-source-review-result.json) · [输出修复与单元对照](../verification/command-progress-acceptance-review-result.json) · [当前包失败现场](../verification/composer-selection-focus-package-initial-failure-review-result.json) · [此前光标修复](../verification/composer-selection-focus-acceptance-review-result.json)
+[完整源码](../verification/command-progress-full-source-review-result.json) · [包内回归](../verification/command-progress-full-unpacked-review-result.json) · [安装后回归](../verification/command-progress-full-installed-review-result.json) · [分发运行记录](../verification/command-progress-runtime-review-result.json) · [88 张原图复核](../verification/command-progress-package-originals-review-result.json)
+
+首段分发流程在便携专项启动前因磁盘余量低于原 2.8GB 门槛退出 1。保留历史原文件并无损压缩后，继续原先未启动的便携、安装及运行记录步骤，续跑退出 0；已通过步骤没有重跑，门槛、断言和超时没有降低。[原失败与续跑证据](../verification/command-progress-distribution-continuation-review-result.json)
 
 首次工具专项的浅色 150% 捕获未显示摘要控件，原图独立保留；完整回归的新原图中六组均可见，但捕获差异原因尚未唯一确认，不将重放通过称作界面修复。其他 527 张完整回归原图未全部视觉复核。
 
@@ -25,7 +29,7 @@
 
 完整回归此前四轮失败及原始目录均独立保留。同名助手和保留旧模型选择的测试定位已修正；快捷菜单方向键等待曾持续超时，增加事件诊断后的本轮通过，但原失败原因尚未确认，不能把重放通过写成已修复。原等待期限和断言保留。[同名选项复测](../verification/composer-actions-integration-retry-review-result.json) · [模型选择复测](../verification/quick-chat-retained-model-integration-review-result.json) · [键盘同步复测](../verification/composer-actions-keyboard-integration-review-result.json) · [键盘事件诊断](../verification/composer-actions-keyboard-diagnostic-review-result.json)
 
-界面依据最新版 `E:\txt`（26.930.41038／build 13022）逐项采用，**尚未达到全部页面与交互 100% 对齐**。当前快捷浮层宽度上限 420px；参考 520px 属于居中命令对话框，尚不能直接等同锚定输入浮层。合法 Inter／系统中文字体及独立品牌保留差异。物理输入、系统 DPI、无障碍、真实服务及其他目标平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
+界面依据最新版 `E:\txt`（26.930.41038／build 13022）逐项采用，**尚未达到全部页面与交互 100% 对齐**。参考调用链已确认全局命令对话框的 520px 上限；当前全局搜索仍使用通用 720px 弹窗，下一步修正这一差异。输入区锚定快捷浮层的 420px 上限属于另一个入口。合法 Inter／系统中文字体及独立品牌保留差异。物理输入、系统 DPI、无障碍、真实服务及其他目标平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
 
 此前 `25254c839` 冻结包已通过本机分发，结果只属于该旧应用体；最后已核对的托管运行 [38272492271](https://github.com/Moresyl/nook/actions/runs/38272492271) 属于 `d42376dd`，受账户付款／支出额度限制，仓库版本列表为空。最新提交推送后需读取其精确运行结果。
 

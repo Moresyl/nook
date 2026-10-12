@@ -2,83 +2,56 @@
 
 ## 未发布
 
-修复命令输出节流遗漏最后一段更新的问题：连续输出间隔不足 100 毫秒时，最后一段也会在执行期间显示；关闭、报错和取消后不再通知。旧实现两个确定性测试失败，修正版六项时序／生命周期、51 项相关、完整 1,539 项单元、类型、构建及八项真实工具专项通过。覆盖率为语句 97.02%、分支 94.57%、函数 97.77%、行 99.48%。最新完整源码 `58e6b8ca` 368 项、74 次正常退出、最长 1,845ms 通过，无强制；39 份新报告、548 张原图及匹配编译文件归档，12 张菜单和九张工具原图逐张复核。本次六组工具摘要可见，首次专项浅色 150% 捕获差异保留且未唯一诊断，不称重放为界面修复。此前 `557cc83b` 包在 355 项后输出等待超时的现场保留；新包、安装和分发继续待验收。[完整源码](verification/command-progress-full-source-review-result.json) · [输出修复](verification/command-progress-acceptance-review-result.json) · [失败包](verification/composer-selection-focus-package-initial-failure-review-result.json)
+当前 Windows 候选已完成本机分发验收；原托管发布与完整参考界面仍待完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
 
-修复选择助手或项目后，延后的光标恢复覆盖用户全选范围、导致下一次输入重复前缀的问题。恢复改在匹配草稿与上下文的布局提交时执行；精确旧包与新源码的受控原生对照分别复现失败和通过，实际输入完整替换、连续三轮切换及原七项专项通过。类型、135 项相关、完整 1,533 项单元和重新构建通过；最新完整源码 368 项、74 次正常退出通过，最长 1,634ms，无强制，39 份新报告、548 张原图与 236 个匹配编译文件归档，12 张菜单原图逐张复核。新包与实际安装仍待完成，旧包 149 项后失败的现场保留，此前方向键超时原因仍未确认。[修复与对照](verification/composer-selection-focus-acceptance-review-result.json) · [最新完整源码](verification/composer-selection-focus-full-source-review-result.json) · [旧包失败](verification/composer-actions-package-initial-failure-review-result.json)
+## [0.1.0-alpha.1] - 2026-10-13
 
-新增输入区 `/` 快捷选择，共用主工作台与快速聊天，支持模板变量、助手和项目筛选、键盘选择与光标处插入。取消和无匹配回车保留原文，过期查询拒绝修改新草稿。类型、135 项相关及完整 1,533 项单元、构建、七项原生专项与完整源码 368 项通过；74 次正常退出、最长 1,742ms，无强制。覆盖率四项均超过 94%，本轮保留 39 份新报告和 548 张原图，其中 12 张完整快捷菜单原图逐张复核。此前四轮完整回归失败现场保留，键盘循环原失败原因尚未确认，不把诊断重放通过写成修复。新包和实际安装待完成。原发布及安装门槛提高至 368 项，并要求六组明暗缩放布局和 12 份匹配的完整窗口捕获。下方 `25254c839` 等记录属于之前的冻结包，不计入本次改动的发行验收。[源码专项](verification/composer-actions-acceptance-review-result.json) · [完整源码回归](verification/composer-actions-full-source-review-result.json)
-
-修复编辑器文件标签及关闭按钮的键盘焦点圈裁切：轮廓改为控件内侧，标签栏保留横向滚动条空间。类型、116 项相关单元、完整 1,524 项单元、重新构建和实际预览 10 项／停靠预览 5 项通过。源码、`25254c839` 冻结包内及实际安装各 361 项／74 次正常退出通过，最长分别为 1,661ms／2,352ms／1,682ms，无强制；各保留 38 份新报告、536 张原图和匹配的 236 编译文件。五个原分发专项、法律审计、登记、快捷方式、保留数据卸载、原八个标记恢复及十一份匹配运行记录通过。包内 67 张不同原图逐张原尺寸核验，其他完整回归与安装原图未全部视觉复核。发布门槛要求 15 张指定标签图和六组各两个完整有限轮廓，保留原草稿、取消、保存重试和预算；真实诊断及修复期间四轮失败独立保留。托管发布与全部参考界面验收仍未完成。
-
-工作树键盘刷新完成后恢复原按钮焦点，等待期间移到其他控件时保持用户选择；成功和错误刷新均在实际 Electron 中验证。类型、137 项相关单元、完整 1,524 项单元及六组原生专项通过，八张明暗缩放源码焦点原图逐张复核。完整源码、新包内和实际安装各 361 项／74 次正常退出通过，最长分别为 1,603ms／1,867ms／1,701ms，无强制；五个原分发专项、法律审计、保留数据卸载、八个原标记恢复及十一份匹配运行记录通过。包内 55 张不同原图逐张核验，源码、包内和安装各保留 38 份新报告与 530 张原图；其他完整回归原图与安装原图未全部视觉复核。发布解析器要求 35 张指定原图和六组完整数值轮廓边界，110 项策略测试通过；真实失焦诊断及首轮缩放测量失败保留。下文安装结果按各自历史应用体保存。
-
-工作树列表逐项目显示已完成结果和脱敏错误，其他项目保留名称、路径与真实等待状态；管理记录未读完时禁用登记、固定、快照和删除，同仓库合并不会收起已展开会话。类型、27 项相关单元、完整 1,521 项单元和加强后的六组原生专项通过。完整源码、新包内与实际安装各 361 项／74 次正常退出通过，最长分别为 1,629ms／1,802ms／2,525ms，无强制；新包五个原分发专项、11 份匹配运行记录及原八个数据标记恢复通过，47 张不同原图逐张核验。独立发布解析器同步要求 27 张指定原图、三项渐进保证和六组完整等待区域，107 项策略测试通过；首轮旧 18 张校验失败保留，下文的旧包安装记录仍按历史应用体保存。
-
-设置分类切换保留草稿并回到标题；保存中临时禁用导致焦点退到背景时，完成后恢复原控件，用户已移到其他控件时不抢焦点。原生验证按活动面板测量，保留原断言和预算；明暗主题保存后完整 2px 键盘焦点圈新增实测及原图复核通过。完整 1,515 项单元、控件／搜索／固定／MCP PDF 专项，以及当前同包未安装与实际安装各 361 项通过；五个分发专项、原十一份匹配运行记录和保留数据卸载通过。便携版首轮因磁盘空间耗尽失败，保留现场后原样重试通过。
-
-设置侧栏增加搜索，可定位九个分类和实际设置字段；支持输入法、方向键、首尾选择、Enter 定位、Ctrl F 聚焦及 Escape 清空。切换分类保留已打开表单的未保存内容，搜索不读取连接密钥和配置值。初始聚焦与下方开关定位的边框裁切已修正。六项源码原生专项及当前同包 18 张明暗缩放搜索原图核验通过，完整安装及分发回归通过，发布门槛增加至至少 361 项。
-
-设置搜索采用专用的 36px 胶囊样式、14px 字号和完整键盘焦点圈；两种主题三档缩放的六项原生专项与 18 张原图复核通过。Windows 启动与打包应用标识统一为 `app.nook.workspace`，原许可证和旧数据读取兼容保留。实际安装复用设置证据校验并通过完整 361 项；默认目录重启测试等待异步目录就绪后保留原断言和 10 秒预算。当前包的原始法律文件、应用登记、快捷方式与保留数据卸载均核验，托管发布尚未完成。
-
-当前候选增加工作树集中管理、显式项目登记、本机固定状态、私有快照、恢复到新目录、安全删除和创建后自动清理。源码验证通过，完整参考页面与分发仍在验收，尚未发布版本；界面采用范围见 [设计对照](docs/DESIGN-ALIGNMENT.md)，验证进度见 [发布状态](docs/RELEASE.md)。
-
-快速聊天草稿及继续已有聊天的保存接入绑定原文件版本的小型检查点，减少大历史工作区的整文件替换；保留完整前一版本备份、独立草稿与重启恢复。结构改变、原文件被替换或检查点达到原有 8 MB 上限时仍完整保存。当前完整单元、安装与未安装的各 355 项回归、便携及保留数据卸载通过；托管发布尚未完成。
-
-工作树固定操作结束后改为等待控件恢复可用再回焦，并滚动完整操作区域。原有错误回焦专项与完整包内回归通过；两种主题和三档缩放的 21 张原图已逐张复核。
-
-## [0.1.0-alpha.1] - 2026-10-11
-
-Nook 首次独立预发布的候选说明。独立仓库目前没有已发布版本。
+Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发。首个 Windows x64 预发布候选，尚未发布。
 
 ### 新功能
 
-- **输入区快捷选择**：主工作台与快速聊天输入 `/` 查找模板、助手和项目；键盘选择、光标处插入变量模板、取消保留原文。选择操作不发送消息，工具、技能和资料集可通过已有入口选择。
-- **对话与模型**：连接 Responses、OpenAI 兼容、Anthropic、Gemini、Azure 和 Ollama。支持流式回复、停止与重试、回复版本、消息编辑、分支排序、独立草稿，以及同一问题的 2–4 模型比较。
-- **上下文与工具**：生成、编辑和选择上下文摘要，完整原文继续保存；原文变化时恢复完整历史。工具记录展示状态、耗时和操作摘要，支持展开、复制与失败重试。主工作台和快速聊天共用相应能力。
-- **资料阅读**：提取 PDF、Office、OpenDocument 与文本，输入图片，管理资料集和关键词／向量／混合检索。保留 PDF 原件，支持离线版式阅读、目录、查找、原字节导出和备份恢复；MCP PDF 可显式加入聊天。
-- **项目工作台**：分页文件树、代码编辑、草稿、Git 审阅／暂存／提交、分支创建与切换、真实终端，以及当前 HTML 草稿的独立或并排预览。
-- **工作树管理**：从新分支或未占用的本地分支创建独立工作树，固定选定提交并保留源仓库改动；设置默认根目录、可选创建前获取上游，获取失败仍保留本地创建。集中列表支持分页、关联会话、新建项目聊天和显式「添加为项目」；登记失败保留名称与同一 ID 重试，重复登记保留已有记录。
-- **助手与扩展**：助手配置、变量提示模板、显式记忆、自动任务、MCP 工具／资源／提示与 OAuth、本地技能和隔离插件。临时浏览器支持独立标签、历史及键盘导航。
-- **本地备份**：导出 JSON 或 gzip 工作台，保留普通聊天、附件、资料库、草稿和本地扩展资产；恢复后插件需要重新授权。临时聊天不写入持久历史或完整备份。
+- **对话与模型**：连接 Responses、OpenAI 兼容接口、Anthropic、Gemini、Azure 和 Ollama；支持流式回复、停止与重试、回复版本、消息编辑、对话分支，以及同一问题的 2–4 模型比较。
+- **快捷选择**：主工作台和快速聊天输入 `/` 可查找模板、助手和项目。支持键盘选择和光标处插入变量模板；取消保留原文，选择不会发送消息。
+- **上下文与工具**：生成、编辑并选用上下文摘要，继续保留完整原文；原文变化后恢复完整历史。工具记录展示状态、耗时和操作摘要，可展开、复制及失败重试。
+- **资料阅读**：导入文档、文本和图片，管理关键词／向量／混合检索资料集。PDF 保留原件，支持离线阅读、目录、查找、原字节导出、备份恢复和显式加入聊天。
+- **项目工作台**：分页文件树、代码编辑与草稿、Git 审阅／暂存／提交、本地分支创建与切换、真实终端，以及 HTML 草稿的独立或并排预览。
+- **独立工作树**：从新分支或未占用的本地分支创建工作树，保留源仓库改动。支持默认根目录、可选获取上游、关联会话、项目登记、本机固定、私有快照和恢复到新目录；获取或登记失败保留可重试状态。
+- **助手与扩展**：助手、变量提示模板、显式记忆、自动任务、MCP 工具／资源／提示与 OAuth、本地技能和隔离插件；临时浏览器提供独立标签及键盘导航。
+- **本地备份**：导出 JSON 或 gzip 工作台，保留普通聊天、附件、资料库、草稿和扩展资产。恢复后插件需要重新授权，临时聊天不进入持久历史或完整备份。
 
 ### 变更与安全
 
-- 应用名称、图标和 Windows 产品信息统一为 **Nook**，兼容读取已有数据。清理旧产品标识，保留原始开源许可证、依赖及安装组件来源说明。
-- 密钥本地加密并绑定连接目标，共享备份不含密钥。插件按能力与项目范围授权，文件修改、命令和远程工具展示具体操作。
-- 网页、预览与插件使用隔离边界；外部网页不能访问工作台桥接或 Node。MCP 文件限制大小和数量，预览或导出不会自动调用模型。
-- 工作树登记重新核实实际 Git 归属、来源与规范路径；拒绝过期入口，保留已有项目数据。外部工作树不会因登记获得自动清理权限。
-- 应用实际创建的工作树单独保留本机创建记录，支持固定与取消固定；目录被移动或替换时拒绝旧记录。创建记录和固定状态不进入共享备份，保存失败保留文件及旧状态。
-- 本机工作树可保存私有快照，保留提交、暂存区、普通文件和忽略文件，并恢复到尚不存在的新目录；不覆盖原工作树。拒绝损坏快照、链接和不支持的索引状态，共享备份不包含私有快照；退出等待已接受的快照与清理操作完成。
-- 安全删除先持久保存可恢复快照，保留源仓库与分支；固定、已登记、关联固定聊天、运行回复／终端、草稿、锁定与含改动目录均受保护，外部与身份变化目录无删除权限。自动清理默认关闭，创建后按 1～50 的保留数量处理合格旧树，停用需要确认；快照无法保存或达到 100 份上限时停止清理。
+- 名称、图标和 Windows 产品信息统一为 **Nook**，兼容读取已有数据；保留原始开源许可证、依赖和安装组件来源说明。
+- 密钥本地加密并绑定连接目标，共享备份不含密钥。插件按能力和项目范围授权；文件修改、命令及远程工具展示具体操作。
+- 网页、预览和插件保持隔离，外部网页无法使用工作台桥接或 Node；预览、导出不会自动调用模型。
+- 工作树登记重新核对 Git 归属、来源及规范路径。外部工作树不会因登记获得自动清理权限，本机管理记录和私有快照不进入共享备份。
+- 删除前保存可恢复快照，保护源仓库、分支、固定／已登记项目、固定聊天、运行中的回复或终端、草稿及含改动目录。恢复仅写入尚不存在的新目录。
+- 创建后自动清理默认关闭，可保留 1–50 个合格的最近工作树；停用需确认。快照保存失败或达到原有上限时停止清理，退出等待已接受的保存与清理操作。
 
 ### 修复与完善
 
-- 修复选择助手或项目后的延后光标恢复覆盖用户新选区、导致后续输入重复前缀的问题；恢复绑定对应草稿与上下文，后续全选和实际输入保持用户选择。
-- 修复执行中命令连续输出的最后一段延迟至下一段或结束才更新的问题；保留原通知频率及退出、报错、取消后的回调清理。
-- 统一明暗主题、Inter 字体、共享控件、工具提示与键盘焦点；调整输入区展开、长模型名称省略、窄窗口导航，以及设置分类和内容独立滚动。尚未达到全部参考界面 100% 还原。
-- 修复草稿保存、分支导航及多路流式检查点的竞争，保留失败后的输入、原文和重试能力；损坏的恢复资料保留并显示可恢复错误。
-- 修复恢复等待期间设置仍可关闭或切换的问题，释放重载后旧预览和浏览器视图，保留独立草稿与资源原件。
-- 修正工作树聊天操作及上游开关的焦点边框；键盘检查等待实际异步列表就绪，保留原有断言与期限。登记验证覆盖保存失败后同 ID 重试、来源变更、备份恢复和六种主题／缩放。
-- 工作树逐项目显示结果、等待与错误，管理加载期间禁用写操作；刷新完成后恢复键盘焦点，用户在等待期间切换控件时保留其选择。
-- 修复文件标签和关闭按钮的键盘焦点圈被横向滚动条裁切的问题；明暗主题、100%／125%／150% Electron 缩放均验证完整轮廓。发布校验拒绝缺失截图、非有限边界及被裁切轮廓。
+- 修复连续命令输出的最后一段可能等到下一段或进程结束才显示的问题，保留 100 毫秒通知节奏及关闭、报错、取消后的清理。
+- 修复选择助手或项目后的光标恢复覆盖用户新选区，导致后续输入重复前缀的问题。
+- 修复编辑器文件标签和关闭按钮的键盘焦点圈被横向滚动条裁切的问题；工作树刷新及设置保存完成后保留正确焦点，用户已切换控件时不抢焦点。
+- 设置支持分类和字段搜索，切换分类保留未保存草稿；统一明暗主题、共享控件、文字提示和窄窗口导航。
+- 修复草稿保存、分支导航、多路流式检查点和恢复等待的竞争；保存失败保留输入、原文与重试能力，恢复异常保留原资料。
+- 工作树逐项目显示结果、等待和脱敏错误；管理记录加载期间禁用写操作，来源移动或被替换后拒绝过期管理入口。
 - Windows 便携启动器支持长路径和有界清理重试，正常退出后清理提取目录；安装版卸载保留用户数据。
 
 ### 安装
 
-- 上一冻结包的 Windows x64 安装版 `Nook-Setup-0.1.0-alpha.1-x64.exe` 和便携版 `Nook-Portable-0.1.0-alpha.1-x64.exe` 已完成本机分发验收；新增输入区快捷选择后的新包仍在验收。账户付款／支出额度限制使此前原托管验证任务未启动，尚无已发布版本。
-- 正式提供文件时附对应源码、验证记录和 `SHA256SUMS.txt`。首次启动自行配置模型连接；迁移已有工作台前可导出完整备份。
-- 候选可执行文件未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供；全部参考页面、物理系统交互与真实服务继续独立验收。
+- Windows x64 安装版：`Nook-Setup-0.1.0-alpha.1-x64.exe`；便携版：`Nook-Portable-0.1.0-alpha.1-x64.exe`。发布时附对应源码、验证记录和 `SHA256SUMS.txt`。
+- 首次启动在「设置 → 模型连接」中配置服务地址、凭据及模型；迁移已有工作台前可导出完整备份。
+- 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
 
-The composer adds searchable slash choices for templates, assistants and projects in both the workbench and Quick Chat. Variable templates replace the query at the caret; cancellation retains the original text, and selection does not send a message.
+Nook is a local AI workspace for multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Slash choices for templates, assistants and projects work in both the workbench and Quick Chat without sending a message.
 
-Command progress now delivers the final burst at the existing 100 ms cadence while execution remains active, even when no later output arrives. Closing, startup failure and cancellation suppress pending notifications.
+Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
 
-Nook is a local AI workspace with multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Worktree settings add a managed root, optional upstream fetching, linked conversations and explicit project registration with same-ID retry and duplicate preservation.
+This candidate fixes delayed final command output, selection restoration, draft persistence, streaming races, restore locking, keyboard focus and Windows portable cleanup. Windows x64 installer and portable files are unsigned; uninstalling preserves user data. Additional platforms and the remaining documented reference-design and physical-system checks are separate from this candidate.
 
-The candidate includes fixes for draft persistence, parallel streaming, restore locking, preview lifecycle, keyboard focus and Windows portable cleanup. Worktree refresh preserves user-selected focus while loading; editor tabs and close controls retain their full keyboard outline above horizontal scrollbars. Credentials stay encrypted locally, previews and plugins remain isolated, and original open-source notices are retained.
+## 开发记录
 
-Worktrees support private snapshots, restoration to a new directory and snapshot-before-delete cleanup with pinned-chat, active-terminal, dirty-tree and directory-identity protection. Optional post-create cleanup retains a configurable 1–50 recent trees and requires confirmation to disable.
-
-The first Windows x64 prerelease has not been published. Local distribution acceptance passes: 1,524 unit tests, 361 desktop checks for source, unpacked and installed builds, five distribution phases and eleven matching runtime records. Hosted verification cannot start because of account billing or spending-limit restrictions. Full reference-design adoption and physical-system acceptance remain incomplete. Detailed historical evidence is preserved in [development records](docs/VALIDATION-HISTORY.md).
+详细实现与验证见[开发记录](docs/VALIDATION-HISTORY.md)。整理前的更新记录[原文保留](docs/CHANGELOG-HISTORY-2026-10-13-COMMAND-PROGRESS.txt)，其中各历史构建的失败现场和验收范围继续有效。
