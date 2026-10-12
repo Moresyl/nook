@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-12T12:05:16.751Z",
+  "verifiedAt": "2026-10-12T14:23:04.359Z",
   "variant": "development executable",
   "checks": 361,
   "runtimeErrors": [],
@@ -194,7 +194,7 @@
   },
   "backups": {
     "expandedBytes": 84181176,
-    "compressedBytes": 242304,
+    "compressedBytes": 242228,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -247,7 +247,7 @@
           "left": 356,
           "right": 760,
           "width": 404,
-          "height": 120.328125
+          "height": 114.328125
         },
         "toggleFits": true
       },
@@ -750,28 +750,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791805412596,
+        "startedAt": 1791813681023,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791805413933
+        "finishedAt": 1791813682434
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791805414077,
+        "startedAt": 1791813682579,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791805415410
+        "finishedAt": 1791813683862
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791805417135,
+        "startedAt": 1791813685555,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791805418484
+        "finishedAt": 1791813686798
       }
     ],
     "comparisonModelRequests": 11,
@@ -961,7 +961,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 10.199999988079071,
+    "scopedReadMs": 11.299999982118607,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1284,11 +1284,17 @@
     "editor-tabs-initial.png",
     "editor-tabs-close-cancel.png",
     "editor-tabs-light-100.png",
+    "editor-tabs-close-focus-light-100.png",
     "editor-tabs-light-125.png",
+    "editor-tabs-close-focus-light-125.png",
     "editor-tabs-light-150.png",
+    "editor-tabs-close-focus-light-150.png",
     "editor-tabs-dark-100.png",
+    "editor-tabs-close-focus-dark-100.png",
     "editor-tabs-dark-125.png",
+    "editor-tabs-close-focus-dark-125.png",
     "editor-tabs-dark-150.png",
+    "editor-tabs-close-focus-dark-150.png",
     "editor-tabs-save-failure.png",
     "browser-invalid-address-shell.png",
     "browser-load-error-shell.png",
@@ -2322,53 +2328,53 @@
         {
           "zoom": 1,
           "x": 868,
-          "y": 342.5,
+          "y": 348.5,
           "width": 412,
-          "height": 472,
+          "height": 466,
           "native": {
             "x": 868,
-            "y": 343,
+            "y": 349,
             "width": 412,
-            "height": 471
+            "height": 465
           }
         },
         {
           "zoom": 1,
           "x": 909.796875,
-          "y": 342.5,
+          "y": 348.5,
           "width": 370.203125,
-          "height": 472,
+          "height": 466,
           "native": {
             "x": 910,
-            "y": 343,
+            "y": 349,
             "width": 370,
-            "height": 471
+            "height": 465
           }
         },
         {
           "zoom": 1,
           "x": 893.078125,
-          "y": 342.5,
+          "y": 348.5,
           "width": 386.921875,
-          "height": 472,
+          "height": 466,
           "native": {
             "x": 894,
-            "y": 343,
+            "y": 349,
             "width": 386,
-            "height": 471
+            "height": 465
           }
         },
         {
           "zoom": 1,
           "x": 220,
-          "y": 302.5,
+          "y": 308.5,
           "width": 540,
-          "height": 237.5,
+          "height": 231.5,
           "native": {
             "x": 220,
-            "y": 303,
+            "y": 309,
             "width": 540,
-            "height": 237
+            "height": 231
           }
         },
         {
@@ -2414,6 +2420,7 @@
     "editorTabs": {
       "selectedVisibilityVerified": true,
       "keyboardNavigationVerified": true,
+      "focusOutlinesVerified": true,
       "dirtyCancelVerified": true,
       "cleanCloseFocusVerified": true,
       "saveFailureRetryVerified": true,
@@ -2459,12 +2466,252 @@
             "x": 264,
             "y": 248.5,
             "width": 1016,
-            "height": 32,
+            "height": 38,
             "top": 248.5,
             "right": 1280,
-            "bottom": 280.5,
+            "bottom": 286.5,
             "left": 264
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 264,
+                "right": 357.5,
+                "top": 252,
+                "bottom": 282
+              },
+              "viewport": {
+                "left": 264,
+                "right": 1280,
+                "top": 248.5,
+                "bottom": 285.5
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 264,
+                    "y": 248.5,
+                    "width": 1016,
+                    "height": 38,
+                    "top": 248.5,
+                    "right": 1280,
+                    "bottom": 286.5,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 264,
+                    "y": 248.5,
+                    "width": 1016,
+                    "height": 591.5,
+                    "top": 248.5,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 592,
+                  "scrollHeight": 592
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 264,
+                    "y": 92,
+                    "width": 1016,
+                    "height": 748,
+                    "top": 92,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 748,
+                  "scrollHeight": 748
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 357.5,
+                "right": 381.5,
+                "top": 255,
+                "bottom": 279
+              },
+              "viewport": {
+                "left": 264,
+                "right": 1280,
+                "top": 248.5,
+                "bottom": 285.5
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 264,
+                    "y": 248.5,
+                    "width": 1016,
+                    "height": 38,
+                    "top": 248.5,
+                    "right": 1280,
+                    "bottom": 286.5,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 264,
+                    "y": 248.5,
+                    "width": 1016,
+                    "height": 591.5,
+                    "top": 248.5,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 592,
+                  "scrollHeight": 592
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 264,
+                    "y": 92,
+                    "width": 1016,
+                    "height": 748,
+                    "top": 92,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 264
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 748,
+                  "scrollHeight": 748
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1280,
+                    "height": 840,
+                    "top": 0,
+                    "right": 1280,
+                    "bottom": 840,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 840,
+                  "scrollHeight": 840
+                }
+              ]
+            }
+          ]
         },
         {
           "theme": "light",
@@ -2506,12 +2753,252 @@
             "x": 240,
             "y": 247.6999969482422,
             "width": 784,
-            "height": 32,
+            "height": 38,
             "top": 247.6999969482422,
             "right": 1024,
-            "bottom": 279.6999969482422,
+            "bottom": 285.6999969482422,
             "left": 240
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 1.6,
+              "outlineOffset": -1.6,
+              "ring": {
+                "left": 240,
+                "right": 333.0999984741211,
+                "top": 251.3000030517578,
+                "bottom": 281.3000030517578
+              },
+              "viewport": {
+                "left": 240,
+                "right": 1024,
+                "top": 247.6999969482422,
+                "bottom": 284.6999969482422
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 240,
+                    "y": 247.6999969482422,
+                    "width": 784,
+                    "height": 38,
+                    "top": 247.6999969482422,
+                    "right": 1024,
+                    "bottom": 285.6999969482422,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 240,
+                    "y": 247.6999969482422,
+                    "width": 784,
+                    "height": 424.3000183105469,
+                    "top": 247.6999969482422,
+                    "right": 1024,
+                    "bottom": 672.0000152587891,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 424,
+                  "scrollHeight": 424
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 240,
+                    "y": 92,
+                    "width": 784,
+                    "height": 580,
+                    "top": 92,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 580,
+                  "scrollHeight": 580
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 1.6,
+              "outlineOffset": -1.6,
+              "ring": {
+                "left": 333.1000061035156,
+                "right": 357.1000061035156,
+                "top": 254.3000030517578,
+                "bottom": 278.3000030517578
+              },
+              "viewport": {
+                "left": 240,
+                "right": 1024,
+                "top": 247.6999969482422,
+                "bottom": 284.6999969482422
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 240,
+                    "y": 247.6999969482422,
+                    "width": 784,
+                    "height": 38,
+                    "top": 247.6999969482422,
+                    "right": 1024,
+                    "bottom": 285.6999969482422,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 240,
+                    "y": 247.6999969482422,
+                    "width": 784,
+                    "height": 424.3000183105469,
+                    "top": 247.6999969482422,
+                    "right": 1024,
+                    "bottom": 672.0000152587891,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 424,
+                  "scrollHeight": 424
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 240,
+                    "y": 92,
+                    "width": 784,
+                    "height": 580,
+                    "top": 92,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 580,
+                  "scrollHeight": 580
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1024,
+                    "height": 672,
+                    "top": 0,
+                    "right": 1024,
+                    "bottom": 672,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 672,
+                  "scrollHeight": 672
+                }
+              ]
+            }
+          ]
         },
         {
           "theme": "light",
@@ -2553,12 +3040,252 @@
             "x": 240,
             "y": 207.83334350585938,
             "width": 613.3333740234375,
-            "height": 32,
+            "height": 38,
             "top": 207.83334350585938,
             "right": 853.3333740234375,
-            "bottom": 239.83334350585938,
+            "bottom": 245.83334350585938,
             "left": 240
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 240,
+                "right": 332.8229217529297,
+                "top": 211.5,
+                "bottom": 241.5
+              },
+              "viewport": {
+                "left": 240,
+                "right": 853,
+                "top": 207.83334350585938,
+                "bottom": 244.83334350585938
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 240,
+                    "y": 207.83334350585938,
+                    "width": 613.3333740234375,
+                    "height": 38,
+                    "top": 207.83334350585938,
+                    "right": 853.3333740234375,
+                    "bottom": 245.83334350585938,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 240,
+                    "y": 207.83334350585938,
+                    "width": 613.3333740234375,
+                    "height": 352.16668701171875,
+                    "top": 207.83334350585938,
+                    "right": 853.3333740234375,
+                    "bottom": 560.0000305175781,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 352,
+                  "scrollHeight": 352
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 240,
+                    "y": 72,
+                    "width": 613.3333740234375,
+                    "height": 488,
+                    "top": 72,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 488,
+                  "scrollHeight": 488
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(1, 105, 204)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 332.82293701171875,
+                "right": 356.82293701171875,
+                "top": 214.5,
+                "bottom": 238.5
+              },
+              "viewport": {
+                "left": 240,
+                "right": 853,
+                "top": 207.83334350585938,
+                "bottom": 244.83334350585938
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 240,
+                    "y": 207.83334350585938,
+                    "width": 613.3333740234375,
+                    "height": 38,
+                    "top": 207.83334350585938,
+                    "right": 853.3333740234375,
+                    "bottom": 245.83334350585938,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 240,
+                    "y": 207.83334350585938,
+                    "width": 613.3333740234375,
+                    "height": 352.16668701171875,
+                    "top": 207.83334350585938,
+                    "right": 853.3333740234375,
+                    "bottom": 560.0000305175781,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 352,
+                  "scrollHeight": 352
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 240,
+                    "y": 72,
+                    "width": 613.3333740234375,
+                    "height": 488,
+                    "top": 72,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 240
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 488,
+                  "scrollHeight": 488
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 853.3333740234375,
+                    "height": 560,
+                    "top": 0,
+                    "right": 853.3333740234375,
+                    "bottom": 560,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 560,
+                  "scrollHeight": 560
+                }
+              ]
+            }
+          ]
         },
         {
           "theme": "dark",
@@ -2600,12 +3327,252 @@
             "x": 220,
             "y": 208.5,
             "width": 540,
-            "height": 32,
+            "height": 38,
             "top": 208.5,
             "right": 760,
-            "bottom": 240.5,
+            "bottom": 246.5,
             "left": 220
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 220,
+                "right": 313.5,
+                "top": 212,
+                "bottom": 242
+              },
+              "viewport": {
+                "left": 220,
+                "right": 760,
+                "top": 208.5,
+                "bottom": 245.5
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 220,
+                    "y": 208.5,
+                    "width": 540,
+                    "height": 38,
+                    "top": 208.5,
+                    "right": 760,
+                    "bottom": 246.5,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 220,
+                    "y": 208.5,
+                    "width": 540,
+                    "height": 331.5,
+                    "top": 208.5,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 332,
+                  "scrollHeight": 332
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 220,
+                    "y": 72,
+                    "width": 540,
+                    "height": 468,
+                    "top": 72,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 468,
+                  "scrollHeight": 468
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 313.5,
+                "right": 337.5,
+                "top": 215,
+                "bottom": 239
+              },
+              "viewport": {
+                "left": 220,
+                "right": 760,
+                "top": 208.5,
+                "bottom": 245.5
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 220,
+                    "y": 208.5,
+                    "width": 540,
+                    "height": 38,
+                    "top": 208.5,
+                    "right": 760,
+                    "bottom": 246.5,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 37,
+                  "scrollHeight": 37
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 220,
+                    "y": 208.5,
+                    "width": 540,
+                    "height": 331.5,
+                    "top": 208.5,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 332,
+                  "scrollHeight": 332
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 220,
+                    "y": 72,
+                    "width": 540,
+                    "height": 468,
+                    "top": 72,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 220
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 468,
+                  "scrollHeight": 468
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 760,
+                    "height": 540,
+                    "top": 0,
+                    "right": 760,
+                    "bottom": 540,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 540,
+                  "scrollHeight": 540
+                }
+              ]
+            }
+          ]
         },
         {
           "theme": "dark",
@@ -2647,12 +3614,252 @@
             "x": 64,
             "y": 177.6999969482422,
             "width": 352,
-            "height": 32,
+            "height": 38,
             "top": 177.6999969482422,
             "right": 416,
-            "bottom": 209.6999969482422,
+            "bottom": 215.6999969482422,
             "left": 64
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 1.6,
+              "outlineOffset": -1.6,
+              "ring": {
+                "left": 64,
+                "right": 157.0999984741211,
+                "top": 178.5,
+                "bottom": 208.5
+              },
+              "viewport": {
+                "left": 64,
+                "right": 416,
+                "top": 177.6999969482422,
+                "bottom": 209.6999969482422
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.6999969482422,
+                    "width": 352,
+                    "height": 38,
+                    "top": 177.6999969482422,
+                    "right": 416,
+                    "bottom": 215.6999969482422,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 32,
+                  "scrollHeight": 32
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.6999969482422,
+                    "width": 544,
+                    "height": 254.3000030517578,
+                    "top": 177.6999969482422,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 254,
+                  "scrollHeight": 254
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 64,
+                    "y": 72,
+                    "width": 544,
+                    "height": 360,
+                    "top": 72,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 1.6,
+              "outlineOffset": -1.6,
+              "ring": {
+                "left": 157.10000610351562,
+                "right": 181.10000610351562,
+                "top": 181.5,
+                "bottom": 205.5
+              },
+              "viewport": {
+                "left": 64,
+                "right": 416,
+                "top": 177.6999969482422,
+                "bottom": 209.6999969482422
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.6999969482422,
+                    "width": 352,
+                    "height": 38,
+                    "top": 177.6999969482422,
+                    "right": 416,
+                    "bottom": 215.6999969482422,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 32,
+                  "scrollHeight": 32
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.6999969482422,
+                    "width": 544,
+                    "height": 254.3000030517578,
+                    "top": 177.6999969482422,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 254,
+                  "scrollHeight": 254
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 64,
+                    "y": 72,
+                    "width": 544,
+                    "height": 360,
+                    "top": 72,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 608,
+                    "height": 432,
+                    "top": 0,
+                    "right": 608,
+                    "bottom": 432,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 432,
+                  "scrollHeight": 432
+                }
+              ]
+            }
+          ]
         },
         {
           "theme": "dark",
@@ -2694,23 +3901,269 @@
             "x": 64,
             "y": 177.83334350585938,
             "width": 250.6666717529297,
-            "height": 32,
+            "height": 38,
             "top": 177.83334350585938,
             "right": 314.6666717529297,
-            "bottom": 209.83334350585938,
+            "bottom": 215.83334350585938,
             "left": 64
-          }
+          },
+          "focus": [
+            {
+              "kind": "tab",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 64,
+                "right": 156.8229217529297,
+                "top": 178.5,
+                "bottom": 208.5
+              },
+              "viewport": {
+                "left": 64,
+                "right": 315,
+                "top": 177.83334350585938,
+                "bottom": 208.83334350585938
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.83334350585938,
+                    "width": 250.6666717529297,
+                    "height": 38,
+                    "top": 177.83334350585938,
+                    "right": 314.6666717529297,
+                    "bottom": 215.83334350585938,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 31,
+                  "scrollHeight": 31
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.83334350585938,
+                    "width": 442.66668701171875,
+                    "height": 182.1666717529297,
+                    "top": 177.83334350585938,
+                    "right": 506.66668701171875,
+                    "bottom": 360.00001525878906,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 182,
+                  "scrollHeight": 182
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 64,
+                    "y": 72,
+                    "width": 442.66668701171875,
+                    "height": 288,
+                    "top": 72,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 288,
+                  "scrollHeight": 288
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                }
+              ]
+            },
+            {
+              "kind": "close",
+              "focused": true,
+              "focusVisible": true,
+              "outlineStyle": "solid",
+              "outlineColor": "rgb(2, 133, 255)",
+              "outlineWidth": 2,
+              "outlineOffset": -2,
+              "ring": {
+                "left": 156.8229217529297,
+                "right": 180.8229217529297,
+                "top": 181.5,
+                "bottom": 205.5
+              },
+              "viewport": {
+                "left": 64,
+                "right": 315,
+                "top": 177.83334350585938,
+                "bottom": 208.83334350585938
+              },
+              "ancestors": [
+                {
+                  "className": "editor-tabs",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.83334350585938,
+                    "width": 250.6666717529297,
+                    "height": 38,
+                    "top": 177.83334350585938,
+                    "right": 314.6666717529297,
+                    "bottom": 215.83334350585938,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 31,
+                  "scrollHeight": 31
+                },
+                {
+                  "className": "project-main-panel",
+                  "rect": {
+                    "x": 64,
+                    "y": 177.83334350585938,
+                    "width": 442.66668701171875,
+                    "height": 182.1666717529297,
+                    "top": 177.83334350585938,
+                    "right": 506.66668701171875,
+                    "bottom": 360.00001525878906,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 182,
+                  "scrollHeight": 182
+                },
+                {
+                  "className": "collection-page projects-page has-selection",
+                  "rect": {
+                    "x": 64,
+                    "y": 72,
+                    "width": 442.66668701171875,
+                    "height": 288,
+                    "top": 72,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 64
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 288,
+                  "scrollHeight": 288
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "underline-links",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                },
+                {
+                  "className": "",
+                  "rect": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 506.66668701171875,
+                    "height": 360,
+                    "top": 0,
+                    "right": 506.66668701171875,
+                    "bottom": 360,
+                    "left": 0
+                  },
+                  "scrollTop": 0,
+                  "clientHeight": 360,
+                  "scrollHeight": 360
+                }
+              ]
+            }
+          ]
         }
       ],
       "screenshots": [
         "editor-tabs-initial.png",
         "editor-tabs-close-cancel.png",
         "editor-tabs-light-100.png",
+        "editor-tabs-close-focus-light-100.png",
         "editor-tabs-light-125.png",
+        "editor-tabs-close-focus-light-125.png",
         "editor-tabs-light-150.png",
+        "editor-tabs-close-focus-light-150.png",
         "editor-tabs-dark-100.png",
+        "editor-tabs-close-focus-dark-100.png",
         "editor-tabs-dark-125.png",
+        "editor-tabs-close-focus-dark-125.png",
         "editor-tabs-dark-150.png",
+        "editor-tabs-close-focus-dark-150.png",
         "editor-tabs-save-failure.png"
       ]
     },
@@ -2729,11 +4182,17 @@
       "editor-tabs-initial.png",
       "editor-tabs-close-cancel.png",
       "editor-tabs-light-100.png",
+      "editor-tabs-close-focus-light-100.png",
       "editor-tabs-light-125.png",
+      "editor-tabs-close-focus-light-125.png",
       "editor-tabs-light-150.png",
+      "editor-tabs-close-focus-light-150.png",
       "editor-tabs-dark-100.png",
+      "editor-tabs-close-focus-dark-100.png",
       "editor-tabs-dark-125.png",
+      "editor-tabs-close-focus-dark-125.png",
       "editor-tabs-dark-150.png",
+      "editor-tabs-close-focus-dark-150.png",
       "editor-tabs-save-failure.png"
     ],
     "editorFonts": {
@@ -2758,120 +4217,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(102, 102, 102)",
+              "color": "rgb(79, 79, 79)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 72.10000000000072
+                  "currentTime": 90.20000000000027
                 }
               ]
             }
@@ -2886,70 +4345,120 @@
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 179.30000000000047
+                }
+              ]
             }
           ]
         }
@@ -2964,120 +4473,120 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(235, 235, 235)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
               "colorTransitions": [
                 {
                   "state": "running",
-                  "currentTime": 158.3660000000009
+                  "currentTime": 179.36599999999993
                 }
               ]
             }
@@ -3092,120 +4601,70 @@
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
               "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 177.70000000000152
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         }
@@ -5715,10 +7174,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\worktrees/nook-e2c279e2",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\管理 工作树 🧭/nook-1c25648d",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\worktrees/nook-5b0e6b53",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\管理 工作树 🧭/nook-2826384f",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -5962,51 +7421,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "499a3cce-ef99-483e-b57b-18d6661ffd54",
-        "f6434169-ff1b-4b72-babf-6612c33c702e",
-        "cadba55b-5c34-4cdd-be0e-2c24804097c9",
-        "cfb3e639-d833-4b0d-9f08-1468683a138e",
-        "e120a259-9a90-4eee-bdc9-2c3f1dfe7f5a",
-        "98fd4f0b-f217-448f-b28d-e3a02b1de067",
-        "2ed48dc1-73e2-4e5b-a505-15f019cde3bb",
-        "d32549a3-8f9b-4277-a738-403a43d05fa9",
-        "7fa7b6ce-178c-4512-83aa-3a338cfb18de",
-        "091ec444-6f4b-4870-bec0-f9997b05a6a4",
-        "8bb501d4-d954-4134-b3a0-334200528d4a",
-        "f0a09d66-25d2-4921-a71a-15f1393081d6",
-        "3f329cb7-7caf-46a6-9227-7083dca9c0ad",
-        "e91cafe6-1351-47a7-8582-1d36b0345e06",
-        "39f77897-aede-4b31-8890-792e1d93ed65",
-        "934edaaf-3e6d-4b1d-9496-14dc95bb11cb",
-        "f08faa32-3074-4844-a9f2-8c213ca75163",
-        "2a833f14-5560-45d3-83d7-a92dde78ceec",
-        "87041298-12f1-4619-83f8-9b471ca9829e",
-        "8aa8b8e0-b509-4b8f-b1d9-2100073e6ace"
+        "2fb54e53-78c7-48dd-8f50-e54072a2eb6a",
+        "eb51643b-ff8c-4b6c-b0d6-3bf5673dfb0e",
+        "08f610fc-d25b-4dfa-975e-3716f4e6e90b",
+        "6ea9fab3-ccbc-4044-bd13-0ce61fc90e32",
+        "2bd4076e-296e-4f46-a02b-9c536633b499",
+        "294752c2-b734-4e50-bec0-7005a7ffc2e4",
+        "4159a8f0-2791-415b-a37d-6278ad03e18b",
+        "a1b43aea-81d7-4793-95b0-456d05c8ea9d",
+        "e4b9cb4b-4115-4421-bcc6-1419a19c6bd3",
+        "e18746af-5af0-4700-b52f-e4345c6ed1cf",
+        "f8bb4559-5056-4b41-8b9f-ab6984051c81",
+        "67b99ef3-40fe-41ce-a4db-514f31a744cc",
+        "0f162a14-a52d-4db5-b296-563e03e03c8e",
+        "a7db3bd8-5caf-4a7d-b012-601323668198",
+        "ee568ec3-c8be-4e4d-a3c9-0d683c7a8362",
+        "29416d60-746d-452e-966a-adaaf169e2c4",
+        "f25495b6-7830-4031-a27b-b19cfb07ee1f",
+        "df23df61-6f78-4198-9f8a-8d9241ced262",
+        "d9c8792b-8e83-4d98-8b2f-ffcffef0ae7e",
+        "4eea980b-3c72-4a4c-8e6c-71fb66d5415e"
       ],
       [
-        "56ee5e75-8d34-4567-a571-a0d3de5634d4"
+        "57214787-d5d8-4096-8582-2682c7e0284d"
       ],
       [
-        "499a3cce-ef99-483e-b57b-18d6661ffd54",
-        "f6434169-ff1b-4b72-babf-6612c33c702e",
-        "cadba55b-5c34-4cdd-be0e-2c24804097c9",
-        "cfb3e639-d833-4b0d-9f08-1468683a138e",
-        "e120a259-9a90-4eee-bdc9-2c3f1dfe7f5a",
-        "98fd4f0b-f217-448f-b28d-e3a02b1de067",
-        "2ed48dc1-73e2-4e5b-a505-15f019cde3bb",
-        "d32549a3-8f9b-4277-a738-403a43d05fa9",
-        "7fa7b6ce-178c-4512-83aa-3a338cfb18de",
-        "091ec444-6f4b-4870-bec0-f9997b05a6a4",
-        "8bb501d4-d954-4134-b3a0-334200528d4a",
-        "f0a09d66-25d2-4921-a71a-15f1393081d6",
-        "3f329cb7-7caf-46a6-9227-7083dca9c0ad",
-        "e91cafe6-1351-47a7-8582-1d36b0345e06",
-        "39f77897-aede-4b31-8890-792e1d93ed65",
-        "934edaaf-3e6d-4b1d-9496-14dc95bb11cb",
-        "f08faa32-3074-4844-a9f2-8c213ca75163",
-        "2a833f14-5560-45d3-83d7-a92dde78ceec",
-        "87041298-12f1-4619-83f8-9b471ca9829e",
-        "8aa8b8e0-b509-4b8f-b1d9-2100073e6ace"
+        "2fb54e53-78c7-48dd-8f50-e54072a2eb6a",
+        "eb51643b-ff8c-4b6c-b0d6-3bf5673dfb0e",
+        "08f610fc-d25b-4dfa-975e-3716f4e6e90b",
+        "6ea9fab3-ccbc-4044-bd13-0ce61fc90e32",
+        "2bd4076e-296e-4f46-a02b-9c536633b499",
+        "294752c2-b734-4e50-bec0-7005a7ffc2e4",
+        "4159a8f0-2791-415b-a37d-6278ad03e18b",
+        "a1b43aea-81d7-4793-95b0-456d05c8ea9d",
+        "e4b9cb4b-4115-4421-bcc6-1419a19c6bd3",
+        "e18746af-5af0-4700-b52f-e4345c6ed1cf",
+        "f8bb4559-5056-4b41-8b9f-ab6984051c81",
+        "67b99ef3-40fe-41ce-a4db-514f31a744cc",
+        "0f162a14-a52d-4db5-b296-563e03e03c8e",
+        "a7db3bd8-5caf-4a7d-b012-601323668198",
+        "ee568ec3-c8be-4e4d-a3c9-0d683c7a8362",
+        "29416d60-746d-452e-966a-adaaf169e2c4",
+        "f25495b6-7830-4031-a27b-b19cfb07ee1f",
+        "df23df61-6f78-4198-9f8a-8d9241ced262",
+        "d9c8792b-8e83-4d98-8b2f-ffcffef0ae7e",
+        "4eea980b-3c72-4a4c-8e6c-71fb66d5415e"
       ]
     ],
     "layouts": [
@@ -7957,7 +9416,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\snapshot-evidence-172c814a",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\snapshot-evidence-f41e005b",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -8689,7 +10148,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw\\cleanup-evidence-d248be40",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2\\cleanup-evidence-a26ed4d2",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -8931,7 +10390,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8946,7 +10405,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8961,7 +10420,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8976,7 +10435,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.703125,
+        "summaryWidth": 368.75,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -8991,7 +10450,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1000061035156,
+        "summaryWidth": 373.1625061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -9006,7 +10465,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.3645935058594,
+        "summaryWidth": 271.4270935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -9080,7 +10539,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "ef04ce2f-5f13-492a-a47c-37ab8ac1e84a",
+    "threadId": "311c0963-551a-4a32-93c5-fec059189434",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -9164,7 +10623,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-7NA7lw"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-Jd8hj2"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

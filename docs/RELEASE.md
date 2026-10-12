@@ -2,7 +2,7 @@
 
 **尚未发布。** Windows x64 候选为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。最新界面参考为 `E:\txt`，全部页面与交互尚未达到 100% 对齐。
 
-最新源码继续修复编辑器标签的焦点轮廓和滚动条裁切，采用内侧轮廓及 38px 标签栏。类型、116 项相关单元、完整 1,524 项单元、构建和实际预览 10 项／停靠预览 5 项通过；两种主题三档缩放的 12 张焦点原图逐张核验。原草稿、取消、保存重试及预算保留，发布校验要求 15 张指定标签图和六组各两个完整有限轮廓。本次应用体仍待完整源码、新包与实际安装验收；下方完整分发仅属于此前冻结包。[当前标签源码与十二张原图](../verification/editor-tab-focus-acceptance-review-result.json)
+最新产品源码 `27c36fa` 修复编辑器标签的焦点轮廓和滚动条裁切，采用内侧轮廓及 38px 标签栏。类型、116 项相关单元、完整 1,524 项单元、构建和实际预览 10 项／停靠预览 5 项通过；两种主题三档缩放的 12 张焦点原图逐张核验。完整源码实际退出 0，361 项／74 次正常退出／最长 1,661ms／无强制通过；38 份新报告、536 张新原图及原始运行目录保留，236 编译文件逐一匹配。完整回归原图未全部视觉复核。原草稿、取消、保存重试及预算保留，发布校验要求 15 张指定标签图和六组各两个完整有限轮廓。本次应用体仍待新包与实际安装验收；下方完整分发仅属于此前冻结包。[当前标签源码与十二张原图](../verification/editor-tab-focus-acceptance-review-result.json) · [当前完整源码回归](../verification/editor-tab-focus-full-source-review-result.json)
 
 上一阶段产品源码 `cd5e1bf` 修复工作树键盘刷新完成后失焦，并保留等待期间用户选择的其他控件。冻结包由 `9d7bb625` 构建，产品与桌面测试源码相同；源码、包内、五个分发专项、实际安装和原运行记录门禁均已通过，验收提交为 `8babfe8`。更早冻结包 `d32f595` 的结果按历史保留；这些结果不计入最新标签修正应用体的分发验收。
 
@@ -40,7 +40,7 @@
 
 [源码与专项](../verification/worktree-progressive-source-review-result.json) · [完整源码](../verification/worktree-progressive-full-source-review-result.json) · [冻结包审计](../verification/worktree-progressive-package-review-result.json) · [完整包内回归](../verification/worktree-progressive-full-unpacked-review-result.json) · [渐进状态与焦点原图](../verification/worktree-progressive-package-originals-review-result.json) · [控件与文字提示原图](../verification/worktree-progressive-distribution-originals-review-result.json)
 
-各轮安装文件、便携文件、未打包内容、源码、编译文件及实际退出回执独立归档。八个包的 32 份重复分发文件经逐文件字节与 SHA-256 核验后转存 C 盘；各原包的 `artifact-overflow-storage-conversion.json` 记录精确新位置。另十份历史编译副本各 236 文件经压缩测试、解压和逐文件回环匹配后改存同目录 `out.7z`，各自保留转换清单。当前构建、冻结包编译文件、原始运行目录、资料和许可证未改变，临时目录继续为 E 盘。
+各轮安装文件、便携文件、未打包内容、源码、编译文件及实际退出回执独立归档。八个包的 32 份重复分发文件，以及三份旧候选的六份重复安装／便携文件，经逐文件字节与 SHA-256 核验后转存 C 盘；各原归档的 `artifact-overflow-storage-conversion.json` 记录精确新位置。前一批十份、本轮九份编译副本各 236 文件，经压缩测试、解压和逐文件回环匹配后改存同目录 `out.7z`，各自保留转换清单；本轮仅允许七份指定历史原生验收归档与两份已完成标签源码验收归档，首轮目录名保护拒绝的日志保留。当前构建、冻结包编译文件、原始运行目录、资料和许可证未改变，临时目录继续为 E 盘。
 
 上一冻结包实际安装见[完整安装回归](../verification/worktree-progressive-full-installed-review-result.json)，最终匹配见[11 份运行记录与八个原标记](../verification/worktree-progressive-runtime-review-result.json)。当时首轮原命令实际退出 1，因旧解析器仍要求 18 张列表图而拒绝新版 27 张；原解析器、日志、回执及 11 份记录均保留。[首轮失败](../verification/worktree-progressive-runtime-initial-failure-review-result.json) · [精确发布校验修正与完整单元](../verification/worktree-progressive-policy-review-result.json)
 
