@@ -1,61 +1,26 @@
 # Nook 发布状态
 
-下一轮完整回归仍在 150 项后失败：方向键发出后末项持续选中，直到原 30 秒期限结束。原始失败目录、98 份报告／原图记录及 14 次正常退出保留，失败原图已检查。此前仅等待状态提交的修正不足以解释该问题，现增加键盘／指针事件诊断；专项通过不等于完整上下文已解决。
+**尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。已授权验收完成后直接通过原流水线发布，无需再次确认。
 
-完整源码第三轮通过 150 项后，键盘循环断言在选中状态提交前读取，导致失败。修正仅涉及测试同步：填入文字后以真实 `Ctrl+End` 更新光标，并在原等待期限内确认首末选项后再断言和测量；断言、产品与编译文件未改变。保留失败工作区上下文的七项复测通过，无模型请求，正常关闭 456ms，12 张 760×540 原图逐张检查。第三轮完整失败现场及中间专项失败均独立保留，下一轮完整回归仍待结果。[键盘同步复测](../verification/composer-actions-keyboard-integration-review-result.json)
+最新输入区快捷选择已完成源码回归：主工作台与快速聊天共用 `/` 筛选，模板在光标处插入，取消保留原文；选择助手或项目不发送消息。[使用说明](COMPOSER-ACTIONS.md)
 
-完整源码第二轮通过 259 项后，快速聊天发送沿用了此前保留的测试模型连接，旧测试端点已结束，因连接错误未达到完成状态。本轮失败现场、265 份报告／原图记录与原运行目录独立保留，36 次退出正常。修正仅涉及测试：在快速聊天中显式选择当前测试连接和模型，并等待保存确认。带旧模型选择的专项复测 9 项、3 次快速聊天及 1 次主窗口请求通过，两次退出正常，最长 356ms；28 张新原图保留，尚未逐张视觉复核。产品及编译文件未变化，完整回归重试仍待结果。[保留模型选择的复测](../verification/quick-chat-retained-model-integration-review-result.json)
-
-本轮完整源码初次回归通过 149 项后，因助手导入产生同名选项、测试定位器匹配两项而失败；14 次退出均正常，原始运行目录、98 份新报告／原图记录和失败原图独立保留。测试定位器已按实际同名数量与助手 ID 对应的稳定顺序选择，选中后的 ID 仍需精确相符；七项专项重试退出 0，正常关闭 405ms，产品源码与 236 个编译文件均未变化。完整回归重试仍待结果，新截图未扩大为已全部视觉复核。[专项重试及失败范围](../verification/composer-actions-integration-retry-review-result.json)
-
-**尚未发布。** Windows x64 候选为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。最新界面参考为 `E:\txt`，全部页面与交互尚未达到 100% 对齐。
-
-新增输入区快捷选择正在单独验收。主工作台与快速聊天共用 `/` 筛选，模板在光标处插入，取消保留原文；选择助手或项目不发送消息。当前类型、135 项相关及完整 1,533 项单元、构建与七项原生专项通过，覆盖率为语句 96.94%、分支 94.48%、函数 97.71%、行 99.42%，12 张完整窗口原图实际逐张查看，正常退出 652ms，无强制。发布和安装要求至少 368 项，并复用严格的六组布局及 12 份完整捕获校验；完整源码、新包、实际安装与托管发布尚待完成。以下记录保留各自的旧冻结包范围。[使用说明](COMPOSER-ACTIONS.md) [源码专项及原图证据](../verification/composer-actions-acceptance-review-result.json)
-
-最新产品源码 `27c36fa` 修复编辑器标签的焦点轮廓和滚动条裁切，采用内侧轮廓及 38px 标签栏。`25254c839` 冻结包已完成本机分发验收，完整流程实际退出 0；原草稿、取消、保存重试及预算保留，发布校验要求 15 张指定标签图和六组各两个完整有限轮廓。真实诊断及修复期间四轮原生失败独立保留。[标签源码与十二张原图](../verification/editor-tab-focus-acceptance-review-result.json) · [完整源码回归](../verification/editor-tab-focus-full-source-review-result.json)
-
-上一阶段产品源码 `cd5e1bf` 修复工作树键盘刷新完成后失焦，并保留等待期间用户选择的其他控件。冻结包由 `9d7bb625` 构建，产品与桌面测试源码相同；源码、包内、五个分发专项、实际安装和原运行记录门禁均已通过，验收提交为 `8babfe8`。更早冻结包 `d32f595` 的结果按历史保留；这些结果不计入最新标签修正应用体的分发验收。
-
-| 验证 | 最新结果 |
+| 当前验证 | 实际结果 |
 | --- | --- |
-| 类型、构建与单元 | 最新类型、130 文件／1,524 项单元通过；策略专项 110 项，工作树与策略合计 137 项；单 worker 与四项 80% 门槛保留，覆盖率语句 96.92%、分支 94.43%、函数 97.69%、行 99.41%；236 个编译文件与本次界面构建逐一匹配 |
-| 标签专项 | 类型、116 项相关单元及实际预览 10／停靠 5 项通过；六组主题／缩放各测量标签与关闭按钮，12 张源码焦点原图逐张核验 |
-| 完整源码 | 361 项／74 次正常退出／最长 1,661ms／无强制；38 份新报告、536 张原图与原始配置现场保留；完整回归原图未全部视觉复核 |
-| 新包与法律审计 | 239 产品文件、401 法律文件、381 依赖、20 分发许可来源，无未解决项；703 个未打包文件逐一解压校验；应用标识 `app.nook.workspace`，未签名 |
-| 新包完整回归 | 361 项／74 次正常退出／最长 2,352ms／无强制；38 份新报告与 536 张原图保留，236 个编译文件匹配冻结包 |
-| 新包分发 | 原控件 4／文字提示 7／关闭 2／声明 3 变体／便携 7 项均通过；原预算与断言不变 |
-| 新包视觉复核 | 67 张不同原图逐张原尺寸查看并匹配归档哈希：12 张标签焦点、17 张工作树、26 张控件、12 张文字提示；完整回归其他原图和安装原图未全部复核 |
-| 新包实际安装 | 361 项／74 次正常退出／最长 1,682ms／无强制；38 份新报告与 536 张原图保留，236 编译文件匹配；登记、快捷方式、保留数据卸载及原八个标记恢复／验哈希通过，安装原图尚未逐张复核 |
-| 十一份运行证据 | 原命令实际退出 0，11 份记录匹配新冻结包；15 张指定标签图、35 张指定工作树图、刷新与渐进保证及六组完整有限边界通过；原数量、分页、错误、数据保留与退出条件未降低 |
+| 类型与构建 | 通过；236 个编译文件与原生验收逐文件匹配 |
+| 相关单元 | 135 项通过 |
+| 完整单元与覆盖率 | 131 文件／1,533 项通过；语句 96.94%、分支 94.48%、函数 97.71%、行 99.42% |
+| 快捷选择专项 | 七项通过，无模型请求；明暗主题各三档应用缩放 |
+| 完整源码回归 | `e70d4c63`：368 项、74 次正常退出、最长 1,742ms，无强制结束 |
+| 本轮证据 | 39 份新报告、548 张原图；其中 12 张完整 760×540 快捷菜单原图逐张检查，其他原图未全部视觉复核 |
+| 新包、实际安装及分发 | 待完成；原五个分发专项、安装／卸载及十一份匹配运行记录继续必需 |
+| 托管流水线 | 最新本地提交尚未推送；此前运行因账户付款／支出额度限制，验证零步骤失败、发布跳过 |
 
-[新包审计](../verification/editor-tab-focus-package-review-result.json) · [新包完整回归](../verification/editor-tab-focus-full-unpacked-review-result.json) · [实际安装](../verification/editor-tab-focus-full-installed-review-result.json) · [十一份运行记录](../verification/editor-tab-focus-runtime-review-result.json)
+[源码专项与单元证据](../verification/composer-actions-acceptance-review-result.json) · [完整源码回归与本轮原图](../verification/composer-actions-full-source-review-result.json)
 
-[12 张标签原图](../verification/editor-tab-focus-editor-originals-review-result.json) · [17 张工作树原图](../verification/editor-tab-focus-package-originals-review-result.json) · [38 张控件与文字提示原图](../verification/editor-tab-focus-distribution-originals-review-result.json)
+完整回归此前四轮失败及原始目录均独立保留。同名助手和保留旧模型选择的测试定位已修正；快捷菜单方向键等待曾持续超时，增加事件诊断后的本轮通过，但原失败原因尚未确认，不能把重放通过写成已修复。原等待期限和断言保留。[同名选项复测](../verification/composer-actions-integration-retry-review-result.json) · [模型选择复测](../verification/quick-chat-retained-model-integration-review-result.json) · [键盘同步复测](../verification/composer-actions-keyboard-integration-review-result.json) · [键盘事件诊断](../verification/composer-actions-keyboard-diagnostic-review-result.json)
 
-[新包实际安装](../verification/worktree-refresh-focus-full-installed-review-result.json) · [十一份运行记录与八个原标记](../verification/worktree-refresh-focus-runtime-review-result.json)
+界面依据最新版 `E:\txt`（26.930.41038／build 13022）逐项采用，**尚未达到全部页面与交互 100% 对齐**。当前快捷浮层宽度上限 420px，与参考静态 520px 有差异；合法 Inter／系统中文字体及独立品牌也保留差异。物理输入、系统 DPI、无障碍、真实服务及其他目标平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
 
-本次原包失焦诊断与首轮缩放测量失败均独立保留。125% 时原 2px 样式的实际轮廓及偏移为 1.6 CSS px，按实际缩放和像素取整核验；发布门槛增加为 35 张指定原图、两项刷新焦点保证与六组完整数值轮廓边界。原数量、分页、错误、数据保留和退出条件未降低。[真实失焦诊断](../verification/worktree-refresh-focus-diagnostic-review-result.json) · [首轮测量失败](../verification/worktree-refresh-focus-first-source-failure-review-result.json)
+此前 `25254c839` 冻结包已通过本机分发，结果只属于该旧应用体；最后已核对的托管运行 [38272492271](https://github.com/Moresyl/nook/actions/runs/38272492271) 属于 `d42376dd`，受账户付款／支出额度限制，仓库版本列表为空。最新提交推送后需读取其精确运行结果。
 
-以下仅为上一 `d32f595` 冻结包的已完成记录。
-
-| 验证 | 上一冻结包结果 |
-| --- | --- |
-| 打包与法律审计 | 239 产品文件、401 法律文件、381 依赖、20 分发许可来源，无未解决项；703 个未打包文件逐一解压校验；应用标识 `app.nook.workspace`，未签名 |
-| 完整包内回归 | 361 项／74 次正常退出／最长 1,802ms／无强制；38 份新报告与 522 张原图保留，236 个编译文件匹配冻结包 |
-| 同包分发 | 原控件 4／文字提示 7／关闭 2／声明 3 变体／便携 7 项均通过；原预算与断言不变 |
-| 新包视觉复核 | 47 张不同原图逐张原尺寸查看并匹配归档哈希：九张渐进工作树、26 张控件、12 张文字提示；菜单与保存后焦点六张属于控件图，不重复计数；其他完整回归原图未全部复核 |
-| 实际安装与卸载 | 新包完整 361 项／74 次正常退出／最长 2,525ms／无强制；登记、快捷方式、保留数据卸载与原八个标记逐一恢复／验哈希均通过；安装原图尚未逐张复核 |
-| 十一份运行证据 | 原命令实际退出 0，11 份记录匹配冻结包；新版必须具备 27 张指定列表图、三项渐进保证及六组完整有限等待区域，原桌面数量、分页、错误、数据保留与退出条件未降低 |
-| 原托管流水线 | `d32f595` 已推送，验证零步骤失败，发布零步骤跳过；账户付款／支出额度限制使任务未启动，仓库无已发布版本 |
-
-[源码与专项](../verification/worktree-progressive-source-review-result.json) · [完整源码](../verification/worktree-progressive-full-source-review-result.json) · [冻结包审计](../verification/worktree-progressive-package-review-result.json) · [完整包内回归](../verification/worktree-progressive-full-unpacked-review-result.json) · [渐进状态与焦点原图](../verification/worktree-progressive-package-originals-review-result.json) · [控件与文字提示原图](../verification/worktree-progressive-distribution-originals-review-result.json)
-
-各轮分发文件、源码和实际退出回执独立归档。九个包的 36 份重复分发文件、三份旧候选的六份安装／便携副本及两份更早候选的四份副本，共 46 份，经逐文件字节与 SHA-256 核验后转存 C 盘，转换清单记录精确新位置。更早四份仅证明存储前后相同，不补造历史构建来源。前一批十份、本轮九份编译副本各 236 文件，经压缩测试、解压及逐文件回环匹配后改存同目录 `out.7z`；首轮目录名保护拒绝的日志保留。当前构建、冻结包编译文件、原始运行目录、资料和许可证未改变，临时目录继续为 E 盘。
-
-上一冻结包实际安装见[完整安装回归](../verification/worktree-progressive-full-installed-review-result.json)，最终匹配见[11 份运行记录与八个原标记](../verification/worktree-progressive-runtime-review-result.json)。当时首轮原命令实际退出 1，因旧解析器仍要求 18 张列表图而拒绝新版 27 张；原解析器、日志、回执及 11 份记录均保留。[首轮失败](../verification/worktree-progressive-runtime-initial-failure-review-result.json) · [精确发布校验修正与完整单元](../verification/worktree-progressive-policy-review-result.json)
-
-还需完成完整参考流程、物理原生向导／目录选择器、系统 DPI 与辅助技术，以及能力表保留的真实服务和目标平台检查。已授权完成后直接走原发布流水线。`25254c839` 原托管运行 [38263305814](https://github.com/Moresyl/nook/actions/runs/38263305814) 的验证因账户付款／支出额度限制零步骤失败，非标签运行的发布任务零步骤跳过，版本列表为空；原始查询证据保留在 `E:/NookVerification/EditorTabFocusSourceHosted-20261012`。最终文档和验收提交推送后另行读取其精确运行结果，避免将旧提交结果冒充新提交。原计费、执行器和发布门槛保留。
-
-[设计差异](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付范围](DELIVERY.md) · [原界面验收](UI-ACCEPTANCE.md)
-
-上一包 `4277c07` 的 361 项安装、74 张视觉复核、便携首轮失败与重试、全部历史失败现场及旧托管记录，逐字保存在[上一阶段发布记录](RELEASE-HISTORY-2026-10-12-SETTINGS-FOCUS.md)。正文整理没有取消历史断言、剩余范围或原始证据。
+整理前的全部记录逐字保留在[本轮发布历史](RELEASE-HISTORY-2026-10-13-COMPOSER-INTEGRATION.md)，原 SHA-256 为 `1213161738d3c0d420930480385dbe2ef9554255e3bacd1ebf2d66a79591a394`。历史包含旧包验收、原图范围、存储转换、失败及其链接；这次整理未取消剩余要求。
