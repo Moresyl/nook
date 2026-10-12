@@ -1,0 +1,397 @@
+{
+  "verifiedAt": "2026-10-12T15:06:36.499Z",
+  "phase": "surfaces",
+  "attempt": "",
+  "archive": "E:/NookVerification/EditorTabFocusPhase-surfaces-20261012",
+  "sourceHead": "25254c839205c5923494091cd9f12ea9b376958f",
+  "runtimeBuiltHead": "25254c839205c5923494091cd9f12ea9b376958f",
+  "startedAt": "2026-10-12T15:05:58.0913559Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "198b632ff775c7e165476d3abab212d82ab754d68d9040b18790c26dfd0a62ec",
+  "archiveSha256": "3e87c596804525113ee9558584df68ebd422d38a86a76b0276a08e07803ce524",
+  "reports": {
+    "surfaces-packaged-result.json": {
+      "verifiedAt": "2026-10-12T15:06:35.428Z",
+      "variant": "packaged executable",
+      "executableSha256": "198b632ff775c7e165476d3abab212d82ab754d68d9040b18790c26dfd0a62ec",
+      "archiveSha256": "3e87c596804525113ee9558584df68ebd422d38a86a76b0276a08e07803ce524",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "modelRequests": 0,
+      "checks": 4,
+      "startupFallback": {
+        "passed": true,
+        "scope": "Built entry document in isolated Electron window with page scripts disabled; system theme and reduced-motion emulation; normal renderer replacement"
+      },
+      "startupRecovery": {
+        "passed": true,
+        "scope": "Isolated initial-load IPC rejection and delay; persistent error, keyboard retry, narrow layout and exact saved-draft restoration; not corrupt-vault recovery"
+      },
+      "settingsCategories": [
+        "模型连接",
+        "MCP 工具",
+        "本地技能",
+        "本地插件",
+        "记忆",
+        "工作树",
+        "外观与交互",
+        "数据与备份",
+        "关于 Nook"
+      ],
+      "zoomFactors": [
+        1,
+        1.25,
+        1.5
+      ],
+      "geometryChecks": [
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 760,
+          "viewportHeight": 540
+        },
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1.25,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 608,
+          "viewportHeight": 432
+        },
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1.5,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 507,
+          "viewportHeight": 360
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 720,
+          "height": 460,
+          "top": 35.5555534362793,
+          "left": 280,
+          "viewportWidth": 1280,
+          "viewportHeight": 540
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1.25,
+          "width": 720,
+          "height": 392,
+          "top": 17.77777671813965,
+          "left": 152,
+          "viewportWidth": 1024,
+          "viewportHeight": 432
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1.5,
+          "width": 720,
+          "height": 320,
+          "top": 17.77777671813965,
+          "left": 66.66667175292969,
+          "viewportWidth": 853,
+          "viewportHeight": 360
+        },
+        {
+          "windowWidth": 768,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 720,
+          "height": 460,
+          "top": 35.5555534362793,
+          "left": 24,
+          "viewportWidth": 768,
+          "viewportHeight": 540
+        }
+      ],
+      "checkedSwitchStates": [
+        {
+          "theme": "light",
+          "enabledColor": "rgb(51, 156, 255)",
+          "disabledRgba": [
+            50,
+            155,
+            255,
+            128
+          ],
+          "disabledClickPreserved": true
+        },
+        {
+          "theme": "dark",
+          "enabledColor": "rgb(51, 156, 255)",
+          "disabledRgba": [
+            50,
+            155,
+            255,
+            128
+          ],
+          "disabledClickPreserved": true
+        }
+      ],
+      "screenshots": [
+        "91-surface-controls-light.png",
+        "92-surface-controls-dark-narrow.png",
+        "93-surface-settings-zoomed.png",
+        "94-surface-select-light.png",
+        "95-surface-select-dark.png",
+        "96-switch-light.png",
+        "96-switch-dark.png",
+        "97-field-invalid-light.png",
+        "97-field-invalid-dark.png",
+        "98-surface-short-wide.png",
+        "99-switch-checked-light.png",
+        "99-switch-checked-dark.png",
+        "100-tooltip-light.png",
+        "100-tooltip-dark.png",
+        "101-tooltip-edge.png",
+        "102-button-tooltip-disabled.png",
+        "103-button-tooltip-long.png",
+        "104-startup-light.png",
+        "104-startup-dark.png",
+        "105-startup-error.png",
+        "105-startup-error-narrow.png"
+      ],
+      "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
+      "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and nine empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 1,
+  "maximumCloseMs": 276,
+  "forcedCloses": 0,
+  "screenshots": [
+    {
+      "name": "100-tooltip-dark.png",
+      "sha256": "a82c479014c8a85cde0dfca14f0d2662fcf9cbc92280c62e95c0e74eecdbb364",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "100-tooltip-light.png",
+      "sha256": "f6140374620098e13ccd075a736b2c949fb7346b17601f65dc06f27b57547625",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "101-tooltip-edge.png",
+      "sha256": "14498f8c678ff398e2a6ad6f62d647f88293fb5caf96e53247a2f53fd51b1454",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "102-button-tooltip-disabled.png",
+      "sha256": "4aa7ee7f0b85cfc7bbc178f79e7ada210ca4a39dc9e89a0f70312cbb9e91b2d2",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "103-button-tooltip-long.png",
+      "sha256": "6048eaf5b307dec4ec396421161d0769c7bb32e9ac90d35e9aa53ed6a07e3198",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "104-startup-dark.png",
+      "sha256": "6109fcc56304b0a83bf01454189b7d394c3c62e98dee07c59da2d5432eb02484",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "104-startup-light.png",
+      "sha256": "b4f4622a56354945b44e8dcf4c3a15a0f9a916e31afe7ff4f23959456f763b27",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "105-startup-error-narrow.png",
+      "sha256": "aac42f860bcbca14bcb99aa4ebf89a19a237cb963638d62a893e0b147556a75c",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "105-startup-error.png",
+      "sha256": "3dcff5e4f9b8e725c5f6eb34a73b38157d579f904c4234a439eb4101af71e307",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "106-button-focus-dark.png",
+      "sha256": "9ebebd159479eabacd6c50cc88262cdf881d6b78627e92655f54c742caa0caef",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "106-button-focus-light.png",
+      "sha256": "3903d80f1dc53d5bab96aa7c3ffaa62f03d5f577a202a21793d0cd9184e5c4f5",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "107-switch-keyboard-save-dark.png",
+      "sha256": "9ff165a96751a142c800beec9afd2680069d2e7f204c03c678247e3523e5b48c",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "107-switch-keyboard-save-light.png",
+      "sha256": "04f2ec6578d7281c1a3e135bdd435ed1a6562313740da2fe51d7f2d513000c17",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "91-surface-controls-light.png",
+      "sha256": "c3a4fd5d0326fe7efc9cd39a5bf28ebb677ca475e92e3972c5d2efd8212c454f",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "92-surface-controls-dark-narrow.png",
+      "sha256": "7f67261bcc434797dbfde480392566073af2aa217533898b75c83407417deef7",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "93-surface-settings-zoomed.png",
+      "sha256": "65989b6e0f121791b1121a11c565f12164692f3f50882903a6b5ea7b9380acfa",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "94-surface-select-light.png",
+      "sha256": "8fe502d635ba29e7a15a330f03e25bc39f5db8cde95df7891b72b836c855352d",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "95-surface-select-dark.png",
+      "sha256": "eec4fe3c5b6fb9f32368fa3ee1da6224d6a0ec43ac197a46e39c83ea3930004f",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-surface-connection-scroll.png",
+      "sha256": "cfcf701142a9a1efd995d93eb4547502a00f2db1fd2f34a873a3d7a9f6926558",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-switch-dark.png",
+      "sha256": "fc92ae82fbd972207e186ed62b63f6843851af84cdd5b731bced6a7c3244bb04",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-switch-light.png",
+      "sha256": "54b1ddc05f5a4de4a5a0c72937b757ddd38e72cd92e9105826449c670544ae77",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "97-field-invalid-dark.png",
+      "sha256": "7317abd57974d48a203d70dcfd87a2e696c99476e36c59c9fcb656405ff10052",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "97-field-invalid-light.png",
+      "sha256": "c093a0988219cbd19168e3875368a7579538e7816f21483704ecdff39287ce91",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "98-surface-short-wide.png",
+      "sha256": "9bd0a586a34e1a8307691df259fb90200fdd988d00c09f8f4af9881973a11892",
+      "size": [
+        1280,
+        540
+      ]
+    },
+    {
+      "name": "99-switch-checked-dark.png",
+      "sha256": "520b545e3500df4e4ca8a9535cfaa6bb38ea38f79fa9e6a3554f6b1ed81e0376",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "99-switch-checked-light.png",
+      "sha256": "8b51fe8e8bacb5c56e6a3dcd49fa367d2535133dad26808a006316c76b42c0da",
+      "size": [
+        1280,
+        840
+      ]
+    }
+  ],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release."
+}

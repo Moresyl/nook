@@ -2,7 +2,7 @@
 
 当前参考为 `E:\txt` 的带上下文变量、CSS 规则与原始样式；旧批次使用桌面 txt 中的人工规范。下表保留历史证据，对应源码及分发批次见[设计对照](DESIGN-ALIGNMENT.md)。静态对照只证明代码差异，不代替实际窗口验收。
 
-最新源码的文件标签及关闭按钮采用 2px 内侧键盘轮廓，标签栏为 38px，避免窄窗口横向滚动条挤压 30px 按钮。两种主题三档 Electron 缩放的两种控件均测量实际轮廓、偏移及所有裁切祖先的可用区域，12 张原图逐张核验；发布校验要求原九张与六张新增关闭焦点原图。完整源码 361 项／74 次正常退出／最长 1,661ms／无强制通过，38 份新报告、536 张新原图及原始运行目录保留；完整回归原图未全部视觉复核。新包分发尚待完成，不沿用下方上一应用体的安装记录。[当前标签源码与原图](../verification/editor-tab-focus-acceptance-review-result.json) · [当前完整源码回归](../verification/editor-tab-focus-full-source-review-result.json)
+最新文件标签及关闭按钮采用 2px 内侧键盘轮廓，38px 标签栏避免横向滚动条挤压 30px 按钮。两种主题三档 Electron 缩放均测量实际轮廓、偏移及裁切祖先的可用区域，发布校验要求 15 张指定标签图和六组各两个完整有限轮廓。`25254c839` 新包内与实际安装各 361 项／74 次正常退出通过，最长分别为 2,352ms／1,682ms，无强制；五个分发专项、十一份运行记录及原八个标记恢复通过。新包 12 张标签、17 张工作树、26 张控件与 12 张文字提示原图逐张原尺寸核验，共 67 张；明暗菜单、非法字段、开关保存后焦点与长提示按实际画面记录。其余完整回归及安装原图未全部视觉复核，PDF 高缩放仅验当前切片；不扩大为物理输入、系统 DPI 或全部页面通过。源码图独立保留，旧包结果见下方历史。[标签源码与原图](../verification/editor-tab-focus-acceptance-review-result.json) · [新包标签原图](../verification/editor-tab-focus-editor-originals-review-result.json) · [新包控件与提示](../verification/editor-tab-focus-distribution-originals-review-result.json) · [实际安装与运行记录](../verification/editor-tab-focus-runtime-review-result.json)
 
 当前源码的工作树键盘刷新，在真实成功及错误读取后保留完整蓝色焦点圈，等待期间切换到关闭按钮时不抢焦点。两种主题三档 Electron 缩放的宽度、偏移和完整可见边界已实测，八张源码原图逐张原尺寸复核并匹配哈希。这些源码图不计入下面的新包原图，也不证明真实 Windows DPI 或物理输入。[当前源码焦点证据](../verification/worktree-refresh-focus-acceptance-review-result.json)
 
