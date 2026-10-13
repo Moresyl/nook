@@ -136,7 +136,7 @@ async function assertControlGeometry(page, dialog, mode, application, screenshot
   assert.deepEqual(await apply.evaluate(element => {
     const style = getComputedStyle(element);
     return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap };
-  }), { height: '20px', left: '6px', right: '6px', gap: '3px' });
+  }), { height: '24px', left: '8px', right: '8px', gap: '4px' });
   const focusButton = dialog.locator('.modal-header').getByRole('button', { name: '关闭', exact: true });
   assert.equal(await focusButton.isEnabled(), true);
   await focusButton.focus();
