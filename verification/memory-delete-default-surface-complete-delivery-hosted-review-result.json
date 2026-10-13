@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-10-13T12:57:05.729Z",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfaceCompleteDeliveryHosted-20261013",
+  "deliverySourceHead": "c77992c8c0468ff723c8c6a02b5849b09d068b00",
+  "packageSourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "compiledProductSourceHead": "d9a84ffc9dc80eee6c1afe5aa9b28e40976457bd",
+  "remoteMainAndDeliveryHeadVerified": true,
+  "localRuntimeReviewArchive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfaceRuntime-20261013",
+  "localThreeNativeRoundsAccepted": true,
+  "unitTests": 1557,
+  "matchingRuntimeRecords": 11,
+  "workflows": [
+    {
+      "branch": "main",
+      "url": "https://github.com/Moresyl/nook/actions/runs/38400515504",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "verify",
+          "id": 115306632602,
+          "conclusion": "failure",
+          "actualSteps": 0
+        },
+        {
+          "name": "publish",
+          "id": 115306651605,
+          "conclusion": "skipped",
+          "actualSteps": 0
+        }
+      ],
+      "annotations": [
+        "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+      ]
+    },
+    {
+      "branch": "feat/document-originals",
+      "url": "https://github.com/Moresyl/nook/actions/runs/38400381613",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "verify",
+          "id": 115306169585,
+          "conclusion": "failure",
+          "actualSteps": 0
+        },
+        {
+          "name": "publish",
+          "id": 115306211713,
+          "conclusion": "skipped",
+          "actualSteps": 0
+        }
+      ],
+      "annotations": [
+        "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+      ]
+    }
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "completeReferenceParity": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "809e41ff9da917e002a65527b0019294f84e8dbfd122240344eb9dfbdef76656"
+    },
+    {
+      "name": "jobs-38400515504.json",
+      "sha256": "f4ea91d24557c39f3489a8be60b745724010cbaafcc4f8189a8b96407ecf66e1"
+    },
+    {
+      "name": "annotations-115306632602.json",
+      "sha256": "f59ed6177f3d82efdecf2334efab412d39c91088177a09842c5836eb4bf2f8ed"
+    },
+    {
+      "name": "annotations-115306651605.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "jobs-38400381613.json",
+      "sha256": "d012ef14b9c81d0ded3354b94cb11ebcaa2921722374854321cf962738bd1250"
+    },
+    {
+      "name": "annotations-115306169585.json",
+      "sha256": "f59ed6177f3d82efdecf2334efab412d39c91088177a09842c5836eb4bf2f8ed"
+    },
+    {
+      "name": "annotations-115306211713.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "browser": {
+    "target": "https://github.com/Moresyl/nook/actions/runs/38400381613",
+    "tool": "mcp__cua_repl.js",
+    "actualToolResult": "Codex auth token is unavailable",
+    "pageRead": false,
+    "browserReleaseCompleted": false,
+    "alternativeBrowserBypassAttempted": false
+  },
+  "scope": "Actual original branch and main workflows after the complete local distribution evidence commit. Exact frozen package and compiled product provenance remain separate. No public release, reference-wide completion, account setting or workflow modification is claimed."
+}

@@ -2,6 +2,8 @@
 
 界面以最新版 `E:/txt`（26.930.41038／build 13022）的作用域 CSS、主题和实际调用证据为依据。旧 `DESIGN.md` 只作历史索引。**全部页面与交互尚未达到 100% 对齐。**
 
+输入框默认圆角现在采用后置主题覆盖的 22px，CSS 视口小于 40rem 时使用 40px 浅色大阴影，其他视口保留 80px。浏览器窗口的 28px 覆盖属于另一作用域，未套用于本工作台。类型与新构建通过；两种主题、两种窗口尺寸、三档应用缩放及正常重启的 13 项首页专项通过，13 张完整原图逐张查看。实际系统缩放为 100%，高缩放短窗口仍使用紧凑侧栏和纵向滚动；这轮没有证明其他物理系统 DPI 或完整参考首页。此前完整分发的应用体与本次新编译体分别记录。[构建与参考来源](../verification/composer-surface-tokens-build-review-result.json) · [首页专项](../verification/composer-surface-tokens-native-review-result.json)
+
 最新记忆删除保留 520px／92vw、20px 圆角与独立滚动，并修正默认调用的字体、顶部定位和表面：全局半粗为 600，590 仅属于目录弹窗局部变量；对话框标题的正常字距覆盖基础 -0.36px。默认定位只水平居中，顶部按可用高度计算。表面采用 90% 非扩展回退色、0.5px 边缘、24px 模糊与默认遮罩，关闭控件为 32px。参考运行时可注入其他表面变量，未宣称其最终颜色唯一确定；长内容安全高度仍属本产品补充。新样式的类型、1,557 项完整单元与构建、五组原生专项及六种明暗／应用缩放通过；源码、新包与安装各通过 375 项／74 次正常退出。源码专项、包内与安装的记忆原图各 22 张逐张复核，长正文独立滚动，标题与操作可见。每轮 617 张完整回归原图未全部视觉复核，全部参考流程、物理系统 DPI 和托管发布仍待完成。[原生专项](../verification/memory-delete-default-surface-focused-review-result.json) · [源码原图](../verification/memory-delete-default-surface-visual-review-result.json) · [包内原图](../verification/memory-delete-default-surface-unpacked-visual-review-result.json) · [安装原图](../verification/memory-delete-default-surface-installed-visual-review-result.json) · [本轮分发](../verification/memory-delete-default-surface-runtime-review-result.json)
 
 此前记忆样式的五组原生专项、六组应用缩放、22 张原图复核以及完整源码 375 项／74 次正常退出通过；这些证据保留，但不能证明新样式通过或完整参考采用。共享字体／品牌、全部调用与物理系统 DPI 仍有明确差异或待验收项。[旧原生专项](../verification/memory-delete-focused-review-result.json) · [旧原图](../verification/memory-delete-visual-review-result.json) · [旧完整源码](../verification/memory-delete-full-source-review-result.json)

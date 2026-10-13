@@ -2,6 +2,10 @@
 
 **尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。已授权完成验收后直接通过原流水线发布，无需再次确认。
 
+最新输入框修正默认圆角为 22px，并在 CSS 视口小于 40rem 时将浅色大阴影范围收至 40px。`177ad10` 的类型与新构建通过，13 项首页原生专项通过，两次正常退出，最长 764ms，无强制结束；13 张原图已逐张复核。当前主机系统缩放实际为 100%，未强制设备缩放，覆盖两种主题、1280×840／760×540 和三档应用缩放，以及设置键盘回焦和中文草稿重启保留。本次只修改两项 CSS 变量与对应原生断言，1,557 项覆盖率明确沿用未变产品逻辑的基线；当前新应用体的完整回归、包内与实际安装仍待完成。下方三轮 375 项属于此前已冻结的记忆应用体。[新构建与来源](../verification/composer-surface-tokens-build-review-result.json) · [首页专项与原图](../verification/composer-surface-tokens-native-review-result.json)
+
+记忆验收提交 `c77992c` 已同步交付分支并安全快进到 `main`。两条原托管流水线均因账户付款／额度问题在零步骤时失败，发布跳过，标签及版本仍为零；实际浏览器入口仍返回认证令牌不可用。这些事实保留原响应，不影响下方已经独立验收的本机分发结果。[本轮主分支与交付分支](../verification/memory-delete-default-surface-complete-delivery-hosted-review-result.json)
+
 最新记忆删除修正了参考作用域判断：默认标题采用 600 字重与正常字距，弹窗按可用高度顶部定位，使用 90% 回退表面、0.5px 边缘和 24px 背景模糊。长内容仍有界滚动，取消与等待／失败保护保留。133 文件／1,557 项完整单元与覆盖率、类型和构建均通过；五组原生专项及六组主题／应用缩放通过。[单元与构建](../verification/memory-delete-default-surface-unit-review-result.json) · [原生专项](../verification/memory-delete-default-surface-focused-review-result.json)
 
 源码、新包和实际安装各通过 **375 项／74 次正常退出**，最长分别为 2,591／3,919／1,844ms，无强制结束。每轮保留 39 份新报告、617 张原图及 236 个匹配编译文件。原五个分发专项、便携七项、安装登记／快捷方式、保留数据卸载及十一份匹配运行记录通过；十二个既有标记恢复原路径，哈希一致。源码专项、包内与安装的记忆原图各 22 张已逐张查看，其余完整回归原图未全部视觉复核。[完整源码](../verification/memory-delete-default-surface-full-source-review-result.json) · [包内回归](../verification/memory-delete-default-surface-full-unpacked-review-result.json) · [安装回归](../verification/memory-delete-default-surface-full-installed-review-result.json) · [运行与卸载](../verification/memory-delete-default-surface-runtime-review-result.json) · [源码原图](../verification/memory-delete-default-surface-visual-review-result.json) · [包内原图](../verification/memory-delete-default-surface-unpacked-visual-review-result.json) · [安装原图](../verification/memory-delete-default-surface-installed-visual-review-result.json)

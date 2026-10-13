@@ -2,6 +2,10 @@
 
 ## 未发布
 
+输入框依据当前主题覆盖采用 22px 默认圆角，CSS 视口小于 40rem 时缩小浅色大阴影。新类型、构建和 13 项首页原生检查通过，两次正常退出、13 张原图逐张复核；本机实际系统缩放为 100%，三档应用缩放、设置键盘回焦和草稿重启保留通过。新应用体的完整分发尚待验收，原托管流水线仍受账户付款／额度限制。
+
+The composer now uses the current 22px default radius and a smaller light shadow below a 40rem CSS viewport. Fresh type checks, build and thirteen homepage checks pass, with two normal exits and thirteen individually reviewed captures. This host's physical display scale is 100%; full distribution of the new body and hosted publication remain separate.
+
 原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项通过，源码、新包和实际安装各通过 375 项／74 次正常退出，无强制结束。
 
 Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks pass; source, packaged and installed runtimes each pass 375 checks with 74 normal exits. The failed scene is retained.
@@ -48,6 +52,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 ### 修复与完善
 
 - 全局搜索采用 520px 宽度上限和随窗口收缩的布局，明暗表面与居中定位单独适配；键盘移到列表末项时保留滚动留白。
+- 输入框采用当前主题的 22px 默认圆角，窄视口收紧浅色阴影，保留原有输入、发送、草稿和键盘行为。
 - 修复连续命令输出的最后一段可能等到下一段或进程结束才显示的问题，保留 100 毫秒通知节奏及关闭、报错、取消后的清理。
 - 修复选择助手或项目后的光标恢复覆盖用户新选区，导致后续输入重复前缀的问题。
 - 修复编辑器文件标签和关闭按钮的键盘焦点圈被横向滚动条裁切的问题；工作树刷新及设置保存完成后保留正确焦点，用户已切换控件时不抢焦点。
@@ -76,6 +81,8 @@ Memory deletion defaults to Cancel, blocks dismissal while pending and retains e
 Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
 
 This candidate fixes delayed final command output, selection restoration, draft persistence, streaming races, restore locking, keyboard focus and Windows portable cleanup. Windows x64 installer and portable files are unsigned; uninstalling preserves user data. Additional platforms and the remaining documented reference-design and physical-system checks are separate from this candidate.
+
+The composer uses the current default corner radius and a smaller light shadow in compact CSS viewports, retaining its input, sending, draft and keyboard behavior.
 
 ## 开发记录
 

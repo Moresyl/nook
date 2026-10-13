@@ -2,6 +2,8 @@
 
 Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
 
+最新输入框采用 22px 默认圆角与窄视口阴影；新类型、构建和 13 项首页原生检查通过，13 张原图逐张复核。该源码改动后的完整分发仍待验收，下述三轮 375 项保留其冻结应用体来源。[首页验证范围](../verification/composer-surface-tokens-native-review-result.json)
+
 记忆删除支持安全默认取消、明确影响说明、长内容独立滚动、等待期间禁止关闭，以及失败保留／重试。最新默认标题、顶部定位和半透明表面的 1,557 项完整单元、类型、构建、五组原生专项及六组明暗／应用缩放通过；源码、新包和实际安装各通过 375 项／74 次正常退出。源码专项、包内和安装的记忆原图各 22 张逐张复核，原五个分发专项、便携七项、保留数据卸载、十一份运行记录和十二个标记恢复通过。完整参考界面与托管发布仍未完成。[专项](../verification/memory-delete-default-surface-focused-review-result.json) · [完整源码](../verification/memory-delete-default-surface-full-source-review-result.json) · [分发与卸载](../verification/memory-delete-default-surface-runtime-review-result.json) · [包内原图](../verification/memory-delete-default-surface-unpacked-visual-review-result.json) · [安装原图](../verification/memory-delete-default-surface-installed-visual-review-result.json)
 
 设置支持六类未保存表单的离开确认、跨分类保留草稿、保存等待锁定与失败重试。最新 1,555 项单元、类型、构建及八组设置专项通过；完整源码、新包和实际安装各通过 373 项／74 次正常退出。原五个分发专项、便携七项、保留数据卸载及十一份匹配运行记录通过。源码专项、包内与安装设置原图分别复核 34 张；安装轮先前七张缩放差异的目测判断经原图像素测量更正，实际尺寸与三档缩放一致。完整参考界面与托管发布未完成。[设置与草稿](SETTINGS.md) · [本轮运行证据](../verification/settings-drafts-runtime-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [测量与更正](../verification/settings-drafts-installed-scale-correction-result.json)
