@@ -2,11 +2,11 @@
 
 ## 未发布
 
-共享按钮默认最小高度调整为 24px、左右内距 8px、内容间距 4px；附件关闭和搜索清除保留各自紧凑尺寸。新类型、133 文件／1,557 项单元、既有覆盖率门槛及构建通过；13 项原生专项验证真实按钮默认、焦点、悬停、按下、禁用状态，两次正常退出，37 张原图逐张复核。完整当前源码和最终分发仍待验收。
+共享按钮默认最小高度调整为 24px、左右内距 8px、内容间距 4px；附件关闭和搜索清除保留各自紧凑尺寸。新类型、133 文件／1,557 项单元、既有覆盖率门槛及构建通过；13 项原生专项验证真实按钮默认、焦点、悬停、按下、禁用状态，两次正常退出，37 张原图逐张复核。当前应用体另通过 375 项完整源码检查、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核。最终分发仍待验收。
 
-Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. Complete current-source and distribution gates remain pending.
+Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. The current body also passes 375 complete source checks with 74 normal exits and no forced termination. Reports and 617 new originals are archived without claiming complete visual review; distribution gates remain pending.
 
-当前交付提交的原托管流水线已实际启动，环境准备成功，检查正在执行；此前账户限制的零步骤失败保留为历史，不等同于当前结果。浏览器认证仍不可用，尚未发布版本。
+原托管流水线已实际运行，环境准备和类型检查通过，完整单元覆盖率阶段因六项既有测试超时失败；1,557 项中 1,551 通过，后续打包与发布未执行。完整失败日志保留，正在修复测试开销；原期限和验收要求不变。此前零步骤账户失败属于历史；浏览器认证仍不可用，尚未发布版本。
 
 输入框依据当前主题覆盖采用 22px 默认圆角，CSS 视口小于 40rem 时缩小浅色大阴影。新类型、构建和 13 项首页原生检查通过，两次正常退出、13 张原图逐张复核；本机实际系统缩放为 100%，三档应用缩放、设置键盘回焦和草稿重启保留通过。新应用体的完整分发尚待验收，原托管流水线仍受账户付款／额度限制。
 

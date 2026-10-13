@@ -13,11 +13,12 @@
 | 共享按钮与首页原生专项 | 13 项、两次正常退出，最长 296ms；两种主题、两种尺寸、三档应用缩放；37 张原图逐张复核 |
 | 原生状态 | 默认、键盘焦点、悬停、按下、禁用状态与真实记忆控件验证；禁用保存不获取焦点、不改变已存记忆 |
 | 前一输入框完整源码 | `9f50a58` 通过 375 项、74 次正常退出，最长 1,712ms；39 份报告与 617 张原图归档，原图未全部逐张视觉复核 |
-| 当前完整回归 | 共享按钮改动后的完整源码、包内和实际安装仍待验收，前一应用体记录不能替代 |
+| 当前共享按钮完整源码 | 375 项、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告、617 张原图和 236 个匹配编译文件归档，原图未全部逐张视觉复核 |
+| 当前分发 | 共享按钮改动后的包内和实际安装仍待验收，前一应用体记录不能替代 |
 
 首页专项实际系统缩放为 100%，没有强制设备缩放。完整源码套件保留原精确尺寸夹具和全部期限；它不能替代其他实际系统 DPI、物理交互与真实服务验收。
 
-[当前单元与构建](../verification/shared-button-defaults-build-review-result.json) · [按钮状态与原图](../verification/shared-button-defaults-native-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json)
+[当前单元与构建](../verification/shared-button-defaults-build-review-result.json) · [按钮状态与原图](../verification/shared-button-defaults-native-review-result.json) · [当前完整源码](../verification/shared-button-defaults-full-source-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json)
 
 首轮完整源码因旧圆角断言失败，实际退出 1；原日志、24 张截图、工作区及准确编译文件均保留。修改测试期望后重跑通过。归档助手另曾使用错误的报告文件名，在复制前退出 1；已按原验证器修正并保留记录，没有重写产品或降低验收条件。[首轮失败现场](../verification/composer-surface-tokens-full-source-failure-review-result.json)
 
