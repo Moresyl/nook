@@ -6,6 +6,8 @@ import { waitForTerminalPrompt } from './terminal-prompt.mjs';
 import { assertTextHint, dismissModalWithEscape } from './text-hint-verification.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
+  const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
+  await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   async function waitForMain(expression) {
     const deadline = Date.now() + 10_000;
     while (!await application.evaluateMain(expression)) { assert.ok(Date.now() < deadline, 'The owned main-process fixture did not reach its expected state'); await new Promise((resolve) => setTimeout(resolve, 100)); }
@@ -147,7 +149,6 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   assert.deepEqual(await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')])), rowsBeforeHide);
   await page.getByRole('button', { name: '查看改动', exact: true }).click(); assert.equal(await page.getByRole('button', { name: '隐藏文件树', exact: true }).isDisabled(), true); await page.locator('.inspector-toolbar').getByRole('button', { name: '文件', exact: true }).click();
   assert.equal(await page.getByRole('button', { name: '隐藏文件树', exact: true }).isDisabled(), false); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
-  const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
   async function capture(path) {
     await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const image = await application.evaluateMain(`(async () => { const window = ${mainWindow}; const image = await window.capturePage(); return { png: image.toPNG().toString('base64'), size: window.getContentSize() }; })()`); const png = Buffer.from(image.png, 'base64'); assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], image.size); await writeFile(join(screenshots, path), png);

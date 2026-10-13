@@ -4,6 +4,8 @@
 
 最新记忆删除修正了参考作用域判断：默认标题采用 600 字重与正常字距，弹窗按可用高度顶部定位，使用 90% 回退表面、0.5px 边缘和 24px 背景模糊。长内容仍有界滚动，取消与等待／失败保护保留。新样式的类型、133 文件／1,557 项完整单元与覆盖率、构建均通过；源码五组原生专项、六组主题／应用缩放与 22 张逐张复核原图通过，正常退出 740ms。新完整 375 项回归、新包与安装验收尚待完成，以下结果属于此前记忆候选。[新单元与构建](../verification/memory-delete-default-surface-unit-review-result.json) · [新原生专项](../verification/memory-delete-default-surface-focused-review-result.json) · [新原图复核](../verification/memory-delete-default-surface-visual-review-result.json)
 
+新完整源码首轮在项目文件树的尺寸等待处未通过：物理窗口为 760×540，继承的 150% 缩放使 CSS 视口为 507×360。保留 192 项已执行检查、20 次正常退出、9 份新报告、189 张原图和失败现场。测试入口现明确初始化其所需的 100% 缩放，原尺寸断言与 30 秒超时不变；产品代码与编译文件未改动，重跑仍待通过。[本轮失败现场](../verification/memory-delete-default-surface-full-source-failure1-review-result.json)
+
 此前记忆候选的源码五组专项、六种主题／应用缩放、22 张原图复核通过；完整源码通过 375 项和 74 次正常退出，最长 1,694ms，无强制结束，保留 39 份报告、617 张原图和 236 个匹配编译文件。冻结提交重跑 133 文件／1,555 项完整覆盖率通过，四项覆盖率均超过 94%。旧样式使用的 590 字重、基础字距和垂直居中未正确反映默认调用，旧结果与前三轮失败现场保留，不作为新样式通过证据。下述 373 项分发结果属于更早的设置候选。[初版单元](../verification/memory-delete-unit-review-result.json) · [焦点修正](../verification/memory-delete-focus-correction-review-result.json) · [旧原生专项](../verification/memory-delete-focused-review-result.json) · [旧原图复核](../verification/memory-delete-visual-review-result.json) · [旧完整源码](../verification/memory-delete-full-source-review-result.json)
 
 原托管流水线在 `462ee40` 的运行因账户付款／额度问题未启动验证步骤，发布任务跳过，标签和发布仍为零。实际浏览器入口返回 `Codex auth token is unavailable`。原流水线、账户设置与失败证据保留；这是该提交的外部状态，不代表新的完整源码验收失败。[托管与浏览器记录](../verification/memory-delete-delivery-hosted-review-result.json)
