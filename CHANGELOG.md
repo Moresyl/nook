@@ -2,13 +2,13 @@
 
 ## 未发布
 
-原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免继承上一场景的 150% 缩放。原有超时和断言保留，此前失败现场归档；七组文件树专项重跑通过，完整重跑待通过。
+原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项和完整 375 项源码重跑通过，74 次正常退出，无强制结束。新包与实际安装仍待验收。
 
-Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. All seven focused file-tree checks pass; the failed scene is retained and the complete rerun is pending.
+Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks and the complete 375-check source rerun pass with 74 normal exits. The failed scene is retained; new packaged and installed verification remains pending.
 
-记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。新样式的 1,557 项完整单元、类型、构建、五组原生专项和 22 张原图复核通过；新完整回归与分发仍待验收，此前通过的结果按旧候选保留。
+记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。新样式的 1,557 项完整单元、类型、构建、五组原生专项和 22 张原图复核通过；完整源码 375 项／74 次正常退出通过，保留 39 份报告、617 张原图与 236 个匹配编译文件。新包与安装分发仍待验收，此前候选的结果继续保留。
 
-The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. Long content remains bounded with visible controls. All 1,557 unit tests, type checks, build, five native checks and 22 reviewed images pass. The new full runtime and distribution gates remain pending; earlier results remain evidence for the previous candidate.
+The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. Long content remains bounded with visible controls. All 1,557 unit tests, type checks, build, five native checks and 22 reviewed images pass. The complete source regression passes 375 checks with 74 normal exits, retaining 39 reports, 617 captures and 236 matching compiled files. New packaged and installed distribution gates remain pending.
 
 记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；完整源码 375 项／74 次正常退出通过，新包与安装分发验收待完成。
 

@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-13T10:09:24.230Z",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfaceDeliveryHosted-20261013",
+  "sourceHead": "4dbe6a52e07472f97d4160ccad661d74fcf272a6",
+  "remoteBranchHeadVerified": true,
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38380603860",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115239757321,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115239773992,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "3740723915c7dd12911041d41ceebcc46c666f96698d05a765ccf30921724645"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "aba859900c99b74629005b90f591c536cf0e5e8e1a40525cad7977cc2577f55e"
+    },
+    {
+      "name": "annotations-115239757321.json",
+      "sha256": "411a5eab4a1c42f2da89a0ae800365f06c1142085ecba8d74b70f1e11d56e2ed"
+    },
+    {
+      "name": "annotations-115239773992.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "scope": "Exact original workflow read-only inspection for the committed default-surface acceptance with 1557 unit tests and five native checks. New full source regression is separate and still running. No tag, billing, runner or workflow change."
+}

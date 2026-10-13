@@ -2,7 +2,7 @@
 
 Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
 
-记忆删除支持安全默认取消、明确影响说明、长内容独立滚动、等待期间禁止关闭，以及失败保留／重试。最新默认标题、顶部定位和半透明表面的 1,557 项完整单元、类型、构建、五组原生专项及六组明暗／应用缩放通过，22 张新原图逐张复核；新完整 375 项回归与分发仍待验收。[新专项](../verification/memory-delete-default-surface-focused-review-result.json) · [新原图](../verification/memory-delete-default-surface-visual-review-result.json) · [旧完整源码](../verification/memory-delete-full-source-review-result.json)
+记忆删除支持安全默认取消、明确影响说明、长内容独立滚动、等待期间禁止关闭，以及失败保留／重试。最新默认标题、顶部定位和半透明表面的 1,557 项完整单元、类型、构建、五组原生专项及六组明暗／应用缩放通过，22 张新原图逐张复核；完整源码重跑通过 375 项／74 次正常退出，新包与实际安装分发仍待验收。[新专项](../verification/memory-delete-default-surface-focused-review-result.json) · [新原图](../verification/memory-delete-default-surface-visual-review-result.json) · [新完整源码](../verification/memory-delete-default-surface-full-source-review-result.json)
 
 设置支持六类未保存表单的离开确认、跨分类保留草稿、保存等待锁定与失败重试。最新 1,555 项单元、类型、构建及八组设置专项通过；完整源码、新包和实际安装各通过 373 项／74 次正常退出。原五个分发专项、便携七项、保留数据卸载及十一份匹配运行记录通过。源码专项、包内与安装设置原图分别复核 34 张；安装轮先前七张缩放差异的目测判断经原图像素测量更正，实际尺寸与三档缩放一致。完整参考界面与托管发布未完成。[设置与草稿](SETTINGS.md) · [本轮运行证据](../verification/settings-drafts-runtime-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [测量与更正](../verification/settings-drafts-installed-scale-correction-result.json)
 
@@ -21,7 +21,7 @@ Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与�
 
 图片生成、离线模型下载管理、本地 API 服务、远程主机／SSH、WebUI／连接器及加密同步尚未提供。完整细项与各功能使用说明保留在[能力历史](CAPABILITIES-HISTORY-2026-10-13.md)。
 
-最新源码通过 1,550 项单元、类型与构建。冻结 `10db2c6` 应用体的完整开发程序、新包与实际安装各通过 371 项和 74 次正常退出；每轮保留 39 份报告、581 张原图与 236 个匹配编译文件。本地分支专项 11 组通过；专项源码、新包与安装后各 34 张分支原图逐张复核，其余原图未全部视觉复核。原五个分发专项、便携七项、十一份匹配运行记录和卸载保留数据通过，八个原始及四个失败轮次标记的哈希恢复一致。首次安装的遗留计数失败与完整重跑分别保留。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[源码测试](../verification/project-branch-actions-unit-review-result.json) · [完整源码](../verification/project-branch-actions-full-source-review-result.json) · [本轮分发](../verification/project-branch-actions-runtime-review-result.json) · [安装重跑](../verification/project-branch-actions-installer-retry-review-result.json) · [此前搜索候选分发](../verification/command-palette-runtime-review-result.json)
+此前分支候选通过 1,550 项单元、类型与构建。冻结 `10db2c6` 应用体的完整开发程序、新包与实际安装各通过 371 项和 74 次正常退出；每轮保留 39 份报告、581 张原图与 236 个匹配编译文件。本地分支专项 11 组通过；专项源码、新包与安装后各 34 张分支原图逐张复核，其余原图未全部视觉复核。原五个分发专项、便携七项、十一份匹配运行记录和卸载保留数据通过，八个原始及四个失败轮次标记的哈希恢复一致。首次安装的遗留计数失败与完整重跑分别保留。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[分支源码测试](../verification/project-branch-actions-unit-review-result.json) · [分支完整源码](../verification/project-branch-actions-full-source-review-result.json) · [分支分发](../verification/project-branch-actions-runtime-review-result.json) · [分支安装重跑](../verification/project-branch-actions-installer-retry-review-result.json) · [此前搜索候选分发](../verification/command-palette-runtime-review-result.json)
 
 [当前发布状态](RELEASE.md) · [设计采用范围](DESIGN-ALIGNMENT.md) · [完整交付要求](DELIVERY.md) · [前轮完整源码证据](../verification/command-progress-full-source-review-result.json)
 
