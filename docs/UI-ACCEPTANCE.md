@@ -12,11 +12,12 @@
 | 按钮状态 | 真实添加／保存记忆控件的默认、键盘焦点、悬停、按下、禁用状态验证；禁用保存不改变已存数据 |
 | 键盘与数据 | 设置打开、Escape 返回焦点、中文与 emoji 草稿保留及正常重启通过 |
 | 前一输入框完整源码 | 375 项、74 次正常退出，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核 |
-| 当前回归与分发边界 | 共享按钮改动后的完整源码、安装与便携包仍待验收；前一记忆应用体的三轮 375 项保留准确来源 |
+| 当前共享按钮完整源码 | 375 项、74 次正常退出，最长 4,592ms，无强制结束；39 份报告与 617 张新原图归档，原图未全部逐张视觉复核 |
+| 当前分发边界 | 共享按钮改动后的安装与便携包仍待验收；前一记忆应用体的三轮 375 项保留准确来源 |
 
 首页专项本机实际系统缩放为 100%，未强制设备缩放。短窗口高应用缩放使用紧凑侧栏和纵向滚动，保留输入与发送操作；这不代表所有页面、内容长度或物理输入均已完成验收。
 
-[当前按钮与实际缩放](../verification/shared-button-defaults-native-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json) · [前一分发范围](../verification/memory-delete-default-surface-runtime-review-result.json)
+[当前按钮与实际缩放](../verification/shared-button-defaults-native-review-result.json) · [当前完整源码](../verification/shared-button-defaults-full-source-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json) · [前一分发范围](../verification/memory-delete-default-surface-runtime-review-result.json)
 
 ## 验收规则
 

@@ -13,11 +13,12 @@
 | 共享按钮与首页原生专项 | 13 项、两次正常退出，最长 296ms；两种主题、两种尺寸、三档应用缩放；37 张原图逐张复核 |
 | 原生状态 | 默认、键盘焦点、悬停、按下、禁用状态与真实记忆控件验证；禁用保存不获取焦点、不改变已存记忆 |
 | 前一输入框完整源码 | `9f50a58` 通过 375 项、74 次正常退出，最长 1,712ms；39 份报告与 617 张原图归档，原图未全部逐张视觉复核 |
-| 当前完整回归 | 共享按钮改动后的完整源码、包内和实际安装仍待验收，前一应用体记录不能替代 |
+| 当前共享按钮完整源码 | 375 项、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告、617 张原图和 236 个匹配编译文件归档，原图未全部逐张视觉复核 |
+| 当前分发 | 共享按钮改动后的包内和实际安装仍待验收，前一应用体记录不能替代 |
 
 首页专项实际系统缩放为 100%，没有强制设备缩放。完整源码套件保留原精确尺寸夹具和全部期限；它不能替代其他实际系统 DPI、物理交互与真实服务验收。
 
-[当前单元与构建](../verification/shared-button-defaults-build-review-result.json) · [按钮状态与原图](../verification/shared-button-defaults-native-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json)
+[当前单元与构建](../verification/shared-button-defaults-build-review-result.json) · [按钮状态与原图](../verification/shared-button-defaults-native-review-result.json) · [当前完整源码](../verification/shared-button-defaults-full-source-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json)
 
 首轮完整源码因旧圆角断言失败，实际退出 1；原日志、24 张截图、工作区及准确编译文件均保留。修改测试期望后重跑通过。归档助手另曾使用错误的报告文件名，在复制前退出 1；已按原验证器修正并保留记录，没有重写产品或降低验收条件。[首轮失败现场](../verification/composer-surface-tokens-full-source-failure-review-result.json)
 
@@ -27,7 +28,7 @@
 
 [前一完整分发](../verification/memory-delete-default-surface-runtime-review-result.json) · [安装后回归](../verification/memory-delete-default-surface-full-installed-review-result.json)
 
-当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 已实际启动，环境准备成功，类型、单元覆盖率与许可证检查正在执行。此前 `844c33d` 的账户限制／零步骤失败属于历史，不能当作当前运行结果。本次尚未得出完整验收或发布成功结论；浏览器连接仍返回认证令牌不可用，页面未打开。尚无发布标签或可下载版本。[本次实际进度](../verification/shared-button-defaults-hosted-progress-review-result.json)
+当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 完成环境准备与类型检查后，在单元覆盖率阶段因六项既有测试超时失败：133 文件中 127 通过，1,557 项中 1,551 通过。后续打包与发布未执行，正在修复测试开销；原期限、数据样本和完整验收要求保留。此前账户限制／零步骤失败属于历史。浏览器连接仍返回认证令牌不可用，页面未打开；尚无发布标签或可下载版本。[本次终态与完整失败日志](../verification/shared-button-defaults-hosted-terminal-review-result.json) · [此前进度快照](../verification/shared-button-defaults-hosted-progress-review-result.json)
 
 ## 剩余交付
 
