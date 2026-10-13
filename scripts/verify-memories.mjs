@@ -63,8 +63,8 @@ export async function verifyMemories({ page, application, directory, screenshots
     assert.equal(await application.evaluateMain('globalThis.nookMemoryDeleteTest.entered'), true);
     for (const name of ['取消', '确认删除', '关闭']) assert.equal(await confirmation.getByRole('button', { name, exact: true }).isDisabled(), true);
     await page.keyboard.press('Escape'); assert.equal(await confirmation.isVisible(), true); await capture('pending');
-    await application.evaluateMain('globalThis.nookMemoryDeleteTest.release()'); await confirmation.getByRole('alert').waitFor();
-    assert.equal(await confirmation.getByRole('alert').textContent(), '删除未完成，请重试。'); assert.equal(await confirmation.locator('.memory-delete-content').textContent(), content);
+    await application.evaluateMain('globalThis.nookMemoryDeleteTest.release()'); await confirmation.locator('.modal-content').getByRole('alert').waitFor();
+    assert.equal(await confirmation.locator('.modal-content').getByRole('alert').textContent(), '删除未完成，请重试。'); assert.equal(await confirmation.locator('.memory-delete-content').textContent(), content);
     assert.equal(await confirmation.getByRole('button', { name: '确认删除', exact: true }).isEnabled(), true);
     assert.equal(await application.evaluateMain('globalThis.nookMemoryDeleteTest.calls'), 1); assert.deepEqual(await readFile(join(directory, 'workspace.json')), beforeFailure);
     await capture('failure'); await confirmation.getByRole('button', { name: '取消', exact: true }).click();
