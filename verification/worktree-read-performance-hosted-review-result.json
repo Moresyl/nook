@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-13T15:55:37.458Z",
+  "archive": "C:/NookVerificationOverflow/WorktreeReadPerformanceHosted-20261013",
+  "head": "544c8c9393ad8bcc11231a3288c31aaeedec662d",
+  "workflow": {
+    "id": 38425482322,
+    "url": "https://github.com/Moresyl/nook/actions/runs/38425482322",
+    "status": "completed",
+    "conclusion": "failure",
+    "jobs": [
+      {
+        "id": 115393649670,
+        "name": "verify",
+        "conclusion": "failure",
+        "actualSteps": 0
+      },
+      {
+        "id": 115393671395,
+        "name": "publish",
+        "conclusion": "skipped",
+        "actualSteps": 0
+      }
+    ],
+    "annotations": [
+      "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    ]
+  },
+  "releaseCount": 0,
+  "tagCount": 0,
+  "evidence": [
+    {
+      "name": "run.json",
+      "sha256": "46d45e4d17e6e058be50b196e7c92b1e634418e0a57a4c84af078ba03f19518a"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "6f9c01f56efe38fdb4cbc12ca22e9fd3cfd58f341c44361d5c4bd2e557ba31a4"
+    },
+    {
+      "name": "annotations-115393649670.json",
+      "sha256": "0799e3eb406ac197376f03a085e65abda01dbc668ff20ed842623e70468fc15e"
+    },
+    {
+      "name": "annotations-115393671395.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "failed-job.log",
+      "meaning": "Actual failed attempt to retrieve a nonexistent job log; no workflow log is claimed.",
+      "sha256": "5d40503f37adf6f85ef507b95ba8ae7686a59fdfaa74c3366204d2d450300a24"
+    }
+  ],
+  "actualJobLogAvailable": false,
+  "logFetchExitCode": 1,
+  "accountSettingsChanged": false,
+  "published": false,
+  "hostedCodeValidationCompleted": false,
+  "scope": "Current original third hosted attempt did not start. GitHub reports failed recent account payments or an insufficient spending limit. This is separate from the two previous attempts that actually ran and exposed six and then one test timeouts. The new read-only performance changes pass 1559 local tests but have no hosted validation yet. No purchase, billing/spending change, workflow bypass, tag or release is claimed."
+}
