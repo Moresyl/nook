@@ -1,0 +1,143 @@
+{
+  "verifiedAt": "2026-10-13T01:39:55.670Z",
+  "archive": "C:/NookVerificationOverflow/BranchActionsUnit-20261013",
+  "sourceBaseHead": "f3df7771584c6ca9b0e778b68ff585124f0834ee",
+  "sourceOverlays": [
+    {
+      "path": "contracts/bridge-contract.ts",
+      "bytes": 12308,
+      "sha256": "92b75aa0125440a394e2c3185765fde31f1beba7cfe2f991bb158a2fac9fe4c8"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "bytes": 13394,
+      "sha256": "1ab3ca4ebca9a71ace69768898374e852beb31a78db24ccf3ffb5269c7b9bb8a"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "bytes": 54075,
+      "sha256": "50e3a7e47a6bb9aa9682970efbb586f2ceab0c6424a4e177bc6a66ef6669e19a"
+    },
+    {
+      "path": "desktop/services/project-git.ts",
+      "bytes": 20451,
+      "sha256": "34344af8c2061b76c9a9d9b15bdfbbe65d788536434bfde5f0b474f73811e69a"
+    },
+    {
+      "path": "workbench/components/project-branches.tsx",
+      "bytes": 8630,
+      "sha256": "3af46066b3e3faa25ac55a661b99269c8214564836a6446b695f33e2fef9d00e"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "bytes": 77983,
+      "sha256": "843dc722da39768bf8d226445068750efbc9f3c1dfcd7c62f3d3fe1ff9bde2d9"
+    },
+    {
+      "path": "verification/project-git.test.ts",
+      "bytes": 24904,
+      "sha256": "935d6409b7b880b04c8ed64cb12d25a21a7ca3092083b7e1fece8018b03f8835"
+    },
+    {
+      "path": "scripts/verify-project-branches.mjs",
+      "bytes": 24331,
+      "sha256": "21495c7019dcca4e43b73eee0f74be69008568efe5cdaca51058282d758e6e7a"
+    },
+    {
+      "path": "scripts/verify-project-branch-actions.mjs",
+      "bytes": 9447,
+      "sha256": "a210f83066a0928327e3a1c26a6176422da1da7a49bbfee71998cade02a453f7"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "bytes": 192553,
+      "sha256": "22f39057e3f92bc77b83f8995207df2ee315f36dbfd009d11c7448506156a52d"
+    },
+    {
+      "path": "scripts/release-policy.mjs",
+      "bytes": 51005,
+      "sha256": "51864f1a0717dc099f868dd6bf4ddc59e8e7260ec3164e4c6a6520055fd96b8d"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "bytes": 21709,
+      "sha256": "8e30ee3bbd6d18847159e2f1a82c63fefb9e587ec10d378a22095efa29822ddc"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "bytes": 114864,
+      "sha256": "298ea40376a0e97b7f1edfc3a072c964dc53fd454ba55b506cb4ed7e4a75b249"
+    }
+  ],
+  "actualExit": 0,
+  "firstFullTests": 1547,
+  "finalFullTests": 1550,
+  "testFiles": 132,
+  "relatedReleaseTests": 120,
+  "coverage": {
+    "lines": {
+      "total": 4519,
+      "covered": 4496,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7513,
+      "covered": 7290,
+      "skipped": 0,
+      "pct": 97.03
+    },
+    "functions": {
+      "total": 1671,
+      "covered": 1634,
+      "skipped": 0,
+      "pct": 97.78
+    },
+    "branches": {
+      "total": 5268,
+      "covered": 4982,
+      "skipped": 0,
+      "pct": 94.57
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "typeCheckPassed": true,
+  "buildPassed": true,
+  "compiledFiles": 236,
+  "compiledManifestSha256": "656cb0cd694cac97142e7c7dfb43cfa576d8d576a04e049559ae0d9940c91574",
+  "logs": [
+    {
+      "name": "coverage",
+      "sha256": "3d0782bb8c0758a0614fc6b8cee95c9afe1b0c4917b26af25591c731be074528"
+    },
+    {
+      "name": "coverage-final",
+      "sha256": "c6c01fe2dc865ff67cec931211340b3d4139563ebd1cd9eb957be8b762809cf4"
+    },
+    {
+      "name": "types-final",
+      "sha256": "8a8d0e2cf32c77fee831f1226c3f98e811d355e2e298f92906c5f038fd38badc"
+    },
+    {
+      "name": "release-policy",
+      "sha256": "3ffe18dbb13a4a355fa33eca599f295e522a20999eda5b3d9e2c79a07b1a442e"
+    },
+    {
+      "name": "build-first",
+      "sha256": "3e2c6ed5d85c9d1f3d0b3cb4a3697be94d3185a8c728ad20f6bb586ca50263d0"
+    }
+  ],
+  "releaseGates": {
+    "completeDesktopMinimum": 371,
+    "branchChecks": 11,
+    "actionLayouts": 18,
+    "branchOriginals": 34,
+    "originalWorkflowUnchanged": true
+  },
+  "boundary": "Two actual complete coverage runs, final type checks and stronger distribution proof unit tests. Compiled application bytes match the accepted branch source-focused run; full native and final distribution remain separate."
+}

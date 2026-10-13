@@ -36,6 +36,69 @@ describe('project Git workflow', () => {
     await writeFile(join(root, 'file.txt'), 'DO_NOT_LOSE'); await expect(git.switchBranch(root, base)).rejects.toThrow('Git could not');
     expect((await git.status(root)).branch).toBe('changed'); expect(await readFile(join(root, 'file.txt'), 'utf8')).toBe('DO_NOT_LOSE');
   });
+  it('renames current and unused Unicode branches without changing commits, index, files or tracking settings', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    await git.createBranch(root, 'old'); await run('git', ['-C', root, 'config', 'branch.old.remote', '.']); await run('git', ['-C', root, 'config', 'branch.old.merge', `refs/heads/${base}`]);
+    await writeFile(join(root, 'file.txt'), 'INDEX'); await git.stage(root, ['file.txt'], true); await writeFile(join(root, 'file.txt'), 'WORKING'); await writeFile(join(root, 'keep.txt'), 'UNTRACKED');
+    const head = (await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout, index = await readFile(join(root, '.git/index'));
+    const renamed = await git.renameBranch(root, 'old', '功能/改名🧭'); expect(renamed.status.branch).toBe('功能/改名🧭'); expect(renamed.branches.some(branch => branch.name === 'old')).toBe(false);
+    expect((await run('git', ['-C', root, 'config', 'branch.功能/改名🧭.merge'])).stdout.trim()).toBe(`refs/heads/${base}`);
+    expect((await run('git', ['-C', root, 'reflog', 'show', '--format=%gs', '功能/改名🧭'])).stdout).toContain('renamed');
+    expect((await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout).toBe(head); expect(await readFile(join(root, '.git/index'))).toEqual(index);
+    expect(await readFile(join(root, 'file.txt'), 'utf8')).toBe('WORKING'); expect(await readFile(join(root, 'keep.txt'), 'utf8')).toBe('UNTRACKED');
+    expect((await git.renameBranch(root, base, 'unused-renamed')).status.branch).toBe('功能/改名🧭'); expect((await git.renameBranch(root, '功能/改名🧭', '功能/改名🧭')).status.branch).toBe('功能/改名🧭');
+  });
+  it('renames an unborn current branch and an unused branch from detached HEAD', async () => {
+    const root = await repository(), base = (await git.status(root)).branch;
+    expect((await git.renameBranch(root, base, '功能/初始')).status).toMatchObject({ branch: '功能/初始', unborn: true });
+    await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base');
+    await run('git', ['-C', root, 'switch', '--detach', 'HEAD']);
+    expect((await git.renameBranch(root, '功能/初始', 'detached-renamed')).status.detached).toBe(true);
+  });
+  it('rejects invalid, duplicate, missing and occupied rename targets without replacing any refs', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    await git.createBranch(root, 'occupied'); await git.switchBranch(root, base); const linked = join(root, 'linked'); await run('git', ['-C', root, 'worktree', 'add', linked, 'occupied']);
+    for (const name of ['', '-M', 'a b', '@{-1}', 'HEAD', 'a..b', 'a.lock', 'a\0b']) { await expect(git.renameBranch(root, base, name)).rejects.toThrow(); await expect(git.renameBranch(root, name, 'safe')).rejects.toThrow(); }
+    await expect(git.renameBranch(root, base, 'occupied')).rejects.toThrow('already exists'); await expect(git.renameBranch(root, 'missing', 'safe')).rejects.toThrow('no longer'); await expect(git.renameBranch(root, 'occupied', 'safe')).rejects.toThrow('another worktree');
+    expect((await git.branches(root)).branches.map(branch => branch.name).sort()).toEqual([base, 'occupied'].sort()); expect((await git.status(linked)).branch).toBe('occupied');
+  });
+  it('deletes only merged unused local refs while preserving HEAD, staged bytes, files and remote refs', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    await git.createBranch(root, '功能/已合并🧭'); await git.switchBranch(root, base); const head = (await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout.trim();
+    await run('git', ['-C', root, 'update-ref', 'refs/remotes/origin/功能/已合并🧭', head]); await writeFile(join(root, 'file.txt'), 'INDEX'); await git.stage(root, ['file.txt'], true); await writeFile(join(root, 'file.txt'), 'WORKING'); await writeFile(join(root, 'keep.txt'), 'KEEP'); const index = await readFile(join(root, '.git/index'));
+    const result = await git.deleteBranch(root, '功能/已合并🧭'); expect(result.status.branch).toBe(base); expect(result.branches.map(branch => branch.name)).toEqual([base]);
+    expect((await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout.trim()).toBe(head); expect((await run('git', ['-C', root, 'rev-parse', 'refs/remotes/origin/功能/已合并🧭'])).stdout.trim()).toBe(head);
+    expect(await readFile(join(root, '.git/index'))).toEqual(index); expect(await readFile(join(root, 'file.txt'), 'utf8')).toBe('WORKING'); expect(await readFile(join(root, 'keep.txt'), 'utf8')).toBe('KEEP');
+    await git.createBranch(root, 'detached-delete'); await run('git', ['-C', root, 'switch', '--detach', 'HEAD']); expect((await git.deleteBranch(root, 'detached-delete')).status.detached).toBe(true);
+  });
+  it('retains unmerged commits even when a configured upstream already contains them', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    await git.createBranch(root, 'unmerged'); await writeFile(join(root, 'new.txt'), 'UNMERGED'); await git.stage(root, ['new.txt'], true); await git.commit(root, 'Unmerged'); const tip = (await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout.trim();
+    await run('git', ['-C', root, 'update-ref', 'refs/remotes/origin/unmerged', tip]); await run('git', ['-C', root, 'config', 'branch.unmerged.remote', 'origin']); await run('git', ['-C', root, 'config', 'branch.unmerged.merge', 'refs/heads/unmerged']); await git.switchBranch(root, base);
+    await expect(git.deleteBranch(root, 'unmerged')).rejects.toThrow('not fully merged'); expect((await run('git', ['-C', root, 'rev-parse', 'refs/heads/unmerged'])).stdout.trim()).toBe(tip);
+  });
+  it('retains current and occupied branches, rejects missing or invalid delete requests and honors Git upstream protection', async () => {
+    const root = await repository(); const initial = (await git.status(root)).branch; await expect(git.deleteBranch(root, initial)).rejects.toThrow('current branch');
+    await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    const old = (await run('git', ['-C', root, 'rev-parse', 'HEAD'])).stdout.trim(); await git.createBranch(root, 'protected'); await writeFile(join(root, 'next.txt'), 'NEXT'); await git.stage(root, ['next.txt'], true); await git.commit(root, 'Next'); await run('git', ['-C', root, 'update-ref', 'refs/heads/upstream-behind', old]);
+    await run('git', ['-C', root, 'config', 'branch.protected.remote', '.']); await run('git', ['-C', root, 'config', 'branch.protected.merge', 'refs/heads/upstream-behind']); await git.switchBranch(root, base); await run('git', ['-C', root, 'merge', '--ff-only', 'protected']);
+    await expect(git.deleteBranch(root, 'protected')).rejects.toThrow('Git could not'); expect((await git.branches(root)).branches.some(branch => branch.name === 'protected')).toBe(true);
+    const linked = join(root, 'linked'); await run('git', ['-C', root, 'worktree', 'add', linked, 'protected']); await expect(git.deleteBranch(root, 'protected')).rejects.toThrow('another worktree'); await expect(git.deleteBranch(root, base)).rejects.toThrow('current branch'); await expect(git.deleteBranch(root, 'missing')).rejects.toThrow('no longer');
+    for (const name of ['-D', 'HEAD', 'a..b', '@{-1}', 'a\0b']) await expect(git.deleteBranch(root, name)).rejects.toThrow();
+  });
+  it('queues rename/delete across linked worktrees and revalidates the source after an earlier rename', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
+    await git.createBranch(root, 'linked'); await git.switchBranch(root, base); const linked = join(root, 'linked'); await run('git', ['-C', root, 'worktree', 'add', linked, 'linked']); await run('git', ['-C', root, 'branch', 'unused']);
+    let release!: () => void, entered!: () => void; const held = new Promise<void>(resolve => { release = resolve; }), started = new Promise<void>(resolve => { entered = resolve; });
+    const runner = vi.fn(async (file, args, options) => { if (args.includes('-m')) { entered(); await held; } return run(file, args, options); }); const queued = new ProjectGit(runner as unknown as ConstructorParameters<typeof ProjectGit>[0]);
+    const renaming = queued.renameBranch(root, 'unused', 'renamed'); await started; const deleting = queued.deleteBranch(linked, 'unused'), failed = expect(deleting).rejects.toThrow('no longer');
+    expect(runner.mock.calls.some(([, args]) => args.includes('-d'))).toBe(false); release(); await renaming; await failed; expect((await queued.deleteBranch(linked, 'renamed')).branches.some(branch => branch.name === 'renamed')).toBe(false);
+  });
+  it('sanitizes failed metadata mutations and retains the branch when ancestry cannot be verified', async () => {
+    const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); await run('git', ['-C', root, 'branch', 'unused']);
+    const runner = vi.fn(async (file, args, options) => { if (args.includes('-m') || args.includes('merge-base')) throw new Error('PRIVATE_TOKEN_DIAGNOSTICS'); return run(file, args, options); }); const failed = new ProjectGit(runner as unknown as ConstructorParameters<typeof ProjectGit>[0]);
+    await expect(failed.renameBranch(root, 'unused', 'renamed')).rejects.toThrow('Git could not complete'); await expect(failed.deleteBranch(root, 'unused')).rejects.toThrow('not fully merged'); expect((await git.branches(root)).branches.some(branch => branch.name === 'unused')).toBe(true); expect(runner.mock.calls.some(([, args]) => args.includes('-d'))).toBe(false);
+  });
   it('rejects invalid names, duplicate or missing branches, and worktree occupancy without leaking output', async () => {
     const root = await repository(); await writeFile(join(root, 'file.txt'), 'BASE'); await git.stage(root, ['file.txt'], true); await git.commit(root, 'Base'); const base = (await git.status(root)).branch;
     for (const name of ['', '-f', 'a b', '@{-1}', 'HEAD', 'a..b', 'a.lock', 'a/../b', 'a\0b']) await expect(git.createBranch(root, name)).rejects.toThrow();

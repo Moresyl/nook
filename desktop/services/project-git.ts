@@ -104,6 +104,37 @@ export class ProjectGit {
   }
   async switchBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, false); }
   async createBranch(root: string, raw: string): Promise<GitBranches> { return this.changeBranch(root, raw, true); }
+  async renameBranch(root: string, raw: string, rawNewName: string): Promise<GitBranches> {
+    const name = gitBranchNameSchema.parse(raw), newName = gitBranchNameSchema.parse(rawNewName);
+    return this.update(root, async () => {
+      await this.validateBranchName(root, name); await this.validateBranchName(root, newName);
+      const snapshot = await this.branches(root), target = snapshot.branches.find(branch => branch.name === name);
+      if (!target) throw new Error('This local branch no longer exists. Refresh the branch list.');
+      if (!target.current && target.worktreePath) throw new Error('This branch is in use by another worktree.');
+      if (name === newName) return snapshot;
+      if (snapshot.branches.some(branch => branch.name === newName)) throw new Error('This branch already exists.');
+      await this.run(root, ['branch', '-m', '--', name, newName]);
+      return this.branches(root);
+    });
+  }
+  async deleteBranch(root: string, raw: string): Promise<GitBranches> {
+    const name = gitBranchNameSchema.parse(raw);
+    return this.update(root, async () => {
+      await this.validateBranchName(root, name);
+      const snapshot = await this.branches(root), target = snapshot.branches.find(branch => branch.name === name);
+      if (!target) throw new Error('This local branch no longer exists. Refresh the branch list.');
+      if (target.current) throw new Error('The current branch cannot be deleted. Switch to another branch first.');
+      if (target.worktreePath) throw new Error('This branch is in use by another worktree.');
+      if (snapshot.status.unborn) throw new Error('Create a commit before deleting a branch.');
+      try { await this.run(root, ['merge-base', '--is-ancestor', `refs/heads/${name}`, 'HEAD']); }
+      catch { throw new Error('This branch is not fully merged into the current HEAD, or Git could not verify its commits. The branch was retained.'); }
+      await this.run(root, ['branch', '-d', '--', name]);
+      return this.branches(root);
+    });
+  }
+  private async validateBranchName(root: string, name: string): Promise<void> {
+    try { await this.run(root, ['check-ref-format', '--branch', name]); } catch { throw new Error('Enter a valid Git branch name.'); }
+  }
   async worktrees(root: string): Promise<GitWorktree[]> { return parseGitWorktrees(await this.run(root, ['worktree', 'list', '--porcelain', '-z'])); }
   private async refreshWorktreeUpstream(root: string, branch: string | undefined): Promise<NonNullable<WorktreeCreated['upstreamRefresh']>> {
     if (!branch) return 'not-configured';

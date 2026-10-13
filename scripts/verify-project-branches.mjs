@@ -4,6 +4,7 @@ import { chmod, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
+import { verifyProjectBranchActions, verifyProjectBranchActionLayouts } from './verify-project-branch-actions.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().startsWith('qiyao://app/')&&new URL(window.webContents.getURL()).searchParams.get('view')!=='quick-chat')";
 const nativeChildren = `${mainWindow}.contentView.children.filter(view=>view.webContents&&!view.webContents.isDestroyed())`;
@@ -72,7 +73,7 @@ export async function verifyProjectBranches({ page, application, getApplication,
   quick.setDefaultTimeout(5000); quick.setDefaultNavigationTimeout(5000);
   await waitForBridge(quick, () => typeof window.nookQuick?.load === 'function');
   assert.equal(await quick.evaluate(() => window.qiyao), undefined);
-  assert.deepEqual(await quick.evaluate(() => [typeof window.nookQuick.gitBranches, typeof window.nookQuick.gitSwitchBranch, typeof window.nookQuick.gitCreateBranch]), ['undefined', 'undefined', 'undefined']);
+  assert.deepEqual(await quick.evaluate(() => [typeof window.nookQuick.gitBranches, typeof window.nookQuick.gitSwitchBranch, typeof window.nookQuick.gitCreateBranch, typeof window.nookQuick.gitRenameBranch, typeof window.nookQuick.gitDeleteBranch]), Array(5).fill('undefined'));
   await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: projectName, exact: true }).click();
   await theme('light'); await branches(); assert.equal(await dialog().locator('.branch-row').count(), 219);
   await dialog().getByLabel('查找分支', { exact: true }).fill('list/0214'); assert.equal(await dialog().locator('.branch-row').count(), 1); await dialog().getByRole('button', { name: 'list/0214', exact: true }).waitFor(); await capture('search'); await dismissModalWithEscape(page, dialog());
@@ -125,7 +126,9 @@ export async function verifyProjectBranches({ page, application, getApplication,
   assert.equal((await page.locator('body').innerText()).includes('PRIVATE_HOOK_OUTPUT'), false); await rm(hook); await capture('hook-warning');
   verified('a real failing post-checkout hook reports the already changed HEAD with a sanitized warning, refreshes the workbench and releases both owned floating and docked previews');
 
+  const actions = await verifyProjectBranchActions({ page, projectId, root, branches, dialog, status, runGit, capture, dirtyDraft, verified });
   await choose(longBranch);
+  const actionLayouts = [];
   for (const targetTheme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
     await theme(targetTheme); const size = targetTheme === 'light' ? [1280, 840] : [760, 540]; await application.resize(...size); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await page.waitForFunction(width => Math.abs(innerWidth - width) < 2, size[0] / zoom);
     await branches(); await dialog().getByRole('button', { name: '新建分支', exact: true }).click(); await field().fill(`feature/${'输入新分支名称'.repeat(6)}`);
@@ -139,6 +142,7 @@ export async function verifyProjectBranches({ page, application, getApplication,
     assert.ok(geometry.controls.every(control => control.visible && control.contentFits && control.width > 0 && control.height >= 20)); assert.equal(geometry.fieldPadding, '8px 12px 0px'); assert.equal(geometry.fieldGap, '4px'); assert.equal(geometry.fieldBackground, 'rgba(0, 0, 0, 0)');
     assert.equal(await field().evaluate(element => element === document.activeElement), true); layouts.push({ theme: targetTheme, zoom, requestedSize: size, ...geometry }); await capture(`${targetTheme}-${zoom * 100}`); await dismissModalWithEscape(page, dialog());
     assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')), '管理项目分支');
+    await verifyProjectBranchActionLayouts({ page, branches, dialog, longBranch, capture, theme: targetTheme, zoom, layouts: actionLayouts });
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${original.zoom})`); await application.resize(...original.size); await theme(originalTheme);
   verified('new branch fields adopt the current reference autofocus, accessible name, duplicate/disabled states and 4px/12px/8px spacing; all dialog controls fit six light/dark zoom cases and Escape restores trigger focus');
@@ -148,5 +152,5 @@ export async function verifyProjectBranches({ page, application, getApplication,
   assert.deepEqual((await page.evaluate(() => window.qiyao.load())).editorDrafts.find(item => item.projectId === projectId && item.path === 'dirty.ts'), dirtyDraft); assert.equal(await readFile(join(root, 'keep-untracked.txt'), 'utf8'), 'KEEP_UNTRACKED_中文🧭'); await capture('restart');
   await page.locator('.primary-nav').getByRole('button', { name: /^新聊天/ }).click(); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), chatDraft); assert.equal(modelRequests(), initialRequests);
   verified('normal application restart retains the actual selected Git branch, exact dirty editor draft/baseline, unrelated file and chat draft without sending model requests');
-  return { page, result: { checks: 8, modelRequests: modelRequests() - initialRequests, localListSearchVerified: true, creationValidationBusyVerified: true, overwriteRetryVerified: true, editorRefreshDraftConflictVerified: true, worktreeProjectScopeVerified: true, hookStatePreviewCleanupVerified: true, referenceZoomKeyboardVerified: true, restartDraftsVerified: true, layouts, screenshots: captures, scope: 'Real local Git, refs, worktree, hooks, renderer/bridge and Monaco; owned fixtures and scripted input at fixed display scale. Local branch creation/switching only; remote/worktree creation UI, physical input, accessibility, full reference design and distribution remain pending.' } };
+  return { page, result: { checks: 8 + actions.checks, modelRequests: modelRequests() - initialRequests, localListSearchVerified: true, creationValidationBusyVerified: true, overwriteRetryVerified: true, editorRefreshDraftConflictVerified: true, worktreeProjectScopeVerified: true, hookStatePreviewCleanupVerified: true, referenceZoomKeyboardVerified: true, restartDraftsVerified: true, actions, actionLayouts, layouts, screenshots: captures, scope: 'Real local Git, refs, worktree, hooks, renderer/bridge and Monaco; owned fixtures and scripted input at fixed display scale. Local branch creation/switch/rename/merged-only deletion; remote credentials, physical input, accessibility, full reference design and final distribution remain pending.' } };
 }

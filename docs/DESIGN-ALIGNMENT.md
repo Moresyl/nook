@@ -15,6 +15,8 @@
 
 参考调用链已确认 `.command-menu-dialog` 是全局命令对话框，宽度上限 520px；现已采用这一上限、92vw 收缩、对应明暗表面和有界定位。源码专项、同一新包及实际安装均通过原六组命令行为、六组明暗应用缩放与每轮 12 张完整原生捕获；源码另含四张行为图，共 16 张原图逐张复核。[全局搜索专项](../verification/command-palette-acceptance-review-result.json) 输入区锚定快捷浮层的 420px 上限属于另一个入口。
 
+最新分支弹窗复用原名称字段与共享控件，加入同层重命名和删除确认，避免嵌套按钮与浮层。源码专项通过 11 组行为、原六组字段布局和新增十八组明暗／三档缩放操作布局；34 张原图逐张复核。新增功能仍需最终分发、物理输入及辅助技术验收，不把字段采用与布局检查计为整个参考界面已恢复。[分支源码专项](../verification/project-branch-actions-review-result.json)
+
 当前 `c81b8c38` 新包与实际安装各通过 368 项、74 次正常退出，无强制结束；每轮保留 39 份报告和 560 张原图，236 个编译文件匹配。新包及安装后选定 70 张原图已逐张复核：两轮各 16 张搜索、26 张控件及 12 张文字提示。1,539 项单元、原五个分发专项、便携七项及卸载数据保留通过；其余原图未全部视觉复核。此前工具专项浅色 150% 捕获差异仍未唯一诊断，旧批次与原图范围保留在历史，不将重放通过写成界面修复。这些结果不替代物理系统 DPI 或全部参考流程验收。[本轮原图](../verification/command-palette-package-originals-review-result.json)
 
 [前轮完整源码证据](../verification/command-progress-full-source-review-result.json) · [光标修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)

@@ -1,0 +1,406 @@
+{
+  "verifiedAt": "2026-10-13T01:22:35.040Z",
+  "sourceBaseHead": "f3df7771584c6ca9b0e778b68ff585124f0834ee",
+  "sourceOverlays": [
+    {
+      "path": "contracts/bridge-contract.ts",
+      "bytes": 12308,
+      "sha256": "92b75aa0125440a394e2c3185765fde31f1beba7cfe2f991bb158a2fac9fe4c8"
+    },
+    {
+      "path": "desktop/bridge.ts",
+      "bytes": 13394,
+      "sha256": "1ab3ca4ebca9a71ace69768898374e852beb31a78db24ccf3ffb5269c7b9bb8a"
+    },
+    {
+      "path": "desktop/launch.ts",
+      "bytes": 54075,
+      "sha256": "50e3a7e47a6bb9aa9682970efbb586f2ceab0c6424a4e177bc6a66ef6669e19a"
+    },
+    {
+      "path": "desktop/services/project-git.ts",
+      "bytes": 20451,
+      "sha256": "34344af8c2061b76c9a9d9b15bdfbbe65d788536434bfde5f0b474f73811e69a"
+    },
+    {
+      "path": "workbench/components/project-branches.tsx",
+      "bytes": 8630,
+      "sha256": "3af46066b3e3faa25ac55a661b99269c8214564836a6446b695f33e2fef9d00e"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "bytes": 77983,
+      "sha256": "843dc722da39768bf8d226445068750efbc9f3c1dfcd7c62f3d3fe1ff9bde2d9"
+    },
+    {
+      "path": "verification/project-git.test.ts",
+      "bytes": 24904,
+      "sha256": "935d6409b7b880b04c8ed64cb12d25a21a7ca3092083b7e1fece8018b03f8835"
+    },
+    {
+      "path": "scripts/verify-project-branches.mjs",
+      "bytes": 24331,
+      "sha256": "21495c7019dcca4e43b73eee0f74be69008568efe5cdaca51058282d758e6e7a"
+    },
+    {
+      "path": "scripts/verify-project-branch-actions.mjs",
+      "bytes": 9447,
+      "sha256": "a210f83066a0928327e3a1c26a6176422da1da7a49bbfee71998cade02a453f7"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "bytes": 192553,
+      "sha256": "22f39057e3f92bc77b83f8995207df2ee315f36dbfd009d11c7448506156a52d"
+    }
+  ],
+  "archive": "E:/NookVerification/BranchActions-focused-accepted-20261013",
+  "actualExit": 0,
+  "checks": 11,
+  "existingChecksRetained": 8,
+  "newBehaviorChecks": 3,
+  "nativeReportSha256": "df89b7b68b3328e456cf0f145f4aaa6adfb4a1e634788c384bda705768541be3",
+  "modelRequests": 0,
+  "normalExits": [
+    {
+      "elapsedMs": 353,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 143,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "forcedExits": 0,
+  "compiledFiles": 236,
+  "compiledManifestSha256": "656cb0cd694cac97142e7c7dfb43cfa576d8d576a04e049559ae0d9940c91574",
+  "referenceVersion": "26.930.41038",
+  "referenceBuild": "13022",
+  "originalFieldLayouts": 6,
+  "additionalActionLayouts": 18,
+  "originals": [
+    {
+      "path": "project-branches-search-shell.png",
+      "bytes": 75625,
+      "sha256": "443e5eb93a08f9db7adf1bd5847fd1d66b0fca76bf9c6c2df4e837dfdb452c7c",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-invalid-shell.png",
+      "bytes": 79731,
+      "sha256": "2045f4d469a812649b6cda54903776635a8e7807f375e3b5bddf096e8caf796e",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-busy-shell.png",
+      "bytes": 78782,
+      "sha256": "b66fb54be80a989d1b1bac8b1bb726b8b22d8557c7ef78755b73f81b270349a2",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-overwrite-error-shell.png",
+      "bytes": 84334,
+      "sha256": "bb93fa039680555092e0d1110ef349901cfc41c6a2439fbeefb20f99ace92a5c",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-draft-conflict-shell.png",
+      "bytes": 77370,
+      "sha256": "68a11a2f25381bdb958470970f94da5a8054df26b405cb4a8cfbd0759cace32a",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-hook-warning-shell.png",
+      "bytes": 51341,
+      "sha256": "3d4936e97ea36ea88102603a3e84ab10b2bafebd9ec602a84fb4309ccdf00870",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-invalid-shell.png",
+      "bytes": 81250,
+      "sha256": "6e18b52ff4df65e48bddf0da74b22223ea134780a75f71e4324737b998605bd5",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-confirm-shell.png",
+      "bytes": 85361,
+      "sha256": "ebc6f27b97107c543a0c7bd68c47c5fabfc07a70db064e3cf950b03d24b9eb46",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-unmerged-shell.png",
+      "bytes": 86233,
+      "sha256": "67f41348a18d5b3a94c2e536b9675fd5f604cd9176e6adde6e91beacdb7d2801",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-light-100-shell.png",
+      "bytes": 82763,
+      "sha256": "36873b896a2af778fd9812904730633d88070d9e04e9cf63203e787130219101",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-light-100-shell.png",
+      "bytes": 81660,
+      "sha256": "349474744054e3a4291eadc58a6c93ba6e2c44970fcb2f9714a0340a758b2acc",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-light-100-shell.png",
+      "bytes": 83260,
+      "sha256": "08e29e107ba1d6ddea5a040ef6ed6cacc19cf68e58d4466bd14470c49409365f",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-light-100-shell.png",
+      "bytes": 85443,
+      "sha256": "3054dac3bafe80931279ad64e76eadcd884f8e582e49a74b2a7831469d0849ea",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-light-125-shell.png",
+      "bytes": 93997,
+      "sha256": "3a3b9c56356d657ca9cbcdb5c8e559c413c07ce889f99214aad5edbfbc29b48e",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-light-125-shell.png",
+      "bytes": 96277,
+      "sha256": "0134beb648b3ed64e0c9445eb4ab041ef3b396cdc8d4eabb841c1510bec57f71",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-light-125-shell.png",
+      "bytes": 93547,
+      "sha256": "dfb7c60368270943b6bfcfc7f4e1c23a9c7c3c5c445b8637a833bc65a75d3431",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-light-125-shell.png",
+      "bytes": 101611,
+      "sha256": "f064b74f3f426bac7f4fe12ed80cefee7c7683cc61ea0b1e1563f6fe5312d491",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-light-150-shell.png",
+      "bytes": 100144,
+      "sha256": "acd7a7d69c8e0dcdc1e1075bb0751e8a97cab405f6da8e6dc79cac439146a490",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-light-150-shell.png",
+      "bytes": 101763,
+      "sha256": "54b01313441cc1ef691d633c3fd26e32d4c5f6c41c6a188eab28d2e1f86da8f8",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-light-150-shell.png",
+      "bytes": 99189,
+      "sha256": "89469aed5e2d7450bc210540457b2afa553de51a096331f2bf28d86e864a1632",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-light-150-shell.png",
+      "bytes": 110468,
+      "sha256": "8cc2fc50b5eebe8c25d899adc0f3de41bb21122d5d6878717814c9ab90b51654",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-dark-100-shell.png",
+      "bytes": 18109,
+      "sha256": "61658b0eeea2172c9c77cce14086a3ca3c00a42c575141147629650d71a77052",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-dark-100-shell.png",
+      "bytes": 16124,
+      "sha256": "5eebe251a0ec4f0daea3d73185e932741c4f85f6a8d323470d4c78b85e871a37",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-dark-100-shell.png",
+      "bytes": 19132,
+      "sha256": "1c8e7ce206c2f4bfad9a50fc848cfea2829e8cbf4a2d0d76c88bf4e876a8c341",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-dark-100-shell.png",
+      "bytes": 18957,
+      "sha256": "714f37b1821c2e8a023dab8a972f5755eb5a7967f98aa70c648af7f6ca3a0a04",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-dark-125-shell.png",
+      "bytes": 23057,
+      "sha256": "88a80bb33882f28aaab763bcb69aee9ae840ea9d90a7b09f812d301fe5403070",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-dark-125-shell.png",
+      "bytes": 20452,
+      "sha256": "ed7366f582d5358512fcfb211992156b96afce55e6a642e8fc20d95811ce4fec",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-dark-125-shell.png",
+      "bytes": 25317,
+      "sha256": "1c9c31f8c3633f7f79d196dbfe8706d2d43a8550c74deaaaab41c871ab0f5070",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-dark-125-shell.png",
+      "bytes": 25173,
+      "sha256": "801fcd55649857681f227bc53900afc243d4798e507c628dbb3b4e4c57c041f2",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-dark-150-shell.png",
+      "bytes": 26694,
+      "sha256": "07c24b0c0ef6ef50d6df4075d7c3eb1bfa62dadc0c7f44f87c5cbd9bf7c9cda8",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-list-dark-150-shell.png",
+      "bytes": 23500,
+      "sha256": "fa194736151fa484e6d1759ab100b4a621d4d8d04d301ff74b8232fcde858343",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-rename-dark-150-shell.png",
+      "bytes": 29514,
+      "sha256": "22f680c237432d5f3069aae97bdafcceaedd7692f0b12d8c98a61be773354a45",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-delete-dark-150-shell.png",
+      "bytes": 30041,
+      "sha256": "cdf556863763562009fea8e4b12d76a0c27966a3d57cec65e6283cde26b08f67",
+      "width": 760,
+      "height": 540,
+      "visuallyReviewed": true
+    },
+    {
+      "path": "project-branches-restart-shell.png",
+      "bytes": 52224,
+      "sha256": "a12d0db320359f16beece799f084eaeb3325cbc62b1aff00670d9264de06fa1a",
+      "width": 1280,
+      "height": 840,
+      "visuallyReviewed": true
+    }
+  ],
+  "retainedFailures": [
+    {
+      "archive": "E:/NookVerification/BranchActions-preimage-20261013",
+      "checksBeforeFailure": 6,
+      "normalExits": 1,
+      "forcedExits": 0,
+      "reason": "The old compiled c81 application lacks the new branch action controls."
+    },
+    {
+      "archive": "E:/NookVerification/BranchActions-focused-20261013",
+      "checksBeforeFailure": 9,
+      "normalExits": 1,
+      "forcedExits": 0,
+      "reason": "The added geometry assertion measured a 20px layout control as 19.999969px after fractional translation; diagnostic records preserve all visible/fitting controls. The new measurement uses offsetHeight and retains the rendered rectangle."
+    },
+    {
+      "archive": "E:/NookVerification/BranchActions-focused-diagnostic-20261013",
+      "checksBeforeFailure": 9,
+      "normalExits": 1,
+      "forcedExits": 0,
+      "reason": "The added geometry assertion measured a 20px layout control as 19.999969px after fractional translation; diagnostic records preserve all visible/fitting controls. The new measurement uses offsetHeight and retains the rendered rectangle."
+    },
+    {
+      "archive": "E:/NookVerification/BranchActions-focused-final-20261013",
+      "checksBeforeFailure": 11,
+      "normalExits": 2,
+      "forcedExits": 0,
+      "reason": "All 11 groups completed; the focused entry still expected 8. The new entry requires 11."
+    }
+  ],
+  "branchActions": {
+    "checks": 3,
+    "renameStateVerified": true,
+    "deleteCancelMergedOnlyVerified": true,
+    "unmergedWorktreeProjectGuardsVerified": true
+  },
+  "guardrails": {
+    "localRefsOnly": true,
+    "overwriteRename": false,
+    "forceDeletion": false,
+    "currentHeadAncestryRequired": true,
+    "ordinaryGitUpstreamProtectionRetained": true,
+    "sharedRepositoryQueue": true,
+    "quickChatBridgeUnavailable": true
+  },
+  "finalDistributionVerified": false,
+  "published": false,
+  "boundary": "Current source-focused local Git/bridge/Monaco and scripted desktop checks with fixed device scale and Electron zoom. No complete new package/install, real remote Git, cross-process transaction, physical input, system DPI, accessibility or 100% reference adoption claim."
+}

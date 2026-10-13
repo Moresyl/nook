@@ -432,6 +432,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   gitBranches: (id) => git.branches(workspaceProject(id).path),
   gitSwitchBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.switchBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
   gitCreateBranch: async (id, name) => { const project = workspaceProject(id); const state = await git.createBranch(project.path, z.string().parse(name)); closeProjectPreviews(project.id); return state; },
+  gitRenameBranch: (id, name, newName) => git.renameBranch(workspaceProject(id).path, z.string().parse(name), z.string().parse(newName)),
+  gitDeleteBranch: (id, name) => git.deleteBranch(workspaceProject(id).path, z.string().parse(name)),
   gitWorktrees: id => git.worktrees(workspaceProject(id).path),
   gitCreateWorktree: async (id, input) => { const root = workspaceProject(id).path, result = await git.createWorktree(root, createWorktreeSchema.parse(input), vault.preferences().worktrees?.upstreamRefresh ?? 'never'); if (result.managedRecord === 'saved') scheduleWorktreeCleanup(root); return result; },
   registerWorktreeProject: input => registerWorktreeProject(vault, root => git.worktrees(root), input),

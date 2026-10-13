@@ -641,7 +641,7 @@ try {
     const { verifyProjectBranches } = await import('./verify-project-branches.mjs');
     const result = await verifyProjectBranches({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
     page = result.page; projectBranchesResult = result.result;
-    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 11); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_BROWSER_ONLY) {
     await page.evaluate(() => window.qiyao.openQuickChat());
     const { verifyBrowser } = await import('./verify-browser.mjs');

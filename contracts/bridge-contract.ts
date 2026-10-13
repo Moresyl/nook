@@ -152,6 +152,8 @@ export type Bridge = {
   gitBranches(projectId: string): Promise<GitBranches>;
   gitSwitchBranch(projectId: string, name: string): Promise<GitBranches>;
   gitCreateBranch(projectId: string, name: string): Promise<GitBranches>;
+  gitRenameBranch(projectId: string, name: string, newName: string): Promise<GitBranches>;
+  gitDeleteBranch(projectId: string, name: string): Promise<GitBranches>;
   gitWorktrees(projectId: string): Promise<GitWorktree[]>;
   gitCreateWorktree(projectId: string, input: CreateWorktree): Promise<WorktreeCreated>;
   registerWorktreeProject(input: WorktreeRegistration): Promise<Workspace>;

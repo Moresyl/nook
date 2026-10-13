@@ -102,7 +102,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 368 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 371 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   verifyComposerActionsProof(desktop.composerActions);
@@ -215,10 +215,13 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
     throw new Error('Complete tool activity verification is required');
   }
   const projectBranches = desktop.projectBranches;
-  if (projectBranches?.checks !== 8 || projectBranches.modelRequests !== 0 || !['localListSearchVerified', 'creationValidationBusyVerified', 'overwriteRetryVerified', 'editorRefreshDraftConflictVerified', 'worktreeProjectScopeVerified', 'hookStatePreviewCleanupVerified', 'referenceZoomKeyboardVerified', 'restartDraftsVerified'].every(key => projectBranches[key] === true)
+  if (projectBranches?.checks !== 11 || projectBranches.modelRequests !== 0 || !['localListSearchVerified', 'creationValidationBusyVerified', 'overwriteRetryVerified', 'editorRefreshDraftConflictVerified', 'worktreeProjectScopeVerified', 'hookStatePreviewCleanupVerified', 'referenceZoomKeyboardVerified', 'restartDraftsVerified'].every(key => projectBranches[key] === true)
     || !Array.isArray(projectBranches.layouts) || projectBranches.layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => projectBranches.layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
     || !projectBranches.layouts.every(row => row.overflow === false && row.fieldPadding === '8px 12px 0px' && row.fieldGap === '4px' && row.fieldBackground === 'rgba(0, 0, 0, 0)' && row.viewport?.width > 0 && row.viewport?.height > 0 && row.dialog?.left >= 0 && row.dialog?.top >= 0 && row.dialog?.right <= row.viewport.width && row.dialog?.bottom <= row.viewport.height && row.dialog.width > 0 && row.dialog.height > 0 && Array.isArray(row.controls) && row.controls.length >= 6 && row.controls.every(control => control?.visible === true && control.contentFits === true && control.width > 0 && control.height >= 20))
-    || !Array.isArray(projectBranches.screenshots) || projectBranches.screenshots.length !== 13 || new Set(projectBranches.screenshots).size !== 13 || !projectBranches.screenshots.every(name => typeof name === 'string' && /^project-branches-[A-Za-z0-9.-]+-shell\.png$/.test(name))) {
+    || projectBranches.actions?.checks !== 3 || !['renameStateVerified', 'deleteCancelMergedOnlyVerified', 'unmergedWorktreeProjectGuardsVerified'].every(key => projectBranches.actions[key] === true)
+    || !Array.isArray(projectBranches.actionLayouts) || projectBranches.actionLayouts.length !== 18 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => ['list', 'rename', 'delete'].every(mode => projectBranches.actionLayouts.filter(row => row?.theme === theme && row.zoom === zoom && row.mode === mode).length === 1)))
+    || !projectBranches.actionLayouts.every(row => row.overflow === false && row.namesVisible === true && row.viewport?.width > 0 && row.viewport?.height > 0 && row.dialog?.left >= 0 && row.dialog?.top >= 0 && row.dialog?.right <= row.viewport.width && row.dialog?.bottom <= row.viewport.height && row.dialog.width > 0 && row.dialog.height > 0 && Array.isArray(row.controls) && row.controls.length >= 6 && row.controls.every(control => control?.visible === true && control.contentFits === true && control.width > 0 && control.height >= 20 && Number.isFinite(control.renderedHeight) && control.renderedHeight > 0))
+    || !Array.isArray(projectBranches.screenshots) || projectBranches.screenshots.length !== 34 || new Set(projectBranches.screenshots).size !== 34 || !projectBranches.screenshots.every(name => typeof name === 'string' && /^project-branches-[A-Za-z0-9.-]+-shell\.png$/.test(name))) {
     throw new Error('Complete project branch verification is required');
   }
   const tabs = browser?.tabs;
