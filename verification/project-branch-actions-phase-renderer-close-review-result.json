@@ -1,0 +1,82 @@
+{
+  "verifiedAt": "2026-10-13T03:17:06.432Z",
+  "phase": "renderer-close",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/BranchActionsPhase-renderer-close-20261013",
+  "sourceHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+  "runtimeBuiltHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+  "startedAt": "2026-10-13T03:17:00.7249499Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "67b500c647b951400320d59ee9440faac5810a90a1d115271d78e109c13db8b9",
+  "archiveSha256": "60838ba5d4a02092274808749d269361bfcc93e19f4c9f0d8d4474adab1401bc",
+  "reports": {
+    "renderer-close-packaged-result.json": {
+      "verifiedAt": "2026-10-13T03:17:05.342Z",
+      "variant": "packaged executable",
+      "executableSha256": "67b500c647b951400320d59ee9440faac5810a90a1d115271d78e109c13db8b9",
+      "archiveSha256": "60838ba5d4a02092274808749d269361bfcc93e19f4c9f0d8d4474adab1401bc",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "checks": 2,
+      "crash": {
+        "reason": "crashed",
+        "exitCode": 2,
+        "capturedAt": 1791861423518,
+        "memory": {
+          "rss": 171216896,
+          "heapTotal": 17973248,
+          "heapUsed": 12560536,
+          "external": 5661377,
+          "arrayBuffers": 0
+        },
+        "systemFreeMemory": 8472891392,
+        "processes": [
+          {
+            "pid": 37540,
+            "type": "Browser",
+            "memory": {
+              "workingSetSize": 167236,
+              "peakWorkingSetSize": 169944,
+              "privateBytes": 128308
+            }
+          },
+          {
+            "pid": 59376,
+            "type": "GPU",
+            "memory": {
+              "workingSetSize": 106012,
+              "peakWorkingSetSize": 108864,
+              "privateBytes": 117684
+            }
+          },
+          {
+            "pid": 42512,
+            "type": "Utility",
+            "memory": {
+              "workingSetSize": 50976,
+              "peakWorkingSetSize": 50976,
+              "privateBytes": 12220
+            }
+          }
+        ]
+      },
+      "quitMs": 1244,
+      "persistedDraftRetained": true,
+      "conversationsRetained": true,
+      "modelRequests": 0,
+      "boundary": "A deliberately crashed owned main renderer and explicit application quit. The last successfully saved state is retained; unflushed input and the cause of spontaneous crashes are not established. Not complete desktop or distribution acceptance."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 1,
+  "maximumCloseMs": 1239,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release."
+}

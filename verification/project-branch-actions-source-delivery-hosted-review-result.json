@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-13T02:22:27.741Z",
+  "archive": "C:/NookVerificationOverflow/BranchActionsSourceDeliveryHosted-20261013",
+  "sourceHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38336442387",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115097478663,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115097489288,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "95472266e33406fe8067ac9ba11613f8f688f1f506005f51c616c3124459ee7a"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "245c68da2e7e44eb5655239c82528efb87e29301cfc22ff820a3280dbb22f549"
+    },
+    {
+      "name": "annotations-115097478663.json",
+      "sha256": "cc20d2edb776a8109f4fe1b467dad10dcd06f7970af53d2b9c94c62c11236445"
+    },
+    {
+      "name": "annotations-115097489288.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "boundary": "Read-only exact-head inspection of the original hosted workflow. No tag, release, billing, spending, runner or repository visibility changes; browser access is a separate check."
+}
