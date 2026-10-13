@@ -57,7 +57,19 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
     assert.equal(layout.contained, true); assert.equal(layout.headerVisible, true); assert.equal(layout.horizontalOverflow, false); assert.equal(layout.padding, '12px');
     // Chromium snaps a one-CSS-pixel border to whole physical pixels at native zoom.
     assert.ok(Math.abs(parseFloat(layout.border) - Math.floor(zoom) / zoom) < 0.00001, `Expected a snapped one-pixel border at ${zoom} zoom, received ${layout.border}`); assert.equal(layout.count, 3);
-    layouts.push({ theme, size, zoom, ...layout }); await capture(`task-plans-${theme}-${size[0]}-${zoom * 100}.png`);
+    await capture(`task-plans-${theme}-${size[0]}-${zoom * 100}.png`);
+    const rows = [];
+    for (let index = 0; index < 3; index++) {
+      const step = plan().locator('li').nth(index); await step.scrollIntoViewIfNeeded();
+      const visible = await step.evaluate(element => {
+        const rect = element.getBoundingClientRect(), scroller = element.closest('.transcript-scroll'), viewport = scroller.getBoundingClientRect(), style = getComputedStyle(scroller);
+        const topFade = parseFloat(style.getPropertyValue('--top-fade')) || 0, bottomFade = parseFloat(style.getPropertyValue('--bottom-fade')) || 0;
+        return { top: rect.top, bottom: rect.bottom, readableTop: Math.max(0, viewport.top + topFade), readableBottom: Math.min(innerHeight, viewport.bottom - bottomFade), contained: rect.left >= 0 && rect.right <= innerWidth + 1 };
+      });
+      assert.equal(visible.contained, true); assert.ok(visible.top >= visible.readableTop - 1 && visible.bottom <= visible.readableBottom + 1, `Task step ${index + 1} must be fully reachable outside transcript fades at ${size[0]} / ${zoom}`); rows.push(visible);
+    }
+    layouts.push({ theme, size, zoom, ...layout, rows });
+    if (size[0] === 760 && zoom === 1.5) await capture(`task-plans-${theme}-760-150-last-step.png`);
   }
   verified('task plan records remain horizontally contained with visible headers in twelve native theme size and zoom layouts');
   await application.evaluateMain(`${mainWindow}.setContentSize(1280,840);${mainWindow}.webContents.setZoomFactor(1)`);
