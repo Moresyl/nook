@@ -49,7 +49,9 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
     await application.evaluateMain(`${mainWindow}.setContentSize(${size.join(',')});${mainWindow}.webContents.setZoomFactor(${zoom})`);
     await waitForBridge(page, ({ zoom, width }) => Math.abs(innerWidth - width / zoom) <= 1, { zoom, width: size[0] }); await plan().locator('header').scrollIntoViewIfNeeded();
     const layout = await plan().evaluate(element => { const rect = element.getBoundingClientRect(), header = element.querySelector('header').getBoundingClientRect(), scroll = element.closest('.transcript-scroll').getBoundingClientRect(), style = getComputedStyle(element); return { contained: rect.left >= 0 && rect.right <= innerWidth + 1, headerVisible: header.top >= Math.max(0, scroll.top) && header.bottom <= Math.min(innerHeight, scroll.bottom), horizontalOverflow: document.documentElement.scrollWidth > innerWidth, padding: style.padding, border: style.borderTopWidth, count: element.querySelectorAll('li').length }; });
-    assert.equal(layout.contained, true); assert.equal(layout.headerVisible, true); assert.equal(layout.horizontalOverflow, false); assert.equal(layout.padding, '12px'); assert.equal(layout.border, '1px'); assert.equal(layout.count, 3);
+    assert.equal(layout.contained, true); assert.equal(layout.headerVisible, true); assert.equal(layout.horizontalOverflow, false); assert.equal(layout.padding, '12px');
+    // Chromium snaps a one-CSS-pixel border to whole physical pixels at native zoom.
+    assert.ok(Math.abs(parseFloat(layout.border) - Math.floor(zoom) / zoom) < 0.00001, `Expected a snapped one-pixel border at ${zoom} zoom, received ${layout.border}`); assert.equal(layout.count, 3);
     layouts.push({ theme, size, zoom, ...layout }); await capture(`task-plans-${theme}-${size[0]}-${zoom * 100}.png`);
   }
   verified('task plan records remain horizontally contained with visible headers in twelve native theme size and zoom layouts');
