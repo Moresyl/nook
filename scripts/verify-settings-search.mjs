@@ -1,12 +1,22 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { createPluginFixture } from '../verification/plugin-fixture.mjs';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
 import { settingsInteractionsBlocked } from './settings-interaction-verification.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().startsWith('qiyao://app/')&&new URL(window.webContents.getURL()).searchParams.get('view')!=='quick-chat')";
 export async function verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests = () => 0 }) {
-  const before = await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load())));
+  let before = await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load())));
+  const originalAtEntry = before; let ownedPluginId;
+  if (!before.plugins.length) {
+    const source = join(directory, 'settings-draft-plugin-' + randomUUID()); await createPluginFixture(source, '127.0.0.1');
+    await application.evaluateMain(`globalThis.nookSettingsDraftPluginDialog=require('electron').dialog.showOpenDialog;require('electron').dialog.showOpenDialog=async()=>({canceled:false,filePaths:[${JSON.stringify(source)}]});`);
+    try { const next = await page.evaluate(() => window.qiyao.importPlugin()); assert.equal(next.plugins.length, 1); ownedPluginId = next.plugins[0].id; }
+    finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.nookSettingsDraftPluginDialog;delete globalThis.nookSettingsDraftPluginDialog;"); }
+    await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); before = await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load())));
+  }
   const beforeBytes = await readFile(join(directory, 'workspace.json')).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
   const originalWindow = await application.evaluateMain(`({size:${mainWindow}.getContentSize(),zoom:${mainWindow}.webContents.getZoomFactor()})`);
   const captures = [], layouts = [], requestsBefore = modelRequests();
@@ -54,7 +64,7 @@ export async function verifySettingsSearch({ page, application, directory, scree
   if (await add.count()) await add.click(); else await panel().getByRole('button', { name: '添加模型连接', exact: true }).click();
   await panel().getByLabel('连接名称', { exact: true }).fill('未保存连接 中文😀'); await panel().getByLabel('API 密钥', { exact: true }).fill('SETTINGS_SEARCH_PRIVATE_DRAFT'); await panel().getByLabel('模型', { exact: true }).fill('draft-model-1\ndraft-model-2');
   await destination('API 密钥', 'API 密钥，模型连接'); await assertFocus('API 密钥');
-  await destination('唤起快捷键', '唤起快捷键，外观与交互'); await panel().getByLabel('唤起快捷键', { exact: true }).fill('Ctrl+Alt+F11');
+  await destination('唤起快捷键', '唤起快捷键，外观与交互'); const originalAccelerator = await panel().getByLabel('唤起快捷键', { exact: true }).inputValue(); await panel().getByLabel('唤起快捷键', { exact: true }).fill('Ctrl+Alt+F11');
   await destination('工作树根目录', '工作树根目录，工作树'); const root = panel().getByLabel('工作树根目录', { exact: true }); const originalRoot = await root.inputValue(); await root.fill('E:/未保存 工作树 😀');
   await destination('添加记忆', '添加记忆，记忆'); await panel().getByRole('button', { name: '添加记忆', exact: true }).click(); await panel().getByLabel('记忆内容', { exact: true }).fill('未保存记忆 中文😀');
   await destination('模型连接', '模型连接'); assert.equal(await panel().getByLabel('连接名称', { exact: true }).inputValue(), '未保存连接 中文😀'); assert.equal(await panel().getByLabel('API 密钥', { exact: true }).inputValue(), 'SETTINGS_SEARCH_PRIVATE_DRAFT'); assert.equal(await panel().getByLabel('模型', { exact: true }).inputValue(), 'draft-model-1\ndraft-model-2');
@@ -78,7 +88,63 @@ export async function verifySettingsSearch({ page, application, directory, scree
   assert.equal(await root.inputValue(), originalRoot); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), before);
   verified('held native picker disables settings search, navigation and dismissal, then restores controls after cancellation without modifying drafts or data');
 
-  await dismissModalWithEscape(page, settings());
+  const confirmation = () => page.getByRole('dialog', { name: '放弃未保存的更改？', exact: true });
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().waitFor();
+  assert.equal(await settings().isVisible(), true); assert.equal(await confirmation().locator('.modal-header button').count(), 0);
+  assert.equal(await confirmation().getByRole('button', { name: '继续编辑', exact: true }).evaluate(element => document.activeElement === element), true);
+  await capture('discard-drafts'); await page.keyboard.press('Enter'); await confirmation().waitFor({ state: 'hidden' }); assert.equal(await settings().isVisible(), true);
+  await destination('模型连接', '模型连接'); assert.equal(await panel().getByLabel('API 密钥', { exact: true }).inputValue(), 'SETTINGS_SEARCH_PRIVATE_DRAFT');
+  const back = panel().getByRole('button', { name: '← 返回连接列表', exact: true }); await back.click(); await confirmation().waitFor();
+  await capture('discard-provider'); await page.keyboard.press('Escape'); await confirmation().waitFor({ state: 'hidden' });
+  assert.equal(await back.evaluate(element => document.activeElement === element), true); assert.equal(await panel().getByLabel('连接名称', { exact: true }).inputValue(), '未保存连接 中文😀');
+  await back.click(); await confirmation().getByRole('button', { name: '放弃更改', exact: true }).click(); await panel().getByLabel('API 密钥', { exact: true }).waitFor({ state: 'hidden' });
+  await destination('唤起快捷键', '唤起快捷键，外观与交互'); assert.equal(await panel().getByLabel('唤起快捷键', { exact: true }).inputValue(), 'Ctrl+Alt+F11'); await panel().getByLabel('唤起快捷键', { exact: true }).fill(originalAccelerator);
+  await destination('记忆', '记忆'); assert.equal(await panel().getByLabel('记忆内容', { exact: true }).inputValue(), '未保存记忆 中文😀');
+  await panel().getByRole('button', { name: '取消编辑', exact: true }).click(); await confirmation().waitFor(); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+  await panel().getByLabel('记忆内容', { exact: true }).fill(''); await panel().getByRole('button', { name: '取消编辑', exact: true }).click();
+  await destination('工作树根目录', '工作树根目录，工作树'); const originalKeepCount = await panel().getByLabel('保留工作树数量', { exact: true }).inputValue();
+  await root.fill('E:/保护未保存 根目录'); await panel().getByLabel('保留工作树数量', { exact: true }).fill('');
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+  assert.equal(await root.inputValue(), 'E:/保护未保存 根目录'); assert.equal(await panel().getByLabel('保留工作树数量', { exact: true }).inputValue(), ''); await root.fill(originalRoot); await panel().getByLabel('保留工作树数量', { exact: true }).fill(originalKeepCount);
+  await destination('唤起快捷键', '唤起快捷键，外观与交互'); await panel().getByLabel('唤起快捷键', { exact: true }).fill('');
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+  assert.equal(await panel().getByLabel('唤起快捷键', { exact: true }).inputValue(), ''); await panel().getByLabel('唤起快捷键', { exact: true }).fill(originalAccelerator);
+  await destination('添加服务器', '添加服务器，MCP 工具'); await panel().getByRole('button', { name: '添加服务器', exact: true }).click();
+  await panel().getByLabel('连接方式', { exact: true }).selectOption('http'); await panel().getByLabel('服务器名称', { exact: true }).fill('未保存 MCP 中文😀'); await panel().getByLabel('访问令牌', { exact: true }).fill('SETTINGS_MCP_PRIVATE_DRAFT');
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().waitFor(); await capture('discard-mcp'); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+  assert.equal(await panel().getByLabel('服务器名称', { exact: true }).inputValue(), '未保存 MCP 中文😀'); assert.equal(await panel().getByLabel('访问令牌', { exact: true }).inputValue(), 'SETTINGS_MCP_PRIVATE_DRAFT');
+  const saveFailure = '保存服务器失败，请重试。';
+  await application.evaluateMain(`(()=>{const handlers=require('electron').ipcMain._invokeHandlers,original=handlers.get('qiyao:invoke');let release;const held=new Promise(resolve=>{release=resolve;});globalThis.nookSettingsDraftSave={original,release,entered:false,calls:0};handlers.set('qiyao:invoke',async(event,method,...args)=>{if(method==='saveMcpServer'){globalThis.nookSettingsDraftSave.entered=true;globalThis.nookSettingsDraftSave.calls++;await held;throw new Error(${JSON.stringify(saveFailure)});}return original(event,method,...args);});})()`);
+  try {
+    await panel().getByRole('button', { name: '保存服务器', exact: true }).click();
+    await application.evaluateMain("(async()=>{const deadline=Date.now()+5000;while(!globalThis.nookSettingsDraftSave.entered){if(Date.now()>=deadline)throw new Error('The held MCP save was not entered within five seconds.');await new Promise(resolve=>setTimeout(resolve,25));}})()");
+    assert.equal(await panel().evaluate(element => [...element.querySelectorAll('button,input,select,textarea')].every(control => control.disabled)), true);
+    assert.equal(await settingsInteractionsBlocked(settings()), true); assert.equal(await settings().evaluate(element => element.closedBy), 'none');
+    assert.equal(await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
+    await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); assert.equal(await confirmation().isVisible(), false);
+    assert.equal(await application.evaluateMain('globalThis.nookSettingsDraftSave.calls'), 1);
+    await application.evaluateMain('globalThis.nookSettingsDraftSave.release()'); await settings().getByRole('alert').waitFor();
+    assert.equal(await settings().getByRole('alert').locator(':scope > span:not([role])').textContent(), saveFailure);
+    assert.equal(await panel().getByLabel('服务器名称', { exact: true }).inputValue(), '未保存 MCP 中文😀'); assert.equal(await panel().getByLabel('访问令牌', { exact: true }).inputValue(), 'SETTINGS_MCP_PRIVATE_DRAFT');
+    assert.equal(await panel().getByRole('button', { name: '保存服务器', exact: true }).isDisabled(), false); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), before);
+    if (beforeBytes) assert.deepEqual(await readFile(join(directory, 'workspace.json')), beforeBytes);
+    await settings().getByRole('button', { name: '关闭提示', exact: true }).click();
+    await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().waitFor(); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+    assert.equal(await panel().getByLabel('访问令牌', { exact: true }).inputValue(), 'SETTINGS_MCP_PRIVATE_DRAFT');
+  } finally { await application.evaluateMain("(()=>{const receipt=globalThis.nookSettingsDraftSave;require('electron').ipcMain._invokeHandlers.set('qiyao:invoke',receipt.original);receipt.release();delete globalThis.nookSettingsDraftSave;})()"); }
+  await panel().getByRole('button', { name: '← 返回服务器列表', exact: true }).click(); await confirmation().getByRole('button', { name: '放弃更改', exact: true }).click();
+  await destination('本地插件', '本地插件'); const fixturePlugin = before.plugins[0];
+  await panel().locator('.row-content').filter({ has: page.getByText(fixturePlugin.manifest.name, { exact: true }) }).first().click();
+  await panel().getByText('启用插件', { exact: true }).click(); assert.equal(await panel().getByRole('switch', { name: '启用插件', exact: true }).isChecked(), !fixturePlugin.enabled);
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().waitFor(); await capture('discard-plugin'); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click();
+  assert.equal(await panel().getByRole('switch', { name: '启用插件', exact: true }).isChecked(), !fixturePlugin.enabled); await panel().getByText('启用插件', { exact: true }).click();
+  await panel().getByRole('button', { name: '← 返回插件列表', exact: true }).click();
+  assert.equal(await confirmation().isVisible(), false); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), before);
+  if (beforeBytes) assert.deepEqual(await readFile(join(directory, 'workspace.json')), beforeBytes);
+  verified('dirty settings require explicit discard; default Enter and Escape retain edits and return focus, scoped discard preserves other drafts, reverting all forms permits direct close, and an injected held MCP save failure locks all settings while preserving exact drafts and workspace bytes');
+
+  await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click();
+  await settings().waitFor({ state: 'hidden' }); assert.equal(await confirmation().isVisible(), false);
   for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme); await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); await waitForBridge(page, theme => document.documentElement.dataset.theme === theme, theme);
     await application.resize(760, 540); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await open();
@@ -90,14 +156,23 @@ export async function verifySettingsSearch({ page, application, directory, scree
     // Chromium snaps authored outline widths to complete device pixels at fractional zoom.
     assert.ok(Math.abs(parseFloat(geometry.search.focusOutline) - Math.floor(2 * zoom) / zoom) < 0.05, `${theme}/${zoom} settings search ${JSON.stringify(geometry.search)}`);
     await capture(`${theme}-${zoom}-results`); await destination('工作树根目录', '工作树根目录，工作树'); await assertFocus('工作树根目录'); await capture(`${theme}-${zoom}-target`);
-    await search().fill('没有此设置 中文😀'); await capture(`${theme}-${zoom}-empty`); layouts.push({ theme, zoom, ...geometry, searchStyleVerified: true }); await clear(); await dismissModalWithEscape(page, settings());
+    await search().fill('没有此设置 中文😀'); await capture(`${theme}-${zoom}-empty`); await clear();
+    await destination('添加记忆', '添加记忆，记忆'); await panel().getByRole('button', { name: '添加记忆', exact: true }).click(); await panel().getByLabel('记忆内容', { exact: true }).fill('缩放下保留的草稿 中文😀');
+    await settings().locator('.modal-header').getByRole('button', { name: '关闭', exact: true }).click(); await confirmation().waitFor();
+    const discard = await confirmation().evaluate(dialog => { const box = dialog.getBoundingClientRect(), style = getComputedStyle(dialog), buttons = [...dialog.querySelectorAll('.modal-footer button')]; return { width: box.width, expectedWidth: Math.min(420, innerWidth * .92), radius: style.borderRadius, contained: box.left >= -1 && box.top >= -1 && box.right <= innerWidth + 1 && box.bottom <= innerHeight + 1, heightBounded: box.height <= innerHeight * .92 + 1, buttonsVisible: buttons.length === 2 && buttons.every(button => { const bounds = button.getBoundingClientRect(); return bounds.width > 0 && bounds.height > 0 && button.offsetHeight >= 32 && parseFloat(getComputedStyle(button).minHeight) >= 32 && bounds.left >= box.left && bounds.right <= box.right && bounds.top >= box.top && bounds.bottom <= box.bottom; }), defaultCancelFocus: document.activeElement === buttons[0], closeControls: dialog.querySelectorAll('.modal-header button').length }; });
+    assert.ok(Math.abs(discard.width - discard.expectedWidth) < 1, JSON.stringify(discard));
+    assert.equal(discard.radius, '16px'); for (const flag of ['contained', 'heightBounded', 'buttonsVisible', 'defaultCancelFocus']) assert.equal(discard[flag], true, `${theme}/${zoom} ${flag}`); assert.equal(discard.closeControls, 0);
+    await capture(`${theme}-${zoom}-discard-confirm`); await confirmation().getByRole('button', { name: '继续编辑', exact: true }).click(); assert.equal(await panel().getByLabel('记忆内容', { exact: true }).inputValue(), '缩放下保留的草稿 中文😀'); await capture(`${theme}-${zoom}-discard-retained`);
+    layouts.push({ theme, zoom, ...geometry, searchStyleVerified: true, discard }); await dismissModalWithEscape(page, settings());
   }
   verified('six native light and dark minimum-window zoom cases preserve bounded search results, empty states, target focus and independent scrolling');
+  verified('compact unsaved-settings confirmations fit all six native theme and zoom cases, focus the safe action, hide the ordinary close control and retain exact memory drafts on cancellation');
 
   await application.resize(...originalWindow.size); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${originalWindow.zoom})`);
   await page.evaluate(async preferences => { await window.qiyao.savePreferences(preferences); }, before.preferences); await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); await open();
   assert.equal(await search().inputValue(), ''); assert.equal(await panel().getAttribute('aria-label'), '模型连接'); assert.equal(await panel().getByLabel('API 密钥', { exact: true }).count(), 0);
   await dismissModalWithEscape(page, settings()); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), before); assert.equal(modelRequests(), requestsBefore);
   verified('closing and reopening settings resets session-only searches and drafts while restoring original preferences without sending model requests');
-  return { page, result: { checks: 6, modelRequests: modelRequests() - requestsBefore, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, layouts, screenshots: captures, scope: 'Real renderer, preload and main bridge. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate.' } };
+  if (ownedPluginId) { await page.evaluate(id => window.qiyao.removePlugin(id), ownedPluginId); await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor(); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), originalAtEntry); }
+  return { page, result: { checks: 8, modelRequests: modelRequests() - requestsBefore, keyboardVerified: true, destinationFocusVerified: true, draftRetentionVerified: true, heldPickerVerified: true, sessionResetVerified: true, explicitDiscardVerified: true, discardKeyboardFocusVerified: true, scopedDiscardVerified: true, revertedDraftVerified: true, compactDiscardLayoutsVerified: true, allSettingsFormsVerified: true, protectedForms: ['models', 'desktop', 'worktrees', 'mcp', 'plugins', 'memories'], layouts, screenshots: captures, scope: 'Real renderer, preload and main bridge. Original six search checks retained with explicit dirty-form discard, plus two behavior and compact-layout groups covering all six draft forms. An owned disabled fixture plugin is imported only if no plugin exists and removed on successful cleanup. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate.' } };
 }

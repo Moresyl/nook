@@ -4,6 +4,7 @@ import { uiErrorMessage } from '../../contracts/ui-errors';
 import type { Workspace } from '../../contracts/workspace';
 import { worktreeNavigationError, type WorktreeConversationTarget, type WorktreeProjectTarget } from '../../contracts/worktree-navigation';
 import { Button, Field, IconButton, Input, Modal, Toggle } from '../components/controls';
+import { useSettingsDraft } from '../components/settings-drafts';
 import { WorktreeOverview } from '../components/worktree-overview';
 import type { WorktreeRegistration } from '../../contracts/worktree-registration';
 import type { WorktreePinRequest } from '../../contracts/worktree-ownership';
@@ -21,6 +22,7 @@ export function WorktreeSettings({ state, busy, onBusyChange, onState, onOpenCon
   const working = useRef(false), errorRef = useRef<HTMLParagraphElement>(null);
   const inputId = useId(), inputRef = useRef<HTMLInputElement>(null), restoreInputFocus = useRef(false);
   const valid = worktreePreferencesSchema.safeParse({ root }).success;
+  useSettingsDraft('worktrees', root !== savedRoot || keepCount !== String(savedKeepCount));
   useEffect(() => { setRoot(savedRoot); }, [savedRoot]);
   useEffect(() => { setKeepCount(String(savedKeepCount)); }, [savedKeepCount]);
   useEffect(() => {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { PluginPermission, PluginUpdate, PluginView } from '../../contracts/plugins';
 import type { Workspace } from '../../contracts/workspace';
 import { Button, Empty, Field, IconButton, Select, Textarea, Toggle } from '../components/controls';
+import { useSettingsDraft } from '../components/settings-drafts';
 
 type Props = { state: Workspace; onState: (next: Workspace) => void; report: (error: unknown) => void; onOpenPanel: (pluginId: string, panelId: string) => void };
 const statuses = { disabled: '已停用', loading: '启动中', running: '运行中', stopped: '未运行', error: '启动失败' };
@@ -27,12 +28,14 @@ export function PluginSettingsPage({ state, onState, report, onOpenPanel }: Prop
   }
   const plugin = state.plugins.find((item) => item.id === selected);
   const view = views.find((item) => item.id === selected);
+  const dirty = Boolean(plugin && draft && (draft.enabled !== plugin.enabled || limited !== Boolean(plugin.projectIds.length) || draft.grants.slice().sort().join('\0') !== plugin.grants.slice().sort().join('\0') || limited && draft.projectIds.slice().sort().join('\0') !== plugin.projectIds.slice().sort().join('\0')));
+  const leaveForm = useSettingsDraft('plugins', dirty, busy);
   function edit(id: string) {
     const item = state.plugins.find((entry) => entry.id === id)!;
     setSelected(id); setDraft({ id, enabled: item.enabled, grants: [...item.grants], projectIds: [...item.projectIds] }); setLimited(Boolean(item.projectIds.length)); setCommand(''); setResult('');
   }
   if (plugin && draft) return <>
-    <Button disabled={busy} onClick={() => setSelected('')}>← 返回插件列表</Button>
+    <Button disabled={busy} onClick={() => { void leaveForm(() => setSelected(''), '返回插件列表将放弃这份未保存的插件设置。'); }}>← 返回插件列表</Button>
     <div className="section-heading"><div><h3>{plugin.manifest.name}</h3><p>{plugin.manifest.description}</p><p>{plugin.manifest.version} · {plugin.manifest.author || plugin.manifest.id} · {statuses[view?.status ?? (plugin.enabled ? 'stopped' : 'disabled')]}</p></div></div>
     {view?.error && <p role="alert" className="field-hint">{view.error}</p>}
     <Toggle label="启用插件" disabled={busy} checked={draft.enabled} onChange={(enabled) => setDraft({ ...draft, enabled })} />

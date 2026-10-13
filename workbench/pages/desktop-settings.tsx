@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Workspace } from '../../contracts/workspace';
 import { desktopPreferencesSchema, type DesktopPreferences, type DesktopState } from '../../contracts/desktop-integration';
 import { Button, Field, Input, Select, Toggle } from '../components/controls';
+import { useSettingsDraft } from '../components/settings-drafts';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; report: (error: unknown) => void };
 export function DesktopSettings({ state, onState, report }: Props) {
@@ -9,6 +10,7 @@ export function DesktopSettings({ state, onState, report }: Props) {
   const [accelerator, setAccelerator] = useState(settings.accelerator); const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<DesktopState>({ trayEnabled: false, shortcutRegistered: false });
   const valid = desktopPreferencesSchema.safeParse({ ...settings, accelerator }).success;
+  useSettingsDraft('desktop', accelerator !== settings.accelerator, busy);
   useEffect(() => { setAccelerator(settings.accelerator); }, [settings.accelerator]);
   useEffect(() => { let active = true; void window.qiyao.desktopState().then((value) => { if (active) setStatus(value); }).catch(() => {}); return () => { active = false; }; }, [state.preferences.desktop]);
   async function save(desktop: DesktopPreferences) {

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import type { Bridge } from '../../contracts/bridge-contract';
 import type { Provider, Workspace } from '../../contracts/workspace';
 import type { Attachment } from '../../contracts/attachments';
@@ -16,9 +16,12 @@ import type { WorktreeConversationTarget, WorktreeProjectTarget } from '../../co
 import { settingsTabs, type SettingsDestination, type SettingsTab } from '../../contracts/settings-search';
 import { SettingsNavigation } from '../components/settings-navigation';
 import { focusSettingsDestination } from '../lib/settings-focus';
+import { SettingsDraftContext, type SettingsLeaveAction } from '../components/settings-drafts';
+import { updateSettingsActivity, type SettingsDraftSource } from '../lib/settings-drafts';
 
 type Props = { state: Workspace; onState: (state: Workspace) => void; onRestore: (state: Workspace) => void; onClose: () => void; report: (error: unknown) => void; onUseContent: (text: string) => void; onUseAttachment: (file: Attachment) => Promise<void>; onOpenPanel: (pluginId: string, panelId: string) => void; onOpenWorktreeConversation(target: WorktreeConversationTarget): Promise<void>; onCreateWorktreeConversation(target: WorktreeProjectTarget): Promise<void> };
 const blankProvider = (): Provider => ({ id: crypto.randomUUID(), name: '', kind: 'responses', endpoint: 'https://api.openai.com/v1', models: [], hasKey: false });
+type PendingLeave = { action: SettingsLeaveAction; detail: string; trigger: HTMLElement | null; resolve(): void; reject(error: unknown): void };
 export function PreferencesDialog({ state, onState, onRestore, onClose, report, onUseContent, onUseAttachment, onOpenPanel, onOpenWorktreeConversation, onCreateWorktreeConversation }: Props) {
   const [tab, setTab] = useState<SettingsTab>('models');
   const [visited, setVisited] = useState<SettingsTab[]>(['models']);
@@ -29,9 +32,39 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
   const [key, setKey] = useState('');
   const [models, setModels] = useState('');
   const [busy, setBusy] = useState(false);
+  const [providerBaseline, setProviderBaseline] = useState('');
+  const [dirtySources, setDirtySources] = useState<ReadonlySet<SettingsDraftSource>>(() => new Set());
+  const [busySources, setBusySources] = useState<ReadonlySet<SettingsDraftSource>>(() => new Set());
+  const [pendingLeave, setPendingLeave] = useState<PendingLeave | null>(null);
+  const pending = useRef<PendingLeave | null>(null), leaveFocus = useRef<HTMLElement | null>(null);
+  const updateDirty = useCallback((source: SettingsDraftSource, active: boolean) => setDirtySources(current => updateSettingsActivity(current, source, active)), []);
+  const updateBusy = useCallback((source: SettingsDraftSource, active: boolean) => setBusySources(current => updateSettingsActivity(current, source, active)), []);
+  const providerDirty = Boolean(editing && (key || JSON.stringify({ provider: editing, models }) !== providerBaseline));
+  const blocked = busy || busySources.size > 0;
+  useLayoutEffect(() => () => { pending.current?.resolve(); pending.current = null; }, []);
+  useLayoutEffect(() => {
+    if (pendingLeave || blocked || !leaveFocus.current) return;
+    const target = leaveFocus.current; leaveFocus.current = null;
+    if (target.isConnected && !target.matches(':disabled')) target.focus({ preventScroll: true });
+  }, [pendingLeave, blocked]);
+  function leave(action: SettingsLeaveAction, required = providerDirty || dirtySources.size > 0, detail = '离开设置将放弃未保存的更改。') {
+    if (pending.current) return Promise.resolve();
+    if (!required) return Promise.resolve().then(action);
+    return new Promise<void>((resolve, reject) => {
+      const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      const request = { action, detail, trigger, resolve, reject };
+      pending.current = request; setPendingLeave(request);
+    });
+  }
+  function finishLeave(discard: boolean) {
+    const request = pending.current; if (!request) return;
+    pending.current = null; setPendingLeave(null);
+    if (discard) { void Promise.resolve().then(request.action).then(request.resolve, request.reject); }
+    else { leaveFocus.current = request.trigger; request.resolve(); }
+  }
   useLayoutEffect(() => { search.current?.focus(); }, []);
   function navigate(next: SettingsTab, target?: SettingsDestination) {
-    if (busy) return;
+    if (blocked) return;
     setVisited(current => current.includes(next) ? current : [...current, next]); setTab(next); setDestination(target ? { ...target } : null);
   }
   useLayoutEffect(() => { if (!detail.current) return; if (destination) focusSettingsDestination(detail.current, destination); else detail.current.scrollTop = 0; }, [tab, destination]);
@@ -49,15 +82,15 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
     catch (error) { report(error); }
     finally { setBusy(false); }
   }
-  function edit(provider: Provider) { setEditing({ ...provider }); setModels(provider.models.join('\n')); setKey(''); }
+  function edit(provider: Provider) { const models = provider.models.join('\n'); setEditing({ ...provider }); setModels(models); setProviderBaseline(JSON.stringify({ provider, models })); setKey(''); }
   function updateProvider(field: keyof Provider, value: string) {
     setEditing((current) => current ? { ...current, [field]: value, ...(field === 'endpoint' && value !== current.endpoint ? { modelCatalog: undefined } : {}) } : null);
   }
-  return <Modal className="settings-dialog" title="设置" dismissible={!busy} onClose={onClose}><div className="settings-layout" onKeyDown={event => { if (!busy && !event.nativeEvent.isComposing && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'f' && (event.target as HTMLElement).closest('dialog')?.classList.contains('settings-dialog')) { event.preventDefault(); event.stopPropagation(); search.current?.focus(); search.current?.select(); } }}><SettingsNavigation tab={tab} busy={busy} provider={editing} inputRef={search} onNavigate={navigate} />{visited.map(panel => <section key={panel} ref={panel === tab ? detail : undefined} hidden={panel !== tab} inert={panel !== tab} tabIndex={-1} className="settings-detail" aria-label={settingsTabs.find(item => item.id === panel)?.label}>
-    {panel === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} onOpenConversation={onOpenWorktreeConversation} onCreateConversation={onCreateWorktreeConversation} />}
+  return <SettingsDraftContext value={{ updateDirty, updateBusy, leave }}><Modal className="settings-dialog" title="设置" dismissible={!blocked} onClose={() => { void leave(onClose); }}><div className="settings-layout" onKeyDown={event => { if (!blocked && !event.nativeEvent.isComposing && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'f' && (event.target as HTMLElement).closest('dialog')?.classList.contains('settings-dialog')) { event.preventDefault(); event.stopPropagation(); search.current?.focus(); search.current?.select(); } }}><SettingsNavigation tab={tab} busy={blocked} provider={editing} inputRef={search} onNavigate={navigate} />{visited.map(panel => <section key={panel} ref={panel === tab ? detail : undefined} hidden={panel !== tab} inert={panel !== tab} tabIndex={-1} className="settings-detail" aria-label={settingsTabs.find(item => item.id === panel)?.label}>
+    {panel === 'worktrees' && <WorktreeSettings state={state} busy={busy} onBusyChange={setBusy} onState={onState} onOpenConversation={target => leave(() => onOpenWorktreeConversation(target))} onCreateConversation={target => leave(() => onCreateWorktreeConversation(target))} />}
     {panel === 'memories' && <MemorySettings state={state} onState={onState} report={report} />}
     {panel === 'models' && (editing ? <>
-      <div className="section-heading"><Button disabled={busy} onClick={() => setEditing(null)}>← 返回连接列表</Button><span className="muted">{editing.hasKey ? '密钥已保存在系统中' : '新连接'}</span></div>
+      <div className="section-heading"><Button disabled={busy} onClick={() => { void leave(() => { setEditing(null); setKey(''); }, providerDirty, '返回连接列表将放弃这份未保存的模型连接。'); }}>← 返回连接列表</Button><span className="muted">{editing.hasKey ? '密钥已保存在系统中' : '新连接'}</span></div>
       <Field label="连接名称"><Input disabled={busy} value={editing.name} placeholder="例如：我的模型" onChange={(event) => updateProvider('name', event.target.value)} /></Field>
       <Field label="API 类型"><Select disabled={busy} value={editing.kind} onChange={(event) => { const kind = event.target.value as Provider['kind']; setEditing({ ...editing, kind, modelCatalog: undefined, streamUsage: undefined, azureApi: undefined, apiVersion: undefined, endpoint: kind === 'anthropic' ? 'https://api.anthropic.com/v1' : kind === 'ollama' ? 'http://localhost:11434/v1' : kind === 'gemini' ? 'https://generativelanguage.googleapis.com/v1beta' : kind === 'azure' ? 'https://RESOURCE.openai.azure.com/openai/v1' : 'https://api.openai.com/v1' }); }}><option value="responses">OpenAI Responses</option><option value="openai">OpenAI 兼容 API</option><option value="anthropic">Anthropic Messages</option><option value="ollama">Ollama 本地模型</option><option value="gemini">Google Gemini</option><option value="azure">Azure OpenAI / Foundry</option></Select></Field>
       {editing.kind === 'azure' && <Field label="Azure 接口"><Select disabled={busy} value={editing.azureApi ?? 'responses'} onChange={(event) => { const azureApi = event.target.value as Provider['azureApi']; setEditing({ ...editing, azureApi, modelCatalog: undefined, apiVersion: azureApi === 'deployment-chat' ? '2024-10-21' : undefined }); }}><option value="responses">v1 Responses</option><option value="chat">v1 Chat Completions</option><option value="deployment-chat">部署 Chat Completions（指定版本）</option></Select></Field>}
@@ -75,8 +108,8 @@ export function PreferencesDialog({ state, onState, onRestore, onClose, report, 
     {panel === 'appearance' && <><h3>外观与交互</h3><p className="muted">让工作台适合你的工作方式。</p><Field label="主题"><Select disabled={busy} value={state.preferences.theme} onChange={(event) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, theme: event.target.value as Workspace['preferences']['theme'] }), onState); }}><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></Select></Field><Toggle disabled={busy} label="按 Enter 发送消息" checked={state.preferences.enterToSend} onChange={(value) => { void act(() => window.qiyao.savePreferences({ ...state.preferences, enterToSend: value }), onState); }} /><div className="shortcut-list"><h4>键盘快捷键</h4><div>新聊天 <kbd>Ctrl N</kbd></div><div>搜索与命令 <kbd>Ctrl K</kbd></div><div>设置 <kbd>Ctrl ,</kbd></div><div>切换侧边栏 <kbd>Ctrl B</kbd></div><div>切换最近聊天 <kbd>Alt 1–9</kbd></div></div><DesktopSettings state={state} onState={onState} report={report} /></>}
     {panel === 'data' && <><h3>数据与备份</h3><p className="muted">对话、项目、助手与资料保存在本机。</p><div className="settings-row"><div><strong>导出工作台</strong><p>默认保存压缩备份，也可选择 JSON；完整内容不包含 API 密钥。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.exportWorkspace()); }}>导出备份…</Button></div><div className="settings-row"><div><strong>恢复工作台</strong><p>支持 JSON 与压缩备份，操作前会确认替换范围。</p></div><Button disabled={busy} onClick={() => { void act(() => window.qiyao.importWorkspace(), (next) => { if (next) onRestore(next); }); }}>恢复备份…</Button></div><p className="field-hint">完整内容上限 256 MB，压缩文件上限 64 MB。单个聊天可在聊天顶部导出为 Markdown。</p>{busy && <p className="field-hint" role="status">正在处理备份…</p>}</>}
     {panel === 'about' && <div className="about"><Emblem size={64} /><h3>Nook</h3><p>本地 AI 工作台</p><span className="muted">0.1.0-alpha.1 · 开发中</span><p className="field-hint">一个本地 AI 工作台。你的模型，你的项目，你的工作方式。</p></div>}
-    {panel === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={onUseContent} onUseAttachment={onUseAttachment} />}
-    {panel === 'skills' && <SkillSettings state={state} onState={onState} report={report} onUse={onUseContent} />}
-    {panel === 'plugins' && <PluginSettingsPage state={state} onState={onState} report={report} onOpenPanel={onOpenPanel} />}
-  </section>)}</div></Modal>;
+    {panel === 'mcp' && <McpSettings state={state} onState={onState} report={report} onUse={content => { void leave(() => onUseContent(content)); }} onUseAttachment={file => leave(() => onUseAttachment(file))} />}
+    {panel === 'skills' && <SkillSettings state={state} onState={onState} report={report} onUse={content => { void leave(() => onUseContent(content)); }} />}
+    {panel === 'plugins' && <PluginSettingsPage state={state} onState={onState} report={report} onOpenPanel={(pluginId, panelId) => { void leave(() => onOpenPanel(pluginId, panelId)); }} />}
+  </section>)}</div></Modal>{pendingLeave && <Modal title="放弃未保存的更改？" className="settings-discard-dialog" showClose={false} onClose={() => finishLeave(false)} footer={<><Button autoFocus onClick={() => finishLeave(false)}>继续编辑</Button><Button tone="danger" onClick={() => finishLeave(true)}>放弃更改</Button></>}><p>{pendingLeave.detail}</p></Modal>}</SettingsDraftContext>;
 }

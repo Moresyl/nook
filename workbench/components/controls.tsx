@@ -34,7 +34,7 @@ export function Checkbox({ label, className = '', ...props }: Omit<ComponentProp
 export function Empty({ icon, title, detail, action }: { icon: GlyphName; title: string; detail: string; action?: ReactNode }) {
   return <div className="empty"><div className="empty-glyph"><Glyph name={icon} size={28} /></div><h3>{title}</h3><p>{detail}</p>{action}</div>;
 }
-export function Modal({ title, children, onClose, footer, className = '', returnFocus, dismissible = true }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; className?: string; returnFocus?: RefObject<HTMLElement | null>; dismissible?: boolean }) {
+export function Modal({ title, children, onClose, footer, className = '', returnFocus, dismissible = true, showClose = true }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; className?: string; returnFocus?: RefObject<HTMLElement | null>; dismissible?: boolean; showClose?: boolean }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   useLayoutEffect(() => {
@@ -44,7 +44,7 @@ export function Modal({ title, children, onClose, footer, className = '', return
     return () => { element.close(); (returnFocus?.current ?? previous)?.focus(); };
   }, []);
   return <dialog ref={dialog} aria-labelledby={titleId} closedby={dismissible ? 'closerequest' : 'none'} className={`modal ${className}`} onCancel={(event) => { event.preventDefault(); event.stopPropagation(); if (dismissible) onClose(); }} onClick={(event) => { if (dismissible && event.target === dialog.current) { const rect = dialog.current.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose(); } }}>
-    <header className="modal-header"><h2 id={titleId}>{title}</h2><IconButton icon="close" label="关闭" disabled={!dismissible} onClick={onClose} /></header>
+    <header className="modal-header"><h2 id={titleId}>{title}</h2>{showClose && <IconButton icon="close" label="关闭" disabled={!dismissible} onClick={onClose} />}</header>
     <div className="modal-content">{children}</div>{footer && <footer className="modal-footer">{footer}</footer>}
   </dialog>;
 }

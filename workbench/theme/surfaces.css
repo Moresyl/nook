@@ -725,6 +725,11 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .worktree-dialog .modal-content { display: flex; flex-direction: column; gap: 8px; max-height: none; scroll-padding-block: 8px; }
 .worktree-dialog .modal-content > * { flex-shrink: 0; }
 .worktree-dialog .modal-footer { flex-wrap: wrap; }
+.settings-discard-dialog.modal { position: fixed; inset: auto; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%); width: min(420px, 92vw); height: auto; max-height: 92dvh; border-radius: 16px; }
+.settings-discard-dialog .modal-header { padding: 24px 24px 0; border: 0; }
+.settings-discard-dialog .modal-content { padding: 12px 24px 24px; max-height: none; font-size: 14px; line-height: 20px; }
+.settings-discard-dialog .modal-footer { padding: 0 24px 24px; border: 0; gap: 12px; flex-wrap: wrap; }
+.settings-discard-dialog .modal-footer .button { min-height: 32px; padding: 6px 12px; font-size: 14px; }
 .worktree-form { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px 0; }
 .worktree-form .input { background: transparent; scroll-margin-block: 8px; }
 .worktree-existing > summary { cursor: pointer; color: var(--ds-text-secondary); }
@@ -769,6 +774,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .settings-layout { grid-template-columns: 128px minmax(0, 1fr); gap: 16px; }
   .settings-dialog .settings-layout { grid-template-columns: 128px minmax(0, 1fr); gap: 0; }
   .settings-dialog .settings-detail { padding: 16px; }
+  .settings-discard-dialog.modal { width: min(420px, 92vw); height: auto; max-height: 92dvh; margin: 0; transform: translate(-50%, -50%); border-radius: 16px; }
   .transcript { padding: 20px 20px 20px 40px; }
   .composer-dock { padding: 8px 20px 16px; }
   .project-layout { grid-template-columns: minmax(0, 1fr); }

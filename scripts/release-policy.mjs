@@ -85,7 +85,12 @@ export function verifyComposerActionsProof(proof) {
 
 export function verifySettingsSearchProof(settings) {
   const sixSettingsLayouts = Array.isArray(settings?.layouts) && settings.layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => settings.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.contained === true && row.sidebarOverflow === false && row.panelOverflow === false && row.searchStyleVerified === true).length === 1));
-  if (settings?.checks !== 6 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 18 || new Set(settings.screenshots).size !== 18 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
+  const compactLayouts = Array.isArray(settings?.layouts) && settings.layouts.every(row => {
+    const layout = row?.discard;
+    return layout && Number.isFinite(layout.width) && layout.width > 0 && Number.isFinite(layout.expectedWidth) && layout.expectedWidth > 0 && layout.expectedWidth <= 420 && Math.abs(layout.width - layout.expectedWidth) < 1 && layout.radius === '16px' && layout.closeControls === 0 && ['contained', 'heightBounded', 'buttonsVisible', 'defaultCancelFocus'].every(key => layout[key] === true);
+  });
+  const forms = Array.isArray(settings?.protectedForms) && settings.protectedForms.length === 6 && new Set(settings.protectedForms).size === 6 && ['models', 'desktop', 'worktrees', 'mcp', 'plugins', 'memories'].every(form => settings.protectedForms.includes(form));
+  if (settings?.checks !== 8 || settings.modelRequests !== 0 || !['keyboardVerified', 'destinationFocusVerified', 'draftRetentionVerified', 'heldPickerVerified', 'sessionResetVerified', 'explicitDiscardVerified', 'discardKeyboardFocusVerified', 'scopedDiscardVerified', 'revertedDraftVerified', 'compactDiscardLayoutsVerified', 'allSettingsFormsVerified'].every(key => settings[key] === true) || !sixSettingsLayouts || !compactLayouts || !forms || !Array.isArray(settings.screenshots) || settings.screenshots.length !== 34 || new Set(settings.screenshots).size !== 34 || !settings.screenshots.every(name => typeof name === 'string' && name.startsWith('settings-search-') && name.endsWith('-shell.png'))) {
     throw new Error('Complete settings search, draft retention and native layout verification is required');
   }
 }
@@ -102,7 +107,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 371 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 373 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   verifyComposerActionsProof(desktop.composerActions);

@@ -4,6 +4,7 @@ import type { Workspace } from '../../contracts/workspace';
 import type { Attachment } from '../../contracts/attachments';
 import { Button, Empty, Field, IconButton, Input, Select, Textarea, Toggle } from '../components/controls';
 import { McpContentBrowser } from './mcp-content-browser';
+import { useSettingsDraft } from '../components/settings-drafts';
 
 type Props = { state: Workspace; onState: (next: Workspace) => void; report: (error: unknown) => void; onUse: (text: string) => void };
 const statusLabel = { connected: '已连接', connecting: '连接中', disconnected: '未连接', error: '连接失败', 'auth-required': '需要登录', authorizing: '等待授权' };
@@ -22,6 +23,9 @@ export function McpSettings({ state, onState, report, onUse, onUseAttachment }: 
   const [toolName, setToolName] = useState('');
   const [toolArguments, setToolArguments] = useState('{}');
   const [result, setResult] = useState('');
+  const [baseline, setBaseline] = useState('');
+  const dirty = Boolean(editing && (JSON.stringify({ server: editing, args }) !== baseline || token || clientSecret || environment || clearCredentials));
+  const leaveForm = useSettingsDraft('mcp', dirty, busy);
   useEffect(() => {
     let live = true;
     const unsubscribe = window.qiyao.onMcp((view) => { if (live) setViews((current) => [...current.filter((item) => item.id !== view.id), view]); });
@@ -32,7 +36,7 @@ export function McpSettings({ state, onState, report, onUse, onUseAttachment }: 
     if (busy) return;
     setBusy(true); try { const value = await operation(); success?.(value); } catch (error) { report(error); } finally { setBusy(false); }
   }
-  function edit(server: McpServer) { setEditing({ ...server }); setArgs(JSON.stringify(server.args, null, 2)); setToken(''); setClientSecret(''); setEnvironment(''); setClearCredentials(false); }
+  function edit(server: McpServer) { const args = JSON.stringify(server.args, null, 2); setEditing({ ...server }); setArgs(args); setBaseline(JSON.stringify({ server, args })); setToken(''); setClientSecret(''); setEnvironment(''); setClearCredentials(false); }
   function field(key: keyof McpServer, value: string | boolean) { setEditing((current) => current ? { ...current, [key]: value } : null); }
   async function save() {
     if (!editing) return;
@@ -46,30 +50,30 @@ export function McpSettings({ state, onState, report, onUse, onUseAttachment }: 
   const contentServer = state.mcpServers.find((server) => server.id === contentId);
   if (contentServer) return <><Button onClick={() => setContentId('')}>← 返回服务器列表</Button><McpContentBrowser key={contentId} server={contentServer} onUse={onUse} onUseAttachment={onUseAttachment} report={report} /></>;
   if (editing) return <>
-    <Button disabled={busy} onClick={() => setEditing(null)}>← 返回服务器列表</Button>
-    <Field label="服务器名称"><Input value={editing.name} onChange={(event) => field('name', event.target.value)} /></Field>
-    <Field label="连接方式"><Select value={editing.transport} onChange={(event) => setEditing({ ...editing, transport: event.target.value as McpServer['transport'], auth: event.target.value === 'stdio' ? 'bearer' : editing.auth })}><option value="stdio">本地程序</option><option value="http">HTTP</option><option value="sse">SSE</option></Select></Field>
+    <Button disabled={busy} onClick={() => { void leaveForm(() => { setEditing(null); setToken(''); setClientSecret(''); setEnvironment(''); }, '返回服务器列表将放弃这份未保存的连接。'); }}>← 返回服务器列表</Button>
+    <Field label="服务器名称"><Input disabled={busy} value={editing.name} onChange={(event) => field('name', event.target.value)} /></Field>
+    <Field label="连接方式"><Select disabled={busy} value={editing.transport} onChange={(event) => setEditing({ ...editing, transport: event.target.value as McpServer['transport'], auth: event.target.value === 'stdio' ? 'bearer' : editing.auth })}><option value="stdio">本地程序</option><option value="http">HTTP</option><option value="sse">SSE</option></Select></Field>
     {editing.transport === 'stdio' ? <>
-      <Field label="启动程序" hint="例如 node、uvx 或程序的完整路径。"><Input value={editing.command} onChange={(event) => field('command', event.target.value)} /></Field>
-      <Field label="启动参数" hint='填写 JSON 数组，例如 ["server.js"]。'><Textarea rows={3} value={args} onChange={(event) => setArgs(event.target.value)} /></Field>
-      <Field label="工作目录" hint="留空使用应用的当前目录。"><Input value={editing.cwd} onChange={(event) => field('cwd', event.target.value)} /></Field>
-      <Field label="环境变量" hint="填写 JSON 对象，使用系统加密存储。留空沿用已保存凭据；填写后替换全部凭据。"><Textarea rows={3} value={environment} spellCheck={false} onChange={(event) => setEnvironment(event.target.value)} /></Field>
+      <Field label="启动程序" hint="例如 node、uvx 或程序的完整路径。"><Input disabled={busy} value={editing.command} onChange={(event) => field('command', event.target.value)} /></Field>
+      <Field label="启动参数" hint='填写 JSON 数组，例如 ["server.js"]。'><Textarea disabled={busy} rows={3} value={args} onChange={(event) => setArgs(event.target.value)} /></Field>
+      <Field label="工作目录" hint="留空使用应用的当前目录。"><Input disabled={busy} value={editing.cwd} onChange={(event) => field('cwd', event.target.value)} /></Field>
+      <Field label="环境变量" hint="填写 JSON 对象，使用系统加密存储。留空沿用已保存凭据；填写后替换全部凭据。"><Textarea disabled={busy} rows={3} value={environment} spellCheck={false} onChange={(event) => setEnvironment(event.target.value)} /></Field>
     </> : <>
-      <Field label="服务器地址"><Input value={editing.endpoint} placeholder="https://example.com/mcp" onChange={(event) => field('endpoint', event.target.value)} /></Field>
-      <Field label="身份验证"><Select value={editing.auth} onChange={(event) => field('auth', event.target.value)}><option value="bearer">访问令牌</option><option value="oauth">OAuth 登录</option><option value="none">无需验证</option></Select></Field>
-      {editing.auth === 'bearer' && <Field label="访问令牌" hint={editing.hasCredentials ? '留空沿用已保存令牌。更改地址后需要重新填写。' : '可选，使用系统加密存储。'}><Input type="password" autoComplete="new-password" value={token} onChange={(event) => setToken(event.target.value)} /></Field>}
+      <Field label="服务器地址"><Input disabled={busy} value={editing.endpoint} placeholder="https://example.com/mcp" onChange={(event) => field('endpoint', event.target.value)} /></Field>
+      <Field label="身份验证"><Select disabled={busy} value={editing.auth} onChange={(event) => field('auth', event.target.value)}><option value="bearer">访问令牌</option><option value="oauth">OAuth 登录</option><option value="none">无需验证</option></Select></Field>
+      {editing.auth === 'bearer' && <Field label="访问令牌" hint={editing.hasCredentials ? '留空沿用已保存令牌。更改地址后需要重新填写。' : '可选，使用系统加密存储。'}><Input disabled={busy} type="password" autoComplete="new-password" value={token} onChange={(event) => setToken(event.target.value)} /></Field>}
       {editing.auth === 'oauth' && <>
         <p className="field-hint">保存服务器后点击“登录”，在浏览器中完成授权。</p>
-        <Field label="OAuth 客户端 ID" hint="可选；留空使用服务器提供的动态注册。"><Input value={editing.oauthClientId} onChange={(event) => field('oauthClientId', event.target.value)} /></Field>
-        {editing.oauthClientId && <><Field label="授权服务器地址" hint="填写该客户端所属的授权服务器 URL。"><Input value={editing.oauthIssuer} onChange={(event) => field('oauthIssuer', event.target.value)} /></Field><Field label="OAuth 客户端密钥" hint="可选；留空沿用已保存密钥。"><Input type="password" autoComplete="new-password" value={clientSecret} onChange={(event) => setClientSecret(event.target.value)} /></Field></>}
-        <Field label="授权范围" hint="可选，多个范围用空格分隔。"><Input value={editing.oauthScope} onChange={(event) => field('oauthScope', event.target.value)} /></Field>
-        <Field label="回调端口" hint="0 为自动分配。服务器要求固定地址时，注册 http://127.0.0.1:端口/oauth/callback。"><Input type="number" min={0} max={65535} value={editing.oauthRedirectPort} onChange={(event) => setEditing({ ...editing, oauthRedirectPort: Number(event.target.value) })} /></Field>
+        <Field label="OAuth 客户端 ID" hint="可选；留空使用服务器提供的动态注册。"><Input disabled={busy} value={editing.oauthClientId} onChange={(event) => field('oauthClientId', event.target.value)} /></Field>
+        {editing.oauthClientId && <><Field label="授权服务器地址" hint="填写该客户端所属的授权服务器 URL。"><Input disabled={busy} value={editing.oauthIssuer} onChange={(event) => field('oauthIssuer', event.target.value)} /></Field><Field label="OAuth 客户端密钥" hint="可选；留空沿用已保存密钥。"><Input disabled={busy} type="password" autoComplete="new-password" value={clientSecret} onChange={(event) => setClientSecret(event.target.value)} /></Field></>}
+        <Field label="授权范围" hint="可选，多个范围用空格分隔。"><Input disabled={busy} value={editing.oauthScope} onChange={(event) => field('oauthScope', event.target.value)} /></Field>
+        <Field label="回调端口" hint="0 为自动分配。服务器要求固定地址时，注册 http://127.0.0.1:端口/oauth/callback。"><Input disabled={busy} type="number" min={0} max={65535} value={editing.oauthRedirectPort} onChange={(event) => setEditing({ ...editing, oauthRedirectPort: Number(event.target.value) })} /></Field>
       </>}
     </>}
-    {editing.hasCredentials && <Toggle label="清除已保存凭据" checked={clearCredentials} onChange={setClearCredentials} />}
-    <Field label="超时（秒）"><Input type="number" min={1} max={180} value={editing.timeout / 1000} onChange={(event) => setEditing({ ...editing, timeout: Number(event.target.value) * 1000 })} /></Field>
-    <Toggle label="启用服务器" checked={editing.enabled} onChange={(value) => field('enabled', value)} />
-    <Toggle label="启动工作台时自动连接" checked={editing.autoConnect} onChange={(value) => field('autoConnect', value)} />
+    {editing.hasCredentials && <Toggle disabled={busy} label="清除已保存凭据" checked={clearCredentials} onChange={setClearCredentials} />}
+    <Field label="超时（秒）"><Input disabled={busy} type="number" min={1} max={180} value={editing.timeout / 1000} onChange={(event) => setEditing({ ...editing, timeout: Number(event.target.value) * 1000 })} /></Field>
+    <Toggle disabled={busy} label="启用服务器" checked={editing.enabled} onChange={(value) => field('enabled', value)} />
+    <Toggle disabled={busy} label="启动工作台时自动连接" checked={editing.autoConnect} onChange={(value) => field('autoConnect', value)} />
     <div className="form-actions"><Button tone="solid" disabled={busy || !editing.name.trim()} onClick={() => { void act(save); }}>保存服务器</Button></div>
   </>;
   if (catalog) return <>

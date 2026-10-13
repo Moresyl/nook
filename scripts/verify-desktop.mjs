@@ -572,7 +572,7 @@ try {
     const { verifySettingsSearch } = await import('./verify-settings-search.mjs');
     const run = await verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length });
     page = run.page; settingsSearchResult = run.result;
-    assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_WORKTREE_CLEANUP_ONLY) {
     const { verifyWorktreeCleanup } = await import('./verify-worktree-cleanup.mjs');
     const run = await verifyWorktreeCleanup({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } });
@@ -1268,7 +1268,7 @@ try {
   const searchRun = await verifySettingsSearch({ page, application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length }); page = searchRun.page; settingsSearchResult = searchRun.result;
   const settingsSearchEnd = count;
   const commandResult = await verifyCommands({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, fixture: commandProviders, restart: async () => { await application.close(); return launch(); } }); page = commandResult.page;
-  assert.equal(settingsSearchEnd - commandsStart, 6);
+  assert.equal(settingsSearchEnd - commandsStart, 8);
   await writeFile(join(root, 'verification', packaged ? 'commands-packaged-result.json' : 'commands-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - settingsSearchEnd, runtimeErrors: errors, ...commandResult.result }, null, 2));
   const backupsStart = count;
   const backupsResult = await verifyBackups({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = backupsResult.page;

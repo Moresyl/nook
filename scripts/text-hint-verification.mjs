@@ -18,7 +18,19 @@ export async function dismissModalWithEscape(page, dialog) {
       assert.equal(await focused.evaluate(element => document.activeElement === element), true);
     } finally { await focused.dispose(); }
   }
-  await page.keyboard.press('Escape'); await dialog.waitFor({ state: 'hidden' });
+  const settings = await dialog.evaluate(element => element.classList.contains('settings-dialog'));
+  await page.keyboard.press('Escape');
+  if (settings) {
+    await page.waitForFunction(() => !document.querySelector('dialog.settings-dialog[open]') || Boolean(document.querySelector('dialog.settings-discard-dialog[open]')));
+    const confirmation = page.getByRole('dialog', { name: '放弃未保存的更改？', exact: true });
+    if (await confirmation.isVisible()) {
+      assert.equal(await dialog.isVisible(), true, 'Dirty settings remain open until explicit discard');
+      assert.equal(await confirmation.getByRole('button', { name: '继续编辑', exact: true }).evaluate(element => document.activeElement === element), true);
+      assert.equal(await confirmation.locator('.modal-header button').count(), 0);
+      await confirmation.getByRole('button', { name: '放弃更改', exact: true }).click();
+    }
+  }
+  await dialog.waitFor({ state: 'hidden' });
 }
 
 export async function assertTextHint(page, trigger, text, { hoverTarget = trigger } = {}) {

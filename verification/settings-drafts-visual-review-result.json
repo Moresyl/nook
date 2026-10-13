@@ -1,0 +1,281 @@
+{
+  "reviewedAt": "2026-10-13T05:21:47.365Z",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsFocused-retry2-20261013",
+  "sourceBase": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+  "nativeTestSourceCorrection": {
+    "preparedAt": "2026-10-13T05:08:41.499Z",
+    "attempt": "retry2",
+    "overlayDirectory": "retry2-overlays",
+    "unitSourceBase": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+    "failureArchive": "C:/NookVerificationOverflow/SettingsDraftsFocused-initial-20261013",
+    "path": "scripts/verify-settings-search.mjs",
+    "originalSha256": "f55e04949deb3bfff4e45bd58cf829cd2bcd3a8590f79dc5f10c9c962c1a926a",
+    "correctedSha256": "1a81c13fadf30c353b378b9a67475ce9f53697de36a769291cfc2054096247e8",
+    "exactChange": "Read the direct message span inside the error alert, excluding role-bearing tooltip spans; retain its exact complete text assertion.",
+    "unitTests": 1555,
+    "sourceInputsUnchanged": 18,
+    "compiledFilesUnchanged": 236,
+    "productInputsChanged": false,
+    "checksRequired": 8,
+    "screenshotsRequired": 34,
+    "retryComplete": false,
+    "published": false,
+    "scope": "Only a native test selector changes. The immutable nineteen-input unit source and failed native rounds remain; the retry is reproduced by their source tar/overlays plus this explicit one-selector overlay. All eighteen other tested source inputs and all 236 compiled files match. No check, timeout, error assertion, byte-preservation assertion or release requirement is removed."
+  },
+  "rawReportSha256": "466b73bdb408f550055a6b818e9bd9780b344eb90e1cd50b2ca8cb948cdc9b36",
+  "checks": 8,
+  "individuallyViewedOriginals": 34,
+  "originals": [
+    {
+      "name": "settings-search-discard-drafts-shell.png",
+      "bytes": 93182,
+      "sha256": "16efb426bb246c2c7f8375efe67422c5375af551d7b40f162eb8481434653b37",
+      "width": 1280,
+      "height": 840
+    },
+    {
+      "name": "settings-search-discard-provider-shell.png",
+      "bytes": 80598,
+      "sha256": "f912926cc856d8ea91210092cc3d5c45a2a6660959b86a73cc3058aac49522d3",
+      "width": 1280,
+      "height": 840
+    },
+    {
+      "name": "settings-search-discard-mcp-shell.png",
+      "bytes": 73183,
+      "sha256": "5114801bd457fe325d9fa0d944fbd9be0588b63b8cb3c4f17b6fc30adf7dc485",
+      "width": 1280,
+      "height": 840
+    },
+    {
+      "name": "settings-search-discard-plugin-shell.png",
+      "bytes": 77696,
+      "sha256": "5ebceb4a4fdf5c4080e5b64e37b3a036d0b85f74ca7c47a40a989a1ceb36b970",
+      "width": 1280,
+      "height": 840
+    },
+    {
+      "name": "settings-search-light-1-results-shell.png",
+      "bytes": 24889,
+      "sha256": "cc3d1a465ebb006360eca9ac550716d7d21e8594136546513d15c58a3f6bab5c",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1-target-shell.png",
+      "bytes": 45222,
+      "sha256": "de2b52507eb59003ab5b796332c34de0bac369104958dbf8dde3c24ef924d3bb",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1-empty-shell.png",
+      "bytes": 45982,
+      "sha256": "877b58fdba592f04f33e31e73b65e373197bdcfa1bd96344c757dac6573ac828",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1-discard-confirm-shell.png",
+      "bytes": 36813,
+      "sha256": "1451531a8fe1e1b70416d76daa9c5512d1ca6e5fa1707049ab9b4e2296ee735a",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1-discard-retained-shell.png",
+      "bytes": 25895,
+      "sha256": "7d96c451b6e38c27b4f27e31e662488d025a3225b5e1ff355e53695bd6fa9fd6",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.25-results-shell.png",
+      "bytes": 33293,
+      "sha256": "a2b310854d011a9e4682aaa82bdb2011faa8b6d91bfa036e839f2e9c33df8fd4",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.25-target-shell.png",
+      "bytes": 42099,
+      "sha256": "9694c9e08de23b11e71d6409a0ab9f67df6268ed0c1fa826256ada99056485e0",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.25-empty-shell.png",
+      "bytes": 43032,
+      "sha256": "773666a2ffc7c4b82607375a3af74e839b405019102ef61f774e84ef32a1fc2f",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.25-discard-confirm-shell.png",
+      "bytes": 39127,
+      "sha256": "ea4aadebd8715d49b9ee7ce739732d030f6512b05edb2dd10c8b70f70367a7f4",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.25-discard-retained-shell.png",
+      "bytes": 30022,
+      "sha256": "d7d99afbded6728f61b89a4f4fdb1109d6b9420266259f8c6f6091c1959b8d35",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.5-results-shell.png",
+      "bytes": 37358,
+      "sha256": "639a442719906cb6f74639423f13cd45c587e3d2620073cba05230c5672c488f",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.5-target-shell.png",
+      "bytes": 38922,
+      "sha256": "666e582a4b85e437b0bea9318c9b224da124398edf60d9a392be0f3fefaf7d44",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.5-empty-shell.png",
+      "bytes": 40508,
+      "sha256": "9bbf8e4e672046b5df33016891f25d920baf0b28b3fc6ca8e51263b270d0e7e9",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.5-discard-confirm-shell.png",
+      "bytes": 32070,
+      "sha256": "491cfcd2b2bb338efba43997e2742db4805ae143ae894c4f3a6d0c62461d03a2",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-light-1.5-discard-retained-shell.png",
+      "bytes": 24172,
+      "sha256": "adcdcbf71a8e6a413ace0b5487160bf563064ed37dfc05a90b6fd7ef94c818ca",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1-results-shell.png",
+      "bytes": 24588,
+      "sha256": "575ff2a9f8830d10e123f9ebdf6f56743caf277c168d1e158787487a6ce3ee53",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1-target-shell.png",
+      "bytes": 44253,
+      "sha256": "cf23ad507a7f3ee275faf6f56f34d81f6a00fae6c966642a5e2479640f82ea8d",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1-empty-shell.png",
+      "bytes": 45224,
+      "sha256": "4e5bf2126fa8f9dad2188815d9ddcb0c39aefdc3f7ed2e60c3db4e2a83afee44",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1-discard-confirm-shell.png",
+      "bytes": 35609,
+      "sha256": "93f51406f8811a2c967afbc891cddc3bcb56a11686e20dba1ae3c76266df323f",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1-discard-retained-shell.png",
+      "bytes": 25624,
+      "sha256": "2b7a832b9428492d20dd465f1531b79578538e4d3f0cd9bcfa0174a9549440cb",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.25-results-shell.png",
+      "bytes": 32988,
+      "sha256": "8bf03840aa2009dedd8eba955224bc75d33af178e731f4b5c68977c23a2fd37f",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.25-target-shell.png",
+      "bytes": 41188,
+      "sha256": "9aa09649cedd41d83743756cde10b44992ab33db65192016e105bccf2a2b7b16",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.25-empty-shell.png",
+      "bytes": 42317,
+      "sha256": "6644022a336065fb499cf6a794a2f2ceff2cd0dad2f2ebfec96505c4aa8d0900",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.25-discard-confirm-shell.png",
+      "bytes": 37672,
+      "sha256": "ff4c697bae1c13d0b9919cfbdf668314f18dade09875801972a1d4b932264338",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.25-discard-retained-shell.png",
+      "bytes": 29294,
+      "sha256": "33362a7cc82d1d0182d0db737a55e3034f7998c6f6b7cd66411b33696bd57317",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.5-results-shell.png",
+      "bytes": 36888,
+      "sha256": "171ad353afee342f7f5093495916028b8f3ca9c7e466c0f66b843e62dca3b321",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.5-target-shell.png",
+      "bytes": 38241,
+      "sha256": "04867915a71942c7fb3abefb04aba271cb663ab96627c40b4892108c2e4f1e3c",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.5-empty-shell.png",
+      "bytes": 40281,
+      "sha256": "674686d69ea2add1cebf3265cf3fe1f3fb68d52f9a823085c14bfd5d6e321748",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.5-discard-confirm-shell.png",
+      "bytes": 29496,
+      "sha256": "4a8b5f46ea53aeb1b5b07f78b11d37c9453daa9f0562a5348799defc6858bbdc",
+      "width": 760,
+      "height": 540
+    },
+    {
+      "name": "settings-search-dark-1.5-discard-retained-shell.png",
+      "bytes": 23555,
+      "sha256": "96c4b1184a6fbf6d0451e6bea2f7ba18a32190b963eedc7222f273bfdc0bbc3e",
+      "width": 760,
+      "height": 540
+    }
+  ],
+  "observations": [
+    "All 34 complete original PNG files were individually displayed and inspected, two at a time; no collage or edited image substitutes.",
+    "Four 1280×840 confirmations retain readable heading, description and both actions without clipping or overlap.",
+    "Six light/dark and 100/125/150 percent application-zoom cases at 760×540 keep the compact confirmation centered with both actions visible.",
+    "Search results, target and empty states remain readable. At larger zoom, long forms use their own vertical scrolling; visible content stays inside the panel.",
+    "Each retained-memory capture shows the original Chinese and emoji draft after continuing editing. Native assertions separately verify default focus, safe Enter/Escape and all six protected forms."
+  ],
+  "originalFilesMatchAcceptedArchive": true,
+  "fullDesktopAccepted": false,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false,
+  "scope": "Focused settings-source visual review only. Physical DPI, assistive technology, the complete reference interface and the fresh distribution require separate validation."
+}
