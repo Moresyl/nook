@@ -17,7 +17,7 @@ Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与�
 
 图片生成、离线模型下载管理、本地 API 服务、远程主机／SSH、WebUI／连接器及加密同步尚未提供。完整细项与各功能使用说明保留在[能力历史](CAPABILITIES-HISTORY-2026-10-13.md)。
 
-最新源码通过 1,550 项单元、类型与构建；本地分支专项 11 组与 34 张逐张复核原图通过，新增操作的完整分发仍待验收。[源码测试](../verification/project-branch-actions-unit-review-result.json) 此前 `c81b8c38` 新包与实际安装各通过 368 项和 74 次正常退出，无强制结束；每轮保留 39 份报告与 560 张原图，源码搜索专项 16 张、新包及安装后选定 70 张原图逐张核验。原五个分发专项、便携七项、十一份运行记录、卸载保留数据及八个原始标记哈希恢复通过。这些完整分发结果属于原冻结候选，不能代替新增源码的最终验收。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[此前分发证据](../verification/command-palette-runtime-review-result.json)
+最新源码通过 1,550 项单元、类型与构建；冻结 `10db2c6` 完整开发程序通过 371 项和 74 次正常退出，保留 39 份报告、581 张原图与 236 个匹配编译文件，原图未全部视觉复核。本地分支专项 11 组与 34 张逐张复核原图通过，新增操作的完整分发仍待验收。[源码测试](../verification/project-branch-actions-unit-review-result.json) · [完整源码回归](../verification/project-branch-actions-full-source-review-result.json) 此前 `c81b8c38` 新包与实际安装各通过 368 项和 74 次正常退出，无强制结束；每轮保留 39 份报告与 560 张原图，源码搜索专项 16 张、新包及安装后选定 70 张原图逐张核验。原五个分发专项、便携七项、十一份运行记录、卸载保留数据及八个原始标记哈希恢复通过。这些完整分发结果属于原冻结候选，不能代替新增源码的最终验收。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[此前分发证据](../verification/command-palette-runtime-review-result.json)
 
 [当前发布状态](RELEASE.md) · [设计采用范围](DESIGN-ALIGNMENT.md) · [完整交付要求](DELIVERY.md) · [前轮完整源码证据](../verification/command-progress-full-source-review-result.json)
 

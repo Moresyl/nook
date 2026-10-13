@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-10-13T01:44:32.966Z",
+  "archive": "C:/NookVerificationOverflow/BranchActionsHosted-20261013",
+  "sourceHead": "10db2c680346e803a775963da2acb405b11012ca",
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38333451928",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115088164866,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115088174264,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "browserRetry": {
+    "method": "cua.createBrowserTab chrome",
+    "url": "https://github.com/Moresyl/nook/actions/runs/38333451928",
+    "result": "Codex auth token is unavailable",
+    "pageOpened": false,
+    "publicationVerified": false
+  },
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "6106eb87098b9adcd175596ff2e2d61557df37de94168cb2ed9b307742730316"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "25f97c784f3f8cfa83aab3f8b03922f10900dc9ab9ce8252c35387cc2d31f17d"
+    },
+    {
+      "name": "annotations-115088164866.json",
+      "sha256": "f7f9c1d08afb9ab2c0cce6cdc5ab89ed3cb4743ab1856dc40b60058474bea4bc"
+    },
+    {
+      "name": "annotations-115088174264.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "boundary": "Read-only exact-head inspection of the original hosted workflow. No tag, release, billing, spending, runner or repository visibility changes; browser access is a separate check."
+}

@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-12T21:31:50.208Z",
+  "verifiedAt": "2026-10-13T02:14:22.356Z",
   "variant": "development executable",
-  "checks": 368,
+  "checks": 371,
   "runtimeErrors": [],
   "composerActions": {
     "checks": 7,
@@ -496,11 +496,486 @@
     "checks": 6,
     "providerRequests": 2,
     "commandRuns": 2,
-    "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
+    "layouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "left": 120,
+        "right": 640,
+        "top": 27,
+        "bottom": 513,
+        "width": 520,
+        "viewportWidth": 760,
+        "viewportHeight": 540,
+        "documentWidth": 760,
+        "contentWidth": 518,
+        "contentScrollWidth": 518,
+        "background": "rgb(249, 249, 249)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 141,
+          "right": 619,
+          "top": 109,
+          "bottom": 131
+        },
+        "footer": {
+          "left": 121,
+          "right": 639,
+          "top": 467,
+          "bottom": 512
+        },
+        "list": {
+          "left": 141,
+          "right": 619,
+          "top": 143,
+          "bottom": 430.5
+        },
+        "selected": {
+          "left": 141,
+          "right": 613,
+          "top": 373.5,
+          "bottom": 429
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(0, 0, 0, 0.05)",
+        "empty": {
+          "top": 147,
+          "bottom": 163.5,
+          "dialogTop": 27,
+          "dialogBottom": 229.5,
+          "viewportHeight": 540,
+          "overflow": false
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "left": 44,
+        "right": 564,
+        "top": 21.600000381469727,
+        "bottom": 410.4000186920166,
+        "width": 520,
+        "viewportWidth": 608,
+        "viewportHeight": 432,
+        "documentWidth": 608,
+        "contentWidth": 518,
+        "contentScrollWidth": 518,
+        "background": "rgb(249, 249, 249)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 64.80000305175781,
+          "right": 543.1999969482422,
+          "top": 103.20000457763672,
+          "bottom": 125.20000457763672
+        },
+        "footer": {
+          "left": 44.79999923706055,
+          "right": 563.200023651123,
+          "top": 364.8000183105469,
+          "bottom": 409.6000175476074
+        },
+        "list": {
+          "left": 64.80000305175781,
+          "right": 543.1999969482422,
+          "top": 137.1999969482422,
+          "bottom": 328.3000030517578
+        },
+        "selected": {
+          "left": 64.80000305175781,
+          "right": 537.6000213623047,
+          "top": 271.1000061035156,
+          "bottom": 326.200008392334
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(0, 0, 0, 0.05)",
+        "empty": {
+          "top": 141.1999969482422,
+          "bottom": 157.6999969482422,
+          "dialogTop": 21.600000381469727,
+          "dialogBottom": 223.2999973297119,
+          "viewportHeight": 432,
+          "overflow": false
+        }
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "left": 20.27083396911621,
+        "right": 486.3958339691162,
+        "top": 18,
+        "bottom": 342,
+        "width": 466.125,
+        "viewportWidth": 507,
+        "viewportHeight": 360,
+        "documentWidth": 507,
+        "contentWidth": 465,
+        "contentScrollWidth": 465,
+        "background": "rgb(249, 249, 249)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 40.9375,
+          "right": 465.72918701171875,
+          "top": 99.33333587646484,
+          "bottom": 121.33333587646484
+        },
+        "footer": {
+          "left": 20.9375,
+          "right": 485.72918701171875,
+          "top": 296.66668701171875,
+          "bottom": 341.3333549499512
+        },
+        "list": {
+          "left": 40.9375,
+          "right": 465.72918701171875,
+          "top": 133.33334350585938,
+          "bottom": 260.1666793823242
+        },
+        "selected": {
+          "left": 40.9375,
+          "right": 459.72918701171875,
+          "top": 203.5,
+          "bottom": 258.33333587646484
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(0, 0, 0, 0.05)",
+        "empty": {
+          "top": 137.33334350585938,
+          "bottom": 153.83334350585938,
+          "dialogTop": 18,
+          "dialogBottom": 219.1666717529297,
+          "viewportHeight": 360,
+          "overflow": false
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "left": 120,
+        "right": 640,
+        "top": 27,
+        "bottom": 513,
+        "width": 520,
+        "viewportWidth": 760,
+        "viewportHeight": 540,
+        "documentWidth": 760,
+        "contentWidth": 518,
+        "contentScrollWidth": 518,
+        "background": "rgb(65, 65, 65)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 141,
+          "right": 619,
+          "top": 109,
+          "bottom": 131
+        },
+        "footer": {
+          "left": 121,
+          "right": 639,
+          "top": 467,
+          "bottom": 512
+        },
+        "list": {
+          "left": 141,
+          "right": 619,
+          "top": 143,
+          "bottom": 430.5
+        },
+        "selected": {
+          "left": 141,
+          "right": 613,
+          "top": 373.5,
+          "bottom": 429
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(255, 255, 255, 0.07)",
+        "empty": {
+          "top": 147,
+          "bottom": 163.5,
+          "dialogTop": 27,
+          "dialogBottom": 229.5,
+          "viewportHeight": 540,
+          "overflow": false
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "left": 44,
+        "right": 564,
+        "top": 21.600000381469727,
+        "bottom": 410.4000186920166,
+        "width": 520,
+        "viewportWidth": 608,
+        "viewportHeight": 432,
+        "documentWidth": 608,
+        "contentWidth": 518,
+        "contentScrollWidth": 518,
+        "background": "rgb(65, 65, 65)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 64.80000305175781,
+          "right": 543.1999969482422,
+          "top": 103.20000457763672,
+          "bottom": 125.20000457763672
+        },
+        "footer": {
+          "left": 44.79999923706055,
+          "right": 563.200023651123,
+          "top": 364.8000183105469,
+          "bottom": 409.6000175476074
+        },
+        "list": {
+          "left": 64.80000305175781,
+          "right": 543.1999969482422,
+          "top": 137.1999969482422,
+          "bottom": 328.3000030517578
+        },
+        "selected": {
+          "left": 64.80000305175781,
+          "right": 537.6000213623047,
+          "top": 271.1000061035156,
+          "bottom": 326.200008392334
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(255, 255, 255, 0.07)",
+        "empty": {
+          "top": 141.1999969482422,
+          "bottom": 157.6999969482422,
+          "dialogTop": 21.600000381469727,
+          "dialogBottom": 223.2999973297119,
+          "viewportHeight": 432,
+          "overflow": false
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "left": 20.27083396911621,
+        "right": 486.3958339691162,
+        "top": 18,
+        "bottom": 342,
+        "width": 466.125,
+        "viewportWidth": 507,
+        "viewportHeight": 360,
+        "documentWidth": 507,
+        "contentWidth": 465,
+        "contentScrollWidth": 465,
+        "background": "rgb(65, 65, 65)",
+        "radius": "16px",
+        "focused": true,
+        "input": {
+          "left": 40.9375,
+          "right": 465.72918701171875,
+          "top": 99.33333587646484,
+          "bottom": 121.33333587646484
+        },
+        "footer": {
+          "left": 20.9375,
+          "right": 485.72918701171875,
+          "top": 296.66668701171875,
+          "bottom": 341.3333549499512
+        },
+        "list": {
+          "left": 40.9375,
+          "right": 465.72918701171875,
+          "top": 133.33334350585938,
+          "bottom": 260.1666793823242
+        },
+        "selected": {
+          "left": 40.9375,
+          "right": 459.72918701171875,
+          "top": 203.5,
+          "bottom": 258.33333587646484
+        },
+        "selectedLabel": "导出聊天",
+        "selectedOpacity": "1",
+        "selectedBackground": "rgba(255, 255, 255, 0.07)",
+        "empty": {
+          "top": 137.33334350585938,
+          "bottom": 153.83334350585938,
+          "dialogTop": 18,
+          "dialogBottom": 219.1666717529297,
+          "viewportHeight": 360,
+          "overflow": false
+        }
+      }
+    ],
+    "captures": [
+      {
+        "filename": "command-palette-light-100-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-light-100-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "command-palette-light-125-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-light-125-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "command-palette-light-150-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-light-150-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "command-palette-dark-100-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-dark-100-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "command-palette-dark-125-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-dark-125-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      },
+      {
+        "filename": "command-palette-dark-150-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">",
+        "selectedLabel": "导出聊天",
+        "optionCount": 22
+      },
+      {
+        "filename": "command-palette-empty-dark-150-shell.png",
+        "width": 760,
+        "height": 540,
+        "nativeSize": [
+          760,
+          540
+        ],
+        "query": ">NO_MATCH_COMMAND_LAYOUT",
+        "selectedLabel": null,
+        "optionCount": 0
+      }
+    ],
+    "screenshots": [
+      "command-palette-light-100-shell.png",
+      "command-palette-empty-light-100-shell.png",
+      "command-palette-light-125-shell.png",
+      "command-palette-empty-light-125-shell.png",
+      "command-palette-light-150-shell.png",
+      "command-palette-empty-light-150-shell.png",
+      "command-palette-dark-100-shell.png",
+      "command-palette-empty-dark-100-shell.png",
+      "command-palette-dark-125-shell.png",
+      "command-palette-empty-dark-125-shell.png",
+      "command-palette-dark-150-shell.png",
+      "command-palette-empty-dark-150-shell.png"
+    ],
+    "sixThemeZoomLayoutsVerified": true,
+    "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, six theme/zoom root and empty layouts with twelve whole native captures, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
     "expandedBytes": 84181487,
-    "compressedBytes": 242353,
+    "compressedBytes": 242346,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -1056,28 +1531,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791839349769,
+        "startedAt": 1791856308942,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791839351658
+        "finishedAt": 1791856310421
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791839351804,
+        "startedAt": 1791856310571,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791839353375
+        "finishedAt": 1791856311982
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791839355467,
+        "startedAt": 1791856313740,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791839356902
+        "finishedAt": 1791856315072
       }
     ],
     "comparisonModelRequests": 11,
@@ -1267,7 +1742,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 12.299999982118607,
+    "scopedReadMs": 10.700000017881393,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -1639,12 +2114,33 @@
     "project-branches-overwrite-error-shell.png",
     "project-branches-draft-conflict-shell.png",
     "project-branches-hook-warning-shell.png",
+    "project-branches-rename-invalid-shell.png",
+    "project-branches-delete-confirm-shell.png",
+    "project-branches-delete-unmerged-shell.png",
     "project-branches-light-100-shell.png",
+    "project-branches-list-light-100-shell.png",
+    "project-branches-rename-light-100-shell.png",
+    "project-branches-delete-light-100-shell.png",
     "project-branches-light-125-shell.png",
+    "project-branches-list-light-125-shell.png",
+    "project-branches-rename-light-125-shell.png",
+    "project-branches-delete-light-125-shell.png",
     "project-branches-light-150-shell.png",
+    "project-branches-list-light-150-shell.png",
+    "project-branches-rename-light-150-shell.png",
+    "project-branches-delete-light-150-shell.png",
     "project-branches-dark-100-shell.png",
+    "project-branches-list-dark-100-shell.png",
+    "project-branches-rename-dark-100-shell.png",
+    "project-branches-delete-dark-100-shell.png",
     "project-branches-dark-125-shell.png",
+    "project-branches-list-dark-125-shell.png",
+    "project-branches-rename-dark-125-shell.png",
+    "project-branches-delete-dark-125-shell.png",
     "project-branches-dark-150-shell.png",
+    "project-branches-list-dark-150-shell.png",
+    "project-branches-rename-dark-150-shell.png",
+    "project-branches-delete-dark-150-shell.png",
     "project-branches-restart-shell.png",
     "project-worktrees-validation-shell.png",
     "project-worktrees-busy-shell.png",
@@ -4691,122 +5187,72 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(233, 233, 233)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 145.84700002614426
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         },
@@ -6054,7 +6500,7 @@
     "scope": "Actual private WebContentsView and real local HTTP website, history, redirect, popup/private-scheme rejection, stop/real connection failure/retry, Ctrl L focus, page retention, modal occlusion, six fixed-device-scale theme/zoom cases and normal application restart. Shell and native child content captures remain separate originals. External public services, physical input, permission grants, downloads, saved tabs/history, browser automation, other monitors/platforms and full design acceptance remain separate."
   },
   "projectBranches": {
-    "checks": 8,
+    "checks": 11,
     "modelRequests": 0,
     "localListSearchVerified": true,
     "creationValidationBusyVerified": true,
@@ -6064,6 +6510,1484 @@
     "hookStatePreviewCleanupVerified": true,
     "referenceZoomKeyboardVerified": true,
     "restartDraftsVerified": true,
+    "actions": {
+      "checks": 3,
+      "renameStateVerified": true,
+      "deleteCancelMergedOnlyVerified": true,
+      "unmergedWorktreeProjectGuardsVerified": true
+    },
+    "actionLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "mode": "list",
+        "dialog": {
+          "x": 280,
+          "y": 243.11111450195312,
+          "width": 720,
+          "height": 292.9999694824219,
+          "top": 243.11111450195312,
+          "right": 1000,
+          "bottom": 536.111083984375,
+          "left": 280
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 840
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 678,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 614,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 19.999969482421875,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1,
+        "mode": "rename",
+        "dialog": {
+          "x": 280,
+          "y": 218.66665649414062,
+          "width": 720,
+          "height": 347.9999694824219,
+          "top": 218.66665649414062,
+          "right": 1000,
+          "bottom": 566.6666259765625,
+          "left": 280
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 840
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 654,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1,
+        "mode": "delete",
+        "dialog": {
+          "x": 280,
+          "y": 252.22222900390625,
+          "width": 720,
+          "height": 272.5,
+          "top": 252.22222900390625,
+          "right": 1000,
+          "bottom": 524.7222290039062,
+          "left": 280
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 840
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "mode": "list",
+        "dialog": {
+          "x": 152,
+          "y": 168.8000030517578,
+          "width": 720,
+          "height": 292.20001220703125,
+          "top": 168.8000030517578,
+          "right": 872,
+          "bottom": 461.00001525878906,
+          "left": 152
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 672
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 678.4000244140625,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 614.4000244140625,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "mode": "rename",
+        "dialog": {
+          "x": 152,
+          "y": 144.35556030273438,
+          "width": 720,
+          "height": 347.20001220703125,
+          "top": 144.35556030273438,
+          "right": 872,
+          "bottom": 491.5555725097656,
+          "left": 152
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 672
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 654.4000244140625,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "mode": "delete",
+        "dialog": {
+          "x": 152,
+          "y": 177.91111755371094,
+          "width": 720,
+          "height": 271.7000427246094,
+          "top": 177.91111755371094,
+          "right": 872,
+          "bottom": 449.6111602783203,
+          "left": 152
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 672
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "mode": "list",
+        "dialog": {
+          "x": 66.66667175292969,
+          "y": 119.25926208496094,
+          "width": 720,
+          "height": 291.66668701171875,
+          "top": 119.25926208496094,
+          "right": 786.6666717529297,
+          "bottom": 410.9259490966797,
+          "left": 66.66667175292969
+        },
+        "viewport": {
+          "width": 853,
+          "height": 560
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 678.6666870117188,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 614.6666870117188,
+            "height": 28,
+            "renderedHeight": 28.00002098083496,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28.00002098083496,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28.00002098083496,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "mode": "rename",
+        "dialog": {
+          "x": 66.66667175292969,
+          "y": 94.81481170654297,
+          "width": 720,
+          "height": 346.66668701171875,
+          "top": 94.81481170654297,
+          "right": 786.6666717529297,
+          "bottom": 441.4814987182617,
+          "left": 66.66667175292969
+        },
+        "viewport": {
+          "width": 853,
+          "height": 560
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 654.6666870117188,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "mode": "delete",
+        "dialog": {
+          "x": 66.66667175292969,
+          "y": 128.37037658691406,
+          "width": 720,
+          "height": 271.16668701171875,
+          "top": 128.37037658691406,
+          "right": 786.6666717529297,
+          "bottom": 399.5370635986328,
+          "left": 66.66667175292969
+        },
+        "viewport": {
+          "width": 853,
+          "height": 560
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 27.999990463256836,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "mode": "list",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "right": 760,
+          "bottom": 540,
+          "left": 0
+        },
+        "viewport": {
+          "width": 760,
+          "height": 540
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 718,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 654,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "mode": "rename",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "right": 760,
+          "bottom": 540,
+          "left": 0
+        },
+        "viewport": {
+          "width": 760,
+          "height": 540
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 694,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "mode": "delete",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "right": 760,
+          "bottom": 540,
+          "left": 0
+        },
+        "viewport": {
+          "width": 760,
+          "height": 540
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 38,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 62,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "mode": "list",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "right": 608,
+          "bottom": 432,
+          "left": 0
+        },
+        "viewport": {
+          "width": 608,
+          "height": 432
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 566.4000244140625,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 502.3999938964844,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "mode": "rename",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "right": 608,
+          "bottom": 432,
+          "left": 0
+        },
+        "viewport": {
+          "width": 608,
+          "height": 432
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 542.4000244140625,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "mode": "delete",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "right": 608,
+          "bottom": 432,
+          "left": 0
+        },
+        "viewport": {
+          "width": 608,
+          "height": 432
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 61.60000228881836,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "mode": "list",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "right": 506.66668701171875,
+          "bottom": 360,
+          "left": 0
+        },
+        "viewport": {
+          "width": 507,
+          "height": 360
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "查找分支",
+            "width": 465.3333435058594,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 401.3333435058594,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "重命名分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支 feature/保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支保留完整中文分支",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "mode": "rename",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "right": 506.66668701171875,
+          "bottom": 360,
+          "left": 0
+        },
+        "viewport": {
+          "width": 507,
+          "height": 360
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "",
+            "width": 441.3333435058594,
+            "height": 22,
+            "renderedHeight": 22,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "保存名称",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "mode": "delete",
+        "dialog": {
+          "x": 0,
+          "y": 0,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "right": 506.66668701171875,
+          "bottom": 360,
+          "left": 0
+        },
+        "viewport": {
+          "width": 507,
+          "height": 360
+        },
+        "controls": [
+          {
+            "name": "关闭",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "选择分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "新建分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "刷新分支列表",
+            "width": 28,
+            "height": 28,
+            "renderedHeight": 28,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "取消",
+            "width": 37.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          },
+          {
+            "name": "删除分支",
+            "width": 61.333335876464844,
+            "height": 20,
+            "renderedHeight": 20,
+            "contentFits": true,
+            "visible": true
+          }
+        ],
+        "overflow": false,
+        "namesVisible": true
+      }
+    ],
     "layouts": [
       {
         "theme": "light",
@@ -6535,15 +8459,36 @@
       "project-branches-overwrite-error-shell.png",
       "project-branches-draft-conflict-shell.png",
       "project-branches-hook-warning-shell.png",
+      "project-branches-rename-invalid-shell.png",
+      "project-branches-delete-confirm-shell.png",
+      "project-branches-delete-unmerged-shell.png",
       "project-branches-light-100-shell.png",
+      "project-branches-list-light-100-shell.png",
+      "project-branches-rename-light-100-shell.png",
+      "project-branches-delete-light-100-shell.png",
       "project-branches-light-125-shell.png",
+      "project-branches-list-light-125-shell.png",
+      "project-branches-rename-light-125-shell.png",
+      "project-branches-delete-light-125-shell.png",
       "project-branches-light-150-shell.png",
+      "project-branches-list-light-150-shell.png",
+      "project-branches-rename-light-150-shell.png",
+      "project-branches-delete-light-150-shell.png",
       "project-branches-dark-100-shell.png",
+      "project-branches-list-dark-100-shell.png",
+      "project-branches-rename-dark-100-shell.png",
+      "project-branches-delete-dark-100-shell.png",
       "project-branches-dark-125-shell.png",
+      "project-branches-list-dark-125-shell.png",
+      "project-branches-rename-dark-125-shell.png",
+      "project-branches-delete-dark-125-shell.png",
       "project-branches-dark-150-shell.png",
+      "project-branches-list-dark-150-shell.png",
+      "project-branches-rename-dark-150-shell.png",
+      "project-branches-delete-dark-150-shell.png",
       "project-branches-restart-shell.png"
     ],
-    "scope": "Real local Git, refs, worktree, hooks, renderer/bridge and Monaco; owned fixtures and scripted input at fixed display scale. Local branch creation/switching only; remote/worktree creation UI, physical input, accessibility, full reference design and distribution remain pending."
+    "scope": "Real local Git, refs, worktree, hooks, renderer/bridge and Monaco; owned fixtures and scripted input at fixed display scale. Local branch creation/switch/rename/merged-only deletion; remote credentials, physical input, accessibility, full reference design and final distribution remain pending."
   },
   "projectWorktrees": {
     "checks": 7,
@@ -7392,10 +9337,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\worktrees/nook-e1229587",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\管理 工作树 🧭/nook-6802c46d",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\worktrees/nook-927760e4",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\管理 工作树 🧭/nook-39e6110c",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -7639,51 +9584,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "41492332-de85-417f-8eee-edac1143071c",
-        "b93d1199-df1b-4f99-a23b-e2cb17ec59a0",
-        "32f0aa7a-491a-4ee8-bb67-4adad0df6a4c",
-        "07e5f3b2-1fa5-4baf-87a6-4d6218216a25",
-        "3218e259-8d8f-479f-95b2-a7f918e2ff98",
-        "0446f7f1-1052-489e-99d3-c4f6b409bd36",
-        "b08cb053-367e-4df4-ad00-fe39cd67b897",
-        "2ba21e6e-cb11-4576-ade4-2bfca7ff6dd9",
-        "4b8ec6b4-dd87-4196-8261-2cf79f84f603",
-        "b73157c0-464a-4e0d-86d6-4b6c004b92ea",
-        "e2f3a364-0899-4c6f-9162-1e3aec2fb20c",
-        "bede34e0-8b8a-432a-9826-b163d3476534",
-        "e26a81e3-3712-458a-b208-d634274e8f49",
-        "dd46657e-0070-46db-b5a7-b67587650a3e",
-        "a7e41f73-4fbd-47be-9421-7ac8e5d15530",
-        "415e1510-7a2d-4c82-be27-e68d0d76cbef",
-        "b9fcad58-23c2-4fde-97f7-4fd4b8052700",
-        "89d3a470-5e22-4d06-986a-64ef1cf8ba2c",
-        "b151f777-617f-43c6-8a30-d4948a4249d8",
-        "0e5d716e-9176-48a8-951a-c4fd01dc8cd1"
+        "b95c4663-4454-48e0-bead-e03e78b625b6",
+        "09fbbde5-4462-4e26-b3e1-597038599c59",
+        "a3ee20d6-7fcc-4211-9108-734b26a39d54",
+        "b45d56c7-e5ad-4e68-9f34-5757ef3cff6e",
+        "4fb5bbca-a216-4a77-8a2d-b35d5f9d14e0",
+        "d27cf5ab-5b5e-41b2-8017-d6754b7336d9",
+        "a9048a9c-9adf-40da-a137-150541f90527",
+        "4c69e58e-5a2a-4ba9-827e-dda0bd5b2546",
+        "a6793fe9-02a7-4fbd-9c15-394ea06ed0e7",
+        "e54ab5c2-d63b-462c-8dea-e0787b78b419",
+        "dcaaf967-943a-410e-a76d-fb9572cd8010",
+        "9b1d7f23-d675-49e0-8aa8-db36677bfd18",
+        "01a41e27-d04b-4c97-84ff-e973f3ecb90b",
+        "e13c9561-57be-4e0b-88b2-d096bf376ca6",
+        "1dfaf4a3-a1f0-4412-bf4e-045c95bef648",
+        "755a2bba-8c87-4134-84d2-9ad7afc19ee5",
+        "38166b93-1406-423f-b21c-bb224c535f76",
+        "596f1565-1ae5-4eef-8644-cc97cc2bb097",
+        "593cda93-995e-43bd-84de-4d9d56aca430",
+        "8386db46-f2b3-4a88-9ef2-e3bfa11b1142"
       ],
       [
-        "c42c28e5-2c96-40fd-bce3-2b4116de04a6"
+        "b8d02376-287d-43a0-8030-91a163f02b5e"
       ],
       [
-        "41492332-de85-417f-8eee-edac1143071c",
-        "b93d1199-df1b-4f99-a23b-e2cb17ec59a0",
-        "32f0aa7a-491a-4ee8-bb67-4adad0df6a4c",
-        "07e5f3b2-1fa5-4baf-87a6-4d6218216a25",
-        "3218e259-8d8f-479f-95b2-a7f918e2ff98",
-        "0446f7f1-1052-489e-99d3-c4f6b409bd36",
-        "b08cb053-367e-4df4-ad00-fe39cd67b897",
-        "2ba21e6e-cb11-4576-ade4-2bfca7ff6dd9",
-        "4b8ec6b4-dd87-4196-8261-2cf79f84f603",
-        "b73157c0-464a-4e0d-86d6-4b6c004b92ea",
-        "e2f3a364-0899-4c6f-9162-1e3aec2fb20c",
-        "bede34e0-8b8a-432a-9826-b163d3476534",
-        "e26a81e3-3712-458a-b208-d634274e8f49",
-        "dd46657e-0070-46db-b5a7-b67587650a3e",
-        "a7e41f73-4fbd-47be-9421-7ac8e5d15530",
-        "415e1510-7a2d-4c82-be27-e68d0d76cbef",
-        "b9fcad58-23c2-4fde-97f7-4fd4b8052700",
-        "89d3a470-5e22-4d06-986a-64ef1cf8ba2c",
-        "b151f777-617f-43c6-8a30-d4948a4249d8",
-        "0e5d716e-9176-48a8-951a-c4fd01dc8cd1"
+        "b95c4663-4454-48e0-bead-e03e78b625b6",
+        "09fbbde5-4462-4e26-b3e1-597038599c59",
+        "a3ee20d6-7fcc-4211-9108-734b26a39d54",
+        "b45d56c7-e5ad-4e68-9f34-5757ef3cff6e",
+        "4fb5bbca-a216-4a77-8a2d-b35d5f9d14e0",
+        "d27cf5ab-5b5e-41b2-8017-d6754b7336d9",
+        "a9048a9c-9adf-40da-a137-150541f90527",
+        "4c69e58e-5a2a-4ba9-827e-dda0bd5b2546",
+        "a6793fe9-02a7-4fbd-9c15-394ea06ed0e7",
+        "e54ab5c2-d63b-462c-8dea-e0787b78b419",
+        "dcaaf967-943a-410e-a76d-fb9572cd8010",
+        "9b1d7f23-d675-49e0-8aa8-db36677bfd18",
+        "01a41e27-d04b-4c97-84ff-e973f3ecb90b",
+        "e13c9561-57be-4e0b-88b2-d096bf376ca6",
+        "1dfaf4a3-a1f0-4412-bf4e-045c95bef648",
+        "755a2bba-8c87-4134-84d2-9ad7afc19ee5",
+        "38166b93-1406-423f-b21c-bb224c535f76",
+        "596f1565-1ae5-4eef-8644-cc97cc2bb097",
+        "593cda93-995e-43bd-84de-4d9d56aca430",
+        "8386db46-f2b3-4a88-9ef2-e3bfa11b1142"
       ]
     ],
     "layouts": [
@@ -9634,7 +11579,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\snapshot-evidence-91638f42",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\snapshot-evidence-7e42fef8",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -10366,7 +12311,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9\\cleanup-evidence-990a8ca1",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\cleanup-evidence-3c10b431",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -10608,7 +12553,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.515625,
+        "summaryWidth": 368.71875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10623,7 +12568,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 372.9125061035156,
+        "summaryWidth": 373.1125183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10638,7 +12583,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.1770935058594,
+        "summaryWidth": 271.38543701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10653,7 +12598,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.515625,
+        "summaryWidth": 368.71875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10668,7 +12613,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 372.9125061035156,
+        "summaryWidth": 373.1125183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10683,7 +12628,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.1770935058594,
+        "summaryWidth": 271.38543701171875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -10757,7 +12702,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "4eded221-cfe5-4684-b258-bec669dcf6c9",
+    "threadId": "509357b9-e468-45a8-8ca9-0d8f818fe751",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -10841,7 +12786,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-LohkZ9"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q"
   },
   "normalCloseVerified": true,
   "executableSha256": null,
