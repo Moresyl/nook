@@ -8,28 +8,28 @@
 
 冻结源码 `10db2c6` 已完成 371 项完整开发程序回归，74 次正常退出，最长 1,783ms，无强制结束。39 份新报告、581 张原图、完整工作区与 236 个匹配编译文件已归档；这批原图未全部逐张视觉复核。此前九份旧格式模块报告没有单独退出字段，正常退出以完整报告和实际进程日志为准。[本轮完整源码](../verification/project-branch-actions-full-source-review-result.json)
 
-该应用提交的[原流水线 38333451928](https://github.com/Moresyl/nook/actions/runs/38333451928) 因账户付款／支出额度限制未启动验证，实际零步骤，发布跳过；浏览器重试仍因认证令牌不可用未打开页面。没有标签或版本发布。[本轮托管证据](../verification/project-branch-actions-hosted-review-result.json)
+包源提交 `923ea697` 的[原流水线 38336442387](https://github.com/Moresyl/nook/actions/runs/38336442387) 因账户付款／支出额度限制未启动验证，实际零步骤，发布跳过；浏览器重试仍因认证令牌不可用未打开页面。没有标签或版本发布。[包源托管证据](../verification/project-branch-actions-source-delivery-hosted-review-result.json) · [应用提交的前次运行](../verification/project-branch-actions-hosted-review-result.json)
 
-当前已验证的 `c81b8c38` 分发候选不包含此项新增功能。以下包内、安装与许可结果仍属于该冻结候选，新增源码的最终分发需另行验收。
+本轮包含分支重命名与安全删除的新包已完成本机分发验收。编译应用体来自 `10db2c6`，包源为 `923ea697`，236 个编译文件逐文件匹配。实际安装验证的来源另包含一处明确归档的计数修正：分支专项由 8 组提高到 11 组。
 
 | 验证 | 当前证据 |
 | --- | --- |
 | 源码与构建 | 类型通过；236 个编译文件与专项及安装包逐文件匹配 |
-| 单元与覆盖率 | 132 文件／1,539 项通过；语句 97.02%、分支 94.57%、函数 97.77%、行 99.48% |
-| 搜索源码专项 | 原六组行为、六组明暗应用缩放、12 张完整窗口捕获通过；含另四张行为原图共 16 张逐张复核；三次正常退出，最长 707ms |
-| 包内完整回归 | `c81b8c38`：368 项、74 次正常退出、最长 1,748ms，无强制结束 |
-| 实际安装后回归 | 同一应用体：368 项、74 次正常退出、最长 1,677ms，无强制结束 |
-| 分发与数据保留 | 原五个专项与便携七项通过；注册、快捷方式、卸载保留数据、八个原始标记哈希恢复及十一份匹配运行记录通过 |
-| 本轮原图 | 包内与安装后各保留 39 份新报告、560 张原图；新包及安装后选定 70 张原图逐张复核并匹配归档，包含两轮各 16 张搜索、26 张控件和 12 张文字提示；其余原图未全部视觉复核 |
+| 单元与覆盖率 | 132 文件／1,550 项通过；语句 97.03%、分支 94.57%、函数 97.78%、行 99.49% |
+| 分支源码专项 | 保留原八组并新增三组；11 组、明暗三档应用缩放、34 张逐张复核原图及两次正常退出通过 |
+| 包内完整回归 | 371 项、74 次正常退出、最长 4,208ms，无强制结束 |
+| 实际安装后回归 | 同一应用体：371 项、74 次正常退出、最长 1,692ms，无强制结束 |
+| 分发与数据保留 | 原五个专项与便携七项通过；注册、快捷方式、卸载保留数据、八个原始及四个失败轮次标记哈希恢复、十一份匹配运行记录通过 |
+| 本轮原图 | 源码、包内与安装后各保留 39 份新报告及 581 张原图；专项源码、包内与安装后各 34 张分支原图逐张复核；其余原图未全部视觉复核 |
 | 身份与许可 | 239 个产品文件、401 份完整依赖法律文件及 20 份分发法律／来源文件核对通过，旧可见身份与未解决许可项为空；安装包未签名 |
 | 托管流水线 | 精确应用提交的原流水线受账户付款／支出额度限制，验证零步骤失败、发布跳过；浏览器连接缺少认证令牌 |
 
-[搜索源码专项](../verification/command-palette-acceptance-review-result.json) · [构建与许可](../verification/command-palette-package-review-result.json) · [包内回归](../verification/command-palette-full-unpacked-review-result.json) · [安装后回归](../verification/command-palette-full-installed-review-result.json) · [分发与数据保留](../verification/command-palette-runtime-review-result.json) · [70 张原图复核](../verification/command-palette-package-originals-review-result.json)
+[构建与许可](../verification/project-branch-actions-package-review-result.json) · [包内回归](../verification/project-branch-actions-full-unpacked-review-result.json) · [安装后回归](../verification/project-branch-actions-full-installed-review-result.json) · [分发与数据保留](../verification/project-branch-actions-runtime-review-result.json) · [包内分支原图](../verification/project-branch-actions-unpacked-visual-review-result.json) · [安装分支原图](../verification/project-branch-actions-installed-visual-review-result.json)
 
-这些结果属于冻结应用提交 `c81b8c3813cb6580db31c204eda28de65c06915b`。搜索专项使用开发可执行程序；完整回归使用该提交的新包与实际安装程序。此前完整源码与旧包的结果分别保留，不能将它们写成新界面的完整开发程序验收。分发首次预检查因未传入现有 7-Zip 路径而退出 1，尚未启动专项；补传原工具路径后五个专项均退出 0，未更改断言、超时或存储门槛。
+首次安装轮次完成 371 项原生检查后，被脚本遗留的“分支 8 组”条件拒绝，整轮仍记录为失败。修正为实际要求的 11 组后，同一不可变应用重新完成安装、完整回归与卸载；原失败日志、原图、工作区及十二个既有标记保留。其他验收条件、超时和流水线不变。复现这轮验证须使用包源归档加明确记录的脚本覆盖文件。[失败与完整重跑](../verification/project-branch-actions-installer-retry-review-result.json)
 
-原流水线的精确运行为 [38321086353](https://github.com/Moresyl/nook/actions/runs/38321086353)，发布任务跳过，版本列表为空。浏览器打开该页面在创建标签前因连接认证令牌不可用而失败，未进行浏览器发布。代码、测试与本机安装验收不能替代成功的标签流水线和可下载产物核对。
+代码、测试与本机安装验收不能替代成功的标签流水线和可下载产物核对；目前尚未进行浏览器发布。
 
 界面依据最新版 `E:/txt`（26.930.41038／build 13022）逐项采用，**全部页面与交互尚未达到 100% 对齐**。全局搜索的 520px 上限与输入区锚定浮层的 420px 上限属于不同入口。合法 Inter／系统中文字体及独立品牌保留明确差异；物理输入、系统 DPI、无障碍、真实服务与其他平台仍需各自验收。[设计对照](DESIGN-ALIGNMENT.md) · [能力与边界](CAPABILITIES.md) · [完整交付要求](DELIVERY.md)
 
-整理前的本轮说明逐字保留在[搜索改版前发布记录](RELEASE-HISTORY-2026-10-13-COMMAND-PALETTE.md)，SHA-256 为 `a82bcb946f9acf3aa84461bca7b2471ede6ecb4537b38e96e8547508b6d07f86`。其中旧包超时、光标与键盘诊断、未唯一确认的捕获差异、原图范围、存储转换及更早历史链接继续保留，未取消任何剩余要求。
+上一份说明逐字保留在[分支分发验收前发布记录](RELEASE-HISTORY-2026-10-13-BRANCH-ACTIONS.md)，SHA-256 为 `9d8cfeb4aed09a930cbb7a486b3631da44611e4f442df91f7f5132c9a3cd7856`。其中前轮搜索候选、失败现场、原图范围与更早历史链接继续保留，未取消任何剩余要求。

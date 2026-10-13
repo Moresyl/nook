@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-13T04:39:05.434Z",
+  "sourceHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+  "compiledProductSourceHead": "10db2c680346e803a775963da2acb405b11012ca",
+  "failure": {
+    "archive": "C:/NookVerificationOverflow/BranchActionsInstalledFailure1-20261013",
+    "toolReceipt": {
+      "error": "Installed runtime must normally close and match the built application.",
+      "sourceHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+      "exitCode": 1,
+      "completedAt": "2026-10-13T03:52:20.3599436Z",
+      "startedAt": "2026-10-13T03:18:25.1245310Z"
+    },
+    "nativeChecks": 371,
+    "normalExits": 74,
+    "installationAccepted": false,
+    "stage": "original installer post-runtime guard",
+    "originalExpectedBranchChecks": 8,
+    "actualBranchChecks": 11,
+    "originalVerifierSha256": "fcec7e8da7d569c0459e9bc6cf39018820a52a3814ca49cb66d7e91e5acda6e1"
+  },
+  "correction": {
+    "path": "scripts/verify-installer.ps1",
+    "correctedExpectedBranchChecks": 11,
+    "correctedVerifierSha256": "8b512754c8a251dbf9750d36e73fe2d7554c0b56ba282502411e144166a83fb7",
+    "testedProductInputsUnchanged": 13,
+    "sourceProvenance": "Reproduce the tested installer round with the original package source tar plus the exact installer-verifier overlay."
+  },
+  "retry": {
+    "archive": "C:/NookVerificationOverflow/BranchActionsFull-installed-20261013",
+    "toolReceipt": {
+      "exitCode": 0,
+      "startedAt": "2026-10-13T04:04:22.1231192Z",
+      "completedAt": "2026-10-13T04:38:04.9581991Z",
+      "sourceHead": "923ea6971cdb8f1920b10df2f72aaa38aff220c1",
+      "error": null
+    },
+    "archiveReceipt": {
+      "exitCode": 0,
+      "completedAt": "2026-10-13T04:38:29.4920186Z"
+    },
+    "nativeChecks": 371,
+    "normalExits": 74,
+    "forcedExits": 0,
+    "maximumNormalExitMs": 1692,
+    "runtimeArchive": "C:/NookVerificationOverflow/BranchActionsRuntime-20261013",
+    "matchingRuntimeRecords": 11,
+    "originalMarkersRestored": 8,
+    "retainedFailureMarkersRestored": 4,
+    "uninstalled": true,
+    "userDataRetained": true,
+    "passed": true
+  },
+  "executableSha256": "67b500c647b951400320d59ee9440faac5810a90a1d115271d78e109c13db8b9",
+  "archiveSha256": "60838ba5d4a02092274808749d269361bfcc93e19f4c9f0d8d4474adab1401bc",
+  "published": false,
+  "scope": "The first complete native subprocess passed but its installer failed the stale eight-check branch expectation. That installation remains failed. Only the expectation was increased to eleven; the same immutable product then completed an entirely new original install/runtime/uninstall round and the eleven-record gate. All failed originals and twelve earlier test marker hashes remain. This does not claim complete reference UI parity or hosted publication."
+}
