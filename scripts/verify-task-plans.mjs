@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/') && new URL(window.webContents.getURL()).searchParams.get('view') !== 'quick-chat')";
 export async function verifyTaskPlans({ page, application, getApplication, directory, screenshots, endpoint, fixture, verified, waitForBridge, errors, restart }) {
   const original = await page.evaluate(() => window.qiyao.load()), geometry = await application.evaluateMain(`({size:${mainWindow}.getContentSize(),zoom:${mainWindow}.webContents.getZoomFactor()})`);
-  const providerId = 'task-plan-provider', projectId = 'task-plan-project', threadIds = [], captures = [], layouts = [];
+  const providerId = 'task-plan-provider', projectId = 'task-plan-project', threadIds = [], captures = [], captureSizes = [], layouts = [];
   const readme = join(directory, 'project-fixture/README.md'), originalReadme = await readFile(readme);
   await page.evaluate(async ({ endpoint, directory, providerId, projectId }) => {
     await window.qiyao.saveProvider({ id: providerId, name: '任务步骤验证', kind: 'openai', endpoint: new URL('/task-plan/v1', endpoint).href, models: ['task-plan-model'], hasKey: false }, 'local-verification-key');
@@ -23,7 +23,12 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
     return thread.id;
   }
   const plan = () => page.getByLabel('任务步骤记录', { exact: true }).last();
-  const capture = async filename => { await page.screenshot({ path: join(screenshots, filename) }); captures.push(filename); };
+  const capture = async filename => {
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const value = await application.evaluateMain(`(async()=>{const window=${mainWindow};return {png:(await window.capturePage()).toPNG().toString('base64'),size:window.getContentSize()};})()`);
+    const png = Buffer.from(value.png, 'base64'); assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], value.size);
+    await writeFile(join(screenshots, filename), png); captures.push(filename); captureSizes.push({ filename, size: value.size });
+  };
   const finishedId = await start('任务步骤完成验证');
   await waitForBridge(page, async id => (await window.qiyao.load()).threads.find(thread => thread.id === id)?.messages.at(-1)?.status === 'complete', finishedId);
   assert.match(await plan().locator('header').textContent(), /2\s*\/\s*3 标记完成/);
@@ -82,5 +87,5 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
   assert.deepEqual(errors, []); assert.ok((await readFile(readme)).equals(originalReadme));
   await page.evaluate(preferences => window.qiyao.savePreferences(preferences), original.preferences); await application.evaluateMain(`${mainWindow}.setContentSize(${geometry.size.join(',')});${mainWindow}.webContents.setZoomFactor(${geometry.zoom})`);
   verified('reopened stopped responses retain pending task semantics and project bytes while restoring original preferences and window geometry');
-  return { page, result: { checks: 8, actualReadOnlyTool: true, rawToolRecordsPreserved: true, projectFilesUnchanged: true, noPlanDocument: true, invalidUpdateRetainsPlan: true, stoppedStateAccurate: true, plainTextRendering: true, actualRestart: true, noModelReplay: true, requests: fixture.requests, layouts, screenshots: captures } };
+  return { page, result: { checks: 8, actualReadOnlyTool: true, rawToolRecordsPreserved: true, projectFilesUnchanged: true, noPlanDocument: true, invalidUpdateRetainsPlan: true, stoppedStateAccurate: true, plainTextRendering: true, actualRestart: true, noModelReplay: true, requests: fixture.requests, layouts, screenshots: captures, nativeCaptureSizes: captureSizes } };
 }

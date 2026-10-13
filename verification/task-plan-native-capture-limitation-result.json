@@ -1,0 +1,129 @@
+{
+  "reviewedAt": "2026-10-13T16:41:55.449Z",
+  "nativeChecksPassed": 8,
+  "visualReviewAccepted": false,
+  "individuallyViewed": [
+    "task-plans-light-1280-100.png",
+    "task-plans-light-1280-125.png",
+    "task-plans-light-1280-150.png",
+    "task-plans-light-760-100.png"
+  ],
+  "reason": "The 125% and 150% page screenshots use CSS viewport dimensions and clip the right edge of the native window. Automated native assertions passed, but these captures cannot establish complete visual acceptance.",
+  "correction": "Use existing Electron BrowserWindow.capturePage pattern and assert each PNG width/height equals native window content size. Preserve all fourteen original captures and re-run the suite separately.",
+  "archive": "C:/NookVerificationOverflow/TaskPlanNativeRetry2-20261014",
+  "sourceHead": "5d2871419f84b9ac5262c10b8ccf407e9126f473",
+  "images": [
+    {
+      "name": "task-plans-light-1280-100.png",
+      "bytes": 71458,
+      "sha256": "44f0904a2b90e80c7e83bee01c4d12d645ff00d52c95c77e66f626a38c724fe4",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-light-1280-125.png",
+      "bytes": 49691,
+      "sha256": "7e41d5405d6c07e36a4ea54dc97d5ab80ba68dd385025e154df7bbf1897fc413",
+      "width": 1024,
+      "height": 672,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-light-1280-150.png",
+      "bytes": 36001,
+      "sha256": "de438636b39ab06d7b81499aae68fd97e87a073ad1412a86e724d917d5406c2c",
+      "width": 853,
+      "height": 560,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-light-760-100.png",
+      "bytes": 47601,
+      "sha256": "3cd0658e1a20a48de11ad4031f20392fc1a3262b2485e8c0efede112d9beb11f",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-light-760-125.png",
+      "bytes": 27768,
+      "sha256": "103501f751e8209a42b6676f3ba3c8913a1fe305d5a7deaec6a99bbc36584189",
+      "width": 608,
+      "height": 432,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-light-760-150.png",
+      "bytes": 16467,
+      "sha256": "fa7b042f7b16084ba61e3798db5db695ef509fea2cbbf462967d1535771aca16",
+      "width": 507,
+      "height": 360,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-1280-100.png",
+      "bytes": 71987,
+      "sha256": "9e7ff214ce151df408a9df9ad8394bee1bcf72cfde3a2cd50b0bd16fce98db80",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-1280-125.png",
+      "bytes": 49069,
+      "sha256": "1fb44909165bf044dc992ae41cf488705002b49b5aaa2c198e182c89addd124d",
+      "width": 1024,
+      "height": 672,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-1280-150.png",
+      "bytes": 35259,
+      "sha256": "0df521502738b510ac59faee6817b188285e3585c8014ecd1f7685ff2df51b65",
+      "width": 853,
+      "height": 560,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-760-100.png",
+      "bytes": 47895,
+      "sha256": "793d8968d6930909af93c3a8a879d69f65b6b9e0339131da7e9d630425e66bb7",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-760-125.png",
+      "bytes": 27158,
+      "sha256": "f6dafc4b9a8749c0c4a12d0beb2b835dde3da6a6dd400f60316e3b57934b9d28",
+      "width": 608,
+      "height": 432,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-dark-760-150.png",
+      "bytes": 16281,
+      "sha256": "3579069f12f72c73e303ddaa6a5b1f78ae4e7d14912568141e740b08f9ea224a",
+      "width": 507,
+      "height": 360,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-stopped.png",
+      "bytes": 70646,
+      "sha256": "718b01d4c5677a72af7827c5ef561592e98c0160e1d7fe0eaf86758feb130ff4",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": false
+    },
+    {
+      "name": "task-plans-restart.png",
+      "bytes": 74356,
+      "sha256": "83929f6d561c145f3780769136327d72a2fed4b8b286599413ebf76ed01411ce",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": false
+    }
+  ]
+}
