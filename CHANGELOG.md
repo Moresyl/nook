@@ -6,6 +6,8 @@
 
 Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. Complete current-source and distribution gates remain pending.
 
+当前交付提交的原托管流水线已实际启动，环境准备成功，检查正在执行；此前账户限制的零步骤失败保留为历史，不等同于当前结果。浏览器认证仍不可用，尚未发布版本。
+
 输入框依据当前主题覆盖采用 22px 默认圆角，CSS 视口小于 40rem 时缩小浅色大阴影。新类型、构建和 13 项首页原生检查通过，两次正常退出、13 张原图逐张复核；本机实际系统缩放为 100%，三档应用缩放、设置键盘回焦和草稿重启保留通过。新应用体的完整分发尚待验收，原托管流水线仍受账户付款／额度限制。
 
 The composer now uses the current 22px default radius and a smaller light shadow below a 40rem CSS viewport. Fresh type checks, build and thirteen homepage checks pass, with two normal exits and thirteen individually reviewed captures. This host's physical display scale is 100%; full distribution of the new body and hosted publication remain separate.

@@ -27,7 +27,7 @@
 
 [前一完整分发](../verification/memory-delete-default-surface-runtime-review-result.json) · [安装后回归](../verification/memory-delete-default-surface-full-installed-review-result.json)
 
-原托管流水线最近核对的提交为 `844c33d`：[运行 38402974905](https://github.com/Moresyl/nook/actions/runs/38402974905)。验证作业因账户付款／支出额度限制在零步骤时失败，发布作业跳过。浏览器连接还返回认证令牌不可用，页面未打开。尚无发布标签或可下载版本；成功发布必须有真实流水线和产物核对。
+当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 已实际启动，环境准备成功，类型、单元覆盖率与许可证检查正在执行。此前 `844c33d` 的账户限制／零步骤失败属于历史，不能当作当前运行结果。本次尚未得出完整验收或发布成功结论；浏览器连接仍返回认证令牌不可用，页面未打开。尚无发布标签或可下载版本。[本次实际进度](../verification/shared-button-defaults-hosted-progress-review-result.json)
 
 ## 剩余交付
 

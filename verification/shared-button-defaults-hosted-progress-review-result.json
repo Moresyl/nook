@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-10-13T14:32:09.874Z",
+  "archive": "C:/NookVerificationOverflow/SharedButtonDefaultsHosted-20261013",
+  "deliveryHead": "d72d5ef2766cde9b73944d158b146df235151d61",
+  "compiledSourceHead": "ee33306afbb2ee82178ce953b5bf920e31484c35",
+  "workflow": {
+    "url": "https://github.com/Moresyl/nook/actions/runs/38413577535",
+    "id": 38413577535,
+    "status": "in_progress",
+    "conclusion": null,
+    "jobs": [
+      {
+        "id": 115351959992,
+        "name": "verify",
+        "status": "in_progress",
+        "conclusion": null,
+        "actualSteps": 15,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Prepare isolated temporary storage and pinned dependencies",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify types, unit coverage and complete redistribution notices",
+            "status": "in_progress",
+            "conclusion": null
+          },
+          {
+            "name": "Build the audited Windows installer and portable executable",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Verify the complete packaged desktop and settings",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Verify actual bootstrap plugins and portable execution",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Verify current-user installation, installed desktop and data-preserving uninstall",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Verify matching complete runtime records",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Prepare exact tagged source, bilingual notes and checksums",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Preserve verification diagnostics",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Upload the complete verified release bundle",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "status": "pending",
+            "conclusion": null
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "pending",
+            "conclusion": null
+          }
+        ]
+      }
+    ],
+    "annotations": []
+  },
+  "releaseCount": 0,
+  "tagCount": 0,
+  "evidence": [
+    {
+      "name": "run-progress.json",
+      "sha256": "50f3e55eef417d1bad48ff638fe93d2967b2e1a807f7d626d3140b4806568aee"
+    },
+    {
+      "name": "jobs-progress.json",
+      "sha256": "5bcbb52d5425a1c24774f645009ebdbc4fc4349ef94a1abc6973fb0bfd292f74"
+    },
+    {
+      "name": "annotations-progress-115351959992.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases-progress.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags-progress.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "browser": {
+    "tool": "mcp__cua_repl.js",
+    "actualOperation": "nameSession on existing Chrome browser before opening a workflow tab",
+    "actualToolResult": "Codex auth token is unavailable",
+    "pageRead": false,
+    "browserReleaseCompleted": false,
+    "alternativeBrowserBypassAttempted": false
+  },
+  "published": false,
+  "completeReferenceParity": false,
+  "fullCurrentDistributionAccepted": false,
+  "scope": "Actual in-progress original hosted workflow. Its environment setup ran successfully and checks started, unlike the historical zero-step account failures. No billing/account remedy or completed verification is inferred. Browser auth still unavailable. Current full local and distribution gates remain pending."
+}
