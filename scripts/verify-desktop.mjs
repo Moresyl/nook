@@ -59,6 +59,7 @@ import { modelComparisonFixture } from '../verification/model-comparison-fixture
 import { chatNavigationFixture } from '../verification/chat-navigation-fixture.mjs';
 import { replyProviderFixture } from '../verification/reply-provider-fixture.mjs';
 import { toolActivityFixture } from '../verification/tool-activity-fixture.mjs';
+import { taskPlanFixture } from '../verification/task-plan-fixture.mjs';
 import { contextSummaryFixture } from '../verification/context-summary-fixture.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -101,6 +102,7 @@ await runFile('git', ['-C', projectDirectory, 'config', 'user.email', 'verificat
 await runFile('git', ['-C', projectDirectory, 'config', 'commit.gpgSign', 'false'], { windowsHide: true });
 const providerErrors = [];
 const toolActivityProviders = toolActivityFixture(directory);
+const taskPlanProviders = taskPlanFixture();
 const contextSummaryProviders = contextSummaryFixture();
 const oauth = await oauthFixture();
 const nativeProviders = nativeProviderFixture();
@@ -115,6 +117,7 @@ const modelComparisonProviders = modelComparisonFixture();
 async function providerRequest(request, response) {
   if (await contextSummaryProviders.handle(request, response)) return;
   if (await toolActivityProviders.handle(request, response)) return;
+  if (await taskPlanProviders.handle(request, response)) return;
   if (await chatNavigationProviders.handle(request, response)) return;
   if (await modelComparisonProviders.handle(request, response)) return;
   if (await replyProviders.handle(request, response)) return;
@@ -554,6 +557,7 @@ let systemDpiHomeResult;
 let browserResult;
 let projectBranchesResult;
 let toolActivitiesResult;
+let taskPlansResult;
 let contextSummariesResult;
 let projectWorktreesResult;
 let worktreeSettingsResult;
@@ -632,6 +636,11 @@ try {
     const run = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
     page = run.page; contextSummariesResult = run.result;
     assert.equal(count, 6); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_TASK_PLANS_ONLY) {
+    const { verifyTaskPlans } = await import('./verify-task-plans.mjs');
+    const run = await verifyTaskPlans({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: taskPlanProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
+    page = run.page; taskPlansResult = run.result;
+    assert.equal(count, 8); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_TOOL_ACTIVITIES_ONLY) {
     const { verifyToolActivities } = await import('./verify-tool-activities.mjs');
     const run = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } });
@@ -1317,6 +1326,8 @@ try {
   const { verifyWorktreeCleanup } = await import('./verify-worktree-cleanup.mjs');
   const worktreeCleanupRun = await verifyWorktreeCleanup({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async beforeLaunch => { await application.close(); if (beforeLaunch) await beforeLaunch(); return launch(); } }); page = worktreeCleanupRun.page; worktreeCleanupResult = worktreeCleanupRun.result;
   const toolActivitiesRun = await verifyToolActivities({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: toolActivityProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = toolActivitiesRun.page; toolActivitiesResult = toolActivitiesRun.result;
+  const { verifyTaskPlans } = await import('./verify-task-plans.mjs');
+  const taskPlansRun = await verifyTaskPlans({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: taskPlanProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = taskPlansRun.page; taskPlansResult = taskPlansRun.result;
   const { verifyContextSummaries } = await import('./verify-context-summaries.mjs');
   const contextSummariesRun = await verifyContextSummaries({ page, application, getApplication: () => application, directory, screenshots, endpoint, fixture: contextSummaryProviders, verified, waitForBridge, errors, restart: async () => { await application.close(); return launch(); } }); page = contextSummariesRun.page; contextSummariesResult = contextSummariesRun.result;
   assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
@@ -1359,6 +1370,7 @@ try {
   if (fullResult && composerActionsResult) fullResult.screenshots.push(...composerActionsResult.screenshots);
   if (fullResult && settingsSearchResult) { fullResult.settingsSearch = settingsSearchResult; fullResult.screenshots.push(...settingsSearchResult.screenshots); }
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
+  if (fullResult && taskPlansResult) { fullResult.taskPlans = taskPlansResult; fullResult.screenshots.push(...taskPlansResult.screenshots); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
@@ -1596,6 +1608,11 @@ try {
     assert.deepEqual(errors, []);
     await writeFile(join(root, 'verification', packaged ? 'tool-activities-packaged-result.json' : 'tool-activities-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused tool-activity suite' }), ...toolActivitiesResult }, null, 2));
     console.log(`Verified ${toolActivitiesResult.checks} tool activity checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && taskPlansResult) {
+    assert.deepEqual(errors, []);
+    await writeFile(join(root, 'verification', packaged ? 'task-plans-packaged-result.json' : 'task-plans-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, ...(fullResult ? { verificationRun: 'complete desktop suite', suiteChecks: count } : { verificationRun: 'focused task-plan suite' }), ...taskPlansResult }, null, 2));
+    console.log(`Verified ${taskPlansResult.checks} task plan checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && projectBranchesResult) {
     assert.deepEqual(errors, []);

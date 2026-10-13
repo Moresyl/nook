@@ -5,6 +5,7 @@ const tools: Record<string, { label: string; icon: GlyphName }> = {
   list_files: { label: '查看项目文件', icon: 'folder' }, read_file: { label: '读取文件', icon: 'file' }, search_files: { label: '搜索项目', icon: 'search' },
   git_diff: { label: '查看 Git 改动', icon: 'branch' }, write_file: { label: '保存文件', icon: 'save' }, edit_file: { label: '修改文件', icon: 'compose' },
   run_command: { label: '执行命令', icon: 'code' }, load_skill: { label: '读取技能说明', icon: 'library' }, read_skill_file: { label: '读取技能文件', icon: 'file' },
+  update_plan: { label: '更新任务步骤', icon: 'list' },
 };
 const statuses = { waiting: '等待审批', running: '执行中', complete: '已完成', error: '失败', stopped: '已停止' };
 function inputRecord(text: string): Record<string, unknown> | null {

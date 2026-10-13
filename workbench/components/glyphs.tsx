@@ -42,6 +42,8 @@ const paths = {
   sun: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1 1 M18 18l1 1 M5 19l1-1 M18 6l1-1',
   code: 'm8 6-6 6 6 6 M16 6l6 6-6 6 M14 3l-4 18',
   check: 'm5 12 4 4L20 5',
+  list: 'M9 5h12 M9 12h12 M9 19h12 M3 5h1 M3 12h1 M3 19h1',
+  circle: 'M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z',
   file: 'M5 3h9l5 5v13H5V3Z M14 3v6h5 M8 13h8 M8 17h6',
   minimize: 'M5 12h14',
   maximize: 'M5 5h14v14H5V5Z',

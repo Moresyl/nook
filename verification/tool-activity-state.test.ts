@@ -8,6 +8,7 @@ describe('tool activity presentation', () => {
     ['list_files', '查看项目文件', 'folder'], ['read_file', '读取文件', 'file'], ['search_files', '搜索项目', 'search'],
     ['git_diff', '查看 Git 改动', 'branch'], ['write_file', '保存文件', 'save'], ['edit_file', '修改文件', 'compose'],
     ['run_command', '执行命令', 'code'], ['load_skill', '读取技能说明', 'library'], ['read_skill_file', '读取技能文件', 'file'],
+    ['update_plan', '更新任务步骤', 'list'],
   ])('labels native tool %s', (name, label, icon) => { expect(toolActivitySummary(activity({ name }))).toMatchObject({ label, icon, status: '执行中', duration: null }); });
   it('summarizes paths/search without changing inputs or interpreting external schemas', () => {
     const value = activity({ name: 'search_files', input: '{"query":"a\\nb", "path":" src/文件 夹 "}' });

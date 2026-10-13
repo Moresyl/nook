@@ -8,6 +8,7 @@ import { ProjectTools, type ProjectToolExecutor } from '../desktop/services/proj
 import { WorkspaceVault } from '../desktop/services/vault';
 import { workspaceSchema } from '../contracts/workspace';
 import { codec, request, sampleThread, testVault } from './fixtures';
+import { latestTaskPlan } from '../contracts/task-plan';
 
 const directories: string[] = [];
 afterEach(async () => { await Promise.all(directories.splice(0).map((path) => rm(path, { force: true, recursive: true }))); });
@@ -143,6 +144,58 @@ describe('conversation engine', () => {
     const { threadId } = await engine.start(request); await engine.settle(threadId);
     expect(vault.snapshot().threads[0].messages[1].error).toContain('does not allow');
     expect(tools.execute).not.toHaveBeenCalled();
+  });
+
+  it('persists task step updates around actual read-only work and retains them after restart without a plan file', async () => {
+    const initial = { explanation: '检查资料', steps: [{ step: '读取 README', status: 'in_progress' }] };
+    const completed = { explanation: '读取结果已核对', steps: [{ step: '读取 README', status: 'completed' }] };
+    const planReply = (value: unknown): ModelReply => {
+      const tool = { id: 'plan-call', name: 'update_plan', arguments: JSON.stringify(value) };
+      return { kind: 'ollama', items: [{ role: 'assistant', tool_calls: [{ id: tool.id, type: 'function', function: { name: tool.name, arguments: tool.arguments } }] }], toolCalls: [tool] };
+    };
+    const gateway: ModelGateway = { stream: vi.fn().mockImplementationOnce(async (input: ModelInput) => {
+      expect(input.tools?.map(tool => tool.name)).toEqual(['list_files', 'read_file', 'search_files', 'git_diff', 'update_plan']);
+      return planReply(initial);
+    }).mockImplementationOnce(async input => {
+      expect(JSON.parse(input.exchanges[0].results[0].output)).toEqual(initial); return reply();
+    }).mockImplementationOnce(async input => {
+      expect(input.exchanges[1].results[0].output).toContain('Verified read-only fixture'); return planReply(completed);
+    }).mockImplementationOnce(async (_input, onText) => { onText('资料读取完成。'); }) };
+    const { engine, vault, directory } = await setup(gateway);
+    const path = join(directory, 'project'); await mkdir(path); await writeFile(join(path, 'README.md'), 'Verified read-only fixture');
+    await vault.update(draft => { draft.projects.push({ id: 'project', name: 'Fixture', path, instructions: '', createdAt: 1 }); });
+    const { threadId } = await engine.start({ ...request, projectId: 'project', mode: 'plan' }); await engine.settle(threadId);
+    const message = vault.snapshot().threads[0].messages[1];
+    expect(message.status).toBe('complete'); expect(latestTaskPlan(message.activities!)).toEqual(completed);
+    expect(message.activities?.map(activity => activity.name)).toEqual(['update_plan', 'read_file', 'update_plan']);
+    expect(await readFile(join(path, 'README.md'), 'utf8')).toBe('Verified read-only fixture');
+    await expect(readFile(join(path, 'PLAN.md'))).rejects.toMatchObject({ code: 'ENOENT' });
+    await engine.shutdown(); await vault.flush();
+    const restored = new WorkspaceVault(directory, codec); await restored.initialize();
+    expect(latestTaskPlan(restored.snapshot().threads[0].messages[1].activities!)).toEqual(completed);
+    await restored.flush();
+  });
+
+  it('retains the last accepted task steps after an invalid update and a stopped response', async () => {
+    const plan = { explanation: '', steps: [{ step: '待核对工作', status: 'in_progress' }] };
+    const planReply = (value: unknown): ModelReply => {
+      const tool = { id: 'plan-call', name: 'update_plan', arguments: JSON.stringify(value) };
+      return { kind: 'ollama', items: [{ role: 'assistant', tool_calls: [{ id: tool.id, type: 'function', function: { name: tool.name, arguments: tool.arguments } }] }], toolCalls: [tool] };
+    };
+    let waiting!: () => void; const pending = new Promise<void>(resolve => { waiting = resolve; });
+    const gateway: ModelGateway = { stream: vi.fn().mockImplementationOnce(async () => planReply(plan))
+      .mockImplementationOnce(async () => planReply({ ...plan, steps: [...plan.steps, ...plan.steps] }))
+      .mockImplementationOnce(async input => {
+        expect(input.exchanges[1].results[0].error).toBe(true); waiting();
+        await new Promise<void>((_resolve, reject) => input.signal.addEventListener('abort', () => reject(new DOMException('Stopped', 'AbortError')), { once: true }));
+      }) };
+    const { engine, vault, directory } = await setup(gateway);
+    await vault.update(draft => { draft.projects.push({ id: 'project', name: 'Fixture', path: directory, instructions: '', createdAt: 1 }); });
+    const { threadId } = await engine.start({ ...request, projectId: 'project', mode: 'plan' }); await pending; await engine.stop(threadId);
+    const message = vault.snapshot().threads[0].messages[1];
+    expect(message.status).toBe('stopped'); expect(message.activities?.map(activity => activity.status)).toEqual(['complete', 'error']);
+    expect(latestTaskPlan(message.activities!)).toEqual(plan); expect(message.activities?.[1].output).toContain('Invalid tool arguments');
+    await engine.shutdown(); await vault.flush();
   });
 
   it('returns a denied tool result to the model so it can recover', async () => {

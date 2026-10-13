@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { toolCallSchema, type ToolCall, type ToolDefinition, type ToolExecutionContext, type ToolResult } from '../../contracts/tools';
 import type { Project } from '../../contracts/workspace';
 import { projectDiff, projectDocument, projectEntries, projectText, scopedPath } from './project-files';
+import { taskPlanSchema } from '../../contracts/task-plan';
 
 const pathSchema = z.string().max(4096);
 const schemas = {
@@ -10,12 +11,14 @@ const schemas = {
   read_file: z.object({ path: pathSchema.min(1), start_line: z.number().int().min(1).max(1_000_000), max_lines: z.number().int().min(1).max(400) }).strict(),
   search_files: z.object({ path: pathSchema, query: z.string().min(1).max(200), case_sensitive: z.boolean(), max_results: z.number().int().min(1).max(100) }).strict(),
   git_diff: z.object({}).strict(),
+  update_plan: taskPlanSchema,
 };
 const descriptions: Record<keyof typeof schemas, string> = {
   list_files: 'List a directory in the selected project. Use an empty path for the project root. Internal and credential files are excluded.',
   read_file: 'Read numbered lines of a UTF-8 text file in the selected project. Lines start at 1. At most 400 lines per call; larger output is truncated.',
   search_files: 'Search literal text in project files recursively. Reports file paths, line numbers and excerpts. Search is bounded and may be truncated.',
   git_diff: 'Read the tracked Git changes against HEAD in the selected project. This does not run external diff programs or modify files.',
+  update_plan: 'Record the current task steps in this conversation. Provide the full list of 1 to 20 steps and a short explanation (empty when unnecessary). At most one step may be in progress. Mark a step completed only after its actual work is verified; updating this record does not execute work or modify project files.',
 };
 export const projectToolDefinitions: ToolDefinition[] = Object.entries(schemas).map(([name, schema]) => {
   const parameters = z.toJSONSchema(schema) as Record<string, unknown>;
@@ -108,6 +111,9 @@ export class ProjectTools implements ProjectToolExecutor {
         case 'git_diff':
           schemas.git_diff.parse(args);
           output = await projectDiff(project.path);
+          break;
+        case 'update_plan':
+          output = JSON.stringify(schemas.update_plan.parse(args));
           break;
         default: throw new Error('This tool is unavailable in project analysis.');
       }

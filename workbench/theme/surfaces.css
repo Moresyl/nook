@@ -403,6 +403,17 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .composer-mode-hint { margin: 6px 8px 0; font-size: 11px; color: var(--ds-text-tertiary); }
 .composer-tools { flex-wrap: wrap; }
 .tool-activities { display: flex; flex-direction: column; gap: 8px; margin: 0 0 16px; min-width: 0; container: tool-activities / inline-size; }
+.task-plan { min-width: 0; padding: 12px; border: 1px solid var(--ds-border); border-radius: var(--radius-lg); }
+.task-plan > header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-weight: var(--font-weight-medium); }
+.task-plan > header > :last-child { color: var(--ds-text-secondary); font-weight: 400; }
+.task-plan > p { margin-top: 8px; color: var(--ds-text-secondary); white-space: pre-wrap; overflow-wrap: anywhere; }
+.task-plan > ol { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 12px 0 0; list-style: none; }
+.task-plan li { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
+.task-plan li > svg { margin-top: 2px; color: var(--ds-text-secondary); }
+.task-plan li > span { flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.task-plan li > small { flex: none; color: var(--ds-text-secondary); font-size: 12px; }
+.task-plan li[data-step-status="in_progress"] > svg { color: var(--ds-accent); }
+.task-plan li[data-step-status="completed"] > svg { color: var(--ds-success); }
 .tool-activity { display: flex; flex-direction: column; min-width: 0; font-size: inherit; }
 .tool-activity-header { display: flex; align-items: center; gap: 4px; min-width: 0; }
 .tool-activity-toggle { min-width: 0; max-width: 100%; flex: 1; justify-content: flex-start; gap: 4px; padding: 0; border: 0; font-size: inherit; line-height: inherit; color: var(--ds-text-secondary); border-radius: var(--radius-md); }

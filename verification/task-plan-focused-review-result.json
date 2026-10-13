@@ -1,0 +1,107 @@
+{
+  "verifiedAt": "2026-10-13T15:56:28.775Z",
+  "archive": "C:/NookVerificationOverflow/TaskPlanFocusedTestsRetry1-20261013",
+  "sourceParent": "544c8c9393ad8bcc11231a3288c31aaeedec662d",
+  "sourcePatchSha256": "6c5fd46914e7f1480340271dcbbd28de828ee34dc573856b4e2364957e90ca52",
+  "inputs": [
+    {
+      "path": "contracts/task-plan.ts",
+      "sha256": "3675ea82ad7e4c6e37cc489bdfcc450eea5438c8a245f8f846c3dfd06280c1cc"
+    },
+    {
+      "path": "desktop/services/project-tools.ts",
+      "sha256": "eaaa51dcdca4627fdb071cc787b33fac80cce108b662854fdb638eb312f92292"
+    },
+    {
+      "path": "verification/conversation-engine.test.ts",
+      "sha256": "3ed2b06d7a0aabc558c39ef34b44913d42b89f2adce9011e5c7d5aa40aee17f4"
+    },
+    {
+      "path": "verification/project-tools.test.ts",
+      "sha256": "c4d6177f3f7c009205baf60ea5df58ad4ca52c8e0455990f3c94ed3b1f9569de"
+    },
+    {
+      "path": "verification/tool-activity-state.test.ts",
+      "sha256": "585390d47a5e5c15352dcd557a0cb129dc1425d8c3577f07012a329748729042"
+    },
+    {
+      "path": "verification/task-plan.test.ts",
+      "sha256": "2eba7d40b61cb58322065ff0b28452795765f1721fd6104c985a36774b24c413"
+    },
+    {
+      "path": "workbench/components/glyphs.tsx",
+      "sha256": "38d943bfbc0458a53c645d38c6d47d3609a1c11fdd632bf567f97e826e08d8e3"
+    },
+    {
+      "path": "workbench/components/tool-activity-state.ts",
+      "sha256": "46fbd12fb775b3befbcd450f0e6a499f459814a36068d961a034a6124d7efe76"
+    },
+    {
+      "path": "workbench/components/tool-activity.tsx",
+      "sha256": "1b7a7755397f848457083fe27925bad28cbbc1a96aa7c3bd5f9acfa6d5d96fd6"
+    },
+    {
+      "path": "workbench/components/transcript.tsx",
+      "sha256": "ccd041a6d98b9010a8be7edc524c711998443df84848a57f9c63566cb3fcc711"
+    },
+    {
+      "path": "workbench/quick-chat.tsx",
+      "sha256": "3687a2b81e5154d6fa8f71ed262d660adbe57cfc348e0d360b778cf8e680797a"
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "54b10dfc8c4498ab2fc693c10b89c9653c53d061b2ee600b133af081af8786da"
+    },
+    {
+      "path": "scripts/verify-desktop.mjs",
+      "sha256": "5c3afe03d125ccf987117531d6a79c7a5cbd2b7a55051ffd2f3ff7a2aa2314a6"
+    },
+    {
+      "path": "scripts/verify-task-plans.mjs",
+      "sha256": "b6028e30ecb542d479e66a1018180d445d2da898ef714ddd65afad3005d5012b"
+    },
+    {
+      "path": "verification/task-plan-fixture.mjs",
+      "sha256": "c7490da1d9892fdaacc3c6c9edf4765cf7f4797a8a3178d8c26cea821131e2ca"
+    },
+    {
+      "path": "verification/task-plan-fixture.d.mts",
+      "sha256": "0d33b05b6d33a2e9c71d546d0c0a51b8689903ed31f3a1fbc000d25d9f3c6ee0"
+    },
+    {
+      "path": "verification/task-plan-fixture.test.ts",
+      "sha256": "2db8e16fba8d720aa6556dd1ef4d241a9e0734db16d12138de9ec81688a88dbc"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "check",
+      "sourceHead": "544c8c9393ad8bcc11231a3288c31aaeedec662d",
+      "startedAt": "2026-10-13T15:52:08.4063000+00:00",
+      "finishedAt": "2026-10-13T15:52:14.4979593+00:00",
+      "exitCode": 0,
+      "logSha256": "74314c2698155a6eb27e58ee5983fe74d2192fc221aeb7d54c0ba06feac3b0eb"
+    },
+    {
+      "phase": "focused",
+      "sourceHead": "544c8c9393ad8bcc11231a3288c31aaeedec662d",
+      "startedAt": "2026-10-13T15:52:14.5001577+00:00",
+      "finishedAt": "2026-10-13T15:52:25.0903103+00:00",
+      "exitCode": 0,
+      "logSha256": "642d6c11e66f8a656cbd3e5903ea6d7bbedec6be00b2007f786c2488d3958a59"
+    }
+  ],
+  "focusedTests": 85,
+  "focusedFiles": 5,
+  "typecheckPassed": true,
+  "modelAndEngineIntegrationPassed": true,
+  "actualReadOnlyFixtureVerified": true,
+  "validPlanSurvivesRestart": true,
+  "invalidOrStoppedUpdatesDoNotReplaceAcceptedPlan": true,
+  "fullCoverageCurrentAccepted": false,
+  "buildCurrentAccepted": false,
+  "nativeCurrentAccepted": false,
+  "distributionAccepted": false,
+  "published": false,
+  "scope": "Task plan contracts, strict model definitions, read-only recording, actual engine read/update/restart behavior, failed update and cancellation, raw activity labels and owned HTTP fixture pass focused tests. Main and quick transcripts share the component; native theme/zoom, stopped labels and real restart require the newly prepared native verifier. No native UI, full coverage or release acceptance is inferred."
+}

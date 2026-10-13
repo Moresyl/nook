@@ -21,7 +21,7 @@ function execute(root: Project, name: string, args: unknown, signal = new AbortC
 
 describe('project analysis tools', () => {
   it('declares strict schemas with every property required', () => {
-    expect(projectToolDefinitions.map((tool) => tool.name)).toEqual(['list_files', 'read_file', 'search_files', 'git_diff']);
+    expect(projectToolDefinitions.map((tool) => tool.name)).toEqual(['list_files', 'read_file', 'search_files', 'git_diff', 'update_plan']);
     for (const tool of projectToolDefinitions) {
       expect(tool.parameters.additionalProperties).toBe(false);
       expect(tool.parameters.required ?? []).toEqual(Object.keys(tool.parameters.properties as object));

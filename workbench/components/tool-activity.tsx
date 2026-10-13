@@ -1,5 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { ToolActivity } from '../../contracts/tools';
+import type { Message } from '../../contracts/workspace';
+import { latestTaskPlan } from '../../contracts/task-plan';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
 import { toolActivityExpanded, toolActivitySummary, toggleToolActivity, type ToolDisclosure } from './tool-activity-state';
@@ -30,6 +32,11 @@ function ToolActivityRow({ activity }: { activity: ToolActivity }) {
     <div ref={body} id={id} className="tool-detail" data-expanded={expanded} aria-hidden={!expanded} inert={!expanded}><div className="tool-detail-inner"><ToolText label="输入" text={activity.input} />{activity.output && <ToolText label="结果" text={activity.output} />}{!activity.output && <p className="field-hint">{activity.status === 'running' ? '等待工具输出…' : activity.status === 'waiting' ? '审批完成后继续执行。' : '没有输出内容。'}</p>}</div></div>
   </div>;
 }
-export function ToolActivities({ activities }: { activities: ToolActivity[] }) {
-  return <div className="tool-activities" aria-label="工具执行记录">{activities.map(activity => <ToolActivityRow activity={activity} key={activity.id} />)}</div>;
+export function ToolActivities({ activities, responseStatus }: { activities: ToolActivity[]; responseStatus: Message['status'] }) {
+  const plan = useMemo(() => latestTaskPlan(activities), [activities]);
+  return <div className="tool-activities" aria-label="工具执行记录">{plan && <section className="task-plan" aria-label="任务步骤记录">
+    <header><span>任务步骤记录</span><span>{plan.steps.filter(step => step.status === 'completed').length} / {plan.steps.length} 标记完成</span></header>
+    {plan.explanation && <p>{plan.explanation}</p>}
+    <ol>{plan.steps.map((step, index) => <li key={index} data-step-status={step.status}><Glyph name={step.status === 'completed' ? 'check' : step.status === 'in_progress' ? 'clock' : 'circle'} size={16} /><span>{step.step}</span><small>{step.status === 'completed' ? '完成' : step.status === 'in_progress' ? responseStatus === 'running' ? '进行中' : '待继续' : '待办'}</small></li>)}</ol>
+  </section>}{activities.map(activity => <ToolActivityRow activity={activity} key={activity.id} />)}</div>;
 }
