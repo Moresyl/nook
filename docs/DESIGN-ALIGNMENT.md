@@ -2,6 +2,8 @@
 
 界面以最新版 `E:/txt`（26.930.41038／build 13022）的作用域 CSS、主题和实际调用证据为依据。旧 `DESIGN.md` 只作历史索引。**全部页面与交互尚未达到 100% 对齐。**
 
+当前应用体在共享按钮与输入框基础上新增会话任务步骤记录，并采用有界工作树只读查询。1,585 项完整覆盖率测试、类型与构建通过；任务步骤 8 组原生专项覆盖 12 种布局，16 张原图逐张复核，每个步骤可滚动至可读区域。完整源码重跑通过 383 项／75 次正常退出，40 份报告和 633 张原图归档，未全部逐张视觉复核。首次预览超时保留，当前包内与安装仍待验收。以下较早轮次的“当前”指其冻结源码，不能替代此应用体。[本轮原生](../verification/task-plan-native-review-result.json) · [本轮完整源码](../verification/task-plan-full-source-review-result.json)
+
 共享按钮实际默认调用为 xs，已采用对应 24px 最小高度、8px 左右内距和 4px 内容间距，保留 12px 字号；附件关闭与设置搜索清除仍使用各自 20px／22px 尺寸。当前新类型、1,557 项单元、覆盖率和构建通过；真实记忆按钮的默认、键盘焦点、悬停、按下和禁用状态在两主题、两尺寸和三档缩放通过，37 张原图逐张复核。窄窗口表单独立滚动显示保存操作，早先字段可在视口上方。当前共享按钮应用体通过 375 项完整源码检查、74 次正常退出，无强制结束；39 份报告与 617 张新原图归档，未宣称全部原图已视觉复核。安装与便携分发仍待验收。[精确参考与新构建](../verification/shared-button-defaults-build-review-result.json) · [状态与原图](../verification/shared-button-defaults-native-review-result.json) · [当前完整源码](../verification/shared-button-defaults-full-source-review-result.json)
 
 输入框默认圆角现在采用后置主题覆盖的 22px，CSS 视口小于 40rem 时使用 40px 浅色大阴影，其他视口保留 80px。浏览器窗口的 28px 覆盖属于另一作用域，未套用于本工作台。类型与新构建通过；两种主题、两种窗口尺寸、三档应用缩放及正常重启的 13 项首页专项通过，13 张完整原图逐张查看。实际系统缩放为 100%，高缩放短窗口仍使用紧凑侧栏和纵向滚动；这轮没有证明其他物理系统 DPI 或完整参考首页。当前完整源码另通过 375 项、74 次正常退出，39 份新报告及 617 张原图保留，原图未全部逐张视觉复核；新应用体完整分发仍待验收。[构建与参考来源](../verification/composer-surface-tokens-build-review-result.json) · [首页专项](../verification/composer-surface-tokens-native-review-result.json) · [当前完整源码](../verification/composer-surface-tokens-full-source-review-result.json)

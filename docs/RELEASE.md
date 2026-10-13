@@ -15,13 +15,16 @@
 | 原生状态 | 默认、键盘焦点、悬停、按下、禁用状态与真实记忆控件验证；禁用保存不获取焦点、不改变已存记忆 |
 | 前一输入框完整源码 | `9f50a58` 通过 375 项、74 次正常退出，最长 1,712ms；39 份报告与 617 张原图归档，原图未全部逐张视觉复核 |
 | 共享按钮冻结源码 | 新读取优化前的应用体通过 375 项、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告、617 张原图和 236 个匹配编译文件归档，原图未全部逐张视觉复核 |
-| 当前完整源码与分发 | 任务步骤与读取优化后的完整源码、包内、实际安装仍待验收；前一应用体记录不能替代 |
+| 当前完整源码 | 383 项、75 次正常退出，最长 2,418ms，无强制结束；40 份报告、633 张原图、236 个匹配编译文件与工作区归档，完整原图未全部逐张复核 |
+| 当前分发 | 任务步骤与读取优化后的包内、实际安装与便携仍待验收；前一应用体记录不能替代 |
 
 首页专项实际系统缩放为 100%，没有强制设备缩放。完整源码套件保留原精确尺寸夹具和全部期限；它不能替代其他实际系统 DPI、物理交互与真实服务验收。
 
 [当前单元与构建](../verification/task-plan-build-review-result.json) · [任务步骤与原图](../verification/task-plan-native-review-result.json) · [先前按钮状态](../verification/shared-button-defaults-native-review-result.json) · [先前按钮完整源码](../verification/shared-button-defaults-full-source-review-result.json)
 
 本轮完整源码首次运行通过 197 项后，在 HTML 预览的弹窗拒绝检查处超过原 5 秒主进程期限，实际退出 1；21 次退出均正常，9 份报告、213 张原图、准确编译文件和工作区保留。随后未改动产品、验证逻辑或期限，原文件树／预览集成专项 17 项独立重跑通过，两次正常退出，最长 1,729ms；37 张新原图保留，未全部逐张复核。失败原因仍未确认，完整源码需另行重跑，不能写成已修复。[完整源码失败](../verification/task-plan-full-source-initial-failure-review-result.json) · [独立集成重跑](../verification/task-plan-preview-integration-review-result.json)
+
+随后在相同产品与验证输入上重跑完整源码，383 项全部通过，75 次正常退出，最长 2,418ms。全部报告、原图和工作区归档完整性验证通过；该结果不确认首次超时的原因，也不代替新包与实际安装。[完整源码重跑](../verification/task-plan-full-source-review-result.json)
 
 首轮完整源码因旧圆角断言失败，实际退出 1；原日志、24 张截图、工作区及准确编译文件均保留。修改测试期望后重跑通过。归档助手另曾使用错误的报告文件名，在复制前退出 1；已按原验证器修正并保留记录，没有重写产品或降低验收条件。[首轮失败现场](../verification/composer-surface-tokens-full-source-failure-review-result.json)
 

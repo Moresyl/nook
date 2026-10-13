@@ -2,6 +2,10 @@
 
 ## 未发布
 
+新增会话内任务步骤记录：展示最新有效步骤、完成数量与原文工具记录，错误更新保留上一份记录，停止后未完成步骤显示“待继续”。记录不执行步骤或写入计划文件。135 文件／1,585 项完整覆盖率测试、类型与构建通过；8 组原生专项覆盖 12 种布局，每项步骤均可滚动阅读，16 张原图逐张复核。完整源码重跑通过 383 项／75 次正常退出，无强制结束；40 份报告与 633 张原图归档，未全部视觉复核。首次预览弹窗拒绝检查超时保留，未改变原期限，原因未确认；分发和托管发布仍待完成。
+
+Conversation task records display the latest valid steps alongside exact tool history, retain the previous record after invalid updates, and label unfinished stopped steps as awaiting continuation. Recording does not execute tasks or write plan files. All 1,585 tests and the build pass; eight focused native groups cover twelve layouts with sixteen individually reviewed captures. The complete source rerun passes 383 checks with 75 normal exits, retaining forty reports and 633 captures. The first preview timeout is preserved without a deadline change or a claim that its cause is resolved; distribution and hosted publication remain pending.
+
 工作树的只读身份校验按四项一批执行，快照的三个独立 Git 元数据读取并行完成；读取失败先等待所有查询结束。回执顺序、失效记录、原文件与索引校验、删除前复查和串行删除保留。新增两项相关检查，完整 1,559 项与原覆盖率门槛通过；新应用体的构建、原生、分发与托管验收仍待完成。第二次托管运行只剩一项清理超时，其失败日志保留。
 
 Worktree identities are verified in bounded batches of four, and three independent snapshot metadata reads run concurrently. Failed reads settle before returning; receipt order, stale records, file/index validation and every deletion recheck remain. Deletion stays sequential. All 1,559 tests pass the original coverage gate; fresh build, native, distribution and hosted acceptance of this body remain pending.
@@ -48,6 +52,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 新功能
 
+- **任务步骤**：项目分析与执行模式可在会话内记录最多 20 项步骤，展示模型标记的完成数量，保留每次工具输入与结果。错误更新保留上一份有效记录；停止后未完成步骤显示“待继续”，重启保留记录和草稿。记录本身不会执行步骤或写入项目计划文件。
+
 - **对话与模型**：连接 Responses、OpenAI 兼容接口、Anthropic、Gemini、Azure 和 Ollama；支持流式回复、停止与重试、回复版本、消息编辑、对话分支，以及同一问题的 2–4 模型比较。
 - **快捷选择**：主工作台和快速聊天输入 `/` 可查找模板、助手和项目。支持键盘选择和光标处插入变量模板；取消保留原文，选择不会发送消息。
 - **上下文与工具**：生成、编辑并选用上下文摘要，继续保留完整原文；原文变化后恢复完整历史。工具记录展示状态、耗时和操作摘要，可展开、复制及失败重试。
@@ -88,6 +94,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Project analysis and execution can record up to twenty conversation task steps. Invalid updates retain the last valid record; stopping marks unfinished work as awaiting continuation. Exact tool records and unsent drafts survive restart. Recording does not execute steps or create project plan files. Bounded worktree identity queries and concurrent read-only snapshot metadata queries retain all deletion rechecks and sequential removal.
 
 Nook is a local AI workspace for multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Slash choices for templates, assistants and projects work in both the workbench and Quick Chat without sending a message.
 
