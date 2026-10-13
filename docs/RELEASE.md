@@ -2,7 +2,7 @@
 
 **尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。已授权完成验收后直接通过原流水线发布，无需再次确认。
 
-最新记忆删除修正了参考作用域判断：默认标题采用 600 字重与正常字距，弹窗按可用高度顶部定位，使用 90% 回退表面、0.5px 边缘和 24px 背景模糊。长内容仍有界滚动，取消与等待／失败保护保留。新样式的单元、原生、新包与安装验收尚待完成，以下结果属于此前记忆候选。
+最新记忆删除修正了参考作用域判断：默认标题采用 600 字重与正常字距，弹窗按可用高度顶部定位，使用 90% 回退表面、0.5px 边缘和 24px 背景模糊。长内容仍有界滚动，取消与等待／失败保护保留。新样式的类型、133 文件／1,557 项完整单元与覆盖率、构建均通过；源码五组原生专项、六组主题／应用缩放与 22 张逐张复核原图通过，正常退出 740ms。新完整 375 项回归、新包与安装验收尚待完成，以下结果属于此前记忆候选。[新单元与构建](../verification/memory-delete-default-surface-unit-review-result.json) · [新原生专项](../verification/memory-delete-default-surface-focused-review-result.json) · [新原图复核](../verification/memory-delete-default-surface-visual-review-result.json)
 
 此前记忆候选的源码五组专项、六种主题／应用缩放、22 张原图复核通过；完整源码通过 375 项和 74 次正常退出，最长 1,694ms，无强制结束，保留 39 份报告、617 张原图和 236 个匹配编译文件。冻结提交重跑 133 文件／1,555 项完整覆盖率通过，四项覆盖率均超过 94%。旧样式使用的 590 字重、基础字距和垂直居中未正确反映默认调用，旧结果与前三轮失败现场保留，不作为新样式通过证据。下述 373 项分发结果属于更早的设置候选。[初版单元](../verification/memory-delete-unit-review-result.json) · [焦点修正](../verification/memory-delete-focus-correction-review-result.json) · [旧原生专项](../verification/memory-delete-focused-review-result.json) · [旧原图复核](../verification/memory-delete-visual-review-result.json) · [旧完整源码](../verification/memory-delete-full-source-review-result.json)
 
