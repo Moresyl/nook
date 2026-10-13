@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-13T08:54:50.002Z",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDeliveryHosted-20261013",
+  "sourceHead": "462ee404042b548d7f4310d91c8d4cc32be9805a",
+  "remoteBranchHeadVerified": true,
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38371876745",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115210593045,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115210609722,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "93ab0c1c4bbb813987375fa580bf219317f4bda8cc34bd4be1a8449770a85ed6"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "faa02360af882a9a6ef236a4cc6a457366e234efd30dbb750f0f9115325cd9b3"
+    },
+    {
+      "name": "annotations-115210593045.json",
+      "sha256": "f992b41073cb092a35aad5f9db7c8af733394386b1f641f7e3c335aa1d8814ff"
+    },
+    {
+      "name": "annotations-115210609722.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "scope": "Exact original workflow read-only inspection for the committed native-memory acceptance. New full source regression is separate and still running. No tag, billing, runner or workflow change.",
+  "browser": {
+    "checkedAt": "2026-10-13T08:55:28.580Z",
+    "method": "cua.createBrowserTab",
+    "browser": "chrome",
+    "requestedUrl": "https://github.com/Moresyl/nook/actions/runs/38371876745",
+    "opened": false,
+    "response": "Codex auth token is unavailable",
+    "responseSha256": "b866e2eca433098912cfc51b1aadd0f08f351b96f77d7e411258c28a112878e0",
+    "scope": "Actual unified computer-use attempt for this exact run. No alternative transport or authentication changes."
+  }
+}

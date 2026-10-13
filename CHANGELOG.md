@@ -2,9 +2,9 @@
 
 ## 未发布
 
-记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；新完整回归和分发验收待完成。
+记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；完整源码 375 项／74 次正常退出通过，新包与安装分发验收待完成。
 
-Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five native checks and 22 reviewed images pass; the new complete runtime and distribution gates remain pending.
+Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five focused native checks, 22 reviewed images and the complete 375-check source regression pass. The new packaged and installed distribution gates remain pending.
 
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
