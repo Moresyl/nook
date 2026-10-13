@@ -7,6 +7,9 @@
 .quick-chat-body[hidden] { display: none; }
 .quick-chat-conversation { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px 4px; }
 .quick-chat-conversation .select { min-width: 0; min-height: var(--control-size-3xs); max-width: 65%; padding-inline: var(--control-gutter-2xs); gap: 4px; border: 0; border-radius: var(--control-radius-sm); background: transparent; font-size: 13px; }
+.quick-chat-conversation .select { box-shadow: none; }
+.quick-chat-conversation .select:is(:hover, :open) { background: var(--ghost-hover); box-shadow: none; }
+.quick-chat-conversation .select:focus-visible { outline-offset: 2px; }
 .quick-chat-conversation .field-hint { font-size: 12px; white-space: nowrap; }
 .quick-chat-transcript { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; }
 .quick-chat-transcript .transcript { width: 100%; padding: 16px; }

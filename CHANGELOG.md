@@ -3,7 +3,7 @@
 ## 未发布
 
 - 新增会话任务步骤：保留最新有效记录和工具原文；无效更新保留旧记录，停止后待继续，重启保留草稿。
-- 共享按钮采用 24px／8px／4px 默认规格；输入框采用 22px 圆角与窄视口浅色阴影，专用小控件保留各自尺寸。
+- 共享按钮采用 24px／8px／4px 与 13px 字号；普通单行表单采用 32px 高、8px 圆角、12px 内距和内描边。聊天输入区保留 22px 外圆角与窄视口浅色阴影。
 - 工作树只读身份查询按四项一批执行，独立 Git 元数据读取并行等待；删除仍串行，原文件、索引与删除前复查保留。
 - 发布与安装门槛提高为 383 项，严格验证八组任务步骤行为、十二种布局、逐项可读边界和十六张完整捕获。原期限与覆盖率门槛保持不变。
 - 136 文件／1,602 项单元测试与类型检查通过；源码、包内和实际安装各通过 383 项／75 次正常退出。原五项分发专项、十一份匹配记录和保留数据卸载通过。三轮任务步骤原图各 16 张，以及分发控件 26 张／文字提示 12 张已逐张复核；每轮 633 张完整回归原图未全部视觉复核。
@@ -42,6 +42,9 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 普通单行表单和下拉框采用 32px 高、8px 圆角、12px 内边距与 13px 字号，分别保留输入聚焦、下拉展开、键盘圈和非法状态。按钮取消额外实体边框，统一默认 400 字重与 150ms 过渡；模型和工具下拉使用紧凑规格。
+- 快速聊天的会话标题保留 22px 紧凑高度，修复普通表单尺寸继承导致小窗口高缩放时模型操作区被挤出的情况。
+
 - 全局搜索采用 520px 宽度上限和随窗口收缩的布局，明暗表面与居中定位单独适配；键盘移到列表末项时保留滚动留白。
 - 输入框采用当前主题的 22px 默认圆角，窄视口收紧浅色阴影，保留原有输入、发送、草稿和键盘行为。
 - 共享按钮采用当前默认高度、内距与内容间距；保留附件关闭和设置搜索清除的小尺寸入口，键盘焦点及禁用状态分别核对。
@@ -61,6 +64,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Single-line form fields and selects use 32px controls with inset outlines and distinct keyboard, open and invalid states. Buttons retain their exact content gutters without an extra border. Compact model and tool selectors remain separate from ordinary forms. Quick Chat keeps its compact conversation selector so the model controls remain reachable in small zoomed windows.
 
 Project analysis and execution can record up to twenty conversation task steps. Invalid updates retain the last valid record; stopping marks unfinished work as awaiting continuation. Exact tool records and unsent drafts survive restart. Recording does not execute steps or create project plan files. Bounded worktree identity queries and concurrent read-only snapshot metadata queries retain all deletion rechecks and sequential removal.
 

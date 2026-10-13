@@ -95,6 +95,20 @@ async function motionState(page) {
   });
 }
 
+async function assertInsetBorder(page, control, color) {
+  const fieldId = await control.getAttribute('aria-labelledby');
+  assert.ok(fieldId);
+  const expected = `${color} 0px 0px 0px 1px inset`;
+  await page.waitForFunction(({ fieldId, expected }) => {
+    const element = [...document.querySelectorAll('input.input, select.select')].find(element => element.getAttribute('aria-labelledby') === fieldId);
+    return element && getComputedStyle(element).boxShadow === expected;
+  }, { fieldId, expected });
+  assert.deepEqual(await control.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { border: style.borderTopWidth, shadow: style.boxShadow };
+  }), { border: '0px', shadow: expected });
+}
+
 async function assertFieldStates(page, dialog, mode, screenshots) {
   const shortcut = dialog.getByLabel('唤起快捷键', { exact: true });
   const original = await shortcut.inputValue();
@@ -104,34 +118,42 @@ async function assertFieldStates(page, dialog, mode, screenshots) {
   }), { height: '32px', radius: '8px', left: '12px', right: '12px', fontSize: '13px' }, 'The desktop shortcut uses the shared medium input size');
   const saved = await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null);
   const heading = dialog.getByRole('heading', { name: '桌面入口', exact: true });
-  const border = () => shortcut.evaluate((element) => getComputedStyle(element).borderTopColor);
+  assert.equal(await shortcut.evaluate(element => getComputedStyle(element).fontWeight), '400');
   const palette = mode === 'light'
     ? { hover: 'rgba(0, 0, 0, 0.25)', focus: 'rgba(0, 0, 0, 0.5)', invalid: 'rgb(224, 46, 42)' }
     : { hover: 'rgba(255, 255, 255, 0.3)', focus: 'rgba(255, 255, 255, 0.5)', invalid: 'rgb(186, 38, 35)' };
   await heading.click();
   await shortcut.hover();
-  assert.equal(await border(), palette.hover, `${mode} input hover uses the reference alpha border`);
+  await assertInsetBorder(page, shortcut, palette.hover);
   await shortcut.focus();
-  assert.equal(await border(), palette.focus, `${mode} input focus uses the stronger neutral border`);
-  assert.equal(await shortcut.evaluate((element) => getComputedStyle(element).boxShadow), 'none');
+  await assertInsetBorder(page, shortcut, palette.focus);
   await shortcut.fill('');
   await page.waitForFunction(() => document.querySelector('.desktop-settings input[aria-invalid="true"]'));
   assert.equal(await shortcut.getAttribute('aria-invalid'), 'true');
-  assert.equal(await border(), palette.invalid, 'Invalid styling takes priority over focus');
+  await assertInsetBorder(page, shortcut, palette.invalid);
   assert.equal(await dialog.getByRole('button', { name: '应用快捷键', exact: true }).isEnabled(), false);
   await heading.click(); await shortcut.hover();
-  assert.equal(await border(), palette.invalid, 'Invalid styling takes priority over hover');
+  await assertInsetBorder(page, shortcut, palette.invalid);
   await shortcut.focus();
   await page.screenshot({ path: join(screenshots, `97-field-invalid-${mode}.png`) });
   await shortcut.fill(original);
   await page.waitForFunction(() => document.querySelector('.desktop-settings input[aria-invalid="false"]'));
   assert.equal(await shortcut.getAttribute('aria-invalid'), 'false');
-  assert.equal(await border(), palette.focus, 'Correcting the field restores its focused appearance');
+  await assertInsetBorder(page, shortcut, palette.focus);
   assert.equal(await dialog.getByRole('button', { name: '应用快捷键', exact: true }).isEnabled(), false);
   assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null), saved, 'Invalid input must not alter the saved desktop preferences');
 }
 
 async function assertControlGeometry(page, dialog, mode, application, screenshots) {
+  const search = dialog.getByRole('searchbox', { name: '搜索设置', exact: true });
+  for (const state of ['default', 'hover', 'focus']) {
+    if (state === 'hover') await search.hover();
+    if (state === 'focus') await search.focus();
+    assert.deepEqual(await search.evaluate(element => {
+      const style = getComputedStyle(element);
+      return { border: style.borderTopWidth, shadow: style.boxShadow };
+    }), { border: '0px', shadow: 'none' }, `${mode}/${state} nested search input leaves the outline to its pill container`);
+  }
   const theme = dialog.getByLabel('主题', { exact: true });
   assert.equal(await theme.evaluate(element => getComputedStyle(element).fontWeight), '500', `${mode} select uses the global medium weight`);
   assert.equal(await dialog.getByRole('heading', { name: '外观与交互', exact: true }).evaluate(element => getComputedStyle(element).fontWeight), '600', `${mode} heading uses the global semibold weight`);
@@ -140,10 +162,19 @@ async function assertControlGeometry(page, dialog, mode, application, screenshot
     const style = getComputedStyle(element); const picker = getComputedStyle(element, '::picker(select)');
     return { height: style.height, radius: style.borderRadius, left: style.paddingLeft, right: style.paddingRight, gap: style.gap, pickerPadding: picker.paddingTop, fontSize: style.fontSize };
   }), { height: '32px', radius: '8px', left: '12px', right: '12px', gap: '8px', pickerPadding: '6px', fontSize: '13px' });
+  await dialog.getByRole('heading', { name: '外观与交互', exact: true }).hover();
   await theme.focus();
-  assert.equal(await theme.evaluate(element => getComputedStyle(element).borderTopColor), mode === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)');
+  await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await assertInsetBorder(page, theme, mode === 'light' ? 'rgba(0, 0, 0, 0.16)' : 'rgba(255, 255, 255, 0.25)');
+  assert.deepEqual(await theme.evaluate(element => {
+    const style = getComputedStyle(element);
+    const probe = document.createElement('span'); probe.style.color = 'var(--color-ring)'; element.append(probe);
+    const expectedColor = getComputedStyle(probe).color; probe.remove();
+    return { focused: document.activeElement === element, visible: element.matches(':focus-visible'), width: style.outlineWidth, offset: style.outlineOffset, themed: style.outlineColor === expectedColor };
+  }), { focused: true, visible: true, width: '2px', offset: '-1px', themed: true });
   await theme.click();
   await page.waitForFunction(() => document.querySelector('select:open'));
+  await assertInsetBorder(page, theme, mode === 'light' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.3)');
   const option = theme.getByRole('option', { name: '跟随系统', exact: true });
   const highlight = mode === 'light' ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.1)';
   await option.hover();
@@ -157,6 +188,8 @@ async function assertControlGeometry(page, dialog, mode, application, screenshot
   await page.keyboard.press('Escape');
   assert.equal(await theme.inputValue(), mode, 'Inspecting menu states must not change the selected theme');
   const apply = dialog.getByRole('button', { name: '应用快捷键', exact: true });
+  assert.equal(await apply.evaluate(element => getComputedStyle(element).fontWeight), '400');
+  assert.equal(await apply.evaluate(element => getComputedStyle(element).borderTopWidth), '0px');
   assert.deepEqual(await apply.evaluate(element => {
     const style = getComputedStyle(element);
     return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap, fontSize: style.fontSize };
@@ -478,7 +511,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
 
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   const normal = await motionState(page);
-  assert.deepEqual(normal, { reduced: false, animation: 'token-pulse', duration: '1.25s', buttonTransition: '0.18s, 0.18s', toggleTransition: '0.15s' });
+  assert.deepEqual(normal, { reduced: false, animation: 'token-pulse', duration: '1.25s', buttonTransition: '0.15s, 0.15s', toggleTransition: '0.15s' });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   assert.deepEqual(await motionState(page), { reduced: true, animation: 'none', duration: '0s', buttonTransition: '0s', toggleTransition: '0s' });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
@@ -494,6 +527,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   const zooms = [1, 1.25, 1.5];
   const categories = ['模型连接', 'MCP 工具', '本地技能', '本地插件', '记忆', '工作树', '外观与交互', '数据与备份', '关于 Nook'];
   const geometryChecks = [];
+  const savedProviders = await page.evaluate(async () => (await window.qiyao.load()).providers);
   for (const [width, height, zoom] of [
     ...zooms.map(zoom => [760, 540, zoom]),
     ...zooms.map(zoom => [1280, 540, zoom]),
@@ -506,6 +540,19 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     const geometry = { windowWidth: width, windowHeight: height, zoom, ...await assertModalLayout(page, dialog), formFields: [] };
     geometryChecks.push(geometry);
     await assertFocusBoundary(page, dialog);
+    await dialog.getByRole('button', { name: '模型连接', exact: true }).click();
+    await dialog.getByRole('button', { name: '添加连接', exact: true }).click();
+    await dialog.getByLabel('连接名称', { exact: true }).fill('表单布局检查');
+    await dialog.getByLabel('API 类型', { exact: true }).selectOption('azure');
+    await dialog.getByLabel('Azure 接口', { exact: true }).selectOption('deployment-chat');
+    await dialog.getByLabel('模型', { exact: true }).fill('layout-check');
+    geometry.populatedModelFields = await assertFormFieldReachability(dialog);
+    assert.equal(geometry.populatedModelFields, 15, 'The populated Azure form exposes every medium capacity and connection field');
+    await dialog.getByRole('button', { name: '← 返回连接列表', exact: true }).click();
+    const discard = page.getByRole('dialog', { name: '放弃未保存的更改？', exact: true });
+    await discard.getByRole('button', { name: '放弃更改', exact: true }).click();
+    await discard.waitFor({ state: 'detached' });
+    await assertModalLayout(page, dialog);
     for (const category of categories) {
       await dialog.getByRole('button', { name: category, exact: true }).click();
       await assertModalLayout(page, dialog);
@@ -519,6 +566,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   }
+  assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).providers), savedProviders, 'Layout checks must not save the temporary connection or send model requests');
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
   await application.resize(1280, 840);
   await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
