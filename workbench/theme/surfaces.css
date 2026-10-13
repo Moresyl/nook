@@ -412,7 +412,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .task-plan li > svg { margin-top: 2px; color: var(--ds-text-secondary); }
 .task-plan li > span { flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .task-plan li > small { flex: none; color: var(--ds-text-secondary); font-size: 12px; }
-.task-plan li[data-step-status="in_progress"] > svg { color: var(--ds-accent); }
+.task-plan[data-response-status="running"] li[data-step-status="in_progress"] > svg { color: var(--ds-accent); }
 .task-plan li[data-step-status="completed"] > svg { color: var(--ds-success); }
 .tool-activity { display: flex; flex-direction: column; min-width: 0; font-size: inherit; }
 .tool-activity-header { display: flex; align-items: center; gap: 4px; min-width: 0; }

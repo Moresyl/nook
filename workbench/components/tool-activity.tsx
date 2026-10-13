@@ -34,7 +34,7 @@ function ToolActivityRow({ activity }: { activity: ToolActivity }) {
 }
 export function ToolActivities({ activities, responseStatus }: { activities: ToolActivity[]; responseStatus: Message['status'] }) {
   const plan = useMemo(() => latestTaskPlan(activities), [activities]);
-  return <div className="tool-activities" aria-label="工具执行记录">{plan && <section className="task-plan" aria-label="任务步骤记录">
+  return <div className="tool-activities" aria-label="工具执行记录">{plan && <section className="task-plan" aria-label="任务步骤记录" data-response-status={responseStatus}>
     <header><span>任务步骤记录</span><span>{plan.steps.filter(step => step.status === 'completed').length} / {plan.steps.length} 标记完成</span></header>
     {plan.explanation && <p>{plan.explanation}</p>}
     <ol>{plan.steps.map((step, index) => <li key={index} data-step-status={step.status}><Glyph name={step.status === 'completed' ? 'check' : step.status === 'in_progress' ? 'clock' : 'circle'} size={16} /><span>{step.step}</span><small>{step.status === 'completed' ? '完成' : step.status === 'in_progress' ? responseStatus === 'running' ? '进行中' : '待继续' : '待办'}</small></li>)}</ol>

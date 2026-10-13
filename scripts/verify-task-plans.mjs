@@ -57,9 +57,13 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
   await page.getByLabel('消息', { exact: true }).fill('TASK_PLAN_UNSENT 中文😀');
   const stoppedId = await start('任务步骤停止验证');
   await waitForBridge(page, async id => (await window.qiyao.load()).threads.find(thread => thread.id === id)?.messages.at(-1)?.content.includes('等待后续步骤'), stoppedId);
+  assert.equal(await plan().getAttribute('data-response-status'), 'running');
+  const runningColors = await plan().locator('li > svg').evaluateAll(elements => elements.map(element => getComputedStyle(element).color)); assert.notEqual(runningColors[0], runningColors[1]);
   await page.getByRole('button', { name: '停止生成', exact: true }).click();
   await waitForBridge(page, async id => (await window.qiyao.load()).threads.find(thread => thread.id === id)?.messages.at(-1)?.status === 'stopped', stoppedId);
   assert.deepEqual(await plan().locator('li small').allTextContents(), ['待继续', '待办', '待办']);
+  assert.equal(await plan().getAttribute('data-response-status'), 'stopped');
+  const stoppedColors = await plan().locator('li > svg').evaluateAll(elements => elements.map(element => getComputedStyle(element).color)); assert.equal(stoppedColors[0], stoppedColors[1]);
   const stopped = await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), stoppedId);
   assert.deepEqual(stopped.messages.at(-1).activities.map(activity => activity.status), ['complete', 'error']); assert.deepEqual(JSON.parse(stopped.messages.at(-1).activities[0].output), fixture.initial);
   await capture('task-plans-stopped.png');
