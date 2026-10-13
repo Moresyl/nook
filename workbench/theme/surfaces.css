@@ -5,7 +5,7 @@
   --lightningcss-light: initial;
   --lightningcss-dark: ;
   --control-font-size-sm: 12px;
-  --control-font-size-md: 14px;
+  --control-font-size-md: 13px;
   --radius-2xs: calc(var(--radius-2xs-base) * var(--corner-radius-scale));
   --radius-xs: calc(var(--radius-xs-base) * var(--corner-radius-scale));
   --radius-sm: calc(var(--radius-sm-base) * var(--corner-radius-scale));
@@ -83,7 +83,7 @@ svg { flex: 0 0 auto; }
 kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); white-space: nowrap; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ds-text) 18%, transparent); border-radius: 999px; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: var(--control-size-2xs); padding: 0 var(--control-gutter-xs); border: 1px solid transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; text-align: left; transition: background-color .18s ease, color .18s ease; white-space: nowrap; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: var(--control-size-2xs); padding: 0 var(--control-gutter-xs); border: 1px solid transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: var(--control-font-size-md); text-align: left; transition: background-color .18s ease, color .18s ease; white-space: nowrap; }
 .button:hover:not(:disabled) { background: var(--ghost-hover); }
 .button-solid { background: var(--ds-text-emphasis); color: var(--ds-bg); }
 .button-solid:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-text-emphasis) 85%, var(--ds-bg)); }
@@ -94,15 +94,16 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .icon-button { width: 28px; height: 28px; padding: 4px; }
 .control-tooltip { position: fixed; inset: auto; margin: 0; width: max-content; max-width: min(300px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: hidden; padding: 8px 12px; border: 1px solid var(--ds-border); border-radius: 8px; background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: 0 8px 18px #0f172a33; font-size: 14px; font-weight: 400; line-height: 1.45; letter-spacing: -.15px; white-space: normal; overflow-wrap: anywhere; pointer-events: none; }
 .input { width: 100%; min-height: 22px; padding: 1px 8px; border: 1px solid var(--field-border); border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; outline: none; }
+.input:not(.select, .textarea) { min-height: var(--control-size-md); padding: 0 var(--control-gutter-md); border-radius: var(--control-radius-md); font-size: var(--control-font-size-md); }
 .input:hover:where(:not(:disabled)) { border-color: var(--field-border-hover); }
 .input:focus { border-color: var(--field-border-focus); }
 .input[aria-invalid="true"] { border-color: var(--field-border-invalid); }
 .input::placeholder { color: var(--ds-text-tertiary); }
 .textarea { resize: vertical; min-height: 60px; line-height: 20px; }
-.select { padding-left: 6px; padding-right: 18px; background: var(--ghost-hover); }
+.select { min-height: var(--control-size-md); padding-left: var(--control-gutter-md); padding-right: 24px; border-radius: var(--control-radius-md); background: var(--ghost-hover); font-size: var(--control-font-size-md); }
 @supports (appearance: base-select) {
   .select, .select::picker(select) { appearance: base-select; }
-  .select { display: inline-flex; align-items: center; justify-content: space-between; gap: 4px; padding-right: 6px; font-weight: var(--font-weight-medium); }
+  .select { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; padding-right: var(--control-gutter-md); font-weight: var(--font-weight-medium); }
   .select > button { display: flex; flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; text-align: inherit; }
   .select selectedcontent { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .select::picker-icon { color: var(--ds-text-secondary); font-size: 12px; width: 9px; flex: none; }
@@ -238,7 +239,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .chat-page .composer[data-composer-rows="single"] textarea { min-height: 24px; padding: 0 8px; }
 .composer-toolbar { display: flex; align-items: center; gap: 8px; padding: 6px 4px 0; }
 .composer-tools { display: flex; align-items: center; gap: 2px; min-width: 0; color: var(--ds-text-secondary); }
-.composer-tools .select, .model-selectors .select { width: auto; min-height: 24px; max-width: 160px; border-color: transparent; background: transparent; font-size: 11px; padding: 2px 4px; }
+.composer-tools .select, .model-selectors .select { width: auto; min-height: 24px; max-width: 160px; border-color: transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: 11px; padding: 2px 4px; gap: 4px; }
 .composer-tools .select:hover, .model-selectors .select:hover { background: var(--ghost-hover); }
 .send-button { border-radius: 9999px; width: 32px; height: 32px; flex-shrink: 0; padding: 0; background: var(--ds-accent); color: white; }
 .send-button:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-accent) 85%, black); }

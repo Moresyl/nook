@@ -55,6 +55,26 @@ async function assertFocusBoundary(page, dialog) {
   }
 }
 
+async function assertFormFieldReachability(dialog) {
+  const fields = dialog.locator('.settings-detail:not([hidden]) input.input:visible, .settings-detail:not([hidden]) select.select:visible');
+  const count = await fields.count();
+  for (let index = 0; index < count; index++) {
+    const field = fields.nth(index);
+    await field.scrollIntoViewIfNeeded();
+    const layout = await field.evaluate(element => {
+      const bounds = element.getBoundingClientRect();
+      const container = element.closest('.settings-detail').getBoundingClientRect();
+      return {
+        height: getComputedStyle(element).height,
+        reachable: bounds.left >= container.left - 1 && bounds.right <= container.right + 1 && bounds.top >= Math.max(0, container.top) - 1 && bounds.bottom <= Math.min(innerHeight, container.bottom) + 1,
+        horizontalOverflow: element.closest('.settings-detail').scrollWidth > element.closest('.settings-detail').clientWidth,
+      };
+    });
+    assert.deepEqual(layout, { height: '32px', reachable: true, horizontalOverflow: false }, 'Each medium form field remains fully reachable in the settings scroll container');
+  }
+  return count;
+}
+
 async function motionState(page) {
   return page.evaluate(() => {
     // A temporary CSS probe checks the same indicator class without sending a model request.
@@ -78,6 +98,10 @@ async function motionState(page) {
 async function assertFieldStates(page, dialog, mode, screenshots) {
   const shortcut = dialog.getByLabel('唤起快捷键', { exact: true });
   const original = await shortcut.inputValue();
+  assert.deepEqual(await shortcut.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { height: style.height, radius: style.borderRadius, left: style.paddingLeft, right: style.paddingRight, fontSize: style.fontSize };
+  }), { height: '32px', radius: '8px', left: '12px', right: '12px', fontSize: '13px' }, 'The desktop shortcut uses the shared medium input size');
   const saved = await page.evaluate(async () => (await window.qiyao.load()).preferences.desktop ?? null);
   const heading = dialog.getByRole('heading', { name: '桌面入口', exact: true });
   const border = () => shortcut.evaluate((element) => getComputedStyle(element).borderTopColor);
@@ -114,8 +138,8 @@ async function assertControlGeometry(page, dialog, mode, application, screenshot
   assert.equal(await dialog.locator('.field-label').first().evaluate(element => getComputedStyle(element).fontWeight), '500', `${mode} field label uses the global medium weight`);
   assert.deepEqual(await theme.evaluate(element => {
     const style = getComputedStyle(element); const picker = getComputedStyle(element, '::picker(select)');
-    return { left: style.paddingLeft, right: style.paddingRight, gap: style.gap, pickerPadding: picker.paddingTop };
-  }), { left: '6px', right: '6px', gap: '4px', pickerPadding: '6px' });
+    return { height: style.height, radius: style.borderRadius, left: style.paddingLeft, right: style.paddingRight, gap: style.gap, pickerPadding: picker.paddingTop, fontSize: style.fontSize };
+  }), { height: '32px', radius: '8px', left: '12px', right: '12px', gap: '8px', pickerPadding: '6px', fontSize: '13px' });
   await theme.focus();
   assert.equal(await theme.evaluate(element => getComputedStyle(element).borderTopColor), mode === 'light' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)');
   await theme.click();
@@ -135,8 +159,8 @@ async function assertControlGeometry(page, dialog, mode, application, screenshot
   const apply = dialog.getByRole('button', { name: '应用快捷键', exact: true });
   assert.deepEqual(await apply.evaluate(element => {
     const style = getComputedStyle(element);
-    return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap };
-  }), { height: '24px', left: '8px', right: '8px', gap: '4px' });
+    return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap, fontSize: style.fontSize };
+  }), { height: '24px', left: '8px', right: '8px', gap: '4px', fontSize: '13px' });
   const focusButton = dialog.locator('.modal-header').getByRole('button', { name: '关闭', exact: true });
   assert.equal(await focusButton.isEnabled(), true);
   await focusButton.focus();
@@ -345,10 +369,10 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   const longOptionText = '长名称应在收起时保持单行并保留下拉箭头'.repeat(8);
   await changeOptionLabel(longOptionText);
   await page.waitForFunction((text) => document.querySelector('.settings-detail:not([hidden]) selectedcontent')?.textContent === text, longOptionText);
-  assert.equal(await theme.evaluate((element) => element.getBoundingClientRect().height), 22, 'Long selected content must not stretch a shared control');
+  assert.equal(await theme.evaluate((element) => element.getBoundingClientRect().height), 32, 'Long selected content must not stretch a shared control');
   assert.equal(await theme.locator('selectedcontent').evaluate((element) => getComputedStyle(element).textOverflow === 'ellipsis' && element.scrollWidth > element.clientWidth), true, 'Only the closed display truncates the full option label');
   await changeOptionLabel(originalOptionText);
-  assert.deepEqual(await theme.evaluate((element) => { const style = getComputedStyle(element); return { height: style.height, radius: style.borderRadius, font: style.fontSize }; }), { height: '22px', radius: '6px', font: '12px' });
+  assert.deepEqual(await theme.evaluate((element) => { const style = getComputedStyle(element); return { height: style.height, radius: style.borderRadius, font: style.fontSize }; }), { height: '32px', radius: '8px', font: '13px' });
   assert.equal(await theme.evaluate((element) => getComputedStyle(element).appearance), 'base-select');
   await theme.click();
   await page.waitForFunction(() => document.querySelector('select:open'));
@@ -479,11 +503,13 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
     await page.waitForFunction((expected) => Math.abs(innerWidth - expected) <= 2, width / zoom);
     dialog = await open();
-    geometryChecks.push({ windowWidth: width, windowHeight: height, zoom, ...await assertModalLayout(page, dialog) });
+    const geometry = { windowWidth: width, windowHeight: height, zoom, ...await assertModalLayout(page, dialog), formFields: [] };
+    geometryChecks.push(geometry);
     await assertFocusBoundary(page, dialog);
     for (const category of categories) {
       await dialog.getByRole('button', { name: category, exact: true }).click();
       await assertModalLayout(page, dialog);
+      geometry.formFields.push({ category, fields: await assertFormFieldReachability(dialog) });
     }
     await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
     if (width === 760 && zoom !== 1) await captureSurface(page, application, join(screenshots, zoom === 1.25 ? '92-surface-controls-dark-narrow.png' : '93-surface-settings-zoomed.png'));

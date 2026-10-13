@@ -53,7 +53,7 @@ async function sharedButtonState(button) {
       hovered: element.matches(':hover'), pressed: element.matches(':active'), disabled: element.disabled, outline: style.outlineWidth,
       contained: box.width > 0 && box.height > 0 && box.left >= -1 && box.top >= -1 && box.right <= innerWidth + 1 && box.bottom <= innerHeight + 1 };
   });
-  for (const [key, expected] of Object.entries({ minHeight: '24px', paddingLeft: '8px', paddingRight: '8px', gap: '4px', fontSize: '12px', contained: true })) assert.equal(state[key], expected, `shared button ${key}`);
+  for (const [key, expected] of Object.entries({ minHeight: '24px', paddingLeft: '8px', paddingRight: '8px', gap: '4px', fontSize: '13px', contained: true })) assert.equal(state[key], expected, `shared button ${key}`);
   assert.ok(Math.abs(state.height - 24) < 1);
   return state;
 }
