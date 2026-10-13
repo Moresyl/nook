@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-13T20:19:58.277Z",
+  "archive": "C:/NookVerificationOverflow/TaskPlanHosted-20261014",
+  "head": "867af066b2f5ff73565f1f7c259bf4279fd525df",
+  "workflow": {
+    "id": 38461527123,
+    "url": "https://github.com/Moresyl/nook/actions/runs/38461527123",
+    "status": "completed",
+    "conclusion": "failure",
+    "actualVerifySteps": 0,
+    "publishConclusion": "skipped"
+  },
+  "platformFailureReason": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+  "evidence": [
+    {
+      "name": "run.json",
+      "sha256": "dc352f1a9d6804dde4312a20eafc450cbdb30686bc40b5a5d716d0414f4d98b0"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "6b037af8ac67730d95700f8c06bb5605277a626f7f19e161aa3b1567af82a601"
+    },
+    {
+      "name": "verify-annotations.json",
+      "sha256": "46c1b9391ce482b1dd9db4196add1f8f1f96775df230067e214a91b16a403873"
+    },
+    {
+      "name": "publish-annotations.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "log-fetch-error.txt",
+      "sha256": "290f70a005dcc1648ca96c821250cefb9ae5bcd87268383197603b57e937d784"
+    },
+    {
+      "name": "log-fetch-exit.json",
+      "sha256": "c94ae8a59ac64200a66e26385cc00d09cdd7067e7b77e12e22c6c459c3b9abd0"
+    },
+    {
+      "name": "archiver-initial.mjs",
+      "sha256": "15e433e052daa2e8a498ebac987a12fe98ac0991130838fc3f70dcd703c46bec"
+    },
+    {
+      "name": "archiver-initial-failure.json",
+      "sha256": "3b1f201f0ee2194ec7ee4951f4f4d44595a772f5ad5492853b3426ee5a555636"
+    }
+  ],
+  "actualJobLogAvailable": false,
+  "logFetchExitCode": 1,
+  "releaseCount": 0,
+  "tagCount": 0,
+  "accountSettingsChanged": false,
+  "hostedCodeValidationCompleted": false,
+  "published": false,
+  "initialArchiverExitCode": 1,
+  "completionExitCode": 0,
+  "scope": "Actual responses from the original workflow for the accepted local distribution candidate. Verification was rejected before any step because of account payment or spending-limit status; publication was skipped. A local archive-helper variable-name failure is separately retained. This completion only reads the saved responses and adds the previously unwritten review, without replacing evidence, changing the account, rerunning the job, creating a tag or bypassing publication gates."
+}
