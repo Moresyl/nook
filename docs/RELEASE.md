@@ -21,6 +21,8 @@
 
 [当前单元与构建](../verification/task-plan-build-review-result.json) · [任务步骤与原图](../verification/task-plan-native-review-result.json) · [先前按钮状态](../verification/shared-button-defaults-native-review-result.json) · [先前按钮完整源码](../verification/shared-button-defaults-full-source-review-result.json)
 
+本轮完整源码首次运行通过 197 项后，在 HTML 预览的弹窗拒绝检查处超过原 5 秒主进程期限，实际退出 1；21 次退出均正常，9 份报告、213 张原图、准确编译文件和工作区保留。随后未改动产品、验证逻辑或期限，原文件树／预览集成专项 17 项独立重跑通过，两次正常退出，最长 1,729ms；37 张新原图保留，未全部逐张复核。失败原因仍未确认，完整源码需另行重跑，不能写成已修复。[完整源码失败](../verification/task-plan-full-source-initial-failure-review-result.json) · [独立集成重跑](../verification/task-plan-preview-integration-review-result.json)
+
 首轮完整源码因旧圆角断言失败，实际退出 1；原日志、24 张截图、工作区及准确编译文件均保留。修改测试期望后重跑通过。归档助手另曾使用错误的报告文件名，在复制前退出 1；已按原验证器修正并保留记录，没有重写产品或降低验收条件。[首轮失败现场](../verification/composer-surface-tokens-full-source-failure-review-result.json)
 
 ## 分发与发布
