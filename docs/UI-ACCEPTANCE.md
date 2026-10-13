@@ -7,14 +7,16 @@
 | 范围 | 结果与边界 |
 | --- | --- |
 | 默认输入框 | 实际 computed style 验证 22px 圆角；小于 40rem 时缩小浅色大阴影，浏览器窗口的 28px 局部覆盖未误用到桌面 |
-| 首页原生布局 | 两种主题、1280×840／760×540、100%／125%／150% 应用缩放；13 项通过，13 张完整原图逐张复核 |
+| 共享按钮默认规格 | 24px 最小高度、8px 左右内距、4px 内容间距；字号维持 12px，20px／22px 局部小控件保留原尺寸 |
+| 首页与按钮原生布局 | 两种主题、1280×840／760×540、100%／125%／150% 应用缩放；13 项通过，37 张完整原图逐张复核 |
+| 按钮状态 | 真实添加／保存记忆控件的默认、键盘焦点、悬停、按下、禁用状态验证；禁用保存不改变已存数据 |
 | 键盘与数据 | 设置打开、Escape 返回焦点、中文与 emoji 草稿保留及正常重启通过 |
-| 完整源码回归 | 375 项、74 次正常退出，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核 |
-| 分发边界 | 前一记忆弹窗应用体已完成三轮 375 项；当前输入框改动后的安装与便携包仍待验收 |
+| 前一输入框完整源码 | 375 项、74 次正常退出，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核 |
+| 当前回归与分发边界 | 共享按钮改动后的完整源码、安装与便携包仍待验收；前一记忆应用体的三轮 375 项保留准确来源 |
 
 首页专项本机实际系统缩放为 100%，未强制设备缩放。短窗口高应用缩放使用紧凑侧栏和纵向滚动，保留输入与发送操作；这不代表所有页面、内容长度或物理输入均已完成验收。
 
-[首页专项与实际缩放](../verification/composer-surface-tokens-native-review-result.json) · [本轮完整源码](../verification/composer-surface-tokens-full-source-review-result.json) · [前一分发范围](../verification/memory-delete-default-surface-runtime-review-result.json)
+[当前按钮与实际缩放](../verification/shared-button-defaults-native-review-result.json) · [前一输入框完整源码](../verification/composer-surface-tokens-full-source-review-result.json) · [前一分发范围](../verification/memory-delete-default-surface-runtime-review-result.json)
 
 ## 验收规则
 

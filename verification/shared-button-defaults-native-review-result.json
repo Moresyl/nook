@@ -1,0 +1,2511 @@
+{
+  "verifiedAt": "2026-10-13T14:17:03.888Z",
+  "archive": "C:/NookVerificationOverflow/SharedButtonDefaultsNative-20261013",
+  "sourceHead": "ee33306afbb2ee82178ce953b5bf920e31484c35",
+  "testedBuildArchive": "C:/NookVerificationOverflow/SharedButtonDefaultsBuild-20261013",
+  "toolExitCode": 0,
+  "checks": 13,
+  "normalExits": 2,
+  "maxNormalExitMs": 296,
+  "forcedExits": 0,
+  "compiledFiles": 236,
+  "compiledFilesMatchBuild": true,
+  "profile": "E:\\NookVerification\\Temp\\qiyao-electron-SEsxdq",
+  "profileArchiveSha256": "c92de907ddbf1036e71d0e956cdc22014d652aba16640ddfe66c59c70e7388f0",
+  "profileArchiveIntegrityVerified": true,
+  "reportSha256": "d4e048438eaec396faa81850a964bca0ef4319198c6adf69325c3eda741fc715",
+  "systemDpiForced": false,
+  "actualDisplayScales": [
+    1
+  ],
+  "layouts": [
+    {
+      "theme": "light",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 80px 8px",
+        "viewportWidth": 1280,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 80px 8px",
+        "viewportWidth": 1024,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 80px 8px",
+        "viewportWidth": 853,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 80px 8px",
+        "viewportWidth": 760,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 40px 8px",
+        "viewportWidth": 608,
+        "compact": true
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.024) 0px 4px 40px 8px",
+        "viewportWidth": 507,
+        "compact": true
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 1280,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 1024,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 853,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 760,
+        "compact": false
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 608,
+        "compact": true
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 507,
+        "compact": true
+      },
+      "states": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "system-dpi-home-light-1280-1.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 47729,
+      "sha256": "45a150ab7fc259d48cf226ff0f603e8a03309bec73250c8aa799b033a8fe67b9",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-1280-1.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 80279,
+      "sha256": "a9a8c1547a9b04e2de1536d20dcca544c84b1901608bfd0307021fa90bb09b35",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-1280-1.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 80033,
+      "sha256": "5a0ac3a231983b2074e8bc0bc0d282eeec0533308634250c40f2f02527dea6be",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-light-1280-1.25.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 54623,
+      "sha256": "62dc84a1a08047fb7b417e995878dfd8a1fbd25f4a38ef23aa3f059bc40eba63",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-1280-1.25.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 98392,
+      "sha256": "10be6a2297cf97e3412128e544819a1a219585dc871b1884d79f9b094687c54e",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-1280-1.25.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 96145,
+      "sha256": "b2b647fe8043219a78133a9224be5e82f8c815ee60ab041290a048f9e3e17432",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-light-1280-1.5.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 59906,
+      "sha256": "fedcacbc2719f3a1adbd3a54855cc32bf88b6909a7bb9e4e23575188e6f1c28d",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-1280-1.5.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 97329,
+      "sha256": "7fda25afb5433c9657b3697934b50805ab72e309f7f95535aff5b66f9ad673eb",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-1280-1.5.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 94220,
+      "sha256": "0ccc0f3647378cf4177a2496b37f0a9788de22b6b52a2db609b7c2ff57570e3a",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-light-760-1.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 38517,
+      "sha256": "46cd6a972cc2fc02d5ca59726c68de4609132c960e4c08b32cea70614f0aa15d",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-760-1.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 28846,
+      "sha256": "a9a689e1e855ab5c93b2c39c2d343a68a9fef51c428eca1ccf51b80a48fe94fa",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-760-1.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 30358,
+      "sha256": "3eb30e20ba1ba8103983d62e5e39cd7f91674a9611b4b90abc632fe0d6e1db8c",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-light-760-1.25.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 30671,
+      "sha256": "194d814fb5983cabc8ff329e289ad99fcb93cb50372b296744767d3712673dab",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-760-1.25.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 37063,
+      "sha256": "8d9da3c333e44c06dce3bae594163df7af8782a3d597725d48f870666e8e182f",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-760-1.25.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 34422,
+      "sha256": "2607e207532012f84e7e5e183ed5e00ad49cfdebe7cea941f0f313886b480334",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-light-760-1.5.png",
+      "kind": "homepage",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 31621,
+      "sha256": "b8fa1e375fc5fbcc7ef8204baaba4d7ec5f6f0eb78ed81ee85e7a5fc35d93827",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-light-760-1.5.png",
+      "kind": "keyboard-focus",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 40061,
+      "sha256": "c28e5f7b53be19bb6ac3fa449494a3ddc27320351117eed0ae452f86cc199e66",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-light-760-1.5.png",
+      "kind": "disabled-save",
+      "theme": "light",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 31561,
+      "sha256": "16717f17e333690e2900821ff3ccc20543385265ff223d638a3ad3569b8ef70f",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-1280-1.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 46567,
+      "sha256": "3bc2d38a8c86c0729a5cfa5c8fa8b78e24b490c722abf830e7dda2f386d2166d",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-1280-1.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 80222,
+      "sha256": "d1e1fd43e4934d91714794c20578d0996ab511943f854645b1277bac89ce10d8",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-1280-1.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 79526,
+      "sha256": "d95f2cc681682efda669c66806e4045dd56cab1e30fd291ea0bbadbd8eb5d4c1",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-1280-1.25.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 53290,
+      "sha256": "a973ed7fa2f76e63dcae85ff43b345b3be479ad8b360d778b7895f178925edbf",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-1280-1.25.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 97205,
+      "sha256": "31e251cdeadefd52eef0e74a8dace657341e8de9f6fb886eb89adf27b115c7fa",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-1280-1.25.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 94518,
+      "sha256": "93367ec217aad595ca3a76dc5fa67c927c0988a7f8739cd3a61c78a4ffa27d3a",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-1280-1.5.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 57933,
+      "sha256": "e09fe2d16e6cb4afb376f1e16595fa8b60a6da64aa419f366f2f6202974db453",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-1280-1.5.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 94465,
+      "sha256": "f38bef63f1e49f8f64447747326848b05df0bb9ba594996a77c6594151d42606",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-1280-1.5.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 90818,
+      "sha256": "3110405e65ba0e1cc5eaa00b6f3065c2bf786e9a522147522f4d69ad28774070",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-760-1.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 37323,
+      "sha256": "f8b6427af8de289b411f2ad3900b675855f6f199eb602b283466f8114ca75599",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-760-1.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 28841,
+      "sha256": "d88efe0ddc440b34ed7aae3ddc388f3e9a00e9f486a833c0892f3010aacba112",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-760-1.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "displayScale": 1,
+      "bytes": 29878,
+      "sha256": "513c5bf903be30a49a5c762a10d5de6f9dfeab92cf655ad5fed6890b583dfe06",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-760-1.25.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 29377,
+      "sha256": "f182e837308e79d27aeaa32e3ec57ff06c87ec8b0728a12f8a557cf4e7d91763",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-760-1.25.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 36426,
+      "sha256": "83c63b828b2dcff208718946d87833df8186cd0f1e69f305eabdc7eb3ca18b91",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-760-1.25.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "displayScale": 1,
+      "bytes": 33647,
+      "sha256": "4cfe5e12f2a394d96d40cf33fa72875554ed3a195625a6e6ccbc5f40b66d206b",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-dark-760-1.5.png",
+      "kind": "homepage",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 29774,
+      "sha256": "a08625224745938a1c2cb7b73ec15d65c460fcf6b77b27cdc21d605972e1ff2c",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-focus-dark-760-1.5.png",
+      "kind": "keyboard-focus",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 39833,
+      "sha256": "2232c90d0ec90b14a5d33be11fe35c6bb988aeb1a4ea4d1b5e048a24a991f04a",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "shared-button-disabled-dark-760-1.5.png",
+      "kind": "disabled-save",
+      "theme": "dark",
+      "size": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "displayScale": 1,
+      "bytes": 31052,
+      "sha256": "24e41f65a1d3934a204825194be41dae72ebccd2d73c29673e397e03f3d81437",
+      "width": 760,
+      "height": 540,
+      "individuallyViewed": true
+    },
+    {
+      "name": "system-dpi-home-restarted-ready.png",
+      "kind": "restarted-homepage",
+      "displayScale": 1,
+      "bytes": 45744,
+      "sha256": "c89d5de1bf5747eb696ccaf0478182205bad90316bc51ac86b2123ac14940d47",
+      "width": 1280,
+      "height": 840,
+      "individuallyViewed": true
+    }
+  ],
+  "individuallyViewedOriginals": 37,
+  "visualReviewAccepted": true,
+  "nativePassed": true,
+  "freshUnitTests": true,
+  "tests": 1557,
+  "fullDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false,
+  "scope": "Fresh committed shared-button body: exact source and compiled inputs, thirteen native groups over both themes, two sizes and three zooms, real enabled/keyboard/hover/pressed/disabled memory controls and exact draft restart. Original captures archived; visual review is a separate explicit gate. Physical interaction, other displays, complete reference adoption and current packaged/installed rounds remain pending.",
+  "visualReviewRecordedAt": "2026-10-13 14:23:48 UTC",
+  "visualObservations": [
+    "Both themes retain readable labels and complete keyboard outlines on the 24px default button.",
+    "At narrow 125% and 150% layouts, sidebar and form scroll independently; scrolling to Save keeps both form actions visible, while earlier fields can be above the viewport.",
+    "Disabled Save is visibly distinct; actual native checks separately confirm it neither accepts focus nor changes stored memories.",
+    "Homepage input and Send remain visible, including compact layouts; secondary content may require vertical scrolling. Restart retains the exact fixture draft."
+  ]
+}

@@ -2,6 +2,10 @@
 
 ## 未发布
 
+共享按钮默认最小高度调整为 24px、左右内距 8px、内容间距 4px；附件关闭和搜索清除保留各自紧凑尺寸。新类型、133 文件／1,557 项单元、既有覆盖率门槛及构建通过；13 项原生专项验证真实按钮默认、焦点、悬停、按下、禁用状态，两次正常退出，37 张原图逐张复核。完整当前源码和最终分发仍待验收。
+
+Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. Complete current-source and distribution gates remain pending.
+
 输入框依据当前主题覆盖采用 22px 默认圆角，CSS 视口小于 40rem 时缩小浅色大阴影。新类型、构建和 13 项首页原生检查通过，两次正常退出、13 张原图逐张复核；本机实际系统缩放为 100%，三档应用缩放、设置键盘回焦和草稿重启保留通过。新应用体的完整分发尚待验收，原托管流水线仍受账户付款／额度限制。
 
 The composer now uses the current 22px default radius and a smaller light shadow below a 40rem CSS viewport. Fresh type checks, build and thirteen homepage checks pass, with two normal exits and thirteen individually reviewed captures. This host's physical display scale is 100%; full distribution of the new body and hosted publication remain separate.
@@ -57,6 +61,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 - 全局搜索采用 520px 宽度上限和随窗口收缩的布局，明暗表面与居中定位单独适配；键盘移到列表末项时保留滚动留白。
 - 输入框采用当前主题的 22px 默认圆角，窄视口收紧浅色阴影，保留原有输入、发送、草稿和键盘行为。
+- 共享按钮采用当前默认高度、内距与内容间距；保留附件关闭和设置搜索清除的小尺寸入口，键盘焦点及禁用状态分别核对。
 - 修复连续命令输出的最后一段可能等到下一段或进程结束才显示的问题，保留 100 毫秒通知节奏及关闭、报错、取消后的清理。
 - 修复选择助手或项目后的光标恢复覆盖用户新选区，导致后续输入重复前缀的问题。
 - 修复编辑器文件标签和关闭按钮的键盘焦点圈被横向滚动条裁切的问题；工作树刷新及设置保存完成后保留正确焦点，用户已切换控件时不抢焦点。
@@ -81,6 +86,8 @@ Local branches can be renamed without replacing existing refs. Merged-only delet
 Six settings forms protect unsaved changes with a compact confirmation. Continue editing is the safe default; Enter and Escape retain drafts, and failed saves preserve input for retry.
 
 Memory deletion defaults to Cancel, blocks dismissal while pending and retains entries on failure. Its default typography, top placement and translucent surface are corrected; long content scrolls independently while action controls remain visible.
+
+Shared buttons use the current default dimensions while preserving compact attachment and search controls. Keyboard focus and disabled saving are independently verified.
 
 Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
 

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-13T13:04:44.755Z",
+  "verifiedAt": "2026-10-13T14:15:20.196Z",
   "variant": "development executable",
   "executableSha256": null,
   "archiveSha256": null,
@@ -15,7 +15,7 @@
       ],
       "zoom": 1,
       "initial": {
-        "at": 218,
+        "at": 47.80000001192093,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -102,7 +102,7 @@
         ]
       },
       "ready": {
-        "at": 222.19999998807907,
+        "at": 51.60000002384186,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -189,7 +189,7 @@
         ]
       },
       "settled": {
-        "at": 657.6000000238419,
+        "at": 1431.4000000357628,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -281,6 +281,149 @@
         "viewportWidth": 1280,
         "compact": false
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-1280-1.png",
         "native": {
@@ -318,7 +461,7 @@
       ],
       "zoom": 1.25,
       "initial": {
-        "at": 61.5,
+        "at": 42,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -405,7 +548,7 @@
         ]
       },
       "ready": {
-        "at": 64.5,
+        "at": 44.80000001192093,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -492,7 +635,7 @@
         ]
       },
       "settled": {
-        "at": 217.10000002384186,
+        "at": 935.9000000357628,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -584,6 +727,149 @@
         "viewportWidth": 1024,
         "compact": false
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-1280-1.25.png",
         "native": {
@@ -621,7 +907,7 @@
       ],
       "zoom": 1.5,
       "initial": {
-        "at": 56.69999998807907,
+        "at": 41.19999998807907,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -708,7 +994,7 @@
         ]
       },
       "ready": {
-        "at": 59.40000003576279,
+        "at": 44,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -795,7 +1081,7 @@
         ]
       },
       "settled": {
-        "at": 272.19999998807907,
+        "at": 915.6000000238419,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -887,6 +1173,149 @@
         "viewportWidth": 853,
         "compact": false
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-1280-1.5.png",
         "native": {
@@ -924,7 +1353,7 @@
       ],
       "zoom": 1,
       "initial": {
-        "at": 39.60000002384186,
+        "at": 39.19999998807907,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1011,7 +1440,7 @@
         ]
       },
       "ready": {
-        "at": 43.40000003576279,
+        "at": 42.40000003576279,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1098,7 +1527,7 @@
         ]
       },
       "settled": {
-        "at": 152.5,
+        "at": 887.1999999880791,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1190,6 +1619,149 @@
         "viewportWidth": 760,
         "compact": false
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-760-1.png",
         "native": {
@@ -1227,7 +1799,7 @@
       ],
       "zoom": 1.25,
       "initial": {
-        "at": 41.19999998807907,
+        "at": 45.59999996423721,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1314,7 +1886,7 @@
         ]
       },
       "ready": {
-        "at": 43.69999998807907,
+        "at": 48.299999952316284,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1401,7 +1973,7 @@
         ]
       },
       "settled": {
-        "at": 124.89999997615814,
+        "at": 871.7999999523163,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1493,6 +2065,149 @@
         "viewportWidth": 608,
         "compact": true
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-760-1.25.png",
         "native": {
@@ -1530,7 +2245,7 @@
       ],
       "zoom": 1.5,
       "initial": {
-        "at": 40.39999997615814,
+        "at": 44.59999996423721,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1617,7 +2332,7 @@
         ]
       },
       "ready": {
-        "at": 43.09999996423721,
+        "at": 47.09999996423721,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1704,7 +2419,7 @@
         ]
       },
       "settled": {
-        "at": 121.5,
+        "at": 846.8000000119209,
         "theme": "light",
         "bodyColor": "rgb(40, 40, 40)",
         "buttons": [
@@ -1796,6 +2511,149 @@
         "viewportWidth": 507,
         "compact": true
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.05)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0.12)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(13, 13, 13)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-light-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-light-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-light-760-1.5.png",
         "native": {
@@ -1833,159 +2691,159 @@
       ],
       "zoom": 1,
       "initial": {
-        "at": 49.59999996423721,
+        "at": 63.30000001192093,
         "theme": "dark",
         "bodyColor": "rgb(237, 237, 237)",
         "buttons": [
           {
             "text": "新聊天Ctrl N",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "background-color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               },
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "临时聊天",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "搜索聊天Ctrl K",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "项目",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "助手",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "资料库",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "自动任务",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "浏览器",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "已归档",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           },
           {
             "text": "设置Ctrl ,",
             "disabled": false,
-            "color": "rgb(40, 40, 40)",
+            "color": "rgb(60, 60, 60)",
             "opacity": "1",
             "transition": "0.18s, 0.18s",
             "animations": [
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 0
+                "currentTime": 18.494000023882837
               }
             ]
           }
         ]
       },
       "ready": {
-        "at": 269.5999999642372,
+        "at": 216.5,
         "theme": "dark",
         "bodyColor": "rgb(237, 237, 237)",
         "buttons": [
@@ -1999,12 +2857,12 @@
               {
                 "property": "background-color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               },
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2018,7 +2876,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2032,7 +2890,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2046,7 +2904,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2060,7 +2918,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2074,7 +2932,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2088,7 +2946,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2102,7 +2960,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2116,7 +2974,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           },
@@ -2130,14 +2988,14 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 178.6450000200421
+                "currentTime": 179.19400002388284
               }
             ]
           }
         ]
       },
       "settled": {
-        "at": 401.30000001192093,
+        "at": 1118.5,
         "theme": "dark",
         "bodyColor": "rgb(237, 237, 237)",
         "buttons": [
@@ -2229,6 +3087,149 @@
         "viewportWidth": 1280,
         "compact": false
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1280,
+            "height": 840,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-dark-1280-1.png",
         "native": {
@@ -2265,1608 +3266,6 @@
         840
       ],
       "zoom": 1.25,
-      "initial": {
-        "at": 39.09999996423721,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 0
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          }
-        ]
-      },
-      "ready": {
-        "at": 241.39999997615814,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.67399997776374
-              }
-            ]
-          }
-        ]
-      },
-      "settled": {
-        "at": 331.7999999523163,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "composer": {
-        "radius": "22px",
-        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
-        "viewportWidth": 1024,
-        "compact": false
-      },
-      "image": {
-        "filename": "system-dpi-home-dark-1280-1.25.png",
-        "native": {
-          "forcedDeviceScale": "",
-          "bounds": {
-            "x": 640,
-            "y": 276,
-            "width": 1280,
-            "height": 840
-          },
-          "contentSize": [
-            1280,
-            840
-          ],
-          "zoom": 1.25,
-          "displayScale": 1
-        },
-        "viewport": {
-          "width": 1024,
-          "height": 672,
-          "devicePixelRatio": 1.25,
-          "overflow": false
-        },
-        "pngSize": {
-          "width": 1280,
-          "height": 840
-        }
-      }
-    },
-    {
-      "theme": "dark",
-      "requestedSize": [
-        1280,
-        840
-      ],
-      "zoom": 1.5,
-      "initial": {
-        "at": 39.10000002384186,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 0
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          }
-        ]
-      },
-      "ready": {
-        "at": 240.10000002384186,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 179.98500001160428
-              }
-            ]
-          }
-        ]
-      },
-      "settled": {
-        "at": 327.5,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "composer": {
-        "radius": "22px",
-        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
-        "viewportWidth": 853,
-        "compact": false
-      },
-      "image": {
-        "filename": "system-dpi-home-dark-1280-1.5.png",
-        "native": {
-          "forcedDeviceScale": "",
-          "bounds": {
-            "x": 640,
-            "y": 276,
-            "width": 1280,
-            "height": 840
-          },
-          "contentSize": [
-            1280,
-            840
-          ],
-          "zoom": 1.5,
-          "displayScale": 1
-        },
-        "viewport": {
-          "width": 853,
-          "height": 560,
-          "devicePixelRatio": 1.5,
-          "overflow": false
-        },
-        "pngSize": {
-          "width": 1280,
-          "height": 840
-        }
-      }
-    },
-    {
-      "theme": "dark",
-      "requestedSize": [
-        760,
-        540
-      ],
-      "zoom": 1,
-      "initial": {
-        "at": 40.19999998807907,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 0
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          }
-        ]
-      },
-      "ready": {
-        "at": 245,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "settled": {
-        "at": 351.89999997615814,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "composer": {
-        "radius": "22px",
-        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
-        "viewportWidth": 760,
-        "compact": false
-      },
-      "image": {
-        "filename": "system-dpi-home-dark-760-1.png",
-        "native": {
-          "forcedDeviceScale": "",
-          "bounds": {
-            "x": 640,
-            "y": 276,
-            "width": 760,
-            "height": 540
-          },
-          "contentSize": [
-            760,
-            540
-          ],
-          "zoom": 1,
-          "displayScale": 1
-        },
-        "viewport": {
-          "width": 760,
-          "height": 540,
-          "devicePixelRatio": 1,
-          "overflow": false
-        },
-        "pngSize": {
-          "width": 760,
-          "height": 540
-        }
-      }
-    },
-    {
-      "theme": "dark",
-      "requestedSize": [
-        760,
-        540
-      ],
-      "zoom": 1.25,
-      "initial": {
-        "at": 41.60000002384186,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "background-color",
-                "state": "running",
-                "currentTime": 0
-              },
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(40, 40, 40)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": [
-              {
-                "property": "color",
-                "state": "running",
-                "currentTime": 0
-              }
-            ]
-          }
-        ]
-      },
-      "ready": {
-        "at": 236.5,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "settled": {
-        "at": 362.60000002384186,
-        "theme": "dark",
-        "bodyColor": "rgb(237, 237, 237)",
-        "buttons": [
-          {
-            "text": "新聊天Ctrl N",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "临时聊天",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "搜索聊天Ctrl K",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "项目",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "助手",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "资料库",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "自动任务",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "浏览器",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "已归档",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          },
-          {
-            "text": "设置Ctrl ,",
-            "disabled": false,
-            "color": "rgb(237, 237, 237)",
-            "opacity": "1",
-            "transition": "0.18s, 0.18s",
-            "animations": []
-          }
-        ]
-      },
-      "composer": {
-        "radius": "22px",
-        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
-        "viewportWidth": 608,
-        "compact": true
-      },
-      "image": {
-        "filename": "system-dpi-home-dark-760-1.25.png",
-        "native": {
-          "forcedDeviceScale": "",
-          "bounds": {
-            "x": 640,
-            "y": 276,
-            "width": 760,
-            "height": 540
-          },
-          "contentSize": [
-            760,
-            540
-          ],
-          "zoom": 1.25,
-          "displayScale": 1
-        },
-        "viewport": {
-          "width": 608,
-          "height": 432,
-          "devicePixelRatio": 1.25,
-          "overflow": false
-        },
-        "pngSize": {
-          "width": 760,
-          "height": 540
-        }
-      }
-    },
-    {
-      "theme": "dark",
-      "requestedSize": [
-        760,
-        540
-      ],
-      "zoom": 1.5,
       "initial": {
         "at": 41.69999998807907,
         "theme": "dark",
@@ -4020,7 +3419,7 @@
         ]
       },
       "ready": {
-        "at": 234.0999999642372,
+        "at": 225.60000002384186,
         "theme": "dark",
         "bodyColor": "rgb(237, 237, 237)",
         "buttons": [
@@ -4034,12 +3433,12 @@
               {
                 "property": "background-color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               },
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4053,7 +3452,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4067,7 +3466,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4081,7 +3480,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4095,7 +3494,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4109,7 +3508,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4123,7 +3522,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4137,7 +3536,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4151,7 +3550,7 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           },
@@ -4165,14 +3564,2318 @@
               {
                 "property": "color",
                 "state": "running",
-                "currentTime": 179.54399999985472
+                "currentTime": 179.0340000031516
               }
             ]
           }
         ]
       },
       "settled": {
-        "at": 309,
+        "at": 1091.1000000238419,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          }
+        ]
+      },
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 1024,
+        "compact": false
+      },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 1024,
+            "height": 672,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
+      "image": {
+        "filename": "system-dpi-home-dark-1280-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 640,
+            "y": 276,
+            "width": 1280,
+            "height": 840
+          },
+          "contentSize": [
+            1280,
+            840
+          ],
+          "zoom": 1.25,
+          "displayScale": 1
+        },
+        "viewport": {
+          "width": 1024,
+          "height": 672,
+          "devicePixelRatio": 1.25,
+          "overflow": false
+        },
+        "pngSize": {
+          "width": 1280,
+          "height": 840
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        1280,
+        840
+      ],
+      "zoom": 1.5,
+      "initial": {
+        "at": 40.80000001192093,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 0
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          }
+        ]
+      },
+      "ready": {
+        "at": 242,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.10200000805781
+              }
+            ]
+          }
+        ]
+      },
+      "settled": {
+        "at": 1110.5999999642372,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          }
+        ]
+      },
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 853,
+        "compact": false
+      },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-1280-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 1280,
+              "height": 840
+            },
+            "contentSize": [
+              1280,
+              840
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 853,
+            "height": 560,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 1280,
+            "height": 840
+          }
+        }
+      },
+      "image": {
+        "filename": "system-dpi-home-dark-1280-1.5.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 640,
+            "y": 276,
+            "width": 1280,
+            "height": 840
+          },
+          "contentSize": [
+            1280,
+            840
+          ],
+          "zoom": 1.5,
+          "displayScale": 1
+        },
+        "viewport": {
+          "width": 853,
+          "height": 560,
+          "devicePixelRatio": 1.5,
+          "overflow": false
+        },
+        "pngSize": {
+          "width": 1280,
+          "height": 840
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1,
+      "initial": {
+        "at": 37.80000001192093,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 0
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          }
+        ]
+      },
+      "ready": {
+        "at": 226.4000000357628,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 178.8800000196323
+              }
+            ]
+          }
+        ]
+      },
+      "settled": {
+        "at": 1043.1000000238419,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          }
+        ]
+      },
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 760,
+        "compact": false
+      },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "3px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "3px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 760,
+            "height": 540,
+            "devicePixelRatio": 1,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
+      "image": {
+        "filename": "system-dpi-home-dark-760-1.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 640,
+            "y": 276,
+            "width": 760,
+            "height": 540
+          },
+          "contentSize": [
+            760,
+            540
+          ],
+          "zoom": 1,
+          "displayScale": 1
+        },
+        "viewport": {
+          "width": 760,
+          "height": 540,
+          "devicePixelRatio": 1,
+          "overflow": false
+        },
+        "pngSize": {
+          "width": 760,
+          "height": 540
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.25,
+      "initial": {
+        "at": 57.10000002384186,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 0
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          }
+        ]
+      },
+      "ready": {
+        "at": 232.30000001192093,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.37599995126948
+              }
+            ]
+          }
+        ]
+      },
+      "settled": {
+        "at": 1018,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": []
+          }
+        ]
+      },
+      "composer": {
+        "radius": "22px",
+        "shadow": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px inset, color(srgb 1 1 1 / 0.12) 0px 0px 0px 1px",
+        "viewportWidth": 608,
+        "compact": true
+      },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "1.6px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.4px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.25.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.25,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 608,
+            "height": 432,
+            "devicePixelRatio": 1.25,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
+      "image": {
+        "filename": "system-dpi-home-dark-760-1.25.png",
+        "native": {
+          "forcedDeviceScale": "",
+          "bounds": {
+            "x": 640,
+            "y": 276,
+            "width": 760,
+            "height": 540
+          },
+          "contentSize": [
+            760,
+            540
+          ],
+          "zoom": 1.25,
+          "displayScale": 1
+        },
+        "viewport": {
+          "width": 608,
+          "height": 432,
+          "devicePixelRatio": 1.25,
+          "overflow": false
+        },
+        "pngSize": {
+          "width": 760,
+          "height": 540
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "requestedSize": [
+        760,
+        540
+      ],
+      "zoom": 1.5,
+      "initial": {
+        "at": 40.89999997615814,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 0
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(40, 40, 40)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 0
+              }
+            ]
+          }
+        ]
+      },
+      "ready": {
+        "at": 236.29999995231628,
+        "theme": "dark",
+        "bodyColor": "rgb(237, 237, 237)",
+        "buttons": [
+          {
+            "text": "新聊天Ctrl N",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "background-color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              },
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "临时聊天",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "搜索聊天Ctrl K",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "项目",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "助手",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "资料库",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "自动任务",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "浏览器",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "已归档",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          },
+          {
+            "text": "设置Ctrl ,",
+            "disabled": false,
+            "color": "rgb(237, 237, 237)",
+            "opacity": "1",
+            "transition": "0.18s, 0.18s",
+            "animations": [
+              {
+                "property": "color",
+                "state": "running",
+                "currentTime": 179.42999997762962
+              }
+            ]
+          }
+        ]
+      },
+      "settled": {
+        "at": 1046.5,
         "theme": "dark",
         "bodyColor": "rgb(237, 237, 237)",
         "buttons": [
@@ -4264,6 +5967,149 @@
         "viewportWidth": 507,
         "compact": true
       },
+      "sharedButton": {
+        "defaults": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "keyboard": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(0, 0, 0, 0)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": false,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "hover": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.07)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": false,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "pressed": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "1",
+          "background": "rgba(255, 255, 255, 0.16)",
+          "focused": true,
+          "focusVisible": true,
+          "hovered": true,
+          "pressed": true,
+          "disabled": false,
+          "outline": "2px",
+          "contained": true
+        },
+        "disabled": {
+          "minHeight": "24px",
+          "height": 24,
+          "paddingLeft": "8px",
+          "paddingRight": "8px",
+          "gap": "4px",
+          "fontSize": "12px",
+          "opacity": "0.25",
+          "background": "rgb(255, 255, 255)",
+          "focused": false,
+          "focusVisible": false,
+          "hovered": false,
+          "pressed": false,
+          "disabled": true,
+          "outline": "2.66667px",
+          "contained": true
+        },
+        "focusImage": {
+          "filename": "shared-button-focus-dark-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        },
+        "disabledImage": {
+          "filename": "shared-button-disabled-dark-760-1.5.png",
+          "native": {
+            "forcedDeviceScale": "",
+            "bounds": {
+              "x": 640,
+              "y": 276,
+              "width": 760,
+              "height": 540
+            },
+            "contentSize": [
+              760,
+              540
+            ],
+            "zoom": 1.5,
+            "displayScale": 1
+          },
+          "viewport": {
+            "width": 507,
+            "height": 360,
+            "devicePixelRatio": 1.5,
+            "overflow": false
+          },
+          "pngSize": {
+            "width": 760,
+            "height": 540
+          }
+        }
+      },
       "image": {
         "filename": "system-dpi-home-dark-760-1.5.png",
         "native": {
@@ -4296,7 +6142,7 @@
   ],
   "restart": {
     "initial": {
-      "at": 255.30000001192093,
+      "at": 240.5,
       "theme": "dark",
       "bodyColor": "rgb(237, 237, 237)",
       "buttons": [
@@ -4448,7 +6294,7 @@
       ]
     },
     "ready": {
-      "at": 436.2000000476837,
+      "at": 424.5,
       "theme": "dark",
       "bodyColor": "rgb(237, 237, 237)",
       "buttons": [
@@ -4458,7 +6304,18 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "background-color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            },
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "临时聊天",
@@ -4466,7 +6323,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "搜索聊天Ctrl K",
@@ -4474,7 +6337,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "项目",
@@ -4482,7 +6351,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "助手",
@@ -4490,7 +6365,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "资料库",
@@ -4498,7 +6379,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "自动任务",
@@ -4506,7 +6393,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "浏览器",
@@ -4514,7 +6407,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "已归档",
@@ -4522,7 +6421,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         },
         {
           "text": "设置Ctrl ,",
@@ -4530,7 +6435,13 @@
           "color": "rgb(237, 237, 237)",
           "opacity": "1",
           "transition": "0.18s, 0.18s",
-          "animations": []
+          "animations": [
+            {
+              "property": "color",
+              "state": "running",
+              "currentTime": 178.20700004724787
+            }
+          ]
         }
       ]
     },
@@ -4566,5 +6477,5 @@
   "productChanged": false,
   "systemScaleChanged": false,
   "forcedDeviceScale": false,
-  "scope": "Actual host scaling, both homepage themes, two requested sizes and three page zooms. Records initial and settled navigation computed colors, opacity, disabled states and active CSS transitions; verifies native keyboard settings return and persisted draft on normal restart. Captures are taken after the navigation reaches its existing inherited body color. Physical input, complete homepage controls, other pages/displays and full visual acceptance remain separate."
+  "scope": "Actual host scaling, both homepage themes, two requested sizes and three page zooms. Also verifies real shared memory buttons in default, keyboard focus, hover, pressed and disabled states; invalid disabled saving neither takes focus nor changes stored memories. Records navigation colors, settings keyboard return and exact draft on normal restart. Physical input, complete controls, other pages/displays and full visual acceptance remain separate."
 }
