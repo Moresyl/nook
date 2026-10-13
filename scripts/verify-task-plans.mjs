@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
 
-const mainWindow = 'electron.BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && !window.webContents.getURL().includes("view=quick-chat"))';
+const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/') && new URL(window.webContents.getURL()).searchParams.get('view') !== 'quick-chat')";
 export async function verifyTaskPlans({ page, application, getApplication, directory, screenshots, endpoint, fixture, verified, waitForBridge, errors, restart }) {
   const original = await page.evaluate(() => window.qiyao.load()), geometry = await application.evaluateMain(`({size:${mainWindow}.getContentSize(),zoom:${mainWindow}.webContents.getZoomFactor()})`);
   const providerId = 'task-plan-provider', projectId = 'task-plan-project', threadIds = [], captures = [], layouts = [];
