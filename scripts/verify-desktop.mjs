@@ -810,7 +810,7 @@ try {
   assert.ok(metrics.font.includes('Inter'));
   const loadedUiFonts = await page.evaluate(async () => Promise.all([400, 510, 590, 700].map(async (weight) => (await document.fonts.load(`${weight} 12px "Inter"`)).map((font) => ({ family: font.family, status: font.status })))));
   assert.ok(loadedUiFonts.every((fonts) => fonts.length > 0 && fonts.every((font) => font.family === 'Inter' && font.status === 'loaded')), 'All reference UI weights must load the local distributable font');
-  assert.equal(metrics.sidebar, 264); assert.equal(metrics.composerRadius, '24px');
+  assert.equal(metrics.sidebar, 264); assert.equal(metrics.composerRadius, '22px');
   verified('launch and reference UI geometry');
 
   await page.getByRole('button', { name: /^设置/ }).click();
