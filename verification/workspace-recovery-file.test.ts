@@ -15,7 +15,8 @@ describe('compressed complete recovery revisions', () => {
     const bytes = Buffer.from(JSON.stringify(value, null, 2));
     await writeWorkspaceRecovery(directory, bytes);
     const path = join(directory, 'workspace.backup.json.gz'), compressed = await readFile(path);
-    expect(compressed.length).toBeLessThan(bytes.length / 10); expect(gunzipSync(compressed)).toEqual(bytes);
+    // Compare every decompressed byte without enumerating a large Buffer's properties.
+    expect(compressed.length).toBeLessThan(bytes.length / 10); expect(gunzipSync(compressed).equals(bytes)).toBe(true);
     expect(await new WorkspaceBackupFiles().read(path)).toEqual(value);
   });
   it('atomically replaces the current gzip revision while retaining legacy plain JSON', async () => {

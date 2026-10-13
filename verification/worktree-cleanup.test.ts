@@ -146,7 +146,8 @@ describe('actual clean-worktree removal with restorable private snapshots', () =
   });
   async function additionalTrees() {
     const middle = join(f.directory, '中间工作树'), newest = join(f.directory, '最新工作树');
-    for (const [path, branch] of [[middle, 'feature/middle'], [newest, 'feature/newest']]) { await f.git.createWorktree(f.root, { mode: 'new', path, branch }); await f.ownership.recordCreated(f.root, path); }
+    // Create real fixture trees directly; removal still verifies receipts and captures complete snapshots.
+    for (const [path, branch] of [[middle, 'feature/middle'], [newest, 'feature/newest']]) { await command(f.root, 'worktree', 'add', '-b', branch, path); await f.ownership.recordCreated(f.root, path); }
     const ledger = JSON.parse(await readFile(f.ledger, 'utf8')); ledger.records.forEach((record: { createdAt: number }, index: number) => { record.createdAt = index + 1; }); await atomicJson(f.ledger, ledger);
     return { middle, newest };
   }

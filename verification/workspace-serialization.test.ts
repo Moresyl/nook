@@ -43,7 +43,7 @@ describe('cached canonical workspace serialization', () => {
     const next = structuredClone(state); next.threads[1].title = 'Changed';
     const expected = canonical(next);
     const stringify = vi.spyOn(JSON, 'stringify');
-    expect(serialization.serialize(next)).toEqual(expected);
+    expect(serialization.serialize(next).equals(expected)).toBe(true);
     expect(stringify.mock.calls.some(([value]) => value && typeof value === 'object' && 'id' in value && value.id === '__proto__')).toBe(false);
   });
   it('keeps cached values and bytes independent of mutated input and returned buffers', () => {

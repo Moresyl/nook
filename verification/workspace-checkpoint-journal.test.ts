@@ -29,7 +29,7 @@ describe('durable response checkpoint journal', () => {
     await vault.update(draft => { draft.threads.push(sampleThread({ id: 'large', messages: [message('Unchanged 中文 😀\n'.repeat(50_000))] })); });
     const original = await readFile(primary), quickChat = quickState('Quick 未发送 😀');
     await vault.commitQuickChat(draft => { draft.quickChat = quickChat; });
-    expect(await readFile(primary)).toEqual(original); expect(await readFile(backup)).toEqual(original);
+    expect((await readFile(primary)).equals(original)).toBe(true); expect((await readFile(backup)).equals(original)).toBe(true);
     const saved = JSON.parse(await readFile(journal, 'utf8')); expect(saved.schemaVersion).toBe(3); expect(saved.quickChat).toEqual(quickChat);
     expect(saved.threads).toEqual([]); expect((await stat(journal)).size).toBeLessThan(10_000);
     const restored = new WorkspaceVault(directory, codec); await restored.initialize(); expect(restored.snapshot()).toEqual(vault.snapshot());

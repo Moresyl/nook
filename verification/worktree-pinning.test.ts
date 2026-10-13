@@ -20,7 +20,8 @@ async function fixture() {
   const root = join(directory, '源 项目 🧭'), path = join(directory, '独立 工作树'), profile = join(directory, '资料'); await mkdir(root);
   const git = (args: string[]) => run('git', ['-C', root, ...args], { windowsHide: true, timeout: 30000 });
   await git(['init', '-q', '-b', 'main']);
-  for (const [key, value] of [['user.name', 'Nook test'], ['user.email', 'test@example.invalid'], ['commit.gpgSign', 'false'], ['core.autocrlf', 'false']]) await git(['config', key, value]);
+  // This freshly initialized fixture owns its config; persist the same settings in one write.
+  await writeFile(join(root, '.git', 'config'), '\n[user]\n\tname = Nook test\n\temail = test@example.invalid\n[commit]\n\tgpgSign = false\n[core]\n\tautocrlf = false\n', { flag: 'a' });
   await writeFile(join(root, '保留.txt'), 'BASE\n'); await git(['add', '.']); await git(['commit', '-qm', 'Base']); await git(['worktree', 'add', '-q', '-b', 'feature/pin', path]);
   const vault = new WorkspaceVault(profile, codec); await vault.initialize(); await vault.update(state => { state.projects.push({ id: 'source', name: '源项目', path: root, instructions: 'SOURCE_KEEP', createdAt: 1 }); });
   const projectGit = new ProjectGit(), reader = (root: string) => projectGit.worktrees(root), file = join(profile, 'managed-worktrees.json'), ownership = new WorktreeOwnership(file, reader);

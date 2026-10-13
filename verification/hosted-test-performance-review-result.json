@@ -1,0 +1,112 @@
+{
+  "verifiedAt": "2026-10-13T15:16:25.763Z",
+  "archive": "C:/NookVerificationOverflow/HostedTestPerformance-20261013",
+  "sourceHead": "5eeb22c226328145baf989c97f326e097ecf315a",
+  "sourcePatchSha256": "b37ef8feea72a3447ba9fb40e857dfc805eee7198af7ead00a3e499dbf391870",
+  "inputs": [
+    {
+      "path": "verification/workspace-checkpoint-journal.test.ts",
+      "bytes": 34043,
+      "sha256": "20b440cbc68e98ce9563a875464b425830bb5079d562f44445e04a2464ec4a92"
+    },
+    {
+      "path": "verification/workspace-recovery-file.test.ts",
+      "bytes": 2526,
+      "sha256": "7d6187f01773c052bb6ca3d56356d0c5256fd356c6ec610d13892ed34d250c92"
+    },
+    {
+      "path": "verification/workspace-serialization.test.ts",
+      "bytes": 6426,
+      "sha256": "631f23a29886f8b01a4bbfa032198ca2b794fb0a80643a5011dce9dc380ef425"
+    },
+    {
+      "path": "verification/worktree-cleanup.test.ts",
+      "bytes": 18814,
+      "sha256": "4df150d38d95f9cecdbd673995d197fc32ce42802f26e67c32bfa5309a71d0c0"
+    },
+    {
+      "path": "verification/worktree-ownership.test.ts",
+      "bytes": 21512,
+      "sha256": "08ff7a3a8750fc67d05c9fc0ad840a4cc37b6de2fe585a47dc8a6e1b0ee3ba37"
+    },
+    {
+      "path": "verification/worktree-pinning.test.ts",
+      "bytes": 12292,
+      "sha256": "c64c3255bc54314dcf11ff1f3457fce27f72366f02fc3caf30aee4559b2d3389"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "check",
+      "sourceHead": "5eeb22c226328145baf989c97f326e097ecf315a",
+      "startedAt": "2026-10-13T15:07:42.9950237+00:00",
+      "finishedAt": "2026-10-13T15:08:02.9811698+00:00",
+      "exitCode": 0,
+      "logSha256": "420f95105ea8ea4b1ed50e2dd13241d2147a1da915bbb01ad841e2c586a45924"
+    },
+    {
+      "phase": "focused",
+      "sourceHead": "5eeb22c226328145baf989c97f326e097ecf315a",
+      "startedAt": "2026-10-13T15:08:02.9925411+00:00",
+      "finishedAt": "2026-10-13T15:09:21.6141932+00:00",
+      "exitCode": 0,
+      "logSha256": "71208a4923e17c90ff3740d6bbe8b39367f5fe15aeb5736e51fdd02bd7c73589"
+    },
+    {
+      "phase": "test-coverage",
+      "sourceHead": "5eeb22c226328145baf989c97f326e097ecf315a",
+      "startedAt": "2026-10-13T15:09:21.6158966+00:00",
+      "finishedAt": "2026-10-13T15:16:03.1776104+00:00",
+      "exitCode": 0,
+      "logSha256": "0767000fa3f36f3c3496f9cb687c5ff8ca74f2064f02d787546d6c2725bd55e4"
+    }
+  ],
+  "focusedTests": 134,
+  "focusedFiles": 6,
+  "tests": 1557,
+  "files": 133,
+  "coverage": {
+    "lines": {
+      "total": 4523,
+      "covered": 4500,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7520,
+      "covered": 7297,
+      "skipped": 0,
+      "pct": 97.03
+    },
+    "functions": {
+      "total": 1672,
+      "covered": 1635,
+      "skipped": 0,
+      "pct": 97.78
+    },
+    "branches": {
+      "total": 5272,
+      "covered": 4986,
+      "skipped": 0,
+      "pct": 94.57
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "productionLogicChanged": false,
+  "workflowChanged": false,
+  "originalDeadlinesRetained": true,
+  "largeFixtureBoundsRetained": true,
+  "completeByteEqualityRetained": true,
+  "realGitReceiptAndSnapshotChecksRetained": true,
+  "acceptedNativeSourceArchive": "C:/NookVerificationOverflow/SharedButtonDefaultsFull-source-20261013",
+  "hostedFailureArchive": "C:/NookVerificationOverflow/SharedButtonDefaultsHosted-20261013",
+  "hostedRerunAccepted": false,
+  "distributionAccepted": false,
+  "published": false,
+  "scope": "Four large Buffer assertions use complete native byte equality. Owned Git fixture configuration is persisted in one write, and additional real trim fixtures are created directly with Git while retaining real receipt and snapshot validation. Six focused files and the complete original 80% coverage gate pass; no production behavior, test deadline or workflow was changed. The original hosted run still requires a fresh rerun."
+}

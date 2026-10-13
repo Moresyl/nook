@@ -27,7 +27,7 @@
 
 [前一完整分发](../verification/memory-delete-default-surface-runtime-review-result.json) · [安装后回归](../verification/memory-delete-default-surface-full-installed-review-result.json)
 
-当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 已实际启动，环境准备成功，类型、单元覆盖率与许可证检查正在执行。此前 `844c33d` 的账户限制／零步骤失败属于历史，不能当作当前运行结果。本次尚未得出完整验收或发布成功结论；浏览器连接仍返回认证令牌不可用，页面未打开。尚无发布标签或可下载版本。[本次实际进度](../verification/shared-button-defaults-hosted-progress-review-result.json)
+当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 完成环境准备与类型检查后，在单元覆盖率阶段因六项既有测试超时失败：133 文件中 127 通过，1,557 项中 1,551 通过。后续打包与发布未执行，正在修复测试开销；原期限、数据样本和完整验收要求保留。此前账户限制／零步骤失败属于历史。浏览器连接仍返回认证令牌不可用，页面未打开；尚无发布标签或可下载版本。[本次终态与完整失败日志](../verification/shared-button-defaults-hosted-terminal-review-result.json) · [此前进度快照](../verification/shared-button-defaults-hosted-progress-review-result.json)
 
 ## 剩余交付
 

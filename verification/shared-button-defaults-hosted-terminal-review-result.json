@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-10-13T14:57:15.648Z",
+  "archive": "C:/NookVerificationOverflow/SharedButtonDefaultsHosted-20261013",
+  "deliveryHead": "d72d5ef2766cde9b73944d158b146df235151d61",
+  "workflow": {
+    "id": 38413577535,
+    "url": "https://github.com/Moresyl/nook/actions/runs/38413577535",
+    "status": "completed",
+    "conclusion": "failure",
+    "jobs": [
+      {
+        "id": 115351959992,
+        "name": "verify",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "conclusion": "success"
+          },
+          {
+            "name": "Prepare isolated temporary storage and pinned dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify types, unit coverage and complete redistribution notices",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Build the audited Windows installer and portable executable",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify the complete packaged desktop and settings",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify actual bootstrap plugins and portable execution",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify current-user installation, installed desktop and data-preserving uninstall",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify matching complete runtime records",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Prepare exact tagged source, bilingual notes and checksums",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Preserve verification diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Upload the complete verified release bundle",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 115356906296,
+        "name": "publish",
+        "conclusion": "skipped",
+        "steps": []
+      }
+    ],
+    "annotations": [
+      "Process completed with exit code 1.",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/worktree-pinning.test.ts:46:3\n\n",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/worktree-ownership.test.ts:54:3\n\n",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/worktree-cleanup.test.ts:153:3\n\n",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/workspace-serialization.test.ts:40:3\n\n",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/workspace-recovery-file.test.ts:13:3\n\n",
+      "Error: Test timed out in 10000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/workspace-checkpoint-journal.test.ts:27:3\n\n"
+    ]
+  },
+  "tests": {
+    "total": 1557,
+    "passed": 1551,
+    "failed": 6,
+    "files": 133,
+    "failedFiles": 6,
+    "durationSeconds": 489.88,
+    "failure": "Existing test deadlines exceeded; no assertion failure was reported."
+  },
+  "releaseCount": 0,
+  "tagCount": 0,
+  "evidence": [
+    {
+      "name": "run-terminal.json",
+      "sha256": "95fc7aeb8b64cb2dcf2ad901964ee97f3045559ae30359bc79f8643e6c802ea4"
+    },
+    {
+      "name": "jobs-terminal.json",
+      "sha256": "51e2b6ec4bec57a70291f9a59c383b61a2bee801b91a71b5246915b122b3818b"
+    },
+    {
+      "name": "annotations-terminal-115351959992.json",
+      "sha256": "8c51ac73a76d311f4b3f7bf16be03e40ccdbe786f3a1a6cfc17c2f771ef16484"
+    },
+    {
+      "name": "annotations-terminal-115356906296.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases-terminal.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags-terminal.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "failed-job.log",
+      "bytes": 122994,
+      "sha256": "ddf9f3670ff8168024cdfc917e8bfceb7d2b0d44aa7f672a04b0733399447b2a"
+    }
+  ],
+  "published": false,
+  "browserReleaseCompleted": false,
+  "scope": "Original hosted Windows workflow actually ran. Six test timeouts blocked subsequent package and release gates. Historical zero-step billing failures and earlier in-progress snapshots are retained separately. No deadline, workflow, account or release change is claimed."
+}

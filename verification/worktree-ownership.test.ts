@@ -57,7 +57,7 @@ describe('local worktree creation receipts', () => {
     for (let index = 0; index < 200; index++) ledger.records.push({ ...structuredClone(original), id: randomUUID(), identity: { ...structuredClone(original.identity), directory: { ...original.identity.directory, path: join(dirname(path), String(index).padStart(3, '0') + 'x'.repeat(3900)) } } });
     await atomicJson(file, ledger); const before = await readFile(file); expect(before.length).toBeLessThan(2_000_000);
     await expect(manager.rememberConversations(path, Array.from({ length: 10000 }, (_, index) => String(index).padStart(5, '0') + 'x'.repeat(120)))).rejects.toThrow('could not be saved');
-    expect(await readFile(file)).toEqual(before);
+    expect((await readFile(file)).equals(before)).toBe(true);
   });
   it.each(['', 'relative', 'C:relative', 'E:\\bad\npath'])('rejects invalid receipt paths before filesystem work: %j', path => {
     expect(ownedWorktreePathSchema.safeParse(path).success).toBe(false);
