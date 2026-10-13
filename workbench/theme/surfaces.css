@@ -83,7 +83,7 @@ svg { flex: 0 0 auto; }
 kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); white-space: nowrap; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ds-text) 18%, transparent); border-radius: 999px; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 3px; min-height: 20px; padding: 0 6px; border: 1px solid transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; text-align: left; transition: background-color .18s ease, color .18s ease; white-space: nowrap; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: var(--control-size-2xs); padding: 0 var(--control-gutter-xs); border: 1px solid transparent; border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; text-align: left; transition: background-color .18s ease, color .18s ease; white-space: nowrap; }
 .button:hover:not(:disabled) { background: var(--ghost-hover); }
 .button-solid { background: var(--ds-text-emphasis); color: var(--ds-bg); }
 .button-solid:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-text-emphasis) 85%, var(--ds-bg)); }
@@ -250,7 +250,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .attachments { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 8px 12px; }
 .attachment { display: inline-flex; align-items: center; gap: 4px; border-radius: 8px; border: 1px solid var(--ds-border); padding: 2px 4px 2px 8px; font-size: 11px; }
 .attachment > span { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.attachment .icon-button { width: 20px; height: 20px; }
+.attachment .icon-button { width: 20px; height: 20px; min-height: 20px; }
 .attachment .icon-button svg { width: 12px; height: 12px; }
 .attachment-preview-button { min-height: 24px; gap: 6px; padding: 2px 4px; font-size: 11px; }
 .attachment-preview-button > span { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -504,7 +504,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-search-control:has(.input:focus-visible) { outline: 2px solid var(--color-ring); outline-offset: 2px; }
 .settings-search-control > svg { flex-shrink: 0; color: var(--ds-text-secondary); }
 .settings-search-control .input { flex: 1; min-width: 0; width: 0; min-height: 0; padding: 0; border: 0; border-radius: 0; font-size: 14px; line-height: 18px; }
-.settings-search-control .icon-button { width: 22px; height: 22px; flex-shrink: 0; }
+.settings-search-control .icon-button { width: 22px; height: 22px; min-height: 22px; flex-shrink: 0; }
 .settings-dialog .settings-nav { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .settings-dialog .settings-nav .button { flex-shrink: 0; }
 .settings-search-results { display: flex; flex-direction: column; gap: 2px; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
