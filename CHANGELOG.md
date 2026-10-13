@@ -2,6 +2,10 @@
 
 ## 未发布
 
+记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；新完整回归和分发验收待完成。
+
+Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five native checks and 22 reviewed images pass; the new complete runtime and distribution gates remain pending.
+
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
 确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项通过；完整源码、新包与安装各通过 373 项／74 次正常退出，原五个分发专项、便携七项、保留数据卸载与十一份运行记录通过。源码专项、包内和安装各 34 张设置原图逐张复核；安装轮先前七张缩放差异的判断经原图像素测量更正，三档缩放尺寸一致，原记录保留。此前候选及失败证据保留，原托管发布与完整参考界面未完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)

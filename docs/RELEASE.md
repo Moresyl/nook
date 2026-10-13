@@ -2,6 +2,8 @@
 
 **尚未发布。** Windows x64 候选版本为 `0.1.0-alpha.1`。名称、图标和产品说明统一为 **Nook**，原始开源许可证保留。已授权完成验收后直接通过原流水线发布，无需再次确认。
 
+新一轮记忆删除采用 520px／92vw、20px 圆角与独立内容滚动。取消为初始焦点，删除等待禁用关闭，失败保留原内容与持久化字节。初版 1,555 项完整单元／覆盖率、类型与构建通过；焦点修正后重跑类型、124 项相关测试与构建，覆盖率范围和测试文件逐字未变。最新真实桌面五组专项、六种主题／应用缩放、22 张逐张复核原图及一次 461ms 正常退出通过。前三轮失败分别为初始焦点、错误角色选择器歧义和遗留专项计数，原现场均保留。新的完整桌面最低 375 项，新包与安装验收尚待完成，下面 373 项分发结果属于此前设置候选。[初版单元](../verification/memory-delete-unit-review-result.json) · [焦点修正](../verification/memory-delete-focus-correction-review-result.json) · [原生专项](../verification/memory-delete-focused-review-result.json) · [原图复核](../verification/memory-delete-visual-review-result.json)
+
 本轮全局搜索采用 520px 上限与 92vw 收缩、明暗表面和有界定位，键盘选择末项时完整显示。输入区 `/` 快捷选择保留原文和光标位置，选择助手或项目不会发送消息。命令输出节流会补发最后一段更新，关闭、报错和取消后停止通知。[快捷选择](COMPOSER-ACTIONS.md)
 
 最新设置保护模型、桌面、工作树、MCP、插件和记忆六类未保存表单：默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型、构建和八组设置专项通过。完整源码、同一新包与实际安装各通过 373 项和 74 次正常退出，最长分别为 1,725／2,429／2,054ms，无强制结束；每轮保留 39 份新报告、597 张原图和 236 个匹配编译文件。原五个分发专项、便携七项、安装登记／快捷方式、保留数据卸载及十一份匹配运行记录通过。十二个既有数据标记恢复原路径并核对哈希。[设置用法](SETTINGS.md) · [单元](../verification/settings-drafts-unit-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json) · [新包](../verification/settings-drafts-package-review-result.json) · [包内回归](../verification/settings-drafts-full-unpacked-review-result.json) · [安装回归](../verification/settings-drafts-full-installed-review-result.json) · [运行与卸载](../verification/settings-drafts-runtime-review-result.json)
