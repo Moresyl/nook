@@ -1,19 +1,33 @@
 {
-  "verifiedAt": "2026-10-13T04:37:40.095Z",
+  "verifiedAt": "2026-10-13T07:56:44.065Z",
   "variant": "packaged executable",
-  "executableSha256": "67b500c647b951400320d59ee9440faac5810a90a1d115271d78e109c13db8b9",
-  "archiveSha256": "60838ba5d4a02092274808749d269361bfcc93e19f4c9f0d8d4474adab1401bc",
+  "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+  "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "verificationRun": "complete desktop suite",
-  "suiteChecks": 371,
-  "checks": 6,
+  "suiteChecks": 373,
+  "checks": 8,
   "modelRequests": 0,
   "keyboardVerified": true,
   "destinationFocusVerified": true,
   "draftRetentionVerified": true,
   "heldPickerVerified": true,
   "sessionResetVerified": true,
+  "explicitDiscardVerified": true,
+  "discardKeyboardFocusVerified": true,
+  "scopedDiscardVerified": true,
+  "revertedDraftVerified": true,
+  "compactDiscardLayoutsVerified": true,
+  "allSettingsFormsVerified": true,
+  "protectedForms": [
+    "models",
+    "desktop",
+    "worktrees",
+    "mcp",
+    "plugins",
+    "memories"
+  ],
   "layouts": [
     {
       "theme": "light",
@@ -34,7 +48,17 @@
         "focusOutline": "2px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     },
     {
       "theme": "light",
@@ -55,7 +79,17 @@
         "focusOutline": "1.6px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     },
     {
       "theme": "light",
@@ -76,7 +110,17 @@
         "focusOutline": "2px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     },
     {
       "theme": "dark",
@@ -97,7 +141,17 @@
         "focusOutline": "2px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     },
     {
       "theme": "dark",
@@ -118,7 +172,17 @@
         "focusOutline": "1.6px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     },
     {
       "theme": "dark",
@@ -139,28 +203,54 @@
         "focusOutline": "2px",
         "focusContained": true
       },
-      "searchStyleVerified": true
+      "searchStyleVerified": true,
+      "discard": {
+        "width": 420,
+        "expectedWidth": 420,
+        "radius": "16px",
+        "contained": true,
+        "heightBounded": true,
+        "buttonsVisible": true,
+        "defaultCancelFocus": true,
+        "closeControls": 0
+      }
     }
   ],
   "screenshots": [
+    "settings-search-discard-drafts-shell.png",
+    "settings-search-discard-provider-shell.png",
+    "settings-search-discard-mcp-shell.png",
+    "settings-search-discard-plugin-shell.png",
     "settings-search-light-1-results-shell.png",
     "settings-search-light-1-target-shell.png",
     "settings-search-light-1-empty-shell.png",
+    "settings-search-light-1-discard-confirm-shell.png",
+    "settings-search-light-1-discard-retained-shell.png",
     "settings-search-light-1.25-results-shell.png",
     "settings-search-light-1.25-target-shell.png",
     "settings-search-light-1.25-empty-shell.png",
+    "settings-search-light-1.25-discard-confirm-shell.png",
+    "settings-search-light-1.25-discard-retained-shell.png",
     "settings-search-light-1.5-results-shell.png",
     "settings-search-light-1.5-target-shell.png",
     "settings-search-light-1.5-empty-shell.png",
+    "settings-search-light-1.5-discard-confirm-shell.png",
+    "settings-search-light-1.5-discard-retained-shell.png",
     "settings-search-dark-1-results-shell.png",
     "settings-search-dark-1-target-shell.png",
     "settings-search-dark-1-empty-shell.png",
+    "settings-search-dark-1-discard-confirm-shell.png",
+    "settings-search-dark-1-discard-retained-shell.png",
     "settings-search-dark-1.25-results-shell.png",
     "settings-search-dark-1.25-target-shell.png",
     "settings-search-dark-1.25-empty-shell.png",
+    "settings-search-dark-1.25-discard-confirm-shell.png",
+    "settings-search-dark-1.25-discard-retained-shell.png",
     "settings-search-dark-1.5-results-shell.png",
     "settings-search-dark-1.5-target-shell.png",
-    "settings-search-dark-1.5-empty-shell.png"
+    "settings-search-dark-1.5-empty-shell.png",
+    "settings-search-dark-1.5-discard-confirm-shell.png",
+    "settings-search-dark-1.5-discard-retained-shell.png"
   ],
-  "scope": "Real renderer, preload and main bridge. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
+  "scope": "Real renderer, preload and main bridge. Original six search checks retained with explicit dirty-form discard, plus two behavior and compact-layout groups covering all six draft forms. An owned disabled fixture plugin is imported only if no plugin exists and removed on successful cleanup. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
 }

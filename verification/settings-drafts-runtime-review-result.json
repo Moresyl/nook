@@ -1,0 +1,144 @@
+{
+  "verifiedAt": "2026-10-13T07:58:07.179Z",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsRuntime-20261013",
+  "sourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+  "packageSourceHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+  "compiledProductSourceHead": "f2b37039680005231853863cc752cd453bb9824d",
+  "nativeTestSourceOverlay": {
+    "preparedAt": "2026-10-13T06:40:40.127Z",
+    "packageSourceHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+    "testSourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+    "path": "scripts/verify-backups.mjs",
+    "sha256": "7e8492203845d66adff2da1d68727652bfcdd0fb3066ac2f1e6f176471a7e4cd",
+    "sourceInputsUnchanged": 20,
+    "compiledFilesUnchanged": 236,
+    "originalDeadlinesRetained": true,
+    "scope": "One native-test selector correction and its immutable failed-round receipt. The product build, all 20 previously accepted source inputs, and all 236 packaged compiled files remain byte-identical. The complete packaged native regression must still pass."
+  },
+  "compiledProvenance": "Exact 236 files from the previously accepted nineteen-source-input build. Native test changes are the explicit error-message selector correction and the desktop-integration teardown that now explicitly discards a failed shortcut draft. Merging the prior distribution evidence and writing documentation did not change product or compiled bytes. All twenty current verification inputs are recorded separately.",
+  "full": {
+    "source": "C:/NookVerificationOverflow/SettingsDraftsFull-source-retry1-20261013",
+    "unpacked": "C:/NookVerificationOverflow/SettingsDraftsFull-unpacked-20261013",
+    "installed": "C:/NookVerificationOverflow/SettingsDraftsFull-installed-20261013"
+  },
+  "records": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "914116195fb98b756267c627376c92a1d1cd85b1400ca99bb298aff647042d96",
+      "modifiedAt": "2026-10-13T06:16:07.933Z"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "bytes": 393755,
+      "sha256": "495897f8149089fe1cf4de5e620a065bd048e92d70d1d117f2d79b7c90c3ab17",
+      "modifiedAt": "2026-10-13T07:56:51.431Z"
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "bytes": 5144,
+      "sha256": "43d92af40705ad96cfb551cc3d7f4c3cf8a5d59ade0347b1abe334caca75ab3e",
+      "modifiedAt": "2026-10-13T07:18:02.201Z"
+    },
+    {
+      "key": "preview",
+      "name": "project-preview-packaged-result.json",
+      "bytes": 66387,
+      "sha256": "5684a79b97c830089a564014a1d5c591860733f6fb88e24cefcbed28470db6f4",
+      "modifiedAt": "2026-10-13T07:56:50.837Z"
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "bytes": 11795,
+      "sha256": "e4ab794808169d82fe904dffb8e05ac8309bade73742773fd1771fd3f5eba54c",
+      "modifiedAt": "2026-10-13T07:56:40.962Z"
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "bytes": 2074,
+      "sha256": "526f4cf7d10d149327d225a7d1d1bfd8c7ed33adb66ab47e1ec9e51a1c4cea38",
+      "modifiedAt": "2026-10-13T07:56:41.583Z"
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "bytes": 7026,
+      "sha256": "36cbf4a052c33cc37e844472e3e44e71571151685cbbe2ff52a49cd65c88f769",
+      "modifiedAt": "2026-10-13T07:56:35.489Z"
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "bytes": 2092,
+      "sha256": "abd43c2b1d4082bd5372f1770214c581c3c0976acce41556310bb70cf86344a3",
+      "modifiedAt": "2026-10-13T07:20:35.999Z"
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "20bead54eda0198fb04e3d3d62666a482d071ce49f91947c0d3d869db23735a7",
+      "modifiedAt": "2026-10-13T07:20:16.230Z"
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "7c41a5427807941013674a82bef9953d30384b54b88080c9de21753989ffc49e",
+      "modifiedAt": "2026-10-13T07:19:50.628Z"
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "bytes": 780,
+      "sha256": "a67c19ffcbf33f67065e4150a2eaa2f0a3aefb31be564c5324c343ed1f3df277",
+      "modifiedAt": "2026-10-13T07:57:14.855Z"
+    }
+  ],
+  "supplementaryRecords": [
+    {
+      "name": "installed-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "9f54136569bab0ab3218031cfd198ec8771cb254e8181861043f2a4f70cfb789"
+    },
+    {
+      "name": "installed-shortcuts-result.json",
+      "bytes": 871,
+      "sha256": "ce787419913ab76639679257341cf479f57bcdbacd7d87acea77814a11247676"
+    },
+    {
+      "name": "shell-integration-result.json",
+      "bytes": 984,
+      "sha256": "92abec9806a6e4a244a2e96b6fbe15e0b362035bbac8734101f00ce4d3c1988f"
+    }
+  ],
+  "runtimeToolReceipt": {
+    "sourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+    "exitCode": 0,
+    "startedAt": "2026-10-13T07:58:06.1426970Z",
+    "completedAt": "2026-10-13T07:58:06.3799207Z"
+  },
+  "matchingRuntimeRecords": 11,
+  "desktopChecks": 373,
+  "installedChecks": 373,
+  "portableChecks": 7,
+  "unitTests": 1555,
+  "unitFiles": 133,
+  "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+  "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
+  "installerRegistrationVerified": true,
+  "installerShortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "originalMarkersRestored": 8,
+  "retainedFailureMarkersRestored": 4,
+  "passed": true,
+  "published": false,
+  "completeReferenceParity": false,
+  "scope": "All original eleven-record release gates with settings protection. Complete 373-check source, unchanged packaged body and actual installation; five distribution phases, seven portable checks, data-preserving uninstall and exact twelve marker hashes. Exact accepted unit inputs and native-test-only corrections retained. Physical interaction, complete reference adoption and hosted publication remain separate."
+}

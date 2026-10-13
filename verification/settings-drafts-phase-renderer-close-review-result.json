@@ -1,0 +1,93 @@
+{
+  "verifiedAt": "2026-10-13T07:19:44.262Z",
+  "phase": "renderer-close",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsPhase-renderer-close-20261013",
+  "sourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+  "runtimeBuiltHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+  "startedAt": "2026-10-13T07:19:38.6681347Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+  "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
+  "reports": {
+    "renderer-close-packaged-result.json": {
+      "verifiedAt": "2026-10-13T07:19:43.129Z",
+      "variant": "packaged executable",
+      "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+      "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "checks": 2,
+      "crash": {
+        "reason": "crashed",
+        "exitCode": 2,
+        "capturedAt": 1791875981281,
+        "memory": {
+          "rss": 168468480,
+          "heapTotal": 17448960,
+          "heapUsed": 12514676,
+          "external": 5661377,
+          "arrayBuffers": 0
+        },
+        "systemFreeMemory": 7893168128,
+        "processes": [
+          {
+            "pid": 48172,
+            "type": "Browser",
+            "memory": {
+              "workingSetSize": 164552,
+              "peakWorkingSetSize": 164608,
+              "privateBytes": 126400
+            }
+          },
+          {
+            "pid": 60844,
+            "type": "GPU",
+            "memory": {
+              "workingSetSize": 107304,
+              "peakWorkingSetSize": 111016,
+              "privateBytes": 118976
+            }
+          },
+          {
+            "pid": 33088,
+            "type": "Utility",
+            "memory": {
+              "workingSetSize": 50972,
+              "peakWorkingSetSize": 50972,
+              "privateBytes": 12216
+            }
+          }
+        ]
+      },
+      "quitMs": 1267,
+      "persistedDraftRetained": true,
+      "conversationsRetained": true,
+      "modelRequests": 0,
+      "boundary": "A deliberately crashed owned main renderer and explicit application quit. The last successfully saved state is retained; unflushed input and the cause of spontaneous crashes are not established. Not complete desktop or distribution acceptance."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 1,
+  "maximumCloseMs": 1263,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release.",
+  "nativeTestSourceOverlay": {
+    "preparedAt": "2026-10-13T06:40:40.127Z",
+    "packageSourceHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+    "testSourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+    "path": "scripts/verify-backups.mjs",
+    "sha256": "7e8492203845d66adff2da1d68727652bfcdd0fb3066ac2f1e6f176471a7e4cd",
+    "sourceInputsUnchanged": 20,
+    "compiledFilesUnchanged": 236,
+    "originalDeadlinesRetained": true,
+    "scope": "One native-test selector correction and its immutable failed-round receipt. The product build, all 20 previously accepted source inputs, and all 236 packaged compiled files remain byte-identical. The complete packaged native regression must still pass."
+  }
+}

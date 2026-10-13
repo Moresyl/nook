@@ -4,7 +4,11 @@
 
 本轮全局搜索采用 520px 上限与 92vw 收缩、明暗表面和有界定位，键盘选择末项时完整显示。输入区 `/` 快捷选择保留原文和光标位置，选择助手或项目不会发送消息。命令输出节流会补发最后一段更新，关闭、报错和取消后停止通知。[快捷选择](COMPOSER-ACTIONS.md)
 
-最新设置源码已加入六类表单的未保存更改保护，离开时默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型与构建通过；八组原生设置专项、六种明暗／应用缩放布局、34 张逐张复核原图与正常退出通过。提交 `f2b3703` 的完整源码回归已通过 373 项、74 次正常退出，最长 1,725ms，无强制结束；39 份新报告、597 张原图和 236 个匹配编译文件归档，这批新原图未全部视觉复核。**新包分发尚未验收**；下述 371 项分发记录仍属于此前冻结应用体。[设置用法](SETTINGS.md) · [设置单元](../verification/settings-drafts-unit-review-result.json) · [设置专项](../verification/settings-drafts-focused-review-result.json) · [专项原图](../verification/settings-drafts-visual-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json)
+最新设置保护模型、桌面、工作树、MCP、插件和记忆六类未保存表单：默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型、构建和八组设置专项通过。完整源码、同一新包与实际安装各通过 373 项和 74 次正常退出，最长分别为 1,725／2,429／2,054ms，无强制结束；每轮保留 39 份新报告、597 张原图和 236 个匹配编译文件。原五个分发专项、便携七项、安装登记／快捷方式、保留数据卸载及十一份匹配运行记录通过。十二个既有数据标记恢复原路径并核对哈希。[设置用法](SETTINGS.md) · [单元](../verification/settings-drafts-unit-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json) · [新包](../verification/settings-drafts-package-review-result.json) · [包内回归](../verification/settings-drafts-full-unpacked-review-result.json) · [安装回归](../verification/settings-drafts-full-installed-review-result.json) · [运行与卸载](../verification/settings-drafts-runtime-review-result.json)
+
+源码专项、包内与安装轮各 34 张设置原图已逐张查看。包内六种主题／缩放布局的原图通过；安装轮发现七张缩放标记与实际捕获视觉尺寸不一致，虽运行时几何断言通过，仍不能算作对应缩放的视觉验收。原图、哈希及差异保留，原因尚未唯一诊断，没有将重拍或重跑写成界面修复。每轮 597 张完整回归原图未全部视觉复核；最终界面与托管发布仍待完成。[包内原图](../verification/settings-drafts-unpacked-visual-review-result.json) · [安装捕获差异](../verification/settings-drafts-installed-visual-review-result.json)
+
+包源为 `21bfce7`，测试源为 `7a15cce`。新包回归前两轮各在 186 项后失败，第一轮设置选择器要求紧凑侧栏隐藏的 Ctrl 后缀，第二轮新增 title 属性断言不适用于共享提示组件。两轮各保留实际退出 1、19 次正常退出、8 份新报告、166 张原图及工作区；第三轮保留原断言与期限，使用既有侧栏角色入口后通过。产品二十个既有校验输入和 236 个编译文件不变，测试覆盖文件及准确源码 tar 单独归档。[第一轮](../verification/settings-drafts-full-unpacked-failure-review-result.json) · [第二轮](../verification/settings-drafts-full-unpacked-failure2-review-result.json)
 
 设置专项的前两次尝试因错误提示选择器包含关闭提示文本、随后匹配到两个元素而失败。原日志、原图及工作区保留；只修正一次测试选择表达式后通过，十八个其他源码输入及 236 个编译文件未变。单元源码归档加明确的测试覆盖文件可复现这轮专项，未降低检查或超时。
 

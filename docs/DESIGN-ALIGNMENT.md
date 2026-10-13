@@ -2,7 +2,7 @@
 
 界面以最新版 `E:/txt`（26.930.41038／build 13022）的作用域 CSS、主题和实际调用证据为依据。旧 `DESIGN.md` 只作历史索引。**全部页面与交互尚未达到 100% 对齐。**
 
-本轮新增未保存设置确认：依据实际设置调用链采用 420px／92vw 宽度、16px 圆角、24px 内边距、12px 间距和无普通关闭按钮的紧凑布局。模型、桌面、工作树、MCP、插件和记忆六类表单统一保护；默认继续编辑，明确放弃后执行待办离开动作。原生八组专项、六种主题／100%–150% 应用缩放布局与 34 张逐张复核原图通过，长表单保留独立滚动。新完整源码另通过 373 项与 74 次正常退出，597 张原图保留，未全部视觉复核。新包分发、物理系统 DPI、辅助技术及全部参考交互仍需分别验收。[设置专项原图](../verification/settings-drafts-visual-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json)
+本轮新增未保存设置确认：依据实际设置调用链采用 420px／92vw 宽度、16px 圆角、24px 内边距、12px 间距和无普通关闭按钮的紧凑布局。模型、桌面、工作树、MCP、插件和记忆六类表单统一保护；默认继续编辑，明确放弃后执行待办离开动作。八组原生专项通过；源码专项和同一新包各 34 张设置原图逐张复核，长表单独立滚动，六种主题／100%–150% 应用缩放确认操作可见。完整源码、新包与安装各通过 373 项／74 次正常退出，每轮 597 张原图未全部视觉复核。安装轮逐张查看 34 张后发现七张缩放标记与实际捕获尺寸不一致，几何断言通过不能代替这些图片的缩放验收；原因尚未唯一诊断。原五个分发专项与保留数据卸载通过；物理系统 DPI、辅助技术、全部参考交互与托管发布仍需验收。[源码原图](../verification/settings-drafts-visual-review-result.json) · [包内原图](../verification/settings-drafts-unpacked-visual-review-result.json) · [安装捕获差异](../verification/settings-drafts-installed-visual-review-result.json) · [运行记录](../verification/settings-drafts-runtime-review-result.json)
 
 | 表面 | 已采用 | 尚待验收或补齐 |
 | --- | --- | --- |

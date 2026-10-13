@@ -4,9 +4,9 @@
 
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
-确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建、八组设置专项及完整源码 373 项回归已通过，34 张专项原图逐张复核；新包分发验收继续进行。此前 Windows 候选的本机分发证据保留，原托管发布与完整参考界面仍待完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
+确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项通过；完整源码、新包与安装各通过 373 项／74 次正常退出，原五个分发专项、便携七项、保留数据卸载与十一份运行记录通过。源码专项和包内各 34 张设置原图逐张复核；安装轮七张原图存在缩放捕获差异，仍待诊断。此前候选及失败证据保留，原托管发布与完整参考界面未完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
 
-Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build, eight focused native checks and all 373 source desktop checks pass. Fresh distribution validation remains pending.
+Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build and eight focused checks pass. Source, packaged and installed runtimes each pass 373 checks with normal exits; original distribution, portable and data-preserving uninstall gates pass. Seven installed captures have an unresolved scale discrepancy. Hosted release and complete UI adoption remain pending.
 
 ## [0.1.0-alpha.1] - 2026-10-13
 

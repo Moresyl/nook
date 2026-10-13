@@ -1,0 +1,103 @@
+{
+  "verifiedAt": "2026-10-13T07:20:37.110Z",
+  "phase": "portable",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsPhase-portable-20261013",
+  "sourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+  "runtimeBuiltHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+  "startedAt": "2026-10-13T07:19:51.7902015Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+  "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
+  "reports": {
+    "portable-result.json": {
+      "verifiedAt": "2026-10-13T07:20:35.998Z",
+      "version": "0.1.0-alpha.1",
+      "variant": "actual Windows portable wrapper",
+      "checks": 7,
+      "evidence": [
+        "actual portable wrapper starts from a Chinese path with spaces and forwards exact Unicode arguments",
+        "real extracted portable application retains all product, native, vendor and distribution files",
+        "extracted portable native PTY returns real PowerShell output and exit code",
+        "normal application close exits the wrapper successfully and removes its extraction",
+        "a second real wrapper extraction removes stale long-path files and restores exact persisted notes and project scope",
+        "the restarted portable wrapper also exits normally and cleans its extraction",
+        "portable operation preserves its executable, existing installation registration and shortcuts"
+      ],
+      "wrapperSha256": "16a977be8925de1bd8cf61d5d525d7c55b1d3eb1d5d71cfb8ba011b7c77f5988",
+      "childExecutableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+      "launches": [
+        {
+          "wrapperStartedAt": 1791875997092,
+          "applicationObservedAt": 1791876008472,
+          "longDocumentPathLength": 274,
+          "applicationReadyAt": 1791876009729
+        },
+        {
+          "wrapperStartedAt": 1791876018575,
+          "applicationObservedAt": 1791876033189,
+          "longDocumentPathLength": 274,
+          "applicationReadyAt": 1791876033241
+        }
+      ],
+      "unpackedFilesVerified": 188,
+      "longPathCleanupVerified": true,
+      "runtimeErrors": [],
+      "scope": "Actual x64 portable wrapper, isolated data and temporary directories, Chinese/space path and exact forwarded Unicode arguments, complete extracted-package hashes and all unpacked-asset names/bytes including a retained document beyond MAX_PATH, real native PTY, cleanup of a stale long-path document before restart, two normal lifecycle exits, retained data and extraction cleanup. Cold extraction is measured separately with a 120-second budget; Electron startup retains 30 seconds. Default data location, native dialogs, other platforms and public release remain separate gates."
+    },
+    "portable-package-audit-result.json": {
+      "verifiedAt": "2026-10-13T07:20:15.648Z",
+      "version": "0.1.0-alpha.1",
+      "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
+      "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c",
+      "executableBytes": 245726720,
+      "executableMetadata": {
+        "Copyright": "Copyright © 2026 Nook",
+        "ProductName": "Nook",
+        "FileDescription": "Nook",
+        "Signature": "NotSigned",
+        "CompanyName": "Nook"
+      },
+      "productFiles": 239,
+      "unpackedFiles": 188,
+      "dependencyVersions": 381,
+      "retainedDocuments": 401,
+      "distributionComponents": 5,
+      "distributionFiles": 20,
+      "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+      "unresolvedDistribution": [],
+      "originalVendorNotices": [
+        "LICENSE.electron.txt",
+        "LICENSES.chromium.html"
+      ],
+      "oldProductIdentityMatches": [],
+      "removedUiFontReferencesVerified": true,
+      "compiledAssetsMatchVerifiedBuild": true,
+      "unresolvedAssets": [],
+      "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 0,
+  "maximumCloseMs": null,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release.",
+  "nativeTestSourceOverlay": {
+    "preparedAt": "2026-10-13T06:40:40.127Z",
+    "packageSourceHead": "21bfce747009046d1bf3d683c7db1b6c19cf4200",
+    "testSourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+    "path": "scripts/verify-backups.mjs",
+    "sha256": "7e8492203845d66adff2da1d68727652bfcdd0fb3066ac2f1e6f176471a7e4cd",
+    "sourceInputsUnchanged": 20,
+    "compiledFilesUnchanged": 236,
+    "originalDeadlinesRetained": true,
+    "scope": "One native-test selector correction and its immutable failed-round receipt. The product build, all 20 previously accepted source inputs, and all 236 packaged compiled files remain byte-identical. The complete packaged native regression must still pass."
+  }
+}
