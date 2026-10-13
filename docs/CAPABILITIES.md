@@ -1,34 +1,34 @@
-# Nook 能力与边界
+# Nook 能力
 
-Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
+Nook 是本地 AI 工作台，把对话、资料和项目放在一个窗口中。当前为尚未发布的 Windows x64 预发布候选。
 
-当前新增会话任务步骤记录和有界工作树只读查询：135 文件／1,585 项完整覆盖率测试、类型与构建通过；8 组原生专项的 16 张截图逐张复核，每项步骤在 12 种布局中可完整滚动阅读。完整源码重跑通过 383 项／75 次正常退出，无强制结束；40 份报告与 633 张原图归档，未全部逐张视觉复核。首次预览超时保留且原因未确认，当前分发仍待完成。下述 375 项与 1,557 项记录属于各自较早的冻结应用体。[当前构建](../verification/task-plan-build-review-result.json) · [任务步骤与原图](../verification/task-plan-native-review-result.json) · [当前完整源码](../verification/task-plan-full-source-review-result.json)
+| 工作 | 已实现 |
+| --- | --- |
+| 对话 | 流式回复、停止与重试、消息编辑、回复版本、会话分支、多模型比较、上下文摘要与原文保留 |
+| 资料 | 文档与图片导入、资料集检索、PDF 原件离线阅读／目录／查找／链接、显式加入聊天与原字节导出 |
+| 项目 | 文件树、代码草稿、真实终端、HTML 独立／并排预览、Git 审阅／暂存／提交、本地分支和独立工作树 |
+| 工作树 | 创建、登记、会话关联、固定、私有快照、新目录恢复、安全清理，以及失败保留和重试 |
+| 助手与工具 | 助手、变量提示模板、显式记忆、MCP、本地技能、隔离插件、可展开复制的原始工具记录 |
+| 任务步骤 | 最新有效步骤与模型标记的完成数量；无效更新保留旧记录，停止后待继续，重启保留记录与草稿 |
+| 自动任务 | 一次、周期与 Cron 安排，查看结果，暂停和继续；额外手动运行保留自动日历 |
+| 日常操作 | 搜索与命令、输入区快捷选择、独立快速聊天、临时浏览器、明暗主题、设置草稿保护、本地备份与恢复 |
 
-共享按钮默认规格已对齐当前资料：24px 最小高度、8px 左右内距、4px 间距，局部小控件保留各自尺寸。该源码本轮类型、1,557 项完整单元、覆盖率与构建通过；13 项原生按钮／首页专项、两次正常退出和 37 张原图逐张复核完成。当前共享按钮应用体另通过 375 项完整源码检查、74 次正常退出，最长 4,592ms，无强制结束；39 份报告与 617 张新原图归档，原图未全部逐张视觉复核。安装与便携分发仍待验收。[当前构建](../verification/shared-button-defaults-build-review-result.json) · [按钮原生范围](../verification/shared-button-defaults-native-review-result.json) · [当前完整源码](../verification/shared-button-defaults-full-source-review-result.json)
+任务步骤仅记录会话，不自行执行步骤或写入项目计划文件。工具与模型权限继续按原有流程控制；完成标记不代替实际工具结果。临时聊天不进入持久历史或完整备份，恢复后的插件需要重新授权。
 
-最新输入框采用 22px 默认圆角与窄视口阴影；新类型、构建和 13 项首页原生检查通过，13 张原图逐张复核。当前完整源码另通过 375 项、74 次正常退出，39 份新报告与 617 张原图归档，原图未全部逐张视觉复核。该源码改动后的完整分发仍待验收，下述三轮 375 项保留其冻结应用体来源。[首页验证范围](../verification/composer-surface-tokens-native-review-result.json) · [当前完整源码](../verification/composer-surface-tokens-full-source-review-result.json)
+## 验证进度
 
-记忆删除支持安全默认取消、明确影响说明、长内容独立滚动、等待期间禁止关闭，以及失败保留／重试。最新默认标题、顶部定位和半透明表面的 1,557 项完整单元、类型、构建、五组原生专项及六组明暗／应用缩放通过；源码、新包和实际安装各通过 375 项／74 次正常退出。源码专项、包内和安装的记忆原图各 22 张逐张复核，原五个分发专项、便携七项、保留数据卸载、十一份运行记录和十二个标记恢复通过。完整参考界面与托管发布仍未完成。[专项](../verification/memory-delete-default-surface-focused-review-result.json) · [完整源码](../verification/memory-delete-default-surface-full-source-review-result.json) · [分发与卸载](../verification/memory-delete-default-surface-runtime-review-result.json) · [包内原图](../verification/memory-delete-default-surface-unpacked-visual-review-result.json) · [安装原图](../verification/memory-delete-default-surface-installed-visual-review-result.json)
+136 文件／1,602 项单元测试、类型检查与原覆盖率门槛通过。当前应用体的完整源码和包内程序各通过 383 项桌面检查、75 次正常退出，无强制结束；原五项分发专项通过。实际安装亦通过 383 项／75 次正常退出；注册、快捷方式与保留数据卸载通过，十二个既有测试标记精确恢复。
 
-设置支持六类未保存表单的离开确认、跨分类保留草稿、保存等待锁定与失败重试。最新 1,555 项单元、类型、构建及八组设置专项通过；完整源码、新包和实际安装各通过 373 项／74 次正常退出。原五个分发专项、便携七项、保留数据卸载及十一份匹配运行记录通过。源码专项、包内与安装设置原图分别复核 34 张；安装轮先前七张缩放差异的目测判断经原图像素测量更正，实际尺寸与三档缩放一致。完整参考界面与托管发布未完成。[设置与草稿](SETTINGS.md) · [本轮运行证据](../verification/settings-drafts-runtime-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [测量与更正](../verification/settings-drafts-installed-scale-correction-result.json)
+任务步骤的源码与包内原图各 16 张逐张复核，覆盖两主题、两种尺寸、三档应用缩放，以及短窗口最后步骤的滚动阅读。分发轮的 26 张控件与 12 张文字提示原图已逐张复核；每轮 633 张完整回归原图未全部视觉复核。
 
-最新全局搜索的尺寸、表面与定位修正已通过源码命令专项；同一 `c81b8c38` 新包和实际安装也已完成原完整回归及本机分发验收。[搜索专项](../verification/command-palette-acceptance-review-result.json)
+[完整单元验证](../verification/task-plan-final-validation-review-result.json) · [完整源码](../verification/task-plan-full-source-review-result.json) · [包内回归](../verification/task-plan-full-unpacked-review-result.json) · [工具记录](TOOL-ACTIVITIES.md)
 
-| 能力 | 已有实现 | 主要边界 |
-| --- | --- | --- |
-| 聊天与模型 | 流式回复、停止与重试、回复版本、编辑、分支、临时聊天、独立草稿及 2–4 模型比较；Responses、兼容 API、Anthropic、Gemini GenerateContent、Azure、Ollama | 真实云服务质量、完整能力元数据与上下文计数；Gemini Interactions／Entra ID 未提供 |
-| 输入与配置 | `/` 查找模板、助手、项目；变量模板、助手绑定、JSON／gzip 分享；显式记忆与工具过程 | 完整富文本和参考输入流程、更多交换格式与最大规模交互 |
-| 文档与资料 | PDF／Office／OpenDocument／RTF 提取；PDF 原件离线阅读、查找与导出；图片输入；关键词／向量／混合检索 | OCR、旧 DOC／XLS／PPT、密码输入、其他原件版式、后台索引及真实检索质量 |
-| 项目与工作树 | 分页文件树、编辑草稿、Git 审阅／暂存／提交、分支创建／切换／重命名／安全删除、真实终端、HTML 预览；工作树创建、登记、会话、固定、私有快照、新目录恢复、安全删除与自动清理 | 物理目录选择器、更多预览、远程 Git 与凭据窗口、跨平台进程 |
-| 扩展与任务 | MCP 工具／资源／提示、OAuth；本地技能和权限隔离插件；单次／间隔／Cron 自动任务 | 远程目录与更新、扩展共享服务、MCP Elicitation／任务、第三方身份服务、系统通知与关闭后的后台服务 |
-| 桌面与浏览器 | 命令搜索、快捷键、可选托盘、独立快速聊天、Markdown 导出；最多 16 个临时网页标签、导航、停止和重试 | 物理系统事件、持久网页历史、下载、网站权限、浏览器自动化、听写／语音 |
-| 本地数据 | 完整 JSON／gzip 备份、凭据排除、原子恢复、资源与独立草稿保留；私有快照独立保存 | 256 MB 上限的完整性能、分卷／加密、远程同步和物理选择器 |
-| 分发与品牌 | Nook 名称、独立图标、合法 Inter／系统中文、明暗主题；Windows 安装与便携构建、实际安装／卸载及许可审计 | 本机分发验收通过，原托管流水线与实际发布未完成；其他平台、更新流程和全部参考界面尚未验收 |
+## 尚待完成
 
-图片生成、离线模型下载管理、本地 API 服务、远程主机／SSH、WebUI／连接器及加密同步尚未提供。完整细项与各功能使用说明保留在[能力历史](CAPABILITIES-HISTORY-2026-10-13.md)。
+全部指定设计页面与状态、其他实际系统 DPI、物理输入与无障碍、真实模型质量，以及原托管流水线和版本发布仍需对应证据。远程 SSH 工作流、语音、OCR、模型下载管理、加密或远程同步备份未作为已提供能力宣传。
 
-此前分支候选通过 1,550 项单元、类型与构建。冻结 `10db2c6` 应用体的完整开发程序、新包与实际安装各通过 371 项和 74 次正常退出；每轮保留 39 份报告、581 张原图与 236 个匹配编译文件。本地分支专项 11 组通过；专项源码、新包与安装后各 34 张分支原图逐张复核，其余原图未全部视觉复核。原五个分发专项、便携七项、十一份匹配运行记录和卸载保留数据通过，八个原始及四个失败轮次标记的哈希恢复一致。首次安装的遗留计数失败与完整重跑分别保留。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[分支源码测试](../verification/project-branch-actions-unit-review-result.json) · [分支完整源码](../verification/project-branch-actions-full-source-review-result.json) · [分支分发](../verification/project-branch-actions-runtime-review-result.json) · [分支安装重跑](../verification/project-branch-actions-installer-retry-review-result.json) · [此前搜索候选分发](../verification/command-palette-runtime-review-result.json)
+[发布状态](RELEASE.md) · [设计对照](DESIGN-ALIGNMENT.md) · [界面验收](UI-ACCEPTANCE.md)
 
-[当前发布状态](RELEASE.md) · [设计采用范围](DESIGN-ALIGNMENT.md) · [完整交付要求](DELIVERY.md) · [前轮完整源码证据](../verification/command-progress-full-source-review-result.json)
+[十一份匹配运行记录](../verification/task-plan-runtime-review-result.json) · [实际安装](../verification/task-plan-full-installed-review-result.json)
 
-整理前的能力细目和全部旧验收记录逐字保留，历史 SHA-256 为 `6cdcbd746f22853316b81b612e6522d45341a3cf6d44480cb99ec9ee8ae81bc7`，未取消任何剩余交付要求。
+整理前的详细轮次和失败范围逐字保留于[历史记录](CAPABILITIES-HISTORY-2026-10-14.md)，SHA-256：`042382a6ce156209e2f05f90234509675b1ff6fbd874dd9f77d3ad3efe1e70ae`。历史记录只证明对应冻结源码与产物。

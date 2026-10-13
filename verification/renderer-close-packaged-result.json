@@ -1,54 +1,54 @@
 {
-  "verifiedAt": "2026-10-13T11:49:03.276Z",
+  "verifiedAt": "2026-10-13T19:24:38.360Z",
   "variant": "packaged executable",
-  "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
-  "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+  "executableSha256": "97f143bbab49e8f1b5f2a230cab10ae1b4676c6ed30f159c7953a457a4312cb1",
+  "archiveSha256": "11afb916db551899a373af8c8a49e9d0e965c5d193abbe292c9d5ee79c824c7d",
   "runtimeErrors": [],
   "normalCloseVerified": true,
   "checks": 2,
   "crash": {
     "reason": "crashed",
     "exitCode": 2,
-    "capturedAt": 1791892141306,
+    "capturedAt": 1791919476583,
     "memory": {
-      "rss": 167944192,
-      "heapTotal": 17186816,
-      "heapUsed": 12465764,
-      "external": 5661377,
+      "rss": 168366080,
+      "heapTotal": 16924672,
+      "heapUsed": 12531040,
+      "external": 5662832,
       "arrayBuffers": 0
     },
-    "systemFreeMemory": 8314007552,
+    "systemFreeMemory": 13214265344,
     "processes": [
       {
-        "pid": 8132,
+        "pid": 61160,
         "type": "Browser",
         "memory": {
-          "workingSetSize": 164044,
-          "peakWorkingSetSize": 167680,
-          "privateBytes": 125516
+          "workingSetSize": 164452,
+          "peakWorkingSetSize": 165384,
+          "privateBytes": 126352
         }
       },
       {
-        "pid": 62948,
+        "pid": 29108,
         "type": "GPU",
         "memory": {
-          "workingSetSize": 107188,
-          "peakWorkingSetSize": 111252,
-          "privateBytes": 117700
+          "workingSetSize": 107144,
+          "peakWorkingSetSize": 110196,
+          "privateBytes": 124156
         }
       },
       {
-        "pid": 65340,
+        "pid": 61768,
         "type": "Utility",
         "memory": {
-          "workingSetSize": 50944,
-          "peakWorkingSetSize": 50944,
-          "privateBytes": 12260
+          "workingSetSize": 50996,
+          "peakWorkingSetSize": 50996,
+          "privateBytes": 12432
         }
       }
     ]
   },
-  "quitMs": 1213,
+  "quitMs": 1069,
   "persistedDraftRetained": true,
   "conversationsRetained": true,
   "modelRequests": 0,

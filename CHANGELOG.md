@@ -2,49 +2,16 @@
 
 ## 未发布
 
-新增会话内任务步骤记录：展示最新有效步骤、完成数量与原文工具记录，错误更新保留上一份记录，停止后未完成步骤显示“待继续”。记录不执行步骤或写入计划文件。135 文件／1,585 项完整覆盖率测试、类型与构建通过；8 组原生专项覆盖 12 种布局，每项步骤均可滚动阅读，16 张原图逐张复核。完整源码重跑通过 383 项／75 次正常退出，无强制结束；40 份报告与 633 张原图归档，未全部视觉复核。首次预览弹窗拒绝检查超时保留，未改变原期限，原因未确认；分发和托管发布仍待完成。
+- 新增会话任务步骤：保留最新有效记录和工具原文；无效更新保留旧记录，停止后待继续，重启保留草稿。
+- 共享按钮采用 24px／8px／4px 默认规格；输入框采用 22px 圆角与窄视口浅色阴影，专用小控件保留各自尺寸。
+- 工作树只读身份查询按四项一批执行，独立 Git 元数据读取并行等待；删除仍串行，原文件、索引与删除前复查保留。
+- 发布与安装门槛提高为 383 项，严格验证八组任务步骤行为、十二种布局、逐项可读边界和十六张完整捕获。原期限与覆盖率门槛保持不变。
+- 136 文件／1,602 项单元测试与类型检查通过；源码、包内和实际安装各通过 383 项／75 次正常退出。原五项分发专项、十一份匹配记录和保留数据卸载通过。三轮任务步骤原图各 16 张，以及分发控件 26 张／文字提示 12 张已逐张复核；每轮 633 张完整回归原图未全部视觉复核。
+- 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
-Conversation task records display the latest valid steps alongside exact tool history, retain the previous record after invalid updates, and label unfinished stopped steps as awaiting continuation. Recording does not execute tasks or write plan files. All 1,585 tests and the build pass; eight focused native groups cover twelve layouts with sixteen individually reviewed captures. The complete source rerun passes 383 checks with 75 normal exits, retaining forty reports and 633 captures. The first preview timeout is preserved without a deadline change or a claim that its cause is resolved; distribution and hosted publication remain pending.
+Task records retain valid steps, exact tool history and unsent drafts across restart. Shared controls adopt the current reference defaults. Bounded read-only worktree queries retain every deletion check. All 1,602 tests pass; source, unpacked and installed runtimes each pass 383 checks with 75 normal exits, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
 
-工作树的只读身份校验按四项一批执行，快照的三个独立 Git 元数据读取并行完成；读取失败先等待所有查询结束。回执顺序、失效记录、原文件与索引校验、删除前复查和串行删除保留。新增两项相关检查，完整 1,559 项与原覆盖率门槛通过；新应用体的构建、原生、分发与托管验收仍待完成。第二次托管运行只剩一项清理超时，其失败日志保留。
-
-Worktree identities are verified in bounded batches of four, and three independent snapshot metadata reads run concurrently. Failed reads settle before returning; receipt order, stale records, file/index validation and every deletion recheck remain. Deletion stays sequential. All 1,559 tests pass the original coverage gate; fresh build, native, distribution and hosted acceptance of this body remain pending.
-
-修正托管测试的额外开销：大字节样本使用完整字节相等比较，真实工作树夹具减少重复配置进程和与清理无关的创建步骤。原超时、大样本、所有权与完整快照验证保留，生产逻辑和流水线不变。六文件／134 项专项、全部 1,557 项及原 80% 覆盖率门槛通过；此前六项托管超时日志保留，仍须重跑原流水线。
-
-Large-buffer assertions now compare every byte directly, and real Git fixtures avoid redundant setup processes. Existing deadlines, large fixtures, ownership and complete snapshot checks remain. Six focused files and all 1,557 tests pass the original coverage gate; production behavior and the workflow are unchanged. The failed hosted run is preserved and requires a fresh rerun.
-
-共享按钮默认最小高度调整为 24px、左右内距 8px、内容间距 4px；附件关闭和搜索清除保留各自紧凑尺寸。新类型、133 文件／1,557 项单元、既有覆盖率门槛及构建通过；13 项原生专项验证真实按钮默认、焦点、悬停、按下、禁用状态，两次正常退出，37 张原图逐张复核。当前应用体另通过 375 项完整源码检查、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核。最终分发仍待验收。
-
-Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. The current body also passes 375 complete source checks with 74 normal exits and no forced termination. Reports and 617 new originals are archived without claiming complete visual review; distribution gates remain pending.
-
-原托管流水线已实际运行，环境准备和类型检查通过，完整单元覆盖率阶段因六项既有测试超时失败；1,557 项中 1,551 通过，后续打包与发布未执行。完整失败日志保留，正在修复测试开销；原期限和验收要求不变。此前零步骤账户失败属于历史；浏览器认证仍不可用，尚未发布版本。
-
-输入框依据当前主题覆盖采用 22px 默认圆角，CSS 视口小于 40rem 时缩小浅色大阴影。新类型、构建和 13 项首页原生检查通过，两次正常退出、13 张原图逐张复核；本机实际系统缩放为 100%，三档应用缩放、设置键盘回焦和草稿重启保留通过。新应用体的完整分发尚待验收，原托管流水线仍受账户付款／额度限制。
-
-The composer now uses the current 22px default radius and a smaller light shadow below a 40rem CSS viewport. Fresh type checks, build and thirteen homepage checks pass, with two normal exits and thirteen individually reviewed captures. This host's physical display scale is 100%; full distribution of the new body and hosted publication remain separate.
-
-当前输入框应用体完成 375 项完整源码桌面回归、74 次正常退出，最长 1,712ms，无强制结束；39 份新报告、617 张原图及准确编译文件归档。旧 24px 测试期望的首轮失败现场保留，只修正为实际 22px 后重跑通过。发布状态和界面验收说明整理为当前状态页，旧中英文记录逐字保留并链接；没有取消验收要求或宣称新包已经通过。
-
-The current composer body passes 375 complete source desktop checks with 74 normal exits and no forced termination. Reports, 617 original captures and exact compiled files are archived; captures have not all been visually reviewed. The obsolete radius assertion's initial failure is preserved. Release and UI notes now separate current status from byte-preserved history; packaged and installed validation remain pending.
-
-原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项通过，源码、新包和实际安装各通过 375 项／74 次正常退出，无强制结束。
-
-Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks pass; source, packaged and installed runtimes each pass 375 checks with 74 normal exits. The failed scene is retained.
-
-记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。1,557 项完整单元、类型、构建和五组原生专项通过；源码、新包与安装各通过 375 项／74 次正常退出，各保留 39 份报告、617 张原图和 236 个匹配编译文件。源码专项、包内与安装的记忆原图各 22 张逐张复核；原分发、便携、保留数据卸载及十一份运行记录通过。此前候选与失败证据保留，完整参考界面与托管发布未完成。
-
-The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. All 1,557 unit tests, type checks, build and five native checks pass. Source, packaged and installed runtimes each pass 375 checks with 74 normal exits, retaining 39 reports, 617 captures and 236 matching compiled files. Each memory-image set has 22 individually reviewed captures. Distribution, portable execution, data-preserving uninstall and eleven matching runtime records pass; complete reference adoption and hosted publication remain unfinished.
-
-记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。五组专项、六种主题／应用缩放及本轮三批记忆原图复核通过；源码、新包与实际安装的完整回归和分发验收通过。
-
-Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five native checks, six theme/zoom layouts, three reviewed memory-image sets and complete source, packaged and installed distribution gates pass.
-
-新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
-
-确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项通过；完整源码、新包与安装各通过 373 项／74 次正常退出，原五个分发专项、便携七项、保留数据卸载与十一份运行记录通过。源码专项、包内和安装各 34 张设置原图逐张复核；安装轮先前七张缩放差异的判断经原图像素测量更正，三档缩放尺寸一致，原记录保留。此前候选及失败证据保留，原托管发布与完整参考界面未完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
-
-Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build and eight focused checks pass. Source, packaged and installed runtimes each pass 373 checks with normal exits; original distribution, portable and data-preserving uninstall gates pass. Pixel measurements corrected seven earlier visual judgments: the unchanged installed captures match all three requested zoom levels. Hosted release and complete UI adoption remain pending.
+[发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
 
 ## [0.1.0-alpha.1] - 2026-10-13
 

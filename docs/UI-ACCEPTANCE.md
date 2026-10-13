@@ -14,12 +14,14 @@
 | 前一输入框完整源码 | 375 项、74 次正常退出，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核 |
 | 先前共享按钮完整源码 | 375 项、74 次正常退出，最长 4,592ms，无强制结束；39 份报告与 617 张新原图归档，原图未全部逐张视觉复核 |
 | 当前任务步骤专项 | 8 组、12 种主题／尺寸／缩放布局，每项步骤均可滚动阅读；16 张完整原图逐张复核，两次正常退出，最长 438ms |
-| 当前构建与完整源码 | 135 文件／1,585 项完整覆盖率测试、类型与构建通过；完整源码重跑通过 383 项／75 次正常退出，最长 2,418ms，无强制结束；40 份报告与 633 张原图归档，未全部逐张视觉复核 |
-| 当前分发边界 | 新应用体的包内、安装与便携仍待验收；前一记忆应用体的三轮 375 项保留准确来源；首次完整源码预览超时继续保留，原因未确认 |
+| 当前单元、类型与构建 | 新验证通过 136 文件／1,602 项完整覆盖率测试与类型检查；编译来源仍为 `71fc205`，304 个产品输入与 236 个编译文件匹配当前包 |
+| 三轮完整桌面 | 源码、包内与实际安装各通过 383 项／75 次正常退出，最长分别 2,418ms／2,126ms／2,073ms，无强制结束；每轮 40 份报告与 633 张原图归档 |
+| 当前视觉范围 | 三轮各 16 张任务步骤原图逐张复核，十二种布局中每一步均可滚动阅读；分发轮 26 张控件与 12 张文字提示原图逐张复核；每轮 633 张原图未全部视觉复核 |
+| 当前分发 | 原五项分发专项、十一份匹配运行记录、注册、快捷方式与保留数据卸载通过；十二个既有测试标记精确恢复。首次源码预览超时仍保留，原因未确认 |
 
 首页专项本机实际系统缩放为 100%，未强制设备缩放。短窗口高应用缩放使用紧凑侧栏和纵向滚动，保留输入与发送操作；这不代表所有页面、内容长度或物理输入均已完成验收。
 
-[当前任务步骤与滚动](../verification/task-plan-native-review-result.json) · [当前完整测试与构建](../verification/task-plan-build-review-result.json) · [先前按钮与实际缩放](../verification/shared-button-defaults-native-review-result.json) · [先前按钮完整源码](../verification/shared-button-defaults-full-source-review-result.json) · [前一分发范围](../verification/memory-delete-default-surface-runtime-review-result.json)
+[当前任务步骤与滚动](../verification/task-plan-native-review-result.json) · [新完整单元验证](../verification/task-plan-final-validation-review-result.json) · [本轮分发](../verification/task-plan-runtime-review-result.json) · [源码原图](../verification/task-plan-source-visual-review-result.json) · [包内原图](../verification/task-plan-unpacked-visual-review-result.json) · [安装原图](../verification/task-plan-installed-visual-review-result.json)
 
 ## 验收规则
 
@@ -33,6 +35,6 @@
 
 ## 继续核对
 
-完整页面与控件状态、其他实际系统 DPI、物理选择器与输入、辅助技术、真实模型服务，以及最终安装与托管发布仍需各自验收。设计差异按[设计对照](DESIGN-ALIGNMENT.md)记录，当前发布情况见[发布状态](RELEASE.md)。
+完整页面与控件状态、其他实际系统 DPI、物理选择器与输入、原生安装向导、辅助技术、真实模型服务和托管发布仍需各自验收。窄窗口预览提示图仅验证目标标题／提示，PDF 高缩放图只展示文档切片。设计差异按[设计对照](DESIGN-ALIGNMENT.md)记录，当前发布情况见[发布状态](RELEASE.md)。
 
 此前中英文设计映射、完整批次、字体替换、失败与更正记录逐字保留于[界面验收历史](UI-ACCEPTANCE-HISTORY-2026-10-13.md)，SHA-256 为 `ebd9ae10b81cd526e7e6e93f992b6a8827a221885dfb0186f5a03ed4cbbae26b`。其中“当前／最新”仅指相应历史源码与产物，没有删除或缩小原交付范围。
