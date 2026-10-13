@@ -4,9 +4,9 @@
 
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
-确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项已通过，34 张专项原图逐张复核；新界面的完整桌面和分发验收继续进行。此前 Windows 候选的本机分发证据保留，原托管发布与完整参考界面仍待完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
+确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建、八组设置专项及完整源码 373 项回归已通过，34 张专项原图逐张复核；新包分发验收继续进行。此前 Windows 候选的本机分发证据保留，原托管发布与完整参考界面仍待完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
 
-Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build and eight focused native checks pass. Full desktop and fresh distribution validation remain pending.
+Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build, eight focused native checks and all 373 source desktop checks pass. Fresh distribution validation remains pending.
 
 ## [0.1.0-alpha.1] - 2026-10-13
 
@@ -22,6 +22,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - **独立工作树**：从新分支或未占用的本地分支创建工作树，保留源仓库改动。支持默认根目录、可选获取上游、关联会话、项目登记、本机固定、私有快照和恢复到新目录；获取或登记失败保留可重试状态。
 - **助手与扩展**：助手、变量提示模板、显式记忆、自动任务、MCP 工具／资源／提示与 OAuth、本地技能和隔离插件；临时浏览器提供独立标签及键盘导航。
 - **本地备份**：导出 JSON 或 gzip 工作台，保留普通聊天、附件、资料库、草稿和扩展资产。恢复后插件需要重新授权，临时聊天不进入持久历史或完整备份。
+- **设置草稿**：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆离开未保存表单前显示紧凑确认。默认继续编辑，回车和 Escape 保留输入；保存等待防止重复操作，失败保留草稿供重试。
 
 ### 变更与安全
 
@@ -54,6 +55,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 Nook is a local AI workspace for multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Slash choices for templates, assistants and projects work in both the workbench and Quick Chat without sending a message.
 
 Local branches can be renamed without replacing existing refs. Merged-only deletion protects the current branch, worktrees and commits absent from the current version, while retaining files, drafts and remote refs.
+
+Six settings forms protect unsaved changes with a compact confirmation. Continue editing is the safe default; Enter and Escape retain drafts, and failed saves preserve input for retry.
 
 Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
 

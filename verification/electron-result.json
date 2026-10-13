@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-13T02:14:22.356Z",
+  "verifiedAt": "2026-10-13T06:03:54.423Z",
   "variant": "development executable",
-  "checks": 371,
+  "checks": 373,
   "runtimeErrors": [],
   "composerActions": {
     "checks": 7,
@@ -974,8 +974,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, six theme/zoom root and empty layouts with twelve whole native captures, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181487,
-    "compressedBytes": 242346,
+    "expandedBytes": 84181485,
+    "compressedBytes": 242351,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -1531,28 +1531,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791856308942,
+        "startedAt": 1791870027166,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791856310421
+        "finishedAt": 1791870028727
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791856310571,
+        "startedAt": 1791870028866,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791856311982
+        "finishedAt": 1791870030534
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791856313740,
+        "startedAt": 1791870032523,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791856315072
+        "finishedAt": 1791870033801
       }
     ],
     "comparisonModelRequests": 11,
@@ -1742,7 +1742,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 10.700000017881393,
+    "scopedReadMs": 8.199999988079071,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -2370,24 +2370,40 @@
     "composer-actions-empty-dark-125.png",
     "composer-actions-dark-150.png",
     "composer-actions-empty-dark-150.png",
+    "settings-search-discard-drafts-shell.png",
+    "settings-search-discard-provider-shell.png",
+    "settings-search-discard-mcp-shell.png",
+    "settings-search-discard-plugin-shell.png",
     "settings-search-light-1-results-shell.png",
     "settings-search-light-1-target-shell.png",
     "settings-search-light-1-empty-shell.png",
+    "settings-search-light-1-discard-confirm-shell.png",
+    "settings-search-light-1-discard-retained-shell.png",
     "settings-search-light-1.25-results-shell.png",
     "settings-search-light-1.25-target-shell.png",
     "settings-search-light-1.25-empty-shell.png",
+    "settings-search-light-1.25-discard-confirm-shell.png",
+    "settings-search-light-1.25-discard-retained-shell.png",
     "settings-search-light-1.5-results-shell.png",
     "settings-search-light-1.5-target-shell.png",
     "settings-search-light-1.5-empty-shell.png",
+    "settings-search-light-1.5-discard-confirm-shell.png",
+    "settings-search-light-1.5-discard-retained-shell.png",
     "settings-search-dark-1-results-shell.png",
     "settings-search-dark-1-target-shell.png",
     "settings-search-dark-1-empty-shell.png",
+    "settings-search-dark-1-discard-confirm-shell.png",
+    "settings-search-dark-1-discard-retained-shell.png",
     "settings-search-dark-1.25-results-shell.png",
     "settings-search-dark-1.25-target-shell.png",
     "settings-search-dark-1.25-empty-shell.png",
+    "settings-search-dark-1.25-discard-confirm-shell.png",
+    "settings-search-dark-1.25-discard-retained-shell.png",
     "settings-search-dark-1.5-results-shell.png",
     "settings-search-dark-1.5-target-shell.png",
     "settings-search-dark-1.5-empty-shell.png",
+    "settings-search-dark-1.5-discard-confirm-shell.png",
+    "settings-search-dark-1.5-discard-retained-shell.png",
     "tool-activities-running.png",
     "tool-activities-light-100.png",
     "tool-activities-light-125.png",
@@ -5187,72 +5203,122 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(237, 237, 237)",
+              "color": "rgb(236, 236, 236)",
               "opacity": "1",
-              "colorTransitions": []
+              "colorTransitions": [
+                {
+                  "state": "running",
+                  "currentTime": 162.9080000057357
+                }
+              ]
             }
           ]
         },
@@ -9337,10 +9403,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\worktrees/nook-927760e4",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\管理 工作树 🧭/nook-39e6110c",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\worktrees/nook-1b18f1d0",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\管理 工作树 🧭/nook-391e5cbc",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -9584,51 +9650,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "b95c4663-4454-48e0-bead-e03e78b625b6",
-        "09fbbde5-4462-4e26-b3e1-597038599c59",
-        "a3ee20d6-7fcc-4211-9108-734b26a39d54",
-        "b45d56c7-e5ad-4e68-9f34-5757ef3cff6e",
-        "4fb5bbca-a216-4a77-8a2d-b35d5f9d14e0",
-        "d27cf5ab-5b5e-41b2-8017-d6754b7336d9",
-        "a9048a9c-9adf-40da-a137-150541f90527",
-        "4c69e58e-5a2a-4ba9-827e-dda0bd5b2546",
-        "a6793fe9-02a7-4fbd-9c15-394ea06ed0e7",
-        "e54ab5c2-d63b-462c-8dea-e0787b78b419",
-        "dcaaf967-943a-410e-a76d-fb9572cd8010",
-        "9b1d7f23-d675-49e0-8aa8-db36677bfd18",
-        "01a41e27-d04b-4c97-84ff-e973f3ecb90b",
-        "e13c9561-57be-4e0b-88b2-d096bf376ca6",
-        "1dfaf4a3-a1f0-4412-bf4e-045c95bef648",
-        "755a2bba-8c87-4134-84d2-9ad7afc19ee5",
-        "38166b93-1406-423f-b21c-bb224c535f76",
-        "596f1565-1ae5-4eef-8644-cc97cc2bb097",
-        "593cda93-995e-43bd-84de-4d9d56aca430",
-        "8386db46-f2b3-4a88-9ef2-e3bfa11b1142"
+        "08466ed4-5ff5-4ead-bcb6-66ddd4c4b85f",
+        "81e4d4b3-cb9e-4577-a8d3-fd0276b12a48",
+        "a03d675f-9d1d-4250-bcf2-d36f6e9e30fb",
+        "f1677eda-fe11-4f7d-8ffa-338b32d71df8",
+        "f1e63e12-58c6-4343-8178-cb04288863dc",
+        "cab534c8-e6a0-415a-bf6b-df8d1cc19bf8",
+        "28ae4995-ecb5-45ea-86da-c43f4e052b67",
+        "2be27c6a-3b42-4a07-85a6-82db98a16003",
+        "4015c47f-d282-4a59-b810-8f5c9b9d5479",
+        "50ea7867-1470-4ca3-b2ac-bcbe649b0e25",
+        "e8ff686d-c5a3-4dd1-9a23-052e3b4596f6",
+        "98bad0ac-f125-4905-9a21-753373e19e68",
+        "25cd5914-0116-4be2-b9fd-9cd54f6e6bcd",
+        "df4e3839-2700-4b05-b74f-c610d608f689",
+        "52e488f7-0b5e-49e5-9969-0edb262332b5",
+        "956152cc-49fc-4145-80b2-19f0205cb2cc",
+        "6c8ee7c9-aaad-4c46-8234-4c4520972d1a",
+        "6e84a0c3-6578-4ace-895d-ce3b3228e456",
+        "47831872-81ec-4377-9061-79b6c21a8d24",
+        "f97fd549-7b91-45a9-b6db-0a4d9471fdf2"
       ],
       [
-        "b8d02376-287d-43a0-8030-91a163f02b5e"
+        "d772f5bf-6ecd-49a9-9576-4cec0caeb3e1"
       ],
       [
-        "b95c4663-4454-48e0-bead-e03e78b625b6",
-        "09fbbde5-4462-4e26-b3e1-597038599c59",
-        "a3ee20d6-7fcc-4211-9108-734b26a39d54",
-        "b45d56c7-e5ad-4e68-9f34-5757ef3cff6e",
-        "4fb5bbca-a216-4a77-8a2d-b35d5f9d14e0",
-        "d27cf5ab-5b5e-41b2-8017-d6754b7336d9",
-        "a9048a9c-9adf-40da-a137-150541f90527",
-        "4c69e58e-5a2a-4ba9-827e-dda0bd5b2546",
-        "a6793fe9-02a7-4fbd-9c15-394ea06ed0e7",
-        "e54ab5c2-d63b-462c-8dea-e0787b78b419",
-        "dcaaf967-943a-410e-a76d-fb9572cd8010",
-        "9b1d7f23-d675-49e0-8aa8-db36677bfd18",
-        "01a41e27-d04b-4c97-84ff-e973f3ecb90b",
-        "e13c9561-57be-4e0b-88b2-d096bf376ca6",
-        "1dfaf4a3-a1f0-4412-bf4e-045c95bef648",
-        "755a2bba-8c87-4134-84d2-9ad7afc19ee5",
-        "38166b93-1406-423f-b21c-bb224c535f76",
-        "596f1565-1ae5-4eef-8644-cc97cc2bb097",
-        "593cda93-995e-43bd-84de-4d9d56aca430",
-        "8386db46-f2b3-4a88-9ef2-e3bfa11b1142"
+        "08466ed4-5ff5-4ead-bcb6-66ddd4c4b85f",
+        "81e4d4b3-cb9e-4577-a8d3-fd0276b12a48",
+        "a03d675f-9d1d-4250-bcf2-d36f6e9e30fb",
+        "f1677eda-fe11-4f7d-8ffa-338b32d71df8",
+        "f1e63e12-58c6-4343-8178-cb04288863dc",
+        "cab534c8-e6a0-415a-bf6b-df8d1cc19bf8",
+        "28ae4995-ecb5-45ea-86da-c43f4e052b67",
+        "2be27c6a-3b42-4a07-85a6-82db98a16003",
+        "4015c47f-d282-4a59-b810-8f5c9b9d5479",
+        "50ea7867-1470-4ca3-b2ac-bcbe649b0e25",
+        "e8ff686d-c5a3-4dd1-9a23-052e3b4596f6",
+        "98bad0ac-f125-4905-9a21-753373e19e68",
+        "25cd5914-0116-4be2-b9fd-9cd54f6e6bcd",
+        "df4e3839-2700-4b05-b74f-c610d608f689",
+        "52e488f7-0b5e-49e5-9969-0edb262332b5",
+        "956152cc-49fc-4145-80b2-19f0205cb2cc",
+        "6c8ee7c9-aaad-4c46-8234-4c4520972d1a",
+        "6e84a0c3-6578-4ace-895d-ce3b3228e456",
+        "47831872-81ec-4377-9061-79b6c21a8d24",
+        "f97fd549-7b91-45a9-b6db-0a4d9471fdf2"
       ]
     ],
     "layouts": [
@@ -11579,7 +11645,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\snapshot-evidence-7e42fef8",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\snapshot-evidence-c9a01157",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -12311,7 +12377,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q\\cleanup-evidence-3c10b431",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4\\cleanup-evidence-cf51e7a5",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -12344,13 +12410,27 @@
     "scope": "Real native manual cleanup, strict bridge, active PTY and replaced-receipt protection, durable snapshots/new-folder restoration, associated fixed-chat protection, post-create scheduler, conservative automatic trimming, native confirmation matrix and accepted cleanup drain. External filesystem races are not OS-locked. Complete reference adoption and installed/portable release require separate evidence."
   },
   "settingsSearch": {
-    "checks": 6,
+    "checks": 8,
     "modelRequests": 0,
     "keyboardVerified": true,
     "destinationFocusVerified": true,
     "draftRetentionVerified": true,
     "heldPickerVerified": true,
     "sessionResetVerified": true,
+    "explicitDiscardVerified": true,
+    "discardKeyboardFocusVerified": true,
+    "scopedDiscardVerified": true,
+    "revertedDraftVerified": true,
+    "compactDiscardLayoutsVerified": true,
+    "allSettingsFormsVerified": true,
+    "protectedForms": [
+      "models",
+      "desktop",
+      "worktrees",
+      "mcp",
+      "plugins",
+      "memories"
+    ],
     "layouts": [
       {
         "theme": "light",
@@ -12371,7 +12451,17 @@
           "focusOutline": "2px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       },
       {
         "theme": "light",
@@ -12392,7 +12482,17 @@
           "focusOutline": "1.6px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       },
       {
         "theme": "light",
@@ -12413,7 +12513,17 @@
           "focusOutline": "2px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       },
       {
         "theme": "dark",
@@ -12434,7 +12544,17 @@
           "focusOutline": "2px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       },
       {
         "theme": "dark",
@@ -12455,7 +12575,17 @@
           "focusOutline": "1.6px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       },
       {
         "theme": "dark",
@@ -12476,30 +12606,56 @@
           "focusOutline": "2px",
           "focusContained": true
         },
-        "searchStyleVerified": true
+        "searchStyleVerified": true,
+        "discard": {
+          "width": 420,
+          "expectedWidth": 420,
+          "radius": "16px",
+          "contained": true,
+          "heightBounded": true,
+          "buttonsVisible": true,
+          "defaultCancelFocus": true,
+          "closeControls": 0
+        }
       }
     ],
     "screenshots": [
+      "settings-search-discard-drafts-shell.png",
+      "settings-search-discard-provider-shell.png",
+      "settings-search-discard-mcp-shell.png",
+      "settings-search-discard-plugin-shell.png",
       "settings-search-light-1-results-shell.png",
       "settings-search-light-1-target-shell.png",
       "settings-search-light-1-empty-shell.png",
+      "settings-search-light-1-discard-confirm-shell.png",
+      "settings-search-light-1-discard-retained-shell.png",
       "settings-search-light-1.25-results-shell.png",
       "settings-search-light-1.25-target-shell.png",
       "settings-search-light-1.25-empty-shell.png",
+      "settings-search-light-1.25-discard-confirm-shell.png",
+      "settings-search-light-1.25-discard-retained-shell.png",
       "settings-search-light-1.5-results-shell.png",
       "settings-search-light-1.5-target-shell.png",
       "settings-search-light-1.5-empty-shell.png",
+      "settings-search-light-1.5-discard-confirm-shell.png",
+      "settings-search-light-1.5-discard-retained-shell.png",
       "settings-search-dark-1-results-shell.png",
       "settings-search-dark-1-target-shell.png",
       "settings-search-dark-1-empty-shell.png",
+      "settings-search-dark-1-discard-confirm-shell.png",
+      "settings-search-dark-1-discard-retained-shell.png",
       "settings-search-dark-1.25-results-shell.png",
       "settings-search-dark-1.25-target-shell.png",
       "settings-search-dark-1.25-empty-shell.png",
+      "settings-search-dark-1.25-discard-confirm-shell.png",
+      "settings-search-dark-1.25-discard-retained-shell.png",
       "settings-search-dark-1.5-results-shell.png",
       "settings-search-dark-1.5-target-shell.png",
-      "settings-search-dark-1.5-empty-shell.png"
+      "settings-search-dark-1.5-empty-shell.png",
+      "settings-search-dark-1.5-discard-confirm-shell.png",
+      "settings-search-dark-1.5-discard-retained-shell.png"
     ],
-    "scope": "Real renderer, preload and main bridge. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
+    "scope": "Real renderer, preload and main bridge. Original six search checks retained with explicit dirty-form discard, plus two behavior and compact-layout groups covering all six draft forms. An owned disabled fixture plugin is imported only if no plugin exists and removed on successful cleanup. Native picker response is held and cancelled inside the isolated test process. Six actual shell theme/zoom cases; physical picker interaction and complete reference parity remain separate."
   },
   "toolActivities": {
     "checks": 8,
@@ -12553,7 +12709,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.71875,
+        "summaryWidth": 368.703125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12568,7 +12724,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1125183105469,
+        "summaryWidth": 373.1000061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12583,7 +12739,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.38543701171875,
+        "summaryWidth": 271.3645935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12598,7 +12754,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 368.71875,
+        "summaryWidth": 368.703125,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12613,7 +12769,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 373.1125183105469,
+        "summaryWidth": 373.1000061035156,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12628,7 +12784,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 271.38543701171875,
+        "summaryWidth": 271.3645935058594,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12702,7 +12858,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "509357b9-e468-45a8-8ca9-0d8f818fe751",
+    "threadId": "c00506eb-5d5c-4ed6-8396-96635fef8aa6",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -12786,7 +12942,7 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-HfvJ5Q"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-S3bxu4"
   },
   "normalCloseVerified": true,
   "executableSha256": null,

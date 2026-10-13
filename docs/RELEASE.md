@@ -4,9 +4,11 @@
 
 本轮全局搜索采用 520px 上限与 92vw 收缩、明暗表面和有界定位，键盘选择末项时完整显示。输入区 `/` 快捷选择保留原文和光标位置，选择助手或项目不会发送消息。命令输出节流会补发最后一段更新，关闭、报错和取消后停止通知。[快捷选择](COMPOSER-ACTIONS.md)
 
-最新设置源码已加入六类表单的未保存更改保护，离开时默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型与构建通过；八组原生设置专项、六种明暗／应用缩放布局、34 张逐张复核原图与正常退出通过。新完整桌面要求提高到 373 项，**这份新界面的完整桌面与新包分发尚未验收**；下述 371 项分发记录仍属于此前冻结应用体。[设置用法](SETTINGS.md) · [设置单元](../verification/settings-drafts-unit-review-result.json) · [设置专项](../verification/settings-drafts-focused-review-result.json) · [专项原图](../verification/settings-drafts-visual-review-result.json)
+最新设置源码已加入六类表单的未保存更改保护，离开时默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型与构建通过；八组原生设置专项、六种明暗／应用缩放布局、34 张逐张复核原图与正常退出通过。提交 `f2b3703` 的完整源码回归已通过 373 项、74 次正常退出，最长 1,725ms，无强制结束；39 份新报告、597 张原图和 236 个匹配编译文件归档，这批新原图未全部视觉复核。**新包分发尚未验收**；下述 371 项分发记录仍属于此前冻结应用体。[设置用法](SETTINGS.md) · [设置单元](../verification/settings-drafts-unit-review-result.json) · [设置专项](../verification/settings-drafts-focused-review-result.json) · [专项原图](../verification/settings-drafts-visual-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json)
 
 设置专项的前两次尝试因错误提示选择器包含关闭提示文本、随后匹配到两个元素而失败。原日志、原图及工作区保留；只修正一次测试选择表达式后通过，十八个其他源码输入及 236 个编译文件未变。单元源码归档加明确的测试覆盖文件可复现这轮专项，未降低检查或超时。
+
+首轮完整源码在 133 项后失败：旧桌面测试关闭保存失败的快捷键草稿后直接点击后台入口，被新确认框拦截。测试现明确放弃该草稿，再保留原有错误、注册释放与重试检查；完整重跑通过。失败轮的实际退出 1、11 次正常退出、两份新报告、84 张原图和工作区均保留。当前归档记录十九个原测试输入与一个桌面测试输入，产品和编译字节不变。[完整失败现场](../verification/settings-drafts-full-source-failure-review-result.json)
 
 分发证据提交 `d17a8ac` 已推送，原[流水线 38349499403](https://github.com/Moresyl/nook/actions/runs/38349499403) 仍因账户付款／额度限制实际零步骤失败，发布跳过。浏览器于 2026-10-13 再次连接失败，页面未打开；原始响应与认证失败记录保留在本地归档。未创建标签或发布版本。
 
