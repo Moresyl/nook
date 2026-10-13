@@ -107,7 +107,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 373 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 375 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   verifyComposerActionsProof(desktop.composerActions);
@@ -240,7 +240,12 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
     throw new Error('Complete private browser verification is required');
   }
   if (!completePreview(preview)) throw new Error('Complete offline project-preview verification is required');
-  if (desktop.memories?.checks !== 3) throw new Error('Complete memory verification is required');
+  const memories = desktop.memories;
+  const memoryLayouts = memories?.deletionLayouts;
+  const memoryCases = Array.isArray(memoryLayouts) && memoryLayouts.length === 6 && new Set(memoryLayouts.map(row => `${row.theme}/${row.zoom}`)).size === 6
+    && memoryLayouts.every(row => ['light', 'dark'].includes(row.theme) && [1, 1.25, 1.5].includes(row.zoom) && row.contained === true && row.bounded === true && row.buttonsVisible === true && row.cancelFocused === true && row.closeControls === 1 && row.radius === '20px' && row.bodyPadding === '20px' && row.footerPadding === '20px' && row.heading?.size === '20px' && row.heading?.lineHeight === '28px' && row.heading?.weight === '590' && row.heading?.spacing === '-0.36px' && Number.isFinite(row.width) && Number.isFinite(row.expectedWidth) && row.expectedWidth > 0 && row.expectedWidth <= 520 && Math.abs(row.width - row.expectedWidth) < 1 && row.longContentEscaped === true && row.independentScrollVerified === true);
+  const memoryShots = ['memory-settings-light.png', 'memory-settings-dark.png', 'memory-delete-pending-shell.png', 'memory-delete-failure-shell.png', ...['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].flatMap(zoom => ['short', 'long', 'scrolled'].map(state => `memory-delete-${theme}-${zoom}-${state}-shell.png`)))];
+  if (memories?.checks !== 5 || !memoryCases || ['safeCancelVerified', 'deleteFailureRetentionVerified', 'pendingDismissalLocked', 'longDeleteContentVerified'].some(flag => memories[flag] !== true) || !Array.isArray(memories.screenshots) || memories.screenshots.length !== 22 || new Set(memories.screenshots).size !== 22 || !memoryShots.every(name => memories.screenshots.includes(name))) throw new Error('Complete memory verification is required');
   const pdf = desktop.pdfPreview;
   if (pdf?.checks !== 6 || !['canvasTextVerified', 'outlineTargetsVerified', 'fullDocumentSearchVerified', 'linksNotesZoomVerified', 'exportOwnershipRestartVerified'].every(key => pdf[key] === true)) {
     throw new Error('Complete PDF preview verification is required');

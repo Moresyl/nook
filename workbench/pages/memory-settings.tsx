@@ -11,14 +11,16 @@ export function MemorySettings({ state, onState, report }: Props) {
   const [removing, setRemoving] = useState<Memory | null>(null);
   const [search, setSearch] = useState('');
   const [busy, setBusy] = useState(false);
+  const [removalError, setRemovalError] = useState('');
   const [baseline, setBaseline] = useState('');
   const leaveForm = useSettingsDraft('memories', Boolean(editing && JSON.stringify(editing) !== baseline), busy);
   function edit(memory: Memory) { setEditing({ ...memory }); setBaseline(JSON.stringify(memory)); }
   function cancelEditing() { void leaveForm(() => setEditing(null), '取消编辑将放弃这份未保存的记忆。'); }
   async function act(operation: () => Promise<Workspace>, done: () => void) {
+    if (removing) setRemovalError('');
     setBusy(true);
     try { onState(await operation()); done(); }
-    catch (error) { report(error); }
+    catch (error) { if (removing) setRemovalError('删除未完成，请重试。'); report(error); }
     finally { setBusy(false); }
   }
   const scope = (item: Memory) => item.projectId ? state.projects.find((project) => project.id === item.projectId)?.name ?? '项目已移除' : '全局';
@@ -38,7 +40,7 @@ export function MemorySettings({ state, onState, report }: Props) {
     <p className="muted">由你决定记住什么。只保存你主动添加的内容，可随时编辑、停用或删除。</p>
     <p className="field-hint">启用的记忆会发送给所选模型；临时聊天不使用记忆。备份包含记忆，移除项目也会删除该项目的记忆。</p>
     <Input aria-label="搜索记忆" placeholder="搜索内容或项目…" value={search} onChange={(event) => setSearch(event.target.value)} />
-    {visible.length ? <div className="item-list memory-list">{visible.map((item) => <div className="list-row" key={item.id}><Button className="row-content" disabled={busy} onClick={() => edit(item)}><strong>{item.content.length > 120 ? `${item.content.slice(0, 120)}…` : item.content}</strong><span>{scope(item)} · {item.enabled ? '已启用' : '已停用'}</span></Button><Button disabled={busy} aria-label={`删除记忆 ${item.content.slice(0, 120)}`} onClick={() => setRemoving(item)}>删除</Button></div>)}</div> : <Empty icon="library" title={search ? '没有匹配的记忆' : '还没有保存的记忆'} detail={search ? '试试其他关键词。' : '添加常用偏好，让后续对话更贴合你的需要。'} />}
-    {removing && <Modal title="删除记忆？" onClose={() => { if (!busy) setRemoving(null); }} footer={<><Button disabled={busy} onClick={() => setRemoving(null)}>取消</Button><Button disabled={busy} tone="danger" onClick={() => { void act(() => window.qiyao.removeMemory(removing.id), () => setRemoving(null)); }}>确认删除</Button></>}><p>删除后不再用于新请求，已发送的内容和已有备份不受影响。</p><p>{removing.content}</p></Modal>}
+    {visible.length ? <div className="item-list memory-list">{visible.map((item) => <div className="list-row" key={item.id}><Button className="row-content" disabled={busy} onClick={() => edit(item)}><strong>{item.content.length > 120 ? `${item.content.slice(0, 120)}…` : item.content}</strong><span>{scope(item)} · {item.enabled ? '已启用' : '已停用'}</span></Button><Button disabled={busy} aria-label={`删除记忆 ${item.content.slice(0, 120)}`} onClick={() => { setRemovalError(''); setRemoving(item); }}>删除</Button></div>)}</div> : <Empty icon="library" title={search ? '没有匹配的记忆' : '还没有保存的记忆'} detail={search ? '试试其他关键词。' : '添加常用偏好，让后续对话更贴合你的需要。'} />}
+    {removing && <Modal className="memory-delete-dialog" title="删除记忆？" dismissible={!busy} onClose={() => { if (!busy) setRemoving(null); }} footer={<><Button autoFocus disabled={busy} onClick={() => setRemoving(null)}>取消</Button><Button disabled={busy} tone="danger" onClick={() => { void act(() => window.qiyao.removeMemory(removing.id), () => setRemoving(null)); }}>确认删除</Button></>}><p>删除后不再用于新请求，已发送的内容和已有备份不受影响。</p><p className="memory-delete-content">{removing.content}</p>{removalError && <p className="inline-error" role="alert">{removalError}</p>}</Modal>}
   </>;
 }

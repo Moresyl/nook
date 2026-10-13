@@ -730,6 +730,14 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-discard-dialog .modal-content { padding: 12px 24px 24px; max-height: none; font-size: 14px; line-height: 20px; }
 .settings-discard-dialog .modal-footer { padding: 0 24px 24px; border: 0; gap: 12px; flex-wrap: wrap; }
 .settings-discard-dialog .modal-footer .button { min-height: 32px; padding: 6px 12px; font-size: 14px; }
+.memory-delete-dialog.modal { position: fixed; inset: auto; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%); width: min(520px, 92vw); height: auto; max-height: 92dvh; border-radius: 20px; }
+.memory-delete-dialog .modal-header { padding: 20px 20px 0; border: 0; align-items: flex-start; }
+.memory-delete-dialog .modal-header h2 { font-size: 20px; line-height: 28px; letter-spacing: -.36px; font-weight: 590; }
+.memory-delete-dialog .modal-content { padding: 12px 20px 0; max-height: none; font-size: 14px; line-height: 20px; scroll-padding-block: 12px; }
+.memory-delete-dialog .modal-content p { margin: 0; }
+.memory-delete-dialog .modal-content .memory-delete-content, .memory-delete-dialog .modal-content .inline-error { margin-top: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.memory-delete-dialog .modal-footer { padding: 20px; border: 0; gap: 8px; flex-wrap: wrap; }
+.memory-delete-dialog .modal-footer .button { min-height: 32px; padding: 6px 12px; font-size: 14px; }
 .worktree-form { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px 0; }
 .worktree-form .input { background: transparent; scroll-margin-block: 8px; }
 .worktree-existing > summary { cursor: pointer; color: var(--ds-text-secondary); }
