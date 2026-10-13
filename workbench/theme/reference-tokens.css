@@ -265,7 +265,7 @@
   --control-icon-size-lg: 1.25rem;
   --control-icon-size-xl: 1.375rem;
   --control-icon-size-2xl: 1.5rem;
-  --composer-radius: var(--radius-4xl);
+  --composer-radius: calc(var(--spacing) * 5.5);
   --font-ui-family: var(--vscode-font-family);
   --font-ui-weight: var(--vscode-font-weight);
   --font-code-family: var(--vscode-editor-font-family);
@@ -274,6 +274,12 @@
   --elevation-sidebar: var(--elevation-stroke), 0 3px 7.5px #00000008, 0 0 16px #00000005;
   --elevation-composer: 0 0 0 1px #0000000a, 0 2px 8px 0 #0000000a, 0 4px 80px 8px #00000006;
   --elevation-composer-dark: inset 0 0 1px 0 #fff3;
+}
+
+@media (width < 40rem) {
+  :root {
+    --elevation-composer: 0 0 0 1px #0000000a, 0 2px 8px 0 #0000000a, 0 4px 40px 8px #00000006;
+  }
 }
 
 /* Semantic light/dark pairing uses lightningcss dual tokens in the original app.

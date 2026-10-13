@@ -68,8 +68,15 @@ export async function verifySystemDpiHome({ page, application, getApplication, s
     assert.equal(await opener.evaluate(element => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
     const settled = await readyNavigation(page);
+    const composer = await page.locator('.home .composer').evaluate(element => {
+      const style = getComputedStyle(element);
+      return { radius: style.borderRadius, shadow: style.boxShadow, viewportWidth: innerWidth, compact: matchMedia('(width < 40rem)').matches };
+    });
+    assert.equal(composer.radius, '22px');
+    assert.equal(composer.compact, composer.viewportWidth < 640);
+    if (theme === 'light') assert.ok(composer.shadow.includes(composer.compact ? ' 40px 8px' : ' 80px 8px'));
     const image = await capture(page, application, screenshots, `system-dpi-home-${theme}-${size[0]}-${zoom}.png`);
-    scenarios.push({ theme, requestedSize: size, zoom, initial, ready, settled, image });
+    scenarios.push({ theme, requestedSize: size, zoom, initial, ready, settled, composer, image });
     verified(`unforced system DPI home ${theme} ${size.join('x')} ${zoom * 100}%: enabled settled navigation, actual keyboard settings return and exact draft`);
   }
   await application.evaluateMain(`(${mainWindow}).webContents.setZoomFactor(1)`);
