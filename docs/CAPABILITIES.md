@@ -2,7 +2,7 @@
 
 Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
 
-设置支持六类未保存表单的离开确认、跨分类保留草稿、保存等待锁定与失败重试。最新 1,555 项单元、类型、构建及八组设置专项通过；完整源码、新包和实际安装各通过 373 项／74 次正常退出。原五个分发专项、便携七项、保留数据卸载及十一份匹配运行记录通过。源码专项与包内设置原图分别复核 34 张；安装轮虽逐张查看 34 张，七张存在缩放捕获差异，仍待诊断，完整参考界面与托管发布未完成。[设置与草稿](SETTINGS.md) · [本轮运行证据](../verification/settings-drafts-runtime-review-result.json) · [安装捕获范围](../verification/settings-drafts-installed-visual-review-result.json)
+设置支持六类未保存表单的离开确认、跨分类保留草稿、保存等待锁定与失败重试。最新 1,555 项单元、类型、构建及八组设置专项通过；完整源码、新包和实际安装各通过 373 项／74 次正常退出。原五个分发专项、便携七项、保留数据卸载及十一份匹配运行记录通过。源码专项、包内与安装设置原图分别复核 34 张；安装轮先前七张缩放差异的目测判断经原图像素测量更正，实际尺寸与三档缩放一致。完整参考界面与托管发布未完成。[设置与草稿](SETTINGS.md) · [本轮运行证据](../verification/settings-drafts-runtime-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [测量与更正](../verification/settings-drafts-installed-scale-correction-result.json)
 
 最新全局搜索的尺寸、表面与定位修正已通过源码命令专项；同一 `c81b8c38` 新包和实际安装也已完成原完整回归及本机分发验收。[搜索专项](../verification/command-palette-acceptance-review-result.json)
 

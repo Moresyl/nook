@@ -6,7 +6,7 @@
 
 最新设置保护模型、桌面、工作树、MCP、插件和记忆六类未保存表单：默认继续编辑，保存等待阻止重复操作，失败保留输入。133 文件／1,555 项单元、类型、构建和八组设置专项通过。完整源码、同一新包与实际安装各通过 373 项和 74 次正常退出，最长分别为 1,725／2,429／2,054ms，无强制结束；每轮保留 39 份新报告、597 张原图和 236 个匹配编译文件。原五个分发专项、便携七项、安装登记／快捷方式、保留数据卸载及十一份匹配运行记录通过。十二个既有数据标记恢复原路径并核对哈希。[设置用法](SETTINGS.md) · [单元](../verification/settings-drafts-unit-review-result.json) · [完整源码](../verification/settings-drafts-full-source-review-result.json) · [新包](../verification/settings-drafts-package-review-result.json) · [包内回归](../verification/settings-drafts-full-unpacked-review-result.json) · [安装回归](../verification/settings-drafts-full-installed-review-result.json) · [运行与卸载](../verification/settings-drafts-runtime-review-result.json)
 
-源码专项、包内与安装轮各 34 张设置原图已逐张查看。包内六种主题／缩放布局的原图通过；安装轮发现七张缩放标记与实际捕获视觉尺寸不一致，虽运行时几何断言通过，仍不能算作对应缩放的视觉验收。原图、哈希及差异保留，原因尚未唯一诊断，没有将重拍或重跑写成界面修复。每轮 597 张完整回归原图未全部视觉复核；最终界面与托管发布仍待完成。[包内原图](../verification/settings-drafts-unpacked-visual-review-result.json) · [安装捕获差异](../verification/settings-drafts-installed-visual-review-result.json)
+源码专项、包内与安装轮各 34 张设置原图已逐张查看。安装轮先前七张“缩放不符”的目测判断已更正：30 张缩放原图的像素测量与冻结源码及对应包内原图一致，侧栏为 128／160／192px，确认框为 420／525／630px，对应 100%／125%／150%。七张原图已再次查看，原文件、哈希与先前记录保留，没有重拍或修改产品。各轮设置原图通过；每轮 597 张完整回归原图未全部视觉复核，最终界面与托管发布仍待完成。[包内原图](../verification/settings-drafts-unpacked-visual-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [像素测量与更正](../verification/settings-drafts-installed-scale-correction-result.json)
 
 包源为 `21bfce7`，测试源为 `7a15cce`。新包回归前两轮各在 186 项后失败，第一轮设置选择器要求紧凑侧栏隐藏的 Ctrl 后缀，第二轮新增 title 属性断言不适用于共享提示组件。两轮各保留实际退出 1、19 次正常退出、8 份新报告、166 张原图及工作区；第三轮保留原断言与期限，使用既有侧栏角色入口后通过。产品二十个既有校验输入和 236 个编译文件不变，测试覆盖文件及准确源码 tar 单独归档。[第一轮](../verification/settings-drafts-full-unpacked-failure-review-result.json) · [第二轮](../verification/settings-drafts-full-unpacked-failure2-review-result.json)
 
@@ -14,7 +14,7 @@
 
 首轮完整源码在 133 项后失败：旧桌面测试关闭保存失败的快捷键草稿后直接点击后台入口，被新确认框拦截。测试现明确放弃该草稿，再保留原有错误、注册释放与重试检查；完整重跑通过。失败轮的实际退出 1、11 次正常退出、两份新报告、84 张原图和工作区均保留。当前归档记录十九个原测试输入与一个桌面测试输入，产品和编译字节不变。[完整失败现场](../verification/settings-drafts-full-source-failure-review-result.json)
 
-分发证据提交 `d17a8ac` 已推送，原[流水线 38349499403](https://github.com/Moresyl/nook/actions/runs/38349499403) 仍因账户付款／额度限制实际零步骤失败，发布跳过。浏览器于 2026-10-13 再次连接失败，页面未打开；原始响应与认证失败记录保留在本地归档。未创建标签或发布版本。
+设置分发证据提交 `0c39151` 已推送，原[流水线 38366937353](https://github.com/Moresyl/nook/actions/runs/38366937353) 仍因账户付款／额度限制实际零步骤失败，发布跳过。浏览器于 2026-10-13 再次连接返回认证令牌不可用，页面未打开。原始响应、作业、注释与认证失败记录保留；当前标签和版本均为零。[本轮托管证据](../verification/settings-drafts-delivery-hosted-review-result.json)
 
 最新源码另已加入本地分支重命名和安全删除，原八组分支专项增加到 11 组，34 张原始截图逐张复核。两轮完整覆盖率测试分别通过 1,547 和 1,550 项，最终 132 个文件全部通过，语句／分支／函数／行覆盖率为 97.03%／94.57%／97.78%／99.49%；类型与构建通过。发布校验提高为完整桌面 371 项、分支 11 组与 34 张原图，原步骤及其他要求保留。[分支功能](PROJECT-GIT.md) · [两轮单元与发布校验](../verification/project-branch-actions-unit-review-result.json)
 

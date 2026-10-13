@@ -4,9 +4,9 @@
 
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
-确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项通过；完整源码、新包与安装各通过 373 项／74 次正常退出，原五个分发专项、便携七项、保留数据卸载与十一份运行记录通过。源码专项和包内各 34 张设置原图逐张复核；安装轮七张原图存在缩放捕获差异，仍待诊断。此前候选及失败证据保留，原托管发布与完整参考界面未完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
+确认框采用紧凑布局，适配明暗主题及窄窗口。类型检查、1,555 项单元测试、构建和八组设置专项通过；完整源码、新包与安装各通过 373 项／74 次正常退出，原五个分发专项、便携七项、保留数据卸载与十一份运行记录通过。源码专项、包内和安装各 34 张设置原图逐张复核；安装轮先前七张缩放差异的判断经原图像素测量更正，三档缩放尺寸一致，原记录保留。此前候选及失败证据保留，原托管发布与完整参考界面未完成。[发布状态](docs/RELEASE.md) · [设计对照](docs/DESIGN-ALIGNMENT.md)
 
-Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build and eight focused checks pass. Source, packaged and installed runtimes each pass 373 checks with normal exits; original distribution, portable and data-preserving uninstall gates pass. Seven installed captures have an unresolved scale discrepancy. Hosted release and complete UI adoption remain pending.
+Settings now protect unsaved drafts in six forms. Continue editing is the safe default; saving blocks duplicate actions and failures retain input. Type checks, 1,555 unit tests, the build and eight focused checks pass. Source, packaged and installed runtimes each pass 373 checks with normal exits; original distribution, portable and data-preserving uninstall gates pass. Pixel measurements corrected seven earlier visual judgments: the unchanged installed captures match all three requested zoom levels. Hosted release and complete UI adoption remain pending.
 
 ## [0.1.0-alpha.1] - 2026-10-13
 

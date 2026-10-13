@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-13T08:12:28.877Z",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsDistributionDeliveryHosted-20261013",
+  "sourceHead": "0c391510f3e65949aa4b11b7281fbe4743340238",
+  "pushReceipt": {
+    "exitCode": 0,
+    "startedAt": "2026-10-13T08:05:28.2629940Z",
+    "sourceHead": "0c391510f3e65949aa4b11b7281fbe4743340238",
+    "completedAt": "2026-10-13T08:05:38.8745225Z"
+  },
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38366937353",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115194196928,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115194211095,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "d54c12bacf99a3d6011275dfeee15044da07c1739f39ee36ac9af79e0d79d6a2"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "f30cdbe7be53b85f887449014c2e0291f0a3baa54d06a4f628605adac37b7ba2"
+    },
+    {
+      "name": "annotations-115194196928.json",
+      "sha256": "b55b3ca8fe8efcd0d0875eaa3c126f64a334d6f2b616e6afcaaad94554a19eae"
+    },
+    {
+      "name": "annotations-115194211095.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "scope": "Read-only inspection of the original workflow for the completed settings-drafts distribution evidence commit. Browser access is checked separately; no change to workflow, runner, billing, spending or visibility.",
+  "browser": {
+    "checkedAt": "2026-10-13T08:18:55.524Z",
+    "method": "cua.createBrowserTab",
+    "browser": "chrome",
+    "requestedUrl": "https://github.com/Moresyl/nook/actions/runs/38366937353",
+    "opened": false,
+    "response": "Codex auth token is unavailable",
+    "responseSha256": "b866e2eca433098912cfc51b1aadd0f08f351b96f77d7e411258c28a112878e0",
+    "scope": "The actual unified computer-use attempt returned this authentication error. The original workflow was separately inspected through the configured authenticated GitHub API. No alternate browser transport or authentication change."
+  }
+}

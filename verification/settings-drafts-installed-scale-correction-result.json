@@ -1,0 +1,477 @@
+{
+  "reviewedAt": "2026-10-13T08:17:46.205Z",
+  "archive": "C:/NookVerificationOverflow/SettingsDraftsInstalledScaleReviewCorrection-20261013",
+  "originalArchive": "C:/NookVerificationOverflow/SettingsDraftsFull-installed-20261013",
+  "sourceHead": "7a15cceff15446d02cecfd87bfea776668afbc10",
+  "priorReviewSha256": "bda78133e2301ee343fddeeb8954f4c7d91cc5d823b93299df5a01db46606d56",
+  "priorReviewRetained": true,
+  "originalFilesUnchanged": true,
+  "correction": "The earlier seven scale-mismatch observations were incorrect visual judgments. Original installed PNG landmarks match the requested zoom and corresponding accepted unpacked landmarks. No capture or product defect was reproduced, and no product or capture code was changed.",
+  "sourceCssSha256": "ab1faef1565553c7781f7e2bea3245b1e1b0487beef134070b6cf2657a7cd10d",
+  "method": "Decode the unchanged complete PNG pixels with the existing sharp dependency. Detect the unique vertical sidebar border across 410 image rows; separately measure centered solid confirmation interiors with up to three antialiasing pixels excluded. Match the frozen source CSS dimensions and corresponding unpacked landmarks. No resizing, cropping, modified images, retries or new native run.",
+  "originalsMeasured": 30,
+  "priorIndividuallyViewedOriginals": 34,
+  "previouslyFlaggedOriginalsRevisited": 7,
+  "requestedZoomCapturesVisuallyAccepted": true,
+  "measured": [
+    {
+      "name": "settings-search-light-1-results-shell.png",
+      "theme": "light",
+      "zoom": 1,
+      "state": "results",
+      "sha256": "57d57a2ea923e61bc61a70e178ae73ec3ad9c1323bc02df1a6cbd9f99425c72c",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1-target-shell.png",
+      "theme": "light",
+      "zoom": 1,
+      "state": "target",
+      "sha256": "b33ff2fdcc1abab4a3e33f3e4721ea298372f4168463cf65189f04d7a52ffc19",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1-empty-shell.png",
+      "theme": "light",
+      "zoom": 1,
+      "state": "empty",
+      "sha256": "02e1176fd09b2e6f64c8f59610be7f55283a99e38d56c74be33a132bef3c3b13",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1-discard-confirm-shell.png",
+      "theme": "light",
+      "zoom": 1,
+      "state": "discard-confirm",
+      "sha256": "1451531a8fe1e1b70416d76daa9c5512d1ca6e5fa1707049ab9b4e2296ee735a",
+      "expectedPixels": 420,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 418,
+        "x": 171,
+        "y": 203,
+        "rgb": [
+          255,
+          255,
+          255
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1-discard-retained-shell.png",
+      "theme": "light",
+      "zoom": 1,
+      "state": "discard-retained",
+      "sha256": "7d96c451b6e38c27b4f27e31e662488d025a3225b5e1ff355e53695bd6fa9fd6",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.25-results-shell.png",
+      "theme": "light",
+      "zoom": 1.25,
+      "state": "results",
+      "sha256": "1e07f87742b38d892c6fbd83d01aa553ee86bf74d21d70deb7ea270d52f1c0b0",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.25-target-shell.png",
+      "theme": "light",
+      "zoom": 1.25,
+      "state": "target",
+      "sha256": "05000c08cd7960a87f37c0f6b7d3cfe9dde9ccdba0dc1a44492e993db1ab8170",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.25-empty-shell.png",
+      "theme": "light",
+      "zoom": 1.25,
+      "state": "empty",
+      "sha256": "52ea7919a08966fd68b62d77a2af3321ad0c5e40f8dc003b7046f39fd3fa04e8",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.25-discard-confirm-shell.png",
+      "theme": "light",
+      "zoom": 1.25,
+      "state": "discard-confirm",
+      "sha256": "ea4aadebd8715d49b9ee7ce739732d030f6512b05edb2dd10c8b70f70367a7f4",
+      "expectedPixels": 525,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 522,
+        "x": 119,
+        "y": 200,
+        "rgb": [
+          255,
+          255,
+          255
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.25-discard-retained-shell.png",
+      "theme": "light",
+      "zoom": 1.25,
+      "state": "discard-retained",
+      "sha256": "d7d99afbded6728f61b89a4f4fdb1109d6b9420266259f8c6f6091c1959b8d35",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.5-results-shell.png",
+      "theme": "light",
+      "zoom": 1.5,
+      "state": "results",
+      "sha256": "400b784debedf9aa706739920149e369e4446a51ef75e6f4d3b5e1fc3600f5a7",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.5-target-shell.png",
+      "theme": "light",
+      "zoom": 1.5,
+      "state": "target",
+      "sha256": "8bf30e6c5510be1eb896ba755a967833bed106b9368911ccbce2e6f8af8ea5a8",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.5-empty-shell.png",
+      "theme": "light",
+      "zoom": 1.5,
+      "state": "empty",
+      "sha256": "3e7b63e33ef03eb653e3c123006f6169cbf29a35a97f107befd3dc6779d116fa",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.5-discard-confirm-shell.png",
+      "theme": "light",
+      "zoom": 1.5,
+      "state": "discard-confirm",
+      "sha256": "491cfcd2b2bb338efba43997e2742db4805ae143ae894c4f3a6d0c62461d03a2",
+      "expectedPixels": 630,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 628,
+        "x": 66,
+        "y": 214,
+        "rgb": [
+          255,
+          255,
+          255
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-light-1.5-discard-retained-shell.png",
+      "theme": "light",
+      "zoom": 1.5,
+      "state": "discard-retained",
+      "sha256": "adcdcbf71a8e6a413ace0b5487160bf563064ed37dfc05a90b6fd7ef94c818ca",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1-results-shell.png",
+      "theme": "dark",
+      "zoom": 1,
+      "state": "results",
+      "sha256": "88338b3b513f5b88e54d036ce378c1ccc7611420bf9e1df32ea808229e77e88a",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1-target-shell.png",
+      "theme": "dark",
+      "zoom": 1,
+      "state": "target",
+      "sha256": "f6d31d9450b114db578822cfafc3aa237a8fb083ac481b6c70d4627922a43a66",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1-empty-shell.png",
+      "theme": "dark",
+      "zoom": 1,
+      "state": "empty",
+      "sha256": "198f707038fcb1c182f2fb39f08135897575384b7a289bb6fea44f1868c9c771",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1-discard-confirm-shell.png",
+      "theme": "dark",
+      "zoom": 1,
+      "state": "discard-confirm",
+      "sha256": "93f51406f8811a2c967afbc891cddc3bcb56a11686e20dba1ae3c76266df323f",
+      "expectedPixels": 420,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 418,
+        "x": 171,
+        "y": 203,
+        "rgb": [
+          48,
+          48,
+          48
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1-discard-retained-shell.png",
+      "theme": "dark",
+      "zoom": 1,
+      "state": "discard-retained",
+      "sha256": "2b7a832b9428492d20dd465f1531b79578538e4d3f0cd9bcfa0174a9549440cb",
+      "expectedPixels": 128,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 128,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.25-results-shell.png",
+      "theme": "dark",
+      "zoom": 1.25,
+      "state": "results",
+      "sha256": "8407d69ccb367321d12343835b6f2eb0c837c60295e11190ddb0a378cbc3bf69",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.25-target-shell.png",
+      "theme": "dark",
+      "zoom": 1.25,
+      "state": "target",
+      "sha256": "1c7b9411ba48c7b5d013d6c72e1127120db3407e027a21bcd7bf881d37cc2956",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.25-empty-shell.png",
+      "theme": "dark",
+      "zoom": 1.25,
+      "state": "empty",
+      "sha256": "273a95347a5ea5960311ae1c0fa3293f9c6eacfbd7e49d03e2fbffe584281390",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.25-discard-confirm-shell.png",
+      "theme": "dark",
+      "zoom": 1.25,
+      "state": "discard-confirm",
+      "sha256": "ff4c697bae1c13d0b9919cfbdf668314f18dade09875801972a1d4b932264338",
+      "expectedPixels": 525,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 522,
+        "x": 119,
+        "y": 200,
+        "rgb": [
+          48,
+          48,
+          48
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.25-discard-retained-shell.png",
+      "theme": "dark",
+      "zoom": 1.25,
+      "state": "discard-retained",
+      "sha256": "33362a7cc82d1d0182d0db737a55e3034f7998c6f6b7cd66411b33696bd57317",
+      "expectedPixels": 160,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 160,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.5-results-shell.png",
+      "theme": "dark",
+      "zoom": 1.5,
+      "state": "results",
+      "sha256": "86ca634bf343fb52004d9294c30d96ec57effa8520ccea70292a3e23a2d7b87f",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.5-target-shell.png",
+      "theme": "dark",
+      "zoom": 1.5,
+      "state": "target",
+      "sha256": "d8bb53d8c5903dd3bf7c0a4ae9d72742e26fc4037a1382b95c05fc932506ee26",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.5-empty-shell.png",
+      "theme": "dark",
+      "zoom": 1.5,
+      "state": "empty",
+      "sha256": "f63693705028b37683ecc105c19db7895b7c3b7820a21c46d662cc698441abc9",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.5-discard-confirm-shell.png",
+      "theme": "dark",
+      "zoom": 1.5,
+      "state": "discard-confirm",
+      "sha256": "4a8b5f46ea53aeb1b5b07f78b11d37c9453daa9f0562a5348799defc6858bbdc",
+      "expectedPixels": 630,
+      "actual": {
+        "kind": "confirmation-solid-interior",
+        "length": 628,
+        "x": 66,
+        "y": 214,
+        "rgb": [
+          48,
+          48,
+          48
+        ]
+      },
+      "unpackedLandmarkMatches": true
+    },
+    {
+      "name": "settings-search-dark-1.5-discard-retained-shell.png",
+      "theme": "dark",
+      "zoom": 1.5,
+      "state": "discard-retained",
+      "sha256": "96c4b1184a6fbf6d0451e6bea2f7ba18a32190b963eedc7222f273bfdc0bbc3e",
+      "expectedPixels": 192,
+      "actual": {
+        "kind": "sidebar-divider",
+        "x": 192,
+        "samples": 410
+      },
+      "unpackedLandmarkMatches": true
+    }
+  ],
+  "allFullRoundOriginalsVisuallyReviewed": false,
+  "completeReferenceParity": false,
+  "published": false
+}
