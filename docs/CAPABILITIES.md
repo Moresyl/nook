@@ -2,7 +2,7 @@
 
 Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与最终发行验收分别记录，**尚未发布版本**。
 
-最新全局搜索的尺寸、表面与定位修正已通过源码命令专项；下文完整本机分发结果属于此前 `f71dc034` 应用体，新界面仍需重新打包与实际安装验收。[搜索专项](../verification/command-palette-acceptance-review-result.json)
+最新全局搜索的尺寸、表面与定位修正已通过源码命令专项；同一 `c81b8c38` 新包和实际安装也已完成原完整回归及本机分发验收。[搜索专项](../verification/command-palette-acceptance-review-result.json)
 
 | 能力 | 已有实现 | 主要边界 |
 | --- | --- | --- |
@@ -17,8 +17,8 @@ Nook 是本地 AI 工作台，面向聊天、文档和项目。已有实现与�
 
 图片生成、离线模型下载管理、本地 API 服务、远程主机／SSH、WebUI／连接器及加密同步尚未提供。完整细项与各功能使用说明保留在[能力历史](CAPABILITIES-HISTORY-2026-10-13.md)。
 
-最新命令输出通知修复通过 1,539 项单元；源码、包内与实际安装后三轮各通过 368 项和 74 次正常退出，无强制结束。每轮保留 39 份报告与 548 张原图；源码 21 张、包内与分发专项选定 88 张原图逐张核验。原五个分发专项、便携七项、十一份运行记录、卸载保留数据及八个原始标记恢复通过。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。旧 `25254c839` 的结果只属于历史应用体。
+当前代码通过 1,539 项单元；`c81b8c38` 新包与实际安装各通过 368 项和 74 次正常退出，无强制结束。每轮保留 39 份报告与 560 张原图；源码搜索专项 16 张、新包及安装后选定 70 张原图逐张核验。原五个分发专项、便携七项、十一份运行记录、卸载保留数据及八个原始标记哈希恢复通过。当前完整回归使用新包与安装程序，前轮完整开发程序和旧包结果分别保留。物理输入、系统 DPI、真实服务和全部参考流程仍需分别验收。[本轮分发证据](../verification/command-palette-runtime-review-result.json)
 
-[当前发布状态](RELEASE.md) · [设计采用范围](DESIGN-ALIGNMENT.md) · [完整交付要求](DELIVERY.md) · [最新源码证据](../verification/command-progress-full-source-review-result.json)
+[当前发布状态](RELEASE.md) · [设计采用范围](DESIGN-ALIGNMENT.md) · [完整交付要求](DELIVERY.md) · [前轮完整源码证据](../verification/command-progress-full-source-review-result.json)
 
 整理前的能力细目和全部旧验收记录逐字保留，历史 SHA-256 为 `6cdcbd746f22853316b81b612e6522d45341a3cf6d44480cb99ec9ee8ae81bc7`，未取消任何剩余交付要求。

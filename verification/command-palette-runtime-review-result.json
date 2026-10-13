@@ -1,0 +1,121 @@
+{
+  "verifiedAt": "2026-10-13T00:41:27.268Z",
+  "archive": "E:/NookVerification/CommandPaletteRuntime-20261013",
+  "sourceHead": "c81b8c3813cb6580db31c204eda28de65c06915b",
+  "runtimeBuiltSourceHead": "c81b8c3813cb6580db31c204eda28de65c06915b",
+  "records": [
+    {
+      "key": "audit",
+      "name": "package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "2c7617257ed50b0308b3aa53998bffa9001a2e3e5d52830683326e736d28f12b",
+      "modifiedAt": "2026-10-12T23:30:22.201Z"
+    },
+    {
+      "key": "desktop",
+      "name": "packaged-result.json",
+      "bytes": 346014,
+      "sha256": "ef05a51bf9947369d03dff0c4fa6624f6f0acda2eba8bce2c81cd57b93a71867",
+      "modifiedAt": "2026-10-13T00:40:14.776Z"
+    },
+    {
+      "key": "surfaces",
+      "name": "surfaces-packaged-result.json",
+      "bytes": 5144,
+      "sha256": "ddb2babf253aba7458a1e91955ebf272cf66910b31d1ddb8eece2b3ae58200da",
+      "modifiedAt": "2026-10-13T00:05:30.811Z"
+    },
+    {
+      "key": "preview",
+      "name": "project-preview-packaged-result.json",
+      "bytes": 65107,
+      "sha256": "8e041e54358d7e3f5081a98f379ddbe6141c20182faf4ddb04b8dff984bf7450",
+      "modifiedAt": "2026-10-13T00:40:14.173Z"
+    },
+    {
+      "key": "branches",
+      "name": "conversation-branches-packaged-result.json",
+      "bytes": 11795,
+      "sha256": "9e0679ae54ff97bcd3352a1c4433f2547e32dd2f60be5467c7a630ceaf25bd09",
+      "modifiedAt": "2026-10-13T00:40:04.676Z"
+    },
+    {
+      "key": "temporary",
+      "name": "temporary-conversations-packaged-result.json",
+      "bytes": 2074,
+      "sha256": "35a73c6688f26db24b31245764bcf1bb486f7d2d14097206983d789f62d5c3e2",
+      "modifiedAt": "2026-10-13T00:40:05.261Z"
+    },
+    {
+      "key": "comparisons",
+      "name": "model-comparisons-packaged-result.json",
+      "bytes": 7026,
+      "sha256": "15a0dc6b8b29f5b50ca1a16208e944b68feb5e0bba2d519be36b154926d40948",
+      "modifiedAt": "2026-10-13T00:39:59.226Z"
+    },
+    {
+      "key": "portable",
+      "name": "portable-result.json",
+      "bytes": 2092,
+      "sha256": "feb9195422c36b4f26abc9dfa2f8c36d20e2e8b1e44b63c68b21a46a86aa72ac",
+      "modifiedAt": "2026-10-13T00:08:10.680Z"
+    },
+    {
+      "key": "portableAudit",
+      "name": "portable-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "ad6bfef147ec7fceb9563f2c5867e822c6975171c84798745468ad38067bb295",
+      "modifiedAt": "2026-10-13T00:07:53.719Z"
+    },
+    {
+      "key": "bootstrap",
+      "name": "distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "d1143ec0a301d2440ca7adc9746109b63689c332495ea7aaff1ce7a076b08632",
+      "modifiedAt": "2026-10-13T00:07:18.710Z"
+    },
+    {
+      "key": "installer",
+      "name": "pipeline-installer-result.json",
+      "bytes": 780,
+      "sha256": "e752f1be62401c639b6049a9beaf2fbf014c1510172540552a41f3b7688a6cf7",
+      "modifiedAt": "2026-10-13T00:40:19.669Z"
+    }
+  ],
+  "supplementaryRecords": [
+    {
+      "name": "installed-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "e979b86f0b65747d984474bf635f2015c010cddc9782154f414873b64ce4876f"
+    },
+    {
+      "name": "installed-shortcuts-result.json",
+      "bytes": 871,
+      "sha256": "55bfde4028dd1a8ff58e2320a5b0945d6805037664607b855f627cc097b76a40"
+    },
+    {
+      "name": "shell-integration-result.json",
+      "bytes": 984,
+      "sha256": "bacb20befe361d37aebeeb91dc7c3030d772c66b15b2d0fb27e42d5d8c9fe04f"
+    }
+  ],
+  "runtimeToolReceipt": {
+    "completedAt": "2026-10-13T00:41:26.8618623Z",
+    "startedAt": "2026-10-13T00:41:26.8019064Z",
+    "exitCode": 0
+  },
+  "runtimeSourceAcceptanceReview": "E:/NookVerification/CommandPaletteAcceptance-20261013/review.json",
+  "matchingRuntimeRecords": 11,
+  "desktopChecks": 368,
+  "installedChecks": 368,
+  "portableChecks": 7,
+  "executableSha256": "fda82f6e32c981ccb409d928e05fe55ea1adf478a27941382dd36c892c281481",
+  "archiveSha256": "4d856aad039073d8d3cb2fc04b81cbf3003551a40d2b8508f949e928d92d8335",
+  "installerRegistrationVerified": true,
+  "installerShortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "originalMarkersRestored": 8,
+  "passed": true,
+  "scope": "The original eleven-record command passed for the same frozen scoped global-search repair. Both complete package and installed runs retain all original 368 checks, the original six command behaviors, six theme/zoom global-search layouts and twelve additional settled whole native captures, plus every prior editor/worktree/data/exit requirement. Exact focused-source overlays and the fresh 1539-test unit coverage on this commit are retained; no separate development full-suite run is claimed for this CSS change. Actual installation, installed desktop, portable lifecycle and data-preserving uninstall match this package. Physical input, system DPI, complete reference adoption and hosted publication remain separate."
+}

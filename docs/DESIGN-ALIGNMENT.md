@@ -13,10 +13,10 @@
 | 快速聊天与浏览器 | 独立草稿、受限桥接；临时网页标签、导航、停止和重试 | 全部参考流程、持久历史、下载与网站权限 |
 | 字体与品牌 | Nook 独立图标、合法 Inter 与系统中文字体 | 与参考字体和品牌有明确差异，不能宣称逐像素一致 |
 
-参考调用链已确认 `.command-menu-dialog` 是全局命令对话框，宽度上限 520px；现已采用这一上限、92vw 收缩、对应明暗表面和有界定位。新源码通过六组原有命令行为、六组明暗应用缩放与 12 张完整原生捕获；含另四张行为图，共 16 张原图逐张复核。新包与安装尚待验收。[全局搜索专项](../verification/command-palette-acceptance-review-result.json) 输入区锚定快捷浮层的 420px 上限属于另一个入口。
+参考调用链已确认 `.command-menu-dialog` 是全局命令对话框，宽度上限 520px；现已采用这一上限、92vw 收缩、对应明暗表面和有界定位。源码专项、同一新包及实际安装均通过原六组命令行为、六组明暗应用缩放与每轮 12 张完整原生捕获；源码另含四张行为图，共 16 张原图逐张复核。[全局搜索专项](../verification/command-palette-acceptance-review-result.json) 输入区锚定快捷浮层的 420px 上限属于另一个入口。
 
-最新输出通知修复通过 1,539 项单元、51 项相关检查；源码、包内及实际安装后三轮各通过 368 项和 74 次正常退出，无强制结束。源码 21 张、包内与分发专项选定 88 张原图逐张原尺寸检查，包括明暗主题各三档 Electron 应用缩放下的菜单和工具焦点。原五个分发专项及数据保留验收通过；其余原图未全部视觉复核。首次工具专项浅色 150% 捕获的差异尚未唯一诊断，不将重放通过写成界面修复。这些结果不替代物理系统 DPI 或全部参考流程验收。
+当前 `c81b8c38` 新包与实际安装各通过 368 项、74 次正常退出，无强制结束；每轮保留 39 份报告和 560 张原图，236 个编译文件匹配。新包及安装后选定 70 张原图已逐张复核：两轮各 16 张搜索、26 张控件及 12 张文字提示。1,539 项单元、原五个分发专项、便携七项及卸载数据保留通过；其余原图未全部视觉复核。此前工具专项浅色 150% 捕获差异仍未唯一诊断，旧批次与原图范围保留在历史，不将重放通过写成界面修复。这些结果不替代物理系统 DPI 或全部参考流程验收。[本轮原图](../verification/command-palette-package-originals-review-result.json)
 
-[最新源码证据](../verification/command-progress-full-source-review-result.json) · [光标修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)
+[前轮完整源码证据](../verification/command-progress-full-source-review-result.json) · [光标修复与旧包对照](../verification/composer-selection-focus-acceptance-review-result.json) · [控件对照](CONTROL-AUDIT.md) · [发布状态](RELEASE.md)
 
 整理前的全部记录逐字保留在[设计历史](DESIGN-ALIGNMENT-HISTORY-2026-10-13.md)，SHA-256 为 `5312c3f524b04370df8a46b8031bcc8d8757ef8073ba1d017886c85cec3e17fd`；其中各旧包的通过范围、失败现场和剩余要求继续有效。

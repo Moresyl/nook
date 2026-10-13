@@ -1,0 +1,97 @@
+{
+  "reviewedAt": "2026-10-13T00:47:53.509Z",
+  "archive": "E:/NookVerification/CommandPaletteDelivery-20261013",
+  "runtimeBuiltSourceHead": "c81b8c3813cb6580db31c204eda28de65c06915b",
+  "productAndHarnessUnchanged": true,
+  "rounds": [
+    {
+      "kind": "unpacked",
+      "archive": "E:/NookVerification/CommandPaletteFull-unpacked-20261013",
+      "checks": 368,
+      "normalExits": 74,
+      "maximumCloseMs": 1748,
+      "reports": 39,
+      "images": 560
+    },
+    {
+      "kind": "installed",
+      "archive": "E:/NookVerification/CommandPaletteFull-installed-20261013",
+      "checks": 368,
+      "normalExits": 74,
+      "maximumCloseMs": 1677,
+      "reports": 39,
+      "images": 560
+    }
+  ],
+  "phases": [
+    {
+      "phase": "surfaces",
+      "archive": "E:/NookVerification/CommandPalettePhase-surfaces-20261013",
+      "exitCode": 0
+    },
+    {
+      "phase": "text-hints",
+      "archive": "E:/NookVerification/CommandPalettePhase-text-hints-20261013",
+      "exitCode": 0
+    },
+    {
+      "phase": "renderer-close",
+      "archive": "E:/NookVerification/CommandPalettePhase-renderer-close-20261013",
+      "exitCode": 0
+    },
+    {
+      "phase": "bootstrap",
+      "archive": "E:/NookVerification/CommandPalettePhase-bootstrap-20261013",
+      "exitCode": 0
+    },
+    {
+      "phase": "portable",
+      "archive": "E:/NookVerification/CommandPalettePhase-portable-20261013",
+      "exitCode": 0
+    }
+  ],
+  "initialPhasePreflightExitCode": 1,
+  "initialPreflightStartedNoPhase": true,
+  "originalDeadlinesAssertionsAndStorageGuardsRetained": true,
+  "matchingRuntimeRecords": 11,
+  "originalMarkersRestored": true,
+  "individuallyReviewedCurrentPackageOriginals": 70,
+  "candidateReleaseNotesSha256": "ab506d9277cf93c691cf051e25b452037f895970fee2b77e743ee69f70eaf453",
+  "candidateReleaseNotesPrepared": true,
+  "releasePublished": false,
+  "docs": [
+    {
+      "file": "CHANGELOG.md",
+      "bytes": 6408,
+      "sha256": "1d23feddf219639eda918c93d0c8e732f85892a8c6491c4b1e7ecaa1a494b486"
+    },
+    {
+      "file": "docs/RELEASE.md",
+      "bytes": 4240,
+      "sha256": "b40a56f2a8d7a50fdc383242aa68e838f58aa1b42b42abba1e9a8a9d087f1c77"
+    },
+    {
+      "file": "docs/DESIGN-ALIGNMENT.md",
+      "bytes": 3505,
+      "sha256": "c4c4c759f973859f69db9fa81c1fdf828ed6ce93df457d6a8c92cf9993abb8e0"
+    },
+    {
+      "file": "docs/CONTROL-AUDIT.md",
+      "bytes": 3855,
+      "sha256": "b360206c54341c51c150d0a8c04ab416c2c6a8c2421eda0eab15fd5a950f50bb"
+    },
+    {
+      "file": "docs/CAPABILITIES.md",
+      "bytes": 3949,
+      "sha256": "e5a94d4111a277d53b4567cda72948bffeb884dabba03f81f1384a929f198be9"
+    }
+  ],
+  "histories": {
+    "docs/RELEASE-HISTORY-2026-10-13-COMMAND-PALETTE.md": "a82bcb946f9acf3aa84461bca7b2471ede6ecb4537b38e96e8547508b6d07f86",
+    "docs/CHANGELOG-HISTORY-2026-10-13-COMMAND-PROGRESS.txt": "207877c6c7340fb6b0df6c3ee069b408ef987d9e981ab17666ec1526f67b2f36",
+    "docs/DESIGN-ALIGNMENT-HISTORY-2026-10-13.md": "5312c3f524b04370df8a46b8031bcc8d8757ef8073ba1d017886c85cec3e17fd",
+    "docs/CONTROL-AUDIT-HISTORY-2026-10-13.md": "daa72af4fd6871649e97b4d5435daf7563f98628df080737571801a9b495cc03",
+    "docs/CAPABILITIES-HISTORY-2026-10-13.md": "6cdcbd746f22853316b81b612e6522d45341a3cf6d44480cb99ec9ee8ae81bc7"
+  },
+  "scope": "Complete current-package local delivery closure and concrete bilingual candidate notes. The first missing-tool-path preflight and browser authentication failure are retained. Product/harness files did not change during the final document update. Earlier source/native failures, partial visual-review boundaries, remaining reference/physical/cloud/platform requirements and blocked original hosted workflow remain distinct; no tag or release was published."
+}

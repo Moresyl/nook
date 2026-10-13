@@ -1,0 +1,129 @@
+{
+  "verifiedAt": "2026-10-13T00:07:19.758Z",
+  "phase": "bootstrap",
+  "attempt": "",
+  "archive": "E:/NookVerification/CommandPalettePhase-bootstrap-20261013",
+  "sourceHead": "c81b8c3813cb6580db31c204eda28de65c06915b",
+  "runtimeBuiltHead": "c81b8c3813cb6580db31c204eda28de65c06915b",
+  "startedAt": "2026-10-13T00:07:11.6722573Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "fda82f6e32c981ccb409d928e05fe55ea1adf478a27941382dd36c892c281481",
+  "archiveSha256": "4d856aad039073d8d3cb2fc04b81cbf3003551a40d2b8508f949e928d92d8335",
+  "reports": {
+    "distribution-bootstrap-result.json": {
+      "verifiedAt": "2026-10-13T00:07:18.686Z",
+      "archiveToolSha256": "6ee3c0ed0b27663c1b948ae85a7c0bb073aed1498983182f3f0df1f6a8c30b2f",
+      "variants": [
+        {
+          "variant": "installer",
+          "executableSha256": "a7f36087315d8517ec1b30c779fde4bbe7e96fceb256d76bb09174e2e52ac758",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "UAC.dll",
+              "component": "UAC plugin",
+              "redistributionStatus": "verified",
+              "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            },
+            {
+              "file": "nsDialogs.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+            },
+            {
+              "file": "nsExec.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+            },
+            {
+              "file": "nsis7z.dll",
+              "component": "nsis7z 19.00",
+              "redistributionStatus": "verified",
+              "sha256": "b393f05e8ff919ef071181050e1873c9a776e1a0ae8329aefff7007d0cadf592"
+            }
+          ]
+        },
+        {
+          "variant": "uninstaller",
+          "executableSha256": "c24def3e8df647c4a4401122d6a439cdf0a813871a5bfa4799cf52fd50e3f46d",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "nsDialogs.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+            },
+            {
+              "file": "UAC.dll",
+              "component": "UAC plugin",
+              "redistributionStatus": "verified",
+              "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            },
+            {
+              "file": "nsExec.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+            }
+          ]
+        },
+        {
+          "variant": "portable",
+          "executableSha256": "2d7a50c92c527f4ef6a25317d822c3bf6e1d448f57abb03fe38acd3e3890f96f",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            }
+          ]
+        }
+      ],
+      "scope": "Actual NSIS installer, embedded uninstaller and portable bootstrap plugin inventories and exact original plugin hashes. Unresolved declarations remain explicit and fail the separate release gate. Application directory/source retention, runtime behavior, signatures, fonts and release approval remain separate checks."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 0,
+  "maximumCloseMs": null,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release."
+}
