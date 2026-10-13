@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
+import { taskPlanProof } from './task-plan-release-fixture';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -78,6 +79,8 @@ function proof(): ReleaseProof {
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: memorySettings(), projectPreview: { checks: 10, outsideHttpRequests: 0, editorTabs: editorTabs(), docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
+  desktop.checks = 383;
+  Object.assign(desktop, { taskPlans: taskPlanProof() });
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
     preview: { ...desktop, ...structuredClone(desktop.projectPreview) },
@@ -777,6 +780,11 @@ describe('release version and notes', () => {
 });
 
 describe('Windows release execution evidence', () => {
+  it('rejects a prior complete suite and missing or incomplete task-plan evidence', () => {
+    const prior = proof(); prior.desktop.checks = 375; expect(() => verifyRuntimeProof(prior)).toThrow('Complete desktop');
+    const absent = proof(); delete absent.desktop.taskPlans; expect(() => verifyRuntimeProof(absent)).toThrow('Complete task-plan');
+    const partial = proof(); partial.desktop.taskPlans!.checks = 7; expect(() => verifyRuntimeProof(partial)).toThrow('Complete task-plan');
+  });
   it('rejects retained installed or portable results for a different audited wrapper even when their application body is identical', () => {
     const installed = proof(); installed.installer.installerSha256 = otherHash;
     const portable = proof(); portable.bootstrap.variants.find((variant) => variant.variant === 'portable')!.executableSha256 = otherHash;

@@ -95,6 +95,34 @@ export function verifySettingsSearchProof(settings) {
   }
 }
 
+export function verifyTaskPlanProof(proof) {
+  const themes = ['light', 'dark'];
+  const sizes = [[1280, 840], [760, 540]];
+  const zooms = [1, 1.25, 1.5];
+  const expected = themes.flatMap(theme => [
+    ...sizes.flatMap(size => zooms.map(zoom => `task-plans-${theme}-${size[0]}-${zoom * 100}.png`)),
+    `task-plans-${theme}-760-150-last-step.png`,
+  ]).concat(['task-plans-stopped.png', 'task-plans-restart.png']);
+  const flags = ['actualReadOnlyTool', 'rawToolRecordsPreserved', 'projectFilesUnchanged', 'noPlanDocument', 'invalidUpdateRetainsPlan', 'stoppedStateAccurate', 'plainTextRendering', 'actualRestart', 'noModelReplay'];
+  const layouts = Array.isArray(proof?.layouts) && proof.layouts.length === 12
+    && themes.every(theme => sizes.every(size => zooms.every(zoom => proof.layouts.filter(row => row?.theme === theme && row.zoom === zoom && Array.isArray(row.size) && row.size.length === 2 && row.size[0] === size[0] && row.size[1] === size[1]).length === 1)))
+    && proof.layouts.every(row => row.contained === true && row.headerVisible === true && row.horizontalOverflow === false && row.padding === '12px' && row.count === 3
+      && typeof row.border === 'string' && /^\d+(?:\.\d+)?px$/.test(row.border) && Math.abs(Number.parseFloat(row.border) - Math.floor(row.zoom) / row.zoom) < 0.00001
+      && Array.isArray(row.rows) && row.rows.length === 3 && row.rows.every(step => step && step.contained === true
+        && ['top', 'bottom', 'readableTop', 'readableBottom'].every(key => Number.isFinite(step[key]))
+        && step.bottom > step.top && step.readableBottom > step.readableTop && step.top >= step.readableTop - 1 && step.bottom <= step.readableBottom + 1));
+  const screenshots = Array.isArray(proof?.screenshots) && proof.screenshots.length === expected.length
+    && expected.every(name => proof.screenshots.filter(filename => filename === name).length === 1);
+  const captures = Array.isArray(proof?.nativeCaptureSizes) && proof.nativeCaptureSizes.length === expected.length
+    && expected.every(name => proof.nativeCaptureSizes.filter(row => row?.filename === name).length === 1)
+    && proof.nativeCaptureSizes.every(row => Array.isArray(row.size) && row.size.length === 2
+      && row.size[0] === (row.filename.includes('-760-') ? 760 : 1280)
+      && row.size[1] === (row.filename.includes('-760-') ? 540 : 840));
+  if (proof?.checks !== 8 || !flags.every(key => proof[key] === true) || !layouts || !screenshots || !captures) {
+    throw new Error('Complete task-plan preservation, per-step reachability and whole native capture verification is required');
+  }
+}
+
 export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches, temporary, comparisons, portable, portableAudit, bootstrap, installer }) {
   if (![audit.executableSha256, audit.archiveSha256, portable.wrapperSha256].every((hash) => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash))) {
     throw new Error('Release proof requires complete SHA-256 values');
@@ -107,11 +135,12 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 375 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 383 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   verifyComposerActionsProof(desktop.composerActions);
   verifySettingsSearchProof(desktop.settingsSearch);
+  verifyTaskPlanProof(desktop.taskPlans);
   const context = desktop.contextSummaries;
   const roots = desktop.worktreeSettings;
   const overview = desktop.worktreeOverview;

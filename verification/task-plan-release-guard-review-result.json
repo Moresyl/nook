@@ -1,0 +1,73 @@
+{
+  "verifiedAt": "2026-10-13T19:03:34.939Z",
+  "archive": "C:/NookVerificationOverflow/TaskPlanReleaseGuard-20261014",
+  "baseHead": "64501b13dc22a2d576f035a0052d153b9de5164f",
+  "typeExit": 0,
+  "unitExit": 0,
+  "testFiles": 2,
+  "tests": 138,
+  "frozenInputs": [
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "4a31c6975046343fb6a1ace26e59c02f6e91e180e72c60bf03502712c0ad3f09",
+      "bytes": 56904
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "1065d52f166805cfdc313948890f1a9b70e587e7ed6d45fb5b5e60fb60525afb",
+      "bytes": 23734
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "16a97ed65b999a114dc2f963a3c6e1ea91859f302fac73ed9e6319561c60beab",
+      "bytes": 26864
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "bdd85e47cf4891331b1ad984e63624e4205afea6b361eea3618dcc19bb2a1995",
+      "bytes": 123264
+    },
+    {
+      "path": "verification/task-plan-release-fixture.ts",
+      "sha256": "a2c85e17b84d5b76ff88a05c58d8adffc731fdb8f4ab7ea933978609039ffe52",
+      "bytes": 1292
+    },
+    {
+      "path": "verification/task-plan-release.test.ts",
+      "sha256": "117f8f12fdf3a632478b819bf04a102cd17e24a6a27310e52583c530d29e47df",
+      "bytes": 4877
+    }
+  ],
+  "inputsUnchanged": true,
+  "nativeReports": [
+    {
+      "kind": "source",
+      "archive": "E:/NookVerification/TaskPlanFull-source-retry1-20261014",
+      "name": "electron-result.json",
+      "sha256": "679b697489b67c8e1703242bf5896db0f6c02bc9a4db6b6547ee72313c8dc58d",
+      "sourceHead": "b2fe8b41566d5dd298b6ec7110ac0f5e79c01196",
+      "checks": 383,
+      "strictTaskPlanProofAccepted": true
+    },
+    {
+      "kind": "unpacked",
+      "archive": "E:/NookVerification/TaskPlanFull-unpacked-20261014",
+      "name": "packaged-result.json",
+      "sha256": "8b9bdfcd2ba0c703ca53647525d3ebdb9e52f659da6306f236f672df0bb2a687",
+      "sourceHead": "94263fda9dda82df1ed8f00d06f33e08ff3f2c0b",
+      "checks": 383,
+      "strictTaskPlanProofAccepted": true
+    }
+  ],
+  "completeDesktopMinimum": 383,
+  "requiredTaskPlanChecks": 8,
+  "requiredLayouts": 12,
+  "requiredNativeCaptures": 16,
+  "originalOtherGatesAndDeadlinesRetained": true,
+  "activeProductSourceUnchanged": true,
+  "originalWorkflowUnchanged": true,
+  "combinedSourceCoveragePending": true,
+  "actualInstalledVerificationPending": true,
+  "published": false,
+  "scope": "Stricter release and installer proof checks tested in an isolated worktree, including rejection of old totals, missing or nonboolean state records, absent or duplicate layouts, unreadable step bounds, missing screenshots and clipped native dimensions. Both complete source and unpacked raw reports pass the new task-plan gate. This changes validation scripts only; it does not rebuild or relabel the accepted application, complete installation or replace final combined-source coverage."
+}
