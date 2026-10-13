@@ -34,6 +34,8 @@
 
 ## 剩余交付
 
+第三次原[托管流水线 38425482322](https://github.com/Moresyl/nook/actions/runs/38425482322) 对提交 `544c8c9` 的验证任务执行零步骤。GitHub 注释明确指出近期账户付款失败或需要提高额度；任务日志实际不存在，获取日志的失败单独保留。因此该次运行没有验证新读取优化的托管结果。未修改付款或额度设置，仍无标签和已发布版本。[本次零步骤与平台注释](../verification/worktree-read-performance-hosted-review-result.json)
+
 第二次原[托管流水线 38421009903](https://github.com/Moresyl/nook/actions/runs/38421009903) 的 1,557 项中 1,556 通过，仅真实工作树清理用例超过原 5 秒期限，后续打包未执行。现将只读身份查询限制为四项一批，并并行执行三个独立 Git 元数据读取；删除操作继续串行，所有身份、索引与删除前复查保留。新增混合回执与读取失败等待检查，全部 1,559 项与原覆盖率门槛通过。首次新增 Windows 夹具写入隐藏 `.git` 文件的失败保留，按已有 `r+` 模式修正后通过。该源码需要新构建、完整原生与分发回归，并重跑原流水线。[第二次托管失败](../verification/hosted-test-performance-rerun-terminal-review-result.json) · [新读取验证与原失败记录](../verification/worktree-read-performance-review-result.json)
 
 - 补齐当前应用体的安装、便携和分发回归。
