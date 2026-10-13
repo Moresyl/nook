@@ -2,6 +2,10 @@
 
 ## 未发布
 
+工作树的只读身份校验按四项一批执行，快照的三个独立 Git 元数据读取并行完成；读取失败先等待所有查询结束。回执顺序、失效记录、原文件与索引校验、删除前复查和串行删除保留。新增两项相关检查，完整 1,559 项与原覆盖率门槛通过；新应用体的构建、原生、分发与托管验收仍待完成。第二次托管运行只剩一项清理超时，其失败日志保留。
+
+Worktree identities are verified in bounded batches of four, and three independent snapshot metadata reads run concurrently. Failed reads settle before returning; receipt order, stale records, file/index validation and every deletion recheck remain. Deletion stays sequential. All 1,559 tests pass the original coverage gate; fresh build, native, distribution and hosted acceptance of this body remain pending.
+
 修正托管测试的额外开销：大字节样本使用完整字节相等比较，真实工作树夹具减少重复配置进程和与清理无关的创建步骤。原超时、大样本、所有权与完整快照验证保留，生产逻辑和流水线不变。六文件／134 项专项、全部 1,557 项及原 80% 覆盖率门槛通过；此前六项托管超时日志保留，仍须重跑原流水线。
 
 Large-buffer assertions now compare every byte directly, and real Git fixtures avoid redundant setup processes. Existing deadlines, large fixtures, ownership and complete snapshot checks remain. Six focused files and all 1,557 tests pass the original coverage gate; production behavior and the workflow are unchanged. The failed hosted run is preserved and requires a fresh rerun.

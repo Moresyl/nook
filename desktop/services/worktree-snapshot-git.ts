@@ -48,10 +48,16 @@ export async function captureWorktreeSnapshotGit(root: string, command: typeof r
     if (paths.length !== 2 || paths.some(path => !isAbsolute(path))) throw new Error(failure);
     const commonPath = await realpath(paths[0]), commonInfo = await lstat(paths[0], { bigint: true });
     if (!commonInfo.isDirectory() || commonInfo.isSymbolicLink() || commonInfo.ino === 0n || canonical(commonPath) !== canonical(resolve(paths[0]))) throw new Error(failure);
-    if (text(await command(actual, ['rev-parse', '--shared-index-path']))) throw new Error('Convert the split index to an ordinary index before making a worktree snapshot.');
-    const config = text(await command(actual, ['config', '--null', '--list']));
+    const metadata = await Promise.allSettled([
+      command(actual, ['rev-parse', '--shared-index-path']),
+      command(actual, ['config', '--null', '--list']),
+      command(actual, ['rev-parse', '--verify', 'HEAD']),
+    ]);
+    const [sharedIndex, configuration, revision] = metadata.map(result => { if (result.status === 'rejected') throw result.reason; return result.value; });
+    if (text(sharedIndex)) throw new Error('Convert the split index to an ordinary index before making a worktree snapshot.');
+    const config = text(configuration);
     if (config.split('\0').some(entry => /^(?:core\.(?:sparsecheckout|fsmonitor)|extensions\.worktreeconfig)\n(?!false$|0$).+/i.test(entry))) throw new Error('Disable sparse or monitored indexes before making a worktree snapshot.');
-    const head = text(await command(actual, ['rev-parse', '--verify', 'HEAD']));
+    const head = text(revision);
     if (!/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(head)) throw new Error(failure);
     const index = await regularBytes(paths[1]), objects = new Set([head]);
     const staged = text(await command(actual, ['ls-files', '--stage', '-z']));

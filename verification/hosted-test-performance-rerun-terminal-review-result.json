@@ -1,0 +1,129 @@
+{
+  "checkedAt": "2026-10-13T15:37:40.903Z",
+  "archive": "C:/NookVerificationOverflow/HostedTestPerformanceRerun-20261013",
+  "head": "ed5707d15a2abebdd5b777a805cf307fade822a0",
+  "workflow": {
+    "id": 38421009903,
+    "url": "https://github.com/Moresyl/nook/actions/runs/38421009903",
+    "status": "completed",
+    "conclusion": "failure",
+    "jobs": [
+      {
+        "id": 115378003057,
+        "name": "verify",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "conclusion": "success"
+          },
+          {
+            "name": "Prepare isolated temporary storage and pinned dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify types, unit coverage and complete redistribution notices",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Build the audited Windows installer and portable executable",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify the complete packaged desktop and settings",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify actual bootstrap plugins and portable execution",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify current-user installation, installed desktop and data-preserving uninstall",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Verify matching complete runtime records",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Prepare exact tagged source, bilingual notes and checksums",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Preserve verification diagnostics",
+            "conclusion": "success"
+          },
+          {
+            "name": "Upload the complete verified release bundle",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 115383081409,
+        "name": "publish",
+        "conclusion": "skipped",
+        "steps": []
+      }
+    ],
+    "annotations": [
+      "Process completed with exit code 1.",
+      "Error: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ verification/worktree-cleanup.test.ts:154:3\n\n"
+    ]
+  },
+  "tests": {
+    "total": 1557,
+    "passed": 1556,
+    "failed": 1,
+    "files": 133,
+    "failedFiles": 1,
+    "durationSeconds": 471.83,
+    "failedCase": "worktree-cleanup.test.ts:154 trims only the oldest clean local trees while retaining the newest requested count and one complete snapshot per removal",
+    "failure": "Original 5000ms deadline exceeded."
+  },
+  "evidence": [
+    {
+      "name": "run-terminal.json",
+      "sha256": "a644780d6445063df27d68c27b3dbf9583e12cb3625de88b70228b6634c3311d"
+    },
+    {
+      "name": "jobs-terminal.json",
+      "sha256": "4c3a37604891fc0ec1b87967913bf46ceaaa02a2f54f2755832ced3de0baeedd"
+    },
+    {
+      "name": "annotations-terminal-115378003057.json",
+      "sha256": "7e894912abf681a965d383ae3bb8b04e72d6455514b4436ed97d1f63968be1a5"
+    },
+    {
+      "name": "annotations-terminal-115383081409.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "failed-job.log",
+      "bytes": 93706,
+      "sha256": "9e04e12194583aba9bee6eb3efed45cfbde6a927d85f27d3810f8c6fc6fa3f37"
+    }
+  ],
+  "published": false,
+  "scope": "Second original hosted attempt after the test-only setup and exact-byte comparison repair. Five previously failing cases pass, but one real cleanup case still exceeds its original deadline. Subsequent package/release steps were skipped. Bounded read-only query optimizations require separate fresh verification; no resolved hosted result is claimed."
+}

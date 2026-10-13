@@ -1,0 +1,114 @@
+{
+  "verifiedAt": "2026-10-13T15:48:32.470Z",
+  "archive": "C:/NookVerificationOverflow/WorktreeReadPerformanceRetry1-20261013",
+  "sourceHead": "ed5707d15a2abebdd5b777a805cf307fade822a0",
+  "sourcePatchSha256": "35fcaab0e33b1a343d427ac40aa051873ebbbb12aa55c7e387f3c0223dcf81c2",
+  "inputs": [
+    {
+      "path": "desktop/services/worktree-ownership.ts",
+      "bytes": 11827,
+      "sha256": "9cb291b6b65d48d560a3593b7bbe591101ca6aa6dc6cf4dae0a969823e20a0cf"
+    },
+    {
+      "path": "desktop/services/worktree-snapshot-git.ts",
+      "bytes": 6628,
+      "sha256": "dc7fd28ac397349cc21aec78890bd8463f3f8791237d4225a3838bc94951a69c"
+    },
+    {
+      "path": "verification/worktree-ownership.test.ts",
+      "bytes": 22904,
+      "sha256": "9f04f6508830a9c1edbb8c9d48c63511df9eb7e57a1e0d51918441d32f5ae4cd"
+    },
+    {
+      "path": "verification/worktree-snapshot-git.test.ts",
+      "bytes": 12290,
+      "sha256": "cc1be874bff5925747a9406daff772d690a913b7f7cefcc94c4741c6e99ff942"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "check",
+      "sourceHead": "ed5707d15a2abebdd5b777a805cf307fade822a0",
+      "startedAt": "2026-10-13T15:40:34.6415215+00:00",
+      "finishedAt": "2026-10-13T15:40:40.6996616+00:00",
+      "exitCode": 0,
+      "logSha256": "420f95105ea8ea4b1ed50e2dd13241d2147a1da915bbb01ad841e2c586a45924"
+    },
+    {
+      "phase": "focused",
+      "sourceHead": "ed5707d15a2abebdd5b777a805cf307fade822a0",
+      "startedAt": "2026-10-13T15:40:40.7139205+00:00",
+      "finishedAt": "2026-10-13T15:40:42.8405574+00:00",
+      "exitCode": 0,
+      "logSha256": "aeb8ebec004d749c9e3d4fbe1b377963f729ce2ea8b396ba1158152dc58fc44a"
+    },
+    {
+      "phase": "test-coverage",
+      "sourceHead": "ed5707d15a2abebdd5b777a805cf307fade822a0",
+      "startedAt": "2026-10-13T15:40:42.8424739+00:00",
+      "finishedAt": "2026-10-13T15:46:57.6064499+00:00",
+      "exitCode": 0,
+      "logSha256": "c78bbff6b9bbf9fef54722d7468a26a4c4abf04179fb932268c57a5bc70218ac"
+    }
+  ],
+  "initialFocusedAttempt": {
+    "archive": "C:/NookVerificationOverflow/WorktreeReadPerformance-20261013",
+    "actualExitCode": 1,
+    "tests": 148,
+    "passed": 147,
+    "failed": 1,
+    "failure": "New Windows test fixture used writeFile on a hidden Git pointer. Corrected to the existing r+ pattern; product queries were unchanged.",
+    "sourcePatchSha256": "36a2d094dbe2ecd49d43790e6ac3104764ef8bddf282d6bbb4ceb1afb846c251",
+    "reportSha256": "1bd9d61667dc88e617468cbe9a70f585a9ad991f54c1723461c7c124d13608d2"
+  },
+  "correctedFocusedTests": 1,
+  "tests": 1559,
+  "files": 133,
+  "coverage": {
+    "lines": {
+      "total": 4527,
+      "covered": 4504,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7528,
+      "covered": 7305,
+      "skipped": 0,
+      "pct": 97.03
+    },
+    "functions": {
+      "total": 1674,
+      "covered": 1637,
+      "skipped": 0,
+      "pct": 97.78
+    },
+    "branches": {
+      "total": 5274,
+      "covered": 4988,
+      "skipped": 0,
+      "pct": 94.57
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "readOnlyIdentityConcurrencyLimit": 4,
+  "independentMetadataRequests": 3,
+  "metadataFailuresAwaitAllReads": true,
+  "receiptOrderRetained": true,
+  "deletionOperationsParallelized": false,
+  "originalDeadlinesRetained": true,
+  "largeFixtureBoundsRetained": true,
+  "originalWorkflowRetained": true,
+  "hostedPriorAttemptArchive": "C:/NookVerificationOverflow/HostedTestPerformanceRerun-20261013",
+  "hostedCurrentAccepted": false,
+  "newCompiledBodyAccepted": false,
+  "nativeCurrentAccepted": false,
+  "distributionAccepted": false,
+  "published": false,
+  "scope": "Bounded read-only identity checks and three independent metadata queries reduce validation latency while preserving every ownership, Git/index fingerprint and deletion recheck. The new mixed-receipt and held-metadata failure tests plus all original tests pass. Earlier 375-check native acceptance belongs to the previous body; these production query changes require a fresh compiled/native/distribution round and original hosted rerun."
+}

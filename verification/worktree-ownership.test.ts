@@ -186,6 +186,18 @@ describe('local worktree creation receipts', () => {
     expect(await manager.list(root)).toEqual([{ ...receipt, pinned: true }]);
   });
 
+  it('preserves receipt ordering and independent verification when one of several real Git pointers changes', async () => {
+    const { directory, root, path, file, manager } = await fixture(), receipts = [await manager.recordCreated(root, path)];
+    for (const name of ['second', 'third']) { const target = join(directory, name); await git(root, ['worktree', 'add', '-b', `feature/${name}`, '--', target]); receipts.push(await manager.recordCreated(root, target)); }
+    await manager.setPinned(root, { path: receipts[2].path, pinned: true }); const before = await readFile(file);
+    const marker = join(receipts[1].path, '.git'), original = await readFile(marker, 'utf8');
+    const changed = Buffer.from(original.endsWith('\r\n') ? original.replace(/\r\n$/, '\n') : original.replace(/\n$/, '\r\n')), handle = await open(marker, 'r+');
+    try { await handle.writeFile(changed); await handle.truncate(changed.length); } finally { await handle.close(); }
+    const listed = await manager.list(root); expect(listed.map(record => record.id)).toEqual(receipts.map(record => record.id));
+    expect(listed.map(record => record.verified)).toEqual([true, false, true]); expect(listed.map(record => record.pinned)).toEqual([false, false, true]);
+    expect((await readFile(file)).equals(before)).toBe(true); expect(await readFile(join(root, '原文.txt'), 'utf8')).toBe('EXACT_SOURCE\n');
+  });
+
   it('detects changed Git pointer bytes, retains the marker and refuses pinning', async () => {
     const { root, path, file, manager } = await fixture(); await manager.recordCreated(root, path); const before = await readFile(file), marker = join(path, '.git');
     const original = await readFile(marker, 'utf8'), changed = Buffer.from(original.endsWith('\r\n') ? original.replace(/\r\n$/, '\n') : original.replace(/\n$/, '\r\n'));

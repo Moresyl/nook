@@ -75,6 +75,20 @@ describe('complete bounded Git snapshot objects', () => {
     await git(source, 'update-index', '--no-split-index'); const blob = await git(source, 'rev-parse', 'HEAD:file.txt'); await git(source, 'update-index', '--add', '--cacheinfo', `120000,${blob},link`);
     const linked = await readFile(join(source, '.git', 'index')); await expect(captureWorktreeSnapshotGit(source)).rejects.toThrow('retained'); expect(await readFile(join(source, '.git', 'index'))).toEqual(linked);
   });
+  it('settles all read-only metadata requests before rejecting a failed query and retains the exact source index', async () => {
+    const { source } = await fixture(), index = await readFile(join(source, '.git', 'index'));
+    let entered!: () => void, release!: () => void, settled = false;
+    const started = new Promise<void>(resolve => { entered = resolve; }), held = new Promise<void>(resolve => { release = resolve; });
+    const command: typeof runGitSnapshotCommand = async (root, args, input, maximum) => {
+      if (args[0] === 'config') throw new Error('PRIVATE_METADATA_FAILURE');
+      if (args[0] === 'rev-parse' && args.includes('--verify')) { entered(); await held; }
+      return runGitSnapshotCommand(root, args, input, maximum);
+    };
+    const pending = captureWorktreeSnapshotGit(source, command).finally(() => { settled = true; }), rejected = expect(pending).rejects.toThrow('retained');
+    await started; try { expect(settled).toBe(false); } finally { release(); }
+    await rejected; expect((await readFile(join(source, '.git', 'index'))).equals(index)).toBe(true);
+  });
+
   it('bounds command output, rejects malformed packs, preserves ordinary files and hides Git diagnostics', async () => {
     const { source } = await fixture();
     await expect(runGitSnapshotCommand(source, ['rev-parse', 'HEAD'], Buffer.alloc(0), 1)).rejects.toThrow('retained');

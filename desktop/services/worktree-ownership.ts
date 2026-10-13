@@ -106,10 +106,13 @@ export class WorktreeOwnership {
       const records = ledger.records.filter(row => worktreePathKey(row.identity.common.path) === worktreePathKey(common.path));
       const snapshot = { common, trees: records.length ? await this.readWorktrees(root).catch(() => []) : [] };
       const result: ManagedWorktree[] = [];
-      for (const record of records) {
-        let verified = false;
-        try { verified = same(record.identity, await this.identity(root, record.identity.directory.path, snapshot)); } catch { /* A stale receipt never grants ownership. */ }
-        result.push({ id: record.id, path: record.identity.directory.path, createdAt: record.createdAt, pinned: record.pinned, verified, ...(record.conversationIds ? { conversationIds: [...record.conversationIds] } : {}) });
+      for (let offset = 0; offset < records.length; offset += 4) {
+        const batch = await Promise.all(records.slice(offset, offset + 4).map(async record => {
+          let verified = false;
+          try { verified = same(record.identity, await this.identity(root, record.identity.directory.path, snapshot)); } catch { /* A stale receipt never grants ownership. */ }
+          return { id: record.id, path: record.identity.directory.path, createdAt: record.createdAt, pinned: record.pinned, verified, ...(record.conversationIds ? { conversationIds: [...record.conversationIds] } : {}) };
+        }));
+        result.push(...batch);
       }
       return result;
     });
