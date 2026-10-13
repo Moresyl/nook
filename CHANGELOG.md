@@ -6,6 +6,10 @@
 
 The composer now uses the current 22px default radius and a smaller light shadow below a 40rem CSS viewport. Fresh type checks, build and thirteen homepage checks pass, with two normal exits and thirteen individually reviewed captures. This host's physical display scale is 100%; full distribution of the new body and hosted publication remain separate.
 
+当前输入框应用体完成 375 项完整源码桌面回归、74 次正常退出，最长 1,712ms，无强制结束；39 份新报告、617 张原图及准确编译文件归档。旧 24px 测试期望的首轮失败现场保留，只修正为实际 22px 后重跑通过。发布状态和界面验收说明整理为当前状态页，旧中英文记录逐字保留并链接；没有取消验收要求或宣称新包已经通过。
+
+The current composer body passes 375 complete source desktop checks with 74 normal exits and no forced termination. Reports, 617 original captures and exact compiled files are archived; captures have not all been visually reviewed. The obsolete radius assertion's initial failure is preserved. Release and UI notes now separate current status from byte-preserved history; packaged and installed validation remain pending.
+
 原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项通过，源码、新包和实际安装各通过 375 项／74 次正常退出，无强制结束。
 
 Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks pass; source, packaged and installed runtimes each pass 375 checks with 74 normal exits. The failed scene is retained.
