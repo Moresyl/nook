@@ -165,6 +165,10 @@ export async function verifyQuickChat({ page, application, getApplication, direc
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
     await quick.waitForFunction(theme => document.documentElement.dataset.theme === theme, theme);
     await application.evaluateMain(`(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat');window.setSize(420,360);window.webContents.setZoomFactor(${zoom});})()`);
+    assert.deepEqual(await quick.getByLabel('快速聊天会话', { exact: true }).evaluate(element => {
+      const style = getComputedStyle(element);
+      return { height: style.height, left: style.paddingLeft, right: style.paddingRight, gap: style.gap };
+    }), { height: '22px', left: '6px', right: '6px', gap: '4px' }, 'The quick-chat header keeps its compact selector independent of medium form defaults');
     for (const label of ['添加附件', '选择助手', '选择项目', ...(state === 'attachment-long-input' ? ['工作模式'] : [])]) {
       const control = quick.getByLabel(label, { exact: true }); await control.focus();
       assert.equal(await control.evaluate(element => { const bounds = element.getBoundingClientRect(), hit = document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2); return Boolean(hit && (hit === element || element.contains(hit))); }), true, `${label} must remain reachable by keyboard in the minimum window.`);
