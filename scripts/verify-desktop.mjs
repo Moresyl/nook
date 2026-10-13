@@ -727,7 +727,7 @@ try {
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_MEMORIES_ONLY) {
     memoriesResult = await verifyMemories({ page, application, directory, screenshots, projectDirectory, waitForBridge, verified });
-    assert.equal(count, 3); assert.deepEqual(errors, []);
+    assert.equal(count, 5); assert.deepEqual(errors, []);
   } else if (process.env.QIYAO_TEST_TEXT_HINTS_ONLY) {
     const { verifyTextHints } = await import('./verify-text-hints.mjs');
     textHintResult = await verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge });
