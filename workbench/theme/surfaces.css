@@ -730,9 +730,12 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-discard-dialog .modal-content { padding: 12px 24px 24px; max-height: none; font-size: 14px; line-height: 20px; }
 .settings-discard-dialog .modal-footer { padding: 0 24px 24px; border: 0; gap: 12px; flex-wrap: wrap; }
 .settings-discard-dialog .modal-footer .button { min-height: 32px; padding: 6px 12px; font-size: 14px; }
-.memory-delete-dialog.modal { position: fixed; inset: auto; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%); width: min(520px, 92vw); height: auto; max-height: 92dvh; border-radius: 20px; }
-.memory-delete-dialog .modal-header { padding: 20px 20px 0; border: 0; align-items: flex-start; }
-.memory-delete-dialog .modal-header h2 { font-size: 20px; line-height: 28px; letter-spacing: -.36px; font-weight: 590; }
+.memory-delete-dialog.modal { --memory-dialog-top: max(10dvh, calc((100dvh - 760px) / 2)); --memory-dialog-background: var(--gray-fixed-0); position: fixed; inset: auto; top: var(--memory-dialog-top); left: 50%; margin: 0; transform: translateX(-50%); width: min(520px, 92vw); height: auto; max-height: calc(100dvh - var(--memory-dialog-top) - 16px); border: 0; border-radius: 20px; background: color-mix(in oklab, var(--memory-dialog-background) 90%, transparent); box-shadow: 0 0 0 .5px var(--color-border), var(--shadow-lg); backdrop-filter: blur(24px); }
+[data-theme='dark'] .memory-delete-dialog { --memory-dialog-background: var(--gray-fixed-900); }
+.memory-delete-dialog::backdrop { background: #0002; backdrop-filter: none; }
+.memory-delete-dialog .modal-header { padding: 20px 52px 0 20px; border: 0; align-items: flex-start; }
+.memory-delete-dialog .modal-header .icon-button { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.memory-delete-dialog .modal-header h2 { font-size: 20px; line-height: 28px; letter-spacing: normal; font-weight: var(--font-weight-semibold); }
 .memory-delete-dialog .modal-content { padding: 12px 20px 0; max-height: none; font-size: 14px; line-height: 20px; scroll-padding-block: 12px; }
 .memory-delete-dialog .modal-content p { margin: 0; }
 .memory-delete-dialog .modal-content .memory-delete-content, .memory-delete-dialog .modal-content .inline-error { margin-top: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }

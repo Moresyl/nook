@@ -2,7 +2,9 @@
 
 界面以最新版 `E:/txt`（26.930.41038／build 13022）的作用域 CSS、主题和实际调用证据为依据。旧 `DESIGN.md` 只作历史索引。**全部页面与交互尚未达到 100% 对齐。**
 
-最新记忆删除依据对应默认弹窗调用采用 520px／92vw、20px 圆角、20px 内边距、20px／28px 标题和 12px 内容间隔。长内容独立滚动、底部操作保留，取消为初始焦点，等待时禁止关闭。源码五组专项及六组明暗／100%–150% 应用缩放通过，22 张原图逐张复核。保留本地记忆与备份语义；共享字体／品牌仍有明确差异，默认弹窗表面与全部调用尚未逐项对齐。这一入口通过不代表全部参考采用。完整源码 375 项／74 次正常退出通过，包体与安装仍待完成；完整轮 617 张原图尚未全部视觉复核。[原生专项](../verification/memory-delete-focused-review-result.json) · [原图](../verification/memory-delete-visual-review-result.json) · [完整源码](../verification/memory-delete-full-source-review-result.json)
+最新记忆删除保留 520px／92vw、20px 圆角与独立滚动，并修正默认调用的字体、顶部定位和表面：全局半粗为 600，590 仅属于目录弹窗局部变量；对话框标题的正常字距覆盖基础 -0.36px。默认定位只水平居中，顶部按可用高度计算。表面采用 90% 非扩展回退色、0.5px 边缘、24px 模糊与默认遮罩，关闭控件为 32px。参考运行时可注入其他表面变量，未宣称其最终颜色唯一确定；长内容安全高度仍属本产品补充。新样式验收待完成。
+
+此前记忆样式的五组原生专项、六组应用缩放、22 张原图复核以及完整源码 375 项／74 次正常退出通过；这些证据保留，但不能证明新样式通过或完整参考采用。共享字体／品牌、全部调用与物理系统 DPI 仍有明确差异或待验收项。[旧原生专项](../verification/memory-delete-focused-review-result.json) · [旧原图](../verification/memory-delete-visual-review-result.json) · [旧完整源码](../verification/memory-delete-full-source-review-result.json)
 
 本轮新增未保存设置确认：依据实际设置调用链采用 420px／92vw 宽度、16px 圆角、24px 内边距、12px 间距和无普通关闭按钮的紧凑布局。模型、桌面、工作树、MCP、插件和记忆六类表单统一保护；默认继续编辑，明确放弃后执行待办离开动作。八组原生专项通过；源码专项、同一新包与安装各 34 张设置原图逐张复核，长表单独立滚动，六种主题／100%–150% 应用缩放确认操作可见。安装轮先前七张缩放差异的目测判断已更正：30 张缩放原图的边界像素与冻结源码尺寸和包内原图一致，七张再次查看，原图与旧记录保留，产品没有改动。完整源码、新包与安装各通过 373 项／74 次正常退出，每轮 597 张原图未全部视觉复核。原五个分发专项与保留数据卸载通过；物理系统 DPI、辅助技术、全部参考交互与托管发布仍需验收。[源码原图](../verification/settings-drafts-visual-review-result.json) · [包内原图](../verification/settings-drafts-unpacked-visual-review-result.json) · [安装原始判断](../verification/settings-drafts-installed-visual-review-result.json) · [测量更正](../verification/settings-drafts-installed-scale-correction-result.json) · [运行记录](../verification/settings-drafts-runtime-review-result.json)
 

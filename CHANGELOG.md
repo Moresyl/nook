@@ -2,6 +2,10 @@
 
 ## 未发布
 
+记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。新样式验收待完成；此前通过的结果按旧候选保留。
+
+The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. Long content remains bounded with visible controls. New style validation is pending; earlier results remain evidence for the previous candidate.
+
 记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；完整源码 375 项／74 次正常退出通过，新包与安装分发验收待完成。
 
 Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five focused native checks, 22 reviewed images and the complete 375-check source regression pass. The new packaged and installed distribution gates remain pending.

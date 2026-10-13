@@ -64,9 +64,9 @@ function worktreeCleanup(): NonNullable<ReleaseProof['desktop']['worktreeCleanup
   };
 }
 function memorySettings(): NonNullable<ReleaseProof['desktop']['memories']> {
-  return { checks: 5, safeCancelVerified: true, deleteFailureRetentionVerified: true, pendingDismissalLocked: true, longDeleteContentVerified: true,
+  return { checks: 5, safeCancelVerified: true, deleteFailureRetentionVerified: true, pendingDismissalLocked: true, longDeleteContentVerified: true, defaultSurfaceVerified: true,
     screenshots: ['memory-settings-light.png', 'memory-settings-dark.png', 'memory-delete-pending-shell.png', 'memory-delete-failure-shell.png', ...['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].flatMap(zoom => ['short', 'long', 'scrolled'].map(state => `memory-delete-${theme}-${zoom}-${state}-shell.png`)))],
-    deletionLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, width: 520, expectedWidth: 520, radius: '20px', heading: { size: '20px', lineHeight: '28px', weight: '590', spacing: '-0.36px' }, contained: true, bounded: true, bodyPadding: '20px', footerPadding: '20px', buttonsVisible: true, cancelFocused: true, closeControls: 1, longContentEscaped: true, independentScrollVerified: true }))) };
+    deletionLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, width: 520, expectedWidth: 520, radius: '20px', top: 54, expectedTop: 54, surfaceRgba: theme === 'light' ? [255, 255, 255, 230] : [24, 24, 24, 230], backdropBlur: 'blur(24px)', borderWidth: '0px', shadow: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px', overlayRgba: [0, 0, 0, 34], overlayBlur: 'none', closeWidth: 32, closeHeight: 32, heading: { size: '20px', lineHeight: '28px', weight: '600', spacing: 'normal' }, contained: true, bounded: true, bodyPadding: '20px', footerPadding: '20px', buttonsVisible: true, cancelFocused: true, closeControls: 1, longContentEscaped: true, independentScrollVerified: true }))) };
 }
 function proof(): ReleaseProof {
   const audit = { compiledAssetsMatchVerifiedBuild: true, removedUiFontReferencesVerified: true, oldProductIdentityMatches: [], unresolvedAssets: [], unresolvedDistribution: [], executableSha256: hash, archiveSha256: otherHash };
@@ -873,12 +873,37 @@ describe('Windows release execution evidence', () => {
     cases[8].portableAudit.archiveSha256 = hash; cases[9].portableAudit.unresolvedAssets = ['Font']; cases[10].portableAudit.unresolvedDistribution = ['Plugin'];
     for (const value of cases) expect(() => verifyRuntimeProof(value)).toThrow('portable verification');
   });
+  it('rejects memory dialog typography and surfaces measured in another scope', () => {
+    for (const heading of [{ size: '20px', lineHeight: '28px', weight: '590', spacing: 'normal' }, { size: '20px', lineHeight: '28px', weight: '600', spacing: '-0.36px' }]) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0].heading = heading; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+    for (const surface of [[255, 255, 255, 255], [24, 24, 24, 230], [255, 255, 255], []]) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0].surfaceRgba = surface; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+    for (const overlay of [[0, 0, 0, 64], [0, 0, 0], []]) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0].overlayRgba = overlay; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+    for (const field of ['backdropBlur', 'borderWidth', 'overlayBlur', 'shadow'] as const) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0][field] = ''; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+  });
+  it('rejects displaced memory dialogs and wrong close control sizes', () => {
+    for (const top of [0, 55, Number.NaN, Number.POSITIVE_INFINITY]) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0].top = top; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+    for (const expectedTop of [0, 55, Number.NaN]) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0].expectedTop = expectedTop; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+    for (const field of ['closeWidth', 'closeHeight'] as const) {
+      const value = proof(); value.desktop.memories!.deletionLayouts[0][field] = 24; expect(() => verifyRuntimeProof(value)).toThrow('memory verification');
+    }
+  });
   it('requires memory and offline preview checks within the complete desktop suite', () => {
     const missing = proof(); delete missing.desktop.memories; expect(() => verifyRuntimeProof(missing)).toThrow('memory verification');
     for (const count of [0, 2, 3, 4, 6, Number.NaN]) {
       const partial = proof(); partial.desktop.memories!.checks = count; expect(() => verifyRuntimeProof(partial)).toThrow('memory verification');
     }
-    for (const field of ['safeCancelVerified', 'deleteFailureRetentionVerified', 'pendingDismissalLocked', 'longDeleteContentVerified'] as const) {
+    for (const field of ['safeCancelVerified', 'deleteFailureRetentionVerified', 'pendingDismissalLocked', 'longDeleteContentVerified', 'defaultSurfaceVerified'] as const) {
       const partial = proof(); partial.desktop.memories![field] = false; expect(() => verifyRuntimeProof(partial)).toThrow('memory verification');
     }
     const layouts = proof(); layouts.desktop.memories!.deletionLayouts.pop(); expect(() => verifyRuntimeProof(layouts)).toThrow('memory verification');
