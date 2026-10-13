@@ -1,0 +1,84 @@
+{
+  "verifiedAt": "2026-10-13T11:49:04.189Z",
+  "phase": "renderer-close",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfacePhase-renderer-close-20261013",
+  "sourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "runtimeBuiltHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "startedAt": "2026-10-13T11:48:58.9322550Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+  "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+  "reports": {
+    "renderer-close-packaged-result.json": {
+      "verifiedAt": "2026-10-13T11:49:03.276Z",
+      "variant": "packaged executable",
+      "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+      "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "checks": 2,
+      "crash": {
+        "reason": "crashed",
+        "exitCode": 2,
+        "capturedAt": 1791892141306,
+        "memory": {
+          "rss": 167944192,
+          "heapTotal": 17186816,
+          "heapUsed": 12465764,
+          "external": 5661377,
+          "arrayBuffers": 0
+        },
+        "systemFreeMemory": 8314007552,
+        "processes": [
+          {
+            "pid": 8132,
+            "type": "Browser",
+            "memory": {
+              "workingSetSize": 164044,
+              "peakWorkingSetSize": 167680,
+              "privateBytes": 125516
+            }
+          },
+          {
+            "pid": 62948,
+            "type": "GPU",
+            "memory": {
+              "workingSetSize": 107188,
+              "peakWorkingSetSize": 111252,
+              "privateBytes": 117700
+            }
+          },
+          {
+            "pid": 65340,
+            "type": "Utility",
+            "memory": {
+              "workingSetSize": 50944,
+              "peakWorkingSetSize": 50944,
+              "privateBytes": 12260
+            }
+          }
+        ]
+      },
+      "quitMs": 1213,
+      "persistedDraftRetained": true,
+      "conversationsRetained": true,
+      "modelRequests": 0,
+      "boundary": "A deliberately crashed owned main renderer and explicit application quit. The last successfully saved state is retained; unflushed input and the cause of spontaneous crashes are not established. Not complete desktop or distribution acceptance."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 1,
+  "maximumCloseMs": 1209,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release.",
+  "packagedSourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "logicalSourceArchiveSharedWith": "C:\\NookVerificationOverflow\\MemoryDeleteDefaultSurfacePackage-20261013\\source.tar"
+}

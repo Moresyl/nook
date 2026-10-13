@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-13T11:07:12.020Z",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfaceFullSourceDeliveryHosted-20261013",
+  "sourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "remoteBranchHeadVerified": true,
+  "pipelineUrl": "https://github.com/Moresyl/nook/actions/runs/38387126641",
+  "pipelineStatus": "completed",
+  "pipelineConclusion": "failure",
+  "jobs": [
+    {
+      "name": "verify",
+      "id": 115261563437,
+      "conclusion": "failure",
+      "actualSteps": 0
+    },
+    {
+      "name": "publish",
+      "id": 115261580398,
+      "conclusion": "skipped",
+      "actualSteps": 0
+    }
+  ],
+  "annotations": [
+    "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+  ],
+  "releaseCount": 0,
+  "tagCount": 0,
+  "published": false,
+  "evidence": [
+    {
+      "name": "runs.json",
+      "sha256": "f8760984f5d741c62693e059757e24540d82e59893451396e3c19028942b08cb"
+    },
+    {
+      "name": "jobs.json",
+      "sha256": "9e056ff68a1b8805d95843d2b5dd56f4c38c35e036d3a25ec0886615a5f1c4a0"
+    },
+    {
+      "name": "annotations-115261563437.json",
+      "sha256": "801d7ed8b0d34504bbf8f7a3eb7bcde4ec8571f6ee4fbcd719a6970f1200672f"
+    },
+    {
+      "name": "annotations-115261580398.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "releases.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "tags.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "localFullSourceArchive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfaceFull-source-retry1-20261013",
+  "localPackageArchive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfacePackage-20261013",
+  "scope": "Actual original workflow inspection for the frozen 43b2206 package source. Complete 375-check source, 1557-test product coverage and exact 703-file package roundtrip are independently accepted. Packaged native and actual installation remain separate ongoing gates. No tag, billing, runner or workflow change."
+}

@@ -1,0 +1,131 @@
+{
+  "verifiedAt": "2026-10-13T11:49:11.995Z",
+  "phase": "bootstrap",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfacePhase-bootstrap-20261013",
+  "sourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "runtimeBuiltHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "startedAt": "2026-10-13T11:49:04.1989805Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+  "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+  "reports": {
+    "distribution-bootstrap-result.json": {
+      "verifiedAt": "2026-10-13T11:49:11.134Z",
+      "archiveToolSha256": "6ee3c0ed0b27663c1b948ae85a7c0bb073aed1498983182f3f0df1f6a8c30b2f",
+      "variants": [
+        {
+          "variant": "installer",
+          "executableSha256": "8f434a6a6ec40f4a79c49b0f6c8d325bdbb0c4200686bdcbda3526ae46e691e5",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "UAC.dll",
+              "component": "UAC plugin",
+              "redistributionStatus": "verified",
+              "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            },
+            {
+              "file": "nsDialogs.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+            },
+            {
+              "file": "nsExec.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+            },
+            {
+              "file": "nsis7z.dll",
+              "component": "nsis7z 19.00",
+              "redistributionStatus": "verified",
+              "sha256": "b393f05e8ff919ef071181050e1873c9a776e1a0ae8329aefff7007d0cadf592"
+            }
+          ]
+        },
+        {
+          "variant": "uninstaller",
+          "executableSha256": "a7e8239e523b95c9752f97da6220d033389fde83d4ce84ef853a50d46548b0b6",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "nsDialogs.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "1e40211af65923c2f4fd02ce021458a7745d28e2f383835e3015e96575632172"
+            },
+            {
+              "file": "UAC.dll",
+              "component": "UAC plugin",
+              "redistributionStatus": "verified",
+              "sha256": "2f7f8fc05dc4fd0d5cda501b47e4433357e887bbfed7292c028d99c73b52dc08"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            },
+            {
+              "file": "nsExec.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "5d9ceb1ce5f35aea5f9e5a0c0edeeec04dfefe0c77890c80c70e98209b58b962"
+            }
+          ]
+        },
+        {
+          "variant": "portable",
+          "executableSha256": "c596a19b548a41eda15eb7c6bf58328eca897b18a7bc81b9463475e08df33f7d",
+          "plugins": [
+            {
+              "file": "System.dll",
+              "component": "NSIS 3.0.4.1 and electron-builder installer templates",
+              "redistributionStatus": "verified",
+              "sha256": "3eb38ae99653a7dbc724132ee240f6e5c4af4bfe7c01d31d23faf373f9f2eaca"
+            },
+            {
+              "file": "StdUtils.dll",
+              "component": "StdUtils 1.14",
+              "redistributionStatus": "verified",
+              "sha256": "b72e9013a6204e9f01076dc38dabbf30870d44dfc66962adbf73619d4331601e"
+            }
+          ]
+        }
+      ],
+      "scope": "Actual NSIS installer, embedded uninstaller and portable bootstrap plugin inventories and exact original plugin hashes. Unresolved declarations remain explicit and fail the separate release gate. Application directory/source retention, runtime behavior, signatures, fonts and release approval remain separate checks."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 0,
+  "maximumCloseMs": null,
+  "forcedCloses": 0,
+  "screenshots": [],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release.",
+  "packagedSourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "logicalSourceArchiveSharedWith": "C:\\NookVerificationOverflow\\MemoryDeleteDefaultSurfacePackage-20261013\\source.tar"
+}

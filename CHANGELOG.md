@@ -2,17 +2,17 @@
 
 ## 未发布
 
-原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项和完整 375 项源码重跑通过，74 次正常退出，无强制结束。新包与实际安装仍待验收。
+原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免受已有缩放状态影响。原有超时和断言保留，此前失败现场归档；七组专项通过，源码、新包和实际安装各通过 375 项／74 次正常退出，无强制结束。
 
-Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks and the complete 375-check source rerun pass with 74 normal exits. The failed scene is retained; new packaged and installed verification remains pending.
+Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. Seven focused checks pass; source, packaged and installed runtimes each pass 375 checks with 74 normal exits. The failed scene is retained.
 
-记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。新样式的 1,557 项完整单元、类型、构建、五组原生专项和 22 张原图复核通过；完整源码 375 项／74 次正常退出通过，保留 39 份报告、617 张原图与 236 个匹配编译文件。新包与安装分发仍待验收，此前候选的结果继续保留。
+记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。1,557 项完整单元、类型、构建和五组原生专项通过；源码、新包与安装各通过 375 项／74 次正常退出，各保留 39 份报告、617 张原图和 236 个匹配编译文件。源码专项、包内与安装的记忆原图各 22 张逐张复核；原分发、便携、保留数据卸载及十一份运行记录通过。此前候选与失败证据保留，完整参考界面与托管发布未完成。
 
-The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. Long content remains bounded with visible controls. All 1,557 unit tests, type checks, build, five native checks and 22 reviewed images pass. The complete source regression passes 375 checks with 74 normal exits, retaining 39 reports, 617 captures and 236 matching compiled files. New packaged and installed distribution gates remain pending.
+The memory deletion dialog now uses the default title typography, top placement, translucent surface, thin ring and backdrop blur. All 1,557 unit tests, type checks, build and five native checks pass. Source, packaged and installed runtimes each pass 375 checks with 74 normal exits, retaining 39 reports, 617 captures and 236 matching compiled files. Each memory-image set has 22 individually reviewed captures. Distribution, portable execution, data-preserving uninstall and eleven matching runtime records pass; complete reference adoption and hosted publication remain unfinished.
 
-记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。源码五组专项、六种主题／应用缩放及 22 张逐张复核原图通过；完整源码 375 项／74 次正常退出通过，新包与安装分发验收待完成。
+记忆删除确认采用 520px 上限与长内容独立滚动，默认聚焦取消。删除等待期间禁止关闭，失败保留内容并提供重试。五组专项、六种主题／应用缩放及本轮三批记忆原图复核通过；源码、新包与实际安装的完整回归和分发验收通过。
 
-Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five focused native checks, 22 reviewed images and the complete 375-check source regression pass. The new packaged and installed distribution gates remain pending.
+Memory deletion now defaults to Cancel, keeps long content scrollable and prevents dismissal while deleting. Failures retain the entry for retry. Five native checks, six theme/zoom layouts, three reviewed memory-image sets and complete source, packaged and installed distribution gates pass.
 
 新增设置草稿保护：模型连接、桌面快捷键、工作树、MCP、插件权限和记忆在离开未保存表单前显示确认。默认继续编辑，回车或 Escape 保留输入；切换分类保留草稿，明确放弃后才执行离开操作。保存等待期间禁止重复操作，失败保留输入供重试。
 
@@ -52,6 +52,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 修复选择助手或项目后的光标恢复覆盖用户新选区，导致后续输入重复前缀的问题。
 - 修复编辑器文件标签和关闭按钮的键盘焦点圈被横向滚动条裁切的问题；工作树刷新及设置保存完成后保留正确焦点，用户已切换控件时不抢焦点。
 - 设置支持分类和字段搜索，切换分类保留未保存草稿；统一明暗主题、共享控件、文字提示和窄窗口导航。
+- 记忆删除默认聚焦取消，删除等待期间禁止关闭，失败保留内容供重试。确认框修正默认标题字重与字距、顶部定位、半透明表面和关闭控件，长正文独立滚动，操作按钮保持可见。
 - 修复草稿保存、分支导航、多路流式检查点和恢复等待的竞争；保存失败保留输入、原文与重试能力，恢复异常保留原资料。
 - 工作树逐项目显示结果、等待和脱敏错误；管理记录加载期间禁用写操作，来源移动或被替换后拒绝过期管理入口。
 - Windows 便携启动器支持长路径和有界清理重试，正常退出后清理提取目录；安装版卸载保留用户数据。
@@ -69,6 +70,8 @@ Nook is a local AI workspace for multi-provider chat, model comparison, conversa
 Local branches can be renamed without replacing existing refs. Merged-only deletion protects the current branch, worktrees and commits absent from the current version, while retaining files, drafts and remote refs.
 
 Six settings forms protect unsaved changes with a compact confirmation. Continue editing is the safe default; Enter and Escape retain drafts, and failed saves preserve input for retry.
+
+Memory deletion defaults to Cancel, blocks dismissal while pending and retains entries on failure. Its default typography, top placement and translucent surface are corrected; long content scrolls independently while action controls remain visible.
 
 Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
 

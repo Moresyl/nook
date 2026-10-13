@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-13T07:56:34.367Z",
+  "verifiedAt": "2026-10-13T12:34:47.289Z",
   "variant": "packaged executable",
-  "checks": 373,
+  "checks": 375,
   "runtimeErrors": [],
   "composerActions": {
     "checks": 7,
@@ -974,8 +974,8 @@
     "scope": "Actual unified command/chat search and native keyboard/active-descendant navigation; existing pages, thread actions, theme and isolated plugin command/panel paths; exact composer/attachment/context retention, running-reply guards, structured JSON and scoped project selection, malformed/handler failure and grant revocation, actual filesystem rollback and retry, six theme/zoom root and empty layouts with twelve whole native captures, narrow/help/error layouts, close before draft debounce, restart and complete gzip recovery without implicit command execution. Input-method event, grant mutation and native picker/confirmation/storage boundaries use isolated fixtures; physical input methods, wider accessibility/scale and other-platform audits remain separate."
   },
   "backups": {
-    "expandedBytes": 84181485,
-    "compressedBytes": 242345,
+    "expandedBytes": 84181513,
+    "compressedBytes": 242358,
     "conversations": 20,
     "messageSha256": [
       "6d6386004572d8d40f41e04ee009726acd806d24f810d1dcb0d9ce1ca8720d7a",
@@ -1531,28 +1531,28 @@
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791876762740,
+        "startedAt": 1791893043043,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791876764662
+        "finishedAt": 1791893044641
       },
       {
         "operation": "saveProvider",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791876764813,
+        "startedAt": 1791893044876,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791876766534
+        "finishedAt": 1791893046332
       },
       {
         "operation": "savePreferences",
         "workspaceCopies": 0,
         "threadCopies": 294,
-        "startedAt": 1791876768920,
+        "startedAt": 1791893048456,
         "success": true,
         "resultThreadCount": 294,
-        "finishedAt": 1791876770416
+        "finishedAt": 1791893049762
       }
     ],
     "comparisonModelRequests": 11,
@@ -1742,7 +1742,7 @@
       "123-mcp-subscription-dark-zoom-150.png"
     ],
     "modelRequests": 0,
-    "scopedReadMs": 8.599999994039536,
+    "scopedReadMs": 17.099999964237213,
     "scopedReadIterations": 8,
     "workspaceCopiesDuringScopedReads": 0,
     "realNotificationsVerified": true,
@@ -2051,6 +2051,26 @@
     "131-prompt-import-dark-zoom-150.png",
     "memory-settings-light.png",
     "memory-settings-dark.png",
+    "memory-delete-pending-shell.png",
+    "memory-delete-failure-shell.png",
+    "memory-delete-light-1-short-shell.png",
+    "memory-delete-light-1-long-shell.png",
+    "memory-delete-light-1-scrolled-shell.png",
+    "memory-delete-light-1.25-short-shell.png",
+    "memory-delete-light-1.25-long-shell.png",
+    "memory-delete-light-1.25-scrolled-shell.png",
+    "memory-delete-light-1.5-short-shell.png",
+    "memory-delete-light-1.5-long-shell.png",
+    "memory-delete-light-1.5-scrolled-shell.png",
+    "memory-delete-dark-1-short-shell.png",
+    "memory-delete-dark-1-long-shell.png",
+    "memory-delete-dark-1-scrolled-shell.png",
+    "memory-delete-dark-1.25-short-shell.png",
+    "memory-delete-dark-1.25-long-shell.png",
+    "memory-delete-dark-1.25-scrolled-shell.png",
+    "memory-delete-dark-1.5-short-shell.png",
+    "memory-delete-dark-1.5-long-shell.png",
+    "memory-delete-dark-1.5-scrolled-shell.png",
     "project-html-preview.png",
     "project-preview-editor-light.png",
     "project-preview-editor-dark-narrow.png",
@@ -3140,12 +3160,291 @@
     "scope": "Actual native library exports and plain/gzip/content-detected input, full inert parameter/profile preview, cancellation, actual atomic-write rejection/retry, fresh shared associations, native minimum-window zoom/focus/Escape, complete gzip backup and normal restart with zero model requests. System-picker and confirmation results are intercepted only in this isolated process; physical picker and wider platform checks remain separate."
   },
   "memories": {
-    "checks": 3,
+    "checks": 5,
     "screenshots": [
       "memory-settings-light.png",
-      "memory-settings-dark.png"
+      "memory-settings-dark.png",
+      "memory-delete-pending-shell.png",
+      "memory-delete-failure-shell.png",
+      "memory-delete-light-1-short-shell.png",
+      "memory-delete-light-1-long-shell.png",
+      "memory-delete-light-1-scrolled-shell.png",
+      "memory-delete-light-1.25-short-shell.png",
+      "memory-delete-light-1.25-long-shell.png",
+      "memory-delete-light-1.25-scrolled-shell.png",
+      "memory-delete-light-1.5-short-shell.png",
+      "memory-delete-light-1.5-long-shell.png",
+      "memory-delete-light-1.5-scrolled-shell.png",
+      "memory-delete-dark-1-short-shell.png",
+      "memory-delete-dark-1-long-shell.png",
+      "memory-delete-dark-1-scrolled-shell.png",
+      "memory-delete-dark-1.25-short-shell.png",
+      "memory-delete-dark-1.25-long-shell.png",
+      "memory-delete-dark-1.25-scrolled-shell.png",
+      "memory-delete-dark-1.5-short-shell.png",
+      "memory-delete-dark-1.5-long-shell.png",
+      "memory-delete-dark-1.5-scrolled-shell.png"
     ],
-    "scope": "Explicit CRUD, scope promotion, disabled state, persistence, search, escaped text, theme/narrow layout and project removal. Engine scope and temporary-chat isolation have separate component tests."
+    "deletionLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "width": 520,
+        "expectedWidth": 520,
+        "top": 54,
+        "expectedTop": 54,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          255,
+          255,
+          255,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.25,
+        "width": 520,
+        "expectedWidth": 520,
+        "top": 43.20000076293945,
+        "expectedTop": 43.2,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          255,
+          255,
+          255,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      },
+      {
+        "theme": "light",
+        "zoom": 1.5,
+        "width": 466.125,
+        "expectedWidth": 466.44,
+        "top": 36,
+        "expectedTop": 36,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          255,
+          255,
+          255,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1,
+        "width": 520,
+        "expectedWidth": 520,
+        "top": 54,
+        "expectedTop": 54,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          24,
+          24,
+          24,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(255, 255, 255, 0.12) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.25,
+        "width": 520,
+        "expectedWidth": 520,
+        "top": 43.20000076293945,
+        "expectedTop": 43.2,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          24,
+          24,
+          24,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(255, 255, 255, 0.12) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "width": 466.125,
+        "expectedWidth": 466.44,
+        "top": 36,
+        "expectedTop": 36,
+        "radius": "20px",
+        "heading": {
+          "size": "20px",
+          "lineHeight": "28px",
+          "weight": "600",
+          "spacing": "normal"
+        },
+        "surfaceRgba": [
+          24,
+          24,
+          24,
+          230
+        ],
+        "backdropBlur": "blur(24px)",
+        "borderWidth": "0px",
+        "shadow": "rgba(255, 255, 255, 0.12) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.1) 0px 4px 8px -2px",
+        "overlayRgba": [
+          0,
+          0,
+          0,
+          34
+        ],
+        "overlayBlur": "none",
+        "closeWidth": 32,
+        "closeHeight": 32,
+        "contained": true,
+        "bounded": true,
+        "bodyPadding": "20px",
+        "footerPadding": "20px",
+        "buttonsVisible": true,
+        "cancelFocused": true,
+        "closeControls": 1,
+        "longContentEscaped": true,
+        "independentScrollVerified": true
+      }
+    ],
+    "safeCancelVerified": true,
+    "deleteFailureRetentionVerified": true,
+    "pendingDismissalLocked": true,
+    "longDeleteContentVerified": true,
+    "defaultSurfaceVerified": true,
+    "scope": "Original three CRUD/scope/search/deletion groups retained, plus safe cancellation, held failure and six default-dialog theme/zoom long-content layouts. Default typography, top positioning, fallback surface, ring, blur and close controls are measured. Engine scope and temporary-chat isolation remain separately tested. Physical DPI and full reference parity are separate."
   },
   "projectPreview": {
     "checks": 10,
@@ -5047,122 +5346,72 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(44, 44, 44)",
+              "color": "rgb(40, 40, 40)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 146.16599999999914
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         },
@@ -5253,122 +5502,72 @@
             {
               "text": "新聊天Ctrl N",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "临时聊天",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "搜索聊天Ctrl K",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "项目",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "助手",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "资料库",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "自动任务",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "浏览器",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "已归档",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             },
             {
               "text": "设置Ctrl ,",
               "disabled": false,
-              "color": "rgb(236, 236, 236)",
+              "color": "rgb(237, 237, 237)",
               "opacity": "1",
-              "colorTransitions": [
-                {
-                  "state": "running",
-                  "currentTime": 163.0079999985643
-                }
-              ]
+              "colorTransitions": []
             }
           ]
         },
@@ -9453,10 +9652,10 @@
     "defaultRootVerified": true,
     "defaultRootFailureVerified": true,
     "defaultRootBackupRestartVerified": true,
-    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\worktrees",
-    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\worktrees/nook-6eac38d7",
-    "root": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\管理 工作树 🧭",
-    "target": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\管理 工作树 🧭/nook-e2b7ade6",
+    "defaultRoot": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\worktrees",
+    "defaultTarget": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\worktrees/nook-de7d7f76",
+    "root": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\管理 工作树 🧭",
+    "target": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\管理 工作树 🧭/nook-846d424b",
     "errorLayouts": [
       {
         "top": 605.388916015625,
@@ -9700,51 +9899,51 @@
     "sourcePreservationVerified": true,
     "queryPages": [
       [
-        "8919145b-8fdc-4f41-b8a8-ef122a17ceb5",
-        "6f2da9c1-60fc-4c5b-ab73-9f7ed3cf4b49",
-        "8e571f05-50d6-434a-9d13-5d02ff9e7a07",
-        "46f06bd3-f788-4c95-9c4a-d1b9ff3c8a00",
-        "488098f6-7868-4efb-988a-af6cea97f341",
-        "0f8bff5d-3f01-4f33-9a61-bfda00c3c8ed",
-        "a2e7f3e1-e38c-4d7e-b99d-5a26d928b63d",
-        "70f1ef65-e098-4d45-bec5-e43253e6bc5c",
-        "aa05fc3b-e80f-4b44-bc77-6d2412777419",
-        "9ef47c7b-d00d-468b-8567-c56408c842b3",
-        "c35c901c-7d06-422e-86b6-537bb5a35cf2",
-        "26192084-6fcb-4410-bccb-affc9460318a",
-        "48ca6913-60d2-4b69-8b42-6b03580e2152",
-        "b3174269-7249-461e-982a-4d720779353b",
-        "a0a175c9-ff2e-41ae-ba60-d92b5d02d1a1",
-        "b072d5c5-91b0-4b6c-aac7-a4435076e78f",
-        "af1f7018-7166-4a50-a0fd-446fdc025b83",
-        "00f15536-f2e5-47a0-84a4-54c1d9db8e37",
-        "a37a1588-6ed5-4068-835f-cdb6798badc0",
-        "29b1b12c-8636-441b-bcd3-1a5a466c65b4"
+        "e6d686a0-d44a-4f1c-a63d-8d030f7f855a",
+        "8353463c-2764-4fd4-8f0b-ba00d153dace",
+        "d9ea27c7-b54e-4d3c-a656-50d543e192c0",
+        "3335fad9-9906-4561-9a6c-cefd4593f3b2",
+        "c290fd2f-8388-44c7-8b2b-763ac635fb83",
+        "2764c9b8-88d3-4ecc-b4c3-26084504e6d6",
+        "3f75e4fb-e1d3-4717-a4a3-59e6ced19c1b",
+        "c6da97c0-a2b0-473d-8bad-a2648f219a20",
+        "6189aee0-c054-448f-959f-dc8dcbd83ab6",
+        "47d4be81-a35e-485e-84b8-df87746c6616",
+        "9e230f9c-d27a-41e0-ab30-cda9b802224c",
+        "22a7837d-d68e-44b8-854e-c59351fa0cd0",
+        "5093eecc-6c4e-4b71-a05b-0a62e5df2ba8",
+        "a56f11f0-da46-4e93-9ed3-fcd0c5b86c04",
+        "7868503f-af87-415e-bd2b-d18f1528ee9e",
+        "885359fc-57e4-49b4-9974-efeb2f6d677c",
+        "dbdae131-548f-45ed-8a58-d84f1598e6e4",
+        "cb9c207d-a296-4c9d-9809-c488b8dbb405",
+        "7050d7ed-2c2d-4d19-b786-dd4d9e39495b",
+        "27b09fc9-a02b-4164-9255-9bc94ffd872b"
       ],
       [
-        "1554003f-4b7b-4f99-8da1-18edc0eb041c"
+        "420beb15-40bd-4e69-a51a-91549bc2367e"
       ],
       [
-        "8919145b-8fdc-4f41-b8a8-ef122a17ceb5",
-        "6f2da9c1-60fc-4c5b-ab73-9f7ed3cf4b49",
-        "8e571f05-50d6-434a-9d13-5d02ff9e7a07",
-        "46f06bd3-f788-4c95-9c4a-d1b9ff3c8a00",
-        "488098f6-7868-4efb-988a-af6cea97f341",
-        "0f8bff5d-3f01-4f33-9a61-bfda00c3c8ed",
-        "a2e7f3e1-e38c-4d7e-b99d-5a26d928b63d",
-        "70f1ef65-e098-4d45-bec5-e43253e6bc5c",
-        "aa05fc3b-e80f-4b44-bc77-6d2412777419",
-        "9ef47c7b-d00d-468b-8567-c56408c842b3",
-        "c35c901c-7d06-422e-86b6-537bb5a35cf2",
-        "26192084-6fcb-4410-bccb-affc9460318a",
-        "48ca6913-60d2-4b69-8b42-6b03580e2152",
-        "b3174269-7249-461e-982a-4d720779353b",
-        "a0a175c9-ff2e-41ae-ba60-d92b5d02d1a1",
-        "b072d5c5-91b0-4b6c-aac7-a4435076e78f",
-        "af1f7018-7166-4a50-a0fd-446fdc025b83",
-        "00f15536-f2e5-47a0-84a4-54c1d9db8e37",
-        "a37a1588-6ed5-4068-835f-cdb6798badc0",
-        "29b1b12c-8636-441b-bcd3-1a5a466c65b4"
+        "e6d686a0-d44a-4f1c-a63d-8d030f7f855a",
+        "8353463c-2764-4fd4-8f0b-ba00d153dace",
+        "d9ea27c7-b54e-4d3c-a656-50d543e192c0",
+        "3335fad9-9906-4561-9a6c-cefd4593f3b2",
+        "c290fd2f-8388-44c7-8b2b-763ac635fb83",
+        "2764c9b8-88d3-4ecc-b4c3-26084504e6d6",
+        "3f75e4fb-e1d3-4717-a4a3-59e6ced19c1b",
+        "c6da97c0-a2b0-473d-8bad-a2648f219a20",
+        "6189aee0-c054-448f-959f-dc8dcbd83ab6",
+        "47d4be81-a35e-485e-84b8-df87746c6616",
+        "9e230f9c-d27a-41e0-ab30-cda9b802224c",
+        "22a7837d-d68e-44b8-854e-c59351fa0cd0",
+        "5093eecc-6c4e-4b71-a05b-0a62e5df2ba8",
+        "a56f11f0-da46-4e93-9ed3-fcd0c5b86c04",
+        "7868503f-af87-415e-bd2b-d18f1528ee9e",
+        "885359fc-57e4-49b4-9974-efeb2f6d677c",
+        "dbdae131-548f-45ed-8a58-d84f1598e6e4",
+        "cb9c207d-a296-4c9d-9809-c488b8dbb405",
+        "7050d7ed-2c2d-4d19-b786-dd4d9e39495b",
+        "27b09fc9-a02b-4164-9255-9bc94ffd872b"
       ]
     ],
     "layouts": [
@@ -9762,8 +9961,8 @@
           "viewportRight": 753
         },
         "error": {
-          "top": 416,
-          "bottom": 434,
+          "top": 419,
+          "bottom": 437,
           "left": 145,
           "right": 737,
           "viewportTop": 62,
@@ -9925,8 +10124,8 @@
         "outline": 2,
         "outlineOffset": 2,
         "outlineColor": "rgb(1, 105, 204)",
-        "top": 312.5,
-        "bottom": 340.5,
+        "top": 315.5,
+        "bottom": 343.5,
         "left": 709,
         "right": 737,
         "viewportTop": 62,
@@ -11695,7 +11894,7 @@
         "viewportRight": 499.6666717529297
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\snapshot-evidence-88f3f9bd",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\snapshot-evidence-f9716420",
     "screenshots": [
       "worktree-snapshots-saved-light-shell.png",
       "worktree-snapshots-save-failure-light-shell.png",
@@ -12427,7 +12626,7 @@
         }
       }
     ],
-    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf\\cleanup-evidence-38716973",
+    "evidenceDirectory": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF\\cleanup-evidence-1ca3179e",
     "screenshots": [
       "worktree-cleanup-cancel-owned-external-light-shell.png",
       "worktree-cleanup-pinned-protected-light-shell.png",
@@ -12759,7 +12958,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.359375,
+        "summaryWidth": 366.515625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12774,7 +12973,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 370.76251220703125,
+        "summaryWidth": 370.9250183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12789,7 +12988,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 269.03125,
+        "summaryWidth": 269.1875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12804,7 +13003,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 366.359375,
+        "summaryWidth": 366.515625,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12819,7 +13018,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 370.76251220703125,
+        "summaryWidth": 370.9250183105469,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12834,7 +13033,7 @@
         "duration": "0.3s, 0.3s",
         "contained": true,
         "controlVisible": true,
-        "summaryWidth": 269.03125,
+        "summaryWidth": 269.1875,
         "controlHeight": 24.5,
         "outputScrollBounded": true,
         "horizontalOverflow": false
@@ -12908,7 +13107,7 @@
   },
   "contextSummaries": {
     "checks": 6,
-    "threadId": "2b87ad51-267e-4bd7-9d9b-02bb5be5294f",
+    "threadId": "f09ebd0c-b747-47cd-9d5d-0be548e6f63e",
     "requestCount": 10,
     "summaryRequests": 3,
     "originalMessages": 6,
@@ -12992,9 +13191,9 @@
       "context-summary-provider-error.png",
       "context-summary-expired.png"
     ],
-    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-zeidMf"
+    "workspace": "E:\\NookVerification\\Temp\\qiyao-electron-El99JF"
   },
   "normalCloseVerified": true,
-  "executableSha256": "1f1cf13c45f02f04c3d0f180e393b78c3339c19859e1ed52d276ba6e3af26d13",
-  "archiveSha256": "e9d2fafacb179dd3d1645ca4554ac3704c2141692850d65a6ff9b7688299178c"
+  "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+  "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0"
 }

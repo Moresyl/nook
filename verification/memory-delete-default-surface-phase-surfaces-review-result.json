@@ -1,0 +1,399 @@
+{
+  "verifiedAt": "2026-10-13T11:47:15.507Z",
+  "phase": "surfaces",
+  "attempt": "",
+  "archive": "C:/NookVerificationOverflow/MemoryDeleteDefaultSurfacePhase-surfaces-20261013",
+  "sourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "runtimeBuiltHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "startedAt": "2026-10-13T11:46:26.6838395Z",
+  "exitCode": 0,
+  "passed": true,
+  "nativeRecordsVerified": true,
+  "bootstrapDeclarationsVerified": true,
+  "portableRecordsVerified": true,
+  "compiledFilesMatchingPackage": 236,
+  "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+  "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+  "reports": {
+    "surfaces-packaged-result.json": {
+      "verifiedAt": "2026-10-13T11:47:14.544Z",
+      "variant": "packaged executable",
+      "executableSha256": "8dec86e872ea09ff18698f736134584f3a3ee83983bfd3ca78e10ac9799555c1",
+      "archiveSha256": "9f2dabac976bb501e40b4806795c11c0f1cd0cbc6e0bf226b9e69a9382c9d0c0",
+      "runtimeErrors": [],
+      "normalCloseVerified": true,
+      "modelRequests": 0,
+      "checks": 4,
+      "startupFallback": {
+        "passed": true,
+        "scope": "Built entry document in isolated Electron window with page scripts disabled; system theme and reduced-motion emulation; normal renderer replacement"
+      },
+      "startupRecovery": {
+        "passed": true,
+        "scope": "Isolated initial-load IPC rejection and delay; persistent error, keyboard retry, narrow layout and exact saved-draft restoration; not corrupt-vault recovery"
+      },
+      "settingsCategories": [
+        "模型连接",
+        "MCP 工具",
+        "本地技能",
+        "本地插件",
+        "记忆",
+        "工作树",
+        "外观与交互",
+        "数据与备份",
+        "关于 Nook"
+      ],
+      "zoomFactors": [
+        1,
+        1.25,
+        1.5
+      ],
+      "geometryChecks": [
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 760,
+          "height": 540,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 760,
+          "viewportHeight": 540
+        },
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1.25,
+          "width": 608,
+          "height": 432,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 608,
+          "viewportHeight": 432
+        },
+        {
+          "windowWidth": 760,
+          "windowHeight": 540,
+          "zoom": 1.5,
+          "width": 506.66668701171875,
+          "height": 360,
+          "top": 0,
+          "left": 0,
+          "viewportWidth": 507,
+          "viewportHeight": 360
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 720,
+          "height": 460,
+          "top": 35.5555534362793,
+          "left": 280,
+          "viewportWidth": 1280,
+          "viewportHeight": 540
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1.25,
+          "width": 720,
+          "height": 392,
+          "top": 17.77777671813965,
+          "left": 152,
+          "viewportWidth": 1024,
+          "viewportHeight": 432
+        },
+        {
+          "windowWidth": 1280,
+          "windowHeight": 540,
+          "zoom": 1.5,
+          "width": 720,
+          "height": 320,
+          "top": 17.77777671813965,
+          "left": 66.66667175292969,
+          "viewportWidth": 853,
+          "viewportHeight": 360
+        },
+        {
+          "windowWidth": 768,
+          "windowHeight": 540,
+          "zoom": 1,
+          "width": 720,
+          "height": 460,
+          "top": 35.5555534362793,
+          "left": 24,
+          "viewportWidth": 768,
+          "viewportHeight": 540
+        }
+      ],
+      "checkedSwitchStates": [
+        {
+          "theme": "light",
+          "enabledColor": "rgb(51, 156, 255)",
+          "disabledRgba": [
+            50,
+            155,
+            255,
+            128
+          ],
+          "disabledClickPreserved": true
+        },
+        {
+          "theme": "dark",
+          "enabledColor": "rgb(51, 156, 255)",
+          "disabledRgba": [
+            50,
+            155,
+            255,
+            128
+          ],
+          "disabledClickPreserved": true
+        }
+      ],
+      "screenshots": [
+        "91-surface-controls-light.png",
+        "92-surface-controls-dark-narrow.png",
+        "93-surface-settings-zoomed.png",
+        "94-surface-select-light.png",
+        "95-surface-select-dark.png",
+        "96-switch-light.png",
+        "96-switch-dark.png",
+        "97-field-invalid-light.png",
+        "97-field-invalid-dark.png",
+        "98-surface-short-wide.png",
+        "99-switch-checked-light.png",
+        "99-switch-checked-dark.png",
+        "100-tooltip-light.png",
+        "100-tooltip-dark.png",
+        "101-tooltip-edge.png",
+        "102-button-tooltip-disabled.png",
+        "103-button-tooltip-long.png",
+        "104-startup-light.png",
+        "104-startup-dark.png",
+        "105-startup-error.png",
+        "105-startup-error-narrow.png"
+      ],
+      "screenshotMethod": "Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields",
+      "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and nine empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption."
+    }
+  },
+  "missingReports": [],
+  "normalCloses": 1,
+  "maximumCloseMs": 245,
+  "forcedCloses": 0,
+  "screenshots": [
+    {
+      "name": "100-tooltip-dark.png",
+      "sha256": "a82c479014c8a85cde0dfca14f0d2662fcf9cbc92280c62e95c0e74eecdbb364",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "100-tooltip-light.png",
+      "sha256": "f6140374620098e13ccd075a736b2c949fb7346b17601f65dc06f27b57547625",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "101-tooltip-edge.png",
+      "sha256": "14498f8c678ff398e2a6ad6f62d647f88293fb5caf96e53247a2f53fd51b1454",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "102-button-tooltip-disabled.png",
+      "sha256": "4aa7ee7f0b85cfc7bbc178f79e7ada210ca4a39dc9e89a0f70312cbb9e91b2d2",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "103-button-tooltip-long.png",
+      "sha256": "6048eaf5b307dec4ec396421161d0769c7bb32e9ac90d35e9aa53ed6a07e3198",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "104-startup-dark.png",
+      "sha256": "6109fcc56304b0a83bf01454189b7d394c3c62e98dee07c59da2d5432eb02484",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "104-startup-light.png",
+      "sha256": "b4f4622a56354945b44e8dcf4c3a15a0f9a916e31afe7ff4f23959456f763b27",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "105-startup-error-narrow.png",
+      "sha256": "aac42f860bcbca14bcb99aa4ebf89a19a237cb963638d62a893e0b147556a75c",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "105-startup-error.png",
+      "sha256": "3dcff5e4f9b8e725c5f6eb34a73b38157d579f904c4234a439eb4101af71e307",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "106-button-focus-dark.png",
+      "sha256": "9ebebd159479eabacd6c50cc88262cdf881d6b78627e92655f54c742caa0caef",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "106-button-focus-light.png",
+      "sha256": "0ab6ef28f3274d8a7d3c50567626570af24c2a3b8eef87b08a17b2ce7e109b6c",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "107-switch-keyboard-save-dark.png",
+      "sha256": "2ddc06e50a8d0cc86e4bdc0e5c866afedf3acd8b8f745e1f605be9cb19925107",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "107-switch-keyboard-save-light.png",
+      "sha256": "6d4f9ce221c961f8959163a0e2fe770094016484f4fe099d5d11d46185b4a7e7",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "91-surface-controls-light.png",
+      "sha256": "f9f014c6b30444c7979b17dc34daa96dbaa78f6a48aa38d68dbc9197e99a16ef",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "92-surface-controls-dark-narrow.png",
+      "sha256": "61a4b1d149d608623ddbf55c76d213b17d46eb96407f46bba5a43e685ddec5d9",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "93-surface-settings-zoomed.png",
+      "sha256": "c0e9ad424a707d8c5e36e88a7e1696f260728065c134005ef44a403572d53aa9",
+      "size": [
+        760,
+        540
+      ]
+    },
+    {
+      "name": "94-surface-select-light.png",
+      "sha256": "b18278d21288bd6fc28da30dcadef3e1cbebe967736e1c14d884b50c5a28ca0e",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "95-surface-select-dark.png",
+      "sha256": "eec4fe3c5b6fb9f32368fa3ee1da6224d6a0ec43ac197a46e39c83ea3930004f",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-surface-connection-scroll.png",
+      "sha256": "b62cc26a074627e59cc5244f1a05efe98845e7ade35a4468d4029ea303ece2d5",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-switch-dark.png",
+      "sha256": "bf549d52ceb87cd8f962699fa7ed278488f9bfc177682757d07e2812ee8d615f",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "96-switch-light.png",
+      "sha256": "eebd116955191aa005f1de6662327a3e6e3766857597c101a1847574883906c0",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "97-field-invalid-dark.png",
+      "sha256": "7317abd57974d48a203d70dcfd87a2e696c99476e36c59c9fcb656405ff10052",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "97-field-invalid-light.png",
+      "sha256": "c093a0988219cbd19168e3875368a7579538e7816f21483704ecdff39287ce91",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "98-surface-short-wide.png",
+      "sha256": "5fd2c87ed0113d6cbaab49fe11a7c76a774debaa7974c9b1390ea4cdbee002e4",
+      "size": [
+        1280,
+        540
+      ]
+    },
+    {
+      "name": "99-switch-checked-dark.png",
+      "sha256": "520b545e3500df4e4ca8a9535cfaa6bb38ea38f79fa9e6a3554f6b1ed81e0376",
+      "size": [
+        1280,
+        840
+      ]
+    },
+    {
+      "name": "99-switch-checked-light.png",
+      "sha256": "5e658f4042586663c05d6c00ca3150c880a11fa03a50f23991ff7e3d14896d21",
+      "size": [
+        1280,
+        840
+      ]
+    }
+  ],
+  "originalsVisuallyReviewed": false,
+  "scope": "Serial execution of the original pipeline phase against the unchanged candidate. Exact source, fresh raw reports, log, written images and any retained desktop profile are archived. No deadline or assertion was changed. These images have not been visually reviewed, and this phase alone does not establish complete reference adoption or release.",
+  "packagedSourceHead": "43b2206e609e827ce7e2c5c1987d7e762e1eb72d",
+  "logicalSourceArchiveSharedWith": "C:\\NookVerificationOverflow\\MemoryDeleteDefaultSurfacePackage-20261013\\source.tar"
+}
