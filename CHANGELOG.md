@@ -2,6 +2,10 @@
 
 ## 未发布
 
+修正托管测试的额外开销：大字节样本使用完整字节相等比较，真实工作树夹具减少重复配置进程和与清理无关的创建步骤。原超时、大样本、所有权与完整快照验证保留，生产逻辑和流水线不变。六文件／134 项专项、全部 1,557 项及原 80% 覆盖率门槛通过；此前六项托管超时日志保留，仍须重跑原流水线。
+
+Large-buffer assertions now compare every byte directly, and real Git fixtures avoid redundant setup processes. Existing deadlines, large fixtures, ownership and complete snapshot checks remain. Six focused files and all 1,557 tests pass the original coverage gate; production behavior and the workflow are unchanged. The failed hosted run is preserved and requires a fresh rerun.
+
 共享按钮默认最小高度调整为 24px、左右内距 8px、内容间距 4px；附件关闭和搜索清除保留各自紧凑尺寸。新类型、133 文件／1,557 项单元、既有覆盖率门槛及构建通过；13 项原生专项验证真实按钮默认、焦点、悬停、按下、禁用状态，两次正常退出，37 张原图逐张复核。当前应用体另通过 375 项完整源码检查、74 次正常退出，最长 4,592ms，无强制结束；39 份新报告与 617 张原图归档，原图未全部逐张视觉复核。最终分发仍待验收。
 
 Shared buttons now use a 24px minimum height, 8px horizontal gutters and a 4px gap while preserving explicitly smaller controls. Fresh type checks, 1,557 tests and the build pass; thirteen native groups cover real button states and 37 original captures are individually reviewed. The current body also passes 375 complete source checks with 74 normal exits and no forced termination. Reports and 617 new originals are archived without claiming complete visual review; distribution gates remain pending.

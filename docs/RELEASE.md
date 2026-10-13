@@ -28,7 +28,9 @@
 
 [前一完整分发](../verification/memory-delete-default-surface-runtime-review-result.json) · [安装后回归](../verification/memory-delete-default-surface-full-installed-review-result.json)
 
-当前交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 完成环境准备与类型检查后，在单元覆盖率阶段因六项既有测试超时失败：133 文件中 127 通过，1,557 项中 1,551 通过。后续打包与发布未执行，正在修复测试开销；原期限、数据样本和完整验收要求保留。此前账户限制／零步骤失败属于历史。浏览器连接仍返回认证令牌不可用，页面未打开；尚无发布标签或可下载版本。[本次终态与完整失败日志](../verification/shared-button-defaults-hosted-terminal-review-result.json) · [此前进度快照](../verification/shared-button-defaults-hosted-progress-review-result.json)
+前一交付提交 `d72d5ef` 已推送；原[流水线 38413577535](https://github.com/Moresyl/nook/actions/runs/38413577535) 完成环境准备与类型检查后，在单元覆盖率阶段因六项既有测试超时失败：133 文件中 127 通过，1,557 项中 1,551 通过。后续打包与发布未执行，该次失败现场保留；原期限、数据样本和完整验收要求保留。此前账户限制／零步骤失败属于历史。浏览器连接仍返回认证令牌不可用，页面未打开；尚无发布标签或可下载版本。[本次终态与完整失败日志](../verification/shared-button-defaults-hosted-terminal-review-result.json) · [此前进度快照](../verification/shared-button-defaults-hosted-progress-review-result.json)
+
+六项测试的开销修复已通过本机类型、六文件／134 项专项及 133 文件／1,557 项完整覆盖率验证，覆盖率仍为 97.03%／94.57%／97.78%／99.49%。大样本、完整字节相等、真实 Git 所有权与快照检查、原期限和工作流保持有效；生产逻辑未改动。随后重跑原托管流水线，本机通过不能替代托管终态、包内与实际安装验收。[修复与完整验证](../verification/hosted-test-performance-review-result.json)
 
 ## 剩余交付
 
