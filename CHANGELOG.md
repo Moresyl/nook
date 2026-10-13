@@ -2,9 +2,9 @@
 
 ## 未发布
 
-原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免继承上一场景的 150% 缩放。原有超时和断言保留，此前失败现场归档，完整重跑待通过。
+原生文件树测试明确初始化其尺寸断言要求的 100% 缩放，避免继承上一场景的 150% 缩放。原有超时和断言保留，此前失败现场归档；七组文件树专项重跑通过，完整重跑待通过。
 
-Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain; the failed scene is retained and the complete rerun is pending.
+Native file-tree tests initialize the 100% zoom required by their viewport assertions. Original timeouts and assertions remain. All seven focused file-tree checks pass; the failed scene is retained and the complete rerun is pending.
 
 记忆删除弹窗进一步修正默认标题的字重与字距，采用顶部定位、半透明表面、细边缘与背景模糊。长内容仍有界滚动，关闭控件保持可见。新样式的 1,557 项完整单元、类型、构建、五组原生专项和 22 张原图复核通过；新完整回归与分发仍待验收，此前通过的结果按旧候选保留。
 
