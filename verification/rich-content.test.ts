@@ -23,9 +23,20 @@ describe('rich message rendering', () => {
   });
   it('renders aligned GFM tables with accessible copy controls without creating an executable preview', () => {
     const markup = render('| 左侧 | 右侧 |\n| :--- | ---: |\n| **汉字** | 42 |');
-    expect(markup).toContain('<table>'); expect(markup).toContain('text-align:left'); expect(markup).toContain('text-align:right');
+    expect(markup).toContain('<table dir="auto">'); expect(markup).toContain('text-align:left'); expect(markup).toContain('text-align:right');
     expect(markup).toContain('aria-label="复制表格"'); expect(markup).not.toContain('aria-label="复制表格" disabled');
     expect(markup).toContain('data-markdown-copy="exclude"'); expect(markup).not.toContain('<dialog'); expect(markup).toContain('<strong>汉字</strong>');
+  });
+  it('preserves bidirectional cell text and marks only complete unsigned numeric values, including nested emphasis', () => {
+    const source = '| עברית | 数字 |\n| :--- | ---: |\n| مرحبا | **1234567890** |\n| 中文 | 001 |\n| English | -42 |\n| نص | 1.5 |\n| 😀 | 42 kg |';
+    const markup = render(source);
+    expect(markup.match(/data-numeric="true"/g)).toHaveLength(2);
+    expect(markup).toContain('data-numeric="true"><strong>1234567890</strong>');
+    expect(markup).toContain('data-numeric="true">001');
+    expect(markup).toContain('<th dir="auto" style="text-align:left">עברית</th>');
+    expect(markup).toContain('<td dir="auto" style="text-align:left">مرحبا</td>');
+    for (const text of ['中文', 'English', '-42', '1.5', '42 kg', '😀']) expect(markup).toContain(text);
+    expect(markup).not.toContain('node="'); expect(source).toContain('**1234567890**');
   });
   it('renders inline/display/fenced formulas and accessible MathML without changing their saved source', () => {
     const source = 'Inline $x^2$\n\n$$\n\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}\n$$\n\n```math\n\\sqrt{2}\n```';

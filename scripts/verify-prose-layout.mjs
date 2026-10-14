@@ -15,7 +15,7 @@ export async function verifyProseLayout({ page, target = page, application, thre
   const windowSelector = quick ? "new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'" : "w.webContents.getURL().startsWith('qiyao://app/')&&!new URL(w.webContents.getURL()).searchParams.has('view')";
   const windowExpression = `require('electron').BrowserWindow.getAllWindows().find(w=>${windowSelector})`;
   const cases = quick ? [1, 1.25, 1.5].map(zoom => ({ width: 420, height: 360, zoom })) : [{ width: 1280, height: 840, zoom: 1 }, ...[1, 1.25, 1.5].map(zoom => ({ width: 760, height: 540, zoom }))];
-  const layouts = [];
+  const layouts = [], tableNavigation = [];
   async function capture(name) {
     await target.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const image = await application.evaluateMain(`(async()=>{const w=${windowExpression};return {png:(await w.capturePage()).toPNG().toString('base64'),size:w.getContentSize()};})()`);
@@ -45,7 +45,32 @@ export async function verifyProseLayout({ page, target = page, application, thre
     const overflow = await scroll.evaluate(element => element.scrollWidth > element.clientWidth + 1);
     let previewCapture;
     if (overflow) {
-      assert.equal(await scroll.getAttribute('role'), 'region'); const expand = table.getByRole('button', { name: '展开表格', exact: true }); await expand.press('Enter');
+      assert.equal(await scroll.getAttribute('role'), 'region');
+      const copy = table.getByRole('button', { name: '复制表格', exact: true });
+      await scroll.evaluate(element => element.scrollTo({ left: 0, behavior: 'instant' }));
+      await target.waitForFunction(() => {
+        const element = document.querySelector('.markdown-table-scroller[data-overflow="true"]');
+        return element && parseFloat(getComputedStyle(element).getPropertyValue('--table-fade-left')) === 0 && parseFloat(getComputedStyle(element).getPropertyValue('--table-fade-right')) === 16;
+      });
+      await copy.press('ArrowRight');
+      assert.equal(await scroll.evaluate(element => element.scrollLeft), 40); assert.equal(await copy.evaluate(element => document.activeElement === element), true);
+      await target.waitForFunction(() => parseFloat(getComputedStyle(document.querySelector('.markdown-table-scroller[data-overflow="true"]')).getPropertyValue('--table-fade-left')) === 16);
+      const mask = await scroll.evaluate(element => getComputedStyle(element).maskImage); assert.notEqual(mask, 'none');
+      for (const modifier of ['Control', 'Meta', 'Shift', 'Alt']) { await copy.press(`${modifier}+ArrowRight`); assert.equal(await scroll.evaluate(element => element.scrollLeft), 40, `${modifier} must retain its existing shortcut behavior on Windows.`); }
+      const prevented = await copy.evaluate(element => {
+        const event = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }); event.preventDefault(); element.dispatchEvent(event);
+        return element.closest('.markdown-table').querySelector('.markdown-table-scroller').scrollLeft;
+      }); assert.equal(prevented, 40);
+      await copy.press('ArrowLeft'); assert.equal(await scroll.evaluate(element => element.scrollLeft), 0);
+      await scroll.evaluate(element => element.scrollTo({ left: element.scrollWidth, behavior: 'instant' }));
+      await target.waitForFunction(() => parseFloat(getComputedStyle(document.querySelector('.markdown-table-scroller[data-overflow="true"]')).getPropertyValue('--table-fade-right')) === 0);
+      assert.equal(await scroll.evaluate(element => element.querySelector('tbody tr:first-child td:last-child').getBoundingClientRect().right <= element.getBoundingClientRect().right + 1), true);
+      await scroll.evaluate(element => element.scrollTo({ left: 0, behavior: 'instant' }));
+      assert.deepEqual(await table.locator('td[data-numeric="true"]').allTextContents(), ['42', '99']);
+      assert.equal(await table.locator('td[data-numeric="true"]').first().evaluate(element => getComputedStyle(element).whiteSpace), 'nowrap');
+      assert.equal(await table.locator('table').getAttribute('dir'), 'auto'); assert.equal(await table.locator('td').first().getAttribute('dir'), 'auto');
+      tableNavigation.push({ theme, width, height, zoom, copyButtonArrows: true, modifiersPreserved: true, preventedEventPreserved: true, directionalEdgeMask: mask, digitsUnwrapped: true, autoCellDirection: true });
+      const expand = table.getByRole('button', { name: '展开表格', exact: true }); await expand.press('Enter');
       const dialog = target.getByRole('dialog', { name: '表格预览', exact: true }); await dialog.waitFor(); assert.ok((await dialog.locator('table').innerText()).includes('PROSE_TABLE_EXACT_'));
       assert.equal(await dialog.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight; }), true);
       assert.equal(await dialog.evaluate(element => element.getBoundingClientRect().height <= Math.min(innerHeight - 24, element.querySelector('table').getBoundingClientRect().height + 104) + 1), true, 'The preview must fit its table content without a viewport-sized empty region.');
@@ -76,9 +101,36 @@ export async function verifyProseLayout({ page, target = page, application, thre
     assert.equal(await target.evaluate(() => [...CSS.highlights.get('qiyao-chat-search-current')][0].toString()), 'English cross node'); await search.getByRole('button', { name: '关闭查找', exact: true }).click();
   } else assert.equal(await target.evaluate(() => typeof window.qiyao), 'undefined');
   const tableClipboard = await verifyTableClipboard({ page, target, application, threadId, index, quick, verified });
+  const fitSource = '| עברית | 数字 |\n| :--- | ---: |\n| مرحبا | **1234567890** |\n\nTABLE_FIT_EXACT_END';
+  await application.evaluateMain(`${windowExpression}.webContents.setZoomFactor(1)`);
+  await page.evaluate(thread => window.qiyao.updateThread(thread), { ...original, messages: original.messages.map((message, position) => position === index ? { ...message, content: fitSource } : message) });
+  if (!quick) await application.evaluateMain(`${windowExpression}.webContents.send('nook:workspace-navigation',{threadId:${JSON.stringify(threadId)}})`);
+  const fitBody = target.locator('.markdown-body').filter({ hasText: 'TABLE_FIT_EXACT_END' }); await fitBody.waitFor();
+  const fitTable = fitBody.locator('.markdown-table'), fitScroll = fitTable.locator('.markdown-table-scroller'), fitCopy = fitTable.getByRole('button', { name: '复制表格', exact: true });
+  await target.waitForFunction(() => document.querySelector('.markdown-table-scroller[data-overflow="false"]'));
+  assert.equal(await fitScroll.getAttribute('role'), null); assert.equal(await fitScroll.getAttribute('tabindex'), null); assert.equal(await fitScroll.evaluate(element => getComputedStyle(element).maskImage), 'none');
+  assert.equal(await fitTable.getByRole('button', { name: '展开表格', exact: true }).count(), 0);
+  const unhandled = await fitCopy.evaluate(element => element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }))); assert.equal(unhandled, true); assert.equal(await fitScroll.evaluate(element => element.scrollLeft), 0);
+  assert.equal(await fitTable.locator('table').getAttribute('dir'), 'auto');
+  const fitTableDirection = await fitTable.locator('table').evaluate(element => getComputedStyle(element).direction);
+  assert.equal(await fitTable.locator('td').first().evaluate(element => getComputedStyle(element).direction), 'rtl');
+  assert.equal(await fitTable.locator('td[data-numeric="true"]').evaluate(element => getComputedStyle(element).direction), 'ltr');
+  await fitCopy.press('Enter'); await fitTable.getByRole('status').waitFor();
+  const fitCopied = await target.evaluate(() => ({ text: window.qiyaoVerificationCopy, html: window.nookTableCopyHtml }));
+  assert.equal(fitCopied.text, fitSource.slice(0, fitSource.indexOf('\n\n')));
+  assert.equal(await target.evaluate(html => { const parsed = new DOMParser().parseFromString(html, 'text/html'); return parsed.querySelector('table').dir === 'auto' && [...parsed.querySelectorAll('th,td')].every(cell => cell.dir === 'auto'); }, fitCopied.html), true);
+  const fitCapture = await capture(`table-fit-${quick ? 'quick' : 'main'}-dark-${quick ? 420 : 760}-100.png`);
+  await page.evaluate(thread => window.qiyao.updateThread(thread), { ...original, messages: original.messages.map((message, position) => position === index ? { ...message, content: proseReply } : message) });
+  if (!quick) await application.evaluateMain(`${windowExpression}.webContents.send('nook:workspace-navigation',{threadId:${JSON.stringify(threadId)}})`);
+  await body.waitFor(); await table.waitFor();
+  await target.waitForFunction(() => document.querySelector('.markdown-table-scroller[data-overflow="true"]'));
+  await target.emulateMedia({ forcedColors: 'active' });
+  try { assert.equal(await table.locator('.markdown-table-scroller').evaluate(element => getComputedStyle(element).maskImage), 'none'); }
+  finally { await target.emulateMedia({ forcedColors: 'none' }); }
   await target.evaluate(() => { navigator.clipboard.writeText = async text => { window.qiyaoVerificationCopy = text; }; });
   await application.evaluateMain(`${windowExpression}.webContents.setZoomFactor(1)`); await page.evaluate(thread => window.qiyao.updateThread(thread), original);
   if (!quick) await target.reload(); else await body.waitFor({ state: 'detached' });
   verified(`${quick ? 'restricted quick' : 'main'} Markdown prose, Han paragraph spacing, semantic headings/lists/quotes, exact table source copy, denied-copy retry, pending prevention, overflow preview keyboard focus and saved originals in both themes at native zoom`);
-  return { layouts, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Reference relative metrics at the existing 14px body; reference runtime font defaults and actual glyph selection remain unverified.' };
+  verified(`${quick ? 'restricted quick' : 'main'} table copy-button arrows preserve focus and modifier shortcuts, scroll masks follow actual edges, numeric cells do not wrap and cell direction is automatic across native theme/zoom cases`);
+  return { layouts, tableNavigation, fitTable: { unhandledArrow: unhandled, tableDirection: fitTableDirection, automaticCellDirection: true, copiedAutoDirection: true, overflowTransition: true, forcedColorsUnmasked: true, capture: fitCapture }, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Reference relative metrics at the existing 14px body; reference runtime font defaults and actual glyph selection remain unverified.' };
 }

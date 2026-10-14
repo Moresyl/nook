@@ -38,7 +38,13 @@ function MarkdownTableBlock({ node, ...props }: ComponentProps<'table'> & ExtraP
   const start = node?.position?.start.offset, end = node?.position?.end.offset;
   return <MarkdownTable {...props} source={start !== undefined && end !== undefined ? content.slice(start, end) : ''} html={markdownTableHtml(node)} />;
 }
-const components: Components = { a: MarkdownLink, pre: MarkdownPre, p: MarkdownParagraph, table: MarkdownTableBlock };
+function MarkdownTableHeader({ node, ...props }: ComponentProps<'th'> & ExtraProps) {
+  return <th dir="auto" {...props} />;
+}
+function MarkdownTableCell({ node, ...props }: ComponentProps<'td'> & ExtraProps) {
+  return <td dir="auto" {...props} data-numeric={node && /^\d+$/.test(toString(node)) ? true : undefined} />;
+}
+const components: Components = { a: MarkdownLink, pre: MarkdownPre, p: MarkdownParagraph, table: MarkdownTableBlock, th: MarkdownTableHeader, td: MarkdownTableCell };
 
 function CodeFence({ block, children, generating, report }: { block: CodeBlock; children: ReactNode; generating: boolean; report: (error: unknown) => void }) {
   const [showSource, setShowSource] = useState(false);

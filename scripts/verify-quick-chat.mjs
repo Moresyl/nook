@@ -273,7 +273,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   assert.equal(Buffer.from(await quick.evaluate(async reference => Array.from(await window.nookQuick.readDocumentOriginal(reference)), recovered.thread.messages[0].attachments[0].original)).equals(bytes), true);
   assert.equal(calls.length - initialCalls, 4); await page.evaluate(async preferences => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, ...preferences }); }, preferences);
   verified('combined-window backup deduplicates exact PDFs, restores missing originals and invalidates stale send revisions, then recovers quick input through an actual normal close/restart');
-  return { page, result: { checks: 12, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256, layout, minimumLayout, prose, independentDraftsVerified: true, restrictedBridgeVerified: true,
+  return { page, result: { checks: 13, quickModelRequests: 3, mainFixtureRequests: 1, originalSha256, layout, minimumLayout, prose, independentDraftsVerified: true, restrictedBridgeVerified: true,
     exactOriginalVerified: true, textOnlyTransportVerified: true, stopOwnerVerified: true, approvalScopeVerified: true, handoffVerified: true, windowStateVerified: true, shortcutTargetVerified: true, filesystemRetryVerified: true, backupRestartVerified: true, staleRevisionVerified: true,
     refreshRaceVerified: true, minimumErrorVerified: true, captures, screenshotMethod: 'Complete Electron BrowserWindow.capturePage with exact native content-size assertions' } };
 }

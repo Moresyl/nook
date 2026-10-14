@@ -21,10 +21,10 @@ export async function assertTableClipboard(target, source) {
   assert.equal(copy.text, source); assert.equal(copy.items, 1); assert.deepEqual(copy.types, ['text/html', 'text/plain']);
   const structure = await target.evaluate(html => {
     const document = new DOMParser().parseFromString(html, 'text/html'), table = document.querySelector('table');
-    return { tables: document.querySelectorAll('table').length, rows: table?.rows.length, cells: [...table?.rows[1].cells ?? []].map(cell => cell.textContent), alignments: [...table?.rows[0].cells ?? []].map(cell => cell.style.textAlign), bold: table?.querySelector('strong')?.textContent, resources: document.querySelectorAll('img,script,iframe,object,embed,[src],[onerror]').length };
+    return { tables: document.querySelectorAll('table').length, rows: table?.rows.length, cells: [...table?.rows[1].cells ?? []].map(cell => cell.textContent), alignments: [...table?.rows[0].cells ?? []].map(cell => cell.style.textAlign), autoDirection: table?.dir === 'auto' && [...table.querySelectorAll('th,td')].every(cell => cell.dir === 'auto'), bold: table?.querySelector('strong')?.textContent, resources: document.querySelectorAll('img,script,iframe,object,embed,[src],[onerror]').length };
   }, copy.html);
   assert.equal(structure.tables, 1); assert.equal(structure.rows, 3); assert.deepEqual(structure.alignments, ['left', 'center', 'right', '']);
-  assert.equal(structure.cells[1], '😀'); assert.equal(structure.cells[2], '42'); assert.ok(structure.cells[3].startsWith('PROSE_TABLE_EXACT_')); assert.equal(structure.resources, 0);
+  assert.equal(structure.cells[1], '😀'); assert.equal(structure.cells[2], '42'); assert.ok(structure.cells[3].startsWith('PROSE_TABLE_EXACT_')); assert.equal(structure.resources, 0); assert.equal(structure.autoDirection, true);
   return structure;
 }
 export async function verifyTableClipboard({ page, target, application, threadId, index, quick, verified }) {
@@ -48,8 +48,8 @@ export async function verifyTableClipboard({ page, target, application, threadId
       assert.deepEqual(await target.evaluate(async () => ({ write: (await navigator.permissions.query({ name: 'clipboard-write' })).state, read: (await navigator.permissions.query({ name: 'clipboard-read' })).state })), { write: 'granted', read: 'denied' });
       physical.writtenFormats = value.formats; physical.verified = true;
     } finally {
-      const restored = await application.evaluateMain("(async()=>{const c=require('electron').clipboard;const backup=globalThis.nookTableClipboardBackup;if(backup.items.length)await c.write(backup.items);else c.clear();const same=JSON.stringify(await backup.fingerprint(await c.read()))===JSON.stringify(backup.before);delete globalThis.nookTableClipboardBackup;return {same};})()");
-      assert.equal(restored.same, true, 'All original system clipboard formats must be restored byte-for-byte.'); physical.originalClipboardRestoredByteForByte = true;
+      const restored = await application.evaluateMain("(async()=>{const c=require('electron').clipboard;const backup=globalThis.nookTableClipboardBackup;if(backup.items.length)await c.write(backup.items);else c.clear();const after=await backup.fingerprint(await c.read());delete globalThis.nookTableClipboardBackup;return {before:backup.before,after};})()");
+      assert.deepEqual(restored.after, restored.before, 'All original system clipboard formats must be restored byte-for-byte.'); physical.originalClipboardRestoredByteForByte = true;
       await installTableClipboardFixture(target);
     }
   }

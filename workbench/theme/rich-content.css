@@ -81,10 +81,27 @@
 .markdown-body > :last-child { margin-bottom: 0; }
 .markdown-table { position: relative; min-width: 0; margin-top: calc(var(--markdown-space) * 4); }
 .markdown-table-scroller { overflow-x: auto; scrollbar-width: thin; }
+@property --table-fade-left { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --table-fade-right { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@keyframes table-scroll-edges {
+  from { --table-fade-left: 0px; --table-fade-right: 1rem; }
+  0.1%, 99.9% { --table-fade-left: 1rem; --table-fade-right: 1rem; }
+  to { --table-fade-left: 1rem; --table-fade-right: 0px; }
+}
+@supports (animation-timeline: scroll()) {
+  .markdown-table-scroller[data-overflow="true"] {
+    mask-image: linear-gradient(to right in oklch, transparent, black var(--table-fade-left) calc(100% - var(--table-fade-right)), transparent);
+    animation: table-scroll-edges linear both;
+    animation-timeline: scroll(self x);
+    animation-range: min(2px, 50%) max(100% - 2px, 50%);
+  }
+}
+@media (forced-colors: active) { .markdown-table-scroller[data-overflow="true"] { mask-image: none; } }
 .markdown-body .markdown-table table { display: table; width: fit-content; min-width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; table-layout: auto; text-align: start; font-size: .875em; font-variant-numeric: tabular-nums; overflow-wrap: normal; }
 .markdown-body .markdown-table :is(th, td) { vertical-align: top; white-space: normal; border: 0; padding-inline: 0 calc(var(--markdown-space) * 6); }
 .markdown-body .markdown-table th { padding-block: calc(var(--markdown-space) * 2); border-bottom: 1px solid var(--field-border); text-align: start; font-weight: var(--font-weight-semibold); line-height: calc(var(--markdown-space) * 4); }
 .markdown-body .markdown-table td { padding-block: calc(var(--markdown-space) * 2.5); }
+.markdown-body .markdown-table td[data-numeric="true"] { min-width: calc(3ch + var(--markdown-space) * 6); white-space: nowrap; }
 .markdown-body .markdown-table tr:not(:last-child) td { border-bottom: 1px solid var(--ds-border); }
 .markdown-body .markdown-table th:last-child { padding-inline-end: calc(var(--markdown-space) * 10); }
 .markdown-body .markdown-table td:last-child { padding-inline-end: 0; }

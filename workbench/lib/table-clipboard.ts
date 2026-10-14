@@ -22,7 +22,7 @@ function serialize(node: RootContent): string {
   if (node.tagName === 'img') return escape(String(node.properties.alt ?? ''));
   const content = node.children.map(serialize).join('');
   if (!tags.has(node.tagName)) return content;
-  let attributes = '';
+  let attributes = ['table', 'th', 'td'].includes(node.tagName) ? ' dir="auto"' : '';
   if (node.tagName === 'a') {
     const href = String(node.properties.href ?? '');
     try { if (!['http:', 'https:', 'mailto:'].includes(new URL(href).protocol)) return content; }
@@ -30,7 +30,7 @@ function serialize(node: RootContent): string {
     attributes = ` href="${escape(href)}"`;
   } else if (node.tagName === 'th' || node.tagName === 'td') {
     const align = node.properties.align;
-    if (align === 'left' || align === 'center' || align === 'right') attributes = ` style="text-align:${align}"`;
+    if (align === 'left' || align === 'center' || align === 'right') attributes += ` style="text-align:${align}"`;
   }
   return node.tagName === 'br' ? '<br>' : `<${node.tagName}${attributes}>${content}</${node.tagName}>`;
 }
