@@ -41,6 +41,7 @@
 
 .markdown-body {
   --markdown-font-size: var(--chat-font-size, 14px);
+  --markdown-small-font-size: max(var(--chat-code-font-size, 12px), calc(var(--markdown-font-size) * .875));
   --markdown-space: calc(var(--markdown-font-size) / 4);
   --markdown-line-height: calc(var(--markdown-font-size) * 1.625);
   font-size: var(--markdown-font-size);
@@ -100,7 +101,7 @@
   }
 }
 @media (forced-colors: active) { .markdown-table-scroller[data-overflow="true"] { mask-image: none; } }
-.markdown-body .markdown-table table { display: table; width: fit-content; min-width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; table-layout: auto; text-align: start; font-size: .875em; font-variant-numeric: tabular-nums; overflow-wrap: normal; }
+.markdown-body .markdown-table table { display: table; width: fit-content; min-width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; table-layout: auto; text-align: start; font-size: var(--markdown-small-font-size); font-variant-numeric: tabular-nums; overflow-wrap: normal; }
 .markdown-body .markdown-table :is(th, td) { vertical-align: top; white-space: normal; border: 0; padding-inline: 0 calc(var(--markdown-space) * 6); }
 .markdown-body .markdown-table th { padding-block: calc(var(--markdown-space) * 2); border-bottom: 1px solid var(--field-border); text-align: start; font-weight: var(--font-weight-semibold); line-height: calc(var(--markdown-space) * 4); }
 .markdown-body .markdown-table td { padding-block: calc(var(--markdown-space) * 2.5); }

@@ -334,7 +334,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .assistant-prose li { margin: 4px 0; }
 .assistant-prose pre { overflow-x: auto; padding: 16px; border-radius: 12px; background: var(--ds-bg-secondary); font-size: 12px; line-height: 1.6; }
 .assistant-prose code { font-family: var(--font-code-family); }
-.assistant-prose :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--ghost-hover); font-size: var(--chat-code-font-size, 12px); }
+.assistant-prose :not(pre) > code { display: inline; padding: 1px 6px; border-radius: 6px; background: var(--ghost-hover); font-size: .92em; direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; word-break: break-word; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .assistant-prose blockquote { border-left: 3px solid var(--ds-border); margin-left: 0; padding-left: 16px; color: var(--ds-text-secondary); }
 .assistant-prose table { border-collapse: collapse; display: block; overflow-x: auto; }
 .assistant-prose th, .assistant-prose td { border: 1px solid var(--ds-border); padding: 6px 12px; }
