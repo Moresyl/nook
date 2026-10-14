@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useChatFontSettings } from './components/use-chat-font-settings';
 import type { ComposerDraft, Message, Thread } from '../contracts/workspace';
 import type { QuickChatSnapshot } from '../contracts/quick-chat';
 import type { ApprovalRequest } from '../contracts/tools';
@@ -66,6 +67,7 @@ export default function QuickChatView() {
     void bridge.pendingApprovals().then(pending => { if (active) setApprovals(current => [...current, ...pending.filter(item => !resolved.has(item.id) && !current.some(known => known.id === item.id))]); }).catch(report);
     return () => { active = false; clearTimeout(timer.current); window.removeEventListener('focus', focused); removeRun(); removeRefresh(); removeClose(); };
   }, [flush, refresh, report]);
+  useChatFontSettings(snapshot?.context.preferences);
   useEffect(() => {
     if (!snapshot) return; const media = matchMedia('(prefers-color-scheme: dark)');
     const apply = () => { document.documentElement.dataset.theme = snapshot.context.preferences.theme === 'system' ? media.matches ? 'dark' : 'light' : snapshot.context.preferences.theme; };

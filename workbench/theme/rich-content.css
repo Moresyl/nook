@@ -22,7 +22,7 @@
 .code-fence-header > div { display: flex; gap: 4px; flex-shrink: 0; }
 .code-fence-header .icon-button { width: 24px; height: 24px; }
 .code-fence-header .icon-button[aria-pressed="true"] { color: var(--ds-text); background: var(--ghost-hover); }
-.assistant-prose .code-fence pre { margin: 0; border-radius: 0; max-height: 480px; padding: 14px 40px 14px 16px; background: transparent; font-size: .875em; font-weight: var(--font-weight-normal); line-height: 1.5em; }
+.assistant-prose .code-fence pre { margin: 0; border-radius: 0; max-height: 480px; padding: 14px 40px 14px 16px; background: transparent; font-size: var(--chat-code-font-size, .875em); font-weight: var(--font-weight-normal); line-height: 1.5em; }
 .assistant-prose .code-fence .code-copy-feedback { margin: 0; padding: 0 16px 8px; font-size: 12px; line-height: 20px; color: var(--ds-text-secondary); }
 .assistant-prose .code-fence .code-copy-feedback.inline-error { color: var(--ds-danger); }
 .assistant-prose .code-fence[data-wrap="true"] pre { white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -40,7 +40,7 @@
 [data-theme="light"] .hljs-comment { font-style: italic; }
 
 .markdown-body {
-  --markdown-font-size: 14px;
+  --markdown-font-size: var(--chat-font-size, 14px);
   --markdown-space: calc(var(--markdown-font-size) / 4);
   --markdown-line-height: calc(var(--markdown-font-size) * 1.625);
   font-size: var(--markdown-font-size);

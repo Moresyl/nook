@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useChatFontSettings } from './components/use-chat-font-settings';
 import type { SetStateAction } from 'react';
 import { emptyWorkspace, searchThreads, type ComposerDraft, type Message, type SubmitRequest, type Thread, type Workspace } from '../contracts/workspace';
 import { appendMessageQuote, conversationRevision } from '../contracts/conversations';
@@ -158,6 +159,7 @@ export function Workbench() {
     });
   }, [report]);
   useEffect(() => window.qiyao?.onBeforeClose(flushDrafts), []);
+  useChatFontSettings(state?.preferences);
   useEffect(() => () => { clearTimeout(draftTimer.current); void draftStore.current.flush().catch(report); }, []);
   useEffect(() => {
     if (!state) return;

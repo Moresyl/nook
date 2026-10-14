@@ -20,6 +20,8 @@ const destinations: [SettingsTab, string, string, string][] = [
   ['worktrees', '自动清理旧工作树', '自动清理旧工作树', '保留 数量 快照'],
   ['worktrees', '保留工作树数量', '保留工作树数量', '自动清理'],
   ['appearance', '主题', '主题', '浅色 深色 系统 light dark theme'],
+  ['appearance', '对话字号', '对话字号', '文字 字体 大小 font size chat'],
+  ['appearance', '代码字号', '代码字号', '文字 字体 大小 font size code'],
   ['appearance', '按 Enter 发送消息', '按 Enter 发送消息', '回车 输入'],
   ['appearance', '键盘快捷键', '键盘快捷键', 'keyboard shortcut'],
   ['appearance', '显示系统托盘', '显示系统托盘', 'tray 桌面'],

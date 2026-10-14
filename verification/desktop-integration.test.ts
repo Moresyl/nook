@@ -31,6 +31,19 @@ describe('desktop integration contracts and lifecycle', () => {
   it('starts without desktop side effects and never hides without a working enabled tray', async () => {
     const { service, runtime } = await setup(); await service.refresh(); expect(service.state()).toEqual({ trayEnabled: false, shortcutRegistered: false }); expect(service.canHide()).toBe(false); expect(runtime.createTray).not.toHaveBeenCalled(); expect(runtime.registerShortcut).not.toHaveBeenCalled();
   });
+  it('persists independent font sizes across reload and removes overrides without native desktop side effects', async () => {
+    const { service, preferences, vault, directory, runtime } = await setup();
+    const saved = await service.savePreferences({ ...preferences(), chatFontSize: 24, chatCodeFontSize: 10 });
+    expect(saved.preferences).toMatchObject({ chatFontSize: 24, chatCodeFontSize: 10 });
+    const reopened = new WorkspaceVault(directory, codec); await reopened.initialize();
+    expect(reopened.snapshot().preferences).toEqual(saved.preferences);
+    expect(() => service.savePreferences({ ...saved.preferences, chatCodeFontSize: 25 })).toThrow();
+    expect(vault.snapshot().preferences).toEqual(saved.preferences);
+    const { chatFontSize, chatCodeFontSize, ...defaults } = saved.preferences;
+    await service.savePreferences(defaults);
+    expect(vault.snapshot().preferences.chatFontSize).toBeUndefined(); expect(vault.snapshot().preferences.chatCodeFontSize).toBeUndefined();
+    expect(runtime.createTray).not.toHaveBeenCalled(); expect(runtime.registerShortcut).not.toHaveBeenCalled();
+  });
   it('persists settings before activating tray/menu/hotkey callbacks, preserves other preferences and releases only its resources', async () => {
     const { service, preferences, vault, trays, shortcuts, runtime } = await setup(); shortcuts.set('Ctrl+Shift+F12', vi.fn());
     const saved = await service.savePreferences({ ...preferences({ trayEnabled: true, closeToTray: true, shortcutEnabled: true }), theme: 'dark' }); expect(saved.preferences.theme).toBe('dark'); expect(vault.snapshot().preferences.desktop?.closeToTray).toBe(true); expect(service.canHide()).toBe(true);

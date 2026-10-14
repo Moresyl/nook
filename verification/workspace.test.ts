@@ -1,8 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { emptyWorkspace, providerSchema, searchThreads, submitSchema, threadMarkdown, workspaceSchema } from '../contracts/workspace';
+import { emptyWorkspace, preferencesSchema, providerSchema, searchThreads, submitSchema, threadMarkdown, workspaceSchema } from '../contracts/workspace';
 import { provider, sampleThread } from './fixtures';
 
 describe('workspace contracts', () => {
+  it('keeps legacy font preferences optional and accepts independent bounded integer sizes', () => {
+    expect(preferencesSchema.parse({}).chatFontSize).toBeUndefined();
+    expect(preferencesSchema.parse({}).chatCodeFontSize).toBeUndefined();
+    for (const field of ['chatFontSize', 'chatCodeFontSize']) {
+      for (const value of [10, 14, 24]) expect(preferencesSchema.parse({ [field]: value })).toMatchObject({ [field]: value });
+      for (const value of [9, 25, 14.5, NaN, Infinity, null, '14']) expect(preferencesSchema.safeParse({ [field]: value }).success).toBe(false);
+    }
+    const state = workspaceSchema.parse({ ...emptyWorkspace(), preferences: { theme: 'dark', enterToSend: false, chatFontSize: 18, chatCodeFontSize: 12 } });
+    expect(workspaceSchema.parse(JSON.parse(JSON.stringify(state))).preferences).toEqual(state.preferences);
+  });
   it('creates a fresh valid workspace for each invocation', () => {
     const first = emptyWorkspace(); first.assistants.length = 0;
     expect(emptyWorkspace().assistants).toHaveLength(3);

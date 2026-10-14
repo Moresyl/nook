@@ -7,12 +7,14 @@ describe('settings search destinations', () => {
     const all = settingsTabs.flatMap(tab => settingsMatches(tab.label));
     for (const tab of settingsTabs) expect(all.some(item => item.id === tab.id && item.tab === tab.id)).toBe(true);
     const unique = new Map(all.map(item => [item.id, item]));
-    expect(unique.size).toBe(27); expect([...unique.values()].every(item => settingsTabs.some(tab => tab.id === item.tab))).toBe(true);
+    expect(unique.size).toBe(29); expect([...unique.values()].every(item => settingsTabs.some(tab => tab.id === item.tab))).toBe(true);
   });
   it('matches literal multi-term labels and aliases with exact label priority', () => {
     expect(settingsMatches('  THEME  浅色 ').map(item => item.label)).toEqual(['主题']);
     expect(settingsMatches('工作树 保留').map(item => item.label)).toEqual(['自动清理旧工作树', '保留工作树数量']);
     expect(settingsMatches('主题')[0]).toMatchObject({ tab: 'appearance', focusLabel: '主题' });
+    expect(settingsMatches('chat font')[0]).toMatchObject({ tab: 'appearance', focusLabel: '对话字号' });
+    expect(settingsMatches('code size')[0]).toMatchObject({ tab: 'appearance', focusLabel: '代码字号' });
     expect(settingsMatches('restore')[0]).toMatchObject({ tab: 'data', focusLabel: '恢复备份…' });
     for (const query of [' ', '', '不存在', '.*', '<script>', '${secret}']) expect(settingsMatches(query)).toEqual([]);
   });

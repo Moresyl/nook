@@ -3,6 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { proseReply, tableSource } from '../verification/prose-layout-fixture.mjs';
 import { installTableClipboardFixture, assertTableClipboard, verifyTableClipboard } from './table-clipboard-verification.mjs';
+import { verifyChatFontSettings } from './verify-chat-font-settings.mjs';
 
 export async function verifyProseLayout({ page, target = page, application, threadId, screenshots, verified, quick = false }) {
   const original = await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), threadId);
@@ -127,10 +128,11 @@ export async function verifyProseLayout({ page, target = page, application, thre
   await target.emulateMedia({ forcedColors: 'active' });
   try { assert.equal(await table.locator('.markdown-table-scroller').evaluate(element => getComputedStyle(element).maskImage), 'none'); }
   finally { await target.emulateMedia({ forcedColors: 'none' }); }
+  const chatFonts = await verifyChatFontSettings({ page, target, application, threadId, screenshots, verified, quick });
   await target.evaluate(() => { navigator.clipboard.writeText = async text => { window.qiyaoVerificationCopy = text; }; });
   await application.evaluateMain(`${windowExpression}.webContents.setZoomFactor(1)`); await page.evaluate(thread => window.qiyao.updateThread(thread), original);
   if (!quick) await target.reload(); else await body.waitFor({ state: 'detached' });
   verified(`${quick ? 'restricted quick' : 'main'} Markdown prose, Han paragraph spacing, semantic headings/lists/quotes, exact table source copy, denied-copy retry, pending prevention, overflow preview keyboard focus and saved originals in both themes at native zoom`);
   verified(`${quick ? 'restricted quick' : 'main'} table copy-button arrows preserve focus and modifier shortcuts, scroll masks follow actual edges, numeric cells do not wrap and cell direction is automatic across native theme/zoom cases`);
-  return { layouts, tableNavigation, fitTable: { unhandledArrow: unhandled, tableDirection: fitTableDirection, automaticCellDirection: true, copiedAutoDirection: true, overflowTransition: true, forcedColorsUnmasked: true, capture: fitCapture }, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Reference relative metrics at the existing 14px body; reference runtime font defaults and actual glyph selection remain unverified.' };
+  return { layouts, tableNavigation, chatFonts, fitTable: { unhandledArrow: unhandled, tableDirection: fitTableDirection, automaticCellDirection: true, copiedAutoDirection: true, overflowTransition: true, forcedColorsUnmasked: true, capture: fitCapture }, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Independent chat/code overrides verified at native themes/zoom; reference runtime defaults and actual glyph selection remain unverified.' };
 }

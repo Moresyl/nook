@@ -94,6 +94,8 @@ export const noteSchema = z.object({
 });
 export const preferencesSchema = z.object({
   theme: z.enum(['light', 'dark', 'system']).default('system'),
+  chatFontSize: z.number().int().min(10).max(24).optional(),
+  chatCodeFontSize: z.number().int().min(10).max(24).optional(),
   defaultProviderId: identifier.optional(), defaultModel: shortText.default(''),
   enterToSend: z.boolean().default(true),
   desktop: desktopPreferencesSchema.optional(),
