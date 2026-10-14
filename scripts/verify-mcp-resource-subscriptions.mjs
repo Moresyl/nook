@@ -124,6 +124,12 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   await page.evaluate(() => { window.__qiyaoSubscriptionEvents = []; window.__qiyaoSubscriptionUnsubscribe = window.qiyao.onMcpResource((event) => window.__qiyaoSubscriptionEvents.push(event)); });
   await page.getByRole('button', { name: '停止订阅所选资源', exact: true }).click();
   await waitForBridge(page, async (id) => (await window.qiyao.mcpViews()).find((item) => item.id === id)?.subscribedResources.length === 0, id);
+  await waitForBridge(page, () => {
+    const buttons = [...document.querySelectorAll('button')];
+    return buttons.some(button => button.textContent === '订阅所选资源' && !button.disabled)
+      && buttons.some(button => button.textContent === '读取资源' && !button.disabled);
+  });
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const retained = await preview().innerText(); const eventsBeforeLate = await page.evaluate(() => window.__qiyaoSubscriptionEvents.length);
   await waitForBridge(page, async ({ id, documentUri }) => (await window.qiyao.mcpReadResource(id, documentUri)).text.includes('LATE_AFTER_UNSUBSCRIBE'), { id, documentUri });
   assert.equal(await preview().innerText(), retained);
