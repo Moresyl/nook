@@ -7,6 +7,7 @@
 - 工作树只读身份查询按四项一批执行，独立 Git 元数据读取并行等待；删除仍串行，原文件、索引与删除前复查保留。
 - 发布与安装门槛提高为 383 项，严格验证八组任务步骤行为、十二种布局、逐项可读边界和十六张完整捕获。原期限与覆盖率门槛保持不变。
 - 设置搜索保留外层焦点圈，去除内层重复矩形描边；快速聊天标题保持 22px 紧凑高度，避免小窗口高缩放挤出模型操作。
+- 代码块采用当前明暗代码表面、8px 圆角、对应内距与相对字号／行高。复制提供成功／失败反馈，等待时禁止重复写入；代码和工具原文共用异步版本保护，原文改变或组件关闭后不接受旧完成状态。
 - 当前应用体 `243f49b` 的 136 文件／1,602 项单元测试与类型检查通过；源码、新包和实际安装各通过 383 项／75 次正常退出。原五项分发专项、十一份匹配记录和保留数据卸载通过。三轮各覆盖 12 张代表原图，包内与安装各含 9 张与已查看源码图完全一致的原图；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
@@ -46,6 +47,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 普通单行表单和下拉框采用 32px 高、8px 圆角、12px 内边距与 13px 字号，分别保留输入聚焦、下拉展开、键盘圈和非法状态。按钮取消额外实体边框，统一默认 400 字重与 150ms 过渡；模型和工具下拉使用紧凑规格。
 - 快速聊天的会话标题保留 22px 紧凑高度，修复普通表单尺寸继承导致小窗口高缩放时模型操作区被挤出的情况。
 - 设置搜索移除内层输入的重复矩形描边，保留外层搜索框的描边和键盘焦点圈，覆盖默认、悬停与聚焦状态。
+- 代码块修正主题表面、8px 圆角、正文内距与相对字号／行高，保留代码原文、自动换行和隔离图表。复制成功明确提示，失败保留原文供重试，等待期间防止重复写入；流式原文变化后拒绝旧复制反馈。
 
 - 全局搜索采用 520px 宽度上限和随窗口收缩的布局，明暗表面与居中定位单独适配；键盘移到列表末项时保留滚动留白。
 - 输入框采用当前主题的 22px 默认圆角，窄视口收紧浅色阴影，保留原有输入、发送、草稿和键盘行为。
@@ -68,6 +70,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 ### English
 
 Single-line form fields and selects use 32px controls with inset outlines and distinct keyboard, open and invalid states. Buttons retain their exact content gutters without an extra border. Compact model and tool selectors remain separate from ordinary forms. Quick Chat keeps its compact conversation selector so the model controls remain reachable in small zoomed windows. Settings search removes the duplicate inner rectangular outline while retaining its outer border and keyboard focus ring.
+
+Code blocks adopt the current themed surface, 8px corners, content padding and relative typography. Copying announces success, retains source for retry on failure and prevents duplicate pending writes. Code and tool text share stale-completion protection while retaining wrapping and isolated diagrams.
 
 Project analysis and execution can record up to twenty conversation task steps. Invalid updates retain the last valid record; stopping marks unfinished work as awaiting continuation. Exact tool records and unsent drafts survive restart. Recording does not execute steps or create project plan files. Bounded worktree identity queries and concurrent read-only snapshot metadata queries retain all deletion rechecks and sequential removal.
 

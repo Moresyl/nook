@@ -28,6 +28,10 @@
 
 [完整源码](../verification/form-controls-full-source-review-result.json) · [包内回归](../verification/form-controls-full-unpacked-review-result.json) · [控件原生专项](../verification/form-controls-native-review-result.json) · [控件规格](CONTROL-AUDIT.md)
 
+本次独立富文本增量采用代码容器 8px 圆角、明暗代码表面、14px／40px／14px／16px 内距，以及相对字号和行高。复制提供成功／失败反馈，等待时禁止重复写入；代码与工具原文共用已有的异步版本保护。类型、41 项相关单元、4 项富文本及 8 项工具原生检查通过，16 张专项原图全部逐张查看。完整源码、新包与实际安装仍需单独完成，不能沿用 `243f49b` 的旧包结论。[本次专项证据](../verification/rich-content-followup-review-result.json)
+
+代码语言、换行和图表源码工具栏继续保留；其结构尚未完全与参考一致。窄窗口长代码和工具原文通过滚动阅读，不能把截图中的局部可见内容写成完整文本同时可见。
+
 ## 继续对照
 
 - 全部参考页面、图标、控件状态、富文本与输入流程。

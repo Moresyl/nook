@@ -1,0 +1,190 @@
+{
+  "recordedAt": "2026-10-14T01:36:25.782Z",
+  "receiptSourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+  "productInputsMatchSuccessfulBuildAndNativeReceipts": true,
+  "receipts": [
+    {
+      "phase": "check",
+      "sourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+      "diffSha256": "0ddab77fe29a0b5d81ea36c71416d9233c15fd2d6ed2640f5e2d454dd4db8eea",
+      "exitCode": 0,
+      "receiptSha256": "68071399459f77c0d446e8fe3c85b91cb58d1d109ba75d62de883831f606c16a",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "productInputsMatch": true
+    },
+    {
+      "phase": "unit-rich",
+      "sourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+      "diffSha256": "0ddab77fe29a0b5d81ea36c71416d9233c15fd2d6ed2640f5e2d454dd4db8eea",
+      "exitCode": 0,
+      "receiptSha256": "ce75862ca7cdcabf6525542a6fe6b206aba784e14d763e16ae0d90312be44dc6",
+      "logSha256": "a486af20220500d27f0c447bca0976b374c2efbd7e3bc80aa538ca4b17c9a4a2",
+      "productInputsMatch": true
+    },
+    {
+      "phase": "build",
+      "sourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+      "diffSha256": "0ddab77fe29a0b5d81ea36c71416d9233c15fd2d6ed2640f5e2d454dd4db8eea",
+      "exitCode": 0,
+      "receiptSha256": "854709a8db372a3ecaf1d68d77f9bc0a9fb43bfe355402a5d07afd23d798bff9",
+      "logSha256": "d35bc7a48f66923119291fa82bb9a903cfde3c60cde8e98284be903d76cd8cd5",
+      "productInputsMatch": true
+    },
+    {
+      "phase": "rich-retry1",
+      "sourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+      "diffSha256": "49a466d44e7e64a54bed427f2d1e3b08de77b7a87a54945d90c07240fa175e0b",
+      "exitCode": 0,
+      "receiptSha256": "37eff65cc0372bd0bdb800488ce7175644cef0287547563b53420d0b772b8fe6",
+      "logSha256": "9951bfbee39e9d927c5bdc907b6e409965855ac9d4dd57da22404d787e58f43c",
+      "productInputsMatch": true
+    },
+    {
+      "phase": "tools",
+      "sourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+      "diffSha256": "49a466d44e7e64a54bed427f2d1e3b08de77b7a87a54945d90c07240fa175e0b",
+      "exitCode": 0,
+      "receiptSha256": "b80fa32426a9c7867f9eb14fe0f81a74c7f59a7c7fb247a45a170d877eb5e0db",
+      "logSha256": "b3cd7ee6df4316848d923cf47d165d4276f2951925658d924bf552823de45aa5",
+      "productInputsMatch": true
+    }
+  ],
+  "typeCheckPassed": true,
+  "focusedUnitFiles": 3,
+  "focusedUnitTests": 41,
+  "nativeChecks": 12,
+  "normalExits": 3,
+  "forcedExits": 0,
+  "originalImagesIndividuallyReviewed": 16,
+  "originalImages": [
+    {
+      "name": "33-rich-content-light.png",
+      "sha256": "516e187c001124f26e7ab59cde3b47f3e3e496b58ca4a3ebafe6d47230f1b25e",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "34-rich-content-dark-narrow.png",
+      "sha256": "ea9ea3571891e26c9a6ded85e3cfa80aa63626eb8b51789ec0f580ec49cffbb0",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "35-rich-content-error-narrow.png",
+      "sha256": "ecca6ee93855a60579dc3a22346fd042365040b4d027f251330cb496110fe715",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "36-diagram-light.png",
+      "sha256": "5d4d49098338a5fd0b3226092c4cd575bba221e349523194aa446270e9022140",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "37-diagram-dark-narrow.png",
+      "sha256": "a070465ccd7be844d03a443d7a12f4cc91706606a46aba086278e8cd7f25d3cb",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "code-wrap-dark-150.png",
+      "sha256": "b74106c6db18cdda2fdc98bd45b8d9a6102a0d11d3e6b79a5f8d98a5ae6ae1b3",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "code-wrap-light-100.png",
+      "sha256": "2f126c6d0b6339ed1d66a2bdb4803f6a90a54b89d85409cf38e5c24213518c57",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-dark-100.png",
+      "sha256": "e60617aa09256e721cc3b390493b7b074d9261b04712966921d575433e1cf1bd",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-dark-125.png",
+      "sha256": "57991d1fbbf68a8801fce17521f9ac916e27823de80c859e933f42b6dd97d827",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-dark-150.png",
+      "sha256": "cd8bae8519733f85d3b234691af9c88c057867dc39118e1ac0b4c614692b1376",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-light-100.png",
+      "sha256": "eacb40ab74ecaeb275696e5e03562a71027e497792978d55b699bee61929a2cd",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-light-125.png",
+      "sha256": "e25174ba9c7ad6a217e389c8c08a23e71743bde1a951fcd61949bf3e3e744f84",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-light-150.png",
+      "sha256": "7ba5d94aed41c76f959f8d8efe038e1d9211674731cb8c8f4d40bff32b348c6c",
+      "width": 760,
+      "height": 620,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-quick.png",
+      "sha256": "9ba3512b8d580ba20e6f1a2baa195ef3689d2dc0f1e8fcb3b916b4d5c722fd36",
+      "width": 640,
+      "height": 580,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-restart.png",
+      "sha256": "4bafd961610b175dca4ae3e50ad5838e3003d2e0abc73f387262b32a092537a0",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "tool-activities-running.png",
+      "sha256": "71436dcfeddb9162008843d65790672b4fbabd933472a8ee3f908913e2c617e8",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    }
+  ],
+  "exactSystemClipboardAndStreamingStaleGuardVerifiedInToolSuite": true,
+  "codeClipboardUsesRendererFixture": true,
+  "previousFullyDistributedProductHead": "243f49b3bc7a90e2d0ba62d8e39cbc550c785340",
+  "failure": {
+    "phase": "rich",
+    "actualExitCode": 1,
+    "logSha256": "59279c434dadddaaf423a6ed6447ab4aca59c19090e78d8167872770ce591a44",
+    "failureImageSha256": "4dfaffe54eadf04670975a835065eb23c8aaaee6c74ed4c6d2c79eff6cc3beeb",
+    "correctedFixtureProperty": "Writable clipboard test substitute permits rejected/pending write simulation. Product code and original deadlines were unchanged before the successful rerun."
+  },
+  "archivedReview": "E:\\NookVerification\\RichContent-20261014\\focused\\review.json",
+  "archivedReviewSha256": "5de27815a915c6bb80801d6f6d9303ff4499f2318e98bb117262f7f09640ee43",
+  "fullSourceAccepted": false,
+  "distributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false,
+  "scope": "Current independent rich-content increment only. All sixteen focused native originals were displayed individually. The exact current product body passed native copy success/failure/pending checks and the shared hook passed actual system clipboard, streaming stale-completion and restart behavior in the tool suite. Native receipts retain their actual pre-commit HEAD and exact file hashes. Complete source regression, a new matching package and actual installation are still required; earlier distribution acceptance cannot substitute."
+}

@@ -9,6 +9,7 @@ import { codeBlockFromNode, type CodeBlock } from '../lib/rich-content';
 import { DiagramView } from './diagram-view';
 import { IconButton } from './controls';
 import { useContentBridge } from './content-bridge';
+import { useTextCopy } from './use-text-copy';
 
 type Rendering = { generating: boolean; report: (error: unknown) => void };
 const RenderingContext = createContext<Rendering | null>(null);
@@ -31,7 +32,8 @@ const components: Components = { a: MarkdownLink, pre: MarkdownPre };
 function CodeFence({ block, children, generating, report }: { block: CodeBlock; children: ReactNode; generating: boolean; report: (error: unknown) => void }) {
   const [showSource, setShowSource] = useState(false);
   const [wrap, setWrap] = useState(false);
-  return <section className="code-fence" data-language={block.language} data-wrap={wrap}><header className="code-fence-header"><span>{block.language}</span><div>{block.language === 'mermaid' && <IconButton icon="code" label={showSource ? '显示图表' : '显示图表源码'} onClick={() => setShowSource(!showSource)} />}{(block.language !== 'mermaid' || showSource) && <IconButton icon="wrap" label="代码自动换行" aria-pressed={wrap} onClick={() => setWrap(!wrap)} />}<IconButton icon="copy" label="复制代码" onClick={() => { void navigator.clipboard.writeText(block.text).catch(report); }} /></div></header>{block.language === 'mermaid' ? <DiagramView source={block.text} generating={generating} showSource={showSource} /> : <pre>{children}</pre>}</section>;
+  const { copied, copying, error, copy } = useTextCopy(block.text);
+  return <section className="code-fence" data-language={block.language} data-wrap={wrap}><header className="code-fence-header"><span>{block.language}</span><div>{block.language === 'mermaid' && <IconButton icon="code" label={showSource ? '显示图表' : '显示图表源码'} onClick={() => setShowSource(!showSource)} />}{(block.language !== 'mermaid' || showSource) && <IconButton icon="wrap" label="代码自动换行" aria-pressed={wrap} onClick={() => setWrap(!wrap)} />}<IconButton icon={copied ? 'check' : 'copy'} label="复制代码" title={copied ? '已复制代码' : '复制代码'} disabled={copying} onClick={() => { void copy(); }} /></div></header>{block.language === 'mermaid' ? <DiagramView source={block.text} generating={generating} showSource={showSource} /> : <pre>{children}</pre>}{copied && <p className="code-copy-feedback" role="status">已复制代码。</p>}{error && <p className="code-copy-feedback inline-error" role="alert">无法复制，请重试或选取代码原文。</p>}</section>;
 }
 export function MarkdownView({ content, generating = false, report }: { content: string; generating?: boolean; report: (error: unknown) => void }) {
   return <RenderingContext value={{ generating, report }}><Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[[rehypeKatex, { trust: false, maxSize: 20, maxExpand: 1000, strict: 'ignore' }], [rehypeHighlight, { detect: false, languages: all, plainText: ['mermaid'] }]]} components={components}>{content}</Markdown></RenderingContext>;

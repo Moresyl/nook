@@ -17,11 +17,11 @@ Nook 是本地 AI 工作台，把对话、资料和项目放在一个窗口中�
 
 ## 验证进度
 
-136 文件／1,602 项单元测试、类型检查与原覆盖率门槛通过。当前应用体的完整源码和包内程序各通过 383 项桌面检查、75 次正常退出，无强制结束；原五项分发专项通过。实际安装亦通过 383 项／75 次正常退出；注册、快捷方式与保留数据卸载通过，十二个既有测试标记精确恢复。
+已完成分发验收的应用体 `243f49b` 通过 136 文件／1,602 项单元测试、类型检查与原覆盖率门槛。完整源码、新包和实际安装各通过 383 项桌面检查、75 次正常退出，无强制结束；原五项分发专项、注册、两项快捷方式与保留数据卸载通过，十二个既有测试标记精确恢复。后续富文本调整单独验证。
 
-任务步骤的源码与包内原图各 16 张逐张复核，覆盖两主题、两种尺寸、三档应用缩放，以及短窗口最后步骤的滚动阅读。分发轮的 26 张控件与 12 张文字提示原图已逐张复核；每轮 633 张完整回归原图未全部视觉复核。
+三轮完整运行各覆盖 12 张代表原图；源码全部逐张复核，包内与安装各包含 9 张与已复核源码图完全一致的原图。分发轮 26 张控件和 12 张文字提示全部逐张复核；每轮 633 张完整原图未全部视觉复核。
 
-[完整单元验证](../verification/task-plan-final-validation-review-result.json) · [完整源码](../verification/task-plan-full-source-review-result.json) · [包内回归](../verification/task-plan-full-unpacked-review-result.json) · [工具记录](TOOL-ACTIVITIES.md)
+[完整单元验证](../verification/form-controls-final-validation-review-result.json) · [完整源码](../verification/form-controls-full-source-review-result.json) · [包内回归](../verification/form-controls-full-unpacked-review-result.json) · [工具记录](TOOL-ACTIVITIES.md)
 
 ## 尚待完成
 
@@ -29,6 +29,6 @@ Nook 是本地 AI 工作台，把对话、资料和项目放在一个窗口中�
 
 [发布状态](RELEASE.md) · [设计对照](DESIGN-ALIGNMENT.md) · [界面验收](UI-ACCEPTANCE.md)
 
-[十一份匹配运行记录](../verification/task-plan-runtime-review-result.json) · [实际安装](../verification/task-plan-full-installed-review-result.json)
+[十一份匹配运行记录](../verification/form-controls-runtime-review-result.json) · [实际安装](../verification/form-controls-full-installed-review-result.json)
 
 整理前的详细轮次和失败范围逐字保留于[历史记录](CAPABILITIES-HISTORY-2026-10-14.md)，SHA-256：`042382a6ce156209e2f05f90234509675b1ff6fbd874dd9f77d3ad3efe1e70ae`。历史记录只证明对应冻结源码与产物。

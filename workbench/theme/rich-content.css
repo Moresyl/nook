@@ -16,13 +16,15 @@
   --syntax-name: #63a8f8;
   --syntax-comment: var(--gray-fixed-250);
 }
-.code-fence { min-width: 0; margin: 12px 0; border: 1px solid var(--ds-border); border-radius: 12px; overflow: hidden; background: var(--ds-bg-secondary); }
+.code-fence { min-width: 0; margin: 12px 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--gray-25); }
 .code-fence-header { display: flex; justify-content: space-between; align-items: center; min-height: 34px; padding: 4px 8px 4px 12px; border-bottom: 1px solid var(--ds-border); color: var(--ds-text-secondary); font-size: 11px; }
 .code-fence-header > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 8px; }
 .code-fence-header > div { display: flex; gap: 4px; flex-shrink: 0; }
 .code-fence-header .icon-button { width: 24px; height: 24px; }
 .code-fence-header .icon-button[aria-pressed="true"] { color: var(--ds-text); background: var(--ghost-hover); }
-.assistant-prose .code-fence pre { margin: 0; border-radius: 0; max-height: 480px; }
+.assistant-prose .code-fence pre { margin: 0; border-radius: 0; max-height: 480px; padding: 14px 40px 14px 16px; background: transparent; font-size: .875em; font-weight: var(--font-weight-normal); line-height: 1.5em; }
+.assistant-prose .code-fence .code-copy-feedback { margin: 0; padding: 0 16px 8px; font-size: 12px; line-height: 20px; color: var(--ds-text-secondary); }
+.assistant-prose .code-fence .code-copy-feedback.inline-error { color: var(--ds-danger); }
 .assistant-prose .code-fence[data-wrap="true"] pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 .assistant-prose .code-fence[data-wrap="true"] pre code { white-space: inherit; overflow-wrap: inherit; }
 .diagram-frame { display: block; width: 100%; border: 0; background: var(--ds-bg); }

@@ -6,7 +6,7 @@ import { richReply } from '../verification/rich-content-fixture.mjs';
 export async function verifyRichContent({ page, application, endpoint, screenshots, verified, waitForBridge }) {
   const requests = []; const track = (request) => { if (/^https?:/.test(request.url())) requests.push(request.url()); }; page.on('request', track);
   await application.resize(1280, 840); await page.waitForFunction(() => innerWidth === 1280 && innerHeight === 840);
-  await page.addInitScript(() => { window.qiyaoAttack = false; Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, value: async (text) => { window.qiyaoVerificationCopy = text; } }); });
+  await page.addInitScript(() => { window.qiyaoAttack = false; Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, writable: true, value: async (text) => { window.qiyaoVerificationCopy = text; } }); });
   await page.evaluate(async (url) => { await window.qiyao.saveProvider({ id: 'rendering', name: '内容显示验证', kind: 'ollama', endpoint: url, models: ['verification-model'], hasKey: false }); const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); await window.qiyao.saveComposerDraft({ text: '', attachments: [], providerId: 'rendering', model: 'verification-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread(); }, endpoint);
   await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
   const composer = page.getByRole('textbox', { name: '消息', exact: true }); await composer.fill('RICH_CONTENT_NATIVE'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
@@ -17,6 +17,24 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   assert.equal(await page.locator('.hljs-comment').first().evaluate((node) => getComputedStyle(node).fontStyle), 'italic');
   const code = page.locator('.code-fence[data-language="javascript"]'); assert.ok((await code.locator('pre').innerText()).includes('<img src=x onerror=window.qiyaoAttack=true>')); assert.equal(await code.locator('img').count(), 0);
   await code.getByRole('button', { name: '复制代码', exact: true }).click(); assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), 'const note = "<img src=x onerror=window.qiyaoAttack=true>";\n// 保留 UTF-8 注释\nconsole.log(note);');
+  await code.getByRole('status').getByText('已复制代码。', { exact: true }).waitFor();
+  const originalCode = await code.locator('pre').textContent();
+  const originalCopiedCode = await page.evaluate(() => window.qiyaoVerificationCopy);
+  await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('PRIVATE_CLIPBOARD_DIAGNOSTIC'); }; });
+  await code.getByRole('button', { name: '复制代码', exact: true }).press('Space');
+  await code.getByRole('alert').getByText('无法复制，请重试或选取代码原文。', { exact: true }).waitFor();
+  assert.equal(await code.locator('pre').textContent(), originalCode);
+  assert.equal((await page.locator('body').innerText()).includes('PRIVATE_CLIPBOARD_DIAGNOSTIC'), false);
+  await page.evaluate(() => { window.qiyaoVerificationCopyCalls = 0; navigator.clipboard.writeText = text => { window.qiyaoVerificationCopyCalls++; window.qiyaoVerificationCopy = text; return new Promise(resolve => { window.qiyaoVerificationCopyResolve = resolve; }); }; });
+  const copyControl = code.getByRole('button', { name: '复制代码', exact: true });
+  await copyControl.press('Enter'); assert.equal(await copyControl.isDisabled(), true);
+  await copyControl.press('Space'); assert.equal(await page.evaluate(() => window.qiyaoVerificationCopyCalls), 1);
+  await page.evaluate(() => window.qiyaoVerificationCopyResolve());
+  await code.getByRole('status').getByText('已复制代码。', { exact: true }).waitFor();
+  assert.equal(await copyControl.isDisabled(), false); assert.equal(await code.getByRole('alert').count(), 0);
+  assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), originalCopiedCode);
+  await page.evaluate(() => { navigator.clipboard.writeText = async text => { window.qiyaoVerificationCopy = text; }; });
+  verified('code-copy success announcement, keyboard denied-copy retry, private error suppression, exact source retention and pending duplicate prevention');
   assert.equal(await page.evaluate(() => window.qiyaoAttack), false); assert.ok((await page.locator('.code-fence[data-language="unknown-language"] pre').innerText()).includes('KEEP_UNKNOWN_SOURCE'));
   const graph = page.locator('.code-fence[data-language="mermaid"]'); await graph.locator('iframe').waitFor({ timeout: 30_000 }); const frame = page.frameLocator('iframe[title="Mermaid 图表"]'); await frame.locator('svg').waitFor();
   async function readyGraph() { return frame.locator('svg').evaluate(async (svg) => { await document.fonts.ready; return { viewBox: svg.getAttribute('viewBox'), style: svg.getAttribute('style'), width: svg.getBoundingClientRect().width, height: svg.getBoundingClientRect().height, label: svg.querySelector('text')?.getBoundingClientRect().width }; }); }
@@ -48,6 +66,8 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     await application.evaluateMain(`require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.setZoomFactor(${zoom})`);
     await page.waitForFunction(zoom => Math.abs(innerWidth - 760 / zoom) < 2, zoom);
     const pre = code.locator('pre'); const toggle = code.getByRole('button', { name: '代码自动换行', exact: true });
+    const codeStyle = await code.evaluate(element => { const style = getComputedStyle(element), pre = getComputedStyle(element.querySelector('pre')); return { radius: style.borderRadius, background: style.backgroundColor, padding: pre.padding, fontSize: pre.fontSize, fontWeight: pre.fontWeight, lineHeight: pre.lineHeight }; });
+    assert.deepEqual(codeStyle, { radius: '8px', background: theme === 'light' ? 'rgb(252, 252, 252)' : 'rgb(16, 16, 16)', padding: '14px 40px 14px 16px', fontSize: '12.25px', fontWeight: '400', lineHeight: '18.375px' });
     assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
     assert.equal(await pre.evaluate(element => element.scrollWidth > element.clientWidth), true);
     const original = await pre.textContent(); await toggle.focus(); await toggle.press('Space');
@@ -58,6 +78,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     const longHeader = page.locator(`.code-fence[data-language="${longLanguage}"] .code-fence-header`);
     assert.equal(await longHeader.evaluate(element => { const bounds = element.getBoundingClientRect(); return [...element.querySelectorAll('button')].every(button => { const rect = button.getBoundingClientRect(); return rect.left >= bounds.left && rect.right <= bounds.right; }); }), true);
     await code.getByRole('button', { name: '复制代码', exact: true }).click(); assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), wrappingSource);
+    await code.getByRole('status').getByText('已复制代码。', { exact: true }).waitFor();
     assert.equal(await page.evaluate(async id => (await window.qiyao.load()).threads.find(item => item.id === id).messages.at(-1).content, thread.id), wrappingContent);
     await toggle.focus(); await toggle.scrollIntoViewIfNeeded();
     const capture = await application.evaluateMain("(async () => { const window = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')); return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()");
@@ -67,6 +88,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.setZoomFactor(1)");
   }
   await verifyWrapping('light', 1); await verifyWrapping('dark', 1.5);
+  verified('current code surface, corner, inset padding and relative typography in both themes with keyboard wrapping and complete stored source');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await update(richReply); await application.resize(1280, 840); await frame.locator('svg').waitFor();
   await page.locator('.transcript-scroll').evaluate(element => element.scrollTo({ top: 0 }));
@@ -85,5 +107,5 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await waitForBridge(page, async ({ id, content }) => (await window.qiyao.load()).threads.find((item) => item.id === id)?.messages.at(-1)?.content === content, { id: thread.id, content: richReply });
   verified('dark/minimum-window rich content, locked graph directives, inert HTML/remote math commands, no automatic external requests, complete malformed/oversized source preservation and recovery after diagram failure');
   page.off('request', track);
-  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
+  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
 }

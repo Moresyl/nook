@@ -1,22 +1,14 @@
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { ToolActivity } from '../../contracts/tools';
 import type { Message } from '../../contracts/workspace';
 import { latestTaskPlan } from '../../contracts/task-plan';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
 import { toolActivityExpanded, toolActivitySummary, toggleToolActivity, type ToolDisclosure } from './tool-activity-state';
+import { useTextCopy } from './use-text-copy';
 
 function ToolText({ label, text }: { label: string; text: string }) {
-  const [copied, setCopied] = useState(false), [copying, setCopying] = useState(false), [error, setError] = useState(false), alive = useRef(true), revision = useRef(0);
-  useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
-  useLayoutEffect(() => { revision.current++; setCopied(false); setCopying(false); setError(false); return () => { revision.current++; }; }, [text]);
-  async function copy() {
-    const request = revision.current;
-    setCopying(true); setError(false);
-    try { await navigator.clipboard.writeText(text); if (alive.current && request === revision.current) setCopied(true); }
-    catch { if (alive.current && request === revision.current) setError(true); }
-    finally { if (alive.current && request === revision.current) setCopying(false); }
-  }
+  const { copied, copying, error, copy } = useTextCopy(text);
   return <section className="tool-text"><header><span>{label}</span><IconButton icon={copied ? 'check' : 'copy'} label={copied ? `已复制${label}原文` : `复制${label}原文`} disabled={copying} onClick={() => { void copy(); }} /></header><pre tabIndex={0} aria-label={`${label}原文`}>{text}</pre>{error && <p className="inline-error" role="alert">无法复制，请重试或选取原文。</p>}</section>;
 }
 function ToolActivityRow({ activity }: { activity: ToolActivity }) {
