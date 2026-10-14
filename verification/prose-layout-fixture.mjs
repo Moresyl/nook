@@ -1,4 +1,4 @@
-export const tableSource = ['| Left | Center | Right | Long identifier |', '| :--- | :---: | ---: | --- |', '| **汉字** | 😀 | 42 | PROSE_TABLE_EXACT_' + 'identifier_'.repeat(25) + ' |', '| second | center | 99 | retained |'].join('\n');
+export const tableSource = ['| Left | Center | Right | Long identifier |', '| :--- | :---: | ---: | --- |', '| **汉字** | 😀 | 42 | PROSE_TABLE_EXACT_' + 'identifier_'.repeat(25) + ' |', '| second | center | 99 | retained |'].join('\r\n');
 export const proseReply = [
   '中文第一段，保留 **强调中的汉字** 与 emoji 😀。', '', '中文第二段，保留 [链接中的文字](https://example.invalid/)。', '',
   'English **cross** node match with literal punctuation [a.*].', '',

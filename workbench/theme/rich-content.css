@@ -95,8 +95,8 @@
 .markdown-table-actions .icon-button { width: 24px; height: 24px; }
 .markdown-table-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .markdown-body .markdown-table-error { margin: 8px 0 0; font-size: 12px; }
-.markdown-table-preview.modal { width: max-content; max-width: 80vw; height: auto; max-height: calc(100dvh - 24px); margin: auto; transform: none; border-radius: var(--radius-2xl); }
+.markdown-table-preview.modal { width: max-content; max-width: 80vw; height: fit-content; max-height: calc(100dvh - 24px); margin: auto; transform: none; border-radius: var(--radius-2xl); }
 .markdown-table-preview .modal-header { padding: 12px 16px; }
 .markdown-body .markdown-table-preview .modal-header h2 { margin: 0; font-size: 16px; line-height: 24px; }
-.markdown-table-preview .modal-content { display: flex; min-height: 0; max-height: none; padding: 16px; overflow: hidden; }
-.markdown-table-preview .markdown-table-scroller { flex: 1; min-height: 0; max-height: calc(100dvh - 104px); overflow: auto; }
+.markdown-table-preview .modal-content { display: flex; flex: 0 1 auto; min-height: 0; max-height: none; padding: 16px; overflow: hidden; }
+.markdown-table-preview .markdown-table-scroller { flex: 0 1 auto; min-height: 0; max-height: calc(100dvh - 104px); overflow: auto; }

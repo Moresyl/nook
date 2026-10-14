@@ -46,11 +46,12 @@ export async function verifyProseLayout({ page, target = page, application, thre
       assert.equal(await scroll.getAttribute('role'), 'region'); const expand = table.getByRole('button', { name: '展开表格', exact: true }); await expand.press('Enter');
       const dialog = target.getByRole('dialog', { name: '表格预览', exact: true }); await dialog.waitFor(); assert.ok((await dialog.locator('table').innerText()).includes('PROSE_TABLE_EXACT_'));
       assert.equal(await dialog.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight; }), true);
+      assert.equal(await dialog.evaluate(element => element.getBoundingClientRect().height <= Math.min(innerHeight - 24, element.querySelector('table').getBoundingClientRect().height + 104) + 1), true, 'The preview must fit its table content without a viewport-sized empty region.');
       const previewRegion = dialog.getByRole('region', { name: '可横向滚动的表格', exact: true });
       await previewRegion.focus(); await previewRegion.press('ArrowRight'); await target.waitForFunction(() => document.querySelector('.markdown-table-preview .markdown-table-scroller').scrollLeft > 0);
-      await previewRegion.evaluate(element => { element.scrollLeft = 0; element.scrollTop = element.scrollHeight; });
+      await previewRegion.evaluate(element => { element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'instant' }); });
       assert.equal(await previewRegion.evaluate(element => element.querySelector('tbody tr:last-child').getBoundingClientRect().bottom <= element.getBoundingClientRect().bottom + 1), true);
-      await previewRegion.evaluate(element => { element.scrollTop = 0; });
+      await previewRegion.evaluate(element => { element.scrollTo({ left: 0, top: 0, behavior: 'instant' }); });
       previewCapture = await capture(`prose-${quick ? 'quick' : 'main'}-${theme}-${width}-${zoom * 100}-preview.png`);
       await dialog.press('Escape'); await dialog.waitFor({ state: 'detached' }); assert.equal(await expand.evaluate(element => document.activeElement === element), true);
     }

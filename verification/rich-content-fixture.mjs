@@ -1,3 +1,5 @@
+import { tableSource } from './prose-layout-fixture.mjs';
+
 export const richReply = [
   '# RICH_CONTENT_EVIDENCE',
   '行内公式 $x^2 + y^2 = z^2$。',
@@ -7,5 +9,5 @@ export const richReply = [
   '', '```powershell', 'Write-Output "POWERSHELL_HIGHLIGHT_EVIDENCE"', '```',
   '', '```unknown-language', 'KEEP_UNKNOWN_SOURCE', '```',
   '', '```mermaid', 'flowchart LR', 'A[编写代码] --> B[运行测试]', 'B --> C[完成]', '```',
-  '', '尾部 RICH_CONTENT_END'
+  '', '## 表格原文', '', tableSource, '', '尾部 RICH_CONTENT_END'
 ].join('\n');

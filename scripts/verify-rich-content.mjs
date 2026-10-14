@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { richReply } from '../verification/rich-content-fixture.mjs';
+import { tableSource } from '../verification/prose-layout-fixture.mjs';
 import { verifyUserMessageLayout } from './verify-user-bubble.mjs';
 import { verifyProseLayout } from './verify-prose-layout.mjs';
 
@@ -13,6 +14,10 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await page.reload(); await page.getByRole('heading', { name: '今天想做些什么？' }).waitFor();
   const composer = page.getByRole('textbox', { name: '消息', exact: true }); await composer.fill('RICH_CONTENT_NATIVE'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await page.getByText('RICH_CONTENT_END', { exact: false }).waitFor(); await page.getByRole('button', { name: '重新生成', exact: true }).waitFor();
+  const streamedTable = page.locator('.markdown-table'); await streamedTable.getByRole('table').waitFor();
+  await streamedTable.getByRole('button', { name: '复制表格', exact: true }).click();
+  assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), tableSource);
+  verified('actual HTTP-streamed GFM table renders aligned Unicode cells and copies its exact Windows-newline Markdown source');
   assert.equal(await page.locator('.katex').count(), 3); assert.equal(await page.locator('.katex-display').count(), 2); assert.equal(await page.locator('.katex math').count(), 3);
   assert.ok(await page.locator('.code-fence[data-language="javascript"] .hljs-keyword').count()); assert.ok(await page.locator('.code-fence[data-language="powershell"] .hljs-built_in').count());
   assert.equal(await page.locator('.code-fence[data-language="javascript"] .hljs-keyword').first().evaluate((node) => getComputedStyle(node).color), 'rgb(171, 79, 122)');
