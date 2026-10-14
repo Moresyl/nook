@@ -2,8 +2,11 @@
 
 ## 未发布
 
+- 正文按参考层级调整标题、列表、引用与段落间距；可见汉字段落采用专用间距，嵌套强调、链接和行内代码保留语义。正文保持 14px 默认字号，行高为 1.625；参考实际运行字号和完整字体尚未对齐。
+- 表格保留原生语义、列对齐及可读宽度；溢出区域支持键盘滚动和居中展开，预览随内容收缩，Escape 返回展开按钮。复制保留流式及已保存表格的精确 Markdown 和 Windows 换行，支持成功反馈、失败重试与等待锁定，提示和预览不进入正文查找。
+- 正文候选 `e3b5f0e` 完整回归通过 390 项／75 次正常退出，最长 3653ms，无强制结束；保存 40 份报告、709 张原图、1040 个源码／夹具输入和 236 个编译文件。136 文件／1605 项单元通过，358 个覆盖／测试／渲染器／配置输入与覆盖率运行逐字节一致。12 张专项与 4 张完整回归代表原图逐张查看；全部 709 张未全部视觉复核，新候选分发与完整参考对照仍待完成。[本轮证据](verification/prose-layout-validation-review-result.json)
 - 普通右对齐用户消息采用 70% 宽度上限、22px 圆角、10px／16px 内距与主题前景 5% 混色；主工作台和快速聊天保留中文换行、长原文与附件。旧构建的 82% 差异先在原生检查中复现，再验证新布局。
-- 新源码候选完整回归通过 387 项／75 次正常退出，保存 40 份报告、667 张原图和完整性已验证的用户目录归档。28 张专项新图与 8 张完整回归代表图逐张复核；全部 667 张原图未全部视觉复核。完整参考对照、新候选分发验收与发布仍待完成。
+- 用户消息轮次源码候选完整回归通过 387 项／75 次正常退出，保存 40 份报告、667 张原图和完整性已验证的用户目录归档。28 张专项新图与 8 张完整回归代表图逐张复核；全部 667 张原图未全部视觉复核。该轮证据保留，不替代本轮正文验收。
 - 资源退订原生检查等待页面完成退订与读取后再保存预览快照，保留精确原文、晚到通知和事件数断言；第一次完整运行的 237 项后失败记录与后续重跑分别保存。
 - 新增会话任务步骤：保留最新有效记录和工具原文；无效更新保留旧记录，停止后待继续，重启保留草稿。
 - 共享按钮采用 24px／8px／4px 与 13px 字号；普通单行表单采用 32px 高、8px 圆角、12px 内距和内描边。聊天输入区保留 22px 外圆角与窄视口浅色阴影。
@@ -12,10 +15,12 @@
 - 设置搜索保留外层焦点圈，去除内层重复矩形描边；快速聊天标题保持 22px 紧凑高度，避免小窗口高缩放挤出模型操作。
 - 代码块采用当前明暗代码表面、8px 圆角、对应内距与相对字号／行高。复制提供成功／失败反馈，等待时禁止重复写入；代码和工具原文共用异步版本保护，原文改变或组件关闭后不接受旧完成状态。
 - 聊天正文查找排除代码复制的成功和失败提示，继续保留真实代码内容与精确高亮。
-- 当前应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
+- 富文本轮次应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
-Task records retain valid steps, exact tool history and unsent drafts across restart. Code and tool copying share stale-completion protection, and copy feedback stays outside body search. The complete 1,602-test coverage run applies to unchanged covered inputs; renderer behavior is verified natively. Source, unpacked and installed runtimes each pass 386 checks with 75 normal exits, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
+Prose headings, lists, quotes and Han-text paragraph spacing follow the reference hierarchy. Tables retain aligned semantic cells, exact Markdown including Windows newlines, retryable copying and keyboard-scrollable previews that fit their content and return focus on Escape. The current source passes 390 native checks with 75 normal exits and 1,605 unit tests; current distribution acceptance remains pending.
+
+Task records retain valid steps, exact tool history and unsent drafts across restart. Code and tool copying share stale-completion protection, and copy feedback stays outside body search. The previous rich-content candidate passed 386 checks with 75 normal exits in source, unpacked and installed runtimes, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
 
 [发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
 

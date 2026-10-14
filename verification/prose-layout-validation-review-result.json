@@ -1,0 +1,135 @@
+{
+  "recordedAt": "2026-10-14T08:18:03.409Z",
+  "sourceHead": "e3b5f0e333950618d1fe1bd9c0c263a7f4901682",
+  "featureCommit": "752ff2a930348ec6e79d60d7bb854472d5f152ce",
+  "archive": "E:\\NookVerification\\ProseLayout-20261014\\full-source-retry1",
+  "archiveReviewSha256": "afcae7653bd84f08963619e8fe109aad99f7cdd8f7fcfa7fc4ee0cd5e4afdce6",
+  "checks": 390,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 3653,
+  "reports": 40,
+  "originalImages": 709,
+  "sourceInputs": 1040,
+  "compiledFiles": 236,
+  "sourceTarSha256": "8b8c02b25dc665bd7d3676511bfe5f05af275f70b20e067820a9cae237816e87",
+  "profileArchiveIntegrityVerified": true,
+  "profileArchiveSha256": "288b76e28cd6dde4f7cc91882f4cc4ec8d83398aabb2b3631cc07cdcb5b3fdbf",
+  "buildExitCode": 0,
+  "unchangedBuildInputs": 306,
+  "typecheckExitCode": 0,
+  "unit": {
+    "testFiles": 136,
+    "tests": 1605,
+    "actualSourceHead": "752ff2a930348ec6e79d60d7bb854472d5f152ce",
+    "unchangedCoveredAndRenderingInputs": 358,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "boundary": "Existing configured coverage includes contracts, desktop/services and settings draft state; native renderer behavior is verified separately. Later CSS and native fixture corrections are outside this coverage scope."
+  },
+  "prose": {
+    "rootFontSize": 14,
+    "relativeLineHeight": 1.625,
+    "hanVisibleText": true,
+    "semanticHeadingsListsQuotes": true,
+    "mainCases": 8,
+    "quickCases": 6,
+    "nativeZoom": [
+      1,
+      1.25,
+      1.5
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "exactStreamedAndSavedTableSource": true,
+    "windowsNewlinesRetained": true,
+    "copyRetryAndPendingLock": true,
+    "previewKeyboardAndFocus": true,
+    "previewHeightFitsContent": true,
+    "fullMessageSearchExcludesActionsAndFeedback": true,
+    "clipboardBoundary": "Renderer write fixture; physical OS clipboard not verified."
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "reference": {
+    "currentRoot": "E:/txt",
+    "currentVersion": "26.930.41038",
+    "legacyRoot": "C:/Users/18468/Desktop/txt",
+    "legacyVersion": "26.917.71314",
+    "extractedCodeExecuted": false,
+    "fullFontAndSurfaceParity": false
+  },
+  "selectedVisualReviewSha256": "984c04ab9dc0a17d55b1366a91d2266f23b9469c758907486ebe0ba20ec81ce7",
+  "focusedImagesReviewed": 12,
+  "fullImagesReviewed": 4,
+  "all709ImagesVisuallyReviewed": false,
+  "earlierSourceRun": {
+    "sourceHead": "752ff2a930348ec6e79d60d7bb854472d5f152ce",
+    "checks": 389,
+    "normalExits": 75,
+    "archive": "E:\\NookVerification\\ProseLayout-20261014\\full-source",
+    "boundary": "Before the preview height correction and streamed-table assertion; not final acceptance."
+  },
+  "retainedFailures": [
+    {
+      "phase": "rich",
+      "exitCode": 1,
+      "logSha256": "184065ca317112d0bd418c07082a0fc225f1edf4d545e2c8e4d27723f3fc56de",
+      "archive": "E:\\NookVerification\\ProseLayout-20261014\\rich"
+    },
+    {
+      "phase": "rich-retry1",
+      "exitCode": 1,
+      "logSha256": "afb0db758c2a3781cd2c8adeb6b8f47d6246cd835743031ee1fff2a4bebf35dd",
+      "archive": "E:\\NookVerification\\ProseLayout-20261014\\rich-retry1"
+    },
+    {
+      "phase": "rich-retry2",
+      "exitCode": 1,
+      "logSha256": "ca93c80b2bb82e5dbd5cca573a2d5389b863d8d8d9da6fe7317219a65794648d",
+      "archive": "E:\\NookVerification\\ProseLayout-20261014\\rich-retry2"
+    },
+    {
+      "phase": "rich-retry3",
+      "exitCode": 1,
+      "logSha256": "710445c26442141aab18df2cd7c477da0a1bc1abf08350627fde5e7ccd6c6bc2",
+      "archive": "E:\\NookVerification\\ProseLayout-20261014\\rich-retry3"
+    }
+  ],
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
