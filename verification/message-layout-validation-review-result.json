@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-14T05:47:59.563Z",
+  "sourceHead": "2b8cd708cf6929d0dea40b78bc9594d9c8350d41",
+  "productChangeCommit": "f89f39ecbbc879bc86717df8e10ea9388a9840f4",
+  "testSettlementCommit": "2b8cd708cf6929d0dea40b78bc9594d9c8350d41",
+  "archive": "E:\\NookVerification\\MessageLayout-20261014\\full-source-retry1",
+  "archiveReviewSha256": "93a4e6644dab797cd16a2cd90aa7656b0729a7bf1cce3946fad13a5e0410cb20",
+  "selectedVisualReviewSha256": "1dd8d56c6f9dde0a322fffa37ad4eec87333b3eff0d2e5bd6bb1e0f16f51e473",
+  "toolExitCode": 0,
+  "checks": 387,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1723,
+  "reports": 40,
+  "originalImages": 667,
+  "sourceInputs": 999,
+  "compiledFiles": 236,
+  "profileArchiveIntegrityVerified": true,
+  "profileArchiveSha256": "0d447a8cc9b9324173e91c77ade56d8a8b50cff0264ab6d76b11ed5775d1990a",
+  "sourceTarSha256": "4b8e904fc6ee418bbb6ba3808d70945d2a4d2767ae8547393a37f4ab39781ecb",
+  "logSha256": "0e538034e1a061a8a16fd03480af40c6ada1e5243cb5ad18f6c17c44da600cad",
+  "userMessages": {
+    "variant": "ordinary right aligned",
+    "maxWidth": "70%",
+    "radiusAt16pxRoot": 22,
+    "paddingAt16pxRoot": [
+      10,
+      16,
+      10,
+      16
+    ],
+    "cornerShape": "superellipse(1.5)",
+    "background": "five-percent themed foreground mix",
+    "mainCases": 8,
+    "quickCases": 6,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "nativeZoom": [
+      1,
+      1.25,
+      1.5
+    ],
+    "mainSizes": [
+      [
+        1280,
+        840
+      ],
+      [
+        760,
+        540
+      ]
+    ],
+    "quickSize": [
+      420,
+      360
+    ],
+    "exactStoredTextAndAttachments": true,
+    "inertLiteralMarkup": true,
+    "exactCopy": true,
+    "clipboardBoundary": "Renderer fixture intercepts writes; physical clipboard not verified."
+  },
+  "visualReview": {
+    "focusedOriginalsReviewed": 28,
+    "fullRunOriginalsReviewed": 8,
+    "all667OriginalsVisuallyReviewed": false
+  },
+  "priorUnitEvidence": {
+    "tests": 1602,
+    "testFiles": 136,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "actualSourceHead": "86daaa435839dd5120added1daedac53a230fc43",
+    "unchangedCoveredAndTestInputs": 278,
+    "boundary": "Earlier complete unit run; all 278 covered, test, dependency and coverage configuration inputs are byte-identical. New renderer CSS and native audit are verified by the current native run, not claimed as unit-covered."
+  },
+  "retainedFailure": {
+    "checksBeforeFailure": 237,
+    "exitCode": 1,
+    "archive": "E:\\NookVerification\\MessageLayout-20261014\\full-failure1",
+    "reviewSha256": "91403c5d1850420a33db64eee074f0ab95f0ef3e07d9edff2ecbaf26add055be",
+    "correction": "Native assertion waits for unsubscribe and resource-read renderer controls to settle before snapshotting; exact late-notification and event-count assertions retained.",
+    "focusedRetestChecks": 6
+  },
+  "referenceScope": "Desktop txt and updated E:/txt ordinary user-message geometry agree. Compact, leading, temporary and accented variants; full typography, physical interaction and complete reference parity remain unverified.",
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
