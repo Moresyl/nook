@@ -4,6 +4,7 @@ import { readFile, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { documentBytes } from '../verification/attachment-fixtures.mjs';
+import { userBubbleGeometry, verifyQuickUserMessageLayout } from './verify-user-bubble.mjs';
 
 export async function verifyQuickChat({ page, application, getApplication, directory, screenshots, endpoint, calls, errors, verified, waitForBridge, restart }) {
   if (process.env.NOOK_TEST_QUICK_CHAT_TIMING) {
@@ -161,6 +162,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   verified('handoff opens the same saved conversation in the main workbench without consuming quick input or replacing the main new-chat draft');
 
   await verifyMinimumLayout('conversation');
+  await verifyQuickUserMessageLayout({ page, quick, threadId, verifyLayout: verifyMinimumLayout });
   async function verifyMinimumLayout(state) { for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
     await quick.waitForFunction(theme => document.documentElement.dataset.theme === theme, theme);
@@ -173,12 +175,20 @@ export async function verifyQuickChat({ page, application, getApplication, direc
       const control = quick.getByLabel(label, { exact: true }); await control.focus();
       assert.equal(await control.evaluate(element => { const bounds = element.getBoundingClientRect(), hit = document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2); return Boolean(hit && (hit === element || element.contains(hit))); }), true, `${label} must remain reachable by keyboard in the minimum window.`);
     }
+    const userMessages = await quick.locator('.message-user .user-bubble').count() ? await userBubbleGeometry(quick) : [];
+    if (state === 'user-message-long') {
+      await quick.locator('.quick-chat-transcript').evaluate(node => node.scrollTo({ top: 0 }));
+      await capture(`quick-chat-user-message-${theme}-${zoom}-start.png`);
+      await quick.locator('.message-user').first().scrollIntoViewIfNeeded();
+      await quick.locator('.message-user .attachment').first().scrollIntoViewIfNeeded();
+      await capture(`quick-chat-user-message-${theme}-${zoom}-end.png`);
+    }
     await input().focus();
     await capture(`quick-chat-minimum-${state}-${theme}-${zoom}.png`);
     const controls = await visibleControls();
     const overflow = await quick.evaluate(() => document.documentElement.scrollWidth > innerWidth || document.documentElement.scrollHeight > innerHeight);
     assert.equal(overflow, false); assert.ok(controls.length >= 5 && controls.every(control => control.visible), `Minimum native window controls must remain usable: ${JSON.stringify({ state, theme, zoom, controls })}`);
-    minimumLayout.push({ state, theme, zoom, nativeSize: [420, 360], controlsVisible: true, overflow: false, toolsKeyboardVerified: true });
+    minimumLayout.push({ state, theme, zoom, nativeSize: [420, 360], controlsVisible: true, overflow: false, toolsKeyboardVerified: true, userMessages });
   } }
   async function visibleControls() {
     return quick.evaluate(() => [...document.querySelectorAll('.quick-chat-conversation select, .quick-chat-composer textarea, .quick-chat-composer .send-button, .quick-chat-composer .model-selectors select')].map(element => {

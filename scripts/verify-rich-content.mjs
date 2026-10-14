@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { richReply } from '../verification/rich-content-fixture.mjs';
+import { verifyUserMessageLayout } from './verify-user-bubble.mjs';
 
 export async function verifyRichContent({ page, application, endpoint, screenshots, verified, waitForBridge }) {
   const requests = []; const track = (request) => { if (/^https?:/.test(request.url())) requests.push(request.url()); }; page.on('request', track);
@@ -120,6 +121,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await page.screenshot({ path: join(screenshots, '35-rich-content-error-narrow.png') }); await update(richReply); await frame.locator('svg').waitFor();
   await waitForBridge(page, async ({ id, content }) => (await window.qiyao.load()).threads.find((item) => item.id === id)?.messages.at(-1)?.content === content, { id: thread.id, content: richReply });
   verified('dark/minimum-window rich content, locked graph directives, inert HTML/remote math commands, no automatic external requests, complete malformed/oversized source preservation and recovery after diagram failure');
+  const userMessages = await verifyUserMessageLayout({ page, application, threadId: thread.id, screenshots, verified });
   page.off('request', track);
-  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true, excludedFromBodySearch: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
+  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, userMessages, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true, excludedFromBodySearch: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
 }

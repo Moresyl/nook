@@ -320,7 +320,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 @media (prefers-reduced-motion: reduce) { .message-navigation-marker > span { transition-duration: 0s; } }
 .message { margin-bottom: 30px; }
 .message-user { display: flex; flex-direction: column; align-items: flex-end; }
-.user-bubble { max-width: 82%; border-radius: 20px; background: var(--ds-bg-secondary); padding: 12px 18px; overflow-wrap: anywhere; }
+.user-bubble { --user-chat-width: 70%; --user-chat-radius: calc(var(--spacing) * 5.5); --user-chat-inset: calc(var(--spacing) * 4); min-width: 0; max-width: var(--user-chat-width); border-radius: var(--user-chat-radius); corner-shape: superellipse(1.5); background: color-mix(in oklab, var(--color-text) 5%, transparent); color: var(--color-text); padding: calc(var(--spacing) * 2.5) var(--user-chat-inset); overflow-wrap: anywhere; }
 .plain-text { white-space: pre-wrap; }
 .message-files { display: flex; gap: 6px; font-size: 11px; color: var(--ds-text-secondary); margin-top: 10px; }
 .assistant-prose { font-size: 14px; line-height: 1.75; overflow-wrap: anywhere; }
