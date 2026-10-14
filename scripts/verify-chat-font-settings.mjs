@@ -5,7 +5,7 @@ import { join } from 'node:path';
 export async function verifyChatFontSettings({ page, target, application, threadId, screenshots, verified, quick }) {
   const original = await page.evaluate(async id => { const state = await window.qiyao.load(); return { preferences: state.preferences, thread: state.threads.find(thread => thread.id === id) }; }, threadId);
   const index = quick ? original.thread.messages.findIndex(message => message.role === 'assistant') : original.thread.messages.length - 1;
-  const content = `${original.thread.messages[index].content}\n\n## Inline \`FONT_HEADING\`\n\nInline \`FONT_INLINE_${'identifier_'.repeat(32)}中文\`.\n\nעברית \`مرحبا 中文\`.\n\n\`\`\`ts\nconst fontSample = "中文与 English";\n\`\`\``;
+  const content = `${original.thread.messages[index].content}\n\n## Inline \`FONT_HEADING\`\n\nInline \`FONT_INLINE_${'identifier_'.repeat(32)}中文\`.\n\n**Bold \`FONT_BOLD\`** · *Italic \`FONT_ITALIC\`* · [\`FONT_LINK\`](https://example.invalid/font-inline).\n\nעברית \`مرحبا 中文\`.\n\n\`\`\`ts\nconst fontSample = "中文与 English";\n\`\`\``;
   const fixture = { ...original.thread, messages: original.thread.messages.map((message, position) => position === index ? { ...message, content } : message) };
   const selector = quick ? "new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'" : "w.webContents.getURL().startsWith('qiyao://app/')&&!new URL(w.webContents.getURL()).searchParams.has('view')";
   const windowExpression = `require('electron').BrowserWindow.getAllWindows().find(w=>${selector})`;
@@ -48,6 +48,30 @@ export async function verifyChatFontSettings({ page, target, application, thread
         });
         assert.deepEqual(fence, { radius: '20px', cornerShape: fence.cornerShape === null ? null : 'superellipse(1.1)', lineHeight: Math.max((chatCodeFontSize ?? 12) * 1.5, 20), padding: fence.wide ? '0px 20px 12px' : '0px 16px 12px', headerHeight: '48px', headerPadding: fence.wide ? '6px 6px 6px 20px' : '6px 6px 6px 16px', headerWeight: '500', headerBorder: '0px', buttonWidth: '36px', buttonHeight: '36px', wide: fence.wide });
         assert.deepEqual(styles.inlineDecoration, { radius: '6px', padding: '1px 6px', direction: 'ltr', isolation: 'isolate', decorationBreak: 'clone', wrap: 'anywhere' });
+        await body.locator('.code-fence').last().getByRole('button', { name: '代码自动换行', exact: true }).hover();
+        const hoverStart = await body.locator('.code-fence').last().getByRole('button', { name: '代码自动换行', exact: true }).evaluate(element => ({ hovered: element.matches(':hover'), background: getComputedStyle(element).backgroundColor, animations: element.getAnimations().map(animation => ({ playState: animation.playState, currentTime: animation.currentTime, duration: animation.effect.getTiming().duration })) }));
+        await target.waitForFunction(() => { const body = [...document.querySelectorAll('.markdown-body')].find(element => element.textContent.includes('FONT_BOLD')), fence = [...body.querySelectorAll('.code-fence')].at(-1), button = fence.querySelector('button[aria-label="代码自动换行"]'); return button.matches(':hover') && button.getAnimations().every(animation => animation.playState !== 'running'); });
+        const hoveredBackground = await body.locator('.code-fence').last().getByRole('button', { name: '代码自动换行', exact: true }).evaluate(element => getComputedStyle(element).backgroundColor);
+        console.log(`Inline hover observation ${JSON.stringify({ quick, theme, zoom, hoverStart, settledBackground: hoveredBackground })}`);
+        await body.getByText('FONT_BOLD', { exact: true }).hover();
+        const inlineTheme = await body.evaluate((element, hoveredBackground) => {
+          const pixel = color => { const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1; const context = canvas.getContext('2d'); context.fillStyle = color; context.fillRect(0, 0, 1, 1); return [...context.getImageData(0, 0, 1, 1).data]; };
+          const codes = [...element.querySelectorAll('code')].filter(code => !code.closest('pre')).map(code => { const style = getComputedStyle(code); return { text: code.textContent, color: style.color, parentColor: getComputedStyle(code.parentElement).color, fontSize: parseFloat(style.fontSize), fontWeight: style.fontWeight, fontStyle: style.fontStyle, background: style.backgroundColor, pixel: pixel(style.backgroundColor) }; });
+          return { foreground: getComputedStyle(element).color, bodyForeground: getComputedStyle(document.body).color, headerForeground: getComputedStyle(element.querySelector('.code-fence-header')).color, mixSupported: CSS.supports('color', 'color-mix(in lab, red, red)'), hover: { background: hoveredBackground, pixel: pixel(hoveredBackground) }, codes };
+        }, hoveredBackground);
+        inlineTheme.hoverStart = hoverStart;
+        const foreground = theme === 'light' ? 'rgb(26, 28, 31)' : 'rgb(223, 223, 223)';
+        assert.equal(inlineTheme.foreground, foreground); assert.equal(inlineTheme.bodyForeground, foreground); assert.equal(inlineTheme.headerForeground, foreground); assert.equal(inlineTheme.mixSupported, true);
+        const hoverPixel = theme === 'light' ? [26, 28, 31, 13] : [255, 255, 255, 20], inlinePixel = theme === 'light' ? [26, 28, 31, 23] : [237, 237, 237, 28];
+        assert.equal(inlineTheme.hover.pixel[3], hoverPixel[3], JSON.stringify(inlineTheme.hover)); for (let channel = 0; channel < 3; channel += 1) assert.ok(Math.abs(inlineTheme.hover.pixel[channel] - hoverPixel[channel]) <= 10, JSON.stringify(inlineTheme.hover));
+        for (const code of inlineTheme.codes) { assert.equal(code.pixel[3], inlinePixel[3]); for (let channel = 0; channel < 3; channel += 1) assert.ok(Math.abs(code.pixel[channel] - inlinePixel[channel]) <= 6, JSON.stringify(code)); assert.equal(code.color, code.parentColor); }
+        const bold = inlineTheme.codes.find(code => code.text === 'FONT_BOLD'), italic = inlineTheme.codes.find(code => code.text === 'FONT_ITALIC'), link = inlineTheme.codes.find(code => code.text === 'FONT_LINK');
+        assert.equal(bold.fontWeight, '600'); assert.equal(italic.fontStyle, 'italic'); assert.notEqual(link.color, foreground); for (const code of [bold, italic, link]) assert.ok(Math.abs(code.fontSize - proseSize * .92) < .001);
+        await body.getByText('FONT_BOLD', { exact: true }).scrollIntoViewIfNeeded();
+        await target.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        const inlineImage = await application.evaluateMain(`(async()=>{const w=${windowExpression};return {png:(await w.capturePage()).toPNG().toString('base64'),size:w.getContentSize()};})()`);
+        const inlineBytes = Buffer.from(inlineImage.png, 'base64'); assert.deepEqual([inlineBytes.readUInt32BE(16), inlineBytes.readUInt32BE(20)], inlineImage.size);
+        const inlineCapture = `inline-markdown-${quick ? 'quick' : 'main'}-${theme}-${chatFontSize ?? 'default'}-${chatCodeFontSize ?? 'default'}-${zoom * 100}.png`; await writeFile(join(screenshots, inlineCapture), inlineBytes);
         const user = target.locator('.user-bubble .plain-text').first();
         assert.equal(await user.evaluate(element => parseFloat(getComputedStyle(element).fontSize)), proseSize);
         await body.locator('.code-fence').scrollIntoViewIfNeeded();
@@ -63,7 +87,7 @@ export async function verifyChatFontSettings({ page, target, application, thread
         const tableImage = await application.evaluateMain(`(async()=>{const w=${windowExpression};return {png:(await w.capturePage()).toPNG().toString('base64'),size:w.getContentSize()};})()`);
         const tableBytes = Buffer.from(tableImage.png, 'base64'); assert.deepEqual([tableBytes.readUInt32BE(16), tableBytes.readUInt32BE(20)], tableImage.size);
         const tableCapture = capture.replace('chat-fonts-', 'chat-table-fonts-'); await writeFile(join(screenshots, tableCapture), tableBytes);
-        layouts.push({ theme, chatFontSize: chatFontSize ?? null, chatCodeFontSize: chatCodeFontSize ?? null, zoom, styles, fence, tableBounds, capture, tableCapture });
+        layouts.push({ theme, chatFontSize: chatFontSize ?? null, chatCodeFontSize: chatCodeFontSize ?? null, zoom, styles, fence, inlineTheme, tableBounds, capture, tableCapture, inlineCapture });
       }
     }
     if (!quick) {
@@ -90,5 +114,6 @@ export async function verifyChatFontSettings({ page, target, application, thread
   verified(`${quick ? 'restricted quick' : 'main'} independent conversation and code font preferences survive reload, apply to actual user/assistant content in both themes at native 100/150% zoom and preserve control sizes`);
   verified(`${quick ? 'restricted quick' : 'main'} font defaults clear both overrides without changing message content${quick ? '' : ', with searchable settings, keyboard focus and actual save controls'}`);
   verified(`${quick ? 'restricted quick' : 'main'} table fonts respect independent code-size and relative-prose floors, inline code follows paragraph/heading sizes with cloned backgrounds, and one-sided defaults retain native panel edges across themes/zoom`);
+  verified(`${quick ? 'restricted quick' : 'main'} default theme foreground and actual action hover colors follow their semantic roles, inline backgrounds paint neutral 9/10.8 percent alpha through bold, italic, link and heading inheritance across themes and native zoom`);
   return { layouts, defaultsRestored: true, settingsUiVerified: !quick, originalPreferencesRestored: true, originalThreadRestored: true, referenceRuntimeDefaultsVerified: false, actualGlyphFaceVerified: false };
 }

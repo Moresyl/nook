@@ -1,7 +1,6 @@
 /* Shared desktop theme tokens. */
 :root {
   color-scheme: light dark;
-  --color-text: var(--color-text-tooltip);
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-sans: var(--font-ui-family,var(--font-sans-default));
@@ -286,11 +285,12 @@
    Practical mapping for a new desktop app: */
 :root, [data-theme='light'] {
   --theme-variant: light;
+  --color-text: #1a1c1f;
   --ds-bg: var(--gray-fixed-0);
   --ds-bg-secondary: var(--gray-fixed-50);
   --ds-bg-tertiary: var(--gray-fixed-75);
   --ds-bg-elevated: var(--gray-fixed-0);
-  --ds-text: var(--gray-fixed-750);
+  --ds-text: var(--color-text);
   --ds-text-emphasis: var(--gray-fixed-1000);
   --ds-text-secondary: var(--gray-fixed-500);
   --ds-text-tertiary: var(--gray-fixed-400);
@@ -300,11 +300,12 @@
 }
 [data-theme='dark'] {
   --theme-variant: dark;
+  --color-text: var(--gray-fixed-150);
   --ds-bg: var(--gray-fixed-800);
   --ds-bg-secondary: var(--gray-fixed-900);
   --ds-bg-tertiary: var(--gray-fixed-950);
   --ds-bg-elevated: var(--gray-fixed-700);
-  --ds-text: var(--gray-fixed-100);
+  --ds-text: var(--color-text);
   --ds-text-emphasis: var(--gray-fixed-0);
   --ds-text-secondary: var(--gray-fixed-300);
   --ds-text-tertiary: var(--gray-fixed-400);

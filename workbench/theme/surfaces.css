@@ -20,7 +20,7 @@
   --alpha-10: #0000001a;
   --alpha-12: #0000001f;
   --ghost: #00000008;
-  --ghost-hover: #0000000d;
+  --ghost-hover: var(--color-text);
   --ghost-active: rgb(0 0 0 / 12%);
   --solid-active: var(--gray-600);
   --menu-item-highlight: rgb(0 0 0 / 8%);
@@ -45,7 +45,7 @@
   --alpha-10: #ffffff1a;
   --alpha-12: #ffffff1f;
   --ghost: #ffffff08;
-  --ghost-hover: #ffffff12;
+  --ghost-hover: var(--gray-fixed-0);
   --ghost-active: rgb(255 255 255 / 16%);
   --solid-active: var(--gray-850);
   --menu-item-highlight: rgb(255 255 255 / 10%);
@@ -61,6 +61,10 @@
   --switch-track-color-hover: var(--gray-450);
   --switch-track-color-disabled: var(--gray-300);
   color-scheme: dark;
+}
+@supports (color: color-mix(in lab, red, red)) {
+  :root { --ghost-hover: color-mix(in oklab, var(--color-text) 5%, transparent); }
+  [data-theme="dark"] { --ghost-hover: color-mix(in oklab, var(--gray-fixed-0) 8%, transparent); }
 }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: var(--font-ui-family); font-size: 14px; line-height: 1.5; color: var(--ds-text); background: transparent; }
@@ -335,6 +339,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .assistant-prose pre { overflow-x: auto; padding: 16px; border-radius: 12px; background: var(--ds-bg-secondary); font-size: 12px; line-height: 1.6; }
 .assistant-prose code { font-family: var(--font-code-family); }
 .assistant-prose :not(pre) > code { display: inline; padding: 1px 6px; border-radius: 6px; background: var(--ghost-hover); font-size: .92em; direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; word-break: break-word; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+@supports (color: color-mix(in lab, red, red)) { .assistant-prose :not(pre) > code { background: color-mix(in srgb, var(--ghost-hover) 60%, var(--color-text) 6%); } }
 .assistant-prose blockquote { border-left: 3px solid var(--ds-border); margin-left: 0; padding-left: 16px; color: var(--ds-text-secondary); }
 .assistant-prose table { border-collapse: collapse; display: block; overflow-x: auto; }
 .assistant-prose th, .assistant-prose td { border: 1px solid var(--ds-border); padding: 6px 12px; }
