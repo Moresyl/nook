@@ -9,10 +9,10 @@
 - 设置搜索保留外层焦点圈，去除内层重复矩形描边；快速聊天标题保持 22px 紧凑高度，避免小窗口高缩放挤出模型操作。
 - 代码块采用当前明暗代码表面、8px 圆角、对应内距与相对字号／行高。复制提供成功／失败反馈，等待时禁止重复写入；代码和工具原文共用异步版本保护，原文改变或组件关闭后不接受旧完成状态。
 - 聊天正文查找排除代码复制的成功和失败提示，继续保留真实代码内容与精确高亮。
-- 当前应用体 `243f49b` 的 136 文件／1,602 项单元测试与类型检查通过；源码、新包和实际安装各通过 383 项／75 次正常退出。原五项分发专项、十一份匹配记录和保留数据卸载通过。三轮各覆盖 12 张代表原图，包内与安装各含 9 张与已查看源码图完全一致的原图；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
+- 当前应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
-Task records retain valid steps, exact tool history and unsent drafts across restart. Shared controls adopt the current reference defaults. Bounded read-only worktree queries retain every deletion check. All 1,602 tests pass; source, unpacked and installed runtimes each pass 383 checks with 75 normal exits, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
+Task records retain valid steps, exact tool history and unsent drafts across restart. Code and tool copying share stale-completion protection, and copy feedback stays outside body search. The complete 1,602-test coverage run applies to unchanged covered inputs; renderer behavior is verified natively. Source, unpacked and installed runtimes each pass 386 checks with 75 normal exits, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
 
 [发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
 

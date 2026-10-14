@@ -1,0 +1,266 @@
+{
+  "exitCode": 0,
+  "signal": null,
+  "startedAt": "2026-10-14T04:28:03.219Z",
+  "completedAt": "2026-10-14T04:28:03.270Z",
+  "sourceHead": "fa117638c2e23c120f1f60582e42484120dd4e8b",
+  "archive": "E:/NookVerification/RichContentRuntime-20261014",
+  "completeRuntimeRecords": 11,
+  "completeChecksPerScope": 386,
+  "completeNativeScopes": [
+    "source",
+    "unpacked",
+    "installed"
+  ],
+  "normalExitsPerScope": 75,
+  "forcedExits": 0,
+  "originalDistributionPhasesPassed": 5,
+  "selectedVisualImagesPerScope": 12,
+  "distributionControlOriginalsCovered": 26,
+  "distributionHintOriginalsCovered": 12,
+  "compiledFilesMatchingPackage": 236,
+  "completeUnitTestsWithUnchangedCoverageInputs": 1602,
+  "coverage": {
+    "lines": {
+      "total": 4540,
+      "covered": 4517,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7545,
+      "covered": 7322,
+      "skipped": 0,
+      "pct": 97.04
+    },
+    "functions": {
+      "total": 1679,
+      "covered": 1642,
+      "skipped": 0,
+      "pct": 97.79
+    },
+    "branches": {
+      "total": 5283,
+      "covered": 4997,
+      "skipped": 0,
+      "pct": 94.58
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "priorMarkersRestored": 12,
+  "executableSha256": "60a7d66da7d16d2e0394bd895d7d6eb9a60961b4e22aabba226813ebe9c49163",
+  "archiveSha256": "49b4fa041a77d4d894b6572ae0ee267b891c1967fee4027f99d708b2cfb70a10",
+  "originalDeadlinesRetained": true,
+  "evidence": [
+    {
+      "name": "package-review.json",
+      "source": "E:\\NookVerification\\RichContentPackage-20261014\\review.json",
+      "bytes": 187218,
+      "sha256": "06c1f802d339c4947ecf69b79e69dc30b4f3c36bdbcea5c47441246458dd34e8"
+    },
+    {
+      "name": "source-full-review.json",
+      "source": "E:\\NookVerification\\RichContent-20261014\\full-source-retry1\\review.json",
+      "bytes": 407515,
+      "sha256": "ef4ef27b1965fbc186f5dce57ece400325ab46e391e2dcaa0e4f276d5097461a"
+    },
+    {
+      "name": "source-selected-visual-review.json",
+      "source": "E:\\NookVerification\\RichContent-20261014\\full-source-retry1\\selected-visual-review.json",
+      "bytes": 3763,
+      "sha256": "d5b2f52deeac6f8f6a6420e5ccddb6f376819ede0208da6a3f06a0e26ff824f2"
+    },
+    {
+      "name": "unpacked-full-review.json",
+      "source": "E:\\NookVerification\\RichContentFull-unpacked-20261014\\review.json",
+      "bytes": 406531,
+      "sha256": "379151b299ef156a5f0ef65674927ef7005735edd7ea4ea81a7d558d4594936a"
+    },
+    {
+      "name": "unpacked-selected-visual-review.json",
+      "source": "E:\\NookVerification\\RichContentFull-unpacked-20261014\\selected-visual-review.json",
+      "bytes": 4682,
+      "sha256": "3d328cecf4d144c13f7584ac3ddb0a709365289c54177324ae8bc50346e31333"
+    },
+    {
+      "name": "installed-full-review.json",
+      "source": "E:\\NookVerification\\RichContentFull-installed-20261014\\review.json",
+      "bytes": 407820,
+      "sha256": "fcaa2308ee7cd48234b1aac030e5622284b9e22adbb903eacdcd09534ad2958a"
+    },
+    {
+      "name": "installed-selected-visual-review.json",
+      "source": "E:\\NookVerification\\RichContentFull-installed-20261014\\selected-visual-review.json",
+      "bytes": 6022,
+      "sha256": "c35afc4b0c3c4c96f99d05be8af1cf1402e6642ed68b84f5cd7349db8ed13ed8"
+    },
+    {
+      "name": "surfaces-phase-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-surfaces-20261014\\review.json",
+      "bytes": 20494,
+      "sha256": "9fdfc6656131fdc0d94f09b739f57330d7d5749a17c9c45b164f92961f9fa1d4"
+    },
+    {
+      "name": "surfaces-phase-visual-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-surfaces-20261014\\visual-review.json",
+      "bytes": 6926,
+      "sha256": "8f1e35a1a888ddd6f3fc11ad5b3ae3afb7c69037d2d5ae6a69a34b7f8f668ad1"
+    },
+    {
+      "name": "text-hints-phase-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-text-hints-20261014\\review.json",
+      "bytes": 6503,
+      "sha256": "c422fceb10227369db00ca361936b354a58de4a4902368d66f789721f980f913"
+    },
+    {
+      "name": "text-hints-phase-visual-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-text-hints-20261014\\visual-review.json",
+      "bytes": 3653,
+      "sha256": "aa76e3264650a082ad0c0971d179846ed44889ebda8db2b2ab9e72787cb17375"
+    },
+    {
+      "name": "renderer-close-phase-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-renderer-close-20261014\\review.json",
+      "bytes": 3099,
+      "sha256": "e6664807eac270a46d32c183f1a417d1eca84a1fab903964e2c711e65c4c57b5"
+    },
+    {
+      "name": "bootstrap-phase-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-bootstrap-20261014\\review.json",
+      "bytes": 5841,
+      "sha256": "f83bdbe65d42a1cd90cf74cd110a43453a33d974649059502219ffa575e9f100"
+    },
+    {
+      "name": "portable-phase-review.json",
+      "source": "E:\\NookVerification\\RichContentPhase-portable-20261014\\review.json",
+      "bytes": 4946,
+      "sha256": "a9b11bf4ce785bdcc803ae20775a9d14932c1becf885e073d856656bb59e10a1"
+    },
+    {
+      "name": "marker-restoration-result.json",
+      "source": "C:\\NookVerificationOverflow\\RichContentInstallerMarkerRetention-20261014\\restoration-result.json",
+      "bytes": 977,
+      "sha256": "fbaa88ca2559851c12e8cb1e7c1c000605b8e77bdaacca41d2c888ba363ed2ca"
+    },
+    {
+      "name": "marker-retention-manifest.json",
+      "source": "C:\\NookVerificationOverflow\\RichContentInstallerMarkerRetention-20261014\\retention-manifest.json",
+      "bytes": 4498,
+      "sha256": "c74840eb620b55f7a2b4cea178c5b4db2c40e6bdadab0a591662a8802560d917"
+    },
+    {
+      "name": "installed-package-audit-result.json",
+      "source": "E:/NookVerification/RichContentFull-installed-20261014/installed-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "d6d63a4e94567c1ef2a9d3cc0e88f6c7b80a57ace1afdbbec7abab3f2220ac14"
+    },
+    {
+      "name": "installed-shortcuts-result.json",
+      "source": "E:/NookVerification/RichContentFull-installed-20261014/installed-shortcuts-result.json",
+      "bytes": 871,
+      "sha256": "8bfab90e95d09cd01bdd12a5e2922b952f464712f02af0bfea9a82d28d050a55"
+    },
+    {
+      "name": "shell-integration-result.json",
+      "source": "E:/NookVerification/RichContentFull-installed-20261014/shell-integration-result.json",
+      "bytes": 984,
+      "sha256": "99c9b08343293a4d53c14a1373ad0341a875e67521849be11f8622395d71ef5e"
+    },
+    {
+      "name": "installation-report-manifest.json",
+      "source": "E:/NookVerification/RichContentFull-installed-20261014/installation-report-manifest.json",
+      "bytes": 693,
+      "sha256": "b8c807292bc41a6113e9ecf263bba6680841bf82550ef331dc0a25f8ff842f2e"
+    },
+    {
+      "name": "actual-installed-inputs.json",
+      "source": "E:/NookVerification/RichContentFull-installed-20261014/actual-installed-inputs.json",
+      "bytes": 137505,
+      "sha256": "3df0ca1f71571e61c91edb12988c09a3da201353ad8b3484c68ad0f0d4165135"
+    },
+    {
+      "name": "package-audit-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "eef53e6ef2e6954cedf1c1a954ada130813b57712cc4d0e40db49283ce3406c1"
+    },
+    {
+      "name": "packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\packaged-result.json",
+      "bytes": 414800,
+      "sha256": "f6065327b7632223f663a6835cea2efc05d4d4307f5d97168f6e078451845644"
+    },
+    {
+      "name": "surfaces-packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\surfaces-packaged-result.json",
+      "bytes": 10653,
+      "sha256": "0ef683a2fe5351cedfd7c02c5d52edef325c45bee96c292a1d69e8806534ef50"
+    },
+    {
+      "name": "project-preview-packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\project-preview-packaged-result.json",
+      "bytes": 63591,
+      "sha256": "f97c8e1094e7a415532bf2ad732464ddd97ce44c6353e97d7807ab8242489d5b"
+    },
+    {
+      "name": "conversation-branches-packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\conversation-branches-packaged-result.json",
+      "bytes": 11795,
+      "sha256": "31c0df374db596a8557cc57f062b0c00d584f358af5cfabfc45e13fe7295b77d"
+    },
+    {
+      "name": "temporary-conversations-packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\temporary-conversations-packaged-result.json",
+      "bytes": 2035,
+      "sha256": "ca29fb204ef1296004c51c40fb5e95f5181e74294106af78297f694e91348715"
+    },
+    {
+      "name": "model-comparisons-packaged-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\model-comparisons-packaged-result.json",
+      "bytes": 7080,
+      "sha256": "265cbdb07f7f0d24f97578f163e5da73295eb1f072f0b721600d6afb7c57b2b2"
+    },
+    {
+      "name": "portable-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\portable-result.json",
+      "bytes": 2092,
+      "sha256": "ad3d2f00ab421fadb626ac22c0e1c346ed0737adf67c24ddb2f2a2a746c5081c"
+    },
+    {
+      "name": "portable-package-audit-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\portable-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "1b8d10966660f4553b97ec9f9fce4c42502ad8a9061f890c0d1612d1a01dd945"
+    },
+    {
+      "name": "distribution-bootstrap-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "80e2545c09836958c7466c96a1059ad305bf80696cbe1108b8e37e5e2508351d"
+    },
+    {
+      "name": "pipeline-installer-result.json",
+      "source": "E:\\NookWorktrees\\rich-content-alignment\\verification\\pipeline-installer-result.json",
+      "bytes": 780,
+      "sha256": "34c2315ce1e58d624b8ba344f5e8e41f1f06b26ab3d5d8ea12b048becf62be0b"
+    }
+  ],
+  "runtimeStdoutSha256": "3768edaf0de84d2606b3f834e8fd9b50b16105e8cd213e476329ea5308d172f6",
+  "localDistributionAccepted": true,
+  "all633OriginalsVisuallyReviewed": false,
+  "completeReferenceParity": false,
+  "physicalSystemDpiVerified": false,
+  "nativeWizardVerified": false,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "scope": "Eleven original matching runtime records after complete exact-source, unpacked and actual-installed desktop regressions, all original distribution phases and selected visual reviews. Unit coverage applies only to byte-identical covered/test/config inputs. The reference, physical interaction and hosted publication remain separate gates.",
+  "recordedAt": "2026-10-14T04:28:21.951Z",
+  "verifiedSourceHead": "fa117638c2e23c120f1f60582e42484120dd4e8b",
+  "archivedReview": "E:\\NookVerification\\RichContentRuntime-20261014\\review.json",
+  "archivedReviewSha256": "5d9a06cfcb6c70830534a187c354cf0a6cf94f2a1ee40a5b500e960e754f0da9"
+}
