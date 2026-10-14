@@ -1,0 +1,391 @@
+{
+  "recordedAt": "2026-10-14T11:38:17.401Z",
+  "sourceHead": "615a8f1ef484aa50b1567721df06eb5df699c3ad",
+  "archive": "E:\\NookVerification\\TableLayout-20261014\\full-source-retry2",
+  "archiveReviewSha256": "0219fe609cbdd28bdde12dd95caa887eb8799635d37e1028ff6a13b263bcb35f",
+  "checks": 396,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1731,
+  "reports": 40,
+  "originalImages": 711,
+  "sourceInputs": 1043,
+  "compiledFiles": 236,
+  "sourceTarSha256": "b18a567332a8c1faa9fc8d7c2844e988f34f36e9ef3cb1bcbe42a302df75665c",
+  "profileArchiveIntegrityVerified": true,
+  "profileArchiveSha256": "5be3afb5ecafaaeca37fe469a91500aa6b0bd148be3e52d4a67a33573a8c4155",
+  "typecheck": {
+    "exitCode": 0,
+    "actualSourceHead": "62641a6a580c21253f0641838cfb37ba4db5bf2b",
+    "actualDiffSha256": "9bcd065a6d3fb7819df180a4ba9eebd598ec626e30e86fd8805aa93b271c6099",
+    "unchangedTypeInputs": 373
+  },
+  "build": {
+    "exitCode": 0,
+    "actualSourceHead": "62641a6a580c21253f0641838cfb37ba4db5bf2b",
+    "actualDiffSha256": "9bcd065a6d3fb7819df180a4ba9eebd598ec626e30e86fd8805aa93b271c6099",
+    "unchangedBuildInputs": 307,
+    "unchangedCompiledFiles": 0
+  },
+  "unit": {
+    "testFiles": 137,
+    "tests": 1614,
+    "actualSourceHead": "2cab749f1ec5e2d3d162a291bb30eb71a3ec76a7",
+    "actualDiffSha256": "00e601c8b32cccb053b092b435c466ed866966b6e392522f14468e14556ce6d2",
+    "unchangedCoveredAndRenderingInputs": 360,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "boundary": "Existing configured coverage includes contracts, desktop/services and settings draft state. Table HTML, bidirectional rendering and numeric classification have dedicated unit cases outside configured coverage; keyboard, edge masks and system clipboard behavior are verified natively."
+  },
+  "tableClipboard": {
+    "main": {
+      "types": [
+        "text/plain",
+        "text/html"
+      ],
+      "physical": {
+        "supported": true,
+        "formats": [
+          "electron application/osclipboard;format=\"DataObject\"",
+          "electron application/osclipboard;format=\"Ole Private Data\"",
+          "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+          "electron application/osclipboard;format=\"CanUploadToCloudClipboard\""
+        ],
+        "emptyPlainTextRoundTrip": true,
+        "writtenFormats": [
+          "text/plain",
+          "text/html",
+          "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+          "electron application/osclipboard;format=\"Chromium internal source URL\""
+        ],
+        "verified": true,
+        "originalClipboardRestoredByteForByte": true
+      },
+      "staleSuccessAndFailureIgnored": true,
+      "pendingDuplicatePrevention": true,
+      "unmountSafe": true,
+      "sourceUpdateBoundary": "Persisted updates and the real workspace navigation/quick subscription path; these held-promise cases are not HTTP streaming."
+    },
+    "quick": {
+      "types": [
+        "text/plain",
+        "text/html"
+      ],
+      "physical": {
+        "supported": true,
+        "formats": [
+          "electron application/osclipboard;format=\"DataObject\"",
+          "electron application/osclipboard;format=\"Ole Private Data\"",
+          "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+          "electron application/osclipboard;format=\"CanUploadToCloudClipboard\""
+        ],
+        "emptyPlainTextRoundTrip": true,
+        "writtenFormats": [
+          "text/plain",
+          "text/html",
+          "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+          "electron application/osclipboard;format=\"Chromium internal source URL\""
+        ],
+        "verified": true,
+        "originalClipboardRestoredByteForByte": true
+      },
+      "staleSuccessAndFailureIgnored": true,
+      "pendingDuplicatePrevention": true,
+      "unmountSafe": true,
+      "sourceUpdateBoundary": "Persisted updates and the real workspace navigation/quick subscription path; these held-promise cases are not HTTP streaming."
+    },
+    "exactMarkdownAndHtml": true,
+    "physicalSystemClipboardVerified": true,
+    "allOriginalMimePayloadsRestoredByteForByte": true,
+    "browserClipboardWriteDenialDoesNotSilentlyDowngrade": true,
+    "scope": "Saved and actual HTTP-streamed GFM table copies. Held old success/failure cases use persisted source replacement and native navigation, not HTTP streaming. Physical Windows clipboard readback and restoration verified; paste into third-party office applications, physical input and other OS DPI are not verified."
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "externalImplementationOrAssetsCopied": false,
+  "reference": {
+    "currentRoot": "E:/txt",
+    "currentVersion": "26.930.41038",
+    "legacyRoot": "C:/Users/18468/Desktop/txt",
+    "legacyVersion": "26.917.71314",
+    "extractedCodeExecuted": false,
+    "fullFontAndSurfaceParity": false
+  },
+  "tableLayout": {
+    "main": [
+      {
+        "theme": "light",
+        "width": 1280,
+        "height": 840,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "height": 540,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "height": 540,
+        "zoom": 1.25,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "height": 540,
+        "zoom": 1.5,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 1280,
+        "height": 840,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "height": 540,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "height": 540,
+        "zoom": 1.25,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "height": 540,
+        "zoom": 1.5,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      }
+    ],
+    "quick": [
+      {
+        "theme": "light",
+        "width": 420,
+        "height": 360,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "height": 360,
+        "zoom": 1.25,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "height": 360,
+        "zoom": 1.5,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "height": 360,
+        "zoom": 1,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "height": 360,
+        "zoom": 1.25,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "height": 360,
+        "zoom": 1.5,
+        "copyButtonArrows": true,
+        "modifiersPreserved": true,
+        "preventedEventPreserved": true,
+        "directionalEdgeMask": "linear-gradient(to right in oklch, rgba(0, 0, 0, 0), rgb(0, 0, 0) 16px, rgb(0, 0, 0) calc(100% - 16px), rgba(0, 0, 0, 0))",
+        "digitsUnwrapped": true,
+        "autoCellDirection": true
+      }
+    ],
+    "mainFit": {
+      "unhandledArrow": true,
+      "tableDirection": "ltr",
+      "automaticCellDirection": true,
+      "copiedAutoDirection": true,
+      "overflowTransition": true,
+      "forcedColorsUnmasked": true,
+      "capture": {
+        "filename": "table-fit-main-dark-760-100.png",
+        "size": [
+          760,
+          540
+        ]
+      }
+    },
+    "quickFit": {
+      "unhandledArrow": true,
+      "tableDirection": "ltr",
+      "automaticCellDirection": true,
+      "copiedAutoDirection": true,
+      "overflowTransition": true,
+      "forcedColorsUnmasked": true,
+      "capture": {
+        "filename": "table-fit-quick-dark-420-100.png",
+        "size": [
+          420,
+          360
+        ]
+      }
+    },
+    "scope": "Actual Windows copy-button arrows and modifier/default-prevented preservation, directional scroll masks, numeric nonwrapping, per-cell Unicode direction and copied HTML direction, nonoverflow and source replacement, forced-colors unmasking. Mac Alt page stepping is implemented but not verified on a Mac. Wide-block invocation and full reference surface parity remain incomplete."
+  },
+  "selectedVisualReviewSha256": "b74c6eb6e9c84cdb84256b0628e3bdbb509e615766d21989280d051cfbe0fc53",
+  "focusedImagesReviewed": 6,
+  "fullImagesReviewed": 6,
+  "all711ImagesVisuallyReviewed": false,
+  "retainedFailures": [
+    {
+      "phase": "rich",
+      "exitCode": 1,
+      "logSha256": "4d1cb018faf0bebe24603b34f76afbda58c3ba7eefcce4134ec18420a73decbb",
+      "archive": "E:\\NookVerification\\TableLayout-20261014\\rich"
+    },
+    {
+      "phase": "rich-retry2",
+      "exitCode": 1,
+      "logSha256": "cd61e65e9b9613193d2fce1fa43fa14c9cc4f8186412f209e06982434aa1e0a8",
+      "archive": "E:\\NookVerification\\TableLayout-20261014\\rich-retry2"
+    },
+    {
+      "phase": "full",
+      "exitCode": 1,
+      "logSha256": "031ca0519604ffd6bae1dd5c496835fd679daa1c8d10ddb1b831859e8265eeb6",
+      "archive": "E:\\NookVerification\\TableLayout-20261014\\full-failed"
+    },
+    {
+      "phase": "full-retry1",
+      "exitCode": 1,
+      "logSha256": "f88c6445242cc14b5d4a44a47bf50bd596731cfc55ea5f45f32186fe6c434195",
+      "archive": "E:\\NookVerification\\TableLayout-20261014\\full-retry1-failed"
+    }
+  ],
+  "isolatedToolRecheck": {
+    "checks": 8,
+    "exitCode": 0,
+    "original5000msLocatorDeadlineRetained": true,
+    "productAndHarnessUnchanged": true,
+    "causeOfFullRunTimeoutEstablished": false
+  },
+  "failureArchiveBoundary": "All four native failure logs/profiles/fresh screenshots retained before later retries. First full-MIME restoration returned unequal without format-level diagnostics; its cause remains undetermined. Second failure assumed table auto direction must be RTL; cell directions and table attributes are now verified separately without forcing column-order reversal. Initial full run reached 374 checks and 72 normal exits before the tool approval 5000ms wait timed out; 687 artifacts and an integrity-verified profile archive were retained, and the unchanged isolated tool suite passed 8 checks. Its timing cause remains undetermined. First full retry reached 58 checks and 4 normal exits; restoration omitted an original zero-byte text/plain payload while four opaque MIME hashes matched. Its 102 artifacts and integrity-verified profile archive were retained before the Windows empty-text restoration correction and a native empty-text round-trip regression check.",
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}

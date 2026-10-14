@@ -2,8 +2,10 @@
 
 ## 未发布
 
+- 表格复制按钮支持左右方向键即时滚动 40px，保留焦点和组合键原行为；横向溢出按滚动位置显示边缘渐隐，无溢出时取消额外滚动入口，强制颜色模式保留完整内容。纯数字单元格不换行，表格与每个单元格分别采用自动文字方向，复制的 HTML 保留这一语义。
 - 表格复制同时提供精确 Markdown 和语义 HTML，保留 Windows 换行、对齐、强调及单份 TeX 原文，移除主题样式和不安全资源。主工作台与快速聊天验证实际系统剪贴板及全部原有 MIME 内容逐字节恢复；富文本写入被拒绝时保留失败与重试，旧原文的成功／失败和卸载后的完成不会影响新内容。
-- 当前候选 `e4f8bb9` 完整通过 394 项／75 次正常退出，最长 4841ms，无强制结束；137 文件／1612 项单元通过。保存 40 份报告、709 张原图、1043 个源码输入、236 个编译文件和完整性已验证用户目录归档；4 张专项及 4 张完整回归代表图逐张查看，全部 709 张未全部视觉复核。类型、打包和覆盖相关输入匹配，新候选分发与完整参考对照仍待完成。[表格复制证据](verification/table-copy-validation-review-result.json)
+- 当前源码候选 `615a8f1`（界面改动 `2cab749`）完整通过 396 项／75 次正常退出，最长 1731ms，无强制结束；137 文件／1614 项单元通过。保存 40 份报告、711 张原图、1043 个源码输入、236 个编译文件及完整性已验证用户目录归档；6 张专项与 6 张完整回归代表图逐张查看，全部原图未全部视觉复核。类型、构建与覆盖相关输入匹配；Windows 空文本剪贴板恢复夹具已修正并增加真实往返检查，四个失败现场保留。新候选分发与完整参考对照仍待完成。[本轮证据](verification/table-layout-validation-review-result.json)
+- 上一候选 `e4f8bb9` 完整通过 394 项／75 次正常退出，最长 4841ms，无强制结束；137 文件／1612 项单元通过。保存 40 份报告、709 张原图、1043 个源码输入、236 个编译文件和完整性已验证用户目录归档；4 张专项及 4 张完整回归代表图逐张查看，全部 709 张未全部视觉复核。该轮证据不替代当前候选。[表格复制证据](verification/table-copy-validation-review-result.json)
 - 正文按参考层级调整标题、列表、引用与段落间距；可见汉字段落采用专用间距，嵌套强调、链接和行内代码保留语义。正文保持 14px 默认字号，行高为 1.625；参考实际运行字号和完整字体尚未对齐。
 - 表格保留原生语义、列对齐及可读宽度；溢出区域支持键盘滚动和居中展开，预览随内容收缩，Escape 返回展开按钮。复制保留流式及已保存表格的精确 Markdown 和 Windows 换行，支持成功反馈、失败重试与等待锁定，提示和预览不进入正文查找。
 - 正文候选 `e3b5f0e` 完整回归通过 390 项／75 次正常退出，最长 3653ms，无强制结束；保存 40 份报告、709 张原图、1040 个源码／夹具输入和 236 个编译文件。136 文件／1605 项单元通过，358 个覆盖／测试／渲染器／配置输入与覆盖率运行逐字节一致。12 张专项与 4 张完整回归代表原图逐张查看；全部 709 张未全部视觉复核，新候选分发与完整参考对照仍待完成。[本轮证据](verification/prose-layout-validation-review-result.json)
@@ -28,7 +30,7 @@ Task records retain valid steps, exact tool history and unsent drafts across res
 
 [发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
 
-## [0.1.0-alpha.1] - 2026-10-13
+## [0.1.0-alpha.1]
 
 Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发。首个 Windows x64 预发布候选，尚未发布。
 
@@ -57,6 +59,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 正文完善标题、列表、引用与汉字段落间距；普通用户消息采用 70% 宽度上限及 22px 圆角，主工作台和快速聊天保留长文与附件阅读。
+- 表格一次复制精确 Markdown 与语义 HTML，保留 Windows 换行、对齐、强调和单份 TeX 原文；过滤不安全资源，写入失败支持重试，原文变化后忽略旧完成反馈。溢出表格支持键盘滚动、边缘渐隐和随内容收缩的展开预览，Escape 返回焦点；纯数字不换行，混合方向单元格分别自动排版。
 - 普通单行表单和下拉框采用 32px 高、8px 圆角、12px 内边距与 13px 字号，分别保留输入聚焦、下拉展开、键盘圈和非法状态。按钮取消额外实体边框，统一默认 400 字重与 150ms 过渡；模型和工具下拉使用紧凑规格。
 - 快速聊天的会话标题保留 22px 紧凑高度，修复普通表单尺寸继承导致小窗口高缩放时模型操作区被挤出的情况。
 - 设置搜索移除内层输入的重复矩形描边，保留外层搜索框的描边和键盘焦点圈，覆盖默认、悬停与聚焦状态。
@@ -82,27 +86,13 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### English
 
-Single-line form fields and selects use 32px controls with inset outlines and distinct keyboard, open and invalid states. Buttons retain their exact content gutters without an extra border. Compact model and tool selectors remain separate from ordinary forms. Quick Chat keeps its compact conversation selector so the model controls remain reachable in small zoomed windows. Settings search removes the duplicate inner rectangular outline while retaining its outer border and keyboard focus ring.
+Nook brings multi-provider chat, model comparison, conversation branches, document retrieval, original PDF reading, project tools and local extensions into one workspace. Slash choices insert templates, assistants and projects without sending a message. Conversation task steps retain valid records and drafts across restart; they do not execute the plan themselves.
 
-Code blocks adopt the current themed surface, 8px corners, content padding and relative typography. Copying announces success, retains source for retry on failure and prevents duplicate pending writes. Code and tool text share stale-completion protection while retaining wrapping and isolated diagrams.
+Prose and message layouts refine spacing and long-content reading. Tables copy exact Markdown and semantic HTML, preserve line endings, alignment and original TeX, filter unsafe resources, and reject stale completions. Keyboard scrolling, directional fades, numeric nonwrapping and independent cell direction support wide and mixed-language tables. Forms, compact selectors, code blocks, search focus and the composer adopt their corresponding theme and layout specifications.
 
-Project analysis and execution can record up to twenty conversation task steps. Invalid updates retain the last valid record; stopping marks unfinished work as awaiting continuation. Exact tool records and unsent drafts survive restart. Recording does not execute steps or create project plan files. Bounded worktree identity queries and concurrent read-only snapshot metadata queries retain all deletion rechecks and sequential removal.
+Unsaved settings and failed operations retain drafts for retry. Worktree registration, pinning, private snapshots, restoration and optional cleanup protect active or modified directories. Credentials stay encrypted locally, shared backups exclude secrets, and previews and plugins remain isolated. This candidate fixes delayed command output, selection restoration, streaming races, restore locking, keyboard focus and portable cleanup.
 
-Nook is a local AI workspace for multi-provider chat, model comparison, conversation branches, context summaries, document retrieval, original PDF reading, code editing, Git, terminals, HTML previews and local extensions. Slash choices for templates, assistants and projects work in both the workbench and Quick Chat without sending a message.
-
-Local branches can be renamed without replacing existing refs. Merged-only deletion protects the current branch, worktrees and commits absent from the current version, while retaining files, drafts and remote refs.
-
-Six settings forms protect unsaved changes with a compact confirmation. Continue editing is the safe default; Enter and Escape retain drafts, and failed saves preserve input for retry.
-
-Memory deletion defaults to Cancel, blocks dismissal while pending and retains entries on failure. Its default typography, top placement and translucent surface are corrected; long content scrolls independently while action controls remain visible.
-
-Shared buttons use the current default dimensions while preserving compact attachment and search controls. Keyboard focus and disabled saving are independently verified.
-
-Worktrees support explicit registration, local pinning, private snapshots, restoration to a new directory and snapshot-before-delete cleanup. Optional post-create cleanup protects active, pinned, registered and modified trees. Credentials remain encrypted locally, shared backups exclude secrets, previews and plugins stay isolated, and original open-source notices are retained.
-
-This candidate fixes delayed final command output, selection restoration, draft persistence, streaming races, restore locking, keyboard focus and Windows portable cleanup. Windows x64 installer and portable files are unsigned; uninstalling preserves user data. Additional platforms and the remaining documented reference-design and physical-system checks are separate from this candidate.
-
-The composer uses the current default corner radius and a smaller light shadow in compact CSS viewports, retaining its input, sending, draft and keyboard behavior.
+Windows x64 installer and portable candidates are unsigned; uninstalling preserves user data. Original open-source notices remain included. Release, complete reference parity, other platforms and the remaining documented physical-system checks are still pending.
 
 ## 开发记录
 
