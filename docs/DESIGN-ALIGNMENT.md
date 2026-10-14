@@ -8,6 +8,7 @@
 | --- | --- |
 | 共享按钮 | 默认 24px 最小高度、8px 左右内距、4px 间距与 13px 字号，无实体边框；专用小控件保留其实际尺寸 |
 | 普通表单 | 单行输入与下拉框默认 32px 高、8px 圆角、12px 内距、13px 字；按主题采用内描边和不同键盘焦点状态 |
+| 紧凑与搜索 | 模型、工具选择器采用 24px 紧凑规格，快速聊天标题为 22px；设置搜索保留外层焦点圈，内层输入无重复矩形描边 |
 | 聊天输入区 | 默认 22px 外圆角；小于 40rem CSS 视口时缩小浅色大阴影；保留附件、草稿与键盘操作 |
 | 主题与焦点 | 明暗中性表面、蓝色强调、实际控件的悬停／按下／禁用状态，以及完整键盘焦点 |
 | 导航与项目 | 常规与紧凑侧栏、文件树、编辑器、真实终端、独立／并排 HTML 预览 |
@@ -19,13 +20,13 @@
 
 ## 当前证据
 
-此前任务步骤版本的源码、包内程序和实际安装各通过 383 项完整桌面检查、75 次正常退出，无强制结束。每轮保留 40 份报告与 633 张原图；任务步骤原图各 16 张已逐张复核，完整原图未全部视觉复核。原分发专项、注册、快捷方式与保留数据卸载通过，十二个既有测试标记精确恢复。
+当前应用体 `243f49b` 的源码、匹配新包与实际安装各通过 383 项完整桌面检查、75 次正常退出，无强制结束；最长分别为 2192ms、1835ms 和 1958ms。每轮保留 40 份报告与 633 张原图。原五项分发专项、注册、两项快捷方式与保留数据卸载通过，十二个既有测试标记精确恢复。
 
-普通表单尺寸与快速聊天紧凑标题的源码版本 `47d257c` 已通过 383 项／75 次正常退出；它与上述旧安装包有明确区别。本次内描边、正文与紧凑控件调整仍需对应完整源码、新包与实际安装验收，不能沿用旧包结论。
+源码 12 张代表原图已逐张查看；包内和实际安装各有 3 张新原图逐张查看、9 张与已查看源码图哈希完全一致。26 张控件和 12 张文字提示分发原图全部逐张查看；完整的每轮 633 张原图未全部视觉复核。单独的控件专项还核对了七种窗口／缩放组合，每组 15 个已填写模型字段可达，退出丢弃临时连接且不调用模型。
 
 高应用缩放使用紧凑布局与独立滚动，不能据此宣称每个内容片段同时可见。窄窗口预览提示图只验证目标标题／提示，PDF 高缩放图只展示文档切片。精确尺寸夹具的设备缩放 1 与物理系统 DPI 是不同证据。
 
-[完整源码](../verification/task-plan-full-source-review-result.json) · [包内回归](../verification/task-plan-full-unpacked-review-result.json) · [任务步骤原生](../verification/task-plan-native-review-result.json) · [控件规格](CONTROL-AUDIT.md)
+[完整源码](../verification/form-controls-full-source-review-result.json) · [包内回归](../verification/form-controls-full-unpacked-review-result.json) · [控件原生专项](../verification/form-controls-native-review-result.json) · [控件规格](CONTROL-AUDIT.md)
 
 ## 继续对照
 
@@ -38,6 +39,6 @@
 
 [界面验收](UI-ACCEPTANCE.md) · [能力与边界](CAPABILITIES.md) · [发布状态](RELEASE.md)
 
-[十一份匹配运行记录](../verification/task-plan-runtime-review-result.json) · [实际安装](../verification/task-plan-full-installed-review-result.json)
+[十一份匹配运行记录](../verification/form-controls-runtime-review-result.json) · [实际安装](../verification/form-controls-full-installed-review-result.json)
 
 整理前的详细轮次和失败范围逐字保留于[历史记录](DESIGN-ALIGNMENT-HISTORY-2026-10-14.md)，SHA-256：`ff1857917c2ff633b607cf8601bf8955827c2aa9bf0437494f215a06afa3323d`。历史记录只证明对应冻结源码与产物。
