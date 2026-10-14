@@ -1,0 +1,167 @@
+{
+  "recordedAt": "2026-10-14T09:32:57.693Z",
+  "sourceHead": "e4f8bb9d2a5d9ef96a870b2fad05d74a4df9d1bf",
+  "archive": "E:\\NookVerification\\TableCopy-20261014\\full-source",
+  "archiveReviewSha256": "7a3ad0545b0368f1f67f0dce5113800f9c57b4a1610c738235c1cbeaacc73466",
+  "checks": 394,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 4841,
+  "reports": 40,
+  "originalImages": 709,
+  "sourceInputs": 1043,
+  "compiledFiles": 236,
+  "sourceTarSha256": "2cc33ef3f81ae90778e2c1c6b93669bbfc061a3cbdfae693a5759b1b8a7eea1f",
+  "profileArchiveIntegrityVerified": true,
+  "profileArchiveSha256": "63c61742489d38d153fbc72d96064c89673dc49ae5b3e0e18cf4bb8ce5aafd6b",
+  "typecheck": {
+    "exitCode": 0,
+    "actualSourceHead": "fb3693003004efaa7cab45d77ce093a0e53e1807",
+    "actualDiffSha256": "4aca744c5f9b6e56e395f0ee6a9e48ebc7228470526537773af807a1d6083011",
+    "unchangedTypeInputs": 373
+  },
+  "build": {
+    "exitCode": 0,
+    "actualSourceHead": "fb3693003004efaa7cab45d77ce093a0e53e1807",
+    "actualDiffSha256": "4aca744c5f9b6e56e395f0ee6a9e48ebc7228470526537773af807a1d6083011",
+    "unchangedBuildInputs": 307,
+    "unchangedCompiledFiles": 0
+  },
+  "unit": {
+    "testFiles": 137,
+    "tests": 1612,
+    "actualSourceHead": "e4f8bb9d2a5d9ef96a870b2fad05d74a4df9d1bf",
+    "actualDiffSha256": "8eb53b55009478fbf16e5d186fb5e41526c45a2e1a3c4c80f0d3ecd3261fec6c",
+    "unchangedCoveredAndRenderingInputs": 360,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "boundary": "Existing configured coverage includes contracts, desktop/services and settings draft state. The new table serializer and clipboard writer have dedicated unit cases outside configured coverage; renderer and system clipboard behavior is verified natively."
+  },
+  "tableClipboard": {
+    "main": {
+      "types": [
+        "text/plain",
+        "text/html"
+      ],
+      "physical": {
+        "supported": true,
+        "formats": [
+          "text/plain",
+          "electron application/osclipboard;format=\"DataObject\"",
+          "electron application/osclipboard;format=\"Ole Private Data\"",
+          "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+          "electron application/osclipboard;format=\"CanUploadToCloudClipboard\""
+        ],
+        "writtenFormats": [
+          "text/plain",
+          "text/html",
+          "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+          "electron application/osclipboard;format=\"Chromium internal source URL\""
+        ],
+        "verified": true,
+        "originalClipboardRestoredByteForByte": true
+      },
+      "staleSuccessAndFailureIgnored": true,
+      "pendingDuplicatePrevention": true,
+      "unmountSafe": true,
+      "sourceUpdateBoundary": "Persisted updates and the real workspace navigation/quick subscription path; these held-promise cases are not HTTP streaming."
+    },
+    "quick": {
+      "types": [
+        "text/plain",
+        "text/html"
+      ],
+      "physical": {
+        "supported": true,
+        "formats": [
+          "text/plain",
+          "electron application/osclipboard;format=\"DataObject\"",
+          "electron application/osclipboard;format=\"Ole Private Data\"",
+          "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+          "electron application/osclipboard;format=\"CanUploadToCloudClipboard\""
+        ],
+        "writtenFormats": [
+          "text/plain",
+          "text/html",
+          "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+          "electron application/osclipboard;format=\"Chromium internal source URL\""
+        ],
+        "verified": true,
+        "originalClipboardRestoredByteForByte": true
+      },
+      "staleSuccessAndFailureIgnored": true,
+      "pendingDuplicatePrevention": true,
+      "unmountSafe": true,
+      "sourceUpdateBoundary": "Persisted updates and the real workspace navigation/quick subscription path; these held-promise cases are not HTTP streaming."
+    },
+    "exactMarkdownAndHtml": true,
+    "physicalSystemClipboardVerified": true,
+    "allOriginalMimePayloadsRestoredByteForByte": true,
+    "browserClipboardWriteDenialDoesNotSilentlyDowngrade": true,
+    "scope": "Saved and actual HTTP-streamed GFM table copies. Held old success/failure cases use persisted source replacement and native navigation, not HTTP streaming. Physical Windows clipboard readback and restoration verified; paste into third-party office applications, physical input and other OS DPI are not verified."
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "externalImplementationOrAssetsCopied": false,
+  "reference": {
+    "currentRoot": "E:/txt",
+    "currentVersion": "26.930.41038",
+    "legacyRoot": "C:/Users/18468/Desktop/txt",
+    "legacyVersion": "26.917.71314",
+    "extractedCodeExecuted": false,
+    "fullFontAndSurfaceParity": false
+  },
+  "selectedVisualReviewSha256": "87d89cabc2ec4eb762e53c81940f5e9ac0a85342aee66de86ff275435ab49e45",
+  "focusedImagesReviewed": 4,
+  "fullImagesReviewed": 4,
+  "all709ImagesVisuallyReviewed": false,
+  "retainedFailures": [
+    {
+      "phase": "rich",
+      "exitCode": 1,
+      "logSha256": "ef6533a2fd33649e66853c3216c1d98df1996c8e61f2ddbf8c71c5d3b66572b1",
+      "archive": "E:\\NookVerification\\TableCopy-20261014\\rich"
+    },
+    {
+      "phase": "rich-retry2",
+      "exitCode": 1,
+      "logSha256": "c6af4716fe49f4cc49082d401f77f9afd939d5a51c8c503035705906fb2331fb",
+      "archive": "E:\\NookVerification\\TableCopy-20261014\\rich-retry2"
+    }
+  ],
+  "failureArchiveBoundary": "First rich failure log, profile and diagnostic screenshot retained. Some initial same-named layout images were overwritten by retry before archive; not all original failure layout images are retained.",
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}

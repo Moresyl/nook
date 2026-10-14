@@ -2,6 +2,8 @@
 
 ## 未发布
 
+- 表格复制同时提供精确 Markdown 和语义 HTML，保留 Windows 换行、对齐、强调及单份 TeX 原文，移除主题样式和不安全资源。主工作台与快速聊天验证实际系统剪贴板及全部原有 MIME 内容逐字节恢复；富文本写入被拒绝时保留失败与重试，旧原文的成功／失败和卸载后的完成不会影响新内容。
+- 当前候选 `e4f8bb9` 完整通过 394 项／75 次正常退出，最长 4841ms，无强制结束；137 文件／1612 项单元通过。保存 40 份报告、709 张原图、1043 个源码输入、236 个编译文件和完整性已验证用户目录归档；4 张专项及 4 张完整回归代表图逐张查看，全部 709 张未全部视觉复核。类型、打包和覆盖相关输入匹配，新候选分发与完整参考对照仍待完成。[表格复制证据](verification/table-copy-validation-review-result.json)
 - 正文按参考层级调整标题、列表、引用与段落间距；可见汉字段落采用专用间距，嵌套强调、链接和行内代码保留语义。正文保持 14px 默认字号，行高为 1.625；参考实际运行字号和完整字体尚未对齐。
 - 表格保留原生语义、列对齐及可读宽度；溢出区域支持键盘滚动和居中展开，预览随内容收缩，Escape 返回展开按钮。复制保留流式及已保存表格的精确 Markdown 和 Windows 换行，支持成功反馈、失败重试与等待锁定，提示和预览不进入正文查找。
 - 正文候选 `e3b5f0e` 完整回归通过 390 项／75 次正常退出，最长 3653ms，无强制结束；保存 40 份报告、709 张原图、1040 个源码／夹具输入和 236 个编译文件。136 文件／1605 项单元通过，358 个覆盖／测试／渲染器／配置输入与覆盖率运行逐字节一致。12 张专项与 4 张完整回归代表原图逐张查看；全部 709 张未全部视觉复核，新候选分发与完整参考对照仍待完成。[本轮证据](verification/prose-layout-validation-review-result.json)
@@ -18,7 +20,9 @@
 - 富文本轮次应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
-Prose headings, lists, quotes and Han-text paragraph spacing follow the reference hierarchy. Tables retain aligned semantic cells, exact Markdown including Windows newlines, retryable copying and keyboard-scrollable previews that fit their content and return focus on Escape. The current source passes 390 native checks with 75 normal exits and 1,605 unit tests; current distribution acceptance remains pending.
+Tables copy exact Markdown and semantic HTML together, retaining alignment, emphasis and a single TeX source while excluding theme styles and unsafe resources. Main and Quick Chat verify physical Windows clipboard readback and byte-for-byte restoration of all original MIME payloads. Rejected writes stay retryable and stale completions are ignored. The current source passes 394 native checks with 75 normal exits and 1,612 unit tests; current distribution acceptance remains pending.
+
+Prose headings, lists, quotes and Han-text paragraph spacing follow the reference hierarchy. Tables retain keyboard-scrollable previews that fit their content and return focus on Escape. The previous prose candidate passed 390 native checks with 75 normal exits and 1,605 unit tests.
 
 Task records retain valid steps, exact tool history and unsent drafts across restart. Code and tool copying share stale-completion protection, and copy feedback stays outside body search. The previous rich-content candidate passed 386 checks with 75 normal exits in source, unpacked and installed runtimes, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
 
