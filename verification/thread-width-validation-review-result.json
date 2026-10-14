@@ -1,0 +1,823 @@
+{
+  "recordedAt": "2026-10-14T14:16:25.925Z",
+  "sourceHead": "c70833080bf77aaf64b6becaf7ef11dbd52ae643",
+  "archive": "E:\\NookVerification\\ThreadWidths-20261014\\full",
+  "acceptanceSha256": "b38cbcb31e65287f18a0858a9e66ca15ca6385835786eb8fe429429e25478b42",
+  "checks": 402,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1664,
+  "reports": 40,
+  "originalImages": 733,
+  "sourceInputs": 1046,
+  "compiledFiles": 236,
+  "sourceTarSha256": "d8a13cc66f76cb1f0576568f04dc1007b4821adb1ae636a0fbdbb2ca04b2b19f",
+  "profileArchiveSha256": "102ee08ec492e4b929aa70d6865cb2748bad24a73ade53606961641ee8923de3",
+  "profileArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "receipts": {
+    "check-retry1": {
+      "sourceHeadObservedAfterRun": "c70833080bf77aaf64b6becaf7ef11dbd52ae643",
+      "diffSha256ObservedAfterRun": "7638878ba860ac3cd9904a6014a8612d0ea033cdd5c31060ff03b2a812100d55",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "sourceHeadObservedAfterRun": "757e8077801359d89103335128dc8bcfbe4359d6",
+      "diffSha256ObservedAfterRun": "11e80617eb47e7d0293d295f72bddfbc4111ba235cc3ebfa8c77a62e22606144",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "e9497861a1cbf7acaec7c862e62801805a04930a628c84f44dc2f6597f1647fa"
+    },
+    "coverage": {
+      "sourceHeadObservedAfterRun": "c70833080bf77aaf64b6becaf7ef11dbd52ae643",
+      "diffSha256ObservedAfterRun": "374e3276908f5dcc140bc900ed617e998c1a685d447949ca456a00d40d996973",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "bf6b253aab5801ffff13f8dc03a1b74e66661dd4b8e8a2eb1247a406ae108132"
+    },
+    "unit-retry1": {
+      "sourceHeadObservedAfterRun": "c70833080bf77aaf64b6becaf7ef11dbd52ae643",
+      "diffSha256ObservedAfterRun": "7638878ba860ac3cd9904a6014a8612d0ea033cdd5c31060ff03b2a812100d55",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "10727cc77dfccbbfc9a69022181bf77b79f037bafee3f59c7bd2a6b133d5e231"
+    },
+    "rich": {
+      "sourceHeadObservedAfterRun": "757e8077801359d89103335128dc8bcfbe4359d6",
+      "diffSha256ObservedAfterRun": "0ab68f6da1ba264c3d7d4ca875b5ced6f1d9a92fff438f08dadc163a0d93546e",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "ccd7803da59778104b39309dc055b6d02cfa18e8be802167373e2c8032067614"
+    },
+    "quick": {
+      "sourceHeadObservedAfterRun": "757e8077801359d89103335128dc8bcfbe4359d6",
+      "diffSha256ObservedAfterRun": "601ee43291e107439a9b27200895d67d52e69b7f6b8b2736bb59af6fd9c0c8b9",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "ab50b88eb5ade173d53d561877c7308d5ccc4b9d29e86609902e837e111ee61b"
+    }
+  },
+  "unit": {
+    "tests": 1617,
+    "testFiles": 137,
+    "focusedTests": 12,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageBoundary": "Configured coverage covers contracts, desktop services and settings draft logic. Renderer components/CSS and native scripts are excluded; native geometry and interactions are separately verified."
+  },
+  "threadWidths": {
+    "main": [
+      {
+        "theme": "light",
+        "width": 1920,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 864,
+          "proseLeft": 711,
+          "tableLeft": 711,
+          "tableRight": 1575,
+          "panelRight": 1914,
+          "panelScrollWidth": 1650,
+          "panelClientWidth": 1650,
+          "viewport": 1920
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-1920-100-top.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1920-100-table.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1920-100-preview.png",
+            "size": [
+              1920,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1280,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 768,
+          "proseLeft": 391,
+          "tableLeft": 391,
+          "tableRight": 1159,
+          "panelRight": 1274,
+          "panelScrollWidth": 1010,
+          "panelClientWidth": 1010,
+          "viewport": 1280
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-1280-100-top.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1280-100-table.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1280-100-preview.png",
+            "size": [
+              1280,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 474,
+          "table": 474,
+          "proseLeft": 260,
+          "tableLeft": 260,
+          "tableRight": 734,
+          "panelRight": 754,
+          "panelScrollWidth": 534,
+          "panelClientWidth": 534,
+          "viewport": 760
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-100-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-100-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-100-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 478.3999938964844,
+          "table": 478.3999938964844,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 582.3999938964844,
+          "panelRight": 602,
+          "panelScrollWidth": 538,
+          "panelClientWidth": 538,
+          "viewport": 608
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-125-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-125-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-125-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 376.66668701171875,
+          "table": 376.66668701171875,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 480.66668701171875,
+          "panelRight": 501,
+          "panelScrollWidth": 437,
+          "panelClientWidth": 437,
+          "viewport": 507
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-150-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-150-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-150-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1920,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 864,
+          "proseLeft": 711,
+          "tableLeft": 711,
+          "tableRight": 1575,
+          "panelRight": 1914,
+          "panelScrollWidth": 1650,
+          "panelClientWidth": 1650,
+          "viewport": 1920
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-1920-100-top.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1920-100-table.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1920-100-preview.png",
+            "size": [
+              1920,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1280,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 768,
+          "proseLeft": 391,
+          "tableLeft": 391,
+          "tableRight": 1159,
+          "panelRight": 1274,
+          "panelScrollWidth": 1010,
+          "panelClientWidth": 1010,
+          "viewport": 1280
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-1280-100-top.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1280-100-table.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1280-100-preview.png",
+            "size": [
+              1280,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 474,
+          "table": 474,
+          "proseLeft": 260,
+          "tableLeft": 260,
+          "tableRight": 734,
+          "panelRight": 754,
+          "panelScrollWidth": 534,
+          "panelClientWidth": 534,
+          "viewport": 760
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-100-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-100-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-100-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 478.3999938964844,
+          "table": 478.3999938964844,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 582.3999938964844,
+          "panelRight": 602,
+          "panelScrollWidth": 538,
+          "panelClientWidth": 538,
+          "viewport": 608
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-125-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-125-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-125-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 376.66668701171875,
+          "table": 376.66668701171875,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 480.66668701171875,
+          "panelRight": 501,
+          "panelScrollWidth": 437,
+          "panelClientWidth": 437,
+          "viewport": 507
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-150-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-150-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-150-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      }
+    ],
+    "quick": [
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 368,
+          "table": 368,
+          "proseLeft": 23,
+          "tableLeft": 23,
+          "tableRight": 391,
+          "panelRight": 407,
+          "panelScrollWidth": 400,
+          "panelClientWidth": 400,
+          "viewport": 420
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-100-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-100-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-100-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 284.8000183105469,
+          "table": 284.8000183105469,
+          "proseLeft": 22.80000114440918,
+          "tableLeft": 22.80000114440918,
+          "tableRight": 307.60001945495605,
+          "panelRight": 323.80000019073486,
+          "panelScrollWidth": 317,
+          "panelClientWidth": 317,
+          "viewport": 336
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-125-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-125-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-125-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 228.6666717529297,
+          "table": 228.6666717529297,
+          "proseLeft": 22.666667938232422,
+          "tableLeft": 22.666667938232422,
+          "tableRight": 251.3333396911621,
+          "panelRight": 267.6666669845581,
+          "panelScrollWidth": 261,
+          "panelClientWidth": 261,
+          "viewport": 280
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-150-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-150-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-150-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 368,
+          "table": 368,
+          "proseLeft": 23,
+          "tableLeft": 23,
+          "tableRight": 391,
+          "panelRight": 407,
+          "panelScrollWidth": 400,
+          "panelClientWidth": 400,
+          "viewport": 420
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-100-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-100-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-100-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 284.8000183105469,
+          "table": 284.8000183105469,
+          "proseLeft": 22.80000114440918,
+          "tableLeft": 22.80000114440918,
+          "tableRight": 307.60001945495605,
+          "panelRight": 323.80000019073486,
+          "panelScrollWidth": 317,
+          "panelClientWidth": 317,
+          "viewport": 336
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-125-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-125-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-125-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 228.6666717529297,
+          "table": 228.6666717529297,
+          "proseLeft": 22.666667938232422,
+          "tableLeft": 22.666667938232422,
+          "tableRight": 251.3333396911621,
+          "panelRight": 267.6666669845581,
+          "panelScrollWidth": 261,
+          "panelClientWidth": 261,
+          "viewport": 280
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-150-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-150-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-150-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      }
+    ],
+    "narrowTableRetainsProseWidth": true,
+    "mainProseMaxRem": 48,
+    "originalClipboardRestoreVerified": true,
+    "scope": "Actual Windows Electron capture and geometry. Main 1920/1280/760px and quick 420px, light/dark, native 100/125/150% zoom as recorded. Main long tables expand from768 to864px at1920; quick compact tables remain prose width. Main scroll container is an independent implementation; all reference container ancestors, composer overhang, inline shifts/overrides and other DPI/OS are not restored or verified."
+  },
+  "selectedImages": [
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\rich\\screenshots\\prose-main-light-1920-100-table.png",
+      "sha256": "a81309838482b79fa806ec94d216be136536bd6494aec07151bdf56e0d6bbce0",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native table capture; long content remains horizontally scrollable."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\full\\screenshots\\prose-main-light-1920-100-table.png",
+      "sha256": "e8bed7912f21e36f7a7e09817819407d525515e1a51abb1d655fe5913979bffd",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native table capture; long content remains horizontally scrollable."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\rich\\screenshots\\prose-main-dark-760-150-table.png",
+      "sha256": "a284681c01bc81d7f3dcc276ade638dfd5a9e4e2c5cd1423ae1d534068cec82c",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Native high-zoom scrolling slice, not all table rows visible simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\full\\screenshots\\prose-main-dark-760-150-table.png",
+      "sha256": "7da1c0ae34e020a724cf595114505e9d796ab8db15cc6e208a19631c072c68d9",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Native high-zoom scrolling slice, not all table rows visible simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\quick\\screenshots\\prose-quick-light-420-100-table.png",
+      "sha256": "9a48c32c2ea643a78c0c1e555f9429eb4a1b16a1ce189616236df76686d93de0",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native table capture; long content remains horizontally scrollable."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\full\\screenshots\\prose-quick-light-420-100-table.png",
+      "sha256": "46f0537635951068480cf6387cc6daf770fb7691702c3d58be233fa868ce816a",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native table capture; long content remains horizontally scrollable."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\quick\\screenshots\\prose-quick-dark-420-150-table.png",
+      "sha256": "50862d345045552d27bd6e9d0ec9ec3b4a26ce1a0a20f7f632dd3a571c7a77a4",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Native high-zoom scrolling slice, not all table rows visible simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\ThreadWidths-20261014\\full\\screenshots\\prose-quick-dark-420-150-table.png",
+      "sha256": "dc6c9ad16752ef118ccdd5053779ecbcee7ebc8e304dc43b225233240a8b7895",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Native high-zoom scrolling slice, not all table rows visible simultaneously."
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "legalAndWorkflowFilesRetained": 441,
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "currentManifestChecked": true,
+    "readonlyTrace": "D:/GR/pi-pc/.firecrawl/thread-width-reference-20261014.md",
+    "originalFilesModified": false,
+    "extractedCodeExecuted": false,
+    "originalRuntimeDefaultsVerified": false,
+    "actualGlyphFaceVerified": false
+  },
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}

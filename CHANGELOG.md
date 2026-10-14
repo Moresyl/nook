@@ -2,8 +2,10 @@
 
 ## 未发布
 
+- 主对话正文上限对齐为 48rem，助手消息的长表格根据可用聊天宽度展开；窄窗口保持滚动边界，快速聊天与窄表格保留正文宽度。消息导航随正文容器对齐，复制、预览与保存原文保留。
+- 正文宽度源码候选 `c708330` 完整通过 402 项／75 次正常退出，最长 1664ms，无强制结束；137 文件／1617 项单元、类型与构建通过。保留 40 份报告、733 张原图、1046 个源码输入、236 个编译文件及完整性已验证用户目录归档；4 张专项和 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。新候选安装、分发与完整设计对照仍待完成。[宽度验收](verification/thread-width-validation-review-result.json)
 - 新增独立对话／代码字号设置，支持搜索、保存、重新加载和恢复默认；主工作台与快速聊天共用偏好，旧配置、原消息和控件字号保留。
-- 当前字号源码候选 `945e8b6` 完整通过 400 项／75 次正常退出，最长 1821ms，无强制结束；137 文件／1616 项单元、类型与构建通过。保留 40 份报告、727 张原图、1046 个源码输入、236 个编译文件及完整性已验证用户目录归档；4 张专项与 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。新候选分发与完整参考对照仍待完成。[字号验收](verification/chat-font-validation-review-result.json)
+- 上一字号源码候选 `945e8b6` 完整通过 400 项／75 次正常退出，最长 1821ms，无强制结束；137 文件／1616 项单元、类型与构建通过。保留 40 份报告、727 张原图、1046 个源码输入、236 个编译文件及完整性已验证用户目录归档；4 张专项与 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。该轮不代替正文宽度候选或新分发验收。[字号验收](verification/chat-font-validation-review-result.json)
 - 表格复制按钮支持左右方向键即时滚动 40px，保留焦点和组合键原行为；横向溢出按滚动位置显示边缘渐隐，无溢出时取消额外滚动入口，强制颜色模式保留完整内容。纯数字单元格不换行，表格与每个单元格分别采用自动文字方向，复制的 HTML 保留这一语义。
 - 表格复制同时提供精确 Markdown 和语义 HTML，保留 Windows 换行、对齐、强调及单份 TeX 原文，移除主题样式和不安全资源。主工作台与快速聊天验证实际系统剪贴板及全部原有 MIME 内容逐字节恢复；富文本写入被拒绝时保留失败与重试，旧原文的成功／失败和卸载后的完成不会影响新内容。
 - 前一表格布局候选 `615a8f1`（界面改动 `2cab749`）完整通过 396 项／75 次正常退出，最长 1731ms，无强制结束；137 文件／1614 项单元通过。保存 40 份报告、711 张原图、1043 个源码输入、236 个编译文件及完整性已验证用户目录归档；6 张专项与 6 张完整回归代表图逐张查看，全部原图未全部视觉复核。类型、构建与覆盖相关输入匹配；Windows 空文本剪贴板恢复夹具已修正并增加真实往返检查，四个失败现场保留。该轮证据不代替字号候选或新分发验收。[表格布局证据](verification/table-layout-validation-review-result.json)
@@ -38,6 +40,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 新功能
 
+- 主对话正文上限为 48rem，长表格按可用聊天宽度自适应展开；快速聊天与窄表格保持正文宽度，窄屏和缩放保留横向滚动边界、复制、预览及原消息。
 - 新增独立对话／代码字号设置，支持搜索定位、键盘操作、保存后重新加载与恢复默认。主工作台和快速聊天使用同一偏好，界面控件和项目编辑器／终端保持各自字号；旧配置与消息原文保留。
 - **任务步骤**：项目分析与执行模式可在会话内记录最多 20 项步骤，展示模型标记的完成数量，保留每次工具输入与结果。错误更新保留上一份有效记录；停止后未完成步骤显示“待继续”，重启保留记录和草稿。记录本身不会执行步骤或写入项目计划文件。
 
@@ -92,6 +95,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 Nook brings multi-provider chat, model comparison, conversation branches, document retrieval, original PDF reading, project tools and local extensions into one workspace. Slash choices insert templates, assistants and projects without sending a message. Conversation task steps retain valid records and drafts across restart; they do not execute the plan themselves.
 
 Conversation and code font sizes can be saved independently, found through settings search and reset to their defaults. Main and quick chat share the preference while controls, project editors and terminals retain their own typography.
+
+Main conversation text is capped at 48rem. Long tables expand within the available chat panel, while quick chat and narrow tables retain the prose width. Native light/dark and zoom checks preserve scrolling, copying, preview focus and original messages.
 
 Prose and message layouts refine spacing and long-content reading. Tables copy exact Markdown and semantic HTML, preserve line endings, alignment and original TeX, filter unsafe resources, and reject stale completions. Keyboard scrolling, directional fades, numeric nonwrapping and independent cell direction support wide and mixed-language tables. Forms, compact selectors, code blocks, search focus and the composer adopt their corresponding theme and layout specifications.
 
