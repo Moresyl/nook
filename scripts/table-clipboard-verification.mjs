@@ -1,6 +1,58 @@
 import assert from 'node:assert/strict';
 import { proseReply, tableSource } from '../verification/prose-layout-fixture.mjs';
 
+// Evaluated in Electron's main process; all helpers stay inside this closure.
+async function preserveSystemClipboard() {
+  const { clipboard, ClipboardItem } = require('electron');
+  const { createHash } = require('node:crypto');
+  const assert = require('node:assert/strict');
+  async function fingerprint(items) {
+    const result = [];
+    for (const item of items) {
+      const row = [];
+      for (const type of [...item.types].sort()) {
+        const value = await item.getType(type);
+        const bytes = value instanceof Blob ? Buffer.from(await value.arrayBuffer()) : Buffer.from(JSON.stringify(value));
+        row.push({ type, sha256: createHash('sha256').update(bytes).digest('hex') });
+      }
+      result.push(row);
+    }
+    return result;
+  }
+  async function snapshot(items) {
+    const copies = [];
+    for (const item of items) {
+      const data = {};
+      for (const type of item.types) {
+        const value = await item.getType(type);
+        // A Windows NUL-terminated empty string retains the native text format.
+        // Compare against the original read payload, which remains zero bytes.
+        data[type] = process.platform === 'win32' && type === 'text/plain' && value.size === 0 ? '\0' : value;
+      }
+      copies.push(new ClipboardItem(data));
+    }
+    return copies;
+  }
+  const items = await clipboard.read(), before = await fingerprint(items), backup = await snapshot(items);
+  globalThis.nookTableClipboardBackup = { items: backup, fingerprint, before };
+  let emptyPlainTextRoundTrip = null;
+  if (process.platform === 'win32') {
+    try {
+      await clipboard.write([...backup, new ClipboardItem({ 'text/plain': '\0' })]);
+      const empty = await clipboard.read(), expected = await fingerprint(empty);
+      assert.equal(await clipboard.has('text/plain'), true);
+      assert.equal(await clipboard.readText(), '');
+      await clipboard.write(await snapshot(empty));
+      assert.deepEqual(await fingerprint(await clipboard.read()), expected);
+      emptyPlainTextRoundTrip = true;
+    } finally {
+      if (backup.length) await clipboard.write(backup); else clipboard.clear();
+      assert.deepEqual(await fingerprint(await clipboard.read()), before);
+    }
+  }
+  return { supported: true, formats: items.flatMap(item => item.types), emptyPlainTextRoundTrip };
+}
+
 export async function installTableClipboardFixture(target, mode = 'success') {
   await target.evaluate(mode => {
     window.nookTableNativeWrite ??= navigator.clipboard.write.bind(navigator.clipboard);
@@ -36,7 +88,8 @@ export async function verifyTableClipboard({ page, target, application, threadId
     await page.evaluate(thread => window.qiyao.updateThread(thread), { ...original, messages: original.messages.map((message, position) => position === index ? { ...message, content } : message) });
     if (!quick) await application.evaluateMain(`require('electron').BrowserWindow.getAllWindows().find(w=>${windowSelector}).webContents.send('nook:workspace-navigation',{threadId:${JSON.stringify(threadId)}})`);
   }
-  const physical = await application.evaluateMain("(async()=>{const {clipboard:c,ClipboardItem}=require('electron');const {createHash}=require('node:crypto');const fingerprint=async items=>{const result=[];for(const item of items){const row=[];for(const type of [...item.types].sort()){const value=await item.getType(type);const bytes=value instanceof Blob?Buffer.from(await value.arrayBuffer()):Buffer.from(JSON.stringify(value));row.push({type,sha256:createHash('sha256').update(bytes).digest('hex')});}result.push(row);}return result;};const items=await c.read();const backup=[];for(const item of items){const data={};for(const type of item.types)data[type]=await item.getType(type);backup.push(new ClipboardItem(data));}globalThis.nookTableClipboardBackup={items:backup,fingerprint,before:await fingerprint(backup)};return {supported:true,formats:items.flatMap(item=>item.types)};})()");
+  const physical = await application.evaluateMain(`(${preserveSystemClipboard.toString()})()`);
+  if (process.platform === 'win32') assert.equal(physical.emptyPlainTextRoundTrip, true);
   {
     try {
       await target.evaluate(() => { navigator.clipboard.write = window.nookTableNativeWrite; });
