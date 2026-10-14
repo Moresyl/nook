@@ -1,0 +1,80 @@
+{
+  "reviewedAt": "2026-10-14T01:55:37.930Z",
+  "actualReceiptSourceHead": "7d60a55d57d0ab20d59477d032896b23240ae495",
+  "diffSha256": "f172285378dc4f58c0b6fa4fe83d75b5f058c19d4b1f366ba84564af5e4d3aac",
+  "nativeChecks": 5,
+  "normalExit": {
+    "elapsedMs": 393,
+    "forced": false,
+    "exitCode": 0,
+    "signalCode": null
+  },
+  "compiledFiles": 236,
+  "reportSha256": "f6455cc5eefa5003701436ee8cc98367708d035fcb7c4c815a86523a262ca9e0",
+  "logSha256": "e50bde8549ff1ff4d9d4dd362f0f0269ea51b3e9f52e52504634419ab25f01be",
+  "originals": [
+    {
+      "name": "33-rich-content-light.png",
+      "sha256": "516e187c001124f26e7ab59cde3b47f3e3e496b58ca4a3ebafe6d47230f1b25e",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "34-rich-content-dark-narrow.png",
+      "sha256": "ea9ea3571891e26c9a6ded85e3cfa80aa63626eb8b51789ec0f580ec49cffbb0",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "35-rich-content-error-narrow.png",
+      "sha256": "ae7b88a050d633809dc060ab25f240101d85ae698bd4855d5f9511c9a071d888",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "36-diagram-light.png",
+      "sha256": "e733efc1a6521337225592437272de6c3f5e2172b065660feb9caff775515dc4",
+      "width": 1280,
+      "height": 840,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "37-diagram-dark-narrow.png",
+      "sha256": "38ba361a70873a86343cd461e2c3a92ac94fd5a5079bcbabd87e179d335341d1",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "code-wrap-dark-150.png",
+      "sha256": "1703a9df81991526555ac16d2d4823ae7a42c1d4ef169eb2b514a4e9ab3dc86e",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "name": "code-wrap-light-100.png",
+      "sha256": "3acf085040c01f3d79c8035b8f4d424ebc678330a22f05503d4577620e18e870",
+      "width": 760,
+      "height": 540,
+      "individuallyDisplayedAndReviewed": true
+    }
+  ],
+  "profileArchiveIntegrityVerified": true,
+  "profileArchiveSha256": "fc04bb40337587bbe9c29f2dddba10a40dd4548eb936e219e596cab08dee1cb6",
+  "regressionReproducedBeforeFix": {
+    "exitCode": 1,
+    "logSha256": "dc14fb9ad5843176132514486153e058bf7cae08998f94b320e6e2dfeb938578",
+    "failureImageSha256": "32d969d3dffc12f0f64d0c223b0a60e557dd47ed1a2cc74a220b671d44450b98"
+  },
+  "successAndFailureFeedbackExcluded": true,
+  "exactCodeHighlightRetained": true,
+  "scope": "Fresh native rich-content regression after excluding copy feedback from chat body search. Clipboard interception, no physical OS clipboard claim. All seven images individually inspected; narrow long content uses scrolling. Complete source, package, installed runtime and publication remain separate gates.",
+  "fullSourceAccepted": false,
+  "distributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}

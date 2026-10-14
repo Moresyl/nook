@@ -20,11 +20,24 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await code.getByRole('status').getByText('已复制代码。', { exact: true }).waitFor();
   const originalCode = await code.locator('pre').textContent();
   const originalCopiedCode = await page.evaluate(() => window.qiyaoVerificationCopy);
+  async function verifyCopyFeedbackSearch(feedback) {
+    await page.keyboard.press('Control+f');
+    const find = page.getByRole('search', { name: '查找当前聊天', exact: true });
+    const input = find.getByRole('textbox', { name: '查找文字', exact: true });
+    await input.fill(feedback);
+    await find.getByRole('status', { name: '查找结果', exact: true }).getByText('无匹配结果', { exact: true }).waitFor();
+    await input.fill('console.log(note);');
+    await find.getByRole('status', { name: '查找结果', exact: true }).getByText('1 / 1', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(() => [...CSS.highlights.get('qiyao-chat-search-current')][0].toString()), 'console.log(note);');
+    await find.getByRole('button', { name: '关闭查找', exact: true }).click();
+  }
+  await verifyCopyFeedbackSearch('已复制代码。');
   await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('PRIVATE_CLIPBOARD_DIAGNOSTIC'); }; });
   await code.getByRole('button', { name: '复制代码', exact: true }).press('Space');
   await code.getByRole('alert').getByText('无法复制，请重试或选取代码原文。', { exact: true }).waitFor();
   assert.equal(await code.locator('pre').textContent(), originalCode);
   assert.equal((await page.locator('body').innerText()).includes('PRIVATE_CLIPBOARD_DIAGNOSTIC'), false);
+  await verifyCopyFeedbackSearch('无法复制，请重试或选取代码原文。');
   await page.evaluate(() => { window.qiyaoVerificationCopyCalls = 0; navigator.clipboard.writeText = text => { window.qiyaoVerificationCopyCalls++; window.qiyaoVerificationCopy = text; return new Promise(resolve => { window.qiyaoVerificationCopyResolve = resolve; }); }; });
   const copyControl = code.getByRole('button', { name: '复制代码', exact: true });
   await copyControl.press('Enter'); assert.equal(await copyControl.isDisabled(), true);
@@ -35,6 +48,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), originalCopiedCode);
   await page.evaluate(() => { navigator.clipboard.writeText = async text => { window.qiyaoVerificationCopy = text; }; });
   verified('code-copy success announcement, keyboard denied-copy retry, private error suppression, exact source retention and pending duplicate prevention');
+  verified('chat body search excludes success and failure copy feedback while retaining exact highlighted code source');
   assert.equal(await page.evaluate(() => window.qiyaoAttack), false); assert.ok((await page.locator('.code-fence[data-language="unknown-language"] pre').innerText()).includes('KEEP_UNKNOWN_SOURCE'));
   const graph = page.locator('.code-fence[data-language="mermaid"]'); await graph.locator('iframe').waitFor({ timeout: 30_000 }); const frame = page.frameLocator('iframe[title="Mermaid 图表"]'); await frame.locator('svg').waitFor();
   async function readyGraph() { return frame.locator('svg').evaluate(async (svg) => { await document.fonts.ready; return { viewBox: svg.getAttribute('viewBox'), style: svg.getAttribute('style'), width: svg.getBoundingClientRect().width, height: svg.getBoundingClientRect().height, label: svg.querySelector('text')?.getBoundingClientRect().width }; }); }
@@ -107,5 +121,5 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   await waitForBridge(page, async ({ id, content }) => (await window.qiyao.load()).threads.find((item) => item.id === id)?.messages.at(-1)?.content === content, { id: thread.id, content: richReply });
   verified('dark/minimum-window rich content, locked graph directives, inert HTML/remote math commands, no automatic external requests, complete malformed/oversized source preservation and recovery after diagram failure');
   page.off('request', track);
-  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
+  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true, excludedFromBodySearch: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
 }

@@ -2,7 +2,7 @@ import { chatTextMatches } from '../../contracts/chat-navigation';
 
 export type ChatMatch = { messageId: string; start: number; range: Range };
 const blocks = 'p,li,pre,td,th,h1,h2,h3,h4,h5,h6,blockquote';
-const excluded = '[hidden],[aria-hidden="true"],.katex-mathml,.code-fence-header,.diagram-toolbar';
+const excluded = '[hidden],[aria-hidden="true"],.katex-mathml,.code-fence-header,.code-copy-feedback,.diagram-toolbar';
 
 export function chatSearchRanges(root: HTMLElement, query: string): ChatMatch[] {
   if (!query) return [];
