@@ -58,7 +58,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 旧应用体已推送原仓库分支。原[托管流水线 38502554288](https://github.com/Moresyl/nook/actions/runs/38502554288) 执行零步骤后失败，平台明确指出账户付款失败或额度限制，发布任务跳过。本轮原 Chrome 的实际连接检查返回认证令牌不可用，页面未打开；仓库版本列表仍为空。说明提交触发的新运行单独检查，不能把本地通过写成托管通过。[旧平台原始结果](../verification/rich-content-hosted-terminal-review-result.json)
 
-本轮使用原仓库 `feat/table-layout-alignment` 分支和原 [Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，原主工作树与工作流保留；托管结果按匹配提交单独核实，不用历史失败代替本轮结果。没有打开发布页面或改用其他浏览器。
+本轮使用原仓库 `feat/chat-font-settings` 分支和原 [Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，原主工作树与工作流保留；托管结果按匹配提交单独核实，不用历史失败代替本轮结果。没有打开发布页面或改用其他浏览器。
 
 界面依据 `E:/txt` 26.930.41038／build 13022；全部参考页面与交互尚未完成对照，不能宣称 100% 采用。其他实际系统 DPI、物理交互、辅助技术和真实服务仍需对应验收。原生安装向导与已通过的自动静默安装是不同范围。原流水线、账户设置与发布门槛保持有效；完成发布已获授权，无需再次确认。
 
