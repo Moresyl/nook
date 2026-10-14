@@ -1,0 +1,504 @@
+{
+  "recordedAt": "2026-10-14T12:50:25.265Z",
+  "sourceHead": "945e8b6fe2f4c337c9a69a59cbc8c84041d969b3",
+  "archive": "E:\\NookVerification\\ChatFonts-20261014\\full",
+  "acceptanceSha256": "36db83499c674f1b79f383f32d101622c9227fe612cfebef026a75b4ae3d060c",
+  "checks": 400,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1821,
+  "reports": 40,
+  "originalImages": 727,
+  "sourceInputs": 1046,
+  "compiledFiles": 236,
+  "sourceTarSha256": "eaee8dacfeb434688820450b4b20becde48c729ca967cfa603bf746dece9f59a",
+  "profileArchiveSha256": "01fdcb314a44bf33bdde93687558f206046e4ac412a6eb92567324a1895917a7",
+  "profileArchiveIntegrityVerified": true,
+  "receipts": {
+    "check-retry1": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "3dd213318cac68841a05acab40530fa01defc8cf7bab0da344a68a0e6c900801",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "3dd213318cac68841a05acab40530fa01defc8cf7bab0da344a68a0e6c900801",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "6cdfb5cf3c12e6ee22c7018838a28f134f5de7c5d0dc8bba7199e48721829f38"
+    },
+    "coverage": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "16e6da06146e6aa663db50452ab0e8c9ddaaa80e626263397894d2a360f7cd92",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "56c3aec850f400a92f7a936b9ec95456d401e6958f72b7af2b0b01cfc48f44fc"
+    },
+    "unit-retry1": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "3dd213318cac68841a05acab40530fa01defc8cf7bab0da344a68a0e6c900801",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "608448d4766b755fb6c27ebbfaf01a24df8f8ea4f6b3dc42d9c387a397001832"
+    },
+    "rich": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "16e6da06146e6aa663db50452ab0e8c9ddaaa80e626263397894d2a360f7cd92",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "b02a70d0da5298abab7e433079f2996e331a4a0e1366358316a8524b86c1f5c5"
+    },
+    "quick": {
+      "actualSourceHead": "3482cd01a6136600620b7b91a4fa78bfe0686911",
+      "actualDiffSha256": "030d2d1e40505531a777aed893ddf340c55a82f4bc3f5de037154ecac91b9b57",
+      "inputCount": 1046,
+      "exitCode": 0,
+      "logSha256": "4c11a55eb9a96c9b52de709b10e2fc193125d2e6b0adcd5476c75604d031fcbe"
+    }
+  },
+  "unit": {
+    "tests": 1616,
+    "testFiles": 137,
+    "focusedTests": 25,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageBoundary": "Configured coverage covers contracts, desktop services and settings draft logic. Renderer hooks/components and native scripts are excluded and verified by dedicated native cases; these percentages do not describe those new files."
+  },
+  "chatFonts": {
+    "main": {
+      "layouts": [
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-light-24-10-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-light-24-10-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-light-10-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-light-10-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-dark-24-10-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-dark-24-10-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-dark-10-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-main-dark-10-24-150.png"
+        }
+      ],
+      "defaultsRestored": true,
+      "settingsUiVerified": true,
+      "originalPreferencesRestored": true,
+      "originalThreadRestored": true,
+      "referenceRuntimeDefaultsVerified": false,
+      "actualGlyphFaceVerified": false
+    },
+    "quick": {
+      "layouts": [
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-light-24-10-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-light-24-10-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-light-10-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-light-10-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-dark-24-10-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 10,
+            "code": 10,
+            "header": 11,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-dark-24-10-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-dark-10-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 24,
+            "code": 24,
+            "header": 11,
+            "table": 8.75,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "capture": "chat-fonts-quick-dark-10-24-150.png"
+        }
+      ],
+      "defaultsRestored": true,
+      "settingsUiVerified": false,
+      "originalPreferencesRestored": true,
+      "originalThreadRestored": true,
+      "referenceRuntimeDefaultsVerified": false,
+      "actualGlyphFaceVerified": false
+    },
+    "scope": "Actual Windows Electron renderer: independent 10/24 and 24/10 px, both themes, 100/150 percent zoom, user and assistant message sizes, relative heading/table metrics, inline/fenced code sizes, control sizes, defaults removal, reload and original data preservation. Main uses real searchable settings controls and keyboard focus; restricted quick chat receives settings through the original main bridge and reloads its own context. Other OS/DPI, physical input, original reference runtime defaults and actual glyph faces remain unverified."
+  },
+  "selectedImages": [
+    {
+      "phase": "full",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\full\\screenshots\\chat-fonts-main-light-24-10-100.png",
+      "filename": "chat-fonts-main-light-24-10-100.png",
+      "sha256": "31fa277176ffdb44a158ae45c4ca30d818281ac5394b420b90e7bc183d5aa6db",
+      "capturedAt": "2026-10-14T12:13:36.327Z",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "rich",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\rich\\screenshots\\chat-fonts-main-light-24-10-100.png",
+      "filename": "chat-fonts-main-light-24-10-100.png",
+      "sha256": "9aea90896d5b8eed840da26533f718477386fd85d020230f447c889fcbe0154f",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "full",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\full\\screenshots\\chat-fonts-main-dark-10-24-150.png",
+      "filename": "chat-fonts-main-dark-10-24-150.png",
+      "sha256": "dfea703069a76dca12907e0a2ca2e67ae774541a38154388bfff94feea6bdba7",
+      "capturedAt": "2026-10-14T12:13:38.684Z",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "rich",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\rich\\screenshots\\chat-fonts-main-dark-10-24-150.png",
+      "filename": "chat-fonts-main-dark-10-24-150.png",
+      "sha256": "6c8fde092a6db54e0d6e180d5957a4050b75afcdd88958e7a7c27e1bc0a95ef2",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "full",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\full\\screenshots\\chat-fonts-quick-light-24-10-100.png",
+      "filename": "chat-fonts-quick-light-24-10-100.png",
+      "sha256": "ecf0cb38e355e390108065a9cb03799f1c334b2ea46fde4aa80fa35459e1c4d3",
+      "capturedAt": "2026-10-14T12:26:54.798Z",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "quick",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\quick\\screenshots\\chat-fonts-quick-light-24-10-100.png",
+      "filename": "chat-fonts-quick-light-24-10-100.png",
+      "sha256": "201e3eac44f1ecf40b78b07ea92aee9c577426fcca26287cf842c8d0dcad9d9b",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "full",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\full\\screenshots\\chat-fonts-quick-dark-10-24-150.png",
+      "filename": "chat-fonts-quick-dark-10-24-150.png",
+      "sha256": "a89267467cd62d1344cbf5abddd4e397c4469a2631bdcba78d424daeaf9bbfac",
+      "capturedAt": "2026-10-14T12:27:10.509Z",
+      "individuallyDisplayedAndReviewed": true
+    },
+    {
+      "phase": "quick",
+      "path": "E:\\NookVerification\\ChatFonts-20261014\\quick\\screenshots\\chat-fonts-quick-dark-10-24-150.png",
+      "filename": "chat-fonts-quick-dark-10-24-150.png",
+      "sha256": "be13ef3233711c586b616e811ce554a99857d614be47919de453db7d31d62b2b",
+      "individuallyDisplayedAndReviewed": true
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "retainedUnitFailure": {
+    "phase": "unit",
+    "logSha256": "a754493726837e65feb5337e6b3c32dd0ffcb9c64a31c1a4dd28d49d82eef608",
+    "reason": "The first new test expected a rejected Promise although the existing service validates synchronously; the test now checks the actual throw. Product validation was not weakened."
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "implementationRangeIsProductChoice": true,
+    "originalRuntimeDefaultsVerified": false,
+    "actualGlyphFaceVerified": false,
+    "originalFilesModified": false,
+    "extractedCodeExecuted": false
+  },
+  "archiveFollowup": {
+    "initialToolExitCode": 1,
+    "initialFailureRecordSha256": "23797d01fb77c8e708631bb5e53447671009c218d46744127cb6311b0c4268b1",
+    "reason": "The closed-profile compressor rejected a retained symbolic link before traversing it. The native full suite had already passed.",
+    "rawSymbolicLinksRetained": 1,
+    "targetsNotFollowed": true,
+    "profileLinkMetadataSha256": "85bf47571e67059b5c790ec05e5acd1bf177356d913cf6535f3de3b533407ee5",
+    "metadataSupplementsWindowsReparseArchiveEntries": true,
+    "linkRestoreRoundTripVerified": false,
+    "sourceOrCompiledBytesChanged": false
+  },
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
