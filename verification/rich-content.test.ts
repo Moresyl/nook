@@ -7,8 +7,18 @@ import { MarkdownView } from '../workbench/components/markdown-view';
 import { ContentBridgeContext } from '../workbench/components/content-bridge';
 
 const unavailable = async () => { throw new Error('External document operations are unavailable in this rendering fixture.'); };
-const render = (content: string) => renderToStaticMarkup(createElement(ContentBridgeContext, { value: { openExternal: async () => {}, attachFiles: unavailable, importAttachments: unavailable, readDocumentOriginal: unavailable, exportDocumentOriginal: unavailable } }, createElement(MarkdownView, { content, report: () => {} })));
+const render = (content: string, allowWideBlocks?: boolean) => renderToStaticMarkup(createElement(ContentBridgeContext, { value: { openExternal: async () => {}, attachFiles: unavailable, importAttachments: unavailable, readDocumentOriginal: unavailable, exportDocumentOriginal: unavailable } }, createElement(MarkdownView, { content, allowWideBlocks, report: () => {} })));
 describe('rich message rendering', () => {
+  it('enables wide tables only for an explicit caller and keeps layout flags out of semantic table markup', () => {
+    const source = '| Column | Value |\n| --- | --- |\n| Text | 42 |';
+    for (const enabled of [undefined, false, true]) {
+      const markup = render(source, enabled);
+      expect(markup.includes('data-wide-block=""')).toBe(enabled === true);
+      expect(markup).toContain('class="markdown-table-wrapper"><table dir="auto">');
+      expect(markup).not.toMatch(/<table[^>]*(?:allowWideBlocks|data-wide-block)/i);
+      expect(markup).toContain('<td dir="auto" data-numeric="true">42</td>');
+    }
+  });
   it('marks visible Han text in paragraphs, including nested formatting, links and extended Unicode', () => {
     for (const source of ['中文', 'English **汉字**', '[中文](https://example.invalid)', '`汉字`', '\u{20000}']) {
       const markup = render(source); expect(markup).toContain('data-markdown-han-text="true"');

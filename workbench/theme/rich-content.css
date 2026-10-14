@@ -79,7 +79,10 @@
 .markdown-body hr + * { margin-top: 0; }
 .markdown-body > :first-child { margin-top: 0; }
 .markdown-body > :last-child { margin-bottom: 0; }
-.markdown-table { position: relative; min-width: 0; margin-top: calc(var(--markdown-space) * 4); }
+.markdown-table { position: relative; width: 100%; min-width: 100%; margin-top: calc(var(--markdown-space) * 4); }
+.markdown-table[data-wide-block] { --wide-block-panel-max-width: calc(100cqi - var(--thread-content-max-width) + var(--thread-content-margin, 24px) * 3); --wide-block-width: max(100%, min(calc(50cqi + 50% - var(--thread-toolbar-padding, 16px) - var(--thread-content-margin, 24px)), calc((100% + var(--wide-block-panel-max-width)) / 2))); width: fit-content; max-width: var(--wide-block-width); }
+.markdown-table[data-wide-block] > .markdown-table-scroller { display: flex; }
+.markdown-table-wrapper { flex-shrink: 0; width: fit-content; min-width: 100%; }
 .markdown-table-scroller { overflow-x: auto; scrollbar-width: thin; }
 @property --table-fade-left { syntax: '<length>'; inherits: false; initial-value: 0px; }
 @property --table-fade-right { syntax: '<length>'; inherits: false; initial-value: 0px; }

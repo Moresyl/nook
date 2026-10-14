@@ -15,7 +15,7 @@ export async function verifyProseLayout({ page, target = page, application, thre
   await target.evaluate(() => { Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, writable: true, value: async text => { window.qiyaoVerificationCopy = text; } }); });
   const windowSelector = quick ? "new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'" : "w.webContents.getURL().startsWith('qiyao://app/')&&!new URL(w.webContents.getURL()).searchParams.has('view')";
   const windowExpression = `require('electron').BrowserWindow.getAllWindows().find(w=>${windowSelector})`;
-  const cases = quick ? [1, 1.25, 1.5].map(zoom => ({ width: 420, height: 360, zoom })) : [{ width: 1280, height: 840, zoom: 1 }, ...[1, 1.25, 1.5].map(zoom => ({ width: 760, height: 540, zoom }))];
+  const cases = quick ? [1, 1.25, 1.5].map(zoom => ({ width: 420, height: 360, zoom })) : [{ width: 1920, height: 840, zoom: 1 }, { width: 1280, height: 840, zoom: 1 }, ...[1, 1.25, 1.5].map(zoom => ({ width: 760, height: 540, zoom }))];
   const layouts = [], tableNavigation = [];
   async function capture(name) {
     await target.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -43,6 +43,23 @@ export async function verifyProseLayout({ page, target = page, application, thre
     assert.equal(geometry.quote.color, geometry.quote.textColor); assert.equal(geometry.quote.border, '0px'); assert.equal(geometry.quote.inset, '21px'); assert.equal(geometry.quote.bar, '3.5px'); assert.equal(geometry.overflow, false);
     await body.locator('p').first().scrollIntoViewIfNeeded(); const top = await capture(`prose-${quick ? 'quick' : 'main'}-${theme}-${width}-${zoom * 100}-top.png`);
     const table = body.locator('.markdown-table'); await table.scrollIntoViewIfNeeded(); const scroll = table.locator('.markdown-table-scroller').first();
+    assert.equal(await table.getAttribute('data-wide-block'), '');
+    const widths = await body.evaluate(element => {
+      const prose = element.getBoundingClientRect(), table = element.querySelector('.markdown-table').getBoundingClientRect();
+      const scroller = element.closest('.transcript-scroll, .quick-chat-transcript');
+      const panel = scroller.getBoundingClientRect();
+      return { rootFontSize: parseFloat(getComputedStyle(document.documentElement).fontSize), prose: prose.width, table: table.width, proseLeft: prose.left, tableLeft: table.left, tableRight: table.right, panelRight: panel.left + scroller.clientWidth, panelScrollWidth: scroller.scrollWidth, panelClientWidth: scroller.clientWidth, viewport: innerWidth };
+    });
+    assert.ok(Math.abs(widths.tableLeft - widths.proseLeft) < 1, JSON.stringify(widths));
+    assert.ok(widths.tableRight <= widths.panelRight + 1, JSON.stringify(widths));
+    assert.ok(widths.panelScrollWidth <= widths.panelClientWidth + 1, JSON.stringify(widths));
+    assert.ok(widths.table >= widths.prose - 1, JSON.stringify(widths));
+    if (quick) assert.ok(Math.abs(widths.table - widths.prose) < 1, JSON.stringify(widths));
+    else {
+      assert.ok(widths.prose <= 48 * widths.rootFontSize + 1, JSON.stringify(widths));
+      if (width >= 1280 && zoom === 1) assert.ok(Math.abs(widths.prose - 48 * widths.rootFontSize) < 1, JSON.stringify(widths));
+      if (width === 1920) assert.ok(widths.table > widths.prose + 40, JSON.stringify(widths));
+    }
     const overflow = await scroll.evaluate(element => element.scrollWidth > element.clientWidth + 1);
     let previewCapture;
     if (overflow) {
@@ -86,7 +103,7 @@ export async function verifyProseLayout({ page, target = page, application, thre
     await table.getByRole('button', { name: '复制表格', exact: true }).press('Space'); await table.getByRole('status').getByText('已复制表格。', { exact: true }).waitFor();
     await assertTableClipboard(target, tableSource); const bottom = await capture(`prose-${quick ? 'quick' : 'main'}-${theme}-${width}-${zoom * 100}-table.png`);
     const stored = quick ? (await target.evaluate(() => window.nookQuick.load())).thread : await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), threadId);
-    assert.equal(stored.messages[index].content, proseReply); layouts.push({ theme, width, height, zoom, geometry, tableOverflow: overflow, captures: [top, bottom, previewCapture].filter(Boolean) });
+    assert.equal(stored.messages[index].content, proseReply); layouts.push({ theme, width, height, zoom, geometry, widths, tableOverflow: overflow, captures: [top, bottom, previewCapture].filter(Boolean) });
   }
   assert.ok(layouts.some(layout => layout.tableOverflow), 'A real overflowing table must exercise keyboard preview and restored focus.');
   const table = body.locator('.markdown-table');
@@ -111,6 +128,7 @@ export async function verifyProseLayout({ page, target = page, application, thre
   await target.waitForFunction(() => document.querySelector('.markdown-table-scroller[data-overflow="false"]'));
   assert.equal(await fitScroll.getAttribute('role'), null); assert.equal(await fitScroll.getAttribute('tabindex'), null); assert.equal(await fitScroll.evaluate(element => getComputedStyle(element).maskImage), 'none');
   assert.equal(await fitTable.getByRole('button', { name: '展开表格', exact: true }).count(), 0);
+  assert.equal(await fitTable.evaluate(element => Math.abs(element.getBoundingClientRect().width - element.closest('.markdown-body').getBoundingClientRect().width) < 1), true, 'An intrinsically narrow table must retain the prose width.');
   const unhandled = await fitCopy.evaluate(element => element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }))); assert.equal(unhandled, true); assert.equal(await fitScroll.evaluate(element => element.scrollLeft), 0);
   assert.equal(await fitTable.locator('table').getAttribute('dir'), 'auto');
   const fitTableDirection = await fitTable.locator('table').evaluate(element => getComputedStyle(element).direction);
@@ -134,5 +152,6 @@ export async function verifyProseLayout({ page, target = page, application, thre
   if (!quick) await target.reload(); else await body.waitFor({ state: 'detached' });
   verified(`${quick ? 'restricted quick' : 'main'} Markdown prose, Han paragraph spacing, semantic headings/lists/quotes, exact table source copy, denied-copy retry, pending prevention, overflow preview keyboard focus and saved originals in both themes at native zoom`);
   verified(`${quick ? 'restricted quick' : 'main'} table copy-button arrows preserve focus and modifier shortcuts, scroll masks follow actual edges, numeric cells do not wrap and cell direction is automatic across native theme/zoom cases`);
+  verified(`${quick ? 'restricted quick' : 'main'} thread/table widths retain panel edges and exact saved content across native themes/zoom; main prose caps at 48rem and wide tables expand at 1920px, quick tables stay within compact prose`);
   return { layouts, tableNavigation, chatFonts, fitTable: { unhandledArrow: unhandled, tableDirection: fitTableDirection, automaticCellDirection: true, copiedAutoDirection: true, overflowTransition: true, forcedColorsUnmasked: true, capture: fitCapture }, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Independent chat/code overrides verified at native themes/zoom; reference runtime defaults and actual glyph selection remain unverified.' };
 }

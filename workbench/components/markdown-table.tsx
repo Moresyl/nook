@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ComponentProps, type KeyboardEvent } 
 import { IconButton, Modal } from './controls';
 import { useTextCopy } from './use-text-copy';
 
-export function MarkdownTable({ source, html, ...props }: ComponentProps<'table'> & { source: string; html?: string }) {
+export function MarkdownTable({ source, html, allowWideBlocks = false, ...props }: ComponentProps<'table'> & { source: string; html?: string; allowWideBlocks?: boolean }) {
   const scroller = useRef<HTMLDivElement>(null);
   const expand = useRef<HTMLButtonElement>(null);
   const [overflow, setOverflow] = useState(false);
@@ -21,8 +21,8 @@ export function MarkdownTable({ source, html, ...props }: ComponentProps<'table'
     observer.observe(element); observer.observe(element.querySelector('table')!); measure();
     return () => observer.disconnect();
   }, [props.children]);
-  return <div className="markdown-table">
-    <div ref={scroller} className="markdown-table-scroller" data-overflow={overflow} role={overflow ? 'region' : undefined} aria-label={overflow ? '可横向滚动的表格' : undefined} tabIndex={overflow ? 0 : undefined}><table dir="auto" {...props} /></div>
+  return <div className="markdown-table" data-wide-block={allowWideBlocks ? '' : undefined}>
+    <div ref={scroller} className="markdown-table-scroller" data-overflow={overflow} role={overflow ? 'region' : undefined} aria-label={overflow ? '可横向滚动的表格' : undefined} tabIndex={overflow ? 0 : undefined}><div className="markdown-table-wrapper"><table dir="auto" {...props} /></div></div>
     <div className="markdown-table-actions" data-markdown-copy="exclude">
       <IconButton icon={copied ? 'check' : 'copy'} label="复制表格" title={copied ? '已复制表格' : '复制表格'} disabled={!source || copying} onKeyDown={scrollFromCopy} onClick={() => { void copy(); }} />
       {overflow && <IconButton icon="maximize" label="展开表格" aria-expanded={preview} aria-haspopup="dialog" onClick={event => { expand.current = event.currentTarget; setPreview(true); }} />}

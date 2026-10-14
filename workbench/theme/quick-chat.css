@@ -1,4 +1,5 @@
 /* Independent quick-chat frame, with shared theme and controls. */
+.quick-chat-transcript .markdown-table[data-wide-block] { width: 100%; max-width: 100%; margin-inline: 0; }
 .quick-chat-shell { --quick-chat-zoom: 1; height: calc(100vh / var(--quick-chat-zoom)); width: calc(100vw / var(--quick-chat-zoom)); zoom: var(--quick-chat-zoom); padding: 6px; display: flex; flex-direction: column; color: var(--ds-text); background: color-mix(in srgb, var(--ds-bg-tertiary) 55%, var(--ds-bg)); }
 .quick-chat-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 46px; padding: 0 10px; flex-shrink: 0; -webkit-app-region: drag; }
 .quick-chat-brand { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; white-space: nowrap; }
