@@ -5,6 +5,7 @@ import { richReply } from '../verification/rich-content-fixture.mjs';
 import { tableSource } from '../verification/prose-layout-fixture.mjs';
 import { verifyUserMessageLayout } from './verify-user-bubble.mjs';
 import { verifyProseLayout } from './verify-prose-layout.mjs';
+import { installTableClipboardFixture, assertTableClipboard } from './table-clipboard-verification.mjs';
 
 export async function verifyRichContent({ page, application, endpoint, screenshots, verified, waitForBridge }) {
   const requests = []; const track = (request) => { if (/^https?:/.test(request.url())) requests.push(request.url()); }; page.on('request', track);
@@ -15,9 +16,10 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   const composer = page.getByRole('textbox', { name: '消息', exact: true }); await composer.fill('RICH_CONTENT_NATIVE'); await page.getByRole('button', { name: '发送消息', exact: true }).click();
   await page.getByText('RICH_CONTENT_END', { exact: false }).waitFor(); await page.getByRole('button', { name: '重新生成', exact: true }).waitFor();
   const streamedTable = page.locator('.markdown-table'); await streamedTable.getByRole('table').waitFor();
+  await installTableClipboardFixture(page);
   await streamedTable.getByRole('button', { name: '复制表格', exact: true }).click();
-  assert.equal(await page.evaluate(() => window.qiyaoVerificationCopy), tableSource);
-  verified('actual HTTP-streamed GFM table renders aligned Unicode cells and copies its exact Windows-newline Markdown source');
+  await streamedTable.getByRole('status').waitFor(); await assertTableClipboard(page, tableSource);
+  verified('actual HTTP-streamed GFM table renders aligned Unicode cells and copies its exact Windows-newline Markdown with semantic HTML');
   assert.equal(await page.locator('.katex').count(), 3); assert.equal(await page.locator('.katex-display').count(), 2); assert.equal(await page.locator('.katex math').count(), 3);
   assert.ok(await page.locator('.code-fence[data-language="javascript"] .hljs-keyword').count()); assert.ok(await page.locator('.code-fence[data-language="powershell"] .hljs-built_in').count());
   assert.equal(await page.locator('.code-fence[data-language="javascript"] .hljs-keyword').first().evaluate((node) => getComputedStyle(node).color), 'rgb(171, 79, 122)');

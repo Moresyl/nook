@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { proseReply, tableSource } from '../verification/prose-layout-fixture.mjs';
+import { installTableClipboardFixture, assertTableClipboard, verifyTableClipboard } from './table-clipboard-verification.mjs';
 
 export async function verifyProseLayout({ page, target = page, application, threadId, screenshots, verified, quick = false }) {
   const original = await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), threadId);
@@ -25,6 +26,7 @@ export async function verifyProseLayout({ page, target = page, application, thre
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
     if (!quick) { await target.reload(); await body.waitFor(); }
     await target.waitForFunction(theme => document.documentElement.dataset.theme === theme, theme);
+    await installTableClipboardFixture(target);
     await application.evaluateMain(`${windowExpression}.setSize(${width},${height})`);
     await application.evaluateMain(`${windowExpression}.webContents.setZoomFactor(${zoom})`);
     try { await target.waitForFunction(({ width, height, zoom }) => Math.abs(innerWidth - width / zoom) < 2 && Math.abs(innerHeight - height / zoom) < 2, { width, height, zoom }); }
@@ -56,26 +58,27 @@ export async function verifyProseLayout({ page, target = page, application, thre
       await dialog.press('Escape'); await dialog.waitFor({ state: 'detached' }); assert.equal(await expand.evaluate(element => document.activeElement === element), true);
     }
     await table.getByRole('button', { name: '复制表格', exact: true }).press('Space'); await table.getByRole('status').getByText('已复制表格。', { exact: true }).waitFor();
-    assert.equal(await target.evaluate(() => window.qiyaoVerificationCopy), tableSource); const bottom = await capture(`prose-${quick ? 'quick' : 'main'}-${theme}-${width}-${zoom * 100}-table.png`);
+    await assertTableClipboard(target, tableSource); const bottom = await capture(`prose-${quick ? 'quick' : 'main'}-${theme}-${width}-${zoom * 100}-table.png`);
     const stored = quick ? (await target.evaluate(() => window.nookQuick.load())).thread : await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), threadId);
     assert.equal(stored.messages[index].content, proseReply); layouts.push({ theme, width, height, zoom, geometry, tableOverflow: overflow, captures: [top, bottom, previewCapture].filter(Boolean) });
   }
   assert.ok(layouts.some(layout => layout.tableOverflow), 'A real overflowing table must exercise keyboard preview and restored focus.');
   const table = body.locator('.markdown-table');
-  await target.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('PRIVATE_TABLE_COPY_ERROR'); }; });
+  await installTableClipboardFixture(target, 'reject');
   await table.getByRole('button', { name: '复制表格', exact: true }).click(); await table.getByRole('alert').waitFor(); assert.ok(!(await target.locator('body').innerText()).includes('PRIVATE_TABLE_COPY_ERROR'));
-  await target.evaluate(() => { navigator.clipboard.writeText = text => { window.qiyaoVerificationCopy = text; return new Promise(resolve => { window.qiyaoTableCopyResolve = resolve; }); }; });
+  await installTableClipboardFixture(target, 'pending');
   await table.getByRole('button', { name: '复制表格', exact: true }).click(); assert.equal(await table.getByRole('button', { name: '复制表格', exact: true }).isDisabled(), true);
-  await target.evaluate(() => window.qiyaoTableCopyResolve()); await table.getByRole('status').waitFor(); assert.equal(await target.evaluate(() => window.qiyaoVerificationCopy), tableSource);
+  await target.waitForFunction(() => window.qiyaoTableCopyResolve && window.nookTableCopyCalls === 1); await target.evaluate(() => window.qiyaoTableCopyResolve()); await table.getByRole('status').waitFor(); await assertTableClipboard(target, tableSource);
   if (!quick) {
     await target.keyboard.press('Control+f'); const search = target.getByRole('search', { name: '查找当前聊天', exact: true }); const input = search.getByRole('textbox', { name: '查找文字', exact: true });
     for (const query of ['已复制表格。', '复制表格']) { await input.fill(query); await search.getByRole('status', { name: '查找结果', exact: true }).getByText('无匹配结果', { exact: true }).waitFor(); }
     await input.fill('English cross node'); await search.getByRole('status', { name: '查找结果', exact: true }).getByText('1 / 1', { exact: true }).waitFor();
     assert.equal(await target.evaluate(() => [...CSS.highlights.get('qiyao-chat-search-current')][0].toString()), 'English cross node'); await search.getByRole('button', { name: '关闭查找', exact: true }).click();
   } else assert.equal(await target.evaluate(() => typeof window.qiyao), 'undefined');
+  const tableClipboard = await verifyTableClipboard({ page, target, application, threadId, index, quick, verified });
   await target.evaluate(() => { navigator.clipboard.writeText = async text => { window.qiyaoVerificationCopy = text; }; });
   await application.evaluateMain(`${windowExpression}.webContents.setZoomFactor(1)`); await page.evaluate(thread => window.qiyao.updateThread(thread), original);
   if (!quick) await target.reload(); else await body.waitFor({ state: 'detached' });
   verified(`${quick ? 'restricted quick' : 'main'} Markdown prose, Han paragraph spacing, semantic headings/lists/quotes, exact table source copy, denied-copy retry, pending prevention, overflow preview keyboard focus and saved originals in both themes at native zoom`);
-  return { layouts, copyFormat: 'Exact original Markdown text; rich HTML clipboard is not implemented.', physicalClipboardVerified: false, rootFontSize: 14, typographyScope: 'Reference relative metrics at the existing 14px body; reference runtime font defaults and actual glyph selection remain unverified.' };
+  return { layouts, copyFormat: 'Exact original Markdown and semantic HTML in one clipboard item.', tableClipboard, physicalClipboardVerified: tableClipboard.physical.verified === true, rootFontSize: 14, typographyScope: 'Reference relative metrics at the existing 14px body; reference runtime font defaults and actual glyph selection remain unverified.' };
 }

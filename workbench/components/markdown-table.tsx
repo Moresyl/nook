@@ -2,12 +2,12 @@ import { useEffect, useRef, useState, type ComponentProps } from 'react';
 import { IconButton, Modal } from './controls';
 import { useTextCopy } from './use-text-copy';
 
-export function MarkdownTable({ source, ...props }: ComponentProps<'table'> & { source: string }) {
+export function MarkdownTable({ source, html, ...props }: ComponentProps<'table'> & { source: string; html?: string }) {
   const scroller = useRef<HTMLDivElement>(null);
   const expand = useRef<HTMLButtonElement>(null);
   const [overflow, setOverflow] = useState(false);
   const [preview, setPreview] = useState(false);
-  const { copied, copying, error, copy } = useTextCopy(source);
+  const { copied, copying, error, copy } = useTextCopy(source, html);
   useEffect(() => {
     const element = scroller.current!;
     const measure = () => setOverflow(element.scrollWidth > element.clientWidth + 1);

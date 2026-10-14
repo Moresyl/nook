@@ -12,6 +12,7 @@ import { IconButton } from './controls';
 import { useContentBridge } from './content-bridge';
 import { useTextCopy } from './use-text-copy';
 import { MarkdownTable } from './markdown-table';
+import { markdownTableHtml } from '../lib/table-clipboard';
 
 type Rendering = { content: string; generating: boolean; report: (error: unknown) => void };
 const RenderingContext = createContext<Rendering | null>(null);
@@ -35,7 +36,7 @@ function MarkdownParagraph({ node, children, ...props }: ComponentProps<'p'> & E
 function MarkdownTableBlock({ node, ...props }: ComponentProps<'table'> & ExtraProps) {
   const { content } = useRendering();
   const start = node?.position?.start.offset, end = node?.position?.end.offset;
-  return <MarkdownTable {...props} source={start !== undefined && end !== undefined ? content.slice(start, end) : ''} />;
+  return <MarkdownTable {...props} source={start !== undefined && end !== undefined ? content.slice(start, end) : ''} html={markdownTableHtml(node)} />;
 }
 const components: Components = { a: MarkdownLink, pre: MarkdownPre, p: MarkdownParagraph, table: MarkdownTableBlock };
 
