@@ -41,7 +41,12 @@ export async function verifyChatFontSettings({ page, target, application, thread
         const body = target.locator('.markdown-body').filter({ hasText: 'FONT_INLINE' });
         const styles = await body.evaluate(element => { const size = selector => parseFloat(getComputedStyle(element.querySelector(selector)).fontSize), inline = getComputedStyle(element.querySelector('p code')); return { prose: parseFloat(getComputedStyle(element).fontSize), h1: size('h1'), inline: size('p code'), headingInline: size('h2 code'), inlineDecoration: { radius: inline.borderRadius, padding: inline.padding, direction: inline.direction, isolation: inline.unicodeBidi, decorationBreak: inline.boxDecorationBreak, wrap: inline.overflowWrap }, code: size('.code-fence pre'), header: size('.code-fence-header'), table: size('table'), body: parseFloat(getComputedStyle(document.body).fontSize), theme: document.documentElement.dataset.theme, clippedDocument: document.documentElement.scrollWidth > innerWidth }; });
         const proseSize = chatFontSize ?? 14;
-        assert.equal(styles.prose, proseSize); assert.equal(styles.h1, proseSize * 1.5); assert.ok(Math.abs(styles.inline - proseSize * .92) < .001); assert.ok(Math.abs(styles.headingInline - proseSize * 1.25 * .92) < .001); assert.equal(styles.code, chatCodeFontSize ?? proseSize * .875); assert.equal(styles.header, 11); assert.equal(styles.table, Math.max(chatCodeFontSize ?? 12, proseSize * .875)); assert.equal(styles.body, 14); assert.equal(styles.theme, theme); assert.equal(styles.clippedDocument, false);
+        assert.equal(styles.prose, proseSize); assert.equal(styles.h1, proseSize * 1.5); assert.ok(Math.abs(styles.inline - proseSize * .92) < .001); assert.ok(Math.abs(styles.headingInline - proseSize * 1.25 * .92) < .001); assert.equal(styles.code, chatCodeFontSize ?? 12); assert.equal(styles.header, 13); assert.equal(styles.table, Math.max(chatCodeFontSize ?? 12, proseSize * .875)); assert.equal(styles.body, 14); assert.equal(styles.theme, theme); assert.equal(styles.clippedDocument, false);
+        const fence = await body.locator('.code-fence').last().evaluate(element => {
+          const style = getComputedStyle(element), pre = getComputedStyle(element.querySelector('pre')), header = getComputedStyle(element.querySelector('header')), button = getComputedStyle(element.querySelector('button'));
+          return { radius: style.borderRadius, cornerShape: CSS.supports('corner-shape', 'superellipse(1.1)') ? style.cornerShape : null, lineHeight: parseFloat(pre.lineHeight), padding: pre.padding, headerHeight: header.minHeight, headerPadding: header.padding, headerWeight: header.fontWeight, headerBorder: header.borderBottomWidth, buttonWidth: button.width, buttonHeight: button.height, wide: matchMedia('(width >= 48rem)').matches };
+        });
+        assert.deepEqual(fence, { radius: '20px', cornerShape: fence.cornerShape === null ? null : 'superellipse(1.1)', lineHeight: Math.max((chatCodeFontSize ?? 12) * 1.5, 20), padding: fence.wide ? '0px 20px 12px' : '0px 16px 12px', headerHeight: '48px', headerPadding: fence.wide ? '6px 6px 6px 20px' : '6px 6px 6px 16px', headerWeight: '500', headerBorder: '0px', buttonWidth: '36px', buttonHeight: '36px', wide: fence.wide });
         assert.deepEqual(styles.inlineDecoration, { radius: '6px', padding: '1px 6px', direction: 'ltr', isolation: 'isolate', decorationBreak: 'clone', wrap: 'anywhere' });
         const user = target.locator('.user-bubble .plain-text').first();
         assert.equal(await user.evaluate(element => parseFloat(getComputedStyle(element).fontSize)), proseSize);
@@ -58,7 +63,7 @@ export async function verifyChatFontSettings({ page, target, application, thread
         const tableImage = await application.evaluateMain(`(async()=>{const w=${windowExpression};return {png:(await w.capturePage()).toPNG().toString('base64'),size:w.getContentSize()};})()`);
         const tableBytes = Buffer.from(tableImage.png, 'base64'); assert.deepEqual([tableBytes.readUInt32BE(16), tableBytes.readUInt32BE(20)], tableImage.size);
         const tableCapture = capture.replace('chat-fonts-', 'chat-table-fonts-'); await writeFile(join(screenshots, tableCapture), tableBytes);
-        layouts.push({ theme, chatFontSize: chatFontSize ?? null, chatCodeFontSize: chatCodeFontSize ?? null, zoom, styles, tableBounds, capture, tableCapture });
+        layouts.push({ theme, chatFontSize: chatFontSize ?? null, chatCodeFontSize: chatCodeFontSize ?? null, zoom, styles, fence, tableBounds, capture, tableCapture });
       }
     }
     if (!quick) {
@@ -74,6 +79,7 @@ export async function verifyChatFontSettings({ page, target, application, thread
     await target.reload(); await ready();
     assert.deepEqual(await target.evaluate(() => ['--chat-font-size', '--chat-code-font-size'].map(name => document.documentElement.style.getPropertyValue(name))), ['', '']);
     assert.equal(await target.locator('.markdown-body').filter({ hasText: 'FONT_INLINE' }).evaluate(element => parseFloat(getComputedStyle(element).fontSize)), 14);
+    assert.deepEqual(await target.locator('.markdown-body').filter({ hasText: 'FONT_INLINE' }).locator('.code-fence pre').last().evaluate(element => { const style = getComputedStyle(element); return { fontSize: style.fontSize, lineHeight: style.lineHeight }; }), { fontSize: '12px', lineHeight: '20px' });
     assert.equal((await page.evaluate(async id => (await window.qiyao.load()).threads.find(thread => thread.id === id), threadId)).messages[index].content, content);
   } finally {
     await page.evaluate(preferences => window.qiyao.savePreferences(preferences), original.preferences);

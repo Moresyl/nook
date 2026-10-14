@@ -90,7 +90,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     await page.waitForFunction(zoom => Math.abs(innerWidth - 760 / zoom) < 2, zoom);
     const pre = code.locator('pre'); const toggle = code.getByRole('button', { name: '代码自动换行', exact: true });
     const codeStyle = await code.evaluate(element => { const style = getComputedStyle(element), pre = getComputedStyle(element.querySelector('pre')); return { radius: style.borderRadius, background: style.backgroundColor, padding: pre.padding, fontSize: pre.fontSize, fontWeight: pre.fontWeight, lineHeight: pre.lineHeight }; });
-    assert.deepEqual(codeStyle, { radius: '8px', background: theme === 'light' ? 'rgb(252, 252, 252)' : 'rgb(16, 16, 16)', padding: '14px 40px 14px 16px', fontSize: '12.25px', fontWeight: '400', lineHeight: '18.375px' });
+    assert.deepEqual(codeStyle, { radius: '20px', background: theme === 'light' ? 'rgb(252, 252, 252)' : 'rgb(16, 16, 16)', padding: '0px 16px 12px', fontSize: '12px', fontWeight: '400', lineHeight: '20px' });
     assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
     assert.equal(await pre.evaluate(element => element.scrollWidth > element.clientWidth), true);
     const original = await pre.textContent(); await toggle.focus(); await toggle.press('Space');
@@ -111,7 +111,7 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.setZoomFactor(1)");
   }
   await verifyWrapping('light', 1); await verifyWrapping('dark', 1.5);
-  verified('current code surface, corner, inset padding and relative typography in both themes with keyboard wrapping and complete stored source');
+  verified('current code surface, corner, inset padding and independent default typography in both themes with keyboard wrapping and complete stored source');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await update(richReply); await application.resize(1280, 840); await frame.locator('svg').waitFor();
   await page.locator('.transcript-scroll').evaluate(element => element.scrollTo({ top: 0 }));
