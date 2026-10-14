@@ -4,9 +4,29 @@ import type { Element } from 'hast';
 import { describe, expect, it } from 'vitest';
 import { codeBlockFromNode, diagramPolicy, validateDiagramSource } from '../workbench/lib/rich-content';
 import { MarkdownView } from '../workbench/components/markdown-view';
+import { ContentBridgeContext } from '../workbench/components/content-bridge';
 
-const render = (content: string) => renderToStaticMarkup(createElement(MarkdownView, { content, report: () => {} }));
+const unavailable = async () => { throw new Error('External document operations are unavailable in this rendering fixture.'); };
+const render = (content: string) => renderToStaticMarkup(createElement(ContentBridgeContext, { value: { openExternal: async () => {}, attachFiles: unavailable, importAttachments: unavailable, readDocumentOriginal: unavailable, exportDocumentOriginal: unavailable } }, createElement(MarkdownView, { content, report: () => {} })));
 describe('rich message rendering', () => {
+  it('marks visible Han text in paragraphs, including nested formatting, links and extended Unicode', () => {
+    for (const source of ['中文', 'English **汉字**', '[中文](https://example.invalid)', '`汉字`', '\u{20000}']) {
+      const markup = render(source); expect(markup).toContain('data-markdown-han-text="true"');
+    }
+    for (const source of ['English 😀', 'かなだけ', '한글', '[English](https://example.invalid/中文)']) expect(render(source)).not.toContain('data-markdown-han-text');
+  });
+  it('retains independent paragraphs and nested list, heading and quotation semantics', () => {
+    const markup = render('中文第一段\n\nEnglish **second** paragraph\n\n## Heading\n\n- Parent\n  - Child\n\n> Quote\n\n---');
+    expect(markup).toContain('class="markdown-body"'); expect(markup).toContain('<p data-markdown-han-text="true">中文第一段</p>');
+    expect(markup).toContain('<p>English <strong>second</strong> paragraph</p>'); expect(markup).toContain('<h2>Heading</h2>');
+    expect(markup.match(/<ul>/g)).toHaveLength(2); expect(markup).toContain('<blockquote>'); expect(markup).toContain('<hr/>');
+  });
+  it('renders aligned GFM tables with accessible copy controls without creating an executable preview', () => {
+    const markup = render('| 左侧 | 右侧 |\n| :--- | ---: |\n| **汉字** | 42 |');
+    expect(markup).toContain('<table>'); expect(markup).toContain('text-align:left'); expect(markup).toContain('text-align:right');
+    expect(markup).toContain('aria-label="复制表格"'); expect(markup).not.toContain('aria-label="复制表格" disabled');
+    expect(markup).toContain('data-markdown-copy="exclude"'); expect(markup).not.toContain('<dialog'); expect(markup).toContain('<strong>汉字</strong>');
+  });
   it('renders inline/display/fenced formulas and accessible MathML without changing their saved source', () => {
     const source = 'Inline $x^2$\n\n$$\n\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}\n$$\n\n```math\n\\sqrt{2}\n```';
     const markup = render(source); expect(markup.match(/class="katex"/g)).toHaveLength(3); expect(markup.match(/class="katex-display"/g)).toHaveLength(2); expect(markup).toContain('<math'); expect(markup).toContain('application/x-tex'); expect(source).toContain('\\sqrt{2}');

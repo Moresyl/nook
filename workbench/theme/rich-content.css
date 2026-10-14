@@ -38,3 +38,65 @@
 .hljs-title, .hljs-built_in, .hljs-type, .hljs-name { color: var(--syntax-name); }
 .hljs-comment, .hljs-quote { color: var(--syntax-comment); }
 [data-theme="light"] .hljs-comment { font-style: italic; }
+
+.markdown-body {
+  --markdown-font-size: 14px;
+  --markdown-space: calc(var(--markdown-font-size) / 4);
+  --markdown-line-height: calc(var(--markdown-font-size) * 1.625);
+  font-size: var(--markdown-font-size);
+  line-height: var(--markdown-line-height);
+  overflow-wrap: anywhere;
+}
+.markdown-body p { margin: 0 0 var(--markdown-space); }
+.markdown-body > p:where(:not(:first-child)) { margin-top: calc(var(--markdown-space) * 2); }
+.markdown-body > p + p { margin-block: calc(var(--markdown-space) * 4); }
+.markdown-body > p[data-markdown-han-text]:has(+ p[data-markdown-han-text]) { margin-bottom: var(--spacing); }
+.markdown-body :is(h1, h2, h3, h4, h5, h6) { font-weight: var(--font-weight-semibold); letter-spacing: normal; }
+.markdown-body h1 { margin: calc(var(--markdown-space) * 4) 0 calc(var(--markdown-space) * 2); font-size: calc(var(--markdown-font-size) * 1.5); line-height: calc(var(--markdown-space) * 8); }
+.markdown-body :is(h2, h3) { margin: calc(var(--markdown-space) * 4) 0 var(--markdown-space); line-height: calc(var(--markdown-space) * 7); }
+.markdown-body h2 { font-size: calc(var(--markdown-font-size) * 1.25); }
+.markdown-body h3 { font-size: calc(var(--markdown-font-size) * 1.125); }
+.markdown-body h4 { margin: calc(var(--markdown-space) * 4) 0 0; font-size: var(--markdown-font-size); line-height: calc(var(--markdown-space) * 6); }
+.markdown-body :is(h5, h6) { margin: 0; font-size: var(--markdown-font-size); line-height: var(--markdown-line-height); }
+.markdown-body :is(h1, h2, h3, h4) + p, .markdown-body > p + :is(ul, ol) { margin-top: 0; }
+.markdown-body :is(ul, ol) { margin: 0; padding-inline-start: var(--markdown-line-height); list-style-position: outside; }
+.markdown-body > :is(ul, ol) + :is(h1, h2, h3, h4, h5, h6) { margin-top: calc(var(--markdown-space) * 4); }
+.markdown-body :is(ul, ol) ul { list-style-type: circle; }
+.markdown-body :is(ul, ol) :is(ul, ol) ul { list-style-type: square; }
+.markdown-body li { margin: 0; padding-inline-start: calc(var(--markdown-space) * 1.5); }
+.markdown-body li::marker { color: var(--ds-text); font-weight: var(--font-weight-semibold); }
+.markdown-body li > :first-child:not(h1, h2, h3) { margin-top: 0; margin-bottom: 0; }
+.markdown-body li > :last-child:not(h1, h2, h3) { margin-bottom: 0; }
+.markdown-body li > p { margin: 0; }
+.markdown-body li > p + p { margin-top: calc(var(--markdown-space) * 4); }
+.markdown-body li > :is(ul, ol) { margin-block: 0; }
+.markdown-body blockquote { position: relative; margin: 0 0 calc(var(--markdown-space) * 2); padding-block: calc(var(--markdown-space) * 2); padding-inline: calc(var(--markdown-space) * 6) 0; border: 0; background: transparent; color: var(--ds-text); font-style: normal; line-height: calc(var(--markdown-space) * 6); }
+.markdown-body blockquote::after { content: ''; position: absolute; inset-inline-start: 0; top: calc(var(--markdown-space) * 2); bottom: calc(var(--markdown-space) * 2); width: var(--markdown-space); border-radius: calc(var(--markdown-space) / 2); background: var(--field-border); }
+.markdown-body blockquote > :first-child { margin-top: 0; }
+.markdown-body blockquote > :last-child { margin-bottom: 0; }
+.markdown-body blockquote > p { margin: 0; font-weight: var(--font-weight-normal); }
+.markdown-body hr { clear: both; height: 0; margin-block: calc(var(--markdown-space) * 7); border: 0; border-top: 1px solid var(--field-border); }
+.markdown-body hr + * { margin-top: 0; }
+.markdown-body > :first-child { margin-top: 0; }
+.markdown-body > :last-child { margin-bottom: 0; }
+.markdown-table { position: relative; min-width: 0; margin-top: calc(var(--markdown-space) * 4); }
+.markdown-table-scroller { overflow-x: auto; scrollbar-width: thin; }
+.markdown-body .markdown-table table { display: table; width: fit-content; min-width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; table-layout: auto; text-align: start; font-size: .875em; font-variant-numeric: tabular-nums; overflow-wrap: normal; }
+.markdown-body .markdown-table :is(th, td) { vertical-align: top; white-space: normal; border: 0; padding-inline: 0 calc(var(--markdown-space) * 6); }
+.markdown-body .markdown-table th { padding-block: calc(var(--markdown-space) * 2); border-bottom: 1px solid var(--field-border); text-align: start; font-weight: var(--font-weight-semibold); line-height: calc(var(--markdown-space) * 4); }
+.markdown-body .markdown-table td { padding-block: calc(var(--markdown-space) * 2.5); }
+.markdown-body .markdown-table tr:not(:last-child) td { border-bottom: 1px solid var(--ds-border); }
+.markdown-body .markdown-table th:last-child { padding-inline-end: calc(var(--markdown-space) * 10); }
+.markdown-body .markdown-table td:last-child { padding-inline-end: 0; }
+.markdown-body .markdown-table tbody tr:last-child td { padding-bottom: calc(var(--markdown-space) * 6); }
+.markdown-table-actions { position: absolute; inset-inline-end: 0; top: 0; z-index: 1; display: flex; align-items: center; gap: 4px; padding: 2px; border-radius: 999px; background: var(--ds-bg); color: var(--ds-text-tertiary); font-size: 12px; opacity: 0; pointer-events: none; }
+.markdown-table:hover .markdown-table-actions, .markdown-table-actions:focus-within, .markdown-table-actions:has([role="status"], [role="alert"]) { opacity: 1; pointer-events: auto; }
+@media (hover: none), (pointer: coarse) { .markdown-table { padding-top: 44px; } .markdown-table-actions { opacity: 1; pointer-events: auto; } }
+.markdown-table-actions .icon-button { width: 24px; height: 24px; }
+.markdown-table-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.markdown-body .markdown-table-error { margin: 8px 0 0; font-size: 12px; }
+.markdown-table-preview.modal { width: max-content; max-width: 80vw; height: auto; max-height: calc(100dvh - 24px); margin: auto; transform: none; border-radius: var(--radius-2xl); }
+.markdown-table-preview .modal-header { padding: 12px 16px; }
+.markdown-body .markdown-table-preview .modal-header h2 { margin: 0; font-size: 16px; line-height: 24px; }
+.markdown-table-preview .modal-content { display: flex; min-height: 0; max-height: none; padding: 16px; overflow: hidden; }
+.markdown-table-preview .markdown-table-scroller { flex: 1; min-height: 0; max-height: calc(100dvh - 104px); overflow: auto; }
