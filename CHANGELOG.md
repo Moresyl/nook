@@ -2,6 +2,9 @@
 
 ## 未发布
 
+- 字号与代码表面源码候选 `8f62d89` 通过 404 项完整桌面检查、75 次正常退出，最长 1928ms，无强制结束；137 文件／1617 项单元、类型与构建通过。保留 40 份报告、781 张原图、1046 个源码输入与 236 个编译文件；4 张专项和 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。新候选安装、分发及全部参考页面仍待验收。[字号表面验收](verification/markdown-font-validation-review-result.json)
+- 表格字号采用独立代码字号与正文相对字号的较大值，正文缩小时保留表格阅读下限；行内代码随所在段落或标题缩放，背景在换行处连续，混合方向文字保持隔离。
+- 普通代码块默认 12px、行高至少 20px，采用 20px 圆角与柔和角形、48px 标题栏和 36px 操作按钮；正文内距按窗口宽度调整，复制与自动换行保留原文。
 - 主对话正文上限对齐为 48rem，助手消息的长表格根据可用聊天宽度展开；窄窗口保持滚动边界，快速聊天与窄表格保留正文宽度。消息导航随正文容器对齐，复制、预览与保存原文保留。
 - 正文宽度源码候选 `c708330` 完整通过 402 项／75 次正常退出，最长 1664ms，无强制结束；137 文件／1617 项单元、类型与构建通过。保留 40 份报告、733 张原图、1046 个源码输入、236 个编译文件及完整性已验证用户目录归档；4 张专项和 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。新候选安装、分发与完整设计对照仍待完成。[宽度验收](verification/thread-width-validation-review-result.json)
 - 新增独立对话／代码字号设置，支持搜索、保存、重新加载和恢复默认；主工作台与快速聊天共用偏好，旧配置、原消息和控件字号保留。
@@ -21,7 +24,7 @@
 - 工作树只读身份查询按四项一批执行，独立 Git 元数据读取并行等待；删除仍串行，原文件、索引与删除前复查保留。
 - 发布与安装门槛提高为 383 项，严格验证八组任务步骤行为、十二种布局、逐项可读边界和十六张完整捕获。原期限与覆盖率门槛保持不变。
 - 设置搜索保留外层焦点圈，去除内层重复矩形描边；快速聊天标题保持 22px 紧凑高度，避免小窗口高缩放挤出模型操作。
-- 代码块采用当前明暗代码表面、8px 圆角、对应内距与相对字号／行高。复制提供成功／失败反馈，等待时禁止重复写入；代码和工具原文共用异步版本保护，原文改变或组件关闭后不接受旧完成状态。
+- 代码块采用当前明暗代码表面和独立代码字号。复制提供成功／失败反馈，等待时禁止重复写入；代码和工具原文共用异步版本保护，原文改变或组件关闭后不接受旧完成状态。
 - 聊天正文查找排除代码复制的成功和失败提示，继续保留真实代码内容与精确高亮。
 - 富文本轮次应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
@@ -65,12 +68,14 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 表格文字保留独立代码字号下限，调整对话文字时不会缩成难以阅读的小字；行内代码随段落和标题缩放，长内容换行保留连续背景与文字方向。
+- 普通代码块默认 12px、行高至少 20px，改用 20px 圆角、48px 标题栏和 36px 操作按钮，宽窗口增加正文内距。
 - 正文完善标题、列表、引用与汉字段落间距；普通用户消息采用 70% 宽度上限及 22px 圆角，主工作台和快速聊天保留长文与附件阅读。
 - 表格一次复制精确 Markdown 与语义 HTML，保留 Windows 换行、对齐、强调和单份 TeX 原文；过滤不安全资源，写入失败支持重试，原文变化后忽略旧完成反馈。溢出表格支持键盘滚动、边缘渐隐和随内容收缩的展开预览，Escape 返回焦点；纯数字不换行，混合方向单元格分别自动排版。
 - 普通单行表单和下拉框采用 32px 高、8px 圆角、12px 内边距与 13px 字号，分别保留输入聚焦、下拉展开、键盘圈和非法状态。按钮取消额外实体边框，统一默认 400 字重与 150ms 过渡；模型和工具下拉使用紧凑规格。
 - 快速聊天的会话标题保留 22px 紧凑高度，修复普通表单尺寸继承导致小窗口高缩放时模型操作区被挤出的情况。
 - 设置搜索移除内层输入的重复矩形描边，保留外层搜索框的描边和键盘焦点圈，覆盖默认、悬停与聚焦状态。
-- 代码块修正主题表面、8px 圆角、正文内距与相对字号／行高，保留代码原文、自动换行和隔离图表。复制成功明确提示，失败保留原文供重试，等待期间防止重复写入；流式原文变化后拒绝旧复制反馈。
+- 代码块保留主题表面、独立滚动、精确原文、自动换行和隔离图表。复制成功明确提示，失败保留原文供重试，等待期间防止重复写入；流式原文变化后拒绝旧复制反馈。
 
 - 全局搜索采用 520px 宽度上限和随窗口收缩的布局，明暗表面与居中定位单独适配；键盘移到列表末项时保留滚动留白。
 - 输入框采用当前主题的 22px 默认圆角，窄视口收紧浅色阴影，保留原有输入、发送、草稿和键盘行为。
@@ -95,6 +100,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 Nook brings multi-provider chat, model comparison, conversation branches, document retrieval, original PDF reading, project tools and local extensions into one workspace. Slash choices insert templates, assistants and projects without sending a message. Conversation task steps retain valid records and drafts across restart; they do not execute the plan themselves.
 
 Conversation and code font sizes can be saved independently, found through settings search and reset to their defaults. Main and quick chat share the preference while controls, project editors and terminals retain their own typography.
+
+Tables use the larger of the code-size floor and relative prose size. Inline code follows paragraph and heading sizes with continuous wrapping backgrounds. Code blocks default to 12px with a 20px minimum line height, a 20px corner radius, a 48px header and larger actions; horizontal padding adapts to the window width.
 
 Main conversation text is capped at 48rem. Long tables expand within the available chat panel, while quick chat and narrow tables retain the prose width. Native light/dark and zoom checks preserve scrolling, copying, preview focus and original messages.
 

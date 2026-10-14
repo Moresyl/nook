@@ -1,0 +1,2433 @@
+{
+  "recordedAt": "2026-10-14T15:41:00.598Z",
+  "sourceHead": "8f62d898b031f4a796cebb995ccd0b5ac6dc4c16",
+  "archive": "E:\\NookVerification\\MarkdownFonts-20261014\\full",
+  "acceptanceSha256": "ed23c0b3837121c39645bc26ca9801e2b93ca72ada9f6db57d7a40c451a69ba6",
+  "checks": 404,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1928,
+  "reports": 40,
+  "originalImages": 781,
+  "sourceInputs": 1046,
+  "compiledFiles": 236,
+  "sourceTarSha256": "147e8aab5a9f6132df4096e054dbc21cda2f7379d67996ca222b032a63589abb",
+  "profileArchiveSha256": "4b3e5b74a71a96624cf8606caae524bd2acfee543819c17dd7aeb4aa109c14ec",
+  "profileArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "receipts": {
+    "check-retry2": {
+      "sourceHeadObservedAfterRun": "ac427b8a33176af18ca67a18a65ca9fafc3670d1",
+      "diffSha256ObservedAfterRun": "39e1607d026c7f5d8138843f5ccd0d717dd0fbc8f0fc04c6cdaee327e5e6ab2b",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-retry1": {
+      "sourceHeadObservedAfterRun": "ac427b8a33176af18ca67a18a65ca9fafc3670d1",
+      "diffSha256ObservedAfterRun": "b690020b66f7a85434dc8d71fed9d4da62184bfbcac7bfd76dc3c3f43693ed4a",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "89b3cbf3f478150349db4ae060240a746983cdd1313ea934df1d705b3aa70b9b"
+    },
+    "coverage-retry1": {
+      "sourceHeadObservedAfterRun": "8f62d898b031f4a796cebb995ccd0b5ac6dc4c16",
+      "diffSha256ObservedAfterRun": "5823df30068aee35efe9089b0db07667aed19f3e59e5096a773092203329df03",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "af2f4b3089c8fed3c5d22080e749f53def2198e1b5ba0f99b99915da0e5d5c89"
+    },
+    "unit-retry1": {
+      "sourceHeadObservedAfterRun": "ac427b8a33176af18ca67a18a65ca9fafc3670d1",
+      "diffSha256ObservedAfterRun": "b690020b66f7a85434dc8d71fed9d4da62184bfbcac7bfd76dc3c3f43693ed4a",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "f7c89f33f527c90ef4918a358752f190d07b26f84c6f1bf4d1ffdc76f2253162"
+    },
+    "rich-retry1": {
+      "sourceHeadObservedAfterRun": "ac427b8a33176af18ca67a18a65ca9fafc3670d1",
+      "diffSha256ObservedAfterRun": "39e1607d026c7f5d8138843f5ccd0d717dd0fbc8f0fc04c6cdaee327e5e6ab2b",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "bc1dd2feeea40706aebacf5d806f392fe054205bb98fdd3fe16932b9153f3e10"
+    },
+    "quick-retry1": {
+      "sourceHeadObservedAfterRun": "ac427b8a33176af18ca67a18a65ca9fafc3670d1",
+      "diffSha256ObservedAfterRun": "226a1d95a3d1d3a0e985159a0c4c1d3cedae07030911aacc0c11476e2a26ab2f",
+      "inputCount": 1046,
+      "inputHashesFrozenBeforeRun": true,
+      "exitCode": 0,
+      "logSha256": "6167d87c371fac83fd5a3cf26ca35af35325beb9b132b74b9d70e9afa848c685"
+    }
+  },
+  "unit": {
+    "tests": 1617,
+    "testFiles": 137,
+    "focusedTests": 12,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageBoundary": "Configured coverage covers contracts, desktop services and settings draft logic. Renderer components/CSS and native scripts are excluded; native geometry and interactions are separately verified."
+  },
+  "threadWidths": {
+    "main": [
+      {
+        "theme": "light",
+        "width": 1920,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 864,
+          "proseLeft": 711,
+          "tableLeft": 711,
+          "tableRight": 1575,
+          "panelRight": 1914,
+          "panelScrollWidth": 1650,
+          "panelClientWidth": 1650,
+          "viewport": 1920
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-1920-100-top.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1920-100-table.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1920-100-preview.png",
+            "size": [
+              1920,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 1280,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 768,
+          "proseLeft": 391,
+          "tableLeft": 391,
+          "tableRight": 1159,
+          "panelRight": 1274,
+          "panelScrollWidth": 1010,
+          "panelClientWidth": 1010,
+          "viewport": 1280
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-1280-100-top.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1280-100-table.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-light-1280-100-preview.png",
+            "size": [
+              1280,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 474,
+          "table": 474,
+          "proseLeft": 260,
+          "tableLeft": 260,
+          "tableRight": 734,
+          "panelRight": 754,
+          "panelScrollWidth": 534,
+          "panelClientWidth": 534,
+          "viewport": 760
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-100-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-100-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-100-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 478.3999938964844,
+          "table": 478.3999938964844,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 582.3999938964844,
+          "panelRight": 602,
+          "panelScrollWidth": 538,
+          "panelClientWidth": 538,
+          "viewport": 608
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-125-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-125-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-125-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 760,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 376.66668701171875,
+          "table": 376.66668701171875,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 480.66668701171875,
+          "panelRight": 501,
+          "panelScrollWidth": 437,
+          "panelClientWidth": 437,
+          "viewport": 507
+        },
+        "captures": [
+          {
+            "filename": "prose-main-light-760-150-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-150-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-light-760-150-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1920,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 864,
+          "proseLeft": 711,
+          "tableLeft": 711,
+          "tableRight": 1575,
+          "panelRight": 1914,
+          "panelScrollWidth": 1650,
+          "panelClientWidth": 1650,
+          "viewport": 1920
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-1920-100-top.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1920-100-table.png",
+            "size": [
+              1920,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1920-100-preview.png",
+            "size": [
+              1920,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 1280,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 768,
+          "table": 768,
+          "proseLeft": 391,
+          "tableLeft": 391,
+          "tableRight": 1159,
+          "panelRight": 1274,
+          "panelScrollWidth": 1010,
+          "panelClientWidth": 1010,
+          "viewport": 1280
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-1280-100-top.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1280-100-table.png",
+            "size": [
+              1280,
+              840
+            ]
+          },
+          {
+            "filename": "prose-main-dark-1280-100-preview.png",
+            "size": [
+              1280,
+              840
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 474,
+          "table": 474,
+          "proseLeft": 260,
+          "tableLeft": 260,
+          "tableRight": 734,
+          "panelRight": 754,
+          "panelScrollWidth": 534,
+          "panelClientWidth": 534,
+          "viewport": 760
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-100-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-100-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-100-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 478.3999938964844,
+          "table": 478.3999938964844,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 582.3999938964844,
+          "panelRight": 602,
+          "panelScrollWidth": 538,
+          "panelClientWidth": 538,
+          "viewport": 608
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-125-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-125-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-125-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 760,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 376.66668701171875,
+          "table": 376.66668701171875,
+          "proseLeft": 104,
+          "tableLeft": 104,
+          "tableRight": 480.66668701171875,
+          "panelRight": 501,
+          "panelScrollWidth": 437,
+          "panelClientWidth": 437,
+          "viewport": 507
+        },
+        "captures": [
+          {
+            "filename": "prose-main-dark-760-150-top.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-150-table.png",
+            "size": [
+              760,
+              540
+            ]
+          },
+          {
+            "filename": "prose-main-dark-760-150-preview.png",
+            "size": [
+              760,
+              540
+            ]
+          }
+        ]
+      }
+    ],
+    "quick": [
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 368,
+          "table": 368,
+          "proseLeft": 23,
+          "tableLeft": 23,
+          "tableRight": 391,
+          "panelRight": 407,
+          "panelScrollWidth": 400,
+          "panelClientWidth": 400,
+          "viewport": 420
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-100-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-100-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-100-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 284.8000183105469,
+          "table": 284.8000183105469,
+          "proseLeft": 22.80000114440918,
+          "tableLeft": 22.80000114440918,
+          "tableRight": 307.60001945495605,
+          "panelRight": 323.80000019073486,
+          "panelScrollWidth": 317,
+          "panelClientWidth": 317,
+          "viewport": 336
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-125-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-125-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-125-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "width": 420,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 228.6666717529297,
+          "table": 228.6666717529297,
+          "proseLeft": 22.666667938232422,
+          "tableLeft": 22.666667938232422,
+          "tableRight": 251.3333396911621,
+          "panelRight": 267.6666669845581,
+          "panelScrollWidth": 261,
+          "panelClientWidth": 261,
+          "viewport": 280
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-light-420-150-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-150-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-light-420-150-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 368,
+          "table": 368,
+          "proseLeft": 23,
+          "tableLeft": 23,
+          "tableRight": 391,
+          "panelRight": 407,
+          "panelScrollWidth": 400,
+          "panelClientWidth": 400,
+          "viewport": 420
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-100-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-100-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-100-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1.25,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 284.8000183105469,
+          "table": 284.8000183105469,
+          "proseLeft": 22.80000114440918,
+          "tableLeft": 22.80000114440918,
+          "tableRight": 307.60001945495605,
+          "panelRight": 323.80000019073486,
+          "panelScrollWidth": 317,
+          "panelClientWidth": 317,
+          "viewport": 336
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-125-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-125-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-125-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "width": 420,
+        "zoom": 1.5,
+        "widths": {
+          "rootFontSize": 16,
+          "prose": 228.6666717529297,
+          "table": 228.6666717529297,
+          "proseLeft": 22.666667938232422,
+          "tableLeft": 22.666667938232422,
+          "tableRight": 251.3333396911621,
+          "panelRight": 267.6666669845581,
+          "panelScrollWidth": 261,
+          "panelClientWidth": 261,
+          "viewport": 280
+        },
+        "captures": [
+          {
+            "filename": "prose-quick-dark-420-150-top.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-150-table.png",
+            "size": [
+              420,
+              360
+            ]
+          },
+          {
+            "filename": "prose-quick-dark-420-150-preview.png",
+            "size": [
+              420,
+              360
+            ]
+          }
+        ]
+      }
+    ],
+    "narrowTableRetainsProseWidth": true,
+    "mainProseMaxRem": 48,
+    "originalClipboardRestoreVerified": true,
+    "scope": "Actual Windows Electron capture and geometry. Main 1920/1280/760px and quick 420px, light/dark, native 100/125/150% zoom as recorded. Main long tables expand from768 to864px at1920; quick compact tables remain prose width. Main scroll container is an independent implementation; all reference container ancestors, composer overhang, inline shifts/overrides and other DPI/OS are not restored or verified."
+  },
+  "selectedImages": [
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\rich-retry1\\screenshots\\chat-fonts-main-light-10-24-100.png",
+      "sha256": "530d0f364d0da1201e477c69e66d3dd7349aa3f7fe88a1501e36c544e537ebe8",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\full\\screenshots\\chat-fonts-main-light-10-24-100.png",
+      "sha256": "03b95218be1d4e83dc3d760455e0297a200d6365bf961592d64e54146609dc59",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\rich-retry1\\screenshots\\code-wrap-dark-150.png",
+      "sha256": "d9d166b7da24ff9aa7250e0b5a223939098dc939d18cc70f06c63cf32ad0b4bb",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\full\\screenshots\\code-wrap-dark-150.png",
+      "sha256": "0789534a93ee25580b53d336663c9128b9b8d5809be50e2328fc0749ff3466f7",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\quick-retry1\\screenshots\\chat-fonts-quick-light-10-24-100.png",
+      "sha256": "1dce1c34f4acf86ea7e8760f51256e5d907679d4d27105a8c0af3271dfac895e",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\full\\screenshots\\chat-fonts-quick-light-10-24-100.png",
+      "sha256": "32bc51fa39e0809c10502493e452e3d9c023e36666c97c2a2a8efc7451d6f936",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\quick-retry1\\screenshots\\chat-table-fonts-quick-dark-10-default-150.png",
+      "sha256": "7bd55a6b6c9437a4498f90356a451d3ee338c1d539ea3c650737256afea4ee21",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    },
+    {
+      "path": "E:\\NookVerification\\MarkdownFonts-20261014\\full\\screenshots\\chat-table-fonts-quick-dark-10-default-150.png",
+      "sha256": "b7552d0554825690dda359b746aaaab39de183085218b6732a0a356d74641607",
+      "individuallyDisplayedAndReviewed": true,
+      "scope": "Original native capture; a scrolling slice does not show all content simultaneously."
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "legalAndWorkflowFilesRetained": 441,
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "currentManifestChecked": true,
+    "readonlyTrace": "D:/GR/pi-pc/.firecrawl/markdown-font-reference-20261014.md",
+    "originalFilesModified": false,
+    "extractedCodeExecuted": false,
+    "originalRuntimeDefaultsVerified": false,
+    "actualGlyphFaceVerified": false
+  },
+  "fullSourceAccepted": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false,
+  "markdownFonts": {
+    "main": {
+      "layouts": [
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-light-24-10-100.png",
+          "tableCapture": "chat-table-fonts-main-light-24-10-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-light-24-10-150.png",
+          "tableCapture": "chat-table-fonts-main-light-24-10-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-light-10-24-100.png",
+          "tableCapture": "chat-table-fonts-main-light-10-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-light-10-24-150.png",
+          "tableCapture": "chat-table-fonts-main-light-10-24-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-light-10-default-100.png",
+          "tableCapture": "chat-table-fonts-main-light-10-default-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-light-10-default-150.png",
+          "tableCapture": "chat-table-fonts-main-light-10-default-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-light-default-24-100.png",
+          "tableCapture": "chat-table-fonts-main-light-default-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-light-default-24-150.png",
+          "tableCapture": "chat-table-fonts-main-light-default-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-dark-24-10-100.png",
+          "tableCapture": "chat-table-fonts-main-dark-24-10-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-dark-24-10-150.png",
+          "tableCapture": "chat-table-fonts-main-dark-24-10-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-dark-10-24-100.png",
+          "tableCapture": "chat-table-fonts-main-dark-10-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-dark-10-24-150.png",
+          "tableCapture": "chat-table-fonts-main-dark-10-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-dark-10-default-100.png",
+          "tableCapture": "chat-table-fonts-main-dark-10-default-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-dark-10-default-150.png",
+          "tableCapture": "chat-table-fonts-main-dark-10-default-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 20px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 20px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": true
+          },
+          "tableBounds": {
+            "left": 391,
+            "right": 1159,
+            "viewport": 1280,
+            "panelRight": 1274,
+            "panelScrollWidth": 1010,
+            "panelClientWidth": 1010
+          },
+          "capture": "chat-fonts-main-dark-default-24-100.png",
+          "tableCapture": "chat-table-fonts-main-dark-default-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 104,
+            "right": 480.66668701171875,
+            "viewport": 507,
+            "panelRight": 501,
+            "panelScrollWidth": 437,
+            "panelClientWidth": 437
+          },
+          "capture": "chat-fonts-main-dark-default-24-150.png",
+          "tableCapture": "chat-table-fonts-main-dark-default-24-150.png"
+        }
+      ],
+      "defaultsRestored": true,
+      "settingsUiVerified": true,
+      "originalPreferencesRestored": true,
+      "originalThreadRestored": true,
+      "referenceRuntimeDefaultsVerified": false,
+      "actualGlyphFaceVerified": false
+    },
+    "quick": {
+      "layouts": [
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-light-24-10-100.png",
+          "tableCapture": "chat-table-fonts-quick-light-24-10-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-light-24-10-150.png",
+          "tableCapture": "chat-table-fonts-quick-light-24-10-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-light-10-24-100.png",
+          "tableCapture": "chat-table-fonts-quick-light-10-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-light-10-24-150.png",
+          "tableCapture": "chat-table-fonts-quick-light-10-24-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-light-10-default-100.png",
+          "tableCapture": "chat-table-fonts-quick-light-10-default-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-light-10-default-150.png",
+          "tableCapture": "chat-table-fonts-quick-light-10-default-150.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-light-default-24-100.png",
+          "tableCapture": "chat-table-fonts-quick-light-default-24-100.png"
+        },
+        {
+          "theme": "light",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "light",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-light-default-24-150.png",
+          "tableCapture": "chat-table-fonts-quick-light-default-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-dark-24-10-100.png",
+          "tableCapture": "chat-table-fonts-quick-dark-24-10-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 24,
+          "chatCodeFontSize": 10,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 24,
+            "h1": 36,
+            "inline": 22.08,
+            "headingInline": 27.6,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 10,
+            "header": 13,
+            "table": 21,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-dark-24-10-150.png",
+          "tableCapture": "chat-table-fonts-quick-dark-24-10-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-dark-10-24-100.png",
+          "tableCapture": "chat-table-fonts-quick-dark-10-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-dark-10-24-150.png",
+          "tableCapture": "chat-table-fonts-quick-dark-10-24-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-dark-10-default-100.png",
+          "tableCapture": "chat-table-fonts-quick-dark-10-default-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": 10,
+          "chatCodeFontSize": null,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 10,
+            "h1": 15,
+            "inline": 9.2,
+            "headingInline": 11.5,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 12,
+            "header": 13,
+            "table": 12,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 20,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-dark-10-default-150.png",
+          "tableCapture": "chat-table-fonts-quick-dark-10-default-150.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 23,
+            "right": 391,
+            "viewport": 420,
+            "panelRight": 407,
+            "panelScrollWidth": 400,
+            "panelClientWidth": 400
+          },
+          "capture": "chat-fonts-quick-dark-default-24-100.png",
+          "tableCapture": "chat-table-fonts-quick-dark-default-24-100.png"
+        },
+        {
+          "theme": "dark",
+          "chatFontSize": null,
+          "chatCodeFontSize": 24,
+          "zoom": 1.5,
+          "styles": {
+            "prose": 14,
+            "h1": 21,
+            "inline": 12.88,
+            "headingInline": 16.1,
+            "inlineDecoration": {
+              "radius": "6px",
+              "padding": "1px 6px",
+              "direction": "ltr",
+              "isolation": "isolate",
+              "decorationBreak": "clone",
+              "wrap": "anywhere"
+            },
+            "code": 24,
+            "header": 13,
+            "table": 24,
+            "body": 14,
+            "theme": "dark",
+            "clippedDocument": false
+          },
+          "fence": {
+            "radius": "20px",
+            "cornerShape": "superellipse(1.1)",
+            "lineHeight": 36,
+            "padding": "0px 16px 12px",
+            "headerHeight": "48px",
+            "headerPadding": "6px 6px 6px 16px",
+            "headerWeight": "500",
+            "headerBorder": "0px",
+            "buttonWidth": "36px",
+            "buttonHeight": "36px",
+            "wide": false
+          },
+          "tableBounds": {
+            "left": 22.666667938232422,
+            "right": 251.3333396911621,
+            "viewport": 280,
+            "panelRight": 267.6666669845581,
+            "panelScrollWidth": 261,
+            "panelClientWidth": 261
+          },
+          "capture": "chat-fonts-quick-dark-default-24-150.png",
+          "tableCapture": "chat-table-fonts-quick-dark-default-24-150.png"
+        }
+      ],
+      "defaultsRestored": true,
+      "settingsUiVerified": false,
+      "originalPreferencesRestored": true,
+      "originalThreadRestored": true,
+      "referenceRuntimeDefaultsVerified": false,
+      "actualGlyphFaceVerified": false
+    },
+    "codeDefaultPx": 12,
+    "codeMinimumLineHeightPx": 20,
+    "codeRadiusPx": 20,
+    "headerDefaultPx": 13,
+    "headerMinHeightPx": 48,
+    "codeActionSizePx": 36,
+    "tableFloor": "max(code preference or 12px, prose*0.875)",
+    "inlineScale": 0.92,
+    "inlineBackgroundCloneVerified": true,
+    "actualRuntimeDefaultsOfReferenceVerified": false,
+    "scope": "Four independent/one-sided preference pairs, two themes and native 100/150% zoom per window; paragraph and heading inline code, actual table and code surfaces, defaults reset, saved original text and preferences restored. Product retains a 480px code scroll limit, semantic inline code and independent window implementations. Complete source runtime styling, color-mix inline background, other OS/DPI and all special writing/preview/hover variants remain unverified."
+  },
+  "intermediateFocusedReceiptsRetained": [
+    "check",
+    "unit",
+    "build",
+    "rich",
+    "quick",
+    "coverage"
+  ],
+  "intermediateFocusedScope": "ac427b8 table/inline body; final code surface was changed afterward. Original intermediate passes retained; retries are final-body validation, not product failure retries."
+}
