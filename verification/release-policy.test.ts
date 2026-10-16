@@ -82,7 +82,7 @@ function proof(): ReleaseProof {
   desktop.checks = 383;
   Object.assign(desktop, { taskPlans: taskPlanProof() });
   return {
-    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 4 },
+    audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 5, tooltipLifecycle: { passed: true, sourceOpenDelayMs: 200, sourceSkipIntervalMs: 300, clockAdvanced: false, originalTimeoutCallbacksRetained: true, focusEmulationDisabledOnlyDuringNativeBlur: true, originalFocusEmulationRestored: true } },
     preview: { ...desktop, ...structuredClone(desktop.projectPreview) },
     branches: { ...desktop, checks: 9, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, modelRequests: 0, ambiguousHistoryRecoveryVerified: true, manualOrderingVerified: true, orderingFailureRecoveryVerified: true, orderingBackupRestartVerified: true },
     temporary: { ...desktop, checks: 6, verificationRun: 'complete desktop suite', suiteChecks: desktop.checks, temporaryModelRequests: 3, persistenceExcludedVerified: true, backupsExcludedVerified: true, restartClearedVerified: true, storageModeImmutableVerified: true, regularDraftsRetainedVerified: true },
@@ -125,6 +125,25 @@ function worktreePinning(): NonNullable<ReleaseProof['desktop']['worktreePinning
     keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '固定工作树' })),
   };
 }
+
+describe('ordinary tooltip release evidence', () => {
+  it('requires the fifth surface check and its lifecycle evidence', () => {
+    expect(() => verifyRuntimeProof(proof())).not.toThrow();
+    for (const checks of [4, 6]) {
+      const invalid = proof(); invalid.surfaces.checks = checks;
+      expect(() => verifyRuntimeProof(invalid)).toThrow('Complete desktop');
+    }
+    const missing = proof(); delete missing.surfaces.tooltipLifecycle;
+    expect(() => verifyRuntimeProof(missing)).toThrow('ordinary tooltip lifecycle');
+  });
+  it('rejects changed timing, advanced clocks, replaced callbacks or unrestored native focus settings', () => {
+    const invalidValues = { passed: false, sourceOpenDelayMs: 500, sourceSkipIntervalMs: 0, clockAdvanced: true, originalTimeoutCallbacksRetained: false, focusEmulationDisabledOnlyDuringNativeBlur: false, originalFocusEmulationRestored: false };
+    for (const [key, value] of Object.entries(invalidValues)) {
+      const invalid = proof(); (invalid.surfaces.tooltipLifecycle as unknown as Record<string, unknown>)[key] = value;
+      expect(() => verifyRuntimeProof(invalid)).toThrow('ordinary tooltip lifecycle');
+    }
+  });
+});
 
 describe('worktree cleanup release evidence', () => {
   it('requires all real safety, scheduler, preservation and shutdown outcomes', () => {

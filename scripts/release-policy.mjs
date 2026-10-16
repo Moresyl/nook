@@ -135,8 +135,12 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 383 || surfaces.checks !== 4 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 383 || surfaces.checks !== 5 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
+  }
+  const lifecycle = surfaces.tooltipLifecycle;
+  if (lifecycle?.passed !== true || lifecycle.sourceOpenDelayMs !== 200 || lifecycle.sourceSkipIntervalMs !== 300 || lifecycle.clockAdvanced !== false || lifecycle.originalTimeoutCallbacksRetained !== true || lifecycle.focusEmulationDisabledOnlyDuringNativeBlur !== true || lifecycle.originalFocusEmulationRestored !== true) {
+    throw new Error('Complete ordinary tooltip lifecycle verification is required');
   }
   verifyComposerActionsProof(desktop.composerActions);
   verifySettingsSearchProof(desktop.settingsSearch);
