@@ -90,6 +90,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 长代码随聊天自然展开，取消 480px 内部纵向滚动，保留横向滚动和自动换行。标题增加代码图标，普通代码与图表源码明确从左到右排版，中／阿／希混合原文、完整复制与末行可达经过原生检查。
 - 修正分发记录校验仍要求旧版 9 项快速聊天检查和 18 组最小窗口布局的问题，现精确要求全部 13 项、四种状态的 24 组布局；旧记录、错误计数、缺失与重复布局会被拒绝，原有请求及数据保留检查继续有效。
 - 修复快捷选择列表滚动后，静止鼠标覆盖键盘所选结果的问题；保留首尾跳转、循环选择、实际鼠标移动与点击操作。
 - 复选框勾线采用两段渐进绘制，取消选中即时隐藏；修复连续点击标签选中文字的问题，保留原生键盘、禁用与半选状态，并遵循减少动画设置。
@@ -123,6 +124,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Long code expands naturally in the conversation instead of a 480px internal vertical scroller. Code headers use a code glyph, and ordinary code and diagram source have explicit left-to-right direction. Native checks retain mixed-language source, wrapping, complete copying and access to the final line.
 
 Release evidence now requires all 13 current quick-chat checks and 24 minimum-window layouts across four states. It rejects legacy records, incorrect totals, missing or duplicated layouts while preserving request and data-retention requirements.
 

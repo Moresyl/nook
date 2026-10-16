@@ -1,0 +1,184 @@
+{
+  "verifiedAt": "2026-10-16T14:43:39.465Z",
+  "scope": "Complete original source desktop suite for the long-code candidate. Distribution and installed scopes remain separate.",
+  "sourceHead": "7625b5d06fbdc9c7009f41bfa1aa37c87da7b022",
+  "checks": 406,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 1393,
+  "fullSourceAccepted": true,
+  "focusedSourceAccepted": true,
+  "sourceInputFiles": 1047,
+  "compiledFiles": 236,
+  "unit": {
+    "passed": true,
+    "files": 137,
+    "tests": 1622,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\unit.log",
+    "sha256": "c2f9848fb75efed7166dce8367aff9604a4c26d2cf7d5b453e3d49dbff25bcee",
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "changedInputsAfterUnit": [
+      "scripts/verify-rich-content.mjs"
+    ],
+    "boundary": "Only the native observer/report script changed after this unit run. Product and unit-test bytes are identical; native observer changes ran in the subsequent focused native suite."
+  },
+  "typeCheck": {
+    "passed": true,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\check.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "build": {
+    "passed": true,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\build.log",
+    "sha256": "4129616fce59ecfed0c948f4419ea53037aba1743c6dc61a3a869139507f9513",
+    "compiledFiles": 236,
+    "productInputsUnchangedSinceBuild": true
+  },
+  "originalHarness": "scripts/verify-desktop.mjs",
+  "originalDeadlinesAndGuardsRetained": true,
+  "workspaceSeedUsed": false,
+  "externalMcpObserverUsed": false,
+  "fakeCiUsed": false,
+  "rawLog": "E:\\NookVerification\\CodeFlow-20261016\\full.log",
+  "logSha256": "3a94a76528a9570c4285754312eaa1cca079b8f7c3ea106c456296d884634d84",
+  "archive": "E:\\NookVerification\\CodeFlow-20261016\\full-archive",
+  "reportCount": 40,
+  "screenshotCount": 815,
+  "sourceTar": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\source-7625b5d.tar",
+  "sourceTarSha256": "fbb736431b6a777726008d90b672b6fa9447aee30d1cd5cd4f71c9a6e2e3529f",
+  "profileArchive": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\profile.7z",
+  "profileArchiveSha256": "13ab7e65b1fe472bf47c0b030c37679f0508a1b3cfd1cad0a3e7cb5cecc244fa",
+  "profileArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "measuredCodeLayouts": [
+    {
+      "theme": "light",
+      "zoom": 1,
+      "style": {
+        "radius": "20px",
+        "background": "rgb(252, 252, 252)",
+        "padding": "0px 16px 12px",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "20px"
+      },
+      "end": {
+        "text": "// LONG_CODE_END",
+        "visible": true,
+        "height": 1832,
+        "nestedScroll": 0
+      }
+    },
+    {
+      "theme": "dark",
+      "zoom": 1.5,
+      "style": {
+        "radius": "20px",
+        "background": "rgb(16, 16, 16)",
+        "padding": "0px 16px 12px",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "20px"
+      },
+      "end": {
+        "text": "// LONG_CODE_END",
+        "visible": true,
+        "height": 1872,
+        "nestedScroll": 0
+      }
+    }
+  ],
+  "images": [
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\01-home-light.png",
+      "sha256": "ba34f676b23f660f05ab3bc1066ab0ebe512305e6d18d0a2219d47902bd67dde",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "Representative captured slice only; this does not establish full-reference or physical-system equivalence."
+    },
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\04-home-dark.png",
+      "sha256": "f7bbad48870a8d8efcbe9f4b63494ee349b651828ede364af4bb9059c8f790e2",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "Representative captured slice only; this does not establish full-reference or physical-system equivalence."
+    },
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\code-wrap-light-100.png",
+      "sha256": "4932f18a2ee3a3b5fbef19a535337417c27f32c311241b9d91101f75c900b20c",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "Representative captured slice only; this does not establish full-reference or physical-system equivalence."
+    },
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\code-wrap-dark-150.png",
+      "sha256": "87411b16cf3268c7766d938831ce58bc35954a4c4ff43608673b3327a95e5218",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "Representative captured slice only; this does not establish full-reference or physical-system equivalence."
+    },
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\code-end-light-100.png",
+      "sha256": "c138e7d943ab5cfab75b3258904492740c4be0b607692493db3bf4997d6d13d0",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "The actual final marker is visible in this narrow viewport."
+    },
+    {
+      "path": "E:\\NookVerification\\CodeFlow-20261016\\full-archive\\screenshots\\code-end-dark-150.png",
+      "sha256": "f3340f7628383ab349c6840792f315952db71f7b85aca9784f4cc0490930aac9",
+      "individuallyVisuallyReviewed": true,
+      "boundary": "The actual final marker is visible in this narrow viewport."
+    }
+  ],
+  "allFullSuiteImagesVisuallyReviewed": false,
+  "legalIdentityAndWorkflowChangedSincePriorAcceptedCohort": false,
+  "retainedHistory": {
+    "oldBuildRegression": {
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\CodeFlow-20261016\\rich-red.log",
+      "cause": "Old build has no explicit ltr direction."
+    },
+    "firstFocusedRun": {
+      "exitCode": 0,
+      "log": "E:\\NookVerification\\CodeFlow-20261016\\rich.log",
+      "boundary": "Initial end screenshots still showed the beginning of the code because capture preceded the painted scroll position. Those images are retained and excluded as end-line visual evidence. The original report also contained outdated code-surface metadata; the observer now records measured layout values."
+    }
+  },
+  "acceptance": {
+    "newPackagedNativeAccepted": false,
+    "newInstalledNativeAccepted": false,
+    "originalHostedPipelinePassed": false,
+    "originalChromePublicationCompleted": false,
+    "published": false,
+    "completeReferenceAdoption": false,
+    "physicalInteractionVerified": false
+  },
+  "boundary": "Only six representative full-suite images were individually reviewed. The configured coverage scope and renderer-copy fixture boundaries remain as documented in the focused proof. Prior intermittent exit and MCP failures remain historical with unresolved root causes. New package and installer require their own fresh native acceptance; the earlier aa6c841 distribution proof cannot validate this changed application."
+}

@@ -24,7 +24,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 ## 本地验收
 
-长代码候选通过类型、构建、137 文件／1622 项完整单元和 16 项原生富文本检查；两种窄窗口主题／缩放中的末行可达及绘制后原图已核对。完整桌面、新分发与安装尚待验收，以下此前记录不代替本轮。[本轮记录](../verification/code-flow-validation-review-result.json)
+长代码候选通过类型、构建、137 文件／1622 项完整单元和 16 项原生富文本检查；两种窄窗口主题／缩放中的末行可达及绘制后原图已核对。源码 `7625b5d` 完整通过 **406 项检查、75 次正常退出**，最长 1393ms，无强制结束；40 份报告、815 张原图及完整性已验证工作区归档保留。6 张完整回归代表图逐张查看，全部原图未全部视觉复核。新分发与安装尚待验收，以下此前记录不代替本轮。[专项记录](../verification/code-flow-validation-review-result.json) · [完整源码记录](../verification/code-flow-full-source-review-result.json)
 
 同一应用体在源码、包内程序和实际安装三轮均通过 **406 项检查、75 次正常退出**，无强制结束；最长退出分别为 1352ms、1358ms 和 1440ms。三轮各保留 813 张原图及完整性已校验的测试工作区归档。[源码验收](../verification/composer-keyboard-validation-review-result.json) · [本轮完整分发记录](../verification/composer-keyboard-runtime-review-result.json)
 
