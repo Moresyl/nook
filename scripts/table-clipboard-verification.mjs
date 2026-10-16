@@ -43,11 +43,13 @@ async function preserveSystemClipboard() {
       assert.equal(await clipboard.has('text/plain'), true);
       assert.equal(await clipboard.readText(), '');
       await clipboard.write(await snapshot(empty));
-      assert.deepEqual(await fingerprint(await clipboard.read()), expected);
+      const readback = await fingerprint(await clipboard.read());
+      assert.deepEqual(readback, expected, `Empty-text clipboard round trip changed MIME fingerprints: ${JSON.stringify({ expected, actual: readback })}`);
       emptyPlainTextRoundTrip = true;
     } finally {
       if (backup.length) await clipboard.write(backup); else clipboard.clear();
-      assert.deepEqual(await fingerprint(await clipboard.read()), before);
+      const restored = await fingerprint(await clipboard.read());
+      assert.deepEqual(restored, before, `Original clipboard restoration changed MIME fingerprints: ${JSON.stringify({ expected: before, actual: restored })}`);
     }
   }
   return { supported: true, formats: items.flatMap(item => item.types), emptyPlainTextRoundTrip };
