@@ -87,6 +87,10 @@ export async function verifyComposerActions({ page, application, projectDirector
     catch (problem) { console.error('Composer keyboard selection state', JSON.stringify(await page.evaluate(() => { const node = document.querySelector('.composer textarea'); return { focused: document.activeElement === node, selectionStart: node?.selectionStart, active: node?.getAttribute('aria-activedescendant'), events: window.__composerKeyboardEvents, options: [...document.querySelectorAll('.composer-actions [role="option"]')].map(row => ({ id: row.id, selected: row.getAttribute('aria-selected') })) }; }))); throw problem; }
   };
   await page.keyboard.press('End'); await selected(lastId); const last = await input().getAttribute('aria-activedescendant');
+  await list().getByRole('option').first().dispatchEvent('mouseover', { bubbles: true });
+  assert.equal(await input().getAttribute('aria-activedescendant'), last, 'A stationary-pointer boundary event must not overwrite keyboard selection.');
+  await list().getByRole('option').first().hover(); await selected(firstId);
+  await page.keyboard.press('End'); await selected(lastId);
   await page.keyboard.press('ArrowDown'); await selected(firstId); const first = await input().getAttribute('aria-activedescendant'); assert.notEqual(first, last); assert.equal(first, firstId);
   await page.keyboard.press('ArrowUp'); await selected(lastId); assert.equal(await input().getAttribute('aria-activedescendant'), last);
   console.log('Composer keyboard event observations', JSON.stringify(await page.evaluate(() => ({ width: innerWidth, height: innerHeight, events: window.__composerKeyboardEvents }))));

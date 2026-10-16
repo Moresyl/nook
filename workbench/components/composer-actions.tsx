@@ -24,7 +24,7 @@ export function ComposerActions({ id, anchor, items, active, onActive, onChoose 
   useLayoutEffect(() => { panel.current?.querySelector<HTMLElement>('[aria-selected="true"]')?.scrollIntoView({ block: 'nearest' }); }, [active]);
   return createPortal(<div ref={panel} className="composer-actions" style={{ ...position, visibility: position ? 'visible' : 'hidden' }}>
     <p id={`${id}-hint`} className="composer-actions-hint">快捷选择 <span>↑ ↓ 选择 · Enter 应用 · Esc 关闭</span></p>
-    <div id={id} role="listbox" aria-label="输入区快捷选择" className="composer-actions-list">{items.map((item, index) => <Button key={item.key} id={`${id}-${index}`} role="option" aria-label={`${item.title}，${item.group}`} aria-selected={active === item.key} tabIndex={-1} onMouseDown={event => event.preventDefault()} onMouseEnter={() => onActive(item.key)} onClick={() => onChoose(item)}>
+    <div id={id} role="listbox" aria-label="输入区快捷选择" className="composer-actions-list">{items.map((item, index) => <Button key={item.key} id={`${id}-${index}`} role="option" aria-label={`${item.title}，${item.group}`} aria-selected={active === item.key} tabIndex={-1} onMouseDown={event => event.preventDefault()} onMouseMove={() => onActive(item.key)} onClick={() => onChoose(item)}>
       <Glyph name={item.kind === 'template' ? 'compose' : item.kind === 'assistant' ? 'assistant' : item.kind === 'project' ? 'folder' : item.kind === 'knowledge' ? 'library' : 'code'} size={16} />
       <span className="composer-action-text"><strong>{item.title}</strong><small>{item.description}</small></span><span className="composer-action-group">{item.group}</span>
     </Button>)}</div>
