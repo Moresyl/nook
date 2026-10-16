@@ -80,9 +80,10 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   verified('native streamed inline/display/fenced formulas, accessible MathML, reference syntax colors, PowerShell and unknown languages, exact code/diagram copy and isolated Mermaid preview/source controls');
   const state = await page.evaluate(() => window.qiyao.load()); const thread = state.threads.find((item) => item.title === 'RICH_CONTENT_NATIVE'); assert.equal(thread.messages.at(-1).content, richReply);
   async function update(content) { await page.evaluate(async ({ id, content }) => { const state = await window.qiyao.load(); const thread = state.threads.find((item) => item.id === id); await window.qiyao.updateThread({ ...thread, messages: thread.messages.map((message, index) => index === thread.messages.length - 1 ? { ...message, content } : message) }); }, { id: thread.id, content }); await page.reload(); await page.getByRole('button', { name: '重新生成', exact: true }).waitFor(); }
-  const wrappingSource = `\tconst 文本 = "${'LONG中文<&>'.repeat(45)}";\n\n// 保留缩进与空行\nconsole.log(文本);`;
+  const wrappingSource = `\tconst 文本 = "${'LONG中文<&>'.repeat(45)}";\n\n// 保留缩进与空行、مرحبا、עברית\n${Array.from({ length: 80 }, (_, index) => `console.log(文本, ${index});`).join('\n')}\n// LONG_CODE_END`;
   const longLanguage = 'w'.repeat(40);
   const wrappingContent = `\`\`\`javascript\n${wrappingSource}\n\`\`\`\n\n\`\`\`${longLanguage}\nKEEP_LONG_LANGUAGE\n\`\`\``;
+  const codeLayouts = [];
   async function verifyWrapping(theme, zoom) {
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
     await update(wrappingContent); await application.resize(760, 540);
@@ -92,6 +93,9 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     const codeStyle = await code.evaluate(element => { const style = getComputedStyle(element), pre = getComputedStyle(element.querySelector('pre')); return { radius: style.borderRadius, background: style.backgroundColor, padding: pre.padding, fontSize: pre.fontSize, fontWeight: pre.fontWeight, lineHeight: pre.lineHeight }; });
     assert.deepEqual(codeStyle, { radius: '20px', background: theme === 'light' ? 'rgb(252, 252, 252)' : 'rgb(16, 16, 16)', padding: '0px 16px 12px', fontSize: '12px', fontWeight: '400', lineHeight: '20px' });
     assert.equal(await toggle.getAttribute('aria-pressed'), 'false');
+    assert.equal(await pre.getAttribute('dir'), 'ltr');
+    assert.equal(await pre.evaluate(element => getComputedStyle(element).direction), 'ltr');
+    assert.equal(await pre.evaluate(element => element.clientHeight > 480 && element.scrollHeight <= element.clientHeight + 1), true, 'Long code must expand in the transcript without a nested vertical scrollbar.');
     assert.equal(await pre.evaluate(element => element.scrollWidth > element.clientWidth), true);
     const original = await pre.textContent(); await toggle.focus(); await toggle.press('Space');
     assert.equal(await toggle.getAttribute('aria-pressed'), 'true');
@@ -107,11 +111,28 @@ export async function verifyRichContent({ page, application, endpoint, screensho
     const capture = await application.evaluateMain("(async () => { const window = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')); return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()");
     const png = Buffer.from(capture.png, 'base64'); assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], capture.size);
     await writeFile(join(screenshots, `code-wrap-${theme}-${zoom * 100}.png`), png);
+    await pre.evaluate(element => element.scrollIntoView({ block: 'end' }));
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    assert.equal(await pre.evaluate(element => { const scroll = element.closest('.transcript-scroll'), rect = element.getBoundingClientRect(), bounds = scroll.getBoundingClientRect(); return rect.bottom <= bounds.bottom + 1 && rect.bottom > bounds.top && element.scrollTop === 0 && scroll.scrollTop > 0; }), true, 'The end of long code must remain reachable through the transcript scroll.');
+    const endLayout = await pre.evaluate(element => {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT); let node;
+      while ((node = walker.nextNode())) if (node.textContent.includes('LONG_CODE_END')) {
+        const range = document.createRange(); range.selectNodeContents(node);
+        const rect = range.getBoundingClientRect(), bounds = element.closest('.transcript-scroll').getBoundingClientRect();
+        return { text: node.textContent, visible: rect.top >= bounds.top && rect.bottom <= bounds.bottom && rect.left >= bounds.left && rect.right <= bounds.right, height: element.clientHeight, nestedScroll: element.scrollTop };
+      }
+      return null;
+    });
+    assert.equal(endLayout?.visible, true, `The final code line must be visible after paint: ${JSON.stringify(endLayout)}`);
+    codeLayouts.push({ theme, zoom, style: codeStyle, end: endLayout });
+    const endCapture = await application.evaluateMain("(async () => { const window = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')); return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()");
+    const endPng = Buffer.from(endCapture.png, 'base64'); assert.deepEqual([endPng.readUInt32BE(16), endPng.readUInt32BE(20)], endCapture.size);
+    await writeFile(join(screenshots, `code-end-${theme}-${zoom * 100}.png`), endPng);
     await toggle.press('Enter'); assert.equal(await toggle.getAttribute('aria-pressed'), 'false'); assert.equal(await pre.evaluate(element => element.scrollWidth > element.clientWidth), true);
     await application.evaluateMain("require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/')).webContents.setZoomFactor(1)");
   }
   await verifyWrapping('light', 1); await verifyWrapping('dark', 1.5);
-  verified('current code surface, corner, inset padding and independent default typography in both themes with keyboard wrapping and complete stored source');
+  verified('current code surface, corner, inset padding and independent default typography in both themes with keyboard wrapping, bidirectional source isolation, naturally expanded long code and complete stored source');
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
   await update(richReply); await application.resize(1280, 840); await frame.locator('svg').waitFor();
   await page.locator('.transcript-scroll').evaluate(element => element.scrollTo({ top: 0 }));
@@ -132,5 +153,5 @@ export async function verifyRichContent({ page, application, endpoint, screensho
   const userMessages = await verifyUserMessageLayout({ page, application, threadId: thread.id, screenshots, verified });
   const prose = await verifyProseLayout({ page, application, threadId: thread.id, screenshots, verified });
   page.off('request', track);
-  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, userMessages, prose, codeSurface: { radius: 8, themedBackground: true, padding: [14, 40, 14, 16], relativeFontSize: .875, normalWeight: 400, relativeLineHeight: 1.5 }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true, excludedFromBodySearch: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
+  return { formulaFaces, lightGraph: graphGeometry, narrowGraph: narrowGeometry, automaticExternalRequests: requests, userMessages, prose, codeSurface: { measuredLayouts: codeLayouts }, copyFeedback: { successAnnouncement: true, keyboardFailureRetry: true, pendingDuplicatePrevention: true, privateErrorSuppression: true, exactSource: true, excludedFromBodySearch: true }, codeWrapping: { themes: ['light', 'dark'], zoom: [1, 1.5], keyboard: true, naturallyExpanded: true, sourceDirection: 'ltr', finalLineVisibleAfterPaint: true, exactCopyAndStoredSource: true, boundary: 'Clipboard write is intercepted by the existing native fixture; this does not prove the physical OS clipboard.' } };
 }

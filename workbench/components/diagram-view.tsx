@@ -33,6 +33,6 @@ export function DiagramView({ source, generating, showSource }: { source: string
     const observer = new ResizeObserver(measure); observer.observe(frame); frame.addEventListener('load', loaded); loaded();
     return () => { active = false; observer.disconnect(); frame.removeEventListener('load', loaded); };
   }, [rendered?.svg, showSource, palette]);
-  if (showSource || !rendered?.svg) return <><pre><code>{source}</code></pre>{!showSource && <p className="diagram-status muted text-small" role="status">{rendered?.error && !generating ? '无法绘制图表，源码已保留。' : generating ? '图表生成中…' : '正在绘制图表…'}</p>}</>;
+  if (showSource || !rendered?.svg) return <><pre dir="ltr"><code>{source}</code></pre>{!showSource && <p className="diagram-status muted text-small" role="status">{rendered?.error && !generating ? '无法绘制图表，源码已保留。' : generating ? '图表生成中…' : '正在绘制图表…'}</p>}</>;
   return <iframe ref={frameRef} className="diagram-frame" title="Mermaid 图表" sandbox="allow-same-origin" srcDoc={diagramDocument(rendered.svg, palette)} style={{ height }} />;
 }

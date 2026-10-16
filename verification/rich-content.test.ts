@@ -59,6 +59,15 @@ describe('rich message rendering', () => {
     const markup = render('```javascript\nconst message = "<img src=x onerror=alert(1)>";\n```\n\n```unknown-language\nKEEP_UNKNOWN_SOURCE\n```');
     expect(markup).toContain('hljs-keyword'); expect(markup).toContain('hljs-string'); expect(markup).toContain('&lt;img'); expect(markup).not.toContain('<img'); expect(markup).toContain('KEEP_UNKNOWN_SOURCE'); expect(markup).toContain('复制代码');
   });
+  it('isolates ordinary code and diagram source direction without changing bidirectional text', () => {
+    const source = 'const text = "中文 مرحبا עברית";';
+    for (const language of ['javascript', 'mermaid', 'unknown-language']) {
+      const markup = render(`\`\`\`${language}\n${source}\n\`\`\``);
+      expect(markup).toContain('<pre dir="ltr"><code');
+      for (const text of ['中文', 'مرحبا', 'עברית']) expect(markup).toContain(text);
+      expect(markup).not.toContain('<pre dir="rtl"');
+    }
+  });
   it('keeps untrusted raw HTML and diagram source out of executable markup', () => {
     const markup = render('<script>window.attack=true</script>\n\n```mermaid\nflowchart LR\n A[KEEP_DIAGRAM_SOURCE] --> B[Done]\n```');
     expect(markup).not.toContain('<script>'); expect(markup).toContain('KEEP_DIAGRAM_SOURCE'); expect(markup).toContain('显示图表源码'); expect(markup).not.toContain('<iframe');

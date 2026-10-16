@@ -1,0 +1,177 @@
+{
+  "verifiedAt": "2026-10-16T14:13:25.594Z",
+  "scope": "Source candidate long-code reading and toolbar; focused native acceptance only.",
+  "sourceBaseHead": "aa6c84187a845c786653da8daa67bca89290336b",
+  "sourceDiffSha256": "b54b6f9e25f889c76829819085980356763e52be4ed580c564fdd4b95b2ae379",
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "readOnlyTrace": "D:/GR/pi-pc/.firecrawl/code-flow-reference-20261016.md",
+    "allPagesEquivalent": false
+  },
+  "changes": [
+    "Natural transcript height for code source instead of a 480px internal vertical scrollbar.",
+    "Own decorative code glyph and nonselectable toolbar title.",
+    "Explicit ltr direction for ordinary code and Mermaid source, retaining exact mixed-language source."
+  ],
+  "typeCheck": {
+    "passed": true,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\check.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "build": {
+    "passed": true,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\build.log",
+    "sha256": "4129616fce59ecfed0c948f4419ea53037aba1743c6dc61a3a869139507f9513",
+    "compiledFiles": 236,
+    "productInputsUnchangedSinceBuild": true
+  },
+  "unit": {
+    "passed": true,
+    "files": 137,
+    "tests": 1622,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\unit.log",
+    "sha256": "c2f9848fb75efed7166dce8367aff9604a4c26d2cf7d5b453e3d49dbff25bcee",
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "changedInputsAfterUnit": [
+      "scripts/verify-rich-content.mjs"
+    ],
+    "boundary": "Only the native observer/report script changed after this unit run. Product and unit-test bytes are identical; native observer changes ran in the subsequent focused native suite."
+  },
+  "native": {
+    "passed": true,
+    "checks": 16,
+    "normalExits": 1,
+    "forcedExits": 0,
+    "elapsedExitMs": 165,
+    "log": "E:\\NookVerification\\CodeFlow-20261016\\rich-retry1.log",
+    "sha256": "f2d958a4571284563bbdb2077578e42cb29aa4b3a709812e4eff31c9bb7141ae",
+    "reportPath": "E:\\NookVerification\\CodeFlow-20261016\\rich-retry1\\verification\\rich-content-result.json",
+    "reportSha256": "375831ef08809aa0a08caf957a2c87ee48dd7ff2cfb39c317eef7673149c5d5a",
+    "measuredLayouts": [
+      {
+        "theme": "light",
+        "zoom": 1,
+        "style": {
+          "radius": "20px",
+          "background": "rgb(252, 252, 252)",
+          "padding": "0px 16px 12px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "lineHeight": "20px"
+        },
+        "end": {
+          "text": "// LONG_CODE_END",
+          "visible": true,
+          "height": 1832,
+          "nestedScroll": 0
+        }
+      },
+      {
+        "theme": "dark",
+        "zoom": 1.5,
+        "style": {
+          "radius": "20px",
+          "background": "rgb(16, 16, 16)",
+          "padding": "0px 16px 12px",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "lineHeight": "20px"
+        },
+        "end": {
+          "text": "// LONG_CODE_END",
+          "visible": true,
+          "height": 1872,
+          "nestedScroll": 0
+        }
+      }
+    ],
+    "originalHarnessAndDeadlinesRetained": true,
+    "sourceInputFiles": 1047,
+    "compiledFiles": 236
+  },
+  "images": [
+    {
+      "name": "code-wrap-light-100.png",
+      "sha256": "b1ee69a1cd50a49a03259b548b2a89aedd6ac4586049261edfb51f03ab8e5a5f",
+      "archivedPath": "E:\\NookVerification\\CodeFlow-20261016\\rich\\verification\\screenshots\\code-wrap-light-100.png",
+      "individuallyVisuallyReviewed": true,
+      "observation": "Own leading code glyph, language, wrapping and copy controls remain inside the code header at the measured narrow viewport. This capture shows a slice of the code."
+    },
+    {
+      "name": "code-wrap-dark-150.png",
+      "sha256": "15e489c5e7e17838984190e8aeea9bf041bd4300393ed3ed4ed2414ec391b3d1",
+      "archivedPath": "E:\\NookVerification\\CodeFlow-20261016\\rich-retry1\\verification\\screenshots\\code-wrap-dark-150.png",
+      "individuallyVisuallyReviewed": true,
+      "observation": "Own leading code glyph, language, wrapping and copy controls remain inside the code header at the measured narrow viewport. This capture shows a slice of the code."
+    },
+    {
+      "name": "code-end-light-100.png",
+      "sha256": "d1a07038e0c7a7c53a5e79bae04c3385de3b3bd315f15c7d45c984488f667d28",
+      "archivedPath": "E:\\NookVerification\\CodeFlow-20261016\\rich\\verification\\screenshots\\code-end-light-100.png",
+      "individuallyVisuallyReviewed": true,
+      "observation": "The final LONG_CODE_END line is visible in the transcript after paint, without a nested vertical code scrollbar."
+    },
+    {
+      "name": "code-end-dark-150.png",
+      "sha256": "eec65f81110c1235c16f692cee3cffe43f9c28356e90de9c58f8c7ba9678a455",
+      "archivedPath": "E:\\NookVerification\\CodeFlow-20261016\\rich-retry1\\verification\\screenshots\\code-end-dark-150.png",
+      "individuallyVisuallyReviewed": true,
+      "observation": "The final LONG_CODE_END line is visible in the transcript after paint, without a nested vertical code scrollbar."
+    }
+  ],
+  "retainedHistory": {
+    "oldBuildRegression": {
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\CodeFlow-20261016\\rich-red.log",
+      "cause": "Old build has no explicit ltr direction."
+    },
+    "firstFocusedRun": {
+      "exitCode": 0,
+      "log": "E:\\NookVerification\\CodeFlow-20261016\\rich.log",
+      "boundary": "Initial end screenshots still showed the beginning of the code because capture preceded the painted scroll position. Those images are retained and excluded as end-line visual evidence. The original report also contained outdated code-surface metadata; the observer now records measured layout values."
+    }
+  },
+  "acceptance": {
+    "focusedSourceAccepted": true,
+    "fullSourceAccepted": false,
+    "newPackagedAccepted": false,
+    "newInstalledAccepted": false,
+    "published": false,
+    "completeReferenceAdoption": false,
+    "physicalInteractionVerified": false
+  },
+  "boundary": "Clipboard writes in this code-copy fixture are intercepted in the renderer. Coverage measures the existing configured scope and does not establish renderer or physical-system coverage. Prior aa6c841 distribution proof remains historical and does not validate this changed application."
+}
