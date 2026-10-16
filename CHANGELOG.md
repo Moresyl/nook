@@ -2,6 +2,8 @@
 
 ## 未发布
 
+- 复选框勾线分两段绘制，取消选中即时隐藏；连续点击标签不再选中文字，保留原生空格键切换及减少动画设置。
+- 复选框源码 `bb2d2ac` 的类型、构建、137 文件／1619 项单元及原生 10／7／5 项专项通过；完整回归和终端诊断复现退出超时，当前候选未通过完整验收，尚未发布。[当前验证与失败证据](verification/control-motion-validation-review-result.json)
 - 普通提示按当前参考的默认调用采用 200ms 首次悬停与 300ms 连续悬停窗口；移出、按下、右键、失焦和 Escape 关闭提示并清理等待。修复提示已打开时 Escape 连带关闭父弹窗的问题，键盘焦点和草稿保持。
 - 生命周期源码 `a13a6da` 通过 406 项完整桌面检查、75 次正常退出，最长 7173ms，无强制结束；独立文字提示 7 项、控件 5 项、类型、构建和 137 文件／1619 项单元通过，1047 个源码与 236 个编译输入一致。发布门槛要求新增生命周期证据，拒绝旧四项控件记录。失败、取消及尚未完成的安装、分发和完整设计范围分别保留。[提示生命周期验收](verification/tooltip-lifecycle-validation-review-result.json)
 - 普通工具提示采用明暗专用颜色、16px 圆角、5px／12px 内距、18px 行高与 430 字重，优先在控件上方以 2px 间距显示，边缘自动翻转；修复预览工具栏覆盖提示字重与换行的问题，长中文路径完整显示。
@@ -76,6 +78,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 复选框勾线采用两段渐进绘制，取消选中即时隐藏；修复连续点击标签选中文字的问题，保留原生键盘、禁用与半选状态，并遵循减少动画设置。
 - 普通提示采用 200ms 首次悬停、300ms 连续悬停窗口及即时键盘提示；离开、按下、右键和失焦及时关闭。修复 Escape 关闭提示时连带关闭父弹窗的问题，保留焦点、草稿和原文。
 - 对齐默认正文与悬停颜色；行内代码背景随主题混色，嵌套在粗体、斜体、标题和链接中时保留原有文字样式。
 - 表格文字保留独立代码字号下限，调整对话文字时不会缩成难以阅读的小字；行内代码随段落和标题缩放，长内容换行保留连续背景与文字方向。
@@ -106,6 +109,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Checkbox marks draw in two stages and disappear immediately when cleared. Repeated label clicks avoid selecting text, while native keyboard behavior, disabled and mixed states, and reduced-motion preferences remain supported.
 
 Ordinary hints use a 200ms initial hover delay and a shared 300ms skip window. Leaving, pressing, opening a context menu or losing focus dismisses the hint. Escape now closes an active hint while preserving its parent dialog, keyboard focus and drafts.
 

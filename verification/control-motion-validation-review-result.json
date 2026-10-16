@@ -1,0 +1,1343 @@
+{
+  "recordedAt": "2026-10-16T08:53:29.715Z",
+  "sourceHead": "bb2d2ace71924b6a6dab971ee39ce0d3aea13220",
+  "status": "Focused checks passed; full native regression failed and release is blocked.",
+  "successful": [
+    {
+      "phase": "check-retry1",
+      "sourceHeadAtRun": "bede3c2e2956f02f8560b883de2b59cdb70e1f96",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    },
+    {
+      "phase": "build-retry1",
+      "sourceHeadAtRun": "bede3c2e2956f02f8560b883de2b59cdb70e1f96",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "a6e3ca9859f3273815e3ce16206185bd2192df92ed4bad62156eb8b7b288d91f",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    },
+    {
+      "phase": "coverage",
+      "sourceHeadAtRun": "bede3c2e2956f02f8560b883de2b59cdb70e1f96",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "87cea943b8edeb4dc5a1f59f654d25f9c78d5827dfe7c0bda9c147d626e004e5",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    },
+    {
+      "phase": "automations",
+      "sourceHeadAtRun": "bede3c2e2956f02f8560b883de2b59cdb70e1f96",
+      "sourceFiles": 1047,
+      "compiledFiles": 236,
+      "logSha256": "dbae54a6035cfd9130663c2e9ea50c419754946b6db0c7c9b4db0fab1d9190cc",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    },
+    {
+      "phase": "hints",
+      "sourceHeadAtRun": "bede3c2e2956f02f8560b883de2b59cdb70e1f96",
+      "sourceFiles": 1047,
+      "compiledFiles": 236,
+      "logSha256": "eaeba2f2f714ee6e1aaa125af648237ad65664036a4611b7338a79d87c54e4d8",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    },
+    {
+      "phase": "surfaces",
+      "sourceHeadAtRun": "bb2d2ace71924b6a6dab971ee39ce0d3aea13220",
+      "sourceFiles": 1047,
+      "compiledFiles": 236,
+      "logSha256": "7db33b7649670653606eace166571387878269271676b2622bb0f81402d188a4",
+      "actualExitCode": 0,
+      "frozenBytesMatchCurrentSource": true
+    }
+  ],
+  "unit": {
+    "testFiles": 137,
+    "tests": 1619,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageBoundary": "Existing contracts, desktop services and settings draft logic. Renderer components/CSS and native scripts are outside V8 coverage and exercised separately by the original native harness."
+  },
+  "focusedChecks": {
+    "automationsAndCheckboxes": 10,
+    "textHints": 7,
+    "surfaces": 5
+  },
+  "checkbox": {
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "keyboardAndLabel": true,
+    "repeatedLabelClicks": true,
+    "immediateUncheckedMark": true,
+    "persistedSelection": true,
+    "disabledAndMixedProbes": true,
+    "markMotion": [
+      {
+        "theme": "light",
+        "drawing": {
+          "before": {
+            "properties": "transform, opacity",
+            "durations": "0.1s, 0.2s",
+            "delays": "0.08s, 0s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          },
+          "after": {
+            "properties": "transform",
+            "durations": "0.1s",
+            "delays": "0.16s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          }
+        },
+        "observed": {
+          "events": [
+            {
+              "type": "transitionstart",
+              "pseudo": "::before",
+              "elapsedSeconds": 0,
+              "observedAt": 1134.800000011921
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::before",
+              "elapsedSeconds": 0.1,
+              "observedAt": 1279.1000000238419
+            },
+            {
+              "type": "transitionstart",
+              "pseudo": "::after",
+              "elapsedSeconds": 0,
+              "observedAt": 1279.1000000238419
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::after",
+              "elapsedSeconds": 0.1,
+              "observedAt": 1314.1000000238419
+            }
+          ],
+          "transforms": [
+            "matrix(1, 0, 0, 1, 0, 0)",
+            "matrix(1, 0, 0, 1, 0, 0)"
+          ],
+          "connected": true,
+          "checked": true
+        },
+        "clockAdvanced": false,
+        "timersReplaced": false
+      },
+      {
+        "theme": "dark",
+        "drawing": {
+          "before": {
+            "properties": "transform, opacity",
+            "durations": "0.1s, 0.2s",
+            "delays": "0.08s, 0s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          },
+          "after": {
+            "properties": "transform",
+            "durations": "0.1s",
+            "delays": "0.16s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          }
+        },
+        "observed": {
+          "events": [
+            {
+              "type": "transitionstart",
+              "pseudo": "::before",
+              "elapsedSeconds": 0,
+              "observedAt": 772
+            },
+            {
+              "type": "transitionstart",
+              "pseudo": "::after",
+              "elapsedSeconds": 0,
+              "observedAt": 844.8999999761581
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::before",
+              "elapsedSeconds": 0.1,
+              "observedAt": 863.1999999880791
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::after",
+              "elapsedSeconds": 0.1,
+              "observedAt": 953.5
+            }
+          ],
+          "transforms": [
+            "matrix(1, 0, 0, 1, 0, 0)",
+            "matrix(1, 0, 0, 1, 0, 0)"
+          ],
+          "connected": true,
+          "checked": true
+        },
+        "clockAdvanced": false,
+        "timersReplaced": false
+      }
+    ],
+    "reducedMotion": true,
+    "forcedColorsCheckedProbe": true,
+    "narrowZoom": 1.5,
+    "screenshots": [
+      "checkbox-light.png",
+      "checkbox-dark.png",
+      "checkbox-dark-narrow.png"
+    ],
+    "boundary": "Real automation form, native keyboard and repeated label clicks, actual pseudo-element transition events and saved selections. Timers and animation clocks are unchanged. Disabled and mixed states are temporary DOM probes. Reduced motion and forced colors are emulated, not physical OS accessibility evidence."
+  },
+  "tooltipLifecycle": {
+    "passed": true,
+    "observations": [
+      {
+        "stage": "cold hover",
+        "startedAt": 589.1999999880791,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 653.1000000238419
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 653.1999999880791
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 855.8000000119209
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "open handoff",
+        "startedAt": 867,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 928.8000000119209
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 930.1000000238419
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 930.1999999880791
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "recent closed handoff",
+        "startedAt": 942.6000000238419,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 1002.8999999761581
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 1005.1000000238419
+          },
+          {
+            "type": "pointerover",
+            "time": 1059.6000000238419
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 1062.1000000238419
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "expired handoff",
+        "startedAt": 1479.800000011921,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 1531.199999988079
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 1531.199999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 1738.6000000238419
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "pointer move after Escape",
+        "startedAt": 1754.300000011921,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 1768
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 1767.800000011921
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 1978.699999988079
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "pending leave",
+        "startedAt": 2078.699999988079,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 2126.199999988079
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 2126.199999988079
+          },
+          {
+            "type": "pointerover",
+            "time": 2180
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "pending Escape",
+        "startedAt": 2604.5,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 2654.399999976158
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 2654.5
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "pending window blur",
+        "startedAt": 3401.100000023842,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 3449
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 3449
+          },
+          {
+            "type": "blur",
+            "time": 3454.5
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "hover after native focus return",
+        "startedAt": 3939.300000011921,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 3991.399999976158
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 3991.399999976158
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4206.199999988079
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "keyboard focus",
+        "startedAt": 4444.5,
+        "timers": [],
+        "events": [
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4445.800000011921
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4446.100000023842
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4456.699999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4457.100000023842
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "context menu dismissal",
+        "startedAt": 4610.399999976158,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 4694.600000023842
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4695.300000011921
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4772.100000023842
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "click suppression",
+        "startedAt": 5145.699999988079,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 5196.800000011921
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 5196.800000011921
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 5398.199999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 5432.600000023842
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "fresh pointer entry after click",
+        "startedAt": 5811.899999976158,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 5916.600000023842
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 5862.100000023842
+          },
+          {
+            "type": "pointerover",
+            "time": 5916.600000023842
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 6117.199999988079
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "synthetic touch guard",
+        "startedAt": 6299.899999976158,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 6304.199999988079
+          }
+        ],
+        "hintCount": 0
+      }
+    ],
+    "sourceOpenDelayMs": 200,
+    "sourceSkipIntervalMs": 300,
+    "clockAdvanced": false,
+    "originalTimeoutCallbacksRetained": true,
+    "focusEmulationDisabledOnlyDuringNativeBlur": true,
+    "originalFocusEmulationRestored": true,
+    "scope": "Actual source Electron input, popover events, unchanged timer delegation, native focus transfer to an owned sandboxed blank child window, keyboard and sidebar activation. The auxiliary window is destroyed and focus emulation restored. Touch uses a synthetic PointerEvent and is not physical touch acceptance. The default noninteractive branch closes immediately; the separate interactive grace triangle is outside this component."
+  },
+  "selectedImages": [
+    {
+      "recordedAt": "2026-10-16T08:19:48.308Z",
+      "phase": "automations",
+      "images": [
+        {
+          "path": "screenshots/checkbox-light.png",
+          "sha256": "3d88ff6c966328f2857b539d3b746e558f9ca77fd100651933c5707db5e1a63a",
+          "bytes": 84194,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/checkbox-dark.png",
+          "sha256": "460d4e0cee20cfc4f4bd55e532bbb9dd62cca7684404cb55c5567280d532afad",
+          "bytes": 78336,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/checkbox-dark-narrow.png",
+          "sha256": "88b38caf253a04816bf1c39979f26e136ef39c17b8d495caa60d8fea6646012f",
+          "bytes": 29363,
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allPhaseImagesReviewed": false,
+      "scope": "Three original native checkbox captures reviewed. Narrow high-zoom form is a scroll viewport slice: the long second label is not simultaneously visible in full. Static images do not prove animation playback; actual transition events are retained in the automation result."
+    },
+    {
+      "recordedAt": "2026-10-16T08:30:32.407Z",
+      "phase": "hints",
+      "images": [
+        {
+          "path": "screenshots/annotation-hints-dark-150.png",
+          "sha256": "9e515f47e193be303986bd734ab878685f3c98693c57a69817ac64294b3a02c8",
+          "bytes": 35276,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/annotation-hints-light-100.png",
+          "sha256": "ea48ec1082be328c598c178be78685de2f02102a0a408094a87d3bdc5ef3cca2",
+          "bytes": 67211,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/branch-hints-dark-150.png",
+          "sha256": "9d81dd6f1319682c8b82bb2365f8f4b67fa3133cbfe2b6b207e2d45091440a4c",
+          "bytes": 49635,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/branch-hints-light-100.png",
+          "sha256": "32c262a2138265aee2016b8c8b56cd7b12eeecbb9be5a53246503dce9bfbc0c3",
+          "bytes": 72362,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/capacity-hints-dark-150.png",
+          "sha256": "52c8460d6275d2282de1a772e792da79e32f40f583d857bb4cae823115a501ca",
+          "bytes": 35977,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/capacity-hints-light-100.png",
+          "sha256": "5dc41294ca54808d486f281e585a2148b20b184205e2dc972134f30b57f4e78c",
+          "bytes": 61881,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-100.png",
+          "sha256": "452e16fb3d6f798753a84e0a94df28bf020e71245554b2506d38d0e76f4edd0d",
+          "bytes": 53564,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-125.png",
+          "sha256": "fe87ad29cf4d9ab9d5ef02876bb49a390157161ec26b46f4b71dd052ffe42115",
+          "bytes": 50216,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-150.png",
+          "sha256": "303c83da32de540eb948491c45485bc6910c65a04f0a77ae500555a10d6fefa8",
+          "bytes": 57127,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-100.png",
+          "sha256": "46e5f17c6998130ddbd05cc6be577fa54e7a54199a368c3f63b900b6fc78f00e",
+          "bytes": 74870,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-125.png",
+          "sha256": "ad3d63b9a8749a78cdb28c497c54b407245b0c1ac93f279d225add06b5f078f1",
+          "bytes": 97918,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-150.png",
+          "sha256": "76ccedc7c12c3fea41982f475ab27eb71df81a05406c949e71fc47a681813617",
+          "bytes": 99043,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/tree-hints-dark-150.png",
+          "sha256": "d42f18e724d3d59f8b865e624fe868860f2fc88d38b88eb60d576f1dfd6acf13",
+          "bytes": 54329,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/tree-hints-light-100.png",
+          "sha256": "51792fdd22e850c4a992962ea7b1dc3716479ef95547da9b3c8b4bd627646679",
+          "bytes": 64348,
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allPhaseImagesReviewed": true,
+      "allNativeArtifactsVisuallyReviewed": false,
+      "scope": "All 14 current focused native hint images were individually displayed. High-zoom document and editor captures show viewport slices; complete reference runtime, physical DPI and actual glyph-face parity remain unverified."
+    },
+    {
+      "recordedAt": "2026-10-16T08:32:55.002Z",
+      "phase": "surfaces",
+      "images": [
+        {
+          "path": "screenshots/91-surface-controls-light.png",
+          "sha256": "df8742e5f3087cae3e6795896dfa5b5ce88f3ad434d3b1595ea7560e9dea7f55",
+          "bytes": 83441,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/92-surface-controls-dark-narrow.png",
+          "sha256": "8311352fcbd5b5ddf9d076c9e00034e03d72e0f77d97d724757cad775459eaf9",
+          "bytes": 34411,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/93-surface-settings-zoomed.png",
+          "sha256": "60e6075cae6e0ada6e0e86535f25aae8e3b48c3edf6764674065e829e6434f01",
+          "bytes": 31925,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/106-button-focus-light.png",
+          "sha256": "29ef1aca324dcde2d8e347133f82e1591ac4f633c78eb88c70bc3dc91e6dcd4f",
+          "bytes": 87517,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/107-switch-keyboard-save-dark.png",
+          "sha256": "256cd1a952824f221a01affee707d88600fac494b2d925236ce66a4c0598a99e",
+          "bytes": 80548,
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allPhaseImagesReviewed": false,
+      "scope": "Five individually displayed original native settings captures: light, narrow dark, high zoom, button keyboard focus and switch keyboard-save focus. Scroll containers show viewport slices; other 21 captures were not individually reviewed this round."
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "failures": [
+    {
+      "phase": "automations-before",
+      "checks": 0,
+      "actualExitCode": 1,
+      "forcedExits": 1,
+      "ownedProcessesVerifiedClosed": [
+        76072,
+        80056,
+        59344,
+        52292
+      ],
+      "receipt": "E:\\NookVerification\\ControlMotion-20261016\\automations-before\\review.json",
+      "sha256": "007e7c20579b3c46bcb0ece5d3db3aa9b6c7286040a067b6df62b4018b3003f3",
+      "logSha256": "e7e04a751705a4191970ebeec4e50ac95cae064912c859861755b0b6ea6637f9",
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionTemp-20261016\\qiyao-electron-ZbVrLk",
+      "diagnosticObserverUsed": false
+    },
+    {
+      "phase": "full",
+      "checks": 38,
+      "actualExitCode": 1,
+      "forcedExits": 1,
+      "ownedProcessesVerifiedClosed": [
+        18468,
+        29416,
+        84680,
+        31532,
+        52336
+      ],
+      "receipt": "E:\\NookVerification\\ControlMotion-20261016\\full\\review.json",
+      "sha256": "1b0ab1c2d723c0b7b86e13634d59d3a900c61a4a8372b445e66170e870e1fda2",
+      "logSha256": "74fc67cca86eb40c03d2092534bda17a613de55be1cfbe6d7ba4df7a6c9358a7",
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionTemp-20261016\\qiyao-electron-T1BVnq",
+      "diagnosticObserverUsed": false
+    },
+    {
+      "phase": "full-retry1",
+      "checks": 38,
+      "actualExitCode": 1,
+      "forcedExits": 1,
+      "ownedProcessesVerifiedClosed": [
+        68040,
+        69596,
+        20004,
+        73896,
+        43028
+      ],
+      "receipt": "E:\\NookVerification\\ControlMotion-20261016\\full-retry1\\review.json",
+      "sha256": "7be431e56b679abf8466fd7764a504f2f27a23aae7ca1a887f0fec596327736b",
+      "logSha256": "f1f457b8a46363b8f33d54fe2db2fabd64445cabf94d6c5918f2fe76a68c3bda",
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionTemp-20261016\\qiyao-electron-JNx2x9",
+      "diagnosticObserverUsed": false
+    },
+    {
+      "phase": "full-retry2",
+      "checks": 38,
+      "actualExitCode": 1,
+      "forcedExits": 1,
+      "ownedProcessesVerifiedClosed": [
+        79708,
+        81900,
+        59264,
+        61144,
+        37324
+      ],
+      "receipt": "E:\\NookVerification\\ControlMotion-20261016\\full-retry2\\review.json",
+      "sha256": "c8a9493c761adf3bfa7739318d47340e371542e65897796331856be7bd3de906",
+      "logSha256": "6c1ea576c137f4d47a3d3a1c2963b0c71d30f81f5b642503f4c5013ee51dd8d8",
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionTemp-20261016\\qiyao-electron-BOG5Bp",
+      "diagnosticObserverUsed": true
+    },
+    {
+      "phase": "terminal",
+      "checks": 0,
+      "actualExitCode": 1,
+      "forcedExits": 1,
+      "ownedProcessesVerifiedClosed": [
+        21400,
+        62916,
+        7844,
+        61092
+      ],
+      "receipt": "E:\\NookVerification\\ControlMotion-20261016\\terminal\\review.json",
+      "sha256": "bb2d21f087e3dd52e5b5a33b3688e9f26a75c970a5d94383c9fcb6108ed694ce",
+      "logSha256": "0a3520a670b655645fd3232ce055078a5287825736d232a2e772c97ebe47a2e6",
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionTemp-20261016\\qiyao-electron-keGQvl",
+      "diagnosticObserverUsed": true
+    }
+  ],
+  "negativeBaselineExpectedAnimationFailure": true,
+  "shutdownFailureRootCauseEstablished": false,
+  "nativeDiagnostic": {
+    "diagnosticOnly": true,
+    "nativeObserverMayAffectTiming": true,
+    "sourceHarnessAndBudgetsUnchanged": true,
+    "module": {
+      "base_addr": "0x00007ff7af120000",
+      "cert_subject": null,
+      "code_id": "6abc3d83ebb4000",
+      "corrupt_symbols": false,
+      "debug_file": "electron.exe.pdb",
+      "debug_id": "205ABBCBDFD937F14C4C44205044422E1",
+      "end_addr": "0x00007ff7bdcd4000",
+      "filename": "electron.exe",
+      "loaded_symbols": true,
+      "missing_symbols": false,
+      "symbol_url": null,
+      "version": "44.5.1.0"
+    },
+    "main": {
+      "threadId": 50192,
+      "name": "CrBrowserMain",
+      "frames": [
+        {
+          "function": null,
+          "module": "ntdll.dll",
+          "trust": "context",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": null,
+          "module": "KERNELBASE.dll",
+          "trust": "scan",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": "_tailMerge_dhcpcsvc.dll",
+          "module": "electron.exe",
+          "trust": "scan",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": "base::WaitableEvent::Wait(base::Location const &)",
+          "module": "electron.exe",
+          "trust": "scan",
+          "file": "W:\\w\\electron\\electron\\src\\base\\synchronization\\waitable_event.cc",
+          "line": 48
+        },
+        {
+          "function": "base::internal::TaskTracker::CompleteShutdown()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+          "line": 247
+        },
+        {
+          "function": "content::BrowserMainLoop::ShutdownThreadsAndCleanUp()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_loop.cc",
+          "line": 1276
+        },
+        {
+          "function": "content::BrowserMainRunnerImpl::Shutdown()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main_runner_impl.cc",
+          "line": 170
+        },
+        {
+          "function": "content::BrowserMain(content::MainFunctionParams)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\browser\\browser_main.cc",
+          "line": 41
+        },
+        {
+          "function": "content::RunBrowserProcessMain(struct content::MainFunctionParams, class content::ContentMainDelegate *)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 710
+        },
+        {
+          "function": "content::ContentMainRunnerImpl::RunBrowser(content::MainFunctionParams,bool)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 1344
+        },
+        {
+          "function": "content::ContentMainRunnerImpl::Run()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main_runner_impl.cc",
+          "line": 1175
+        },
+        {
+          "function": "content::RunContentProcess(struct content::ContentMainParams, class content::ContentMainRunner *)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+          "line": 328
+        },
+        {
+          "function": "content::ContentMain(content::ContentMainParams)",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\content\\app\\content_main.cc",
+          "line": 341
+        },
+        {
+          "function": "wWinMain",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "W:\\w\\electron\\electron\\src\\electron\\shell\\app\\electron_main_win.cc",
+          "line": 238
+        },
+        {
+          "function": "__scrt_common_main_seh()",
+          "module": "electron.exe",
+          "trust": "cfi",
+          "file": "D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl",
+          "line": 288
+        },
+        {
+          "function": null,
+          "module": "kernel32.dll",
+          "trust": "cfi",
+          "file": null,
+          "line": null
+        },
+        {
+          "function": null,
+          "module": "ntdll.dll",
+          "trust": "scan",
+          "file": null,
+          "line": null
+        }
+      ]
+    },
+    "databaseThreads": [
+      {
+        "threadId": 44288,
+        "name": "ThreadPoolBackgroundWorker",
+        "frames": [
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "context",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "KERNELBASE.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": "winWrite(struct sqlite3_file *, const void *, int, __int64)",
+            "module": "electron.exe",
+            "trust": "scan",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 51677
+          },
+          {
+            "function": "walWriteOneFrame(struct WalWriter *, struct PgHdr *, int, __int64)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 71400
+          },
+          {
+            "function": "walFrames(struct Wal *, int, struct PgHdr *, unsigned int, int, int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 71591
+          },
+          {
+            "function": "sqlite3WalFrames(struct Wal *, int, struct PgHdr *, unsigned int, int, int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 71708
+          },
+          {
+            "function": "pagerWalFrames(struct Pager *, struct PgHdr *, unsigned int, int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 62811
+          },
+          {
+            "function": "sqlite3PagerCommitPhaseOne(struct Pager *, const char *, int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 66104
+          },
+          {
+            "function": "sqlite3VdbeHalt(struct Vdbe *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 91157
+          },
+          {
+            "function": "sqlite3VdbeExec(struct Vdbe *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 100504
+          },
+          {
+            "function": "chrome_sqlite3_step",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 94468
+          },
+          {
+            "function": "sql::Statement::StepInternal()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\sql\\statement.cc",
+            "line": 133
+          },
+          {
+            "function": "sql::Database::CommitTransaction(sql::InternalApiToken)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\sql\\database.cc",
+            "line": 1461
+          },
+          {
+            "function": "content::BtmDatabase::InitImpl()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_database.cc",
+            "line": 264
+          },
+          {
+            "function": "content::BtmDatabase::Init()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_database.cc",
+            "line": 274
+          },
+          {
+            "function": "content::BtmDatabase::BtmDatabase(std::__Cr::optional<base::FilePath> const &)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_database.cc",
+            "line": 127
+          },
+          {
+            "function": "content::BtmStorage::BtmStorage(std::__Cr::optional<base::FilePath> const &)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\btm\\btm_storage.cc",
+            "line": 25
+          },
+          {
+            "function": "base::sequence_bound_internal::Storage<content::BtmStorage,base::sequence_bound_internal::CrossThreadTraits>::InternalConstruct<base::FilePath &>(class content::BtmStorage *, class base::FilePath *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\threading\\sequence_bound_internal.h",
+            "line": 141
+          },
+          {
+            "function": "base::internal::TaskTracker::RunSkipOnShutdown(struct base::internal::Task & const, const class base::TaskTraits & const, class base::internal::TaskSource *, const class base::internal::SequenceToken & const)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+            "line": 675
+          },
+          {
+            "function": "base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+            "line": 393
+          },
+          {
+            "function": "base::internal::WorkerThread::RunWorker()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+            "line": 480
+          },
+          {
+            "function": "base::internal::WorkerThread::RunBackgroundPooledWorker()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+            "line": 362
+          },
+          {
+            "function": "base::`anonymous namespace'::ThreadFunc(void *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\threading\\platform_thread_win.cc",
+            "line": 111
+          },
+          {
+            "function": null,
+            "module": "kernel32.dll",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          }
+        ]
+      },
+      {
+        "threadId": 29772,
+        "name": "ThreadPoolBackgroundWorker",
+        "frames": [
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "context",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "KERNELBASE.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": "base::Histogram::FactoryTimeGet(char const *,base::TimeDelta,base::TimeDelta,unsigned __int64,int)",
+            "module": "electron.exe",
+            "trust": "scan",
+            "file": "W:\\w\\electron\\electron\\src\\base\\metrics\\histogram.cc",
+            "line": 360
+          },
+          {
+            "function": null,
+            "module": null,
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": "pager_write_pagelist(struct Pager *, struct PgHdr *)",
+            "module": "electron.exe",
+            "trust": "scan",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 64073
+          },
+          {
+            "function": "sqlite3PagerCommitPhaseOne(struct Pager *, const char *, int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 66242
+          },
+          {
+            "function": "sqlite3VdbeHalt(struct Vdbe *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 91157
+          },
+          {
+            "function": "sqlite3VdbeExec(struct Vdbe *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 100504
+          },
+          {
+            "function": "chrome_sqlite3_step",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\third_party\\sqlite\\src\\amalgamation\\sqlite3.c",
+            "line": 94468
+          },
+          {
+            "function": "sql::Statement::StepInternal()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\sql\\statement.cc",
+            "line": 133
+          },
+          {
+            "function": "sql::Database::CommitTransaction(sql::InternalApiToken)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\sql\\database.cc",
+            "line": 1461
+          },
+          {
+            "function": "sql::MetaTable::Init(sql::Database *,int,int)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\sql\\meta_table.cc",
+            "line": 177
+          },
+          {
+            "function": "content::DeclarativePerformanceObserverStore::Backend::InitOnDbSequence()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\declarative_performance_observer\\declarative_performance_observer_store.cc",
+            "line": 403
+          },
+          {
+            "function": "content::DeclarativePerformanceObserverStore::Backend::LoadPoliciesOnDbSequence(class scoped_refptr<base::SequencedTaskRunner>, class base::OnceCallback<void (std::__Cr::vector<url::Origin,std::__Cr::allocator<url::Origin> >)>)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\content\\browser\\declarative_performance_observer\\declarative_performance_observer_store.cc",
+            "line": 95
+          },
+          {
+            "function": "base::internal::Invoker<base::internal::FunctorTraits<void (content::DeclarativePerformanceObserverStore::Backend::*&&)(scoped_refptr<base::SequencedTaskRunner>, base::OnceCallback<void (std::__Cr::vector<url::Origin,std::__Cr::allocator<url::Origin> >)>),scoped_refptr<content::DeclarativePerformanceObserverStore::Backend> &&,scoped_refptr<base::SequencedTaskRunner> &&,base::OnceCallback<void (std::__Cr::vector<url::Origin,std::__Cr::allocator<url::Origin> >)> &&>,base::internal::BindState<1,1,0,void (content::DeclarativePerformanceObserverStore::Backend::*)(scoped_refptr<base::SequencedTaskRunner>, base::OnceCallback<void (std::__Cr::vector<url::Origin,std::__Cr::allocator<url::Origin> >)>),scoped_refptr<content::DeclarativePerformanceObserverStore::Backend>,scoped_refptr<base::SequencedTaskRunner>,base::OnceCallback<void (std::__Cr::vector<url::Origin,std::__Cr::allocator<url::Origin> >)> >,void ()>::RunOnce(class base::internal::BindStateBase *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\functional\\bind_internal.h",
+            "line": 982
+          },
+          {
+            "function": "base::TaskAnnotator::RunTaskImpl(base::PendingTask &)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\common\\task_annotator.cc",
+            "line": 229
+          },
+          {
+            "function": "base::internal::TaskTracker::RunBlockShutdown(struct base::internal::Task & const, const class base::TaskTraits & const, class base::internal::TaskSource *, const class base::internal::SequenceToken & const)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+            "line": 683
+          },
+          {
+            "function": "base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\task_tracker.cc",
+            "line": 393
+          },
+          {
+            "function": "base::internal::WorkerThread::RunWorker()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+            "line": 480
+          },
+          {
+            "function": "base::internal::WorkerThread::RunBackgroundPooledWorker()",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\task\\thread_pool\\worker_thread.cc",
+            "line": 362
+          },
+          {
+            "function": "base::`anonymous namespace'::ThreadFunc(void *)",
+            "module": "electron.exe",
+            "trust": "cfi",
+            "file": "W:\\w\\electron\\electron\\src\\base\\threading\\platform_thread_win.cc",
+            "line": 111
+          },
+          {
+            "function": null,
+            "module": "kernel32.dll",
+            "trust": "cfi",
+            "file": null,
+            "line": null
+          },
+          {
+            "function": null,
+            "module": "ntdll.dll",
+            "trust": "scan",
+            "file": null,
+            "line": null
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionCloseCapture-terminal-20261016\\capture.json",
+        "sha256": "ca20288589d5aa635606f0fd617ac75652575c8bb869e34333472a8ef4368933"
+      },
+      {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionCloseCapture-terminal-20261016\\capture.log",
+        "sha256": "0029265f5f9d863cd250bbd6898a9c0939d0209652bd6990de158ed55a7d2f89"
+      },
+      {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionCloseCapture-terminal-20261016\\main-21400-close.dmp",
+        "sha256": "b5f85e20c61ee4cf5a27775e7ce6ea1619f7e297defe0d16c08b0e1a6bc07319"
+      },
+      {
+        "path": "D:\\GR\\pi-pc\\.firecrawl\\ControlMotionCloseCapture-terminal-20261016\\stackwalk.json",
+        "sha256": "648da202623d20ba586c7e616868a422a42eac117797483f675cb560f231de00"
+      }
+    ],
+    "observation": "The captured terminal-focused failure waits in Chromium TaskTracker shutdown while background SQLite initialization/writes are present. This narrows the observed stage, but does not establish the cause of the full-run failures. The initial full-run clone capture produced a zero-byte dump and is not usable evidence."
+  },
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "readonlyTrace": "D:/GR/pi-pc/.firecrawl/control-motion-reference-trace-20261016.json",
+    "labelled18pxWrapperIndicatorAndConsumerTraced": true,
+    "allReferenceCheckboxVariantsCovered": false,
+    "extractedCodeExecuted": false,
+    "originalFilesModified": false,
+    "referenceRuntimeVerified": false
+  },
+  "limits": {
+    "physicalTouchVerified": false,
+    "actualGlyphFaceVerified": false,
+    "disabledAndMixedAreDomProbes": true,
+    "reducedMotionAndForcedColorsEmulated": true,
+    "segmentEventWallTimesMayIncludeHostSchedulingDelay": true
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "originalDeadlinesAndGuardsRetained": true,
+  "completeFullRunPassed": false,
+  "fullSourceAccepted": false,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
