@@ -2,6 +2,8 @@
 
 ## 未发布
 
+- 普通提示按当前参考的默认调用采用 200ms 首次悬停与 300ms 连续悬停窗口；移出、按下、右键、失焦和 Escape 关闭提示并清理等待。修复提示已打开时 Escape 连带关闭父弹窗的问题，键盘焦点和草稿保持。
+- 生命周期源码 `a13a6da` 通过 406 项完整桌面检查、75 次正常退出，最长 7173ms，无强制结束；独立文字提示 7 项、控件 5 项、类型、构建和 137 文件／1619 项单元通过，1047 个源码与 236 个编译输入一致。发布门槛要求新增生命周期证据，拒绝旧四项控件记录。失败、取消及尚未完成的安装、分发和完整设计范围分别保留。[提示生命周期验收](verification/tooltip-lifecycle-validation-review-result.json)
 - 普通工具提示采用明暗专用颜色、16px 圆角、5px／12px 内距、18px 行高与 430 字重，优先在控件上方以 2px 间距显示，边缘自动翻转；修复预览工具栏覆盖提示字重与换行的问题，长中文路径完整显示。
 - 提示样式源码 `8b1c140` 通过 406 项完整桌面检查、75 次正常退出，最长 3364ms，无强制结束；独立文字提示 7 项、控件 4 项专项通过，明暗主题和 100／125／150% 缩放保留键盘、草稿与文件原文。类型、构建及 137 文件／1617 项单元通过，1046 个源码输入与 236 个编译文件一致；14 张提示专项、5 张控件专项及 5 张完整回归代表图逐张查看。安装、分发和完整设计对照仍待完成。[提示样式验收](verification/tooltip-validation-review-result.json)
 - 明暗主题采用对应的默认正文前景色；共享按钮悬停底色分别采用前景 5%／白色 8%。行内代码使用中性混色背景，保留标题、粗体、斜体与链接的文字样式。
@@ -33,7 +35,9 @@
 - 富文本轮次应用体 `fa11763` 的新类型检查、构建，以及源码、新包和实际安装各 386 项／75 次正常退出通过。完整 136 文件／1,602 项单元运行的 278 个覆盖、测试、依赖及配置输入保持一致，渲染器复制和搜索另由原生套件验证。原五项分发专项、十一份匹配记录和保留数据卸载通过。源码 12 张代表原图逐张查看，包内与安装各 8 张新图逐张查看及 4 张与源码原图完全一致；分发控件 26 张／文字提示 12 张全部逐张查看，每轮 633 张完整原图未全部视觉复核。
 - 精简发布、能力和设计说明，完整保留许可证、旧轮次、原始截图和失败证据。完整参考界面、物理交互与托管发布尚未完成。
 
-Tables copy exact Markdown and semantic HTML together, retaining alignment, emphasis and a single TeX source while excluding theme styles and unsafe resources. Main and Quick Chat verify physical Windows clipboard readback and byte-for-byte restoration of all original MIME payloads. Rejected writes stay retryable and stale completions are ignored. The current source passes 394 native checks with 75 normal exits and 1,612 unit tests; current distribution acceptance remains pending.
+Ordinary hints use the reference defaults of 200ms initial hover and a shared 300ms skip window; Escape preserves the parent dialog. The current source passes 406 native checks with 75 normal exits and 1,619 unit tests. Distribution acceptance and complete reference parity remain pending.
+
+Tables copy exact Markdown and semantic HTML together, retaining alignment, emphasis and a single TeX source while excluding theme styles and unsafe resources. Main and Quick Chat verify physical Windows clipboard readback and byte-for-byte restoration of all original MIME payloads. Rejected writes stay retryable and stale completions are ignored. The earlier table-copy candidate passed 394 native checks with 75 normal exits and 1,612 unit tests.
 
 Prose headings, lists, quotes and Han-text paragraph spacing follow the reference hierarchy. Tables retain keyboard-scrollable previews that fit their content and return focus on Escape. The previous prose candidate passed 390 native checks with 75 normal exits and 1,605 unit tests.
 
@@ -72,6 +76,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 普通提示采用 200ms 首次悬停、300ms 连续悬停窗口及即时键盘提示；离开、按下、右键和失焦及时关闭。修复 Escape 关闭提示时连带关闭父弹窗的问题，保留焦点、草稿和原文。
 - 对齐默认正文与悬停颜色；行内代码背景随主题混色，嵌套在粗体、斜体、标题和链接中时保留原有文字样式。
 - 表格文字保留独立代码字号下限，调整对话文字时不会缩成难以阅读的小字；行内代码随段落和标题缩放，长内容换行保留连续背景与文字方向。
 - 普通代码块默认 12px、行高至少 20px，改用 20px 圆角、48px 标题栏和 36px 操作按钮，宽窗口增加正文内距。
@@ -101,6 +106,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Ordinary hints use a 200ms initial hover delay and a shared 300ms skip window. Leaving, pressing, opening a context menu or losing focus dismisses the hint. Escape now closes an active hint while preserving its parent dialog, keyboard focus and drafts.
 
 Default text and action-hover colors follow their light/dark semantic roles. Inline code uses a neutral blended background while retaining heading, bold, italic and link styling.
 

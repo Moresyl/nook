@@ -1,0 +1,747 @@
+{
+  "recordedAt": "2026-10-16T07:54:53.003Z",
+  "sourceHead": "a13a6da4df07b69a956ae301626ff85b53ceac74",
+  "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\full-retry2",
+  "acceptanceSha256": "79238881e0489378e16308d2b0a686adb7c0a82ce596bc6063e7d8ecb8727695",
+  "checks": 406,
+  "normalExits": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": 7173,
+  "reports": 40,
+  "originalImages": 813,
+  "sourceInputs": 1047,
+  "compiledFiles": 236,
+  "sourceTarSha256": "272b0236a4af224cc9a1cf637bf7a60125dcd527c94345600699c8102ff8b41f",
+  "profileArchiveSha256": "e6729d98c8c2aba13d7aebcb90b86e3fdab7e151996bc06aeb0f6892844bdf2b",
+  "profileArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "receipts": {
+    "check-retry3": {
+      "sourceHead": "caec4dc90b778cde53b400b2adf8be15796ec423",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exitCode": 0,
+      "frozenBytesMatchFinalSource": true
+    },
+    "build-retry3": {
+      "sourceHead": "caec4dc90b778cde53b400b2adf8be15796ec423",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "540dfb4c70ebc56985f27902d86579ca64630c5134cbe7ca80c4e7ae817f7b17",
+      "exitCode": 0,
+      "frozenBytesMatchFinalSource": true
+    },
+    "coverage-retry1": {
+      "sourceHead": "caec4dc90b778cde53b400b2adf8be15796ec423",
+      "sourceFiles": 1047,
+      "compiledFiles": 0,
+      "logSha256": "9486a9a28ad8db975c19ab918038097094656de1149fc9ffe1f894989d656f20",
+      "exitCode": 0,
+      "frozenBytesMatchFinalSource": true
+    },
+    "hints-retry4": {
+      "sourceHead": "caec4dc90b778cde53b400b2adf8be15796ec423",
+      "sourceFiles": 1047,
+      "compiledFiles": 236,
+      "logSha256": "9d9c82cd72e5f24a304be72fcfaed21f8a17b255cf7cbbea6f321ba0bc5d7275",
+      "exitCode": 0,
+      "frozenBytesMatchFinalSource": true
+    },
+    "surfaces-retry9": {
+      "sourceHead": "caec4dc90b778cde53b400b2adf8be15796ec423",
+      "sourceFiles": 1047,
+      "compiledFiles": 236,
+      "logSha256": "dff7a098f1d22e8c9316fdb87d26bbc416c95c4fde3552c9f7719814066c1894",
+      "exitCode": 0,
+      "frozenBytesMatchFinalSource": true
+    }
+  },
+  "selectedImages": [
+    {
+      "recordedAt": "2026-10-16T07:04:13.351Z",
+      "phase": "hints-retry4",
+      "images": [
+        {
+          "path": "screenshots/annotation-hints-dark-150.png",
+          "sha256": "9e515f47e193be303986bd734ab878685f3c98693c57a69817ac64294b3a02c8",
+          "bytes": 35276,
+          "modifiedAt": "2026-10-16T07:02:38.327Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/annotation-hints-light-100.png",
+          "sha256": "ea48ec1082be328c598c178be78685de2f02102a0a408094a87d3bdc5ef3cca2",
+          "bytes": 67211,
+          "modifiedAt": "2026-10-16T07:01:58.461Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/branch-hints-dark-150.png",
+          "sha256": "a9db8340a665ca4cfc0f175b6faf908877056fe020bf3696bc47c862d776298d",
+          "bytes": 49515,
+          "modifiedAt": "2026-10-16T07:02:33.844Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/branch-hints-light-100.png",
+          "sha256": "e3e19a96a7120b78ab7be11e54367387ddcea6a2e26342a9470ce782cbd71b7b",
+          "bytes": 72127,
+          "modifiedAt": "2026-10-16T07:01:53.965Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/capacity-hints-dark-150.png",
+          "sha256": "52c8460d6275d2282de1a772e792da79e32f40f583d857bb4cae823115a501ca",
+          "bytes": 35977,
+          "modifiedAt": "2026-10-16T07:02:30.395Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/capacity-hints-light-100.png",
+          "sha256": "5dc41294ca54808d486f281e585a2148b20b184205e2dc972134f30b57f4e78c",
+          "bytes": 61881,
+          "modifiedAt": "2026-10-16T07:01:50.339Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-100.png",
+          "sha256": "bb97fff88a82312bbbaa97b322084770effda0147c5087322a9dec6069653929",
+          "bytes": 53534,
+          "modifiedAt": "2026-10-16T07:02:19.221Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-125.png",
+          "sha256": "c1142bacf32d5c1020cd16ba8542ce9decc9ff5e2923bf1e7561fb9c7a562eb6",
+          "bytes": 50334,
+          "modifiedAt": "2026-10-16T07:02:26.590Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-dark-150.png",
+          "sha256": "7dbf83d318b9ddd5b4f7507f6957652b473e33518fe9aec11d2f833cef684bfe",
+          "bytes": 57120,
+          "modifiedAt": "2026-10-16T07:02:35.430Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-100.png",
+          "sha256": "f04f18b551d51acc7649ba8bd59424a5cf0931091b453d1b278b8118dea52ec4",
+          "bytes": 74525,
+          "modifiedAt": "2026-10-16T07:01:55.487Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-125.png",
+          "sha256": "5d8487a582e29f86049c26e69c436221b5ccad8b99c37171ec8bb7aaf919c46a",
+          "bytes": 97786,
+          "modifiedAt": "2026-10-16T07:02:03.691Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/text-hints-light-150.png",
+          "sha256": "71172bb43bfc3b3b2938591fc73fa8e4fdd1ee9b89e87564e95ee86c2dab0983",
+          "bytes": 99013,
+          "modifiedAt": "2026-10-16T07:02:11.420Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/tree-hints-dark-150.png",
+          "sha256": "f679ab49f9950e28f5ea5cbbf7bfd54a0c6d783e7534011d20320ba13f2efe24",
+          "bytes": 54325,
+          "modifiedAt": "2026-10-16T07:02:32.618Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/tree-hints-light-100.png",
+          "sha256": "ca3c196421b8d5450156be530c3b98fa22c01f41b521074808380fcc5fe95b6b",
+          "bytes": 64107,
+          "modifiedAt": "2026-10-16T07:01:52.618Z",
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allImagesOfThisPhaseVisuallyReviewed": true,
+      "allNativeArtifactsVisuallyReviewed": false,
+      "completeReferenceParity": false,
+      "scope": "Original repository-native harness captures; existing BrowserWindow.capturePage and page.screenshot methods retained. Parent captures are not composited child-view captures. Narrow/high zoom images are viewport slices; the complete PDF/editor need not be simultaneously visible. Actual glyph faces, physical accessibility and reference runtime remain unverified."
+    },
+    {
+      "recordedAt": "2026-10-16T07:05:00.739Z",
+      "phase": "surfaces-retry9",
+      "images": [
+        {
+          "path": "screenshots/100-tooltip-light.png",
+          "sha256": "7dd0bed67e0a84436c90331fcf97f58e944cfe9d0f65b20c539685fab2ce4a67",
+          "bytes": 87158,
+          "modifiedAt": "2026-10-16T07:03:21.989Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/100-tooltip-dark.png",
+          "sha256": "aabea45e555385fffa35401c37c3fa69aa65f7b9e425218e916de1bc2ec00535",
+          "bytes": 80909,
+          "modifiedAt": "2026-10-16T07:03:25.194Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/101-tooltip-edge.png",
+          "sha256": "c52f01f2eec35d1d32446805d8a35bffa73d0209ae2a0d53831ab0256f2f8c73",
+          "bytes": 49398,
+          "modifiedAt": "2026-10-16T07:03:39.885Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/102-button-tooltip-disabled.png",
+          "sha256": "60c34aa4932ccd447221556daf28e8c7a8007d7f2bb363e775d026bfbc0b4f3b",
+          "bytes": 48052,
+          "modifiedAt": "2026-10-16T07:03:40.682Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/103-button-tooltip-long.png",
+          "sha256": "f095600b51f6dcb6db213c968277658620349e31f0d79ea8e2803287fc570a25",
+          "bytes": 53768,
+          "modifiedAt": "2026-10-16T07:03:41.321Z",
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allImagesOfThisPhaseVisuallyReviewed": false,
+      "allNativeArtifactsVisuallyReviewed": false,
+      "completeReferenceParity": false,
+      "scope": "Original repository-native harness captures; existing BrowserWindow.capturePage and page.screenshot methods retained. Parent captures are not composited child-view captures. Narrow/high zoom images are viewport slices; the complete PDF/editor need not be simultaneously visible. Actual glyph faces, physical accessibility and reference runtime remain unverified."
+    },
+    {
+      "recordedAt": "2026-10-16T07:54:42.177Z",
+      "phase": "full-retry2",
+      "images": [
+        {
+          "path": "screenshots/01-home-light.png",
+          "sha256": "ba34f676b23f660f05ab3bc1066ab0ebe512305e6d18d0a2219d47902bd67dde",
+          "bytes": 45985,
+          "modifiedAt": "2026-10-16T07:14:17.476Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/04-home-dark.png",
+          "sha256": "03999b80aa551b861f4076f332b48769828ec0172ea3e4bf750830d68a04c094",
+          "bytes": 53302,
+          "modifiedAt": "2026-10-16T07:15:17.592Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/inline-markdown-main-light-24-10-100.png",
+          "sha256": "8609393e9555f1065d34b9cb74b9d62d23d3d389394588990cbdcdc2b6d678b9",
+          "bytes": 86535,
+          "modifiedAt": "2026-10-16T07:16:19.747Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/inline-markdown-main-dark-10-24-150.png",
+          "sha256": "20badc942ef25e596c44fb03ce0298992991b6a59f92f518c94bdb408b798078",
+          "bytes": 39951,
+          "modifiedAt": "2026-10-16T07:16:29.297Z",
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/inline-markdown-quick-dark-10-default-150.png",
+          "sha256": "06306b1c8f9f07a6ae3cc6ead9055466d3ff106043a4b874e8a7c3b89496407a",
+          "bytes": 25223,
+          "modifiedAt": "2026-10-16T07:31:24.311Z",
+          "individuallyDisplayedAndReviewed": true
+        }
+      ],
+      "allImagesOfThisPhaseVisuallyReviewed": false,
+      "allNativeArtifactsVisuallyReviewed": false,
+      "completeReferenceParity": false,
+      "scope": "Five individually displayed original home and prose captures from the final full regression. Tooltip and control checks run as separate original native focused phases with the same 1047 source and 236 compiled bytes; the default full phase does not execute those focused flags. A viewport slice does not show all document/editor content simultaneously. Parent captures do not composite native child views. Full glyph, reference runtime and physical-system parity remain unverified."
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "unit": {
+    "testFiles": 137,
+    "tests": 1619,
+    "coverage": {
+      "lines": {
+        "total": 4540,
+        "covered": 4517,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7545,
+        "covered": 7322,
+        "skipped": 0,
+        "pct": 97.04
+      },
+      "functions": {
+        "total": 1679,
+        "covered": 1642,
+        "skipped": 0,
+        "pct": 97.79
+      },
+      "branches": {
+        "total": 5283,
+        "covered": 4997,
+        "skipped": 0,
+        "pct": 94.58
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "coverageBoundary": "Configured contracts, desktop services and settings draft logic. Renderer components/CSS and native scripts are excluded and separately exercised by the native harness. Release-policy scripts have unit assertions but are outside the configured V8 coverage include paths."
+  },
+  "tooltipLifecycle": {
+    "passed": true,
+    "observations": [
+      {
+        "stage": "cold hover",
+        "startedAt": 314.69999998807907,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 404.30000001192093
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 404.39999997615814
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 607.0999999642372
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "open handoff",
+        "startedAt": 719.8000000119209,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 810.0999999642372
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 811
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 811
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "recent closed handoff",
+        "startedAt": 817.0999999642372,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 903.3000000119209
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 904.3000000119209
+          },
+          {
+            "type": "pointerover",
+            "time": 997.5999999642372
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 998.3000000119209
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "expired handoff",
+        "startedAt": 1467.8999999761581,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 1560
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 1560
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 1773.3999999761581
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "pointer move after Escape",
+        "startedAt": 1874.0999999642372,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 1903.199999988079
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 1903.0999999642372
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 2118
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "pending leave",
+        "startedAt": 2283.099999964237,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 2372.399999976158
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 2372.399999976158
+          },
+          {
+            "type": "pointerover",
+            "time": 2466
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "pending Escape",
+        "startedAt": 3027.300000011921,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 3057.099999964237
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 3057.099999964237
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "pending window blur",
+        "startedAt": 3540.099999964237,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 3588.800000011921
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 3588.899999976158
+          },
+          {
+            "type": "blur",
+            "time": 3593.300000011921
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "hover after native focus return",
+        "startedAt": 4023.300000011921,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 4075.199999988079
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 4075.199999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4275.599999964237
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "keyboard focus",
+        "startedAt": 4469.399999976158,
+        "timers": [],
+        "events": [
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4470.5
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4470.899999976158
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4473.199999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4473.5
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "context menu dismissal",
+        "startedAt": 4580.099999964237,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 4626.899999976158
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4627.699999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 4665.300000011921
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "click suppression",
+        "startedAt": 4720.099999964237,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 4773.5
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 4773.599999964237
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 4981.099999964237
+          },
+          {
+            "type": "beforetoggle",
+            "state": "closed",
+            "time": 5020.399999976158
+          }
+        ],
+        "hintCount": 0
+      },
+      {
+        "stage": "fresh pointer entry after click",
+        "startedAt": 5403.199999988079,
+        "timers": [
+          {
+            "delay": 200,
+            "time": 5508.199999988079
+          }
+        ],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 5454.199999988079
+          },
+          {
+            "type": "pointerover",
+            "time": 5508.199999988079
+          },
+          {
+            "type": "beforetoggle",
+            "state": "open",
+            "time": 5716.899999976158
+          }
+        ],
+        "hintCount": 1
+      },
+      {
+        "stage": "synthetic touch guard",
+        "startedAt": 5775,
+        "timers": [],
+        "events": [
+          {
+            "type": "pointerover",
+            "time": 5779.300000011921
+          }
+        ],
+        "hintCount": 0
+      }
+    ],
+    "sourceOpenDelayMs": 200,
+    "sourceSkipIntervalMs": 300,
+    "clockAdvanced": false,
+    "originalTimeoutCallbacksRetained": true,
+    "focusEmulationDisabledOnlyDuringNativeBlur": true,
+    "originalFocusEmulationRestored": true,
+    "scope": "Actual source Electron input, popover events, unchanged timer delegation, native focus transfer to an owned sandboxed blank child window, keyboard and sidebar activation. The auxiliary window is destroyed and focus emulation restored. Touch uses a synthetic PointerEvent and is not physical touch acceptance. The default noninteractive branch closes immediately; the separate interactive grace triangle is outside this component."
+  },
+  "releasePolicy": {
+    "requiredSurfaceChecks": 5,
+    "lifecycleEvidenceRequired": true,
+    "priorFourCheckRecordsRejected": true,
+    "targetedTests": 124
+  },
+  "cancelledBaseline": {
+    "receipt": "E:\\NookVerification\\TooltipLifecycle-20261016\\full-cancelled\\cancellation.json",
+    "sha256": "e1382847b8b4fa0c8a99f77aba46c82f03d7fe621da6ed93583b6c1156c71fc9",
+    "reason": "Interrupted to update the release gate for the fifth surface check; forced cancellation is retained and is not normal-close acceptance."
+  },
+  "integration": {
+    "triggerFamilies": [
+      "Button",
+      "TextHint",
+      "ElementHint",
+      "Project tree row"
+    ],
+    "triggerClasses": 12,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "zoomFactors": [
+      1,
+      1.25,
+      1.5
+    ],
+    "activeEscapeConsumedBeforeQueuedCleanup": true,
+    "keyboardFixturePointerSeparated": true,
+    "nativeCapturesWaitForRenderedFrames": true,
+    "existingModalOwnershipAndPositioningRetained": true,
+    "referenceInteractiveGraceTriangleImplemented": false,
+    "actualReferenceRuntimeAndCustomThemesVerified": false,
+    "physicalTouchVerified": false,
+    "actualGlyphFaceVerified": false
+  },
+  "failures": [
+    {
+      "phase": "surfaces",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces",
+      "logSha256": "fc34be29dc678a1e53271dac560f85d8c6db1ebfd6f43d5307f7ef956ead6202",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-VjjQSg"
+    },
+    {
+      "phase": "surfaces-retry1",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces-retry1",
+      "logSha256": "21519e8ce5cf9c49bf7907dbac1074869fd923f39b5d8b127cc8160fc484371d",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-OI9gEm"
+    },
+    {
+      "phase": "surfaces-retry2",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces-retry2",
+      "logSha256": "edc0453a8f9add269a0f1c8051858275d404f797aad14fab3361e72db14cdd7e",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-0ZPpr3"
+    },
+    {
+      "phase": "surfaces-retry3",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces-retry3",
+      "logSha256": "be956d90a4fb8898d1f0b8e089acce35b3343672d58c9e516e144cb737e2e785",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-cnyKCl"
+    },
+    {
+      "phase": "surfaces-retry4",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces-retry4",
+      "logSha256": "9a3c1ceeb46460e814e9d345094c1cd29043f4fb788130c3d6af6fc9404fbba0",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-OTaa5V"
+    },
+    {
+      "phase": "surfaces-retry5",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\surfaces-retry5",
+      "logSha256": "72d1c535b3ce3b489c08af3555a2e8c5d4ca39806324cb8ed3e7c060108d384c",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-NMfMGS"
+    },
+    {
+      "phase": "hints",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\hints",
+      "logSha256": "1d77e2ebb2f875d21b280ad9db89e2c69d1be8867f291d31448979ac2e838c52",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-yssnsq"
+    },
+    {
+      "phase": "hints-retry1",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\hints-retry1",
+      "logSha256": "e39331a524837a5682a50b8840e6fa2ba4c2906e68af3f882d04f19cc0d37d93",
+      "checks": 0,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-oe9bXV"
+    },
+    {
+      "phase": "full-retry1",
+      "archive": "E:\\NookVerification\\TooltipLifecycle-20261016\\full-retry1",
+      "logSha256": "b282a14767c7981968d76b4b0687b5af57d6e042f5c1c83d2775f79d1648a5d2",
+      "checks": 58,
+      "retainedProfile": "D:\\GR\\pi-pc\\.firecrawl\\TooltipTemp-20261016\\qiyao-electron-cga4oo"
+    }
+  ],
+  "failureExplanations": {
+    "surfaces": "Old compiled product reproduced its independent 500ms delay before the new product was built.",
+    "nativeFocusFixture": "Retries 1-4 exposed Playwright focus emulation and actual OS focus ownership; the final fixture transfers focus to an owned sandboxed blank child window, verifies both native focus states, hides the child on return, and restores the original CDP setting.",
+    "surfaces-retry5": "The collapsing sidebar unmounted its button. The final click-suppression fixture uses a stable mounted New Chat control and verifies exact draft preservation.",
+    "textHints": "Both failed text-hint phases exposed Escape reaching the parent modal after queued global cleanup removed its document listener. Active hints now consume Escape before queued cleanup; the existing exact focus and modal assertions remain.",
+    "captureReview": "The passing hints-retry2 DOM checks had two stale high-zoom native frames. The final observer waits for two actual render frames and asserts the hint remains open before and after native capture; all 14 final images were individually reviewed.",
+    "full-retry1": "The unchanged strict clipboard restoration check failed after 58 checks: the empty Chromium internal source RFH token OS format was missing after restoration. This failure and all four normal exits are retained. No assertion, clipboard format filter or source change was used to accept the later rerun. Its root cause remains unconfirmed."
+  },
+  "legalAndWorkflowFilesRetained": 441,
+  "reference": {
+    "root": "E:/txt",
+    "version": "26.930.41038",
+    "build": 13022,
+    "currentManifestChecked": true,
+    "readonlyTrace": "D:/GR/pi-pc/.firecrawl/tooltip-lifecycle-reference-20261016.md",
+    "mainRootDefaultProviderAndOrdinaryConsumersTraced": true,
+    "originalFilesModified": false,
+    "extractedCodeExecuted": false,
+    "fullRuntimeParityVerified": false
+  },
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
