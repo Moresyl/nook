@@ -2,6 +2,8 @@
 
 ## 未发布
 
+- 明暗主题采用对应的默认正文前景色；共享按钮悬停底色分别采用前景 5%／白色 8%。行内代码使用中性混色背景，保留标题、粗体、斜体与链接的文字样式。
+- 主题与行内样式源码候选 `50bb4c1` 通过 406 项完整桌面检查、75 次正常退出，最长 3737ms，无强制结束。保留 40 份报告、813 张原图、1046 个源码输入与 236 个编译文件；32 张专项行内原图和 4 张本轮完整回归代表图逐张查看。类型、构建和 137 文件／1617 项单元通过；后续只调整原生剪贴板诊断文案，由最终桌面回归执行验证。安装、分发与全部设计对照仍待完成。[主题样式验收](verification/inline-markdown-validation-review-result.json)
 - 字号与代码表面源码候选 `8f62d89` 通过 404 项完整桌面检查、75 次正常退出，最长 1928ms，无强制结束；137 文件／1617 项单元、类型与构建通过。保留 40 份报告、781 张原图、1046 个源码输入与 236 个编译文件；4 张专项和 4 张完整回归代表图逐张查看，全部原图未全部视觉复核。新候选安装、分发及全部参考页面仍待验收。[字号表面验收](verification/markdown-font-validation-review-result.json)
 - 表格字号采用独立代码字号与正文相对字号的较大值，正文缩小时保留表格阅读下限；行内代码随所在段落或标题缩放，背景在换行处连续，混合方向文字保持隔离。
 - 普通代码块默认 12px、行高至少 20px，采用 20px 圆角与柔和角形、48px 标题栏和 36px 操作按钮；正文内距按窗口宽度调整，复制与自动换行保留原文。
@@ -68,6 +70,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 对齐默认正文与悬停颜色；行内代码背景随主题混色，嵌套在粗体、斜体、标题和链接中时保留原有文字样式。
 - 表格文字保留独立代码字号下限，调整对话文字时不会缩成难以阅读的小字；行内代码随段落和标题缩放，长内容换行保留连续背景与文字方向。
 - 普通代码块默认 12px、行高至少 20px，改用 20px 圆角、48px 标题栏和 36px 操作按钮，宽窗口增加正文内距。
 - 正文完善标题、列表、引用与汉字段落间距；普通用户消息采用 70% 宽度上限及 22px 圆角，主工作台和快速聊天保留长文与附件阅读。
@@ -96,6 +99,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Default text and action-hover colors follow their light/dark semantic roles. Inline code uses a neutral blended background while retaining heading, bold, italic and link styling.
 
 Nook brings multi-provider chat, model comparison, conversation branches, document retrieval, original PDF reading, project tools and local extensions into one workspace. Slash choices insert templates, assistants and projects without sending a message. Conversation task steps retain valid records and drafts across restart; they do not execute the plan themselves.
 
