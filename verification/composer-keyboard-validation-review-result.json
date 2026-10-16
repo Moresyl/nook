@@ -1,0 +1,294 @@
+{
+  "recordedAt": "2026-10-16T12:04:14.493Z",
+  "sourceHead": "5e5749462a8bc139a6a92135876817e176f5e349",
+  "status": "Standard complete source suite passed; distribution, hosted verification and reference parity remain separate.",
+  "changes": [
+    "Actual pointer movement selects composer rows while stationary-pointer mouseover cannot override keyboard selection.",
+    "The command fixture waits for exact draft and attachment persistence before its forced reload.",
+    "The MCP PDF verifier reports an explicit failed connect result before attempting disabled controls; no connection deadline or product connection fix."
+  ],
+  "successful": [
+    {
+      "phase": "check",
+      "sourceHeadAtRun": "ad32973e93adc2916d05edfba6638fd6f6de9239",
+      "actualExitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receiptPath": "E:\\NookVerification\\ComposerKeyboard-20261016\\check-exit.json",
+      "receiptSha256": "1c5bd54ff3b306d67057287893e62627c1d23f600b66205f752e9651c9911922",
+      "productAndCompiledInputsMatchCurrentSource": true
+    },
+    {
+      "phase": "build",
+      "sourceHeadAtRun": "ad32973e93adc2916d05edfba6638fd6f6de9239",
+      "actualExitCode": 0,
+      "logSha256": "0f0b21f258afb5662bbfd2490ed621ff62d7cc59e302f8fb1a52c84ebea7ecda",
+      "receiptPath": "E:\\NookVerification\\ComposerKeyboard-20261016\\build-exit.json",
+      "receiptSha256": "1022ca7aa39b2f0d752e47ab818ea8b1e914bb744889c1430c43a96a73cc4812",
+      "productAndCompiledInputsMatchCurrentSource": true
+    },
+    {
+      "phase": "composer",
+      "sourceHeadAtRun": "ad32973e93adc2916d05edfba6638fd6f6de9239",
+      "actualExitCode": 0,
+      "logSha256": "ba0ffb405914d75d00904d84165083240a968096d7f6e4b9e337933d945b5d02",
+      "receiptPath": "E:\\NookVerification\\ComposerKeyboard-20261016\\composer-exit.json",
+      "receiptSha256": "3c40c87f783ded1fb6b5b60a8ce56aa97ab65963d1581e0024765102cee98e1e",
+      "productAndCompiledInputsMatchCurrentSource": true
+    },
+    {
+      "phase": "commands-retry2",
+      "sourceHeadAtRun": "67dd384bdf7e484018f72c40e282bbd7483e3cfc",
+      "actualExitCode": 0,
+      "logSha256": "283e740fb9b9a52e370eb551929ad03c5ab9e5fc99e2ca759f4308c1db62cf45",
+      "receiptPath": "E:\\NookVerification\\ComposerKeyboard-20261016\\commands-retry2-exit.json",
+      "receiptSha256": "2ce4e28e417eaae5dc2e849e296d362fcd98808cdfa8bbb45ee2dbc154da1584",
+      "productAndCompiledInputsMatchCurrentSource": true
+    },
+    {
+      "phase": "mcp-pdf",
+      "sourceHeadAtRun": "30f9f7194d6bfb6260a79b0093728428b8efe3a0",
+      "actualExitCode": 0,
+      "logSha256": "6314327c2ea04c2ffe4d5db006f1724250dc61c1df88abac263f897b3234056c",
+      "receiptPath": "E:\\NookVerification\\ComposerKeyboard-20261016\\mcp-pdf-exit.json",
+      "receiptSha256": "e522e434e66cbffee89c63a9af01cc1eba14cba12130e8558efa7b7cabf57f30",
+      "productAndCompiledInputsMatchCurrentSource": true
+    }
+  ],
+  "completeSource": {
+    "acceptance": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry6\\acceptance.json",
+    "acceptanceSha256": "a2feec67d02e9815dab3063f65b90a1acc2be82fae197610fe1a349232b46e3e",
+    "checks": 406,
+    "normalExits": 75,
+    "forcedExits": 0,
+    "longestNormalExitMs": 1352,
+    "sourceFiles": 1047,
+    "compiledFiles": 236,
+    "profileArchiveIntegrityVerified": true,
+    "profileLinkRestoreRoundTripVerified": false
+  },
+  "focusedChecks": {
+    "composerActions": 7,
+    "commands": 6,
+    "mcpPdf": 8,
+    "diagnosticSeededWorktreeConversations": 4
+  },
+  "unit": {
+    "testFiles": 137,
+    "tests": 1619,
+    "runNotRepeated": true,
+    "continuityReceipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\unit-input-continuity-5e57494.json",
+    "continuityReceiptSha256": "74c84ff86ffa0b352f3e13557d3e77de245e586a008827e9ac5dde7775a3b20b",
+    "baselineCoverageReceipt": "E:/NookVerification/ControlMotion-20261016/coverage-exit.json",
+    "baselineCoverageReceiptSha256": "0012ccd62112144a224510e2dc68d4cae02cecac6df8d3d5821720e78253e884",
+    "changedInputs": [
+      "scripts/verify-commands.mjs",
+      "scripts/verify-composer-actions.mjs",
+      "scripts/verify-mcp-pdf.mjs",
+      "workbench/components/composer-actions.tsx"
+    ],
+    "boundary": "Existing V8-covered services, state, tests, dependencies and configuration remain byte-identical; renderer components and native scripts are exercised separately by the original desktop harness."
+  },
+  "selectedImages": [
+    {
+      "path": "E:\\NookVerification\\ComposerKeyboard-20261016\\composer-selected-images-review.json",
+      "sha256": "5df0b0a231aaea924ec689704555d1417954702665e8f8b6954e788dd62a19ac",
+      "images": [
+        {
+          "path": "screenshots/composer-actions-dark-100.png",
+          "sha256": "236cfc7bb9c6409bc37425c6aa75bccc1289a17c9ea3c8f8d452bcbaa771ae5d",
+          "bytes": 38180,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-dark-125.png",
+          "sha256": "b06148a2965fbc32118fe15c3ce38670954cbbe5b97a36fa76fffbe24d396747",
+          "bytes": 30809,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-dark-150.png",
+          "sha256": "f763b71a2f4f1168b4ad8de68029fe0d35ab1c9e884b658925372543b47f49d8",
+          "bytes": 30409,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-dark-100.png",
+          "sha256": "7ed12f99fdd856cbd39317642653a7a73eab0443b8b5b61d9fee647730e33fc0",
+          "bytes": 40698,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-dark-125.png",
+          "sha256": "cf656b94c625d3d7057297e34774381d3d0dced314eb065dcffe15eabcbf4375",
+          "bytes": 34694,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-dark-150.png",
+          "sha256": "cabcae97605585acf1a5f2e8053a543ab63bd18a3e75b2001f3ac5d7e7fb0ff6",
+          "bytes": 36311,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-light-100.png",
+          "sha256": "151005e48bbd37ff2b87b1045b70466aeea7b0bb63eaf8b2d9006fbcb29c4191",
+          "bytes": 42622,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-light-125.png",
+          "sha256": "5ca73d1b36c9890fbd90fd6d889fa31d54d2f10404a01ea2f3767a6c9a6bd21c",
+          "bytes": 37725,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-empty-light-150.png",
+          "sha256": "f05d81bc43b1f7e7e2e3d3902cb6d175de8ad1653f4fe84ad720be2a354c1382",
+          "bytes": 39160,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-light-100.png",
+          "sha256": "71776443e7dd6da72743fc5a3ed469eb7bc66e34a3542230409fe313b764db15",
+          "bytes": 39868,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-light-125.png",
+          "sha256": "e3d22fc8507067da6734975c12de5718236697412abb754cb714eca3e8d2106e",
+          "bytes": 33615,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/composer-actions-light-150.png",
+          "sha256": "110093fa3de9922298ccf7d8f0bb8b26497184a835c32fdb77f3a1f5e1fe3b96",
+          "bytes": 33424,
+          "individuallyDisplayedAndReviewed": true
+        }
+      ]
+    },
+    {
+      "path": "E:\\NookVerification\\ComposerKeyboard-20261016\\mcp-pdf-selected-images-review.json",
+      "sha256": "a4116a595c9c99c0e2166505649f5f6e8abb04727b66397ea2a88a17fc3de321",
+      "images": [
+        {
+          "path": "screenshots/mcp-pdf-dark-100.png",
+          "sha256": "96840061356717686316d18cb2af55bbbbd97014a06be6f543ee82fc7174e67b",
+          "bytes": 23305,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-dark-125.png",
+          "sha256": "cbfa7165a2da217f8e9ce2315aa6aebeb28add9a6068c152da0ba94572b5d099",
+          "bytes": 25861,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-dark-150.png",
+          "sha256": "c19e377815a86c8ee6d6846220bc22455e1f57d73d9d965b8a071046850a373c",
+          "bytes": 28453,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-light-100.png",
+          "sha256": "59071dd6551dbff0ad7b54dfb4a3c43b4add68928729a8f13350288e3e7a396f",
+          "bytes": 28116,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-light-125.png",
+          "sha256": "b9e586099a96f89e65441a34a2db83a551046efe193d6ee3086fffd5c33c0c57",
+          "bytes": 30281,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-light-150.png",
+          "sha256": "4bae4d9b96e17c5ef957532cb48ccc16de43e15535e1d95c8195726dc3633040",
+          "bytes": 33864,
+          "individuallyDisplayedAndReviewed": true
+        },
+        {
+          "path": "screenshots/mcp-pdf-restore-busy-shell.png",
+          "sha256": "b0ff450fe9a0193601c256507f4a4b30f380f5825cb3b99d089fe046cd62dcfa",
+          "bytes": 80881,
+          "individuallyDisplayedAndReviewed": true
+        }
+      ]
+    },
+    {
+      "path": "E:/NookVerification/WorktreeClose-20261016/retry1/selected-images-review.json",
+      "sha256": "0566c7bf74b0e754aa3cf5fec070a062c0da4cb5e6cf6577493d698482685886",
+      "images": [
+        {
+          "path": "screenshots/worktree-conversations-light-150-links-shell.png",
+          "sha256": "2ecfd7adadd7c75fde89b00308d32b4c1cb8f1c3122d7389e3d03a835684fd26",
+          "individuallyDisplayedAndReviewed": true,
+          "observation": "Native760x540 light150percent, selected new-chat action and complete focus ring visible; long title ellipsized; body scrolled to lower slice."
+        },
+        {
+          "path": "screenshots/worktree-conversations-dark-150-error-shell.png",
+          "sha256": "4f5ec28d70d31c48f7dbc5bc0da643018f6496c365e3745536c48d71474e0218",
+          "individuallyDisplayedAndReviewed": true,
+          "observation": "Native760x540 dark150percent, sanitized complete error at content top visible; body shows only upper worktree slice."
+        }
+      ]
+    }
+  ],
+  "selectedCompleteSourceImagesReceipt": "E:/NookVerification/ComposerKeyboard-20261016/full-retry6/selected-images-review.json",
+  "selectedCompleteSourceImagesReceiptSha256": "8e9bde144d394e4402614a88304a9e749214dd2d2954eebb574237516caf3225",
+  "allImagesVisuallyReviewed": false,
+  "failures": [
+    {
+      "phase": "full",
+      "checks": 117,
+      "receipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\full\\review.json",
+      "receiptSha256": "974e0663c4398e4ddbb8dc33c34282533b0ed082b1ecb99c8de4134373829d6b",
+      "fullSourceAccepted": false
+    },
+    {
+      "phase": "full-retry1",
+      "checks": 194,
+      "receipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry1\\review.json",
+      "receiptSha256": "50ac3416f680f3164f96363960a41433031ed18e845c7050a429d081f1557132",
+      "fullSourceAccepted": false
+    },
+    {
+      "phase": "full-retry2",
+      "checks": 258,
+      "receipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry2\\review.json",
+      "receiptSha256": "2be321a9a9f914bf12dac09e4c66de3b7447093548532e3c1937cbc4af66fbe4",
+      "fullSourceAccepted": false
+    },
+    {
+      "phase": "full-retry3",
+      "checks": 258,
+      "receipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry3\\review.json",
+      "receiptSha256": "cb148ffd3986f1564f09dd84ef86f787a2e1b30d2b25b857c589d666a8a35479",
+      "fullSourceAccepted": false
+    },
+    {
+      "phase": "full-retry5",
+      "checks": 344,
+      "receipt": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry5\\review.json",
+      "receiptSha256": "e9363a5fc44f502208350e460f36fb4298a15ab3b0238f5f02f9890c7eacc747",
+      "failure": "One native shutdown after JavaScript quit/exit exceeded the original ten-second guard; no cause or fix established.",
+      "fullSourceAccepted": false
+    }
+  ],
+  "diagnosticFull": {
+    "path": "E:\\NookVerification\\ComposerKeyboard-20261016\\full-retry4\\review.json",
+    "sha256": "6bc020dccb603c95cef430736e6a37d6b0dacc5d65fd63fbf2f1bb903bf9c3ff",
+    "checks": 406,
+    "normalExits": 75,
+    "fullSourceAccepted": false,
+    "timingObserverUsed": true
+  },
+  "intermittentMcpConnectionRootCauseEstablished": false,
+  "intermittentNativeShutdownRootCauseEstablished": false,
+  "legalAndWorkflowFilesRetained": 441,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": true,
+  "finalDistributionAccepted": false,
+  "completeReferenceParity": false,
+  "published": false
+}
