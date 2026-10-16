@@ -89,6 +89,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 修正分发记录校验仍要求旧版 9 项快速聊天检查的问题，现精确要求全部 13 项；旧记录和错误计数会被拒绝，原有布局、请求及数据保留检查继续有效。
 - 修复快捷选择列表滚动后，静止鼠标覆盖键盘所选结果的问题；保留首尾跳转、循环选择、实际鼠标移动与点击操作。
 - 复选框勾线采用两段渐进绘制，取消选中即时隐藏；修复连续点击标签选中文字的问题，保留原生键盘、禁用与半选状态，并遵循减少动画设置。
 - 普通提示采用 200ms 首次悬停、300ms 连续悬停窗口及即时键盘提示；离开、按下、右键和失焦及时关闭。修复 Escape 关闭提示时连带关闭父弹窗的问题，保留焦点、草稿和原文。
@@ -121,6 +122,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Release evidence now requires all 13 current quick-chat checks, rejecting legacy nine-check records and incorrect totals while preserving the existing layout, request and data-retention requirements.
 
 Slash-choice scrolling preserves the keyboard selection when an item moves beneath a stationary pointer. Actual pointer movement and clicks continue to select their intended items.
 
