@@ -19,6 +19,19 @@ async function preserveSystemClipboard() {
     }
     return result;
   }
+  function firstDifference(expected, actual) {
+    for (let index = 0; index < Math.max(expected.length, actual.length); index++) {
+      const before = new Map((expected[index] ?? []).map(row => [row.type, row.sha256]));
+      const after = new Map((actual[index] ?? []).map(row => [row.type, row.sha256]));
+      for (const type of new Set([...before.keys(), ...after.keys()])) {
+        if (before.get(type) !== after.get(type)) return {
+          item: index, type: type.replace('electron application/osclipboard;format=', 'os:').slice(0, 80),
+          expected: before.get(type)?.slice(0, 16) ?? null, actual: after.get(type)?.slice(0, 16) ?? null,
+        };
+      }
+    }
+    return { expectedItems: expected.length, actualItems: actual.length };
+  }
   async function snapshot(items) {
     const copies = [];
     for (const item of items) {
@@ -44,12 +57,12 @@ async function preserveSystemClipboard() {
       assert.equal(await clipboard.readText(), '');
       await clipboard.write(await snapshot(empty));
       const readback = await fingerprint(await clipboard.read());
-      assert.deepEqual(readback, expected, `Empty-text clipboard round trip changed MIME fingerprints: ${JSON.stringify({ expected, actual: readback })}`);
+      assert.deepEqual(readback, expected, `Empty-text clipboard round trip: ${JSON.stringify(firstDifference(expected, readback))}`);
       emptyPlainTextRoundTrip = true;
     } finally {
       if (backup.length) await clipboard.write(backup); else clipboard.clear();
       const restored = await fingerprint(await clipboard.read());
-      assert.deepEqual(restored, before, `Original clipboard restoration changed MIME fingerprints: ${JSON.stringify({ expected: before, actual: restored })}`);
+      assert.deepEqual(restored, before, `Original clipboard restoration: ${JSON.stringify(firstDifference(before, restored))}`);
     }
   }
   return { supported: true, formats: items.flatMap(item => item.types), emptyPlainTextRoundTrip };
