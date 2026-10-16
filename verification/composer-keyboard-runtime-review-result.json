@@ -1,0 +1,341 @@
+{
+  "recordedAt": "2026-10-16T13:48:57.884Z",
+  "sourceHead": "5e5749462a8bc139a6a92135876817e176f5e349",
+  "nativeMetadataHead": "6047f6e68ae17dc80e329c65441b6302b72dcccf",
+  "metadataHead": "f88e790777f8e0552d23eafd3e0fab29c91c096b",
+  "validationPolicyHead": "f88e790777f8e0552d23eafd3e0fab29c91c096b",
+  "changedValidationInputs": [
+    "scripts/release-policy.mjs",
+    "verification/release-policy.test.ts"
+  ],
+  "status": "Complete source, packaged and actual installed local acceptance passed. Hosted CI and publication remain separate.",
+  "completeChecksPerScope": 406,
+  "completeNativeScopes": [
+    "source",
+    "packaged",
+    "installed"
+  ],
+  "normalExitsPerScope": 75,
+  "longestNormalExitMs": {
+    "source": 1352,
+    "packaged": 1358,
+    "installed": 1440
+  },
+  "forcedExits": 0,
+  "originalDistributionPhasesPassed": 5,
+  "completeRuntimeRecords": 11,
+  "nativeSourceInputs": 1047,
+  "unchangedSourceInputs": 1045,
+  "frozenCompiledFiles": 236,
+  "nativeRunnersFixturesAndApplicationSourceByteIdentical": true,
+  "sourcePackagedAndInstalledHashesMatch": true,
+  "allThreeProfilesArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "priorMarkersRestored": 12,
+  "registrationVerified": true,
+  "shortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "executableSha256": "864c0e85af32c851c51b222eac0c5fa68b6714a0ccfdb39a29e50c3d09e2461e",
+  "archiveSha256": "202ec458e22cc01602c10487d64b6520d7f02b9d9b6bea38abbc5ccbe02c72ab",
+  "artifacts": [
+    {
+      "kind": "Setup",
+      "path": "D:\\GR\\NookRelease-20261016\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240170460,
+      "sha256": "c5ecbd8afbbed1dffe5df0fa58b6fcd9f53b6a304dee0d15c08806365d4a7251",
+      "signature": "NotSigned"
+    },
+    {
+      "kind": "Portable",
+      "path": "D:\\GR\\NookRelease-20261016\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309690360,
+      "sha256": "02d30b6aa185ed98c550555cfbc47e9aa78aef5454719445e9dae568159a8dea",
+      "signature": "NotSigned"
+    }
+  ],
+  "signatures": [
+    {
+      "Path": "D:\\GR\\NookRelease-20261016\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    },
+    {
+      "Path": "D:\\GR\\NookRelease-20261016\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    }
+  ],
+  "focusedOriginalsIndividuallyReviewed": {
+    "controls": 26,
+    "textHints": 14
+  },
+  "selectedPackagedVisuals": 6,
+  "selectedInstalledVisuals": 4,
+  "localDistributionAccepted": true,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "allFullSuiteImagesVisuallyReviewed": false,
+  "reference100PercentVerified": false,
+  "physicalInstallerWizardVerified": false,
+  "freshUnitFiles": 137,
+  "freshUnitTests": 1621,
+  "coverage": {
+    "lines": {
+      "total": 4540,
+      "covered": 4517,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7545,
+      "covered": 7322,
+      "skipped": 0,
+      "pct": 97.04
+    },
+    "functions": {
+      "total": 1679,
+      "covered": 1642,
+      "skipped": 0,
+      "pct": 97.79
+    },
+    "branches": {
+      "total": 5283,
+      "covered": 4997,
+      "skipped": 0,
+      "pct": 94.58
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "unitScope": "Fresh complete unit coverage passed after the release-validator and unit-fixture correction. Coverage includes the configured contracts/services/settings state, while native renderer behavior is covered separately by the original desktop suite. The accepted native suites ran the identical application and native fixtures before this isolated validation-only correction.",
+  "releasePolicyCorrection": "Requires the exact 13 current quick-chat checks and 24 unique minimum-window states across both themes and three zooms, including long user messages. Rejects legacy 9/18 records, wrong totals, missing, duplicate and clipped layouts. Both original failed runtime attempts are retained.",
+  "historicalFailures": "Earlier MCP initial-connect and native-shutdown failures remain separately archived with root cause unestablished. These passing runs do not claim those roots fixed.",
+  "evidence": [
+    {
+      "name": "source-acceptance",
+      "path": "E:/NookVerification/ComposerKeyboard-20261016/full-retry6/acceptance.json",
+      "bytes": 369458,
+      "sha256": "a2feec67d02e9815dab3063f65b90a1acc2be82fae197610fe1a349232b46e3e"
+    },
+    {
+      "name": "packaged-acceptance",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/full/acceptance.json",
+      "bytes": 167476,
+      "sha256": "5e225820578e6626041e42e1b91a2e25baf18abe4e57f0dd27eaa2d7c0786a8d"
+    },
+    {
+      "name": "installed-acceptance",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/installed/acceptance.json",
+      "bytes": 169237,
+      "sha256": "52fd9fb6155ec4381c60d19ce23568ac3848ab09d7daf13337a7be02bca49dc9"
+    },
+    {
+      "name": "fresh-unit-coverage",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/policy-coverage-retry1-exit.json",
+      "bytes": 165256,
+      "sha256": "ef4e47d12a4c8e24aa9c129b8fcc45300cb52659d110ea55b0c0abeef2f36fc1"
+    },
+    {
+      "name": "validation-policy-continuity",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/validation-policy-continuity-retry1.json",
+      "bytes": 1904,
+      "sha256": "5190001f2aa5a53c07c7e8b83f5a196a94cceaf5d89c5f84979cf317df990acc"
+    },
+    {
+      "name": "surfaces-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/surfaces-exit.json",
+      "bytes": 864,
+      "sha256": "7faf162aa73ad25b5da87371010bf632ae780974c06e55345ea3786e5e2a7417"
+    },
+    {
+      "name": "surfaces-archive-review",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/surfaces/review.json",
+      "bytes": 5811,
+      "sha256": "0696d769975f4c0d094d03d3e6d6db2c2dc162b6c7163ab4fb167fc58bef223f"
+    },
+    {
+      "name": "text-hints-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/text-hints-exit.json",
+      "bytes": 868,
+      "sha256": "3140bf28278301d36d1519b2e9ad4c1627f94a0fd240908d755a2012bdc897db"
+    },
+    {
+      "name": "text-hints-archive-review",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/text-hints/review.json",
+      "bytes": 3721,
+      "sha256": "12cc26fc3b811d95f8b61b147d40411c7e81581a489e84788391327d29cf6d9b"
+    },
+    {
+      "name": "renderer-close-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/renderer-close-exit.json",
+      "bytes": 876,
+      "sha256": "6ac52b56c0cada3a3d15f9263728ec724670a9be0cdc1db66fb8634686650f28"
+    },
+    {
+      "name": "renderer-close-archive-review",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/renderer-close/review.json",
+      "bytes": 1304,
+      "sha256": "106a11a85fc626af247f20adcbaa61715d41c37ad96bfc5564ca37e1743157e2"
+    },
+    {
+      "name": "bootstrap-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/bootstrap-exit.json",
+      "bytes": 871,
+      "sha256": "f38af12db7670180e7d7d06600ddb3feca0e902a4cfddab30e80a844f9d39828"
+    },
+    {
+      "name": "bootstrap-archive-review",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/bootstrap/review.json",
+      "bytes": 1041,
+      "sha256": "32ee0f10c6b6d7400aaadfec294481f8d4cb167ed166c1b6545b7573deb24a9c"
+    },
+    {
+      "name": "portable-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/portable-exit.json",
+      "bytes": 865,
+      "sha256": "ea497f0bb7d5defd24328eb9141cecd968be43d3ad31d15f67be7ea151ace480"
+    },
+    {
+      "name": "portable-archive-review",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/portable/review.json",
+      "bytes": 1195,
+      "sha256": "ad103f365c90a0ee10a369a0a3fc2ea6a96f6755e7dc9f72aea89cdd1addd489"
+    },
+    {
+      "name": "runtime-exit",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/runtime-retry2-exit.json",
+      "bytes": 1024,
+      "sha256": "c6505e3dbf9fa769bb6378c006c9fe92723becadbaa11154fdb2ce8d64460dd0"
+    },
+    {
+      "name": "prior-runtime-failure",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/runtime-exit.json",
+      "bytes": 868,
+      "sha256": "aa7cf527e2e25fc3a038bae72fbe4280f3ccd842e39892ca906d073662f9e137"
+    },
+    {
+      "name": "prior-runtime-retry1-failure",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/runtime-retry1-exit.json",
+      "bytes": 1017,
+      "sha256": "5531538243e1c0f14e9b5143fc35efa0aef47dd60e4aca474356a8dd65eee818"
+    },
+    {
+      "name": "runtime-audit",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "a4c218188cd2dabae8b5dc7d7a98e15911f75dc59d0a83bdb6749aa2b5aaecff"
+    },
+    {
+      "name": "runtime-desktop",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\packaged-result.json",
+      "bytes": 708211,
+      "sha256": "2e817ed59a06dad652bab551aede270db3032c639b2a9f442f6351bc781b1e8b"
+    },
+    {
+      "name": "runtime-surfaces",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\surfaces-packaged-result.json",
+      "bytes": 18413,
+      "sha256": "ebf6ed49c227d40c0d4fc0a5467158a914668982486e4e816b991d510ac68df3"
+    },
+    {
+      "name": "runtime-preview",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\project-preview-packaged-result.json",
+      "bytes": 66201,
+      "sha256": "d942df273131141655a3722c7fc7bdf10d14aee9f9ea89e57387838bdef25550"
+    },
+    {
+      "name": "runtime-branches",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\conversation-branches-packaged-result.json",
+      "bytes": 11795,
+      "sha256": "ffc9fe06901bfedddfc3d7b487eab713b00af8bf5201902c3c95cb99d8f8b321"
+    },
+    {
+      "name": "runtime-temporary",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\temporary-conversations-packaged-result.json",
+      "bytes": 2035,
+      "sha256": "36277842fce18d8d1b084f5670804250661b45a8ec050cb3a5fbcd404f6c6d44"
+    },
+    {
+      "name": "runtime-comparisons",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\model-comparisons-packaged-result.json",
+      "bytes": 7080,
+      "sha256": "480a3d3b483077d1a45749951d47adb7af9f84e8800b868b092f5dc651b331e2"
+    },
+    {
+      "name": "runtime-portable",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\portable-result.json",
+      "bytes": 2092,
+      "sha256": "4a8be4df30be90c81b7aa163b8bdc2fc4921c293f27df26487469827dc4f72e4"
+    },
+    {
+      "name": "runtime-portableAudit",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\portable-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "086f70117a6cb3e6005377b32a2014921491cf5fe9f66776763e1348b5a4eb1b"
+    },
+    {
+      "name": "runtime-bootstrap",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "beaf209deab4a4cc0971f234534e74d63869c5ae4692f4d096b8cf17da6615b4"
+    },
+    {
+      "name": "runtime-installer",
+      "path": "E:\\NookVerification\\ComposerDistribution-20261016\\runtime-records\\pipeline-installer-result.json",
+      "bytes": 780,
+      "sha256": "d869894e2d5a76baaa591c97352ec62a061aa58c65a9fe2e51b2954fd8aad773"
+    },
+    {
+      "name": "marker-restoration",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/installer-markers/restoration-result.json",
+      "bytes": 1039,
+      "sha256": "f75cbf505e54ccdd29f24e11abcb6eaf24229cfd88b064d54d44d309aec5ecef"
+    },
+    {
+      "name": "selected-packaged-visuals",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/selected-images-review.json",
+      "bytes": 3609,
+      "sha256": "09cf091dd9d6d55ad3ab4f5db03719e99a4c3e26bd47a1acf04df7b53d2dd3bc"
+    },
+    {
+      "name": "all-focused-visuals",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/focused-images-review.json",
+      "bytes": 15037,
+      "sha256": "84c247ba0c92d3ef5c583ff3dcb3f956214c264a407178da769d9f7ea65b551f"
+    },
+    {
+      "name": "selected-installed-visuals",
+      "path": "E:/NookVerification/ComposerDistribution-20261016/installed/selected-images-review.json",
+      "bytes": 2623,
+      "sha256": "6f9a4cab90cf7022bdf4704128d0a282882eae7ae9d70f611748cefc323d08e5"
+    },
+    {
+      "name": "package-toolset",
+      "path": "D:/GR/pi-pc/.firecrawl/ComposerKeyboardPackage-20261016/toolset-exit.json",
+      "bytes": 719,
+      "sha256": "74954e97358c80c15925b1c16cd97b459c15f187cad6e76d2b184ab9a33b0927"
+    },
+    {
+      "name": "package-notices",
+      "path": "D:/GR/pi-pc/.firecrawl/ComposerKeyboardPackage-20261016/notices-exit.json",
+      "bytes": 718,
+      "sha256": "6b27f779c3fe1b44f1143bcbcf734fbce0ea62f6fe0a5d70fa953b16887506b9"
+    },
+    {
+      "name": "package-package",
+      "path": "D:/GR/pi-pc/.firecrawl/ComposerKeyboardPackage-20261016/package-exit.json",
+      "bytes": 719,
+      "sha256": "a9e39e563d6613c828e5a78fae8c4b175ba28761843a2173a53a2a807e64bde2"
+    },
+    {
+      "name": "package-audit",
+      "path": "D:/GR/pi-pc/.firecrawl/ComposerKeyboardPackage-20261016/audit-exit.json",
+      "bytes": 715,
+      "sha256": "811f7b887097af1bad36190158e95b6f29527a7b41f347a6d7783b3894e31a7a"
+    }
+  ]
+}
