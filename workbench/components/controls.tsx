@@ -31,7 +31,7 @@ export function Toggle({ label, checked, onChange, disabled = false }: { label: 
   return <label className={`toggle-label ${disabled ? 'disabled' : ''}`}><span>{label}</span><input type="checkbox" role="switch" disabled={disabled} checked={checked} onChange={(event) => onChange(event.target.checked)} /><span className="toggle-track" aria-hidden="true"><span /></span></label>;
 }
 export function Checkbox({ label, className = '', ...props }: Omit<ComponentProps<'input'>, 'type' | 'children'> & { label: ReactNode }) {
-  return <label className="checkbox-label"><span className="checkbox-control"><input {...props} type="checkbox" className={`checkbox-input ${className}`} /><span className="checkbox-mark" aria-hidden="true" /></span><span className="checkbox-text">{label}</span></label>;
+  return <label className="checkbox-label" onMouseDown={event => { if (!event.defaultPrevented && event.detail > 1) event.preventDefault(); }}><span className="checkbox-control"><input {...props} type="checkbox" className={`checkbox-input ${className}`} /><span className="checkbox-mark" aria-hidden="true" /></span><span className="checkbox-text">{label}</span></label>;
 }
 export function Empty({ icon, title, detail, action }: { icon: GlyphName; title: string; detail: string; action?: ReactNode }) {
   return <div className="empty"><div className="empty-glyph"><Glyph name={icon} size={28} /></div><h3>{title}</h3><p>{detail}</p>{action}</div>;

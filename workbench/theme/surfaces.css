@@ -142,11 +142,12 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .checkbox-input:disabled:checked { border-color: var(--lightningcss-light,var(--gray-300))var(--lightningcss-dark,var(--gray-200)); background: var(--lightningcss-light,var(--gray-300))var(--lightningcss-dark,var(--gray-200)); }
 .checkbox-label:has(.checkbox-input:disabled) { cursor: not-allowed; }
 .checkbox-text { min-width: 0; min-height: 20px; padding-left: 8px; font-size: 14px; line-height: 20px; overflow-wrap: anywhere; }
-.checkbox-mark { position: absolute; left: 1px; top: 1px; width: calc(16px * .64); height: calc(16px * .32); transform-origin: 50%; transform: rotate(-45deg) translate(-10%, 100%); opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; }
-.checkbox-input:is(:checked, :indeterminate) + .checkbox-mark { opacity: 1; }
-.checkbox-mark::before, .checkbox-mark::after { content: ''; display: block; position: absolute; background: var(--gray-0); }
-.checkbox-mark::before { left: 0; top: 0; bottom: 0; width: 2px; transition: opacity .2s; }
-.checkbox-mark::after { left: 0; right: 0; bottom: 0; height: 2px; }
+.checkbox-mark { position: absolute; left: 1px; top: 1px; width: calc(16px * .64); height: calc(16px * .32); transform-origin: 50%; transform: rotate(-45deg) translate(-10%, 100%); opacity: 0; pointer-events: none; transition: transform .15s; }
+.checkbox-input:is(:checked, :indeterminate) + .checkbox-mark { opacity: 1; transition: opacity .15s, transform .15s; }
+.checkbox-mark::before, .checkbox-mark::after { content: ''; display: block; position: absolute; background: var(--gray-0); transform: scale(0); }
+.checkbox-input:is(:checked, :indeterminate) + .checkbox-mark::before, .checkbox-input:is(:checked, :indeterminate) + .checkbox-mark::after { transform: scale(1); }
+.checkbox-mark::before { left: 0; top: 0; bottom: 0; width: 2px; transform-origin: 0 0; transition: transform .1s 80ms, opacity .2s; }
+.checkbox-mark::after { left: 0; right: 0; bottom: 0; height: 2px; transform-origin: 0 100%; transition: transform .1s .16s; }
 .checkbox-input:indeterminate + .checkbox-mark { transform: translate(30%, 80%); }
 .checkbox-input:indeterminate + .checkbox-mark::before { opacity: 0; }
 [data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::before, [data-theme="dark"] .checkbox-input:disabled + .checkbox-mark::after { background: var(--gray-100); }
