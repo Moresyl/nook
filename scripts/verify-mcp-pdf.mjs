@@ -12,7 +12,9 @@ export async function verifyMcpPdf({ page, application, getApplication, root, di
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/'))";
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
   await page.evaluate(async ({ id, name, fixture, command, providerId, endpoint, draftText }) => {
-    await window.qiyao.saveMcpServer({ id, name, transport: 'stdio', command, args: [fixture], enabled: true, timeout: 5000 }, { env: {} }); await window.qiyao.mcpConnect(id);
+    await window.qiyao.saveMcpServer({ id, name, transport: 'stdio', command, args: [fixture], enabled: true, timeout: 5000 }, { env: {} });
+    const startedAt = Date.now(), connection = await window.qiyao.mcpConnect(id);
+    if (connection.status !== 'connected') throw new Error(`The MCP PDF fixture did not connect: ${connection.status} after ${Date.now() - startedAt}ms.`);
     await window.qiyao.saveProvider({ id: providerId, name: 'PDF 文本验证连接', kind: 'openai', endpoint, models: ['verification-model'], hasKey: false }, 'local-verification-key');
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
     await window.qiyao.activateThread(); await window.qiyao.saveComposerDraft({ text: draftText, attachments: [{ id: 'mcp-pdf-existing', name: 'existing.txt', content: 'KEEP_EXISTING_ATTACHMENT' }], providerId, model: 'verification-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() });
