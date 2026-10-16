@@ -1,6 +1,18 @@
-import { cloneElement, createElement, useEffect, useId, useImperativeHandle, useLayoutEffect, useRef, useState, type HTMLAttributes, type PointerEvent, type ReactElement, type Ref, type RefObject } from 'react';
+import { cloneElement, createElement, useCallback, useEffect, useId, useImperativeHandle, useLayoutEffect, useRef, useState, type FocusEvent, type HTMLAttributes, type PointerEvent, type ReactElement, type Ref, type RefObject } from 'react';
 
 let dismissActive: (() => void) | undefined;
+let hoverReadyUntil = 0;
+const dismissals = new Set<() => void>();
+const dismissAll = () => { for (const dismiss of dismissals) dismiss(); hoverReadyUntil = 0; };
+const dismissOnEscape = (event: KeyboardEvent) => {
+  if (event.key !== 'Escape') return;
+  // Consume an active hint before queued cleanup can remove its document listener.
+  if (dismissActive) { event.preventDefault(); event.stopPropagation(); }
+  queueMicrotask(dismissAll);
+};
+const dismissOnDialog = (event: Event) => {
+  if (event.target instanceof HTMLDialogElement && (event as ToggleEvent).newState === 'open') dismissAll();
+};
 
 /** A non-interactive top-layer hint that stays inside its trigger's modal scope. */
 export function useControlTooltip<T extends HTMLElement = HTMLButtonElement>(text: string, positionAnchor?: RefObject<HTMLElement | null>) {
@@ -8,9 +20,33 @@ export function useControlTooltip<T extends HTMLElement = HTMLButtonElement>(tex
   const anchor = useRef<T>(null);
   const tip = useRef<HTMLSpanElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const opened = useRef(false);
+  const blocked = useRef(false);
+  const currentText = useRef(text); currentText.current = text;
   const [open, setOpen] = useState(false);
-  const hide = () => { clearTimeout(timer.current); setOpen(false); };
-  useEffect(() => () => clearTimeout(timer.current), []);
+  const hide = useCallback(() => {
+    clearTimeout(timer.current); timer.current = undefined;
+    if (opened.current) hoverReadyUntil = performance.now() + 300;
+    opened.current = false; setOpen(false);
+  }, []);
+  useEffect(() => {
+    if (!dismissals.size) {
+      window.addEventListener('blur', dismissAll);
+      window.addEventListener('keydown', dismissOnEscape, true);
+      document.addEventListener('beforetoggle', dismissOnDialog, true);
+    }
+    dismissals.add(hide);
+    return () => {
+      hide(); dismissals.delete(hide);
+      if (!dismissals.size) {
+        window.removeEventListener('blur', dismissAll);
+        window.removeEventListener('keydown', dismissOnEscape, true);
+        document.removeEventListener('beforetoggle', dismissOnDialog, true);
+        hoverReadyUntil = 0;
+      }
+    };
+  }, [hide]);
+  useEffect(() => { if (!text) hide(); }, [text, hide]);
   useLayoutEffect(() => {
     if (!open || !text || !anchor.current?.isConnected || !tip.current) return;
     const element = tip.current;
@@ -45,20 +81,25 @@ export function useControlTooltip<T extends HTMLElement = HTMLButtonElement>(tex
       window.removeEventListener('resize', hide);
       if (element.matches(':popover-open')) element.hidePopover();
     };
-  }, [open, text, positionAnchor]);
-  const enter = (event: PointerEvent<T>) => {
-    if (!text || event.pointerType === 'touch') return;
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setOpen(true), 500);
+  }, [open, text, positionAnchor, hide]);
+  const show = () => {
+    const element = anchor.current;
+    if (!currentText.current || !element?.isConnected || element.closest('[inert]')) return;
+    if (document.querySelector('dialog:modal') && !element.closest('dialog:modal')) return;
+    opened.current = true; setOpen(true);
   };
-  const leave = () => {
-    if (anchor.current === document.activeElement && anchor.current?.matches(':focus-visible')) return;
-    hide();
+  const move = (event: PointerEvent<T>) => {
+    if (!text || event.pointerType === 'touch' || blocked.current || opened.current || timer.current !== undefined) return;
+    if (dismissActive || performance.now() < hoverReadyUntil) show();
+    else timer.current = setTimeout(() => { timer.current = undefined; show(); }, 200);
   };
-  const focus = () => {
-    if (text && anchor.current?.matches(':focus-visible')) { clearTimeout(timer.current); setOpen(true); }
+  const enter = (event: PointerEvent<T>) => { blocked.current = false; move(event); };
+  const press = () => { blocked.current = true; hide(); };
+  const focus = (event?: FocusEvent<T>) => {
+    if (event?.defaultPrevented) { press(); return; }
+    if (text && anchor.current?.matches(':focus-visible')) { blocked.current = false; clearTimeout(timer.current); timer.current = undefined; show(); }
   };
-  return { anchor, description: open && text ? id : undefined, enter, leave, focus, hide,
+  return { anchor, description: open && text ? id : undefined, enter, move, leave: hide, focus, hide, press,
     content: text ? <span ref={tip} id={id} role="tooltip" popover="manual" className="control-tooltip">{text}</span> : null };
 }
 
@@ -70,11 +111,13 @@ export function ElementHint<T extends HTMLElement>({ text, children }: { text: s
   return <>{cloneElement(children, { ref: tooltip.anchor,
     'aria-describedby': [props['aria-describedby'], tooltip.description].filter(Boolean).join(' ') || undefined,
     onPointerEnter: event => { props.onPointerEnter?.(event); tooltip.enter(event); },
+    onPointerMove: event => { props.onPointerMove?.(event); tooltip.move(event); },
     onPointerLeave: event => { props.onPointerLeave?.(event); tooltip.leave(); },
-    onPointerDown: event => { props.onPointerDown?.(event); tooltip.hide(); },
-    onFocus: event => { props.onFocus?.(event); tooltip.focus(); },
+    onPointerDown: event => { props.onPointerDown?.(event); tooltip.press(); },
+    onContextMenu: event => { props.onContextMenu?.(event); tooltip.hide(); },
+    onFocus: event => { props.onFocus?.(event); tooltip.focus(event); },
     onBlur: event => { props.onBlur?.(event); tooltip.hide(); },
-    onClick: event => { tooltip.hide(); props.onClick?.(event); },
+    onClick: event => { tooltip.press(); props.onClick?.(event); },
   })}{tooltip.content}</>;
 }
 
@@ -84,10 +127,12 @@ export function TextHint({ as = 'span', text, children, tabIndex, ...props }: Om
   return <>{createElement(as, { ...props, ref: tooltip.anchor, tabIndex: tabIndex ?? (text ? 0 : undefined),
     'aria-describedby': [props['aria-describedby'], tooltip.description].filter(Boolean).join(' ') || undefined,
     onPointerEnter: event => { props.onPointerEnter?.(event); tooltip.enter(event); },
+    onPointerMove: event => { props.onPointerMove?.(event); tooltip.move(event); },
     onPointerLeave: event => { props.onPointerLeave?.(event); tooltip.leave(); },
-    onPointerDown: event => { props.onPointerDown?.(event); tooltip.hide(); },
-    onFocus: event => { props.onFocus?.(event); tooltip.focus(); },
+    onPointerDown: event => { props.onPointerDown?.(event); tooltip.press(); },
+    onContextMenu: event => { props.onContextMenu?.(event); tooltip.hide(); },
+    onFocus: event => { props.onFocus?.(event); tooltip.focus(event); },
     onBlur: event => { props.onBlur?.(event); tooltip.hide(); },
-    onClick: event => { tooltip.hide(); props.onClick?.(event); },
+    onClick: event => { tooltip.press(); props.onClick?.(event); },
   }, children)}{tooltip.content}</>;
 }

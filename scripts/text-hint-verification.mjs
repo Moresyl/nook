@@ -65,6 +65,8 @@ export async function assertTextHint(page, trigger, text, { hoverTarget = trigge
   assert.ok(Math.abs(parseFloat(borderWidth) * pixelRatio - 1) < .001, 'Tooltip border retains one physical pixel at every tested zoom');
   assert.equal(borderPixel[3], 13);
   for (const channel of borderPixel.slice(0, 3)) assert.ok(Math.abs(channel - (dark ? 223 : 255)) <= 10, 'Tooltip border retains its text color at five percent alpha');
+  // Keep keyboard acceptance independent of pointer leave during focus scrolling.
+  await page.mouse.move(1, 1); await hint.waitFor({ state: 'hidden' });
   await trigger.focus(); await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
   assert.equal(await trigger.evaluate(element => document.activeElement === element && element.matches(':focus-visible')), true);
   await hint.filter({ hasText: text }).waitFor();

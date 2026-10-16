@@ -8,11 +8,13 @@ export function Button({ tone = 'ghost', className = '', title, ref, ...props }:
   return <><button type="button" className={`button button-${tone} ${className}`} {...props} ref={tooltip.anchor}
     aria-describedby={[props['aria-describedby'], tooltip.description].filter(Boolean).join(' ') || undefined}
     onPointerEnter={event => { props.onPointerEnter?.(event); tooltip.enter(event); }}
+    onPointerMove={event => { props.onPointerMove?.(event); tooltip.move(event); }}
     onPointerLeave={event => { props.onPointerLeave?.(event); tooltip.leave(); }}
-    onPointerDown={event => { props.onPointerDown?.(event); tooltip.hide(); }}
-    onFocus={event => { props.onFocus?.(event); tooltip.focus(); }}
+    onPointerDown={event => { props.onPointerDown?.(event); tooltip.press(); }}
+    onContextMenu={event => { props.onContextMenu?.(event); tooltip.hide(); }}
+    onFocus={event => { props.onFocus?.(event); tooltip.focus(event); }}
     onBlur={event => { props.onBlur?.(event); tooltip.hide(); }}
-    onClick={event => { tooltip.hide(); props.onClick?.(event); }} />{tooltip.content}</>;
+    onClick={event => { tooltip.press(); props.onClick?.(event); }} />{tooltip.content}</>;
 }
 export function IconButton({ icon, label, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { icon: GlyphName; label: string }) {
   return <Button className="icon-button" aria-label={label} title={label} {...props}><Glyph name={icon} /></Button>;

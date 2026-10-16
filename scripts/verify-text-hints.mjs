@@ -10,6 +10,12 @@ import { documentBytes } from '../verification/attachment-fixtures.mjs';
 import { captureDesktopScreenshot } from './desktop-screenshot.mjs';
 
 export async function verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge }) {
+  const captureVisibleHint = async filename => {
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    assert.equal(await page.locator('.control-tooltip:popover-open').count(), 1, 'The hint must remain open before the rendered native capture');
+    await captureDesktopScreenshot(application, join(screenshots, filename));
+    assert.equal(await page.locator('.control-tooltip:popover-open').count(), 1, 'The native capture must not dismiss the hint');
+  };
   const projectId = randomUUID(); const providerId = randomUUID();
   const name = `项目 · ${'完整中文名称😀 <img src=x> '.repeat(4)}`.trim();
   const path = `提示 中文-${'完整路径_'.repeat(5)}.html`; const html = '<!doctype html><meta charset="utf-8"><h1>TEXT_HINT_PREVIEW_EVIDENCE</h1>';
@@ -40,7 +46,7 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
         if (!captureAnnotations) return;
         await page.mouse.move(1, 1); await trigger.hover(); await page.locator('.control-tooltip:popover-open').waitFor();
         const filename = `${kind}-hints-${theme}-${Math.round(zoom * 100)}.png`;
-        await captureDesktopScreenshot(application, join(screenshots, filename)); captures.push(filename);
+        await captureVisibleHint(filename); captures.push(filename);
         await page.keyboard.press('Escape');
       };
       await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
@@ -91,7 +97,7 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
       assert.equal(await application.evaluateMain(`${view}?.webContents.id`), id, 'Reading/dismissing a path hint must retain the native preview session');
       const filename = `text-hints-${theme}-${Math.round(zoom * 100)}.png`;
       await page.mouse.move(1, 1); await preview.hover(); await page.locator('.control-tooltip:popover-open').waitFor();
-      await captureDesktopScreenshot(application, join(screenshots, filename)); captures.push(filename);
+      await captureVisibleHint(filename); captures.push(filename);
       await page.keyboard.press('Escape');
       await page.getByRole('button', { name: '关闭预览', exact: true }).click();
       await page.keyboard.press('Control+n');
