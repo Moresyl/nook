@@ -29,7 +29,9 @@
   --field-border-focus: rgb(0 0 0 / 50%);
   --field-border-invalid: var(--red-500);
   --color-background-text-selection: #cce6ff;
-  --color-text-tooltip: #282828;
+  --color-text-tooltip: #ffffff;
+  --color-background-tooltip: var(--color-text);
+  --color-border-tooltip: #ffffff0d;
   --ds-danger: #e02e2a;
   --ds-success: #008635;
   --switch-track-color: var(--gray-150);
@@ -54,7 +56,9 @@
   --field-border-focus: rgb(255 255 255 / 50%);
   --field-border-invalid: var(--red-600);
   --color-background-text-selection: #013566;
-  --color-text-tooltip: #ededed;
+  --color-text-tooltip: var(--color-text);
+  --color-background-tooltip: #2d2d2d;
+  --color-border-tooltip: #dfdfdf0d;
   --ds-danger: #ff8583;
   --ds-success: #66d492;
   --switch-track-color: var(--gray-400);
@@ -63,7 +67,7 @@
   color-scheme: dark;
 }
 @supports (color: color-mix(in lab, red, red)) {
-  :root { --ghost-hover: color-mix(in oklab, var(--color-text) 5%, transparent); }
+  :root { --ghost-hover: color-mix(in oklab, var(--color-text) 5%, transparent); --color-border-tooltip: color-mix(in oklab, var(--color-text-tooltip) 5%, transparent); }
   [data-theme="dark"] { --ghost-hover: color-mix(in oklab, var(--gray-fixed-0) 8%, transparent); }
 }
 * { box-sizing: border-box; }
@@ -96,7 +100,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .button-danger { color: var(--ds-danger); }
 .button-danger:hover:not(:disabled) { background: color-mix(in srgb, var(--ds-danger) 10%, transparent); }
 .icon-button { width: 28px; height: 28px; padding: 4px; }
-.control-tooltip { position: fixed; inset: auto; margin: 0; width: max-content; max-width: min(300px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: hidden; padding: 8px 12px; border: 1px solid var(--ds-border); border-radius: 8px; background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: 0 8px 18px #0f172a33; font-size: 14px; font-weight: 400; line-height: 1.45; letter-spacing: -.15px; white-space: normal; overflow-wrap: anywhere; pointer-events: none; }
+.control-tooltip { position: fixed; inset: auto; margin: 0; width: max-content; max-width: min(20rem, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: hidden; padding: 5px 12px; border: 1px solid var(--color-border-tooltip); border-radius: var(--radius-2xl); background: var(--color-background-tooltip); color: var(--color-text-tooltip); box-shadow: 0 8px 18px #0f172a33; font-size: 14px; font-weight: var(--font-ui-weight); line-height: 18px; letter-spacing: -.15px; text-align: center; white-space: normal; overflow-wrap: anywhere; pointer-events: none; }
 .input { width: 100%; min-height: 22px; padding: 1px 8px; border: 1px solid var(--field-border); border-radius: var(--control-radius-sm); background: transparent; font-size: 12px; outline: none; }
 .input:not(.select, .textarea) { min-height: var(--control-size-md); padding: 0 var(--control-gutter-md); border: 0; border-radius: var(--control-radius-md); font-size: var(--control-font-size-md); font-weight: var(--font-weight-normal); box-shadow: inset 0 0 0 1px var(--field-border); transition: box-shadow .15s ease; }
 .input:not(.select, .textarea):hover:where(:not(:disabled)) { box-shadow: inset 0 0 0 1px var(--field-border-hover); }
@@ -712,7 +716,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .project-preview-divider:hover, .project-preview-divider:focus-visible { background: var(--ds-accent); outline: none; }
 .project-preview-pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; background: var(--ds-bg); }
 .project-preview-toolbar { display: flex; flex: none; align-items: center; flex-wrap: wrap; gap: 4px; min-height: 32px; padding: 4px 8px; border-bottom: 1px solid var(--ds-border); }
-.project-preview-toolbar > span { flex: 1; min-width: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--font-weight-medium); }
+.project-preview-toolbar > span:not([role="tooltip"]) { flex: 1; min-width: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--font-weight-medium); }
 .project-preview-toolbar > .button { flex: none; }
 .project-preview-viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; }
 .project-preview-status { padding: 16px; color: var(--ds-text-secondary); }

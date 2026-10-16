@@ -21,8 +21,8 @@ export function useControlTooltip<T extends HTMLElement = HTMLButtonElement>(tex
       if (!bounds) { hide(); return; }
       const size = element.getBoundingClientRect();
       const left = Math.max(8, Math.min(bounds.left + (bounds.width - size.width) / 2, innerWidth - size.width - 8));
-      const below = bounds.bottom + 6;
-      const top = below + size.height <= innerHeight - 8 ? below : Math.max(8, bounds.top - size.height - 6);
+      const above = bounds.top - size.height - 2;
+      const top = Math.max(8, above >= 8 ? above : Math.min(bounds.bottom + 2, innerHeight - size.height - 8));
       element.style.left = `${left}px`; element.style.top = `${top}px`;
     };
     place();

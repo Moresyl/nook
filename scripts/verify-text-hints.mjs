@@ -12,7 +12,7 @@ import { captureDesktopScreenshot } from './desktop-screenshot.mjs';
 export async function verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge }) {
   const projectId = randomUUID(); const providerId = randomUUID();
   const name = `项目 · ${'完整中文名称😀 <img src=x> '.repeat(4)}`.trim();
-  const path = '提示 中文.html'; const html = '<!doctype html><meta charset="utf-8"><h1>TEXT_HINT_PREVIEW_EVIDENCE</h1>';
+  const path = `提示 中文-${'完整路径_'.repeat(5)}.html`; const html = '<!doctype html><meta charset="utf-8"><h1>TEXT_HINT_PREVIEW_EVIDENCE</h1>';
   const draft = 'TEXT_HINT_RETAINS_DRAFT 中文 <literal>';
   const description = '最近请求输入是服务返回的实际用量，不是下一次发送的上下文估算。容量来自服务或手动设置。';
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/'))";
@@ -29,7 +29,7 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
     await window.qiyao.saveProvider({ id: providerId, name: '提示验证模型', kind: 'ollama', endpoint, models: ['hint-model'], hasKey: false,
       modelCatalog: [{ id: 'hint-model', source: 'manual', inputTokenLimit: 32768, outputTokenLimit: 8192 }] });
   }, { projectId, providerId, name, projectDirectory, endpoint });
-  const captures = []; const editorPathStates = [];
+  const captures = []; const editorPathStates = []; const hintStyles = [];
   for (const theme of ['light', 'dark']) {
     await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
     await page.reload();
@@ -50,7 +50,8 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
       const composer = page.getByLabel('消息', { exact: true }); await composer.fill(draft);
       const context = page.getByLabel('模型容量与最近请求', { exact: true });
       assert.match(await context.textContent(), /输入上限 32,768/);
-      await assertTextHint(page, context, description);
+      hintStyles.push({ theme, zoom, ...await assertTextHint(page, context, description) });
+      await captureHint(context, 'capacity');
       assert.equal(await composer.inputValue(), draft);
       await page.getByRole('button', { name: '项目', exact: true }).click();
       await page.locator('.project-list').getByRole('button', { name, exact: true }).click();
@@ -111,6 +112,6 @@ export async function verifyTextHints({ page, application, endpoint, projectDire
   verified('nested Unicode file-tree hints preserve roving keyboard focus, one tab stop, expanded parents, current-directory descriptions and exact file bytes');
   verified('actual long Git branch hints remain complete and keyboard-readable in both themes and all tested zoom factors');
   verified('actual PDF annotation hints preserve direct link rectangles, the 20px note button, inactive script links, external activation, internal navigation, escaped notes and draft text');
-  return { checks: 7, screenshots: captures, themes: ['light', 'dark'], zoomFactors: [1, 1.25, 1.5], triggers: 12, editorPathStates,
-    scope: 'Actual source Electron capacity, project heading/path, editor and native docked HTML path, nested file tree/current directory, Git branch and four PDF annotation descriptions. At short-window heights the existing file-tab hint exposes the hidden redundant action-bar path. Hover, keyboard, literal text, single active hint, 300px bound, reference dimensions, Escape and focus retained; draft and project bytes preserved. PDF activations retain native semantics and exact overlay geometry. Parent capture is not a composited native child-view capture. Physical accessibility, complete regression and final distribution remain separate.' };
+  return { checks: 7, screenshots: captures, themes: ['light', 'dark'], zoomFactors: [1, 1.25, 1.5], triggers: 12, editorPathStates, hintStyles,
+    scope: 'Actual source Electron capacity, project heading/path, editor and native docked HTML path, nested file tree/current directory, Git branch and four PDF annotation descriptions. At short-window heights the existing file-tab hint exposes the hidden redundant action-bar path. Hover, keyboard, literal text, single active hint, 320px/viewport bound, 16px radius, 5px/12px padding, 18px line height, 430 UI weight and semantic theme palette/border alpha, Escape and focus retained; draft and project bytes preserved. Border pixels are uncomposited CSS samples, not whole-image measurements. PDF activations retain native semantics and exact overlay geometry. Parent capture is not a composited native child-view capture. Physical accessibility, source runtime/custom themes, delay lifecycle, complete regression and final distribution remain separate.' };
 }

@@ -41,12 +41,30 @@ export async function assertTextHint(page, trigger, text, { hoverTarget = trigge
   assert.equal(await hint.locator('img').count(), 0);
   assert.equal(await trigger.getAttribute('title'), null);
   assert.equal(await trigger.getAttribute('aria-describedby'), await hint.getAttribute('id'));
-  assert.deepEqual(await hint.evaluate(element => {
+  const metrics = await hint.evaluate(element => {
     const rect = element.getBoundingClientRect(); const style = getComputedStyle(element);
+    const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
+    const context = canvas.getContext('2d'); context.fillStyle = style.borderTopColor; context.fillRect(0, 0, 1, 1);
     return { role: element.getAttribute('role'), font: style.fontSize, radius: style.borderRadius, padding: style.padding,
+      lineHeight: style.lineHeight, weight: style.fontWeight, align: style.textAlign, borderWidth: style.borderTopWidth,
+      whiteSpace: style.whiteSpace, overflowWrap: style.overflowWrap,
+      background: style.backgroundColor, color: style.color, borderPixel: [...context.getImageData(0, 0, 1, 1).data],
+      dark: document.documentElement.dataset.theme === 'dark', pixelRatio: devicePixelRatio,
+      mixSupported: CSS.supports('color', 'color-mix(in oklab, white 5%, transparent)'),
       fits: rect.left >= 7 && rect.top >= 7 && rect.right <= innerWidth - 7 && rect.bottom <= innerHeight - 7,
-      referenceWidth: rect.width <= 300.1, literalText: element.childElementCount === 0 };
-  }), { role: 'tooltip', font: '14px', radius: '8px', padding: '8px 12px', fits: true, referenceWidth: true, literalText: true });
+      referenceWidth: rect.width <= 320.1, literalText: element.childElementCount === 0,
+      unclipped: element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1 };
+  });
+  const { dark, pixelRatio, mixSupported, borderPixel, borderWidth, ...style } = metrics;
+  assert.deepEqual(style, { role: 'tooltip', font: '14px', radius: '16px', padding: '5px 12px', lineHeight: '18px', weight: '430',
+    align: 'center', whiteSpace: 'normal', overflowWrap: 'anywhere', background: dark ? 'rgb(45, 45, 45)' : 'rgb(26, 28, 31)',
+    color: dark ? 'rgb(223, 223, 223)' : 'rgb(255, 255, 255)', fits: true, referenceWidth: true, literalText: true, unclipped: true });
+  assert.equal(mixSupported, true, 'The actual Electron runtime must support the reference border blend');
+  assert.ok([1, 1.25, 1.5].includes(pixelRatio), 'The owned native harness fixes display scale and varies actual page zoom');
+  // Chromium snaps this one-CSS-pixel border to one device pixel at these zooms.
+  assert.ok(Math.abs(parseFloat(borderWidth) * pixelRatio - 1) < .001, 'Tooltip border retains one physical pixel at every tested zoom');
+  assert.equal(borderPixel[3], 13);
+  for (const channel of borderPixel.slice(0, 3)) assert.ok(Math.abs(channel - (dark ? 223 : 255)) <= 10, 'Tooltip border retains its text color at five percent alpha');
   await trigger.focus(); await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
   assert.equal(await trigger.evaluate(element => document.activeElement === element && element.matches(':focus-visible')), true);
   await hint.filter({ hasText: text }).waitFor();
@@ -57,4 +75,5 @@ export async function assertTextHint(page, trigger, text, { hoverTarget = trigge
   await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
   assert.equal(await trigger.evaluate(element => document.activeElement === element), true);
   assert.equal(await trigger.getAttribute('aria-describedby'), null);
+  return metrics;
 }

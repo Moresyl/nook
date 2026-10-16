@@ -240,7 +240,7 @@ async function assertIconTooltip(page, dialog, mode, screenshots) {
     const bounds = element.getBoundingClientRect(); const style = getComputedStyle(element);
     return { role: element.getAttribute('role'), inModal: Boolean(element.closest('dialog:modal')), fits: bounds.left >= 0 && bounds.top >= 0 && bounds.right <= innerWidth && bounds.bottom <= innerHeight,
       font: style.fontSize, radius: style.borderRadius, padding: style.padding, pointerEvents: style.pointerEvents };
-  }), { role: 'tooltip', inModal: true, fits: true, font: '14px', radius: '8px', padding: '8px 12px', pointerEvents: 'none' });
+  }), { role: 'tooltip', inModal: true, fits: true, font: '14px', radius: '16px', padding: '5px 12px', pointerEvents: 'none' });
   await page.screenshot({ path: join(screenshots, `100-tooltip-${mode}.png`) });
   await dialog.getByRole('heading', { name: '外观与交互', exact: true }).hover();
   await hint.waitFor({ state: 'hidden' });
@@ -266,8 +266,18 @@ async function assertTooltipEdges(page, screenshots) {
   assert.equal(await sidebar.evaluate(element => element === document.activeElement), true);
   // Move the owned window's icon temporarily to exercise the lower-edge flip.
   const originalStyle = await close.getAttribute('style');
-  await close.evaluate(element => { element.style.position = 'fixed'; element.style.inset = 'auto 8px 8px auto'; });
   try {
+    for (const [inset, above] of [['50% 8px auto auto', true], ['8px 8px auto auto', false]]) {
+      await close.evaluate((element, inset) => { element.style.position = 'fixed'; element.style.inset = inset; }, inset);
+      await page.getByRole('heading', { name: /./ }).first().hover();
+      await close.hover(); await hint.waitFor();
+      const buttonBounds = await close.boundingBox(); const hintBounds = await hint.boundingBox();
+      const gap = above ? buttonBounds.y - hintBounds.y - hintBounds.height : hintBounds.y - buttonBounds.y - buttonBounds.height;
+      assert.ok(Math.abs(gap - 2) <= .1, 'A centered hint prefers above at two pixels and a top-edge hint flips below at the same offset');
+      assert.ok(hintBounds.x >= 8 && hintBounds.y >= 8);
+      await page.keyboard.press('Escape'); await hint.waitFor({ state: 'hidden' });
+    }
+    await close.evaluate(element => { element.style.position = 'fixed'; element.style.inset = 'auto 8px 8px auto'; });
     await page.getByRole('heading', { name: /./ }).first().hover();
     await close.hover(); await hint.waitFor();
     const buttonBounds = await close.boundingBox(); const hintBounds = await hint.boundingBox();
