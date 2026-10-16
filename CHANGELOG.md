@@ -2,6 +2,15 @@
 
 ## 未发布
 
+- 快捷选择保留键盘选中的结果；列表滚动到静止鼠标下方时不再改变选择，移动鼠标仍可选中对应条目。
+- 明暗主题、对话与代码字号、表格与代码阅读、复选框和工具提示持续对齐桌面设计参考。
+- 统一使用简短名称 Nook，保留原始开源许可证与来源说明。
+
+当前版本仍待完整源码、分发和托管流水线验收，尚未发布。详细状态见[发布状态](docs/RELEASE.md)。
+
+<details>
+<summary>此前更新与逐轮验证记录</summary>
+
 - 复选框勾线分两段绘制，取消选中即时隐藏；连续点击标签不再选中文字，保留原生空格键切换及减少动画设置。
 - 复选框源码 `bb2d2ac` 的类型、构建、137 文件／1619 项单元及原生 10／7／5 项专项通过；完整回归和终端诊断复现退出超时，当前候选未通过完整验收，尚未发布。[当前验证与失败证据](verification/control-motion-validation-review-result.json)
 - 普通提示按当前参考的默认调用采用 200ms 首次悬停与 300ms 连续悬停窗口；移出、按下、右键、失焦和 Escape 关闭提示并清理等待。修复提示已打开时 Escape 连带关闭父弹窗的问题，键盘焦点和草稿保持。
@@ -47,6 +56,8 @@ Task records retain valid steps, exact tool history and unsent drafts across res
 
 [发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
 
+</details>
+
 ## [0.1.0-alpha.1]
 
 Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发。首个 Windows x64 预发布候选，尚未发布。
@@ -78,6 +89,7 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 修复快捷选择列表滚动后，静止鼠标覆盖键盘所选结果的问题；保留首尾跳转、循环选择、实际鼠标移动与点击操作。
 - 复选框勾线采用两段渐进绘制，取消选中即时隐藏；修复连续点击标签选中文字的问题，保留原生键盘、禁用与半选状态，并遵循减少动画设置。
 - 普通提示采用 200ms 首次悬停、300ms 连续悬停窗口及即时键盘提示；离开、按下、右键和失焦及时关闭。修复 Escape 关闭提示时连带关闭父弹窗的问题，保留焦点、草稿和原文。
 - 对齐默认正文与悬停颜色；行内代码背景随主题混色，嵌套在粗体、斜体、标题和链接中时保留原有文字样式。
@@ -109,6 +121,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Slash-choice scrolling preserves the keyboard selection when an item moves beneath a stationary pointer. Actual pointer movement and clicks continue to select their intended items.
 
 Checkbox marks draw in two stages and disappear immediately when cleared. Repeated label clicks avoid selecting text, while native keyboard behavior, disabled and mixed states, and reduced-motion preferences remain supported.
 

@@ -4,6 +4,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 ## 当前更新
 
+- 快捷选择在列表滚动后保留键盘所选结果，静止鼠标不再覆盖选择；实际鼠标移动和点击仍正常选择条目。
 - 复选框勾线分两段绘制，取消选中即时隐藏；连续点击标签不再选中文字，保留原生键盘、禁用与半选状态，并遵循减少动画设置。
 - 普通工具提示采用专用明暗颜色、紧凑内距和圆角，优先显示在控件上方，窗口边缘自动翻转；首次悬停 200ms、共享连续悬停窗口 300ms，移出和失焦即时关闭。长标题与路径完整换行，Escape 关闭活动提示时保留父弹窗和焦点。
 - 默认正文、共享悬停和行内代码底色按明暗主题调整；嵌套在标题、粗体、斜体或链接中时保留各自文字样式。
@@ -22,7 +23,12 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 ## 本地验收
 
-当前复选框源码 `bb2d2ac` 的类型、构建、137 文件／1619 项单元及独立原生 10／7／5 项专项通过。完整回归在 38 项后超过原有 10 秒退出期限，终端专项与转储诊断也复现；当前候选尚未通过完整回归。失败现场和匹配符号的诊断保留，根因未确定，发布门槛未降低。[当前验证与失败证据](../verification/control-motion-validation-review-result.json)
+本轮修复快捷选择中静止鼠标覆盖键盘选择的问题，并在命令插件的测试夹具直接刷新页面前确认草稿已持久化。类型和构建通过；独立快捷选择 7 项、命令 6 项、MCP PDF 8 项通过。带启动观测的完整诊断通过 406 项检查、75 次正常退出，最长 3999ms，无强制结束；此前 MCP PDF 的间歇连接失败根因尚未确定，仍需去掉观测参数后的标准完整回归，不能据此宣称已修复连接问题。
+
+<details>
+<summary>此前候选的完整验收记录</summary>
+
+此前复选框源码 `bb2d2ac` 的类型、构建、137 文件／1619 项单元及独立原生 10／7／5 项专项通过。完整回归在 38 项后超过原有 10 秒退出期限，终端专项与转储诊断也复现；该候选当时尚未通过完整回归。失败现场和匹配符号的诊断保留，根因未确定，发布门槛未降低。[对应验证与失败证据](../verification/control-motion-validation-review-result.json)
 
 以下完整通过结果均属于对应旧源码，不能替代当前候选验收。
 
@@ -78,6 +84,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 三轮各保留 40 份报告、633 张原图与完整性已验证的用户目录归档；每轮 633 张原图未全部视觉复核。单元覆盖率对应合同、桌面服务和设置草稿状态，不涵盖渲染器复制钩子或搜索排除规则；这些行为由新原生套件验证。完整单元运行保留实际 HEAD `86daaa4` 和当时差异，修正后构建保留实际 HEAD `7d60a55` 和当时差异，没有改写来源。安装版和便携版均未签名。
 
 [源码](../verification/rich-content-full-source-review-result.json) · [包内](../verification/rich-content-full-unpacked-review-result.json) · [实际安装](../verification/rich-content-full-installed-review-result.json) · [打包审计](../verification/rich-content-package-review-result.json) · [十一份匹配记录](../verification/rich-content-runtime-review-result.json) · [单元与覆盖率](../verification/rich-content-validation-review-result.json)
+
+</details>
 
 ## 发布与剩余范围
 
