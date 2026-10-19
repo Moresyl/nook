@@ -124,7 +124,7 @@ export async function verifySettingsSearch({ page, application, directory, scree
     await page.keyboard.press('Escape'); assert.equal(await settings().isVisible(), true); assert.equal(await confirmation().isVisible(), false);
     assert.equal(await application.evaluateMain('globalThis.nookSettingsDraftSave.calls'), 1);
     await application.evaluateMain('globalThis.nookSettingsDraftSave.release()'); await settings().getByRole('alert').waitFor();
-    assert.equal(await settings().getByRole('alert').locator(':scope > span:not([role])').textContent(), saveFailure);
+    assert.equal(await settings().getByRole('alert').locator('.toast-message').textContent(), saveFailure);
     assert.equal(await panel().getByLabel('服务器名称', { exact: true }).inputValue(), '未保存 MCP 中文😀'); assert.equal(await panel().getByLabel('访问令牌', { exact: true }).inputValue(), 'SETTINGS_MCP_PRIVATE_DRAFT');
     assert.equal(await panel().getByRole('button', { name: '保存服务器', exact: true }).isDisabled(), false); assert.deepEqual(await page.evaluate(async () => JSON.parse(JSON.stringify(await window.qiyao.load()))), before);
     if (beforeBytes) assert.deepEqual(await readFile(join(directory, 'workspace.json')), beforeBytes);
