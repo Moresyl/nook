@@ -1,0 +1,350 @@
+{
+  "recordedAt": "2026-10-19T03:58:33.158Z",
+  "sourceHead": "7625b5d06fbdc9c7009f41bfa1aa37c87da7b022",
+  "metadataHead": "d45fe13af9f208c003571e6c72445e3856c872d8",
+  "status": "Complete source, packaged and actual installed local acceptance passed. Hosted CI and publication remain separate.",
+  "completeChecksPerScope": 406,
+  "completeNativeScopes": [
+    "source",
+    "packaged",
+    "installed"
+  ],
+  "normalExitsPerScope": 75,
+  "forcedExits": 0,
+  "longestNormalExitMs": {
+    "source": 1393,
+    "packaged": 2328,
+    "installed": 1388
+  },
+  "originalDistributionPhasesPassed": 5,
+  "completeRuntimeRecords": 11,
+  "frozenSourceInputs": 1047,
+  "frozenCompiledFiles": 236,
+  "sourcePackagedAndInstalledApplicationHashesMatch": true,
+  "allThreeProfilesArchiveIntegrityVerified": true,
+  "profileLinkRestoreRoundTripVerified": false,
+  "priorMarkersRestored": 12,
+  "registrationVerified": true,
+  "shortcutsVerified": true,
+  "uninstalled": true,
+  "userDataRetained": true,
+  "executableSha256": "3250191bba29d7295a01edb1c8e100c0399fe8e97bd76c181d4ce6d58dcd0093",
+  "archiveSha256": "f70866bbe341bf42adbd2ebf96654f18da4fb242fd6a8ac8631a4bb206dc045a",
+  "artifacts": [
+    {
+      "kind": "Setup",
+      "path": "E:\\NookWorktrees\\code-flow-release-20261016\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240171169,
+      "sha256": "d7daf449a223c3c0fada4efa9c610dc829d85cef033db5257d8cfe6615c3bf73",
+      "signature": "NotSigned"
+    },
+    {
+      "kind": "Portable",
+      "path": "E:\\NookWorktrees\\code-flow-release-20261016\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309690402,
+      "sha256": "8f95824356cd36c3e5a84a01978ab299fc34fc80c15bfd2c3fc77ec9fc5d4a3d",
+      "signature": "NotSigned"
+    }
+  ],
+  "signatures": [
+    {
+      "Path": "E:\\NookWorktrees\\code-flow-release-20261016\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    },
+    {
+      "Path": "E:\\NookWorktrees\\code-flow-release-20261016\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "Status": "NotSigned"
+    }
+  ],
+  "selectedPackagedVisuals": 6,
+  "selectedInstalledVisuals": 6,
+  "focusedVisualsDirectlyReviewed": 17,
+  "focusedVisualsExactlyMatchingPriorReviewedImages": 23,
+  "localDistributionAccepted": true,
+  "originalMainUnchanged": true,
+  "hostedVerificationPassed": false,
+  "published": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "allFullSuiteImagesVisuallyReviewed": false,
+  "reference100PercentVerified": false,
+  "physicalInstallerWizardVerified": false,
+  "hostedObservationHead": "d45fe13af9f208c003571e6c72445e3856c872d8",
+  "hostedObservationUrl": "https://github.com/Moresyl/nook/actions/runs/38918430914",
+  "originalChromePublicationCompleted": false,
+  "unitFiles": 137,
+  "unitTests": 1622,
+  "coverage": {
+    "lines": {
+      "total": 4540,
+      "covered": 4517,
+      "skipped": 0,
+      "pct": 99.49
+    },
+    "statements": {
+      "total": 7545,
+      "covered": 7322,
+      "skipped": 0,
+      "pct": 97.04
+    },
+    "functions": {
+      "total": 1679,
+      "covered": 1642,
+      "skipped": 0,
+      "pct": 97.79
+    },
+    "branches": {
+      "total": 5283,
+      "covered": 4997,
+      "skipped": 0,
+      "pct": 94.58
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "changedInputsAfterUnit": [
+    "scripts/verify-rich-content.mjs"
+  ],
+  "unitBoundary": "Only the native observer/report script changed after this unit run. Product and unit-test bytes are identical; native observer changes ran in the subsequent focused native suite.",
+  "clipboardBoundary": "The code-copy renderer fixture intercepts writes. The original complete suite separately checks system clipboard round trips for table copying; this does not establish all physical-app paste behavior.",
+  "historicalFailures": "Earlier native shutdown and MCP connection failures are retained separately with root causes unresolved. A passing cohort does not establish that those failures were fixed.",
+  "evidence": [
+    {
+      "name": "source-acceptance",
+      "path": "E:/NookVerification/CodeFlow-20261016/full-archive/acceptance.json",
+      "bytes": 369817,
+      "sha256": "a15f44409ad6bcc04a359b6c495858994e7f7e7b7590be6753c20f966bb1cc48"
+    },
+    {
+      "name": "packaged-acceptance",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/full/acceptance.json",
+      "bytes": 167817,
+      "sha256": "87603042dffcc796d4baf49620602cb7ca62683248f3e159a8a0eb82f0f68d86"
+    },
+    {
+      "name": "installed-acceptance",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/installed/acceptance.json",
+      "bytes": 169578,
+      "sha256": "344c0da7a4afa0e03e5d1419081f1ed0e9fb1dd8d56dea509e1529de9f671de8"
+    },
+    {
+      "name": "source-focused-review",
+      "path": "E:/NookVerification/CodeFlow-20261016/focused-review.json",
+      "bytes": 6957,
+      "sha256": "b0963b063a187d551c5588ed85d81524bd42be37de51093d16dcbc3c67f9b9c5"
+    },
+    {
+      "name": "unit-coverage-receipt",
+      "path": "E:/NookVerification/CodeFlow-20261016/unit-exit.json",
+      "bytes": 183049,
+      "sha256": "d0ac9b8f1d862c0c8ce3c3ae18883d0ac870fb48e06074cdf781d4b542173e89"
+    },
+    {
+      "name": "full-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/full-exit.json",
+      "bytes": 822,
+      "sha256": "b1519a9390995650cf5a00fe41d7368b8dbd2406a38658ead01be36b78e2d78b"
+    },
+    {
+      "name": "surfaces-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/surfaces-exit.json",
+      "bytes": 830,
+      "sha256": "0e6ec3b27d38121dcd648c65f5d9305779fcb6258ce2591dbbe171056fb73abf"
+    },
+    {
+      "name": "surfaces-archive-review",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/surfaces/review.json",
+      "bytes": 5811,
+      "sha256": "33debe993da3491d9004ab217280261979ef3a83c6bbf3a657b53545a8c35e8e"
+    },
+    {
+      "name": "text-hints-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/text-hints-exit.json",
+      "bytes": 834,
+      "sha256": "d9ab2856669dc8bbf9799a0bc498174d4fede39ea8398be1f2473ced56fd234c"
+    },
+    {
+      "name": "text-hints-archive-review",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/text-hints/review.json",
+      "bytes": 3723,
+      "sha256": "50da8f39cd54fae19728d9a0d6b7e5d3c1940cbadbaf7eea22faf715e0deecda"
+    },
+    {
+      "name": "renderer-close-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/renderer-close-exit.json",
+      "bytes": 842,
+      "sha256": "d9c1e8e51cac2abfe949334b1b2156d835f793cbd939f2152c62e34c0cb9861f"
+    },
+    {
+      "name": "renderer-close-archive-review",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/renderer-close/review.json",
+      "bytes": 1304,
+      "sha256": "b5fee0db5b201f7d76282698223e87a5d42e5fe3cd9d45928b27d7e6143f6f65"
+    },
+    {
+      "name": "bootstrap-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/bootstrap-exit.json",
+      "bytes": 837,
+      "sha256": "afb3bd0f26c51678c4280a8ec8897ef07c0ae2dbcd79560e5e69778943d823a7"
+    },
+    {
+      "name": "bootstrap-archive-review",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/bootstrap/review.json",
+      "bytes": 1041,
+      "sha256": "9762bb759f8603c63de408c1b6b527f6a535fc8e97dd43fefe20201b05f343ac"
+    },
+    {
+      "name": "portable-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/portable-exit.json",
+      "bytes": 831,
+      "sha256": "9a9a82577afe3268d2004c9042c59783f498df6a48f542bc2f1293746e498cb9"
+    },
+    {
+      "name": "portable-archive-review",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/portable/review.json",
+      "bytes": 1195,
+      "sha256": "bfebc3645729604a8094c75ebdf62c248032254d9ee5963f5eef2d226c670e08"
+    },
+    {
+      "name": "runtime-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/runtime-exit.json",
+      "bytes": 834,
+      "sha256": "6a3da56072e434c73f167314d20ff8c787db1be50ba9354c1b270d4d01e25252"
+    },
+    {
+      "name": "runtime-audit",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "9c88388156130efec0c83f019684ff54c16e89ac485c4e18e7fa944009566c1a"
+    },
+    {
+      "name": "runtime-desktop",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\packaged-result.json",
+      "bytes": 709060,
+      "sha256": "928b5b0195468511084e3f2a2e893d492b0db44fe890f2012e4e3ebfc5a98277"
+    },
+    {
+      "name": "runtime-surfaces",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\surfaces-packaged-result.json",
+      "bytes": 18403,
+      "sha256": "859798fa30db268433cbf0d63a5d208006d54468e80fad62ade5f61c1c7cdf9d"
+    },
+    {
+      "name": "runtime-preview",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\project-preview-packaged-result.json",
+      "bytes": 66191,
+      "sha256": "7701151141a0886f66268a83d164aabb73e9bd370c26d5beb2918a0943a83f7d"
+    },
+    {
+      "name": "runtime-branches",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\conversation-branches-packaged-result.json",
+      "bytes": 11795,
+      "sha256": "08541404e21a2631c63618ea78b2408a2009a1e3fc74d04c9be5168405f8eb32"
+    },
+    {
+      "name": "runtime-temporary",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\temporary-conversations-packaged-result.json",
+      "bytes": 2035,
+      "sha256": "5cc4f8c94b4a7cf3d8fe31e6d106f64407d096818485e46889fb3c30fb319384"
+    },
+    {
+      "name": "runtime-comparisons",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\model-comparisons-packaged-result.json",
+      "bytes": 7080,
+      "sha256": "42d1dcb31f9354a834392aa5792813da95dce36372c3601ca28594b3065b4e4c"
+    },
+    {
+      "name": "runtime-portable",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\portable-result.json",
+      "bytes": 2092,
+      "sha256": "9d906ff57b02110a12ed3e9b1fffaf683ada50d6da1f84734ac8d285bce3191f"
+    },
+    {
+      "name": "runtime-portableAudit",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\portable-package-audit-result.json",
+      "bytes": 1289,
+      "sha256": "5c61412da82a31ee9206f71845e12ce3cf7b9e0cd7e99d492a25c75db81442bd"
+    },
+    {
+      "name": "runtime-bootstrap",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\distribution-bootstrap-result.json",
+      "bytes": 4195,
+      "sha256": "044e91e266f13a373b44cf9efb1677100ba4aede654167f050b0fd548dbb406c"
+    },
+    {
+      "name": "runtime-installer",
+      "path": "E:\\NookVerification\\CodeFlowDistribution-20261016\\runtime-records\\pipeline-installer-result.json",
+      "bytes": 780,
+      "sha256": "57714315ce2d231df145d437f56e268bd40f45069f8fb0317e2e5425a3c8c1d3"
+    },
+    {
+      "name": "marker-restoration",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/installer-markers/restoration-result.json",
+      "bytes": 1039,
+      "sha256": "b5b8b2bc17f558f87d486e4dac3dd737daaaaf47ab51e64b31ba615575ea66a1"
+    },
+    {
+      "name": "hosted-metadata-candidate-observation",
+      "path": "E:/NookVerification/CodeFlow-20261016/hosted-d45fe13.json",
+      "bytes": 16261,
+      "sha256": "7eb7ad280c04e1f2d05a44b18faf0ddb7b50aa0b7c95c7b86b4621c24df3400e"
+    },
+    {
+      "name": "original-chrome-observation",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/original-chrome-observation.json",
+      "bytes": 473,
+      "sha256": "1d0d94851561e38707270f7016e58cb8b1f5a0ef84b11eea8db2a2ffffccb86a"
+    },
+    {
+      "name": "selected-packaged-visuals",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/selected-images-review.json",
+      "bytes": 2670,
+      "sha256": "93d7d8cc1982c7b184c82ba5df7871e843af4a38e764b60073760a7bc96adcf6"
+    },
+    {
+      "name": "focused-visuals",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/focused-images-review.json",
+      "bytes": 22830,
+      "sha256": "d789a2174d93f93ca7dbeb90afd968b7f619a96caf1274ba9c5fb1097f7a1abe"
+    },
+    {
+      "name": "selected-installed-visuals",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/installed/selected-images-review.json",
+      "bytes": 2701,
+      "sha256": "8325e7a2bbaf3fde2a8c0de0d44c14bb9a616f137497e09987b18d9947ae9c63"
+    },
+    {
+      "name": "installed-exit",
+      "path": "E:/NookVerification/CodeFlowDistribution-20261016/installed-exit.json",
+      "bytes": 2111,
+      "sha256": "03ac5a0da71d1623dc751c71c271b2e91214601efa1bbe0c11c6b250019c8f9a"
+    },
+    {
+      "name": "package-toolset",
+      "path": "E:/NookVerification/CodeFlowPackage-20261016/toolset-exit.json",
+      "bytes": 203062,
+      "sha256": "c48379100830d49c9690f776717a511802c049b097abcee17f7a10be76a8bb33"
+    },
+    {
+      "name": "package-notices",
+      "path": "E:/NookVerification/CodeFlowPackage-20261016/notices-exit.json",
+      "bytes": 203061,
+      "sha256": "1962adb645b08b3e7de9c60f9c6894c8207432fcb04c2fd0db6697bc765c1fbb"
+    },
+    {
+      "name": "package-package",
+      "path": "E:/NookVerification/CodeFlowPackage-20261016/package-exit.json",
+      "bytes": 203062,
+      "sha256": "9fd47f3022b53a08db04cf6bf9b519e252cb489eebdacd13f24f85b788d46dcb"
+    },
+    {
+      "name": "package-audit",
+      "path": "E:/NookVerification/CodeFlowPackage-20261016/audit-exit.json",
+      "bytes": 203058,
+      "sha256": "144d76d0522943c50868362b0c995dee692cd6251e4f91da271dfe6494b8a846"
+    }
+  ]
+}
