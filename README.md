@@ -2,9 +2,9 @@
 
 本地 AI 工作台。连接模型，处理资料，推进项目。
 
-> 开发中的 Windows 桌面应用，尚未发布正式版本。界面与品牌正在更新。
+> Windows x64 桌面应用，尚未正式发布。
 
-![Nook 深色主题首页](docs/images/nook-home.png)
+![Nook 浅色主题首页](docs/images/nook-home.png)
 
 ## 一个窗口，完成日常工作
 

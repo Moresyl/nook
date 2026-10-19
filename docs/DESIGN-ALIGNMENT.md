@@ -6,7 +6,7 @@
 
 ## 当前采用
 
-当前新增候选是提示条与导航：类型、构建、138 文件／1627 项完整单元、5 项通知导航和 5 项原有控件专项通过，两张代表原图逐张查看；完整桌面与新分发尚待验收。此前长代码三轮通过记录仅证明此前应用体。[本次专项](../verification/reference-surfaces-validation-review-result.json)
+当前新增候选是提示条与导航：类型、构建、138 文件／1627 项完整单元、5 项通知导航和 5 项原有控件专项通过。源码 `b72d935` 完整通过 411 项检查、75 次正常退出，无强制结束；6 张源码代表原图逐张查看。新包三次完整回归因剪贴板恢复断言失败而未通过，安装验收未启动。此前长代码三轮通过记录仅证明此前应用体。[本次专项](../verification/reference-surfaces-validation-review-result.json) · [完整源码与分发进度](../verification/reference-surfaces-progress-review-result.json)
 
 | 表面 | 已采用的规格与行为 |
 | --- | --- |

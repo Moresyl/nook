@@ -28,9 +28,13 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 提示条与导航候选的最终完整单元 138 文件／1627 项通过，覆盖率 97.05%／94.59%／97.8%／99.49%；原有控件专项 5 项通过。覆盖率不包含渲染器 CSS 或原生脚本，不能据此宣称全部界面已验收。
 
-当前新增提示条与导航已通过类型、构建及 5 项原生专项，两张代表图逐张查看。新应用体的完整源码、包内和安装验收仍待完成；下面的长代码三轮结果只证明此前候选。[提示条与导航专项](../verification/reference-surfaces-validation-review-result.json)
+当前新增提示条与导航已通过类型、构建及 5 项原生专项。源码 `b72d935` 完整通过 **411 项检查、75 次正常退出、0 次强制结束**，最长正常退出 2124ms。1050 个输入、236 个编译文件一致，保留 41 份报告、817 张原图与完整性已验证工作区归档；6 张源码代表图逐张查看，README 首页图已更新。[提示条与导航专项](../verification/reference-surfaces-validation-review-result.json) · [完整源码与分发进度](../verification/reference-surfaces-progress-review-result.json)
 
-源码 `7625b5d` 的同一应用体已完成源码、包内程序和实际安装三轮完整验收，均通过 **406 项检查、75 次正常退出、0 次强制结束**。最长正常退出分别为 1393ms、2328ms 和 1388ms。1047 个源码输入、236 个编译文件和当前产物逐字节核对；三轮各保留 815 张原图及完整性已验证的测试工作区归档。[专项](../verification/code-flow-validation-review-result.json) · [完整源码](../verification/code-flow-full-source-review-result.json) · [完整分发](../verification/code-flow-runtime-review-result.json)
+安装版、便携版已生成并通过包审计，应用体与上述源码编译文件一致。包内富文本专项通过 16 项及 1 次正常退出；三次完整包内回归分别在 58／58／285 项后因原始剪贴板格式恢复失败而停止，均无强制结束。最后一次完成 36 次正常退出并通过主窗口剪贴板恢复，随后在快速聊天的 `image/bmp` 格式恢复失败。只读系统探针观察到格式列出但数据句柄不可用、随后外部剪贴板状态改变的情况，不能据此认定失败的精确根因。全部失败现场保留，原断言与时限未改；新包完整验收未通过，因此新安装及后续分发验收未启动。
+
+### 此前长代码候选
+
+源码 `7625b5d` 的同一应用体已完成源码、包内程序和实际安装三轮完整验收，均通过 **406 项检查、75 次正常退出、0 次强制结束**。最长正常退出分别为 1393ms、2328ms 和 1388ms。1047 个源码输入、236 个编译文件和此前产物逐字节核对；三轮各保留 815 张原图及完整性已验证的测试工作区归档。[专项](../verification/code-flow-validation-review-result.json) · [完整源码](../verification/code-flow-full-source-review-result.json) · [完整分发](../verification/code-flow-runtime-review-result.json)
 
 五项原始分发阶段与十一份匹配运行记录通过。实际中文路径安装、登记、快捷方式和保留数据卸载通过，十二个历史测试标记恢复后哈希一致。原始法律文件保留，239 个包内产品文件、401 份完整法律文件及 20 份分发来源文件通过审计；安装版与便携版均未签名。
 
@@ -108,7 +112,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是本地 AI �
 
 ## 发布与剩余范围
 
-本轮使用原仓库 `feat/control-motion` 分支和原 [Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，原主工作树与工作流保留。已核实说明提交 `d45fe13` 对应的[运行 38918430914](https://github.com/Moresyl/nook/actions/runs/38918430914)：验证任务执行零步骤后失败，平台指出账户付款失败或额度限制，发布任务跳过。后续说明提交的运行按各自提交另行核实。10 月 19 日 12:01 的原 Chrome 连接检查仍提示认证不可用，没有打开发布页面或改用其他浏览器。
+本轮使用原仓库 `feat/reference-surfaces` 分支和原 [Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，原主工作树与工作流保留。已核实应用提交 `b72d935` 对应的[运行 39203509889](https://github.com/Moresyl/nook/actions/runs/39203509889)：验证任务执行零步骤后失败，平台指出账户付款失败或额度限制，发布任务跳过。后续说明提交的运行按各自提交另行核实。本次原 Chrome 连接复核仍提示连接认证令牌不可用，没有打开发布页面或改用其他浏览器。
 
 界面依据 `E:/txt` 26.930.41038／build 13022；全部参考页面与交互尚未完成对照，不能宣称 100% 采用。其他实际系统 DPI、物理交互、辅助技术和真实服务仍需对应验收。原生安装向导与已通过的自动静默安装是不同范围。原流水线、账户设置与发布门槛保持有效；完成发布已获授权，无需再次确认。
 

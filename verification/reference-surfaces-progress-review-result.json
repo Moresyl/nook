@@ -1,0 +1,230 @@
+{
+  "verifiedAt": "2026-10-19T06:54:03.268Z",
+  "sourceHead": "b72d93596c42c1797029f14a4abe3da4f73a7919",
+  "version": "0.1.0-alpha.1",
+  "source": {
+    "checks": 411,
+    "normalExits": 75,
+    "forcedExits": 0,
+    "longestNormalExitMs": 2124,
+    "inputFiles": 1050,
+    "compiledFiles": 236,
+    "reportCount": 41,
+    "screenshotCount": 817,
+    "archive": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\acceptance.json",
+    "archiveSha256": "d89d3429a5cab89805277420010dced627adddc449ae7cb86920c2961c44a504",
+    "profileArchiveIntegrityVerified": true
+  },
+  "unit": {
+    "files": 138,
+    "tests": 1627,
+    "coverage": {
+      "lines": {
+        "total": 4558,
+        "covered": 4535,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7568,
+        "covered": 7345,
+        "skipped": 0,
+        "pct": 97.05
+      },
+      "functions": {
+        "total": 1687,
+        "covered": 1650,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5293,
+        "covered": 5007,
+        "skipped": 0,
+        "pct": 94.59
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "allCoveredFileBytesMatch": true,
+    "observerOnlyChangesAfterUnit": [
+      "scripts/verify-commands.mjs",
+      "scripts/verify-settings-search.mjs"
+    ]
+  },
+  "binaries": [
+    {
+      "path": "E:\\NookWorktrees\\reference-surfaces-release-20261019\\artifacts\\win-unpacked\\Nook.exe",
+      "sha256": "0cb82d43bcc275a3f1256ecf776c7aa0f507735c52a4f98a48be5cd074e7acea",
+      "bytes": 245726720
+    },
+    {
+      "path": "E:\\NookWorktrees\\reference-surfaces-release-20261019\\artifacts\\win-unpacked\\resources\\app.asar",
+      "sha256": "7327bb16eb8538d2d3d811e89ae62d7321fc6122049331e84f9048a0f786e15e",
+      "bytes": 494066109
+    },
+    {
+      "path": "E:\\NookWorktrees\\reference-surfaces-release-20261019\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "fc482098ff9e1343b7834d21413a9948952e11e4e5e2e4861a13af677d73c2ff",
+      "bytes": 240171572
+    },
+    {
+      "path": "E:\\NookWorktrees\\reference-surfaces-release-20261019\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "cfc907ccdf606e9c669efcd81f969456e371cf8d4b74c2798ef808cda9bb519f",
+      "bytes": 309691406
+    }
+  ],
+  "sourceAndReleaseFrozenInputsMatch": true,
+  "packaged": {
+    "fullAccepted": false,
+    "failedFullRuns": [
+      {
+        "phase": "full",
+        "passedBeforeFailure": 58,
+        "normalExits": 4,
+        "forcedExits": 0,
+        "longestNormalExitMs": 613,
+        "logSha256": "41ce16dc749e408555cd3b57fb542fd3f24e337721b94c7aadd017311489a244",
+        "failureArchive": "E:\\NookVerification\\ReferenceSurfacesDistribution-20261019\\full-failed",
+        "archivedOutputs": 110,
+        "reviewSha256": "78a8068bb910bfac58a4c47fc5ecce04a7fa0e52b857848b04ef1bfc9d0e5139",
+        "preciseOriginalWriterAndFailureRootCauseProven": false
+      },
+      {
+        "phase": "full-retry1",
+        "passedBeforeFailure": 58,
+        "normalExits": 4,
+        "forcedExits": 0,
+        "longestNormalExitMs": 569,
+        "logSha256": "96513d7174b93d4ebc6c80bbf43c121e04d90d31f2cc1e27819e7b9b97defccb",
+        "failureArchive": "E:\\NookVerification\\ReferenceSurfacesDistribution-20261019\\full-retry1-failed",
+        "archivedOutputs": 110,
+        "reviewSha256": "85843826d3b9de6e3ce1f9c22eb67d772faf895cbfa67e5fa9253e2ef6b0e9f3",
+        "preciseOriginalWriterAndFailureRootCauseProven": false
+      },
+      {
+        "phase": "full-retry2",
+        "passedBeforeFailure": 285,
+        "normalExits": 36,
+        "forcedExits": 0,
+        "longestNormalExitMs": 5685,
+        "logSha256": "7586d4930243f7dbe0eebe37eb067437ca814071981a884adfbc0a860f6c77c7",
+        "failureArchive": "E:\\NookVerification\\ReferenceSurfacesDistribution-20261019\\full-retry2-failed",
+        "archivedOutputs": 454,
+        "reviewSha256": "d6459bc8bd03f33449fb0d7ed71ccd9bd6c9e6d29a46483b82b93e31cd990e06",
+        "preciseOriginalWriterAndFailureRootCauseProven": false
+      }
+    ],
+    "focusedRich": {
+      "checks": 16,
+      "normalExits": 1,
+      "forcedExits": 0,
+      "archive": "E:\\NookVerification\\ReferenceSurfacesDistribution-20261019\\rich\\review.json"
+    },
+    "originalInstallerStagesStartedForThisCandidate": false
+  },
+  "clipboardObservation": {
+    "path": "E:\\NookVerification\\ReferenceSurfacesDistribution-20261019\\clipboard-readonly-observation.json",
+    "sha256": "ea441701c20292f6e474993509e25ca69095086b7975bd48f9a2d4852190a4c2",
+    "scope": "The observation predates the third failure. An initially readable native clipboard preflight did not prevent a later quick-chat restoration failure for image/bmp. Empty public payloads do not prove the underlying original data was empty.",
+    "assertionsFilteredOrWeakened": false,
+    "clipboardDeliberatelyChangedForRetry": false
+  },
+  "visualReview": {
+    "recordedAt": "2026-10-19T06:00:58.629Z",
+    "phase": "source",
+    "sourceHead": "b72d93596c42c1797029f14a4abe3da4f73a7919",
+    "images": [
+      {
+        "name": "01-home-light.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\01-home-light.png",
+        "sha256": "649816b0ec4d72c92a26e7df9449e771b76a3e7671194382d10779d600bb7271",
+        "width": 1280,
+        "height": 840,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Light home layout, readable sidebar labels and composer, with no notifications present."
+      },
+      {
+        "name": "03-settings-dark.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\03-settings-dark.png",
+        "sha256": "85d4e4e4139d15721979b6b377c442959f39cbade09d886db17893892f5d86a2",
+        "width": 1280,
+        "height": 840,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Dark settings categories and form controls retain visible labels and separate surfaces."
+      },
+      {
+        "name": "05-narrow.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\05-narrow.png",
+        "sha256": "0d807319ff9ed25661d54701c1ac14a80f503bd036f568518769d5a3094db3a5",
+        "width": 760,
+        "height": 620,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Narrow home layout preserves text navigation labels, composer controls and footer within the native window; this is a viewport slice."
+      },
+      {
+        "name": "09-narrow-approval.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\09-narrow-approval.png",
+        "sha256": "053c3f95289cb4ecadd5bde76d2936033bd050c68312e0be231c631ff61b7453",
+        "width": 760,
+        "height": 620,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Narrow approval dialog retains its content and explicit actions within the native window."
+      },
+      {
+        "name": "106-toast-queue-light.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\106-toast-queue-light.png",
+        "sha256": "e3e83cf935bb4ecd6546baef2bbbb8087186094200cbd330191feba23dd2388c",
+        "width": 1280,
+        "height": 840,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Three separate centered notification cards retain their own icon, text and close target above the preserved composer draft."
+      },
+      {
+        "name": "107-toast-modal-dark-narrow.png",
+        "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry2-archive\\screenshots\\107-toast-modal-dark-narrow.png",
+        "sha256": "c703e1b798f0bbdda969fcbb698a1d68f76597194fa6b200057d6dfbede41613",
+        "width": 760,
+        "height": 540,
+        "individuallyVisuallyReviewed": true,
+        "observation": "Native dark settings top-layer notifications retain close targets and wrap mixed-direction and unbroken text at 150 percent zoom; long messages occupy substantial vertical space."
+      }
+    ],
+    "allImagesVisuallyReviewed": false,
+    "fullReferenceParityVerified": false,
+    "physicalInteractionVerified": false
+  },
+  "readmeUsesAcceptedLightHomeImage": true,
+  "originalMainExactlyPreserved": {
+    "head": "7c9243b9f8b650a8c302843846a31d4405bc4c3d",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "indexSha256": "8519093e8e084a11389f6b0b879b54824ab16e797f55ce1b07bf7bb3176e663b"
+  },
+  "originalLegalIdentityAndWorkflowPreserved": true,
+  "twelveExistingMarkersHashVerified": true,
+  "hosted": {
+    "head": "b72d93596c42c1797029f14a4abe3da4f73a7919",
+    "url": "https://github.com/Moresyl/nook/actions/runs/39203509889",
+    "executedVerifySteps": 0,
+    "annotations": [
+      "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    ],
+    "releases": 0,
+    "accountSettingsChanged": false
+  },
+  "acceptance": {
+    "fullSourceAccepted": true,
+    "fullPackagedAccepted": false,
+    "newInstalledAccepted": false,
+    "published": false,
+    "completeReferenceAdoption": false,
+    "allImagesVisuallyReviewed": false,
+    "physicalInteractionVerified": false
+  },
+  "boundary": "This progress record does not satisfy the final three-run delivery helper. Failed package runs cannot certify this candidate, and earlier accepted binaries are retained as distinct artifacts. Source screenshot review covers six selected images, not all 817. Clipboard failure root causes and full reference parity remain unresolved."
+}
