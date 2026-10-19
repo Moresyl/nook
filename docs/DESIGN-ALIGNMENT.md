@@ -1,5 +1,7 @@
 # Nook 设计对照
 
+项目文件树行文字由 11px 调整为 13px，内容间距由 6px 调整为 5px，对应当前基础文件树实际传入的样式。类型、构建和 7 项原生项目专项通过，两次正常退出，三张代表原图逐张查看。既有高缩放工作区测试在 125%／150% 隐藏文件树，不能据此宣称高缩放文件树或完整工作区全部对齐。[文件树字号证据](../verification/project-tree-typography-review-result.json)
+
 最新提示条主题专项已核对普通消费者的后置样式：14px／21px 字号行高、4px 内容间距、浅／深专用错误色及关闭按钮悬停。类型、构建和 5 项原生检查通过，两张最终原图逐张查看。[主题专项证据](../verification/toast-theme-validation-review-result.json)
 
 图片查看器增加 4px 拖动启动过滤与 Home／End 首尾导航，继续使用现有缩放及视觉体系。后续完整单元已通过 139 文件／1637 项，两轮各 16 项原生附件专项通过，最终四张明暗与缩放原图逐张查看；本轮完整桌面与分发尚未验收。[图片交互证据](../verification/image-interaction-validation-review-result.json)

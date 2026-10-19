@@ -37,6 +37,11 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const input = () => page.locator('.project-main-panel:not([hidden]) .monaco-editor textarea.inputarea');
   const createdContents = `TREE_NEW_FILE_CONTENT😀${process.platform === 'win32' ? '\r\n' : '\n'}`;
   await item('source').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 200);
+  const treeTypography = await row('source').evaluate(element => {
+    const style = getComputedStyle(element), label = element.querySelector('.project-tree-label');
+    return { fontSize: style.fontSize, gap: style.columnGap, labelFontSize: getComputedStyle(label).fontSize, rowHeight: element.getBoundingClientRect().height };
+  });
+  assert.equal(treeTypography.fontSize, '13px'); assert.equal(treeTypography.labelFontSize, '13px'); assert.equal(treeTypography.gap, '5px'); assert.ok(treeTypography.rowHeight >= 28);
   for (const path of ['.git', 'node_modules', 'outside-link']) assert.equal(await item(path).count(), 0);
   const boundary = await page.evaluate(async ({ projectId, outside }) => { try { await window.qiyao.listDirectory(projectId, { path: outside }); return 'UNEXPECTED'; } catch (error) { return String(error); } }, { projectId, outside }); assert.match(boundary, /outside/); assert.ok(!boundary.includes('OUTSIDE_TREE_MUST_NOT_BE_READ'));
   await writeFile(join(root, '000-added.txt'), 'ADDED_BETWEEN_PAGES');
@@ -252,7 +257,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   return { page, result: {
-    checks: 7, projectCommandChecks: 2, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 7, projectCommandChecks: 2, treeTypography, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',

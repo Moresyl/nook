@@ -687,7 +687,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .editor-files-toolbar { flex-shrink: 0; }
 .editor-files .project-tree { flex: 1; min-height: 0; max-height: none; overflow: auto; }
 .project-tree-item { outline: none; min-width: 0; }
-.project-tree-row { display: flex; align-items: center; gap: 6px; min-height: 28px; padding: 4px; border-radius: var(--control-radius-sm); font-size: 11px; cursor: pointer; user-select: none; }
+.project-tree-row { display: flex; align-items: center; gap: 5px; min-height: 28px; padding: 4px; border-radius: var(--control-radius-sm); font-size: 13px; cursor: pointer; user-select: none; }
 .project-tree-row:hover, .project-tree-row.selected { background: var(--ghost-hover); }
 .project-tree-item:focus-visible > .project-tree-row { outline: 2px solid var(--color-ring); outline-offset: -2px; }
 .project-tree-chevron { display: flex; width: 12px; flex: none; }

@@ -1,0 +1,62 @@
+{
+  "verifiedAt": "2026-10-19T08:38:13.897Z",
+  "sourceBase": "4234f72a8fd1d9061048a4712af98b87da819761",
+  "sourceDiffSha256": "e87ea0c89c1947ef56bf9ce00a685b8ced5c4b7e9dc8bf4a11755f841c1b443f",
+  "change": "Project file-tree rows use 13px text and 5px item spacing; original navigation, drafts and directory boundaries retained.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "sourceInputs": 1053,
+  "compiledFiles": 236,
+  "native": {
+    "checks": 7,
+    "normalExits": 2,
+    "forcedExits": 0,
+    "exits": [
+      {
+        "elapsedMs": 459,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 287,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "modelRequests": 0,
+    "treeTypography": {
+      "fontSize": "13px",
+      "gap": "5px",
+      "labelFontSize": "13px",
+      "rowHeight": 28
+    },
+    "archivedOutputs": 12
+  },
+  "visualReview": [
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree\\verification\\screenshots\\95-project-tree-editor-light.png",
+      "sha256": "3226bf301d081b844b8727a7ab86b0b6a6e2c15d9fe42cbc004ff114ac229068",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree\\verification\\screenshots\\96-project-tree-dark-narrow.png",
+      "sha256": "69608ab4c9c813b3ae54e51390cc28ebbe2775964ee7e0e7e77b62d8d69c18b8",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree\\verification\\screenshots\\97-project-workspace-zoom-150.png",
+      "sha256": "af8870ed8e2752e9d46d12350bc6cbbd0c00642bfcda6c30aee0403355bf5b06",
+      "individuallyVisuallyReviewed": true
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Focused source check only. The inherited high-zoom workspace test hides the file tree at 125/150%; it is not proof of visible high-zoom tree parity. Previous full desktop clipboard and hosted billing blockers remain unresolved. Configured unit coverage was not rerun for this CSS and native-observer-only change."
+}
