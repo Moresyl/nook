@@ -6,7 +6,7 @@ export default defineConfig({
     maxWorkers: 1,
     coverage: {
       provider: 'v8',
-      include: ['contracts/**/*.ts', 'desktop/services/**/*.ts', 'workbench/lib/settings-drafts.ts'],
+      include: ['contracts/**/*.ts', 'desktop/services/**/*.ts', 'workbench/lib/settings-drafts.ts', 'workbench/lib/toasts.ts'],
       exclude: ['contracts/bridge-contract.ts'],
       reporter: ['text', 'json-summary', 'html'],
       thresholds: { lines: 80, functions: 80, statements: 80, branches: 80 },

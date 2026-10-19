@@ -44,6 +44,7 @@ const paths = {
   check: 'm5 12 4 4L20 5',
   list: 'M9 5h12 M9 12h12 M9 19h12 M3 5h1 M3 12h1 M3 19h1',
   circle: 'M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z',
+  alert: 'M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Z M12 7v6 M12 17h.01',
   file: 'M5 3h9l5 5v13H5V3Z M14 3v6h5 M8 13h8 M8 17h6',
   minimize: 'M5 12h14',
   maximize: 'M5 5h14v14H5V5Z',

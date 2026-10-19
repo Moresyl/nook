@@ -43,6 +43,7 @@ import { verifyReplyVersions } from './verify-reply-versions.mjs';
 import { verifyMessageEdits } from './verify-message-edits.mjs';
 import { verifyCommands } from './verify-commands.mjs';
 import { verifySurfaces } from './verify-surfaces.mjs';
+import { verifyToasts } from './verify-toasts.mjs';
 import { verifyMemories } from './verify-memories.mjs';
 import { verifyProjectTree } from './verify-project-tree.mjs';
 import { verifyProjectPreview } from './verify-project-preview.mjs';
@@ -533,6 +534,7 @@ async function launch() {
 }
 let suiteCompleted = false;
 let surfaceResult;
+let toastResult;
 let textHintResult;
 let memoriesResult;
 let projectPreviewResult;
@@ -741,6 +743,9 @@ try {
     const { verifyTextHints } = await import('./verify-text-hints.mjs');
     textHintResult = await verifyTextHints({ page, application, endpoint, projectDirectory, screenshots, verified, waitForBridge });
     assert.equal(count, 7); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+  } else if (process.env.NOOK_TEST_TOASTS_ONLY) {
+    toastResult = await verifyToasts({ page, application, screenshots, verified });
+    assert.equal(count, 5); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_SURFACES_ONLY) {
     surfaceResult = await verifySurfaces({ page, application, screenshots, verified, waitForBridge });
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
@@ -1258,6 +1263,7 @@ try {
   const desktopResult = await verifyDesktopIntegration({ page, application, getApplication: () => application, directory, endpoint, screenshots, waitForBridge, verified, restart: async (options) => { await application.close(options); return launch(); } }); page = desktopResult.page;
   assert.deepEqual(automationProviders.errors, []);
   await writeFile(join(root, 'verification', packaged ? 'desktop-integration-packaged-result.json' : 'desktop-integration-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - desktopStart, runtimeErrors: errors, ...desktopResult.result }, null, 2));
+  toastResult = await verifyToasts({ page, application, screenshots, verified });
   const assistantsStart = count;
   const assistantsResult = await verifyAssistantProfiles({ page, application, getApplication: () => application, directory, endpoint, screenshots, calls, waitForBridge, verified, restart: async () => { await application.close(); return launch(); } }); page = assistantsResult.page;
   await writeFile(join(root, 'verification', packaged ? 'assistant-profiles-packaged-result.json' : 'assistant-profiles-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', checks: count - assistantsStart, runtimeErrors: errors, ...assistantsResult.result }, null, 2));
@@ -1372,6 +1378,7 @@ try {
   if (fullResult && toolActivitiesResult) { fullResult.toolActivities = toolActivitiesResult; fullResult.screenshots.push(...toolActivitiesResult.screenshots.map(capture => capture.filename)); }
   if (fullResult && taskPlansResult) { fullResult.taskPlans = taskPlansResult; fullResult.screenshots.push(...taskPlansResult.screenshots); }
   if (fullResult && contextSummariesResult) { fullResult.contextSummaries = contextSummariesResult; fullResult.screenshots.push(...contextSummariesResult.screenshots); }
+  if (fullResult && toastResult) { fullResult.toasts = toastResult; fullResult.screenshots.push(...toastResult.screenshots); }
   suiteCompleted = true;
 } catch (error) {
   console.error(`Retained failed desktop verification directory: ${directory}`);
@@ -1465,6 +1472,13 @@ try {
   if (suiteCompleted && !closeError && textHintResult) {
     await writeFile(join(root, 'verification', packaged ? 'text-hints-packaged-result.json' : 'text-hints-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', runtimeErrors: errors, normalCloseVerified: true, modelRequests: calls.length, ...textHintResult }, null, 2));
     console.log(`Verified ${textHintResult.checks} focused text-hint checks and normal application close.`);
+  }
+  if (suiteCompleted && !closeError && toastResult) {
+    assert.deepEqual(errors, []);
+    const executableSha256 = packaged ? createHash('sha256').update(await readFile(process.env.QIYAO_TEST_EXECUTABLE)).digest('hex') : null;
+    const archiveSha256 = packaged ? createHash('sha256').update(await readFile(join(dirname(process.env.QIYAO_TEST_EXECUTABLE), 'resources', 'app.asar'))).digest('hex') : null;
+    await writeFile(join(root, 'verification', packaged ? 'toasts-packaged-result.json' : 'toasts-result.json'), JSON.stringify({ verifiedAt: new Date().toISOString(), variant: packaged ? 'packaged executable' : 'development executable', executableSha256, archiveSha256, runtimeErrors: errors, normalCloseVerified: true, verificationRun: fullResult ? 'complete desktop suite' : 'focused notification suite', ...toastResult }, null, 2));
+    console.log(`Verified ${toastResult.checks} notification checks and normal application close.`);
   }
   if (suiteCompleted && !closeError && surfaceResult) {
     assert.deepEqual(errors, []);

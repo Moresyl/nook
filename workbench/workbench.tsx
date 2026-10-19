@@ -31,6 +31,7 @@ import { KnowledgeLibrary } from './pages/knowledge-library';
 import { AutomationsPage } from './pages/automations';
 import { BrowserPage } from './pages/browser';
 import { Toast } from './components/toast';
+import { appendToast, type ToastMessage } from './lib/toasts';
 import { insertComposerPrompt, type ComposerQuery } from '../contracts/composer-actions';
 import { workspaceCommands, type ProjectView, type WorkspaceCommand, type WorkspacePage } from '../contracts/commands';
 import { CommandPalette } from './components/command-palette';
@@ -89,13 +90,15 @@ export function Workbench() {
   const [requestedTaskThread, setRequestedTaskThread] = useState<string | null>(null);
   const [search, setSearch] = useState<string | null>(null);
   const [findRequest, setFindRequest] = useState(0); const findContext = useRef<string | undefined>(undefined);
-  const [error, setError] = useState('');
+  const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const toastId = useRef(0);
   const [startupError, setStartupError] = useState('');
   const [renaming, setRenaming] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [editing, setEditing] = useState<{ thread: Thread; message: Message; context: Omit<SubmitRequest, 'text' | 'attachments' | 'replay'>; epoch: number } | null>(null);
   const report = useCallback((problem: unknown) => {
-    setError(uiErrorMessage(problem));
+    const item = { id: ++toastId.current, message: uiErrorMessage(problem) };
+    setToasts(current => appendToast(current, item));
   }, []);
   function updateDraft(change: Partial<ComposerDraft>) {
     if (change.text && change.text.length > 256_000) { report(new Error('消息草稿超过 256 KB；请选择较短的内容。')); return; }
@@ -235,7 +238,6 @@ export function Workbench() {
     }
     window.addEventListener('keydown', keyboard); return () => window.removeEventListener('keydown', keyboard);
   }, [recent, state, editing]);
-  useEffect(() => { if (error) { const timer = setTimeout(() => setError(''), 12_000); return () => clearTimeout(timer); } }, [error]);
   function submissionContext(draft = draftRef.current): Omit<SubmitRequest, 'text' | 'attachments' | 'replay'> {
     return { threadId: draft.threadId, providerId: draft.providerId ?? '', model: draft.model, mode: draft.mode, assistantId: draft.assistantId, projectId: draft.projectId, mcpServerIds: draft.mode === 'plan' ? [] : draft.mcpServerIds, skillIds: draft.skillIds, pluginIds: draft.mode === 'plan' ? [] : draft.pluginIds, knowledgeCollectionIds: draft.knowledgeCollectionIds ?? [] };
   }
@@ -315,7 +317,7 @@ export function Workbench() {
     {!state ? <StartupScreen error={startupError} /> : page === 'browser' ? null : page === 'chat' ? thread ? <div className="chat-page"><Transcript findRequest={findRequest} onFindClose={() => setFindRequest(0)} thread={thread} threads={state.threads} onVersion={openReplyVersion} onEdit={(message) => { void openMessageEditor(message).catch(report); }} onQuote={quote} onBranch={(message) => { void branch(message); }} onRetry={() => { void retry(); }} report={report} /><div className="composer-dock">{composer}</div></div> : <div className="home"><div className="home-content"><h1>今天想做些什么？</h1><p className="home-description">提问、整理资料，或开始一个项目。</p>{composer}<div className="suggestions">{[{ icon: 'assistant', label: '理清一个想法', prompt: '我有一个想法，想请你帮我梳理。请先问我几个关键问题。' }, { icon: 'compose', label: '一起写点什么', prompt: '请帮我完善一段文字。我会提供初稿和希望的风格。' }, { icon: 'code', label: '开始一个项目', prompt: '我想开始一个新项目。请帮我明确需求，规划实现步骤。' }].map((item) => <Button key={item.label} onClick={() => setText(item.prompt)}><Glyph name={item.icon as GlyphName} size={16} />{item.label}</Button>)}</div></div><div className="home-footnote"><span>回答可能有误，请核实重要信息。</span></div></div> : page === 'plugin' ? pluginContent : page === 'projects' ? <Projects view={projectView} onView={setProjectView} state={state} onState={setState} onUse={(id) => { newChat(); setProjectId(id); }} report={report} /> : page === 'library' ? library : page === 'automations' ? <AutomationsPage state={state} onState={setState} report={report} onOpen={setRequestedTaskThread} /> : page === 'assistants' ? <Collections onPrompt={insertPrompt} state={state} onState={setState} report={report} onUse={(id) => { newChat(); setAssistantId(id); }} /> : <div className="collection-page"><div className="page-heading"><div><h1>已归档</h1><p>为重要的对话留一个安静的地方。</p></div></div>{state.threads.filter((item) => item.archived).length ? state.threads.filter((item) => item.archived).map((item) => <div className="list-row" key={item.id}><Button className="row-content" onClick={() => openThread(item)}><strong>{item.title}</strong><span>{item.messages.length} 条消息</span></Button><Button onClick={() => { void mutate({ ...item, archived: false }); }}>恢复聊天</Button></div>) : <Empty icon="archive" title="暂无归档聊天" detail="归档后，对话会从最近聊天移到这里。" />}</div>}
       {state && <BrowserPage active={page === 'browser'} />}
     </main>
-    {error && state && <Toast message={error} onClose={() => setError('')} />}
+    {state && <Toast messages={toasts} onClose={id => setToasts(current => current.filter(item => item.id !== id))} />}
     {comparison && state && <ModelComparison state={state} draft={comparison.draft} groupId={comparison.groupId} onClose={() => setComparison(null)} onCompare={compareModels} onOpen={async (id) => { await flushDrafts(); await openReplyVersion(id); }} />}
     {settings && state && <PreferencesDialog state={state} onState={setState} onRestore={(next) => { clearTimeout(draftTimer.current); draftEpoch.current++; draftStore.current.initialize(next.composerDrafts); setState(next); const target = next.threads.find((item) => item.id === next.activeThreadId); const restored = restoreComposer(next, target, draftStore.current.get(target?.id)); draftRef.current = restored; setComposerDraft(restored); }} onClose={() => setSettings(false)} report={report} onOpenWorktreeConversation={navigateWorktree} onCreateWorktreeConversation={navigateWorktree} onOpenPanel={(pluginId, panelId) => { setPluginPanel({ pluginId, panelId }); setPage('plugin'); setSettings(false); }} onUseAttachment={useMcpAttachment} onUseContent={(content) => { setText((current) => current ? `${current}\n\n${content}` : content); setPage('chat'); setSettings(false); }} />}
     {approvals[0] && <ApprovalDialog key={approvals[0].id} request={approvals[0]} onDecision={(allowed) => window.qiyao.resolveApproval(approvals[0].id, allowed)} onStop={() => window.qiyao.stop(approvals[0].threadId)} report={report} />}

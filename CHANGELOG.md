@@ -2,6 +2,8 @@
 
 ## 未发布
 
+- 全局错误提示改为顶部居中，最多并列 3 条，其余排队；重复报错刷新原位置，悬停、键盘操作与窗口失焦时暂停计时，关闭后恢复焦点。
+- 侧栏导航采用 36px 行高、10px 圆角和 14px 文字，统一图标区域与近期聊天文字；窄屏保留紧凑布局。
 - 长代码随聊天自然展开，取消 480px 内部纵向滚动；标题增加代码图标，普通代码与图表源码明确采用从左到右的排版，保留原文、换行和复制。
 - 快捷选择保留键盘选中的结果；列表滚动到静止鼠标下方时不再改变选择，移动鼠标仍可选中对应条目。
 - 明暗主题、对话与代码字号、表格与代码阅读、复选框和工具提示持续对齐桌面设计参考。
@@ -90,6 +92,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 全局错误提示改为顶部居中，最多显示 3 条，其余保留排队，重复文本刷新原条目。可见后默认显示 5 秒，悬停、键盘焦点与窗口失焦时暂停；修复关闭最后一条后计时状态残留的问题，重复提示保留按钮焦点。提示可在原生弹窗内关闭，长文字与混合方向文字适应窄窗口和缩放。
+- 侧栏导航使用 36px 行高、10px 圆角、14px 文字和 24px 图标区域；近期聊天统一字号和圆角，紧凑侧栏保留图标并避免挤出行框。
 - 长代码随聊天自然展开，取消 480px 内部纵向滚动，保留横向滚动和自动换行。标题增加代码图标，普通代码与图表源码明确从左到右排版，中／阿／希混合原文、完整复制与末行可达经过原生检查。
 - 修正分发记录校验仍要求旧版 9 项快速聊天检查和 18 组最小窗口布局的问题，现精确要求全部 13 项、四种状态的 24 组布局；旧记录、错误计数、缺失与重复布局会被拒绝，原有请求及数据保留检查继续有效。
 - 修复快捷选择列表滚动后，静止鼠标覆盖键盘所选结果的问题；保留首尾跳转、循环选择、实际鼠标移动与点击操作。
@@ -124,6 +128,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Global errors appear at the top center, with up to three visible notifications and a waiting queue. Exact duplicates refresh their existing item. The five-second visible lifetime pauses during hover, keyboard focus and native window blur; dismissal restores focus without leaving later messages permanently paused. Notifications remain operable inside native dialogs. Navigation uses 36px rows, 10px corners, 14px text and consistent icon areas, with a separate compact layout.
 
 Long code expands naturally in the conversation instead of a 480px internal vertical scroller. Code headers use a code glyph, and ordinary code and diagram source have explicit left-to-right direction. Native checks retain mixed-language source, wrapping, complete copying and access to the final line.
 

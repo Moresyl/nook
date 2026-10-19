@@ -1,0 +1,151 @@
+{
+  "verifiedAt": "2026-10-19T04:53:41.691Z",
+  "phase": "focused notification and navigation candidate",
+  "nativeBaseHead": "95192349d0a2f94d9e3f2ea1a967541a5862921b",
+  "nativeSourceDiffSha256": "80fa46d32a210893bd199180b2572d7b4aaffd1f1e3bd91a0938f30e0716d14a",
+  "sourceInputs": 1050,
+  "compiledFiles": 236,
+  "evidenceRoot": "E:/NookVerification/ReferenceSurfaces-20261019",
+  "immutableFocusedCopy": "E:\\NookVerification\\ReferenceSurfaces-20261019\\focused-accepted",
+  "typecheck": {
+    "passed": true,
+    "receipt": "E:\\NookVerification\\ReferenceSurfaces-20261019\\check-retry2-exit.json"
+  },
+  "build": {
+    "passed": true,
+    "receipt": "E:\\NookVerification\\ReferenceSurfaces-20261019\\build-retry2-exit.json",
+    "allProductInputsStillMatch": true
+  },
+  "unit": {
+    "passed": true,
+    "phase": "unit-retry1",
+    "files": 138,
+    "tests": 1627,
+    "coverage": {
+      "lines": {
+        "total": 4558,
+        "covered": 4535,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7568,
+        "covered": 7345,
+        "skipped": 0,
+        "pct": 97.05
+      },
+      "functions": {
+        "total": 1687,
+        "covered": 1650,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5293,
+        "covered": 5007,
+        "skipped": 0,
+        "pct": 94.59
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "allCoveredFilesStillMatch": true,
+    "entireCurrentInputSetMatches": true,
+    "boundary": "Final full suite for this candidate; renderer CSS and native observer scripts are outside the unit coverage denominator."
+  },
+  "existingSurfaceRegression": {
+    "passed": true,
+    "checks": 5,
+    "normalCloseVerified": true,
+    "normalCloses": 1,
+    "longestCloseMs": 437,
+    "receipt": "E:\\NookVerification\\ReferenceSurfaces-20261019\\surfaces-exit.json",
+    "reportSha256": "2bda9c8210600ff1bb35643dd7348a07742004f6a6aba89be8be6b5107ea30e5",
+    "scope": "Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and nine empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.",
+    "allCapturedImagesVisuallyReviewed": false
+  },
+  "native": {
+    "passed": true,
+    "checks": 5,
+    "normalCloseVerified": true,
+    "normalCloseMs": 246,
+    "forced": false,
+    "runtimeErrors": [],
+    "receipt": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry6-exit.json",
+    "reportSha256": "9a90dd0c05d1b92a9576c41fa44efe80f03e56d4594f0ff0b7caad3583420c57",
+    "images": [
+      {
+        "path": "verification/screenshots/106-toast-queue-light.png",
+        "sha256": "8dfa3993c565ca893faf873143cd4ba7f82e2ba7e6d254423a378d40833b802e",
+        "width": 1280,
+        "height": 840,
+        "individuallyDisplayedAndReviewed": true
+      },
+      {
+        "path": "verification/screenshots/107-toast-modal-dark-narrow.png",
+        "sha256": "bd4a90515148292311b6869ceececa86d4476cfa262838fb109aca8562f41e08",
+        "width": 760,
+        "height": 540,
+        "individuallyDisplayedAndReviewed": true
+      }
+    ],
+    "sidebarRowsPerLayout": 10,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "maximumTestedZoom": 1.5,
+    "originalFocusEmulationRestored": true,
+    "originalGuardsUnchanged": true
+  },
+  "retainedFailures": [
+    {
+      "phase": "toasts",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts.log"
+    },
+    {
+      "phase": "toasts-retry1",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry1.log"
+    },
+    {
+      "phase": "toasts-retry2",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry2.log"
+    },
+    {
+      "phase": "toasts-retry3",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry3.log"
+    },
+    {
+      "phase": "toasts-retry4",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry4.log"
+    },
+    {
+      "phase": "toasts-retry5",
+      "exitCode": 1,
+      "log": "E:\\NookVerification\\ReferenceSurfaces-20261019\\toasts-retry5.log"
+    }
+  ],
+  "mainWorktreePreserved": {
+    "passed": true,
+    "head": "7c9243b9f8b650a8c302843846a31d4405bc4c3d",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "indexSha256": "8519093e8e084a11389f6b0b879b54824ab16e797f55ce1b07bf7bb3176e663b"
+  },
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "hostedPublished": false,
+  "fullReferenceAdoptionVerified": false,
+  "physicalScreenReaderOrInputVerified": false,
+  "boundary": "Five native checks and two individually reviewed full native screenshots for this notification/navigation change. Real IPC fixtures and existing noninteractive Electron harness; no physical screen-reader, swipe, all sidebar states or complete reference geometry claim. Prior 9519234 distribution evidence remains valid only for the prior app body. Original licenses, identity and workflow are retained."
+}
