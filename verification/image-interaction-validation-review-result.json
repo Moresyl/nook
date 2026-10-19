@@ -1,0 +1,141 @@
+{
+  "verifiedAt": "2026-10-19T08:07:22.144Z",
+  "sourceBase": "093d17340cc1a0ee1f52e1ce954e904d2a15e7ed",
+  "changedSource": [
+    {
+      "path": "workbench/components/image-preview.tsx",
+      "sha256": "ae558dfabb88d7b7e50fda5f4cd28ac5a4d4c7154f39d9a1d6918dabb3d4a7f6"
+    },
+    {
+      "path": "scripts/verify-image-preview.mjs",
+      "sha256": "055b3a8533e902ea900bfa3050ae12d3c2b475ca16c3641590a77b2822620606"
+    }
+  ],
+  "typeCheck": true,
+  "build": true,
+  "sourceInputs": 1053,
+  "compiledFiles": 236,
+  "unit": {
+    "files": 139,
+    "tests": 1637,
+    "coverage": {
+      "lines": {
+        "total": 4558,
+        "covered": 4535,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7568,
+        "covered": 7345,
+        "skipped": 0,
+        "pct": 97.05
+      },
+      "functions": {
+        "total": 1687,
+        "covered": 1650,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5293,
+        "covered": 5007,
+        "skipped": 0,
+        "pct": 94.59
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "observerOnlyChangesAfterCheckBuildAndUnit": [
+    "scripts/verify-image-preview.mjs"
+  ],
+  "native": {
+    "checks": 16,
+    "normalCloses": [
+      {
+        "elapsedMs": 523,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 164,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "runtimeErrors": [],
+    "individuallyReviewedImages": 4,
+    "screenshots": [
+      {
+        "path": "verification/screenshots/133-image-viewer-light.png",
+        "sha256": "213b5dd13d40c4655a99f42ea779b88f7f207536aa1c586d8fa8d290b9a2b57d",
+        "changedSincePreviousRun": false,
+        "lastWriteAt": "2026-10-19T08:06:15.628Z"
+      },
+      {
+        "path": "verification/screenshots/134-image-viewer-dark-100.png",
+        "sha256": "dcdababd289ee906a86cc84f8a490fdf7d7a265d245172adc4e3ace05788a612",
+        "changedSincePreviousRun": false,
+        "lastWriteAt": "2026-10-19T08:06:16.641Z"
+      },
+      {
+        "path": "verification/screenshots/134-image-viewer-dark-125.png",
+        "sha256": "6ff55b3ad45c1bb473feda3958651dcc2771d8b43ecfe86838e81adb0721ddf6",
+        "changedSincePreviousRun": false,
+        "lastWriteAt": "2026-10-19T08:06:16.804Z"
+      },
+      {
+        "path": "verification/screenshots/134-image-viewer-dark-150.png",
+        "sha256": "cda7584a9aa5727ff9c235b3808a9d1ca6256334e0f673856ea979acca42bd11",
+        "changedSincePreviousRun": true,
+        "lastWriteAt": "2026-10-19T08:06:16.947Z"
+      }
+    ]
+  },
+  "behaviors": [
+    "Sub-4px movement does not pan",
+    "Exactly 4px starts panning",
+    "Returning inside the threshold after activation continues panning",
+    "Mouse release stops panning",
+    "Home/End select first/last image and preserve boundaries",
+    "Existing zoom, retry, gallery, focus return, drafts and original attachment verification pass"
+  ],
+  "evidence": [
+    {
+      "phase": "check-retry6",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exitCode": 0
+    },
+    {
+      "phase": "build-retry6",
+      "logSha256": "35d51e480a491d4d4a303be0a7984dd31ace4e9006cccbd8fb12f73e5844ee8c",
+      "exitCode": 0
+    },
+    {
+      "phase": "unit-retry4",
+      "logSha256": "2f9cb9887ebdbc578c8b7920433a24dbda848bef0b4beab840ab971dd22eeff1",
+      "exitCode": 0
+    },
+    {
+      "phase": "attachments-retry1",
+      "logSha256": "de08ca626e76312342502a685a2989875f5c6e97d7c9032226047b0434ac73a5",
+      "exitCode": 0
+    }
+  ],
+  "priorUnitFailuresRetained": [
+    "unit-retry2: worktree cleanup exceeded original 5s",
+    "unit-retry3: attachment rejection exceeded original 5s"
+  ],
+  "fullCurrentDesktopAcceptance": false,
+  "fullCurrentDistributionAcceptance": false,
+  "physicalTouchVerified": false,
+  "completeReferenceParity": false,
+  "published": false
+}

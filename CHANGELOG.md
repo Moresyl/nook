@@ -6,6 +6,7 @@
 - 阅读更连贯：长代码随对话展开，表格保留阅读字号下限，对话文字与代码字号可独立调整。
 - 操作更稳定：快捷选择保留键盘选中项，未保存表单提供离开保护，失败时保留草稿与重试入口。
 - 导航更统一：侧栏采用统一行高、圆角与图标区域，窄窗口保持紧凑布局。
+- 图片更好操作：拖拽前过滤微小手抖，开始拖动后连续跟随；Home／End 可直接跳到图库首尾。
 
 当前版本仍未发布。最新验收范围与发布阻塞见[发布状态](docs/RELEASE.md)。
 
@@ -104,6 +105,9 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 图片查看器过滤小于 4px 的拖拽启动位移，开始拖动后返回阈值内仍连续跟随，松手停止；Home／End 支持图库首尾跳转，保留缩放、图片边界和返回焦点。
+- 全局错误提示使用专用明暗背景、文字与边框色，普通提示行高调整为 21px、内容间距为 4px，并对齐关闭按钮悬停。
+
 - 全局错误提示改为顶部居中，最多显示 3 条，其余保留排队，重复文本刷新原条目。可见后默认显示 5 秒，悬停、键盘焦点与窗口失焦时暂停；修复关闭最后一条后计时状态残留的问题，重复提示保留按钮焦点。提示可在原生弹窗内关闭，长文字与混合方向文字适应窄窗口和缩放。
 - 侧栏导航使用 36px 行高、10px 圆角、14px 文字和 24px 图标区域；近期聊天统一字号和圆角，紧凑侧栏保留图标并避免挤出行框。
 - 长代码随聊天自然展开，取消 480px 内部纵向滚动，保留横向滚动和自动换行。标题增加代码图标，普通代码与图表源码明确从左到右排版，中／阿／希混合原文、完整复制与末行可达经过原生检查。
@@ -140,6 +144,8 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 - 当前候选未签名。其他平台、原生语音／OCR、媒体生成、远程同步和离线模型下载管理尚未提供。完整设计参考、物理系统交互与真实服务的验收范围见项目文档。
 
 ### English
+
+Image panning ignores movement below 4px until dragging begins, then follows continuously until release. Home and End navigate to the first and last image. Error notifications use dedicated light/dark colors, 21px line height, 4px content spacing and a scoped close-button hover state.
 
 Global errors appear at the top center, with up to three visible notifications and a waiting queue. Exact duplicates refresh their existing item. The five-second visible lifetime pauses during hover, keyboard focus and native window blur; dismissal restores focus without leaving later messages permanently paused. Notifications remain operable inside native dialogs. Navigation uses 36px rows, 10px corners, 14px text and consistent icon areas, with a separate compact layout.
 

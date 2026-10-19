@@ -8,7 +8,7 @@ export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: {
   const viewport = useRef<HTMLDivElement>(null);
   const image = useRef<HTMLImageElement>(null);
   const anchor = useRef<{ x: number; y: number; horizontal: number; vertical: number } | null>(null);
-  const drag = useRef<{ id: number; x: number; y: number; left: number; top: number } | null>(null);
+  const drag = useRef<{ id: number; x: number; y: number; left: number; top: number; started: boolean } | null>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [zoom, setZoom] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
@@ -51,7 +51,7 @@ export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: {
   const select = (direction: number) => { const next = images[index + direction]; if (next) onSelect(next); };
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.altKey || event.ctrlKey || event.metaKey || event.nativeEvent.isComposing) return;
-    const actions: Record<string, () => void> = { '+': () => step(1), '=': () => step(1), '-': () => step(-1), '0': () => changeZoom(null), '1': () => changeZoom(1), ArrowLeft: () => select(-1), ArrowRight: () => select(1) };
+    const actions: Record<string, () => void> = { '+': () => step(1), '=': () => step(1), '-': () => step(-1), '0': () => changeZoom(null), '1': () => changeZoom(1), ArrowLeft: () => select(-1), ArrowRight: () => select(1), Home: () => select(-index), End: () => select(images.length - index - 1) };
     if (actions[event.key]) { event.preventDefault(); event.stopPropagation(); actions[event.key](); }
   };
   const endDrag = (event: PointerEvent<HTMLDivElement>) => {
@@ -76,17 +76,24 @@ export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: {
     <div className="image-preview-layout" onKeyDown={onKeyDown}>
       <div className="image-preview-stage">
         {images.length > 1 && <IconButton icon="right" className="icon-button image-previous" label="上一张图片" disabled={index <= 0} onClick={() => select(-1)} />}
-        <div ref={viewport} className="image-preview-viewport" tabIndex={0} role="region" aria-label="图片查看区域：加减号缩放，0 适应窗口，1 原始尺寸，左右方向键切换图片"
+        <div ref={viewport} className="image-preview-viewport" tabIndex={0} role="region" aria-label="图片查看区域：加减号缩放，0 适应窗口，1 原始尺寸，左右方向键切换图片，Home 首张，End 末张"
           onDoubleClick={event => {
             const bounds = image.current?.getBoundingClientRect();
             if (bounds && event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom) changeZoom(zoom === null ? Math.max(1, fit * 2) : null, { x: event.clientX, y: event.clientY });
           }}
           onPointerDown={event => {
-            if (event.button !== 0 || !loaded || event.target !== image.current) return;
-            drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop };
+            if (event.button !== 0 || !loaded || event.target !== image.current || drag.current) return;
+            drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, left: event.currentTarget.scrollLeft, top: event.currentTarget.scrollTop, started: false };
             event.currentTarget.setPointerCapture(event.pointerId); event.currentTarget.focus(); event.preventDefault();
           }}
-          onPointerMove={event => { const start = drag.current; if (start?.id === event.pointerId) { event.currentTarget.scrollLeft = start.left - (event.clientX - start.x); event.currentTarget.scrollTop = start.top - (event.clientY - start.y); } }}
+          onPointerMove={event => {
+            const start = drag.current;
+            if (start?.id !== event.pointerId) return;
+            const horizontal = event.clientX - start.x, vertical = event.clientY - start.y;
+            if (!start.started && horizontal * horizontal + vertical * vertical < 16) return;
+            start.started = true;
+            event.currentTarget.scrollLeft = start.left - horizontal; event.currentTarget.scrollTop = start.top - vertical;
+          }}
           onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={() => { drag.current = null; }}>
           {failed ? <div className="image-preview-error" role="status"><p>无法显示这张图片</p><Button onClick={() => { setFailed(false); setLoaded(false); setAttempt(value => value + 1); }}>重新加载</Button></div> : <img key={attempt} ref={image} className="attachment-image-preview" src={attachmentImageUrl(file)} alt={file.name} draggable={false}
             style={{ width: dimensions.width * scale, height: dimensions.height * scale }}

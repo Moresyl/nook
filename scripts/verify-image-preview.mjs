@@ -16,7 +16,10 @@ export async function verifyImagePreview({ page, application, screenshots, verif
     const bytes = Buffer.from(png.data, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], png.size); await writeFile(join(screenshots, name), bytes);
   };
   const currentImage = () => page.locator('.attachment-image-preview');
-  const ready = async () => { await page.waitForFunction(() => { const image = document.querySelector('.attachment-image-preview'); return image?.complete && image.naturalWidth > 0 && image.width > 0; }); };
+  const ready = async () => {
+    await page.waitForFunction(() => { const image = document.querySelector('.attachment-image-preview'); return image?.complete && image.naturalWidth > 0 && image.width > 0; });
+    await page.waitForFunction(() => document.querySelector('.image-preview-toolbar button[aria-label="原始尺寸"]')?.disabled === false, undefined, { timeout: 5_000 });
+  };
   const geometry = () => page.evaluate(() => {
     const viewport = document.querySelector('.image-preview-viewport'), image = document.querySelector('.attachment-image-preview');
     const bounds = image.getBoundingClientRect();
@@ -41,8 +44,17 @@ export async function verifyImagePreview({ page, application, screenshots, verif
     await page.keyboard.press('1'); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width === 1600);
     bounds = await geometry();
     const region = await viewport.boundingBox();
-    await page.mouse.move(region.x + region.width / 2, region.y + region.height / 2); await page.mouse.down(); await page.mouse.move(region.x + region.width / 2 - 90, region.y + region.height / 2 - 60, { steps: 4 }); await page.mouse.up();
+    const startX = region.x + region.width / 2, startY = region.y + region.height / 2;
+    await page.mouse.move(startX, startY); await page.mouse.down(); await page.mouse.move(startX - 2, startY - 2);
+    let movement = await geometry(); assert.equal(movement.scrollLeft, bounds.scrollLeft); assert.equal(movement.scrollTop, bounds.scrollTop);
+    await page.mouse.move(startX - 4, startY);
+    movement = await geometry(); assert.equal(movement.scrollLeft, bounds.scrollLeft + 4); assert.equal(movement.scrollTop, bounds.scrollTop);
+    await page.mouse.move(startX - 2, startY - 2);
+    movement = await geometry(); assert.equal(movement.scrollLeft, bounds.scrollLeft + 2); assert.equal(movement.scrollTop, bounds.scrollTop + 2);
+    await page.mouse.move(startX - 90, startY - 60, { steps: 4 }); await page.mouse.up();
     const dragged = await geometry(); assert.ok(dragged.scrollLeft > bounds.scrollLeft + 40 && dragged.scrollTop > bounds.scrollTop + 20, JSON.stringify({ bounds, dragged }));
+    await page.mouse.move(startX - 110, startY - 80);
+    movement = await geometry(); assert.equal(movement.scrollLeft, dragged.scrollLeft); assert.equal(movement.scrollTop, dragged.scrollTop);
     await page.keyboard.down('Control'); await page.mouse.wheel(0, -100); await page.keyboard.up('Control'); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width > 1600);
     await viewport.focus(); for (let index = 0; index < 16; index++) await page.keyboard.press('Equal');
     assert.equal(await page.getByRole('button', { name: '放大图片', exact: true }).isDisabled(), true); assert.equal((await geometry()).width, 12800);
@@ -53,8 +65,12 @@ export async function verifyImagePreview({ page, application, screenshots, verif
     assert.equal(await page.getByRole('dialog').getByRole('heading').textContent(), 'small-image.png');
     assert.equal(await page.getByRole('button', { name: '下一张图片', exact: true }).isDisabled(), true); bounds = await geometry(); assert.equal(bounds.width, 48); assert.equal(bounds.height, 64);
     await page.keyboard.press('ArrowLeft'); await ready(); assert.equal((await geometry()).naturalWidth, 1600);
+    await page.keyboard.press('End'); await ready(); assert.equal((await geometry()).naturalWidth, 48);
+    await page.keyboard.press('End'); assert.equal(await page.getByRole('button', { name: '下一张图片', exact: true }).isDisabled(), true);
+    await page.keyboard.press('Home'); await ready(); assert.equal((await geometry()).naturalWidth, 1600);
+    await page.keyboard.press('Home'); assert.equal(await page.getByRole('button', { name: '上一张图片', exact: true }).isDisabled(), true);
     await page.keyboard.press('Escape'); assert.equal(await page.getByRole('dialog').count(), 0); assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')), '预览 project-board.png');
-    verified('native image viewer fits large and small images without upscaling, supports gallery keyboard boundaries, original size, bounded button/keyboard/Ctrl-wheel zoom, drag and double-click, and restores opener focus after Escape without model HTTP');
+    verified('native image viewer fits large and small images without upscaling, supports gallery arrows and Home/End boundaries, original size, bounded button/keyboard/Ctrl-wheel zoom, a latched 4px drag threshold and release, double-click, and restores opener focus after Escape without model HTTP');
 
     await page.getByRole('button', { name: '预览 project-board.png', exact: true }).click(); await ready();
     await currentImage().evaluate(image => { image.src = 'data:image/png;base64,broken'; });
