@@ -62,6 +62,11 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     return { fontSize: style.fontSize, gap: style.columnGap, labelFontSize: getComputedStyle(label).fontSize, rowHeight: element.getBoundingClientRect().height };
   });
   assert.equal(treeTypography.fontSize, '13px'); assert.equal(treeTypography.labelFontSize, '13px'); assert.equal(treeTypography.gap, '5px'); assert.ok(treeTypography.rowHeight >= 28);
+  const treeGeometry = await row('source').evaluate(element => {
+    const style = getComputedStyle(element), icon = element.querySelector(':scope > svg').getBoundingClientRect();
+    return { paddingLeft: style.paddingLeft, paddingRight: style.paddingRight, lineHeight: style.lineHeight, radius: style.borderTopLeftRadius, iconWidth: icon.width, iconHeight: icon.height };
+  });
+  assert.deepEqual(treeGeometry, { paddingLeft: '3px', paddingRight: '3px', lineHeight: '28px', radius: '6px', iconWidth: 16, iconHeight: 16 });
   for (const path of ['.git', 'node_modules', 'outside-link']) assert.equal(await item(path).count(), 0);
   const boundary = await page.evaluate(async ({ projectId, outside }) => { try { await window.qiyao.listDirectory(projectId, { path: outside }); return 'UNEXPECTED'; } catch (error) { return String(error); } }, { projectId, outside }); assert.match(boundary, /outside/); assert.ok(!boundary.includes('OUTSIDE_TREE_MUST_NOT_BE_READ'));
   await writeFile(join(root, '000-added.txt'), 'ADDED_BETWEEN_PAGES');
@@ -85,6 +90,19 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).waitFor({ state: 'hidden' }); await item('file-0219.txt').waitFor(); await row('source/资料').click(); await item('source/资料/代码.ts').waitFor();
   await page.getByRole('button', { name: '新建文件', exact: true }).click(); const newFile = page.getByRole('dialog', { name: '新建文件', exact: true }); assert.equal(await newFile.getByLabel('相对路径', { exact: true }).inputValue(), 'source/资料/'); await newFile.getByLabel('相对路径', { exact: true }).fill('source/资料/新文件.txt'); await newFile.getByRole('button', { name: '创建', exact: true }).click(); await newFile.waitFor({ state: 'hidden' }); await page.locator('.editor-actionbar .path-text').getByText('source/资料/新文件.txt', { exact: true }).waitFor(); await input().waitFor(); await input().focus(); await page.keyboard.insertText('TREE_NEW_FILE_CONTENT😀\n'); await input().press('Control+s'); await page.locator('.editor-actionbar').getByRole('status').getByText('已保存', { exact: true }).waitFor(); assert.equal(await readFile(join(root, 'source/资料/新文件.txt'), 'utf8'), createdContents); await item('source/资料/新文件.txt').waitFor();
   await page.getByRole('tab', { name: /代码\.ts/ }).click(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor(); await page.locator('.editor-actionbar').getByRole('status').getByText('草稿自动保存在工作台', { exact: true }).waitFor(); await page.screenshot({ path: join(screenshots, '95-project-tree-editor-light.png') });
+  const longFileName = `${'完整中文文件名称'.repeat(8)}.ts`, longFilePath = `source/资料/${longFileName}`;
+  await writeFile(join(root, longFilePath), 'TREE_LONG_NAME_ORIGINAL');
+  await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await item(longFilePath).waitFor();
+  assert.equal(await row(longFilePath).locator('.project-tree-label').textContent(), longFileName);
+  const longFileClipping = await row(longFilePath).evaluate(element => {
+    const label = element.querySelector('.project-tree-label'), rect = element.getBoundingClientRect(), text = label.getBoundingClientRect();
+    return { overflow: getComputedStyle(element).overflowX, textOverflow: getComputedStyle(label).textOverflow, clippedAtRowEdge: text.right > rect.right, rowWidth: rect.width, labelWidth: text.width };
+  });
+  assert.equal(longFileClipping.overflow, 'hidden'); assert.equal(longFileClipping.textOverflow, 'clip'); assert.equal(longFileClipping.clippedAtRowEdge, true);
+  await assertTextHint(page, item(longFilePath), longFilePath, { hoverTarget: row(longFilePath) });
+  await page.mouse.move(1, 1); await page.locator('.control-tooltip:popover-open').waitFor({ state: 'hidden' });
+  assert.equal(await item('source/资料/代码.ts').getAttribute('aria-selected'), 'true');
+  await page.screenshot({ path: join(screenshots, '103-project-tree-long-path-light.png') });
   const workingLayout = await page.evaluate(() => {
     const list = document.querySelector('.project-list').getBoundingClientRect();
     const editor = document.querySelector('.editor-canvas').getBoundingClientRect();
@@ -279,7 +297,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   return { page, result: {
-    checks: 7, projectCommandChecks: 2, treeTypography, treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 7, projectCommandChecks: 2, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',

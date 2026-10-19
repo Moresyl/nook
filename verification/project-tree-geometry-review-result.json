@@ -1,0 +1,85 @@
+{
+  "verifiedAt": "2026-10-19T08:54:33.322Z",
+  "sourceBase": "3756813e7b82eac88e5a87e2888bcc1b820b7c38",
+  "sourceDiffSha256": "4290090f1979ee2c68791b51b96ef7128563aaa3e49638971dc3be022e4643b0",
+  "change": "Project tree uses 3px horizontal insets and 16px file icons; long filenames clip at the row edge while preserving full path hints and accessible names.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "sourceInputs": 1053,
+  "compiledFiles": 236,
+  "native": {
+    "checks": 7,
+    "normalExits": 2,
+    "forcedExits": 0,
+    "exits": [
+      {
+        "elapsedMs": 659,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 293,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "treeTypography": {
+      "fontSize": "13px",
+      "gap": "5px",
+      "labelFontSize": "13px",
+      "rowHeight": 28
+    },
+    "treeGeometry": {
+      "paddingLeft": "3px",
+      "paddingRight": "3px",
+      "lineHeight": "28px",
+      "radius": "6px",
+      "iconWidth": 16,
+      "iconHeight": 16
+    },
+    "longFileClipping": {
+      "overflow": "hidden",
+      "textOverflow": "clip",
+      "clippedAtRowEdge": true,
+      "rowWidth": 165,
+      "labelWidth": 846.890625
+    },
+    "treeSelectionStates": [
+      {
+        "theme": "light",
+        "selected": "oklab(0.22559 -0.00131416 -0.00642684 / 0.05)",
+        "hover": "oklab(0.22559 -0.00131416 -0.00642684 / 0.05)",
+        "selectedRetainedOnHover": true
+      },
+      {
+        "theme": "dark",
+        "selected": "oklab(0.999994 0.0000455678 0.0000200868 / 0.05)",
+        "hover": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "selectedRetainedOnHover": true
+      }
+    ],
+    "archivedOutputs": 13
+  },
+  "visualReview": [
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry2\\verification\\screenshots\\103-project-tree-long-path-light.png",
+      "sha256": "0383e89517a572a2392a77a219a4f0c8a951fa7b0c8f12b909ffa2c6780b2de7",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry2\\verification\\screenshots\\96-project-tree-dark-narrow.png",
+      "sha256": "d313e2c4cb1720b45f5b2b33169fd27a1a1953bb0083ba2e0ea403f1f3161b52",
+      "individuallyVisuallyReviewed": true
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Focused source acceptance only. Existing 12px depth indentation and its eight-level cap remain different from the reference spacing system. This does not prove full reference tree behavior, visible high-zoom trees, physical interactions or distribution acceptance. Original full clipboard and hosted billing blockers remain unresolved."
+}

@@ -20,10 +20,10 @@ function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocu
     onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(event); } }}
     onBlur={event => { if (event.target === event.currentTarget) tooltip.hide(); }}
     onKeyDown={onKeyDown}>
-    <div ref={row} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 4 + Math.min(level - 1, 8) * 12 }}
+    <div ref={row} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 3 + Math.min(level - 1, 8) * 12 }}
       onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
       onClick={event => { tooltip.press(); event.stopPropagation(); onActivate(); }}>
-      <span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={14} /><span className="project-tree-label">{entry.name}</span>
+      <span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={16} /><span className="project-tree-label">{entry.name}</span>
     </div>{tooltip.content}{children}
   </div>;
 }
