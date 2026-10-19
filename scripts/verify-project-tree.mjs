@@ -35,6 +35,26 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const item = (path) => tree().getByRole('treeitem', { name: path, exact: true });
   const row = (path) => item(path).locator(':scope > .project-tree-row');
   const input = () => page.locator('.project-main-panel:not([hidden]) .monaco-editor textarea.inputarea');
+  const treeSelectionStates = [];
+  async function assertTreeSelection(theme) {
+    const selected = row('source/资料/代码.ts'), other = row('source');
+    const colors = await page.evaluate(theme => {
+      const probe = document.createElement('span'); document.body.append(probe);
+      const normalize = value => { probe.style.backgroundColor = value; return getComputedStyle(probe).backgroundColor; };
+      try { return { selected: normalize(theme === 'light' ? 'color-mix(in oklab, #1a1c1f 5%, transparent)' : 'color-mix(in oklab, #ffffff 5%, transparent)'), hover: normalize(theme === 'light' ? 'color-mix(in oklab, #1a1c1f 5%, transparent)' : 'color-mix(in oklab, #ffffff 8%, transparent)') }; }
+      finally { probe.remove(); }
+    }, theme);
+    const background = locator => locator.evaluate(element => getComputedStyle(element).backgroundColor);
+    await page.locator('.inspector-toolbar').hover();
+    assert.equal(await item('source/资料/代码.ts').getAttribute('aria-selected'), 'true');
+    assert.equal(await background(selected), colors.selected);
+    await selected.hover(); assert.equal(await background(selected), colors.selected);
+    await other.hover(); assert.equal(await background(other), colors.hover); assert.equal(await background(selected), colors.selected);
+    assert.equal(await item('source/资料/代码.ts').getAttribute('aria-selected'), 'true');
+    if (theme === 'dark') assert.notEqual(colors.selected, colors.hover);
+    await page.locator('.inspector-toolbar').hover();
+    treeSelectionStates.push({ theme, ...colors, selectedRetainedOnHover: true });
+  }
   const createdContents = `TREE_NEW_FILE_CONTENT😀${process.platform === 'win32' ? '\r\n' : '\n'}`;
   await item('source').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 200);
   const treeTypography = await row('source').evaluate(element => {
@@ -70,6 +90,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     const editor = document.querySelector('.editor-canvas').getBoundingClientRect();
     return { width: innerWidth, editorWidth: editor.width, switcherAboveEditor: list.bottom <= editor.top, headingHidden: !document.querySelector('.projects-page .page-heading').checkVisibility() };
   });
+  await assertTreeSelection('light');
   assert.equal(workingLayout.switcherAboveEditor, true);
   assert.equal(workingLayout.headingHidden, true);
   if (workingLayout.width >= 1280) assert.ok(workingLayout.editorWidth >= 700, 'The normal desktop layout must reserve room for the actual editor');
@@ -90,6 +111,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const longName = `${projectName} · ${'较长项目名称'.repeat(12)}`;
   await page.evaluate(async ({ projectId, longName }) => { const state = await window.qiyao.load(); await window.qiyao.saveProject({ ...state.projects.find((project) => project.id === projectId), name: longName }); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }, { projectId, longName }); await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   const heading = page.locator('.project-inspector > .section-heading'); await assertTextHint(page, heading.getByRole('heading', { name: longName, exact: true }), longName); await assertTextHint(page, heading.locator('.path-text'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
+  await assertTreeSelection('dark');
   await page.getByRole('button', { name: '终端', exact: true }).click(); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
   try {
     const startup = await waitForTerminalPrompt(() => page.evaluate(async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals; }, projectId));
@@ -257,7 +279,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   return { page, result: {
-    checks: 7, projectCommandChecks: 2, treeTypography, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 7, projectCommandChecks: 2, treeTypography, treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',

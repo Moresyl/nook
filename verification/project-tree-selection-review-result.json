@@ -1,0 +1,70 @@
+{
+  "verifiedAt": "2026-10-19T08:44:52.618Z",
+  "sourceBase": "b05db5d6accec623d4e186fbdac71c0318af99f8",
+  "sourceDiffSha256": "3ae18d25011a325fd38560f4cec37c20affa9f2ecbd1948c035343b184ba9438",
+  "change": "File-tree selection has its own 5% background; dark unselected hover remains 8%, and hovering preserves selected state.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "sourceInputs": 1053,
+  "compiledFiles": 236,
+  "native": {
+    "checks": 7,
+    "normalExits": 2,
+    "forcedExits": 0,
+    "exits": [
+      {
+        "elapsedMs": 466,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 687,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "treeTypography": {
+      "fontSize": "13px",
+      "gap": "5px",
+      "labelFontSize": "13px",
+      "rowHeight": 28
+    },
+    "treeSelectionStates": [
+      {
+        "theme": "light",
+        "selected": "oklab(0.22559 -0.00131416 -0.00642684 / 0.05)",
+        "hover": "oklab(0.22559 -0.00131416 -0.00642684 / 0.05)",
+        "selectedRetainedOnHover": true
+      },
+      {
+        "theme": "dark",
+        "selected": "oklab(0.999994 0.0000455678 0.0000200868 / 0.05)",
+        "hover": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "selectedRetainedOnHover": true
+      }
+    ],
+    "archivedOutputs": 12
+  },
+  "visualReview": [
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry1\\verification\\screenshots\\95-project-tree-editor-light.png",
+      "sha256": "1bc02c37ed5b2b2241c4ca021f27888bcd9cd8eb12133e6a41d2f8badc61186c",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry1\\verification\\screenshots\\96-project-tree-dark-narrow.png",
+      "sha256": "d916ba19e59af49bfd0f9be5a41a244940507d4c39c2a8198ff7fbd9fa04d593",
+      "individuallyVisuallyReviewed": true
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Focused source acceptance. Existing workspace zoom checks hide the tree at 125/150%; complete reference and physical interaction parity remain unproven. CSS/native-observer-only change did not rerun configured service unit coverage. Full desktop clipboard and hosted billing blockers remain unresolved."
+}

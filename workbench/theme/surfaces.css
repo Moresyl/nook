@@ -22,6 +22,7 @@
   --ghost: #00000008;
   --ghost-hover: var(--color-text);
   --ghost-active: rgb(0 0 0 / 12%);
+  --tree-selected-background: color-mix(in oklab, var(--color-text) 5%, transparent);
   --solid-active: var(--gray-600);
   --menu-item-highlight: rgb(0 0 0 / 8%);
   --field-border: #00000029;
@@ -52,6 +53,7 @@
   --ghost: #ffffff08;
   --ghost-hover: var(--gray-fixed-0);
   --ghost-active: rgb(255 255 255 / 16%);
+  --tree-selected-background: color-mix(in oklab, var(--gray-fixed-0) 5%, transparent);
   --solid-active: var(--gray-850);
   --menu-item-highlight: rgb(255 255 255 / 10%);
   --field-border: #ffffff40;
@@ -688,7 +690,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .editor-files .project-tree { flex: 1; min-height: 0; max-height: none; overflow: auto; }
 .project-tree-item { outline: none; min-width: 0; }
 .project-tree-row { display: flex; align-items: center; gap: 5px; min-height: 28px; padding: 4px; border-radius: var(--control-radius-sm); font-size: 13px; cursor: pointer; user-select: none; }
-.project-tree-row:hover, .project-tree-row.selected { background: var(--ghost-hover); }
+.project-tree-row:hover { background: var(--ghost-hover); }
+.project-tree-row.selected { background: var(--tree-selected-background); color: var(--ds-text); }
 .project-tree-item:focus-visible > .project-tree-row { outline: 2px solid var(--color-ring); outline-offset: -2px; }
 .project-tree-chevron { display: flex; width: 12px; flex: none; }
 .project-tree-row > svg { flex: none; }
