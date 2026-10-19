@@ -1,0 +1,103 @@
+{
+  "verifiedAt": "2026-10-19T09:35:14.273Z",
+  "sourceBase": "21a298c087017f0e77ed5bb79c1465caa4d1f056",
+  "sourceDiffSha256": "60a20bc6408a8130a842972a749a0d867ee4bad2608a295b40b05590c98ebef6",
+  "change": "Synchronize project file search with toolbar refresh, visible active-file focus and newly saved files.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "nativeChecks": 7,
+  "exits": [
+    {
+      "elapsedMs": 491,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 395,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "fileSearch": {
+    "toolbarLocateVisibleFocus": true,
+    "toolbarRefreshRetainsQuery": true,
+    "savedFileRefreshesResults": true,
+    "limitNoticeVisible": true,
+    "nativePathLookup": true,
+    "cappedResultsDisclosed": true,
+    "keyboardSelection": true,
+    "composingEnterIgnored": true,
+    "trailingWhitespacePreserved": true,
+    "draftPreserved": true,
+    "retryRecovered": true,
+    "staleReplyIgnored": true,
+    "outsideJunctionExcluded": true,
+    "screenshot": "104-project-file-search-light.png"
+  },
+  "inputs": 1056,
+  "compiledFiles": 236,
+  "archivedOutputs": 16,
+  "priorUnit": {
+    "phase": "unit-retry5",
+    "files": 140,
+    "tests": 1644,
+    "allCoveredFilesUnchanged": true,
+    "coverage": {
+      "lines": {
+        "total": 4573,
+        "covered": 4550,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7597,
+        "covered": 7374,
+        "skipped": 0,
+        "pct": 97.06
+      },
+      "functions": {
+        "total": 1688,
+        "covered": 1651,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5306,
+        "covered": 5020,
+        "skipped": 0,
+        "pct": 94.6
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "boundary": "Previous full unit run covers unchanged service and contract logic. Changed renderer interaction and native observer were verified by the new real desktop run, not by that unit run."
+  },
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "previousAttempt": {
+    "phase": "tree-retry6",
+    "exitCode": 1,
+    "logSha256": "23b38a8781accd8466579708fdba7c9bbbe0ea358446032e2bcd499d7ad5346a",
+    "archivedOutputs": 6,
+    "reason": "New native fixture incorrectly expected LF for a Windows-created file. Corrected the assertion to the existing platform newline convention; product bytes and original deadlines unchanged."
+  },
+  "previousLifecycleFailure": {
+    "phase": "tree-retry7",
+    "exitCode": 1,
+    "logSha256": "da1c8170229d094d318605f1a38321d855ac6315d978142f6b885b3b7e1fb00a",
+    "archivedOutputs": 6,
+    "reason": "Clearing search repeated an earlier locate request, silently re-reading the tree and consuming its retry state. Removed query from locate effect dependencies; current query is only checked before focusing."
+  },
+  "buildBoundary": "All final typecheck, build and native input hashes match current files."
+}

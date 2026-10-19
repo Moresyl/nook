@@ -2,8 +2,8 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { ProjectFileSearchResult } from '../../contracts/projects';
 import { Button, IconButton, Input } from './controls';
 
-export function ProjectFileFinder({ projectId, onOpen, children }: { projectId: string; onOpen: (path: string) => void; children: ReactNode }) {
-  const [query, setQuery] = useState(''), [retry, setRetry] = useState(0), [selected, setSelected] = useState(0);
+export function ProjectFileFinder({ projectId, query, setQuery, revision, refresh, onOpen, children }: { projectId: string; query: string; setQuery: (query: string) => void; revision: number; refresh: number; onOpen: (path: string) => void; children: ReactNode }) {
+  const [retry, setRetry] = useState(0), [selected, setSelected] = useState(0);
   const [result, setResult] = useState<ProjectFileSearchResult | null>(null), [error, setError] = useState(false);
   const generation = useRef(0), queue = useRef(Promise.resolve()), input = useRef<HTMLInputElement>(null);
   const id = useId(), needle = query.trim();
@@ -21,7 +21,7 @@ export function ProjectFileFinder({ projectId, onOpen, children }: { projectId: 
       });
     }, 250);
     return () => { clearTimeout(timer); generation.current++; };
-  }, [projectId, needle, retry]);
+  }, [projectId, needle, retry, revision, refresh]);
   const entries = result?.entries ?? [], active = entries[selected];
   return <div className="project-file-finder">
     <div className="project-file-search-field"><Input ref={input} role="combobox" aria-label="查找项目文件" aria-autocomplete="list" aria-expanded={Boolean(needle)} aria-controls={needle ? `${id}-results` : undefined} aria-activedescendant={needle && active ? `${id}-${selected}` : undefined} placeholder="查找文件路径…" maxLength={256} value={query} onChange={event => { if (event.target.value.trim() !== needle) { generation.current++; setResult(null); setError(false); } setQuery(event.target.value); }} onKeyDown={event => {

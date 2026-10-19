@@ -33,6 +33,8 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const [state, setState] = useState<ProjectTreeState>({ folders: new Map(), expanded: new Set() });
   const [focused, setFocused] = useState('');
   const [directory, setDirectory] = useState('');
+  const [query, setQuery] = useState(''), [searchRefresh, setSearchRefresh] = useState(0), [revealRequest, setRevealRequest] = useState(0);
+  const queryRef = useRef(query); queryRef.current = query;
   const tree = useRef<ProjectTree | null>(null);
   const nodes = useRef(new Map<string, HTMLDivElement>());
   const activeRef = useRef(active); activeRef.current = active;
@@ -52,6 +54,17 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
     });
   }, [projectId, active]);
   useEffect(() => { if (lastRevision.current !== revision) { lastRevision.current = revision; void tree.current?.refresh(); } }, [revision]);
+  useEffect(() => {
+    if (!revealRequest) return;
+    const model = tree.current, path = activeRef.current;
+    let cancelled = false;
+    if (path && model) void model.reveal(path).then(found => {
+      if (found && !cancelled && !queryRef.current && tree.current === model && activeRef.current === path) {
+        nodes.current.get(path)?.focus(); nodes.current.get(path)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' });
+      }
+    });
+    return () => { cancelled = true; };
+  }, [revealRequest, projectId]);
 
   function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); }
   function activate(entry: FileEntry) {
@@ -84,5 +97,5 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       {value?.page && value.page.nextOffset !== null && <Button className="project-tree-more" disabled={value.loading || value.error} aria-label={`加载更多 ${path || '项目根目录'}`} onClick={() => { void tree.current?.load(path, 'more'); }}>加载更多 · {value.page.entries.length} / {value.page.total}</Button>}
     </>;
   }
-  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { const model = tree.current; if (active && model) void model.reveal(active).then((found) => { if (found && tree.current === model && activeRef.current === active) { nodes.current.get(active)?.focus(); nodes.current.get(active)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); } }); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} onOpen={onOpen}><div className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></ProjectFileFinder></div>;
+  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></ProjectFileFinder></div>;
 }

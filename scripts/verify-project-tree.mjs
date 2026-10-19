@@ -127,6 +127,25 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   assert.deepEqual(await page.evaluate(id => window.qiyao.searchProjectFiles(id, 'private'), projectId), { entries: [], truncated: false, skippedDirectories: 0 });
   await page.screenshot({ path: join(screenshots, '104-project-file-search-light.png') });
+  await page.getByRole('button', { name: '定位当前文件', exact: true }).click(); await tree().waitFor();
+  await page.locator('[role="treeitem"][aria-label="source/资料/代码.ts"]:focus').waitFor();
+  assert.equal(await finder().inputValue(), '');
+  assert.equal(await item('source/资料/代码.ts').evaluate(element => element === document.activeElement), true, 'Locate leaves search and focuses the visible active file');
+  await finder().fill('同步'); await page.getByRole('status').getByText('没有匹配的文件。', { exact: true }).waitFor();
+  await writeFile(join(root, 'source/资料/同步外部.txt'), 'EXTERNAL_REFRESH_EXACT\n');
+  await page.getByRole('button', { name: '刷新文件', exact: true }).click();
+  await searchResults().getByRole('option', { name: 'source/资料/同步外部.txt', exact: true }).waitFor();
+  assert.equal(await finder().inputValue(), '同步', 'Refresh preserves the current query');
+  await page.getByRole('button', { name: '新建文件', exact: true }).click();
+  await newFile.getByLabel('相对路径', { exact: true }).fill('source/资料/同步创建.txt');
+  await newFile.getByRole('button', { name: '创建', exact: true }).click(); await newFile.waitFor({ state: 'hidden' });
+  await page.locator('.editor-actionbar .path-text').getByText('source/资料/同步创建.txt', { exact: true }).waitFor();
+  await input().focus(); await page.keyboard.insertText('CREATED_SEARCH_EXACT\n'); await input().press('Control+s');
+  await searchResults().getByRole('option', { name: 'source/资料/同步创建.txt', exact: true }).waitFor();
+  assert.equal(await searchResults().getByRole('option').count(), 2, 'Saving a new matching file updates the active search');
+  assert.equal(await readFile(join(root, 'source/资料/同步创建.txt'), 'utf8'), `CREATED_SEARCH_EXACT${process.platform === 'win32' ? '\r\n' : '\n'}`);
+  await finder().fill('代码'); await searchResults().getByRole('option', { name: 'source/资料/代码.ts', exact: true }).waitFor(); await finder().press('Enter');
+  await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   await finder().press('Escape'); await tree().waitFor(); assert.equal(await finder().inputValue(), '');
   const workingLayout = await page.evaluate(() => {
     const list = document.querySelector('.project-list').getBoundingClientRect();
@@ -337,7 +356,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   return { page, result: {
-    checks: 7, projectCommandChecks: 2, fileSearch: { limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 7, projectCommandChecks: 2, fileSearch: { toolbarLocateVisibleFocus: true, toolbarRefreshRetainsQuery: true, savedFileRefreshesResults: true, limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',
