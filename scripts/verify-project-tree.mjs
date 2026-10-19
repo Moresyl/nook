@@ -103,6 +103,31 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.mouse.move(1, 1); await page.locator('.control-tooltip:popover-open').waitFor({ state: 'hidden' });
   assert.equal(await item('source/资料/代码.ts').getAttribute('aria-selected'), 'true');
   await page.screenshot({ path: join(screenshots, '103-project-tree-long-path-light.png') });
+  const finder = () => page.getByRole('combobox', { name: '查找项目文件', exact: true });
+  const searchResults = () => page.getByRole('listbox', { name: '项目文件查找结果', exact: true });
+  await finder().fill('file-'); await searchResults().getByRole('option').nth(99).waitFor();
+  assert.equal(await searchResults().getByRole('option').count(), 100);
+  await page.getByRole('status').filter({ hasText: '结果不完整' }).waitFor();
+  const limitNoticeVisible = await page.getByRole('status').filter({ hasText: '结果不完整' }).evaluate(element => {
+    const rect = element.getBoundingClientRect(), panel = element.closest('.project-file-search-results').getBoundingClientRect();
+    return rect.height > 0 && rect.top >= panel.top && rect.bottom <= panel.bottom && rect.bottom <= innerHeight;
+  });
+  assert.equal(limitNoticeVisible, true, 'Incomplete-result notice stays visible outside the scrolling results');
+  await finder().press('End'); assert.equal(await searchResults().getByRole('option').nth(99).getAttribute('aria-selected'), 'true');
+  await finder().press('ArrowUp'); assert.equal(await searchResults().getByRole('option').nth(98).getAttribute('aria-selected'), 'true');
+  await finder().press('Home'); assert.equal(await searchResults().getByRole('option').first().getAttribute('aria-selected'), 'true');
+  await page.screenshot({ path: join(screenshots, '106-project-file-search-limit-light.png') });
+  await finder().fill('新文件'); await searchResults().getByRole('option', { name: 'source/资料/新文件.txt', exact: true }).waitFor();
+  await finder().press('End'); await finder().press('Space');
+  assert.equal(await searchResults().getByRole('option').count(), 1, 'Trailing whitespace keeps the same valid search result');
+  await finder().evaluate(element => element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', isComposing: true, bubbles: true })));
+  await page.locator('.editor-actionbar .path-text').getByText('source/资料/代码.ts', { exact: true }).waitFor();
+  await finder().press('Enter'); await page.locator('.editor-actionbar .path-text').getByText('source/资料/新文件.txt', { exact: true }).waitFor();
+  await finder().fill('SOURCE\\资料/代码.ts'); await searchResults().getByRole('option', { name: 'source/资料/代码.ts', exact: true }).waitFor(); await finder().press('Enter');
+  await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
+  assert.deepEqual(await page.evaluate(id => window.qiyao.searchProjectFiles(id, 'private'), projectId), { entries: [], truncated: false, skippedDirectories: 0 });
+  await page.screenshot({ path: join(screenshots, '104-project-file-search-light.png') });
+  await finder().press('Escape'); await tree().waitFor(); assert.equal(await finder().inputValue(), '');
   const workingLayout = await page.evaluate(() => {
     const list = document.querySelector('.project-list').getBoundingClientRect();
     const editor = document.querySelector('.editor-canvas').getBoundingClientRect();
@@ -118,7 +143,18 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await application.evaluateMain(`globalThis.qiyaoTreeFs=require('node:fs/promises');globalThis.qiyaoTreeRead=globalThis.qiyaoTreeFs.readdir;globalThis.qiyaoTreeMode='fail';globalThis.qiyaoTreeFs.readdir=async(path,...args)=>{const owned=String(path).replaceAll(String.fromCharCode(92),'/').toLowerCase()===${JSON.stringify(normalize(root))};if(owned&&globalThis.qiyaoTreeMode==='fail')throw Object.assign(new Error('PRIVATE_TREE_FILESYSTEM_FAILURE'),{code:'EIO'});const held=owned&&globalThis.qiyaoTreeMode==='hold';if(held){globalThis.qiyaoTreeHeld=true;await new Promise(resolve=>{globalThis.qiyaoTreeRelease=resolve;});}const entries=await globalThis.qiyaoTreeRead(path,...args);if(held)globalThis.qiyaoTreeHeldCompleted=true;return entries;};`);
   try {
     await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('alert').waitFor(); await item('file-0219.txt').waitFor(); assert.ok(!(await tree().innerText()).includes('PRIVATE_TREE_FILESYSTEM_FAILURE')); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
-    await application.evaluateMain("globalThis.qiyaoTreeMode='normal'"); await tree().getByRole('button', { name: '重试目录 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor({ state: 'hidden' });
+    await finder().fill('代码'); await page.getByRole('alert').getByText('无法查找项目文件，请重试。', { exact: true }).waitFor();
+    assert.ok(!(await page.locator('.project-file-finder').innerText()).includes('PRIVATE_TREE_FILESYSTEM_FAILURE'));
+    await application.evaluateMain("globalThis.qiyaoTreeMode='normal'");
+    await page.getByRole('button', { name: '重试查找', exact: true }).click(); await searchResults().getByRole('option', { name: 'source/资料/代码.ts', exact: true }).waitFor();
+    await finder().press('Escape'); await tree().getByRole('button', { name: '重试目录 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor({ state: 'hidden' });
+    await application.evaluateMain("globalThis.qiyaoTreeMode='hold';globalThis.qiyaoTreeHeld=false;globalThis.qiyaoTreeHeldCompleted=false");
+    await finder().fill('root.txt'); await waitForMain('globalThis.qiyaoTreeHeld');
+    await finder().fill('新文件');
+    await application.evaluateMain("globalThis.qiyaoTreeMode='normal';globalThis.qiyaoTreeRelease()"); await waitForMain('globalThis.qiyaoTreeHeldCompleted');
+    await searchResults().getByRole('option', { name: 'source/资料/新文件.txt', exact: true }).waitFor();
+    assert.equal(await searchResults().getByRole('option', { name: 'root.txt', exact: true }).count(), 0);
+    await finder().press('Escape');
     await application.evaluateMain("globalThis.qiyaoTreeMode='hold';globalThis.qiyaoTreeHeld=false;globalThis.qiyaoTreeHeldCompleted=false"); await page.getByRole('button', { name: '刷新文件', exact: true }).click();
     await waitForMain('globalThis.qiyaoTreeHeld');
     await page.locator('.project-list').getByRole('button', { name: secondName, exact: true }).click(); await item('second.txt').waitFor(); await application.evaluateMain("globalThis.qiyaoTreeMode='normal';globalThis.qiyaoTreeRelease()"); await waitForMain('globalThis.qiyaoTreeHeldCompleted'); await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); assert.equal(await tree().getByRole('treeitem').count(), 1); assert.equal(await item('source').count(), 0);
@@ -130,6 +166,10 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.evaluate(async ({ projectId, longName }) => { const state = await window.qiyao.load(); await window.qiyao.saveProject({ ...state.projects.find((project) => project.id === projectId), name: longName }); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }, { projectId, longName }); await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   const heading = page.locator('.project-inspector > .section-heading'); await assertTextHint(page, heading.getByRole('heading', { name: longName, exact: true }), longName); await assertTextHint(page, heading.locator('.path-text'), root); assert.equal(await heading.locator('.path-text').evaluate((element) => getComputedStyle(element).whiteSpace), 'nowrap');
   await assertTreeSelection('dark');
+  await finder().fill('代码'); await searchResults().getByRole('option', { name: 'source/资料/代码.ts', exact: true }).waitFor();
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  await page.screenshot({ path: join(screenshots, '105-project-file-search-dark-narrow.png') });
+  await finder().press('Escape'); await tree().waitFor();
   await page.getByRole('button', { name: '终端', exact: true }).click(); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
   try {
     const startup = await waitForTerminalPrompt(() => page.evaluate(async (id) => { const terminals = await window.qiyao.terminalList(id); globalThis.qiyaoTreePromptPoll = { at: Date.now(), terminals: terminals.map((terminal) => ({ ...terminal, output: terminal.output.slice(-4096) })) }; return terminals; }, projectId));
@@ -297,7 +337,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   return { page, result: {
-    checks: 7, projectCommandChecks: 2, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 7, projectCommandChecks: 2, fileSearch: { limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',

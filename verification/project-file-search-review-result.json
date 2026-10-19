@@ -1,0 +1,117 @@
+{
+  "verifiedAt": "2026-10-19T09:24:57.960Z",
+  "sourceBase": "88b3cece362ca4c8b59286d0c30bf125bd05a8d1",
+  "sourceDiffSha256": "8c40639f4589f887bbffb7d4b428ae08fdfe7cf49bc865bdf1bcaa6d2aec144c",
+  "change": "Read-only project path search with keyboard opening, input-method protection, preserved editor drafts, explicit incomplete results, retry and stale-response protection.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "sourceInputs": 1056,
+  "compiledFiles": 236,
+  "unit": {
+    "phase": "unit-retry5",
+    "files": 140,
+    "tests": 1644,
+    "coverage": {
+      "lines": {
+        "total": 4573,
+        "covered": 4550,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7597,
+        "covered": 7374,
+        "skipped": 0,
+        "pct": 97.06
+      },
+      "functions": {
+        "total": 1688,
+        "covered": 1651,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5306,
+        "covered": 5020,
+        "skipped": 0,
+        "pct": 94.6
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "allCoveredFileBytesMatch": true,
+    "changesAfterUnit": [
+      "scripts/verify-project-tree.mjs",
+      "workbench/theme/surfaces.css"
+    ],
+    "explanation": "Only the result-status footer CSS and its native visibility observer changed after full unit coverage; covered services, contracts and other test inputs stayed byte-identical."
+  },
+  "native": {
+    "checks": 7,
+    "normalExits": 2,
+    "forcedExits": 0,
+    "exits": [
+      {
+        "elapsedMs": 485,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 361,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "fileSearch": {
+      "limitNoticeVisible": true,
+      "nativePathLookup": true,
+      "cappedResultsDisclosed": true,
+      "keyboardSelection": true,
+      "composingEnterIgnored": true,
+      "trailingWhitespacePreserved": true,
+      "draftPreserved": true,
+      "retryRecovered": true,
+      "staleReplyIgnored": true,
+      "outsideJunctionExcluded": true,
+      "screenshot": "104-project-file-search-light.png"
+    },
+    "archivedOutputs": 16
+  },
+  "visualReview": [
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry5\\verification\\screenshots\\104-project-file-search-light.png",
+      "sha256": "1da7691662fd4aa723ade73dd224753d35467c8624267ca659154faa6dab1d61",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry5\\verification\\screenshots\\105-project-file-search-dark-narrow.png",
+      "sha256": "bc517dc4c1ad62504d2aae749c851cf9e0ffab1f18080a9159b366eaab9df1df",
+      "individuallyVisuallyReviewed": true
+    },
+    {
+      "path": "E:\\NookVerification\\ReferenceSurfaces-20261019\\tree-retry5\\verification\\screenshots\\106-project-file-search-limit-light.png",
+      "sha256": "4838a31727c80bcb4173af8697e69c0f846f20b5ee1e7b756888718981f88635",
+      "individuallyVisuallyReviewed": true
+    }
+  ],
+  "allImagesVisuallyReviewed": false,
+  "originalMainPreserved": {
+    "head": "7c9243b9f8b650a8c302843846a31d4405bc4c3d",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "indexSha256": "8519093e8e084a11389f6b0b879b54824ab16e797f55ce1b07bf7bb3176e663b"
+  },
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Focused source acceptance only. Full desktop clipboard preservation and hosted billing remain unresolved; no new packaged or installed acceptance is implied. Search reads directory names, not file contents, and explicitly discloses limits and skipped directories. All reference search styles and behaviors are not yet verified."
+}

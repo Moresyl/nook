@@ -18,6 +18,7 @@ export const directoryRequestSchema = z.object({
 export type FileEntry = { name: string; relativePath: string; directory: boolean };
 export type DirectoryRequest = z.input<typeof directoryRequestSchema>;
 export type DirectoryPage = { entries: FileEntry[]; revision: string; total: number; nextOffset: number | null };
+export type ProjectFileSearchResult = { entries: FileEntry[]; truncated: boolean; skippedDirectories: number };
 export type EditorDraft = z.infer<typeof editorDraftSchema>;
 export type FileDocument = { path: string; text: string; sha256: string };
 export type SaveDocument = z.infer<typeof saveDocumentSchema>;

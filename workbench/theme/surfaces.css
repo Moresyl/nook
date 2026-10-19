@@ -688,6 +688,16 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .editor-files[hidden] { display: none; }
 .editor-files-toolbar { flex-shrink: 0; }
 .editor-files .project-tree { flex: 1; min-height: 0; max-height: none; overflow: auto; }
+.project-file-finder, .project-file-tree-content { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.project-file-tree-content[hidden] { display: none; }
+.project-file-search-field { display: flex; align-items: center; gap: 2px; padding: 4px; }
+.project-file-search-field .input { min-width: 0; width: 100%; }
+.project-file-search-field .icon-button { flex: none; }
+.project-file-search-results { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.project-file-search-results [role="listbox"] { flex: 1; min-height: 0; overflow: auto; padding: 4px; }
+.project-file-search-results > .project-tree-status { flex: none; }
+.project-file-search-results [role="option"] { display: block; width: 100%; padding: 4px 6px; min-height: 28px; white-space: normal; overflow-wrap: anywhere; }
+.project-file-search-results [aria-selected="true"] { background: var(--tree-selected-background); }
 .project-tree-item { outline: none; min-width: 0; }
 .project-tree-row { display: flex; align-items: center; gap: 5px; min-height: 28px; padding: 0 3px; border-radius: var(--control-radius-sm); font-size: 13px; line-height: 28px; overflow: hidden; cursor: pointer; user-select: none; }
 .project-tree-row:hover { background: var(--ghost-hover); }

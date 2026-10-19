@@ -22,6 +22,7 @@ import { HttpModelGateway } from './services/model-gateway';
 import { ProviderSettings } from './services/provider-settings';
 import { ConversationEngine } from './services/conversation-engine';
 import { projectDiff, projectDirectory, projectDocument, projectEntries, projectText } from './services/project-files';
+import { searchProjectFiles } from './services/project-file-search';
 import { optionalProjectDocument, saveProjectDocument, writableProjectPath } from './services/project-writes';
 import { directoryRequestSchema, editorDraftSchema, saveDocumentSchema, terminalGeometrySchema } from '../contracts/projects';
 import { ProjectGit } from './services/project-git';
@@ -392,6 +393,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   exportDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.export(reference); },
   listFiles: (id, path) => projectEntries(workspaceProject(id).path, z.string().max(4096).parse(path)),
   listDirectory: (id, input) => projectDirectory(workspaceProject(id).path, directoryRequestSchema.parse(input)),
+  searchProjectFiles: (id, query) => searchProjectFiles(workspaceProject(id).path, query),
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
   previewProject: async (id, input) => { const project = workspaceProject(id); await projectPreview.open(window!, project.id, project.path, input); },
