@@ -2,6 +2,16 @@
 
 ## 未发布
 
+- 提示更清晰：错误提示使用专用明暗配色、21px 行高和紧凑间距；多条报错依次排队，悬停或键盘操作时暂停消失。
+- 阅读更连贯：长代码随对话展开，表格保留阅读字号下限，对话文字与代码字号可独立调整。
+- 操作更稳定：快捷选择保留键盘选中项，未保存表单提供离开保护，失败时保留草稿与重试入口。
+- 导航更统一：侧栏采用统一行高、圆角与图标区域，窄窗口保持紧凑布局。
+
+当前版本仍未发布。最新验收范围与发布阻塞见[发布状态](docs/RELEASE.md)。
+
+<details>
+<summary>逐轮开发与验收记录（各项只证明对应候选）</summary>
+
 - 全局错误提示改为顶部居中，最多并列 3 条，其余排队；重复报错刷新原位置，悬停、键盘操作与窗口失焦时暂停计时，关闭后恢复焦点。
 - 侧栏导航采用 36px 行高、10px 圆角和 14px 文字，统一图标区域与近期聊天文字；窄屏保留紧凑布局。
 - 长代码随聊天自然展开，取消 480px 内部纵向滚动；标题增加代码图标，普通代码与图表源码明确采用从左到右的排版，保留原文、换行和复制。
@@ -58,6 +68,8 @@ Prose headings, lists, quotes and Han-text paragraph spacing follow the referenc
 Task records retain valid steps, exact tool history and unsent drafts across restart. Code and tool copying share stale-completion protection, and copy feedback stays outside body search. The previous rich-content candidate passed 386 checks with 75 normal exits in source, unpacked and installed runtimes, alongside the original distribution and data-preserving uninstall gates. Complete reference parity and hosted publication remain pending.
 
 [发布状态](docs/RELEASE.md) · [原文历史](docs/CHANGELOG-HISTORY-2026-10-14.txt)，历史 SHA-256：`5734f75f345be6cfbb3933243992cdd1f18580313bcb3b926c891d46531fe854`。
+
+</details>
 
 </details>
 

@@ -1,0 +1,135 @@
+{
+  "verifiedAt": "2026-10-19T07:51:40.190Z",
+  "sourceBase": "66996fdc95702432b4c876ca4725d2c3615f9c9d",
+  "changedSource": [
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "78cd3d4d17e424192f5799e10ab6ab5500c243bc59d747b71da6199f2a122129"
+    },
+    {
+      "path": "scripts/verify-toasts.mjs",
+      "sha256": "89ceea09a7c85db961c3b000c1931a468bee12810e0345746010803aebbe46ed"
+    }
+  ],
+  "inputs": 1053,
+  "compiledFiles": 236,
+  "observerOnlyChangesAfterBuild": [
+    "scripts/verify-toasts.mjs"
+  ],
+  "typeCheck": true,
+  "build": true,
+  "unit": {
+    "files": 139,
+    "tests": 1637,
+    "passed": 1636,
+    "failed": 1,
+    "accepted": false,
+    "coverageAccepted": false
+  },
+  "native": {
+    "checks": 5,
+    "normalCloseVerified": true,
+    "colors": {
+      "light": {
+        "background": "rgb(255, 240, 240)",
+        "text": "rgb(224, 46, 42)",
+        "border": "oklab(0.589905 0.18904 0.0991318 / 0.15)",
+        "closeHover": "oklab(0.22559 -0.00131416 -0.00642684 / 0.0025)"
+      },
+      "dark": {
+        "background": "rgb(40, 11, 10)",
+        "text": "rgb(255, 103, 100)",
+        "border": "oklab(0.652749 0.197095 0.0994216 / 0.4)",
+        "closeHover": "oklab(0.999994 0.0000455678 0.0000200868 / 0.004)"
+      }
+    },
+    "layout": {
+      "modal": true,
+      "fits": true,
+      "noOverflow": true,
+      "font": "14px",
+      "radius": "12px",
+      "lineHeight": "21px",
+      "gap": "8px",
+      "contentGap": "4px",
+      "whiteSpace": "pre-wrap",
+      "closeSize": [
+        [
+          24,
+          24
+        ],
+        [
+          24,
+          24
+        ]
+      ],
+      "direction": "auto"
+    },
+    "screenshots": [
+      {
+        "path": "verification/screenshots/106-toast-queue-light.png",
+        "sha256": "a51d298f3dd83683c89f95ed1afffbadb27ba2057fca04769f8830e669a45ee4"
+      },
+      {
+        "path": "verification/screenshots/107-toast-modal-dark-narrow.png",
+        "sha256": "9531e639d2aaca0a3ea1e9b7b49e9ea62242f6f80283834f2db4a8c491faa30c"
+      }
+    ],
+    "individuallyReviewedImages": 2
+  },
+  "clipboard": {
+    "helperCommit": "66996fdc95702432b4c876ca4725d2c3615f9c9d",
+    "unchangedPackagedBodyCommit": "b72d93596c42c1797029f14a4abe3da4f73a7919",
+    "focusedQuickChecks": 13,
+    "fullPackagedAcceptance": false
+  },
+  "retainedFailures": [
+    {
+      "phase": "unit-retry2",
+      "reason": "One unchanged worktree-cleanup test exceeded its original 5000ms timeout; 1636 tests passed."
+    },
+    {
+      "phase": "unit-retry3",
+      "reason": "One unchanged attachment rejection test exceeded its original 5000ms timeout; 1636 tests passed. This serial run is not accepted."
+    },
+    {
+      "phase": "toasts-retry7",
+      "reason": "Compact viewport asserted before renderer resize after native zoom. Light color checks passed; dark checks not reached."
+    },
+    {
+      "phase": "toasts-retry9",
+      "reason": "Screenshot preparation used a strict locator matching every hidden tooltip; replaced with a bounded check for no open tooltip popover."
+    },
+    {
+      "phase": "toasts-retry10",
+      "reason": "Screenshot hover targeted the outside of the rounded corner; the modal header intercepted the pointer. Target changed to the visible leading icon."
+    }
+  ],
+  "evidence": [
+    {
+      "phase": "build-retry5",
+      "exitCode": 0,
+      "logSha256": "c715cfcae40e28120a4f7fd665b523685f461225f0535eaedb8d4dbfbfd61483"
+    },
+    {
+      "phase": "check-retry5",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "phase": "unit-retry3",
+      "exitCode": 1,
+      "logSha256": "7e88895910cc542e7e0cf6be485e9b62bf4f2eeba18a113f41b76cb51c8e8c72"
+    },
+    {
+      "phase": "toasts-retry11",
+      "exitCode": 0,
+      "logSha256": "e863950b7905a159570cffe2e8a58193d50ff1ca57cb9afb67e3681e8a645b08"
+    }
+  ],
+  "originalMainUnchanged": true,
+  "completeReferenceParity": false,
+  "currentFullDesktopAcceptance": false,
+  "currentFullDistributionAcceptance": false,
+  "published": false
+}

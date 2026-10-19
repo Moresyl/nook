@@ -33,6 +33,9 @@
   --color-background-tooltip: var(--color-text);
   --color-border-tooltip: #ffffff0d;
   --ds-danger: #e02e2a;
+  --toast-background: var(--red-25);
+  --toast-text: var(--red-500);
+  --toast-border: color-mix(in oklab, var(--red-500) 15%, transparent);
   --ds-success: #008635;
   --switch-track-color: var(--gray-150);
   --switch-track-color-hover: var(--gray-200);
@@ -60,6 +63,9 @@
   --color-background-tooltip: #2d2d2d;
   --color-border-tooltip: #dfdfdf0d;
   --ds-danger: #ff8583;
+  --toast-background: var(--red-950);
+  --toast-text: var(--red-300);
+  --toast-border: color-mix(in oklab, var(--red-400) 40%, transparent);
   --ds-success: #66d492;
   --switch-track-color: var(--gray-400);
   --switch-track-color-hover: var(--gray-450);
@@ -620,10 +626,11 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .shortcut-table { width: 100%; margin: 12px 0; border-collapse: collapse; font-size: 13px; }
 .shortcut-table th, .shortcut-table td { padding: 8px; border-bottom: 1px solid var(--ds-border); text-align: left; }
 .toast-viewport { position: fixed; inset: 48px 8px auto; z-index: 60; display: flex; flex-direction: column; align-items: center; gap: 8px; max-height: calc(100dvh - 56px); overflow: auto; overscroll-behavior: contain; pointer-events: none; }
-.toast { display: flex; align-items: flex-start; gap: 8px; width: max-content; min-width: 0; max-width: min(48rem, 100%); padding: 8px 12px; border: 1px solid color-mix(in srgb, var(--ds-danger) 25%, var(--ds-border)); border-radius: var(--radius-xl); background: color-mix(in srgb, var(--ds-danger) 5%, var(--ds-bg-elevated)); color: var(--ds-text); box-shadow: 0 4px 12px #0000001a; font-size: 14px; line-height: 1.4; pointer-events: auto; }
-.toast-leading { display: flex; flex: 0 0 24px; align-items: center; justify-content: center; height: 24px; color: var(--ds-danger); }
+.toast { display: flex; align-items: flex-start; gap: 4px; width: max-content; min-width: 0; max-width: min(48rem, 100%); padding: 8px 12px; border: 1px solid var(--toast-border); border-radius: var(--radius-xl); background: var(--toast-background); color: var(--toast-text); box-shadow: 0 4px 12px #0000001a; font-size: 14px; line-height: 1.5; pointer-events: auto; }
+.toast-leading { display: flex; flex: 0 0 24px; align-items: center; justify-content: center; height: 24px; }
 .toast-message { min-width: 0; align-self: center; white-space: pre-wrap; overflow-wrap: anywhere; font-weight: var(--font-weight-medium); }
 .toast .icon-button { flex: 0 0 24px; width: 24px; height: 24px; min-height: 24px; padding: 0; border-radius: 50%; }
+.toast .icon-button:hover:not(:disabled) { background: color-mix(in oklab, var(--ghost-hover) 5%, transparent); }
 .modal > .toast-viewport { position: absolute; inset: 8px 8px auto; max-height: calc(100% - 16px); }
 .startup { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; height: 100%; gap: 20px; color: var(--ds-text-secondary); }
 .startup p { max-width: 450px; font-size: 13px; text-align: center; }
