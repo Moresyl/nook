@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-19T08:29:15.177Z",
+  "sourceHead": "a9702d536bbc838ab767bd6717fc372402692190",
+  "source": {
+    "accepted": false,
+    "passedBeforeFailure": 285,
+    "normalExits": 36,
+    "forcedExits": 0,
+    "archivedOutputs": 454,
+    "profileArchiveIntegrityVerified": true,
+    "failure": "Quick-chat clipboard snapshot rejected an empty or unavailable non-text Windows payload before test clipboard writes. Exact format and external writer at failure were not captured.",
+    "failureArchive": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry3-failed",
+    "logSha256": "fd33ca4f15bfb8c0b34e63072b80bc145732e15218466b9ed89b531a24fc14e4"
+  },
+  "clipboard": {
+    "observationPath": "E:\\NookVerification\\ReferenceSurfaces-20261019\\full-retry3-readonly-clipboard-after-failure.json",
+    "observationSha256": "9b4478bc24b02b7726ed16b1969c0593615b97f46bdff84cb25f36a0b5016e2a",
+    "observedOwner": "rdpclip",
+    "unavailableNativeHandlesObserved": true,
+    "exactFailureFormatKnown": false,
+    "rootCauseDetermined": false,
+    "diagnosticsWroteClipboard": false,
+    "originalComparisonWeakened": false
+  },
+  "originalMainPreserved": {
+    "head": "7c9243b9f8b650a8c302843846a31d4405bc4c3d",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "diffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "indexSha256": "8519093e8e084a11389f6b0b879b54824ab16e797f55ce1b07bf7bb3176e663b"
+  },
+  "hosted": {
+    "url": "https://github.com/Moresyl/nook/actions/runs/39220742000",
+    "executedVerifySteps": 0,
+    "releases": 0,
+    "blocker": [
+      "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    ]
+  },
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "published": false,
+  "completeReferenceAdoption": false
+}
