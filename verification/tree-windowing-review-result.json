@@ -1,0 +1,220 @@
+{
+  "verifiedAt": "2026-10-20T16:41:52.473Z",
+  "sourceHead": "3b17ed79831f1c4c9dde7638f6756dc1d18a31e7",
+  "sourceDiffSha256": "d9d680cbfb32eb9f2383b5a9798d2a6cb47693e74e6d87cf4d76238e98fc3d42",
+  "sourceInputs": 1075,
+  "compiledFiles": 236,
+  "phases": [
+    {
+      "phase": "unit-retry14",
+      "checks": 0,
+      "exits": [],
+      "changedAfterRun": [
+        "scripts/project-tree-viewport.mjs",
+        "scripts/verify-project-tree-sticky.mjs",
+        "scripts/verify-project-tree.mjs",
+        "workbench/theme/surfaces.css"
+      ],
+      "logSha256": "d9fb4e9a008c5d84f2d626d9cc9f21918d4a45c8bd47c299e29ae1543a58de7b"
+    },
+    {
+      "phase": "check-retry74",
+      "checks": 0,
+      "exits": [],
+      "changedAfterRun": [],
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "phase": "build-retry50",
+      "checks": 0,
+      "exits": [],
+      "changedAfterRun": [
+        "scripts/verify-project-tree-sticky.mjs",
+        "scripts/verify-project-tree.mjs"
+      ],
+      "logSha256": "29b57db387c22daaf959c0c7cc3aea9aceb5e9c5134448714fb9a5f73c2ae6cc"
+    },
+    {
+      "phase": "tree-retry21",
+      "checks": 7,
+      "exits": [
+        {
+          "elapsedMs": 461,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 493,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "changedAfterRun": [],
+      "logSha256": "19cf45677a1fc4452900febf99064797c04b4ef7a1981213031e3dee24c3974b"
+    },
+    {
+      "phase": "previewintegration-retry3",
+      "checks": 17,
+      "exits": [
+        {
+          "elapsedMs": 444,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 979,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "changedAfterRun": [],
+      "logSha256": "496accff5e711e7ed6d4560fe224227b4df3865c9f18010caa8d2bf0f289a8ad"
+    }
+  ],
+  "failures": [
+    {
+      "phase": "tree-retry18",
+      "exitCode": 1,
+      "logSha256": "892023283b0f70134b32273d545beb0a0973e23e90687150d2844bbe241b5152",
+      "exits": [
+        {
+          "elapsedMs": 374,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "phase": "tree-retry19",
+      "exitCode": 1,
+      "logSha256": "667b82be5f44fc850c94cea9f75d72f5afbc4d7579a09a0fb21ed54ecd87522e",
+      "exits": [
+        {
+          "elapsedMs": 504,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 346,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "phase": "tree-retry20",
+      "exitCode": 1,
+      "logSha256": "3ae9b9d1834b062af435de61ba984c362555f2e64e3abf99f832fcc22fc80a81",
+      "exits": [
+        {
+          "elapsedMs": 411,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 396,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    }
+  ],
+  "unit": {
+    "files": 144,
+    "tests": 1690,
+    "coverage": {
+      "lines": {
+        "total": 4635,
+        "covered": 4612,
+        "skipped": 0,
+        "pct": 99.5
+      },
+      "statements": {
+        "total": 7703,
+        "covered": 7480,
+        "skipped": 0,
+        "pct": 97.1
+      },
+      "functions": {
+        "total": 1710,
+        "covered": 1673,
+        "skipped": 0,
+        "pct": 97.83
+      },
+      "branches": {
+        "total": 5390,
+        "covered": 5103,
+        "skipped": 0,
+        "pct": 94.67
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "layoutCoverage": {
+      "lines": {
+        "total": 26,
+        "covered": 26,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 41,
+        "covered": 41,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 36,
+        "covered": 35,
+        "skipped": 0,
+        "pct": 97.22
+      }
+    },
+    "applicationLogicAndUnitTestsUnchangedAfterRun": true
+  },
+  "virtualizedRows": {
+    "boundedMountedCount": true,
+    "allLoadedRowsReachableByScroll": true,
+    "rootLoadedCounts": [
+      200,
+      225
+    ],
+    "completeSiblingMetadata": true
+  },
+  "largeDirectory": {
+    "files": 1000,
+    "pages": 5,
+    "mountedRows": 41,
+    "keyboardLastAndFirst": true,
+    "completeSiblingMetadata": true,
+    "collapseRetainedFocus": true
+  },
+  "guideStates": 4,
+  "indentationObservations": 22,
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullCurrentSourceAccepted": false,
+  "fullCurrentDistributionAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Windowed file tree, real five-page thousand-file navigation, previous tree behavior and project-preview integration pass. Full desktop regression, new package/install, physical accessibility and all-page design alignment remain pending."
+}

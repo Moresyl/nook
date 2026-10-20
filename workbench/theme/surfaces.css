@@ -736,7 +736,9 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .project-file-search-results > .project-tree-status { flex: none; }
 .project-file-search-results [role="option"] { display: block; width: 100%; padding: 4px 6px; min-height: 28px; white-space: normal; overflow-wrap: anywhere; }
 .project-file-search-results [aria-selected="true"] { background: var(--tree-selected-background); }
-.project-tree-item { outline: none; min-width: 0; }
+.project-tree-item { flex: none; outline: none; min-width: 0; }
+.project-tree-space { flex: none; pointer-events: none; }
+.project-tree-status-block { flex: none; display: flow-root; }
 .project-tree-row { position: relative; display: flex; align-items: center; gap: 5px; min-height: 28px; padding: 0 3px; padding-left: calc(3px + var(--tree-depth, 0) * 8.75px + var(--tree-file-inset, 0px)); border-radius: var(--control-radius-sm); font-size: 13px; line-height: 28px; overflow: hidden; cursor: pointer; user-select: none; }
 .project-tree-guide { position: absolute; top: 0; bottom: 0; width: 1px; background: color-mix(in lab, #84848a 25%, transparent); opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
 .project-tree:hover .project-tree-guide { opacity: 0.75; }

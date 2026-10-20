@@ -5,6 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { waitForTerminalPrompt } from './terminal-prompt.mjs';
 import { assertTextHint, dismissModalWithEscape } from './text-hint-verification.mjs';
 import { verifyProjectTreeSticky } from './verify-project-tree-sticky.mjs';
+import { collectProjectTreeRows, projectTreeItem, scrollProjectTreeItem } from './project-tree-viewport.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
@@ -33,7 +34,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   }, { projectId, secondId, projectName, secondName, root, second, switcherProjects });
   await page.reload(); await page.getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: projectName, exact: true }).click();
   const tree = () => page.getByRole('tree', { name: '项目文件', exact: true });
-  const item = (path) => tree().getByRole('treeitem', { name: path, exact: true });
+  const item = path => projectTreeItem(() => page, tree, path);
   const row = (path) => item(path).locator(':scope > .project-tree-row');
   const input = () => page.locator('.project-main-panel:not([hidden]) .monaco-editor textarea.inputarea');
   const treeSelectionStates = [];
@@ -57,7 +58,9 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     treeSelectionStates.push({ theme, ...colors, selectedRetainedOnHover: true });
   }
   const createdContents = `TREE_NEW_FILE_CONTENT😀${process.platform === 'win32' ? '\r\n' : '\n'}`;
-  await item('source').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 200);
+  await item('source').waitFor(); assert.ok(await tree().getByRole('treeitem').count() < 70); assert.equal((await collectProjectTreeRows(page, tree())).length, 200);
+  const sourcePosition = await page.evaluate(async id => (await window.qiyao.listDirectory(id, { path: '' })).entries.findIndex(entry => entry.relativePath === 'source') + 1, projectId);
+  assert.ok(sourcePosition > 0); assert.equal(await item('source').getAttribute('aria-posinset'), String(sourcePosition)); assert.equal(await item('source').getAttribute('aria-setsize'), '224');
   await item('source').focus(); await page.keyboard.press('f');
   assert.equal(await item('file-0000.txt').evaluate(element => element === document.activeElement), true);
   await page.keyboard.press('f'); assert.equal(await item('file-0001.txt').evaluate(element => element === document.activeElement), true);
@@ -87,9 +90,9 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   for (const path of ['.git', 'node_modules', 'outside-link']) assert.equal(await item(path).count(), 0);
   const boundary = await page.evaluate(async ({ projectId, outside }) => { try { await window.qiyao.listDirectory(projectId, { path: outside }); return 'UNEXPECTED'; } catch (error) { return String(error); } }, { projectId, outside }); assert.match(boundary, /outside/); assert.ok(!boundary.includes('OUTSIDE_TREE_MUST_NOT_BE_READ'));
   await writeFile(join(root, '000-added.txt'), 'ADDED_BETWEEN_PAGES');
-  await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 200);
+  await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor(); assert.equal((await collectProjectTreeRows(page, tree())).length, 200);
   await tree().getByRole('button', { name: '重试目录 项目根目录', exact: true }).click(); await tree().getByRole('alert').waitFor({ state: 'hidden' });
-  await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).click(); await item('file-0219.txt').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 225); await item('000-added.txt').waitFor();
+  await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).click(); await scrollProjectTreeItem(page, tree(), 'file-0219.txt'); assert.equal((await collectProjectTreeRows(page, tree())).length, 225); await scrollProjectTreeItem(page, tree(), '000-added.txt'); await item('000-added.txt').waitFor();
   await item('file-0219.txt').scrollIntoViewIfNeeded(); await page.screenshot({ path: join(screenshots, '94-project-tree-pagination-light.png') });
   verified('actual scoped IPC pages retain every root entry, reject changed revisions before merging, retry successfully and omit internal folders/outside junctions');
 
@@ -104,7 +107,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.getByRole('button', { name: '定位当前文件', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); assert.equal(await item('source/资料/代码.ts').evaluate((element) => element === document.activeElement), true);
   await page.getByRole('button', { name: '收起所有目录', exact: true }).click(); assert.equal(await item('source').getAttribute('aria-expanded'), 'false'); assert.equal(await item('source/资料/代码.ts').count(), 0);
   await item('source').focus(); await item('source').press(' '); await item('source/资料').waitFor();
-  await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).waitFor({ state: 'hidden' }); await item('file-0219.txt').waitFor(); await row('source/资料').click(); await item('source/资料/代码.ts').waitFor();
+  await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).waitFor({ state: 'hidden' }); await scrollProjectTreeItem(page, tree(), 'file-0219.txt'); await row('source/资料').click(); await item('source/资料/代码.ts').waitFor();
   await page.getByRole('button', { name: '新建文件', exact: true }).click(); const newFile = page.getByRole('dialog', { name: '新建文件', exact: true }); assert.equal(await newFile.getByLabel('相对路径', { exact: true }).inputValue(), 'source/资料/'); await newFile.getByLabel('相对路径', { exact: true }).fill('source/资料/新文件.txt'); await newFile.getByRole('button', { name: '创建', exact: true }).click(); await newFile.waitFor({ state: 'hidden' }); await page.locator('.editor-actionbar .path-text').getByText('source/资料/新文件.txt', { exact: true }).waitFor(); await input().waitFor(); await input().focus(); await page.keyboard.insertText('TREE_NEW_FILE_CONTENT😀\n'); await input().press('Control+s'); await page.locator('.editor-actionbar').getByRole('status').getByText('已保存', { exact: true }).waitFor(); assert.equal(await readFile(join(root, 'source/资料/新文件.txt'), 'utf8'), createdContents); await item('source/资料/新文件.txt').waitFor();
   await page.getByRole('tab', { name: /代码\.ts/ }).click(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor(); await page.locator('.editor-actionbar').getByRole('status').getByText('草稿自动保存在工作台', { exact: true }).waitFor(); await page.screenshot({ path: join(screenshots, '95-project-tree-editor-light.png') });
   const longFileName = `${'完整中文文件名称'.repeat(8)}.ts`, longFilePath = `source/资料/${longFileName}`;
@@ -178,7 +181,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   const normalize = (path) => path.replaceAll('\\', '/').toLowerCase();
   await application.evaluateMain(`globalThis.qiyaoTreeFs=require('node:fs/promises');globalThis.qiyaoTreeRead=globalThis.qiyaoTreeFs.readdir;globalThis.qiyaoTreeMode='fail';globalThis.qiyaoTreeFs.readdir=async(path,...args)=>{const owned=String(path).replaceAll(String.fromCharCode(92),'/').toLowerCase()===${JSON.stringify(normalize(root))};if(owned&&globalThis.qiyaoTreeMode==='fail')throw Object.assign(new Error('PRIVATE_TREE_FILESYSTEM_FAILURE'),{code:'EIO'});const held=owned&&globalThis.qiyaoTreeMode==='hold';if(held){globalThis.qiyaoTreeHeld=true;await new Promise(resolve=>{globalThis.qiyaoTreeRelease=resolve;});}const entries=await globalThis.qiyaoTreeRead(path,...args);if(held)globalThis.qiyaoTreeHeldCompleted=true;return entries;};`);
   try {
-    await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('alert').waitFor(); await item('file-0219.txt').waitFor(); assert.ok(!(await tree().innerText()).includes('PRIVATE_TREE_FILESYSTEM_FAILURE')); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
+    await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('alert').waitFor(); await scrollProjectTreeItem(page, tree(), 'file-0219.txt'); assert.ok(!(await tree().innerText()).includes('PRIVATE_TREE_FILESYSTEM_FAILURE')); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
     await finder().fill('代码'); await page.getByRole('alert').getByText('无法查找项目文件，请重试。', { exact: true }).waitFor();
     assert.ok(!(await page.locator('.project-file-finder').innerText()).includes('PRIVATE_TREE_FILESYSTEM_FAILURE'));
     await application.evaluateMain("globalThis.qiyaoTreeMode='normal'");
@@ -262,12 +265,12 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   console.log('Verified actual scoped project IPC without full workspace copies', JSON.stringify({ terminalReads: 8, documentReads: 1, workspaceCopies: projectWorkspaceCopies }));
   await page.getByRole('button', { name: '定位当前文件', exact: true }).click();
   const geometry = await page.evaluate(() => { const terminal = document.querySelector('.project-terminal').getBoundingClientRect(); const editor = document.querySelector('.editor-canvas').getBoundingClientRect(); return { top: terminal.top, bottom: terminal.bottom, height: terminal.height, editor: editor.height, windowHeight: innerHeight }; }); assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.windowHeight && geometry.height >= 100 && geometry.editor >= 60, JSON.stringify(geometry)); await page.screenshot({ path: join(screenshots, '96-project-tree-dark-narrow.png') });
-  const rowsBeforeHide = await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')]));
+  const rowsBeforeHide = await collectProjectTreeRows(page, tree());
   await page.getByRole('button', { name: '隐藏文件树', exact: true }).focus(); await page.getByRole('button', { name: '隐藏文件树', exact: true }).press('Enter');
   assert.equal(await tree().count(), 0); assert.equal(await page.getByRole('button', { name: '显示文件树', exact: true }).getAttribute('aria-pressed'), 'false');
   assert.equal(await page.getByRole('button', { name: '显示文件树', exact: true }).evaluate((element) => element === document.activeElement), true);
   await page.getByRole('button', { name: '显示文件树', exact: true }).press('Space');
-  assert.deepEqual(await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')])), rowsBeforeHide);
+  assert.deepEqual(await collectProjectTreeRows(page, tree()), rowsBeforeHide);
   await page.getByRole('button', { name: '查看改动', exact: true }).click(); assert.equal(await page.getByRole('button', { name: '隐藏文件树', exact: true }).isDisabled(), true); await page.locator('.inspector-toolbar').getByRole('button', { name: '文件', exact: true }).click();
   assert.equal(await page.getByRole('button', { name: '隐藏文件树', exact: true }).isDisabled(), false); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   async function capture(path) {
@@ -331,7 +334,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     await terminalInput.focus();
     await terminalInput.press('Enter'); await waitForBridge(page, async ({ id, marker }) => (await window.qiyao.terminalList(id)).some((terminal) => terminal.output.slice(terminal.output.lastIndexOf(marker)).includes('PS ')), { id: projectId, marker: `SPACE${zoom * 100}` });
   }
-  await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.getByRole('button', { name: '显示文件树', exact: true }).click(); assert.deepEqual(await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')])), rowsBeforeHide);
+  await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.getByRole('button', { name: '显示文件树', exact: true }).click(); assert.deepEqual(await collectProjectTreeRows(page, tree()), rowsBeforeHide);
   assert.equal(await readFile(join(root, 'source/资料/代码.ts'), 'utf8'), originalContents);
   verified('keyboard file-tree visibility preserves cached expansion/focus/drafts, and the minimum window supports visible code input and real PTY commands at 100/125/150 percent native zoom with the sidebar retained');
   page = await restart(); application = getApplication(); await page.getByRole('button', { name: '项目', exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
@@ -346,9 +349,9 @@ export async function verifyProjectTree({ page, application, getApplication, dir
     if (screenshot) await capture(screenshot);
     await search().press('Enter'); await palette().waitFor({ state: 'hidden' });
   }
-  const restoredRows = await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')]));
+  const restoredRows = await collectProjectTreeRows(page, tree());
   await input().focus(); await executeCommand('隐藏文件树', '99-project-file-command-dark.png'); assert.equal(await tree().count(), 0); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
-  await executeCommand('显示文件树'); assert.deepEqual(await tree().getByRole('treeitem').evaluateAll((elements) => elements.map((element) => [element.getAttribute('aria-label'), element.getAttribute('aria-expanded')])), restoredRows);
+  await executeCommand('显示文件树'); assert.deepEqual(await collectProjectTreeRows(page, tree()), restoredRows);
   await executeCommand('显示终端'); await page.locator('.terminal-tabs').getByRole('button', { name: '新建终端', exact: true }).click();
   console.log('Project command terminal cold-start timing', JSON.stringify(await waitForTerminalPrompt(() => page.evaluate((id) => window.qiyao.terminalList(id), projectId))));
   const terminalId = await page.evaluate(async (id) => (await window.qiyao.terminalList(id))[0].id, projectId);
@@ -374,6 +377,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
   const stickyFolders = await verifyProjectTreeSticky({ page, application, directory, capture, returnProjectName: longName });
   return { page, result: {
+    virtualizedRows: { boundedMountedCount: true, allLoadedRowsReachableByScroll: true, rootLoadedCounts: [200, 225], completeSiblingMetadata: true },
     stickyFolders,
     checks: 7, projectCommandChecks: 2, fileSearch: { toolbarLocateVisibleFocus: true, toolbarRefreshRetainsQuery: true, savedFileRefreshesResults: true, limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
