@@ -15,6 +15,17 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
   const tree = () => page.getByRole('tree', { name: '项目文件', exact: true });
   const item = path => tree().getByRole('treeitem', { name: path, exact: true });
   const row = path => item(path).locator(':scope > .project-tree-row');
+  const indentation = [];
+  async function assertIndentation(path, expectedPadding) {
+    const measured = await row(path).evaluate(element => {
+      const bounds = element.getBoundingClientRect(), icon = element.querySelector(':scope > svg'), label = element.querySelector('.project-tree-label');
+      return { padding: Number.parseFloat(getComputedStyle(element).paddingLeft), icons: element.querySelectorAll('svg').length, iconWidth: icon.getBoundingClientRect().width, iconLeft: icon.getBoundingClientRect().left - bounds.left, labelLeft: label.getBoundingClientRect().left - bounds.left };
+    });
+    assert.equal(measured.padding, expectedPadding); assert.equal(measured.icons, 1); assert.equal(measured.iconWidth, 16);
+    assert.ok(Math.abs(measured.iconLeft - expectedPadding) < 0.1, JSON.stringify(measured));
+    assert.ok(Math.abs(measured.labelLeft - expectedPadding - 21) < 0.1, JSON.stringify(measured));
+    indentation.push({ path, ...measured });
+  }
   async function select() { await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name, exact: true }).click(); if (await page.getByRole('button', { name: '显示文件树', exact: true }).count()) await page.getByRole('button', { name: '显示文件树', exact: true }).click(); }
   async function open() { if (await item('a-parent').getAttribute('aria-expanded') === 'false') await row('a-parent').click(); if (await item(nested).getAttribute('aria-expanded') === 'false') await row(nested).click(); await item(`${nested}/file-0100.txt`).waitFor(); }
   async function visible(path) { return item(path).evaluate(element => { const row = element.querySelector(':scope > .project-tree-row').getBoundingClientRect(), viewport = element.closest('.project-tree').getBoundingClientRect(); return document.activeElement === element && row.top >= viewport.top && row.bottom <= viewport.bottom; }); }
@@ -22,6 +33,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
   async function geometry() { return tree().evaluate(element => { const bounds = element.getBoundingClientRect(), paths = ['a-parent', 'a-parent/b-nested']; return { height: element.clientHeight, scroll: element.scrollTop, rows: paths.map(path => { const node = [...element.querySelectorAll('[role="treeitem"]')].find(item => item.getAttribute('aria-label') === path), row = node.querySelector(':scope > .project-tree-row'), rect = row.getBoundingClientRect(); return { top: rect.top - bounds.top, bottom: rect.bottom - bounds.top, canonicalTop: node.getBoundingClientRect().top - bounds.top, position: getComputedStyle(row).position, layers: getComputedStyle(row).backgroundImage }; }) }; }); }
   try {
     await application.resize(1280, 840); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.reload(); await select(); await open(); await scrollInside();
+    await assertIndentation('a-parent', 3); await assertIndentation(nested, 11.75); await assertIndentation(`${nested}/file-0100.txt`, 24.25); await assertIndentation('a-parent/parent-after.txt', 15.5); await assertIndentation('z-000.txt', 3);
     const light = await geometry(); console.log('Sticky tree geometry', JSON.stringify(light)); await capture('116-project-tree-sticky-light.png'); assert.ok(light.scroll > 500); assert.equal(light.rows[0].position, 'sticky'); assert.ok(Math.abs(light.rows[0].top) < 1, JSON.stringify(light)); assert.ok(Math.abs(light.rows[1].top - 28) < 1, JSON.stringify(light)); assert.ok(light.rows.every(row => row.canonicalTop < 0 && row.layers.includes('linear-gradient')));
     assert.equal(await item('a-parent').count(), 1); assert.equal(await item(nested).count(), 1, 'Sticky presentation does not duplicate accessible nodes');
     await item(`${nested}/file-0100.txt`).focus(); await page.keyboard.press('Home'); assert.equal(await visible('a-parent'), true);
@@ -44,6 +56,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
       await page.waitForFunction(zoom => Math.abs(innerWidth - 760 / zoom) <= 1, zoom);
       await item(`${nested}/file-0100.txt`).focus(); await page.keyboard.press('ArrowDown'); assert.equal(await visible(`${nested}/file-0101.txt`), true, `Focus remains visible at zoom ${zoom}`);
       const measured = await geometry(); assert.ok(measured.height > 28); assert.equal(await item('a-parent').count(), 1);
+      await assertIndentation(nested, 11.75); await assertIndentation(`${nested}/file-0101.txt`, 24.25);
       assert.equal(await page.locator('.editor-body > .empty').evaluate(element => { const viewport = element.parentElement.getBoundingClientRect(); return [...element.querySelectorAll('h3,p')].every(item => { const rect = item.getBoundingClientRect(); return rect.top >= viewport.top && rect.bottom <= Math.min(viewport.bottom, innerHeight) && rect.left >= viewport.left && rect.right <= viewport.right; }); }), true, `Empty-editor title and instructions fit at zoom ${zoom}`);
     }
     await page.keyboard.press('Escape'); await page.mouse.move(1, 1); await page.getByRole('tooltip').waitFor({ state: 'hidden' });
@@ -51,7 +64,19 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
     await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await item(`${nested}/file-0101.txt`).waitFor();
     const search = page.getByPlaceholder('查找文件路径…'); await search.fill('file-0101'); await page.getByRole('listbox', { name: '项目文件查找结果', exact: true }).waitFor(); assert.equal(await tree().isVisible(), false);
     await search.press('Escape'); await tree().waitFor(); await item(`${nested}/file-0100.txt`).focus(); await page.keyboard.press('ArrowDown'); assert.equal(await visible(`${nested}/file-0101.txt`), true);
-    return { ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png'] };
+    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
+    const deepParts = Array.from({ length: 10 }, (_, index) => index ? `level-${index}` : 'c-deep');
+    await mkdir(join(root, ...deepParts), { recursive: true }); await writeFile(join(root, ...deepParts, 'leaf.txt'), 'DEEP_TREE');
+    await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await item('c-deep').waitFor();
+    for (let index = 0; index < deepParts.length; index++) {
+      const path = deepParts.slice(0, index + 1).join('/'); await item(path).focus(); await page.keyboard.press('ArrowRight');
+      await item(index === deepParts.length - 1 ? `${path}/leaf.txt` : `${path}/${deepParts[index + 1]}`).waitFor();
+      await assertIndentation(path, 3 + index * 8.75);
+    }
+    const leaf = `${deepParts.join('/')}/leaf.txt`; await assertIndentation(leaf, 94.25);
+    await item(leaf).focus(); await page.keyboard.press('ArrowLeft'); assert.equal(await visible(deepParts.join('/')), true);
+    await page.keyboard.press('Escape'); await page.mouse.move(1, 1); await page.getByRole('tooltip').waitFor({ state: 'hidden' }); await capture('118-project-tree-deep-dark.png');
+    return { indentation, deepLevels: 11, ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png', '118-project-tree-deep-dark.png'] };
   } finally {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
     await page.evaluate(async preferences => { await window.qiyao.savePreferences(preferences); }, preferences);

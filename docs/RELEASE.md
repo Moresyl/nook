@@ -4,6 +4,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 文件树改用单图标和紧凑缩进，移除八级缩进上限，深层目录继续区分层级。
 - 预览分栏增加细渐变指示线、内侧焦点框、双击均分和拖动取消回滚；预览会话与草稿在拖动前后保留。
 - 文件树滚动时保留展开的祖先目录，在子树末尾推离；键盘定位避开固定目录，矮窗口下编辑器空态说明保持可读。
 - 紧凑侧栏的会话和操作按钮分开布局，修复高缩放时操作按钮拦截会话点击的问题。
@@ -15,6 +16,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 具体使用方式见[项目](PROJECTS.md)；完整更新见[更新记录](../CHANGELOG.md)。原始开源许可证、依赖许可证和来源声明继续保留。
 
 ## 已验证的范围
+
+最新文件树缩进改动已通过类型检查、构建与原生文件树专项：22 组几何检查覆盖根层、十级目录及明暗三档缩放，两次正常退出为 806ms／476ms。[缩进验收](../verification/tree-indentation-review-result.json)。下面三轮完整回归对应改动前的 `5e82af5` 基线；当前修改尚需完整源码与分发复验。
 
 | 检查 | 当前结果 |
 | --- | --- |
@@ -42,7 +45,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 当前预览分栏专项 10 项、文件树与预览集成 17 项通过，合计 3 次正常退出；后续源码、包内和实际安装三轮完整回归均已通过。分发验收对应 `5e82af5` 的同组输入与二进制。[分栏专项证据](../verification/preview-resize-review-result.json) · [完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
-- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录已专项验证，文件树虚拟化、缩进及全部布局状态仍待落实与验证。
+- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录与缩进几何已专项验证，文件树虚拟化、缩进引导线、目录压缩及全部布局状态仍待落实与验证。
 - 本地分发验收已通过，但未逐张审阅全部截图，也未完成物理输入法、辅助技术与其他系统 DPI 的验收。
 - 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。已归档运行见[5e82af5 的流水线](https://github.com/Moresyl/nook/actions/runs/39433081996)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
 - 原 Chrome 连接此前核验缺少认证令牌；本轮工具列表未提供 `computer-use` 所需的 `node_repl`，未复查浏览器状态，尚未通过浏览器完成发布。
@@ -55,7 +58,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Source, packaged and installed builds each pass 411 desktop checks with 75 normal exits and no forced termination. Distribution checks pass for matching binaries; the packages are unsigned. Full design alignment and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. The prior preview-resize baseline passes 411 desktop checks in each source, packaged and installed run. New compact tree indentation passes type checking, build and focused native checks, including ten directory levels and three zoom factors; full regression and distribution acceptance must be repeated for this change. Full design alignment and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
 
 ## 历史证据
 

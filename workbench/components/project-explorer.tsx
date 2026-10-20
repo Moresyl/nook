@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode, type Ref } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode, type Ref } from 'react';
 import type { FileEntry } from '../../contracts/projects';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
@@ -28,10 +28,10 @@ function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocu
     onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(event); } }}
     onBlur={event => { if (event.target === event.currentTarget) { tooltip.hide(); if (!event.currentTarget.closest('[role="tree"]')?.contains(event.relatedTarget)) onExit(); } }}
     onKeyDown={onKeyDown}>
-    <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 3 + Math.min(level - 1, 8) * 12, ...(entry.directory && expanded ? { top: `min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px))`, zIndex: 10000 - level } : {}) }}
+    <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ '--tree-depth': level - 1, '--tree-file-inset': !entry.directory && level > 1 ? '3.75px' : '0px', ...(entry.directory && expanded ? { top: `min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px))`, zIndex: 10000 - level } : {}) } as CSSProperties}
       onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
       onClick={event => { tooltip.press(); event.stopPropagation(); onActivate(); }}>
-      <span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={16} /><span className="project-tree-label">{entry.name}</span>
+      <Glyph name={entry.directory ? expanded ? 'down' : 'right' : 'file'} size={16} /><span className="project-tree-label">{entry.name}</span>
     </div>{tooltip.content}{children}
   </div>;
 }
