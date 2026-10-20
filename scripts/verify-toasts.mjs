@@ -51,9 +51,10 @@ export async function verifyToasts({ page, application, screenshots, verified })
   };
   const sidebarLayout = () => page.locator('.sidebar').evaluate(element => ({
     compact: innerWidth <= 640,
+    continuous: CSS.supports('corner-shape', 'superellipse(1.5)'),
     rows: [...element.querySelectorAll('.nav-row')].map(row => {
       const bounds = row.getBoundingClientRect(), style = getComputedStyle(row), icon = row.querySelector('svg').getBoundingClientRect();
-      return { height: bounds.height, radius: style.borderRadius, font: style.fontSize, icon: [icon.width, icon.height], fits: icon.top >= bounds.top && icon.bottom <= bounds.bottom && row.scrollWidth <= row.clientWidth };
+      return { height: bounds.height, radius: style.borderRadius, cornerShape: style.cornerShape, font: style.fontSize, icon: [icon.width, icon.height], fits: icon.top >= bounds.top && icon.bottom <= bounds.bottom && row.scrollWidth <= row.clientWidth };
     }),
   }));
   const capture = async name => {
@@ -69,7 +70,7 @@ export async function verifyToasts({ page, application, screenshots, verified })
   await page.reload(); await composer.waitFor(); await composer.fill(draft); await composer.focus();
   const wideSidebar = await sidebarLayout();
   assert.equal(wideSidebar.compact, false); assert.equal(wideSidebar.rows.length, 10);
-  assert.ok(wideSidebar.rows.every(row => row.height === 36 && row.radius === '10px' && row.font === '14px' && row.icon.join(',') === '24,24' && row.fits));
+  assert.ok(wideSidebar.rows.every(row => row.height === 30 && row.radius === (wideSidebar.continuous ? '12.5px' : '10px') && row.cornerShape === (wideSidebar.continuous ? 'superellipse(1.5)' : undefined) && row.font === '14px' && row.icon.join(',') === '16,16' && row.fits));
   await notify(['通知一', '通知二', '通知三', '通知四', '通知五', '通知二']);
   await cards.nth(2).waitFor(); await cards.first().hover();
   await verifyColors('light');
@@ -126,7 +127,7 @@ export async function verifyToasts({ page, application, screenshots, verified })
   await page.waitForFunction(() => Math.abs(innerWidth - 760 / 1.5) <= 1 && Math.abs(innerHeight - 540 / 1.5) <= 1, undefined, { timeout: 5_000 });
   const narrowSidebar = await sidebarLayout();
   assert.equal(narrowSidebar.compact, true); assert.equal(narrowSidebar.rows.length, 10);
-  assert.ok(narrowSidebar.rows.every(row => Math.abs(row.height - 36) < .1 && row.radius === '10px' && row.font === '0px' && row.fits));
+  assert.ok(narrowSidebar.rows.every(row => Math.abs(row.height - 30) < .1 && row.radius === (narrowSidebar.continuous ? '12.5px' : '10px') && row.cornerShape === (narrowSidebar.continuous ? 'superellipse(1.5)' : undefined) && row.icon.join(',') === '16,16' && row.font === '0px' && row.fits));
   await notify(['保存失败\n中文与 English、עברית مرحبا', 'LONG_TOKEN_' + 'abcdefghij'.repeat(30)]);
   await cards.nth(1).waitFor(); await close().first().focus();
   await verifyColors('dark');
@@ -150,6 +151,6 @@ export async function verifyToasts({ page, application, screenshots, verified })
   await dismissModalWithEscape(page, dialog);
   assert.equal(await composer.inputValue(), draft);
   verified('native modal notifications remain in the dialog top layer, wrap mixed-direction and unbroken text at minimum window and 150 percent zoom, retain measured reference dimensions and preserve the draft');
-  verified('all ten navigation rows use measured 36px height, 10px corners and 24px icon areas in the wide sidebar and keep icons within compact rows at 150 percent zoom');
+  verified('all ten navigation rows use measured 30px height, capability-dependent continuous corners and 16px icon areas in the wide sidebar and keep icons within compact rows at 150 percent zoom');
   return { checks: 5, screenshots: ['106-toast-queue-light.png', '107-toast-modal-dark-narrow.png'], layout, colors, sidebar: { wide: wideSidebar, narrow: narrowSidebar }, visibleLimit: 3, defaultDurationMs: 5_000, focusEmulationDisabledOnlyDuringNativeVisibilityCheck: true, originalFocusEmulationRestored: true, scope: 'Native IPC fixture notifications, real timer/hover/focus/window blur, FIFO waiting and duplicate refresh, dialog top-layer portal, keyboard dismissal/focus return, ten wide/compact navigation rows, measured light/dark error colors, dark narrow layout and full native screenshots. No physical screen-reader, swipe, every recent-chat state or complete reference UI claim.' };
 }

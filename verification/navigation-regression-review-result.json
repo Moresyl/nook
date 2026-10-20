@@ -1,0 +1,118 @@
+{
+  "verifiedAt": "2026-10-20T03:53:10.079Z",
+  "sourceBase": "40c06b6b877d529fccfc3b7c39ca80a5f7b4aac4",
+  "change": "Updated stale wide and compact navigation expectations in the original notification suite to the independently verified 30px rows, 16px icons and continuous-corner branch.",
+  "observations": [
+    {
+      "phase": "full-retry4",
+      "exitCode": 1,
+      "passes": 151,
+      "exits": [
+        {
+          "elapsedMs": 610,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 329,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 142,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 128,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 234,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 148,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 179,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 136,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 300,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 129,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 147,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 222,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archivedOutputs": 197,
+      "logSha256": "24edc7df83fac814c64e3fbe2b02e1b14c8778c656f48dd6cb3c684030275744"
+    },
+    {
+      "phase": "check-retry30",
+      "exitCode": 0,
+      "passes": 0,
+      "exits": [],
+      "archivedOutputs": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "phase": "toasts-retry12",
+      "exitCode": 0,
+      "passes": 5,
+      "exits": [
+        {
+          "elapsedMs": 273,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "archivedOutputs": 3,
+      "logSha256": "da0839812d71adf8810c5a2bf9b02b2d3fc157e1643283dd77a5556752645f39"
+    }
+  ],
+  "productBytesChanged": false,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "published": false,
+  "boundary": "Full desktop stopped at a stale geometry assertion after 151 passing checks. The original five notification checks pass after observer-only correction. Full desktop retry remains required; focused success does not substitute for it. Failed test workspace retained at E:/NookVerification/ReferenceSurfaces-20261019/temp/qiyao-electron-RiPGqF."
+}
