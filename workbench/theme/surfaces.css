@@ -774,12 +774,15 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 }
 .editor-canvas { flex: 1; min-height: 0; min-width: 0; overflow: hidden; }
 .editor-workspace { display: flex; flex: 1; min-height: 0; min-width: 0; grid-column: 1 / -1; overflow: hidden; }
-.editor-workspace.with-preview { display: grid; grid-template-columns: minmax(0, var(--editor-share)) 6px minmax(0, 1fr); }
-.editor-workspace.with-preview[data-vertical="true"] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, var(--editor-share)) 6px minmax(0, 1fr); }
+.editor-workspace.with-preview { display: grid; grid-template-columns: minmax(0, var(--editor-share)) 16px minmax(0, var(--preview-share)); }
+.editor-workspace.with-preview[data-vertical="true"] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, var(--editor-share)) 16px minmax(0, var(--preview-share)); }
 .editor-workspace.with-preview > .editor-canvas { grid-column: auto; }
-.project-preview-divider { background: var(--ds-bg-secondary); cursor: col-resize; touch-action: none; z-index: 1; }
+.project-preview-divider { position: relative; background: transparent; cursor: col-resize; touch-action: none; user-select: none; z-index: 1; outline: none; }
+.project-preview-divider::after { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--ds-text) 25%, transparent), transparent); opacity: 0; pointer-events: none; }
 [data-vertical="true"] > .project-preview-divider { cursor: row-resize; }
-.project-preview-divider:hover, .project-preview-divider:focus-visible { background: var(--ds-accent); outline: none; }
+[data-vertical="true"] > .project-preview-divider::after { top: 50%; right: 0; bottom: auto; left: 0; width: auto; height: 1px; transform: translateY(-50%); background: linear-gradient(to right, transparent, color-mix(in oklab, var(--ds-text) 25%, transparent), transparent); }
+.project-preview-divider:is(:hover, :focus-visible, [data-resizing="true"])::after { opacity: 1; }
+.project-preview-divider:focus-visible { outline: 2px solid var(--color-ring); outline-offset: -2px; }
 .project-preview-pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; background: var(--ds-bg); }
 .project-preview-toolbar { display: flex; flex: none; align-items: center; flex-wrap: wrap; gap: 4px; min-height: 32px; padding: 4px 8px; border-bottom: 1px solid var(--ds-border); }
 .project-preview-toolbar > span:not([role="tooltip"]) { flex: 1; min-width: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--font-weight-medium); }

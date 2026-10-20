@@ -80,6 +80,92 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   for (let index = 0; index < 6; index++) await divider.press(vertical ? 'ArrowUp' : 'ArrowLeft');
   const box = await divider.boundingBox(); assert.ok(box); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down(); await page.mouse.move(box.x + box.width / 2 + (vertical ? 0 : 25), box.y + box.height / 2 + (vertical ? 25 : 0)); await page.mouse.up();
   assert.notEqual(await divider.getAttribute('aria-valuenow'), '50'); await geometry(1);
+  const resizeSession = await currentId(), resizeDrafts = await page.evaluate(async id => (await window.qiyao.load()).editorDrafts.filter(item => item.projectId === id), projectId);
+  await evaluate("sessionStorage.setItem('resize-preserved', 'KEEP_中文😀')");
+  const resizeChecks = [];
+  const focusSession = await page.context().newCDPSession(page);
+  const opened = page.context().waitForEvent('page');
+  await application.evaluateMain(`(async () => { if (globalThis.nookResizeFocusProbe) throw new Error('Resize focus probe already exists'); const { BrowserWindow } = require('electron'); const probe = new BrowserWindow({ parent: ${mainWindow}, width: 160, height: 100, show: false, webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false } }); globalThis.nookResizeFocusProbe = probe; await probe.loadURL('about:blank'); })()`);
+  const focusProbe = await opened; await focusProbe.waitForLoadState('load');
+  // Match the existing tooltip lifecycle audit: observe actual focus instead of CDP emulation.
+  await focusSession.send('Emulation.setFocusEmulationEnabled', { enabled: false });
+  async function focusMain() {
+    await application.evaluateMain(`globalThis.nookResizeFocusProbe.hide(); ${mainWindow}.show(); ${mainWindow}.focus(); ${mainWindow}.webContents.focus()`);
+    await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
+    await wait(`${mainWindow}.isFocused() && ${mainWindow}.webContents.isFocused()`);
+  }
+  async function exerciseResize(axis, theme) {
+    await focusMain();
+    assert.equal(await divider.getAttribute('aria-orientation'), axis === 'vertical' ? 'vertical' : 'horizontal');
+    await divider.dblclick(); assert.equal(await divider.getAttribute('aria-valuenow'), '50'); await ready();
+    await divider.evaluate(element => element.blur()); await page.mouse.move(1, 1);
+    assert.equal(await divider.evaluate(element => getComputedStyle(element, '::after').opacity), '0');
+    await divider.hover(); assert.equal(await divider.evaluate(element => getComputedStyle(element, '::after').opacity), '1');
+    await divider.focus(); await divider.press(axis === 'vertical' ? 'ArrowRight' : 'ArrowDown'); await divider.press(axis === 'vertical' ? 'ArrowLeft' : 'ArrowUp');
+    const handleStyle = await divider.evaluate(element => {
+      const rect = element.getBoundingClientRect(), style = getComputedStyle(element), line = getComputedStyle(element, '::after');
+      const editor = element.previousElementSibling.getBoundingClientRect(), preview = element.nextElementSibling.getBoundingClientRect();
+      return { width: rect.width, height: rect.height, lineWidth: parseFloat(line.width), lineHeight: parseFloat(line.height), gradient: line.backgroundImage, focusVisible: element.matches(':focus-visible'), outlineWidth: style.outlineWidth, outlineOffset: style.outlineOffset, editorWidth: editor.width, editorHeight: editor.height, previewWidth: preview.width, previewHeight: preview.height };
+    });
+    assert.equal(axis === 'vertical' ? handleStyle.width : handleStyle.height, 16); assert.equal(axis === 'vertical' ? handleStyle.lineWidth : handleStyle.lineHeight, 1);
+    assert.equal(handleStyle.focusVisible, true); assert.equal(handleStyle.outlineWidth, '2px'); assert.equal(handleStyle.outlineOffset, '-2px'); assert.ok(handleStyle.gradient.includes('linear-gradient'));
+    assert.ok(Math.abs(axis === 'vertical' ? handleStyle.editorWidth - handleStyle.previewWidth : handleStyle.editorHeight - handleStyle.previewHeight) <= 1, 'A reset split gives both panes equal usable space');
+    const rect = await divider.boundingBox(); assert.ok(rect);
+    const x = rect.x + rect.width / 2, y = rect.y + rect.height / 2;
+    const move = distance => page.mouse.move(x + (axis === 'vertical' ? distance : 0), y + (axis === 'horizontal' ? distance : 0));
+    async function start() {
+      await focusMain();
+      await divider.evaluate(element => element.addEventListener('pointerdown', event => { element.dataset.testPointer = String(event.pointerId); }, { once: true }));
+      await move(0); await page.mouse.down(); await wait(`!${visible}`);
+      assert.equal(await divider.getAttribute('aria-valuenow'), '50', 'Starting a drag must not jump the divider');
+    }
+    await start(); await move(80); assert.notEqual(await divider.getAttribute('aria-valuenow'), '50');
+    const moved = await divider.getAttribute('aria-valuenow');
+    await divider.evaluate(element => {
+      const pointerId = Number(element.dataset.testPointer) + 100;
+      for (const type of ['pointerdown', 'pointermove', 'pointerup', 'pointercancel', 'lostpointercapture']) element.dispatchEvent(new PointerEvent(type, { bubbles: true, pointerId, pointerType: 'touch', button: 0, buttons: 1, clientX: 1, clientY: 1 }));
+      element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', isComposing: true, bubbles: true }));
+    });
+    assert.equal(await divider.getAttribute('aria-valuenow'), moved, 'Other pointer and IME events must not steal or cancel the active drag'); assert.equal(await application.evaluateMain(visible), false);
+    await page.keyboard.press('Escape'); assert.equal(await divider.getAttribute('aria-valuenow'), '50'); await ready();
+    await move(120); assert.equal(await divider.getAttribute('aria-valuenow'), '50'); await page.mouse.up();
+    for (const cancel of ['pointercancel', 'lostcapture']) {
+      await start(); await move(60);
+      await divider.evaluate((element, cancel) => { const pointerId = Number(element.dataset.testPointer); if (cancel === 'lostcapture') element.releasePointerCapture(pointerId); else element.dispatchEvent(new PointerEvent('pointercancel', { bubbles: true, pointerId, pointerType: 'mouse' })); }, cancel);
+      await page.waitForFunction(() => document.querySelector('.project-preview-divider')?.getAttribute('aria-valuenow') === '50'); await ready(); await page.mouse.up();
+    }
+    await start(); await move(50);
+    console.log('Preview resize before native blur', JSON.stringify(await application.evaluateMain(`({windowFocused:${mainWindow}.isFocused(),rendererFocused:${mainWindow}.webContents.isFocused()})`)));
+    await focusSession.send('Emulation.setFocusEmulationEnabled', { enabled: false });
+    await application.evaluateMain(`${mainWindow}.blur(); globalThis.nookResizeFocusProbe.show(); globalThis.nookResizeFocusProbe.focus()`);
+    await page.waitForFunction(() => !document.hasFocus(), undefined, { timeout: 5000 });
+    assert.deepEqual(await application.evaluateMain(`({mainFocused:${mainWindow}.isFocused(),probeFocused:globalThis.nookResizeFocusProbe.isFocused()})`), { mainFocused: false, probeFocused: true });
+    await page.waitForFunction(() => document.querySelector('.project-preview-divider')?.getAttribute('aria-valuenow') === '50'); await page.mouse.up(); await focusMain(); await ready();
+    await start(); await move(100); const committed = await divider.getAttribute('aria-valuenow'); assert.notEqual(committed, '50'); await page.mouse.up(); await ready(); assert.equal(await divider.getAttribute('aria-valuenow'), committed);
+    await divider.dblclick(); assert.equal(await divider.getAttribute('aria-valuenow'), '50'); await ready(); await geometry(1);
+    assert.equal(await currentId(), resizeSession); assert.equal(await evaluate("sessionStorage.getItem('resize-preserved')"), 'KEEP_中文😀');
+    resizeChecks.push({ axis, theme, handleStyle, escapeRollback: true, lostCaptureRollback: true, syntheticPointerCancelRollback: true, syntheticOtherPointerAndImeIgnored: true, nativeBlurRollback: true, committedDragAndDoubleClickReset: true, nativeViewHiddenDuringDrag: true, samePreviewSession: true });
+    await divider.focus(); await divider.press(axis === 'vertical' ? 'ArrowRight' : 'ArrowDown'); await divider.press(axis === 'vertical' ? 'ArrowLeft' : 'ArrowUp'); await capture(`resize-${theme}-${axis}`);
+  }
+  async function resizeTheme(theme) {
+    await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click();
+    const settings = page.getByRole('dialog', { name: '设置', exact: true }); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption(theme);
+    await page.waitForFunction(theme => document.documentElement.dataset.theme === theme, theme); await dismissModalWithEscape(page, settings); await ready();
+  }
+  try {
+    for (const theme of ['light', 'dark']) {
+      await resizeTheme(theme);
+      await application.resize(1440, 900); await page.waitForFunction(() => document.querySelector('.editor-workspace')?.getAttribute('data-vertical') === 'false'); await exerciseResize('vertical', theme);
+      await application.resize(760, 840); await page.waitForFunction(() => document.querySelector('.editor-workspace')?.getAttribute('data-vertical') === 'true'); await exerciseResize('horizontal', theme);
+    }
+    await resizeTheme('light');
+  } finally {
+    await application.evaluateMain('globalThis.nookResizeFocusProbe.destroy(); delete globalThis.nookResizeFocusProbe');
+    await application.evaluateMain(`${mainWindow}.show(); ${mainWindow}.focus(); ${mainWindow}.webContents.focus()`);
+    await focusSession.send('Emulation.setFocusEmulationEnabled', { enabled: true }); await focusSession.detach();
+  }
+  assert.deepEqual(await page.evaluate(async id => (await window.qiyao.load()).editorDrafts.filter(item => item.projectId === id), projectId), resizeDrafts);
+  await application.resize(1280, 840); await ready(); await capture('resize-restored');
   const oldId = await currentId(), oldToken = await application.evaluateMain(`new URL(${view}.webContents.getURL()).host`);
   await page.getByRole('region', { name: '项目预览', exact: true }).getByRole('button', { name: '刷新', exact: true }).click();
   await wait(`Boolean(${view} && ${view}.webContents.id !== ${oldId})`); await ready(); assert.notEqual(await currentId(), oldId); assert.equal(await evaluate('window.previousStorage'), null);
@@ -117,5 +203,5 @@ export async function verifyProjectPreviewDock({ page, application, projectId, m
   await page.getByRole('button', { name: '显示文件树', exact: true }).click();
   await page.locator('.sidebar-footer').getByRole('button', { name: /^设置/ }).click(); await settings.getByRole('button', { name: '外观与交互', exact: true }).click(); await settings.getByLabel('主题', { exact: true }).selectOption('light'); await page.waitForFunction(() => document.documentElement.dataset.theme === 'light'); await dismissModalWithEscape(page, settings);
   verified('a real docked renderer crash shows a recoverable error, explicit retry creates a fresh session, and closing releases the view and returns focus');
-  return { checks: 5, workbenchReloadVerified: true, staleOwnerCloseVerified: true, floatingTransferVerified: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim.' };
+  return { checks: 5, workbenchReloadVerified: true, staleOwnerCloseVerified: true, floatingTransferVerified: true, resizeChecks, resizeDraftsPreserved: true, layouts, screenshots: captures, captureBoundary: 'Separate actual parent-window and preview-content captures, not a composited full-native-window claim. Pointer cancel, extra pointer and IME cases are synthetic events; drag, Escape, double click, focus and native view visibility are actual native-window interactions.' };
 }
