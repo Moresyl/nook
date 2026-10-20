@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
+import { verifyThreadActionCompletion } from './verify-thread-action-completion.mjs';
 
-export async function verifyThreadActions({ page, application, threads, originalTitle, capture }) {
+export async function verifyThreadActions({ page, application, threads, originalTitle, capture, directory }) {
   const [target, deleted] = threads.filter(thread => !thread.pinned && !thread.archived);
   const sidebar = page.locator('.thread-list'), row = title => sidebar.getByRole('button', { name: title, exact: true });
   const menu = () => page.getByRole('menu', { name: '聊天操作', exact: true }), renamed = `${target.title}_RENAMED`;
@@ -29,5 +30,6 @@ export async function verifyThreadActions({ page, application, threads, original
   const state = await page.evaluate(async ids => { const state = await window.qiyao.load(); return { target: state.threads.find(thread => thread.id === ids[0]), deleted: state.threads.some(thread => thread.id === ids[1]) }; }, [target.id, deleted.id]);
   assert.equal(state.target.title, renamed); assert.equal(state.target.archived, true); assert.equal(state.target.pinned, false); assert.equal(state.deleted, false);
   assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page'); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
-  return { keyboard: true, pointerContext: true, focusReturn: true, outsideDismissal: true, tabDismissal: true, renameFailureRetry: true, pinUnpin: true, archive: true, deleteConfirmation: true, noActivationOrDraftLoss: true };
+  const completion = await verifyThreadActionCompletion({ page, application, originalTitle, directory, capture });
+  return { ...completion, keyboard: true, pointerContext: true, focusReturn: true, outsideDismissal: true, tabDismissal: true, renameFailureRetry: true, pinUnpin: true, archive: true, deleteConfirmation: true, noActivationOrDraftLoss: true };
 }
