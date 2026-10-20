@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { verifyPinnedReorder } from './verify-pinned-reorder.mjs';
+import { verifyThreadActions } from './verify-thread-actions.mjs';
 
 export async function verifyRecentThreads({ page, application, threads, originalTitle, capture }) {
   const sidebar = page.locator('.thread-list');
@@ -88,5 +89,6 @@ export async function verifyRecentThreads({ page, application, threads, original
   await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
-  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  const actions = await verifyThreadActions({ page, application, threads, originalTitle, capture });
+  return { fixtures: threads.length, pinnedReorder, actions, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

@@ -226,6 +226,14 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .thread-row { border-radius: 12.5px; corner-shape: superellipse(1.5); }
 }
 .thread-row > svg, .thread-row > .stream-dot { flex-shrink: 0; }
+.thread-row-container { position: relative; }
+.thread-row-container .thread-row { padding-right: 32px; }
+.thread-row-actions { position: absolute; right: 4px; top: 3px; width: 24px; height: 24px; padding: 0; opacity: 0; font-size: 19px; line-height: 1; }
+.thread-row-container:hover .thread-row-actions, .thread-row-container:focus-within .thread-row-actions { opacity: 1; }
+@media (hover: none) { .thread-row-actions { opacity: 1; } }
+.thread-actions-menu { position: fixed; z-index: 100; width: min(220px, calc(100vw - 16px)); max-height: calc(100dvh - 60px); overflow: auto; padding: 6px; border: 1px solid var(--ds-border); border-radius: var(--radius-2xl); background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: var(--shadow-lg); }
+.thread-actions-menu > .button { display: flex; width: 100%; min-height: 32px; justify-content: flex-start; padding: 6px 10px; font-size: 14px; }
+.thread-actions-menu > p { margin: 6px; font-size: 12px; color: var(--ds-danger); }
 .thread-section-toggle { width: 100%; justify-content: flex-start; gap: 4px; margin-top: 12px; padding: 2px 8px; min-height: 30px; font-size: 14px; line-height: 21px; font-weight: 500; color: var(--ds-text-secondary); }
 .thread-section-toggle > svg { flex-shrink: 0; opacity: 0; }
 .thread-section:hover .thread-section-toggle > svg, .thread-section-toggle:focus-visible > svg, .thread-section-toggle[aria-expanded="false"] > svg { opacity: 1; }
