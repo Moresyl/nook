@@ -63,6 +63,7 @@ export const threadSchema = z.object({
   id: identifier, title: z.string().min(1).max(160),
   temporary: z.literal(true).optional(),
   branchOrder: z.number().int().min(0).max(9999).optional(),
+  pinOrder: z.number().int().min(0).max(9999).optional(),
   comparison: z.object({ groupId: z.uuid(), index: z.number().int().min(0).max(3), contextLength: z.number().int().min(0).max(4998) }).strict().optional(),
   projectId: identifier.optional(), assistantId: identifier.optional(),
   providerId: identifier.optional(), model: shortText.default(''),
@@ -191,7 +192,7 @@ export function searchThreads(threads: Thread[], query: string): Thread[] {
     if (!terms.length) return true;
     const corpus = `${thread.title}\n${thread.messages.map((message) => message.content).join('\n')}`.toLocaleLowerCase();
     return terms.every((term) => corpus.includes(term));
-  }).sort((a, b) => Number(b.pinned) - Number(a.pinned) || b.updatedAt - a.updatedAt);
+  }).sort((a, b) => Number(b.pinned) - Number(a.pinned) || (a.pinned && b.pinned ? (a.pinOrder ?? 10_000) - (b.pinOrder ?? 10_000) : 0) || b.updatedAt - a.updatedAt);
 }
 
 export function threadMarkdown(thread: Thread): string {

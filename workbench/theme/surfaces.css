@@ -232,6 +232,13 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .thread-section-count { margin-left: auto; }
 .thread-more { width: 100%; height: 30px; padding: 4px 8px; justify-content: flex-start; gap: 6px; font-size: 12px; color: var(--ds-text-tertiary); }
 .thread-more > span:last-child { margin-left: auto; }
+.thread-row[data-pinned-id] { position: relative; user-select: none; touch-action: pan-y; }
+.thread-row[data-dragging] { opacity: .55; }
+.thread-row[data-drop-side]::after { content: ''; position: absolute; left: 8px; right: 8px; height: 2px; border-radius: 1px; background: var(--ds-accent); pointer-events: none; }
+.thread-row[data-drop-side="before"]::after { top: 0; }
+.thread-row[data-drop-side="after"]::after { bottom: 0; }
+.thread-reorder-error { margin: 4px 8px; font-size: 12px; line-height: 18px; color: var(--ds-danger); }
+.thread-reorder-announcement { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .thread-row > span:first-of-type { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sidebar-empty { padding: 12px; font-size: 11px; line-height: 1.8; color: var(--ds-text-tertiary); }
 .sidebar-footer { border-top: 1px solid var(--ds-border); padding-top: 8px; }

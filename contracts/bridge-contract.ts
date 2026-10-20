@@ -19,6 +19,7 @@ import type { PromptTemplate } from './prompt-templates';
 import type { PromptBundle } from './prompt-bundles';
 import type { MessageDraft, MessageEdit } from './message-edits';
 import type { BranchReorder } from './conversation-branches';
+import type { PinnedReorder } from './pinned-order';
 import type { ComparisonRequest, ComparisonResult } from './model-comparisons';
 import type { GenerateContextSummary, ChangeContextSummary, ContextSummaryPreview } from './context-summary-actions';
 import type { CreateWorktree, GitWorktree, WorktreeCreated } from './project-worktrees';
@@ -77,6 +78,7 @@ export type Bridge = {
   activateThread(id?: string, drafts?: ComposerDraft[]): Promise<void>;
   startTemporaryChat(): Promise<Workspace>;
   reorderBranch(input: BranchReorder): Promise<Workspace>;
+  reorderPinnedThread(input: PinnedReorder): Promise<Workspace>;
   submit(request: SubmitRequest): Promise<{ threadId: string }>;
   compareModels(request: ComparisonRequest): Promise<ComparisonResult>;
   generateContextSummary(input: GenerateContextSummary): Promise<ContextSummaryPreview>;

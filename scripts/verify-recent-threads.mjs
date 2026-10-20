@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
+import { verifyPinnedReorder } from './verify-pinned-reorder.mjs';
 
-export async function verifyRecentThreads({ page, threads, originalTitle, capture }) {
+export async function verifyRecentThreads({ page, application, threads, originalTitle, capture }) {
   const sidebar = page.locator('.thread-list');
   const pinned = sidebar.getByRole('region', { name: '已置顶', exact: true });
   const recent = sidebar.getByRole('region', { name: '最近聊天', exact: true });
@@ -23,6 +24,7 @@ export async function verifyRecentThreads({ page, threads, originalTitle, captur
   assert.equal(await toggle.evaluate(element => document.activeElement === element), true);
   await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
   assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
   for (let index = 10; index < ordinary.length; index += 10) {
     await more.focus(); await more.press('Enter'); await row(ordinary[index].title).waitFor();
@@ -51,5 +53,5 @@ export async function verifyRecentThreads({ page, threads, originalTitle, captur
   await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
-  return { fixtures: threads.length, pinnedSections: true, keyboardCollapse: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

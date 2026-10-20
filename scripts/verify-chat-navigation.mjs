@@ -6,7 +6,7 @@ import { verifyRecentThreads } from './verify-recent-threads.mjs';
 
 export async function verifyChatNavigation({ page, application, getApplication, endpoint, directory, screenshots, fixture, verified, waitForBridge, restart }) {
   const threadId = randomUUID(); const threadTitle = `BODY_SCOPE_EXCLUDED_${threadId}`; const providerId = randomUUID(); const messages = [];
-  const sidebarThreads = Array.from({ length: 108 }, (_, index) => ({ id: randomUUID(), title: `SIDEBAR_${threadId}_${String(index).padStart(3, '0')}`, model: 'chat-navigation-model', providerId, pinned: index >= 105 && index < 107, archived: index === 107, createdAt: Date.now(), updatedAt: Date.now() + 10000 - index, messages: [] }));
+  const sidebarThreads = Array.from({ length: 120 }, (_, index) => ({ id: randomUUID(), title: `SIDEBAR_${threadId}_${String(index).padStart(3, '0')}`, model: 'chat-navigation-model', providerId, pinned: index >= 105 && index < 119, archived: index === 119, createdAt: Date.now(), updatedAt: Date.now() + 10000 - index, messages: [] }));
   for (let index = 0; index < 20; index++) {
     messages.push({ id: randomUUID(), role: 'user', content: `NAV_USER_${index} 中文😀\n${index === 0 || index === 5 ? 'needle.a* [literal] <img>\n' : ''}${'请保留这条消息的原文。\n'.repeat(3)}`, createdAt: index * 2 + 1, status: 'complete', attachments: [] });
     let content = index === 0 ? `Inline **cross** node match. needle.a* [literal]\n\n\`\`\`ts\n${'const padding = 0;\n'.repeat(32)}CODE_NEEDLE = "needle.a*";\n${' '.repeat(200)}HORIZONTAL_FIND_TARGET\n\`\`\`` : `NAV_REPLY_${index}\n\n${index === 2 ? 'Σ σ ς\n\n' : ''}${'这是已经保存的助手回复。\n\n'.repeat(3)}`;
@@ -39,7 +39,7 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   async function capture(name) { await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); const image = await application.evaluateMain(`(async()=>{const window=${mainWindow};const image=await window.capturePage();return {png:image.toPNG().toString('base64'),size:window.getContentSize()};})()`); const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size); await writeFile(join(screenshots, name), bytes); }
   async function search(query, count) { await input().fill(query); await counter().getByText(count ? `1 / ${count}` : '无匹配结果', { exact: true }).waitFor(); await page.waitForFunction((count) => (CSS.highlights.get('qiyao-chat-search')?.size ?? 0) === count, count); }
   assert.equal(await rail().getByRole('button').count(), 20); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
-  const sidebarNavigation = await verifyRecentThreads({ page, threads: sidebarThreads, originalTitle: threadTitle, capture });
+  const sidebarNavigation = await verifyRecentThreads({ page, application, threads: sidebarThreads, originalTitle: threadTitle, capture });
   await marker(1).click(); await page.waitForFunction((id) => { const article = [...document.querySelectorAll('[data-message-id]')].find((element) => element.dataset.messageId === id); const scroll = document.querySelector('.transcript-scroll'); return article.getBoundingClientRect().top >= scroll.getBoundingClientRect().top && article.getBoundingClientRect().top < scroll.getBoundingClientRect().top + 70; }, messages[0].id);
   await marker(1).focus(); await marker(1).press('ArrowDown'); assert.equal(await marker(2).evaluate((element) => element === document.activeElement), true); await marker(2).press('Enter'); await page.waitForFunction(() => document.querySelector('.message-navigation button[aria-current="true"]')?.getAttribute('aria-label') === '跳转到第 2 条用户消息'); await marker(2).press('Home'); assert.equal(await marker(1).evaluate((element) => element === document.activeElement), true);
   await marker(1).hover(); await page.getByRole('tooltip').getByText(/NAV_USER_0/).waitFor(); const reference = await marker(1).locator('.message-navigation-marker').evaluate((element) => ({ width: element.getBoundingClientRect().width, height: element.getBoundingClientRect().height })); assert.deepEqual(reference, { width: 26, height: 2 }); await capture('102-message-navigation-light.png');
@@ -158,6 +158,9 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   await input().focus(); await input().press('Escape'); await nativeZoom(1); page = await restart(async () => {
     const path = join(directory, 'workspace.json'); const state = JSON.parse(await readFile(path, 'utf8'));
     const ids = new Set(sidebarThreads.map(thread => thread.id));
+    const savedPins = state.threads.filter(thread => sidebarThreads.some(fixture => fixture.id === thread.id && fixture.pinned)).sort((left, right) => left.pinOrder - right.pinOrder);
+    assert.equal(savedPins[0].id, sidebarNavigation.pinnedReorder.expectedFirstId, 'The completed native session persists the reordered pinned list on disk');
+    assert.equal(savedPins[0].pinOrder, 0);
     state.threads = state.threads.filter(thread => !ids.has(thread.id));
     state.composerDrafts = state.composerDrafts.filter(draft => !ids.has(draft.threadId));
     await writeFile(path, JSON.stringify(state));

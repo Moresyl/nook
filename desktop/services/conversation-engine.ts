@@ -117,6 +117,7 @@ export class ConversationEngine {
         thread = { ...thread, id: randomUUID(), title: `${thread.title.slice(0, 140)} · 编辑`, pinned: false, archived: false, createdAt: now, updatedAt: now,
           forkedFrom: { threadId: request.threadId!, messageId: request.replay.messageId, kind: 'edit' } };
         delete thread.branchOrder;
+        delete thread.pinOrder;
         delete thread.comparison;
       }
     }
@@ -170,6 +171,8 @@ export class ConversationEngine {
         else {
           if (draft.threads[index].branchOrder === undefined) delete next.branchOrder;
           else next.branchOrder = draft.threads[index].branchOrder;
+          if (draft.threads[index].pinOrder === undefined) delete next.pinOrder;
+          else next.pinOrder = draft.threads[index].pinOrder;
           draft.threads[index] = next;
         }
         if (request.composerRevision) {

@@ -17,6 +17,7 @@ import { allowRendererPermission } from './services/renderer-permissions';
 import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
 import { reorderConversationBranch } from './services/branch-order';
+import { reorderPinnedThread } from './services/pinned-order';
 import { parsePersistentWorkspace } from '../contracts/temporary-conversations';
 import { HttpModelGateway } from './services/model-gateway';
 import { ProviderSettings } from './services/provider-settings';
@@ -272,6 +273,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   activateThread: (raw, drafts) => composerDrafts.activate(raw, drafts),
   startTemporaryChat: () => startTemporaryChat(vault),
   reorderBranch: (raw) => reorderConversationBranch(vault, raw),
+  reorderPinnedThread: (raw) => reorderPinnedThread(vault, raw),
   submit: (request) => engine.start(request),
   compareModels: (request) => engine.compare(request),
   generateContextSummary: (raw) => engine.contextSummaries.generate(raw),
@@ -288,9 +290,11 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       if (index < 0) throw new Error('This conversation no longer exists.');
       if (thread.temporary !== draft.threads[index].temporary) throw new Error('The storage mode of an existing conversation cannot be changed.');
       if (thread.branchOrder !== draft.threads[index].branchOrder) throw new Error('The branch order changed. Refresh the conversation before changing its details.');
+      if (thread.pinOrder !== draft.threads[index].pinOrder) throw new Error('The pinned order changed. Refresh the conversation before changing its details.');
       if (JSON.stringify(thread.comparison) !== JSON.stringify(draft.threads[index].comparison)) throw new Error('Comparison membership cannot be changed. Refresh the conversation before changing its details.');
       if (JSON.stringify([thread.contextSummaries, thread.activeContextSummaryId]) !== JSON.stringify([draft.threads[index].contextSummaries, draft.threads[index].activeContextSummaryId])) throw new Error('The context summary changed. Refresh the conversation before changing its details.');
       draft.threads[index] = { ...thread, updatedAt: Date.now() };
+      if (!thread.pinned) delete draft.threads[index].pinOrder;
     });
   },
   deleteThread: (raw) => {
@@ -307,7 +311,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
       const index = original?.messages.findIndex((message) => message.id === messageId) ?? -1;
       if (!original || index < 0) throw new Error('The selected message no longer exists.');
       const branch = { ...structuredClone(original), id: randomUUID(), title: `${original.title.slice(0, 140)} · 分支`, pinned: false, archived: false, createdAt: Date.now(), updatedAt: Date.now(), messages: original.messages.slice(0, index + 1), forkedFrom: { threadId: id, messageId, kind: 'branch' as const } };
-      delete branch.branchOrder; delete branch.comparison; draft.threads.push(branch);
+      delete branch.branchOrder; delete branch.pinOrder; delete branch.comparison; draft.threads.push(branch);
     });
   },
   chooseProject: async () => {
