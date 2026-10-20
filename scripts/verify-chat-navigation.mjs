@@ -160,6 +160,15 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }); await page.reload(); await application.resize(760, 540); await nativeZoom(1); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540 && document.querySelector('.workspace-header button[aria-label="查找当前聊天"]')?.disabled === false); await page.keyboard.press('Control+f'); await input().waitFor(); await search('needle.a*', 4); const layout = [];
   for (const zoom of [1, 1.25, 1.5]) {
     await nativeZoom(zoom); await search('cross node', 1); await input().press('Enter');
+    const threadRow = page.locator('.thread-list').getByRole('button', { name: threadTitle, exact: true });
+    await threadRow.scrollIntoViewIfNeeded();
+    const hitAreas = await threadRow.evaluate(element => {
+      const action = element.parentElement.querySelector('.thread-row-actions');
+      const row = element.getBoundingClientRect(), more = action.getBoundingClientRect();
+      return { rowWidth: row.width, rowHeight: row.height, disjoint: row.right <= more.left || more.right <= row.left || row.bottom <= more.top || more.bottom <= row.top, centerSelectsThread: element.contains(document.elementFromPoint(row.x + row.width / 2, row.y + row.height / 2)) };
+    });
+    assert.ok(hitAreas.disjoint && hitAreas.centerSelectsThread && hitAreas.rowWidth >= 24 && hitAreas.rowHeight >= 24, JSON.stringify({ zoom, ...hitAreas }));
+    await threadRow.click();
     await page.locator('.thread-list').getByRole('button', { name: `聊天操作：${threadTitle}`, exact: true }).click();
     const actionsMenu = page.getByRole('menu', { name: '聊天操作', exact: true }); await actionsMenu.waitFor();
     const menuBounds = await actionsMenu.evaluate(element => { const rect = element.getBoundingClientRect(); return { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, width: innerWidth, height: innerHeight }; });

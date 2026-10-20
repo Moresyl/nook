@@ -1,13 +1,20 @@
-import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode, type Ref } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode, type Ref } from 'react';
 import type { FileEntry } from '../../contracts/projects';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
 import { TextHint, useControlTooltip } from './control-tooltip';
-import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, type ProjectTreeState } from './project-tree';
+import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, projectTreeScrollDelta, type ProjectTreeState } from './project-tree';
 import { ProjectFileFinder } from './project-file-finder';
 
 type Props = { projectId: string; active: string; revision: number; hidden: boolean; onOpen: (path: string) => void; onNew: (directory: string) => void };
 const parent = (path: string) => path.slice(0, Math.max(0, path.lastIndexOf('/')));
+
+function revealRow(node: HTMLElement | undefined) {
+  const viewport = node?.closest<HTMLElement>('.project-tree'), row = node?.querySelector<HTMLElement>(':scope > .project-tree-row');
+  if (!viewport || !row) return;
+  const bounds = viewport.getBoundingClientRect(), top = node!.getBoundingClientRect().top - bounds.top;
+  viewport.scrollTop += projectTreeScrollDelta(top, top + row.getBoundingClientRect().height, viewport.clientHeight, Number(node!.getAttribute('aria-level')));
+}
 
 function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, children }: {
   entry: FileEntry; level: number; expanded: boolean; selected: boolean; tabIndex: number;
@@ -21,7 +28,7 @@ function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocu
     onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(event); } }}
     onBlur={event => { if (event.target === event.currentTarget) { tooltip.hide(); if (!event.currentTarget.closest('[role="tree"]')?.contains(event.relatedTarget)) onExit(); } }}
     onKeyDown={onKeyDown}>
-    <div ref={row} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 3 + Math.min(level - 1, 8) * 12 }}
+    <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 3 + Math.min(level - 1, 8) * 12, ...(entry.directory && expanded ? { top: `min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px))`, zIndex: 10000 - level } : {}) }}
       onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
       onClick={event => { tooltip.press(); event.stopPropagation(); onActivate(); }}>
       <span className="project-tree-chevron">{entry.directory && <Glyph name={expanded ? 'down' : 'right'} size={12} />}</span><Glyph name={entry.directory ? 'folder' : 'file'} size={16} /><span className="project-tree-label">{entry.name}</span>
@@ -37,11 +44,18 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const queryRef = useRef(query); queryRef.current = query;
   const tree = useRef<ProjectTree | null>(null);
   const nodes = useRef(new Map<string, HTMLDivElement>());
+  const viewport = useRef<HTMLDivElement>(null);
   const typing = useRef({ query: '', time: 0 });
   const activeRef = useRef(active); activeRef.current = active;
   const lastRevision = useRef(revision);
   const rows = projectTreeRows(state);
   const current = rows.some((row) => row.entry.relativePath === focused) ? focused : rows[0]?.entry.relativePath ?? '';
+  useLayoutEffect(() => {
+    const element = viewport.current; if (!element) return;
+    const resize = () => { element.style.setProperty('--tree-sticky-limit', `${Math.max(0, element.clientHeight - 64)}px`); element.style.setProperty('--tree-sticky-position', element.clientHeight < 64 ? 'static' : 'sticky'); };
+    resize(); const observer = new ResizeObserver(resize); observer.observe(element);
+    return () => observer.disconnect();
+  }, [query, hidden]);
   useEffect(() => {
     const model = new ProjectTree((request) => window.qiyao.listDirectory(projectId, request), setState);
     tree.current = model; lastRevision.current = revision;
@@ -51,7 +65,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   useEffect(() => {
     const model = tree.current;
     if (active && model) void model.reveal(active).then((found) => {
-      if (found && tree.current === model && activeRef.current === active) { setFocused(active); nodes.current.get(active)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); }
+      if (found && tree.current === model && activeRef.current === active) { setFocused(active); revealRow(nodes.current.get(active)); }
     });
   }, [projectId, active]);
   useEffect(() => { if (lastRevision.current !== revision) { lastRevision.current = revision; void tree.current?.refresh(); } }, [revision]);
@@ -61,16 +75,16 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
     let cancelled = false;
     if (path && model) void model.reveal(path).then(found => {
       if (found && !cancelled && !queryRef.current && tree.current === model && activeRef.current === path) {
-        nodes.current.get(path)?.focus(); nodes.current.get(path)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' });
+        nodes.current.get(path)?.focus({ preventScroll: true }); revealRow(nodes.current.get(path));
       }
     });
     return () => { cancelled = true; };
   }, [revealRequest, projectId]);
 
-  function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); }
+  function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); revealRow(nodes.current.get(entry.relativePath)); }
   function activate(entry: FileEntry) {
     typing.current.query = '';
-    nodes.current.get(entry.relativePath)?.focus(); focus(entry);
+    nodes.current.get(entry.relativePath)?.focus({ preventScroll: true }); focus(entry);
     if (entry.directory) { if (state.expanded.has(entry.relativePath)) tree.current?.collapse(entry.relativePath); else void tree.current?.expand(entry.relativePath); }
     else onOpen(entry.relativePath);
   }
@@ -83,16 +97,16 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       typing.current = { query: query.slice(-160), time: now };
       const path = projectTreeMatch(rows, entry.relativePath, typing.current.query);
       event.preventDefault(); event.stopPropagation();
-      if (path) { nodes.current.get(path)?.focus({ preventScroll: true }); nodes.current.get(path)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); }
+      if (path) { nodes.current.get(path)?.focus({ preventScroll: true }); revealRow(nodes.current.get(path)); }
       return;
     }
     typing.current.query = '';
     const action = projectTreeKey(rows, state.expanded, entry.relativePath, event.key);
     if (!action) return;
     event.preventDefault(); event.stopPropagation();
-    if (action.kind === 'focus') nodes.current.get(action.path)?.focus();
+    if (action.kind === 'focus') { nodes.current.get(action.path)?.focus({ preventScroll: true }); revealRow(nodes.current.get(action.path)); }
     else if (action.kind === 'expand') void tree.current?.expand(action.path);
-    else if (action.kind === 'collapse') tree.current?.collapse(action.path);
+    else if (action.kind === 'collapse') { revealRow(nodes.current.get(action.path)); tree.current?.collapse(action.path); }
     else onOpen(action.path);
   }
   function folder(path: string, level: number) {
@@ -110,5 +124,5 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       {value?.page && value.page.nextOffset !== null && <Button className="project-tree-more" disabled={value.loading || value.error} aria-label={`加载更多 ${path || '项目根目录'}`} onClick={() => { void tree.current?.load(path, 'more'); }}>加载更多 · {value.page.entries.length} / {value.page.total}</Button>}
     </>;
   }
-  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></ProjectFileFinder></div>;
+  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div ref={viewport} className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder('', 1)}</div></ProjectFileFinder></div>;
 }

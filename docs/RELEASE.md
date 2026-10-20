@@ -4,6 +4,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 文件树滚动时保留展开的祖先目录，在子树末尾推离；键盘定位避开固定目录，矮窗口下编辑器空态说明保持可读。
+- 紧凑侧栏的会话和操作按钮分开布局，修复高缩放时操作按钮拦截会话点击的问题。
 - 文件树支持直接键入文件名前缀定位，重复首字母循环查找，自动滚动显示焦点。定位不会打开文件；输入法组词与确认键受到保护。
 - 会话重命名共用同一对话框，固定操作目标，保存失败保留输入并回焦，提交期间防止重复请求与提前关闭。
 - 会话菜单支持重命名、置顶、归档、导出与删除。导出取消保留菜单，写入失败可重试；删除当前会话会清理对应草稿并保留其他会话。
@@ -15,24 +17,25 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 | 检查 | 当前结果 |
 | --- | --- |
-| 类型与构建 | 通过；1071 个源码／夹具输入与 236 个编译文件按哈希核对 |
-| 完整单元测试 | 143 个文件、1682 项通过 |
+| 类型与构建 | 粘性目录阶段通过；1072 个源码／夹具输入与 236 个编译文件按哈希核对 |
+| 完整单元测试 | 143 个文件、1685 项通过 |
 | 既有覆盖率范围 | 语句 97.08%、分支 94.65%、函数 97.83%、行 99.50% |
-| 原生专项 | 文件树 7 项、聊天导航 5 项通过，5 次正常退出，最长 932ms，无强制结束 |
+| 本轮文件树专项 | 最终复跑 7 项通过，2 次正常退出，502ms／412ms，无强制结束 |
+| 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
-文件树专项包括真实键盘输入、焦点滚动、分页与读取错误重试、未保存草稿、跨项目切换、明暗主题、缩放和终端。聊天专项额外放入独立背景置顶会话，验证混合列表的精确 ID 与原内容保留。完整单元和构建之后仅调整两份原生观察脚本，应用、单元测试与编译文件字节不变。
+文件树专项包括祖先堆叠、子树末尾推离、点击与键盘折叠、分页、搜索刷新、未保存草稿及暗色 100%／125%／150% 缩放。原草稿与磁盘文件逐字核对保留。完整单元之后调整了界面样式和原生观察脚本；应用逻辑和单元测试字节保持一致。后续侧栏修复另行验证。
 
 输入法事件保护使用合成事件检查，不等于物理输入法验收。覆盖率遵循仓库现有统计范围，不能将其解释为所有渲染界面的覆盖率。
 
-[本轮文件树证据](../verification/project-tree-prefix-review-result.json) · [前一轮会话证据](../verification/thread-action-completion-review-result.json)
+[最终专项与清理修正证据](../verification/sticky-integration-review-result.json) · [粘性目录证据](../verification/project-tree-sticky-review-result.json) · [侧栏点击修复证据](../verification/sidebar-hit-area-review-result.json) · [前缀导航证据](../verification/project-tree-prefix-review-result.json) · [前一轮会话证据](../verification/thread-action-completion-review-result.json)
 
 ## 尚未完成
 
-- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树粘性目录、虚拟化等差异仍待落实与验证。
+- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录已专项验证，文件树虚拟化、缩进及全部布局状态仍待落实与验证。
 - 当前源码的完整桌面回归、新安装包、包内回归、实际安装和分发验收仍待完成。旧版本的完整通过不能替代当前应用体。
-- 本轮完整回归在 225 项、22 次正常退出后，发现观察脚本错误地假设没有既有置顶会话。已修正为完整 ID 集合与原字段比较，并通过专项复现；261 份输出与通过完整性检查的现场归档保留。修正后只读检查再次发现零字节文本和 HTML 剪贴板，因此尚未完整重跑；未清空剪贴板或放宽恢复检查。
-- 原 Windows 流水线此前因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[253bdfe 的流水线](https://github.com/Moresyl/nook/actions/runs/39401593259)；后续提交按各自运行另行核实。
+- 完整回归曾在 248 项、30 次正常退出后发现紧凑侧栏点击遮挡；修复通过原生专项。随后重跑在 215 项、21 次正常退出后的临时项目清理中遇到后台读取互斥，已改为只对明确的忙碌错误在 5 秒内重试。两轮输出和现场归档保留，完整回归仍需通过；未清空剪贴板或放宽产品保护。
+- 原 Windows 流水线此前因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[d6e722b 的流水线](https://github.com/Moresyl/nook/actions/runs/39405379982)；后续提交按各自运行另行核实。
 - 原 Chrome 连接上次核验缺少认证令牌，尚未通过浏览器完成发布。
 
 发布继续使用[原 Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，完成验收后发布已获授权。
@@ -43,7 +46,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. File-tree prefix navigation, type checking, build, 1,682 unit tests and 12 targeted native checks pass. A full run exposed a pre-existing-pin assumption in the observer after 225 checks; the corrected observer passes targeted reproduction. A full rerun, design alignment, distribution acceptance and publication remain pending. The original hosted workflow has been blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Sticky folder ancestors, canonical keyboard focus, short-window editor copy and disjoint sidebar click targets pass targeted native verification; 1,685 unit tests pass. Full runs exposed sidebar overlap and a temporary-project cleanup race; both have targeted corrections. Full regression, design alignment, distribution acceptance and publication remain pending. The original hosted workflow has been blocked by account billing or spending limits.
 
 ## 历史证据
 

@@ -1,8 +1,26 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { DirectoryPage, FileEntry } from '../contracts/projects';
-import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, type ProjectTreeState } from '../workbench/components/project-tree';
+import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, projectTreeScrollDelta, type ProjectTreeState } from '../workbench/components/project-tree';
 
 const file = (relativePath: string, directory = false): FileEntry => ({ name: relativePath.split('/').at(-1)!, relativePath, directory });
+
+describe('file tree focus visibility', () => {
+  it('keeps visible rows still and reveals rows above or below the viewport', () => {
+    expect(projectTreeScrollDelta(4, 32, 200, 1)).toBe(0);
+    expect(projectTreeScrollDelta(-24, 4, 200, 1)).toBe(-28);
+    expect(projectTreeScrollDelta(192, 220, 200, 1)).toBe(24);
+  });
+  it('reserves ancestor rows while moving into an expanded subtree', () => {
+    expect(projectTreeScrollDelta(4, 32, 200, 3)).toBe(-56);
+    expect(projectTreeScrollDelta(60, 88, 200, 3)).toBe(0);
+  });
+  it('bounds the ancestor inset in short viewports and ignores hidden trees', () => {
+    expect(projectTreeScrollDelta(40, 68, 100, 8)).toBe(-28);
+    expect(projectTreeScrollDelta(68, 96, 100, 8)).toBe(0);
+    expect(projectTreeScrollDelta(4, 32, 0, 3)).toBe(0);
+    expect(projectTreeScrollDelta(4, 32, 50, 8)).toBe(0);
+  });
+});
 
 describe('file tree prefix navigation', () => {
   const rows = ['source', 'source/Alpha.ts', 'alpha.txt', 'Beta.ts', 'éclair.txt', '资料.md', '😀.txt'].map(path => ({ entry: file(path), level: path.includes('/') ? 2 : 1 }));

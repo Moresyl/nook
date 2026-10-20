@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { waitForTerminalPrompt } from './terminal-prompt.mjs';
 import { assertTextHint, dismissModalWithEscape } from './text-hint-verification.mjs';
+import { verifyProjectTreeSticky } from './verify-project-tree-sticky.mjs';
 
 export async function verifyProjectTree({ page, application, getApplication, directory, screenshots, verified, waitForBridge, restart }) {
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
@@ -371,7 +372,9 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   } finally { await application.evaluateMain("globalThis.qiyaoProjectRelease?.();globalThis.qiyaoProjectIpc.removeHandler('qiyao:invoke');globalThis.qiyaoProjectIpc.handle('qiyao:invoke',globalThis.qiyaoProjectInvoke)"); }
   await page.keyboard.press('Escape'); await page.locator('.project-list').getByRole('button', { name: longName, exact: true }).click(); await item('source/资料/代码.ts').waitFor(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
   verified('a project removed through actual IPC while a held load awaits completion invalidates the original palette action, retains its query/error, starts no terminal and becomes disabled on refresh without affecting the other project draft');
+  const stickyFolders = await verifyProjectTreeSticky({ page, application, directory, capture, returnProjectName: longName });
   return { page, result: {
+    stickyFolders,
     checks: 7, projectCommandChecks: 2, fileSearch: { toolbarLocateVisibleFocus: true, toolbarRefreshRetainsQuery: true, savedFileRefreshesResults: true, limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],

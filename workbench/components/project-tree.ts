@@ -5,6 +5,13 @@ export type ProjectTreeState = { folders: ReadonlyMap<string, ProjectFolder>; ex
 export type ProjectTreeRow = { entry: FileEntry; level: number };
 export type ProjectTreeAction = { kind: 'focus' | 'expand' | 'collapse' | 'open'; path: string };
 
+export function projectTreeScrollDelta(top: number, bottom: number, viewportHeight: number, level: number): number {
+  if (viewportHeight <= 0) return 0;
+  const inset = viewportHeight < 64 ? 4 : Math.min(4 + Math.max(0, level - 1) * 28, viewportHeight - 32);
+  if (top < inset) return top - inset;
+  return Math.max(0, bottom - (viewportHeight - 4));
+}
+
 export function projectTreeMatch(rows: readonly ProjectTreeRow[], path: string, query: string): string | undefined {
   if (!query || !rows.length) return;
   const normalized = query.normalize('NFC').toLowerCase();
