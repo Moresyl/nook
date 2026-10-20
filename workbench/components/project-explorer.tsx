@@ -16,8 +16,8 @@ function revealRow(node: HTMLElement | undefined) {
   viewport.scrollTop += projectTreeScrollDelta(top, top + row.getBoundingClientRect().height, viewport.clientHeight, Number(node!.getAttribute('aria-level')));
 }
 
-function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, children }: {
-  entry: FileEntry; level: number; expanded: boolean; selected: boolean; tabIndex: number;
+function TreeItem({ entry, level, expanded, selected, focusedParent, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, children }: {
+  entry: FileEntry; level: number; expanded: boolean; selected: boolean; focusedParent: string; tabIndex: number;
   register: Ref<HTMLDivElement>; onFocus: () => void; onExit: () => void; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
   onActivate: () => void; children: ReactNode;
 }) {
@@ -28,9 +28,13 @@ function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocu
     onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(event); } }}
     onBlur={event => { if (event.target === event.currentTarget) { tooltip.hide(); if (!event.currentTarget.closest('[role="tree"]')?.contains(event.relatedTarget)) onExit(); } }}
     onKeyDown={onKeyDown}>
-    <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ '--tree-depth': level - 1, '--tree-file-inset': !entry.directory && level > 1 ? '3.75px' : '0px', ...(entry.directory && expanded ? { top: `min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px))`, zIndex: 10000 - level } : {}) } as CSSProperties}
+    <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ '--tree-depth': level - 1, '--tree-file-inset': !entry.directory && level > 1 ? '3.75px' : '0px', ...(entry.directory && expanded ? { top: `calc(var(--tree-sticky-enabled, 0) * min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px)))`, zIndex: 10000 - level } : {}) } as CSSProperties}
       onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
       onClick={event => { tooltip.press(); event.stopPropagation(); onActivate(); }}>
+      {Array.from({ length: level - 1 }, (_, index) => {
+        const ancestor = entry.relativePath.split('/').slice(0, index + 1).join('/');
+        return <span key={ancestor} aria-hidden="true" className="project-tree-guide" data-active={ancestor === focusedParent || undefined} style={{ left: 10.25 + index * 8.75 }} />;
+      })}
       <Glyph name={entry.directory ? expanded ? 'down' : 'right' : 'file'} size={16} /><span className="project-tree-label">{entry.name}</span>
     </div>{tooltip.content}{children}
   </div>;
@@ -52,7 +56,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const current = rows.some((row) => row.entry.relativePath === focused) ? focused : rows[0]?.entry.relativePath ?? '';
   useLayoutEffect(() => {
     const element = viewport.current; if (!element) return;
-    const resize = () => { element.style.setProperty('--tree-sticky-limit', `${Math.max(0, element.clientHeight - 64)}px`); element.style.setProperty('--tree-sticky-position', element.clientHeight < 64 ? 'static' : 'sticky'); };
+    const resize = () => { element.style.setProperty('--tree-sticky-limit', `${Math.max(0, element.clientHeight - 64)}px`); element.style.setProperty('--tree-sticky-position', element.clientHeight < 64 ? 'relative' : 'sticky'); element.style.setProperty('--tree-sticky-enabled', element.clientHeight < 64 ? '0' : '1'); };
     resize(); const observer = new ResizeObserver(resize); observer.observe(element);
     return () => observer.disconnect();
   }, [query, hidden]);
@@ -114,7 +118,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
     return <>
       {value?.page?.entries.map((entry) => {
         const expanded = entry.directory && state.expanded.has(entry.relativePath);
-        return <TreeItem key={entry.relativePath} entry={entry} level={level} expanded={expanded} selected={entry.relativePath === active} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onExit={() => { typing.current.query = ''; }} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
+        return <TreeItem key={entry.relativePath} entry={entry} level={level} expanded={expanded} selected={entry.relativePath === active} focusedParent={parent(current)} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onExit={() => { typing.current.query = ''; }} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
           {expanded && <div role="group">{folder(entry.relativePath, level + 1)}</div>}
         </TreeItem>;
       })}

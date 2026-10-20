@@ -16,6 +16,49 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
   const item = path => tree().getByRole('treeitem', { name: path, exact: true });
   const row = path => item(path).locator(':scope > .project-tree-row');
   const indentation = [];
+  const guideStates = [];
+  async function assertGuides(theme, zoom) {
+    const path = `${nested}/file-0100.txt`;
+    await item('a-parent').focus(); await page.mouse.move(1, 1);
+    const guides = row(path).locator('.project-tree-guide');
+    assert.equal(await guides.count(), 2);
+    const waitOpacity = async expected => {
+      await page.waitForFunction(({ path, expected }) => {
+        const node = [...document.querySelectorAll('.project-tree [role="treeitem"]')].find(element => element.getAttribute('aria-label') === path);
+        const guides = [...node.querySelectorAll(':scope > .project-tree-row > .project-tree-guide')];
+        return guides.length === expected.length && guides.every((guide, index) => Number(getComputedStyle(guide).opacity) === expected[index]);
+      }, { path, expected });
+    };
+    await waitOpacity([0, 0]);
+    await tree().hover(); await waitOpacity([0.75, 0.75]);
+    await item(path).focus(); await page.mouse.move(1, 1); await waitOpacity([0, 1]);
+    const sibling = row(`${nested}/file-0101.txt`).locator('.project-tree-guide[data-active]');
+    assert.equal(await sibling.count(), 1, 'The focused parent guide continues through sibling rows');
+    const geometry = await guides.evaluateAll(elements => elements.map(element => {
+      const style = getComputedStyle(element), bounds = element.getBoundingClientRect(), row = element.parentElement.getBoundingClientRect();
+      return { left: bounds.left - row.left, width: bounds.width, height: bounds.height, pointerEvents: style.pointerEvents, duration: style.transitionDuration, color: style.backgroundColor, hidden: element.getAttribute('aria-hidden'), tabIndex: element.tabIndex };
+    }));
+    const color = await page.evaluate(() => { const probe = document.createElement('span'); probe.style.backgroundColor = 'color-mix(in lab, #84848a 25%, transparent)'; document.body.append(probe); try { return getComputedStyle(probe).backgroundColor; } finally { probe.remove(); } });
+    for (let index = 0; index < geometry.length; index++) {
+      const guide = geometry[index]; assert.ok(Math.abs(guide.left - [10.25, 19][index]) < 0.1); assert.equal(guide.width, 1); assert.equal(guide.height, 28);
+      assert.equal(guide.pointerEvents, 'none'); assert.equal(guide.hidden, 'true'); assert.equal(guide.tabIndex, -1); assert.equal(guide.duration, '0.15s'); assert.equal(guide.color, color);
+    }
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    try { assert.equal(await guides.first().evaluate(element => getComputedStyle(element).transitionDuration), '0s'); await item(nested).focus(); await waitOpacity([1, 0]); }
+    finally { await page.emulateMedia({ reducedMotion: null }); }
+    await item('a-parent').focus(); await waitOpacity([0, 0]);
+    const previousMaxHeight = await tree().evaluate(element => { const previous = element.style.maxHeight; element.style.maxHeight = '48px'; return previous; });
+    try {
+      await page.waitForFunction(() => document.querySelector('.project-tree').style.getPropertyValue('--tree-sticky-enabled') === '0');
+      const shortRows = await tree().locator('.project-tree-row[data-sticky]').evaluateAll(elements => elements.map(element => {
+        const style = getComputedStyle(element), row = element.getBoundingClientRect(), guide = element.querySelector('.project-tree-guide');
+        return { position: style.position, top: style.top, guideTop: guide ? guide.getBoundingClientRect().top - row.top : 0 };
+      }));
+      assert.ok(shortRows.length >= 2); assert.ok(shortRows.every(row => row.position === 'relative' && row.top === '0px' && Math.abs(row.guideTop) < 0.1), JSON.stringify(shortRows));
+    } finally { await tree().evaluate((element, previous) => { element.style.maxHeight = previous; }, previousMaxHeight); }
+    await page.waitForFunction(() => document.querySelector('.project-tree').style.getPropertyValue('--tree-sticky-enabled') === '1');
+    guideStates.push({ theme, zoom, geometry, hoverOpacity: 0.75, focusedParentOpacity: 1, reducedMotion: true, siblingContinuation: true, rootClearsActiveGuide: true, constrainedShortViewport: true });
+  }
   async function assertIndentation(path, expectedPadding) {
     const measured = await row(path).evaluate(element => {
       const bounds = element.getBoundingClientRect(), icon = element.querySelector(':scope > svg'), label = element.querySelector('.project-tree-label');
@@ -34,6 +77,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
   try {
     await application.resize(1280, 840); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.reload(); await select(); await open(); await scrollInside();
     await assertIndentation('a-parent', 3); await assertIndentation(nested, 11.75); await assertIndentation(`${nested}/file-0100.txt`, 24.25); await assertIndentation('a-parent/parent-after.txt', 15.5); await assertIndentation('z-000.txt', 3);
+    await assertGuides('light', 1); await item(`${nested}/file-0100.txt`).focus(); await scrollInside();
     const light = await geometry(); console.log('Sticky tree geometry', JSON.stringify(light)); await capture('116-project-tree-sticky-light.png'); assert.ok(light.scroll > 500); assert.equal(light.rows[0].position, 'sticky'); assert.ok(Math.abs(light.rows[0].top) < 1, JSON.stringify(light)); assert.ok(Math.abs(light.rows[1].top - 28) < 1, JSON.stringify(light)); assert.ok(light.rows.every(row => row.canonicalTop < 0 && row.layers.includes('linear-gradient')));
     assert.equal(await item('a-parent').count(), 1); assert.equal(await item(nested).count(), 1, 'Sticky presentation does not duplicate accessible nodes');
     await item(`${nested}/file-0100.txt`).focus(); await page.keyboard.press('Home'); assert.equal(await visible('a-parent'), true);
@@ -57,6 +101,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
       await item(`${nested}/file-0100.txt`).focus(); await page.keyboard.press('ArrowDown'); assert.equal(await visible(`${nested}/file-0101.txt`), true, `Focus remains visible at zoom ${zoom}`);
       const measured = await geometry(); assert.ok(measured.height > 28); assert.equal(await item('a-parent').count(), 1);
       await assertIndentation(nested, 11.75); await assertIndentation(`${nested}/file-0101.txt`, 24.25);
+      await assertGuides('dark', zoom); await item(`${nested}/file-0101.txt`).focus();
       assert.equal(await page.locator('.editor-body > .empty').evaluate(element => { const viewport = element.parentElement.getBoundingClientRect(); return [...element.querySelectorAll('h3,p')].every(item => { const rect = item.getBoundingClientRect(); return rect.top >= viewport.top && rect.bottom <= Math.min(viewport.bottom, innerHeight) && rect.left >= viewport.left && rect.right <= viewport.right; }); }), true, `Empty-editor title and instructions fit at zoom ${zoom}`);
     }
     await page.keyboard.press('Escape'); await page.mouse.move(1, 1); await page.getByRole('tooltip').waitFor({ state: 'hidden' });
@@ -76,7 +121,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
     const leaf = `${deepParts.join('/')}/leaf.txt`; await assertIndentation(leaf, 94.25);
     await item(leaf).focus(); await page.keyboard.press('ArrowLeft'); assert.equal(await visible(deepParts.join('/')), true);
     await page.keyboard.press('Escape'); await page.mouse.move(1, 1); await page.getByRole('tooltip').waitFor({ state: 'hidden' }); await capture('118-project-tree-deep-dark.png');
-    return { indentation, deepLevels: 11, ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png', '118-project-tree-deep-dark.png'] };
+    return { guideStates, indentation, deepLevels: 11, ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png', '118-project-tree-deep-dark.png'] };
   } finally {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
     await page.evaluate(async preferences => { await window.qiyao.savePreferences(preferences); }, preferences);
