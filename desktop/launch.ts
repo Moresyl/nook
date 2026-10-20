@@ -18,6 +18,7 @@ import { ComposerDrafts } from './services/composer-drafts';
 import { startTemporaryChat } from './services/temporary-conversations';
 import { reorderConversationBranch } from './services/branch-order';
 import { reorderPinnedThread } from './services/pinned-order';
+import { updateThreadMetadata } from './services/thread-metadata';
 import { parsePersistentWorkspace } from '../contracts/temporary-conversations';
 import { HttpModelGateway } from './services/model-gateway';
 import { ProviderSettings } from './services/provider-settings';
@@ -274,6 +275,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   startTemporaryChat: () => startTemporaryChat(vault),
   reorderBranch: (raw) => reorderConversationBranch(vault, raw),
   reorderPinnedThread: (raw) => reorderPinnedThread(vault, raw),
+  updateThreadMetadata: (raw) => updateThreadMetadata(vault, raw, assertIdle),
   submit: (request) => engine.start(request),
   compareModels: (request) => engine.compare(request),
   generateContextSummary: (raw) => engine.contextSummaries.generate(raw),

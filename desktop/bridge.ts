@@ -87,6 +87,7 @@ const bridge: Bridge = {
   startTemporaryChat: () => invoke('startTemporaryChat'),
   reorderBranch: (input) => invoke('reorderBranch', input),
   reorderPinnedThread: (input) => invoke('reorderPinnedThread', input),
+  updateThreadMetadata: (input) => invoke('updateThreadMetadata', input),
   submit: (request) => invoke('submit', request),
   compareModels: (request) => invoke('compareModels', request),
   generateContextSummary: (input) => invoke('generateContextSummary', input),

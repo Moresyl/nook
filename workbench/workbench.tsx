@@ -8,6 +8,7 @@ import { composerContent, composerRevision, restoreComposer } from '../contracts
 import { appendMcpPdfAttachment } from '../contracts/mcp-attachments';
 import { worktreeNavigationConversation, worktreeNavigationProject, type WorktreeConversationTarget, type WorktreeProjectTarget } from '../contracts/worktree-navigation';
 import { uiErrorMessage } from '../contracts/ui-errors';
+import type { ThreadMetadata } from '../contracts/thread-metadata';
 import type { Attachment } from '../contracts/attachments';
 import type { ApprovalRequest, ConversationMode } from '../contracts/tools';
 import { Button, Empty, IconButton, Input, Modal } from './components/controls';
@@ -255,7 +256,17 @@ export function Workbench() {
       return true;
     } catch (problem) { report(problem); return false; }
   }
-  async function mutate(target: Thread) { try { setState(await window.qiyao.updateThread(target)); } catch (problem) { report(problem); } }
+  async function mutate(target: Thread) {
+    try {
+      const current = state?.threads.find(item => item.id === target.id);
+      if (!current) throw new Error('This conversation no longer exists.');
+      const input: ThreadMetadata = { id: target.id };
+      if (target.title !== current.title) input.title = target.title;
+      if (target.pinned !== current.pinned) input.pinned = target.pinned;
+      if (target.archived !== current.archived) input.archived = target.archived;
+      if (Object.keys(input).length > 1) setState(await window.qiyao.updateThreadMetadata(input));
+    } catch (problem) { report(problem); }
+  }
   async function compareModels(models: ComparisonRequest['models']): Promise<ComparisonResult> {
     if (!comparison) throw new Error('请重新打开模型比较。');
     await flushDrafts();
@@ -303,7 +314,7 @@ export function Workbench() {
     else if (target.kind === 'find') { if (draftRef.current.threadId !== target.threadId) throw new Error('This conversation no longer exists. Refresh the command menu.'); setState(current); setFindRequest((value) => value + 1); }
     else if (target.kind === 'theme') setState(await window.qiyao.savePreferences({ ...current.preferences, theme: target.theme }));
     else if (target.kind === 'plugin-panel') { setState(current); setPluginPanel({ pluginId: target.pluginId, panelId: target.panelId }); setPage('plugin'); }
-    else if (target.kind === 'thread-action') { const id = target.threadId; const chosen = current.threads.find((thread) => thread.id === id)!; if (target.action === 'rename') { setState(current); setRenaming(chosen.title); } else if (target.action === 'export') return window.qiyao.exportThread(id); else setState(await window.qiyao.updateThread({ ...chosen, ...(target.action === 'pin' ? { pinned: !chosen.pinned } : { archived: !chosen.archived }) })); }
+    else if (target.kind === 'thread-action') { const id = target.threadId; const chosen = current.threads.find((thread) => thread.id === id)!; if (target.action === 'rename') { setState(current); setRenaming(chosen.title); } else if (target.action === 'export') return window.qiyao.exportThread(id); else setState(await window.qiyao.updateThreadMetadata({ id, ...(target.action === 'pin' ? { pinned: !chosen.pinned } : { archived: !chosen.archived }) })); }
     return true;
   }
   const navigation: { page: Page; icon: GlyphName; label: string }[] = [{ page: 'projects', icon: 'folder', label: '项目' }, { page: 'assistants', icon: 'assistant', label: '助手' }, { page: 'library', icon: 'library', label: '资料库' }, { page: 'automations', icon: 'clock', label: '自动任务' }, { page: 'browser', icon: 'globe', label: '浏览器' }];
