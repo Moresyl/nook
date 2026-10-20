@@ -47,10 +47,29 @@ export async function verifySettingsSearch({ page, application, directory, scree
   await search().evaluate(element => { element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true, isComposing: true })); });
   assert.equal(await search().getAttribute('aria-activedescendant'), null);
   await search().press('ArrowDown'); assert.equal(await results().getByRole('option', { selected: true }).count(), 1);
+  for (const event of [{ key: 'Enter', isComposing: true }, { key: 'Enter', keyCode: 229 }, { key: 'Process' }]) {
+    const active = await search().getAttribute('aria-activedescendant');
+    await search().evaluate((element, event) => element.dispatchEvent(new KeyboardEvent('keydown', { ...event, bubbles: true, cancelable: true })), event);
+    assert.equal(await panel().getAttribute('aria-label'), '模型连接', 'IME confirmation must not navigate to a settings result');
+    assert.equal(await search().getAttribute('aria-activedescendant'), active);
+  }
   await search().press('Enter'); await assertFocus('主题');
   await page.keyboard.press('Control+f'); assert.equal(await search().evaluate(element => document.activeElement === element && element.selectionStart === 0 && element.selectionEnd === element.value.length), true);
   await search().fill('<img src=x onerror=alert(1)>'); assert.equal(await results().getByRole('option').count(), 0); assert.equal(await settings().locator('.settings-sidebar').getByRole('status').textContent(), '没有匹配的设置');
   await clear(); assert.equal(await settings().locator('.settings-nav button').count(), 9);
+  await application.resize(760, 540); await page.waitForFunction(() => innerWidth === 760 && innerHeight === 540);
+  await search().fill('外观');
+  const options = results().getByRole('option'), lastId = await options.last().getAttribute('id');
+  assert.ok(await options.count() > 5);
+  await options.first().hover(); await search().focus(); await search().press('End');
+  await page.waitForFunction(id => document.querySelector('[aria-label="搜索设置"]')?.getAttribute('aria-activedescendant') === id, lastId);
+  assert.ok(await results().evaluate(element => element.scrollTop > 0), 'Keyboard selection scrolls the result list');
+  await options.first().dispatchEvent('mouseover', { bubbles: true });
+  assert.equal(await search().getAttribute('aria-activedescendant'), lastId, 'A stationary pointer boundary event must not replace the keyboard selection');
+  await options.first().hover();
+  assert.equal(await search().getAttribute('aria-activedescendant'), await options.first().getAttribute('id'), 'Actual pointer movement still selects a result');
+  await search().press('Enter'); assert.equal(await panel().getAttribute('aria-label'), '外观与交互');
+  await clear(); await application.resize(...originalWindow.size); await page.waitForFunction(width => innerWidth === width, originalWindow.size[0]);
   verified('settings search preserves IME composition, starts without a selection, supports keyboard activation and Ctrl F, and clears empty results with Escape without closing');
 
   const targets = [['工作树根目录', '工作树根目录，工作树'], ['保留工作树数量', '保留工作树数量，工作树'], ['创建工作树前刷新上游', '创建工作树前刷新上游，工作树'], ['主题', '主题，外观与交互'], ['按 Enter 发送消息', '按 Enter 发送消息，外观与交互'], ['显示系统托盘', '显示系统托盘，外观与交互'], ['快捷键打开', '快捷键打开，外观与交互'], ['唤起快捷键', '唤起快捷键，外观与交互']];

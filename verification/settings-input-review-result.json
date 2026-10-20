@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-20T03:09:02.602Z",
+  "sourceBase": "0e6abe77aae5df4904c626f2742f597646642b5a",
+  "sourceDiffSha256": "ab9df8bec8eae6b67f9474c2416bc06d62d5339a20ce3310967b292039b190c3",
+  "change": "Settings search ignores composition-confirmation Enter with keyCode 229 and only changes hover selection on actual pointer movement.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "nativeChecks": 8,
+  "exits": [
+    {
+      "elapsedMs": 364,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "sourceInputs": 1056,
+  "compiledFiles": 236,
+  "archivedOutputs": 21,
+  "interactions": {
+    "composingEnterIgnored": true,
+    "legacyCompositionKeyIgnored": true,
+    "processKeyIgnored": true,
+    "keyboardScrollVerified": true,
+    "stationaryBoundaryDoesNotReplaceSelection": true,
+    "actualPointerMovementSelects": true,
+    "ordinaryEnterNavigates": true
+  },
+  "previousFailure": {
+    "phase": "settings-retry3",
+    "logSha256": "36dce89b4833b1ef9fd1ea69c033ac35cd7bf9e5ed50a5ae629bc5d1093b7db6",
+    "archivedOutputs": 1,
+    "reason": "Against the previous product build, Enter with keyCode 229 navigated from model settings to appearance."
+  },
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Renderer behavior verified through original native settings suite, including existing six-form draft protection and theme/zoom checks. IME flags and the stationary boundary event use controlled events; keyboard scroll and subsequent pointer movement are real automation. Physical input-method behavior remains separate. No new visual specification or full unit run claimed."
+}
