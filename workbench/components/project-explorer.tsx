@@ -3,15 +3,15 @@ import type { FileEntry } from '../../contracts/projects';
 import { Button, IconButton } from './controls';
 import { Glyph } from './glyphs';
 import { TextHint, useControlTooltip } from './control-tooltip';
-import { ProjectTree, projectTreeKey, projectTreeRows, type ProjectTreeState } from './project-tree';
+import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, type ProjectTreeState } from './project-tree';
 import { ProjectFileFinder } from './project-file-finder';
 
 type Props = { projectId: string; active: string; revision: number; hidden: boolean; onOpen: (path: string) => void; onNew: (directory: string) => void };
 const parent = (path: string) => path.slice(0, Math.max(0, path.lastIndexOf('/')));
 
-function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocus, onKeyDown, onActivate, children }: {
+function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, children }: {
   entry: FileEntry; level: number; expanded: boolean; selected: boolean; tabIndex: number;
-  register: Ref<HTMLDivElement>; onFocus: () => void; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
+  register: Ref<HTMLDivElement>; onFocus: () => void; onExit: () => void; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
   onActivate: () => void; children: ReactNode;
 }) {
   const row = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ function TreeItem({ entry, level, expanded, selected, tabIndex, register, onFocu
   return <div role="treeitem" aria-label={entry.relativePath} aria-level={level} aria-expanded={entry.directory ? expanded : undefined} aria-selected={selected} aria-describedby={tooltip.description} tabIndex={tabIndex} className="project-tree-item"
     ref={element => { tooltip.anchor.current = element; if (typeof register === 'function') register(element); else if (register) register.current = element; }}
     onFocus={event => { if (event.target === event.currentTarget) { onFocus(); tooltip.focus(event); } }}
-    onBlur={event => { if (event.target === event.currentTarget) tooltip.hide(); }}
+    onBlur={event => { if (event.target === event.currentTarget) { tooltip.hide(); if (!event.currentTarget.closest('[role="tree"]')?.contains(event.relatedTarget)) onExit(); } }}
     onKeyDown={onKeyDown}>
     <div ref={row} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ paddingLeft: 3 + Math.min(level - 1, 8) * 12 }}
       onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
@@ -37,6 +37,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const queryRef = useRef(query); queryRef.current = query;
   const tree = useRef<ProjectTree | null>(null);
   const nodes = useRef(new Map<string, HTMLDivElement>());
+  const typing = useRef({ query: '', time: 0 });
   const activeRef = useRef(active); activeRef.current = active;
   const lastRevision = useRef(revision);
   const rows = projectTreeRows(state);
@@ -68,12 +69,24 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
 
   function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); }
   function activate(entry: FileEntry) {
+    typing.current.query = '';
     nodes.current.get(entry.relativePath)?.focus(); focus(entry);
     if (entry.directory) { if (state.expanded.has(entry.relativePath)) tree.current?.collapse(entry.relativePath); else void tree.current?.expand(entry.relativePath); }
     else onOpen(entry.relativePath);
   }
   function key(entry: FileEntry, event: KeyboardEvent<HTMLDivElement>) {
-    if (event.target !== event.currentTarget || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.target !== event.currentTarget || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
+    if (event.altKey || event.ctrlKey || event.metaKey) { typing.current.query = ''; return; }
+    if (event.key !== ' ' && Array.from(event.key).length === 1) {
+      const now = performance.now();
+      const query = (now - typing.current.time < 700 ? typing.current.query : '') + event.key;
+      typing.current = { query: query.slice(-160), time: now };
+      const path = projectTreeMatch(rows, entry.relativePath, typing.current.query);
+      event.preventDefault(); event.stopPropagation();
+      if (path) { nodes.current.get(path)?.focus({ preventScroll: true }); nodes.current.get(path)?.querySelector('.project-tree-row')?.scrollIntoView({ block: 'nearest' }); }
+      return;
+    }
+    typing.current.query = '';
     const action = projectTreeKey(rows, state.expanded, entry.relativePath, event.key);
     if (!action) return;
     event.preventDefault(); event.stopPropagation();
@@ -87,7 +100,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
     return <>
       {value?.page?.entries.map((entry) => {
         const expanded = entry.directory && state.expanded.has(entry.relativePath);
-        return <TreeItem key={entry.relativePath} entry={entry} level={level} expanded={expanded} selected={entry.relativePath === active} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
+        return <TreeItem key={entry.relativePath} entry={entry} level={level} expanded={expanded} selected={entry.relativePath === active} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onExit={() => { typing.current.query = ''; }} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
           {expanded && <div role="group">{folder(entry.relativePath, level + 1)}</div>}
         </TreeItem>;
       })}

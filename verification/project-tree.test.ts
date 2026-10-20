@@ -1,8 +1,36 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { DirectoryPage, FileEntry } from '../contracts/projects';
-import { ProjectTree, projectTreeKey, projectTreeRows, type ProjectTreeState } from '../workbench/components/project-tree';
+import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeRows, type ProjectTreeState } from '../workbench/components/project-tree';
 
 const file = (relativePath: string, directory = false): FileEntry => ({ name: relativePath.split('/').at(-1)!, relativePath, directory });
+
+describe('file tree prefix navigation', () => {
+  const rows = ['source', 'source/Alpha.ts', 'alpha.txt', 'Beta.ts', 'éclair.txt', '资料.md', '😀.txt'].map(path => ({ entry: file(path), level: path.includes('/') ? 2 : 1 }));
+  it('cycles repeated letters and wraps without selecting or opening files', () => {
+    expect(projectTreeMatch(rows, 'source', 'a')).toBe('source/Alpha.ts');
+    expect(projectTreeMatch(rows, 'source/Alpha.ts', 'AA')).toBe('alpha.txt');
+    expect(projectTreeMatch(rows, 'alpha.txt', 'aaa')).toBe('source/Alpha.ts');
+    expect(projectTreeMatch(rows, 'Beta.ts', 'b')).toBe('Beta.ts');
+  });
+  it('keeps a matching current row while refining a multi-character prefix', () => {
+    expect(projectTreeMatch(rows, 'source/Alpha.ts', 'Alp')).toBe('source/Alpha.ts');
+    expect(projectTreeMatch(rows, 'source/Alpha.ts', 'alpha.t')).toBe('source/Alpha.ts');
+    expect(projectTreeMatch(rows, 'source/Alpha.ts', 'alpha.tx')).toBe('alpha.txt');
+  });
+  it('normalizes Unicode and matches basenames at any visible depth', () => {
+    expect(projectTreeMatch(rows, 'source', 'e\u0301c')).toBe('éclair.txt');
+    expect(projectTreeMatch(rows, 'source', '资料')).toBe('资料.md');
+    expect(projectTreeMatch(rows, 'source', '😀')).toBe('😀.txt');
+    expect(projectTreeMatch(rows, 'missing', 'a')).toBe('source/Alpha.ts');
+  });
+  it('does not invent matches or traverse unloaded and collapsed entries', () => {
+    expect(projectTreeMatch([], '', 'a')).toBeUndefined();
+    expect(projectTreeMatch(rows, 'source', '')).toBeUndefined();
+    expect(projectTreeMatch(rows, 'source', 'missing')).toBeUndefined();
+    expect(projectTreeMatch(rows.slice(0, 1), 'source', 'a')).toBeUndefined();
+    expect(projectTreeMatch(rows, 'source', 'source/Alpha')).toBeUndefined();
+  });
+});
 const page = (entries: FileEntry[], change: Partial<DirectoryPage> = {}): DirectoryPage => ({ entries, revision: 'a'.repeat(64), total: entries.length, nextOffset: null, ...change });
 const loaded = (entries: FileEntry[]) => ({ page: page(entries), loading: false, error: false });
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>((done) => { resolve = done; }); return { promise, resolve }; }

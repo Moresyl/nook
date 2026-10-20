@@ -6,8 +6,10 @@ import { verifyRecentThreads } from './verify-recent-threads.mjs';
 
 export async function verifyChatNavigation({ page, application, getApplication, endpoint, directory, screenshots, fixture, verified, waitForBridge, restart }) {
   const sectionPreferences = await page.evaluate(() => ['pinned', 'recent'].map(section => { const key = `nook.sidebar.collapsed.${section}`; return [key, localStorage.getItem(key)]; }));
+  const existingPins = await page.evaluate(async () => (await window.qiyao.load()).threads.filter(thread => thread.pinned && !thread.archived));
   const threadId = randomUUID(); const threadTitle = `BODY_SCOPE_EXCLUDED_${threadId}`; const providerId = randomUUID(); const messages = [];
   const sidebarThreads = Array.from({ length: 120 }, (_, index) => ({ id: randomUUID(), title: `SIDEBAR_${threadId}_${String(index).padStart(3, '0')}`, model: 'chat-navigation-model', providerId, pinned: index >= 105 && index < 119, archived: index === 119, createdAt: Date.now(), updatedAt: Date.now() + 10000 - index, messages: [] }));
+  const backgroundPin = { id: randomUUID(), title: `BACKGROUND_PIN_${threadId}`, model: 'chat-navigation-model', providerId, pinned: true, archived: false, createdAt: Date.now() - 3600000, updatedAt: Date.now() - 3600000, messages: [{ id: randomUUID(), role: 'user', content: 'BACKGROUND_PIN_CONTENT_MUST_SURVIVE', createdAt: 1, status: 'complete', attachments: [] }] };
   for (let index = 0; index < 20; index++) {
     messages.push({ id: randomUUID(), role: 'user', content: `NAV_USER_${index} 中文😀\n${index === 0 || index === 5 ? 'needle.a* [literal] <img>\n' : ''}${'请保留这条消息的原文。\n'.repeat(3)}`, createdAt: index * 2 + 1, status: 'complete', attachments: [] });
     let content = index === 0 ? `Inline **cross** node match. needle.a* [literal]\n\n\`\`\`ts\n${'const padding = 0;\n'.repeat(32)}CODE_NEEDLE = "needle.a*";\n${' '.repeat(200)}HORIZONTAL_FIND_TARGET\n\`\`\`` : `NAV_REPLY_${index}\n\n${index === 2 ? 'Σ σ ς\n\n' : ''}${'这是已经保存的助手回复。\n\n'.repeat(3)}`;
@@ -25,6 +27,7 @@ export async function verifyChatNavigation({ page, application, getApplication, 
     state.threads.push({ id: threadId, title: threadTitle, model: 'chat-navigation-model', providerId, pinned: false, archived: false, createdAt, updatedAt: createdAt, messages });
     sidebarThreads.forEach((thread, index) => { thread.createdAt = createdAt; thread.updatedAt = createdAt + 10000 - index; });
     state.threads.push(...sidebarThreads);
+    state.threads.push(backgroundPin);
     await writeFile(path, JSON.stringify(state));
   }); application = getApplication();
   await page.evaluate(async ({ threadId, providerId, attachment }) => { await window.qiyao.saveComposerDraft({ threadId, text: 'CHAT_NAV_DRAFT_KEEP', attachments: [attachment], providerId, model: 'chat-navigation-model', mode: 'chat', mcpServerIds: [], skillIds: [], pluginIds: [], updatedAt: Date.now() }); await window.qiyao.activateThread(threadId); }, { threadId, providerId, attachment });
@@ -40,7 +43,7 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   async function capture(name) { await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); const image = await application.evaluateMain(`(async()=>{const window=${mainWindow};const image=await window.capturePage();return {png:image.toPNG().toString('base64'),size:window.getContentSize()};})()`); const bytes = Buffer.from(image.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], image.size); await writeFile(join(screenshots, name), bytes); }
   async function search(query, count) { await input().fill(query); await counter().getByText(count ? `1 / ${count}` : '无匹配结果', { exact: true }).waitFor(); await page.waitForFunction((count) => (CSS.highlights.get('qiyao-chat-search')?.size ?? 0) === count, count); }
   assert.equal(await rail().getByRole('button').count(), 20); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
-  const sidebarNavigation = await verifyRecentThreads({ page, application, threads: sidebarThreads, originalTitle: threadTitle, capture, directory });
+  const sidebarNavigation = await verifyRecentThreads({ page, application, threads: sidebarThreads, existingPins: [...existingPins, backgroundPin], originalTitle: threadTitle, capture, directory });
   await marker(1).click(); await page.waitForFunction((id) => { const article = [...document.querySelectorAll('[data-message-id]')].find((element) => element.dataset.messageId === id); const scroll = document.querySelector('.transcript-scroll'); return article.getBoundingClientRect().top >= scroll.getBoundingClientRect().top && article.getBoundingClientRect().top < scroll.getBoundingClientRect().top + 70; }, messages[0].id);
   await marker(1).focus(); await marker(1).press('ArrowDown'); assert.equal(await marker(2).evaluate((element) => element === document.activeElement), true); await marker(2).press('Enter'); await page.waitForFunction(() => document.querySelector('.message-navigation button[aria-current="true"]')?.getAttribute('aria-label') === '跳转到第 2 条用户消息'); await marker(2).press('Home'); assert.equal(await marker(1).evaluate((element) => element === document.activeElement), true);
   await marker(1).hover(); await page.getByRole('tooltip').getByText(/NAV_USER_0/).waitFor(); const reference = await marker(1).locator('.message-navigation-marker').evaluate((element) => ({ width: element.getBoundingClientRect().width, height: element.getBoundingClientRect().height })); assert.deepEqual(reference, { width: 26, height: 2 }); await capture('102-message-navigation-light.png');
@@ -174,7 +177,9 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   }
   page = await restart(async () => {
     const path = join(directory, 'workspace.json'); const state = JSON.parse(await readFile(path, 'utf8'));
-    const ids = new Set(sidebarThreads.map(thread => thread.id));
+    const background = state.threads.find(thread => thread.id === backgroundPin.id); const { pinOrder: backgroundRank, ...backgroundFields } = background;
+    assert.deepEqual(backgroundFields, backgroundPin, 'The independent background pin retains its content and metadata through all sidebar operations'); assert.ok(Number.isInteger(backgroundRank) && backgroundRank >= 0);
+    const ids = new Set([...sidebarThreads.map(thread => thread.id), backgroundPin.id]);
     const savedPins = state.threads.filter(thread => sidebarThreads.some(fixture => fixture.id === thread.id && fixture.pinned)).sort((left, right) => left.pinOrder - right.pinOrder);
     assert.equal(savedPins[0].id, sidebarNavigation.pinnedReorder.expectedFirstId, 'The completed native session persists the reordered pinned list on disk');
     assert.equal(savedPins[0].pinOrder, 0);
@@ -202,13 +207,18 @@ export async function verifyChatNavigation({ page, application, getApplication, 
   assert.equal(await firstPin.getByRole('button', { name: '已置顶', exact: true }).getAttribute('aria-expanded'), 'true');
   await page.getByRole('button', { name: '取消置顶', exact: true }).click();
   await page.locator('.thread-list').getByRole('region', { name: '最近聊天', exact: true }).getByRole('button', { name: threadTitle, exact: true }).waitFor();
-  assert.equal(await firstPin.count(), 0, 'Removing the final pin hides its empty section');
+  if (existingPins.length === 0) assert.equal(await firstPin.count(), 0, 'Removing the final pin hides its empty section');
+  else assert.deepEqual(await firstPin.locator('.thread-row').evaluateAll(elements => elements.map(element => element.dataset.pinnedId).sort()), existingPins.map(thread => thread.id).sort(), 'Removing the fixture pin preserves every pre-existing pinned conversation');
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
   await page.evaluate(entries => { for (const [key, value] of entries) { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); } }, sectionPreferences);
   sidebarNavigation.collapseSurvivesNormalRestart = true;
-  sidebarNavigation.firstPinReveal = true;
+  sidebarNavigation.firstPinReveal = existingPins.length === 0;
+  sidebarNavigation.preexistingPinsPreserved = existingPins.length;
+  sidebarNavigation.independentBackgroundPinPreserved = true;
   sidebarNavigation.samePinnedSearchReveal = true;
-  const stored = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')); assert.equal(stored.threads.find((thread) => thread.id === threadId).messages.length, 42); assert.deepEqual(stored.composerDrafts.find((draft) => draft.threadId === threadId).attachments, [attachment]); await application.resize(1280, 840);
+  const stored = JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')); assert.equal(stored.threads.find((thread) => thread.id === threadId).messages.length, 42); assert.deepEqual(stored.composerDrafts.find((draft) => draft.threadId === threadId).attachments, [attachment]);
+  for (const original of existingPins) { const { pinOrder, ...before } = original; const { pinOrder: nextRank, ...after } = stored.threads.find(thread => thread.id === original.id); assert.deepEqual(after, before, 'Reordering may normalize pin ranks but must preserve all other pre-existing conversation fields'); assert.ok(Number.isInteger(nextRank) && nextRank >= 0); }
+  await application.resize(1280, 840);
   verified('the real dark minimum window keeps find, close and message rail within bounds at 100/125/150 percent native zoom, and normal close/restart retains exact history and the composer attachment while clearing ephemeral query/highlight state');
   return { page, result: { checks: 5, sidebarNavigation, modelRequests: fixture.requests.length, layout, screenshots: ['110-sidebar-groups-light.png', '102-message-navigation-light.png', '103-chat-find-light.png', '104-chat-find-code-light.png', ...[100, 125, 150].map((zoom) => `105-chat-find-dark-zoom-${zoom}.png`)], screenshotMethod: 'Complete native Electron BrowserWindow.capturePage with exact content-size assertions', scope: 'Current-chat message-only literal find; native keyboard, pointer and captured-pointer rail navigation; reference 26-by-2-pixel markers and one-rem edge fades; exact original UTF-16 offsets, inline Markdown spans, Unicode/metacharacters and actual code overflow; command context/focus, no-send history/draft/attachment retention; real held HTTP streaming and manual reading position; actual normal close/restart and dark 760x540 layout at 100/125/150 percent zoom. Maximum-scale, full accessibility, cross-platform and richer graphical branch navigation remain separate work.' } };
 }

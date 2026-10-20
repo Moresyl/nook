@@ -5,6 +5,19 @@ export type ProjectTreeState = { folders: ReadonlyMap<string, ProjectFolder>; ex
 export type ProjectTreeRow = { entry: FileEntry; level: number };
 export type ProjectTreeAction = { kind: 'focus' | 'expand' | 'collapse' | 'open'; path: string };
 
+export function projectTreeMatch(rows: readonly ProjectTreeRow[], path: string, query: string): string | undefined {
+  if (!query || !rows.length) return;
+  const normalized = query.normalize('NFC').toLowerCase();
+  const letters = Array.from(normalized), cycling = letters.every(letter => letter === letters[0]);
+  const prefix = cycling ? letters[0] : normalized;
+  const current = rows.findIndex(row => row.entry.relativePath === path);
+  const start = current < 0 ? 0 : (current + (cycling ? 1 : 0)) % rows.length;
+  for (let offset = 0; offset < rows.length; offset++) {
+    const entry = rows[(start + offset) % rows.length].entry;
+    if (entry.name.normalize('NFC').toLowerCase().startsWith(prefix)) return entry.relativePath;
+  }
+}
+
 export function projectTreeRows(state: ProjectTreeState): ProjectTreeRow[] {
   const result: ProjectTreeRow[] = [];
   const seen = new Set<string>();

@@ -57,6 +57,22 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   }
   const createdContents = `TREE_NEW_FILE_CONTENT😀${process.platform === 'win32' ? '\r\n' : '\n'}`;
   await item('source').waitFor(); assert.equal(await tree().getByRole('treeitem').count(), 200);
+  await item('source').focus(); await page.keyboard.press('f');
+  assert.equal(await item('file-0000.txt').evaluate(element => element === document.activeElement), true);
+  await page.keyboard.press('f'); assert.equal(await item('file-0001.txt').evaluate(element => element === document.activeElement), true);
+  await page.keyboard.press('Home'); await page.keyboard.type('file-0100');
+  assert.equal(await item('file-0100.txt').evaluate(element => element === document.activeElement), true);
+  assert.equal(await tree().locator('[aria-selected="true"]').count(), 0, 'Typing must only move focus, not open a file');
+  assert.equal(await item('file-0100.txt').evaluate(element => { const row = element.querySelector('.project-tree-row').getBoundingClientRect(), view = element.closest('.project-tree').getBoundingClientRect(); return row.top >= view.top && row.bottom <= view.bottom; }), true);
+  await page.keyboard.press('Home'); await page.keyboard.press('s');
+  await item('source').evaluate(element => { element.dispatchEvent(new KeyboardEvent('keydown', { key: 'f', isComposing: true, bubbles: true })); element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 229, bubbles: true })); });
+  assert.equal(await item('source').evaluate(element => element === document.activeElement), true); assert.equal(await item('source').getAttribute('aria-expanded'), 'false');
+  await page.getByRole('button', { name: '刷新文件', exact: true }).focus(); await item('source').focus(); await page.keyboard.press('f');
+  assert.equal(await item('file-0000.txt').evaluate(element => element === document.activeElement), true, 'Leaving the tree resets the prefix');
+  await page.waitForTimeout(750); await page.keyboard.press('s');
+  assert.equal(await item('source').evaluate(element => element === document.activeElement), true, 'Expired prefix starts a new search');
+  await page.keyboard.press('Home'); await page.keyboard.press('z'); assert.equal(await item('__proto__').evaluate(element => element === document.activeElement), true);
+  await page.keyboard.press('Home');
   const treeTypography = await row('source').evaluate(element => {
     const style = getComputedStyle(element), label = element.querySelector('.project-tree-label');
     return { fontSize: style.fontSize, gap: style.columnGap, labelFontSize: getComputedStyle(label).fontSize, rowHeight: element.getBoundingClientRect().height };

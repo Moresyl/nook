@@ -2,15 +2,17 @@ import assert from 'node:assert/strict';
 import { verifyPinnedReorder } from './verify-pinned-reorder.mjs';
 import { verifyThreadActions } from './verify-thread-actions.mjs';
 
-export async function verifyRecentThreads({ page, application, threads, originalTitle, capture, directory }) {
+export async function verifyRecentThreads({ page, application, threads, existingPins, originalTitle, capture, directory }) {
   const sidebar = page.locator('.thread-list');
   const pinned = sidebar.getByRole('region', { name: '已置顶', exact: true });
   const recent = sidebar.getByRole('region', { name: '最近聊天', exact: true });
   const pinnedRows = threads.filter(thread => thread.pinned);
+  const expectedPinnedIds = [...pinnedRows, ...existingPins].map(thread => thread.id).sort();
   const ordinary = threads.filter(thread => !thread.pinned && !thread.archived);
   const archived = threads.find(thread => thread.archived);
   const row = title => sidebar.getByRole('button', { name: title, exact: true });
   await pinned.getByRole('button', { name: pinnedRows[0].title, exact: true }).waitFor();
+  assert.deepEqual(await pinned.locator('.thread-row').evaluateAll(elements => elements.map(element => element.dataset.pinnedId).sort()), expectedPinnedIds);
   assert.equal(await recent.getByRole('button', { name: pinnedRows[0].title, exact: true }).count(), 0);
   assert.equal(await row(archived.title).count(), 0, 'Archived chats stay out of both sidebar sections');
   assert.equal(await row(ordinary.at(-1).title).count(), 0, 'The oldest fixture starts beyond the first batch');
@@ -49,7 +51,7 @@ export async function verifyRecentThreads({ page, application, threads, original
   await toggle.press('Enter'); await toggle.press('Space');
   await page.waitForFunction(() => window.nookRapidToggleKeys.length === 2 && performance.now() - window.nookRapidToggleKeys[1] >= 350);
   assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
-  assert.equal(await content.locator('.thread-row').count(), pinnedRows.length, 'A stale collapse timer cannot remove rows after rapid reopening');
+  assert.deepEqual(await content.locator('.thread-row').evaluateAll(elements => elements.map(element => element.dataset.pinnedId).sort()), expectedPinnedIds, 'Rapid reopening preserves the exact fixture and pre-existing pinned IDs');
   assert.ok(await page.evaluate(() => window.nookRapidToggleKeys[1] - window.nookRapidToggleKeys[0] < 300), 'The native keyboard reversal happened before the collapse deadline');
   const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
