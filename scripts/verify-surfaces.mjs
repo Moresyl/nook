@@ -46,6 +46,13 @@ async function assertModalLayout(page, dialog) {
   }
   assert.ok(geometry.detailWidth <= 768.5, 'Settings content retains a readable width on large windows');
   assert.ok(Math.abs(geometry.detailCenter - geometry.availableCenter) <= 1, 'Settings content stays centered in its available column');
+  const navigationRows = await dialog.locator('.settings-nav .button').evaluateAll(elements => elements.map(element => {
+    const style = getComputedStyle(element), icon = element.querySelector('svg').getBoundingClientRect();
+    return { height: style.height, radius: style.borderRadius, cornerShape: style.cornerShape, fontSize: style.fontSize, lineHeight: style.lineHeight, weight: style.fontWeight, gap: style.gap, padding: style.padding, iconWidth: icon.width, iconHeight: icon.height, horizontalOverflow: element.scrollWidth > element.clientWidth };
+  }));
+  assert.equal(navigationRows.length, 9);
+  const continuousCorners = await page.evaluate(() => CSS.supports('corner-shape', 'superellipse(1.5)'));
+  for (const row of navigationRows) assert.deepEqual(row, { height: '30px', radius: continuousCorners ? '12.5px' : '10px', cornerShape: continuousCorners ? 'superellipse(1.5)' : undefined, fontSize: '14px', lineHeight: '21px', weight: '400', gap: '8px', padding: '4px 8px', iconWidth: 16, iconHeight: 16, horizontalOverflow: false }, 'Settings categories use desktop navigation geometry without clipping labels');
   assert.equal(await page.getByRole('dialog').count(), 1);
   return geometry;
 }

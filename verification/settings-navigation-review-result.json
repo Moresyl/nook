@@ -1,0 +1,61 @@
+{
+  "verifiedAt": "2026-10-20T03:27:31.958Z",
+  "change": "Settings category rows use 30px height, 14px text with 21px line height, 8px spacing and horizontal inset, and capability-dependent continuous corners.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "native": [
+    {
+      "phase": "surfaces-retry5",
+      "checks": 5,
+      "exits": [
+        {
+          "elapsedMs": 182,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "sourceInputs": 1056,
+      "compiledFiles": 236,
+      "archivedOutputs": 20,
+      "logSha256": "19c98e0c61f0465464d18424cf9d09ddf9c5e18186eeba2d2375512966fb31a4"
+    },
+    {
+      "phase": "settings-retry5",
+      "checks": 8,
+      "exits": [
+        {
+          "elapsedMs": 326,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "sourceInputs": 1056,
+      "compiledFiles": 236,
+      "archivedOutputs": 22,
+      "logSha256": "6cde7b1bb0e02776af631870da6d12c3fa79ff7f33a2ccbffd7a1b6fb2d19829"
+    }
+  ],
+  "visualReview": [
+    {
+      "path": "E:/NookVerification/ReferenceSurfaces-20261019/surfaces-retry5/verification/screenshots/91-surface-controls-light.png",
+      "sha256": "26ac6f34b9e3748d8a60af38778e5d77eb49e51886b260744ecb7ddfe63aad5b",
+      "individuallyViewed": true
+    },
+    {
+      "path": "E:/NookVerification/ReferenceSurfaces-20261019/surfaces-retry5/verification/screenshots/93-surface-settings-zoomed.png",
+      "sha256": "dabc1bbeb809fb792f84c5213fc7e0a706fc12dde1b3a3ab76546a559c48767c",
+      "individuallyViewed": true
+    }
+  ],
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Nine category rows measured at existing window/zoom cases; original control and settings workflows retained. Search descriptions, sidebar width, route semantics and all page density remain separate. Two screenshots viewed; no all-image, fresh full-unit, physical DPI, complete desktop or full design-parity claim.",
+  "sourceBase": "6943439e142efae208aa0ee6d439d021b0fb11f8"
+}

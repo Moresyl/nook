@@ -533,7 +533,10 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .modal-footer { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--ds-border); }
 .settings-layout { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 24px; min-height: 340px; }
 .settings-nav { display: flex; flex-direction: column; gap: 4px; }
-.settings-nav .button { justify-content: flex-start; min-height: 32px; }
+.settings-nav .button { justify-content: flex-start; height: 30px; min-height: 30px; padding: 4px 8px; gap: 8px; border-radius: 10px; font-size: 14px; line-height: 21px; }
+@supports (corner-shape: superellipse(1.5)) {
+  .settings-nav .button { border-radius: 12.5px; corner-shape: superellipse(1.5); }
+}
 .settings-detail { min-width: 0; }
 .settings-dialog.modal { position: fixed; inset: 36px 0 0; width: 100vw; max-width: none; height: calc(100dvh - 36px); max-height: none; margin: 0; transform: none; border: 0; border-radius: 0; box-shadow: none; }
 .settings-dialog::backdrop { background: transparent; backdrop-filter: none; }
