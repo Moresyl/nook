@@ -140,6 +140,20 @@ export async function verifyModelComparisons({ page, application, getApplication
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().startsWith('qiyao://app/'))";
   async function capture(name) { await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))); assert.equal(await dialog().isVisible(), true); const result = await application.evaluateMain(`(async()=>{const window=${mainWindow};const image=await window.capturePage();return {png:image.toPNG().toString('base64'),size:window.getContentSize()};})()`); const bytes = Buffer.from(result.png, 'base64'); assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], result.size); await writeFile(join(screenshots, name), bytes); captures.push(name); }
   async function open() { await page.getByRole('button', { name: '发送给多个模型比较', exact: true }).click(); await dialog().waitFor(); await dialog().getByLabel('比较连接 2', { exact: true }).selectOption(providerB); await dialog().getByLabel('比较模型 2', { exact: true }).selectOption('two'); }
+  async function selectConversation(title) {
+    const sidebar = page.locator('.thread-list'), section = sidebar.getByRole('button', { name: '最近聊天', exact: true });
+    if (await section.getAttribute('aria-expanded') === 'false') await section.click();
+    const target = sidebar.getByRole('button', { name: title, exact: true }), deadline = Date.now() + 5000;
+    let pages = 0;
+    while (!await target.count()) {
+      assert.ok(Date.now() < deadline, 'The conversation must be reachable through the visible recent-chat pagination.');
+      const before = await sidebar.locator('.thread-row').count();
+      await sidebar.getByRole('button', { name: '显示更多最近聊天', exact: true }).click();
+      assert.ok(await sidebar.locator('.thread-row').count() > before, 'Showing more must reveal additional conversations.');
+      pages++;
+    }
+    await target.click(); console.log('Comparison conversation selection', JSON.stringify({ pages }));
+  }
   async function close() { await dialog().locator('.modal-footer').getByRole('button', { name: '关闭', exact: true }).click(); await dialog().waitFor({ state: 'hidden' }); }
   const groups = []; const group = (groupId) => page.evaluate(async (id) => (await window.qiyao.load()).threads.filter((thread) => thread.comparison?.groupId === id).sort((a, b) => a.comparison.index - b.comparison.index), groupId);
   async function currentGroup() { return page.evaluate(async () => (await window.qiyao.load()).threads.findLast((thread) => thread.comparison)?.comparison.groupId); }
@@ -296,7 +310,7 @@ export async function verifyModelComparisons({ page, application, getApplication
     await page.reload(); await composer().waitFor(); await application.resize(760, 540);
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
     await waitForBridge(page, ({ theme, zoom }) => document.documentElement.dataset.theme === theme && Math.abs(innerWidth - 760 / zoom) <= 1 && Math.abs(innerHeight - 540 / zoom) <= 1, { theme, zoom });
-    await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); await open();
+    await selectConversation(source.title); await open();
     await failSave(theme, zoom, `model-comparison-save-error-${theme}-zoom-${zoom * 100}.png`);
   }
   await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor();
@@ -317,8 +331,8 @@ export async function verifyModelComparisons({ page, application, getApplication
   verified('held actual group save disables header/footer close and settings, rejects Escape, then exposes the complete Chinese EIO alert within the scroll viewport while preserving original history/draft/selections and zero requests; retry creates exactly two independent responses');
 
   await page.getByRole('button', { name: '临时聊天', exact: true }).click(); await page.getByLabel('临时聊天说明', { exact: true }).waitFor(); await composer().fill('COMPARE_TEMP_PRIVATE_QUESTION'); await open(); await dialog().getByRole('button', { name: '发送并比较', exact: true }).click(); await dialog().getByLabel('回复 2', { exact: true }).waitFor(); await waitPartial(); const temporaryGroup = await currentGroup(); fixture.finish(); await waitCompleted(temporaryGroup); assert.ok((await group(temporaryGroup)).every((thread) => thread.temporary)); await close();
-  await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question);
-  const first = (await group(firstGroup))[0]; first.title = `比较模型一继续 ${first.id}`; await page.evaluate((thread) => window.qiyao.updateThread(thread), first); await page.reload(); await composer().waitFor(); await page.locator('.thread-list').getByRole('button', { name: first.title, exact: true }).click(); await page.getByLabel('模型提供商', { exact: true }).selectOption(providerB); await page.getByLabel('选择模型', { exact: true }).selectOption('two'); await composer().fill('COMPARE_SELECTED_CONTINUATION');
+  await selectConversation(source.title); assert.equal(await composer().inputValue(), question);
+  const first = (await group(firstGroup))[0]; first.title = `比较模型一继续 ${first.id}`; await page.evaluate((thread) => window.qiyao.updateThread(thread), first); await page.reload(); await composer().waitFor(); await selectConversation(first.title); await page.getByLabel('模型提供商', { exact: true }).selectOption(providerB); await page.getByLabel('选择模型', { exact: true }).selectOption('two'); await composer().fill('COMPARE_SELECTED_CONTINUATION');
   const observerInstalled = await getApplication().evaluateMain(`(() => {
     const handlers = require('electron').ipcMain._invokeHandlers;
     const contents = require('electron').BrowserWindow.getAllWindows().find(window => window.webContents.getURL().startsWith('qiyao://app/'))?.webContents;
@@ -426,7 +440,7 @@ export async function verifyModelComparisons({ page, application, getApplication
   }
   await observeComparisonBackup(application, mainWindow);
   assert.ok(JSON.stringify(fixture.requests.at(-1).messages).includes('one: COMPLETE')); assert.equal(fixture.requests.length, beforeRequests + 11); assert.equal(fixture.requests.at(-1).connection, 'b'); assert.equal(fixture.requests.at(-1).model, 'two'); await composer().fill('COMPARE_CHILD_DRAFT_KEEP'); await page.getByRole('button', { name: '查看模型比较', exact: true }).click(); assert.ok((await dialog().getByLabel('回复 1', { exact: true }).inputValue()).includes('one: COMPLETE')); assert.equal(await dialog().locator('.comparison-result').first().getByRole('heading', { level: 3 }).textContent(), '比较连接 A · one'); await close();
-  await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click(); assert.equal(await composer().inputValue(), question); const backupPaths = [];
+  await selectConversation(source.title); assert.equal(await composer().inputValue(), question); const backupPaths = [];
   for (const extension of ['json', 'json.gz']) {
     const backup = join(directory, `model-comparison.${extension}`); backupPaths.push(backup); await application.evaluateMain(`globalThis.qiyaoComparisonSave=require('electron').dialog.showSaveDialog;require('electron').dialog.showSaveDialog=async()=>({canceled:false,filePath:${JSON.stringify(backup)}});`);
     if (extension !== 'json') await observeComparisonBackup(application, mainWindow);
@@ -448,9 +462,9 @@ export async function verifyModelComparisons({ page, application, getApplication
   for (const zoom of [1, 1.25, 1.5]) {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`); await waitForBridge(page, ({ zoom }) => Math.abs(innerWidth - 760 / zoom) <= 1 && Math.abs(innerHeight - 540 / zoom) <= 1, { zoom }); await open();
     const send = dialog().getByRole('button', { name: '发送并比较', exact: true }); await send.focus(); assert.equal(await send.evaluate((button) => button === document.activeElement), true); await capture(`120-model-comparison-config-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog());
-    await page.locator('.thread-list').getByRole('button', { name: first.title, exact: true }).click(); await page.getByRole('button', { name: '查看模型比较', exact: true }).focus(); await page.keyboard.press('Enter'); await dialog().waitFor();
+    await selectConversation(first.title); await page.getByRole('button', { name: '查看模型比较', exact: true }).focus(); await page.keyboard.press('Enter'); await dialog().waitFor();
     const bounds = await dialog().evaluate((element) => { const header = element.querySelector('.modal-header').getBoundingClientRect(); const footer = element.querySelector('.modal-footer').getBoundingClientRect(); return { width: innerWidth, height: innerHeight, headerTop: header.top, footerBottom: footer.bottom, overflow: document.documentElement.scrollWidth > innerWidth }; }); assert.equal(bounds.overflow, false); assert.ok(bounds.headerTop >= 0 && bounds.footerBottom <= bounds.height); layout.push({ zoom, ...bounds });
-    const openButton = dialog().locator('.comparison-result').first().getByRole('button', { name: '打开此对话', exact: true }); await openButton.focus(); assert.equal(await openButton.evaluate((button) => button === document.activeElement), true); await capture(`121-model-comparison-results-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog()); await page.locator('.thread-list').getByRole('button', { name: source.title, exact: true }).click();
+    const openButton = dialog().locator('.comparison-result').first().getByRole('button', { name: '打开此对话', exact: true }); await openButton.focus(); assert.equal(await openButton.evaluate((button) => button === document.activeElement), true); await capture(`121-model-comparison-results-dark-zoom-${zoom * 100}.png`); await dismissModalWithEscape(page, dialog()); await selectConversation(source.title);
   }
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840); assert.equal(await composer().inputValue(), question); assert.equal(fixture.requests.length, beforeRequests + 11);
   verified('comparison setup and independently scrollable readonly results retain visible modal title/footer, native keyboard focus and Escape at 100%, 125% and 150% dark minimum-window zoom without making preview requests');

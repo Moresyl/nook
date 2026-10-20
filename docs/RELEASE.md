@@ -22,11 +22,14 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 既有覆盖率范围 | 语句 97.08%、分支 94.65%、函数 97.83%、行 99.50% |
 | 本轮文件树专项 | 最终复跑 7 项通过，2 次正常退出，502ms／412ms，无强制结束 |
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
+| 模型比较专项 | 6 项通过，3 次正常退出，最长 8821ms；实际翻页、原草稿、完整备份及缩放验证通过 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
 文件树专项包括祖先堆叠、子树末尾推离、点击与键盘折叠、分页、搜索刷新、未保存草稿及暗色 100%／125%／150% 缩放。原草稿与磁盘文件逐字核对保留。完整单元之后调整了界面样式和原生观察脚本；应用逻辑和单元测试字节保持一致。后续侧栏修复另行验证。
 
 输入法事件保护使用合成事件检查，不等于物理输入法验收。覆盖率遵循仓库现有统计范围，不能将其解释为所有渲染界面的覆盖率。
+
+最新完整回归已通过目录清理和模型比较点击遮挡的旧失败点，在 249 项、30 次正常退出后发现模型比较观察脚本仍假设原会话处于最近列表首屏。现通过真实分页入口选择目标；仅改观察脚本，应用和编译文件不变。[分页修正证据](../verification/comparison-pagination-review-result.json)
 
 [最终专项与清理修正证据](../verification/sticky-integration-review-result.json) · [粘性目录证据](../verification/project-tree-sticky-review-result.json) · [侧栏点击修复证据](../verification/sidebar-hit-area-review-result.json) · [前缀导航证据](../verification/project-tree-prefix-review-result.json) · [前一轮会话证据](../verification/thread-action-completion-review-result.json)
 
