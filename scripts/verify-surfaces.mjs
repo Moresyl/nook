@@ -365,6 +365,20 @@ async function assertButtonTooltips(page, application, screenshots, draft) {
   await rename.waitFor({ state: 'hidden' });
   try {
     await application.resize(760, 540);
+    const recent = page.locator('.thread-row').filter({ hasText: title });
+    await recent.waitFor();
+    for (const zoom of [1, 1.5]) {
+      await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
+      await page.waitForFunction(expected => Math.abs(innerWidth - 760 / expected) <= 1, zoom);
+      const geometry = await recent.evaluate(element => {
+        const style = getComputedStyle(element), label = element.querySelector('span');
+        const bounds = element.getBoundingClientRect(), text = label.getBoundingClientRect();
+        return { height: style.height, fontSize: style.fontSize, lineHeight: style.lineHeight, radius: style.borderRadius, continuous: CSS.supports('corner-shape', 'superellipse(1.5)'), cornerShape: style.cornerShape, overflow: element.scrollWidth > element.clientWidth, truncated: label.scrollWidth > label.clientWidth, textContained: text.left >= bounds.left && text.right <= bounds.right && text.top >= bounds.top && text.bottom <= bounds.bottom };
+      });
+      assert.deepEqual(geometry, { height: '30px', fontSize: zoom > 1 ? '11px' : '14px', lineHeight: '16px', radius: geometry.continuous ? '12.5px' : '10px', continuous: geometry.continuous, cornerShape: geometry.continuous ? 'superellipse(1.5)' : undefined, overflow: false, truncated: true, textContained: true }, 'Long recent-chat titles remain contained at desktop and compact widths');
+    }
+    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
+    await application.resize(760, 540);
     const thread = page.locator('.thread-title');
     await thread.hover(); await hint.filter({ hasText: title }).waitFor();
     assert.equal(await hint.textContent(), title);
@@ -377,6 +391,7 @@ async function assertButtonTooltips(page, application, screenshots, draft) {
     await application.resize(1280, 840);
     await hint.waitFor({ state: 'hidden' });
   } finally {
+    await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
     await page.getByRole('button', { name: '删除聊天', exact: true }).click();
     const confirmation = page.getByRole('dialog', { name: '删除聊天？', exact: true });
     await confirmation.getByRole('button', { name: '删除', exact: true }).click();
