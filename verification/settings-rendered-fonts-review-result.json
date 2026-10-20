@@ -1,0 +1,157 @@
+{
+  "verifiedAt": "2026-10-20T03:03:07.458Z",
+  "sourceBase": "055e19aa7c3c1b6e3cd5f43d14952c5037d679d8",
+  "sourceDiffSha256": "52127a99e06121ce69e80c447ef07d70c247aa97a8caaec84cf2e1a6a9ca1e2e",
+  "observations": [
+    {
+      "mode": "light",
+      "fonts": [
+        {
+          "selector": ".settings-dialog .modal-header h2",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "600"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) > h3",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "600"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 5
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) > p",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "430"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) .field-label",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "500"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "dark",
+      "fonts": [
+        {
+          "selector": ".settings-dialog .modal-header h2",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "600"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) > h3",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "600"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 5
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) > p",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "430"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        },
+        {
+          "selector": ".settings-detail:not([hidden]) .field-label",
+          "computed": {
+            "family": "Inter, \"Microsoft YaHei UI\", \"Microsoft YaHei\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "weight": "500"
+          },
+          "fonts": [
+            {
+              "familyName": "Microsoft YaHei UI",
+              "postScriptName": "MicrosoftYaHeiUI",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nativeChecks": 5,
+  "exits": [
+    {
+      "elapsedMs": 230,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "sourceInputs": 1056,
+  "compiledFiles": 236,
+  "archivedOutputs": 9,
+  "productInputsUnchangedFromBuild": true,
+  "observerChangedAfterBuild": [
+    "scripts/verify-surfaces.mjs"
+  ],
+  "originalMainPreserved": true,
+  "boundary": "Measured actual platform glyph fonts for four owned settings text nodes in light and dark on this Windows host after document.fonts.ready. CSS family declarations alone were not treated as rendering evidence. Does not prove reference-app runtime font selection, all Nook text nodes, other hosts, physical DPI, or complete design parity. Product styles and fonts were not changed.",
+  "completeReferenceAdoption": false,
+  "published": false
+}

@@ -151,6 +151,20 @@ async function assertFieldStates(page, dialog, mode, screenshots) {
 }
 
 async function assertControlGeometry(page, dialog, mode, application, screenshots) {
+  await page.evaluate(() => document.fonts.ready);
+  const fontSession = await page.context().newCDPSession(page);
+  try {
+    await fontSession.send('DOM.enable'); await fontSession.send('CSS.enable');
+    const { root } = await fontSession.send('DOM.getDocument');
+    const fonts = [];
+    for (const selector of ['.settings-dialog .modal-header h2', '.settings-detail:not([hidden]) > h3', '.settings-detail:not([hidden]) > p', '.settings-detail:not([hidden]) .field-label']) {
+      const { nodeId } = await fontSession.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+      assert.ok(nodeId, selector);
+      const computed = await page.locator(selector).first().evaluate(element => ({ family: getComputedStyle(element).fontFamily, weight: getComputedStyle(element).fontWeight }));
+      fonts.push({ selector, computed, ...(await fontSession.send('CSS.getPlatformFontsForNode', { nodeId })) });
+    }
+    console.log('Settings rendered fonts', JSON.stringify({ mode, fonts }));
+  } finally { await fontSession.detach(); }
   const search = dialog.getByRole('searchbox', { name: '搜索设置', exact: true });
   for (const state of ['default', 'hover', 'focus']) {
     if (state === 'hover') await search.hover();
