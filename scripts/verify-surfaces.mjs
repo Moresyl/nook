@@ -8,6 +8,25 @@ import { verifyTooltipLifecycle } from './tooltip-lifecycle-verification.mjs';
 
 const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
 
+async function assertMainNavigation(page, application, screenshots, name) {
+  const state = await page.evaluate(() => ({
+    compact: innerWidth <= 640, continuous: CSS.supports('corner-shape', 'superellipse(1.5)'),
+    rows: [...document.querySelectorAll('.sidebar .nav-row')].map(element => {
+      const style = getComputedStyle(element), icon = element.querySelector('svg').getBoundingClientRect();
+      return { height: style.height, fontSize: style.fontSize, lineHeight: style.lineHeight, radius: style.borderRadius, cornerShape: style.cornerShape, iconWidth: icon.width, iconHeight: icon.height, horizontalOverflow: element.scrollWidth > element.clientWidth };
+    }),
+  }));
+  assert.ok(state.rows.length >= 8);
+  for (const row of state.rows) assert.deepEqual(row, { height: '30px', fontSize: state.compact ? '0px' : '14px', lineHeight: '21px', radius: state.continuous ? '12.5px' : '10px', cornerShape: state.continuous ? 'superellipse(1.5)' : undefined, iconWidth: 16, iconHeight: 16, horizontalOverflow: false });
+  await page.mouse.move(1, 1);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const capture = await application.evaluateMain(`(async () => { const window = ${mainWindow}; return { png: (await window.capturePage()).toPNG().toString('base64'), size: window.getContentSize() }; })()`);
+  const png = Buffer.from(capture.png, 'base64');
+  assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], capture.size, 'Navigation captures contain the entire native content bounds');
+  await writeFile(join(screenshots, name), png);
+  console.log('Main navigation geometry', JSON.stringify({ name, ...state }));
+}
+
 async function captureSurface(page, application, path) {
   await page.getByRole('dialog', { name: '设置', exact: true }).getByRole('heading', { name: '外观与交互', exact: true }).waitFor();
   await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -409,6 +428,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   assert.equal(await composer.evaluate((element) => element.clientHeight <= 200 && element.scrollHeight > element.clientHeight), true, 'Long drafts must scroll within the input height limit');
   const draft = 'SURFACE_AUDIT_RETAINS_UNSENT_DRAFT';
   await page.getByLabel('消息', { exact: true }).fill(draft);
+  await assertMainNavigation(page, application, screenshots, '108-main-navigation-light.png');
   const tooltipLifecycle = await verifyTooltipLifecycle({ page, application, mainWindow, composer });
   verified('ordinary tooltip timing, shared hover handoff, pending cancellation, native window blur, focus, pointer movement and click suppression preserve the exact composer draft');
   await assertTooltipModalScope(page, draft);
@@ -607,6 +627,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
     assert.equal(await page.locator('dialog .control-tooltip:popover-open').count(), 0, 'Closing a modal must remove its own hints; restored keyboard focus may show the opener hint');
     assert.equal(await opener.evaluate((element) => element === document.activeElement), true);
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
+    await assertMainNavigation(page, application, screenshots, `109-main-navigation-${width}-${height}-${zoom}.png`);
   }
   assert.deepEqual(await page.evaluate(async () => (await window.qiyao.load()).providers), savedProviders, 'Layout checks must not save the temporary connection or send model requests');
   await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);

@@ -213,8 +213,11 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .browser-footer { display: flex; align-items: center; gap: 10px; padding: 6px 16px; border-top: 1px solid var(--ds-border); font-size: 11px; color: var(--ds-text-secondary); }
 .browser-footer > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .browser-footer > span:last-child { white-space: nowrap; }
-.nav-row { width: 100%; justify-content: flex-start; height: 36px; padding: 4px 8px; gap: 8px; font-size: 14px; line-height: 24px; border-radius: var(--radius-lg); }
-.nav-row > svg { flex: 0 0 24px; width: 24px; height: 24px; padding: 4px; }
+.nav-row { width: 100%; justify-content: flex-start; height: 30px; padding: 4px 8px; gap: 8px; font-size: 14px; line-height: 21px; border-radius: 10px; }
+.nav-row > svg { flex: 0 0 16px; width: 16px; height: 16px; padding: 0; }
+@supports (corner-shape: superellipse(1.5)) {
+  .nav-row { border-radius: 12.5px; corner-shape: superellipse(1.5); }
+}
 .nav-row kbd { margin-left: auto; }
 .sidebar-section-label { display: flex; justify-content: space-between; padding: 16px 8px 4px; font-size: 12px; color: var(--ds-text-tertiary); }
 .thread-list { flex: 1; overflow-y: auto; min-height: 72px; }
