@@ -1,0 +1,95 @@
+{
+  "verifiedAt": "2026-10-20T06:35:03.082Z",
+  "sourceHead": "3595ead14c490d019e36a876f09fe1b85084cd56",
+  "sourceInputs": 1056,
+  "compiledFiles": 236,
+  "sourceFull": {
+    "checks": 411,
+    "normalExits": 75,
+    "forcedExits": 0,
+    "longestNormalExitMs": 5560,
+    "reportCount": 41,
+    "screenshotCount": 821,
+    "profileArchiveIntegrityVerified": true,
+    "selectedImages": [
+      {
+        "path": "screenshots/01-home-light.png",
+        "sha256": "adc6200b8448183e7dda368dfaa3dc63846e63e0f8ed939dbc8981834a457b29",
+        "individuallyViewed": true
+      },
+      {
+        "path": "screenshots/03-settings-dark.png",
+        "sha256": "f697508e2a8737d56684ca1f8feb3e498fc4f1695d873671c6774263455644eb",
+        "individuallyViewed": true
+      },
+      {
+        "path": "screenshots/worktree-overview-light-150-refresh-keyboard-shell.png",
+        "sha256": "378f93c4f649a9e36d6086ff2117f0f1c42b766fb2ef1ee5464ae635bb1e54c3",
+        "individuallyViewed": true
+      },
+      {
+        "path": "screenshots/worktree-overview-dark-150-refresh-keyboard-shell.png",
+        "sha256": "3baf9b883ffb5acba53f9e305b53e56d64e55163955bc4270bf79872ea4143b6",
+        "individuallyViewed": true
+      }
+    ]
+  },
+  "package": {
+    "buildPassed": true,
+    "auditPassed": true,
+    "executableSha256": "c315f9a886befa059fa60486f791d6d84e01d020f267cd59bcb0bdd7855a1f1f",
+    "archiveSha256": "d52f0f43ac1dd7a991c9113bd5ac5d976286f1ea7ec95734498348ba4f4d2a09",
+    "productFiles": 239,
+    "retainedDocuments": 401,
+    "signature": "NotSigned"
+  },
+  "packagedFocus": {
+    "checks": 6,
+    "normalExits": 5,
+    "forcedExits": 0,
+    "longestNormalExitMs": 660,
+    "artifacts": 36,
+    "selectedImages": [
+      {
+        "path": "screenshots/worktree-overview-light-150-refresh-keyboard-shell.png",
+        "sha256": "e9d6de4d10259dbf6f2fd6f1f7ea1dd442650c8d8c7d32ee64a9c4c4d016eede",
+        "individuallyViewed": true
+      },
+      {
+        "path": "screenshots/worktree-overview-dark-150-refresh-keyboard-shell.png",
+        "sha256": "68cceccdd719971de23d0dd3a7422ea75be2ad5722db41ad420f28343a62e4c4",
+        "individuallyViewed": true
+      }
+    ]
+  },
+  "packagedFull": {
+    "exitCode": 1,
+    "checks": 58,
+    "normalExits": 4,
+    "forcedExits": 0,
+    "artifacts": 110,
+    "profileArchiveIntegrityVerified": true,
+    "blockedFormat": "text/html",
+    "blockedBytes": 0
+  },
+  "readonlyClipboard": {
+    "recordedAt": "2026-10-20T06:31:51.118Z",
+    "ownerProcess": "rdpclip",
+    "htmlBytes": 0,
+    "clipboardWrites": false
+  },
+  "hostedWorkflow": {
+    "url": "https://github.com/Moresyl/nook/actions/runs/39377561072",
+    "conclusion": "failure",
+    "executedVerifySteps": 0,
+    "reason": "Account payment/spending limit prevented the original verification job from starting."
+  },
+  "originalMainPreserved": true,
+  "fullSourceAccepted": true,
+  "fullPackagedAccepted": false,
+  "fullInstalledAccepted": false,
+  "allImagesVisuallyReviewed": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "The focus fix passes the complete source suite and the original focused packaged suite. The complete new packaged suite stopped because original system HTML clipboard data was unavailable, before its clipboard write; readonly probes confirm unavailable HTML afterward without establishing the original writer. No clipboard seeding, filtering, comparison or deadline relaxation was used. New installation and final runtime gates were not started. Earlier candidate installation failure remains separate evidence."
+}
