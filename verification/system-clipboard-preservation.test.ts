@@ -1,4 +1,5 @@
 import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import { describe, expect, it, vi } from 'vitest';
 import { preserveSystemClipboard } from '../scripts/system-clipboard-preservation.mjs';
@@ -62,10 +63,21 @@ describe('native clipboard preservation', () => {
   it.each([raw, 'electron application/osclipboard;format="image/bmp"', 'text/html', 'image/png'])('rejects an empty or unavailable %s before changing the system clipboard', async type => {
     const original = { 'text/plain': new Blob(['PRIVATE_CLIPBOARD_CONTENT']), [type]: new Blob([]) }, state = fixture(original);
     const error = await state.run().catch((value: Error) => value);
-    expect(error.message).toBe('Cannot safely preserve an empty or unavailable non-text Windows clipboard payload.');
+    expect(error.message).toContain('Cannot safely preserve an empty or unavailable non-text Windows clipboard payload:');
+    expect(error.message).toContain(JSON.stringify({ item: 0, format: ['text/html', 'image/png'].includes(type) ? type : 'custom', formatSha256: createHash('sha256').update(type).digest('hex'), bytes: 0 }));
     expect(error.message).not.toContain('PRIVATE_CLIPBOARD_CONTENT');
     expect(state.clipboard.write).not.toHaveBeenCalled(); expect(state.clipboard.clear).not.toHaveBeenCalled();
     expect(state.contents()).toEqual(original);
+  });
+  it('identifies a failing custom format without logging its private name or payload', async () => {
+    const type = 'electron application/osclipboard;format="PRIVATE_NAME\nFORGED_LOG"';
+    const state = fixture({ [type]: new Blob([]), 'text/plain': new Blob(['PRIVATE_CONTENT']) });
+    const error = await state.run().catch((value: Error) => value);
+    expect(error.message).toContain(createHash('sha256').update(type).digest('hex'));
+    expect(error.message).toContain('"format":"custom"');
+    expect(error.message).not.toMatch(/PRIVATE_NAME|FORGED_LOG|PRIVATE_CONTENT|\n/);
+    expect(state.clipboard.write).not.toHaveBeenCalled(); expect(state.clipboard.clear).not.toHaveBeenCalled();
+    expect(state.reads[0].get('text/plain')).toBeUndefined();
   });
   it('rejects a snapshot mixed with a concurrent external copy without overwriting the new data', async () => {
     const state = fixture({ 'text/plain': new Blob(['first']), 'text/html': new Blob(['<b>first</b>']) });
@@ -79,6 +91,16 @@ describe('native clipboard preservation', () => {
     const state = fixture({ 'text/plain': new Blob(['original']), [raw]: new Blob(['binary']) });
     state.hooks.write = number => { if (number === 3) delete state.contents()[raw]; };
     await expect(state.run()).rejects.toThrow('Original clipboard restoration');
+  });
+  it('restores the original clipboard if a native format becomes unavailable during the empty-text probe', async () => {
+    const original = { 'text/plain': new Blob(['original']), [raw]: new Blob(['binary']) };
+    const state = fixture(original);
+    state.hooks.write = number => { if (number === 1) state.replace({ 'text/plain': new Blob([]), [raw]: new Blob([]) }); };
+    const error = await state.run().catch((value: Error) => value);
+    expect(error.message).toContain('Cannot safely preserve an empty or unavailable non-text Windows clipboard payload:');
+    expect(error.message).not.toContain('Clipboard was not modified');
+    expect(state.clipboard.write).toHaveBeenCalledTimes(2);
+    expect(state.contents()).toEqual(original);
   });
   it('restores an originally empty clipboard after exercising the empty-text round trip', async () => {
     const state = fixture({});

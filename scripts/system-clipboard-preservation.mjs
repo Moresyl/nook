@@ -37,8 +37,11 @@ export async function preserveSystemClipboard() {
         // Native read-side items are lazy. Materialize each payload once so
         // the fingerprint and restoration refer to the same captured bytes.
         const value = await item.getType(type);
-        assert.ok(!(process.platform === 'win32' && value instanceof Blob && value.size === 0 && type !== 'text/plain'),
-          'Cannot safely preserve an empty or unavailable non-text Windows clipboard payload.');
+        if (process.platform === 'win32' && value instanceof Blob && value.size === 0 && type !== 'text/plain') {
+          const format = ['text/html', 'image/png', 'image/jpeg', 'image/svg+xml'].includes(type) ? type : 'custom';
+          const diagnostic = { item: copies.length, format, formatSha256: createHash('sha256').update(type).digest('hex'), bytes: 0 };
+          assert.fail(`Cannot safely preserve an empty or unavailable non-text Windows clipboard payload: ${JSON.stringify(diagnostic)}`);
+        }
         original[type] = value;
         // A Windows NUL-terminated empty string retains the native text format.
         // Its original public read payload remains zero bytes.

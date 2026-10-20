@@ -1,0 +1,69 @@
+{
+  "verifiedAt": "2026-10-20T03:47:34.031Z",
+  "sourceBase": "78448a4ddb81637f214de4a2f0748d6d6882e495",
+  "change": "Clipboard preservation failures identify item index, safe format category, format-name SHA256 and byte count without logging custom names or contents.",
+  "typecheckPassed": true,
+  "fullUnit": {
+    "files": 140,
+    "tests": 1645,
+    "logSha256": "8ea9836ee9ee7e1f2700fe8b33b59784ef5c536bafd24032e61349071388a603",
+    "coverage": {
+      "lines": {
+        "total": 4573,
+        "covered": 4550,
+        "skipped": 0,
+        "pct": 99.49
+      },
+      "statements": {
+        "total": 7597,
+        "covered": 7374,
+        "skipped": 0,
+        "pct": 97.06
+      },
+      "functions": {
+        "total": 1688,
+        "covered": 1651,
+        "skipped": 0,
+        "pct": 97.8
+      },
+      "branches": {
+        "total": 5306,
+        "covered": 5020,
+        "skipped": 0,
+        "pct": 94.6
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "changedAfterFullUnit": [
+      "scripts/system-clipboard-preservation.mjs",
+      "verification/system-clipboard-preservation.test.ts"
+    ]
+  },
+  "finalTargetedTests": {
+    "tests": 12,
+    "processExitCodeObservedByCommandTool": 0,
+    "logSha256": "0fb21a84428feada847c7d4f7f41a0e747599290cee949f536eb2ea20aa0bcdc"
+  },
+  "inputFiles": 1056,
+  "readonlyObservation": {
+    "electron": "44.5.1",
+    "emptyHtmlPayload": true,
+    "unavailableNativeHandles": 0,
+    "deliberateClipboardWrites": false,
+    "subsequentProbeAllPayloadsAvailable": true,
+    "subsequentProbeAt": "2026-10-20T03:47:04.311Z"
+  },
+  "originalMainPreserved": true,
+  "strictPreservationRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Full-unit run preceded only a diagnostic wording correction and one additional failure/restoration test; final 12-test suite covers both changed files. Coverage configuration excludes native verification scripts, so its percentages do not measure the new diagnostic. Read-only native observations are current probes, not evidence of the precise past failing clipboard writer. Full desktop was not retried with unavailable payloads. Product runtime and compiled output were not changed. A later independently changed clipboard had all payloads available; this enables a fresh full desktop attempt but does not prove that attempt passes."
+}
