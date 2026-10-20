@@ -1,5 +1,7 @@
 # Nook 设计对照
 
+设置已追到当前独立工作区路由，采用标题栏下方完整区域与 48rem 内容列上限，移除旧浮窗遮罩。两轮各 5 项控件／8 项设置行为检查通过，最终三张原图复核；保留原生弹窗焦点保护，侧栏尺寸、子页密度及完整路由语义仍有差异。[设置布局证据](../verification/settings-workspace-review-result.json)
+
 当前对照范围为 76 个界面源码／样式文件、7 个主页面及设置、快速聊天、插件入口。[页面覆盖清单](UI-COVERAGE.md)列出各入口、待核对状态和证据边界；不能把历史专项或文件数量换算成 100% 采用。
 
 项目文件树已核对主工作区消费者：13px文字、5px内容间距、3px横向内距、16px文件图标、28px行高和6px圆角；长文件名在行边缘裁切，完整路径提示保留。明暗选中背景5%混色，普通暗色悬停8%，悬停保留选择。类型、构建及7项原生项目专项通过，两张本轮原图逐张查看。现有缩进机制、虚拟化及粘性目录仍未完全对齐；125%／150%原测试隐藏文件树，不计为可见文件树验收。[当前尺寸与路径证据](../verification/project-tree-geometry-review-result.json) · [此前选中态](../verification/project-tree-selection-review-result.json) · [此前字号](../verification/project-tree-typography-review-result.json)

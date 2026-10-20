@@ -27,20 +27,25 @@ async function assertModalLayout(page, dialog) {
       contentOverflow: element.querySelector('.modal-content').scrollWidth > element.querySelector('.modal-content').clientWidth,
       fits: bounds.left >= -1 && bounds.top >= -1 && bounds.right <= innerWidth + 1 && bounds.bottom <= innerHeight + 1,
       closeVisible: close.top >= 0 && close.bottom <= innerHeight && close.left >= 0 && close.right <= innerWidth,
+      backdrop: getComputedStyle(element, '::backdrop').backgroundColor,
+      backdropFilter: getComputedStyle(element, '::backdrop').backdropFilter,
     };
   });
-  assert.deepEqual(layout, { modal: true, documentOverflow: false, contentOverflow: false, fits: true, closeVisible: true });
+  assert.deepEqual(layout, { modal: true, documentOverflow: false, contentOverflow: false, fits: true, closeVisible: true, backdrop: 'rgba(0, 0, 0, 0)', backdropFilter: 'none' });
   const geometry = await dialog.evaluate(element => {
     const bounds = element.getBoundingClientRect();
-    return { width: bounds.width, height: bounds.height, top: bounds.top, left: bounds.left, viewportWidth: innerWidth, viewportHeight: innerHeight };
+    const detail = element.querySelector('.settings-detail:not([hidden])').getBoundingClientRect();
+    const sidebar = element.querySelector('.settings-sidebar').getBoundingClientRect();
+    return { width: bounds.width, height: bounds.height, top: bounds.top, left: bounds.left, viewportWidth: innerWidth, viewportHeight: innerHeight, detailWidth: detail.width, detailCenter: (detail.left + detail.right) / 2, availableCenter: (sidebar.right + bounds.right) / 2 };
   });
-  const fullscreen = geometry.viewportWidth < 768;
-  const expectedWidth = fullscreen ? geometry.viewportWidth : Math.min(720, geometry.viewportWidth - 32);
-  const expectedHeight = fullscreen ? geometry.viewportHeight : Math.min(460, geometry.viewportHeight - 40);
-  const expectedTop = fullscreen ? 0 : (geometry.viewportHeight - expectedHeight) * 4 / 9;
+  const expectedWidth = geometry.viewportWidth;
+  const expectedHeight = geometry.viewportHeight - 36;
+  const expectedTop = 36;
   for (const [property, expected] of [['width', expectedWidth], ['height', expectedHeight], ['top', expectedTop], ['left', (geometry.viewportWidth - expectedWidth) / 2]]) {
-    assert.ok(Math.abs(geometry[property] - expected) <= 1, `Settings ${property} follows the reference viewport geometry: ${geometry[property]} vs ${expected}`);
+    assert.ok(Math.abs(geometry[property] - expected) <= 1, `Settings ${property} fills the workspace below the native title bar: ${geometry[property]} vs ${expected}`);
   }
+  assert.ok(geometry.detailWidth <= 768.5, 'Settings content retains a readable width on large windows');
+  assert.ok(Math.abs(geometry.detailCenter - geometry.availableCenter) <= 1, 'Settings content stays centered in its available column');
   assert.equal(await page.getByRole('dialog').count(), 1);
   return geometry;
 }
@@ -399,7 +404,9 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await assertModalLayout(page, dialog);
   await page.screenshot({ path: join(screenshots, '96-surface-connection-scroll.png') });
   await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
-  assert.deepEqual(await dialog.evaluate((element) => { const rect = element.getBoundingClientRect(); return [Math.round(rect.width), Math.round(rect.height)]; }), [720, 460]);
+  await assertModalLayout(page, dialog);
+  await application.resize(1280, 540); await page.waitForFunction(() => innerHeight === 540);
+  await assertModalLayout(page, dialog);
   const detail = dialog.locator('.settings-detail:not([hidden])');
   const navigationBefore = await dialog.locator('.settings-nav').boundingBox();
   await detail.evaluate((element) => { element.scrollTop = element.scrollHeight; });
@@ -408,6 +415,7 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await dialog.getByRole('button', { name: '关于 Nook', exact: true }).click();
   await dialog.getByRole('button', { name: '外观与交互', exact: true }).click();
   assert.equal(await detail.evaluate((element) => element.scrollTop), 0, 'A new settings category starts at its heading');
+  await application.resize(1280, 840); await page.waitForFunction(() => innerHeight === 840);
   const theme = dialog.getByLabel('主题', { exact: true });
   const selectedOption = theme.locator('option:checked');
   const changeOptionLabel = (text) => selectedOption.evaluate((element, text) => { element.textContent = text; const select = element.closest('select'); const index = select.selectedIndex; select.selectedIndex = -1; select.selectedIndex = index; }, text);
@@ -586,6 +594,6 @@ export async function verifySurfaces({ page, application, screenshots, verified,
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await assertTooltipEdges(page, screenshots);
   await assertButtonTooltips(page, application, screenshots, draft);
-  verified('all nine settings categories follow reference viewport geometry in minimum and short-wide windows at 100/125/150 percent Electron zoom and the 768px boundary, retain native focus and restore the opener/draft after Escape');
+  verified('all nine settings categories fill the available workspace in minimum and short-wide windows at 100/125/150 percent Electron zoom and the 768px boundary, retain bounded centered content and native focus and restore the opener/draft after Escape');
   return { checks: 5, tooltipLifecycle, startupFallback: { passed: true, scope: 'Built entry document in isolated Electron window with page scripts disabled; system theme and reduced-motion emulation; normal renderer replacement' }, startupRecovery: { passed: true, scope: 'Isolated initial-load IPC rejection and delay; persistent error, keyboard retry, narrow layout and exact saved-draft restoration; not corrupt-vault recovery' }, settingsCategories: categories, zoomFactors: zooms, geometryChecks, checkedSwitchStates, screenshots: ['91-surface-controls-light.png', '92-surface-controls-dark-narrow.png', '93-surface-settings-zoomed.png', '94-surface-select-light.png', '95-surface-select-dark.png', '96-switch-light.png', '96-switch-dark.png', '97-field-invalid-light.png', '97-field-invalid-dark.png', '98-surface-short-wide.png', '99-switch-checked-light.png', '99-switch-checked-dark.png', '100-tooltip-light.png', '100-tooltip-dark.png', '101-tooltip-edge.png', '102-button-tooltip-disabled.png', '103-button-tooltip-long.png', '104-startup-light.png', '104-startup-dark.png', '105-startup-error.png', '105-startup-error-narrow.png'], screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for surface captures; Playwright screenshot for invalid shortcut fields', scope: 'Real Electron settings with measured reference viewport dimensions/position at seven window/zoom combinations, independent category/detail scrolling, shared control dimensions, real select hover/keyboard-highlight/selection states in both themes, native modal focus/inert background/Escape restoration, keyboard preference persistence, light/dark switch off/hover/checked/disabled palettes and ignored disabled clicks, reference keyboard focus rings, shared button and icon tooltip hover/keyboard focus/modal scope/theme metrics/viewport fit/single-active replacement/Escape/pointer and keyboard activation dismissal, disabled-button descriptions, escaped and wrapped long titles, resize dismissal and new-chat draft restoration, real invalid shortcut input with hover/focus priority and saved-preference preservation, dynamic reduced-motion media, and nine empty/new-workspace settings categories. Streaming motion, switch disabled state and button pressed states use temporary CSS-state probes. This does not establish physical OS accessibility, populated/max-scale forms, every surface/control state, font redistribution rights or complete UI adoption.' };
 }

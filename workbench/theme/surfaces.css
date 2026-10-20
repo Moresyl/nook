@@ -535,7 +535,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-nav { display: flex; flex-direction: column; gap: 4px; }
 .settings-nav .button { justify-content: flex-start; min-height: 32px; }
 .settings-detail { min-width: 0; }
-.settings-dialog { height: min(460px, calc(100dvh - 40px)); }
+.settings-dialog.modal { position: fixed; inset: 36px 0 0; width: 100vw; max-width: none; height: calc(100dvh - 36px); max-height: none; margin: 0; transform: none; border: 0; border-radius: 0; box-shadow: none; }
+.settings-dialog::backdrop { background: transparent; backdrop-filter: none; }
 .settings-dialog > .modal-content { display: flex; padding: 0; max-height: none; overflow: hidden; }
 .settings-dialog .settings-layout { flex: 1; min-height: 0; gap: 0; }
 .settings-sidebar { display: flex; flex-direction: column; gap: 8px; min-height: 0; min-width: 0; padding: 12px 8px; border-right: 1px solid var(--ds-border); }
@@ -552,7 +553,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .settings-search-results .button[aria-selected="true"] { background: var(--ghost-hover); }
 .settings-search-results small, .settings-search-status { color: var(--ds-text-secondary); font-size: 11px; }
 .settings-search-status { padding: 4px 6px; flex-shrink: 0; }
-.settings-dialog .settings-detail { min-height: 0; padding: 20px 24px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.settings-dialog .settings-detail { width: 100%; max-width: 48rem; justify-self: center; min-height: 0; padding: 20px 24px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
 .settings-dialog .settings-detail[hidden] { display: none; }
 .settings-dialog .empty { padding: 40px 8px; }
 .extension-server { padding-bottom: 12px; border-bottom: 1px solid var(--ds-border); }
