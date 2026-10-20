@@ -87,15 +87,15 @@ export async function verifyTaskPlans({ page, application, getApplication, direc
   assert.deepEqual(stopped.messages.at(-1).activities.map(activity => activity.status), ['complete', 'error']); assert.deepEqual(JSON.parse(stopped.messages.at(-1).activities[0].output), fixture.initial);
   await capture('task-plans-stopped.png');
   verified('an invalid multiple-active update preserves the last accepted native plan and stopping changes its active label to awaiting continuation');
-  await openProject(); await page.locator('.thread-list > button').filter({ hasText: '任务步骤完成验证' }).click();
+  await openProject(); await page.locator('.thread-list .thread-row').filter({ hasText: '任务步骤完成验证' }).click();
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'TASK_PLAN_UNSENT 中文😀');
   const before = await page.evaluate(() => window.qiyao.load()), requestCount = fixture.requests.length;
-  page = await restart(); application = getApplication(); await openProject(); await page.locator('.thread-list > button').filter({ hasText: '任务步骤完成验证' }).click(); await plan().waitFor();
+  page = await restart(); application = getApplication(); await openProject(); await page.locator('.thread-list .thread-row').filter({ hasText: '任务步骤完成验证' }).click(); await plan().waitFor();
   const after = await page.evaluate(() => window.qiyao.load());
   for (const id of threadIds) assert.deepEqual(after.threads.find(thread => thread.id === id), JSON.parse(JSON.stringify(before.threads.find(thread => thread.id === id))));
   assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'TASK_PLAN_UNSENT 中文😀'); assert.equal(fixture.requests.length, requestCount); await capture('task-plans-restart.png');
   verified('actual normal restart retains exact task tool records and unsent text without replaying model tools');
-  await page.locator('.thread-list > button').filter({ hasText: '任务步骤停止验证' }).click(); assert.deepEqual(await plan().locator('li small').allTextContents(), ['待继续', '待办', '待办']);
+  await page.locator('.thread-list .thread-row').filter({ hasText: '任务步骤停止验证' }).click(); assert.deepEqual(await plan().locator('li small').allTextContents(), ['待继续', '待办', '待办']);
   assert.deepEqual(errors, []); assert.ok((await readFile(readme)).equals(originalReadme));
   await page.evaluate(preferences => window.qiyao.savePreferences(preferences), original.preferences); await application.evaluateMain(`${mainWindow}.setContentSize(${geometry.size.join(',')});${mainWindow}.webContents.setZoomFactor(${geometry.zoom})`);
   verified('reopened stopped responses retain pending task semantics and project bytes while restoring original preferences and window geometry');

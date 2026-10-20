@@ -124,7 +124,7 @@ export async function verifyToolActivities({ page, application, getApplication, 
   await waitForBridge(page, async id => (await window.qiyao.load()).composerDrafts.some(draft => draft.threadId === id && draft.text === 'TOOL_ACTIVITY_UNSENT_DRAFT'), threadIds.at(-1));
   const before = await page.evaluate(() => window.qiyao.load()), requestCount = fixture.requests.length;
   page = await restart(); application = getApplication(); await page.locator('.primary-nav').getByRole('button', { name: '项目', exact: true }).click(); await page.locator('.project-list').getByRole('button', { name: '工具记录验证项目', exact: true }).click();
-  await page.locator('.thread-list > button').filter({ hasText: '工具记录完成验证' }).click(); await page.locator('.tool-complete').waitFor();
+  await page.locator('.thread-list .thread-row').filter({ hasText: '工具记录完成验证' }).click(); await page.locator('.tool-complete').waitFor();
   const after = await page.evaluate(() => window.qiyao.load()); for (const id of threadIds) assert.deepEqual(after.threads.find(thread => thread.id === id), JSON.parse(JSON.stringify(before.threads.find(thread => thread.id === id))));
   assert.equal(await toggle().getAttribute('aria-expanded'), 'false'); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'TOOL_ACTIVITY_UNSENT_DRAFT'); assert.equal(fixture.requests.length, requestCount);
   assert.deepEqual(JSON.parse(await readFile(join(directory, 'workspace.json'), 'utf8')).threads.filter(thread => threadIds.includes(thread.id)), after.threads.filter(thread => threadIds.includes(thread.id)));

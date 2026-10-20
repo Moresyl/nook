@@ -375,7 +375,7 @@ async function assertButtonTooltips(page, application, screenshots, draft) {
         const bounds = element.getBoundingClientRect(), text = label.getBoundingClientRect();
         return { height: style.height, fontSize: style.fontSize, lineHeight: style.lineHeight, radius: style.borderRadius, continuous: CSS.supports('corner-shape', 'superellipse(1.5)'), cornerShape: style.cornerShape, overflow: element.scrollWidth > element.clientWidth, truncated: label.scrollWidth > label.clientWidth, textContained: text.left >= bounds.left && text.right <= bounds.right && text.top >= bounds.top && text.bottom <= bounds.bottom };
       });
-      assert.deepEqual(geometry, { height: '30px', fontSize: zoom > 1 ? '11px' : '14px', lineHeight: '16px', radius: geometry.continuous ? '12.5px' : '10px', continuous: geometry.continuous, cornerShape: geometry.continuous ? 'superellipse(1.5)' : undefined, overflow: false, truncated: true, textContained: true }, 'Long recent-chat titles remain contained at desktop and compact widths');
+      assert.deepEqual(geometry, { height: '30px', fontSize: zoom > 1 ? '11px' : '13px', lineHeight: '16px', radius: geometry.continuous ? '12.5px' : '10px', continuous: geometry.continuous, cornerShape: geometry.continuous ? 'superellipse(1.5)' : undefined, overflow: false, truncated: true, textContained: true }, 'Long recent-chat titles remain contained at desktop and compact widths');
     }
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`);
     await application.resize(760, 540);

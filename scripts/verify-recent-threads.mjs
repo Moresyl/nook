@@ -1,0 +1,55 @@
+import assert from 'node:assert/strict';
+
+export async function verifyRecentThreads({ page, threads, originalTitle, capture }) {
+  const sidebar = page.locator('.thread-list');
+  const pinned = sidebar.getByRole('region', { name: '已置顶', exact: true });
+  const recent = sidebar.getByRole('region', { name: '最近聊天', exact: true });
+  const pinnedRows = threads.filter(thread => thread.pinned);
+  const ordinary = threads.filter(thread => !thread.pinned && !thread.archived);
+  const archived = threads.find(thread => thread.archived);
+  const row = title => sidebar.getByRole('button', { name: title, exact: true });
+  await pinned.getByRole('button', { name: pinnedRows[0].title, exact: true }).waitFor();
+  assert.equal(await recent.getByRole('button', { name: pinnedRows[0].title, exact: true }).count(), 0);
+  assert.equal(await row(archived.title).count(), 0, 'Archived chats stay out of both sidebar sections');
+  assert.equal(await row(ordinary.at(-1).title).count(), 0, 'The oldest fixture starts beyond the first batch');
+  assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page', 'The current older chat remains visible outside the first batch');
+  assert.equal(await recent.locator('.thread-row').count(), 11, 'Ten recent chats plus the current older chat are initially visible');
+  const toggle = pinned.getByRole('button', { name: '已置顶', exact: true });
+  const heading = await toggle.evaluate(element => { const style = getComputedStyle(element); return { fontSize: style.fontSize, lineHeight: style.lineHeight, weight: style.fontWeight, height: element.getBoundingClientRect().height }; });
+  assert.deepEqual(heading, { fontSize: '14px', lineHeight: '21px', weight: '500', height: 30 });
+  await toggle.focus(); await toggle.press('Enter');
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(await row(pinnedRows[0].title).count(), 0);
+  assert.equal(await toggle.evaluate(element => document.activeElement === element), true);
+  await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
+  for (let index = 10; index < ordinary.length; index += 10) {
+    await more.focus(); await more.press('Enter'); await row(ordinary[index].title).waitFor();
+    assert.equal(await row(ordinary[index].title).evaluate(element => document.activeElement === element), true, 'Expanding each batch focuses its first new row, including the final batch');
+  }
+  await row(ordinary.at(-1).title).waitFor();
+  assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page', 'Showing more never activates a chat');
+  assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'CHAT_NAV_DRAFT_KEEP');
+  await sidebar.evaluate(element => { element.scrollTop = 0; });
+  await page.mouse.move(1, 1);
+  await capture('110-sidebar-groups-light.png');
+  const recentToggle = recent.getByRole('button', { name: '最近聊天', exact: true });
+  await recentToggle.click(); assert.equal(await recentToggle.getAttribute('aria-expanded'), 'false');
+  await page.keyboard.press('Control+k');
+  const palette = page.getByRole('dialog', { name: '搜索与命令', exact: true });
+  await palette.getByRole('combobox').fill(ordinary.at(-1).title);
+  const option = palette.getByRole('option', { name: ordinary.at(-1).title, exact: true });
+  await option.click(); await palette.waitFor({ state: 'hidden' });
+  await row(ordinary.at(-1).title).waitFor();
+  assert.equal(await recentToggle.getAttribute('aria-expanded'), 'true', 'Selecting a chat through search reveals its collapsed section');
+  assert.equal(await row(ordinary.at(-1).title).getAttribute('aria-current'), 'page');
+  await page.getByRole('button', { name: '置顶聊天', exact: true }).click();
+  await pinned.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
+  assert.equal(await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).count(), 0);
+  await page.getByRole('button', { name: '取消置顶', exact: true }).click();
+  await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
+  await row(originalTitle).click();
+  await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
+  return { fixtures: threads.length, pinnedSections: true, keyboardCollapse: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+}

@@ -1044,7 +1044,7 @@ try {
       await page.reload(); await page.getByRole('dialog', { name: '审批 MCP 工具调用', exact: true }).waitFor();
       await page.getByRole('dialog').getByRole('button', { name: decision, exact: true }).click();
       await waitForBridge(page, async () => (await window.qiyao.load()).threads.at(-1)?.messages.at(-1)?.content === 'MCP 真实工具已验证。');
-      await page.locator('.thread-list > button').filter({ hasText: prompt }).click(); await page.getByText(outcome, { exact: true }).waitFor();
+      await page.locator('.thread-list .thread-row').filter({ hasText: prompt }).click(); await page.getByText(outcome, { exact: true }).waitFor();
     } else { await page.getByRole('dialog').getByRole('button', { name: decision, exact: true }).click(); await page.getByText(outcome, { exact: true }).waitFor(); }
     assert.equal((await page.evaluate(() => window.qiyao.pendingApprovals())).length, 0);
   }
