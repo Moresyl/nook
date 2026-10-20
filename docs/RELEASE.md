@@ -17,28 +17,28 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 | 检查 | 当前结果 |
 | --- | --- |
-| 类型与构建 | 粘性目录阶段通过；1072 个源码／夹具输入与 236 个编译文件按哈希核对 |
+| 类型与构建 | 通过；最终完整运行的 1072 个源码／夹具输入与 236 个编译文件按哈希核对 |
 | 完整单元测试 | 143 个文件、1685 项通过 |
 | 既有覆盖率范围 | 语句 97.08%、分支 94.65%、函数 97.83%、行 99.50% |
 | 本轮文件树专项 | 最终复跑 7 项通过，2 次正常退出，502ms／412ms，无强制结束 |
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
 | 模型比较专项 | 6 项通过，3 次正常退出，最长 8821ms；实际翻页、原草稿、完整备份及缩放验证通过 |
+| 完整源码桌面回归 | 411 项通过，75 次正常退出，最长 2527ms，无强制结束；530 份变化输出已按哈希归档 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
 文件树专项包括祖先堆叠、子树末尾推离、点击与键盘折叠、分页、搜索刷新、未保存草稿及暗色 100%／125%／150% 缩放。原草稿与磁盘文件逐字核对保留。完整单元之后调整了界面样式和原生观察脚本；应用逻辑和单元测试字节保持一致。后续侧栏修复另行验证。
 
 输入法事件保护使用合成事件检查，不等于物理输入法验收。覆盖率遵循仓库现有统计范围，不能将其解释为所有渲染界面的覆盖率。
 
-最新完整回归已通过目录清理和模型比较点击遮挡的旧失败点，在 249 项、30 次正常退出后发现模型比较观察脚本仍假设原会话处于最近列表首屏。现通过真实分页入口选择目标；仅改观察脚本，应用和编译文件不变。[分页修正证据](../verification/comparison-pagination-review-result.json)
+最新完整回归 `full-retry12` 已全部通过，修正后的目录清理、侧栏点击及模型比较分页均在完整工作区中验证。三轮失败现场保留；最终输入和编译文件逐一核对，原仓库 HEAD、状态、差异和索引未变。[完整源码证据](../verification/sticky-layout-full-review-result.json) · [分页修正证据](../verification/comparison-pagination-review-result.json)
 
 [最终专项与清理修正证据](../verification/sticky-integration-review-result.json) · [粘性目录证据](../verification/project-tree-sticky-review-result.json) · [侧栏点击修复证据](../verification/sidebar-hit-area-review-result.json) · [前缀导航证据](../verification/project-tree-prefix-review-result.json) · [前一轮会话证据](../verification/thread-action-completion-review-result.json)
 
 ## 尚未完成
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录已专项验证，文件树虚拟化、缩进及全部布局状态仍待落实与验证。
-- 当前源码的完整桌面回归、新安装包、包内回归、实际安装和分发验收仍待完成。旧版本的完整通过不能替代当前应用体。
-- 完整回归曾在 248 项、30 次正常退出后发现紧凑侧栏点击遮挡；修复通过原生专项。随后重跑在 215 项、21 次正常退出后的临时项目清理中遇到后台读取互斥，已改为只对明确的忙碌错误在 5 秒内重试。两轮输出和现场归档保留，完整回归仍需通过；未清空剪贴板或放宽产品保护。
-- 原 Windows 流水线此前因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[d6e722b 的流水线](https://github.com/Moresyl/nook/actions/runs/39405379982)；后续提交按各自运行另行核实。
+- 当前源码完整回归已通过；新安装包、包内回归、实际安装和分发验收仍待完成。源码通过不能替代包内与安装验证。
+- 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[8db1afa 的流水线](https://github.com/Moresyl/nook/actions/runs/39414934070)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
 - 原 Chrome 连接上次核验缺少认证令牌，尚未通过浏览器完成发布。
 
 发布继续使用[原 Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，完成验收后发布已获授权。
@@ -49,7 +49,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Sticky folder ancestors, canonical keyboard focus, short-window editor copy and disjoint sidebar click targets pass targeted native verification; 1,685 unit tests pass. Full runs exposed sidebar overlap and a temporary-project cleanup race; both have targeted corrections. Full regression, design alignment, distribution acceptance and publication remain pending. The original hosted workflow has been blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Sticky folder ancestors, canonical focus, short-window editor copy and sidebar click targets are verified. All 411 source desktop checks pass with 75 normal exits and no forced termination; 1,685 unit tests pass. Full design alignment, new package and installation acceptance, and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
 
 ## 历史证据
 
