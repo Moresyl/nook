@@ -1,0 +1,552 @@
+{
+  "recordedAt": "2026-10-20T02:33:19.644Z",
+  "sourceHead": "4dfe2d4d6b652171db0a98e9b210581678197028",
+  "reference": {
+    "version": "26.930.41038",
+    "build": "13022"
+  },
+  "pages": [
+    "chat",
+    "projects",
+    "assistants",
+    "library",
+    "automations",
+    "archive",
+    "browser"
+  ],
+  "additionalEntryPoints": [
+    "plugin panel",
+    "quick chat",
+    "settings dialog"
+  ],
+  "groups": [
+    {
+      "name": "assistants-templates",
+      "files": 4
+    },
+    {
+      "name": "automations",
+      "files": 1
+    },
+    {
+      "name": "browser",
+      "files": 2
+    },
+    {
+      "name": "conversation",
+      "files": 14
+    },
+    {
+      "name": "library",
+      "files": 3
+    },
+    {
+      "name": "plugins",
+      "files": 3
+    },
+    {
+      "name": "previews",
+      "files": 4
+    },
+    {
+      "name": "projects",
+      "files": 19
+    },
+    {
+      "name": "quick-chat",
+      "files": 1
+    },
+    {
+      "name": "settings",
+      "files": 9
+    },
+    {
+      "name": "shared-controls",
+      "files": 6
+    },
+    {
+      "name": "shared-styles",
+      "files": 7
+    },
+    {
+      "name": "workspace-shell",
+      "files": 3
+    }
+  ],
+  "files": [
+    {
+      "path": "workbench/components/approval-dialog.tsx",
+      "sha256": "815dfd7f93c18f5e3d542ed758ca7399881861f610872ee44ad9ad9e1c52eac3",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/attachments.tsx",
+      "sha256": "0839f25e04bb727647a5f83d900ece271ba6e3e7542d828afa387d8f5633db86",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/branch-navigation.tsx",
+      "sha256": "f32078ca45aa66c68c01ef869facc739787c1416678466d0b1ae250a31fe9100",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/browser-tabs.tsx",
+      "sha256": "2cb80fc2debbd9f12357f9df0957ed4c35f4412100b5c6004e0692987d45e2ce",
+      "group": "browser",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/chat-find.tsx",
+      "sha256": "f904c627fda8a0fb7800ebf910bffb602bd9fd629366869cc1052cf95ebf6046",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/chat-font-settings.tsx",
+      "sha256": "17361ffcb76a21fedd72892dd2749b459752dd4fc4bdbb51f13cb4fa41b90774",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/code-editor.tsx",
+      "sha256": "ab0423cf99c62e90fe94a981deab14417d76164340813904a0113619c7b79e7b",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/command-palette.tsx",
+      "sha256": "a0de34cda5b170c2ace10a89d415c884bdebd9118f4ffd455b655dfa3d3989f5",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/composer-actions.tsx",
+      "sha256": "17406cd501ae22dc0393d04146191c3270422f270bf7ebbe9256314efb49216c",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/composer.tsx",
+      "sha256": "838dce79cbc325f4aeaec1c243039d14c54c862fcd62e0355578681b7e830c51",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/content-bridge.tsx",
+      "sha256": "b1b7f5a986701d80643cfb7a632320b74480029042730e5e9925790eacad8fa3",
+      "group": "plugins",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/context-summary-dialog.tsx",
+      "sha256": "52cfd9d69f9ce27a1489af894e71e73f71f403a9eebd29c89283ecfd0364e541",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/control-tooltip.tsx",
+      "sha256": "29514d6c08d8c11f7a5511d989380a2c071d9a723e37bc4bb98f4dccc696660c",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/controls.tsx",
+      "sha256": "c06b729f0fcda3a242dfc30bc9cd525f4a67a4b8800756404cf6281fc3fdb5e4",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/diagram-view.tsx",
+      "sha256": "c75a700cd1ecd70a359ad3f455d09e1f62e45b05b89ec6401085a4f64a1c9631",
+      "group": "previews",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/editor-tabs.tsx",
+      "sha256": "4dff038af934d29af718c718ed7f268f90f1f35adbd81b15c9de19bba3e284f5",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/glyphs.tsx",
+      "sha256": "9f8954f94e99d7c3701edeb0936d3c4aeb8db95ab88ed5db776cc9a73acb9c51",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/image-preview.tsx",
+      "sha256": "ae558dfabb88d7b7e50fda5f4cd28ac5a4d4c7154f39d9a1d6918dabb3d4a7f6",
+      "group": "previews",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/knowledge-sources.tsx",
+      "sha256": "68e06350eb13a93a21ebacc59e885228572608d6d92746979086be4af928a141",
+      "group": "library",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/markdown-table.tsx",
+      "sha256": "c3bb347aa4a936030e5a36a4f210976c06dcb2397b370a2d3de0f4a72f82f00f",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/markdown-view.tsx",
+      "sha256": "b100cac87c5f65da04cdfe8c8dd021103cce7b0f491fc622989b1c41b76736a6",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/message-editor.tsx",
+      "sha256": "26b695e6f87f6de57ae971c5d0e4d6ed819011756d226a9c41dfe206f92e1b15",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/message-navigation.tsx",
+      "sha256": "815f51566a1ec4e9e467ace474823de9f9cd9af852ebf4ff611131b9a2609942",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/model-comparison.tsx",
+      "sha256": "89a22fcdde198bdf9a82a40c7dbc0f6b0d52df96309ac24d7a920b036bbeaf18",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/model-usage.tsx",
+      "sha256": "23b557205a9dac612ec6c84e470cf49507495921287373d2706fe1474a28aca1",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/pdf-annotation-layer.tsx",
+      "sha256": "f4d2d03f3770fe46e59bc244fc2f559d8bc4d25f3d5ea044a0540c7362a9b111",
+      "group": "previews",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/pdf-preview.tsx",
+      "sha256": "122d6cbcaaaa6e40d9af800d14d09a564ed0da20f7fcc7add876f91b7799676d",
+      "group": "previews",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/plugin-panel.tsx",
+      "sha256": "cc2b96b309482fe5ca0c9afcd248cc0dcacd76eb78effee17bb57eb0aca03cd3",
+      "group": "plugins",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-branches.tsx",
+      "sha256": "3af46066b3e3faa25ac55a661b99269c8214564836a6446b695f33e2fef9d00e",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-changes.tsx",
+      "sha256": "b22cdb7358866865ef56c5dbabc591d97393e616a3189598c856f2991f34f45c",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-editor.tsx",
+      "sha256": "3310e447a09d7d10e4830eaa2b9282a797fd19f308e24302ecb0b98fa0160200",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-explorer.tsx",
+      "sha256": "e697c185b1d500cdb5a973f127cf0014be70260d9179f9fedb1ec40099022fca",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-file-finder.tsx",
+      "sha256": "ca4889fa9bde8d93cc90a9f51938692c746e64772c1e28e1d7579be342a9bed4",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-preview-pane.tsx",
+      "sha256": "9255b6901028a689c6348e2b38159cce89e5331fe1904031b0bee95e13327728",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-switcher.tsx",
+      "sha256": "5429ad527d2b1998845c2d69460a88dfb5be3a98d9505c6b3c5d48dc6b310b9b",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-terminal.tsx",
+      "sha256": "c1ccb2d90e44a432763779e99cfa1044824f7fd7e389f941d817b9a0181b08a0",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/project-worktrees.tsx",
+      "sha256": "03648ecd3c0cf13a151d7eec63ca921de3b522419c04c208ece3500ff8610057",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/prompt-import-dialog.tsx",
+      "sha256": "02828dd92cd01e9eab77a25ec939429d074301486f0120384a4c817067d4d986",
+      "group": "assistants-templates",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/prompt-use-dialog.tsx",
+      "sha256": "162cb3dd28669f3043c39ba375e454e90763c41eb7016972114126892fd47c0b",
+      "group": "assistants-templates",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/reply-versions.tsx",
+      "sha256": "a737a169c9fcc54e906a3cb31ca20a714939d1a5099d5b08173cda4386b3aabf",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/settings-drafts.tsx",
+      "sha256": "72f5ad0a43db9a05c7cbc2346df73242c531cfbab2cdb76cf59f9abdd41507ca",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/settings-navigation.tsx",
+      "sha256": "b3f41b39f7c10463168eae38ebd1247395de7da90604f8545a2106dbf2a1538c",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/startup-screen.tsx",
+      "sha256": "44ed15859a78d4ae471b7f0f76d96d11ac7f6c283bb4a052eeb07a4016050254",
+      "group": "workspace-shell",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/toast.tsx",
+      "sha256": "5fbe32fc7c26cd548700d0d0467aa0ea46c3773cd180de9afea4cd108eba3d75",
+      "group": "shared-controls",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/tool-activity.tsx",
+      "sha256": "576ab42eb22585c0fa5c65d42cafef522e4fa6208b0ca092823241fd5b6307bb",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/transcript.tsx",
+      "sha256": "87b5735d3099b9a51770d9b02ff8eb88f955911cb961a6e8691df9a4df2f7542",
+      "group": "conversation",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/worktree-overview.tsx",
+      "sha256": "644fd6a51da818fdee093e3207feca46539ad4c6dbf00395f2a0a41c442b34d6",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/worktree-pin.tsx",
+      "sha256": "344c5502b37f37eb26a2688d1a324d59fd1a90c093848be7b3c015ba08b8460c",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/worktree-registration.tsx",
+      "sha256": "958dc5fb1f427dedfebae44e1857b23ef2e1a1f7dfd423381f88bef0a45f7884",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/worktree-removal.tsx",
+      "sha256": "f7daf62aabfeed8e6d28b0a4f806e96fae2f4d52b6b0a0902746e5c5e29d905a",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/components/worktree-snapshots.tsx",
+      "sha256": "fa69b7a6aaabd75183459f6b5278fd4223a9ae5024dbe5751d81f77e4415287f",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/entry.tsx",
+      "sha256": "3e607d63ec94bf390f474dc13fadce1dfe6a4ddecbd53e375c10233e8b919977",
+      "group": "workspace-shell",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/automations.tsx",
+      "sha256": "2129c006a152fea98128c9a4f197d1c185dafe0515ef13f02075036b72af71ec",
+      "group": "automations",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/browser.tsx",
+      "sha256": "4775412ce287c74ee14712eebe4a37f77ff8dba0a0121dff292e91af0c718b09",
+      "group": "browser",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/collections.tsx",
+      "sha256": "abcc72d5f0538a082d09c73738a1efc4404d49666fa4cf29884300bf78b55498",
+      "group": "assistants-templates",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/desktop-settings.tsx",
+      "sha256": "9bd17a4fb203950ded744709b55f07e079b675c019148522d01acff1796e72cd",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/extensions.tsx",
+      "sha256": "8e17dfcb3371632f0f9e02c464b5062a70d33baf1ece1b5a4ba2d765dab40ae6",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/knowledge-library.tsx",
+      "sha256": "16bc5d7876b2b7de8e9e53d887d5bedc573f7344030d057be8f3d6a4c6f99b50",
+      "group": "library",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/mcp-content-browser.tsx",
+      "sha256": "f6d58c0ec0ff98059d7450395fdce5d9f1fa26166c57a68e040ff7f522d05651",
+      "group": "library",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/memory-settings.tsx",
+      "sha256": "5c3281a2448270b3ebb6dc004bf8140b1103d64fda56b054db20cddf252990a8",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/model-capacity.tsx",
+      "sha256": "07607b87dbe24d3177c681b113edaf29abccf5fce262136f983ffe25540ad4e0",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/plugins.tsx",
+      "sha256": "517f3db372076f67e7b46313183824c7ae52223ec1ebb27f4920a19ffe63dfa9",
+      "group": "plugins",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/preferences.tsx",
+      "sha256": "6e1c2cf6e2da2e4b6091c40a18319afde7fd2e1770b6d40ca46d4e8f38beb96b",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/project-loader.tsx",
+      "sha256": "7c48ff9392bb102012e7e49e55f5d14654649baf2957263da1c186d4798043e3",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/projects.tsx",
+      "sha256": "41f02a25c7ab262bf70174795fd0a834a4d7876191ebf14cba89d0c724f61fcb",
+      "group": "projects",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/prompt-templates.tsx",
+      "sha256": "9c72bfc2320212fbd3f603a2697ea8b3e7e5836412a665edca202c60a8083af1",
+      "group": "assistants-templates",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/pages/worktree-settings.tsx",
+      "sha256": "d6f6e281d77d89ec1e63d49292b8441b3405ee09e3551c453098b6771b3eeda7",
+      "group": "settings",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/quick-chat.tsx",
+      "sha256": "1b5ef1e4495027a058c4fd98d4580a3f286e00ca8911be5425e1511f89a25eb2",
+      "group": "quick-chat",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/pdf-preview.css",
+      "sha256": "10eaabbdf215132144c2ab41b1ef65f258bc27e0697dbcff4022dd93d6a40864",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/quick-chat.css",
+      "sha256": "a05f5f849bd5ddea193c81024040640115ca34f5aa81d766ae6f34021434b5eb",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/reference-fonts.css",
+      "sha256": "126b6636e7703b9a82e2373e93f1a0ff2d9020750853659b14c56d25be75579f",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/reference-math.css",
+      "sha256": "c5d8801b98a870ac2f6d519187ae038f9fe08378596075957343609bb0508f07",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/reference-tokens.css",
+      "sha256": "d26871ced750d29660ddbd07dbb196a54f75d06ad0eec759530ead974cd08969",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/rich-content.css",
+      "sha256": "e29be9f2227649ebae24277920756906d4331990e8174f171efe322c759668d6",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/theme/surfaces.css",
+      "sha256": "6c60bc24d448fa4d8925388a5bfab40298cfa1d327d34162896442d4ff5af3f0",
+      "group": "shared-styles",
+      "completeReferenceMappingVerified": false
+    },
+    {
+      "path": "workbench/workbench.tsx",
+      "sha256": "3dbdc0f5dc72029685356f3a659bdec37b25104807d8f36254d10c966469aea4",
+      "group": "workspace-shell",
+      "completeReferenceMappingVerified": false
+    }
+  ],
+  "changesSincePreviousInventory": {
+    "sourceHead": "95192349d0a2f94d9e3f2ea1a967541a5862921b",
+    "added": [
+      "workbench/components/project-file-finder.tsx"
+    ],
+    "changed": [
+      "workbench/components/glyphs.tsx",
+      "workbench/components/image-preview.tsx",
+      "workbench/components/project-explorer.tsx",
+      "workbench/components/toast.tsx",
+      "workbench/theme/surfaces.css",
+      "workbench/workbench.tsx"
+    ],
+    "removed": []
+  },
+  "dialogScopeFinding": "The 720 by 460 viewport-aware geometry belongs to the global library search consumer. Its CSS and callsite are not evidence for all native dialogs or settings. Existing settings geometry checks measure Nook behavior but do not prove the reference settings consumer is mapped.",
+  "completeReferenceMappingVerified": false,
+  "scope": "Current TSX/CSS inventory and primary routes only. File counts do not measure design adoption, dynamic-state coverage, or non-TSX renderers. Previous candidate evidence is historical unless current bytes are independently matched."
+}

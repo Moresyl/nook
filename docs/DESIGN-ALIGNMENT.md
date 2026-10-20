@@ -1,5 +1,7 @@
 # Nook 设计对照
 
+当前对照范围为 76 个界面源码／样式文件、7 个主页面及设置、快速聊天、插件入口。[页面覆盖清单](UI-COVERAGE.md)列出各入口、待核对状态和证据边界；不能把历史专项或文件数量换算成 100% 采用。
+
 项目文件树已核对主工作区消费者：13px文字、5px内容间距、3px横向内距、16px文件图标、28px行高和6px圆角；长文件名在行边缘裁切，完整路径提示保留。明暗选中背景5%混色，普通暗色悬停8%，悬停保留选择。类型、构建及7项原生项目专项通过，两张本轮原图逐张查看。现有缩进机制、虚拟化及粘性目录仍未完全对齐；125%／150%原测试隐藏文件树，不计为可见文件树验收。[当前尺寸与路径证据](../verification/project-tree-geometry-review-result.json) · [此前选中态](../verification/project-tree-selection-review-result.json) · [此前字号](../verification/project-tree-typography-review-result.json)
 
 最新提示条主题专项已核对普通消费者的后置样式：14px／21px 字号行高、4px 内容间距、浅／深专用错误色及关闭按钮悬停。类型、构建和 5 项原生检查通过，两张最终原图逐张查看。[主题专项证据](../verification/toast-theme-validation-review-result.json)
@@ -12,7 +14,9 @@
 
 ## 当前采用
 
-当前新增候选是提示条与导航：类型、构建、138 文件／1627 项完整单元、5 项通知导航和 5 项原有控件专项通过。源码 `b72d935` 完整通过 411 项检查、75 次正常退出，无强制结束；6 张源码代表原图逐张查看。新包三次完整回归因剪贴板恢复断言失败而未通过，安装验收未启动。此前长代码三轮通过记录仅证明此前应用体。[本次专项](../verification/reference-surfaces-validation-review-result.json) · [完整源码与分发进度](../verification/reference-surfaces-progress-review-result.json)
+当前应用体已包含提示条、导航、图片操作、文件树和文件路径搜索。最新工具栏联动通过类型、构建与 7 项桌面专项；此前 140 文件／1644 项完整单元覆盖的服务与契约文件保持一致，新增渲染器交互由桌面专项验证。完整桌面与新包、安装仍未通过。[最新专项](../verification/file-search-toolbar-review-result.json) · [发布状态](RELEASE.md)
+
+历史源码 `b72d935` 的 411 项完整源码检查和三次包内剪贴板失败仅证明该历史候选，不代表当前应用体已通过。[历史源码与分发进度](../verification/reference-surfaces-progress-review-result.json)
 
 | 表面 | 已采用的规格与行为 |
 | --- | --- |
