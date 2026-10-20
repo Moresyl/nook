@@ -44,6 +44,12 @@ export async function verifyRecentThreads({ page, application, threads, original
   assert.equal(await recent.getByRole('button', { name: '最近聊天', exact: true }).getAttribute('aria-expanded'), 'true', 'The recent preference is independent');
   assert.equal(await row(pinnedRows[0].title).count(), 0);
   await toggle.focus(); await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
+  await toggle.evaluate(element => { window.nookRapidToggleKeys = []; element.addEventListener('keydown', event => { if (['Enter', ' '].includes(event.key) && window.nookRapidToggleKeys.length < 2) window.nookRapidToggleKeys.push(performance.now()); }); });
+  await toggle.press('Enter'); await toggle.press('Space');
+  await page.waitForFunction(() => window.nookRapidToggleKeys.length === 2 && performance.now() - window.nookRapidToggleKeys[1] >= 350);
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(await content.locator('.thread-row').count(), pinnedRows.length, 'A stale collapse timer cannot remove rows after rapid reopening');
+  assert.ok(await page.evaluate(() => window.nookRapidToggleKeys[1] - window.nookRapidToggleKeys[0] < 300), 'The native keyboard reversal happened before the collapse deadline');
   const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
   for (let index = 10; index < ordinary.length; index += 10) {
@@ -58,8 +64,17 @@ export async function verifyRecentThreads({ page, application, threads, original
   await capture('110-sidebar-groups-light.png');
   const recentToggle = recent.getByRole('button', { name: '最近聊天', exact: true });
   await recentToggle.click(); assert.equal(await recentToggle.getAttribute('aria-expanded'), 'false');
+  await page.getByLabel('消息', { exact: true }).fill('CHAT_NAV_DRAFT_TYPING');
+  assert.equal(await recentToggle.getAttribute('aria-expanded'), 'false', 'Typing in the current chat is not a reveal request');
+  await page.getByLabel('消息', { exact: true }).fill('CHAT_NAV_DRAFT_KEEP');
   await page.keyboard.press('Control+k');
   const palette = page.getByRole('dialog', { name: '搜索与命令', exact: true });
+  await palette.getByRole('combobox').fill(originalTitle);
+  await palette.getByRole('option', { name: originalTitle, exact: true }).click(); await palette.waitFor({ state: 'hidden' });
+  await row(originalTitle).waitFor();
+  assert.equal(await recentToggle.getAttribute('aria-expanded'), 'true', 'Explicitly selecting the already active chat reveals its collapsed section');
+  assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page');
+  await recentToggle.click(); await page.keyboard.press('Control+k');
   await palette.getByRole('combobox').fill(ordinary.at(-1).title);
   const option = palette.getByRole('option', { name: ordinary.at(-1).title, exact: true });
   await option.click(); await palette.waitFor({ state: 'hidden' });
@@ -73,5 +88,5 @@ export async function verifyRecentThreads({ page, application, threads, original
   await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
-  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

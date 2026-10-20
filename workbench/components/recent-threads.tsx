@@ -5,11 +5,11 @@ import { readSidebarCollapsed, saveSidebarCollapsed, type SidebarSection } from 
 import { Button } from './controls';
 import { Glyph } from './glyphs';
 
-type Props = { threads: Thread[]; activeId?: string; onSelect: (thread: Thread) => void; onReorder: (input: PinnedReorder) => Promise<void> };
+type Props = { threads: Thread[]; activeId?: string; revealRequest: number; onSelect: (thread: Thread) => void; onReorder: (input: PinnedReorder) => Promise<void> };
 type Drag = { threadId: string; pointerId: number; x: number; y: number; startX: number; startY: number; started: boolean };
 const pageSize = 10;
 
-function ThreadSection({ section, label, threads, activeId, onSelect, onReorder, paginate = false }: Props & { section: SidebarSection; label: string; paginate?: boolean }) {
+function ThreadSection({ section, label, threads, activeId, revealRequest, onSelect, onReorder, paginate = false }: Props & { section: SidebarSection; label: string; paginate?: boolean }) {
   const id = useId(); const [collapsed, setCollapsed] = useState(() => readSidebarCollapsed(section)); const [limit, setLimit] = useState(pageSize);
   const [present, setPresent] = useState(!collapsed);
   const rows = useRef(new Map<string, HTMLButtonElement>()); const reveal = useRef<string | undefined>(undefined);
@@ -20,11 +20,13 @@ function ThreadSection({ section, label, threads, activeId, onSelect, onReorder,
   if (active && !visible.includes(active)) visible.push(active);
   const remaining = threads.length - visible.length;
   const previousActive = useRef(active?.id);
+  const previousReveal = useRef(revealRequest);
   function changeCollapsed(value: boolean) { setCollapsed(value); saveSidebarCollapsed(section, value); }
   useLayoutEffect(() => {
-    if (active && active.id !== previousActive.current) changeCollapsed(false);
+    if (active && (active.id !== previousActive.current || revealRequest !== previousReveal.current)) changeCollapsed(false);
     previousActive.current = active?.id;
-  }, [active?.id]);
+    previousReveal.current = revealRequest;
+  }, [active?.id, revealRequest]);
   useLayoutEffect(() => {
     if (!collapsed) { setPresent(true); return; }
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -117,8 +119,8 @@ function ThreadSection({ section, label, threads, activeId, onSelect, onReorder,
   </section>;
 }
 
-export function RecentThreads({ threads, activeId, onSelect, onReorder }: Omit<Props, 'threads'> & { threads?: Thread[] }) {
+export function RecentThreads({ threads, activeId, revealRequest, onSelect, onReorder }: Omit<Props, 'threads'> & { threads?: Thread[] }) {
   if (!threads) return null;
   const pinned = threads.filter(thread => thread.pinned); const recent = threads.filter(thread => !thread.pinned);
-  return <div className="thread-list"><ThreadSection section="pinned" label="已置顶" threads={pinned} activeId={activeId} onSelect={onSelect} onReorder={onReorder} /><ThreadSection section="recent" label="最近聊天" threads={recent} activeId={activeId} onSelect={onSelect} onReorder={onReorder} paginate /></div>;
+  return <div className="thread-list"><ThreadSection section="pinned" label="已置顶" threads={pinned} activeId={activeId} revealRequest={revealRequest} onSelect={onSelect} onReorder={onReorder} /><ThreadSection section="recent" label="最近聊天" threads={recent} activeId={activeId} revealRequest={revealRequest} onSelect={onSelect} onReorder={onReorder} paginate /></div>;
 }
