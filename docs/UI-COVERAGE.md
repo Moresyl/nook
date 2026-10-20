@@ -41,4 +41,4 @@
 3. 对每个入口检查实际支持的空态、加载、成功、失败、禁用、长内容与未保存状态，覆盖明暗主题、窄窗口和缩放；记录原图与交互证据。
 4. 当前源码完成完整桌面回归后，再验证匹配的新包和实际安装，最后通过原发布流水线。旧版本的通过记录不继承为当前通过。
 
-文件查找及工具栏联动有[专项证据](../verification/file-search-toolbar-review-result.json)。当前 `4a6b0dd` 的预览分栏已通过 1,685 项单元、10 项预览专项和 17 项文件树／预览集成，随后通过 411 项完整源码回归，75 次正常退出，无强制结束。[当前完整源码证据](../verification/preview-resize-full-review-result.json)保留精确范围。新包、新安装、托管发布和全部参考对照仍未完成，详情见[发布状态](RELEASE.md)。
+文件查找及工具栏联动有[专项证据](../verification/file-search-toolbar-review-result.json)。当前 `4a6b0dd` 的预览分栏已通过 1,685 项单元、10 项预览专项和 17 项文件树／预览集成，随后通过 411 项完整源码回归，75 次正常退出，无强制结束。[当前完整源码证据](../verification/preview-resize-full-review-result.json)保留精确范围。对应新包和实际安装也各通过 411 项完整回归及 75 次正常退出，分发验收通过；[完整分发证据](../verification/preview-resize-distribution-review-result.json)不代表逐张审阅全部截图或全部参考对齐。托管发布和全部参考对照仍未完成，详情见[发布状态](RELEASE.md)。

@@ -1,0 +1,102 @@
+{
+  "verifiedAt": "2026-10-20T15:37:24.676Z",
+  "sourceHead": "5e82af53bc98c74e940e486753d36f59b72c04c8",
+  "sourceInputs": 1072,
+  "compiledFiles": 236,
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "488cd512299a8a1200ca26e206a576af4803985ce1f43a4385a8899cf260b499"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "ed0158f92004b496f052d8766f84be9d3853718882b5f0a6ac0c3735ea2eae58"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "3efe95ac3effa246e691a6a71fbef4432ae97a13081acbef2a3baa9c298027f6"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "bfa90eefffd85e1a1d927450e63a76ec59b5daefea72ab68bff656b8bd776ddd"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "source",
+      "checks": 411,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "longestNormalExitMs": 1805,
+      "artifacts": 883,
+      "profileArchiveIntegrityVerified": true
+    },
+    {
+      "phase": "full",
+      "checks": 411,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "longestNormalExitMs": 2422,
+      "artifacts": 883,
+      "profileArchiveIntegrityVerified": true
+    },
+    {
+      "phase": "installed",
+      "checks": 411,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "longestNormalExitMs": 2445,
+      "artifacts": 887,
+      "profileArchiveIntegrityVerified": true
+    },
+    {
+      "phase": "surfaces",
+      "exitCode": 0,
+      "logSha256": "35301ed749f7c7c34c71f763372aadc0405d596c5a6b00cf0d60f027aac527cf"
+    },
+    {
+      "phase": "text-hints",
+      "exitCode": 0,
+      "logSha256": "abdcfffaa76b7b9109dc91a74ab8d7cf3161defbd976e60992666d1f99dae200"
+    },
+    {
+      "phase": "renderer-close",
+      "exitCode": 0,
+      "logSha256": "88e1e54c66ff909fadbbcf65219c975b0602452733f61d1e85455f4827a6a791"
+    },
+    {
+      "phase": "bootstrap",
+      "exitCode": 0,
+      "logSha256": "23ceffda3e837f6340195a5454292ec86edb480f44253383204a3237abf3c5fc"
+    },
+    {
+      "phase": "portable",
+      "exitCode": 0,
+      "logSha256": "cc872c655423fd9c33f2155004364b638603b35f2925f0dd13ed065c88914dbd"
+    },
+    {
+      "phase": "runtime",
+      "exitCode": 0,
+      "logSha256": "10b8c8f5652ff59e2f3155070799b040a149aa7a1669ffe750954c0675a9f0ce"
+    }
+  ],
+  "packageAudit": {
+    "productFiles": 239,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionFiles": 20,
+    "signature": "NotSigned"
+  },
+  "fullSourceAccepted": true,
+  "fullPackagedAccepted": true,
+  "fullInstalledAccepted": true,
+  "originalRuntimeProofPassed": true,
+  "priorSixteenMarkersRestored": true,
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "allImagesVisuallyReviewed": false,
+  "completeReferenceAdoption": false,
+  "hostedWorkflowPassed": false,
+  "published": false,
+  "boundary": "Current local source, packaged, installed and original distribution gates pass for identical inputs and binaries. Hosted workflow remains a separate gate. Selected capture reviews do not establish full reference adoption or physical-DPI equivalence."
+}

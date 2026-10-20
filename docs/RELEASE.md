@@ -25,6 +25,9 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
 | 模型比较专项 | 6 项通过，3 次正常退出，最长 8821ms；实际翻页、原草稿、完整备份及缩放验证通过 |
 | 当前完整源码桌面回归 | `4a6b0dd` 的 411 项通过，75 次正常退出，最长 1805ms，无强制结束；483 份变化输出已按哈希归档 |
+| 当前包内完整桌面回归 | 411 项通过，75 次正常退出，最长 2422ms，无强制结束 |
+| 当前实际安装完整回归 | 411 项通过，75 次正常退出，最长 2445ms，无强制结束；安装与卸载完成，16 个原有数据标记恢复 |
+| 分发验收 | 表面、文字提示、窗口关闭、启动、便携包与原运行记录检查通过；11 份运行记录匹配同组程序文件 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
 文件树专项包括祖先堆叠、子树末尾推离、点击与键盘折叠、分页、搜索刷新、未保存草稿及暗色 100%／125%／150% 缩放。原草稿与磁盘文件逐字核对保留。完整单元之后调整了界面样式和原生观察脚本；应用逻辑和单元测试字节保持一致。后续侧栏修复另行验证。
@@ -37,22 +40,22 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 尚未完成
 
-当前预览分栏专项 10 项、文件树与预览集成 17 项通过，合计 3 次正常退出；后续完整源码回归也已通过。安装与分发验收仍需覆盖当前改动。[分栏专项证据](../verification/preview-resize-review-result.json)
+当前预览分栏专项 10 项、文件树与预览集成 17 项通过，合计 3 次正常退出；后续源码、包内和实际安装三轮完整回归均已通过。分发验收对应 `5e82af5` 的同组输入与二进制。[分栏专项证据](../verification/preview-resize-review-result.json) · [完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录已专项验证，文件树虚拟化、缩进及全部布局状态仍待落实与验证。
-- 当前源码完整回归已通过；新安装包、包内回归、实际安装和分发验收仍待完成。源码通过不能替代包内与安装验证。
-- 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[4a6b0dd 的流水线](https://github.com/Moresyl/nook/actions/runs/39426099430)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
-- 原 Chrome 连接上次核验缺少认证令牌，尚未通过浏览器完成发布。
+- 本地分发验收已通过，但未逐张审阅全部截图，也未完成物理输入法、辅助技术与其他系统 DPI 的验收。
+- 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。已归档运行见[5e82af5 的流水线](https://github.com/Moresyl/nook/actions/runs/39433081996)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
+- 原 Chrome 连接此前核验缺少认证令牌；本轮工具列表未提供 `computer-use` 所需的 `node_repl`，未复查浏览器状态，尚未通过浏览器完成发布。
 
 发布继续使用[原 Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，完成验收后发布已获授权。
 
 ## 安装与开发
 
-当前请从[源码运行](../README.md#开始使用)。历史安装包和便携包仅用于对应版本的验收，不作为当前候选已发布的依据；已验证的历史产物未签名。
+当前请从[源码运行](../README.md#开始使用)。当前安装包和便携包已完成本地验收，尚未作为正式版本发布；签名状态为 `NotSigned`。包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. The current source, including preview-resize changes, passes 411 desktop checks with 75 normal exits and no forced termination. Full design alignment, current package and installation acceptance, and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Source, packaged and installed builds each pass 411 desktop checks with 75 normal exits and no forced termination. Distribution checks pass for matching binaries; the packages are unsigned. Full design alignment and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
 
 ## 历史证据
 
