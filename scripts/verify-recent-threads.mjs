@@ -18,12 +18,32 @@ export async function verifyRecentThreads({ page, application, threads, original
   const toggle = pinned.getByRole('button', { name: '已置顶', exact: true });
   const heading = await toggle.evaluate(element => { const style = getComputedStyle(element); return { fontSize: style.fontSize, lineHeight: style.lineHeight, weight: style.fontWeight, height: element.getBoundingClientRect().height }; });
   assert.deepEqual(heading, { fontSize: '14px', lineHeight: '21px', weight: '500', height: 30 });
+  const content = pinned.locator('.thread-section-content');
+  assert.equal(await content.evaluate(element => getComputedStyle(element).transitionDuration), '0.3s, 0.3s');
+  assert.equal(await content.evaluate(element => getComputedStyle(element).transitionTimingFunction), 'cubic-bezier(0.19, 1, 0.22, 1), cubic-bezier(0.19, 1, 0.22, 1)');
+  await content.evaluate(element => { window.nookSectionTransitions = []; element.addEventListener('transitionend', event => { if (event.target === element && window.nookSectionTransitions.length < 20) window.nookSectionTransitions.push(event.propertyName); }); });
   await toggle.focus(); await toggle.press('Enter');
   assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
   assert.equal(await row(pinnedRows[0].title).count(), 0);
   assert.equal(await toggle.evaluate(element => document.activeElement === element), true);
+  assert.equal(await content.evaluate(element => element.inert && element.getAttribute('aria-hidden') === 'true'), true);
+  await page.waitForFunction(() => window.nookSectionTransitions.includes('grid-template-rows') && document.querySelector('.thread-section-content[data-collapsed="true"]').getBoundingClientRect().height === 0);
   await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
   assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  try {
+    assert.equal(await content.evaluate(element => getComputedStyle(element).transitionDuration), '0s');
+    await toggle.press('Enter');
+    await page.waitForFunction(() => document.querySelector('.thread-section-content[data-collapsed="true"]')?.getBoundingClientRect().height === 0);
+    assert.equal(await content.locator('.thread-row').count(), 0);
+    await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
+  } finally { await page.emulateMedia({ reducedMotion: 'no-preference' }); }
+  await toggle.press('Enter');
+  await page.reload(); await page.getByLabel('消息', { exact: true }).waitFor();
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'false', 'Reload retains the pinned section preference');
+  assert.equal(await recent.getByRole('button', { name: '最近聊天', exact: true }).getAttribute('aria-expanded'), 'true', 'The recent preference is independent');
+  assert.equal(await row(pinnedRows[0].title).count(), 0);
+  await toggle.focus(); await toggle.press('Space'); await row(pinnedRows[0].title).waitFor();
   const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
   for (let index = 10; index < ordinary.length; index += 10) {
@@ -53,5 +73,5 @@ export async function verifyRecentThreads({ page, application, threads, original
   await recent.getByRole('button', { name: ordinary.at(-1).title, exact: true }).waitFor();
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
-  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  return { fixtures: threads.length, pinnedReorder, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

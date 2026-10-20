@@ -139,7 +139,7 @@ export function Workbench() {
   useEffect(() => { setFindRequest(0); }, [page, threadId]);
   const originalThread = thread?.forkedFrom && state?.threads.find((item) => item.id === thread.forkedFrom!.threadId);
   const running = thread?.messages.some((message) => message.status === 'running') ?? false;
-  const recent = state ? searchThreads(state.threads.filter((item) => !item.archived), '') : [];
+  const recent = state ? searchThreads(state.threads.filter((item) => !item.archived), '') : undefined;
   useEffect(() => {
     if (!window.qiyao) { setStartupError('请通过 Nook 桌面应用打开工作台。'); return; }
     const resolved = new Set<string>();
@@ -228,7 +228,7 @@ export function Workbench() {
   useEffect(() => {
     function keyboard(event: KeyboardEvent) {
       if (event.isComposing || editing || document.querySelector('dialog[open]')) return;
-      if (event.altKey && /^[1-9]$/.test(event.key)) { const target = recent[Number(event.key) - 1]; if (target) { event.preventDefault(); openThread(target); } }
+      if (event.altKey && /^[1-9]$/.test(event.key)) { const target = recent?.[Number(event.key) - 1]; if (target) { event.preventDefault(); openThread(target); } }
       if (!(event.ctrlKey || event.metaKey)) return;
       if (event.key.toLowerCase() === 'n') { event.preventDefault(); newChat(); }
       if (event.key.toLowerCase() === 'k') { event.preventDefault(); setSearch(''); }

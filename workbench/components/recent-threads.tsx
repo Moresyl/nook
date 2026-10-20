@@ -1,6 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type PointerEvent } from 'react';
 import type { Thread } from '../../contracts/workspace';
 import type { PinnedReorder } from '../../contracts/pinned-order';
+import { readSidebarCollapsed, saveSidebarCollapsed, type SidebarSection } from '../lib/sidebar-sections';
 import { Button } from './controls';
 import { Glyph } from './glyphs';
 
@@ -8,8 +9,9 @@ type Props = { threads: Thread[]; activeId?: string; onSelect: (thread: Thread) 
 type Drag = { threadId: string; pointerId: number; x: number; y: number; startX: number; startY: number; started: boolean };
 const pageSize = 10;
 
-function ThreadSection({ label, threads, activeId, onSelect, onReorder, paginate = false }: Props & { label: string; paginate?: boolean }) {
-  const id = useId(); const [collapsed, setCollapsed] = useState(false); const [limit, setLimit] = useState(pageSize);
+function ThreadSection({ section, label, threads, activeId, onSelect, onReorder, paginate = false }: Props & { section: SidebarSection; label: string; paginate?: boolean }) {
+  const id = useId(); const [collapsed, setCollapsed] = useState(() => readSidebarCollapsed(section)); const [limit, setLimit] = useState(pageSize);
+  const [present, setPresent] = useState(!collapsed);
   const rows = useRef(new Map<string, HTMLButtonElement>()); const reveal = useRef<string | undefined>(undefined);
   const drag = useRef<Drag | undefined>(undefined); const suppressClick = useRef(false); const moving = useRef(false); const focusAfter = useRef<string | undefined>(undefined);
   const [dragging, setDragging] = useState<string>(); const [drop, setDrop] = useState<PinnedReorder>(); const [busy, setBusy] = useState(false); const [error, setError] = useState(false); const [announcement, setAnnouncement] = useState('');
@@ -17,7 +19,21 @@ function ThreadSection({ label, threads, activeId, onSelect, onReorder, paginate
   const visible = paginate ? threads.slice(0, limit) : [...threads];
   if (active && !visible.includes(active)) visible.push(active);
   const remaining = threads.length - visible.length;
-  useLayoutEffect(() => { if (active) setCollapsed(false); }, [active?.id]);
+  const previousActive = useRef(active?.id);
+  function changeCollapsed(value: boolean) { setCollapsed(value); saveSidebarCollapsed(section, value); }
+  useLayoutEffect(() => {
+    if (active && active.id !== previousActive.current) changeCollapsed(false);
+    previousActive.current = active?.id;
+  }, [active?.id]);
+  useLayoutEffect(() => {
+    if (!collapsed) { setPresent(true); return; }
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.matches) { setPresent(false); return; }
+    const timer = window.setTimeout(() => setPresent(false), 300);
+    const finish = () => { if (motion.matches) { window.clearTimeout(timer); setPresent(false); } };
+    motion.addEventListener('change', finish);
+    return () => { window.clearTimeout(timer); motion.removeEventListener('change', finish); };
+  }, [collapsed]);
   useLayoutEffect(() => {
     const element = reveal.current ? rows.current.get(reveal.current) : undefined;
     reveal.current = undefined;
@@ -89,19 +105,20 @@ function ThreadSection({ label, threads, activeId, onSelect, onReorder, paginate
     reveal.current = threads.slice(0, limit + pageSize).find(thread => !shown.has(thread.id))?.id;
     setLimit(value => value + pageSize);
   }
-  return <section className="thread-section" aria-label={label}>
-    <Button className="sidebar-section-label thread-section-toggle" aria-label={label} aria-expanded={!collapsed} aria-controls={id} title={`${collapsed ? '展开' : '折叠'}${label}`} onClick={() => setCollapsed(value => !value)}><span>{label}</span><Glyph name={collapsed ? 'right' : 'down'} size={14} /><span className="thread-section-count" aria-hidden="true">{threads.length || ''}</span></Button>
-    <div id={id} hidden={collapsed}>{!collapsed && <>{visible.map((item, index) => <Button key={item.id} ref={element => { if (element) rows.current.set(item.id, element); else rows.current.delete(item.id); }} title={`${item.temporary ? `临时 · ${item.title}` : item.title}${item.pinned ? '\n拖动调整顺序，或使用 Alt＋上下方向键' : ''}`} aria-current={activeId === item.id ? 'page' : undefined} aria-keyshortcuts={item.pinned ? 'Alt+ArrowUp Alt+ArrowDown' : undefined} disabled={item.pinned && busy} data-pinned-id={item.pinned ? item.id : undefined} data-dragging={dragging === item.id || undefined} data-drop-side={drop?.targetId === item.id ? drop.position : undefined} className={`thread-row ${activeId === item.id ? 'selected' : ''}`} onPointerDown={event => startDrag(event, item)} onPointerMove={moveDrag} onPointerUp={finishDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag} onKeyDown={event => {
+  return <section className="thread-section" aria-label={label} hidden={section === 'pinned' && threads.length === 0}>
+    <Button className="sidebar-section-label thread-section-toggle" aria-label={label} aria-expanded={!collapsed} aria-controls={id} title={`${collapsed ? '展开' : '折叠'}${label}`} onClick={() => changeCollapsed(!collapsed)}><span>{label}</span><Glyph name={collapsed ? 'right' : 'down'} size={14} /><span className="thread-section-count" aria-hidden="true">{threads.length || ''}</span></Button>
+    <div id={id} className="thread-section-content" data-collapsed={collapsed} inert={collapsed} aria-hidden={collapsed}><div>{present && <>{visible.map((item, index) => <Button key={item.id} ref={element => { if (element) rows.current.set(item.id, element); else rows.current.delete(item.id); }} title={`${item.temporary ? `临时 · ${item.title}` : item.title}${item.pinned ? '\n拖动调整顺序，或使用 Alt＋上下方向键' : ''}`} aria-current={activeId === item.id ? 'page' : undefined} aria-keyshortcuts={item.pinned ? 'Alt+ArrowUp Alt+ArrowDown' : undefined} disabled={item.pinned && busy} data-pinned-id={item.pinned ? item.id : undefined} data-dragging={dragging === item.id || undefined} data-drop-side={drop?.targetId === item.id ? drop.position : undefined} className={`thread-row ${activeId === item.id ? 'selected' : ''}`} onPointerDown={event => startDrag(event, item)} onPointerMove={moveDrag} onPointerUp={finishDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag} onKeyDown={event => {
       if (event.key === 'Escape' && drag.current) { event.preventDefault(); event.stopPropagation(); cancelDrag(); return; }
       if (!item.pinned || busy || event.nativeEvent.isComposing || event.key === 'Process' || event.nativeEvent.keyCode === 229 || !event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || !['ArrowUp', 'ArrowDown'].includes(event.key)) return;
       event.preventDefault(); const target = visible[index + (event.key === 'ArrowUp' ? -1 : 1)];
       if (target) void move({ threadId: item.id, targetId: target.id, position: event.key === 'ArrowUp' ? 'before' : 'after' });
-    }} onClick={event => { if (event.detail > 0 && suppressClick.current) { event.preventDefault(); suppressClick.current = false; return; } onSelect(item); }}>{item.pinned && <Glyph name="pin" size={12} />}<span>{item.temporary ? `临时 · ${item.title}` : item.title}</span>{item.messages.some(message => message.status === 'running') && <span className="stream-dot" />}</Button>)}{remaining > 0 && <Button className="thread-more" onClick={showMore} title={`显示更多${label}，还有 ${remaining} 个`} aria-label={`显示更多${label}`}><Glyph name="down" size={14} /><span>显示更多</span><span aria-hidden="true">{remaining}</span></Button>}{threads.length === 0 && <p className="sidebar-empty">暂无聊天</p>}</>}</div>
+    }} onClick={event => { if (event.detail > 0 && suppressClick.current) { event.preventDefault(); suppressClick.current = false; return; } onSelect(item); }}>{item.pinned && <Glyph name="pin" size={12} />}<span>{item.temporary ? `临时 · ${item.title}` : item.title}</span>{item.messages.some(message => message.status === 'running') && <span className="stream-dot" />}</Button>)}{remaining > 0 && <Button className="thread-more" onClick={showMore} title={`显示更多${label}，还有 ${remaining} 个`} aria-label={`显示更多${label}`}><Glyph name="down" size={14} /><span>显示更多</span><span aria-hidden="true">{remaining}</span></Button>}{threads.length === 0 && <p className="sidebar-empty">暂无聊天</p>}</>}</div></div>
     {error && <p role="alert" className="thread-reorder-error">无法保存置顶顺序，请重试。</p>}<span role="status" className="thread-reorder-announcement">{announcement}</span>
   </section>;
 }
 
-export function RecentThreads({ threads, activeId, onSelect, onReorder }: Props) {
+export function RecentThreads({ threads, activeId, onSelect, onReorder }: Omit<Props, 'threads'> & { threads?: Thread[] }) {
+  if (!threads) return null;
   const pinned = threads.filter(thread => thread.pinned); const recent = threads.filter(thread => !thread.pinned);
-  return <div className="thread-list">{pinned.length > 0 && <ThreadSection label="已置顶" threads={pinned} activeId={activeId} onSelect={onSelect} onReorder={onReorder} />}<ThreadSection label="最近聊天" threads={recent} activeId={activeId} onSelect={onSelect} onReorder={onReorder} paginate /></div>;
+  return <div className="thread-list"><ThreadSection section="pinned" label="已置顶" threads={pinned} activeId={activeId} onSelect={onSelect} onReorder={onReorder} /><ThreadSection section="recent" label="最近聊天" threads={recent} activeId={activeId} onSelect={onSelect} onReorder={onReorder} paginate /></div>;
 }
