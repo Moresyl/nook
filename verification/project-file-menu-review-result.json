@@ -1,0 +1,169 @@
+{
+  "verifiedAt": "2026-10-20T17:06:46.367Z",
+  "sourceHead": "9dcb22e62f2fcebdd6dbf0f83f90804ea16eee8b",
+  "sourceDiffSha256": "746b113fb55f8b9984c1011ac834be41e7ed099e751736e5d88de869f9e508f1",
+  "sourceInputs": 1077,
+  "compiledFiles": 236,
+  "phases": [
+    {
+      "phase": "check-retry76",
+      "checks": 0,
+      "exits": [],
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "phase": "build-retry52",
+      "checks": 0,
+      "exits": [],
+      "logSha256": "9f5ed67b143aa84d851d9fd79638781c871b908946832f1c3186c837a88fc446"
+    },
+    {
+      "phase": "tree-retry24",
+      "checks": 7,
+      "exits": [
+        {
+          "elapsedMs": 500,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 402,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "logSha256": "676f55596fc9ec230bf354ee257855e9c147ac56b315c2f839cb3be98810836f"
+    },
+    {
+      "phase": "previewintegration-retry5",
+      "checks": 17,
+      "exits": [
+        {
+          "elapsedMs": 437,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 898,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "logSha256": "6e6811158eec82cf6bc45d1a6232c5519025828ff1b9b1529941798f9b15b626"
+    }
+  ],
+  "earlierRuns": [
+    {
+      "phase": "tree-retry22",
+      "exitCode": 1,
+      "logSha256": "9e4fc1fb3f58411ebb4bf12a9b35dd31e1b77db3efe6aac72c3e413c9e7e2e23",
+      "exits": [
+        {
+          "elapsedMs": 470,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 370,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    {
+      "phase": "tree-retry23",
+      "exitCode": 0,
+      "logSha256": "98c9f79efe7965afdc2bbb352c3852ac5a4b5a0f37e410cca9639b0ed1d612c8",
+      "exits": [
+        {
+          "elapsedMs": 400,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 373,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    }
+  ],
+  "fileMenu": {
+    "pointerAndKeyboard": true,
+    "rovingFocus": true,
+    "compositionEscape": true,
+    "outsideAndScrollDismissal": true,
+    "unchangedResizeRetainsMenu": true,
+    "changedResizeDismissesMenu": true,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "openAndDirectoryToggle": true,
+    "newFileParent": true,
+    "copyFailureRetry": true,
+    "lateCopyIsolation": true,
+    "geometry": [
+      {
+        "zoom": 1,
+        "left": 224,
+        "top": 419,
+        "right": 444,
+        "bottom": 532,
+        "width": 760,
+        "height": 540,
+        "chrome": 36
+      },
+      {
+        "zoom": 1.25,
+        "left": 68,
+        "top": 311,
+        "right": 288,
+        "bottom": 423.5999984741211,
+        "width": 608,
+        "height": 432,
+        "chrome": 36
+      },
+      {
+        "zoom": 1.5,
+        "left": 68,
+        "top": 239,
+        "right": 288,
+        "bottom": 351.33333587646484,
+        "width": 507,
+        "height": 360,
+        "chrome": 36
+      }
+    ],
+    "clipboardScope": "Renderer writeText fixture verifies exact path, errors and pending writes; physical clipboard unchanged and not verified."
+  },
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "screenshots": [
+    "119-project-file-menu-dark.png",
+    "120-project-file-menu-light.png"
+  ],
+  "fullCurrentSourceAccepted": false,
+  "fullCurrentDistributionAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Targeted native tree and project-preview integration only. Clipboard writes use a renderer fixture. First native run timed out opening the menu after resize; diagnostic repeat passed without application changes. Final implementation ignores resize notifications when dimensions are unchanged, with regression checks for both unchanged and changed dimensions. Full desktop, current package/install, physical accessibility and all-page design alignment remain pending. An earlier integration run crashed during native close/restart before menu checks (0xc0000409); a successful repeat does not establish the crash root cause or release readiness.",
+  "nativeCrash": {
+    "phase": "previewintegration-retry4",
+    "exitCode": 1,
+    "nativeExitCode": 3221226505,
+    "exception": "0xc0000409",
+    "logSha256": "f6d16fa4d2ad9fda3927e239fb6e010f11ddb4fc624b37b86cff5d37c2be1879",
+    "windowsEventEvidenceSha256": "92821281dfc40c82732477fd1a22883aa9e7419456e2baf0f75bd1dbc80d827b",
+    "rootCauseResolved": false,
+    "occurredBeforeMenuChecks": true
+  }
+}

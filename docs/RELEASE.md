@@ -4,6 +4,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 文件树支持右键及键盘菜单，可直接打开、展开／收起、复制相对路径和在目标目录新建文件；复制失败可重试，旧请求不会干扰新菜单。
+
 - 文件树启用虚拟滚动，保留分页、错误重试、祖先目录与跨视口键盘导航；千文件目录无需同时挂载全部条目。
 - 文件树增加悬停淡显与键盘焦点父目录引导线，支持减少动画；极矮视口仍保持引导线与行对齐。
 - 文件树改用单图标和紧凑缩进，移除八级缩进上限，深层目录继续区分层级。
@@ -19,15 +21,15 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 已验证的范围
 
-最新文件树虚拟滚动通过完整单元、类型、构建及两组原生回归。真实千文件目录分五页加载，末尾导航时挂载 41 个树节点；键盘首尾定位、分页、错误恢复、草稿与预览保持通过。[当前专项与集成证据](../verification/tree-windowing-review-result.json)。三轮完整回归仍对应较早的 `5e82af5` 基线，当前源码和新分发尚需完整复验。
+最新文件树菜单通过类型、构建及两组原生复验，覆盖明暗、三档缩放、键盘与复制错误恢复。[菜单专项与集成证据](../verification/project-file-menu-review-result.json)。首次集成在关闭重启时发生 `0xc0000409`，后续复验通过，但根因尚未确认。虚拟滚动与完整单元见[此前验证](../verification/tree-windowing-review-result.json)；三轮完整回归仍对应较早的 `5e82af5` 基线，当前源码和新分发尚需完整复验。
 
 | 检查 | 当前结果 |
 | --- | --- |
-| 类型与构建 | 通过；当前原生运行的 1075 个源码／夹具输入与 236 个编译文件按哈希核对 |
-| 完整单元测试 | 144 个文件、1690 项通过 |
+| 类型与构建 | 通过；当前原生运行的 1077 个源码／夹具输入与 236 个编译文件按哈希核对 |
+| 完整单元测试 | 此前虚拟滚动轮次 144 个文件、1690 项通过；本轮新增 React 菜单使用原生交互验证，未重跑完整单元 |
 | 覆盖率统计范围 | 语句 97.10%、分支 94.67%、函数 97.83%、行 99.50%；新增布局模型已纳入 |
-| 本轮文件树专项 | 7 项通过，2 次正常退出，461ms／493ms，无强制结束 |
-| 本轮项目预览集成 | 17 项通过，2 次正常退出，444ms／979ms，无强制结束；与树专项含重复覆盖 |
+| 本轮文件树专项 | 7 项通过，2 次正常退出，500ms／402ms，无强制结束 |
+| 本轮项目预览集成 | 复验 17 项通过，2 次正常退出，437ms／898ms，无强制结束；与树专项含重复覆盖。首次运行原生退出异常保留 |
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
 | 模型比较专项 | 6 项通过，3 次正常退出，最长 8821ms；实际翻页、原草稿、完整备份及缩放验证通过 |
 | 分栏基线完整源码回归 | 411 项通过，75 次正常退出，最长 1805ms，无强制结束；不覆盖后续文件树修改 |
@@ -36,7 +38,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 分栏基线分发验收 | 表面、文字提示、窗口关闭、启动、便携包与原运行记录检查通过；11 份运行记录匹配同组程序文件 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
-文件树专项包括节点数量有界、千文件导航、祖先堆叠／推离、分页、搜索刷新、未保存草稿及暗色三档缩放。完整单元之后修正了占位块样式并补充原生观察脚本；应用逻辑和单元测试字节保持一致，随后构建及两组原生验证通过。
+文件树专项包括节点数量有界、千文件导航、祖先堆叠／推离、分页、搜索刷新、未保存草稿，以及本轮菜单。复制使用渲染器夹具观察精确相对路径、失败和异步完成顺序，不写系统剪贴板；不能据此声称系统剪贴板已验证。
 
 输入法事件保护使用合成事件检查，不等于物理输入法验收。覆盖率遵循仓库现有统计范围，不能将其解释为所有渲染界面的覆盖率。
 
@@ -48,8 +50,9 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 已有完整分发验收对应 `5e82af5` 的同组输入与二进制，不能继承为后续虚拟滚动版本通过。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
-- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树虚拟滚动已验证，目录压缩、完整目录操作及全部布局状态仍待落实。
+- 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树虚拟滚动已验证，完整目录操作及全部布局状态仍待落实；目录压缩属于参考审阅列表的单独配置，普通工作区默认关闭。
 - 当前完整源码与新分发待复验；未逐张审阅全部截图，也未完成物理输入法、辅助技术与其他系统 DPI 的验收。
+- 本轮首次集成在原生关闭重启时发生 `0xc0000409`，Windows 同进程事件与失败日志已留存；复验通过不能替代根因分析，发布前仍需处理。
 - 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。已归档运行见[5e82af5 的流水线](https://github.com/Moresyl/nook/actions/runs/39433081996)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
 - 原 Chrome 连接此前核验缺少认证令牌；本轮工具列表未提供 `computer-use` 所需的 `node_repl`，未复查浏览器状态，尚未通过浏览器完成发布。
 
@@ -61,7 +64,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. The windowed file tree passes 1690 unit tests, type checking, build, native tree checks and project-preview integration. A real thousand-file directory mounts 41 tree nodes during end-of-list navigation. Full regression, new distribution acceptance and complete design alignment remain pending. The original hosted workflow is blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. The file-tree menu passes type checking, build and repeated native tree/preview checks. An earlier integration run crashed during native shutdown; its root cause remains unresolved. Full regression, new distribution acceptance and complete design alignment remain pending. The original hosted workflow was blocked by account billing or spending limits.
 
 ## 历史证据
 

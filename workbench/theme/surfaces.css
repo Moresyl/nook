@@ -231,9 +231,9 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .thread-row-actions { width: 24px; height: 24px; padding: 0; opacity: 0; font-size: 19px; line-height: 1; }
 .thread-row-container:hover .thread-row-actions, .thread-row-container:focus-within .thread-row-actions { opacity: 1; }
 @media (hover: none) { .thread-row-actions { opacity: 1; } }
-.thread-actions-menu { position: fixed; z-index: 100; width: min(220px, calc(100vw - 16px)); max-height: calc(100dvh - 60px); overflow: auto; padding: 6px; border: 1px solid var(--ds-border); border-radius: var(--radius-2xl); background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: var(--shadow-lg); }
-.thread-actions-menu > .button { display: flex; width: 100%; min-height: 32px; justify-content: flex-start; padding: 6px 10px; font-size: 14px; }
-.thread-actions-menu > p { margin: 6px; font-size: 12px; color: var(--ds-danger); }
+.thread-actions-menu, .project-file-menu { position: fixed; z-index: 100; width: min(220px, calc(100vw - 16px)); max-height: calc(100dvh - 60px); overflow: auto; padding: 6px; border: 1px solid var(--ds-border); border-radius: var(--radius-2xl); background: var(--ds-bg-elevated); color: var(--ds-text); box-shadow: var(--shadow-lg); }
+.thread-actions-menu > .button, .project-file-menu > .button { display: flex; width: 100%; min-height: 32px; justify-content: flex-start; padding: 6px 10px; font-size: 14px; }
+.thread-actions-menu > p, .project-file-menu > p { margin: 6px; font-size: 12px; color: var(--ds-danger); }
 .thread-action-error { margin: 8px 0 0; font-size: 13px; line-height: 20px; color: var(--ds-danger); }
 .thread-section-toggle { width: 100%; justify-content: flex-start; gap: 4px; margin-top: 12px; padding: 2px 8px; min-height: 30px; font-size: 14px; line-height: 21px; font-weight: 500; color: var(--ds-text-secondary); }
 .thread-section-toggle > svg { flex-shrink: 0; opacity: 0; }

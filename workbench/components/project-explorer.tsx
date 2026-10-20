@@ -6,6 +6,7 @@ import { TextHint, useControlTooltip } from './control-tooltip';
 import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeScrollDelta, type ProjectTreeState } from './project-tree';
 import { projectTreeLayout, projectTreeSegments, type ProjectTreeLayoutNode } from './project-tree-layout';
 import { ProjectFileFinder } from './project-file-finder';
+import { ProjectFileMenu, type ProjectFileMenuRequest } from './project-file-menu';
 
 type Props = { projectId: string; active: string; revision: number; hidden: boolean; onOpen: (path: string) => void; onNew: (directory: string) => void };
 const parent = (path: string) => path.slice(0, Math.max(0, path.lastIndexOf('/')));
@@ -17,10 +18,10 @@ function revealRow(node: HTMLElement | undefined) {
   viewport.scrollTop += projectTreeScrollDelta(top, top + row.getBoundingClientRect().height, viewport.clientHeight, Number(node!.getAttribute('aria-level')));
 }
 
-function TreeItem({ entry, level, position, size, expanded, selected, focusedParent, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, children }: {
+function TreeItem({ entry, level, position, size, expanded, selected, focusedParent, tabIndex, register, onFocus, onExit, onKeyDown, onActivate, onMenu, children }: {
   entry: FileEntry; level: number; position: number; size: number; expanded: boolean; selected: boolean; focusedParent: string; tabIndex: number;
   register: Ref<HTMLDivElement>; onFocus: () => void; onExit: () => void; onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
-  onActivate: () => void; children: ReactNode;
+  onActivate: () => void; onMenu: (x: number, y: number) => void; children: ReactNode;
 }) {
   const row = useRef<HTMLDivElement>(null);
   const tooltip = useControlTooltip<HTMLDivElement>(entry.relativePath, row);
@@ -30,7 +31,7 @@ function TreeItem({ entry, level, position, size, expanded, selected, focusedPar
     onBlur={event => { if (event.target === event.currentTarget) { tooltip.hide(); if (!event.currentTarget.closest('[role="tree"]')?.contains(event.relatedTarget)) onExit(); } }}
     onKeyDown={onKeyDown}>
     <div ref={row} data-sticky={entry.directory && expanded || undefined} className={`project-tree-row ${selected ? 'selected' : ''}`} style={{ '--tree-depth': level - 1, '--tree-file-inset': !entry.directory && level > 1 ? '3.75px' : '0px', ...(entry.directory && expanded ? { top: `calc(var(--tree-sticky-enabled, 0) * min(${(level - 1) * 28 - 4}px, var(--tree-sticky-limit, 0px)))`, zIndex: 10000 - level } : {}) } as CSSProperties}
-      onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={tooltip.hide}
+      onPointerEnter={tooltip.enter} onPointerMove={tooltip.move} onPointerLeave={tooltip.leave} onPointerDown={tooltip.press} onContextMenu={event => { event.preventDefault(); event.stopPropagation(); tooltip.hide(); onMenu(event.clientX, event.clientY); }}
       onClick={event => { tooltip.press(); event.stopPropagation(); onActivate(); }}>
       {Array.from({ length: level - 1 }, (_, index) => {
         const ancestor = entry.relativePath.split('/').slice(0, index + 1).join('/');
@@ -55,6 +56,7 @@ function TreeStatus({ path, onMeasure, children }: { path: string; onMeasure: (p
 export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, onNew }: Props) {
   const [state, setState] = useState<ProjectTreeState>({ folders: new Map(), expanded: new Set() });
   const [focused, setFocused] = useState('');
+  const [menu, setMenu] = useState<ProjectFileMenuRequest | null>(null), menuSequence = useRef(0);
   const [directory, setDirectory] = useState('');
   const [query, setQuery] = useState(''), [searchRefresh, setSearchRefresh] = useState(0), [revealRequest, setRevealRequest] = useState(0);
   const queryRef = useRef(query); queryRef.current = query;
@@ -70,6 +72,8 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const anchor = useRef<{ path: string; offset: number } | null>(null);
   const layout = useMemo(() => projectTreeLayout(state, heights), [state, heights]), rows = layout.rows;
   const current = rows.some((row) => row.entry.relativePath === focused) ? focused : rows[0]?.entry.relativePath ?? '';
+  useEffect(() => { setMenu(null); }, [projectId, query, hidden]);
+  useEffect(() => { if (menu && !layout.nodes.has(menu.entry.relativePath)) setMenu(null); }, [layout, menu]);
   const updateViewport = useCallback(() => {
     const element = viewport.current; if (!element) return;
     setView(before => before.top === element.scrollTop && before.height === element.clientHeight ? before : { top: element.scrollTop, height: element.clientHeight });
@@ -140,6 +144,11 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   }, [revealRequest, projectId]);
 
   function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); revealRow(nodes.current.get(entry.relativePath)); }
+  function openMenu(entry: FileEntry, x: number, y: number) {
+    const anchor = nodes.current.get(entry.relativePath); if (!anchor) return;
+    typing.current.query = ''; anchor.focus({ preventScroll: true });
+    setMenu({ id: ++menuSequence.current, entry, anchor, x, y });
+  }
   function activate(entry: FileEntry) {
     typing.current.query = '';
     nodes.current.get(entry.relativePath)?.focus({ preventScroll: true }); focus(entry);
@@ -148,6 +157,10 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   }
   function key(entry: FileEntry, event: KeyboardEvent<HTMLDivElement>) {
     if (event.target !== event.currentTarget || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) return;
+    if (event.key === 'ContextMenu' || event.shiftKey && event.key === 'F10') {
+      event.preventDefault(); event.stopPropagation();
+      const rect = event.currentTarget.querySelector('.project-tree-row')!.getBoundingClientRect(); openMenu(entry, rect.left, rect.bottom); return;
+    }
     if (event.altKey || event.ctrlKey || event.metaKey) { typing.current.query = ''; return; }
     if (event.key !== ' ' && Array.from(event.key).length === 1) {
       const now = performance.now();
@@ -175,7 +188,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
         if (segment.kind === 'space') return <div key={`space-${segment.top}`} aria-hidden="true" className="project-tree-space" style={{ height: segment.height }} />;
         const node = segment.node, { entry, level } = node.row!;
         const expanded = entry.directory && state.expanded.has(entry.relativePath);
-        return <TreeItem key={entry.relativePath} entry={entry} level={level} position={node.position} size={node.size} expanded={expanded} selected={entry.relativePath === active} focusedParent={parent(current)} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onExit={() => { typing.current.query = ''; }} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)}>
+        return <TreeItem key={entry.relativePath} entry={entry} level={level} position={node.position} size={node.size} expanded={expanded} selected={entry.relativePath === active} focusedParent={parent(current)} tabIndex={entry.relativePath === current ? 0 : -1} register={(element) => { if (element) nodes.current.set(entry.relativePath, element); else nodes.current.delete(entry.relativePath); }} onFocus={() => focus(entry)} onExit={() => { typing.current.query = ''; }} onKeyDown={(event) => key(entry, event)} onActivate={() => activate(entry)} onMenu={(x, y) => openMenu(entry, x, y)}>
           {expanded && <div role="group">{folder(node)}</div>}
         </TreeItem>;
       })}
@@ -187,5 +200,5 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       </TreeStatus>}
     </>;
   }
-  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div ref={viewport} onScroll={updateViewport} className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder(layout.root)}</div></ProjectFileFinder></div>;
+  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div ref={viewport} onScroll={updateViewport} className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder(layout.root)}</div></ProjectFileFinder>{menu && !hidden && !query && <ProjectFileMenu key={menu.id} request={menu} expanded={state.expanded.has(menu.entry.relativePath)} onClose={() => setMenu(null)} onActivate={() => activate(menu.entry)} onNew={() => onNew(menu.entry.directory ? menu.entry.relativePath : parent(menu.entry.relativePath))} />}</div>;
 }

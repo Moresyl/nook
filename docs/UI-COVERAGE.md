@@ -1,6 +1,6 @@
 # 界面对照范围
 
-当前清单覆盖 79 个工作台 TSX／CSS 文件、7 个主页面，以及设置工作区、快速聊天和插件面板入口。相较 `4dfe2d4` 清单增加最近聊天、会话操作菜单和共用重命名对话框三个组件。它记录需要核对的范围，不代表已完成比例。文件哈希、分类和差异见[当前清单证据](../verification/ui-coverage-current-review-result.json)，[旧清单](../verification/ui-coverage-review-result.json)保留作历史对照。
+已有清单记录 79 个工作台 TSX／CSS 文件、7 个主页面，以及设置工作区、快速聊天和插件面板入口；本轮另增加文件树操作菜单，范围为 80 个文件。清单记录需要核对的范围，不代表已完成比例；历史哈希不能代替后续修改的当前哈希。[79 文件清单证据](../verification/ui-coverage-current-review-result.json)与[旧清单](../verification/ui-coverage-review-result.json)均保留作对照。
 
 参考资料版本为 26.930.41038／build 13022。已有局部对齐和历史测试不能替代当前全部页面的验收；文件数也不等于交互状态数。PDF、浏览器网站、插件内容等动态表面需要各自的运行证据。
 
@@ -9,7 +9,7 @@
 | 范围 | 当前入口 | 继续核对的重点 |
 | --- | --- | --- |
 | 首页与聊天 | `workbench.tsx`、`transcript.tsx`、`composer.tsx` | 首页、流式回复、编辑、引用、工具过程、空态与失败态；正文和输入框的实际祖先作用域 |
-| 项目 | `pages/projects.tsx` 与项目组件 | 虚拟滚动、千文件导航、祖先目录停留／推离、缩进、引导线及高缩放已有专项；继续落实目录压缩与完整目录操作，以及编辑器、审阅、分支、工作树、终端和预览的剩余状态 |
+| 项目 | `pages/projects.tsx` 与项目组件 | 虚拟滚动、千文件导航、祖先目录停留／推离、缩进、引导线及高缩放已有专项；继续落实完整目录操作，以及编辑器、审阅、分支、工作树、终端和预览的剩余状态。目录压缩在参考审阅列表明确开启，普通工作区默认关闭 |
 | 助手与模板 | `pages/collections.tsx`、`pages/prompt-templates.tsx` | 列表、创建编辑、导入、变量填写和失败重试的实际参考入口 |
 | 资料库 | `pages/knowledge-library.tsx`、`pages/mcp-content-browser.tsx` | 搜索、来源、导入、解析中、失败和长结果；本地与远程资料边界 |
 | 自动任务 | `pages/automations.tsx` | 列表、编辑、调度与运行状态；窄窗口和长内容 |
