@@ -35,7 +35,12 @@ export async function verifyWorktreeOverview({ page, application, getApplication
     await waitForBridge(page, () => document.querySelector('.worktree-overview')?.getAttribute('aria-busy') === 'false');
   }
   async function keyboardRefresh() {
-    await refresh().focus(); await page.keyboard.press('Enter'); await settled();
+    await refresh().focus();
+    await refresh().evaluate(button => {
+      const content = button.closest('.settings-detail');
+      content.scrollTop += button.getBoundingClientRect().top - content.getBoundingClientRect().top - content.clientTop - 1;
+    });
+    await page.keyboard.press('Enter'); await settled();
     const zoom = await application.evaluateMain(`${mainWindow}.webContents.getZoomFactor()`);
     const focus = await refresh().evaluate(button => {
       const content = button.closest('.settings-detail'), rect = button.getBoundingClientRect(), viewport = content.getBoundingClientRect(), style = getComputedStyle(button);

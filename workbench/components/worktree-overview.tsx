@@ -54,7 +54,10 @@ export function WorktreeOverview({ state, disabled, onOpenConversation, onCreate
     if (disabled || loading) return;
     const control = refreshFocus.current; refreshFocus.current = null;
     const active = document.activeElement;
-    if (control?.isConnected && !control.disabled && !control.closest('[hidden]') && (active === document.body || active === control.closest('dialog'))) control.focus({ preventScroll: true });
+    if (control?.isConnected && !control.disabled && !control.closest('[hidden]') && (active === control || active === document.body || active === control.closest('dialog'))) {
+      control.focus({ preventScroll: true });
+      control.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
   }, [disabled, loading]);
   useLayoutEffect(() => { if ((restored || removed) && !loading) { noticeRef.current?.focus(); noticeRef.current?.scrollIntoView({ block: 'nearest' }); } }, [restored, removed, loading]);
   const groups = useMemo(() => worktreeOverviewGroups(state.projects, state.threads, snapshots), [state.projects, state.threads, snapshots]);
