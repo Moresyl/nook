@@ -24,24 +24,24 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 本轮文件树专项 | 最终复跑 7 项通过，2 次正常退出，502ms／412ms，无强制结束 |
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
 | 模型比较专项 | 6 项通过，3 次正常退出，最长 8821ms；实际翻页、原草稿、完整备份及缩放验证通过 |
-| 基线完整源码桌面回归 | `f6aecc4` 的 411 项通过，75 次正常退出，最长 2527ms，无强制结束；530 份变化输出已按哈希归档。后续分栏改动需对应验证 |
+| 当前完整源码桌面回归 | `4a6b0dd` 的 411 项通过，75 次正常退出，最长 1805ms，无强制结束；483 份变化输出已按哈希归档 |
 | 前一轮会话专项 | 11 项通过，6 次正常退出；实际导出文件含 40 条消息，6623 字节，已核对哈希 |
 
 文件树专项包括祖先堆叠、子树末尾推离、点击与键盘折叠、分页、搜索刷新、未保存草稿及暗色 100%／125%／150% 缩放。原草稿与磁盘文件逐字核对保留。完整单元之后调整了界面样式和原生观察脚本；应用逻辑和单元测试字节保持一致。后续侧栏修复另行验证。
 
 输入法事件保护使用合成事件检查，不等于物理输入法验收。覆盖率遵循仓库现有统计范围，不能将其解释为所有渲染界面的覆盖率。
 
-基线完整回归 `full-retry12` 已全部通过，修正后的目录清理、侧栏点击及模型比较分页均在完整工作区中验证。三轮失败现场保留；输入和编译文件逐一核对，原仓库 HEAD、状态、差异和索引未变。该记录不覆盖后续预览分栏改动。[基线完整源码证据](../verification/sticky-layout-full-review-result.json) · [分页修正证据](../verification/comparison-pagination-review-result.json)
+当前完整回归 `full-retry13` 已全部通过，包含预览分栏及此前目录清理、侧栏点击和模型比较分页修正。1,072 个输入和 236 个编译文件逐一核对，原仓库 HEAD、状态、差异和索引未变。历史失败现场继续保留。[当前完整源码证据](../verification/preview-resize-full-review-result.json) · [前一基线](../verification/sticky-layout-full-review-result.json)
 
 [最终专项与清理修正证据](../verification/sticky-integration-review-result.json) · [粘性目录证据](../verification/project-tree-sticky-review-result.json) · [侧栏点击修复证据](../verification/sidebar-hit-area-review-result.json) · [前缀导航证据](../verification/project-tree-prefix-review-result.json) · [前一轮会话证据](../verification/thread-action-completion-review-result.json)
 
 ## 尚未完成
 
-当前预览分栏专项 10 项、文件树与预览集成 17 项通过，合计 3 次正常退出。类型检查、构建及 143 个文件的 1,685 项单元测试通过；完整回归与安装验收仍需覆盖当前改动。[分栏专项证据](../verification/preview-resize-review-result.json)
+当前预览分栏专项 10 项、文件树与预览集成 17 项通过，合计 3 次正常退出；后续完整源码回归也已通过。安装与分发验收仍需覆盖当前改动。[分栏专项证据](../verification/preview-resize-review-result.json)
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。粘性目录已专项验证，文件树虚拟化、缩进及全部布局状态仍待落实与验证。
-- 基线源码完整回归已通过；后续预览分栏改动的完整回归、新安装包、包内回归、实际安装和分发验收仍待完成。源码通过不能替代包内与安装验证。
-- 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[8db1afa 的流水线](https://github.com/Moresyl/nook/actions/runs/39414934070)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
+- 当前源码完整回归已通过；新安装包、包内回归、实际安装和分发验收仍待完成。源码通过不能替代包内与安装验证。
+- 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。最新已归档运行见[4a6b0dd 的流水线](https://github.com/Moresyl/nook/actions/runs/39426099430)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
 - 原 Chrome 连接上次核验缺少认证令牌，尚未通过浏览器完成发布。
 
 发布继续使用[原 Windows 流水线](https://github.com/Moresyl/nook/actions/workflows/windows.yml)，完成验收后发布已获授权。
@@ -52,7 +52,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. The f6aecc4 baseline passes 411 source desktop checks with 75 normal exits and no forced termination. Subsequent preview-resize changes require their own verification. Full design alignment, current package and installation acceptance, and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. The current source, including preview-resize changes, passes 411 desktop checks with 75 normal exits and no forced termination. Full design alignment, current package and installation acceptance, and publication remain pending. The original hosted workflow is blocked by account billing or spending limits.
 
 ## 历史证据
 
