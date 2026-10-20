@@ -1,0 +1,55 @@
+{
+  "verifiedAt": "2026-10-20T03:17:45.273Z",
+  "sourceBase": "0732ce829a4697695d7aaac094a336dd201d49b1",
+  "sourceDiffSha256": "b8e2f1b4c46c9154d09ae92a26cd120821618c8c2c764a9803b08520f565d7ee",
+  "change": "Command palette ignores composition confirmation and changes pointer selection only on actual movement.",
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "changedAfterBuild": [
+    "scripts/verify-commands.mjs"
+  ],
+  "nativeChecks": 6,
+  "exits": [
+    {
+      "elapsedMs": 454,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 206,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    },
+    {
+      "elapsedMs": 110,
+      "forced": false,
+      "exitCode": 0,
+      "signalCode": null
+    }
+  ],
+  "sourceInputs": 1056,
+  "compiledFiles": 236,
+  "archivedOutputs": 7,
+  "failures": [
+    {
+      "phase": "commands-retry1",
+      "logSha256": "8027d027572021f5cad8ee2f595deefdbb5a45136c1a8e813cb2c48c6e29cbf2",
+      "archivedOutputs": 1
+    },
+    {
+      "phase": "commands-retry2",
+      "logSha256": "a724b3889a4a67dc71394b7749b12f81cd10534fc56716d563c2bc1fdafa7583",
+      "archivedOutputs": 13
+    }
+  ],
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "fullSourceAccepted": false,
+  "newPackagedAccepted": false,
+  "newInstalledAccepted": false,
+  "completeReferenceAdoption": false,
+  "published": false,
+  "boundary": "Original command suite covers drafts, attachments, plugin permissions, errors, theme, zoom and restart. Composition flags and stationary mouse boundary are controlled events; keyboard scrolling and subsequent hover use native automation. First old-build run reproduced IME execution; second run reached layout checks but Escape dismissed a hover hint before the modal. Final observer uses the existing hint-aware Escape helper. Only this observer changed after the successful build. No physical IME, new full-unit, complete desktop or visual parity claim."
+}

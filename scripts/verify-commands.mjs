@@ -18,8 +18,22 @@ export async function verifyCommands({ page, application, getApplication, direct
   async function open(text = '>') { await page.waitForFunction(() => document.querySelector('.workspace-header button[aria-label="打开命令面板"]')?.disabled === false); await page.keyboard.press(text.startsWith('>') ? 'Control+Shift+p' : 'Control+k'); await palette().waitFor(); await query().fill(text); }
   async function choose(text) { await open(text); await page.keyboard.press('Enter'); await palette().waitFor({ state: 'hidden' }); }
   await open('>');
+  await query().fill('>打开项目');
+  for (const event of [{ key: 'Enter', isComposing: true }, { key: 'Enter', keyCode: 229 }, { key: 'Process' }]) {
+    await query().evaluate((element, event) => element.dispatchEvent(new KeyboardEvent('keydown', { ...event, bubbles: true, cancelable: true })), event);
+    assert.equal(await palette().isVisible(), true, 'IME confirmation must not execute a command');
+    assert.equal(await query().inputValue(), '>打开项目');
+  }
+  await query().fill('>');
+  const options = palette().getByRole('option'), firstId = await options.first().getAttribute('id'), lastId = await options.last().getAttribute('id');
+  await options.first().hover(); await query().focus(); await query().press('End');
+  await page.waitForFunction(id => document.querySelector('[aria-label="搜索聊天与命令"]')?.getAttribute('aria-activedescendant') === id, lastId);
+  assert.ok(await palette().locator('.command-list').evaluate(element => element.scrollTop > 0));
+  await options.first().dispatchEvent('mouseover', { bubbles: true });
+  assert.equal(await query().getAttribute('aria-activedescendant'), lastId, 'A stationary pointer boundary must not replace command keyboard selection');
+  await options.first().hover(); assert.equal(await query().getAttribute('aria-activedescendant'), firstId);
   const layoutProof = await verifyCommandPaletteLayouts({ page, application, palette, query, screenshots });
-  await page.keyboard.press('Escape');
+  await dismissModalWithEscape(page, palette());
   await input().fill('COMMAND_DRAFT_KEEP'); await attach(); await waitForBridge(page, async (id) => (await window.qiyao.load()).composerDrafts.find((draft) => draft.threadId === id)?.attachments.length === 1, ownerId); await input().click(); await open(''); await page.keyboard.press('End'); assert.equal(await palette().getByRole('option', { selected: true }).count(), 1); const navigation = await query().evaluate((element) => ({ focused: document.activeElement === element, active: element.getAttribute('aria-activedescendant'), controls: element.getAttribute('aria-controls'), top: element.getBoundingClientRect().top, bottom: element.getBoundingClientRect().bottom, height: innerHeight })); assert.equal(navigation.focused, true); assert.ok(navigation.top >= 0 && navigation.bottom <= navigation.height); assert.ok(await page.locator(`[id="${navigation.active}"]`).count()); assert.equal(await page.locator(`[id="${navigation.controls}"]`).getAttribute('role'), 'listbox'); await page.keyboard.press('Home'); assert.equal(await palette().getByRole('option', { selected: true }).getAttribute('aria-label'), '新聊天'); await page.screenshot({ path: join(screenshots, '87-command-palette-light.png') }); await query().fill('>打开项目'); await query().evaluate((element) => element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', isComposing: true, bubbles: true }))); assert.equal(await palette().isVisible(), true); await page.keyboard.press('Control+n'); assert.equal((await page.evaluate(() => window.qiyao.load())).activeThreadId, ownerId); assert.equal(await query().inputValue(), '>打开项目'); await page.keyboard.press('Enter'); await palette().waitFor({ state: 'hidden' }); await page.locator('.primary-nav .selected').filter({ hasText: '项目' }).waitFor(); await choose('>返回当前聊天'); assert.equal(await input().inputValue(), 'COMMAND_DRAFT_KEEP'); await page.locator('.composer').getByRole('button', { name: '预览 command-context.txt', exact: true }).waitFor(); await input().click(); await open('>NOT_A_COMMAND'); await palette().getByRole('status').getByText('没有匹配的聊天或命令。').waitFor(); await page.keyboard.press('Escape'); await palette().waitFor({ state: 'hidden' }); await page.waitForFunction(() => document.activeElement === document.querySelector('textarea[aria-label="消息"]')); assert.equal(fixture.requests.length, 1);
   for (const [text, label] of [['>打开助手与模板', '助手'], ['>打开资料库', '资料库'], ['>打开自动任务', '自动任务']]) { await choose(text); await page.locator('.primary-nav .selected').filter({ hasText: label }).waitFor(); }
   await choose('>打开已归档'); await page.getByRole('heading', { name: '已归档', exact: true }).waitFor(); await choose('>返回当前聊天');
