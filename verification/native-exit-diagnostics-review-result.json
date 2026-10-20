@@ -1,0 +1,133 @@
+{
+  "verifiedAt": "2026-10-20T17:21:40.533Z",
+  "sourceHead": "f31b0fb1192b22603e60db164bf52bfead4bb51d",
+  "sourceDiffSha256": "97e7671f126374cf7f9c35fe378a4cbf495736a261d58842a05d2961c6df3151",
+  "sourceInputs": 1077,
+  "compiledFiles": 236,
+  "phases": [
+    {
+      "phase": "check-retry77",
+      "checks": 0,
+      "exits": [],
+      "changedAfterRun": [],
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "phase": "previewintegration-retry6",
+      "checks": 17,
+      "exits": [
+        {
+          "elapsedMs": 438,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1061,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "changedAfterRun": [
+        "scripts/desktop-exit.d.mts",
+        "scripts/desktop-exit.mjs",
+        "scripts/verify-desktop.mjs",
+        "verification/desktop-exit.test.ts"
+      ],
+      "logSha256": "2950f1075ef5026653775d97fcfe52f93685ccde064b9088b5025eb24b24d919"
+    },
+    {
+      "phase": "previewintegration-retry7",
+      "checks": 17,
+      "exits": [
+        {
+          "elapsedMs": 451,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 532,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "changedAfterRun": [],
+      "logSha256": "b42931ff476c0ce539c365af25959b27f46d3dfff7d2608aa290439a177186a3"
+    }
+  ],
+  "unit": {
+    "tests": 10,
+    "logSha256": "795a4b9fda6a05f74862f0afd371f4d237322245bde32f4089d2cdb2cd6ee7b3",
+    "coverage": {
+      "lines": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 1,
+        "covered": 1,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    }
+  },
+  "failedIntegration": {
+    "phase": "previewintegration-retry4",
+    "nativeExitCode": 3221226505,
+    "faultRva": "0x30bf035",
+    "containingFunction": "abort",
+    "sourceLine": 77,
+    "sourceFile": "minkernel/crts/ucrt/src/appcrt/startup/abort.cpp",
+    "symbolSha256": "2413f95567e62b1bbf7bff25fde2d541a35e602f153e2cc2a2341c7e1f5625bc",
+    "rootCauseResolved": false
+  },
+  "diagnosticDump": {
+    "stackSha256": "402f3ad20a2b9814f8c512347be8d266083038caedda71da60697fc671dfdbb8",
+    "type": "Simulated Exception",
+    "pid": 34584,
+    "frames": [
+      {
+        "name": "crash_reporter::DumpWithoutCrashing()",
+        "module": "electron.exe",
+        "file": "W:\\w\\electron\\electron\\src\\components\\crash\\core\\app\\crashpad.cc",
+        "line": 269
+      },
+      {
+        "name": "crash_reporter::internal::DumpProcessForHungInputThread(void *)",
+        "module": "electron.exe",
+        "file": "W:\\w\\electron\\electron\\src\\components\\crash\\core\\app\\crashpad_win.cc",
+        "line": 208
+      }
+    ],
+    "isOriginalMainCrash": false,
+    "uploadToServer": false
+  },
+  "productBytesUnchanged": true,
+  "originalMainPreserved": true,
+  "originalDeadlinesAndGuardsRetained": true,
+  "published": false,
+  "boundary": "Improves original native exit failure evidence only; no runtime crash fix is claimed. Two diagnostic integration runs pass; the captured renderer nonfatal hang snapshot is not the earlier main-process abort. Full current desktop/package/install and complete UI adoption remain pending."
+}

@@ -416,7 +416,7 @@ async function launch() {
       for (const line of diagnostics.split('\n').filter(line => line.startsWith('Desktop shutdown resources '))) console.log(line);
       assert.equal(forced, false, 'The desktop must flush drafts and exit without being forcibly killed.');
     }
-    if (!forcedClose) verifyDesktopExit(child.exitCode, child.signalCode);
+    if (!forcedClose) verifyDesktopExit(child.exitCode, child.signalCode, diagnostics);
     await browser.close().catch(() => {});
   } };
   if (process.env.NOOK_TEST_LOCAL_CRASH_DUMPS === '1') {
