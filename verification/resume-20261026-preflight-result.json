@@ -1,0 +1,120 @@
+{
+  "unit": {
+    "coverage": {
+      "lines": {
+        "total": 4635,
+        "covered": 4612,
+        "skipped": 0,
+        "pct": 99.5
+      },
+      "statements": {
+        "total": 7703,
+        "covered": 7480,
+        "skipped": 0,
+        "pct": 97.1
+      },
+      "functions": {
+        "total": 1710,
+        "covered": 1673,
+        "skipped": 0,
+        "pct": 97.83
+      },
+      "branches": {
+        "total": 5390,
+        "covered": 5103,
+        "skipped": 0,
+        "pct": 94.67
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "passed": true,
+    "files": 144,
+    "tests": 1693
+  },
+  "hosted": {
+    "run": {
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "completedAt": "2026-10-26T12:51:55Z",
+          "conclusion": "failure",
+          "databaseId": 121582095241,
+          "name": "verify",
+          "startedAt": "2026-10-26T12:51:53Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/Moresyl/nook/actions/runs/40325815060/job/121582095241"
+        },
+        {
+          "completedAt": "2026-10-26T12:51:55Z",
+          "conclusion": "skipped",
+          "databaseId": 121582113159,
+          "name": "publish",
+          "startedAt": "2026-10-26T12:51:55Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/Moresyl/nook/actions/runs/40325815060/job/121582113159"
+        }
+      ],
+      "status": "completed",
+      "url": "https://github.com/Moresyl/nook/actions/runs/40325815060"
+    },
+    "annotations": [
+      "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
+    ]
+  },
+  "desktop": {
+    "state": "in_progress",
+    "complete": false,
+    "log": "D:/GR/nook-reference-desktop.log"
+  },
+  "logs": [
+    {
+      "name": "nook-reference-unit-validation",
+      "sha256": "ca345340612d41cc55775ae5d626c0f73df2a993f02ecfc02c9a7c05ea236c0a"
+    },
+    {
+      "name": "nook-reference-build",
+      "sha256": "ac45af0afc865b2c200cc98418c6aa42db1472f21e2a0a8b7915b889b264fcff"
+    },
+    {
+      "name": "nook-reference-package",
+      "sha256": "a4a1334c349c80381a945fddcf988aa4bf53b70223c87a2722e1b606fbcaedc9"
+    },
+    {
+      "name": "nook-reference-package-audit",
+      "sha256": "fe43ce3b3928359e602f70efebc095c5a898e9fcf546fb0b385c4d6b8e01332e"
+    }
+  ],
+  "boundary": "Unit, build and package audit only. Complete latest source, packaged and installed desktop verification remains outstanding. Historical native shutdown abort and full design alignment are unresolved. Hosted run executes zero verification steps because of account billing/spending limits.",
+  "typecheckPassed": true,
+  "verifiedAt": "2026-10-26T12:55:20.4360266Z",
+  "packageAudit": {
+    "dependencyLegalDocuments": 401,
+    "passed": true,
+    "productFiles": 239,
+    "distributionLegalAndSourceFiles": 20
+  },
+  "artifacts": [
+    {
+      "sha256": "f65237a86499ae08b12da87d69d98f362aa4ec745a773df1fc798d8859b4956d",
+      "name": "Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "bytes": 240179846,
+      "signature": "NotSigned"
+    },
+    {
+      "sha256": "d394dd593cfe7c3c96303b288a8f8183f74106638cf75f30cdf2ad1945fc9950",
+      "name": "Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "bytes": 309706771,
+      "signature": "NotSigned"
+    }
+  ],
+  "sourceHead": "7a2a7bf472f90feceb593c55668ffa35b7e460b9",
+  "buildPassed": true,
+  "published": false
+}
