@@ -1,0 +1,18 @@
+{
+  "issue": "The persisted rename may be observable before the renderer closes its modal; keyboard shortcuts are correctly ignored while a modal remains open.",
+  "after": {
+    "checks": 6,
+    "logSha256": "BDB0A0A8DBC41F6C7FB50EE414E80692CF665346577B7E642D6316F32AD43F95",
+    "exitCode": 0
+  },
+  "completeDesktop": "pending rerun",
+  "productCommit": "5483ce4a6a5450f4e8f6efc200b1bdf6b6d42445",
+  "change": "Wait for both rename dialogs to become hidden after confirming persisted titles; preserve original keyboard actions and deadlines.",
+  "before": {
+    "failure": "Command palette did not open after the first rename; reproduced in focused verification.",
+    "logSha256": "8AEDDB7F5C9B35D8CA66506FB9950B48FD52C23F80FC8432CFF37E6F480D3F06",
+    "exitCode": 1
+  },
+  "productChanged": false,
+  "verifiedAt": "2026-10-26T13:36:41.7346745Z"
+}
