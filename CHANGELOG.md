@@ -128,6 +128,9 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 新功能
 
+- **文件树与预览**：支持右键及键盘菜单、相对路径复制、在目标目录新建文件、前缀查找、分页虚拟滚动、祖先目录停留和层级引导线；并排预览可拖动调整、双击均分或取消恢复原比例。
+- **会话导航**：置顶与最近聊天分别折叠并记住状态，最近聊天逐批加载；置顶支持鼠标拖动及键盘排序。会话菜单提供重命名、置顶、归档、导出和删除，失败保留原数据与重试入口。
+
 - 主对话正文上限为 48rem，长表格按可用聊天宽度自适应展开；快速聊天与窄表格保持正文宽度，窄屏和缩放保留横向滚动边界、复制、预览及原消息。
 - 新增独立对话／代码字号设置，支持搜索定位、键盘操作、保存后重新加载与恢复默认。主工作台和快速聊天使用同一偏好，界面控件和项目编辑器／终端保持各自字号；旧配置与消息原文保留。
 - **任务步骤**：项目分析与执行模式可在会话内记录最多 20 项步骤，展示模型标记的完成数量，保留每次工具输入与结果。错误更新保留上一份有效记录；停止后未完成步骤显示“待继续”，重启保留记录和草稿。记录本身不会执行步骤或写入项目计划文件。
@@ -153,11 +156,14 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### 修复与完善
 
+- 终端关闭等待进程终止与 PTY 退出回调同时完成，再释放监听器和会话名额；回调超时保留窗口与会话，迟到回调到达后可再次退出。修复已复现的清理时序缺陷，尚不能证明它是历史原生异常的唯一根因。
+- 修复紧凑侧栏的操作按钮遮挡聊天点击区域、延迟复制反馈干扰新文件菜单，以及重命名保存失败丢失输入等交互边界；编辑器空态和键盘焦点在受限高度与缩放下保持可见。
+
 - 图片查看器过滤小于 4px 的拖拽启动位移，开始拖动后返回阈值内仍连续跟随，松手停止；Home／End 支持图库首尾跳转，保留缩放、图片边界和返回焦点。
 - 全局错误提示使用专用明暗背景、文字与边框色，普通提示行高调整为 21px、内容间距为 4px，并对齐关闭按钮悬停。
 
 - 全局错误提示改为顶部居中，最多显示 3 条，其余保留排队，重复文本刷新原条目。可见后默认显示 5 秒，悬停、键盘焦点与窗口失焦时暂停；修复关闭最后一条后计时状态残留的问题，重复提示保留按钮焦点。提示可在原生弹窗内关闭，长文字与混合方向文字适应窄窗口和缩放。
-- 侧栏导航使用 36px 行高、10px 圆角、14px 文字和 24px 图标区域；近期聊天统一字号和圆角，紧凑侧栏保留图标并避免挤出行框。
+- 侧栏采用紧凑导航与连续圆角；近期聊天使用 30px 行高和 13px 文字，紧凑模式保留图标和独立操作入口。
 - 长代码随聊天自然展开，取消 480px 内部纵向滚动，保留横向滚动和自动换行。标题增加代码图标，普通代码与图表源码明确从左到右排版，中／阿／希混合原文、完整复制与末行可达经过原生检查。
 - 修正分发记录校验仍要求旧版 9 项快速聊天检查和 18 组最小窗口布局的问题，现精确要求全部 13 项、四种状态的 24 组布局；旧记录、错误计数、缺失与重复布局会被拒绝，原有请求及数据保留检查继续有效。
 - 修复快捷选择列表滚动后，静止鼠标覆盖键盘所选结果的问题；保留首尾跳转、循环选择、实际鼠标移动与点击操作。
@@ -193,35 +199,13 @@ Nook 是一个本地 AI 工作台，用于对话、资料阅读和项目开发�
 
 ### English
 
-Image panning ignores movement below 4px until dragging begins, then follows continuously until release. Home and End navigate to the first and last image. Error notifications use dedicated light/dark colors, 21px line height, 4px content spacing and a scoped close-button hover state.
+Nook combines multi-provider chat, model comparison, conversation branches, document retrieval and original PDF reading with project tools, worktrees and local extensions. Task-step records survive restart but do not execute a plan themselves. Credentials remain encrypted locally; shared backups exclude secrets, and previews and plugins are isolated.
 
-Global errors appear at the top center, with up to three visible notifications and a waiting queue. Exact duplicates refresh their existing item. The five-second visible lifetime pauses during hover, keyboard focus and native window blur; dismissal restores focus without leaving later messages permanently paused. Notifications remain operable inside native dialogs. Navigation uses 36px rows, 10px corners, 14px text and consistent icon areas, with a separate compact layout.
+The file tree supports context menus, keyboard search, paged virtual scrolling and ancestor navigation. Preview splits can be resized or restored. Pinned chats can be reordered, navigation groups remember their collapsed state, and chat actions preserve data on failure. Independent prose/code sizes, wide-table copying, long-code reading, compact settings and recoverable drafts improve everyday use.
 
-Long code expands naturally in the conversation instead of a 480px internal vertical scroller. Code headers use a code glyph, and ordinary code and diagram source have explicit left-to-right direction. Native checks retain mixed-language source, wrapping, complete copying and access to the final line.
+Terminal shutdown now waits for its exit acknowledgement; a timeout keeps the window and session available for retry. This fixes a reproduced cleanup-order defect without claiming a proven unique cause for the historical native abort. Other fixes cover compact-sidebar click targets, stale copy results, rename recovery, streaming state and keyboard focus.
 
-Release evidence now requires all 13 current quick-chat checks and 24 minimum-window layouts across four states. It rejects legacy records, incorrect totals, missing or duplicated layouts while preserving request and data-retention requirements.
-
-Slash-choice scrolling preserves the keyboard selection when an item moves beneath a stationary pointer. Actual pointer movement and clicks continue to select their intended items.
-
-Checkbox marks draw in two stages and disappear immediately when cleared. Repeated label clicks avoid selecting text, while native keyboard behavior, disabled and mixed states, and reduced-motion preferences remain supported.
-
-Ordinary hints use a 200ms initial hover delay and a shared 300ms skip window. Leaving, pressing, opening a context menu or losing focus dismisses the hint. Escape now closes an active hint while preserving its parent dialog, keyboard focus and drafts.
-
-Default text and action-hover colors follow their light/dark semantic roles. Inline code uses a neutral blended background while retaining heading, bold, italic and link styling.
-
-Nook brings multi-provider chat, model comparison, conversation branches, document retrieval, original PDF reading, project tools and local extensions into one workspace. Slash choices insert templates, assistants and projects without sending a message. Conversation task steps retain valid records and drafts across restart; they do not execute the plan themselves.
-
-Conversation and code font sizes can be saved independently, found through settings search and reset to their defaults. Main and quick chat share the preference while controls, project editors and terminals retain their own typography.
-
-Tables use the larger of the code-size floor and relative prose size. Inline code follows paragraph and heading sizes with continuous wrapping backgrounds. Code blocks default to 12px with a 20px minimum line height, a 20px corner radius, a 48px header and larger actions; horizontal padding adapts to the window width.
-
-Main conversation text is capped at 48rem. Long tables expand within the available chat panel, while quick chat and narrow tables retain the prose width. Native light/dark and zoom checks preserve scrolling, copying, preview focus and original messages.
-
-Prose and message layouts refine spacing and long-content reading. Tables copy exact Markdown and semantic HTML, preserve line endings, alignment and original TeX, filter unsafe resources, and reject stale completions. Keyboard scrolling, directional fades, numeric nonwrapping and independent cell direction support wide and mixed-language tables. Forms, compact selectors, code blocks, search focus and the composer adopt their corresponding theme and layout specifications.
-
-Unsaved settings and failed operations retain drafts for retry. Worktree registration, pinning, private snapshots, restoration and optional cleanup protect active or modified directories. Credentials stay encrypted locally, shared backups exclude secrets, and previews and plugins remain isolated. This candidate fixes delayed command output, selection restoration, streaming races, restore locking, keyboard focus and portable cleanup.
-
-Windows x64 installer and portable candidates are unsigned; uninstalling preserves user data. Original open-source notices remain included. Release, complete reference parity, other platforms and the remaining documented physical-system checks are still pending.
+The Windows x64 installer and portable candidates are unsigned and not yet released. Uninstall preserves user data, and original licenses and source notices remain included. Distribution acceptance, complete design alignment and the documented physical-system checks remain pending; other platforms and the unsupported capabilities listed above are not included.
 
 ## 开发记录
 
