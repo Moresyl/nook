@@ -4,6 +4,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 终端关闭等待真实退出回调再释放监听器；回调超时保留窗口和会话，迟到回调到达后允许重试退出，未完成进程继续计入会话上限。
+
 - 文件树支持右键及键盘菜单，可直接打开、展开／收起、复制相对路径和在目标目录新建文件；复制失败可重试，旧请求不会干扰新菜单。
 
 - 文件树启用虚拟滚动，保留分页、错误重试、祖先目录与跨视口键盘导航；千文件目录无需同时挂载全部条目。
@@ -21,15 +23,18 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 已验证的范围
 
-2026-10-26 续作：重新拉取并核对 `feat/reference-surfaces` 的 `7a2a7bf`，类型、构建及完整 144 文件／1,693 项单元测试通过，语句覆盖率 97.10%。新安装包与便携包已生成，239 个产品文件、401 份依赖法律文件和 20 个分发法律／源码文件的包体审计通过；安装包未签名。当前完整源码桌面回归仍在运行，包内和实际安装的完整验收尚未完成，不能沿用此前基线宣称通过。新触发的托管运行 `40325815060` 仍因账户付款／支出额度限制在执行零步骤后失败。[本次前置检查与平台响应](../verification/resume-20261026-preflight-result.json)
+2026-10-26 续作：终端修复 `5483ce4` 与命令夹具修正 `339943e` 已推送。类型、构建及完整 144 文件／1,696 项单元通过；修复后完整源码桌面回归通过 411 项，75 次退出全部正常，最长 1341ms，无强制结束。新安装包和便携包已生成，包体与启动器组件审计通过；完整包内及实际安装验收正在进行，安装包未签名。[本轮完整源码证据](../verification/terminal-exit-ack-full-source-review-result.json)
 
-最新文件树菜单通过类型、构建及两组原生复验，覆盖明暗、三档缩放、键盘与复制错误恢复。[菜单专项与集成证据](../verification/project-file-menu-review-result.json)。首次集成在关闭重启时发生 `0xc0000409`，后续复验通过，但根因尚未确认。虚拟滚动与完整单元见[此前验证](../verification/tree-windowing-review-result.json)；三轮完整回归仍对应较早的 `5e82af5` 基线，当前源码和新分发尚需完整复验。
+终端原生专项通过 7 项，同一夹具能识别旧包提前退出；这证明应用清理时序缺陷已修正，不证明历史 `0xc0000409` 的唯一根因。首次完整源码尝试在重命名后的命令快捷键处超时：夹具只等待写盘，尚未等待模态框关闭；专项复现后补齐关闭等待，专项及完整回归通过，未改变产品行为和期限。[终端边界](CI-TERMINAL-EXIT-ACK.md) · [命令夹具证据](../verification/command-rename-wait-review-result.json)
 
 | 检查 | 当前结果 |
 | --- | --- |
-| 类型与构建 | 通过；当前原生运行的 1077 个源码／夹具输入与 236 个编译文件按哈希核对 |
-| 完整单元测试 | 此前虚拟滚动轮次 144 个文件、1690 项通过；本轮新增 React 菜单使用原生交互验证，未重跑完整单元 |
-| 覆盖率统计范围 | 语句 97.10%、分支 94.67%、函数 97.83%、行 99.50%；新增布局模型已纳入 |
+| 类型与构建 | 终端修复后通过；新包按当前编译文件完成审计 |
+| 完整单元测试 | 144 个文件、1696 项通过 |
+| 覆盖率统计范围 | 语句 97.10%、分支 94.67%、函数 97.84%、行 99.50% |
+| 当前完整源码回归 | 411 项通过，75 次正常退出，最长 1341ms，无强制结束 |
+| 当前终端退出专项 | 7 项通过，含超时保留窗口及回调释放后重试退出 |
+| 当前新包与安装验收 | 包体与启动器组件审计通过；包内完整回归和实际安装尚未完成 |
 | 本轮文件树专项 | 7 项通过，2 次正常退出，500ms／402ms，无强制结束 |
 | 本轮项目预览集成 | 复验 17 项通过，2 次正常退出，437ms／898ms，无强制结束；与树专项含重复覆盖。首次运行原生退出异常保留 |
 | 侧栏点击修复专项 | 5 项通过，3 次正常退出，最长 1571ms；100%／125%／150% 实际点击通过 |
@@ -53,7 +58,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 已有完整分发验收对应 `5e82af5` 的同组输入与二进制，不能继承为后续虚拟滚动版本通过。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树虚拟滚动已验证，完整目录操作及全部布局状态仍待落实；目录压缩属于参考审阅列表的单独配置，普通工作区默认关闭。
-- 当前完整源码与新分发待复验；未逐张审阅全部截图，也未完成物理输入法、辅助技术与其他系统 DPI 的验收。
+- 当前完整源码已通过，新分发完整验收正在进行；未逐张审阅全部截图，也未完成物理输入法、辅助技术与其他系统 DPI 的验收。
 - 本轮首次集成在原生关闭重启时发生 `0xc0000409`，Windows 同进程事件与失败日志已留存；复验通过不能替代根因分析，发布前仍需处理。
 - 退出诊断进一步将异常地址映射到同版本运行库 `abort`，尚无原始调用栈。补齐了原验证脚本的非零退出 stderr，10 项单元和类型检查通过；两轮启用本地转储的集成各 17 项通过，四次正常退出，最长 1061ms，未上传转储。已解析的渲染器非致命快照不是原主进程异常。[诊断进展与边界](../verification/native-exit-diagnostics-review-result.json)
 - 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。已归档运行见[5e82af5 的流水线](https://github.com/Moresyl/nook/actions/runs/39433081996)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
@@ -63,11 +68,11 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 安装与开发
 
-当前请从[源码运行](../README.md#开始使用)。此前基线的安装包和便携包已完成本地验收，尚未发布，也不包含最新文件树修改；签名状态为 `NotSigned`。该包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。
+当前请从[源码运行](../README.md#开始使用)。包含最新文件树和终端修复的新安装包、便携包已在本地生成，尚未发布，完整分发验收正在进行；签名状态为 `NotSigned`。新包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. The file-tree menu passes type checking, build and repeated native tree/preview checks. An earlier integration run crashed during native shutdown; its root cause remains unresolved. Full regression, new distribution acceptance and complete design alignment remain pending. The original hosted workflow was blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Terminal shutdown now waits for its exit acknowledgement and retains the window on timeout so cleanup can be retried. All 1,696 unit tests and 411 complete source desktop checks pass, with 75 normal exits. New distribution acceptance is in progress. The historical native abort's unique root cause and complete design alignment remain unresolved. Hosted workflows are blocked by account billing or spending limits.
 
 ## 历史证据
 

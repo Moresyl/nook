@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-10-26T14:07:12.6963408Z",
+  "sourceCommit": "339943e",
+  "productCommit": "5483ce4",
+  "unit": {
+    "files": 144,
+    "tests": 1696,
+    "logSha256": "51C55AB9FF1198A4FE938C1496F88E013215FE4B31A316EF5B35252523BA1FF8",
+    "coverage": {
+      "lines": {
+        "total": 4642,
+        "covered": 4619,
+        "skipped": 0,
+        "pct": 99.5
+      },
+      "statements": {
+        "total": 7715,
+        "covered": 7492,
+        "skipped": 0,
+        "pct": 97.1
+      },
+      "functions": {
+        "total": 1715,
+        "covered": 1678,
+        "skipped": 0,
+        "pct": 97.84
+      },
+      "branches": {
+        "total": 5392,
+        "covered": 5105,
+        "skipped": 0,
+        "pct": 94.67
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "completeSource": {
+    "checks": 411,
+    "normalExits": 75,
+    "archive": "D:/GR/nook-resume-20261026/terminal-exit-ack/source",
+    "maximumExitMs": 1341.0,
+    "exitCode": 0,
+    "nonzeroExits": 0,
+    "forcedExits": 0,
+    "logSha256": "EF1427D195D8690792937E7248A2F844058D989F22F74AFE32E49142F70A524B"
+  },
+  "package": {
+    "installerSignature": "NotSigned",
+    "portableSha256": "2BDD226D991713D7F0E9FE7B8812479165D15AF5C6C596A7B3C06A71349D8322",
+    "setupSha256": "0B2A9F36285D7FC60733C46033FC4C21878205ADE197B21F35B62521F2FADAEE",
+    "distributionLegalFiles": 20,
+    "productFiles": 239,
+    "dependencyLegalDocuments": 401
+  },
+  "boundaries": [
+    "Complete packaged and installed verification is still in progress.",
+    "The reproduced terminal cleanup race is fixed; a unique root cause for the historical native abort is not proven.",
+    "Hosted release remains blocked by GitHub account billing/spending limits."
+  ]
+}
