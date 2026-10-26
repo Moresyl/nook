@@ -40,5 +40,50 @@ export async function verifyTerminalLifecycle({ page, application, getApplicatio
     console.log('Terminal lifecycle observation', JSON.stringify(record));
     verified(`Windows terminal ${mode} round ${round} preserves final output where applicable, removes owned processes and restarts within existing deadlines`);
   }
-  return { page, result: { checks: 6, cases, boundary: 'Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause.' } };
+  // Hold only the application's exit listener after the real native callback
+  // arrives, so cleanup acknowledgement and its timeout are independently tested.
+  await application.evaluateMain(`(() => {
+    const applicationRequire = require('node:module').createRequire(require('node:path').join(require('electron').app.getAppPath(), 'package.json'));
+    const prototype = applicationRequire('node-pty/lib/terminal').Terminal.prototype;
+    const descriptor = Object.getOwnPropertyDescriptor(prototype, 'onExit');
+    globalThis.nookHeldTerminalExits = []; globalThis.nookHoldTerminalExit = true; globalThis.nookExitSubscriptions = 0;
+    Object.defineProperty(prototype, 'onExit', { ...descriptor, get() {
+      const subscribe = descriptor.get.call(this);
+      return listener => { globalThis.nookExitSubscriptions++; return subscribe(event => {
+        if (globalThis.nookHoldTerminalExit) globalThis.nookHeldTerminalExits.push(() => listener(event));
+        else listener(event);
+      }); };
+    } });
+    globalThis.nookRestoreTerminalSubscription = () => Object.defineProperty(prototype, 'onExit', descriptor);
+    const dialog = require('electron').dialog, show = dialog.showMessageBox;
+    globalThis.nookTerminalCloseErrors = [];
+    dialog.showMessageBox = async (...args) => { globalThis.nookTerminalCloseErrors.push(args.at(-1)); return { response: 0, checkboxChecked: false }; };
+    globalThis.nookRestoreTerminalDialog = () => { dialog.showMessageBox = show; };
+  })()`);
+  try {
+    const terminal = await page.evaluate(id => window.qiyao.terminalOpen(id, { cols: 100, rows: 24 }), projectId);
+    assert.equal(await application.evaluateMain('globalThis.nookExitSubscriptions'), 1);
+    await application.evaluateMain('globalThis.nookRestoreTerminalSubscription()');
+    await waitForTerminalPrompt(() => page.evaluate(id => window.qiyao.terminalList(id), projectId));
+    await application.evaluateMain("require('electron').app.quit()");
+    const deadline = Date.now() + 9000;
+    while (!(await application.evaluateMain('globalThis.nookTerminalCloseErrors.length'))) {
+      assert.ok(Date.now() < deadline, 'Missing terminal acknowledgement must retain the window and report cleanup failure');
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
+    assert.equal(await page.isClosed(), false);
+    assert.ok(await application.evaluateMain('globalThis.nookHeldTerminalExits.length > 0'));
+    assert.equal((await page.evaluate(id => window.qiyao.terminalList(id), projectId)).some(item => item.id === terminal.id), true);
+    await application.evaluateMain('globalThis.nookHoldTerminalExit = false; globalThis.nookHeldTerminalExits.splice(0).forEach(release => release())');
+    await waitForBridge(page, async ({ projectId, id }) => (await window.qiyao.terminalList(projectId)).some(item => item.id === id && item.status === 'exited'), { projectId, id: terminal.id });
+  } finally {
+    await application.evaluateMain('globalThis.nookRestoreTerminalSubscription(); globalThis.nookHoldTerminalExit = false; globalThis.nookHeldTerminalExits.splice(0).forEach(release => release()); globalThis.nookRestoreTerminalDialog()');
+  }
+  // An application-level retry must go through cleanup again, not skip it because
+  // a previous attempt left the global quitting flag set.
+  await application.close({ quit: true });
+  page = await restart(); application = getApplication();
+  assert.deepEqual(await page.evaluate(id => window.qiyao.terminalList(id), projectId), []);
+  verified('a held native terminal exit acknowledgement retains the app on timeout and permits normal quit retry after the callback is released');
+  return { page, result: { checks: 7, cases, exitAcknowledgementTimeoutRetained: true, applicationQuitRetryVerified: true, boundary: 'Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle plus an isolated held application callback after native delivery. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause.' } };
 }

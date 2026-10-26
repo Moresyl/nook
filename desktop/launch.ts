@@ -250,7 +250,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
     clearTimeout(closeTimer); closeToken = null;
     if (!z.boolean().parse(saved)) { quitRequested = false; await dialog.showMessageBox(window!, { type: 'error', message: '草稿未能保存，窗口已保留。', detail: '请检查磁盘空间和工作台目录权限，然后重试。' }); return; }
     try { await finishClose(); }
-    catch { quitRequested = false; if (window && !window.isDestroyed()) await dialog.showMessageBox(window, { type: 'error', message: '窗口草稿未能完整保存，应用已保留。', detail: '请检查快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }); }
+    catch { quitRequested = false; if (window && !window.isDestroyed()) await dialog.showMessageBox(window, { type: 'error', message: '应用未能完成关闭，窗口已保留。', detail: '请检查终端、快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }); }
   },
   saveProvider: (raw, key) => providerSettings.save(providerSchema.parse(raw), key),
   removeProvider: async (raw) => {
@@ -518,7 +518,11 @@ async function finishClose(): Promise<void> {
   if (!quitRequested && desktopIntegration.canHide()) { await quickChatWindow?.flush(); window?.hide(); return; }
   const quit = quitRequested || process.platform !== 'darwin';
   if (quit) browserPanel.close();
-  if (quit) { cleanupTimers.forEach(timer => clearTimeout(timer)); cleanupTimers.clear(); await worktreeCleanup.shutdown(); await quickChatWindow?.shutdown(); quitting = true; await worktreeSnapshots.shutdown(); await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+  if (quit) {
+    cleanupTimers.forEach(timer => clearTimeout(timer)); cleanupTimers.clear(); await worktreeCleanup.shutdown(); await quickChatWindow?.shutdown(); quitting = true;
+    try { await worktreeSnapshots.shutdown(); await desktopIntegration.shutdown(); await automations.shutdown(); await engine.shutdown(); await Promise.all([mcp.shutdown(), plugins.shutdown(), terminals.shutdown(), knowledge.stopAll(), backupFiles.shutdown(), assistantProfiles.shutdown(), promptTemplates.shutdown()]); taskNotifications.forEach((notification) => notification.close()); await vault.flush(); }
+    catch (error) { quitting = false; throw error; }
+  }
   else await quickChatWindow?.flush();
   closeAllowed = true; window?.close();
   if (quit) app.quit();
@@ -563,7 +567,7 @@ function createWindow(): void {
       clearTimeout(closeTimer); closeToken = null;
       void finishClose().catch(() => {
         quitting = false; quitRequested = false;
-        if (window && !window.isDestroyed()) void dialog.showMessageBox(window, { type: 'error', message: '窗口数据未能完整保存，应用已保留。', detail: '请检查快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }).catch(() => {});
+        if (window && !window.isDestroyed()) void dialog.showMessageBox(window, { type: 'error', message: '应用未能完成关闭，窗口已保留。', detail: '请检查终端、快速聊天窗口、磁盘空间与工作台目录权限，然后重试。' }).catch(() => {});
       });
       return;
     }

@@ -8,7 +8,7 @@ import { terminalShell } from './terminal-shell';
 
 type Pty = Pick<IPty, 'pid' | 'onData' | 'onExit' | 'write' | 'resize' | 'kill'>;
 export type PtyFactory = (shell: string, args: string[], options: IPtyForkOptions) => Pty;
-type Session = { view: TerminalSession; process: Pty; dispose: (() => void)[] };
+type Session = { view: TerminalSession; process: Pty; exit: Promise<void>; dispose: (() => void)[] };
 
 export class TerminalSessions {
   private sessions = new Map<string, Session>();
@@ -34,7 +34,9 @@ export class TerminalSessions {
     try { pty = this.spawn(shell, process.platform === 'win32' ? ['-NoLogo', '-NoProfile'] : [], { ...geometry, cwd, name: 'xterm-256color', env: { ...process.env, TERM: 'xterm-256color' } }); }
     catch { throw new Error('Could not start the terminal. Check the shell and project folder.'); }
     const view: TerminalSession = { id: randomUUID(), projectId, cwd, shell, status: 'running', output: '', sequence: 0 };
-    const session: Session = { view, process: pty, dispose: [] };
+    let markExited!: () => void;
+    const exit = new Promise<void>((resolve) => { markExited = resolve; });
+    const session: Session = { view, process: pty, exit, dispose: [] };
     this.sessions.set(view.id, session);
     const dataSubscription = pty.onData((data) => {
       if (!this.sessions.has(view.id) || view.status !== 'running') return;
@@ -42,8 +44,10 @@ export class TerminalSessions {
       this.notify({ id: view.id, sequence: view.sequence, data });
     });
     const exitSubscription = pty.onExit(({ exitCode }) => {
-      if (!this.sessions.has(view.id)) return;
+      if (view.status === 'exited') return;
       view.status = 'exited'; view.exitCode = exitCode; view.sequence++;
+      markExited();
+      if (!this.sessions.has(view.id)) return;
       this.notify({ id: view.id, sequence: view.sequence, exitCode });
       try { pty.kill(); } catch {}
     });
@@ -67,12 +71,19 @@ export class TerminalSessions {
     const session = this.sessions.get(id);
     if (!session) return;
     this.sessions.delete(id);
-    session.dispose.forEach((dispose) => dispose());
-    if (session.view.status === 'running') {
-      const promise = Promise.resolve().then(() => this.terminate(session.process)).finally(() => this.closingSessions.delete(id));
-      this.closingSessions.set(id, { projectId: session.view.projectId, promise });
-      await promise;
-    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // Killing the shell does not drain node-pty's native exit callback. Keep its
+    // subscription alive and the host environment running until it arrives.
+    const exited = new Promise<void>((resolve, reject) => {
+      timer = setTimeout(() => reject(new Error('The terminal has not finished closing. Try again.')), 5000);
+      void session.exit.then(resolve);
+    });
+    const terminate = session.view.status === 'running' ? Promise.resolve().then(() => this.terminate(session.process)) : Promise.resolve();
+    const promise = Promise.all([terminate, exited]).then(() => { session.dispose.forEach((dispose) => dispose()); })
+      .catch((error) => { this.sessions.set(id, session); throw error; })
+      .finally(() => { clearTimeout(timer); this.closingSessions.delete(id); });
+    this.closingSessions.set(id, { projectId: session.view.projectId, promise });
+    await promise;
   }
   active(): boolean { return [...this.sessions.values()].some(({ view }) => view.status === 'running'); }
   async closeProject(projectId: string): Promise<void> {

@@ -1,0 +1,72 @@
+{
+  "verifiedAt": "2026-10-26T13:25:10.280Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "checks": 7,
+  "cases": [
+    {
+      "round": 1,
+      "mode": "natural-exit",
+      "ownedPids": [
+        21464
+      ],
+      "restartMs": 486,
+      "processesGone": true
+    },
+    {
+      "round": 1,
+      "mode": "explicit-close",
+      "ownedPids": [
+        25332,
+        8548
+      ],
+      "restartMs": 465,
+      "processesGone": true
+    },
+    {
+      "round": 1,
+      "mode": "application-close",
+      "ownedPids": [
+        20448,
+        22940
+      ],
+      "restartMs": 641,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "natural-exit",
+      "ownedPids": [
+        19396
+      ],
+      "restartMs": 468,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "explicit-close",
+      "ownedPids": [
+        17900,
+        19716
+      ],
+      "restartMs": 465,
+      "processesGone": true
+    },
+    {
+      "round": 2,
+      "mode": "application-close",
+      "ownedPids": [
+        21340,
+        2416
+      ],
+      "restartMs": 622,
+      "processesGone": true
+    }
+  ],
+  "exitAcknowledgementTimeoutRetained": true,
+  "applicationQuitRetryVerified": true,
+  "boundary": "Real Windows PTY and owned Node descendants through application IPC, two rounds per lifecycle plus an isolated held application callback after native delivery. Not physical terminal input, all shell versions or proof of the intermittent full-suite exit cause."
+}

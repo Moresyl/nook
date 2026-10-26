@@ -732,7 +732,7 @@ try {
   } else if (process.env.QIYAO_TEST_TERMINAL_LIFECYCLE_ONLY) {
     const { verifyTerminalLifecycle } = await import('./verify-terminal-lifecycle.mjs');
     const result = await verifyTerminalLifecycle({ page, application, getApplication: () => application, directory, projectDirectory, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; terminalLifecycleResult = result.result;
-    assert.equal(count, 6); assert.deepEqual(errors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 7); assert.deepEqual(errors, []); assert.equal(calls.length, 0);
   } else if (process.env.QIYAO_TEST_PROJECT_TREE_ONLY) {
     const result = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = result.page; projectTreeResult = result.result;
     assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);

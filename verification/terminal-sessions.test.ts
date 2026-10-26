@@ -4,12 +4,13 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { TerminalSessions, type PtyFactory } from '../desktop/services/terminal-sessions';
 const directories: string[] = [];
-afterEach(async () => { await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
+afterEach(async () => { vi.useRealTimers(); await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
 async function setup(emit = vi.fn()) {
   const root = await mkdtemp(join(tmpdir(), 'qiyao-terminal-')); directories.push(root);
   const processes: { data: (value: string) => void; exit: (value: { exitCode: number }) => void; write: ReturnType<typeof vi.fn>; resize: ReturnType<typeof vi.fn>; kill: ReturnType<typeof vi.fn>; dispose: ReturnType<typeof vi.fn> }[] = [];
   const spawn: PtyFactory = vi.fn(() => {
     const process = { data: (_value: string) => {}, exit: (_value: { exitCode: number }) => {}, write: vi.fn(), resize: vi.fn(), kill: vi.fn(), dispose: vi.fn() }; processes.push(process);
+    process.kill.mockImplementation(() => process.exit({ exitCode: 0 }));
     return { pid: 123, write: process.write, resize: process.resize, kill: process.kill, onData: (listener: (data: string) => void) => { process.data = listener; return { dispose: process.dispose }; }, onExit: (listener: (event: { exitCode: number; signal?: number }) => void) => { process.exit = listener; return { dispose: process.dispose }; } };
   });
   const terminate = vi.fn(async (process) => process.kill());
@@ -17,6 +18,56 @@ async function setup(emit = vi.fn()) {
   return { root, processes, spawn, emit, terminate, terminals };
 }
 describe('owned PTY sessions', () => {
+  it('waits for the native exit callback after termination returns before completing shutdown', async () => {
+    const { root, spawn, emit, processes } = await setup();
+    const terminate = vi.fn(async () => {});
+    const terminals = new TerminalSessions(spawn, emit, terminate);
+    const session = await terminals.open('project', root, { cols: 80, rows: 24 });
+    const closed = vi.fn(); const stopped = vi.fn();
+    const closing = terminals.close(session.id).then(closed);
+    const shutdown = terminals.shutdown().then(stopped);
+    try {
+      await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(1));
+      expect(closed).not.toHaveBeenCalled(); expect(stopped).not.toHaveBeenCalled();
+      expect(processes[0].dispose).not.toHaveBeenCalled();
+      processes[0].data('late native output'); expect(emit).not.toHaveBeenCalled();
+    } finally { processes[0].exit({ exitCode: 0 }); await Promise.all([closing, shutdown]); }
+    expect(closed).toHaveBeenCalledTimes(1); expect(stopped).toHaveBeenCalledTimes(1);
+    expect(processes[0].dispose).toHaveBeenCalledTimes(2);
+  });
+  it('retains a terminal after a missing exit callback and accepts its late exit before retry', async () => {
+    const { root, spawn, emit, processes } = await setup();
+    const terminate = vi.fn(async () => {});
+    const terminals = new TerminalSessions(spawn, emit, terminate);
+    const session = await terminals.open('project', root, { cols: 80, rows: 24 });
+    vi.useFakeTimers();
+    const closing = terminals.close(session.id).then(() => null, (error: Error) => error);
+    await vi.advanceTimersByTimeAsync(5000);
+    expect(await closing).toEqual(new Error('The terminal has not finished closing. Try again.'));
+    expect(terminals.list('project')).toHaveLength(1); expect(terminals.active()).toBe(true);
+    expect(processes[0].dispose).not.toHaveBeenCalled();
+    processes[0].data('retained output'); expect(terminals.list('project')[0].output).toBe('retained output');
+    processes[0].exit({ exitCode: 0 }); expect(terminals.active()).toBe(false);
+    await terminals.close(session.id);
+    expect(terminate).toHaveBeenCalledTimes(1); expect(processes[0].dispose).toHaveBeenCalledTimes(2);
+    expect(vi.getTimerCount()).toBe(0); await terminals.shutdown();
+  });
+  it('keeps timed-out native processes within the session limit until a successful retry', async () => {
+    const { root, spawn, emit } = await setup();
+    const terminate = vi.fn(async (_pty: ReturnType<PtyFactory>) => {});
+    const terminals = new TerminalSessions(spawn, emit, terminate, async () => 'test-shell');
+    const sessions = await Promise.all(Array.from({ length: 16 }, () => terminals.open('project', root, { cols: 80, rows: 24 })));
+    vi.useFakeTimers();
+    const outcomes = Promise.allSettled(sessions.map(session => terminals.close(session.id)));
+    await vi.advanceTimersByTimeAsync(5000);
+    expect((await outcomes).every(result => result.status === 'rejected')).toBe(true);
+    expect(terminals.list('project')).toHaveLength(16);
+    await expect(terminals.open('other', root, { cols: 80, rows: 24 })).rejects.toThrow('Close a terminal');
+    terminate.mockImplementation(async (pty) => { pty.kill(); });
+    await terminals.shutdown(); expect(terminals.list('project')).toEqual([]);
+    expect(spawn).toHaveBeenCalledTimes(16); expect(terminate).toHaveBeenCalledTimes(32);
+    expect(vi.getTimerCount()).toBe(0);
+  });
   it('uses the selected available shell with the existing profile-free arguments and owned project geometry', async () => {
     const { root, spawn, emit, terminate } = await setup(); const selected = 'C:\\Program Files\\PowerShell\\7\\pwsh.exe'; const choose = vi.fn(async () => selected);
     const terminals = new TerminalSessions(spawn, emit, terminate, choose);
@@ -70,14 +121,14 @@ describe('owned PTY sessions', () => {
   });
   it.each(['project', 'application'] as const)('waits for an already closing terminal when closing the %s', async (scope) => {
     const { root, spawn, emit, processes } = await setup(); let release!: () => void;
-    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(() => pending);
+    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(async (pty) => { await pending; pty.kill(); });
     const terminals = new TerminalSessions(spawn, emit, terminate); const session = await terminals.open('one', root, { cols: 80, rows: 24 });
     const first = terminals.close(session.id); const firstFinished = vi.fn(); void first.then(firstFinished);
     const again = terminals.close(session.id); const againFinished = vi.fn(); void again.then(againFinished);
     const closing = scope === 'project' ? terminals.closeProject('one') : terminals.shutdown(); const closingFinished = vi.fn(); void closing.then(closingFinished);
     try {
       await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(1)); await Promise.resolve(); await Promise.resolve();
-      expect(terminals.list('one')).toEqual([]); expect(processes[0].dispose).toHaveBeenCalledTimes(2);
+      expect(terminals.list('one')).toEqual([]); expect(processes[0].dispose).not.toHaveBeenCalled();
       expect(firstFinished).not.toHaveBeenCalled(); expect(againFinished).not.toHaveBeenCalled(); expect(closingFinished).not.toHaveBeenCalled();
       processes[0].data('late'); expect(emit).not.toHaveBeenCalled();
     } finally { release(); await Promise.all([first, again, closing]); }
@@ -86,7 +137,7 @@ describe('owned PTY sessions', () => {
   });
   it('counts terminals awaiting cleanup toward the sixteen-process limit and releases their slots', async () => {
     const { root, spawn, emit } = await setup(); let release!: () => void;
-    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(() => pending);
+    const pending = new Promise<void>((resolve) => { release = resolve; }); const terminate = vi.fn(async (pty) => { await pending; pty.kill(); });
     const terminals = new TerminalSessions(spawn, emit, terminate);
     const sessions = await Promise.all(Array.from({ length: 16 }, () => terminals.open('one', root, { cols: 80, rows: 24 })));
     const closing = Promise.all(sessions.map(({ id }) => terminals.close(id)));
@@ -96,15 +147,17 @@ describe('owned PTY sessions', () => {
     } finally { release(); await closing; }
     await terminals.open('two', root, { cols: 80, rows: 24 }); expect(spawn).toHaveBeenCalledTimes(17); await terminals.shutdown();
   });
-  it('shares a pending cleanup failure with concurrent closers and releases its process slot', async () => {
+  it('shares a pending cleanup failure with concurrent closers and retains the process for retry', async () => {
     const { root, spawn, emit } = await setup(); let reject!: (error: Error) => void;
     const pending = new Promise<void>((_resolve, failed) => { reject = failed; }); const failure = new Error('Owned cleanup failed');
-    const terminate = vi.fn(() => pending); const terminals = new TerminalSessions(spawn, emit, terminate);
+    const terminate = vi.fn((_pty: ReturnType<PtyFactory>) => pending); const terminals = new TerminalSessions(spawn, emit, terminate);
     const session = await terminals.open('one', root, { cols: 80, rows: 24 });
     const first = terminals.close(session.id); const again = terminals.close(session.id); const project = terminals.closeProject('one');
     const outcomes = Promise.allSettled([first, again, project]); await vi.waitFor(() => expect(terminate).toHaveBeenCalledTimes(1)); reject(failure);
     expect(await outcomes).toEqual(Array.from({ length: 3 }, () => ({ status: 'rejected', reason: failure })));
-    await terminals.close(session.id); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(1);
+    expect(terminals.list('one')).toHaveLength(1);
+    terminate.mockImplementation(async (pty) => { pty.kill(); });
+    await terminals.close(session.id); await terminals.shutdown(); expect(terminate).toHaveBeenCalledTimes(2);
   });
   it('validates geometry, input, session limits, missing folders and process errors', async () => {
     const { root, terminals } = await setup();
