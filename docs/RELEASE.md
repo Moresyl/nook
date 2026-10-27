@@ -4,6 +4,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 最近聊天到达列表末尾时自动展开下一批，保留当前聊天、输入焦点与草稿，并保留键盘“显示更多”入口。
+
 - 文件树支持在选定目录新建文件夹，重名或无效名称可修正后重试，创建时保留未保存的编辑草稿。
 
 - 终端关闭等待真实退出回调再释放监听器；回调超时保留窗口和会话，迟到回调到达后允许重试退出，未完成进程继续计入会话上限。
@@ -25,6 +27,10 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 已验证的范围
 
+2026-10-27 自动分页续作：145 个文件／1710 项单元、类型与构建通过，语句／分支／函数／行覆盖率分别为 97.12%／94.70%／97.85%／99.50%，新增观察逻辑四项均为 100%。源码导航集成 5 项通过，覆盖两次自动展开、手动分页，以及 760×540 窗口中明暗主题与三档缩放的实际滚轮操作。下方 412 项完整回归与安装数据属于本次自动分页之前的文件夹候选，不能继承为最新候选的完整分发验收。
+
+自动分页候选 `d1c97ee` 的新包同样通过 5 项导航集成、六组滚轮／缩放操作及 3 次正常退出，最长 81ms；模型比较 6 项与便携版 7 项通过，产品文件、法律文件及启动组件审计通过。新安装包尚未执行完整安装回归，签名为 `NotSigned`。[自动分页验收与哈希](../verification/sidebar-pagination-review-result.json)
+
 2026-10-27 续作：新建文件夹的路径保护、重名和失败重试已通过针对性测试；候选 `d632b86` 的源码、包内及安装完整回归各通过 412 项、75 次正常退出。其后修复窄窗口标题隐藏，文件树 8 项和提示 7 项源码专项通过；最终候选 `cc8336e` 重新构建，包内和实际安装完整回归各通过 412 项、75 次正常退出，最长分别为 1430ms 和 1412ms，均无强制结束。静默安装、快捷方式、卸载与数据保留通过，16 个既有测试标记按哈希恢复；便携版 7 项和 11 份匹配运行记录通过。完整源码回归是布局修正前的基线。安装包 SHA-256 为 `0b50050930cd764db5716b916a38098698d696d10c83391b0cd477ccd1b5927b`，便携包为 `c51780dfed05cd871e1ee3f3370cb8d81c587cc884439564f84f8320590c4e16`。
 
 2026-10-26 续作：终端修复 `5483ce4` 与命令夹具修正 `339943e` 已推送。类型、构建及完整 144 文件／1,696 项单元通过；源码、包内与实际安装各通过 411 项完整桌面检查，各有 75 次正常退出，无强制结束。新安装包和便携包完成本地分发验收，安装包未签名。[源码证据](../verification/terminal-exit-ack-full-source-review-result.json) · [分发证据](../verification/terminal-exit-ack-distribution-review-result.json)
@@ -34,8 +40,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 检查 | 当前结果 |
 | --- | --- |
 | 类型与构建 | 文件夹创建功能后通过；最终包审计通过 |
-| 完整单元测试 | 144 个文件、1701 项通过 |
-| 覆盖率统计范围 | 语句 97.11%、分支 94.69%、函数 97.84%、行 99.50% |
+| 完整单元测试 | 145 个文件、1710 项通过 |
+| 覆盖率统计范围 | 语句 97.12%、分支 94.70%、函数 97.85%、行 99.50% |
 | 文件夹候选包内／安装完整回归 | 最终候选各 412 项、75 次正常退出；静默安装、卸载和数据保留通过 |
 | 文件夹候选分发专项 | 表面 5 项、文字提示 7 项、渲染器关闭 2 项、终端生命周期 7 项、便携版 7 项；安装器／卸载器／便携包启动组件分别 6／5／2 项通过 |
 | 前一候选完整源码回归 | 411 项通过，75 次正常退出，最长 1341ms，无强制结束 |
@@ -63,7 +69,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 尚未完成
 
-最新文件夹候选已完成本地自动化分发验收；此前 `5e82af5` 基线单独保留。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
+此前文件夹候选已完成本地自动化分发验收；最新自动分页候选的完整分发回归仍待执行。此前 `5e82af5` 基线单独保留。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树虚拟滚动已验证，完整目录操作及全部布局状态仍待落实；目录压缩属于参考审阅列表的单独配置，普通工作区默认关闭。
 - 布局修正后的源码未重跑完整回归；未逐张审阅全部截图，也未完成物理安装向导、输入法、辅助技术与其他系统 DPI 的验收。
@@ -76,11 +82,11 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 安装与开发
 
-当前请从[源码运行](../README.md#开始使用)。包含最新文件树和终端修复的安装包、便携包已完成本地自动化验收，尚未发布；签名状态为 `NotSigned`。新包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。
+当前请从[源码运行](../README.md#开始使用)。自动分页候选的安装包和便携包已生成，包内专项、便携运行与文件审计通过，完整分发回归尚待执行；尚未发布，签名状态为 `NotSigned`。新包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。此前通过完整安装验收的文件夹候选产物已在本地单独归档，哈希见上文。
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Folder creation protects project paths and unsaved drafts, and terminal shutdown waits for its exit acknowledgement. All 1,701 unit tests pass. The final packaged and installed desktop each pass 412 checks with 75 normal exits; portable and data-preserving uninstall checks also pass locally. The historical native abort's unique root cause and complete design alignment remain unresolved. Hosted workflows are blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,710 unit tests pass. Source and packaged navigation each pass five focused checks, including six theme/zoom wheel layouts; packaged comparison and portable checks also pass. The previous folder-creation candidate passed 412 complete desktop checks in both packaged and installed runtimes. The latest candidate still needs complete distribution acceptance. The historical native abort's unique root cause and complete design alignment remain unresolved. Hosted workflows are blocked by account billing or spending limits.
 
 ## 历史证据
 

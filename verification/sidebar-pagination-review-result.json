@@ -1,0 +1,194 @@
+{
+  "verifiedAt": "2026-10-27T06:35:14.7876363Z",
+  "productCommit": "d1c97ee2f806fa4bd9c3522de5d1105c121a7305",
+  "reference": {
+    "path": "E:/txt/raw/app-asar/webview/assets/app-initial-146770bfc1f4.js",
+    "sha256": "89a4a6f5bf501c73d6a4255bcd9575e1a7460d55c004af69d987adeff4cd2a74",
+    "consumer": "qmo visible-boundary IntersectionObserver and MOr batched sidebar expansion; local implementation retains a manual keyboard fallback"
+  },
+  "unit": {
+    "files": 145,
+    "tests": 1710,
+    "statements": 97.12,
+    "branches": 94.7,
+    "functions": 97.85,
+    "lines": 99.5,
+    "newPaginationCoverage": 100,
+    "logSha256": "6fe609945c744eff43687e825eab4c11d0df43324e68475638aed03a4a94e634",
+    "observerTests": 9
+  },
+  "typecheck": true,
+  "build": true,
+  "runtimes": [
+    {
+      "variant": "source",
+      "checks": 5,
+      "normalExits": 3,
+      "maxExitMs": 116.0,
+      "proof": "sidebar-pagination-source-result.json",
+      "proofSha256": "005e308e7bf98bb7e6044115b425d26ea950cbecc7490726dc9130002eaf24f6",
+      "logSha256": "3956b90dcd43a4cba3974d70f5f8c71ce526cee15ca8b082c5b18aebda50c1d1",
+      "themeZoomLayouts": 6,
+      "nativeWheel": true,
+      "composerFocusRetained": true,
+      "draftAndCurrentChatRetained": true,
+      "nativeWindowHideShow": true,
+      "rendererVisibilityEmulated": true
+    },
+    {
+      "variant": "packaged",
+      "checks": 5,
+      "normalExits": 3,
+      "maxExitMs": 81.0,
+      "proof": "sidebar-pagination-packaged-result.json",
+      "proofSha256": "6c0ee04316350544a3d73ead0a1b31ca34785479285f6fd8b684cc42787dab53",
+      "logSha256": "d5a1792821b0df1ee435b74c382fd81825f7b369bde0fe0fdbc9bcce71f4ff02",
+      "themeZoomLayouts": 6,
+      "nativeWheel": true,
+      "composerFocusRetained": true,
+      "draftAndCurrentChatRetained": true,
+      "nativeWindowHideShow": true,
+      "rendererVisibilityEmulated": true
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1"
+    },
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "workbench/lib/sidebar-pagination.ts",
+      "sha256": "a5956a1bf2ffcd7ec67aaf40c0a84d72312b70dc4a12c497fb62a4e8ead2bcda"
+    },
+    {
+      "path": "workbench/components/recent-threads.tsx",
+      "sha256": "8ac921a93e8a372402733317be61b15360e11af7d9462585973bccc92c3381d1"
+    },
+    {
+      "path": "verification/sidebar-pagination.test.ts",
+      "sha256": "c5b542c2042487d145502d5bf916b3acdf12188c33137e31bb3171d476c6a500"
+    },
+    {
+      "path": "scripts/verify-chat-navigation.mjs",
+      "sha256": "98cea602a5e54be486f4dfdcc272e1d2eef6b2e178c3101681e57c0cdf056132"
+    },
+    {
+      "path": "scripts/verify-recent-threads.mjs",
+      "sha256": "08c77fee3efc62f5776dc075335722dd23e7e6dd4521257ebac29eec66c29737"
+    },
+    {
+      "path": "scripts/verify-model-comparisons.mjs",
+      "sha256": "606b5d57cb790c03bc35cc66b5050d9bad21a25d25d8d381e7aec861f876588a"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "607c55b7fbf10c9d4932de59268a348334b3b67a6d359e37963bf683c7c16944"
+    }
+  ],
+  "screenshots": [
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-dark-100.png",
+      "sha256": "b9358f1293067de349443bc9fe4bf382e721999a281ab3aa2f709413741efd10",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-dark-125.png",
+      "sha256": "e1fdf80d3988a98ee3801116c8b3fa525baab9bcad9fc1fb70cd72601bc5a2ad",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-dark-150.png",
+      "sha256": "c6d261e3d7970ef4835fb66e97cbf22dd65c68cd763dfbcf0edc944d961383b8",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-light-100.png",
+      "sha256": "2ddeaacdb4637c1be650b2ae9710ff15b41cdc4bd6d60f7dd7e713181b0b120a",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-light-125.png",
+      "sha256": "36240142907b56cc7325a08cd91b972bbcd17e39f50f443c129f25d52779e300",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-light-150.png",
+      "sha256": "3cd469f5d3d177682734d911c6b2b802b52acfda413034867375bdae32324e78",
+      "visuallyReviewed": true
+    }
+  ],
+  "packageAudit": {
+    "productFiles": 239,
+    "dependencyLegalDocuments": 401,
+    "distributionLegalFiles": 20,
+    "installerBootstrapPlugins": 6,
+    "uninstallerBootstrapPlugins": 5,
+    "portableBootstrapPlugins": 2
+  },
+  "portable": {
+    "checks": 7,
+    "originalRegistrationAndShortcutsPreserved": true,
+    "wrapperSha256": "869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1",
+    "logSha256": "444f0e8f59d3680d709cbe3d63b9ade5dc7c694c9ef9d01ecf6adad3b83f9228"
+  },
+  "boundaries": [
+    "Source and packaged navigation suites each passed five checks; the packaged comparison suite passed six checks. These focused suites do not establish a new complete desktop or installed-runtime pass.",
+    "Six source pagination captures were individually reviewed; the six packaged captures were retained.",
+    "Local sidebar pagination reveals already loaded conversations; it does not implement backend pagination, virtualization, custom sections or dual-column navigation.",
+    "The installer is NotSigned. Physical wizard, IME, accessibility and other system DPI acceptance remain separate.",
+    "Previous complete 412-check source/packaged/installed baselines and artifacts exclude automatic sidebar pagination.",
+    "Hosted verification/publication remains blocked by account billing or spending limits.",
+    "CDP reports renderer visibility as visible even when the native window is hidden. Native hide/show was checked separately; document visibilitychange recovery is covered by the isolated unit fixture, not established as an actual renderer visibility transition."
+  ],
+  "evidenceDirectories": [
+    "D:/GR/nook-sidebar-pagination-final-source-evidence",
+    "D:/GR/nook-sidebar-pagination-final-packaged-evidence"
+  ],
+  "previousVerifiedArtifacts": "D:/GR/nook-folder-final-artifacts",
+  "failedVisibilityAttempts": [
+    {
+      "log": "D:/GR/nook-sidebar-pagination-final-source.log",
+      "sha256": "31fe629121a6890fd6008038a4ba3acf116ad8dad8756084a0ec18d573f1d3e6",
+      "reason": "Native hide succeeded but the CDP-connected renderer retained emulated visible state; the attempted document.hidden assertion timed out. Failure directories and logs are retained."
+    },
+    {
+      "log": "D:/GR/nook-sidebar-pagination-visibility-source.log",
+      "sha256": "33e1d536e0e891f39ff62c0357eb7e853e31538a684dc884b09cb8da96bcefcd",
+      "reason": "Native hide succeeded but the CDP-connected renderer retained emulated visible state; the attempted document.hidden assertion timed out. Failure directories and logs are retained."
+    },
+    {
+      "log": "D:/GR/nook-sidebar-pagination-native-visibility-source.log",
+      "sha256": "123203875a5f49655fdcc76057e91ffa50ff376b628336b4ffbe21e51f87b081",
+      "reason": "Native hide succeeded but the CDP-connected renderer retained emulated visible state; the attempted document.hidden assertion timed out. Failure directories and logs are retained."
+    },
+    {
+      "log": "D:/GR/nook-sidebar-pagination-restored-source.log",
+      "sha256": "4621971c5f0618091c6314cf5c1ecd5c9a5cf80d3603826023ab6e5d4b29534a",
+      "reason": "Native hide succeeded but the CDP-connected renderer retained emulated visible state; the attempted document.hidden assertion timed out. Failure directories and logs are retained."
+    }
+  ],
+  "packagedComparison": {
+    "checks": 6,
+    "logSha256": "c0449db9b58e6d4121f00dce797f88570c5295d9841dff204baa1aa11e54ad4f"
+  }
+}

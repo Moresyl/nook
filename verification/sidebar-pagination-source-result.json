@@ -1,0 +1,538 @@
+{
+  "verifiedAt": "2026-10-27T06:31:39.069Z",
+  "variant": "development executable",
+  "executableSha256": null,
+  "archiveSha256": null,
+  "runtimeErrors": [],
+  "normalCloseVerified": true,
+  "verificationRun": "focused chat-navigation suite",
+  "checks": 5,
+  "sidebarNavigation": {
+    "fixtures": 120,
+    "pinnedReorder": {
+      "keyboard": true,
+      "compositionGuard": true,
+      "staleMetadataRejected": true,
+      "fourPixelThreshold": true,
+      "escapeCancellation": true,
+      "outsideDropCancellation": true,
+      "edgeScrollCancellation": true,
+      "pointerReorder": true,
+      "noActivation": true,
+      "failedSaveRetry": true,
+      "expectedFirstId": "8e86253e-51bf-455c-becf-26a10b8f63a3"
+    },
+    "actions": {
+      "headerRenameFailureRetry": true,
+      "headerRenameBusyGuard": true,
+      "renameCompositionGuard": true,
+      "exportCancel": true,
+      "exportWriteFailureRetry": true,
+      "exportActualMarkdown": true,
+      "currentDeleteConfirmation": true,
+      "currentPersistentDelete": true,
+      "currentDraftRemovedOtherDraftRetained": true,
+      "keyboard": true,
+      "pointerContext": true,
+      "focusReturn": true,
+      "outsideDismissal": true,
+      "tabDismissal": true,
+      "renameFailureRetry": true,
+      "pinUnpin": true,
+      "archive": true,
+      "deleteConfirmation": true,
+      "noActivationOrDraftLoss": true,
+      "runningMutationGuard": true
+    },
+    "pinnedSections": true,
+    "keyboardCollapse": true,
+    "independentCollapseReload": true,
+    "collapseTransition": true,
+    "reducedMotion": true,
+    "rapidCollapseReversal": true,
+    "sameActiveSearchReveal": true,
+    "typingKeepsCollapsed": true,
+    "automaticPagination": {
+      "batches": 2,
+      "pageSize": 10,
+      "nativeWindowHideShow": true,
+      "rendererVisibilityEmulated": true,
+      "composerFocusRetained": true,
+      "draftRetained": true,
+      "activeChatRetained": true,
+      "layouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-light-100.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-light-125.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-light-150.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-dark-100.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-dark-125.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "rows": 21,
+          "screenshot": "113-sidebar-auto-dark-150.png"
+        }
+      ]
+    },
+    "paginationFocus": true,
+    "currentChatBeyondFirstBatch": true,
+    "searchRevealsCollapsedSection": true,
+    "pinAndUnpin": true,
+    "originalDraftRetained": true,
+    "collapseSurvivesNormalRestart": true,
+    "firstPinReveal": true,
+    "preexistingPinsPreserved": 0,
+    "independentBackgroundPinPreserved": true,
+    "samePinnedSearchReveal": true
+  },
+  "modelRequests": 1,
+  "layout": [
+    {
+      "zoom": 1,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 536,
+          "right": 564,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 572,
+          "right": 600,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "置顶聊天",
+          "left": 608,
+          "right": 636,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "导出聊天",
+          "left": 644,
+          "right": 672,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "归档聊天",
+          "left": 680,
+          "right": 708,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "删除聊天",
+          "left": 716,
+          "right": 744,
+          "top": 50,
+          "bottom": 78,
+          "width": 28,
+          "height": 28
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 269,
+          "right": 449.96875,
+          "top": 313.40625,
+          "bottom": 337.40625,
+          "width": 180.96875,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 252,
+          "right": 688,
+          "top": 352.40625,
+          "bottom": 400.40625,
+          "width": 436,
+          "height": 48
+        },
+        {
+          "label": "发送消息",
+          "left": 696,
+          "right": 728,
+          "top": 368.40625,
+          "bottom": 400.40625,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 246,
+          "right": 349,
+          "top": 451.40625,
+          "bottom": 475.40625,
+          "width": 103,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 349,
+          "right": 510.90625,
+          "top": 451.40625,
+          "bottom": 475.40625,
+          "width": 161.90625,
+          "height": 24
+        }
+      ],
+      "width": 760,
+      "height": 540,
+      "overflow": false,
+      "bar": {
+        "left": 220,
+        "right": 760,
+        "top": 92,
+        "bottom": 137
+      },
+      "close": {
+        "left": 724,
+        "right": 752,
+        "top": 100,
+        "bottom": 128
+      },
+      "region": {
+        "width": 540,
+        "height": 151.40625
+      },
+      "marker": {
+        "left": 227,
+        "right": 253,
+        "top": 172,
+        "bottom": 174
+      },
+      "rail": {
+        "top": 161,
+        "bottom": 264.40625
+      },
+      "result": {
+        "top": 187,
+        "bottom": 204
+      }
+    },
+    {
+      "zoom": 1.25,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 442,
+          "right": 466,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 468,
+          "right": 492,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "置顶聊天",
+          "left": 494,
+          "right": 518,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "导出聊天",
+          "left": 520,
+          "right": 544,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "归档聊天",
+          "left": 546,
+          "right": 570,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "删除聊天",
+          "left": 572,
+          "right": 596,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 92.80000305175781,
+          "right": 273.76251220703125,
+          "top": 247.60000610351562,
+          "bottom": 271.6000061035156,
+          "width": 180.96250915527344,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 84,
+          "right": 548,
+          "top": 278.3999938964844,
+          "bottom": 310.3999938964844,
+          "width": 464,
+          "height": 32
+        },
+        {
+          "label": "发送消息",
+          "left": 556,
+          "right": 588,
+          "top": 278.3999938964844,
+          "bottom": 310.3999938964844,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 76,
+          "right": 179,
+          "top": 356.3999938964844,
+          "bottom": 380.3999938964844,
+          "width": 103,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 179,
+          "right": 340.9125061035156,
+          "top": 356.3999938964844,
+          "bottom": 380.3999938964844,
+          "width": 161.91250610351562,
+          "height": 24
+        }
+      ],
+      "width": 608,
+      "height": 432,
+      "overflow": false,
+      "bar": {
+        "left": 64,
+        "right": 608,
+        "top": 72,
+        "bottom": 116.79999923706055
+      },
+      "close": {
+        "left": 572,
+        "right": 600,
+        "top": 80,
+        "bottom": 108
+      },
+      "region": {
+        "width": 544,
+        "height": 116
+      },
+      "marker": {
+        "left": 71,
+        "right": 97,
+        "top": 135.8000030517578,
+        "bottom": 137.8000030517578
+      },
+      "rail": {
+        "top": 124.80000305175781,
+        "bottom": 224.8000030517578
+      },
+      "result": {
+        "top": 155.40000915527344,
+        "bottom": 172.1999969482422
+      }
+    },
+    {
+      "zoom": 1.5,
+      "controls": [
+        {
+          "label": "打开命令面板",
+          "left": 340.66668701171875,
+          "right": 364.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "查找当前聊天",
+          "left": 366.66668701171875,
+          "right": 390.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "置顶聊天",
+          "left": 392.66668701171875,
+          "right": 416.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "导出聊天",
+          "left": 418.66668701171875,
+          "right": 442.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "归档聊天",
+          "left": 444.66668701171875,
+          "right": 468.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "删除聊天",
+          "left": 470.66668701171875,
+          "right": 494.66668701171875,
+          "top": 42,
+          "bottom": 66,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "label": "预览 BODY_SCOPE_EXCLUDED.txt",
+          "left": 92.66667175292969,
+          "right": 273.62501525878906,
+          "top": 175.73959350585938,
+          "bottom": 199.73959350585938,
+          "width": 180.95834350585938,
+          "height": 24
+        },
+        {
+          "label": "消息",
+          "left": 84,
+          "right": 446.66668701171875,
+          "top": 206.40625,
+          "bottom": 238.40625,
+          "width": 362.66668701171875,
+          "height": 32
+        },
+        {
+          "label": "发送消息",
+          "left": 454.66668701171875,
+          "right": 486.66668701171875,
+          "top": 206.40625,
+          "bottom": 238.40625,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "模型提供商",
+          "left": 76,
+          "right": 179,
+          "top": 284.40625,
+          "bottom": 308.40625,
+          "width": 103,
+          "height": 24
+        },
+        {
+          "label": "选择模型",
+          "left": 179,
+          "right": 340.90625,
+          "top": 284.40625,
+          "bottom": 308.40625,
+          "width": 161.90625,
+          "height": 24
+        }
+      ],
+      "width": 507,
+      "height": 360,
+      "overflow": false,
+      "bar": {
+        "left": 64,
+        "right": 506.66668701171875,
+        "top": 72,
+        "bottom": 116.66666793823242
+      },
+      "close": {
+        "left": 470.66668701171875,
+        "right": 498.66668701171875,
+        "top": 80,
+        "bottom": 108
+      },
+      "region": {
+        "width": 442.66668701171875,
+        "height": 44.40625
+      },
+      "marker": {
+        "left": 71,
+        "right": 97,
+        "top": 135.6666717529297,
+        "bottom": 137.6666717529297
+      },
+      "rail": {
+        "top": 124.66667175292969,
+        "bottom": 153.0729217529297
+      },
+      "result": {
+        "top": 131,
+        "bottom": 147.6666717529297
+      }
+    }
+  ],
+  "screenshots": [
+    "110-sidebar-groups-light.png",
+    "102-message-navigation-light.png",
+    "103-chat-find-light.png",
+    "104-chat-find-code-light.png",
+    "105-chat-find-dark-zoom-100.png",
+    "105-chat-find-dark-zoom-125.png",
+    "105-chat-find-dark-zoom-150.png"
+  ],
+  "screenshotMethod": "Complete native Electron BrowserWindow.capturePage with exact content-size assertions",
+  "scope": "Current-chat message-only literal find; native keyboard, pointer and captured-pointer rail navigation; reference 26-by-2-pixel markers and one-rem edge fades; exact original UTF-16 offsets, inline Markdown spans, Unicode/metacharacters and actual code overflow; command context/focus, no-send history/draft/attachment retention; real held HTTP streaming and manual reading position; actual normal close/restart and dark 760x540 layout at 100/125/150 percent zoom. Maximum-scale, full accessibility, cross-platform and richer graphical branch navigation remain separate work."
+}
