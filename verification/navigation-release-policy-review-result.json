@@ -1,0 +1,112 @@
+{
+  "verifiedAt": "2026-10-27T08:34:30.920Z",
+  "scope": "Release and installed-runtime validation only. The application and Windows artifacts match the preceding complete distribution candidate.",
+  "baseCommit": "9c7a6b9af48cda9b7020f884ac240fc4d8fe5e7a",
+  "typecheck": true,
+  "installerScriptParsed": true,
+  "unit": {
+    "files": 146,
+    "tests": 1721,
+    "coverage": {
+      "statements": 97.12,
+      "branches": 94.7,
+      "functions": 97.85,
+      "lines": 99.5
+    }
+  },
+  "targeted": {
+    "files": 2,
+    "tests": 137,
+    "releasePolicyCoverage": {
+      "statements": 100,
+      "branches": 99.83,
+      "functions": 100,
+      "lines": 100
+    }
+  },
+  "realEvidence": {
+    "at": "2026-10-27T08:30:59.607Z",
+    "currentChecks": 412,
+    "currentRuntimeRecords": 11,
+    "currentInstalledAccepted": true,
+    "currentInstalledSha256": "5e79610f5f88b358b590cf4b0ee3c153e23a2ef658719a23856ffa85a2c870d1",
+    "previousChecks": 412,
+    "previousMissingPaginationRejected": true,
+    "previousProof": "D:/GR/nook-folder-final-packaged-evidence/packaged-result.json",
+    "previousProofSha256": "44840325a62f1427795d51198fdbfd6cb63283f653ec27ef21588cb13dc91b5b",
+    "installerPolicyBodyValidated": true
+  },
+  "unchangedApplication": {
+    "inputFiles": 322,
+    "compiledFiles": 236,
+    "binaries": [
+      {
+        "path": "artifacts/win-unpacked/Nook.exe",
+        "sha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106"
+      },
+      {
+        "path": "artifacts/win-unpacked/resources/app.asar",
+        "sha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1"
+      },
+      {
+        "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+        "sha256": "4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098"
+      },
+      {
+        "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+        "sha256": "869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1"
+      }
+    ],
+    "allHashesMatch": true
+  },
+  "inputs": [
+    {
+      "path": "scripts/release-policy.mjs",
+      "sha256": "5dc483e6d3bbfec85bbe75cb06e5e24588ef6f571bfd8fb434ce1c37f44306e3"
+    },
+    {
+      "path": "scripts/release-policy.d.mts",
+      "sha256": "df04051553dda078d725857dd46ac542f2952b19be40b5e4b95815f630bb7f4a"
+    },
+    {
+      "path": "scripts/verify-installer.ps1",
+      "sha256": "857050da48f59c89abcdb024360666e46ad0e57a33a40657458baa549f258bcb"
+    },
+    {
+      "path": "verification/release-policy.test.ts",
+      "sha256": "90c895b2b1d69240a7997806f073883ebba3d63bab84aa16b91e215df3307a7b"
+    },
+    {
+      "path": "verification/navigation-release-fixture.ts",
+      "sha256": "8a136f4b07ab552a0ba4bc0993de44854d37b1ba3b1d55620f3d62dcecfa6554"
+    },
+    {
+      "path": "verification/navigation-release-policy.test.ts",
+      "sha256": "f6dfca06fe5ec6d9ba490c806f59872c0605f68e7ca2f2fbd71b38fc6d912a54"
+    }
+  ],
+  "logs": [
+    {
+      "path": "D:/GR/nook-navigation-release-policy-typecheck.log",
+      "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+    },
+    {
+      "path": "D:/GR/nook-navigation-release-policy-coverage.log",
+      "sha256": "724677a8457d52db11241d8aba6c51d161f54f08321d680075ece64d64b60f73"
+    },
+    {
+      "path": "D:/GR/nook-navigation-release-policy-targeted-coverage.log",
+      "sha256": "281b03516680fd39246434531b708e126d64b63c4052a08364f0362c942c7c89"
+    },
+    {
+      "path": "D:/GR/nook-navigation-release-policy-real-proof.log",
+      "sha256": "58fb190613d62c6cd2aad0bdd3ce6a306838788fb38450914346519d2168870b"
+    }
+  ],
+  "boundaries": [
+    "The complete source, packaged and installed 412-check runs preceded this validation-only change; their immutable evidence remains separate.",
+    "The modified installed-runtime policy was exercised on retained actual installation evidence; the installer was not reinstalled after changing its validation script.",
+    "Global coverage follows existing repository include patterns. Separate targeted coverage measures the complete release-policy module.",
+    "Hosted verification and publication remain blocked by account billing or spending limits; physical interaction, design parity and the historical native abort investigation remain unfinished."
+  ]
+}

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { taskPlanProof } from './task-plan-release-fixture';
+import { navigationReleaseProof } from './navigation-release-fixture';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -79,8 +80,7 @@ function proof(): ReleaseProof {
     attachments: { pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: memorySettings(), projectPreview: { checks: 10, outsideHttpRequests: 0, editorTabs: editorTabs(), docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
-  desktop.checks = 383;
-  Object.assign(desktop, { taskPlans: taskPlanProof() });
+  Object.assign(desktop, navigationReleaseProof(), { taskPlans: taskPlanProof() });
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 5, tooltipLifecycle: { passed: true, sourceOpenDelayMs: 200, sourceSkipIntervalMs: 300, clockAdvanced: false, originalTimeoutCallbacksRetained: true, focusEmulationDisabledOnlyDuringNativeBlur: true, originalFocusEmulationRestored: true } },
     preview: { ...desktop, ...structuredClone(desktop.projectPreview) },
@@ -125,6 +125,26 @@ function worktreePinning(): NonNullable<ReleaseProof['desktop']['worktreePinning
     keyboardLayouts: worktreeKeyboardLayouts().map(row => ({ ...row, label: '固定工作树' })),
   };
 }
+
+describe('current navigation in complete runtime evidence', () => {
+  it('rejects the previous complete 411-check body even with matching installation and suite counts', () => {
+    const previous = proof(); previous.desktop.checks = 411; previous.installer.checks = 411;
+    previous.branches.suiteChecks = 411; previous.temporary.suiteChecks = 411; previous.comparisons.suiteChecks = 411;
+    expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
+  it('requires both navigation records in an otherwise complete current release', () => {
+    const missingSidebar = proof(); delete missingSidebar.desktop.chatNavigation;
+    expect(() => verifyRuntimeProof(missingSidebar)).toThrow('sidebar pagination');
+    const missingTree = proof(); delete missingTree.desktop.projectTree;
+    expect(() => verifyRuntimeProof(missingTree)).toThrow('project-tree');
+  });
+  it('rejects incomplete current pagination and menu claims before accepting a release', () => {
+    const sidebar = proof(); sidebar.desktop.chatNavigation!.sidebarNavigation!.automaticPagination!.draftRetained = false;
+    expect(() => verifyRuntimeProof(sidebar)).toThrow('sidebar pagination');
+    const tree = proof(); tree.desktop.projectTree!.stickyFolders!.fileMenu!.copyFailureRetry = false;
+    expect(() => verifyRuntimeProof(tree)).toThrow('project-tree');
+  });
+});
 
 describe('ordinary tooltip release evidence', () => {
   it('requires the fifth surface check and its lifecycle evidence', () => {

@@ -123,6 +123,35 @@ export function verifyTaskPlanProof(proof) {
   }
 }
 
+export function verifyNavigationProof(proof) {
+  const sidebar = proof?.chatNavigation?.sidebarNavigation;
+  const automatic = sidebar?.automaticPagination;
+  const sidebarFlags = ['paginationFocus', 'currentChatBeyondFirstBatch', 'originalDraftRetained', 'keyboardCollapse', 'collapseSurvivesNormalRestart', 'searchRevealsCollapsedSection'];
+  const layouts = automatic?.layouts;
+  const six = Array.isArray(layouts) && layouts.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.rows === 21 && row.screenshot === `113-sidebar-auto-${theme}-${zoom * 100}.png`).length === 1));
+  if (!Number.isInteger(proof?.checks) || proof.checks < 412 || proof.chatNavigation?.checks !== 5 || !Number.isInteger(sidebar?.fixtures) || sidebar.fixtures < 120
+    || !sidebarFlags.every(key => sidebar?.[key] === true) || automatic?.batches !== 2 || automatic.pageSize !== 10
+    || !['composerFocusRetained', 'draftRetained', 'activeChatRetained'].every(key => automatic[key] === true) || !six) {
+    throw new Error('Complete sidebar pagination, draft retention and six native layout checks are required');
+  }
+  const tree = proof.projectTree;
+  const virtual = tree?.virtualizedRows;
+  const sticky = tree?.stickyFolders;
+  const large = sticky?.virtualizedLargeDirectory;
+  const menu = sticky?.fileMenu;
+  const treeFlags = ['ancestorStack', 'subtreePushOff', 'pointerCollapse', 'keyboardCanonicalFocus', 'noDuplicateTreeItems', 'pagination', 'refreshAndSearch'];
+  const menuFlags = ['pointerAndKeyboard', 'rovingFocus', 'compositionEscape', 'outsideAndScrollDismissal', 'unchangedResizeRetainsMenu', 'changedResizeDismissesMenu', 'openAndDirectoryToggle', 'newFileParent', 'copyFailureRetry', 'lateCopyIsolation'];
+  const menuLayouts = Array.isArray(menu?.geometry) && menu.geometry.length === 3 && [1, 1.25, 1.5].every(zoom => menu.geometry.filter(row => row?.zoom === zoom).length === 1)
+    && menu.geometry.every(row => ['left', 'right', 'top', 'bottom', 'width', 'height', 'chrome'].every(key => Number.isFinite(row[key])) && row.width > 0 && row.height > 0 && row.chrome >= 0 && row.left >= 0 && row.right <= row.width && row.right > row.left && row.top >= row.chrome && row.bottom <= row.height && row.bottom > row.top);
+  if (tree?.checks !== 8 || !['boundedMountedCount', 'allLoadedRowsReachableByScroll', 'completeSiblingMetadata'].every(key => virtual?.[key] === true)
+    || !Array.isArray(virtual.rootLoadedCounts) || virtual.rootLoadedCounts.length !== 2 || virtual.rootLoadedCounts[0] !== 200 || virtual.rootLoadedCounts[1] !== 225
+    || !treeFlags.every(key => sticky?.[key] === true) || large?.files !== 1000 || large.pages !== 5 || !Number.isInteger(large.mountedRows) || large.mountedRows <= 0 || large.mountedRows >= large.files
+    || !['keyboardLastAndFirst', 'completeSiblingMetadata', 'collapseRetainedFocus'].every(key => large[key] === true)
+    || !menuFlags.every(key => menu?.[key] === true) || !Array.isArray(menu.themes) || menu.themes.length !== 2 || !['light', 'dark'].every(theme => menu.themes.filter(value => value === theme).length === 1) || !menuLayouts) {
+    throw new Error('Complete project-tree virtualization, keyboard and menu checks are required');
+  }
+}
+
 export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches, temporary, comparisons, portable, portableAudit, bootstrap, installer }) {
   if (![audit.executableSha256, audit.archiveSha256, portable.wrapperSha256].every((hash) => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash))) {
     throw new Error('Release proof requires complete SHA-256 values');
@@ -135,7 +164,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 383 || surfaces.checks !== 5 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 412 || surfaces.checks !== 5 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const lifecycle = surfaces.tooltipLifecycle;
@@ -145,6 +174,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   verifyComposerActionsProof(desktop.composerActions);
   verifySettingsSearchProof(desktop.settingsSearch);
   verifyTaskPlanProof(desktop.taskPlans);
+  verifyNavigationProof(desktop);
   const context = desktop.contextSummaries;
   const roots = desktop.worktreeSettings;
   const overview = desktop.worktreeOverview;

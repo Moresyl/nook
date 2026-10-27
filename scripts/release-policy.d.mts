@@ -1,5 +1,29 @@
 export function releaseVersion(tag: string, version: string): { tag: string; version: string; prerelease: boolean };
 export function releaseNotes(changelog: string, version: string): string;
+export type NavigationReleaseProof = {
+  checks: number;
+  chatNavigation?: {
+    checks: number;
+    sidebarNavigation?: Record<'paginationFocus' | 'currentChatBeyondFirstBatch' | 'originalDraftRetained' | 'keyboardCollapse' | 'collapseSurvivesNormalRestart' | 'searchRevealsCollapsedSection', boolean> & {
+      fixtures: number;
+      automaticPagination?: {
+        batches: number; pageSize: number; composerFocusRetained: boolean; draftRetained: boolean; activeChatRetained: boolean;
+        layouts: { theme: string; zoom: number; rows: number; screenshot: string }[];
+      };
+    };
+  };
+  projectTree?: {
+    checks: number;
+    virtualizedRows?: { boundedMountedCount: boolean; allLoadedRowsReachableByScroll: boolean; completeSiblingMetadata: boolean; rootLoadedCounts: number[] };
+    stickyFolders?: Record<'ancestorStack' | 'subtreePushOff' | 'pointerCollapse' | 'keyboardCanonicalFocus' | 'noDuplicateTreeItems' | 'pagination' | 'refreshAndSearch', boolean> & {
+      virtualizedLargeDirectory?: { files: number; pages: number; mountedRows: number; keyboardLastAndFirst: boolean; completeSiblingMetadata: boolean; collapseRetainedFocus: boolean };
+      fileMenu?: Record<'pointerAndKeyboard' | 'rovingFocus' | 'compositionEscape' | 'outsideAndScrollDismissal' | 'unchangedResizeRetainsMenu' | 'changedResizeDismissesMenu' | 'openAndDirectoryToggle' | 'newFileParent' | 'copyFailureRetry' | 'lateCopyIsolation', boolean> & {
+        themes: string[]; geometry: { zoom: number; left: number; right: number; top: number; bottom: number; width: number; height: number; chrome: number }[];
+      };
+    };
+  };
+};
+export function verifyNavigationProof(proof: NavigationReleaseProof | undefined): void;
 export type ComposerActionsProof = {
   checks: number; modelRequests: number; queryKeyboardVerified: boolean; templateCancellationVerified: boolean;
   caretInsertionVerified: boolean; scopeSelectionVerified: boolean; sixThemeZoomLayoutsVerified: boolean; quickChatVerified: boolean; fixtureCleanupVerified: boolean;
@@ -114,7 +138,7 @@ export type WorktreeSnapshotsProof = {
 export type SettingsSearchProof = { checks: number; modelRequests: number; keyboardVerified: boolean; destinationFocusVerified: boolean; draftRetentionVerified: boolean; heldPickerVerified: boolean; sessionResetVerified: boolean; explicitDiscardVerified: boolean; discardKeyboardFocusVerified: boolean; scopedDiscardVerified: boolean; revertedDraftVerified: boolean; compactDiscardLayoutsVerified: boolean; allSettingsFormsVerified: boolean; protectedForms: string[]; screenshots: string[]; layouts: { theme: string; zoom: number; contained: boolean; sidebarOverflow: boolean; panelOverflow: boolean; searchStyleVerified: boolean; discard: { width: number; expectedWidth: number; radius: string; contained: boolean; heightBounded: boolean; buttonsVisible: boolean; defaultCancelFocus: boolean; closeControls: number } }[] };
 export type ReleaseProof = {
   audit: { compiledAssetsMatchVerifiedBuild: boolean; removedUiFontReferencesVerified: boolean; oldProductIdentityMatches: string[]; unresolvedAssets: string[]; unresolvedDistribution: string[]; executableSha256: string; archiveSha256: string };
-  desktop: { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; taskPlans?: TaskPlanProof; composerActions?: ComposerActionsProof; settingsSearch?: SettingsSearchProof; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; worktreeCleanup?: WorktreeCleanupProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number; safeCancelVerified: boolean; deleteFailureRetentionVerified: boolean; pendingDismissalLocked: boolean; longDeleteContentVerified: boolean; defaultSurfaceVerified: boolean; screenshots: string[]; deletionLayouts: { theme: string; zoom: number; width: number; expectedWidth: number; radius: string; top: number; expectedTop: number; surfaceRgba: number[]; backdropBlur: string; borderWidth: string; shadow: string; overlayRgba: number[]; overlayBlur: string; closeWidth: number; closeHeight: number; heading: { size: string; lineHeight: string; weight: string; spacing: string }; contained: boolean; bounded: boolean; bodyPadding: string; footerPadding: string; buttonsVisible: boolean; cancelFocused: boolean; closeControls: number; longContentEscaped: boolean; independentScrollVerified: boolean }[] }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
+  desktop: NavigationReleaseProof & { variant: string; checks: number; normalCloseVerified: boolean; runtimeErrors: string[]; executableSha256: string; archiveSha256: string; taskPlans?: TaskPlanProof; composerActions?: ComposerActionsProof; settingsSearch?: SettingsSearchProof; mcpResourceSubscriptions?: McpSubscriptionProof; mcpBinaryFiles?: McpBinaryProof; mcpPdf?: McpPdfProof; quickChat?: QuickChatProof; browser?: BrowserProof; projectBranches?: ProjectBranchesProof; projectWorktrees?: ProjectWorktreesProof; worktreeSettings?: WorktreeSettingsProof; worktreeOverview?: WorktreeOverviewProof; worktreeConversations?: WorktreeConversationsProof; worktreeUpstream?: WorktreeUpstreamProof; worktreeRegistration?: WorktreeRegistrationProof; worktreeOwnership?: WorktreeOwnershipProof; worktreePinning?: WorktreePinningProof; worktreeSnapshots?: WorktreeSnapshotsProof; worktreeCleanup?: WorktreeCleanupProof; toolActivities?: ToolActivitiesProof; contextSummaries?: ContextSummaryProof; assistantRecipes?: AssistantRecipeProof; promptTransfer?: PromptTransferProof; memories?: { checks: number; safeCancelVerified: boolean; deleteFailureRetentionVerified: boolean; pendingDismissalLocked: boolean; longDeleteContentVerified: boolean; defaultSurfaceVerified: boolean; screenshots: string[]; deletionLayouts: { theme: string; zoom: number; width: number; expectedWidth: number; radius: string; top: number; expectedTop: number; surfaceRgba: number[]; backdropBlur: string; borderWidth: string; shadow: string; overlayRgba: number[]; overlayBlur: string; closeWidth: number; closeHeight: number; heading: { size: string; lineHeight: string; weight: string; spacing: string }; contained: boolean; bounded: boolean; bodyPadding: string; footerPadding: string; buttonsVisible: boolean; cancelFocused: boolean; closeControls: number; longContentEscaped: boolean; independentScrollVerified: boolean }[] }; projectPreview?: ProjectPreviewProof; pdfPreview?: PdfPreviewProof; attachments?: { pdfOriginal?: PdfOriginalProof } };
   surfaces: ReleaseProof['desktop'] & { tooltipLifecycle?: {
     passed: boolean; sourceOpenDelayMs: number; sourceSkipIntervalMs: number; clockAdvanced: boolean;
     originalTimeoutCallbacksRetained: boolean; focusEmulationDisabledOnlyDuringNativeBlur: boolean; originalFocusEmulationRestored: boolean;

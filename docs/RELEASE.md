@@ -31,6 +31,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 同一组 1322 个跟踪文件、236 个编译文件及 4 个二进制文件在完整验收前后逐一核对，哈希全部匹配。静默安装、注册信息、快捷方式、卸载与数据保留通过，16 个既有测试标记按哈希恢复；便携版 7 项、启动组件及 11 份匹配运行记录通过。安装包 SHA-256 为 `4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098`，便携包为 `869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1`，签名为 `NotSigned`。八张本次代表截图已查看，全部截图保留但未逐张审阅。[前期专项及可见性边界](../verification/sidebar-pagination-review-result.json)
 
+分发验收后补齐发布校验：最低完整检查数从 383 提升至 412，同时要求当前自动分页、六组布局及文件树虚拟滚动／菜单证据，安装校验共用同一函数。最新类型与 146 文件／1721 项单元通过，137 项相关专项通过，整个发布校验文件的语句／分支／函数／行覆盖率为 100%／99.83%／100%／100%。真实新记录通过，缺少自动分页的旧 412 项记录被拒绝。322 个应用输入、236 个编译文件及 4 个二进制哈希未变；修改后的安装校验通过留存的真实安装记录复核，未再次安装。[校验范围与证据](../verification/navigation-release-policy-review-result.json)
+
 以下文件夹、终端与分栏记录属于各自历史候选，哈希和当时的待办继续保留，不替代上面的当前验收。
 
 2026-10-27 续作：新建文件夹的路径保护、重名和失败重试已通过针对性测试；候选 `d632b86` 的源码、包内及安装完整回归各通过 412 项、75 次正常退出。其后修复窄窗口标题隐藏，文件树 8 项和提示 7 项源码专项通过；最终候选 `cc8336e` 重新构建，包内和实际安装完整回归各通过 412 项、75 次正常退出，最长分别为 1430ms 和 1412ms，均无强制结束。静默安装、快捷方式、卸载与数据保留通过，16 个既有测试标记按哈希恢复；便携版 7 项和 11 份匹配运行记录通过。完整源码回归是布局修正前的基线。安装包 SHA-256 为 `0b50050930cd764db5716b916a38098698d696d10c83391b0cd477ccd1b5927b`，便携包为 `c51780dfed05cd871e1ee3f3370cb8d81c587cc884439564f84f8320590c4e16`。
@@ -42,7 +44,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 | 检查 | 当前结果 |
 | --- | --- |
 | 类型与构建 | 自动分页候选通过；最终包审计通过 |
-| 完整单元测试 | 145 个文件、1710 项通过 |
+| 最新完整单元测试 | 146 个文件、1721 项通过；其中 11 项为本轮新增发布校验检查 |
 | 覆盖率统计范围 | 语句 97.12%、分支 94.70%、函数 97.85%、行 99.50% |
 | 自动分页候选完整源码／包内／安装回归 | 各 412 项、75 次正常退出，无强制结束；最长 1334ms／1498ms／1483ms |
 | 自动分页候选安装与分发 | 静默安装、快捷方式、卸载和数据保留通过，16 个原有标记恢复；11 份运行记录匹配 |
@@ -91,7 +93,7 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,710 unit tests pass. The same source, compiled files and Windows binaries passed 412 complete desktop checks in each source, packaged and installed runtime, with 75 normal exits per runtime and no forced exits. Silent install/uninstall, data retention, restoration of 16 existing markers, seven portable checks and 11 matching runtime records pass. All frozen input hashes match. The installer is unsigned. Physical interaction acceptance, complete design alignment and the historical native abort's unique root cause remain unresolved. Hosted workflows are blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,721 unit tests pass. The same application source, compiled files and Windows binaries passed 412 complete desktop checks in each source, packaged and installed runtime, with 75 normal exits per runtime and no forced exits. Silent install/uninstall, data retention, restoration of 16 existing markers, seven portable checks and 11 matching runtime records pass. Release validation now requires the current sidebar and tree evidence; 137 focused policy checks pass, accepting current records and rejecting a previous 412-check record without automatic pagination. This validation-only change retains all application hashes; its installed policy was checked against retained installation evidence. The installer is unsigned. Physical interaction acceptance, complete design alignment and the historical native abort's unique root cause remain unresolved. Hosted workflows are blocked by account billing or spending limits.
 
 ## 历史证据
 
