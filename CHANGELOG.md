@@ -2,7 +2,9 @@
 
 ## 未发布
 
-- 终端关闭现在等待 PTY 退出事件后才释放监听器；退出回调超时会保留窗口和会话，迟到回调到达后可重试退出，未完成进程继续占用会话名额。1,696 项单元、类型、构建及 7 项真实 Windows 终端专项通过；同一回归夹具能识别旧包的提前退出。修复的是已复现的清理时序问题，历史原生异常的唯一根因仍未证明，新分发完整验收待完成。[退出回调验证](docs/CI-TERMINAL-EXIT-ACK.md)
+- 本地完整分发验收通过：源码、包内和实际静默安装各通过 411 项、75 次正常退出；便携版、快捷方式、卸载数据保留及 11 份匹配运行记录通过，16 个既有测试标记按哈希恢复。安装向导的物理交互与托管发布仍待完成。[分发证据](verification/terminal-exit-ack-distribution-review-result.json)
+
+- 终端关闭现在等待 PTY 退出事件后才释放监听器；退出回调超时会保留窗口和会话，迟到回调到达后可重试退出，未完成进程继续占用会话名额。1,696 项单元、类型、构建及 7 项真实 Windows 终端专项通过；同一回归夹具能识别旧包的提前退出。修复的是已复现的清理时序问题，历史原生异常的唯一根因仍未证明。[退出回调验证](docs/CI-TERMINAL-EXIT-ACK.md)
 
 - 原生验证的非零退出错误现在附带有长度限制、已脱敏调试连接地址的 stderr，避免丢失退出前诊断。10 项专项单元及类型检查通过，两轮带本地采集的项目集成各 17 项通过。此前退出异常仅定位到运行库 `abort`，根因未确认，不作为产品崩溃修复发布。[退出诊断证据](verification/native-exit-diagnostics-review-result.json)
 
@@ -205,7 +207,7 @@ The file tree supports context menus, keyboard search, paged virtual scrolling a
 
 Terminal shutdown now waits for its exit acknowledgement; a timeout keeps the window and session available for retry. This fixes a reproduced cleanup-order defect without claiming a proven unique cause for the historical native abort. Other fixes cover compact-sidebar click targets, stale copy results, rename recovery, streaming state and keyboard focus.
 
-The Windows x64 installer and portable candidates are unsigned and not yet released. Uninstall preserves user data, and original licenses and source notices remain included. Distribution acceptance, complete design alignment and the documented physical-system checks remain pending; other platforms and the unsupported capabilities listed above are not included.
+The Windows x64 installer and portable candidates are unsigned and not yet released. Local automated packaged, installed and portable checks pass; uninstall preserves user data, and original licenses and source notices remain included. Hosted publication, complete design alignment and the documented physical-system checks remain pending; other platforms and the unsupported capabilities listed above are not included.
 
 ## 开发记录
 
