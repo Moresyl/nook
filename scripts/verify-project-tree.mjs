@@ -276,6 +276,12 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   console.log('Verified actual scoped project IPC without full workspace copies', JSON.stringify({ terminalReads: 8, documentReads: 1, workspaceCopies: projectWorkspaceCopies }));
   await page.getByRole('button', { name: '定位当前文件', exact: true }).click();
   const geometry = await page.evaluate(() => { const terminal = document.querySelector('.project-terminal').getBoundingClientRect(); const editor = document.querySelector('.editor-canvas').getBoundingClientRect(); return { top: terminal.top, bottom: terminal.bottom, height: terminal.height, editor: editor.height, windowHeight: innerHeight }; }); assert.ok(geometry.top >= 0 && geometry.bottom <= geometry.windowHeight && geometry.height >= 100 && geometry.editor >= 60, JSON.stringify(geometry)); await page.screenshot({ path: join(screenshots, '96-project-tree-dark-narrow.png') });
+  const toolbarLayout = await page.locator('.editor-files-toolbar').first().evaluate(element => {
+    const bounds = element.getBoundingClientRect(), title = element.querySelector('span:not([role="tooltip"])').getBoundingClientRect();
+    const buttons = [...element.querySelectorAll(':scope > button')].map(button => button.getBoundingClientRect());
+    return { titleVisible: title.width > 0 && title.height > 0, buttons: buttons.length, contained: buttons.every(rect => rect.left >= bounds.left && rect.right <= bounds.right && rect.top >= bounds.top && rect.bottom <= bounds.bottom), oneRow: buttons.every(rect => Math.abs(rect.top - buttons[0].top) < 1) };
+  });
+  assert.deepEqual(toolbarLayout, { titleVisible: true, buttons: 5, contained: true, oneRow: true });
   const rowsBeforeHide = await collectProjectTreeRows(page, tree());
   await page.getByRole('button', { name: '隐藏文件树', exact: true }).focus(); await page.getByRole('button', { name: '隐藏文件树', exact: true }).press('Enter');
   assert.equal(await tree().count(), 0); assert.equal(await page.getByRole('button', { name: '显示文件树', exact: true }).getAttribute('aria-pressed'), 'false');
