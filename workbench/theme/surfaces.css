@@ -334,6 +334,19 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .image-preview-error { margin: auto; text-align: center; }
 .image-export-message { flex-shrink: 0; margin: 0; color: var(--ds-text-secondary); font-size: 12px; text-align: center; overflow-wrap: anywhere; }
 .image-preview-error > p { margin-bottom: 12px; }
+@media (width < 450px) and (height < 420px) {
+  .image-preview-dialog .modal-header { padding: 4px 8px; }
+  .image-preview-dialog .modal-header > .icon-button { width: 32px; height: 32px; }
+  .image-preview-dialog .modal-content { padding: 0 8px 8px; }
+  .image-preview-layout { gap: 4px; }
+  .image-preview-stage { min-height: 40px; padding: 2px; }
+  .image-preview-caption { font-size: 12px; line-height: 16px; }
+  .image-preview-warnings { max-height: 16px; font-size: 11px; line-height: 16px; }
+  .image-preview-warnings p { margin: 0; }
+  .image-export-message { font-size: 11px; line-height: 16px; }
+  .image-preview-toolbar { gap: 2px; padding: 2px; }
+  .image-preview-toolbar .button { height: 28px; min-width: 28px; padding: 4px 8px; font-size: 11px; }
+}
 @media (width < 768px) {
   .image-preview-dialog.modal { width: 100vw; height: 100dvh; }
   .image-preview-dialog .modal-header { padding: 8px 12px; }

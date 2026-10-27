@@ -4,6 +4,7 @@ export type ImageExportProof = {
   cancelPreservedDestination: boolean; failureRetried: boolean; exactJpegBytes: boolean;
   delayedImageIsolation: boolean; draftUnchanged: boolean; quickChatVerified: boolean; sha256: string;
   layouts: { theme: string; actualTheme: string; zoom: number; contained: boolean; pageContained: boolean; failureRetried: boolean; exactJpegBytes: boolean; screenshot: string }[];
+  quickLayouts: (ImageExportProof['layouts'][number] & { imageVisible: boolean; imageAreaHeight: number; warningKeyboard: boolean })[];
 };
 export function verifyImageExportProof(proof: ImageExportProof | undefined): void;
 type ProjectFileMenuBounds = { zoom: number; left: number; right: number; top: number; bottom: number; width: number; height: number; chrome: number };

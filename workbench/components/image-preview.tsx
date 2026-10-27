@@ -114,7 +114,7 @@ export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: {
         {images.length > 1 && <IconButton icon="right" className="icon-button image-next" label="下一张图片" disabled={index >= images.length - 1} onClick={() => select(1)} />}
       </div>
       <div className="image-preview-caption" role="status">{images.length > 1 && `${index + 1} / ${images.length} · `}{dimensions.width} × {dimensions.height}{file.source && ` · ${file.source.format.toUpperCase()}`}</div>
-      {file.warnings?.length ? <div className="image-preview-warnings">{file.warnings.map(warning => <p key={warning}>{warning}</p>)}</div> : null}
+      {file.warnings?.length ? <div className="image-preview-warnings" tabIndex={0} role="region" aria-label="图片转换说明">{file.warnings.map(warning => <p key={warning}>{warning}</p>)}</div> : null}
       {exportMessage && <p className="image-export-message" role={exportError ? 'alert' : 'status'}>{exportMessage}</p>}
       <div className="image-preview-toolbar" role="group" aria-label="图片缩放">
         <IconButton icon="minimize" label="缩小图片" disabled={!loaded || scale <= steps[0]} onClick={() => step(-1)} />

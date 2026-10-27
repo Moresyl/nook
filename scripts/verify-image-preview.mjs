@@ -39,7 +39,7 @@ export async function verifyImagePreview({ page, application, directory, screens
     let bounds = await geometry(); assert.ok(bounds.width <= bounds.availableWidth + 1 && bounds.height <= bounds.availableHeight + 1 && bounds.width > 320, JSON.stringify(bounds));
     assert.equal(await page.getByRole('button', { name: '上一张图片', exact: true }).isDisabled(), true);
     await capture('133-image-viewer-light.png');
-    const imageExport = await verifyImageExports({ page, application, directory, capture, verified });
+    const imageExport = await verifyImageExports({ page, application, directory, screenshots, capture, verified });
     await page.getByRole('button', { name: '预览 project-board.png', exact: true }).click(); await ready();
     await page.getByRole('button', { name: '原始尺寸', exact: true }).click(); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width === 1600);
     await page.getByRole('button', { name: '放大图片', exact: true }).click(); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width === 2400);
