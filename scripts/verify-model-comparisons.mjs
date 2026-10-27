@@ -148,7 +148,8 @@ export async function verifyModelComparisons({ page, application, getApplication
     while (!await target.count()) {
       assert.ok(Date.now() < deadline, 'The conversation must be reachable through the visible recent-chat pagination.');
       const before = await sidebar.locator('.thread-row').count();
-      await sidebar.getByRole('button', { name: '显示更多最近聊天', exact: true }).click();
+      const more = sidebar.getByRole('button', { name: '显示更多最近聊天', exact: true });
+      await more.focus(); await more.click();
       assert.ok(await sidebar.locator('.thread-row').count() > before, 'Showing more must reveal additional conversations.');
       pages++;
     }

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { verifyPinnedReorder } from './verify-pinned-reorder.mjs';
 import { verifyThreadActions } from './verify-thread-actions.mjs';
 
-export async function verifyRecentThreads({ page, application, threads, existingPins, originalTitle, capture, directory }) {
+export async function verifyRecentThreads({ page, application, threads, existingPins, originalTitle, capture, directory, nativeZoom }) {
   const sidebar = page.locator('.thread-list');
   const pinned = sidebar.getByRole('region', { name: '已置顶', exact: true });
   const recent = sidebar.getByRole('region', { name: '最近聊天', exact: true });
@@ -55,6 +55,32 @@ export async function verifyRecentThreads({ page, application, threads, existing
   assert.ok(await page.evaluate(() => window.nookRapidToggleKeys[1] - window.nookRapidToggleKeys[0] < 300), 'The native keyboard reversal happened before the collapse deadline');
   const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
+  const composer = page.getByLabel('消息', { exact: true });
+  for (const count of [20, 30]) {
+    await composer.focus();
+    await more.scrollIntoViewIfNeeded();
+    await row(ordinary[count - 1].title).waitFor();
+    assert.equal(await recent.locator('.thread-row').count(), count + 1, 'The visible boundary appends one ten-chat batch and retains the older active chat');
+    assert.equal(await composer.evaluate(element => document.activeElement === element), true, 'Automatic expansion never steals composer focus');
+    assert.equal(await composer.inputValue(), 'CHAT_NAV_DRAFT_KEEP');
+    assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page', 'Automatic expansion never activates another chat');
+  }
+  const automaticLayouts = [];
+  for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
+    await page.evaluate(async theme => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme }); }, theme);
+    await application.resize(760, 540); await nativeZoom(zoom); await page.reload(); await composer.waitFor();
+    await composer.focus();
+    await sidebar.scrollIntoViewIfNeeded(); await sidebar.hover(); await page.mouse.wheel(0, 10000);
+    await row(ordinary[19].title).waitFor();
+    assert.equal(await recent.locator('.thread-row').count(), 21);
+    assert.equal(await composer.evaluate(element => document.activeElement === element), true);
+    assert.equal(await composer.inputValue(), 'CHAT_NAV_DRAFT_KEEP');
+    assert.equal(await row(originalTitle).getAttribute('aria-current'), 'page');
+    const screenshot = `113-sidebar-auto-${theme}-${Math.round(zoom * 100)}.png`;
+    await capture(screenshot); automaticLayouts.push({ theme, zoom, rows: 21, screenshot });
+  }
+  await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' }); });
+  await application.resize(1280, 840); await nativeZoom(1); await page.reload(); await composer.waitFor();
   for (let index = 10; index < ordinary.length; index += 10) {
     await more.focus(); await more.press('Enter'); await row(ordinary[index].title).waitFor();
     assert.equal(await row(ordinary[index].title).evaluate(element => document.activeElement === element), true, 'Expanding each batch focuses its first new row, including the final batch');
@@ -92,5 +118,5 @@ export async function verifyRecentThreads({ page, application, threads, existing
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
   const actions = await verifyThreadActions({ page, application, threads, originalTitle, capture, directory });
-  return { fixtures: threads.length, pinnedReorder, actions, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  return { fixtures: threads.length, pinnedReorder, actions, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, automaticPagination: { batches: 2, pageSize: 10, composerFocusRetained: true, draftRetained: true, activeChatRetained: true, layouts: automaticLayouts }, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

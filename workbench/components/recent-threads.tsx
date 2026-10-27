@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type PointerEvent 
 import type { Thread } from '../../contracts/workspace';
 import type { PinnedReorder } from '../../contracts/pinned-order';
 import { readSidebarCollapsed, saveSidebarCollapsed, type SidebarSection } from '../lib/sidebar-sections';
+import { observeSidebarPage } from '../lib/sidebar-pagination';
 import { Button } from './controls';
 import { ThreadActionsMenu, type ThreadActionHandler, type ThreadActionRequest } from './thread-actions-menu';
 import { Glyph } from './glyphs';
@@ -13,6 +14,7 @@ const pageSize = 10;
 function ThreadSection({ section, label, threads, activeId, revealRequest, onSelect, onReorder, onMenu, openMenuId, paginate = false }: Props & { section: SidebarSection; label: string; paginate?: boolean; openMenuId?: string; onMenu: (thread: Thread, anchor: HTMLElement, point?: { x: number; y: number }) => void }) {
   const id = useId(); const [collapsed, setCollapsed] = useState(() => readSidebarCollapsed(section)); const [limit, setLimit] = useState(pageSize);
   const [present, setPresent] = useState(!collapsed);
+  const more = useRef<HTMLButtonElement>(null);
   const rows = useRef(new Map<string, HTMLButtonElement>()); const reveal = useRef<string | undefined>(undefined);
   const drag = useRef<Drag | undefined>(undefined); const suppressClick = useRef(false); const moving = useRef(false); const focusAfter = useRef<string | undefined>(undefined);
   const [dragging, setDragging] = useState<string>(); const [drop, setDrop] = useState<PinnedReorder>(); const [busy, setBusy] = useState(false); const [error, setError] = useState(false); const [announcement, setAnnouncement] = useState('');
@@ -20,6 +22,10 @@ function ThreadSection({ section, label, threads, activeId, revealRequest, onSel
   const visible = paginate ? threads.slice(0, limit) : [...threads];
   if (active && !visible.includes(active)) visible.push(active);
   const remaining = threads.length - visible.length;
+  useEffect(() => {
+    if (!paginate || collapsed || !present || remaining <= 0 || !more.current) return;
+    return observeSidebarPage(more.current, () => setLimit(value => Math.min(threads.length, value + pageSize)));
+  }, [paginate, collapsed, present, remaining, limit, threads.length]);
   const previousActive = useRef(active?.id);
   const previousReveal = useRef(revealRequest);
   function changeCollapsed(value: boolean) { setCollapsed(value); saveSidebarCollapsed(section, value); }
@@ -116,7 +122,7 @@ function ThreadSection({ section, label, threads, activeId, revealRequest, onSel
       if (!item.pinned || busy || event.nativeEvent.isComposing || event.key === 'Process' || event.nativeEvent.keyCode === 229 || !event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || !['ArrowUp', 'ArrowDown'].includes(event.key)) return;
       event.preventDefault(); const target = visible[index + (event.key === 'ArrowUp' ? -1 : 1)];
       if (target) void move({ threadId: item.id, targetId: target.id, position: event.key === 'ArrowUp' ? 'before' : 'after' });
-    }} onClick={event => { if (event.detail > 0 && suppressClick.current) { event.preventDefault(); suppressClick.current = false; return; } onSelect(item); }}>{item.pinned && <Glyph name="pin" size={12} />}<span>{item.temporary ? `临时 · ${item.title}` : item.title}</span>{item.messages.some(message => message.status === 'running') && <span className="stream-dot" />}</Button><Button className="thread-row-actions" aria-label={`聊天操作：${item.title}`} aria-haspopup="menu" aria-expanded={openMenuId === item.id} title="聊天操作" disabled={busy} onClick={event => { cancelDrag(); onMenu(item, event.currentTarget); }}><span aria-hidden="true">···</span></Button></div>)}{remaining > 0 && <Button className="thread-more" onClick={showMore} title={`显示更多${label}，还有 ${remaining} 个`} aria-label={`显示更多${label}`}><Glyph name="down" size={14} /><span>显示更多</span><span aria-hidden="true">{remaining}</span></Button>}{threads.length === 0 && <p className="sidebar-empty">暂无聊天</p>}</>}</div></div>
+    }} onClick={event => { if (event.detail > 0 && suppressClick.current) { event.preventDefault(); suppressClick.current = false; return; } onSelect(item); }}>{item.pinned && <Glyph name="pin" size={12} />}<span>{item.temporary ? `临时 · ${item.title}` : item.title}</span>{item.messages.some(message => message.status === 'running') && <span className="stream-dot" />}</Button><Button className="thread-row-actions" aria-label={`聊天操作：${item.title}`} aria-haspopup="menu" aria-expanded={openMenuId === item.id} title="聊天操作" disabled={busy} onClick={event => { cancelDrag(); onMenu(item, event.currentTarget); }}><span aria-hidden="true">···</span></Button></div>)}{remaining > 0 && <Button ref={more} className="thread-more" onClick={showMore} title={`显示更多${label}，还有 ${remaining} 个`} aria-label={`显示更多${label}`}><Glyph name="down" size={14} /><span>显示更多</span><span aria-hidden="true">{remaining}</span></Button>}{threads.length === 0 && <p className="sidebar-empty">暂无聊天</p>}</>}</div></div>
     {error && <p role="alert" className="thread-reorder-error">无法保存置顶顺序，请重试。</p>}<span role="status" className="thread-reorder-announcement">{announcement}</span>
   </section>;
 }
