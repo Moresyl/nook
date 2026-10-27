@@ -1,0 +1,1058 @@
+{
+  "verifiedAt": "2026-10-27T10:58:23.471Z",
+  "productCommit": "4da669f19279711d88b0c06dc03ee87413ba753b",
+  "scope": "Complete acceptance of the same path-copy and file-manager-dispatch source, compiled files and Windows binaries. Documentation updates follow acceptance.",
+  "verificationDrivers": [
+    { "path": "D:/GR/nook-file-entry-actions-full-distribution.ps1", "sha256": "e4f81cd7a9b5f4b65299911debe6ff254328d5ff0a2cb771c6b780ef7795b0ab", "scope": "Executed original driver, including its retained stale-audit postcondition failure." },
+    { "path": "D:/GR/nook-file-entry-actions-reconcile-installer.ps1", "sha256": "71863ed13b1c82e854604a3ae4f5628cd696f6732a807ccdea1ccb73ac70caef", "scope": "Replays the original unchanged read-only installer postconditions, then checks completed uninstall and exact retained data." },
+    { "path": "D:/GR/nook-file-entry-actions-complete-distribution.ps1", "sha256": "8592a5936c5076b600aca45f36b9bdcd6f58ede35a459ebfadf4229cb1486cd1", "scope": "Checks matching runtime records and frozen inputs, then archives the verified artifacts." }
+  ],
+  "recoveryRecord": { "path": "D:/GR/nook-file-entry-actions-full-evidence/installer-postcondition-recovery.json", "sha256": "0c5f4d15c7164e0b6f3b28eb29030102c9d9aec8e571938fdf9e65644d518f57" },
+  "afterReview": {
+    "applicationInputs": 325, "compiled": 236, "binaries": 4, "allHashesMatch": true,
+    "record": { "path": "D:/GR/nook-file-entry-actions-full-evidence/inputs-after-review.json", "sha256": "8aa74a267a2981ee82d39c2e8c0b6d70bb18d0adc19e05081461ba2e526a1fee" }
+  },
+  "reference": {
+    "path": "E:/txt/raw/app-asar/webview/assets/app-initial-146770bfc1f4.js",
+    "sha256": "89a4a6f5bf501c73d6a4255bcd9575e1a7460d55c004af69d987adeff4cd2a74",
+    "version": "26.930.41038 / build 13022",
+    "branches": [
+      "workspace-file-copy-path",
+      "workspace-file-reveal-path (win32)"
+    ],
+    "otherConditionalMenuBranchesClaimed": false
+  },
+  "frozenInputs": {
+    "tracked": 1333,
+    "compiled": 236,
+    "binaries": 4,
+    "allHashesMatch": true,
+    "before": {
+      "path": "D:/GR/nook-file-entry-actions-full-evidence/before.json",
+      "sha256": "4d3ef0162de8b79a1074d9c8f88b99ffffaddc7ddd513d936f43b8eed2c9f7d4"
+    },
+    "final": {
+      "path": "D:/GR/nook-file-entry-actions-full-evidence/inputs-final.json",
+      "sha256": "ab044b13cf2c5a13d53dc7c3716273c26070cbd5ab518c736a93f6c6fc94af9d"
+    }
+  },
+  "typecheck": {
+    "passed": true,
+    "log": {
+      "path": "D:/GR/nook-file-entry-actions-typecheck-final.log",
+      "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+    }
+  },
+  "buildAndPackage": {
+    "passed": true,
+    "log": {
+      "path": "D:/GR/nook-file-entry-actions-package.log",
+      "sha256": "8ad64daae54757bd406377a47e44da58d63291454a458b4b45d8ebea875e31ab"
+    }
+  },
+  "unit": {
+    "files": 147,
+    "tests": 1732,
+    "coverageScope": "Configured production service, contract and selected workbench modules; excludes renderer entry points and native launch.",
+    "coverage": {
+      "lines": {
+        "total": 4684,
+        "covered": 4661,
+        "skipped": 0,
+        "pct": 99.5
+      },
+      "statements": {
+        "total": 7777,
+        "covered": 7554,
+        "skipped": 0,
+        "pct": 97.13
+      },
+      "functions": {
+        "total": 1727,
+        "covered": 1690,
+        "skipped": 0,
+        "pct": 97.85
+      },
+      "branches": {
+        "total": 5445,
+        "covered": 5158,
+        "skipped": 0,
+        "pct": 94.72
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "newServiceCoverage": {
+      "lines": {
+        "total": 17,
+        "covered": 17,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 4,
+        "covered": 4,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 24,
+        "covered": 24,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 21,
+        "covered": 21,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "log": {
+      "path": "D:/GR/nook-file-entry-actions-coverage-final.log",
+      "sha256": "5a1bc57a646e230eb2cb836ec0235b33399d1b7bad0a6724af3f6aa4e29e8a86"
+    },
+    "releasePolicyTests": 138,
+    "releasePolicyLog": {
+      "path": "D:/GR/nook-file-entry-actions-policy-coverage.log",
+      "sha256": "a6775feb1ea3834ef9d4121cb02e8c5d4d6e28f92376b261390fd1b4efb01e2e"
+    },
+    "releasePolicyCoverage": {
+      "lines": {
+        "total": 283,
+        "covered": 283,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 471,
+        "covered": 471,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 279,
+        "covered": 279,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 1202,
+        "covered": 1200,
+        "skipped": 0,
+        "pct": 99.83
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    }
+  },
+  "runtimes": [
+    {
+      "variant": "source",
+      "verifiedAt": "2026-10-27T09:43:11.825Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1467,
+      "runtimeErrors": [],
+      "result": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/electron-result.json",
+        "sha256": "08304978720918d2c075e40509628d1584e0e04a8ba6306dac1dd510b2cdd4e9"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/desktop.log",
+        "sha256": "b9207bc83944349cd03000ccdae05c60ba1f0a51e4059d6ab13458f8ecca4a82"
+      },
+      "fileMenu": {
+        "pointerAndKeyboard": true,
+        "rovingFocus": true,
+        "compositionEscape": true,
+        "outsideAndScrollDismissal": true,
+        "unchangedResizeRetainsMenu": true,
+        "changedResizeDismissesMenu": true,
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "openAndDirectoryToggle": true,
+        "newFileParent": true,
+        "copyFailureRetry": true,
+        "lateCopyIsolation": true,
+        "absolutePathCopy": true,
+        "absolutePathFailureRetry": true,
+        "latePathIsolation": true,
+        "revealDispatch": true,
+        "revealFailureRetry": true,
+        "invalidPathRejected": true,
+        "entryActionLayouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-150.png"
+          }
+        ],
+        "geometry": [
+          {
+            "zoom": 1,
+            "left": 224,
+            "top": 320,
+            "right": 444,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.25,
+            "left": 68,
+            "top": 212,
+            "right": 288,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.5,
+            "left": 68,
+            "top": 140,
+            "right": 288,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36
+          }
+        ],
+        "clipboardScope": "Renderer writeText fixture verifies exact relative/absolute paths, errors and pending writes; physical clipboard unchanged and not verified.",
+        "revealScope": "Actual main-process path validation dispatches to an intercepted Electron shell.showItemInFolder; physical Explorer selection is a separate check."
+      }
+    },
+    {
+      "variant": "packaged",
+      "verifiedAt": "2026-10-27T10:16:31.466Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1475,
+      "runtimeErrors": [],
+      "result": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/packaged-result.json",
+        "sha256": "20b6af85567352fc9264cf67d0c1c8544b5da597596198db89b80733e926e0b8"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged-desktop.log",
+        "sha256": "0f2b891ee6437fa9cdd77a33ba0dbf0cfde91df567966199ceffe1b229ba93d9"
+      },
+      "fileMenu": {
+        "pointerAndKeyboard": true,
+        "rovingFocus": true,
+        "compositionEscape": true,
+        "outsideAndScrollDismissal": true,
+        "unchangedResizeRetainsMenu": true,
+        "changedResizeDismissesMenu": true,
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "openAndDirectoryToggle": true,
+        "newFileParent": true,
+        "copyFailureRetry": true,
+        "lateCopyIsolation": true,
+        "absolutePathCopy": true,
+        "absolutePathFailureRetry": true,
+        "latePathIsolation": true,
+        "revealDispatch": true,
+        "revealFailureRetry": true,
+        "invalidPathRejected": true,
+        "entryActionLayouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-150.png"
+          }
+        ],
+        "geometry": [
+          {
+            "zoom": 1,
+            "left": 224,
+            "top": 320,
+            "right": 444,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.25,
+            "left": 68,
+            "top": 212,
+            "right": 288,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.5,
+            "left": 68,
+            "top": 140,
+            "right": 288,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36
+          }
+        ],
+        "clipboardScope": "Renderer writeText fixture verifies exact relative/absolute paths, errors and pending writes; physical clipboard unchanged and not verified.",
+        "revealScope": "Actual main-process path validation dispatches to an intercepted Electron shell.showItemInFolder; physical Explorer selection is a separate check."
+      }
+    },
+    {
+      "variant": "installed",
+      "verifiedAt": "2026-10-27T10:53:50.915Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1514,
+      "runtimeErrors": [],
+      "result": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/packaged-result.json",
+        "sha256": "9873402e4dde09b2c3183dd76b8c16ac6387b65b454a30b6588a619f80514626"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installer.log",
+        "sha256": "5c1cc854c243238df400a55b7fd307c56041713b768c50ecf21b8407cf38f4e6"
+      },
+      "fileMenu": {
+        "pointerAndKeyboard": true,
+        "rovingFocus": true,
+        "compositionEscape": true,
+        "outsideAndScrollDismissal": true,
+        "unchangedResizeRetainsMenu": true,
+        "changedResizeDismissesMenu": true,
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "openAndDirectoryToggle": true,
+        "newFileParent": true,
+        "copyFailureRetry": true,
+        "lateCopyIsolation": true,
+        "absolutePathCopy": true,
+        "absolutePathFailureRetry": true,
+        "latePathIsolation": true,
+        "revealDispatch": true,
+        "revealFailureRetry": true,
+        "invalidPathRejected": true,
+        "entryActionLayouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "left": 224,
+            "right": 444,
+            "top": 272,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 164,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 92,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "absolutePathCopied": true,
+            "revealRetried": true,
+            "screenshot": "121-project-file-path-actions-dark-150.png"
+          }
+        ],
+        "geometry": [
+          {
+            "zoom": 1,
+            "left": 224,
+            "top": 320,
+            "right": 444,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.25,
+            "left": 68,
+            "top": 212,
+            "right": 288,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36
+          },
+          {
+            "zoom": 1.5,
+            "left": 68,
+            "top": 140,
+            "right": 288,
+            "bottom": 351.3333435058594,
+            "width": 507,
+            "height": 360,
+            "chrome": 36
+          }
+        ],
+        "clipboardScope": "Renderer writeText fixture verifies exact relative/absolute paths, errors and pending writes; physical clipboard unchanged and not verified.",
+        "revealScope": "Actual main-process path validation dispatches to an intercepted Electron shell.showItemInFolder; physical Explorer selection is a separate check."
+      }
+    }
+  ],
+  "focusedChecks": {
+    "surfaces": 5,
+    "textHints": 7,
+    "rendererClose": 2,
+    "terminalLifecycle": 7,
+    "portable": 7,
+    "logs": [
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/surfaces.log",
+        "sha256": "cd23da94be57e2682ed120dd840fef82a65683a9b6437b2949feed5f21c60b48"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/text-hints.log",
+        "sha256": "a2a16bdfd14c6fbd74a4c09eaf529276754ce837762b82bbee919c68f4042c41"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/renderer-close.log",
+        "sha256": "b129de54b3a6c231941d548b6dcae9b656c19cfe23de399ee5d87492f8fc03db"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/terminal-lifecycle.log",
+        "sha256": "6ff1951c0faa7b97c083bf49ac0da09fc90620f1352a5bdee7f58f87262ec1c1"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/portable.log",
+        "sha256": "73b91ab2414e13f96700ce650e66ac86dcd00a51f80892f9b42443f1b46a17a4"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/bootstrap.log",
+        "sha256": "d71c03e38c10e387261c0253a4a54de74e784c7cf18b92e730b140199ba77d71"
+      }
+    ]
+  },
+  "runtimeProof": {
+    "records": 11,
+    "log": {
+      "path": "D:/GR/nook-file-entry-actions-full-evidence/runtime-proof.log",
+      "sha256": "25be206c386205680d8f2b4c7d26bd13aaef8d6b7901222384525e8dee511091"
+    }
+  },
+  "installer": {
+    "normalCloseVerified": true,
+    "uninstalled": true,
+    "verifiedAt": "2026-10-27T10:57:02.7503992Z",
+    "installerSha256": "cb3066ebd6077d0a90b27eebed192fcecbdba94ff2dacb32cd0c859f2d136e37",
+    "registrationVerified": true,
+    "executableSha256": "91adf4e845738ae2bcb1e61508b2079570b3a0ccd78ed1229b9a205442ce6ad6",
+    "checks": 412,
+    "shortcutsVerified": true,
+    "scope": "Actual owned silent install and complete installed runtime passed. The original final comparison rejected a stale built audit, then the original unchanged read-only postconditions were replayed against a fresh built audit. Original uninstall and retained fresh/original markers were independently checked; no installation or runtime rerun was performed. Physical wizard interaction remains separate.",
+    "version": "0.1.0-alpha.1",
+    "archiveSha256": "91855f9f395ff0b5c55c78f60339e161a2938b8f00f98b24a8fee18761b82675",
+    "userDataRetained": true,
+    "postconditionRecovery": "D:/GR/nook-file-entry-actions-full-evidence/installer-postcondition-recovery.json"
+  },
+  "retention": {
+    "originalHashesPreserved": true,
+    "retainedBackup": "C:\\Users\\18468\\AppData\\Roaming\\NookFailedInstallerMarkers-1d8dda0f5e1246a8bbda7fc8bd1e6e10",
+    "restoredAt": "2026-10-27T10:54:11.6086547Z",
+    "originalMarkers": 16,
+    "installerPassed": false
+  },
+  "installerPostconditionRecovery": {
+    "registrationRemoved": true,
+    "originalInstallerScriptSha256": "857050da48f59c89abcdb024360666e46ad0e57a33a40657458baa549f258bcb",
+    "freshMarkers": [
+      {
+        "nonce": "0591db7dcc4f4c8ab33cd5153e57b0bb",
+        "profile": "Nook",
+        "sha256": "1CB60056E99FA13E7497C362F55C31110C54B2A54D298176F53A2D9CEDCEE8DB",
+        "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt"
+      },
+      {
+        "nonce": "0591db7dcc4f4c8ab33cd5153e57b0bb",
+        "profile": "nook-workspace",
+        "sha256": "1CB60056E99FA13E7497C362F55C31110C54B2A54D298176F53A2D9CEDCEE8DB",
+        "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt"
+      },
+      {
+        "nonce": "0591db7dcc4f4c8ab33cd5153e57b0bb",
+        "profile": "Qiyao",
+        "sha256": "1CB60056E99FA13E7497C362F55C31110C54B2A54D298176F53A2D9CEDCEE8DB",
+        "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt"
+      },
+      {
+        "nonce": "0591db7dcc4f4c8ab33cd5153e57b0bb",
+        "profile": "qiyao-workspace",
+        "sha256": "1CB60056E99FA13E7497C362F55C31110C54B2A54D298176F53A2D9CEDCEE8DB",
+        "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt"
+      }
+    ],
+    "verifiedAt": "2026-10-27T10:57:02.7391541Z",
+    "fullInstalledChecks": 412,
+    "actualRuntimeReused": true,
+    "originalHashesPreserved": true,
+    "uninstalled": true,
+    "shortcutsRemoved": true,
+    "originalMarkers": 16,
+    "initialFailure": "The new built-package audit was omitted before installation; the old audit hash caused the post-runtime comparison to reject. Original failure and reports are retained.",
+    "actualInstallerRerun": false,
+    "originalPostconditionsReplayed": true
+  },
+  "portable": {
+    "checks": 7,
+    "launches": 2,
+    "wrapperSha256": "cfee1460975f5ae53e6e9e54c7632ba80de611c7d21e27fba56714a91b5ceec5",
+    "childExecutableSha256": "91adf4e845738ae2bcb1e61508b2079570b3a0ccd78ed1229b9a205442ce6ad6"
+  },
+  "bootstrap": [
+    {
+      "variant": "installer",
+      "verifiedPlugins": 6
+    },
+    {
+      "variant": "uninstaller",
+      "verifiedPlugins": 5
+    },
+    {
+      "variant": "portable",
+      "verifiedPlugins": 2
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "91adf4e845738ae2bcb1e61508b2079570b3a0ccd78ed1229b9a205442ce6ad6"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "91855f9f395ff0b5c55c78f60339e161a2938b8f00f98b24a8fee18761b82675"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "cb3066ebd6077d0a90b27eebed192fcecbdba94ff2dacb32cd0c859f2d136e37"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "cfee1460975f5ae53e6e9e54c7632ba80de611c7d21e27fba56714a91b5ceec5"
+    }
+  ],
+  "signatures": [
+    {
+      "Path": "D:\\GR\\nook-terminal-exit\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "status": "NotSigned"
+    },
+    {
+      "Path": "D:\\GR\\nook-terminal-exit\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "status": "NotSigned"
+    }
+  ],
+  "packageAudit": {
+    "verifiedAt": "2026-10-27T10:55:04.703Z",
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "91adf4e845738ae2bcb1e61508b2079570b3a0ccd78ed1229b9a205442ce6ad6",
+    "archiveSha256": "91855f9f395ff0b5c55c78f60339e161a2938b8f00f98b24a8fee18761b82675",
+    "executableBytes": 245726720,
+    "executableMetadata": {
+      "Copyright": "Copyright © 2026 Nook",
+      "ProductName": "Nook",
+      "FileDescription": "Nook",
+      "Signature": "NotSigned",
+      "CompanyName": "Nook"
+    },
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionComponents": 5,
+    "distributionFiles": 20,
+    "elevationHelperSha256": "9b1fbf0c11c520ae714af8aa9af12cfd48503eedecd7398d8992ee94d1b4dc37",
+    "unresolvedDistribution": [],
+    "originalVendorNotices": [
+      "LICENSE.electron.txt",
+      "LICENSES.chromium.html"
+    ],
+    "oldProductIdentityMatches": [],
+    "removedUiFontReferencesVerified": true,
+    "compiledAssetsMatchVerifiedBuild": true,
+    "unresolvedAssets": [],
+    "scope": "Windows application-directory identity and removed-font references, every archive-declared unpacked file integrity hash and byte-for-byte legal/source retention. Vendor legal attribution is preserved. Installer behavior and full feature/UI completion remain separate gates."
+  },
+  "screenshots": {
+    "sourceFocusedIndividuallyReviewed": [
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-light-100.png",
+        "sha256": "2d533ed60799f1e8756d15a96a10cf1fbd9b42ecb6e3163d692a5fefcb37dd0d"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-light-125.png",
+        "sha256": "7ef18229b06f8abee23b78182038ecefeeb192332bd5d0655dd7f5d14622aa42"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-light-150.png",
+        "sha256": "4c6b18d9bc3d18908d9e0226a136e187a6c0be18dd349b9b3a37d07ea00c9306"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-dark-100.png",
+        "sha256": "875acd33995afe42d10cabf2205cdcae5adf123ef7d6a2e35355db533569b2a2"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-dark-125.png",
+        "sha256": "cd50b4889602fe133073b9fe0213f61ab8015558080bb0257aaa200760082487"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-source-final-evidence/121-project-file-path-actions-dark-150.png",
+        "sha256": "338da1a332e439aca326f8d013134e9d6a7b68926d1485497aa6c389f11972b1"
+      }
+    ],
+    "packagedIndividuallyReviewed": [
+      {
+        "path": "D:/GR/nook-file-entry-actions-packaged-interim-images/121-project-file-path-actions-light-150.png",
+        "sha256": "638390280c62c1f1f673fce662f0284693950675590708492374089d38140927"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-packaged-interim-images/121-project-file-path-actions-dark-100.png",
+        "sha256": "8ae3ff4993f8c02637e4f68f3bbcb116f1c58b00af9e1ee8179e8ea47831d65e"
+      }
+    ],
+    "installedIndividuallyReviewed": [
+      {
+        "path": "D:/GR/nook-file-entry-actions-installed-interim-images/121-project-file-path-actions-light-100.png",
+        "sha256": "32a461e2e7ba66e26b2a99c3389ff614739e2535eb7b79dc670375acda0567f5"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-installed-interim-images/121-project-file-path-actions-dark-150.png",
+        "sha256": "6689efe9a5f1f99afa44521de9388d1acf3689c6cef83e4b51f8be2578ea4715"
+      }
+    ],
+    "currentCompleteRuntimePathActionCaptures": [
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-light-100.png",
+        "sha256": "e99b4539009fa895ab32f69cfdc92e3d2f4c10751b06fa803d0b0f9e01f10a4c"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-light-125.png",
+        "sha256": "44a39e1561ef9b255e1ef781ab9c3180b7b078800cd9ed7798a6e60f4ce2e7a4"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-light-150.png",
+        "sha256": "638390280c62c1f1f673fce662f0284693950675590708492374089d38140927"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-dark-100.png",
+        "sha256": "5aa3588ae754cc52b1cff6a97768d996b03b7681c0ce956ef0e5cd39142d7944"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-dark-125.png",
+        "sha256": "dc15640a343a4fc45fbbdf2105fcb6d8f4c314766037cb84df6ce3b75326cb2e"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/source/screenshots/121-project-file-path-actions-dark-150.png",
+        "sha256": "6689efe9a5f1f99afa44521de9388d1acf3689c6cef83e4b51f8be2578ea4715"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-light-100.png",
+        "sha256": "2f9993b1cdc527cf34042c4e27e3198257698f5be99e2755a72a5502037fe14b"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-light-125.png",
+        "sha256": "e70429f0d730e4f7912224597b618d87a58a28f51f1bcd2f6e3206cdb6a207de"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-light-150.png",
+        "sha256": "638390280c62c1f1f673fce662f0284693950675590708492374089d38140927"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-dark-100.png",
+        "sha256": "8ae3ff4993f8c02637e4f68f3bbcb116f1c58b00af9e1ee8179e8ea47831d65e"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-dark-125.png",
+        "sha256": "92614f4368ed16d53a32cb049b0d94c4bb53076d759f23a895db2d4d9d41ef39"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/packaged/screenshots/121-project-file-path-actions-dark-150.png",
+        "sha256": "6689efe9a5f1f99afa44521de9388d1acf3689c6cef83e4b51f8be2578ea4715"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-light-100.png",
+        "sha256": "32a461e2e7ba66e26b2a99c3389ff614739e2535eb7b79dc670375acda0567f5"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-light-125.png",
+        "sha256": "b18583396e3bd851d466cc383445a7febfe1bb68392e40d11ba495d61d14261a"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-light-150.png",
+        "sha256": "638390280c62c1f1f673fce662f0284693950675590708492374089d38140927"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-dark-100.png",
+        "sha256": "107c7cfb2cf7197ed1af290960d0e52891a741cedf4bdca79ffb4ad353abf099"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-dark-125.png",
+        "sha256": "dd25faf60c68b0792b0182753d35b373b5709c6815b3abbcbf5b12416d2fd277"
+      },
+      {
+        "path": "D:/GR/nook-file-entry-actions-full-evidence/installed/screenshots/121-project-file-path-actions-dark-150.png",
+        "sha256": "6689efe9a5f1f99afa44521de9388d1acf3689c6cef83e4b51f8be2578ea4715"
+      }
+    ],
+    "allCapturesRetained": true,
+    "allCapturesIndividuallyReviewed": false
+  },
+  "oldCompleteProofRejection": {
+    "at": "2026-10-27T09:11:27.956Z",
+    "oldProofPath": "D:/GR/nook-sidebar-full-evidence/packaged/packaged-result.json",
+    "oldProofSha256": "da5a4e85906c18d900994448762502baae21830e3d8b2ea8a3a0701fc01ce3e1",
+    "checks": 412,
+    "rejected": true,
+    "error": "Complete project-tree virtualization, keyboard and menu checks are required"
+  },
+  "hostedProductPush": [
+    {
+      "jobs": [
+        {
+          "stepCount": 0,
+          "annotations": {
+            "path": ".github",
+            "blob_href": "https://github.com/Moresyl/nook/blob/4da669f19279711d88b0c06dc03ee87413ba753b/.github",
+            "start_line": 1,
+            "start_column": null,
+            "end_line": 1,
+            "end_column": null,
+            "annotation_level": "failure",
+            "title": "",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "raw_details": ""
+          },
+          "conclusion": "failure",
+          "name": "verify"
+        },
+        {
+          "stepCount": 0,
+          "annotations": [],
+          "conclusion": "skipped",
+          "name": "publish"
+        }
+      ],
+      "run": 40483025711,
+      "head": "4da669f19279711d88b0c06dc03ee87413ba753b"
+    },
+    {
+      "jobs": [
+        {
+          "stepCount": 0,
+          "annotations": {
+            "path": ".github",
+            "blob_href": "https://github.com/Moresyl/nook/blob/4da669f19279711d88b0c06dc03ee87413ba753b/.github",
+            "start_line": 1,
+            "start_column": null,
+            "end_line": 1,
+            "end_column": null,
+            "annotation_level": "failure",
+            "title": "",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "raw_details": ""
+          },
+          "conclusion": "failure",
+          "name": "verify"
+        },
+        {
+          "stepCount": 0,
+          "annotations": [],
+          "conclusion": "skipped",
+          "name": "publish"
+        }
+      ],
+      "run": 40483031234,
+      "head": "4da669f19279711d88b0c06dc03ee87413ba753b"
+    }
+  ],
+  "retainedArtifacts": "D:/GR/nook-file-entry-actions-full-evidence/artifacts",
+  "evidenceDirectory": "D:/GR/nook-file-entry-actions-full-evidence",
+  "boundaries": [
+    "Clipboard writeText is intercepted in the renderer. Exact values, errors, retries and pending requests are checked; the physical clipboard is unchanged and is not verified.",
+    "Main-process path validation invokes an intercepted Electron shell.showItemInFolder. Physical Explorer opening and selection remain a separate acceptance check.",
+    "The first focused run mislabeled the unchanged dark UI as light. It is retained separately and superseded by a run using actual theme commands and checking dataset.theme. An intermediate command-locator failure is also retained, not accepted.",
+    "The installed runtime passed all 412 checks, but its original post-runtime comparison rejected the stale pre-build package audit. The current built audit was refreshed, then all original read-only installer postconditions and completed uninstall/fresh sentinel/original marker checks passed. No second installation or runtime was performed. Original failure, false installerPassed retention record, and a separate reconciliation record are retained.",
+    "Physical installation wizard, input-method composition, assistive technology, other operating-system DPI and complete reference parity remain pending.",
+    "The earlier native abort has no proven unique root cause. Historical failures are retained; successful current exits do not prove that cause.",
+    "Renderer visibility remains emulated through CDP in affected suites; independent visibility-event and native window checks are recorded separately.",
+    "The text-hint focused report has no executable/archive hash fields. Its packaged selection is recorded by the retained driver and bounded by the unchanged frozen binary hashes; it is not one of the eleven hash-bearing runtime records.",
+    "Windows installers are unsigned. Hosted publication is still subject to the repository workflow and account billing policy; no release is claimed."
+  ]
+}
