@@ -130,6 +130,7 @@ const bridge: Bridge = {
   importAttachments: (files) => invoke('importAttachments', files),
   readDocumentOriginal: (reference) => invoke('readDocumentOriginal', reference),
   exportDocumentOriginal: (reference) => invoke('exportDocumentOriginal', reference),
+  exportAttachmentImage: (file) => invoke('exportAttachmentImage', file),
   listFiles: (id, path) => invoke('listFiles', id, path),
   listDirectory: (id, request) => invoke('listDirectory', id, request),
   createProjectFolder: (id, input) => invoke('createProjectFolder', id, input),

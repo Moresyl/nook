@@ -129,6 +129,7 @@ export type Bridge = {
   importAttachments(files: AttachmentInput[]): Promise<Attachment[]>;
   readDocumentOriginal(reference: DocumentOriginal): Promise<Uint8Array>;
   exportDocumentOriginal(reference: DocumentOriginal): Promise<boolean>;
+  exportAttachmentImage(file: Attachment): Promise<boolean>;
   listFiles(projectId: string, relativePath: string): Promise<FileEntry[]>;
   listDirectory(projectId: string, request: DirectoryRequest): Promise<DirectoryPage>;
   createProjectFolder(projectId: string, input: CreateProjectFolder): Promise<string>;

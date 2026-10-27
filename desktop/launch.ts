@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { projectSchema, providerSchema, threadMarkdown, threadSchema, type Workspace } from '../contracts/workspace';
 import { WorkspaceVault } from './services/vault';
 import { DocumentOriginalFiles } from './services/document-original-files';
+import { ImageExports } from './services/image-exports';
 import { chooseWorktreeRoot } from './services/worktree-root-picker';
 import { ManagedWorktreeRoots } from './services/managed-worktree-roots';
 import { userDataDirectory } from './services/user-data-directory';
@@ -119,6 +120,16 @@ const browserPanel = new BrowserPanel();
 function closeProjectPreviews(id?: string) { projectPreview.close(id); projectPreviewDock.close(id); }
 const gateway = new HttpModelGateway();
 const attachmentImporter = new AttachmentImporter((input) => parseInWorker(join(bundleDirectory, 'attachment-worker.cjs'), input), bytes => vault.stageDocumentOriginals(bytes));
+const imageExporters = new WeakMap<BrowserWindow, ImageExports>();
+function imageExports(parent: BrowserWindow): ImageExports {
+  let exporter = imageExporters.get(parent);
+  if (!exporter) { exporter = new ImageExports(name => chooseImagePath(parent, name)); imageExporters.set(parent, exporter); }
+  return exporter;
+}
+async function chooseImagePath(parent: BrowserWindow, name: string): Promise<string | undefined> {
+  const result = await dialog.showSaveDialog(parent, { title: '保存 JPEG 图片', defaultPath: name, filters: [{ name: 'JPEG 图片', extensions: ['jpg', 'jpeg'] }] });
+  return result.canceled ? undefined : result.filePath;
+}
 const documentOriginalFiles = new DocumentOriginalFiles(reference => vault.readDocumentOriginal(reference), async () => {
   const result = await dialog.showSaveDialog(window!, { defaultPath: 'document.pdf', filters: [{ name: 'PDF 文档', extensions: ['pdf'] }] });
   return result.canceled ? undefined : result.filePath;
@@ -400,6 +411,7 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   importAttachments: (raw) => attachmentImporter.importInputs(attachmentInputsSchema.parse(raw)),
   readDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.read(reference); },
   exportDocumentOriginal: async (reference) => { await flushWorkspaceDrafts(); return documentOriginalFiles.export(reference); },
+  exportAttachmentImage: file => imageExports(window!).export(file),
   listFiles: (id, path) => projectEntries(workspaceProject(id).path, z.string().max(4096).parse(path)),
   listDirectory: (id, input) => projectDirectory(workspaceProject(id).path, directoryRequestSchema.parse(input)),
   createProjectFolder: (id, input) => createProjectFolder(workspaceProject(id).path, createProjectFolderSchema.parse(input)),
@@ -656,11 +668,12 @@ else {
     const quickUrl = new URL(process.env.ELECTRON_RENDERER_URL || 'qiyao://app/index.html'); quickUrl.searchParams.set('view', 'quick-chat');
     quickChatWindow = new QuickChatWindow({ quick: quickChat, engine, preload: join(bundleDirectory, '../preload/quick-chat-bridge.cjs'), url: quickUrl.href, icon: join(app.getAppPath(), 'identity/qiyao.ico'),
       content: parent => {
+        const images = imageExports(parent);
         const originals = new DocumentOriginalFiles(reference => vault.readDocumentOriginal(quickChat.assertOriginal(reference)), async () => {
           const result = await dialog.showSaveDialog(parent, { defaultPath: 'document.pdf', filters: [{ name: 'PDF 文档', extensions: ['pdf'] }] }); return result.canceled ? undefined : result.filePath;
         });
         return { attachFiles: () => attachFiles(parent), importAttachments: raw => attachmentImporter.importInputs(attachmentInputsSchema.parse(raw)),
-          readDocumentOriginal: raw => originals.read(raw), exportDocumentOriginal: raw => originals.export(raw), openExternal: async url => { await commands.openExternal(url); } };
+          readDocumentOriginal: raw => originals.read(raw), exportDocumentOriginal: raw => originals.export(raw), exportAttachmentImage: raw => images.export(raw), openExternal: async url => { await commands.openExternal(url); } };
       },
       openWorkspace: async settings => {
         await flushMainDrafts(); const loaded = await quickChat.load();

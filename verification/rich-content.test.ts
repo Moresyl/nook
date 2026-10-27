@@ -7,7 +7,7 @@ import { MarkdownView } from '../workbench/components/markdown-view';
 import { ContentBridgeContext } from '../workbench/components/content-bridge';
 
 const unavailable = async () => { throw new Error('External document operations are unavailable in this rendering fixture.'); };
-const render = (content: string, allowWideBlocks?: boolean) => renderToStaticMarkup(createElement(ContentBridgeContext, { value: { openExternal: async () => {}, attachFiles: unavailable, importAttachments: unavailable, readDocumentOriginal: unavailable, exportDocumentOriginal: unavailable } }, createElement(MarkdownView, { content, allowWideBlocks, report: () => {} })));
+const render = (content: string, allowWideBlocks?: boolean) => renderToStaticMarkup(createElement(ContentBridgeContext, { value: { openExternal: async () => {}, attachFiles: unavailable, importAttachments: unavailable, readDocumentOriginal: unavailable, exportDocumentOriginal: unavailable, exportAttachmentImage: unavailable } }, createElement(MarkdownView, { content, allowWideBlocks, report: () => {} })));
 describe('rich message rendering', () => {
   it('enables wide tables only for an explicit caller and keeps layout flags out of semantic table markup', () => {
     const source = '| Column | Value |\n| --- | --- |\n| Text | 42 |';

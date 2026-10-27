@@ -328,10 +328,11 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .image-previous svg { transform: rotate(180deg); }
 .image-preview-caption { align-self: center; max-width: 100%; text-align: center; color: var(--ds-text-secondary); font-size: 14px; }
 .image-preview-warnings { max-height: 48px; overflow-y: auto; color: var(--ds-text-secondary); font-size: 12px; text-align: center; }
-.image-preview-toolbar { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px; margin: 0 auto; border-radius: 999px; background: var(--ds-bg-tertiary); box-shadow: 0 1px 4px #0000000d; }
+.image-preview-toolbar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; max-width: 100%; flex-shrink: 0; padding: 4px; margin: 0 auto; border-radius: 20px; background: var(--ds-bg-tertiary); box-shadow: 0 1px 4px #0000000d; }
 .image-preview-toolbar .button { height: 36px; min-width: 36px; border-radius: 999px; font-size: 13px; }
 .image-preview-toolbar .button[aria-pressed="true"] { background: var(--ghost-hover); }
 .image-preview-error { margin: auto; text-align: center; }
+.image-export-message { flex-shrink: 0; margin: 0; color: var(--ds-text-secondary); font-size: 12px; text-align: center; overflow-wrap: anywhere; }
 .image-preview-error > p { margin-bottom: 12px; }
 @media (width < 768px) {
   .image-preview-dialog.modal { width: 100vw; height: 100dvh; }

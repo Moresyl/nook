@@ -28,7 +28,7 @@ function setup() {
   const quick = { load: vi.fn(), save: vi.fn(), send: vi.fn(), stop: vi.fn(), activate: vi.fn(), owns: vi.fn((id: string) => id === 'quick'), assertOriginal: vi.fn(value => value) };
   const approvals = [{ id: 'quick-approval', threadId: 'quick' }, { id: 'main-approval', threadId: 'main' }];
   const engine = { pendingApprovals: vi.fn(() => approvals), resolveApproval: vi.fn() };
-  const content = { attachFiles: vi.fn(), importAttachments: vi.fn(), readDocumentOriginal: vi.fn(), exportDocumentOriginal: vi.fn(), openExternal: vi.fn() };
+  const content = { attachFiles: vi.fn(), importAttachments: vi.fn(), readDocumentOriginal: vi.fn(), exportDocumentOriginal: vi.fn(), exportAttachmentImage: vi.fn(), openExternal: vi.fn() };
   const openWorkspace = vi.fn();
   const manager = new QuickChatWindow({ quick: quick as unknown as QuickChat, engine: engine as unknown as ConversationEngine,
     content: () => content, openWorkspace, preload: 'quick-chat-bridge.cjs', url: 'qiyao://app/index.html?view=quick-chat', icon: 'icon.ico' });
@@ -102,6 +102,12 @@ describe('restricted quick-chat window', () => {
     expect(quick.save).toHaveBeenCalledWith('draft', 'revision'); expect(quick.send).toHaveBeenCalledWith('revision'); expect(quick.activate).toHaveBeenCalledWith('quick', 'revision'); expect(quick.stop).toHaveBeenCalledOnce();
     await invoke('attachFiles'); await invoke('importAttachments', []); await invoke('openExternal', 'https://example.com');
     expect(content.attachFiles).toHaveBeenCalledOnce(); expect(content.importAttachments).toHaveBeenCalledWith([]); expect(content.openExternal).toHaveBeenCalledWith('https://example.com');
+  });
+  it('passes image export data only through the trusted quick-chat content bridge', async () => {
+    const { invoke, content } = setup(), file = { id: 'image', name: 'image.png', image: { data: 'fixture' } };
+    content.exportAttachmentImage.mockResolvedValue(true);
+    expect(await invoke('exportAttachmentImage', file)).toBe(true);
+    expect(content.exportAttachmentImage).toHaveBeenCalledExactlyOnceWith(file);
   });
   it('preserves drafts and shows sanitized load errors, allowing a fresh window retry', async () => {
     fake.load.mockRejectedValueOnce(new Error('C:/private/path')); const { manager, window } = setup();

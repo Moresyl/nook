@@ -14,6 +14,7 @@ const bridge: QuickChatBridge = {
   openWorkspace: settings => invoke('openWorkspace', settings), windowAction: action => invoke('windowAction', action),
   attachFiles: () => invoke('attachFiles'), importAttachments: files => invoke('importAttachments', files),
   readDocumentOriginal: reference => invoke('readDocumentOriginal', reference), exportDocumentOriginal: reference => invoke('exportDocumentOriginal', reference),
+  exportAttachmentImage: file => invoke('exportAttachmentImage', file),
   openExternal: url => invoke('openExternal', url), pendingApprovals: () => invoke('pendingApprovals'), resolveApproval: (id, allowed) => invoke('resolveApproval', id, allowed),
   onBeforeClose: callback => { closeHandlers.add(callback); return () => { closeHandlers.delete(callback); }; },
   onRun: callback => { const handler = (_event: unknown, event: QuickChatEvent) => callback(event); ipcRenderer.on('nook:quick-run', handler); return () => { ipcRenderer.removeListener('nook:quick-run', handler); }; },

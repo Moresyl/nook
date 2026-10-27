@@ -1,10 +1,22 @@
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent, type RefObject } from 'react';
 import { attachmentImageUrl, type Attachment } from '../../contracts/attachments';
 import { Button, IconButton, Modal } from './controls';
+import { useContentBridge } from './content-bridge';
 
 const zoomSteps = [0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8];
 
 export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: { file: Attachment; images: Attachment[]; onSelect: (file: Attachment) => void; onClose: () => void; returnFocus?: RefObject<HTMLElement | null> }) {
+  const bridge = useContentBridge();
+  const exporting = useRef(false), mounted = useRef(true);
+  const [saving, setSaving] = useState(false), [exportMessage, setExportMessage] = useState(''), [exportError, setExportError] = useState(false);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const exportImage = async () => {
+    if (exporting.current) return;
+    exporting.current = true; setSaving(true); setExportMessage(''); setExportError(false);
+    try { const saved = await bridge.exportAttachmentImage(file); if (mounted.current && saved) setExportMessage('JPEG 图片已保存。'); }
+    catch { if (mounted.current) { setExportError(true); setExportMessage('无法保存图片，请选择可写入的 JPEG 文件后重试。'); } }
+    finally { exporting.current = false; if (mounted.current) setSaving(false); }
+  };
   const viewport = useRef<HTMLDivElement>(null);
   const image = useRef<HTMLImageElement>(null);
   const anchor = useRef<{ x: number; y: number; horizontal: number; vertical: number } | null>(null);
@@ -103,11 +115,13 @@ export function ImagePreview({ file, images, onSelect, onClose, returnFocus }: {
       </div>
       <div className="image-preview-caption" role="status">{images.length > 1 && `${index + 1} / ${images.length} · `}{dimensions.width} × {dimensions.height}{file.source && ` · ${file.source.format.toUpperCase()}`}</div>
       {file.warnings?.length ? <div className="image-preview-warnings">{file.warnings.map(warning => <p key={warning}>{warning}</p>)}</div> : null}
+      {exportMessage && <p className="image-export-message" role={exportError ? 'alert' : 'status'}>{exportMessage}</p>}
       <div className="image-preview-toolbar" role="group" aria-label="图片缩放">
         <IconButton icon="minimize" label="缩小图片" disabled={!loaded || scale <= steps[0]} onClick={() => step(-1)} />
         <Button aria-label="原始尺寸" title="原始尺寸（1）" disabled={!loaded} onClick={() => changeZoom(1)}>{Math.round(scale * 100)}%</Button>
         <IconButton icon="plus" label="放大图片" disabled={!loaded || scale >= steps.at(-1)!} onClick={() => step(1)} />
         <Button aria-pressed={zoom === null} disabled={!loaded} title="适应窗口（0）" onClick={() => changeZoom(null)}>适应窗口</Button>
+        <Button disabled={saving} title="保存导入后转换的 JPEG 图片" onClick={() => { void exportImage(); }}>{saving ? '正在保存…' : '保存 JPEG'}</Button>
         <Button onClick={onClose}>完成</Button>
       </div>
     </div>

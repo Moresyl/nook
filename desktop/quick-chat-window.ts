@@ -81,6 +81,7 @@ export class QuickChatWindow {
       stop: () => quick.stop(), activate: (id, revision) => quick.activate(id, revision),
       openWorkspace: async settings => { await this.flush(); await this.options.openWorkspace(z.boolean().optional().parse(settings) ?? false); },
       attachFiles: content.attachFiles, importAttachments: content.importAttachments, openExternal: content.openExternal,
+      exportAttachmentImage: content.exportAttachmentImage,
       readDocumentOriginal: async raw => { await this.flush(); return content.readDocumentOriginal(quick.assertOriginal(raw)); },
       exportDocumentOriginal: async raw => { await this.flush(); return content.exportDocumentOriginal(quick.assertOriginal(raw)); },
       pendingApprovals: () => engine.pendingApprovals().filter(request => quick.owns(request.threadId)),

@@ -1,6 +1,16 @@
 const identifier = '(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)';
 const versionPattern = `(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-${identifier}(?:\\.${identifier})*)?`;
 
+export function verifyImageExportProof(proof) {
+  const flags = ['cancelPreservedDestination', 'failureRetried', 'exactJpegBytes', 'delayedImageIsolation', 'draftUnchanged', 'quickChatVerified'];
+  const layouts = proof?.layouts;
+  if (!proof || !flags.every(key => proof[key] === true) || typeof proof.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(proof.sha256)
+    || !Array.isArray(layouts) || layouts.length !== 6 || !['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => layouts.filter(row => row?.theme === theme && row.zoom === zoom).length === 1))
+    || !layouts.every(row => row.actualTheme === row.theme && row.contained === true && row.pageContained === true && row.failureRetried === true && row.exactJpegBytes === true && row.screenshot === `136-image-export-${row.theme}-${row.zoom * 100}.png`)) {
+    throw new Error('Complete JPEG image export verification is required');
+  }
+}
+
 function completeWorktreeSnapshots(proof) {
   if (proof?.checks !== 8 || proof.modelRequests !== 0 || !['ownedOnlyCaptureVerified', 'privateSaveFailureVerified', 'backupSeparationVerified', 'normalRestartVerified', 'detachedExactRestoreVerified', 'referenceZoomKeyboardVerified', 'restoreKeyboardVerified', 'acceptedShutdownVerified', 'corruptReadRecoveryVerified', 'replacementRejectionVerified', 'sourcePreservationVerified'].every(key => proof[key] === true)) return false;
   const six = rows => Array.isArray(rows) && rows.length === 6 && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => rows.filter(row => row?.theme === theme && row.zoom === zoom).length === 1));
@@ -168,7 +178,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
       throw new Error('Runtime proof must match the audited application and normal close');
     }
   }
-  if (!Number.isInteger(desktop.checks) || desktop.checks < 412 || surfaces.checks !== 5 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
+  if (!Number.isInteger(desktop.checks) || desktop.checks < 416 || surfaces.checks !== 5 || portable.checks !== 7 || portable.launches?.length !== 2 || portable.runtimeErrors?.length !== 0 || portable.childExecutableSha256 !== audit.executableSha256 || portableAudit.executableSha256 !== audit.executableSha256 || portableAudit.archiveSha256 !== audit.archiveSha256 || portableAudit.unresolvedAssets?.length !== 0 || portableAudit.unresolvedDistribution?.length !== 0) {
     throw new Error('Complete desktop, surface and portable verification is required');
   }
   const lifecycle = surfaces.tooltipLifecycle;
@@ -322,6 +332,7 @@ export function verifyRuntimeProof({ audit, desktop, surfaces, preview, branches
   if (!originals || !Array.isArray(originals.textOnlyProtocols) || originals.textOnlyProtocols.length !== pdfProtocols.length || !pdfProtocols.every(protocol => originals.textOnlyProtocols.includes(protocol)) || !['restartBytesVerified', 'deduplicatedBackupVerified', 'missingFileRestoredVerified'].every(key => originals[key] === true)) {
     throw new Error('Complete PDF original transport and backup verification is required');
   }
+  verifyImageExportProof(desktop.attachments?.imageExport);
   if (!completePreview(desktop.projectPreview)) throw new Error('Complete desktop must include offline project-preview verification');
   const subscriptions = desktop.mcpResourceSubscriptions;
   if (!subscriptions || subscriptions.checks !== 6 || subscriptions.modelRequests !== 0 || !['realNotificationsVerified', 'explicitDraftInsertionVerified', 'delayedUnsubscribeFiltered', 'templateSelectionVerified', 'disconnectRestartVerified', 'unsupportedServerVerified', 'zoomKeyboardVerified', 'originalDraftRetained'].every((key) => subscriptions[key] === true)) {

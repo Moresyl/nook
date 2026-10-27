@@ -4,7 +4,7 @@ import type { ComposerDraft, Thread, Workspace } from './workspace';
 export type QuickChatContext = Pick<Workspace, 'providers' | 'preferences' | 'projects' | 'assistants' | 'mcpServers' | 'skills' | 'plugins' | 'knowledgeCollections' | 'promptTemplates'> & { hasNotes: boolean };
 export type QuickChatSnapshot = { revision: string; draft: ComposerDraft; context: QuickChatContext; thread?: Thread; conversations: { id: string; title: string }[] };
 export type QuickChatEvent = Omit<RunEvent, 'state'> & { thread?: Thread };
-export type ContentBridge = Pick<Bridge, 'attachFiles' | 'importAttachments' | 'readDocumentOriginal' | 'exportDocumentOriginal' | 'openExternal'>;
+export type ContentBridge = Pick<Bridge, 'attachFiles' | 'importAttachments' | 'readDocumentOriginal' | 'exportDocumentOriginal' | 'exportAttachmentImage' | 'openExternal'>;
 export type QuickChatBridge = ContentBridge & {
   load(): Promise<QuickChatSnapshot>;
   save(draft: ComposerDraft, revision: string): Promise<string>;

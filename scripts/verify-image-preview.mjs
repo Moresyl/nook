@@ -3,8 +3,9 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import { imageBytes } from '../verification/attachment-fixtures.mjs';
+import { verifyImageExports } from './verify-image-exports.mjs';
 
-export async function verifyImagePreview({ page, application, screenshots, verified, fixture }) {
+export async function verifyImagePreview({ page, application, directory, screenshots, verified, fixture }) {
   const board = `<svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg"><rect width="1600" height="1000" fill="#f0f2f6"/><text x="100" y="150" font-size="64" font-family="sans-serif" fill="#202630">Nook / Project board</text><text x="100" y="215" font-size="28" font-family="sans-serif" fill="#657080">Local image preview · 1600 × 1000</text><rect x="100" y="290" width="440" height="530" rx="32" fill="#cbdcff"/><rect x="580" y="290" width="440" height="530" rx="32" fill="#d9e9de"/><rect x="1060" y="290" width="440" height="530" rx="32" fill="#eeddd0"/><text x="150" y="390" font-size="36" font-family="sans-serif" fill="#24344e">01 / Explore</text><text x="630" y="390" font-size="36" font-family="sans-serif" fill="#294536">02 / Create</text><text x="1110" y="390" font-size="36" font-family="sans-serif" fill="#563e2c">03 / Refine</text></svg>`;
   const large = await sharp(Buffer.from(board)).png().toBuffer(), small = await imageBytes();
   const original = await page.evaluate(async () => { const state = await window.qiyao.load(); return { draft: state.composerDrafts.find(item => !item.threadId), preferences: state.preferences, activeThreadId: state.activeThreadId }; });
@@ -38,6 +39,8 @@ export async function verifyImagePreview({ page, application, screenshots, verif
     let bounds = await geometry(); assert.ok(bounds.width <= bounds.availableWidth + 1 && bounds.height <= bounds.availableHeight + 1 && bounds.width > 320, JSON.stringify(bounds));
     assert.equal(await page.getByRole('button', { name: '上一张图片', exact: true }).isDisabled(), true);
     await capture('133-image-viewer-light.png');
+    const imageExport = await verifyImageExports({ page, application, directory, capture, verified });
+    await page.getByRole('button', { name: '预览 project-board.png', exact: true }).click(); await ready();
     await page.getByRole('button', { name: '原始尺寸', exact: true }).click(); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width === 1600);
     await page.getByRole('button', { name: '放大图片', exact: true }).click(); await page.waitForFunction(() => document.querySelector('.attachment-image-preview')?.width === 2400);
     const viewport = page.locator('.image-preview-viewport'); await viewport.focus(); await page.keyboard.press('0'); await page.waitForFunction(() => document.querySelector('.image-preview-toolbar [aria-pressed="true"]')?.textContent === '适应窗口');
@@ -88,13 +91,14 @@ export async function verifyImagePreview({ page, application, screenshots, verif
     assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), 'IMAGE_VIEWER_UNSENT'); assert.equal(fixture.requests.length, requestCount);
     const saved = await page.evaluate(async () => (await window.qiyao.load()).composerDrafts.find(item => !item.threadId)); assert.equal(saved.attachments.length, 3); assert.equal(saved.attachments[1].content, 'Unchanged document');
     verified('native image failure and retry retain valid local bytes; dark minimum-window controls stay visible at 100/125/150 percent while draft, document attachment and HTTP count remain unchanged');
+    return imageExport;
   } catch (error) {
     const observation = await page.evaluate(() => {
       const image = document.querySelector('.attachment-image-preview'), area = document.querySelector('.image-preview-viewport');
       return { title: document.querySelector('.image-preview-dialog h2')?.textContent, width: image?.width, height: image?.height, complete: image?.complete, naturalWidth: image?.naturalWidth, scrollLeft: area?.scrollLeft, scrollTop: area?.scrollTop, controls: document.querySelector('.image-preview-toolbar')?.textContent, activeElement: document.activeElement?.getAttribute('aria-label') };
     }).catch(() => ({ unavailable: true }));
-    console.error('Image preview failure observation', JSON.stringify(observation));
-    await capture('135-image-preview-failure.png').catch(() => {});
+    console.error('Image preview failure observation', JSON.stringify(observation), error);
+    await page.screenshot({ path: join(screenshots, '135-image-preview-failure.png') }).catch(() => {});
     throw error;
   } finally {
     await page.keyboard.press('Escape');
