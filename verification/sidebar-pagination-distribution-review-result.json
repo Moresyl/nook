@@ -1,0 +1,370 @@
+{
+  "verifiedAt": "2026-10-27T08:18:47.782Z",
+  "productCommit": "d1c97ee2f806fa4bd9c3522de5d1105c121a7305",
+  "acceptanceHead": "cf8d57fd81cf72f83696bdb8f70df3852505afa7",
+  "scope": "Complete acceptance of the same automatic-sidebar-pagination source, compiled files and Windows binaries; documentation updates follow acceptance.",
+  "frozenInputs": {
+    "tracked": 1322,
+    "compiled": 236,
+    "binaries": 4,
+    "allHashesMatch": true,
+    "before": "D:/GR/nook-sidebar-full-evidence/before.json",
+    "beforeSha256": "ebe37cf61a67fe88ee000068724aa3a69a1c38df1b1c1ca21be7107920da991f",
+    "finalSha256": "a38eb33b597196ce082559558e30f9080e8b88be56a8add3b38033e2d8fb6fff"
+  },
+  "typecheck": true,
+  "build": true,
+  "unit": {
+    "files": 145,
+    "tests": 1710,
+    "statements": 97.12,
+    "branches": 94.7,
+    "functions": 97.85,
+    "lines": 99.5,
+    "newPaginationCoverage": 100,
+    "logSha256": "6fe609945c744eff43687e825eab4c11d0df43324e68475638aed03a4a94e634",
+    "observerTests": 9,
+    "reusedForUnchangedInputs": true
+  },
+  "runtimes": [
+    {
+      "variant": "source",
+      "verifiedAt": "2026-10-27T07:06:14.355Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1334,
+      "runtimeErrors": [],
+      "result": "D:/GR/nook-sidebar-full-evidence/source/electron-result.json",
+      "resultSha256": "76b57a64246c7d614cd8d674dfcedfe4434c93a2740438143fa18dab16ea2ac9",
+      "log": "D:/GR/nook-sidebar-full-evidence/source/desktop.log",
+      "logSha256": "2a239e492eb63ed875439071304670b2bda0b1102cc78c0dfbf622e78887de20",
+      "navigationChecks": 5,
+      "navigationSha256": "5303311b906f485af4c814e904d224d58aac4ac3cf3cf193c7d9159f938df7d2",
+      "automaticPagination": {
+        "batches": 2,
+        "pageSize": 10,
+        "nativeWindowHideShow": false,
+        "rendererVisibilityEmulated": true,
+        "composerFocusRetained": true,
+        "draftRetained": true,
+        "activeChatRetained": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-150.png"
+          }
+        ]
+      },
+      "treeChecks": 8,
+      "treeSha256": "39d201f9c113a8def0fbbbd83e6fe0c2614c4529550247eca93fb40619cd4df7",
+      "executableSha256": null,
+      "archiveSha256": null
+    },
+    {
+      "variant": "packaged",
+      "verifiedAt": "2026-10-27T07:39:52.740Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1498,
+      "runtimeErrors": [],
+      "result": "D:/GR/nook-sidebar-full-evidence/packaged/packaged-result.json",
+      "resultSha256": "da5a4e85906c18d900994448762502baae21830e3d8b2ea8a3a0701fc01ce3e1",
+      "log": "D:/GR/nook-sidebar-full-evidence/packaged-desktop.log",
+      "logSha256": "62e6e4080865579f272cb35682de9a94e3bc709b8eee57d1586e4f0fd9d4341f",
+      "navigationChecks": 5,
+      "navigationSha256": "d2fe4793a8ff372e886fddc7b787d4e83937705a63cadc28686849b3b42681a2",
+      "automaticPagination": {
+        "batches": 2,
+        "pageSize": 10,
+        "nativeWindowHideShow": false,
+        "rendererVisibilityEmulated": true,
+        "composerFocusRetained": true,
+        "draftRetained": true,
+        "activeChatRetained": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-150.png"
+          }
+        ]
+      },
+      "treeChecks": 8,
+      "treeSha256": "6cf1b6744b0265dba1a5fe6d5e8b16c1f46a1483328984f59d4a78379576a5be",
+      "executableSha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106",
+      "archiveSha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1"
+    },
+    {
+      "variant": "installed",
+      "verifiedAt": "2026-10-27T08:16:45.521Z",
+      "checks": 412,
+      "normalExits": 75,
+      "forcedExits": 0,
+      "maxExitMs": 1483,
+      "runtimeErrors": [],
+      "result": "D:/GR/nook-sidebar-full-evidence/installed/packaged-result.json",
+      "resultSha256": "5e79610f5f88b358b590cf4b0ee3c153e23a2ef658719a23856ffa85a2c870d1",
+      "log": "D:/GR/nook-sidebar-full-evidence/installer.log",
+      "logSha256": "91b4035bbf78fc9c6e1180e12ec89b1e9e81b12f9aa173f278cef2716745cfb7",
+      "navigationChecks": 5,
+      "navigationSha256": "f293dae01d6ec38b70091f969ed4b3e43e32aebbfe420e89a936547675fe248f",
+      "automaticPagination": {
+        "batches": 2,
+        "pageSize": 10,
+        "nativeWindowHideShow": false,
+        "rendererVisibilityEmulated": true,
+        "composerFocusRetained": true,
+        "draftRetained": true,
+        "activeChatRetained": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "rows": 21,
+            "screenshot": "113-sidebar-auto-dark-150.png"
+          }
+        ]
+      },
+      "treeChecks": 8,
+      "treeSha256": "ab3f055c58bd5757f45b46452a733f0410128b00229d1a469b93a9ef2fe69b15",
+      "executableSha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106",
+      "archiveSha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1"
+    }
+  ],
+  "focusedChecks": {
+    "surfaces": {
+      "checks": 5,
+      "log": "D:/GR/nook-sidebar-full-evidence/surfaces.log",
+      "logSha256": "455978d4a43c3e21ac4e752eab9a51957e5526468637af1cc5165a8597aa1665"
+    },
+    "textHints": {
+      "checks": 7,
+      "log": "D:/GR/nook-sidebar-full-evidence/text-hints.log",
+      "logSha256": "c2345420542fd9ecdda338e8d2549dfecaec9752180eb93d539d5df6e4ba1f67"
+    },
+    "rendererClose": {
+      "checks": 2,
+      "log": "D:/GR/nook-sidebar-full-evidence/renderer-close.log",
+      "logSha256": "e018aeef1c3bc27e5cbb9c1043dc0a3592789da9fef65b86f90d582b6355c8bb"
+    },
+    "terminalLifecycle": {
+      "checks": 7,
+      "log": "D:/GR/nook-sidebar-full-evidence/terminal-lifecycle.log",
+      "logSha256": "dff3d9bb9131792a2cce7cf86348dee73664390cb959ca11821c433db749fce8"
+    }
+  },
+  "runtimeProof": {
+    "records": 11,
+    "log": "D:/GR/nook-sidebar-full-evidence/runtime-proof.log",
+    "logSha256": "25be206c386205680d8f2b4c7d26bd13aaef8d6b7901222384525e8dee511091"
+  },
+  "installer": {
+    "scope": "Actual current-user silent install into an owned Unicode path, complete installed-runtime regression, original package hashes, shortcut metadata and silent uninstall with fresh data sentinels. Native wizard interaction remains a separate check.",
+    "archiveSha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1",
+    "shortcutsVerified": true,
+    "userDataRetained": true,
+    "verifiedAt": "2026-10-27T08:17:06.2161322Z",
+    "uninstalled": true,
+    "registrationVerified": true,
+    "checks": 412,
+    "version": "0.1.0-alpha.1",
+    "executableSha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106",
+    "normalCloseVerified": true,
+    "installerSha256": "4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098"
+  },
+  "retention": {
+    "originalHashesPreserved": true,
+    "retainedBackup": "C:\\Users\\18468\\AppData\\Roaming\\NookFailedInstallerMarkers-ec1d5f7c30e0469f8082d8ac6c728014",
+    "restoredAt": "2026-10-27T08:17:06.4696759Z",
+    "originalMarkers": 16,
+    "installerPassed": true
+  },
+  "portable": {
+    "checks": 7,
+    "launches": 2,
+    "wrapperSha256": "869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1",
+    "childExecutableSha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106"
+  },
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "9d08c5f7f4b4b4817ee96ac98b5291775722ac030211846f7a4e3a189e18b106"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "65521fdb6ad315104312cb6f42436109b4ef3e9ca129dc85084ba1d5035cbfc1"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1"
+    }
+  ],
+  "installerSignature": "NotSigned",
+  "packageAudit": {
+    "productFiles": 239,
+    "dependencyLegalDocuments": 401,
+    "distributionLegalFiles": 20,
+    "installerBootstrapPlugins": 6,
+    "uninstallerBootstrapPlugins": 5,
+    "portableBootstrapPlugins": 2
+  },
+  "screenshots": [
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-dark-150.png",
+      "sha256": "0592bbc518de4e9336f5db999dfed2f6b01f16d0918f4c24b70d6136242e65dd",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "113-sidebar-auto-light-100.png",
+      "sha256": "4c93027baaaffaa650f43cecd215267358e8bcc1685102814170c8d56eae89fe",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "120-project-file-menu-light.png",
+      "sha256": "9dec7d079a9425d8ff7e91c97f565e9fc855cceae5b4d2a37b6c80049aaa9d1a",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "packaged",
+      "name": "113-sidebar-auto-dark-150.png",
+      "sha256": "6a58a08537918438cc7a9053678f1783f0bdcb3f12d4a5833ac81ccd2e9b5ce6",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "packaged",
+      "name": "120-project-file-menu-light.png",
+      "sha256": "594eaa3a04f5ec1fa448456f4488f25075a5639b47bd481ea89ec6b8df237b8c",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "installed",
+      "name": "113-sidebar-auto-dark-150.png",
+      "sha256": "a732c720c012c4aebbe913e0eb2ce73167359c200f685333bf5c4bac2855e40e",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "installed",
+      "name": "113-sidebar-auto-light-100.png",
+      "sha256": "0f9bd5cc1ecba6db5561c6644069a31d6f6073d1942bc2b859201676de9d79d1",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "installed",
+      "name": "120-project-file-menu-light.png",
+      "sha256": "77f9808e97d68f01f8c091d485c6cbec0c5cf3d3f968778d124f9fec3cae6698",
+      "visuallyReviewed": true
+    }
+  ],
+  "retainedArtifacts": "D:/GR/nook-sidebar-full-evidence/artifacts",
+  "evidenceDirectory": "D:/GR/nook-sidebar-full-evidence",
+  "boundaries": [
+    "Eight representative captures from these complete source, packaged and installed runs were individually reviewed; all screenshots are retained but were not all individually reviewed.",
+    "The earlier opt-in native hide/show experiment is separate. CDP emulates renderer visibility; actual renderer visibilitychange recovery remains covered by isolated unit tests rather than a native renderer transition.",
+    "Local sidebar pagination reveals conversations already in memory; it does not establish backend pagination, sidebar virtualization, custom sections or dual-column navigation.",
+    "The installer is NotSigned. Physical installation wizard, IME, accessibility, other system DPI and complete design parity remain separate acceptance work.",
+    "Historical native abort failures remain retained; these successful runs do not establish their unique root cause.",
+    "Hosted verification and publication remain blocked by GitHub account billing or spending limits. Local acceptance does not establish a hosted release."
+  ]
+}

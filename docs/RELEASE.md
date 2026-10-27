@@ -27,9 +27,11 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 已验证的范围
 
-2026-10-27 自动分页续作：145 个文件／1710 项单元、类型与构建通过，语句／分支／函数／行覆盖率分别为 97.12%／94.70%／97.85%／99.50%，新增观察逻辑四项均为 100%。源码导航集成 5 项通过，覆盖两次自动展开、手动分页，以及 760×540 窗口中明暗主题与三档缩放的实际滚轮操作。下方 412 项完整回归与安装数据属于本次自动分页之前的文件夹候选，不能继承为最新候选的完整分发验收。
+2026-10-27 自动分页续作：145 个文件／1710 项单元、类型与构建通过，语句／分支／函数／行覆盖率分别为 97.12%／94.70%／97.85%／99.50%，新增观察逻辑四项均为 100%。产品提交 `d1c97ee`、验收 HEAD `cf8d57f` 的完整源码、包内和实际安装回归各通过 412 项、75 次正常退出，无强制结束，最长分别为 1334ms／1498ms／1483ms。三套完整回归各覆盖两次自动分页、手动键盘分页，以及 760×540 窗口中明暗主题与三档缩放的实际滚轮操作。[完整分发验收](../verification/sidebar-pagination-distribution-review-result.json)
 
-自动分页候选 `d1c97ee` 的新包同样通过 5 项导航集成、六组滚轮／缩放操作及 3 次正常退出，最长 81ms；模型比较 6 项与便携版 7 项通过，产品文件、法律文件及启动组件审计通过。新安装包尚未执行完整安装回归，签名为 `NotSigned`。[自动分页验收与哈希](../verification/sidebar-pagination-review-result.json)
+同一组 1322 个跟踪文件、236 个编译文件及 4 个二进制文件在完整验收前后逐一核对，哈希全部匹配。静默安装、注册信息、快捷方式、卸载与数据保留通过，16 个既有测试标记按哈希恢复；便携版 7 项、启动组件及 11 份匹配运行记录通过。安装包 SHA-256 为 `4c8464fcea390dd70f719c2626d146f685980b9dfb75f6512e450c0582aa8098`，便携包为 `869e85aac8b5f6e165b732cefb826e535fa705fe0eb3c54f2948231269a660a1`，签名为 `NotSigned`。八张本次代表截图已查看，全部截图保留但未逐张审阅。[前期专项及可见性边界](../verification/sidebar-pagination-review-result.json)
+
+以下文件夹、终端与分栏记录属于各自历史候选，哈希和当时的待办继续保留，不替代上面的当前验收。
 
 2026-10-27 续作：新建文件夹的路径保护、重名和失败重试已通过针对性测试；候选 `d632b86` 的源码、包内及安装完整回归各通过 412 项、75 次正常退出。其后修复窄窗口标题隐藏，文件树 8 项和提示 7 项源码专项通过；最终候选 `cc8336e` 重新构建，包内和实际安装完整回归各通过 412 项、75 次正常退出，最长分别为 1430ms 和 1412ms，均无强制结束。静默安装、快捷方式、卸载与数据保留通过，16 个既有测试标记按哈希恢复；便携版 7 项和 11 份匹配运行记录通过。完整源码回归是布局修正前的基线。安装包 SHA-256 为 `0b50050930cd764db5716b916a38098698d696d10c83391b0cd477ccd1b5927b`，便携包为 `c51780dfed05cd871e1ee3f3370cb8d81c587cc884439564f84f8320590c4e16`。
 
@@ -39,9 +41,12 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 | 检查 | 当前结果 |
 | --- | --- |
-| 类型与构建 | 文件夹创建功能后通过；最终包审计通过 |
+| 类型与构建 | 自动分页候选通过；最终包审计通过 |
 | 完整单元测试 | 145 个文件、1710 项通过 |
 | 覆盖率统计范围 | 语句 97.12%、分支 94.70%、函数 97.85%、行 99.50% |
+| 自动分页候选完整源码／包内／安装回归 | 各 412 项、75 次正常退出，无强制结束；最长 1334ms／1498ms／1483ms |
+| 自动分页候选安装与分发 | 静默安装、快捷方式、卸载和数据保留通过，16 个原有标记恢复；11 份运行记录匹配 |
+| 自动分页候选分发专项 | 表面 5 项、文字提示 7 项、渲染器关闭 2 项、终端生命周期 7 项、便携版 7 项；安装器／卸载器／便携包启动组件分别 6／5／2 项通过 |
 | 文件夹候选包内／安装完整回归 | 最终候选各 412 项、75 次正常退出；静默安装、卸载和数据保留通过 |
 | 文件夹候选分发专项 | 表面 5 项、文字提示 7 项、渲染器关闭 2 项、终端生命周期 7 项、便携版 7 项；安装器／卸载器／便携包启动组件分别 6／5／2 项通过 |
 | 前一候选完整源码回归 | 411 项通过，75 次正常退出，最长 1341ms，无强制结束 |
@@ -69,10 +74,10 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 尚未完成
 
-此前文件夹候选已完成本地自动化分发验收；最新自动分页候选的完整分发回归仍待执行。此前 `5e82af5` 基线单独保留。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
+最新自动分页候选已完成本地自动化分发验收，托管发布仍未完成。此前 `5e82af5` 基线单独保留。[分栏专项证据](../verification/preview-resize-review-result.json) · [基线完整分发证据](../verification/preview-resize-distribution-review-result.json)
 
 - 新版设计资料的全部页面、布局与交互对照仍在进行，不能宣称 100% 采用。文件树虚拟滚动已验证，完整目录操作及全部布局状态仍待落实；目录压缩属于参考审阅列表的单独配置，普通工作区默认关闭。
-- 布局修正后的源码未重跑完整回归；未逐张审阅全部截图，也未完成物理安装向导、输入法、辅助技术与其他系统 DPI 的验收。
+- 未逐张审阅全部截图，也未完成物理安装向导、输入法、辅助技术与其他系统 DPI 的验收。CDP 模拟渲染器可见性，真实窗口隐藏／显示检查不等于实际页面可见性事件验收。
 - 本轮首次集成在原生关闭重启时发生 `0xc0000409`，Windows 同进程事件与失败日志已留存；复验通过不能替代根因分析，发布前仍需处理。
 - 退出诊断进一步将异常地址映射到同版本运行库 `abort`，尚无原始调用栈。补齐了原验证脚本的非零退出 stderr，10 项单元和类型检查通过；两轮启用本地转储的集成各 17 项通过，四次正常退出，最长 1061ms，未上传转储。已解析的渲染器非致命快照不是原主进程异常。[诊断进展与边界](../verification/native-exit-diagnostics-review-result.json)
 - 原 Windows 流水线因 GitHub 账户付款／额度限制无法启动验证，发布被跳过。已归档运行见[5e82af5 的流水线](https://github.com/Moresyl/nook/actions/runs/39433081996)，验证执行步骤为 0、发布版本数为 0；后续提交按各自运行另行核实。
@@ -82,11 +87,11 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 安装与开发
 
-当前请从[源码运行](../README.md#开始使用)。自动分页候选的安装包和便携包已生成，包内专项、便携运行与文件审计通过，完整分发回归尚待执行；尚未发布，签名状态为 `NotSigned`。新包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。此前通过完整安装验收的文件夹候选产物已在本地单独归档，哈希见上文。
+当前请从[源码运行](../README.md#开始使用)。自动分页候选的安装包和便携包已生成并完成本地完整分发验收；尚未发布，签名状态为 `NotSigned`。已验收产物单独保存在本地 `D:/GR/nook-sidebar-full-evidence/artifacts`，哈希见上文。新包审计核对了 239 个产品文件、401 份依赖法律文档及 20 个分发法律／源码文件，原许可证与来源声明保留。此前文件夹候选产物继续单独归档。
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,710 unit tests pass. Source and packaged navigation each pass five focused checks, including six theme/zoom wheel layouts; packaged comparison and portable checks also pass. The previous folder-creation candidate passed 412 complete desktop checks in both packaged and installed runtimes. The latest candidate still needs complete distribution acceptance. The historical native abort's unique root cause and complete design alignment remain unresolved. Hosted workflows are blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,710 unit tests pass. The same source, compiled files and Windows binaries passed 412 complete desktop checks in each source, packaged and installed runtime, with 75 normal exits per runtime and no forced exits. Silent install/uninstall, data retention, restoration of 16 existing markers, seven portable checks and 11 matching runtime records pass. All frozen input hashes match. The installer is unsigned. Physical interaction acceptance, complete design alignment and the historical native abort's unique root cause remain unresolved. Hosted workflows are blocked by account billing or spending limits.
 
 ## 历史证据
 
