@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, stat, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { waitForTerminalPrompt } from './terminal-prompt.mjs';
@@ -110,6 +110,17 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await tree().getByRole('button', { name: '加载更多 项目根目录', exact: true }).waitFor({ state: 'hidden' }); await scrollProjectTreeItem(page, tree(), 'file-0219.txt'); await row('source/资料').click(); await item('source/资料/代码.ts').waitFor();
   await page.getByRole('button', { name: '新建文件', exact: true }).click(); const newFile = page.getByRole('dialog', { name: '新建文件', exact: true }); assert.equal(await newFile.getByLabel('相对路径', { exact: true }).inputValue(), 'source/资料/'); await newFile.getByLabel('相对路径', { exact: true }).fill('source/资料/新文件.txt'); await newFile.getByRole('button', { name: '创建', exact: true }).click(); await newFile.waitFor({ state: 'hidden' }); await page.locator('.editor-actionbar .path-text').getByText('source/资料/新文件.txt', { exact: true }).waitFor(); await input().waitFor(); await input().focus(); await page.keyboard.insertText('TREE_NEW_FILE_CONTENT😀\n'); await input().press('Control+s'); await page.locator('.editor-actionbar').getByRole('status').getByText('已保存', { exact: true }).waitFor(); assert.equal(await readFile(join(root, 'source/资料/新文件.txt'), 'utf8'), createdContents); await item('source/资料/新文件.txt').waitFor();
   await page.getByRole('tab', { name: /代码\.ts/ }).click(); await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor(); await page.locator('.editor-actionbar').getByRole('status').getByText('草稿自动保存在工作台', { exact: true }).waitFor(); await page.screenshot({ path: join(screenshots, '95-project-tree-editor-light.png') });
+  await item('source/资料/代码.ts').focus(); await item('source/资料/代码.ts').press('Shift+F10');
+  await page.getByRole('menuitem', { name: '在此目录新建文件夹', exact: true }).click();
+  const newFolder = page.getByRole('dialog', { name: '新建文件夹', exact: true }), folderName = newFolder.getByLabel('文件夹名称', { exact: true });
+  assert.equal(await newFolder.getByText('创建位置：source/资料', { exact: true }).count(), 1);
+  await folderName.fill('../outside'); assert.equal(await newFolder.getByRole('button', { name: '创建', exact: true }).isDisabled(), true);
+  await folderName.fill('代码.ts'); await folderName.press('Enter'); await newFolder.getByRole('alert').waitFor(); assert.equal(await folderName.inputValue(), '代码.ts');
+  await folderName.fill('新目录😀'); await folderName.press('Enter'); await newFolder.waitFor({ state: 'hidden' }); await item('source/资料/新目录😀').waitFor();
+  assert.equal((await stat(join(root, 'source/资料/新目录😀'))).isDirectory(), true);
+  assert.equal(await readFile(join(root, 'source/资料/代码.ts'), 'utf8'), originalContents);
+  await page.locator('.monaco-editor .view-lines').getByText(/TREE_DRAFT_UNSAVED_名字/).waitFor();
+  verified('folder creation via the keyboard menu rejects invalid names and collisions, retries successfully, reveals the new directory and preserves the unsaved editor draft');
   const longFileName = `${'完整中文文件名称'.repeat(8)}.ts`, longFilePath = `source/资料/${longFileName}`;
   await writeFile(join(root, longFilePath), 'TREE_LONG_NAME_ORIGINAL');
   await page.getByRole('button', { name: '刷新文件', exact: true }).click(); await item(longFilePath).waitFor();
@@ -379,7 +390,7 @@ export async function verifyProjectTree({ page, application, getApplication, dir
   return { page, result: {
     virtualizedRows: { boundedMountedCount: true, allLoadedRowsReachableByScroll: true, rootLoadedCounts: [200, 225], completeSiblingMetadata: true },
     stickyFolders,
-    checks: 7, projectCommandChecks: 2, fileSearch: { toolbarLocateVisibleFocus: true, toolbarRefreshRetainsQuery: true, savedFileRefreshesResults: true, limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
+    checks: 8, projectCommandChecks: 2, fileSearch: { toolbarLocateVisibleFocus: true, toolbarRefreshRetainsQuery: true, savedFileRefreshesResults: true, limitNoticeVisible, nativePathLookup: true, cappedResultsDisclosed: true, keyboardSelection: true, composingEnterIgnored: true, trailingWhitespacePreserved: true, draftPreserved: true, retryRecovered: true, staleReplyIgnored: true, outsideJunctionExcluded: true, screenshot: '104-project-file-search-light.png' }, treeTypography, treeGeometry, longFileClipping, longPathScreenshot: '103-project-tree-long-path-light.png', treeSelectionStates, rootEntriesBeforeChange: 224, rootEntriesAfterChange: 225, zoomFactors, layout,
     projectSwitcher: { selectedVisibleAtAllZooms: true, fixedAddAction: true, manualWheelBrowsing: true, focusedProjectSurvivesResize: true, settingsKeyboardReturn: true, selectedDraftRetained: true },
     screenshots: ['94-project-tree-pagination-light.png', '95-project-tree-editor-light.png', '96-project-tree-dark-narrow.png', ...zoomFactors.map((zoom) => `97-project-workspace-zoom-${zoom * 100}.png`), '98-project-settings-zoom-150.png', '99-project-file-command-dark.png', '100-project-terminal-command-dark.png', '101-project-review-command-dark.png', '102-project-switcher-dark-narrow.png'],
     screenshotMethod: 'Electron BrowserWindow.capturePage with exact content-size assertions for all zoom and project-command captures',

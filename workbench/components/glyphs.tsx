@@ -17,6 +17,7 @@ const paths = {
   search: 'M21 21l-5-5 M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',
   find: 'M3 4h15 M3 9h7 M3 14h5 M3 19h7 M21 21l-4-4 M19 14a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z',
   folder: 'M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z',
+  folderPlus: 'M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z M12 10v7 M8.5 13.5h7',
   assistant: 'm12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z',
   library: 'M5 3h14a1 1 0 0 1 1 1v17l-8-4-8 4V4a1 1 0 0 1 1-1Z M8 7h8 M8 11h5',
   archive: 'M4 8v12h16V8 M3 3h18v5H3V3Z M10 12h4',

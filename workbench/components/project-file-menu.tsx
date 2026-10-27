@@ -6,7 +6,7 @@ import { Glyph } from './glyphs';
 
 export type ProjectFileMenuRequest = { id: number; entry: FileEntry; anchor: HTMLElement; x: number; y: number };
 
-export function ProjectFileMenu({ request, expanded, onActivate, onNew, onClose }: { request: ProjectFileMenuRequest; expanded: boolean; onActivate: () => void; onNew: () => void; onClose: () => void }) {
+export function ProjectFileMenu({ request, expanded, onActivate, onNew, onNewFolder, onClose }: { request: ProjectFileMenuRequest; expanded: boolean; onActivate: () => void; onNew: () => void; onNewFolder: () => void; onClose: () => void }) {
   const panel = useRef<HTMLDivElement>(null), locked = useRef(false);
   const copyButton = useRef<HTMLButtonElement>(null), mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
@@ -58,6 +58,7 @@ export function ProjectFileMenu({ request, expanded, onActivate, onNew, onClose 
     <Button role="menuitem" disabled={busy} onClick={() => { close(); onActivate(); }}><Glyph name={request.entry.directory ? expanded ? 'down' : 'right' : 'file'} size={16} />{request.entry.directory ? expanded ? '收起目录' : '展开目录' : '打开文件'}</Button>
     <Button ref={copyButton} role="menuitem" disabled={busy} onClick={() => { void copy(); }}><Glyph name="copy" size={16} />复制相对路径</Button>
     <Button role="menuitem" disabled={busy} onClick={() => { close(); onNew(); }}><Glyph name="plus" size={16} />在此目录新建文件</Button>
+    <Button role="menuitem" disabled={busy} onClick={() => { close(); onNewFolder(); }}><Glyph name="folderPlus" size={16} />在此目录新建文件夹</Button>
     {error && <p role="alert">{error}</p>}
   </div>, document.body);
 }

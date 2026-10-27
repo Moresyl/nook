@@ -137,6 +137,14 @@ describe('scoped project tree request lifecycle', () => {
     for (const path of ['', '../outside', '/outside', 'C:\\outside', 'a/no-file', 'missing', '__proto__/资料']) expect(await tree.reveal(path)).toBe(false);
     expect(list).toHaveBeenCalledTimes(4);
   });
+  it('reveals a directory through paginated ancestors without treating files as directories', async () => {
+    const list = vi.fn().mockResolvedValueOnce(page([file('a')], { total: 2, nextOffset: 200 })).mockResolvedValueOnce(page([file('source', true)], { total: 2 })).mockResolvedValueOnce(page([file('source/new', true), file('source/file')]));
+    const tree = new ProjectTree(list, () => {});
+    expect(await tree.reveal('source/new', true)).toBe(true);
+    expect([...tree.state.expanded]).toEqual(['source']);
+    expect(await tree.reveal('source/file', true)).toBe(false);
+    expect(await tree.reveal('source/new')).toBe(false);
+  });
   it('lets a newer reveal or explicit collapse cancel an older delayed reveal without losing cached data', async () => {
     const hold = deferred<DirectoryPage>(); const list = vi.fn().mockResolvedValueOnce(page([file('source', true), file('root.txt')])).mockImplementationOnce(() => hold.promise);
     const tree = new ProjectTree(list, () => {}); await tree.load();

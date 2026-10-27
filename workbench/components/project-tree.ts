@@ -132,7 +132,7 @@ export class ProjectTree {
     }
   }
 
-  async reveal(path: string): Promise<boolean> {
+  async reveal(path: string, directoryTarget = false): Promise<boolean> {
     const generation = this.generation;
     const revealing = ++this.revealing;
     const parts = path.replaceAll('\\', '/').split('/');
@@ -142,7 +142,7 @@ export class ProjectTree {
       const target = parts.slice(0, index + 1).join('/');
       const entry = await this.find(directory, target);
       if (this.disposed || generation !== this.generation || revealing !== this.revealing || !entry) return false;
-      if (index === parts.length - 1) return !entry.directory;
+      if (index === parts.length - 1) return entry.directory === directoryTarget;
       if (!entry.directory) return false;
       this.expanded.add(target); this.publish(); directory = target;
     }

@@ -7,6 +7,8 @@ export const editorDraftSchema = z.object({
   updatedAt: z.number().int().nonnegative(),
 });
 export const saveDocumentSchema = z.object({ path: z.string().min(1).max(4096), text: z.string().max(256_000), expectedSha256: revisionSchema });
+export const projectFolderNameSchema = z.string().min(1).max(255).refine(value => value !== '.' && value !== '..' && !/[<>:"/\\|?*\x00-\x1f]/.test(value) && !/[. ]$/.test(value) && !/^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(value) && !['.git', 'node_modules'].includes(value.toLowerCase()), { message: 'Enter a valid visible folder name.' });
+export const createProjectFolderSchema = z.object({ directory: z.string().max(4096), name: projectFolderNameSchema }).strict();
 export const terminalGeometrySchema = z.object({ cols: z.number().int().min(2).max(500), rows: z.number().int().min(2).max(300) });
 export const gitBranchNameSchema = z.string().min(1).max(250).refine(value => !value.startsWith('-') && !/[\x00-\x20\x7f]|@\{/.test(value), { message: 'Enter a valid Git branch name.' });
 export const PROJECT_DIRECTORY_PAGE_SIZE = 200;
@@ -22,6 +24,7 @@ export type ProjectFileSearchResult = { entries: FileEntry[]; truncated: boolean
 export type EditorDraft = z.infer<typeof editorDraftSchema>;
 export type FileDocument = { path: string; text: string; sha256: string };
 export type SaveDocument = z.infer<typeof saveDocumentSchema>;
+export type CreateProjectFolder = z.infer<typeof createProjectFolderSchema>;
 export type TerminalGeometry = z.infer<typeof terminalGeometrySchema>;
 export type TerminalSession = { id: string; projectId: string; shell: string; cwd: string; status: 'running' | 'exited'; output: string; sequence: number; exitCode?: number };
 export type TerminalEvent = { id: string; sequence: number; data?: string; exitCode?: number };

@@ -132,6 +132,7 @@ const bridge: Bridge = {
   exportDocumentOriginal: (reference) => invoke('exportDocumentOriginal', reference),
   listFiles: (id, path) => invoke('listFiles', id, path),
   listDirectory: (id, request) => invoke('listDirectory', id, request),
+  createProjectFolder: (id, input) => invoke('createProjectFolder', id, input),
   searchProjectFiles: (id, query) => invoke('searchProjectFiles', id, query),
   readFile: (id, path) => invoke('readFile', id, path),
   loadDocument: (id, path) => invoke('loadDocument', id, path),

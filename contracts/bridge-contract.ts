@@ -3,7 +3,7 @@ import type { Memory } from './memories';
 import type { ProjectPreviewInput, PreviewViewport } from './project-preview';
 import type { BrowserAction, BrowserShortcut, BrowserState } from './browser';
 import type { ApprovalRequest, ToolActivity } from './tools';
-import type { DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitBranches, GitFile, GitFileView, GitStatus, ProjectFileSearchResult, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
+import type { CreateProjectFolder, DirectoryPage, DirectoryRequest, EditorDraft, FileDocument, FileEntry, GitBranches, GitFile, GitFileView, GitStatus, ProjectFileSearchResult, SaveDocument, TerminalEvent, TerminalGeometry, TerminalSession } from './projects';
 import type { McpServer, McpCredentials, McpView, McpCatalog, McpContent, McpResourceUpdate, Skill, SkillDocument } from './extensions';
 import type { McpBinaryItem } from './mcp-binary';
 import type { ToolResult } from './tools';
@@ -131,6 +131,7 @@ export type Bridge = {
   exportDocumentOriginal(reference: DocumentOriginal): Promise<boolean>;
   listFiles(projectId: string, relativePath: string): Promise<FileEntry[]>;
   listDirectory(projectId: string, request: DirectoryRequest): Promise<DirectoryPage>;
+  createProjectFolder(projectId: string, input: CreateProjectFolder): Promise<string>;
   searchProjectFiles(projectId: string, query: string): Promise<ProjectFileSearchResult>;
   readFile(projectId: string, relativePath: string): Promise<string>;
   loadDocument(projectId: string, path: string): Promise<FileDocument>;

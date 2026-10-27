@@ -906,6 +906,7 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
   .projects-page .project-inspector { padding-left: 0; }
   .projects-page .section-heading { margin-bottom: 8px; }
   .editor-files { width: 136px; }
+  .editor-files .editor-files-toolbar > span:not([role="tooltip"]) { display: none; }
   .changes-list { width: 188px; }
 }
 @media (max-width: 640px) {

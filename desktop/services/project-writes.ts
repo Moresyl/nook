@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { lstat, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { basename, dirname, isAbsolute, relative, resolve, sep } from 'node:path';
-import type { FileDocument } from '../../contracts/projects';
+import { createProjectFolderSchema, type CreateProjectFolder, type FileDocument } from '../../contracts/projects';
 import { projectDocument, scopedPath } from './project-files';
 
 export async function writableProjectPath(root: string, path: string): Promise<string> {
@@ -21,6 +21,20 @@ export async function writableProjectPath(root: string, path: string): Promise<s
 export async function optionalProjectDocument(root: string, path: string): Promise<{ text: string; sha256: string } | null> {
   try { return await projectDocument(root, path); }
   catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null; throw error; }
+}
+
+export async function createProjectFolder(root: string, input: CreateProjectFolder): Promise<string> {
+  const { directory, name } = createProjectFolderSchema.parse(input);
+  const path = directory ? `${directory}/${name}` : name;
+  try {
+    const target = await writableProjectPath(root, path);
+    await mkdir(target);
+    return path.replaceAll('\\', '/');
+  } catch (cause) {
+    if ((cause as NodeJS.ErrnoException).code === 'EEXIST') throw new Error('A file or folder with that name already exists.', { cause });
+    if (/^E[A-Z]+$/.test((cause as NodeJS.ErrnoException).code ?? '')) throw new Error('The project folder could not be created. Check the parent folder and permissions.', { cause });
+    throw cause;
+  }
 }
 
 const writes = new Map<string, Promise<unknown>>();

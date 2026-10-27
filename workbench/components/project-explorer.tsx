@@ -7,6 +7,7 @@ import { ProjectTree, projectTreeKey, projectTreeMatch, projectTreeScrollDelta, 
 import { projectTreeLayout, projectTreeSegments, type ProjectTreeLayoutNode } from './project-tree-layout';
 import { ProjectFileFinder } from './project-file-finder';
 import { ProjectFileMenu, type ProjectFileMenuRequest } from './project-file-menu';
+import { ProjectFolderDialog } from './project-folder-dialog';
 
 type Props = { projectId: string; active: string; revision: number; hidden: boolean; onOpen: (path: string) => void; onNew: (directory: string) => void };
 const parent = (path: string) => path.slice(0, Math.max(0, path.lastIndexOf('/')));
@@ -58,6 +59,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const [focused, setFocused] = useState('');
   const [menu, setMenu] = useState<ProjectFileMenuRequest | null>(null), menuSequence = useRef(0);
   const [directory, setDirectory] = useState('');
+  const [folderDirectory, setFolderDirectory] = useState<string | null>(null);
   const [query, setQuery] = useState(''), [searchRefresh, setSearchRefresh] = useState(0), [revealRequest, setRevealRequest] = useState(0);
   const queryRef = useRef(query); queryRef.current = query;
   const tree = useRef<ProjectTree | null>(null);
@@ -73,6 +75,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   const layout = useMemo(() => projectTreeLayout(state, heights), [state, heights]), rows = layout.rows;
   const current = rows.some((row) => row.entry.relativePath === focused) ? focused : rows[0]?.entry.relativePath ?? '';
   useEffect(() => { setMenu(null); }, [projectId, query, hidden]);
+  useEffect(() => { setFolderDirectory(null); }, [projectId]);
   useEffect(() => { if (menu && !layout.nodes.has(menu.entry.relativePath)) setMenu(null); }, [layout, menu]);
   const updateViewport = useCallback(() => {
     const element = viewport.current; if (!element) return;
@@ -144,6 +147,13 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   }, [revealRequest, projectId]);
 
   function focus(entry: FileEntry) { setFocused(entry.relativePath); setDirectory(entry.directory ? entry.relativePath : parent(entry.relativePath)); revealRow(nodes.current.get(entry.relativePath)); }
+  function folderCreated(path: string) {
+    setFolderDirectory(null); setSearchRefresh(value => value + 1);
+    const model = tree.current;
+    if (model) void model.refresh().then(() => model.reveal(path, true)).then(found => {
+      if (found && tree.current === model && !queryRef.current) requestRow(path, false);
+    });
+  }
   function openMenu(entry: FileEntry, x: number, y: number) {
     const anchor = nodes.current.get(entry.relativePath); if (!anchor) return;
     typing.current.query = ''; anchor.focus({ preventScroll: true });
@@ -200,5 +210,5 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
       </TreeStatus>}
     </>;
   }
-  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div ref={viewport} onScroll={updateViewport} className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder(layout.root)}</div></ProjectFileFinder>{menu && !hidden && !query && <ProjectFileMenu key={menu.id} request={menu} expanded={state.expanded.has(menu.entry.relativePath)} onClose={() => setMenu(null)} onActivate={() => activate(menu.entry)} onNew={() => onNew(menu.entry.directory ? menu.entry.relativePath : parent(menu.entry.relativePath))} />}</div>;
+  return <div className="editor-files" hidden={hidden}><div className="editor-files-toolbar"><TextHint text={directory}>文件</TextHint><IconButton icon="folder" label="收起所有目录" disabled={state.expanded.size === 0} onClick={() => { tree.current?.collapseAll(); setDirectory(''); }} /><IconButton icon="search" label="定位当前文件" disabled={!active} onClick={() => { setQuery(''); setRevealRequest(value => value + 1); }} /><IconButton icon="retry" label="刷新文件" onClick={() => { void tree.current?.refresh(); setSearchRefresh(value => value + 1); }} /><IconButton icon="plus" label="新建文件" onClick={() => onNew(directory)} /><IconButton icon="folderPlus" label="新建文件夹" onClick={() => setFolderDirectory(directory)} /></div><ProjectFileFinder projectId={projectId} query={query} setQuery={setQuery} revision={revision} refresh={searchRefresh} onOpen={onOpen}><div ref={viewport} onScroll={updateViewport} className="file-list project-tree" role="tree" aria-label="项目文件" tabIndex={rows.length ? undefined : 0}>{folder(layout.root)}</div></ProjectFileFinder>{menu && !hidden && !query && <ProjectFileMenu key={menu.id} request={menu} expanded={state.expanded.has(menu.entry.relativePath)} onClose={() => setMenu(null)} onActivate={() => activate(menu.entry)} onNew={() => onNew(menu.entry.directory ? menu.entry.relativePath : parent(menu.entry.relativePath))} onNewFolder={() => setFolderDirectory(menu.entry.directory ? menu.entry.relativePath : parent(menu.entry.relativePath))} />}{folderDirectory !== null && <ProjectFolderDialog key={projectId} projectId={projectId} directory={folderDirectory} onCreated={folderCreated} onClose={() => setFolderDirectory(null)} />}</div>;
 }

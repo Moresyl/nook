@@ -2,11 +2,38 @@ import { mkdtemp, mkdir, readFile, readdir, rename, rm, symlink, writeFile } fro
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { optionalProjectDocument, saveProjectDocument, writableProjectPath } from '../desktop/services/project-writes';
+import { createProjectFolder, optionalProjectDocument, saveProjectDocument, writableProjectPath } from '../desktop/services/project-writes';
 const directories: string[] = [];
-vi.mock('node:fs/promises', async importOriginal => { const actual = await importOriginal<typeof import('node:fs/promises')>(); return { ...actual, rename: vi.fn(actual.rename) }; });
-afterEach(async () => { vi.mocked(rename).mockReset(); const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises'); vi.mocked(rename).mockImplementation(actual.rename); await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
+vi.mock('node:fs/promises', async importOriginal => { const actual = await importOriginal<typeof import('node:fs/promises')>(); return { ...actual, mkdir: vi.fn(actual.mkdir), rename: vi.fn(actual.rename) }; });
+afterEach(async () => { vi.mocked(rename).mockReset(); vi.mocked(mkdir).mockReset(); const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises'); vi.mocked(rename).mockImplementation(actual.rename); vi.mocked(mkdir).mockImplementation(actual.mkdir); await Promise.all(directories.splice(0).map((path) => rm(path, { recursive: true, force: true }))); });
 async function directory() { const path = await mkdtemp(join(tmpdir(), 'qiyao-edit-')); directories.push(path); return path; }
+describe('project folder creation', () => {
+  it('creates an empty Unicode folder in an existing parent without changing sibling files', async () => {
+    const root = await directory(); await mkdir(join(root, 'source')); await writeFile(join(root, 'source', 'draft.txt'), 'KEEP');
+    expect(await createProjectFolder(root, { directory: 'source', name: '资料😀' })).toBe('source/资料😀');
+    expect(await readdir(join(root, 'source', '资料😀'))).toEqual([]); expect(await readFile(join(root, 'source', 'draft.txt'), 'utf8')).toBe('KEEP');
+  });
+  it('rejects collisions and ensures concurrent requests create only one folder', async () => {
+    const root = await directory(); await writeFile(join(root, 'occupied'), 'KEEP');
+    await expect(createProjectFolder(root, { directory: '', name: 'occupied' })).rejects.toThrow('already exists');
+    const results = await Promise.allSettled([createProjectFolder(root, { directory: '', name: 'new' }), createProjectFolder(root, { directory: '', name: 'new' })]);
+    expect(results.filter(result => result.status === 'fulfilled')).toHaveLength(1); expect(results.filter(result => result.status === 'rejected')).toHaveLength(1);
+    expect(await readFile(join(root, 'occupied'), 'utf8')).toBe('KEEP');
+  });
+  it('rejects unsafe names, missing parents, internal paths and outside junctions', async () => {
+    const root = await directory(), outside = await directory(); await mkdir(join(root, '.git')); await symlink(outside, join(root, 'escape'), 'junction');
+    for (const name of ['', '.', '..', 'name.', 'name ', 'a/b', 'a\\b', 'a:b', 'CON', 'nul.txt', '.git', 'node_modules']) await expect(createProjectFolder(root, { directory: '', name })).rejects.toThrow();
+    for (const parent of ['../outside', '.git', 'escape', 'missing']) await expect(createProjectFolder(root, { directory: parent, name: 'new' })).rejects.toThrow();
+    expect(await readdir(outside)).toEqual([]); expect(await readdir(join(root, '.git'))).toEqual([]);
+  });
+  it('sanitizes operating-system failures and allows retry', async () => {
+    const root = await directory(); const cause = Object.assign(new Error('PRIVATE_PATH_AND_DIAGNOSTIC'), { code: 'EACCES' });
+    vi.mocked(mkdir).mockRejectedValueOnce(cause);
+    const failure = await createProjectFolder(root, { directory: '', name: 'retry' }).catch(error => error);
+    expect(failure.message).toBe('The project folder could not be created. Check the parent folder and permissions.'); expect(failure.cause).toBe(cause);
+    expect(await readdir(root)).toEqual([]); expect(await createProjectFolder(root, { directory: '', name: 'retry' })).toBe('retry');
+  });
+});
 describe('manual editor saves', () => {
   it.each(['EIO', 'ENOSPC', 'EACCES'])('sanitizes %s, retains original bytes, cleans staging and permits retry', async code => {
     const root = await directory(), first = await saveProjectDocument(root, 'notes.txt', 'ORIGINAL', null);

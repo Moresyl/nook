@@ -20,9 +20,9 @@ export async function verifyProjectFileMenu({ page, application, capture, select
   assert.equal(await page.locator('.editor-actionbar').count(), 0);
   await action('展开目录').click(); await menu().waitFor({ state: 'hidden' }); await item(file).waitFor();
   await open(file); await focused(action('打开文件'));
-  await page.keyboard.press('End'); await focused(action('在此目录新建文件'));
+  await page.keyboard.press('End'); await focused(action('在此目录新建文件夹'));
   await page.keyboard.press('ArrowDown'); await focused(action('打开文件'));
-  await page.keyboard.press('ArrowUp'); await focused(action('在此目录新建文件'));
+  await page.keyboard.press('ArrowUp'); await focused(action('在此目录新建文件夹'));
   await page.keyboard.press('Home'); await focused(action('打开文件'));
   await page.evaluate(() => document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', isComposing: true, bubbles: true })));
   assert.equal(await menu().isVisible(), true);
@@ -53,7 +53,7 @@ export async function verifyProjectFileMenu({ page, application, capture, select
     await page.evaluate(() => { window.nookFileCopyMode = 'pending'; window.nookFileCopyCalls = 0; });
     await open(file); await action('复制相对路径').click();
     await page.waitForFunction(() => Boolean(window.nookFileCopyResolve));
-    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 3);
+    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 4);
     await page.keyboard.press('Escape'); assert.equal(await menu().isVisible(), true);
     await open(next, false); await focused(action('打开文件'));
     await page.evaluate(async () => { window.nookFileCopyResolve(); await new Promise(resolve => requestAnimationFrame(resolve)); });
