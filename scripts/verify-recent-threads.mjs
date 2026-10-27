@@ -56,9 +56,20 @@ export async function verifyRecentThreads({ page, application, threads, existing
   const pinnedReorder = await verifyPinnedReorder({ page, application, pinnedRows, originalTitle, capture });
   const more = recent.getByRole('button', { name: '显示更多最近聊天', exact: true });
   const composer = page.getByLabel('消息', { exact: true });
+  const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
   for (const count of [20, 30]) {
     await composer.focus();
-    await more.scrollIntoViewIfNeeded();
+    if (count === 30 && process.env.NOOK_TEST_NATIVE_VISIBILITY) {
+      try {
+        await application.evaluateMain(`${mainWindow}.hide()`);
+        console.log('Sidebar hidden visibility', JSON.stringify({ nativeVisible: await application.evaluateMain(`${mainWindow}.isVisible()`), renderer: await page.evaluate(() => ({ hidden: document.hidden, state: document.visibilityState })) }));
+        assert.equal(await application.evaluateMain(`${mainWindow}.isVisible()`), false);
+        await more.evaluate(element => element.scrollIntoView({ block: 'end' }));
+      } finally {
+        await application.evaluateMain(`(() => { const window = ${mainWindow}; window.show(); window.focus(); })()`);
+      }
+      assert.equal(await application.evaluateMain(`${mainWindow}.isVisible()`), true);
+    } else await more.scrollIntoViewIfNeeded();
     await row(ordinary[count - 1].title).waitFor();
     assert.equal(await recent.locator('.thread-row').count(), count + 1, 'The visible boundary appends one ten-chat batch and retains the older active chat');
     assert.equal(await composer.evaluate(element => document.activeElement === element), true, 'Automatic expansion never steals composer focus');
@@ -118,5 +129,5 @@ export async function verifyRecentThreads({ page, application, threads, existing
   await row(originalTitle).click();
   await page.waitForFunction(() => document.querySelector('textarea[aria-label="消息"]')?.value === 'CHAT_NAV_DRAFT_KEEP');
   const actions = await verifyThreadActions({ page, application, threads, originalTitle, capture, directory });
-  return { fixtures: threads.length, pinnedReorder, actions, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, automaticPagination: { batches: 2, pageSize: 10, composerFocusRetained: true, draftRetained: true, activeChatRetained: true, layouts: automaticLayouts }, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
+  return { fixtures: threads.length, pinnedReorder, actions, pinnedSections: true, keyboardCollapse: true, independentCollapseReload: true, collapseTransition: true, reducedMotion: true, rapidCollapseReversal: true, sameActiveSearchReveal: true, typingKeepsCollapsed: true, automaticPagination: { batches: 2, pageSize: 10, nativeWindowHideShow: Boolean(process.env.NOOK_TEST_NATIVE_VISIBILITY), rendererVisibilityEmulated: true, composerFocusRetained: true, draftRetained: true, activeChatRetained: true, layouts: automaticLayouts }, paginationFocus: true, currentChatBeyondFirstBatch: true, searchRevealsCollapsedSection: true, pinAndUnpin: true, originalDraftRetained: true };
 }

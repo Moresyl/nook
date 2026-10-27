@@ -6,7 +6,7 @@ afterEach(() => vi.unstubAllGlobals());
 function fixture() {
   let notify: IntersectionObserverCallback = () => {};
   const disconnect = vi.fn(), observe = vi.fn(), load = vi.fn();
-  const document = { hidden: false, activeElement: null as unknown };
+  const document = Object.assign(new EventTarget(), { hidden: false, activeElement: null as unknown });
   const target = { isConnected: true, ownerDocument: document, closest: vi.fn(() => null as unknown), contains: vi.fn(() => false) } as unknown as HTMLElement;
   vi.stubGlobal('IntersectionObserver', class {
     disconnect = disconnect;
@@ -47,6 +47,18 @@ describe('sidebar automatic pagination', () => {
     const test = fixture(); test.document.hidden = true; test.intersect();
     expect(test.load).not.toHaveBeenCalled();
     test.document.hidden = false; test.intersect(); expect(test.load).toHaveBeenCalledTimes(1);
+  });
+  it('reobserves a restored window and removes its visibility listener after loading or cleanup', () => {
+    const test = fixture(); test.document.hidden = true;
+    test.document.dispatchEvent(new Event('visibilitychange'));
+    expect(test.observe).toHaveBeenCalledTimes(1);
+    test.document.hidden = false; test.document.dispatchEvent(new Event('visibilitychange'));
+    expect(test.observe).toHaveBeenCalledTimes(2);
+    test.intersect(); test.document.dispatchEvent(new Event('visibilitychange'));
+    expect(test.observe).toHaveBeenCalledTimes(2);
+    expect(test.load).toHaveBeenCalledTimes(1);
+    const disposed = fixture(); disposed.dispose(); disposed.document.dispatchEvent(new Event('visibilitychange')); disposed.intersect();
+    expect(disposed.observe).toHaveBeenCalledTimes(1); expect(disposed.load).not.toHaveBeenCalled();
   });
   it('does not expand a collapsed or hidden section', () => {
     const test = fixture(); vi.mocked(test.target.closest).mockReturnValue({} as HTMLElement); test.intersect();
