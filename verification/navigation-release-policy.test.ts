@@ -89,6 +89,19 @@ describe('navigation release evidence', () => {
     }
   });
 
+  it('requires six unique complete path-action layouts, bounded errors and successful retries', () => {
+    for (const layouts of [undefined, [], [null], navigationReleaseProof().projectTree.stickyFolders.fileMenu.entryActionLayouts.slice(0, 5)]) {
+      const value = navigationReleaseProof(); Reflect.set(value.projectTree.stickyFolders.fileMenu, 'entryActionLayouts', layouts);
+      expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    for (const change of [{ theme: 'light' }, { actualTheme: 'light' }, { actualTheme: undefined }, { zoom: 1.25 }, { screenshot: '../PRIVATE.png' }, { errorContained: false }, { absolutePathCopied: false }, { revealRetried: false }, { errorContained: 'true' }, { absolutePathCopied: 1 }, { revealRetried: undefined }, { errorContained: undefined }, { absolutePathCopied: undefined }, { left: -1 }, { right: 508 }, { top: 35 }, { bottom: 361 }, { width: 0 }, { height: 0 }, { chrome: -1 }, { right: 68 }, { bottom: 92 }, { left: Number.NaN }]) {
+      const value = navigationReleaseProof(), layouts = value.projectTree.stickyFolders.fileMenu.entryActionLayouts;
+      Object.assign(layouts[5], change); expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    const extra = navigationReleaseProof(); extra.projectTree.stickyFolders.fileMenu.entryActionLayouts.push(extra.projectTree.stickyFolders.fileMenu.entryActionLayouts[0]);
+    expect(() => verifyNavigationProof(extra)).toThrow('project-tree');
+  });
+
   it('rejects missing or duplicated menu theme/zoom evidence and clipped or malformed geometry', () => {
     for (const themes of [undefined, [], ['light'], ['light', 'light'], ['light', 'dark', 'dark']]) {
       const value = navigationReleaseProof(); Reflect.set(value.projectTree.stickyFolders.fileMenu, 'themes', themes);

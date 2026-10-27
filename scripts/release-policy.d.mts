@@ -1,5 +1,6 @@
 export function releaseVersion(tag: string, version: string): { tag: string; version: string; prerelease: boolean };
 export function releaseNotes(changelog: string, version: string): string;
+type ProjectFileMenuBounds = { zoom: number; left: number; right: number; top: number; bottom: number; width: number; height: number; chrome: number };
 export type NavigationReleaseProof = {
   checks: number;
   chatNavigation?: {
@@ -17,8 +18,9 @@ export type NavigationReleaseProof = {
     virtualizedRows?: { boundedMountedCount: boolean; allLoadedRowsReachableByScroll: boolean; completeSiblingMetadata: boolean; rootLoadedCounts: number[] };
     stickyFolders?: Record<'ancestorStack' | 'subtreePushOff' | 'pointerCollapse' | 'keyboardCanonicalFocus' | 'noDuplicateTreeItems' | 'pagination' | 'refreshAndSearch', boolean> & {
       virtualizedLargeDirectory?: { files: number; pages: number; mountedRows: number; keyboardLastAndFirst: boolean; completeSiblingMetadata: boolean; collapseRetainedFocus: boolean };
-      fileMenu?: Record<'pointerAndKeyboard' | 'rovingFocus' | 'compositionEscape' | 'outsideAndScrollDismissal' | 'unchangedResizeRetainsMenu' | 'changedResizeDismissesMenu' | 'openAndDirectoryToggle' | 'newFileParent' | 'copyFailureRetry' | 'lateCopyIsolation', boolean> & {
-        themes: string[]; geometry: { zoom: number; left: number; right: number; top: number; bottom: number; width: number; height: number; chrome: number }[];
+      fileMenu?: Record<'pointerAndKeyboard' | 'rovingFocus' | 'compositionEscape' | 'outsideAndScrollDismissal' | 'unchangedResizeRetainsMenu' | 'changedResizeDismissesMenu' | 'openAndDirectoryToggle' | 'newFileParent' | 'copyFailureRetry' | 'lateCopyIsolation' | 'absolutePathCopy' | 'absolutePathFailureRetry' | 'latePathIsolation' | 'revealDispatch' | 'revealFailureRetry' | 'invalidPathRejected', boolean> & {
+        themes: string[]; geometry: ProjectFileMenuBounds[];
+        entryActionLayouts: (ProjectFileMenuBounds & { theme: string; actualTheme: string; errorContained: boolean; absolutePathCopied: boolean; revealRetried: boolean; screenshot: string })[];
       };
     };
   };

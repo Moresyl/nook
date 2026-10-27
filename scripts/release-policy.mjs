@@ -140,14 +140,18 @@ export function verifyNavigationProof(proof) {
   const large = sticky?.virtualizedLargeDirectory;
   const menu = sticky?.fileMenu;
   const treeFlags = ['ancestorStack', 'subtreePushOff', 'pointerCollapse', 'keyboardCanonicalFocus', 'noDuplicateTreeItems', 'pagination', 'refreshAndSearch'];
-  const menuFlags = ['pointerAndKeyboard', 'rovingFocus', 'compositionEscape', 'outsideAndScrollDismissal', 'unchangedResizeRetainsMenu', 'changedResizeDismissesMenu', 'openAndDirectoryToggle', 'newFileParent', 'copyFailureRetry', 'lateCopyIsolation'];
+  const menuFlags = ['pointerAndKeyboard', 'rovingFocus', 'compositionEscape', 'outsideAndScrollDismissal', 'unchangedResizeRetainsMenu', 'changedResizeDismissesMenu', 'openAndDirectoryToggle', 'newFileParent', 'copyFailureRetry', 'lateCopyIsolation', 'absolutePathCopy', 'absolutePathFailureRetry', 'latePathIsolation', 'revealDispatch', 'revealFailureRetry', 'invalidPathRejected'];
+  const wholeMenu = row => ['left', 'right', 'top', 'bottom', 'width', 'height', 'chrome'].every(key => Number.isFinite(row[key])) && row.width > 0 && row.height > 0 && row.chrome >= 0 && row.left >= 0 && row.right <= row.width && row.right > row.left && row.top >= row.chrome && row.bottom <= row.height && row.bottom > row.top;
   const menuLayouts = Array.isArray(menu?.geometry) && menu.geometry.length === 3 && [1, 1.25, 1.5].every(zoom => menu.geometry.filter(row => row?.zoom === zoom).length === 1)
-    && menu.geometry.every(row => ['left', 'right', 'top', 'bottom', 'width', 'height', 'chrome'].every(key => Number.isFinite(row[key])) && row.width > 0 && row.height > 0 && row.chrome >= 0 && row.left >= 0 && row.right <= row.width && row.right > row.left && row.top >= row.chrome && row.bottom <= row.height && row.bottom > row.top);
+    && menu.geometry.every(wholeMenu);
+  const entryLayouts = Array.isArray(menu?.entryActionLayouts) && menu.entryActionLayouts.length === 6
+    && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => menu.entryActionLayouts.filter(row => row?.theme === theme && row.zoom === zoom && row.screenshot === `121-project-file-path-actions-${theme}-${zoom * 100}.png`).length === 1))
+    && menu.entryActionLayouts.every(row => wholeMenu(row) && row.actualTheme === row.theme && row.errorContained === true && row.absolutePathCopied === true && row.revealRetried === true);
   if (tree?.checks !== 8 || !['boundedMountedCount', 'allLoadedRowsReachableByScroll', 'completeSiblingMetadata'].every(key => virtual?.[key] === true)
     || !Array.isArray(virtual.rootLoadedCounts) || virtual.rootLoadedCounts.length !== 2 || virtual.rootLoadedCounts[0] !== 200 || virtual.rootLoadedCounts[1] !== 225
     || !treeFlags.every(key => sticky?.[key] === true) || large?.files !== 1000 || large.pages !== 5 || !Number.isInteger(large.mountedRows) || large.mountedRows <= 0 || large.mountedRows >= large.files
     || !['keyboardLastAndFirst', 'completeSiblingMetadata', 'collapseRetainedFocus'].every(key => large[key] === true)
-    || !menuFlags.every(key => menu?.[key] === true) || !Array.isArray(menu.themes) || menu.themes.length !== 2 || !['light', 'dark'].every(theme => menu.themes.filter(value => value === theme).length === 1) || !menuLayouts) {
+    || !menuFlags.every(key => menu?.[key] === true) || !Array.isArray(menu.themes) || menu.themes.length !== 2 || !['light', 'dark'].every(theme => menu.themes.filter(value => value === theme).length === 1) || !menuLayouts || !entryLayouts) {
     throw new Error('Complete project-tree virtualization, keyboard and menu checks are required');
   }
 }

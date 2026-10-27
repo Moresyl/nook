@@ -157,7 +157,7 @@ export function ProjectExplorer({ projectId, active, revision, hidden, onOpen, o
   function openMenu(entry: FileEntry, x: number, y: number) {
     const anchor = nodes.current.get(entry.relativePath); if (!anchor) return;
     typing.current.query = ''; anchor.focus({ preventScroll: true });
-    setMenu({ id: ++menuSequence.current, entry, anchor, x, y });
+    setMenu({ id: ++menuSequence.current, projectId, entry, anchor, x, y });
   }
   function activate(entry: FileEntry) {
     typing.current.query = '';

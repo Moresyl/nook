@@ -132,6 +132,8 @@ export type Bridge = {
   listFiles(projectId: string, relativePath: string): Promise<FileEntry[]>;
   listDirectory(projectId: string, request: DirectoryRequest): Promise<DirectoryPage>;
   createProjectFolder(projectId: string, input: CreateProjectFolder): Promise<string>;
+  projectEntryPath(projectId: string, path: string): Promise<string>;
+  revealProjectEntry(projectId: string, path: string): Promise<void>;
   searchProjectFiles(projectId: string, query: string): Promise<ProjectFileSearchResult>;
   readFile(projectId: string, relativePath: string): Promise<string>;
   loadDocument(projectId: string, path: string): Promise<FileDocument>;

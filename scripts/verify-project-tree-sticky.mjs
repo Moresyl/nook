@@ -140,7 +140,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
     await page.keyboard.press('ArrowLeft'); assert.equal(await visible('m-large'), true);
     await page.keyboard.press('ArrowRight'); await item('m-large/entry-0000.txt').waitFor(); assert.equal(await visible('m-large/entry-0000.txt'), true);
     await page.keyboard.press('ArrowLeft'); await page.keyboard.press('ArrowLeft'); assert.equal(await last.count(), 0); assert.equal(await item('m-large').getAttribute('aria-expanded'), 'false');
-    const fileMenu = await verifyProjectFileMenu({ page, application, capture, select });
+    const fileMenu = await verifyProjectFileMenu({ page, application, capture, select, projectId: id, root });
     return { fileMenu, virtualizedLargeDirectory: { files: 1000, pages: 5, mountedRows, keyboardLastAndFirst: true, completeSiblingMetadata: true, collapseRetainedFocus: true }, guideStates, indentation, deepLevels: 11, ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png', '118-project-tree-deep-dark.png', '119-project-file-menu-dark.png'] };
   } finally {
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);

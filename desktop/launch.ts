@@ -25,6 +25,7 @@ import { ProviderSettings } from './services/provider-settings';
 import { ConversationEngine } from './services/conversation-engine';
 import { projectDiff, projectDirectory, projectDocument, projectEntries, projectText } from './services/project-files';
 import { searchProjectFiles } from './services/project-file-search';
+import { ProjectEntryActions } from './services/project-entry-actions';
 import { createProjectFolder, optionalProjectDocument, saveProjectDocument, writableProjectPath } from './services/project-writes';
 import { createProjectFolderSchema, directoryRequestSchema, editorDraftSchema, saveDocumentSchema, terminalGeometrySchema } from '../contracts/projects';
 import { ProjectGit } from './services/project-git';
@@ -146,6 +147,8 @@ function workspaceProject(id: unknown) {
   if (!project) throw new Error('The selected project no longer exists.');
   return project;
 }
+
+const projectEntryActions = new ProjectEntryActions(id => workspaceProject(id).path, path => shell.showItemInFolder(path));
 
 function assertIdle(id: string): void {
   if (engine.active(id)) throw new Error('Stop the running response before changing this conversation.');
@@ -400,6 +403,8 @@ const commands: Record<string, (...args: any[]) => unknown> = {
   listFiles: (id, path) => projectEntries(workspaceProject(id).path, z.string().max(4096).parse(path)),
   listDirectory: (id, input) => projectDirectory(workspaceProject(id).path, directoryRequestSchema.parse(input)),
   createProjectFolder: (id, input) => createProjectFolder(workspaceProject(id).path, createProjectFolderSchema.parse(input)),
+  projectEntryPath: (id, path) => projectEntryActions.path(id, pathSchema.parse(path)),
+  revealProjectEntry: (id, path) => projectEntryActions.reveal(id, pathSchema.parse(path)),
   searchProjectFiles: (id, query) => searchProjectFiles(workspaceProject(id).path, query),
   readFile: (id, path) => projectText(workspaceProject(id).path, z.string().max(4096).parse(path)),
   loadDocument: async (id, raw) => { const path = pathSchema.parse(raw); return { path, ...await projectDocument(workspaceProject(id).path, path) }; },
