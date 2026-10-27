@@ -62,7 +62,7 @@ export async function verifyQuickChat({ page, application, getApplication, direc
   assert.equal(await quick.evaluate(() => window.qiyao), undefined);
   const isolation = await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(w=>new URL(w.webContents.getURL()).searchParams.get('view')==='quick-chat'); const prefs=window.webContents.getLastWebPreferences(); return {sandbox:prefs.sandbox,contextIsolation:prefs.contextIsolation,nodeIntegration:prefs.nodeIntegration,pinned:window.isAlwaysOnTop()};})()");
   assert.equal(isolation.sandbox, true); assert.equal(isolation.contextIsolation, true); assert.equal(isolation.nodeIntegration, false); assert.equal(isolation.pinned, true);
-  assert.deepEqual(await quick.evaluate(() => Object.keys(window.nookQuick).sort()), ['load', 'save', 'send', 'stop', 'activate', 'openWorkspace', 'windowAction', 'attachFiles', 'importAttachments', 'readDocumentOriginal', 'exportDocumentOriginal', 'openExternal', 'pendingApprovals', 'resolveApproval', 'onBeforeClose', 'onRun', 'onRefresh'].sort());
+  assert.deepEqual(await quick.evaluate(() => Object.keys(window.nookQuick).sort()), ['load', 'save', 'send', 'stop', 'activate', 'openWorkspace', 'windowAction', 'attachFiles', 'importAttachments', 'readDocumentOriginal', 'exportDocumentOriginal', 'exportAttachmentImage', 'openExternal', 'pendingApprovals', 'resolveApproval', 'onBeforeClose', 'onRun', 'onRefresh'].sort());
   verified('quick chat opens a separate sandbox and restricted preload without the full workspace bridge');
 
   const input = () => quick.getByRole('textbox', { name: '消息', exact: true });

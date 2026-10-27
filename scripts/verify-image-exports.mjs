@@ -76,6 +76,7 @@ export async function verifyImageExports({ page, application, directory, capture
       if (quick) break; await page.waitForTimeout(50);
     }
     assert.ok(quick); await quick.getByRole('textbox', { name: '消息', exact: true }).waitFor();
+    const quickErrors = [], onQuickError = error => quickErrors.push(error.message); quick.on('pageerror', onQuickError);
     const quickOriginal = await quick.evaluate(() => window.nookQuick.load());
     try {
       await quick.evaluate(async file => { const state = await window.nookQuick.load(); await window.nookQuick.save({ ...state.draft, attachments: [file], updatedAt: Date.now() }, state.revision); }, image); await quick.reload();
@@ -91,7 +92,9 @@ export async function verifyImageExports({ page, application, directory, capture
       await quick.getByRole('textbox', { name: '消息', exact: true }).waitFor();
       await quick.evaluate(() => window.nookQuick.windowAction('hide'));
       await application.evaluateMain("(()=>{const window=require('electron').BrowserWindow.getAllWindows().find(window=>!window.isDestroyed()&&window.webContents.getURL().includes('index.html'));window.show();window.focus();})()");
+      quick.off('pageerror', onQuickError);
     }
+    assert.deepEqual(quickErrors, []);
     return { cancelPreservedDestination: true, failureRetried: true, exactJpegBytes: true, delayedImageIsolation: true, draftUnchanged: true, quickChatVerified: true, sha256: createHash('sha256').update(bytes).digest('hex'), layouts, scope: 'Actual Electron main and quick-chat bridges, main-process validation and atomic JPEG writes. The native save-dialog boundary is intercepted; no physical dialog or original-image export is claimed.' };
   } finally {
     await application.evaluateMain("if(globalThis.nookImageExportFixture){const fixture=globalThis.nookImageExportFixture; fixture.release?.({canceled:true}); require('electron').dialog.showSaveDialog=fixture.original; delete globalThis.nookImageExportFixture;}");
