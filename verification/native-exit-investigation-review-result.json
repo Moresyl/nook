@@ -1,0 +1,637 @@
+{
+  "verifiedAt": "2026-10-29T10:32:04.474Z",
+  "status": "native-investigation-complete-packaged-failed",
+  "candidate": "f695967b142cfac4466eaae694363894af364116",
+  "productCommit": "6c4486eca6c3251be11edd1da37cbb1b7c298e63",
+  "applicationChanged": false,
+  "rootCauseProven": false,
+  "nativeWaitLocalized": true,
+  "completeInstalledAcceptance": false,
+  "completeDistributionAccepted": false,
+  "hostedPublication": false,
+  "inputs": {
+    "frozen": {
+      "path": "D:/GR/nook-native-exit-full-package-evidence-2026-10-29/before.json",
+      "sha256": "4412362eea2f6cdebbe287fb1bb1004e5257d8fbb7782e07ff40ccba74edff9f"
+    },
+    "final": {
+      "path": "D:/GR/nook-native-exit-full-package-evidence-2026-10-29/inputs-failure.json",
+      "sha256": "2ad357e0bcf6890d274505a7933f37b7c60f711313deeaca50d7139afeb0d18f"
+    },
+    "tracked": 1340,
+    "compiled": 236,
+    "binaries": 4,
+    "externalDiagnosticFiles": [
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/stack-loader.mjs",
+        "sha256": "69c9000804765ed6fb7d83625f913b3b81302d1000c5dedf8ef69c8a346d03e2"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/stack-hook.txt",
+        "sha256": "046a2974a119ba791f6a9a22f5fd57435094141d515449214ea1276fd7612557"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/capture-owned-stacks.ps1",
+        "sha256": "44fa994e43022cdd25e2b01c60cfb67ffcf2ff69a3888798405d7ab4d5afcc8c"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/freeze-full-package.mjs",
+        "sha256": "836fb4654e6ff9ff65d1ae3dbc7a7feddfbfb6e5b2076fac96bc6318c94108b7"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-full-package.ps1",
+        "sha256": "01ce4d3e07af8e52a4b3b95bad7b2c771faaf36fba5fa6d3968f21e107d965d4"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/sdk-setup-identity.json",
+        "sha256": "6480df92830816bdc7e6161ff860d5eb657b364a46e195c4b21e2ada6f9a0511"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/stack-smoke-result.json",
+        "sha256": "f3ef7e569e78f83d1bd61924d9dc5e4ae6c7d7558c5fa8d6d35facfa197bcc8e"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/diagnostic-smoke-main.txt",
+        "sha256": "eeb3401688ae4c41b18e01fe5e474f9715f27ee1615cc31364cc92b29a858c31"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/diagnostic-smoke-main.txt.json",
+        "sha256": "7b06e42a2383b4aecca868327ff7a81c28f85657190407aa3a648844abb9b0e5"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/debuggers/Windows Kits/10/Debuggers/x64/cdb.exe",
+        "sha256": "6d5dbb10dce97d2df4e8e9cea7ca7c7a0d8cf7522835149adf184acd2ec5c02b"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/debuggers/Windows Kits/10/Debuggers/x64/dbgeng.dll",
+        "sha256": "589196d7ec76a9e5faa8b783a1a180e58007c852ca626af0b76321a95e2a0540"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/debuggers/Windows Kits/10/Debuggers/x64/dbghelp.dll",
+        "sha256": "955cd8087ca8c9bb74301b8670dffa200f9b3e55e910a8b37139e7a3846dff29"
+      }
+    ],
+    "allHashesMatch": true
+  },
+  "observer": {
+    "scope": "An external Node module loader changes three exact harness anchors in memory. No repository source file, application byte, assertion, action deadline, startup deadline or exit deadline is changed.",
+    "timing": {
+      "startupSampleAfterMs": 20000,
+      "closeSampleAfterMs": 6000,
+      "collectorMaximumMs": 2500,
+      "originalExitDeadlineMs": 10000
+    },
+    "debugger": {
+      "vendor": "Microsoft",
+      "version": "10.0.26100.7175",
+      "acquisition": "Signed cached SDK setup layout of Debuggers only followed by administrative MSI extraction; no system SDK upgrade and no shipped dependency.",
+      "identity": {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/sdk-setup-identity.json",
+        "sha256": "6480df92830816bdc7e6161ff860d5eb657b364a46e195c4b21e2ada6f9a0511"
+      }
+    },
+    "mode": "CDB -pvr noninvasive attachment without suspending the target; main thread and module map only; local symbols only.",
+    "limitation": "A snapshot can race with a running process. Export symbols and offsets are not a fully symbolized Electron source stack. Observer presence is disclosed; a passed run does not prove the intermittent failure fixed.",
+    "selfTest": {
+      "evidence": {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/stack-smoke-result.json",
+        "sha256": "f3ef7e569e78f83d1bd61924d9dc5e4ae6c7d7558c5fa8d6d35facfa197bcc8e"
+      },
+      "trace": {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/diagnostic-smoke-main.txt",
+        "sha256": "eeb3401688ae4c41b18e01fe5e474f9715f27ee1615cc31364cc92b29a858c31"
+      },
+      "traceMetadata": {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/diagnostic-smoke-main.txt.json",
+        "sha256": "7b06e42a2383b4aecca868327ff7a81c28f85657190407aa3a648844abb9b0e5"
+      },
+      "elapsedMs": 863.1569,
+      "deliberatelyBlocked": true,
+      "productAcceptance": false
+    },
+    "retainedFailedSelfTests": [
+      {
+        "evidence": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/stack-smoke.log",
+          "sha256": "4845aee82abe00267044c12658db85d348044393b2a5fb992d8148890b90a0ff"
+        },
+        "outcome": "All-thread capture exceeded its2500ms limit; partial output is not a passed capture."
+      },
+      {
+        "controller": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/dump-smoke-controller.mjs",
+          "sha256": "d723ee9b9e12a61ad548be2166cc1a5b0bae14b3cbe9deef30f3456d1b63b330"
+        },
+        "artifact": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/dumps/diagnostic-smoke.dmp",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "artifactBytes": 0,
+        "outcome": "Initial PInvoke minidump helper timed out; diagnostic-smoke.dmp is zero bytes and is not usable evidence."
+      },
+      {
+        "evidence": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/msi-extract.log",
+          "sha256": "6fd0ba9140a1861bd0b8bbeb821e3d3727e264395a3b01a23e812dfb2e3719a2"
+        },
+        "outcome": "Initial administrative extraction with forward-slash target failed1603; the subsequent native-path extraction passed."
+      }
+    ],
+    "runtimeTraces": [
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/close-54996-1793268948831.txt",
+        "sha256": "5beec18a4fc6da900c66b32d0cbeaadf6d8b36da75c9427ec87b5b0a945e179c"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/close-54996-1793268948831.txt.json",
+        "sha256": "091f57fe504bb56a7430fd2f90dcc556bd89576fa8e65c646189c2a454b19128"
+      },
+      {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/close-54996-1793268948831.txt.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "runtimeCaptures": [
+      {
+        "pid": 54996,
+        "exitCode": 0,
+        "executable": "D:/GR/nook-terminal-exit/artifacts/win-unpacked/Nook.exe",
+        "noninvasive": true,
+        "elapsedMs": 725.6862,
+        "targetSuspended": false,
+        "evidence": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/traces/close-54996-1793268948831.txt.json",
+          "sha256": "091f57fe504bb56a7430fd2f90dcc556bd89576fa8e65c646189c2a454b19128"
+        }
+      }
+    ]
+  },
+  "nativeWait": {
+    "evidence": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbolized-native-close.json",
+      "sha256": "b02b7e747689e014dc87766c95a60b2012bef05ddd468109c2a43cb13e0f1bcb"
+    },
+    "parser": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/query-pdb-publics.mjs",
+      "sha256": "8c1924d6569746acf4ab43f94ef01bf27446dba698d93eb68ef41b81bef80b90"
+    },
+    "codeViewParser": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/read-codeview.mjs",
+      "sha256": "1d9ebc8a3e46d0e499e4f1198963a6a3aea74b57d3fd66ac87afada71e3d1309"
+    },
+    "codeViewIdentity": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/codeview.json",
+      "sha256": "7d739d89ab542d59a05d49f8611409a9e33c8a726f9249a68823a4173b235740"
+    },
+    "exactGuidAndAge": true,
+    "independentPeExportCrossChecks": [
+      {
+        "name": "uv_cond_signal",
+        "rva": "0x30903e0",
+        "exactPeExportAndPdbPublicMatch": true
+      },
+      {
+        "name": "uv_queue_work",
+        "rva": "0x7d8b710",
+        "exactPeExportAndPdbPublicMatch": true
+      }
+    ],
+    "method": "MSF7 stream directory, DBI public/symbol indices and public address-map binary search; nearest public names for return-address-minus-one. No private function extent or source-line claim.",
+    "localPrefix": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbols/electron.exe.pdb.partial",
+      "bytes": 110555136,
+      "sha256": "223e0f65509551ecf5aead96f8c34ab9abbdb1dd6e17c3c2992aa8ed48560280",
+      "completePdb": false
+    },
+    "additionalRangeBytes": 2277376,
+    "rangeDownloads": [
+      {
+        "offset": 4110442496,
+        "length": 2146304,
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbols/ranges/range-4110442496-2146304.bin",
+        "sha256": "e18c794b93011f454db6c17833299ab0027d5052be9d5dd679405657ab1c0d9b"
+      },
+      {
+        "offset": 4110286848,
+        "length": 65536,
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbols/ranges/range-4110286848-65536.bin",
+        "sha256": "8afae2649530da319f530fceaeb7ab26184656f5478ac59b91cb4971004257e5"
+      },
+      {
+        "offset": 3910795264,
+        "length": 65536,
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbols/ranges/range-3910795264-65536.bin",
+        "sha256": "c2b790524430c5525d4022765e20596483545f89ee28d228885050e060b88bbd"
+      }
+    ],
+    "nearestPublicFrames": [
+      {
+        "returnAddress": "0x7ff765a5824a",
+        "rva": "0x327824a",
+        "targetMinusOne": true,
+        "nearestPublic": "?WaitForExitWithTimeout@Process@base@@QEBA_NVTimeDelta@2@PEAH@Z",
+        "displacement": 169,
+        "symbol": {
+          "recordOffset": 61625644,
+          "segment": 1,
+          "offset": 52916640,
+          "name": "?WaitForExitWithTimeout@Process@base@@QEBA_NVTimeDelta@2@PEAH@Z"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a57f96",
+        "rva": "0x3277f96",
+        "targetMinusOne": true,
+        "nearestPublic": "?ProcessHostCleanUp@BrowserProcessIOThread@content@@SAXXZ",
+        "displacement": 261,
+        "symbol": {
+          "recordOffset": 50851124,
+          "segment": 1,
+          "offset": 52915856,
+          "name": "?ProcessHostCleanUp@BrowserProcessIOThread@content@@SAXXZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a56735",
+        "rva": "0x3276735",
+        "targetMinusOne": true,
+        "nearestPublic": "?ShutdownThreadsAndCleanUp@BrowserMainLoop@content@@QEAAXXZ",
+        "displacement": 740,
+        "symbol": {
+          "recordOffset": 57260796,
+          "segment": 1,
+          "offset": 52909136,
+          "name": "?ShutdownThreadsAndCleanUp@BrowserMainLoop@content@@QEAAXXZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a2db0e",
+        "rva": "0x324db0e",
+        "targetMinusOne": true,
+        "nearestPublic": "?Shutdown@BrowserMainRunnerImpl@content@@UEAAXXZ",
+        "displacement": 77,
+        "symbol": {
+          "recordOffset": 57248876,
+          "segment": 1,
+          "offset": 52742848,
+          "name": "?Shutdown@BrowserMainRunnerImpl@content@@UEAAXXZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a2d58e",
+        "rva": "0x324d58e",
+        "targetMinusOne": true,
+        "nearestPublic": "?BrowserMain@content@@YAHUMainFunctionParams@1@@Z",
+        "displacement": 237,
+        "symbol": {
+          "recordOffset": 32907628,
+          "segment": 1,
+          "offset": 52741280,
+          "name": "?BrowserMain@content@@YAHUMainFunctionParams@1@@Z"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a2d2d6",
+        "rva": "0x324d2d6",
+        "targetMinusOne": true,
+        "nearestPublic": "?CreateBrowserTaskPrioritySettings@internal@content@@YA?AVPrioritySettings@SequenceManager@sequence_manager@base@@XZ",
+        "displacement": 469,
+        "symbol": {
+          "recordOffset": 35572544,
+          "segment": 1,
+          "offset": 52740352,
+          "name": "?CreateBrowserTaskPrioritySettings@internal@content@@YA?AVPrioritySettings@SequenceManager@sequence_manager@base@@XZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a2c3ff",
+        "rva": "0x324c3ff",
+        "targetMinusOne": true,
+        "nearestPublic": "?RunBrowser@ContentMainRunnerImpl@content@@AEAAHUMainFunctionParams@2@_N@Z",
+        "displacement": 1006,
+        "symbol": {
+          "recordOffset": 53795716,
+          "segment": 1,
+          "offset": 52736016,
+          "name": "?RunBrowser@ContentMainRunnerImpl@content@@AEAAHUMainFunctionParams@2@_N@Z"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a02fe8",
+        "rva": "0x3222fe8",
+        "targetMinusOne": true,
+        "nearestPublic": "?Run@ContentMainRunnerImpl@content@@UEAAHXZ",
+        "displacement": 599,
+        "symbol": {
+          "recordOffset": 53738036,
+          "segment": 1,
+          "offset": 52567440,
+          "name": "?Run@ContentMainRunnerImpl@content@@UEAAHXZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a02489",
+        "rva": "0x3222489",
+        "targetMinusOne": true,
+        "nearestPublic": "??1MemorySystem@memory_system@@QEAA@XZ",
+        "displacement": 712,
+        "symbol": {
+          "recordOffset": 15830348,
+          "segment": 1,
+          "offset": 52564416,
+          "name": "??1MemorySystem@memory_system@@QEAA@XZ"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a01d87",
+        "rva": "0x3221d87",
+        "targetMinusOne": true,
+        "nearestPublic": "?ContentMain@content@@YAHUContentMainParams@1@@Z",
+        "displacement": 86,
+        "symbol": {
+          "recordOffset": 34608364,
+          "segment": 1,
+          "offset": 52563248,
+          "name": "?ContentMain@content@@YAHUContentMainParams@1@@Z"
+        }
+      },
+      {
+        "returnAddress": "0x7ff765a017cd",
+        "rva": "0x32217cd",
+        "targetMinusOne": true,
+        "nearestPublic": "wWinMain",
+        "displacement": 556,
+        "symbol": {
+          "recordOffset": 75096172,
+          "segment": 1,
+          "offset": 52561312,
+          "name": "wWinMain"
+        }
+      },
+      {
+        "returnAddress": "0x7ff7658a3732",
+        "rva": "0x30c3732",
+        "targetMinusOne": true,
+        "nearestPublic": "?_CallMemberFunction2@@YAXQEAX00H@Z",
+        "displacement": 521,
+        "symbol": {
+          "recordOffset": 62073144,
+          "segment": 1,
+          "offset": 51127592,
+          "name": "?_CallMemberFunction2@@YAXQEAX00H@Z"
+        }
+      }
+    ],
+    "sourceEvidence": [
+      {
+        "url": "https://github.com/electron/electron/blob/v44.5.1/DEPS",
+        "cached": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/.firecrawl/electron-44.5.1-deps.md",
+          "sha256": "c2b7667829993049e7a9ee9038b0f754fa5e7e50d250e35edefe8030a97e4068"
+        },
+        "finding": "Electron44.5.1 selects Chromium152.0.7977.130."
+      },
+      {
+        "url": "https://github.com/chromium/chromium/blob/152.0.7977.130/content/browser/browser_process_io_thread.cc",
+        "cached": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/.firecrawl/chromium-process-cleanup.cc.md",
+          "sha256": "f69ac05440f50463661f3bf5284921cdd350a3387c5e24260b62c6938628f9da"
+        },
+        "finding": "ProcessHostCleanUp waits up to10seconds for the NetworkService utility process to exit and flush cookies/cache before terminating remaining child hosts."
+      },
+      {
+        "url": "https://github.com/chromium/chromium/blob/152.0.7977.130/content/browser/browser_main_loop.cc",
+        "cached": {
+          "path": "D:/GR/nook-native-exit-investigation-2026-10-29/.firecrawl/chromium-browser-main-loop.cc.md",
+          "sha256": "1330f2fa62dd564f90cb81ca281d82ff382292f271bfd081d5929eb3c05613d2"
+        },
+        "finding": "ShutdownThreadsAndCleanUp calls ShutDownNetworkService followed by ProcessHostCleanUp."
+      }
+    ],
+    "interpretation": "The captured main thread is in Chromium child-process cleanup after application quit events. Matching upstream source narrows the wait to NetworkService cleanup. The exact waited process handle, trigger for slow cleanup and corrective change remain unproven; the GPU observed alive is not proof it is the waited child.",
+    "completePdbDownloaded": false,
+    "privateFunctionsOrSourceLinesResolved": false
+  },
+  "sameFailedWorkspaceBranchDiagnostic": {
+    "checks": 9,
+    "normalExits": [
+      {
+        "elapsedMs": 267,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 193,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 171,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 130,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 133,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      }
+    ],
+    "seed": "D:/GR/nook-tree-frame-budget-installer-temp-2026-10-29/qiyao-electron-ypYyc6",
+    "result": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/branches-original-with-dumps-result.json",
+      "sha256": "aa84edbb24941f92c227620d3131299a5cc054385ce3b21c5a41c346f1386434"
+    },
+    "log": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/branches-original-with-dumps.log",
+      "sha256": "8a83cf7b649cd382b107efe4bf72d6c439b6cca0bb8d393bf055a9de361147ee"
+    },
+    "inputSnapshotTiming": "diagnostic-inputs.json was captured during this earlier diagnostic, not before launch.",
+    "interpretation": "Branch operations passed with the same retained workspace; this does not reproduce or resolve the intermittent native exit failure."
+  },
+  "freshCompletePackaged": {
+    "status": "failed",
+    "completedChecks": 240,
+    "normalExits": 21,
+    "forcedExits": 1,
+    "exitObservations": [
+      {
+        "elapsedMs": 458,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 6186,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2132,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1081,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1401,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 874,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 302,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 212,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 225,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 148,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 219,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 453,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 223,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 275,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 246,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 97,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1274,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 134,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 2341,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1724,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 1618,
+        "forced": false,
+        "exitCode": 0,
+        "signalCode": null
+      },
+      {
+        "elapsedMs": 10014,
+        "forced": true,
+        "exitCode": null,
+        "signalCode": null
+      }
+    ],
+    "log": {
+      "path": "D:/GR/nook-native-exit-full-package-evidence-2026-10-29/packaged.log",
+      "sha256": "3e0419bab059fe415f1d009fc7e237f5577f1b82f7f3758f1e4d9fb5e2c771e7"
+    },
+    "result": null,
+    "resultArchive": "D:/GR/nook-native-exit-full-package-evidence-2026-10-29/failed"
+  },
+  "clipboardPreflight": {
+    "at": "2026-10-29T09:58:07.375Z",
+    "strictPreservationPreflight": true,
+    "supported": true,
+    "formats": [
+      "text/plain",
+      "electron application/osclipboard;format=\"DataObject\"",
+      "electron application/osclipboard;format=\"Ole Private Data\"",
+      "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+      "electron application/osclipboard;format=\"CanUploadToCloudClipboard\""
+    ],
+    "emptyPlainTextRoundTrip": true,
+    "evidence": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/preflight/strict.log",
+      "sha256": "f4aedff852e34d58c626e2c517ea9274f5af462fb7cc1ddd5eb3438ad17512e9"
+    },
+    "originalGuardUnchanged": true,
+    "lossyReplacement": false
+  },
+  "preservedInstalledFailure": {
+    "evidence": {
+      "path": "D:/GR/nook-terminal-exit/verification/tree-frame-budget-installed-block-review-result.json",
+      "sha256": "d802b8d2bb26f2a3b73e7936c73d32649bab0c038911f58e2cbb1b7fe7e04f0b"
+    },
+    "completedChecks": 247,
+    "forcedExitMs": 10002,
+    "originalExitDeadlineMs": 10000,
+    "newInstalledRun": false,
+    "interpretation": "The actual installed247-check forced-exit failure remains unresolved. This packaged diagnostic cannot replace installed, bootstrap, portable, physical interaction or hosted acceptance."
+  }
+}
