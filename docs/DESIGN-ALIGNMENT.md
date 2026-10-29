@@ -1,6 +1,6 @@
 # Nook 设计对照
 
-2026-10-29 最新状态：本轮仅诊断原生退出，未改变应用界面或二进制。完整包内运行通过 240 项后重启退出超时，21 次正常退出、1 次强制结束；非暂停采样和匹配公共符号将等待定位到 Chromium 的 NetworkService 清理，具体触发原因与修复未证明。[本轮诊断](../verification/native-exit-investigation-review-result.json)。上一轮 1755 项单元、类型及源码／包内各 8 项专项、54 张新增功能布局图、实际安装 247 项后失败和卸载保留证据继续保留，见[夹具及安装记录](../verification/tree-frame-budget-installed-block-review-result.json)。本轮不新增截图复核结论，完整安装和全部设计对齐仍未通过，以下各条为分次历史。
+2026-10-29 最新状态：本轮仅将模型比较保存检查点移到测试宿主轮询，保留原 5 秒检查点及 10 秒退出上限，未改变应用界面或二进制。源码／包内各 6 项专项、14 次保存检查点等待、6 次正常退出、1755 项单元和类型检查通过；故障注入验证新脚本能明确报告保存检查点错误。[本轮验证修正](../verification/comparison-save-checkpoint-review-result.json)。此前新完整包内诊断通过 259 项后保存测试超时，30 次退出均正常；其中慢退出采样位于 ThreadPool 清理，另一次 240 项后失败的等待位于 NetworkService 清理，具体触发原因和应用修复仍未证明。[此前原生诊断](../verification/native-exit-investigation-review-result.json)。实际安装 247 项后失败、54 张已复核功能布局图与卸载保留证据继续见[夹具及安装记录](../verification/tree-frame-budget-installed-block-review-result.json)。本轮不新增逐张截图复核或完整验收结论，全部设计对齐仍未完成，以下各条为分次历史。
 
 界面以指定的 `E:/txt` 设计资料为依据，逐项核对主题、布局与交互。目前已完成部分采用，**尚未达到 100% 对齐**。完整范围见[页面与状态清单](UI-COVERAGE.md)，当前测试和分发状态见[发布状态](RELEASE.md)。
 

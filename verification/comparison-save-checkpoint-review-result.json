@@ -1,0 +1,275 @@
+{
+  "reviewedAt": "2026-10-29T11:40:47.689Z",
+  "baseHead": "58a8f24423eb054dc9c799a1d466d10230b7bf69",
+  "scope": "Verification-only change: poll comparison save checkpoints in the host instead of an awaited main-process expression. Preserve the original5000ms checkpoint and10000ms native exit criteria. Application, compiled bytes and binaries are unchanged. This is an error-reporting race fix, not a proven fix for the intermittent original259 failure or native shutdown delays.",
+  "change": {
+    "path": "scripts/verify-model-comparisons.mjs",
+    "beforeSha256": "606b5d57cb790c03bc35cc66b5050d9bad21a25d25d8d381e7aec861f876588a",
+    "afterSha256": "f113a50e8498013928f4d4e3265bb2ebfee1f83b7c835844cc0b2f33638edaa6",
+    "checkpointDeadlineMs": 5000,
+    "pollIntervalMs": 25,
+    "nativeExitDeadlineMs": 10000
+  },
+  "preservedFullFailure": {
+    "evidence": {
+      "path": "D:/GR/nook-network-cleanup-full-evidence-2026-10-29/result.json",
+      "sha256": "448291d5fb68442e34a26d4177ca23502f6154a5c9fae8c028e61b0572286ab6"
+    },
+    "checks": 259,
+    "normalExits": 30,
+    "maxExitMs": 8541,
+    "originalDeadlineViolations": 0,
+    "actualKills": 0,
+    "failedOperation": "verify-model-comparisons.mjs failSave: original nested5000ms wait reached the outer5000ms main-process debugger deadline",
+    "completePackagedOriginalCriteria": false
+  },
+  "nativeObservation": {
+    "trace": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/cleanup-traces/close-38948-1793271484106.txt",
+      "sha256": "498b80b669f5e0904db4e91328acccbb60369f53e112a741eaf16609e9bb1fdc"
+    },
+    "symbols": {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/symbolized-close-38948.json",
+      "sha256": "0b98d06edc8f2ca3c9113c07aee561e92b35d0f286a73111fcdfbbb3473ebd90"
+    },
+    "exactPdbIdentityAndTwoExportsCrossChecked": true,
+    "normalExitMs": 8541,
+    "nearestPublicChain": [
+      "WaitableEvent::Wait",
+      "TaskTracker::CompleteShutdown",
+      "BrowserMainLoop::ShutdownThreadsAndCleanUp"
+    ],
+    "limitation": "This normal slow exit waited in ThreadPool cleanup, distinct from the previously failed240 NetworkService wait. The collector failed after CDB when the target exited before lazy Process.Handle access; no successful wait-handle association or collector metadata is claimed. Public symbols do not prove private function extent or unique trigger.",
+    "rootCauseProven": false
+  },
+  "originalSeedDiagnostic": {
+    "evidence": {
+      "path": "D:/GR/nook-comparison-save-focus-evidence-2026-10-29/result.json",
+      "sha256": "397b332a826f9a15b08ccb7b2e09711713e990606338bee4e962aac0f2fc6af3"
+    },
+    "checks": 6,
+    "heldSaves": 7,
+    "saveEntryRangeMs": [
+      1189,
+      1474
+    ],
+    "originalFiveSecondCriteriaUnchanged": true,
+    "seedUnchanged": true
+  },
+  "currentFocused": {
+    "evidence": {
+      "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/result.json",
+      "sha256": "3ece36ee569a91afb39bb923cf2364e5a8fcba833c2a97a1e88389c2b81fdb49"
+    },
+    "runs": [
+      {
+        "variant": "source",
+        "checks": 6,
+        "saveCheckpoints": 7,
+        "saveCheckpointRangeMs": [
+          1442,
+          3200
+        ],
+        "exitObservations": [
+          {
+            "elapsedMs": 1927,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 1302,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 2920,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          }
+        ]
+      },
+      {
+        "variant": "packaged",
+        "checks": 6,
+        "saveCheckpoints": 7,
+        "saveCheckpointRangeMs": [
+          1108,
+          1282
+        ],
+        "exitObservations": [
+          {
+            "elapsedMs": 1382,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 174,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 1425,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          }
+        ]
+      }
+    ],
+    "allFrozenHashesMatch": true,
+    "originalSeedUnchanged": true,
+    "runtimeErrors": [],
+    "screenshotsManuallyReviewed": false
+  },
+  "faultInjection": {
+    "evidence": {
+      "path": "D:/GR/nook-comparison-save-negative-retry-evidence-2026-10-29/result.json",
+      "sha256": "fc82ab3001edcc099bbb53f829232e67f304cd9c9a15882abcfbbfbd21755a19"
+    },
+    "scope": "Expected-failure native regression: mask only the held filesystem rename receipt while preserving the actual held write, UI busy state, original five-second checkpoint and five-second debugger operation. Compare exact original58 script loaded from Git with current host-polling script. Fresh empty source workspaces; no product acceptance. Initial negative loader stopped before app launch because its anchor was not unique; that failure is preserved in the separate original negative evidence directory.",
+    "runs": [
+      {
+        "variant": "original",
+        "outcome": {
+          "code": 1,
+          "signal": null
+        },
+        "checks": 3,
+        "waitElapsedMs": 5001,
+        "mainDebuggerTimeout": true,
+        "explicitSaveCheckpointFailure": false,
+        "exitObservations": [
+          {
+            "elapsedMs": 400,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 215,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          }
+        ]
+      },
+      {
+        "variant": "fixed",
+        "outcome": {
+          "code": 1,
+          "signal": null
+        },
+        "checks": 3,
+        "waitElapsedMs": 5012,
+        "mainDebuggerTimeout": false,
+        "explicitSaveCheckpointFailure": true,
+        "exitObservations": [
+          {
+            "elapsedMs": 842,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          },
+          {
+            "elapsedMs": 283,
+            "forced": false,
+            "exitCode": 0,
+            "signalCode": null
+          }
+        ]
+      }
+    ],
+    "expectedFailuresVerified": true,
+    "originalScriptLoadedFromGitAndHashChecked": true
+  },
+  "unitValidation": {
+    "evidence": {
+      "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/unit-coverage.log",
+      "sha256": "df44f86abdeb9a9d6b55123f5a1bf008d703a2bc77fb5631d4dde37206cd6674"
+    },
+    "files": 150,
+    "tests": 1755,
+    "coverage": {
+      "statements": 97.14,
+      "branches": 94.74,
+      "functions": 97.86,
+      "lines": 99.51
+    },
+    "typecheck": {
+      "evidence": {
+        "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/typecheck.log",
+        "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+      },
+      "command": "pnpm check",
+      "exitCode": 0,
+      "terminalSession": 55986
+    },
+    "targetedUnitTests": 38
+  },
+  "frozenInputs": {
+    "manifest": {
+      "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/before.json",
+      "sha256": "1d489e2df1580f4f33e24ead9f6c26f175cd72d41a9a9b40df0350d10310b94e"
+    },
+    "trackedCompared": 1340,
+    "compiledFiles": 236,
+    "binaries": 4,
+    "applicationCompiledAndBinariesUnchanged": true,
+    "allowedDocumentationChanges": [
+      "CHANGELOG.md",
+      "docs/DELIVERY.md",
+      "docs/RELEASE.md",
+      "docs/DESIGN-ALIGNMENT.md",
+      "docs/UI-COVERAGE.md"
+    ],
+    "priorDiagnosticReportsUnchanged": true
+  },
+  "acceptance": {
+    "completeSourceSuiteForCurrentVerifier": false,
+    "completePackagedSuiteForCurrentVerifier": false,
+    "completeInstalledAcceptance": false,
+    "completeDistributionAccepted": false,
+    "hostedPublication": false,
+    "priorFailuresPreserved": true,
+    "applicationBugFixed": false
+  },
+  "diagnosticPrograms": [
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-save-focus.mjs",
+      "sha256": "e455e72d003ee528528429bb0a788fa6f15c9f5f17be6527713b1c18500734e0"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/comparison-save-observer.mjs",
+      "sha256": "9b616ca2c51d06c1aac0b8fc991cdd39496696b5644653bfb65c8502f8b9cc8b"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-save-fixed.mjs",
+      "sha256": "fd172ff71c058273cdb2faa596f65ee82e2c6c4bf4aeb29bc72afc0349117b02"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/comparison-save-negative-loader.mjs",
+      "sha256": "f687dd9c71b69fca9b26e91f9f1558f22e229bbb1e6efe19e09c32c67c2a477d"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-save-negative.mjs",
+      "sha256": "9348b023ee72a2b9490cea00156c3d1fdf0085b28f3f99ff86115e357b7f9481"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/comparison-save-negative-retry-loader.mjs",
+      "sha256": "328605a4a8589cdbe65af71c6dfb5d59f3b1d462c188e317e88efc3a4cb504a1"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-save-negative-retry.mjs",
+      "sha256": "3754e5f662ad60acb4e3f4dcc6a60c677a08dec0e27396c91eba04e2d0a3b96c"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/review-comparison-save.mjs",
+      "sha256": "62cf277f4b0236c9db3e4b6c2734d8058a1fff298f7417005a3937e689764dd0"
+    }
+  ]
+}

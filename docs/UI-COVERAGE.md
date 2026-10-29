@@ -1,6 +1,6 @@
 # 界面对照范围
 
-2026-10-29 最新验证：本轮未改变界面，通过外部非暂停采样诊断原生退出。完整包内运行通过 240 项、21 次正常退出后发生 1 次超时强制结束，等待定位到 Chromium 的 NetworkService 清理，具体触发原因和修复未证明，见[本轮证据](../verification/native-exit-investigation-review-result.json)。此前 150 文件／1755 项单元、源码／包内各 8 项专项、54 张新增功能布局图及实际安装 247 项后失败、卸载和 36 个原标记／4 个新标记保留继续见[上一轮证据](../verification/tree-frame-budget-installed-block-review-result.json)。本轮不把新生成的套件截图计为已逐张查看；完整安装与全部设计对齐仍待完成，以下各条属于分次历史。
+2026-10-29 最新验证：本轮只修正模型比较保存检查点与调试调用的 5 秒报错竞态，界面和二进制未改。源码／包内各 6 项专项通过，覆盖受控保存失败、输入与历史保留、重试、备份恢复及缩放布局；14 次检查点等待、6 次正常退出、1755 项单元及类型检查通过，原 5 秒检查点和 10 秒退出上限保留。[当前验证及故障注入](../verification/comparison-save-checkpoint-review-result.json)。此前新完整包内诊断在 259 项后保存测试超时，30 次退出均正常；另一次 240 项后原生退出超时及实际安装 247 项后失败均保留。ThreadPool 与 NetworkService 两种等待采样不能证明统一触发原因或应用修复。此前 54 张逐张复核功能布局图、卸载及 36 个原标记／4 个新标记保留继续见[安装记录](../verification/tree-frame-budget-installed-block-review-result.json)。本轮不把新生成的套件截图计为已逐张查看；当前验证脚本的完整运行、实际安装和全部设计对齐仍未完成，以下各条属于分次历史。
 
 已有清单记录 79 个工作台 TSX／CSS 文件、7 个主页面，以及设置工作区、快速聊天和插件面板入口；加入文件树菜单和新建文件夹弹窗后，当前范围为 81 个文件。清单记录需要核对的范围，不代表已完成比例；历史哈希不能代替后续修改的当前哈希。[79 文件清单证据](../verification/ui-coverage-current-review-result.json)与[旧清单](../verification/ui-coverage-review-result.json)均保留作对照。
 

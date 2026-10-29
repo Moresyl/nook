@@ -274,14 +274,16 @@ export async function verifyModelComparisons({ page, application, getApplication
   })()`);
   try {
     await dialog().getByRole('button', { name: '发送并比较', exact: true }).click();
-    assert.equal(await application.evaluateMain(`(async () => {
-      const deadline = Date.now() + 5000;
-      while (!globalThis.nookComparisonSaveReceipt.entered) {
-        if (Date.now() >= deadline) throw new Error('The actual comparison save did not reach the held rename within five seconds.');
-        await new Promise(resolve => setTimeout(resolve, 25));
-      }
-      return true;
-    })()`), true);
+    // Poll from the host so the checkpoint and debugger do not race identical five-second timers.
+    const saveStartedAt = Date.now(), saveDeadline = saveStartedAt + 5000;
+    let entered = false;
+    while (Date.now() < saveDeadline) {
+      entered = await application.evaluateMain('globalThis.nookComparisonSaveReceipt.entered');
+      if (entered) break;
+      await new Promise(resolve => setTimeout(resolve, 25));
+    }
+    assert.ok(entered && Date.now() < saveDeadline, 'The actual comparison save did not reach the held rename within five seconds.');
+    console.log('Comparison save checkpoint', JSON.stringify({ elapsedMs: Date.now() - saveStartedAt, deadlineMs: 5000 }));
     assert.equal(await dialog().locator(':scope > .modal-header').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
     assert.equal(await dialog().locator(':scope > .modal-footer').getByRole('button', { name: '关闭', exact: true }).isDisabled(), true);
     assert.equal(await dialog().getByRole('button', { name: '发送并比较', exact: true }).isDisabled(), true);
