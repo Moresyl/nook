@@ -1,0 +1,817 @@
+{
+  "reviewedAt": "2026-10-29T13:31:49.357Z",
+  "testedHead": "2ce98bc22cbac9625225cce4337440966e125bc7",
+  "productCommit": "6c4486eca6c3251be11edd1da37cbb1b7c298e63",
+  "scope": "Fresh complete packaged and actual current-user installed regressions of the unchanged application, using the committed comparison host-polling verifier. Source422 is adopted from the byte-identical application with four explicit verification/helper/test differences; it is not a fresh complete source run under the current verifier. Publication and physical Windows interaction remain separate.",
+  "packaged": {
+    "result": {
+      "path": "D:/GR/nook-comparison-poll-full-packaged-evidence-2026-10-29/result.json",
+      "sha256": "4818a90c67b6e6589bca866a5fa4ad13e49319d11e81444f4bf724ed90d3e2a8"
+    },
+    "log": {
+      "path": "D:/GR/nook-comparison-poll-full-packaged-evidence-2026-10-29/packaged.log",
+      "sha256": "4691285d13f1f281d2dc9b439a240e7da53d50214770c1e3ece56e3f312a0516"
+    },
+    "checks": 422,
+    "normalExits": 75,
+    "forcedExits": 0,
+    "exitRangeMs": [
+      77,
+      7741
+    ],
+    "comparisonSaveCheckpoints": 7,
+    "checkpointRangeMs": [
+      1101,
+      2843
+    ],
+    "runtimeErrors": [],
+    "freshEmptyWorkspace": true,
+    "externalLoader": false,
+    "debuggerSampling": false,
+    "deferredKill": false
+  },
+  "installed": {
+    "status": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/status.json",
+      "sha256": "694ac89cff24cb25e8b2deed3375b5bea0005090cb8275ee420de5369eb7462e"
+    },
+    "log": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installer.log",
+      "sha256": "5c805993a01a3770bbc11a142dfb47ef9f36ede5b2078c6b59bec22383090ed4"
+    },
+    "checks": 422,
+    "normalExits": 75,
+    "forcedExits": 0,
+    "exitRangeMs": [
+      66,
+      6253
+    ],
+    "comparisonSaveCheckpoints": 7,
+    "checkpointRangeMs": [
+      1059,
+      1803
+    ],
+    "runtimeErrors": [],
+    "originalVerifierWithOnlyRepositoryRootRelocation": true,
+    "freshEmptyWorkspace": true,
+    "externalLoader": false,
+    "debuggerSampling": false,
+    "deferredKill": false,
+    "silentCurrentUserInstallAndUninstall": true,
+    "unicodeInstallationPath": true,
+    "runtimeRecords": [
+      {
+        "kind": "audit",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/package-audit-result.json",
+        "sha256": "03790f187cc5fc8fde553c8de339e4e464e491e81d041121e0fb225b22f04251"
+      },
+      {
+        "kind": "desktop",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/packaged-result.json",
+        "sha256": "67c44f5eb23265ed2404121525fa46bc7ec22b5cf118c6bfb8f5a2cc662e6467"
+      },
+      {
+        "kind": "surfaces",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/surfaces-packaged-result.json",
+        "sha256": "ff3893238799980297bc4b02092ff5ce681bc0bd8668a4ad4735844c10e5fe6d"
+      },
+      {
+        "kind": "preview",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/project-preview-packaged-result.json",
+        "sha256": "1309cff125fd82e9c41e50c56b3001fe5a14cc2e8a9b3aa12af5b2d0dbceb5b9"
+      },
+      {
+        "kind": "branches",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/conversation-branches-packaged-result.json",
+        "sha256": "ff6b945a676ee3ab14bd68d95a5ed551425173d7eb66a92efb1dc4493ac12511"
+      },
+      {
+        "kind": "temporary",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/temporary-conversations-packaged-result.json",
+        "sha256": "c5b3bddffeb4c6e2327dfcd3701c7496913c6665c5e5e219ffee42a4e1c5ba91"
+      },
+      {
+        "kind": "comparisons",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/model-comparisons-packaged-result.json",
+        "sha256": "f7b5f2f7a2fd831a4013ea7e10b976836ea6b23240afc96c6ff2c2301cdf5ccd"
+      },
+      {
+        "kind": "portable",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/portable-result.json",
+        "sha256": "c00485b158c94d4f31abc3496902530479df0f2725f9757543775ce25e8077a9"
+      },
+      {
+        "kind": "portableAudit",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/portable-package-audit-result.json",
+        "sha256": "78611cffdfcd6c6289a6a9c42bce040af096397c0fa54fd5a22d22b36577d830"
+      },
+      {
+        "kind": "bootstrap",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/distribution-bootstrap-result.json",
+        "sha256": "ec5dd30d0b1bb8b4673c25f24ece9a7261dbebd14b6a30df18a326fc8ebe5e91"
+      },
+      {
+        "kind": "installer",
+        "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/pipeline-installer-result.json",
+        "sha256": "523a88bb35c8c3e8a24fa71ee358d7dbc28327ccf1ed1859fbcacc5a1d58a24d"
+      }
+    ],
+    "allElevenRuntimeRecordsMatch": true
+  },
+  "source": {
+    "proof": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/electron-result.json",
+      "sha256": "4dd780efb2e467fed4cfa029ab43d5ecd0b07de21ef22b7b9ace0d781439dcaa"
+    },
+    "adoptedChecks": 422,
+    "applicationCompiledAndBinariesUnchanged": true,
+    "freshCompleteSourceForCurrentVerifier": false,
+    "verificationDifferences": [
+      {
+        "path": "scripts/project-tree-viewport.mjs",
+        "sha256": "9087ae4236c900571d7250ed76e69e95a60c424edaee4c3713bb876f8dbacc8e",
+        "afterSha256": "9910ba00c27103bb31accf4fd6dcaf3cf100de4fcb0ef724a98e69e3cf0f61a6",
+        "scope": "verification helper or tests"
+      },
+      {
+        "path": "scripts/verify-model-comparisons.mjs",
+        "sha256": "606b5d57cb790c03bc35cc66b5050d9bad21a25d25d8d381e7aec861f876588a",
+        "afterSha256": "f113a50e8498013928f4d4e3265bb2ebfee1f83b7c835844cc0b2f33638edaa6",
+        "scope": "verification helper or tests"
+      },
+      {
+        "path": "scripts/verify-project-tree-sticky.mjs",
+        "sha256": "803329936a1aa2a2a862182b7b006d866369032f93c2bdb1097599ae2af62502",
+        "afterSha256": "24f6c9c6125fc90b0be323a8dc41b5e9669c17038a91eb29cd265a34009e42c6",
+        "scope": "verification helper or tests"
+      },
+      {
+        "path": "verification/project-tree-viewport.test.ts",
+        "sha256": "b520d76b1debf80d300bc3937167aac7097b079f30ae128087f88d8465b49746",
+        "afterSha256": "9731a53fd774eff125164ddaa83b293f1c20d7c55f3cc330c88997cb4e80e843",
+        "scope": "verification helper or tests"
+      }
+    ],
+    "changedFixturesCoveredBySourceTree8AndComparison6FocusedChecks": true,
+    "focusedProof": {
+      "path": "D:/GR/nook-terminal-exit/verification/comparison-save-checkpoint-review-result.json",
+      "sha256": "51ed6b4529399c8e26255d1ed39a30737e8c65b5798d7d31bfdf27ff220b1298"
+    },
+    "treeFocusedProof": {
+      "path": "D:/GR/nook-terminal-exit/verification/tree-frame-budget-review-result.json",
+      "sha256": "f173e54e0cb003727a3e05a87dcc194fb7b51aaeefe10e8684e19fab20d0ced6"
+    },
+    "comparisonFocusedProof": {
+      "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/result.json",
+      "sha256": "3ece36ee569a91afb39bb923cf2364e5a8fcba833c2a97a1e88389c2b81fdb49"
+    }
+  },
+  "unitValidation": {
+    "evidence": {
+      "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/unit-coverage.log",
+      "sha256": "df44f86abdeb9a9d6b55123f5a1bf008d703a2bc77fb5631d4dde37206cd6674"
+    },
+    "files": 150,
+    "tests": 1755,
+    "coverage": {
+      "statements": 97.14,
+      "branches": 94.74,
+      "functions": 97.86,
+      "lines": 99.51
+    },
+    "typecheck": {
+      "evidence": {
+        "path": "D:/GR/nook-comparison-save-fixed-evidence-2026-10-29/typecheck.log",
+        "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+      },
+      "command": "pnpm check",
+      "exitCode": 0,
+      "terminalSession": 55986
+    },
+    "targetedUnitTests": 38
+  },
+  "inputIntegrity": {
+    "manifest": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installer-before.json",
+      "sha256": "5ee3f2fb7cc2e30948bb426ecb546ba7c9033f8e54b16bdbf640011033437523"
+    },
+    "finalCheck": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/inputs-final.json",
+      "sha256": "2520fae56c302508a2b0e9a8656d4715c8f4cd6275208a8274c85f2e35fa9609"
+    },
+    "tracked": 1340,
+    "compiled": 236,
+    "binaries": [
+      {
+        "path": "artifacts/win-unpacked/Nook.exe",
+        "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa"
+      },
+      {
+        "path": "artifacts/win-unpacked/resources/app.asar",
+        "sha256": "873501d5b6531e0edadd091e1c23e4c30347d18d878bcba8dc63f5d1db171e7a"
+      },
+      {
+        "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+        "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32"
+      },
+      {
+        "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+        "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e"
+      }
+    ],
+    "metadata": 13,
+    "allFrozenHashesMatch": true,
+    "originalCheckpointDeadlineMs": 5000,
+    "originalNativeExitDeadlineMs": 10000
+  },
+  "cleanup": {
+    "review": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installer-cleanup-review.json",
+      "sha256": "3d0fe5c5769bd2e586cebb3d7034a976b22a135686634f92d01a9c8342bb8f38"
+    },
+    "retentionBefore": {
+      "path": "D:/GR/nook-comparison-poll-installer-retention-evidence-2026-10-29/installer-retention-before.json",
+      "sha256": "cc7525a87ccf6cb4c8b9a7aa8535961271a77bd01b425543a70ffc6c60f9a971"
+    },
+    "retentionAfter": {
+      "path": "D:/GR/nook-comparison-poll-installer-retention-evidence-2026-10-29/installer-retention-after.json",
+      "sha256": "89327957368bc1755485fdcf27f212517bd16537da003509f423e996c272bf01"
+    },
+    "originalTestMarkersRestored": 40,
+    "originalHashesPreserved": true,
+    "freshSentinelsPreservedThroughUninstallAndRemovedByOriginalVerifierAfterPass": 4,
+    "newMarkersRemaining": 0,
+    "installationRegistrationAndShortcutsAbsent": true
+  },
+  "clipboard": {
+    "preflight": {
+      "at": "2026-10-29T12:37:28.354Z",
+      "strictPreservationPreflight": true,
+      "supported": true,
+      "formats": [
+        "text/plain",
+        "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+        "electron application/osclipboard;format=\"Chromium internal source URL\""
+      ],
+      "emptyPlainTextRoundTrip": true,
+      "evidence": {
+        "path": "D:/GR/nook-native-exit-investigation-2026-10-29/comparison-installer-preflight/strict.log",
+        "sha256": "1fb6ef62285a1589db0037159441638d0b9fa16ab005ed804195bc4576281e25"
+      }
+    },
+    "preservationGuardUnchanged": true,
+    "lossyReplacement": false
+  },
+  "visualReview": {
+    "scope": "Main and quick-chat JPEG export, and file-content context menus only. Both themes at100/125/150% renderer zoom. Quick-chat disclosure remains keyboard-scrollable at high zoom; not all disclosure text is simultaneously visible. Renderer zoom does not establish physical system DPI or native dialog acceptance.",
+    "individualViewLog": {
+      "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/individually-viewed-screenshots.json",
+      "sha256": "4b0bc4139e886578a82a8dc145cc969f2f03513e7c54323ae4c28d4102c6f98b"
+    },
+    "adoptedSource": 18,
+    "freshPackaged": 18,
+    "freshInstalled": 18,
+    "total": 54,
+    "variants": {
+      "source-adopted": [
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-light-100.png",
+          "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+          "viewedAt": "2026-10-29T03:47:50.202Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-light-125.png",
+          "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+          "viewedAt": "2026-10-29T03:47:50.202Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-light-150.png",
+          "sha256": "34e245aff302c0e11d26e5990790c70e4080f1689be6fd2dcefa93c4121866b2",
+          "viewedAt": "2026-10-29T03:47:50.202Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-dark-100.png",
+          "sha256": "1b24c0fd09ae27ef60a7a47eabcfb206b97193a38c16e85fa18599f79975c604",
+          "viewedAt": "2026-10-29T03:47:50.202Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-dark-125.png",
+          "sha256": "8a60fda3b0a8b5793268234571665b5e0014d7f8856bf1d488a41eadc506f62d",
+          "viewedAt": "2026-10-29T03:47:50.202Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/136-image-export-dark-150.png",
+          "sha256": "bf1520f7da515615fb13828964866b81e31743d71593f337f9d6cb324ee919ee",
+          "viewedAt": "2026-10-29T03:47:50.203Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-light-100.png",
+          "sha256": "ca9fd93234b136dd6bd31fac2c73fbe05af6a05cb6375cab33b7e2a5274a7b94",
+          "viewedAt": "2026-10-29T03:53:16.472Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-light-125.png",
+          "sha256": "c0fac55928ba93402c7299fb0c884a0e8819169bc67c2e16ca8198fe66942e7c",
+          "viewedAt": "2026-10-29T03:53:16.473Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-light-150.png",
+          "sha256": "49264ef01ea4cef64780331e5f093728257d865cc8a41c20a69938508b61c675",
+          "viewedAt": "2026-10-29T03:53:16.473Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-dark-100.png",
+          "sha256": "7a9b4db53772d065d269247683f20981af776173e3c79035a4556abfe02dc2f9",
+          "viewedAt": "2026-10-29T03:53:16.473Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-dark-125.png",
+          "sha256": "83aefce865c9bf48d133db566bd6ff3fed254a7af3b7166f031f4ff7ad600ca0",
+          "viewedAt": "2026-10-29T03:53:16.473Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/138-project-file-copy-contents-dark-150.png",
+          "sha256": "54348e60d520b629b2396f8de7cfdd1c8b09558219c0397178a590f0df6b9d6f",
+          "viewedAt": "2026-10-29T03:53:16.473Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-light-100.png",
+          "sha256": "50baba559da1900032d1a9c7312f751afc2b13f11f8f221f61bb79c37bf9fe54",
+          "viewedAt": "2026-10-29T04:08:00.316Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-light-125.png",
+          "sha256": "2ea06f2cbcb2db032e9f6e40ce0624b7d47aee829eeab79b33bc93e29a367b05",
+          "viewedAt": "2026-10-29T04:08:00.317Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-light-150.png",
+          "sha256": "44926763d1e5c483a8fa40264711c5386f9c115d1918e411a91a5633d1cf5771",
+          "viewedAt": "2026-10-29T04:08:00.317Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-dark-100.png",
+          "sha256": "0aaf0bce58a19fd6e058e2abb7affe313fbd7c3c7cd31b0c222babb86640a412",
+          "viewedAt": "2026-10-29T04:08:00.317Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-dark-125.png",
+          "sha256": "896959f602f99854faac9ab67f607ef82eb2719e97b66057c5d4e8b4583c7691",
+          "viewedAt": "2026-10-29T04:08:00.317Z",
+          "adoptedFromPriorUnchangedApplication": true
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/source-adopted/screenshots/137-image-export-quick-dark-150.png",
+          "sha256": "aa16dddd13036d16041b1b82a5457aa8ad38563b9ebf877157940312d3cbb233",
+          "viewedAt": "2026-10-29T04:08:00.317Z",
+          "adoptedFromPriorUnchangedApplication": true
+        }
+      ],
+      "packaged": [
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-100.png",
+          "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+          "viewedAt": "2026-10-29T12:40:35.636Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-125.png",
+          "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+          "viewedAt": "2026-10-29T12:40:35.637Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-150.png",
+          "sha256": "3ea991d4b280ced96b1bbd3589e758c41fe9a5f3443723be84f56f8673e4f801",
+          "viewedAt": "2026-10-29T12:40:35.637Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-100.png",
+          "sha256": "052070235e46099226cc17fcd36018442016ce3e9902e3cc89e634729d2ed08d",
+          "viewedAt": "2026-10-29T12:40:46.014Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-125.png",
+          "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373",
+          "viewedAt": "2026-10-29T12:40:46.015Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-150.png",
+          "sha256": "ec3c02483a423056244a50bd0bd39a18e9f98e7b364ccaadd0039b0414029071",
+          "viewedAt": "2026-10-29T12:40:46.015Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-100.png",
+          "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b",
+          "viewedAt": "2026-10-29T12:41:14.404Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-125.png",
+          "sha256": "6d7833c41325d8dee304393259e4fb725ffeab068c071783ea1d6d7431997323",
+          "viewedAt": "2026-10-29T12:41:14.404Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-150.png",
+          "sha256": "31491243c87e22406d2bf4fa364c1c8f5a7c6a629110e07243a11e175d9b4bed",
+          "viewedAt": "2026-10-29T12:41:14.404Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-100.png",
+          "sha256": "d5dbc025a7643a85f1add2fae0439fa2a939a483f2bc38c6aab62dd3a67fbaf5",
+          "viewedAt": "2026-10-29T12:41:30.618Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-125.png",
+          "sha256": "ae041533ef0ddf9d5bc811ce8707f5ec51ed37218bdb50780bc247a43733bca6",
+          "viewedAt": "2026-10-29T12:41:30.619Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-150.png",
+          "sha256": "284c9e8b85fcf9e5b60753547b533a9b88ccfcc8c902e0cee2241a76ba202dd8",
+          "viewedAt": "2026-10-29T12:41:30.619Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-100.png",
+          "sha256": "8e7f92f511b32a5f06797e192fc9bf10424a8d9ddbf8d2f6c2ed623b9918631a",
+          "viewedAt": "2026-10-29T12:41:49.641Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-125.png",
+          "sha256": "de577f1c0758f5cb5afe1294762f4b04b34c65ea3e33862bb324525e4a0682a6",
+          "viewedAt": "2026-10-29T12:41:49.641Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-150.png",
+          "sha256": "95a8848102de1fac5b512295a4ba11de3cef5365a0b3351aea39f667930f53ad",
+          "viewedAt": "2026-10-29T12:41:49.642Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-100.png",
+          "sha256": "7cc939ce0019d833390876c46b566f8e229b25321df4bbd4b402c2408f9dfda4",
+          "viewedAt": "2026-10-29T12:42:08.708Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-125.png",
+          "sha256": "18d0e940fbaec9819d2ed1be36460b81b9b8d6eb5f796ad03e9b7999b03822e8",
+          "viewedAt": "2026-10-29T12:42:08.708Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-150.png",
+          "sha256": "2fe05e3549c19a6792b052bb453e4b6a4d249b2480582b1ce12f21d5070f2a50",
+          "viewedAt": "2026-10-29T12:42:08.708Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        }
+      ],
+      "installed": [
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-light-100.png",
+          "sha256": "9600b13085f1f2b7081a87fd94efe22e6ea95adcaf4fa1b65f37a2d3b365b889",
+          "viewedAt": "2026-10-29T13:30:52.514Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-light-125.png",
+          "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+          "viewedAt": "2026-10-29T13:30:52.514Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-light-150.png",
+          "sha256": "3ea991d4b280ced96b1bbd3589e758c41fe9a5f3443723be84f56f8673e4f801",
+          "viewedAt": "2026-10-29T13:30:52.514Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-dark-100.png",
+          "sha256": "052070235e46099226cc17fcd36018442016ce3e9902e3cc89e634729d2ed08d",
+          "viewedAt": "2026-10-29T13:31:03.610Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-dark-125.png",
+          "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373",
+          "viewedAt": "2026-10-29T13:31:03.611Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/136-image-export-dark-150.png",
+          "sha256": "ec3c02483a423056244a50bd0bd39a18e9f98e7b364ccaadd0039b0414029071",
+          "viewedAt": "2026-10-29T13:31:03.611Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-light-100.png",
+          "sha256": "50baba559da1900032d1a9c7312f751afc2b13f11f8f221f61bb79c37bf9fe54",
+          "viewedAt": "2026-10-29T13:31:14.284Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-light-125.png",
+          "sha256": "70997fd11b9472c7283371e822269ea8be711b15d5dcc492382f4a1dd5273853",
+          "viewedAt": "2026-10-29T13:31:14.284Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-light-150.png",
+          "sha256": "e6426f22567c182c7c7509e2e6ae2b168171edbe1ca9244883bdc25a94a0a70d",
+          "viewedAt": "2026-10-29T13:31:14.284Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-dark-100.png",
+          "sha256": "7623180bafb2f0fc8147cf43af30b2718cea63f300fabecee1b19a4da82bb81b",
+          "viewedAt": "2026-10-29T13:31:23.977Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-dark-125.png",
+          "sha256": "2b747fce8c3ac81643bc6e137c5a263f1263a2452e3ce36bde3b607f5324508b",
+          "viewedAt": "2026-10-29T13:31:23.977Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/137-image-export-quick-dark-150.png",
+          "sha256": "494cc0ce337634c6ee8b4ff83e2e2132e7753bd063d006849c7840a1bc216b21",
+          "viewedAt": "2026-10-29T13:31:23.977Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 420,
+          "height": 360,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-light-100.png",
+          "sha256": "6f72faec5edd19dd28692445e079785920e47bd5897de9a9fa1f79ea343d3314",
+          "viewedAt": "2026-10-29T13:31:35.790Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-light-125.png",
+          "sha256": "2fe13ccfce73baed31b546a54747d139c091edddcf5f4921397f773be848b94f",
+          "viewedAt": "2026-10-29T13:31:35.791Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-light-150.png",
+          "sha256": "f9c63ded308c20d6c5fcad10f9bef4e10fba24439f27a2a8df20b267fd6186df",
+          "viewedAt": "2026-10-29T13:31:35.791Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-dark-100.png",
+          "sha256": "a2c30014ab1be32bc606607d9ff6c78aac2ce198dee18e39db8395c11675611d",
+          "viewedAt": "2026-10-29T13:31:48.161Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-dark-125.png",
+          "sha256": "2223d7cc4021108b0caec0868137e3e854daaaf46ae7ff1b83c6501fc082e41e",
+          "viewedAt": "2026-10-29T13:31:48.162Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        },
+        {
+          "path": "D:/GR/nook-comparison-poll-installer-evidence-2026-10-29/installed/screenshots/138-project-file-copy-contents-dark-150.png",
+          "sha256": "d50ed32d8e3c452c06725757e18c63377d1caae5b455372fad710b6e603348b1",
+          "viewedAt": "2026-10-29T13:31:48.162Z",
+          "reviewMethod": "Individual original PNG displayed through view_image and visually inspected before this record was written.",
+          "width": 760,
+          "height": 540,
+          "manuallyReviewed": true,
+          "adoptedFromPriorUnchangedApplication": false
+        }
+      ]
+    }
+  },
+  "priorFailures": [
+    {
+      "path": "D:/GR/nook-terminal-exit/verification/comparison-save-checkpoint-review-result.json",
+      "sha256": "51ed6b4529399c8e26255d1ed39a30737e8c65b5798d7d31bfdf27ff220b1298"
+    },
+    {
+      "path": "D:/GR/nook-terminal-exit/verification/native-exit-investigation-review-result.json",
+      "sha256": "0a7c1534b85bdaceb1e64e40a5da36ba4da9dce133b5584a1e9ce1cef6c8c16e"
+    },
+    {
+      "path": "D:/GR/nook-terminal-exit/verification/tree-frame-budget-installed-block-review-result.json",
+      "sha256": "d802b8d2bb26f2a3b73e7936c73d32649bab0c038911f58e2cbb1b7fe7e04f0b"
+    }
+  ],
+  "acceptance": {
+    "freshCompletePackaged": true,
+    "freshCompleteInstalled": true,
+    "elevenMatchingRuntimeRecords": true,
+    "freshCompleteSourceForCurrentVerifier": false,
+    "priorUnchangedApplicationSourceAdopted": true,
+    "nativeShutdownRootCauseProven": false,
+    "originalIntermittentFailuresFixed": false,
+    "signed": false,
+    "physicalWindowsInteractionVerified": false,
+    "fullReferenceAlignment": false,
+    "hostedPublication": false
+  },
+  "nativeInteractionAvailability": {
+    "path": "D:/GR/nook-native-exit-investigation-2026-10-29/native-ui-availability-2026-10-29.json",
+    "sha256": "9c43d58220e462f0e92c9c8e7f7b292bc69868e8ab41705e7e682d703df19cc5"
+  },
+  "programs": [
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-poll-full.mjs",
+      "sha256": "a05d6c55d4d10abb91013e8e92d88c9e476424106181cf43a42b612956308d18"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/freeze-comparison-installer.mjs",
+      "sha256": "4f86b8c62db45715c7b7328df052c3ba7a9e269227c93e61835d9497c38ecfc8"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/run-comparison-installer.ps1",
+      "sha256": "b46082326238c8e6d44ec3ed2b1424e60c882d4b4c6a41d16f61ab6dee8a61e0"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/verify-installer-comparison-poll.ps1",
+      "sha256": "4ac19aa99c75ee8ea585978794c96f2a2db32ced0635ec622261f5027e1886ac"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/comparison-installer-retention.ps1",
+      "sha256": "e2aaadd3d43b82a7d735873d5937a2239e60d8a399bedd8dcd80674f80ba3687"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/review-comparison-installer-cleanup.ps1",
+      "sha256": "d86068f46008ed383eef7b5b3c8b36e9f3acca198d6c3541ba89017c90d2a370"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/record-comparison-image-views.mjs",
+      "sha256": "aabcb17033e5bf1c54f8d811bd81871731bee300fca45a6d5243aa4e97381192"
+    },
+    {
+      "path": "D:/GR/nook-native-exit-investigation-2026-10-29/review-comparison-distribution.mjs",
+      "sha256": "d563d35c62202d16bd9e69f9691bce0d37553308f01ef2713efbd5c9598d52a3"
+    }
+  ]
+}
