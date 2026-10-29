@@ -1,0 +1,232 @@
+{
+  "verifiedAt": "2026-10-29T03:21:05.507Z",
+  "status": "partial",
+  "applicationCommit": "9fd07cb7722124c01f0c0d837b0c2bb43d5fa15e",
+  "feature": "Copy on-disk UTF-8 file contents from the file tree using the existing scoped readFile IPC; preserves BOM, line endings and empty files, rejects unsupported files and ignores a late read after menu replacement.",
+  "referenceBoundary": "The reference workspace-file-copy-contents entry is conditional on a non-workspace file-reference menu. Nook exposes this as an independent file-tree enhancement; this does not establish reference workspace-menu parity.",
+  "validation": {
+    "unitFiles": 149,
+    "unitTests": 1747,
+    "configuredCoverage": {
+      "statements": 97.14,
+      "branches": 94.74,
+      "functions": 97.86,
+      "lines": 99.51
+    },
+    "releasePolicyTests": 145,
+    "typeCheck": "passed",
+    "build": "passed",
+    "windowsPackaging": "passed",
+    "focusedSourceTree": {
+      "checks": 8,
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-tree-result.json",
+      "sha256": "06d673906d913ae027923f0f394dbf64177e8a1178b439835338d5c6b1dc19ce",
+      "exits": [
+        {
+          "elapsedMs": 333,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1355,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    "focusedPackagedIntegration": {
+      "observedCounterChecks": 18,
+      "treeRecordChecks": 8,
+      "previewRecordChecks": 10,
+      "tree": {
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-tree-result.json",
+        "sha256": "2e089a16e7b988d37a544abb1375e6339eeefa2642b890f19fa07d246c9a8ada"
+      },
+      "preview": {
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-preview-result.json",
+        "sha256": "6d3528c3a5c37d611bac3794cb74c83fd560d6be412eb28bf06b0a7731588ad3"
+      },
+      "exits": [
+        {
+          "elapsedMs": 1326,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 2957,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ]
+    },
+    "previousComplete422RecordRejected": true
+  },
+  "frozenPackagedIntegration": {
+    "inputs": 649,
+    "compiled": 236,
+    "binaries": [
+      {
+        "path": "artifacts/win-unpacked/Nook.exe",
+        "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa"
+      },
+      {
+        "path": "artifacts/win-unpacked/resources/app.asar",
+        "sha256": "873501d5b6531e0edadd091e1c23e4c30347d18d878bcba8dc63f5d1db171e7a"
+      },
+      {
+        "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+        "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32"
+      },
+      {
+        "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+        "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e"
+      }
+    ],
+    "allHashesMatch": true,
+    "before": {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\before-packaged-integration.json",
+      "sha256": "3bfbc54e300ec3eedc6b4a9788f5b7ef5ece24b3b37ab792075f6fb3f3179cc9"
+    },
+    "after": {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\after-packaged-integration.json",
+      "sha256": "486672833b2031c1bf4d59cbea1e01710294c1d68f3342fe578e1aaf8cdd2b33"
+    }
+  },
+  "screenshotReview": {
+    "individuallyViewed": 12,
+    "captures": [
+      {
+        "variant": "source",
+        "theme": "light",
+        "zoom": 1,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-light-100.png",
+        "sha256": "49cacb0315d2b4bcf2b63eceebf13a34d5d3e0e2dc7f2e739b575d1a1547de99"
+      },
+      {
+        "variant": "source",
+        "theme": "light",
+        "zoom": 1.25,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-light-125.png",
+        "sha256": "4cad9212dab042e0bffa581e85188ad57906b2706680d4366f294fe9b29fcad8"
+      },
+      {
+        "variant": "source",
+        "theme": "light",
+        "zoom": 1.5,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-light-150.png",
+        "sha256": "d587136e5df59320c1c892c3ccf25dea90b21711f0836d2fa9bc47fb8ff68758"
+      },
+      {
+        "variant": "source",
+        "theme": "dark",
+        "zoom": 1,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-dark-100.png",
+        "sha256": "5f39c6c3c94aa531bff2a9dece6ff89442d372e3ad5e7ae6d56682070252151d"
+      },
+      {
+        "variant": "source",
+        "theme": "dark",
+        "zoom": 1.25,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-dark-125.png",
+        "sha256": "4ab81cb22ab34762b415c67e1b77110275a787f7c110fc1e8a9b252ebf3c78f7"
+      },
+      {
+        "variant": "source",
+        "theme": "dark",
+        "zoom": 1.5,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\source-screenshots\\138-project-file-copy-contents-dark-150.png",
+        "sha256": "eb8d9ee7887aa82802fd0c0db08da0379b601489b095188e924090d168d90069"
+      },
+      {
+        "variant": "packaged",
+        "theme": "light",
+        "zoom": 1,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-light-100.png",
+        "sha256": "1a09cdb4534e5a1c155ef88e82e044e44abf4bc684e60bf18fcd55c529d9fd2b"
+      },
+      {
+        "variant": "packaged",
+        "theme": "light",
+        "zoom": 1.25,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-light-125.png",
+        "sha256": "f79110b849395be582e61ab5e3b11dac8c6bc7df83af68976e26955b0dff2dd0"
+      },
+      {
+        "variant": "packaged",
+        "theme": "light",
+        "zoom": 1.5,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-light-150.png",
+        "sha256": "4332c452e6e86a308a6dc558a470bfbea36325d36bbdd61c0f45e2abc0fa3c24"
+      },
+      {
+        "variant": "packaged",
+        "theme": "dark",
+        "zoom": 1,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-dark-100.png",
+        "sha256": "7fe83e18c7a959d488a41abe3a46e0d746ed4de783df27ddb751190c7b30aefc"
+      },
+      {
+        "variant": "packaged",
+        "theme": "dark",
+        "zoom": 1.25,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-dark-125.png",
+        "sha256": "8ba942bfa9ae566f2a5f9c92b347fa505a654f146a2e795fd75270fe3124297f"
+      },
+      {
+        "variant": "packaged",
+        "theme": "dark",
+        "zoom": 1.5,
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-screenshots\\138-project-file-copy-contents-dark-150.png",
+        "sha256": "07b39ce1c2cecd84e3f09397079d37670e9c1e4f64129f7e9a67db18f468dca7"
+      }
+    ]
+  },
+  "boundaries": [
+    "Focused suites are not a complete desktop suite.",
+    "Physical clipboard unchanged by the renderer writeText fixture; no physical clipboard claim.",
+    "Full source, packaged and actual installed acceptance for this candidate remain pending. Prior JPEG candidate evidence is historical.",
+    "Existing Windows hosted workflow payment/spending restriction remains unresolved. Historical clipboard preservation failures remain retained; no release or deployment claimed."
+  ],
+  "retainedFailures": [
+    {
+      "reason": "The first packaged integration completed 18 checks but the obsolete expected count was 17; raised the assertion to 18 without removing any check or extending any deadline. Application bytes unchanged.",
+      "log": {
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-integration-first-failed.log",
+        "sha256": "c7838e7ed5afc3efdf1b5381bb43695fa8c725af4f30482837c319f6ae8539f7"
+      },
+      "originalFreeze": {
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\before-packaged-integration-first-failed.json",
+        "sha256": "fa3737afc3e5e5bbf9dae45dc821a465278a5fba39f4b3a13ac6ca709c793e8e"
+      }
+    },
+    {
+      "reason": "The next attempt exceeded the existing 5-second loaded-tree scroll deadline before reaching the file menu. Root cause unproven; deadline unchanged.",
+      "log": {
+        "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\packaged-integration-second-failed.log",
+        "sha256": "d14e96f223460a20eb35603c08d2a77ce552aa25ebe21206e25e49b70aeafb36"
+      }
+    }
+  ],
+  "preservedPreviousJpegBinaries": [
+    {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\previous-jpeg-binaries\\Nook.exe",
+      "sha256": "641a235f39a989066610a29d80bb0377e177d60672619974f4bccd9401ca57b2"
+    },
+    {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\previous-jpeg-binaries\\app.asar",
+      "sha256": "81fd89d9009f705556b24356fba2935f7b664231c7f76d82033848734acb2c5f"
+    },
+    {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\previous-jpeg-binaries\\Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "31b28b3ac5d3d52f5a0dd88b99b157a9f9c1ceaa2f68c9102617cca8569ac6cc"
+    },
+    {
+      "path": "D:\\GR\\nook-file-contents-evidence-2026-10-29\\previous-jpeg-binaries\\Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "2ffb970cdfee71ce2d288985f7ae7135cbe96edbaa748f4a325fc154051f884f"
+    }
+  ]
+}
