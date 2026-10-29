@@ -1,0 +1,1320 @@
+{
+  "verifiedAt": "2026-10-29T06:58:51.824Z",
+  "status": "source-packaged-accepted-installed-blocked",
+  "productCommit": "6c4486eca6c3251be11edd1da37cbb1b7c298e63",
+  "completeDistributionAccepted": false,
+  "hostedPublicationCompleted": false,
+  "frozenInputs": {
+    "tracked": 1340,
+    "compiled": 236,
+    "binaries": 4,
+    "allApplicationAndVerificationHashesMatch": true,
+    "allCompiledAndBinaryHashesMatch": true,
+    "before": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/before.json",
+      "sha256": "8c5bbdf6abec47e355c71466f3406c4dddaf4040eb5fba7f102bedd184950743"
+    },
+    "after": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/post-documentation-inputs-partial.json",
+      "sha256": "7c863199d4cf90bd7346b15443ab9c03e8a0b78d06ac600abaae3756db37f4b2"
+    },
+    "documentationChanges": [
+      {
+        "path": "CHANGELOG.md",
+        "before": "8c1529518cd0f7a16c491d9350e0f04ae901fe6453787e8f26077d3e8129b46c",
+        "after": "8518731c36f1918a45e76905ebfad89f26475e7ab67e20a3bf83cfbf29cef602"
+      },
+      {
+        "path": "docs/DELIVERY.md",
+        "before": "fa4b4fc93a9fb3d6a55abe2a5849d19e7c4bd72a91de1de4d649acd856e64308",
+        "after": "43112afc71e5a8478bcd075a14914a44f0c877cddfb093645741899d4cc609d8"
+      },
+      {
+        "path": "docs/DESIGN-ALIGNMENT.md",
+        "before": "fa2fb08b92d0cd91efc5816ebff3097986253a8dc09a8e9f5519f418a6963fc8",
+        "after": "d95afc61e89ccdaa4cf0f4b8006c52955a2b7c3e399d3d4dadf501389b9c715d"
+      },
+      {
+        "path": "docs/RELEASE.md",
+        "before": "345cb39493cd7b5a911a47bb974f683e1cad67352935e067d6bb77d7b872c7ba",
+        "after": "14a258b22e21b585ce1417a6d756267438902dd2bc9a20f107d75c28daf65218"
+      },
+      {
+        "path": "docs/UI-COVERAGE.md",
+        "before": "ce4249b1da9316aa58ff870ad21764a5790a07c3024a2fcce888129d260786ac",
+        "after": "a85025dc354ff83eda89ed406aaf086750860d07e536549ca4d076cc6079e591"
+      }
+    ]
+  },
+  "unit": {
+    "files": 150,
+    "tests": 1753,
+    "log": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/full-unit.log",
+      "sha256": "1f1f7efedda8111f09b523e7cf5904ad849c5ea66f4bd15e487b54f49eca788e"
+    },
+    "coverage": {
+      "lines": {
+        "total": 4701,
+        "covered": 4678,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7800,
+        "covered": 7577,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1730,
+        "covered": 1693,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5461,
+        "covered": 5174,
+        "skipped": 0,
+        "pct": 94.74
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "releasePolicy": {
+    "tests": 145,
+    "log": {
+      "path": "D:/GR/nook-file-contents-evidence-2026-10-29/policy-coverage.log",
+      "sha256": "e524e720b0169a72d9136ffe14723c9f892e4167947eaaec7cd5f16604ffcd39"
+    }
+  },
+  "runtimes": [
+    {
+      "variant": "source",
+      "checks": 422,
+      "normalExits": 75,
+      "maxExitMs": 9670,
+      "runtimeErrors": [],
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/electron-result.json",
+        "sha256": "4dd780efb2e467fed4cfa029ab43d5ecd0b07de21ef22b7b9ace0d781439dcaa"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source-desktop.log",
+        "sha256": "ed05021f26c62bc09d4ffbfae564ba1c278f3131669108dda958f703ece5bd56"
+      },
+      "fileContents": {
+        "exactUtf8BomAndCrlf": true,
+        "emptyFile": true,
+        "maximumSize": 256000,
+        "binaryInvalidUtf8OversizeAndMissingRejected": true,
+        "readFailureRetry": true,
+        "clipboardFailureRetry": true,
+        "lateReadIsolation": true,
+        "noEditorOpened": true,
+        "directoriesExcluded": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "left": 224,
+            "right": 444,
+            "top": 221,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 113,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 52,
+            "bottom": 352,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 299,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "left": 224,
+            "right": 444,
+            "top": 221,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 113,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 52,
+            "bottom": 352,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 299,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-150.png"
+          }
+        ]
+      },
+      "imageExport": {
+        "cancelPreservedDestination": true,
+        "failureRetried": true,
+        "exactJpegBytes": true,
+        "delayedImageIsolation": true,
+        "draftUnchanged": true,
+        "quickChatVerified": true,
+        "sha256": "6833b6c4d0877dd07314c8120bc6d60affb05adc3416a44a625f28db8e209169",
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-150.png"
+          }
+        ],
+        "quickLayouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 202,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 130.40000915527344,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 52.66666793823242,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 202,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 130.40000915527344,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 52.66666793823242,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-150.png"
+          }
+        ],
+        "scope": "Actual Electron main and quick-chat bridges, main-process validation and atomic JPEG writes. The native save-dialog boundary is intercepted; no physical dialog or original-image export is claimed."
+      }
+    },
+    {
+      "variant": "packaged",
+      "checks": 422,
+      "normalExits": 75,
+      "maxExitMs": 3499,
+      "runtimeErrors": [],
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/packaged-result.json",
+        "sha256": "1ef22fd6aab53f4fae45fc275e9f875f9d25db0a6d781402d2cdaa490b70982c"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged-desktop.log",
+        "sha256": "d321dc141534e35addd50e99ce9ecfc6f92a3b4749f47d2e93345acae6d02b73"
+      },
+      "fileContents": {
+        "exactUtf8BomAndCrlf": true,
+        "emptyFile": true,
+        "maximumSize": 256000,
+        "binaryInvalidUtf8OversizeAndMissingRejected": true,
+        "readFailureRetry": true,
+        "clipboardFailureRetry": true,
+        "lateReadIsolation": true,
+        "noEditorOpened": true,
+        "directoriesExcluded": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "left": 224,
+            "right": 444,
+            "top": 221,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 113,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "left": 68,
+            "right": 288,
+            "top": 52,
+            "bottom": 352,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 299,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "left": 224,
+            "right": 444,
+            "top": 221,
+            "bottom": 532,
+            "width": 760,
+            "height": 540,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 113,
+            "bottom": 423.6000061035156,
+            "width": 608,
+            "height": 432,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 309,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "left": 68,
+            "right": 288,
+            "top": 52,
+            "bottom": 352,
+            "width": 507,
+            "height": 360,
+            "chrome": 36,
+            "errorContained": true,
+            "scrollHeight": 309,
+            "clientHeight": 299,
+            "keyboardErrorVisible": true,
+            "clipboardFailureRetried": true,
+            "screenshot": "138-project-file-copy-contents-dark-150.png"
+          }
+        ]
+      },
+      "imageExport": {
+        "cancelPreservedDestination": true,
+        "failureRetried": true,
+        "exactJpegBytes": true,
+        "delayedImageIsolation": true,
+        "draftUnchanged": true,
+        "quickChatVerified": true,
+        "sha256": "6833b6c4d0877dd07314c8120bc6d60affb05adc3416a44a625f28db8e209169",
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "screenshot": "136-image-export-dark-150.png"
+          }
+        ],
+        "quickLayouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 202,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-100.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 130.40000915527344,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-125.png"
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "actualTheme": "light",
+            "imageVisible": true,
+            "imageAreaHeight": 52.66666793823242,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-light-150.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 202,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-100.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 130.40000915527344,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-125.png"
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "actualTheme": "dark",
+            "imageVisible": true,
+            "imageAreaHeight": 52.66666793823242,
+            "contained": true,
+            "pageContained": true,
+            "failureRetried": true,
+            "exactJpegBytes": true,
+            "warningKeyboard": true,
+            "screenshot": "137-image-export-quick-dark-150.png"
+          }
+        ],
+        "scope": "Actual Electron main and quick-chat bridges, main-process validation and atomic JPEG writes. The native save-dialog boundary is intercepted; no physical dialog or original-image export is claimed."
+      }
+    }
+  ],
+  "focused": [
+    {
+      "name": "surfaces",
+      "checks": 5,
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/focused/surfaces-packaged-result.json",
+        "sha256": "ff3893238799980297bc4b02092ff5ce681bc0bd8668a4ad4735844c10e5fe6d"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/surfaces.log",
+        "sha256": "f5a28620800d3c1a8b60bfe20389333946e530bb878e89f8719b68395dda7e1a"
+      }
+    },
+    {
+      "name": "text-hints",
+      "checks": 7,
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/focused/text-hints-packaged-result.json",
+        "sha256": "f5db62474f4294a4a896f9febb8c5dbc068e9513a252bfffb08502e533a6fa90"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/text-hints.log",
+        "sha256": "0e28417bcd82ff20ce60e3b5bbd3d9bbcf52efff77e5a5243c6a839976a3fad2"
+      }
+    },
+    {
+      "name": "renderer-close",
+      "checks": 2,
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/focused/renderer-close-packaged-result.json",
+        "sha256": "d2448d9f970561a2115d9881bdaa517d992727537f14fe9213a2c210435086e5"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/renderer-close.log",
+        "sha256": "bd44424b8d5979223d509615f3066475c2ac52fa1d54d0963b4269fe97f6c14f"
+      }
+    },
+    {
+      "name": "terminal-lifecycle",
+      "checks": 7,
+      "result": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/focused/terminal-lifecycle-packaged-result.json",
+        "sha256": "17c1ca8c0bd656b1b9c0e452aa1d30e87cc3d2c44f13cb33d7c09e50cc23dac4"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/terminal-lifecycle.log",
+        "sha256": "36c01ef68c437a8d87e36106aaf7a0cda167222e72c2f990f7e9cbdae1a9d7d6"
+      }
+    }
+  ],
+  "portable": {
+    "checks": 7,
+    "launches": 2,
+    "result": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/portable-result.json",
+      "sha256": "c00485b158c94d4f31abc3496902530479df0f2725f9757543775ce25e8077a9"
+    },
+    "log": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/portable.log",
+      "sha256": "23029261ca8f30fa656c5b2df2b1ce2192c070567346a97542a54add3ba38258"
+    }
+  },
+  "bootstrap": {
+    "log": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/bootstrap.log",
+      "sha256": "d71c03e38c10e387261c0253a4a54de74e784c7cf18b92e730b140199ba77d71"
+    }
+  },
+  "installedAttempt": {
+    "checksCompleted": 296,
+    "completeInstalledAcceptance": false,
+    "lastNormalExitMs": 761,
+    "installedAudit": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/installed-package-audit-result.json",
+      "sha256": "e88372869b62a8f5695b5a6af0729f34fe0fdbd0c5e1fffa35350db95cf86265"
+    },
+    "installedShortcuts": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/installed-shortcuts-result.json",
+      "sha256": "957ade09383fe1eb9dc62618b6adf319340b445e9edad16fa41059eb3c6a6804"
+    },
+    "log": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/installer.log",
+      "sha256": "fa5a2b7b7e5d6b9abaafd1fe9901ddab106166b5827924de3ef33fb03ba9f938"
+    },
+    "failureScreenshot": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/failure.png",
+      "sha256": "a23ac9fc9faac69a35d199e9efd9f50adebb366d96dcb2b20dcc39b28a243ea3"
+    },
+    "cleanup": {
+      "shortcutsAbsent": true,
+      "registrationAbsent": true,
+      "originalMarkers": 20,
+      "completeInstalledAcceptance": false,
+      "originalHashesPreserved": true,
+      "retainedBackup": "C:\\Users\\18468\\AppData\\Roaming\\NookFailedInstallerMarkers-596016394e9a4f809ab85a330e7db34f",
+      "ownedInstallDirectoryAbsent": true,
+      "newMarkersContentVerified": true,
+      "newMarkers": 4,
+      "currentMarkers": [
+        {
+          "profile": "Nook",
+          "name": "installer-retention-02d12ffb567d48c086459343cd102a43.txt",
+          "sha256": "7668de3339b8c8757c103ab2a7449fd93180d15e207a6bfea26adf6434d6fa13"
+        },
+        {
+          "profile": "Nook",
+          "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt",
+          "sha256": "1cb60056e99fa13e7497c362f55c31110c54b2a54d298176f53a2d9cedcee8db"
+        },
+        {
+          "profile": "Nook",
+          "name": "installer-retention-ba2db9e1d8e1451fa01ca54cc3cd053b.txt",
+          "sha256": "b7b506e6e9f12bd86f9f97778a4349f98cd982528c8eed14a75bd917a1f41416"
+        },
+        {
+          "profile": "Nook",
+          "name": "installer-retention-f8a7604e8a80498eaf78ec2f75715587.txt",
+          "sha256": "50cf0a426465c3d9f560b30d6a82680bd0597f90b41b32ea6f84b4ff91c11927"
+        },
+        {
+          "profile": "Nook",
+          "name": "installer-retention-f9af2280ce824eb697a5bedb16feb941.txt",
+          "sha256": "50d91fd23fbbf67f8f2a03356cc902b5796f08f9e95cf5ecddf0b99773454264"
+        },
+        {
+          "profile": "Nook",
+          "name": "installer-retention-fc633d15190d445f8b5ca05f14713f4f.txt",
+          "sha256": "87bcfa582b371e07f71ea532e72fea3a9d26fcf65e48b14fce944295eb28be1f"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-02d12ffb567d48c086459343cd102a43.txt",
+          "sha256": "7668de3339b8c8757c103ab2a7449fd93180d15e207a6bfea26adf6434d6fa13"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt",
+          "sha256": "1cb60056e99fa13e7497c362f55c31110c54b2a54d298176f53a2d9cedcee8db"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-ba2db9e1d8e1451fa01ca54cc3cd053b.txt",
+          "sha256": "b7b506e6e9f12bd86f9f97778a4349f98cd982528c8eed14a75bd917a1f41416"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-f8a7604e8a80498eaf78ec2f75715587.txt",
+          "sha256": "50cf0a426465c3d9f560b30d6a82680bd0597f90b41b32ea6f84b4ff91c11927"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-f9af2280ce824eb697a5bedb16feb941.txt",
+          "sha256": "50d91fd23fbbf67f8f2a03356cc902b5796f08f9e95cf5ecddf0b99773454264"
+        },
+        {
+          "profile": "nook-workspace",
+          "name": "installer-retention-fc633d15190d445f8b5ca05f14713f4f.txt",
+          "sha256": "87bcfa582b371e07f71ea532e72fea3a9d26fcf65e48b14fce944295eb28be1f"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-02d12ffb567d48c086459343cd102a43.txt",
+          "sha256": "7668de3339b8c8757c103ab2a7449fd93180d15e207a6bfea26adf6434d6fa13"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt",
+          "sha256": "1cb60056e99fa13e7497c362f55c31110c54b2a54d298176f53a2d9cedcee8db"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-ba2db9e1d8e1451fa01ca54cc3cd053b.txt",
+          "sha256": "b7b506e6e9f12bd86f9f97778a4349f98cd982528c8eed14a75bd917a1f41416"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-f8a7604e8a80498eaf78ec2f75715587.txt",
+          "sha256": "50cf0a426465c3d9f560b30d6a82680bd0597f90b41b32ea6f84b4ff91c11927"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-f9af2280ce824eb697a5bedb16feb941.txt",
+          "sha256": "50d91fd23fbbf67f8f2a03356cc902b5796f08f9e95cf5ecddf0b99773454264"
+        },
+        {
+          "profile": "Qiyao",
+          "name": "installer-retention-fc633d15190d445f8b5ca05f14713f4f.txt",
+          "sha256": "87bcfa582b371e07f71ea532e72fea3a9d26fcf65e48b14fce944295eb28be1f"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-02d12ffb567d48c086459343cd102a43.txt",
+          "sha256": "7668de3339b8c8757c103ab2a7449fd93180d15e207a6bfea26adf6434d6fa13"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-0591db7dcc4f4c8ab33cd5153e57b0bb.txt",
+          "sha256": "1cb60056e99fa13e7497c362f55c31110c54b2a54d298176f53a2d9cedcee8db"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-ba2db9e1d8e1451fa01ca54cc3cd053b.txt",
+          "sha256": "b7b506e6e9f12bd86f9f97778a4349f98cd982528c8eed14a75bd917a1f41416"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-f8a7604e8a80498eaf78ec2f75715587.txt",
+          "sha256": "50cf0a426465c3d9f560b30d6a82680bd0597f90b41b32ea6f84b4ff91c11927"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-f9af2280ce824eb697a5bedb16feb941.txt",
+          "sha256": "50d91fd23fbbf67f8f2a03356cc902b5796f08f9e95cf5ecddf0b99773454264"
+        },
+        {
+          "profile": "qiyao-workspace",
+          "name": "installer-retention-fc633d15190d445f8b5ca05f14713f4f.txt",
+          "sha256": "87bcfa582b371e07f71ea532e72fea3a9d26fcf65e48b14fce944295eb28be1f"
+        }
+      ],
+      "readonly": true,
+      "verifiedAt": "2026-10-29T06:54:28.7864866Z"
+    },
+    "cleanupEvidence": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/installer-cleanup-after-failure.json",
+      "sha256": "05e057b9e291d6c135b2b61a918abe3a987febb90ad51824969bd89b3acd0b42"
+    },
+    "retention": {
+      "path": "D:/GR/nook-file-contents-full-retry-install-evidence-2026-10-29/installer-retention-after.json",
+      "sha256": "9d7157d8e068130c993db6b90e3b7cce056478a2946ee731447a2ea40d8db1d4"
+    },
+    "unavailableClipboardFormatSha256": "c794c8552ee623d849a987ff7735a1997a5cd348a36c73331288982c80c26932"
+  },
+  "clipboard": {
+    "readonly": true,
+    "originalGuardRetained": true,
+    "lossyReplacementPerformed": false,
+    "native": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/clipboard-native-after-installer.log",
+      "sha256": "1e9b3fd288c1f003533a2e61eb7298a3dd97de290280b97ec1644f9fdc83f44d"
+    },
+    "electron": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/clipboard-electron-after-installer.json",
+      "sha256": "8cb83d4ef511e12d5dce2ff3eb9f1a8a8c3e7fe7ce60df41b15b64f28621d1bf"
+    },
+    "snapshot": {
+      "at": "2026-10-29T06:49:59.190Z",
+      "readonly": true,
+      "formats": [
+        {
+          "item": 0,
+          "type": "text/plain",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"DataObject\"",
+          "bytes": 8,
+          "sha256": "07ab02558b50e112d0cf8189af3f117969b741f382ea3634bfdd9fc371783ddf"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"Ole Private Data\"",
+          "bytes": 504,
+          "sha256": "010631922bceb3ca60a607e9078b14f95d57434fe4e009ea2c298023e32d368d"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"CanIncludeInClipboardHistory\"",
+          "bytes": 4,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"CanUploadToCloudClipboard\"",
+          "bytes": 4,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"Chromium internal source RFH token\"",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "item": 0,
+          "type": "electron application/osclipboard;format=\"Chromium internal source URL\"",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "replacementAuthorizationPending": true
+  },
+  "signatures": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa",
+      "status": "NotSigned",
+      "statusMessage": "文件 D:\\GR\\nook-terminal-exit\\artifacts\\win-unpacked\\Nook.exe 未进行数字签名。无法在当前系统上运行此脚本。有关运行脚本和设置执行策略的详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkID=135170 处的 about_Execution_Policies"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32",
+      "status": "NotSigned",
+      "statusMessage": "文件 D:\\GR\\nook-terminal-exit\\artifacts\\Nook-Setup-0.1.0-alpha.1-x64.exe 未进行数字签名。无法在当前系统上运行此脚本。有关运行脚本和设置执行策略的详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkID=135170 处的 about_Execution_Policies"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e",
+      "status": "NotSigned",
+      "statusMessage": "文件 D:\\GR\\nook-terminal-exit\\artifacts\\Nook-Portable-0.1.0-alpha.1-x64.exe 未进行数字签名。无法在当前系统上运行此脚本。有关运行脚本和设置执行策略的详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkID=135170 处的 about_Execution_Policies"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "873501d5b6531e0edadd091e1c23e4c30347d18d878bcba8dc63f5d1db171e7a"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e"
+    }
+  ],
+  "screenshots": {
+    "individuallyViewed": [
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-light-100.png",
+        "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-light-125.png",
+        "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-light-150.png",
+        "sha256": "34e245aff302c0e11d26e5990790c70e4080f1689be6fd2dcefa93c4121866b2",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-dark-100.png",
+        "sha256": "1b24c0fd09ae27ef60a7a47eabcfb206b97193a38c16e85fa18599f79975c604",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-dark-125.png",
+        "sha256": "8a60fda3b0a8b5793268234571665b5e0014d7f8856bf1d488a41eadc506f62d",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/136-image-export-dark-150.png",
+        "sha256": "bf1520f7da515615fb13828964866b81e31743d71593f337f9d6cb324ee919ee",
+        "viewedAt": "2026-10-29T03:47:50.203Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "ca9fd93234b136dd6bd31fac2c73fbe05af6a05cb6375cab33b7e2a5274a7b94",
+        "viewedAt": "2026-10-29T03:53:16.472Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "c0fac55928ba93402c7299fb0c884a0e8819169bc67c2e16ca8198fe66942e7c",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "49264ef01ea4cef64780331e5f093728257d865cc8a41c20a69938508b61c675",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "7a9b4db53772d065d269247683f20981af776173e3c79035a4556abfe02dc2f9",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "83aefce865c9bf48d133db566bd6ff3fed254a7af3b7166f031f4ff7ad600ca0",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "54348e60d520b629b2396f8de7cfdd1c8b09558219c0397178a590f0df6b9d6f",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "50baba559da1900032d1a9c7312f751afc2b13f11f8f221f61bb79c37bf9fe54",
+        "viewedAt": "2026-10-29T04:08:00.316Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "2ea06f2cbcb2db032e9f6e40ce0624b7d47aee829eeab79b33bc93e29a367b05",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "44926763d1e5c483a8fa40264711c5386f9c115d1918e411a91a5633d1cf5771",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "0aaf0bce58a19fd6e058e2abb7affe313fbd7c3c7cd31b0c222babb86640a412",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "896959f602f99854faac9ab67f607ef82eb2719e97b66057c5d4e8b4583c7691",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "aa16dddd13036d16041b1b82a5457aa8ad38563b9ebf877157940312d3cbb233",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-light-100.png",
+        "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-light-125.png",
+        "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-light-150.png",
+        "sha256": "3ea991d4b280ced96b1bbd3589e758c41fe9a5f3443723be84f56f8673e4f801",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-100.png",
+        "sha256": "052070235e46099226cc17fcd36018442016ce3e9902e3cc89e634729d2ed08d",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-125.png",
+        "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373",
+        "viewedAt": "2026-10-29T05:39:11.739Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-150.png",
+        "sha256": "ec3c02483a423056244a50bd0bd39a18e9f98e7b364ccaadd0039b0414029071",
+        "viewedAt": "2026-10-29T05:39:11.739Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "078cbd76f8bed37207a877e1d2c7b93cddae5baf80ac72752ecc8fae254019bf",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "349c5e7294ded4e544e5fa9edf5621d76243c690f3669f29418230afe694e2bb",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "7b6553392377eb1ffc619fc3d5f45f66b03e2ccec3525d75479834a010d791ab",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "6f71340f5bfd4874e3c6b1f4c607794399d3bdd53694d090716a05d4248d8c99",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "9cf0e50cfcfa64b621adc925ebb2be36d8dcc4e7f10906999d41014c5d844617",
+        "viewedAt": "2026-10-29T05:42:53.701Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "2aaee396482695501fce4893085bdc9194ef9a431e705c7007af6e4f00f40ffd",
+        "viewedAt": "2026-10-29T05:42:53.701Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b",
+        "viewedAt": "2026-10-29T05:59:59.996Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "5d204f24890b242761a15f1dd4f513cf329607376f08a9e46a671d5110dac841",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "218c22a9ab3b6dd92cad19793e229f8258eaec52598010c13ab55c9d782f43f8",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "d5dbc025a7643a85f1add2fae0439fa2a939a483f2bc38c6aab62dd3a67fbaf5",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "b1ffe89f467f88b07e11da0dcd3eb37dc1e5e30c4f870c5ab7e6b9e21dd27db4",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "284c9e8b85fcf9e5b60753547b533a9b88ccfcc8c902e0cee2241a76ba202dd8",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-light-100.png",
+        "sha256": "9600b13085f1f2b7081a87fd94efe22e6ea95adcaf4fa1b65f37a2d3b365b889",
+        "viewedAt": "2026-10-29T06:31:55.316Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-light-125.png",
+        "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+        "viewedAt": "2026-10-29T06:31:55.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-light-150.png",
+        "sha256": "2deee17bc4ed1e471d2bc40aaa745e1480e2317b492673eb17312c9cb8ab0865",
+        "viewedAt": "2026-10-29T06:31:55.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-dark-100.png",
+        "sha256": "2f6e917f1a0c5e27db9a35a0d3576cf4924f252e13bfdb24418068dfad20092f",
+        "viewedAt": "2026-10-29T06:31:55.317Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-dark-125.png",
+        "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373",
+        "viewedAt": "2026-10-29T06:31:55.318Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/136-image-export-dark-150.png",
+        "sha256": "a5d384b31a8a565335ae25f8fc11b73cdb10a5f153cebea87cef369368e95a75",
+        "viewedAt": "2026-10-29T06:31:55.318Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "683e38a4099bd96f60d7e1cc34a48c66dc649bc606bc990968fb7b011730cede",
+        "viewedAt": "2026-10-29T06:37:04.945Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "d6c25db3180967dd08aef4df19bd5c65dfb667ca948225f4454016055347cc12",
+        "viewedAt": "2026-10-29T06:37:04.946Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "8c9a676a94ead5b36a753373530c0f7c4c61f646123627f2231254d08bb63402",
+        "viewedAt": "2026-10-29T06:37:04.946Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "482ac86d0c127d80e3d516920257c893351d6c6e1b69df2c8f62f64c547636f3",
+        "viewedAt": "2026-10-29T06:37:04.946Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "5c700dff8feeba41b1e7a9c7d5c7733f5e4c002578228dd8c60ee3ad8eef6b44",
+        "viewedAt": "2026-10-29T06:37:04.946Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "b8150ba002eb5d475f4e1a184a08b950650d792f66dca8f6f4ed925d285cc9ef",
+        "viewedAt": "2026-10-29T06:37:04.946Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b",
+        "viewedAt": "2026-10-29T06:56:11.329Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "8fb228f2ecceb6ea43e0559125dd2574f5151f50380e67dd3d49cc17e4693955",
+        "viewedAt": "2026-10-29T06:56:11.330Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "e6426f22567c182c7c7509e2e6ae2b168171edbe1ca9244883bdc25a94a0a70d",
+        "viewedAt": "2026-10-29T06:56:11.330Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "d5dbc025a7643a85f1add2fae0439fa2a939a483f2bc38c6aab62dd3a67fbaf5",
+        "viewedAt": "2026-10-29T06:56:11.330Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "2b747fce8c3ac81643bc6e137c5a263f1263a2452e3ce36bde3b607f5324508b",
+        "viewedAt": "2026-10-29T06:56:11.330Z"
+      },
+      {
+        "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "2e9577292743889fa49218199c75b7c0769f90e7ed253b40a9026f0407e6f9a7",
+        "viewedAt": "2026-10-29T06:56:11.330Z"
+      }
+    ],
+    "count": 54,
+    "scope": "Six light/dark and zoom captures each for main JPEG export, quick JPEG export and file contents, across successful source/packaged and the partial installed attempt. Not every full-suite screenshot and not complete installed acceptance."
+  },
+  "retainedPriorAttempts": {
+    "resumedContext": {
+      "path": "D:/GR/nook-file-contents-resumed-evidence-2026-10-29/resumed-context.json",
+      "sha256": "09efaa57657157ce6302eddc757fc41a5176d0679508ad80660b3129b365fd65"
+    },
+    "traversal": {
+      "path": "D:/GR/nook-terminal-exit/verification/tree-traversal-verification-review-result.json",
+      "sha256": "510449efe5eee798c103c3681ae0dd73392804dfde09911e6defd38d8e5f295e"
+    },
+    "focused": {
+      "path": "D:/GR/nook-terminal-exit/verification/file-contents-source-and-packaged-review-result.json",
+      "sha256": "198c8f9a2a65d8dcf44bba06ff7d358359577be2a49d32693e93caa4b8948160"
+    }
+  },
+  "drivers": [
+    {
+      "path": "D:/GR/nook-file-contents-resumed-distribution-2026-10-29.ps1",
+      "sha256": "28d25a471d5f3e36e7442dfeb8e9f3856b4469fa5011a291ba3454150b247935"
+    },
+    {
+      "path": "D:/GR/nook-file-contents-resumed-context-2026-10-29.mjs",
+      "sha256": "fe6c8a7557ac4f8f66dc30ff28d8ab3d98e52def440a6801695e90f7ceb2359b"
+    },
+    {
+      "path": "D:/GR/nook-file-contents-full-retry-installer-retention-2026-10-29.ps1",
+      "sha256": "44c1b2c4ed933cf9eb24a3612da71f640d0708c8b1fedf717cdbcbe7e33b72a5"
+    },
+    {
+      "path": "D:/GR/nook-file-contents-installer-cleanup-review-2026-10-29.ps1",
+      "sha256": "550fd22e2ab07e3d5cf5420ef8b7c8f729cf8ece23f6ad9b9eeb28a3bad12b1c"
+    }
+  ],
+  "remaining": [
+    "Complete installed runtime and eleven matching runtime records have not passed for this candidate.",
+    "No hosted publication, signed installer or full reference parity is established.",
+    "User clipboard must not be replaced while authorization is pending; physical installation wizard, IME, accessibility and other DPI remain separate."
+  ]
+}
