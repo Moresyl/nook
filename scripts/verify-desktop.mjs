@@ -690,7 +690,7 @@ try {
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_INTEGRATION_ONLY) {
     const treeRun = await verifyProjectTree({ page, application, getApplication: () => application, directory, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } }); page = treeRun.page; projectTreeResult = treeRun.result;
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
-    assert.equal(count, 17); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
+    assert.equal(count, 18); assert.equal(calls.length, 0); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []);
   } else if (process.env.QIYAO_TEST_PROJECT_PREVIEW_ONLY) {
     await page.evaluate(() => window.qiyao.openQuickChat());
     projectPreviewResult = await verifyProjectPreview({ page, application, directory, screenshots, waitForBridge, verified });
