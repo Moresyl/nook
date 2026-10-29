@@ -1,0 +1,398 @@
+{
+  "verifiedAt": "2026-10-29T02:47:11.565Z",
+  "productCommit": "537956a10dd31afc768660357a40097143af1266",
+  "scope": "Current JPEG export and compact Quick Chat layout; completed source acceptance only. Complete packaged and installed acceptance remain incomplete.",
+  "typecheck": {
+    "path": "D:/GR/nook-image-export-compact-check-final.log",
+    "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+  },
+  "buildAndPackage": {
+    "path": "D:/GR/nook-image-export-compact-package.log",
+    "sha256": "9b18f5bfbee2a539f84629220a5d90436f4e7bedfc73c0b117561ed6b618b6ba"
+  },
+  "unit": {
+    "files": 149,
+    "tests": 1746,
+    "log": {
+      "path": "D:/GR/nook-image-export-compact-coverage.log",
+      "sha256": "5f5de118cc90cc0841d92dbe313dd70413a92f3d80c1833d82260240c75a5389"
+    },
+    "coverage": {
+      "lines": {
+        "total": 4701,
+        "covered": 4678,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7800,
+        "covered": 7577,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1730,
+        "covered": 1693,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5461,
+        "covered": 5174,
+        "skipped": 0,
+        "pct": 94.74
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "scope": "Configured services, contracts and selected workbench modules; excludes native launch and renderer components."
+  },
+  "releasePolicy": {
+    "tests": 144,
+    "log": {
+      "path": "D:/GR/nook-image-export-compact-policy-coverage-final.log",
+      "sha256": "a96c34482df2b827e7cfcca3dadc33994ddf40907cf84dc7ab9cd09b73c244e4"
+    },
+    "coverage": {
+      "lines": {
+        "total": 290,
+        "covered": 290,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 483,
+        "covered": 483,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 287,
+        "covered": 287,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 1227,
+        "covered": 1225,
+        "skipped": 0,
+        "pct": 99.83
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    }
+  },
+  "source": {
+    "checks": 422,
+    "normalExits": 75,
+    "maxExitMs": 3142,
+    "forcedExits": 0,
+    "runtimeErrors": [],
+    "proof": {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/electron-result.json",
+      "sha256": "bf564ea4a384117142566dfb5e873279e61c1e8870f49aad90664efb8424fa1a"
+    },
+    "log": {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source-desktop.log",
+      "sha256": "1d9ab7c4e1878e5738cc8741a9df0ee7edf1e65c7e3e6982cac6883278c3eff8"
+    },
+    "imageExport": {
+      "cancelPreservedDestination": true,
+      "failureRetried": true,
+      "exactJpegBytes": true,
+      "delayedImageIsolation": true,
+      "draftUnchanged": true,
+      "quickChatVerified": true,
+      "sha256": "6833b6c4d0877dd07314c8120bc6d60affb05adc3416a44a625f28db8e209169",
+      "layouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "actualTheme": "light",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-light-100.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "actualTheme": "light",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-light-125.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "actualTheme": "light",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-light-150.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "actualTheme": "dark",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-dark-100.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "actualTheme": "dark",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-dark-125.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "actualTheme": "dark",
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "screenshot": "136-image-export-dark-150.png"
+        }
+      ],
+      "quickLayouts": [
+        {
+          "theme": "light",
+          "zoom": 1,
+          "actualTheme": "light",
+          "imageVisible": true,
+          "imageAreaHeight": 202,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-light-100.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.25,
+          "actualTheme": "light",
+          "imageVisible": true,
+          "imageAreaHeight": 130.40000915527344,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-light-125.png"
+        },
+        {
+          "theme": "light",
+          "zoom": 1.5,
+          "actualTheme": "light",
+          "imageVisible": true,
+          "imageAreaHeight": 52.66666793823242,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-light-150.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1,
+          "actualTheme": "dark",
+          "imageVisible": true,
+          "imageAreaHeight": 202,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-dark-100.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.25,
+          "actualTheme": "dark",
+          "imageVisible": true,
+          "imageAreaHeight": 130.40000915527344,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-dark-125.png"
+        },
+        {
+          "theme": "dark",
+          "zoom": 1.5,
+          "actualTheme": "dark",
+          "imageVisible": true,
+          "imageAreaHeight": 52.66666793823242,
+          "contained": true,
+          "pageContained": true,
+          "failureRetried": true,
+          "exactJpegBytes": true,
+          "warningKeyboard": true,
+          "screenshot": "137-image-export-quick-dark-150.png"
+        }
+      ],
+      "scope": "Actual Electron main and quick-chat bridges, main-process validation and atomic JPEG writes. The native save-dialog boundary is intercepted; no physical dialog or original-image export is claimed."
+    }
+  },
+  "sourceScreenshotsIndividuallyReviewed": [
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-light-100.png",
+      "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-light-125.png",
+      "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-light-150.png",
+      "sha256": "3ea991d4b280ced96b1bbd3589e758c41fe9a5f3443723be84f56f8673e4f801"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-dark-100.png",
+      "sha256": "10e1a31a4b6b23ea372c105173791102af4f3a34e97f5cf86b2b24e226e5b72a"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-dark-125.png",
+      "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/136-image-export-dark-150.png",
+      "sha256": "ec3c02483a423056244a50bd0bd39a18e9f98e7b364ccaadd0039b0414029071"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-light-100.png",
+      "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-light-125.png",
+      "sha256": "6d7833c41325d8dee304393259e4fb725ffeab068c071783ea1d6d7431997323"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-light-150.png",
+      "sha256": "31491243c87e22406d2bf4fa364c1c8f5a7c6a629110e07243a11e175d9b4bed"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-dark-100.png",
+      "sha256": "5a40a0fa94e3a8a5c83088385f5f66e9c4b84a858bd4b6b863fe4270e51fa109"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-dark-125.png",
+      "sha256": "2b747fce8c3ac81643bc6e137c5a263f1263a2452e3ce36bde3b607f5324508b"
+    },
+    {
+      "path": "D:/GR/nook-image-export-resumed-evidence/source/screenshots/137-image-export-quick-dark-150.png",
+      "sha256": "0fefe817f708ee2dbf066334c353c56333505dd4541ddcb820c7a4dcd7305163"
+    }
+  ],
+  "frozen": {
+    "before": {
+      "path": "D:/GR/nook-image-export-resumed-evidence/before.json",
+      "sha256": "521bc69f6a8753456ccdec6ba9da113ad06cab8f34cb97640c7cf130b318f9e4"
+    },
+    "originalTracked": 1338,
+    "unchangedTracked": 1334,
+    "compiled": 236,
+    "binaries": 4,
+    "allNonDocumentationInputsStillMatch": true,
+    "documentation": [
+      {
+        "path": "CHANGELOG.md",
+        "sha256": "cf0dfea81b709f6140b4fa554bceaab02d7ea8ee9367c1013189b5370ef0aa3f"
+      },
+      {
+        "path": "docs/ATTACHMENTS.md",
+        "sha256": "b930f11f8d8b4647141c53957204f254e4f96fafea31406f5d08b60ea7c68d7f"
+      },
+      {
+        "path": "docs/RELEASE.md",
+        "sha256": "5a960c13246cc3da3d85205da6e7d0541d7ef6a2b8c861a8bbf658696bade336"
+      },
+      {
+        "path": "docs/UI-COVERAGE.md",
+        "sha256": "ef513ff06c73474d4e2721eee7d02adb8611a6c24624739897f6ac52623281b9"
+      }
+    ]
+  },
+  "failures": [
+    {
+      "directory": "D:/GR/nook-image-export-compact-full-evidence",
+      "status": {
+        "path": "D:/GR/nook-image-export-compact-full-evidence/status.json",
+        "sha256": "9de25df64b77bbaba92d3881064bf3ed27ee30acbdf8bfabd139d45b47672bca"
+      },
+      "log": {
+        "path": "D:/GR/nook-image-export-compact-full-evidence/packaged-desktop.log",
+        "sha256": "1f3401fca1162222448179cc8696d571faf11a02af0d45bff23de88bf824cfe4"
+      }
+    },
+    {
+      "directory": "D:/GR/nook-image-export-compact-retry-evidence",
+      "status": {
+        "path": "D:/GR/nook-image-export-compact-retry-evidence/status.json",
+        "sha256": "3b7d26e2e03b0347fce29500cb59b369e794a970cf1d9e9ea71d696ea84c8690"
+      },
+      "log": {
+        "path": "D:/GR/nook-image-export-compact-retry-evidence/packaged-desktop.log",
+        "sha256": "746cf68552b73780541c63c9b8cfccf6985064a370fab6317d7da7511f6ab25d"
+      }
+    },
+    {
+      "directory": "D:/GR/nook-image-export-resumed-evidence",
+      "status": {
+        "path": "D:/GR/nook-image-export-resumed-evidence/status.json",
+        "sha256": "edeceefcbedcfc9210d8cc0574c329bc41fc14619c548c0e65e7cfe83457a203"
+      },
+      "log": {
+        "path": "D:/GR/nook-image-export-resumed-evidence/packaged-desktop.log",
+        "sha256": "e27c8cc558588f65a881fe40462136a990ee2a20012941846b8c4b8c45e5d499"
+      }
+    }
+  ],
+  "seededSettingsDiagnostic": {
+    "path": "D:/GR/nook-image-export-compact-settings-seeded.log",
+    "sha256": "fe5bd29bb9d09bf91862121973854d327f7c1d12c8d6d94d8b36d028af100452"
+  },
+  "clipboardReadonlyObservations": [
+    {
+      "path": "D:/GR/nook-image-export-clipboard-after-resume-stdout.log",
+      "sha256": "1342aa5d82baccc2ce7a0a898e387f2b35b58b49c34e6894997b489dd613324c"
+    },
+    {
+      "path": "D:/GR/nook-clipboard-native-readonly.log",
+      "sha256": "1fbd25e32d4cf337e283efdeff3f55183ff3519970c2ad276eff7adaa599de7e"
+    }
+  ],
+  "packagedAccepted": false,
+  "installedAccepted": false,
+  "published": false,
+  "boundaries": [
+    "Main-process JPEG save responses are intercepted; exact disk bytes, parent window, cancellation and retry are checked. Physical system save-dialog interaction is pending.",
+    "Saved data is the normalized imported JPEG. Original-image export and OCR are not provided.",
+    "First packaged run timed out in an unchanged worktree-settings fixture; the seeded ten-check reproduction passed, but its unique cause remains unproven.",
+    "Two later packaged attempts stopped before table-copy writes because a declared Windows image/HTML clipboard payload was unreadable. Native read-only inspection confirms the current HTML handle is unavailable; protection was not bypassed.",
+    "Unsigned binary builds exist locally but lack current complete packaged/installed acceptance. Full reference parity and physical interaction remain pending."
+  ]
+}
