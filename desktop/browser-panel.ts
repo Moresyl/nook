@@ -1,6 +1,6 @@
 import { WebContentsView, type BrowserWindow, type Session } from 'electron';
 import { randomUUID } from 'node:crypto';
-import { browserActionSchema, browserNavigationAllowed, browserTabLimit, browserUrl, type BrowserAction, type BrowserState, type BrowserShortcut } from '../contracts/browser';
+import { browserActionSchema, browserFailure, browserNavigationAllowed, browserTabLimit, browserUrl, type BrowserAction, type BrowserState, type BrowserShortcut } from '../contracts/browser';
 import { previewViewportSchema, type PreviewViewport } from '../contracts/project-preview';
 
 type Panel = { parent: BrowserWindow; view: WebContentsView; state: BrowserState; timer?: ReturnType<typeof setTimeout>; revision: number; request: number; dispose(): void };
@@ -72,11 +72,11 @@ export class BrowserPanel {
       if (!this.alive(panel) || contents.isDestroyed()) return;
       clearTimeout(panel.timer); panel.state.loading = false; this.publish(panel);
     });
-    contents.on('did-navigate', (_event, url) => { if (this.alive(panel) && browserNavigationAllowed(url)) { panel.state.url = url; panel.state.error = null; this.publish(panel); } });
+    contents.on('did-navigate', (_event, url) => { if (this.alive(panel) && browserNavigationAllowed(url)) { panel.state.url = url; panel.state.error = null; panel.state.failureReason = null; panel.state.failureCode = null; this.publish(panel); } });
     contents.on('did-navigate-in-page', (_event, url, isMainFrame) => { if (isMainFrame && this.alive(panel) && browserNavigationAllowed(url)) { panel.state.url = url; this.publish(panel); } });
     contents.on('page-title-updated', (_event, title) => { if (this.alive(panel)) { panel.state.title = title.slice(0, 500); this.publish(panel); } });
-    contents.on('did-fail-load', (_event, code, _description, url, isMainFrame) => {
-      if (isMainFrame && code !== -3 && this.alive(panel) && (url === panel.state.url || url === contents.getURL())) this.fail(panel);
+    contents.on('did-fail-load', (_event, code, description, url, isMainFrame) => {
+      if (isMainFrame && code !== -3 && this.alive(panel) && (url === panel.state.url || url === contents.getURL())) this.fail(panel, description);
     });
     contents.on('render-process-gone', () => { if (this.alive(panel)) this.fail(panel); });
     return { ...panel.state };
@@ -123,14 +123,17 @@ export class BrowserPanel {
   }
 
   private startLoading(panel: Panel): void {
-    clearTimeout(panel.timer); panel.state.loading = true; panel.state.error = null; panel.state.notice = null;
+    clearTimeout(panel.timer); panel.state.loading = true; panel.state.error = null; panel.state.notice = null; panel.state.failureReason = null; panel.state.failureCode = null;
     const revision = ++panel.revision;
-    panel.timer = setTimeout(() => { if (this.alive(panel) && panel.revision === revision) { panel.view.webContents.stop(); this.fail(panel); } }, 15_000);
+    panel.timer = setTimeout(() => { if (this.alive(panel) && panel.revision === revision) { panel.view.webContents.stop(); this.fail(panel, 'ERR_TIMED_OUT'); } }, 15_000);
     this.publish(panel);
   }
 
-  private fail(panel: Panel): void {
-    clearTimeout(panel.timer); panel.state.loading = false; panel.state.error = '网页无法加载，请检查地址或重试。'; panel.view.setVisible(false); this.publish(panel);
+  private fail(panel: Panel, code?: unknown): void {
+    const failure = browserFailure(code);
+    clearTimeout(panel.timer); panel.state.loading = false; panel.state.error = '网页无法加载，请检查地址或重试。';
+    panel.state.failureReason = failure.reason; panel.state.failureCode = failure.code;
+    panel.view.setVisible(false); this.publish(panel);
   }
 
   navigate(token: string, input: unknown): BrowserState {
@@ -139,7 +142,7 @@ export class BrowserPanel {
     const request = ++panel.request;
     void panel.view.webContents.loadURL(url).catch(error => {
       if (error?.code === 'ERR_ABORTED' || error?.errno === -3) return;
-      if (this.alive(panel) && panel.request === request) this.fail(panel);
+      if (this.alive(panel) && panel.request === request && !panel.state.error) this.fail(panel, error?.code);
     });
     return { ...panel.state };
   }

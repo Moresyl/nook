@@ -658,7 +658,7 @@ try {
     const { verifyBrowser } = await import('./verify-browser.mjs');
     const result = await verifyBrowser({ page, application, getApplication: () => application, screenshots, verified, waitForBridge, modelRequests: () => calls.length, restart: async () => { await application.close(); return launch(); } });
     page = result.page; browserResult = result.result;
-    assert.equal(count, 14); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
+    assert.equal(count, 17); assert.deepEqual(errors, []); assert.deepEqual(providerErrors, []); assert.equal(calls.length, 0);
   } else if (process.env.NOOK_TEST_SYSTEM_DPI_HOME_ONLY) {
     const { verifySystemDpiHome } = await import('./verify-system-dpi-home.mjs');
     const result = await verifySystemDpiHome({ page, application, getApplication: () => application, screenshots, verified, waitForBridge, restart: async () => { await application.close(); return launch(); } });

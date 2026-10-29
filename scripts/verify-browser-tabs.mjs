@@ -58,7 +58,7 @@ export async function verifyBrowserTabs({ page, application, mainWindow, origina
     await select(1); await page.getByLabel('网址', { exact: true }).fill(origin + '/failed'); await page.locator('.browser-toolbar').getByRole('button', { name: '打开', exact: true }).click(); await select(0);
     await wait(`!${view(second)}.webContents.isLoading()`); await tabs().nth(1).getByLabel('加载失败', { exact: true }).waitFor();
     assert.equal(await page.getByLabel('网址', { exact: true }).inputValue(), firstAddress); assert.equal(await page.locator('.browser-error').count(), 0);
-    await select(1); await page.getByRole('alert').filter({ hasText: '网页无法加载' }).waitFor(); await capture('background-failure');
+    await select(1); await page.getByRole('heading', { name: '无法访问此站点', exact: true }).waitFor(); await capture('background-failure');
     fail = false; await page.getByRole('button', { name: '重试', exact: true }).click(); await wait(`${view(second)}.getVisible()&&!${view(second)}.webContents.isLoading()`); assert.equal(await read(second, 'document.title'), '标签 /failed · 中文🧭');
     await page.getByLabel('网址', { exact: true }).fill(origin + '/held'); await page.locator('.browser-toolbar').getByRole('button', { name: '打开', exact: true }).click(); await page.getByRole('button', { name: '停止加载网页', exact: true }).waitFor();
     await select(0); await page.locator('.browser-tab').nth(1).getByRole('button', { name: /^关闭网页标签/ }).click(); await wait(`!(${view(second)})`);
@@ -104,6 +104,7 @@ export async function verifyBrowserTabs({ page, application, mainWindow, origina
       assert.equal(geometry.selectedVisible, true); assert.equal(geometry.addVisible, true); assert.equal(geometry.addWidth, 24); assert.equal(geometry.addHeight, 24); assert.equal(geometry.overflow, false); assert.equal(geometry.tabCount, 3); assert.equal(geometry.panelLinked, true);
       const x = Math.ceil(Math.max(0, geometry.viewport.x) * zoom), y = Math.ceil(Math.max(0, geometry.viewport.y) * zoom);
       const expected = { x, y, width: Math.min(size[0], Math.floor(Math.min(geometry.windowViewport.width, geometry.viewport.right) * zoom)) - x, height: Math.min(size[1], Math.floor(Math.min(geometry.windowViewport.height, geometry.viewport.bottom) * zoom)) - y };
+      await wait(`(()=>{const bounds=${view(selected)}.getBounds();return ${JSON.stringify(Object.keys(expected))}.every(key=>bounds[key]===${JSON.stringify(expected)}[key])})()`);
       const native = await application.evaluateMain(`${view(selected)}.getBounds()`); assert.deepEqual(native, expected); layouts.push({ theme: targetTheme, zoom, requestedSize: size, ...geometry, expected, native }); await capture(`${targetTheme}-${zoom * 100}`, selected);
     }
     verified('three long-title tabs keep the selected label, 24px new-tab action and linked panel visible with one correctly bounded native page under modals and six light/dark zoom layouts');

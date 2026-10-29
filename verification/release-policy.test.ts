@@ -81,7 +81,11 @@ function proof(): ReleaseProof {
     attachments: { imageExport: imageExportReleaseProof(), pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: memorySettings(), projectPreview: { checks: 10, outsideHttpRequests: 0, editorTabs: editorTabs(), docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
-  Object.assign(desktop, navigationReleaseProof(), { checks: 422, taskPlans: taskPlanProof() });
+  Object.assign(desktop, navigationReleaseProof(), { checks: 425, taskPlans: taskPlanProof() });
+  Object.assign(desktop.browser!, { checks: 17, screenshots: Array.from({ length: 32 }, (_, i) => `browser-${i}.png`), failures: {
+    checks: 3, connectionRefusedVerified: true, offlineVerified: true, certificateVerified: true, timeoutVerified: true, pendingDraftRetained: true, retryDraftRetained: true, detailsKeyboardVerified: true, sanitizedHostVerified: true, blankRecoveryVerified: true,
+    layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, summaryVisible: true, contained: true, overflow: false, detailsOpen: true, focusable: true, retryVisible: true, nativeHidden: true, hostOnly: true, clientHeight: 180, scrollHeight: 500 }))),
+  } });
   return {
     audit, desktop: { ...desktop, mcpResourceSubscriptions: { checks: 6, modelRequests: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true }, mcpBinaryFiles: { checks: 6, binaryModelRequests: 0, realWorkerPreviewVerified: true, exactOriginalExportVerified: true, emptyAndUnsupportedExportVerified: true, promptBinaryTextOnlyVerified: true, staleSelectionVerified: true, zoomKeyboardVerified: true, restartDraftRetainedVerified: true }, assistantRecipes: { checks: 4, recipeModelRequests: 0, assistantBindingVerified: true, defaultOptionalChoicesVerified: true, deletedAssistantRecoveryVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } }, surfaces: { ...desktop, checks: 5, tooltipLifecycle: { passed: true, sourceOpenDelayMs: 200, sourceSkipIntervalMs: 300, clockAdvanced: false, originalTimeoutCallbacksRetained: true, focusEmulationDisabledOnlyDuringNativeBlur: true, originalFocusEmulationRestored: true } },
     preview: { ...desktop, ...structuredClone(desktop.projectPreview) },
@@ -675,6 +679,16 @@ describe('project branch release evidence', () => {
 });
 
 describe('private browser release evidence', () => {
+  it('rejects missing real failure, draft retention and accessible error-layout evidence', () => {
+    const missing = proof(); delete missing.desktop.browser!.failures; expect(() => verifyRuntimeProof(missing)).toThrow('browser failure');
+    for (const [key, value] of Object.entries({ checks: 2, connectionRefusedVerified: false, offlineVerified: false, certificateVerified: false, timeoutVerified: false, pendingDraftRetained: false, retryDraftRetained: false, detailsKeyboardVerified: false, sanitizedHostVerified: false, blankRecoveryVerified: false, layouts: [] })) {
+      const invalid = proof(); (invalid.desktop.browser!.failures as unknown as Record<string, unknown>)[key] = value; expect(() => verifyRuntimeProof(invalid)).toThrow('browser failure');
+    }
+    for (const change of [{ summaryVisible: false }, { contained: false }, { overflow: true }, { detailsOpen: false }, { focusable: false }, { retryVisible: false }, { nativeHidden: false }, { hostOnly: false }, { clientHeight: 0 }, { clientHeight: NaN }, { scrollHeight: 100 }, { scrollHeight: Infinity }, { theme: 'dark', zoom: 1.5 }]) {
+      const invalid = proof(); Object.assign(invalid.desktop.browser!.failures!.layouts[0], change); expect(() => verifyRuntimeProof(invalid)).toThrow('browser failure');
+    }
+    const previous = proof(); previous.desktop.checks = 422; expect(() => verifyRuntimeProof(previous)).toThrow('Complete desktop');
+  });
   it('rejects old suites and incomplete multi-tab behavior, geometry or screenshots', () => {
     const prior = proof(); prior.desktop.checks = 262; expect(() => verifyRuntimeProof(prior)).toThrow('Complete desktop');
     const oldBrowser = proof(); oldBrowser.desktop.browser!.checks = 9; expect(() => verifyRuntimeProof(oldBrowser)).toThrow('private browser');

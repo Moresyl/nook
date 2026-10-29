@@ -165,6 +165,28 @@ describe('isolated website panel', () => {
     contents.emit('did-fail-load', {}, -105, 'private', 'https://example.com/', true); expect(manager.open(parent as unknown as BrowserWindow).error).toBeTruthy();
     manager.navigate(token, 'https://example.com/'); contents.emit('render-process-gone'); expect(fake.views[0].setVisible).toHaveBeenLastCalledWith(false);
   });
+  it.each([
+    ['ERR_NAME_NOT_RESOLVED', 'dns'], ['ERR_INTERNET_DISCONNECTED', 'offline'], ['ERR_CONNECTION_REFUSED', 'refused'],
+    ['ERR_TIMED_OUT', 'timeout'], ['ERR_CERT_AUTHORITY_INVALID', 'certificate'], ['PRIVATE_NETWORK_DETAIL', 'generic'],
+  ])('publishes sanitized %s failures from native events and clears them on retry/success', (code, reason) => {
+    const parent = parentWindow(), { token } = manager.open(parent as unknown as BrowserWindow), contents = fake.views[0].webContents;
+    manager.navigate(token, 'https://example.com/'); contents.emit('did-fail-load', {}, -2, code, 'https://example.com/', true);
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ failureReason: reason, failureCode: reason === 'generic' ? 'ERR_FAILED' : code, loading: false, url: 'https://example.com/' });
+    expect(fake.views[0].setVisible).toHaveBeenLastCalledWith(false); expect(JSON.stringify(parent.webContents.send.mock.calls)).not.toContain('PRIVATE_NETWORK_DETAIL');
+    expect(manager.action(token, 'reload')).toMatchObject({ error: null, failureReason: null, failureCode: null, loading: true });
+    contents.emit('did-fail-load', {}, -2, code, 'https://example.com/', true); contents.emit('did-navigate', {}, 'https://example.com/final');
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ error: null, failureReason: null, failureCode: null, url: 'https://example.com/final' });
+  });
+  it('uses loadURL code properties and preserves a more specific native event against a later generic rejection', async () => {
+    fake.load.mockRejectedValueOnce(Object.assign(new Error('PRIVATE_NETWORK_DETAIL'), { code: 'ERR_CONNECTION_REFUSED' }));
+    const parent = parentWindow(), { token } = manager.open(parent as unknown as BrowserWindow); manager.navigate(token, 'https://example.com/'); await Promise.resolve();
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ failureReason: 'refused', failureCode: 'ERR_CONNECTION_REFUSED' });
+    let reject!: (error: Error) => void; fake.load.mockImplementationOnce(() => new Promise((_resolve, fail) => { reject = fail; }));
+    manager.navigate(token, 'https://example.com/'); fake.views[0].webContents.emit('did-fail-load', {}, -2, 'ERR_CERT_DATE_INVALID', 'https://example.com/', true);
+    reject(new Error('PRIVATE_NETWORK_DETAIL')); await Promise.resolve();
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ failureReason: 'certificate', failureCode: 'ERR_CERT_DATE_INVALID' });
+    expect(JSON.stringify(parent.webContents.send.mock.calls)).not.toContain('PRIVATE_NETWORK_DETAIL');
+  });
   it('supports enabled history actions, stop, reload and explicit content focus', () => {
     const parent = parentWindow(), { token } = manager.open(parent as unknown as BrowserWindow), contents = fake.views[0].webContents;
     manager.action(token, 'back'); manager.action(token, 'forward'); manager.action(token, 'focus'); manager.action(token, 'reload'); expect(fake.load).not.toHaveBeenCalled(); expect(contents.focus).not.toHaveBeenCalled();
@@ -172,6 +194,11 @@ describe('isolated website panel', () => {
     manager.action(token, 'back'); manager.action(token, 'forward'); manager.action(token, 'focus'); manager.action(token, 'stop');
     expect(contents.navigationHistory.goBack).toHaveBeenCalledOnce(); expect(contents.navigationHistory.goForward).toHaveBeenCalledOnce(); expect(contents.focus).toHaveBeenCalledOnce(); expect(contents.stop).toHaveBeenCalledOnce();
     expect(manager.action(token, 'reload').loading).toBe(true); expect(() => manager.action(token, 'unknown' as any)).toThrow();
+  });
+  it('publishes a safe blank-page crash and releases its owner before a fresh tab is opened', () => {
+    const parent = parentWindow(), first = manager.open(parent as unknown as BrowserWindow); fake.views[0].webContents.emit('render-process-gone');
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ token: first.token, url: '', failureReason: 'generic', failureCode: 'ERR_FAILED', loading: false });
+    manager.close(first.token); const replacement = manager.open(parent as unknown as BrowserWindow, true); expect(replacement.token).not.toBe(first.token); expect(replacement.error).toBeNull(); expect(fake.views[0].webContents.isDestroyed()).toBe(true);
   });
   it('releases the website on full workbench navigation while retaining in-page and subframe changes', () => {
     const parent = parentWindow(), { token } = manager.open(parent as unknown as BrowserWindow), contents = fake.views[0].webContents;
@@ -215,7 +242,7 @@ describe('isolated website panel', () => {
   it('bounds a never-loading site and releases owned listeners and storage on close', async () => {
     vi.useFakeTimers(); fake.load.mockReturnValueOnce(new Promise(() => {})); const parent = parentWindow(), { token } = manager.open(parent as unknown as BrowserWindow);
     manager.navigate(token, 'https://example.com'); await vi.advanceTimersByTimeAsync(15000);
-    expect(manager.open(parent as unknown as BrowserWindow).error).toBeTruthy(); expect(fake.views[0].webContents.stop).toHaveBeenCalledOnce();
+    expect(manager.open(parent as unknown as BrowserWindow)).toMatchObject({ failureReason: 'timeout', failureCode: 'ERR_TIMED_OUT', loading: false }); expect(fake.views[0].webContents.stop).toHaveBeenCalledOnce();
     manager.close('stale'); expect(fake.views[0].webContents.isDestroyed()).toBe(false); parent.emit('closed');
     expect(fake.views[0].webContents.isDestroyed()).toBe(true); expect(parent.listenerCount('resize')).toBe(0); expect(parent.listenerCount('minimize')).toBe(0); expect(parent.listenerCount('closed')).toBe(0); expect(fake.clear).toHaveBeenCalledOnce(); manager.close();
     expect(() => manager.navigate(token, 'https://example.com')).toThrow('no longer available');

@@ -32,4 +32,15 @@ describe('browser tab state ownership', () => {
     const original = fixture(), late = create(original, 'third', false); expect(late.active).toBe('second'); expect(late.tabs).toHaveLength(3);
     const duplicate = create(late, 'third', false); expect(duplicate.tabs).toHaveLength(3); expect(duplicate.active).toBe('second'); expect(original.tabs).toHaveLength(2);
   });
+  it('preserves an address edited during loading through failure and same-URL retry', () => {
+    let workspace = fixture(); workspace = reduceBrowserTabs(workspace, { type: 'submitted', token: 'first' });
+    workspace = reduceBrowserTabs(workspace, { type: 'received', state: { ...state('first', 2), loading: true } });
+    const address = 'https://unsent.example/中文😀'; workspace = reduceBrowserTabs(workspace, { type: 'edited', token: 'first', address });
+    workspace = reduceBrowserTabs(workspace, { type: 'received', state: { ...state('first', 3), error: 'Failed', failureReason: 'timeout' } });
+    expect(workspace.tabs[0].address).toBe(address);
+    workspace = reduceBrowserTabs(workspace, { type: 'submitted', token: 'first', preserveAddress: true });
+    workspace = reduceBrowserTabs(workspace, { type: 'received', state: { ...state('first', 4), loading: true } });
+    workspace = reduceBrowserTabs(workspace, { type: 'received', state: state('first', 5) }); expect(workspace.tabs[0].address).toBe(address);
+    workspace = reduceBrowserTabs(workspace, { type: 'received', state: { ...state('first', 6), url: 'https://redirect.example/' } }); expect(workspace.tabs[0].address).toBe('https://redirect.example/');
+  });
 });

@@ -4,6 +4,7 @@ import { useNativeViewport } from '../lib/native-viewport';
 import { Button, IconButton, Input } from '../components/controls';
 import { Glyph } from '../components/glyphs';
 import { BrowserTabs } from '../components/browser-tabs';
+import { BrowserLoadError } from '../components/browser-load-error';
 import { reduceBrowserTabs, type BrowserTabsAction, type BrowserWorkspace } from '../components/browser-tabs-state';
 import type { PreviewViewport } from '../../contracts/project-preview';
 
@@ -56,7 +57,7 @@ export function BrowserPage({ active }: { active: boolean }) {
   const layout = useCallback((bounds: PreviewViewport | null) => token ? window.qiyao.layoutBrowser(token, bounds) : Promise.resolve(), [token, state?.loading]);
   useNativeViewport(viewport, active && Boolean(state?.url) && !state?.error && !tab?.error, layout, fail);
   const action = (value: BrowserAction) => {
-    if (!token) return; if (value !== 'focus') send({ type: 'submitted', token });
+    if (!token) return; if (value !== 'focus') send({ type: 'submitted', token, preserveAddress: tab?.address !== state?.url });
     void window.qiyao.browserAction(token, value).then(accept).catch(fail);
   };
   const navigate = () => {
@@ -65,7 +66,7 @@ export function BrowserPage({ active }: { active: boolean }) {
     try { url = browserUrl(tab.address); } catch { send({ type: 'failed', token, message: '请输入不含用户名和密码的完整 HTTP 或 HTTPS 网址。' }); addressInput.current?.focus(); return; }
     send({ type: 'submitted', token }); void window.qiyao.navigateBrowser(token, url).then(accept).catch(fail);
   };
-  const retry = () => { if (!token) void open(); else if (tab?.error) navigate(); else if (state?.url) action('reload'); };
+  const retry = () => { if (!token) void open(); else if (tab?.error) navigate(); else if (state?.url) action('reload'); else void close(token); };
   useEffect(() => {
     if (!active) return;
     const key = (event: KeyboardEvent) => {
@@ -89,9 +90,10 @@ export function BrowserPage({ active }: { active: boolean }) {
     </form>
     {state?.loading && <div className="browser-status" role="status">正在加载网页…</div>}
     {state?.notice && <div className="browser-status" role="status">{state.notice}</div>}
-    {(workspace.error || tab?.error || state?.error) && <div className="browser-error" role="alert"><p>{workspace.error || tab?.error || state?.error}</p><Button onClick={workspace.error ? () => { void open(true); } : retry}>重试</Button></div>}
+    {(workspace.error || tab?.error) && <div className="browser-error" role="alert"><p>{workspace.error || tab?.error}</p><Button onClick={workspace.error ? () => { void open(true); } : retry}>重试</Button></div>}
     <div ref={viewport} id={panelId} role={token ? 'tabpanel' : undefined} aria-labelledby={token ? `${tabId}-${workspace.tabs.findIndex(item => item.state.token === token)}` : undefined} className="browser-viewport" aria-label="网页内容">
-      {!state?.url && !tab?.error && <div className="browser-empty"><Glyph name="globe" size={40} /><h2>打开一个网页</h2><p>输入完整网址，浏览网页并保留当前工作台。</p></div>}
+      {!state?.url && !state?.error && !tab?.error && <div className="browser-empty"><Glyph name="globe" size={40} /><h2>打开一个网页</h2><p>输入完整网址，浏览网页并保留当前工作台。</p></div>}
+      {state?.error && !workspace.error && !tab?.error && <BrowserLoadError key={state.token} url={state.url} reason={state.failureReason} code={state.failureCode} onRetry={retry} />}
     </div>
     {state?.url && <div className="browser-footer"><span title={state.title}>{state.title || state.url}</span><Button disabled={Boolean(tab?.error || state.error)} onClick={() => action('focus')}>进入网页</Button><span>Ctrl L · 网址</span></div>}
   </section>;

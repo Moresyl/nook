@@ -7,7 +7,7 @@ export type BrowserTabsAction =
   | { type: 'received'; state: BrowserState }
   | { type: 'selected'; token: string }
   | { type: 'removed'; token: string }
-  | { type: 'submitted'; token: string }
+  | { type: 'submitted'; token: string; preserveAddress?: boolean }
   | { type: 'edited'; token: string; address: string }
   | { type: 'failed'; token: string; message: string }
   | { type: 'open-failed'; message: string };
@@ -31,8 +31,8 @@ export function reduceBrowserTabs(workspace: BrowserWorkspace, action: BrowserTa
     if (action.state.sequence <= current.state.sequence) return workspace;
     const updateAddress = action.state.url !== current.state.url || (current.pending && !action.state.loading);
     next = { ...current, state: action.state, address: updateAddress ? action.state.url : current.address, pending: current.pending && action.state.loading };
-  } else if (action.type === 'edited') next = { ...current, address: action.address };
-  else if (action.type === 'submitted') next = { ...current, pending: true, error: null };
+  } else if (action.type === 'edited') next = { ...current, address: action.address, pending: false };
+  else if (action.type === 'submitted') next = { ...current, pending: !action.preserveAddress, error: null };
   else next = { ...current, pending: false, error: action.message };
   return { ...workspace, tabs: workspace.tabs.map((tab, position) => position === index ? next : tab) };
 }
