@@ -65,9 +65,7 @@ import { contextSummaryFixture } from '../verification/context-summary-fixture.m
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 // Match Playwright's Electron loader for unattended CDP interaction, without changing product defaults.
-// Two-frame DOM settlement must not depend on the host display refresh rate.
-// Physical frame pacing remains separate from unattended correctness checks.
-const rendererTestSwitches = ['disable-background-timer-throttling', 'disable-backgrounding-occluded-windows', 'disable-renderer-backgrounding', 'disable-frame-rate-limit'];
+const rendererTestSwitches = ['disable-background-timer-throttling', 'disable-backgrounding-occluded-windows', 'disable-renderer-backgrounding'];
 // Keep exact native viewport fixtures independent of the host's fractional display scaling.
 // The suite still exercises Electron zoom; actual system-DPI acceptance is separate.
 const desktopDeviceScaleFactor = process.env.NOOK_TEST_SYSTEM_DPI_ONLY || process.env.NOOK_TEST_SYSTEM_DPI_HOME_ONLY ? '' : '1';

@@ -1,0 +1,289 @@
+{
+  "verifiedAt": "2026-10-29T09:01:44.922Z",
+  "status": "tree-collection-frame-budget-focused-accepted",
+  "productCommit": "6c4486eca6c3251be11edd1da37cbb1b7c298e63",
+  "baseline": {
+    "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/installer-before.json",
+    "sha256": "722e14724a40bf6bd147b323e657a8b069b9ac2494dd51d193c0e0e694788ea4"
+  },
+  "change": "Collection retains 5000ms processing allowance and adds two animation frames per initial viewport at 30Hz. A 95px/207-row tree reserves 87 viewports and 10800ms total. Traversal fails beyond the initial viewport count. Other action and application shutdown deadlines remain unchanged.",
+  "changes": [
+    {
+      "path": "scripts/project-tree-viewport.mjs",
+      "before": "9087ae4236c900571d7250ed76e69e95a60c424edaee4c3713bb876f8dbacc8e",
+      "after": "9910ba00c27103bb31accf4fd6dcaf3cf100de4fcb0ef724a98e69e3cf0f61a6"
+    },
+    {
+      "path": "scripts/verify-project-tree-sticky.mjs",
+      "before": "803329936a1aa2a2a862182b7b006d866369032f93c2bdb1097599ae2af62502",
+      "after": "24f6c9c6125fc90b0be323a8dc41b5e9669c17038a91eb29cd265a34009e42c6"
+    },
+    {
+      "path": "verification/project-tree-viewport.test.ts",
+      "before": "b520d76b1debf80d300bc3937167aac7097b079f30ae128087f88d8465b49746",
+      "after": "9731a53fd774eff125164ddaa83b293f1c20d7c55f3cc330c88997cb4e80e843"
+    }
+  ],
+  "unchangedApplicationCompiledAndBinaries": true,
+  "trackedInputsCompared": 1340,
+  "compiledFiles": 236,
+  "binaries": [
+    {
+      "path": "artifacts/win-unpacked/Nook.exe",
+      "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa"
+    },
+    {
+      "path": "artifacts/win-unpacked/resources/app.asar",
+      "sha256": "873501d5b6531e0edadd091e1c23e4c30347d18d878bcba8dc63f5d1db171e7a"
+    },
+    {
+      "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+      "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32"
+    },
+    {
+      "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+      "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e"
+    }
+  ],
+  "motionPreference": {
+    "change": "Guide layout verification explicitly uses no-preference, separately tests reduce, returns to no-preference between layouts, and restores the host preference in final cleanup.",
+    "retainedFailure": {
+      "path": "D:/GR/nook-tree-frame-budget-evidence-2026-10-29/source.log",
+      "sha256": "224e3edc2a57ba4228be7a0863178ed2a269c734bf93bf6c8f3224369289a52e"
+    },
+    "boundary": "The prior source attempt completed8 main checks but failed a subsequent150ms transition assertion because it read0s. It remains failed; the unique source of the host preference is not established."
+  },
+  "focused": [
+    {
+      "variant": "source",
+      "checks": 8,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/source-result.json",
+        "sha256": "3cdcb1becec45c9540f89cde6ef70ee460d1248c17090dc4413d91641eba6625"
+      },
+      "log": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/source.log",
+        "sha256": "dc2ac4ac36755d83a09c597d2ad565b217ab1fe663cfbd76afa24c7027475caa"
+      },
+      "timings": [
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3177,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3205,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3165,
+          "timeoutMs": 10800
+        }
+      ],
+      "exits": [
+        {
+          "elapsedMs": 363,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1320,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "context": "Fresh isolated workspace."
+    },
+    {
+      "variant": "packaged",
+      "checks": 8,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/packaged-result.json",
+        "sha256": "79f719a034da16442db587b57180984dabb9a362e23a51eab982d3d947c671a2"
+      },
+      "log": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/packaged.log",
+        "sha256": "d445239b02ca9992c33fd9483d9a3449cad710da63bb5f9a3928cd585c981e46"
+      },
+      "timings": [
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3323,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3249,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3318,
+          "timeoutMs": 10800
+        }
+      ],
+      "exits": [
+        {
+          "elapsedMs": 621,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1573,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "context": "Same failed installed workspace seed and byte-identical packaged executable."
+    }
+  ],
+  "unit": {
+    "files": 150,
+    "tests": 1755,
+    "log": {
+      "path": "D:/GR/nook-tree-frame-budget-full-unit-2026-10-29.log",
+      "sha256": "5032677b84d28d32497fbc3cc626f4dc9dea0aeb1af5f9f0dbf3cfeee8010fa4"
+    },
+    "coverage": {
+      "lines": {
+        "total": 4701,
+        "covered": 4678,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7800,
+        "covered": 7577,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1730,
+        "covered": 1693,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5461,
+        "covered": 5174,
+        "skipped": 0,
+        "pct": 94.74
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "helperTests": 8,
+    "helperLog": {
+      "path": "D:/GR/nook-tree-frame-budget-unit-2026-10-29.log",
+      "sha256": "cd4434fa745f2bb34970a5fb9834a88e14405e685cf254b4f2242753dbd6ad62"
+    },
+    "helperCoverage": {
+      "statements": 98.57,
+      "branches": 91.66,
+      "functions": 100,
+      "lines": 100
+    },
+    "typecheck": {
+      "path": "D:/GR/nook-tree-frame-budget-check-2026-10-29.log",
+      "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+    }
+  },
+  "regressionTests": [
+    "207 rows at 95px with simulated 30Hz frames traverse beyond five seconds while retaining every path, expansion state and original scroll.",
+    "A viewport growing beyond its initial extent is rejected and the original scroll restored.",
+    "Excess mounted rows, DOM failure and processing timeout still fail and restore scroll."
+  ],
+  "withdrawnExperiment": {
+    "commit": "24cfffdc6ff968b4cc71c1658960642b50307056",
+    "switch": "disable-frame-rate-limit",
+    "reason": "Full installed acceptance failed after38 checks with a forced close at10013ms; unique cause unproven. The launch script is restored byte-for-byte to0d01c25.",
+    "evidence": {
+      "path": "D:/GR/nook-file-contents-browser-traversal-evidence-2026-10-29/frame-pacing-review.json",
+      "sha256": "32b6b4696c3f23a5e885e8b53bce461a479306514af1e083e62eba86b3a81e4f"
+    }
+  },
+  "retainedInstalledFailures": [
+    {
+      "completedChecks": 397,
+      "status": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/status.json",
+        "sha256": "ad76d828136e100efa8196609c9533b46d4206778ac2d1b2d431318f85777eb7"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/installer.log",
+        "sha256": "4a768e2679ed2432ad9f19b2d8dbd9ffc3fbe1ed3c11e4a35dbf7834855c092d"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "12891ca09e7779a007e80a455006effd0cd30b328c84acb34537353d030ce0b5"
+      },
+      "forcedClose": false
+    },
+    {
+      "completedChecks": 222,
+      "status": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/status.json",
+        "sha256": "9a467b14c82b3509432a7d704586edd87a72e7cae3003065fe5a8d70f9d14d71"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/installer.log",
+        "sha256": "e8b206b18f76eb40333e5a2b162e6d0276c6a1724f322436c31ca672cb57727e"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "d6b1fb6e20809be4a071fe3c50e84570a58ad82820e5251a3f03d16093075975"
+      },
+      "forcedClose": false
+    },
+    {
+      "completedChecks": 38,
+      "status": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/status.json",
+        "sha256": "f4bf586074e273d01d11c2264d990dc61c34ada021d1f3dfb6592056691a2edd"
+      },
+      "log": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/installer.log",
+        "sha256": "fad063de8c1839c27039c576c8a67dc01a7cf076218ffdea23b45298fdaf6a20"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "5321d3404239f8185d8e76e2ebfe1bb262748d42f464e26269d199db33f6742c"
+      },
+      "forcedClose": true
+    }
+  ],
+  "boundaries": [
+    "This changes the collection fixture total time budget; earlier five-second failures remain failures.",
+    "Previously accepted full source and packaged422-check runs apply to unchanged application and binaries under the original helper; these new runs prove only focused equivalence with the changed helper.",
+    "Full installed422-check acceptance, eleven matching runtime records, hosted publication and physical system-DPI/IME/accessibility acceptance remain incomplete.",
+    "The clipboard guard is unchanged; no lossy replacement was authorized or performed."
+  ]
+}

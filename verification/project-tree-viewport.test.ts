@@ -8,6 +8,7 @@ function viewport(total = 9, initial = 56) {
   let top = initial;
   const element = {
     clientHeight: 56,
+    scrollHeight: total * 28,
     get scrollTop() { return top; },
     set scrollTop(value: number) { top = Math.max(0, Math.min(value, Math.max(0, total * 28 - this.clientHeight))); },
     querySelectorAll: vi.fn(() => Array.from({ length: Math.min(3, total - Math.floor(top / 28)) }, (_, offset) => {
@@ -50,11 +51,35 @@ describe('native tree viewport verification', () => {
     expect(element.scrollTop).toBe(56);
   });
 
-  it('retains the five-second deadline and restores scroll on timeout', async () => {
+  it('rejects processing beyond the frame-adjusted deadline and restores scroll', async () => {
     const { page, tree, element } = viewport(); let time = 0, frames = 0;
     vi.spyOn(Date, 'now').mockImplementation(() => time);
-    vi.stubGlobal('requestAnimationFrame', (callback: () => void) => { if (++frames > 2) time = 5001; callback(); return 1; });
+    vi.stubGlobal('requestAnimationFrame', (callback: () => void) => { if (++frames > 2) time = 6000; callback(); return 1; });
     await expect(collectProjectTreeRows(page, tree)).rejects.toThrow('Scrolling the loaded tree exceeded the operation deadline');
+    expect(element.scrollTop).toBe(56);
+  });
+
+  it('collects a narrow 207-row tree at 30 Hz beyond five seconds without losing rows or scroll', async () => {
+    const { page, tree, element } = viewport(207); let time = 0;
+    element.clientHeight = 95;
+    element.querySelectorAll.mockImplementation(() => Array.from({ length: Math.min(5, 207 - Math.floor(element.scrollTop / 28)) }, (_, offset) => {
+      const index = Math.floor(element.scrollTop / 28) + offset;
+      return { getAttribute: (name: string) => name === 'aria-label' ? `file-${index}` : index === 0 ? 'true' : null };
+    }));
+    vi.spyOn(Date, 'now').mockImplementation(() => time);
+    vi.stubGlobal('requestAnimationFrame', (callback: () => void) => { time += 1000 / 30; callback(); return 1; });
+    const rows = await collectProjectTreeRows(page, tree);
+    expect(rows).toEqual(Array.from({ length: 207 }, (_, index) => [`file-${index}`, index === 0 ? 'true' : null]).sort(([left], [right]) => left!.localeCompare(right!)));
+    expect(time).toBeGreaterThan(5000);
+    expect(time).toBeLessThan(11000);
+    expect(element.scrollTop).toBe(56);
+  });
+
+  it('rejects a viewport that keeps growing beyond its initial extent and restores scroll', async () => {
+    const { page, tree, element } = viewport(); let top = 56;
+    Object.defineProperty(element, 'scrollTop', { get: () => top, set: (value: number) => { top = value; } });
+    element.querySelectorAll.mockReturnValue([{ getAttribute: () => 'moving-row' }]);
+    await expect(collectProjectTreeRows(page, tree)).rejects.toThrow('Scrolling the loaded tree exceeded the initial viewport bound');
     expect(element.scrollTop).toBe(56);
   });
 

@@ -31,8 +31,12 @@ export function projectTreeItem(getPage, getTree, path) {
 }
 
 export async function collectProjectTreeRows(page, tree) {
-  const before = await tree.evaluate(element => element.scrollTop), rows = new Map();
-  const startedAt = Date.now(), deadline = startedAt + 5000;
+  const { before, height, scrollHeight } = await tree.evaluate(element => ({ before: element.scrollTop, height: element.clientHeight, scrollHeight: element.scrollHeight })), rows = new Map();
+  const maximumSteps = Math.ceil(Math.max(0, scrollHeight - height) / Math.max(28, height - 28)) + 1;
+  // Each viewport waits for two animation frames. Reserve their time at 30 Hz
+  // separately from the five-second processing allowance, and bound traversal.
+  const timeoutMs = 5000 + Math.ceil(maximumSteps * 2 * 1000 / 30);
+  const startedAt = Date.now(), deadline = startedAt + timeoutMs;
   let steps = 0, minimumHeight = Infinity;
   try {
     await tree.evaluate(element => { element.scrollTop = 0; }); await settle(page);
@@ -44,13 +48,14 @@ export async function collectProjectTreeRows(page, tree) {
         return { current, height, moved: element.scrollTop > before };
       });
       steps++; minimumHeight = Math.min(minimumHeight, height);
+      assert.ok(steps <= maximumSteps, 'Scrolling the loaded tree exceeded the initial viewport bound');
       assert.ok(current.length <= Math.ceil(height / 28) + 40, `Mounted tree rows must remain bounded: ${current.length}`);
       for (const [path, expanded] of current) rows.set(path, expanded);
       assert.ok(Date.now() < deadline, 'Scrolling the loaded tree exceeded the operation deadline');
       if (!moved) break; await settle(page);
     }
   } finally {
-    console.log('Project tree traversal timing', JSON.stringify({ steps, minimumHeight, collectedRows: rows.size, elapsedMs: Date.now() - startedAt, timeoutMs: 5000 }));
+    console.log('Project tree traversal timing', JSON.stringify({ steps, maximumSteps, minimumHeight, collectedRows: rows.size, elapsedMs: Date.now() - startedAt, timeoutMs }));
     await tree.evaluate((element, top) => { element.scrollTop = top; }, before); await settle(page);
   }
   return [...rows].sort(([left], [right]) => left.localeCompare(right));

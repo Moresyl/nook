@@ -50,7 +50,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
     }
     await page.emulateMedia({ reducedMotion: 'reduce' });
     try { assert.equal(await guides.first().evaluate(element => getComputedStyle(element).transitionDuration), '0s'); await item(nested).focus(); await waitOpacity([1, 0]); }
-    finally { await page.emulateMedia({ reducedMotion: null }); }
+    finally { await page.emulateMedia({ reducedMotion: 'no-preference' }); }
     await item('a-parent').focus(); await waitOpacity([0, 0]);
     const previousMaxHeight = await tree().evaluate(element => { const previous = element.style.maxHeight; element.style.maxHeight = '48px'; return previous; });
     try {
@@ -81,6 +81,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
   async function scrollInside() { await row(`${nested}/file-0100.txt`).scrollIntoViewIfNeeded(); await page.mouse.move(1, 1); await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))); }
   async function geometry() { return tree().evaluate(element => { const bounds = element.getBoundingClientRect(), paths = ['a-parent', 'a-parent/b-nested']; return { height: element.clientHeight, scroll: element.scrollTop, rows: paths.map(path => { const node = [...element.querySelectorAll('[role="treeitem"]')].find(item => item.getAttribute('aria-label') === path), row = node.querySelector(':scope > .project-tree-row'), rect = row.getBoundingClientRect(); return { top: rect.top - bounds.top, bottom: rect.bottom - bounds.top, canonicalTop: node.getBoundingClientRect().top - bounds.top, position: getComputedStyle(row).position, layers: getComputedStyle(row).backgroundImage }; }) }; }); }
   try {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
     await application.resize(1280, 840); await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await page.reload(); await select(); await open(); await scrollInside();
     await assertIndentation('a-parent', 3); await assertIndentation(nested, 11.75); await assertIndentation(`${nested}/file-0100.txt`, 24.25); await assertIndentation('a-parent/parent-after.txt', 15.5); await assertIndentation('z-000.txt', 3);
     await assertGuides('light', 1); await item(`${nested}/file-0100.txt`).focus(); await scrollInside();
@@ -143,6 +144,7 @@ export async function verifyProjectTreeSticky({ page, application, directory, ca
     const fileMenu = await verifyProjectFileMenu({ page, application, capture, select, projectId: id, root });
     return { fileMenu, virtualizedLargeDirectory: { files: 1000, pages: 5, mountedRows, keyboardLastAndFirst: true, completeSiblingMetadata: true, collapseRetainedFocus: true }, guideStates, indentation, deepLevels: 11, ancestorStack: true, subtreePushOff: true, pointerCollapse: true, keyboardCanonicalFocus: true, noDuplicateTreeItems: true, pagination: true, refreshAndSearch: true, emptyEditorCopyVisible: true, zooms: [1, 1.25, 1.5], screenshots: ['116-project-tree-sticky-light.png', '117-project-tree-sticky-dark.png', '118-project-tree-deep-dark.png', '119-project-file-menu-dark.png'] };
   } finally {
+    await page.emulateMedia({ reducedMotion: null });
     await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(1)`); await application.resize(1280, 840);
     await page.evaluate(async preferences => { await window.qiyao.savePreferences(preferences); }, preferences);
     await page.locator('.project-list').getByRole('button', { name: returnProjectName, exact: true }).click();
