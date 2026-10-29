@@ -1,0 +1,199 @@
+{
+  "verifiedAt": "2026-10-29T03:42:26.597Z",
+  "status": "focused-verification-passed-full-retry-pending",
+  "change": "Combine mounted-node collection, viewport height and scroll advancement into one native DOM evaluation per visible page. Continue to inspect mounted nodes and scroll the real viewport; no model-side enumeration or deadline increase.",
+  "invariant": {
+    "timeoutMs": 5000,
+    "maximumMountedRows": "ceil(viewportHeight / 28) + 40",
+    "everyCollectedPathAndExpansionStateCompared": true,
+    "scrollPositionRestoredOnSuccessAndFailure": true,
+    "twoAnimationFramesBetweenScrolls": true
+  },
+  "measurement": {
+    "viewportHeight": 95,
+    "collectedRows": 207,
+    "steps": 87,
+    "before": [
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 4817,
+        "timeoutMs": 5000
+      },
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 4258,
+        "timeoutMs": 5000
+      },
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 4111,
+        "timeoutMs": 5000
+      }
+    ],
+    "after": [
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 3227,
+        "timeoutMs": 5000
+      },
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 3211,
+        "timeoutMs": 5000
+      },
+      {
+        "steps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 3226,
+        "timeoutMs": 5000
+      }
+    ],
+    "baselineLog": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/before-batching.log",
+      "sha256": "e44d8c9f68c2344a7bad577ec1b02c424b26f814683e890bd03a255761b9f434"
+    },
+    "optimizedLog": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/after-batching.log",
+      "sha256": "a4999622223ec9daea1d169ec0ea69b11de640bfe45041a112831f34fc555c12"
+    }
+  },
+  "tests": {
+    "focusedUnitTests": 6,
+    "helperCoverage": {
+      "lines": {
+        "total": 35,
+        "covered": 35,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 67,
+        "covered": 66,
+        "skipped": 0,
+        "pct": 98.5
+      },
+      "functions": {
+        "total": 19,
+        "covered": 19,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 12,
+        "covered": 11,
+        "skipped": 0,
+        "pct": 91.66
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "helperLog": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/helper-coverage.log",
+      "sha256": "a26f06ead6d9dfdd736a9f2669c405e3f721bab9f24af9bb91b98daf7dbbd9e5"
+    },
+    "typeCheck": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/check.log",
+      "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+    },
+    "fullUnitFiles": 150,
+    "fullUnitTests": 1753,
+    "fullUnitLog": {
+      "path": "D:/GR/nook-file-contents-tree-traversal-evidence-2026-10-29/full-unit.log",
+      "sha256": "1f1f7efedda8111f09b523e7cf5904ad849c5ea66f4bd15e487b54f49eca788e"
+    },
+    "configuredCoverage": {
+      "lines": {
+        "total": 4701,
+        "covered": 4678,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7800,
+        "covered": 7577,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1730,
+        "covered": 1693,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5461,
+        "covered": 5174,
+        "skipped": 0,
+        "pct": 94.74
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "nativeTreeChecks": 8
+  },
+  "unchangedApplication": {
+    "compiled": 236,
+    "binaries": [
+      {
+        "path": "artifacts/win-unpacked/Nook.exe",
+        "sha256": "39143655f9b1de0d26e69396a4c95c2423c24c8fb22430a7e51c61a39729c8fa"
+      },
+      {
+        "path": "artifacts/win-unpacked/resources/app.asar",
+        "sha256": "873501d5b6531e0edadd091e1c23e4c30347d18d878bcba8dc63f5d1db171e7a"
+      },
+      {
+        "path": "artifacts/Nook-Setup-0.1.0-alpha.1-x64.exe",
+        "sha256": "254e8c65ebddc9bfab886a7a3e874790b564bc95f63502cf6b304c8174e31a32"
+      },
+      {
+        "path": "artifacts/Nook-Portable-0.1.0-alpha.1-x64.exe",
+        "sha256": "9ebd30e4b81c25c72605cad9755987ddcc7d53282864392f7a52e7dbdc95088e"
+      }
+    ],
+    "allCompiledAndBinaryHashesMatch": true,
+    "priorFreeze": {
+      "path": "D:/GR/nook-file-contents-full-evidence-2026-10-29/before.json",
+      "sha256": "7767bb5602e0b861fd1db003131ecf59b530783dd126bb822d6808a1e973bfa2"
+    }
+  },
+  "retainedFailure": {
+    "status": {
+      "path": "D:/GR/nook-file-contents-full-evidence-2026-10-29/status.json",
+      "sha256": "12ab45d64c7ed8240c2298d3e37659b439a698cf505c78d06494751a9ddea2e9"
+    },
+    "sourceLog": {
+      "path": "D:/GR/nook-file-contents-full-evidence-2026-10-29/source-desktop.log",
+      "sha256": "4c3d1a43b61f90ca0af1fd2ba44000c9c83f04a4c0cddc2c43f9f767cd1da088"
+    },
+    "checksBeforeFailure": 222,
+    "frozenInputsMatch": {
+      "path": "D:/GR/nook-file-contents-full-evidence-2026-10-29/inputs-failed.json",
+      "sha256": "e161b77a6f959ccc1cd4e47df49570cc8cb2d183daf47d14fd0bccf4cdcb2087"
+    },
+    "archive": "D:/GR/nook-file-contents-full-evidence-2026-10-29/source-failed"
+  },
+  "boundaries": [
+    "Measured verification-fixture improvement is not an application rendering-performance benchmark.",
+    "One optimized native focused run and full units pass; complete source, packaged and installed retry remains pending."
+  ]
+}
