@@ -38,19 +38,21 @@ export function ProjectFileMenu({ request, expanded, onActivate, onNew, onNewFol
     document.addEventListener('pointerdown', outside, true); document.addEventListener('scroll', scroll, true); document.addEventListener('keydown', escape, true); window.addEventListener('resize', resize);
     return () => { document.removeEventListener('pointerdown', outside, true); document.removeEventListener('scroll', scroll, true); document.removeEventListener('keydown', escape, true); window.removeEventListener('resize', resize); };
   }, [request]);
-  async function perform(action: 'relative' | 'absolute' | 'reveal', button: HTMLButtonElement) {
+  async function perform(action: 'relative' | 'absolute' | 'contents' | 'reveal', button: HTMLButtonElement) {
     if (locked.current) return;
     locked.current = true; failedButton.current = button; setBusy(true); setError('');
     try {
       if (action === 'reveal') await window.qiyao.revealProjectEntry(request.projectId, request.entry.relativePath);
       else {
-        const path = action === 'absolute' ? await window.qiyao.projectEntryPath(request.projectId, request.entry.relativePath) : request.entry.relativePath;
+        const text = action === 'contents' ? await window.qiyao.readFile(request.projectId, request.entry.relativePath)
+          : action === 'absolute' ? await window.qiyao.projectEntryPath(request.projectId, request.entry.relativePath) : request.entry.relativePath;
         if (!mounted.current || !request.anchor.isConnected) return;
-        await navigator.clipboard.writeText(path);
+        await navigator.clipboard.writeText(text);
       }
       locked.current = false; close();
     }
-    catch { if (mounted.current) setError(action === 'reveal' ? '无法在文件资源管理器中显示，请刷新文件树后重试。' : '无法复制路径，请重试。'); }
+    catch { if (mounted.current) setError(action === 'reveal' ? '无法在文件资源管理器中显示，请刷新文件树后重试。'
+      : action === 'contents' ? '无法复制内容，请确认文件可读且为 256 KB 以内的 UTF-8 文本后重试。' : '无法复制路径，请重试。'); }
     finally { locked.current = false; if (mounted.current) setBusy(false); }
   }
   return createPortal(<div ref={panel} role="menu" aria-label="文件操作" className="project-file-menu" style={{ left: request.x, top: request.y }} onKeyDown={event => {
@@ -66,6 +68,7 @@ export function ProjectFileMenu({ request, expanded, onActivate, onNew, onNewFol
     <Button role="menuitem" disabled={busy} onClick={() => { close(); onActivate(); }}><Glyph name={request.entry.directory ? expanded ? 'down' : 'right' : 'file'} size={16} />{request.entry.directory ? expanded ? '收起目录' : '展开目录' : '打开文件'}</Button>
     <Button role="menuitem" disabled={busy} onClick={event => { void perform('relative', event.currentTarget); }}><Glyph name="copy" size={16} />复制相对路径</Button>
     <Button role="menuitem" disabled={busy} onClick={event => { void perform('absolute', event.currentTarget); }}><Glyph name="copy" size={16} />复制完整路径</Button>
+    {!request.entry.directory && <Button role="menuitem" disabled={busy} onClick={event => { void perform('contents', event.currentTarget); }}><Glyph name="copy" size={16} />复制文件内容</Button>}
     <Button role="menuitem" disabled={busy} onClick={event => { void perform('reveal', event.currentTarget); }}><Glyph name="folder" size={16} />在文件资源管理器中显示</Button>
     <Button role="menuitem" disabled={busy} onClick={() => { close(); onNew(); }}><Glyph name="plus" size={16} />在此目录新建文件</Button>
     <Button role="menuitem" disabled={busy} onClick={() => { close(); onNewFolder(); }}><Glyph name="folderPlus" size={16} />在此目录新建文件夹</Button>

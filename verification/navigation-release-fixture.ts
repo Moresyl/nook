@@ -28,6 +28,11 @@ export function navigationReleaseProof() {
           absolutePathCopy: true, absolutePathFailureRetry: true, latePathIsolation: true, revealDispatch: true, revealFailureRetry: true, invalidPathRejected: true,
           geometry: [1, 1.25, 1.5].map(zoom => ({ zoom, left: 68, top: 100, right: 288, bottom: 246, width: 507, height: 360, chrome: 36 })),
           entryActionLayouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, actualTheme: theme, zoom, left: 68, top: 92, right: 288, bottom: 352, width: 507, height: 360, chrome: 36, errorContained: true, absolutePathCopied: true, revealRetried: true, screenshot: `121-project-file-path-actions-${theme}-${zoom * 100}.png` }))),
+          fileContents: {
+            exactUtf8BomAndCrlf: true, emptyFile: true, maximumSize: 256_000, binaryInvalidUtf8OversizeAndMissingRejected: true,
+            readFailureRetry: true, clipboardFailureRetry: true, lateReadIsolation: true, noEditorOpened: true, directoriesExcluded: true,
+            layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, actualTheme: theme, zoom, left: 68, top: 60, right: 288, bottom: 352, width: 507, height: 360, chrome: 36, errorContained: true, keyboardErrorVisible: true, clipboardFailureRetried: true, screenshot: `138-project-file-copy-contents-${theme}-${zoom * 100}.png` }))),
+          },
         },
       },
     },

@@ -54,6 +54,7 @@ describe('navigation release evidence', () => {
       [(p: Fixture) => p.projectTree.stickyFolders, 'project-tree'],
       [(p: Fixture) => p.projectTree.stickyFolders.virtualizedLargeDirectory, 'project-tree'],
       [(p: Fixture) => p.projectTree.stickyFolders.fileMenu, 'project-tree'],
+      [(p: Fixture) => p.projectTree.stickyFolders.fileMenu.fileContents, 'project-tree'],
     ] as const;
     for (const [select, message] of groups) {
       const keys = Object.entries(select(navigationReleaseProof())).filter(([, value]) => typeof value === 'boolean').map(([key]) => key);
@@ -115,5 +116,26 @@ describe('navigation release evidence', () => {
       const value = navigationReleaseProof(), geometry = value.projectTree.stickyFolders.fileMenu.geometry;
       geometry[2] = { ...geometry[2], ...change }; expect(() => verifyNavigationProof(value)).toThrow('project-tree');
     }
+  });
+
+  it('requires complete file-content copy evidence, the text size limit and six unique bounded retry layouts', () => {
+    for (const contents of [undefined, null, {}, []]) {
+      const value = navigationReleaseProof(); Reflect.set(value.projectTree.stickyFolders.fileMenu, 'fileContents', contents);
+      expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    for (const maximumSize of [undefined, 0, 255_999, 256_001, Number.NaN]) {
+      const value = navigationReleaseProof(); Reflect.set(value.projectTree.stickyFolders.fileMenu.fileContents, 'maximumSize', maximumSize);
+      expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    for (const layouts of [undefined, [], [null], navigationReleaseProof().projectTree.stickyFolders.fileMenu.fileContents.layouts.slice(0, 5)]) {
+      const value = navigationReleaseProof(); Reflect.set(value.projectTree.stickyFolders.fileMenu.fileContents, 'layouts', layouts);
+      expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    for (const change of [{ theme: 'light' }, { actualTheme: 'light' }, { actualTheme: undefined }, { zoom: 1.25 }, { screenshot: '../PRIVATE.png' }, { errorContained: false }, { keyboardErrorVisible: false }, { keyboardErrorVisible: undefined }, { clipboardFailureRetried: false }, { errorContained: 'true' }, { clipboardFailureRetried: 1 }, { left: -1 }, { right: 508 }, { top: 35 }, { bottom: 361 }, { width: 0 }, { height: 0 }, { chrome: -1 }, { right: 68 }, { bottom: 60 }, { left: Number.NaN }]) {
+      const value = navigationReleaseProof(); Object.assign(value.projectTree.stickyFolders.fileMenu.fileContents.layouts[5], change);
+      expect(() => verifyNavigationProof(value)).toThrow('project-tree');
+    }
+    const extra = navigationReleaseProof(), layouts = extra.projectTree.stickyFolders.fileMenu.fileContents.layouts; layouts.push(layouts[0]);
+    expect(() => verifyNavigationProof(extra)).toThrow('project-tree');
   });
 });

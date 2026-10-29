@@ -28,6 +28,10 @@ export type NavigationReleaseProof = {
       fileMenu?: Record<'pointerAndKeyboard' | 'rovingFocus' | 'compositionEscape' | 'outsideAndScrollDismissal' | 'unchangedResizeRetainsMenu' | 'changedResizeDismissesMenu' | 'openAndDirectoryToggle' | 'newFileParent' | 'copyFailureRetry' | 'lateCopyIsolation' | 'absolutePathCopy' | 'absolutePathFailureRetry' | 'latePathIsolation' | 'revealDispatch' | 'revealFailureRetry' | 'invalidPathRejected', boolean> & {
         themes: string[]; geometry: ProjectFileMenuBounds[];
         entryActionLayouts: (ProjectFileMenuBounds & { theme: string; actualTheme: string; errorContained: boolean; absolutePathCopied: boolean; revealRetried: boolean; screenshot: string })[];
+        fileContents: Record<'exactUtf8BomAndCrlf' | 'emptyFile' | 'binaryInvalidUtf8OversizeAndMissingRejected' | 'readFailureRetry' | 'clipboardFailureRetry' | 'lateReadIsolation' | 'noEditorOpened' | 'directoriesExcluded', boolean> & {
+          maximumSize: number;
+          layouts: (ProjectFileMenuBounds & { theme: string; actualTheme: string; errorContained: boolean; keyboardErrorVisible: boolean; clipboardFailureRetried: boolean; screenshot: string })[];
+        };
       };
     };
   };

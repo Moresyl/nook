@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { realpath } from 'node:fs/promises';
+import { readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { projectTreeItem } from './project-tree-viewport.mjs';
 import { dismissModalWithEscape } from './text-hint-verification.mjs';
@@ -12,7 +12,8 @@ export async function verifyProjectFileMenu({ page, application, capture, select
   const file = 'm-large/entry-0000.txt', next = 'm-large/entry-0001.txt';
   const mainWindow = "require('electron').BrowserWindow.getAllWindows().find(window => !window.isDestroyed() && window.webContents.getURL().includes('index.html'))";
   const absoluteFile = await realpath(join(root, file)), absoluteFolder = await realpath(join(root, 'm-large'));
-  const entryActionLayouts = [];
+  const entryActionLayouts = [], contentCopyLayouts = [];
+  const contentsError = '无法复制内容，请确认文件可读且为 256 KB 以内的 UTF-8 文本后重试。';
   async function open(path, keyboard = true) {
     if (keyboard) { await item(path).focus(); await page.keyboard.press('Shift+F10'); }
     else await item(path).click({ button: 'right' });
@@ -28,6 +29,7 @@ export async function verifyProjectFileMenu({ page, application, capture, select
   }
   const geometry = [];
   await open('m-large', false); await focused(action('展开目录'));
+  assert.equal(await action('复制文件内容').count(), 0, 'Directories do not offer text-content copying');
   assert.equal(await page.locator('.editor-actionbar').count(), 0);
   await action('展开目录').click(); await menu().waitFor({ state: 'hidden' }); await item(file).waitFor();
   await open(file); await focused(action('打开文件'));
@@ -52,7 +54,7 @@ export async function verifyProjectFileMenu({ page, application, capture, select
       if (window.nookFileCopyMode === 'pending') await new Promise(resolve => { window.nookFileCopyResolve = resolve; });
     } });
   });
-  await application.evaluateMain(`globalThis.nookFileRevealOriginal=require('electron').shell.showItemInFolder;globalThis.nookFileRevealCalls=[];globalThis.nookFileRevealFail=false;require('electron').shell.showItemInFolder=path=>{globalThis.nookFileRevealCalls.push(path);if(globalThis.nookFileRevealFail)throw new Error('PRIVATE_REVEAL_ERROR')};globalThis.nookFileInvoke=require('electron').ipcMain._invokeHandlers.get('qiyao:invoke');require('electron').ipcMain.removeHandler('qiyao:invoke');require('electron').ipcMain.handle('qiyao:invoke',async(event,command,...args)=>{const invoke=globalThis.nookFileInvoke;if(command==='projectEntryPath'&&globalThis.nookFilePathHold){globalThis.nookFilePathStarted=true;await new Promise(resolve=>{globalThis.nookFilePathRelease=resolve});const result=await invoke(event,command,...args);globalThis.nookFilePathCompleted=true;return result}return invoke(event,command,...args)});`);
+  await application.evaluateMain(`globalThis.nookFileRevealOriginal=require('electron').shell.showItemInFolder;globalThis.nookFileRevealCalls=[];globalThis.nookFileRevealFail=false;require('electron').shell.showItemInFolder=path=>{globalThis.nookFileRevealCalls.push(path);if(globalThis.nookFileRevealFail)throw new Error('PRIVATE_REVEAL_ERROR')};globalThis.nookFileInvoke=require('electron').ipcMain._invokeHandlers.get('qiyao:invoke');require('electron').ipcMain.removeHandler('qiyao:invoke');require('electron').ipcMain.handle('qiyao:invoke',async(event,command,...args)=>{const invoke=globalThis.nookFileInvoke;if((command==='projectEntryPath'||command==='readFile')&&globalThis.nookFilePathHold){globalThis.nookFilePathStarted=true;await new Promise(resolve=>{globalThis.nookFilePathRelease=resolve});const result=await invoke(event,command,...args);globalThis.nookFilePathCompleted=true;return result}return invoke(event,command,...args)});`);
   try {
     await open(file); await action('复制相对路径').press('Enter'); await menu().waitFor({ state: 'hidden' }); await focused(item(file));
     assert.equal(await page.evaluate(() => window.nookFileCopiedPath), file);
@@ -65,7 +67,7 @@ export async function verifyProjectFileMenu({ page, application, capture, select
     await page.evaluate(() => { window.nookFileCopyMode = 'pending'; window.nookFileCopyCalls = 0; });
     await open(file); await action('复制相对路径').click();
     await page.waitForFunction(() => Boolean(window.nookFileCopyResolve));
-    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 6);
+    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 7);
     await page.keyboard.press('Escape'); assert.equal(await menu().isVisible(), true);
     await open(next, false); await focused(action('打开文件'));
     await page.evaluate(async () => { window.nookFileCopyResolve(); await new Promise(resolve => requestAnimationFrame(resolve)); });
@@ -92,13 +94,43 @@ export async function verifyProjectFileMenu({ page, application, capture, select
     await page.evaluate(() => { window.nookFileCopyCalls = 0; });
     await open(file); await action('复制完整路径').click();
     await waitForMain('globalThis.nookFilePathStarted');
-    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 6);
+    assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 7);
     await page.keyboard.press('Escape'); assert.equal(await menu().isVisible(), true);
     await open(next, false); await application.evaluateMain('globalThis.nookFilePathHold=false;globalThis.nookFilePathRelease()');
     await waitForMain('globalThis.nookFilePathCompleted');
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.equal(await page.evaluate(() => window.nookFileCopyCalls), 0, 'An unmounted menu never writes a late resolved absolute path');
     assert.equal(await menu().isVisible(), true); await focused(action('打开文件')); await page.keyboard.press('Escape');
+    const contentPath = 'm-large/entry-0002.txt', contentFile = join(root, contentPath), originalBytes = await readFile(contentFile);
+    try {
+      for (const text of ['\ufeff中文文件内容\r\nSecond line\r\n', '', 'x'.repeat(256_000)]) {
+        await writeFile(contentFile, text); await open(contentPath); await action('复制文件内容').press('Enter');
+        await menu().waitFor({ state: 'hidden' }); await focused(item(contentPath));
+        assert.equal(await page.evaluate(() => window.nookFileCopiedPath), text);
+        assert.equal(await readFile(contentFile, 'utf8'), text, 'Copying preserves the exact disk contents');
+        assert.equal(await page.locator('.editor-actionbar').count(), 0, 'Copying contents does not open or modify an editor draft');
+      }
+      for (const bytes of [Buffer.from([0, 1, 2]), Buffer.from([0xff]), Buffer.alloc(256_001, 120), null]) {
+        if (bytes) await writeFile(contentFile, bytes);
+        await open(contentPath);
+        if (!bytes) await rm(contentFile);
+        await page.evaluate(() => { window.nookFileCopyCalls = 0; }); await action('复制文件内容').press('Enter');
+        await menu().getByRole('alert').getByText(contentsError, { exact: true }).waitFor(); await focused(action('复制文件内容'));
+        assert.equal(await page.evaluate(() => window.nookFileCopyCalls), 0, 'Unreadable or unsupported files never reach clipboard.writeText');
+        await writeFile(contentFile, 'RETRY_CONTENT\r\n'); await action('复制文件内容').press('Enter'); await menu().waitFor({ state: 'hidden' });
+        assert.equal(await page.evaluate(() => window.nookFileCopiedPath), 'RETRY_CONTENT\r\n');
+      }
+      await application.evaluateMain('globalThis.nookFilePathHold=true;globalThis.nookFilePathStarted=false;globalThis.nookFilePathCompleted=false');
+      await page.evaluate(() => { window.nookFileCopyCalls = 0; });
+      await open(contentPath); await action('复制文件内容').click(); await waitForMain('globalThis.nookFilePathStarted');
+      assert.equal(await menu().locator('[role="menuitem"]:disabled').count(), 7);
+      await page.keyboard.press('Escape'); assert.equal(await menu().isVisible(), true);
+      await open(next, false); await application.evaluateMain('globalThis.nookFilePathHold=false;globalThis.nookFilePathRelease()');
+      await waitForMain('globalThis.nookFilePathCompleted');
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      assert.equal(await page.evaluate(() => window.nookFileCopyCalls), 0, 'An unmounted menu never copies late file contents');
+      assert.equal(await menu().isVisible(), true); await focused(action('打开文件')); await page.keyboard.press('Escape');
+    } finally { await writeFile(contentFile, originalBytes); }
     await application.resize(760, 540);
     for (const theme of ['light', 'dark']) for (const zoom of [1, 1.25, 1.5]) {
       if (await page.evaluate(() => document.documentElement.dataset.theme) !== theme) {
@@ -110,6 +142,27 @@ export async function verifyProjectFileMenu({ page, application, capture, select
       await page.waitForFunction(theme => document.documentElement.dataset.theme === theme, theme);
       await application.evaluateMain(`${mainWindow}.webContents.setZoomFactor(${zoom})`);
       await page.waitForFunction(zoom => Math.abs(innerWidth - 760 / zoom) <= 1, zoom);
+      await page.evaluate(() => { window.nookFileCopyMode = 'reject'; });
+      await open(file); await action('复制文件内容').press('Enter');
+      await menu().getByRole('alert').getByText(contentsError, { exact: true }).waitFor(); await focused(action('复制文件内容'));
+      assert.equal((await menu().innerText()).includes('PRIVATE_FILE_COPY_ERROR'), false);
+      await page.keyboard.press('PageDown');
+      await page.waitForFunction(() => {
+        const menu = document.querySelector('.project-file-menu'), alert = menu?.querySelector('[role="alert"]');
+        if (!alert) return false;
+        const bounds = menu.getBoundingClientRect(), error = alert.getBoundingClientRect();
+        return error.top >= bounds.top && error.bottom <= bounds.bottom;
+      });
+      const contentMeasured = await menu().evaluate(element => {
+        const rect = element.getBoundingClientRect(), alert = element.querySelector('[role="alert"]').getBoundingClientRect();
+        return { actualTheme: document.documentElement.dataset.theme, left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: innerWidth, height: innerHeight, chrome: document.querySelector('.window-chrome').getBoundingClientRect().bottom, errorContained: alert.top >= rect.top && alert.bottom <= rect.bottom, scrollHeight: element.scrollHeight, clientHeight: element.clientHeight };
+      });
+      assert.ok(contentMeasured.actualTheme === theme && contentMeasured.left >= 8 && contentMeasured.right <= contentMeasured.width - 7 && contentMeasured.top >= contentMeasured.chrome + 7 && contentMeasured.bottom <= contentMeasured.height - 7 && contentMeasured.errorContained, JSON.stringify(contentMeasured));
+      const contentScreenshot = `138-project-file-copy-contents-${theme}-${zoom * 100}.png`; await capture(contentScreenshot);
+      await page.evaluate(() => { window.nookFileCopyMode = 'success'; });
+      await action('复制文件内容').press('Enter'); await menu().waitFor({ state: 'hidden' }); await focused(item(file));
+      assert.equal(await page.evaluate(() => window.nookFileCopiedPath), 'LARGE_TREE');
+      contentCopyLayouts.push({ theme, zoom, ...contentMeasured, keyboardErrorVisible: true, clipboardFailureRetried: true, screenshot: contentScreenshot });
       await open(file); await action('复制完整路径').press('Enter'); await menu().waitFor({ state: 'hidden' });
       assert.equal(await page.evaluate(() => window.nookFileCopiedPath), absoluteFile);
       await application.evaluateMain('globalThis.nookFileRevealFail=true');
@@ -165,5 +218,5 @@ export async function verifyProjectFileMenu({ page, application, capture, select
   await page.reload(); await select(); await open('m-large', false); await action('展开目录').click(); await item(file).waitFor();
   await open(file); await focused(action('打开文件')); await capture('120-project-file-menu-light.png');
   await application.resize(1000, 720); await menu().waitFor({ state: 'hidden' }); await focused(item(file));
-  return { pointerAndKeyboard: true, rovingFocus: true, compositionEscape: true, outsideAndScrollDismissal: true, unchangedResizeRetainsMenu: true, changedResizeDismissesMenu: true, themes: ['light', 'dark'], openAndDirectoryToggle: true, newFileParent: true, copyFailureRetry: true, lateCopyIsolation: true, absolutePathCopy: true, absolutePathFailureRetry: true, latePathIsolation: true, revealDispatch: true, revealFailureRetry: true, invalidPathRejected: true, entryActionLayouts, geometry, clipboardScope: 'Renderer writeText fixture verifies exact relative/absolute paths, errors and pending writes; physical clipboard unchanged and not verified.', revealScope: 'Actual main-process path validation dispatches to an intercepted Electron shell.showItemInFolder; physical Explorer selection is a separate check.' };
+  return { pointerAndKeyboard: true, rovingFocus: true, compositionEscape: true, outsideAndScrollDismissal: true, unchangedResizeRetainsMenu: true, changedResizeDismissesMenu: true, themes: ['light', 'dark'], openAndDirectoryToggle: true, newFileParent: true, copyFailureRetry: true, lateCopyIsolation: true, absolutePathCopy: true, absolutePathFailureRetry: true, latePathIsolation: true, fileContents: { exactUtf8BomAndCrlf: true, emptyFile: true, maximumSize: 256_000, binaryInvalidUtf8OversizeAndMissingRejected: true, readFailureRetry: true, clipboardFailureRetry: true, lateReadIsolation: true, noEditorOpened: true, directoriesExcluded: true, layouts: contentCopyLayouts }, revealDispatch: true, revealFailureRetry: true, invalidPathRejected: true, entryActionLayouts, geometry, clipboardScope: 'Renderer writeText fixture verifies exact relative/absolute paths and file contents, errors and pending writes; physical clipboard unchanged and not verified.', revealScope: 'Actual main-process path validation dispatches to an intercepted Electron shell.showItemInFolder; physical Explorer selection is a separate check.' };
 }

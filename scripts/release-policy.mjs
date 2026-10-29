@@ -158,11 +158,17 @@ export function verifyNavigationProof(proof) {
   const entryLayouts = Array.isArray(menu?.entryActionLayouts) && menu.entryActionLayouts.length === 6
     && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => menu.entryActionLayouts.filter(row => row?.theme === theme && row.zoom === zoom && row.screenshot === `121-project-file-path-actions-${theme}-${zoom * 100}.png`).length === 1))
     && menu.entryActionLayouts.every(row => wholeMenu(row) && row.actualTheme === row.theme && row.errorContained === true && row.absolutePathCopied === true && row.revealRetried === true);
+  const contents = menu?.fileContents;
+  const contentFlags = ['exactUtf8BomAndCrlf', 'emptyFile', 'binaryInvalidUtf8OversizeAndMissingRejected', 'readFailureRetry', 'clipboardFailureRetry', 'lateReadIsolation', 'noEditorOpened', 'directoriesExcluded'];
+  const contentLayouts = Array.isArray(contents?.layouts) && contents.layouts.length === 6
+    && ['light', 'dark'].every(theme => [1, 1.25, 1.5].every(zoom => contents.layouts.filter(row => row?.theme === theme && row.zoom === zoom && row.screenshot === `138-project-file-copy-contents-${theme}-${zoom * 100}.png`).length === 1))
+    && contents.layouts.every(row => wholeMenu(row) && row.actualTheme === row.theme && row.errorContained === true && row.keyboardErrorVisible === true && row.clipboardFailureRetried === true);
   if (tree?.checks !== 8 || !['boundedMountedCount', 'allLoadedRowsReachableByScroll', 'completeSiblingMetadata'].every(key => virtual?.[key] === true)
     || !Array.isArray(virtual.rootLoadedCounts) || virtual.rootLoadedCounts.length !== 2 || virtual.rootLoadedCounts[0] !== 200 || virtual.rootLoadedCounts[1] !== 225
     || !treeFlags.every(key => sticky?.[key] === true) || large?.files !== 1000 || large.pages !== 5 || !Number.isInteger(large.mountedRows) || large.mountedRows <= 0 || large.mountedRows >= large.files
     || !['keyboardLastAndFirst', 'completeSiblingMetadata', 'collapseRetainedFocus'].every(key => large[key] === true)
-    || !menuFlags.every(key => menu?.[key] === true) || !Array.isArray(menu.themes) || menu.themes.length !== 2 || !['light', 'dark'].every(theme => menu.themes.filter(value => value === theme).length === 1) || !menuLayouts || !entryLayouts) {
+    || !menuFlags.every(key => menu?.[key] === true) || !Array.isArray(menu.themes) || menu.themes.length !== 2 || !['light', 'dark'].every(theme => menu.themes.filter(value => value === theme).length === 1) || !menuLayouts || !entryLayouts
+    || !contentFlags.every(key => contents?.[key] === true) || contents.maximumSize !== 256_000 || !contentLayouts) {
     throw new Error('Complete project-tree virtualization, keyboard and menu checks are required');
   }
 }
