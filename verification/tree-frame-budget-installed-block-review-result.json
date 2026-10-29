@@ -1,0 +1,680 @@
+{
+  "verifiedAt": "2026-10-29T09:31:37.313Z",
+  "status": "tree-fixtures-accepted-installed-exit-blocked",
+  "candidate": "191c94e5fad7f518ba7dcd9e4133ce87398b971c",
+  "productCommit": "6c4486eca6c3251be11edd1da37cbb1b7c298e63",
+  "completeInstalledAcceptance": false,
+  "completeDistributionAccepted": false,
+  "hostedPublication": false,
+  "change": "Collection reserves two frames per initial viewport at30Hz plus5000ms processing, with a maximum step count. Guide verification explicitly selects normal motion and independently checks reduced motion. The rejected frame-rate switch was reverted. Application action and shutdown deadlines are unchanged.",
+  "inputs": {
+    "frozen": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/installer-before.json",
+      "sha256": "40042e15c399c3760dd1412b68a3df34286d6e63910e52b3ecc86386b339e194"
+    },
+    "after": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/inputs-after-installer-failure.json",
+      "sha256": "67c57e4dc709b73deb623597863e9bc51ec6eb87f29006adcba4c1d29bd6c257"
+    },
+    "tracked": 1340,
+    "compiled": 236,
+    "binaries": 4,
+    "additionalMetadata": [
+      {
+        "path": "D:/GR/nook-terminal-exit/verification/file-contents-source-packaged-and-installer-block-review-result.json",
+        "sha256": "06720ac01e180a9c84202eabc40856fcd8202187edaefc571164629ff2b6bbc0"
+      },
+      {
+        "path": "D:/GR/nook-terminal-exit/verification/tree-frame-budget-review-result.json",
+        "sha256": "f173e54e0cb003727a3e05a87dcc194fb7b51aaeefe10e8684e19fab20d0ced6"
+      }
+    ],
+    "allCandidateHashesMatch": true,
+    "applicationCompiledAndBinariesUnchanged": true,
+    "changesSinceProductFreeze": [
+      {
+        "path": "CHANGELOG.md",
+        "before": "8c1529518cd0f7a16c491d9350e0f04ae901fe6453787e8f26077d3e8129b46c",
+        "after": "8518731c36f1918a45e76905ebfad89f26475e7ab67e20a3bf83cfbf29cef602",
+        "scope": "documentation"
+      },
+      {
+        "path": "docs/DELIVERY.md",
+        "before": "fa4b4fc93a9fb3d6a55abe2a5849d19e7c4bd72a91de1de4d649acd856e64308",
+        "after": "43112afc71e5a8478bcd075a14914a44f0c877cddfb093645741899d4cc609d8",
+        "scope": "documentation"
+      },
+      {
+        "path": "docs/DESIGN-ALIGNMENT.md",
+        "before": "fa2fb08b92d0cd91efc5816ebff3097986253a8dc09a8e9f5519f418a6963fc8",
+        "after": "d95afc61e89ccdaa4cf0f4b8006c52955a2b7c3e399d3d4dadf501389b9c715d",
+        "scope": "documentation"
+      },
+      {
+        "path": "docs/RELEASE.md",
+        "before": "345cb39493cd7b5a911a47bb974f683e1cad67352935e067d6bb77d7b872c7ba",
+        "after": "14a258b22e21b585ce1417a6d756267438902dd2bc9a20f107d75c28daf65218",
+        "scope": "documentation"
+      },
+      {
+        "path": "docs/UI-COVERAGE.md",
+        "before": "ce4249b1da9316aa58ff870ad21764a5790a07c3024a2fcce888129d260786ac",
+        "after": "a85025dc354ff83eda89ed406aaf086750860d07e536549ca4d076cc6079e591",
+        "scope": "documentation"
+      },
+      {
+        "path": "scripts/project-tree-viewport.mjs",
+        "before": "9087ae4236c900571d7250ed76e69e95a60c424edaee4c3713bb876f8dbacc8e",
+        "after": "9910ba00c27103bb31accf4fd6dcaf3cf100de4fcb0ef724a98e69e3cf0f61a6",
+        "scope": "verification helper or unit tests"
+      },
+      {
+        "path": "scripts/verify-project-tree-sticky.mjs",
+        "before": "803329936a1aa2a2a862182b7b006d866369032f93c2bdb1097599ae2af62502",
+        "after": "24f6c9c6125fc90b0be323a8dc41b5e9669c17038a91eb29cd265a34009e42c6",
+        "scope": "verification helper or unit tests"
+      },
+      {
+        "path": "verification/project-tree-viewport.test.ts",
+        "before": "b520d76b1debf80d300bc3937167aac7097b079f30ae128087f88d8465b49746",
+        "after": "9731a53fd774eff125164ddaa83b293f1c20d7c55f3cc330c88997cb4e80e843",
+        "scope": "verification helper or unit tests"
+      }
+    ]
+  },
+  "helperReview": {
+    "path": "D:/GR/nook-terminal-exit/verification/tree-frame-budget-review-result.json",
+    "sha256": "f173e54e0cb003727a3e05a87dcc194fb7b51aaeefe10e8684e19fab20d0ced6"
+  },
+  "focused": [
+    {
+      "variant": "source",
+      "checks": 8,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/source-result.json",
+        "sha256": "3cdcb1becec45c9540f89cde6ef70ee460d1248c17090dc4413d91641eba6625"
+      },
+      "log": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/source.log",
+        "sha256": "dc2ac4ac36755d83a09c597d2ad565b217ab1fe663cfbd76afa24c7027475caa"
+      },
+      "timings": [
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3177,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3205,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3165,
+          "timeoutMs": 10800
+        }
+      ],
+      "exits": [
+        {
+          "elapsedMs": 363,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1320,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "context": "Fresh isolated workspace."
+    },
+    {
+      "variant": "packaged",
+      "checks": 8,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/packaged-result.json",
+        "sha256": "79f719a034da16442db587b57180984dabb9a362e23a51eab982d3d947c671a2"
+      },
+      "log": {
+        "path": "D:/GR/nook-tree-frame-budget-native-retry-evidence-2026-10-29/packaged.log",
+        "sha256": "d445239b02ca9992c33fd9483d9a3449cad710da63bb5f9a3928cd585c981e46"
+      },
+      "timings": [
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3323,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3249,
+          "timeoutMs": 10800
+        },
+        {
+          "steps": 87,
+          "maximumSteps": 87,
+          "minimumHeight": 95,
+          "collectedRows": 207,
+          "elapsedMs": 3318,
+          "timeoutMs": 10800
+        }
+      ],
+      "exits": [
+        {
+          "elapsedMs": 621,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 1573,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "context": "Same failed installed workspace seed and byte-identical packaged executable."
+    }
+  ],
+  "unit": {
+    "files": 150,
+    "tests": 1755,
+    "log": {
+      "path": "D:/GR/nook-tree-frame-budget-full-unit-2026-10-29.log",
+      "sha256": "5032677b84d28d32497fbc3cc626f4dc9dea0aeb1af5f9f0dbf3cfeee8010fa4"
+    },
+    "coverage": {
+      "lines": {
+        "total": 4701,
+        "covered": 4678,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7800,
+        "covered": 7577,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1730,
+        "covered": 1693,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5461,
+        "covered": 5174,
+        "skipped": 0,
+        "pct": 94.74
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "helperTests": 8,
+    "helperLog": {
+      "path": "D:/GR/nook-tree-frame-budget-unit-2026-10-29.log",
+      "sha256": "cd4434fa745f2bb34970a5fb9834a88e14405e685cf254b4f2242753dbd6ad62"
+    },
+    "helperCoverage": {
+      "statements": 98.57,
+      "branches": 91.66,
+      "functions": 100,
+      "lines": 100
+    },
+    "typecheck": {
+      "path": "D:/GR/nook-tree-frame-budget-check-2026-10-29.log",
+      "sha256": "2306832ea7a3ca5cc328cd52ac2be87a3bbdcc0753558ef5706e214f1f1529d1"
+    }
+  },
+  "adoptedFullRuntimes": [
+    {
+      "variant": "source",
+      "checks": 422,
+      "normalExits": 75,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/electron-result.json",
+        "sha256": "4dd780efb2e467fed4cfa029ab43d5ecd0b07de21ef22b7b9ace0d781439dcaa"
+      },
+      "adoption": "Earlier full run of the byte-identical application and binaries under the previous collection helper. New helper equivalence is separately established by source and packaged8-check runs."
+    },
+    {
+      "variant": "packaged",
+      "checks": 422,
+      "normalExits": 75,
+      "result": {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/packaged-result.json",
+        "sha256": "1ef22fd6aab53f4fae45fc275e9f875f9d25db0a6d781402d2cdaa490b70982c"
+      },
+      "adoption": "Earlier full run of the byte-identical application and binaries under the previous collection helper. New helper equivalence is separately established by source and packaged8-check runs."
+    }
+  ],
+  "installedFailure": {
+    "completedChecks": 247,
+    "log": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/installer.log",
+      "sha256": "83d2b451fe2793dad204c3887f6a14411bb6bff3d36ba830387475ff9164e26e"
+    },
+    "status": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/status.json",
+      "sha256": "e9d6b89fa0b73d9a1159badc793deb75d4497b51250df611045623e8fa27fa7f"
+    },
+    "exit": {
+      "elapsedMs": 10002,
+      "forced": true,
+      "exitCode": null,
+      "signalCode": null
+    },
+    "priorNormalExits": 23,
+    "narrowTraversals": [
+      {
+        "steps": 87,
+        "maximumSteps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 3193,
+        "timeoutMs": 10800
+      },
+      {
+        "steps": 87,
+        "maximumSteps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 4760,
+        "timeoutMs": 10800
+      },
+      {
+        "steps": 87,
+        "maximumSteps": 87,
+        "minimumHeight": 95,
+        "collectedRows": 207,
+        "elapsedMs": 4088,
+        "timeoutMs": 10800
+      }
+    ],
+    "rootCause": "Unproven. Application emitted will-quit/process-exit/quit while native Browser/GPU/Utility processes remained alive at the original10s deadline.",
+    "full422CheckAcceptance": false,
+    "installedPackageAudit": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/installed-package-audit-result.json",
+      "sha256": "5ff6b94a94c6dd582a89006be5514e47d3dcfa0177fa26508a519068602bc70f"
+    },
+    "cleanup": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/installer-cleanup-after-failure.json",
+      "sha256": "5b4a24bb99641e6fcfcf2d0c7c32815859b698531dd3014940a9a661e8890ee6"
+    }
+  },
+  "seededBranchDiagnostic": {
+    "completedChecks": 0,
+    "status": "failed-before-checks",
+    "originalStartupDeadlineMs": 30000,
+    "log": {
+      "path": "D:/GR/nook-tree-frame-budget-branches-seeded-2026-10-29.log",
+      "sha256": "d99bd5979997aa8655be9d6509ea1f8309714c1c9961fb40251e4939b80afac2"
+    },
+    "rootCause": "Unproven. No debugging endpoint was exposed before the startup timeout. This does not establish branch or shutdown acceptance."
+  },
+  "screenshots": {
+    "captures": [
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-light-100.png",
+        "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-light-125.png",
+        "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-light-150.png",
+        "sha256": "34e245aff302c0e11d26e5990790c70e4080f1689be6fd2dcefa93c4121866b2",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-dark-100.png",
+        "sha256": "1b24c0fd09ae27ef60a7a47eabcfb206b97193a38c16e85fa18599f79975c604",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-dark-125.png",
+        "sha256": "8a60fda3b0a8b5793268234571665b5e0014d7f8856bf1d488a41eadc506f62d",
+        "viewedAt": "2026-10-29T03:47:50.202Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/136-image-export-dark-150.png",
+        "sha256": "bf1520f7da515615fb13828964866b81e31743d71593f337f9d6cb324ee919ee",
+        "viewedAt": "2026-10-29T03:47:50.203Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "ca9fd93234b136dd6bd31fac2c73fbe05af6a05cb6375cab33b7e2a5274a7b94",
+        "viewedAt": "2026-10-29T03:53:16.472Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "c0fac55928ba93402c7299fb0c884a0e8819169bc67c2e16ca8198fe66942e7c",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "49264ef01ea4cef64780331e5f093728257d865cc8a41c20a69938508b61c675",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "7a9b4db53772d065d269247683f20981af776173e3c79035a4556abfe02dc2f9",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "83aefce865c9bf48d133db566bd6ff3fed254a7af3b7166f031f4ff7ad600ca0",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "54348e60d520b629b2396f8de7cfdd1c8b09558219c0397178a590f0df6b9d6f",
+        "viewedAt": "2026-10-29T03:53:16.473Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "50baba559da1900032d1a9c7312f751afc2b13f11f8f221f61bb79c37bf9fe54",
+        "viewedAt": "2026-10-29T04:08:00.316Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "2ea06f2cbcb2db032e9f6e40ce0624b7d47aee829eeab79b33bc93e29a367b05",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "44926763d1e5c483a8fa40264711c5386f9c115d1918e411a91a5633d1cf5771",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "0aaf0bce58a19fd6e058e2abb7affe313fbd7c3c7cd31b0c222babb86640a412",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "896959f602f99854faac9ab67f607ef82eb2719e97b66057c5d4e8b4583c7691",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/source/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "aa16dddd13036d16041b1b82a5457aa8ad38563b9ebf877157940312d3cbb233",
+        "viewedAt": "2026-10-29T04:08:00.317Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-100.png",
+        "sha256": "653b9be4d52792f85caca1391d427514d12ea7f728247fea1dacaec89dee5d0b",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-125.png",
+        "sha256": "a81659fd11e7f94cdd8966d2102a75c55f29e1d9975dbba2296b6a5f655e1faa",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-light-150.png",
+        "sha256": "3ea991d4b280ced96b1bbd3589e758c41fe9a5f3443723be84f56f8673e4f801",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-100.png",
+        "sha256": "052070235e46099226cc17fcd36018442016ce3e9902e3cc89e634729d2ed08d",
+        "viewedAt": "2026-10-29T05:39:11.738Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-125.png",
+        "sha256": "c269551984f30e8a6d9c072f4179a09736f06283561372a42e51fa0a08e84373",
+        "viewedAt": "2026-10-29T05:39:11.739Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/136-image-export-dark-150.png",
+        "sha256": "ec3c02483a423056244a50bd0bd39a18e9f98e7b364ccaadd0039b0414029071",
+        "viewedAt": "2026-10-29T05:39:11.739Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "078cbd76f8bed37207a877e1d2c7b93cddae5baf80ac72752ecc8fae254019bf",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "349c5e7294ded4e544e5fa9edf5621d76243c690f3669f29418230afe694e2bb",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "7b6553392377eb1ffc619fc3d5f45f66b03e2ccec3525d75479834a010d791ab",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "6f71340f5bfd4874e3c6b1f4c607794399d3bdd53694d090716a05d4248d8c99",
+        "viewedAt": "2026-10-29T05:42:53.700Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "9cf0e50cfcfa64b621adc925ebb2be36d8dcc4e7f10906999d41014c5d844617",
+        "viewedAt": "2026-10-29T05:42:53.701Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "2aaee396482695501fce4893085bdc9194ef9a431e705c7007af6e4f00f40ffd",
+        "viewedAt": "2026-10-29T05:42:53.701Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b",
+        "viewedAt": "2026-10-29T05:59:59.996Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "5d204f24890b242761a15f1dd4f513cf329607376f08a9e46a671d5110dac841",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "218c22a9ab3b6dd92cad19793e229f8258eaec52598010c13ab55c9d782f43f8",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "d5dbc025a7643a85f1add2fae0439fa2a939a483f2bc38c6aab62dd3a67fbaf5",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "b1ffe89f467f88b07e11da0dcd3eb37dc1e5e30c4f870c5ab7e6b9e21dd27db4",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/packaged/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "284c9e8b85fcf9e5b60753547b533a9b88ccfcc8c902e0cee2241a76ba202dd8",
+        "viewedAt": "2026-10-29T05:59:59.997Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-light-100.png",
+        "sha256": "230e0c40e1a73d1e899811c3e74824b9968d0463aebce09c4f05073c5aaca371",
+        "viewedAt": "2026-10-29T09:07:52.068Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-light-125.png",
+        "sha256": "47dc079703729da99568ff3eb400aedc0a92c9b171a1af52ff147527983aad66",
+        "viewedAt": "2026-10-29T09:07:52.069Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-light-150.png",
+        "sha256": "34e245aff302c0e11d26e5990790c70e4080f1689be6fd2dcefa93c4121866b2",
+        "viewedAt": "2026-10-29T09:07:52.069Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-dark-100.png",
+        "sha256": "052070235e46099226cc17fcd36018442016ce3e9902e3cc89e634729d2ed08d",
+        "viewedAt": "2026-10-29T09:07:52.069Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-dark-125.png",
+        "sha256": "5c2e19050da0812270c09432ca0f0dab390f8fe2e50fc76a0fb60cef2aa16df1",
+        "viewedAt": "2026-10-29T09:07:52.069Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/136-image-export-dark-150.png",
+        "sha256": "a5d384b31a8a565335ae25f8fc11b73cdb10a5f153cebea87cef369368e95a75",
+        "viewedAt": "2026-10-29T09:07:52.069Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-100.png",
+        "sha256": "fe1dda2dba3fbcbae5897f6486d52ced811294af936361a52036f5dfb0d4fe6b",
+        "viewedAt": "2026-10-29T09:08:08.595Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-125.png",
+        "sha256": "04bfffce487bdee33d234a655a7b5181aff9a1cc555bced7b347367eec51c1df",
+        "viewedAt": "2026-10-29T09:08:08.595Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-light-150.png",
+        "sha256": "51962ee68b8e3c73bb574eb545b6df85b7857b385daaa3ee2c43a9f49069878f",
+        "viewedAt": "2026-10-29T09:08:08.595Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-100.png",
+        "sha256": "d5dbc025a7643a85f1add2fae0439fa2a939a483f2bc38c6aab62dd3a67fbaf5",
+        "viewedAt": "2026-10-29T09:08:08.596Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-125.png",
+        "sha256": "d575f2ccf2ac71afcb51c64ec7d4fe527f71037702e13a1c681d326b7ae27f65",
+        "viewedAt": "2026-10-29T09:08:08.596Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/137-image-export-quick-dark-150.png",
+        "sha256": "8ba057bcfba0aacb203fd38c5d083459d2a33f60bb146fff152b8b991972a60c",
+        "viewedAt": "2026-10-29T09:08:08.596Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-100.png",
+        "sha256": "2be5bc7fb6e259cc57f0f0a0f48606fa5873ba761daf1a3fe6b38493a856354c",
+        "viewedAt": "2026-10-29T09:17:22.125Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-125.png",
+        "sha256": "099df4da64d3048da3d7aeac02a1a282a04e641251e2cc1fdce0ae46ad1bcee5",
+        "viewedAt": "2026-10-29T09:17:22.126Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-light-150.png",
+        "sha256": "0458d3b0035c087818bff17c40c04f7109f38b44f3e805cc9d85c2932aaa2bb2",
+        "viewedAt": "2026-10-29T09:17:22.126Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-100.png",
+        "sha256": "8f3fda37b123cfd84621931d98eeb60c808290e22ccc64f4f9dbf0ebdaa9cdf8",
+        "viewedAt": "2026-10-29T09:17:22.126Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-125.png",
+        "sha256": "c3be523ece7b8c723e84ab6c00f12d070e108fec7751e62e30966e5bac58d7ed",
+        "viewedAt": "2026-10-29T09:17:22.126Z"
+      },
+      {
+        "path": "D:/GR/nook-tree-frame-budget-installer-evidence-2026-10-29/failed/screenshots/138-project-file-copy-contents-dark-150.png",
+        "sha256": "4cdca2fa6bcec5f7c4c65ce33c3e886e32fd494ce7541880ad68a0ed31038f0c",
+        "viewedAt": "2026-10-29T09:17:22.126Z"
+      }
+    ],
+    "individuallyReviewed": 54,
+    "source": 18,
+    "packaged": 18,
+    "partialInstalled": 18,
+    "scope": "File-content copying and main/quick-chat JPEG layouts only; no claim that every suite screenshot was reviewed."
+  },
+  "priorFailures": [
+    {
+      "completedChecks": 397,
+      "status": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/status.json",
+        "sha256": "ad76d828136e100efa8196609c9533b46d4206778ac2d1b2d431318f85777eb7"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/installer.log",
+        "sha256": "4a768e2679ed2432ad9f19b2d8dbd9ffc3fbe1ed3c11e4a35dbf7834855c092d"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-file-contents-installer-retry-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "12891ca09e7779a007e80a455006effd0cd30b328c84acb34537353d030ce0b5"
+      },
+      "forcedClose": false
+    },
+    {
+      "completedChecks": 222,
+      "status": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/status.json",
+        "sha256": "9a467b14c82b3509432a7d704586edd87a72e7cae3003065fe5a8d70f9d14d71"
+      },
+      "log": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/installer.log",
+        "sha256": "e8b206b18f76eb40333e5a2b162e6d0276c6a1724f322436c31ca672cb57727e"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-file-contents-installer-second-retry-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "d6b1fb6e20809be4a071fe3c50e84570a58ad82820e5251a3f03d16093075975"
+      },
+      "forcedClose": false
+    },
+    {
+      "completedChecks": 38,
+      "status": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/status.json",
+        "sha256": "f4bf586074e273d01d11c2264d990dc61c34ada021d1f3dfb6592056691a2edd"
+      },
+      "log": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/installer.log",
+        "sha256": "fad063de8c1839c27039c576c8a67dc01a7cf076218ffdea23b45298fdaf6a20"
+      },
+      "cleanup": {
+        "path": "D:/GR/nook-frame-pacing-installer-evidence-2026-10-29/installer-cleanup-after-failure.json",
+        "sha256": "5321d3404239f8185d8e76e2ebfe1bb262748d42f464e26269d199db33f6742c"
+      },
+      "forcedClose": true
+    }
+  ],
+  "clipboard": {
+    "unchangedGuard": true,
+    "lossyReplacement": false,
+    "preflight": {
+      "path": "D:/GR/nook-tree-frame-budget-installer-preflight-2026-10-29/strict.log",
+      "sha256": "cefd4fd860d36b5fadf37260a1c8c3b17d7e5ed17044da3d2cd2767efef9420f"
+    }
+  },
+  "boundaries": [
+    "Original failures remain failures; the collection total timing policy changed explicitly.",
+    "Complete installed422 checks and11 matching runtime records remain incomplete. Hosted publication is separate.",
+    "Physical dialogs, clipboard/Explorer effects, IME, assistive technology, other system DPI and full reference alignment remain separate checks."
+  ]
+}
