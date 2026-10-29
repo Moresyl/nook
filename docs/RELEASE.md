@@ -4,6 +4,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 ## 本轮更新
 
+- 浏览器错误页区分 DNS、离线、连接拒绝、超时、证书和其他失败，提供主机说明、排查详情与重试；保留加载中编辑的网址草稿，并支持空白标签页崩溃后重建。矮窗口优先显示标题与原因，长详情和重试通过键盘滚动访问。侧栏隐藏的读屏播报文字保持在滚动容器内。
+
 - 文件树可以复制磁盘上的 UTF-8 文件内容，保留 BOM、换行及空文件，沿用 256 KB 限制；读取或剪贴板失败可重试，切换目标后迟到的读取不会复制内容或关闭新菜单。
 
 - 图片预览可在主窗口和快速聊天保存转换后的 JPEG，取消不写入，失败可重试；导出保留原附件、草稿及所选图片的字节。
@@ -32,6 +34,12 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 具体使用方式见[项目](PROJECTS.md)；完整更新见[更新记录](../CHANGELOG.md)。原始开源许可证、依赖许可证和来源声明继续保留。
 
 ## 已验证的范围
+
+当前应用候选 `fa561c9`：151 文件／1800 项完整单元通过，最终错误页与发布校验等 4 文件／215 项相关测试通过，类型检查、构建及 239 个产品文件、401 份依赖法律文件、20 份分发法律／源码文件的包审计通过。完整单元发生在最终矮窗口样式与布局校验细化之前，最终相关测试及真实专项覆盖当前版本；覆盖率语句／分支／函数／行为 97.14%／94.76%／97.86%／99.51%，浏览器契约四项均为 100%。源码和包内各 17 项真实 Electron 专项通过，共 4 次正常退出、0 次强制结束、0 运行时错误；36 张当前错误原图逐张查看。真实连接拒绝、本地不受信任证书、Chromium 离线模拟、15 秒超时及初始化后的空白渲染器崩溃均单列，DNS 分类由单元测试验证。[当前来源、哈希、原图及保留失败](../verification/browser-load-error-review-result.json)
+
+本次应用与包已改变，**旧版 422 项不得作为当前完整验收**。发布门槛提高至 425 项并要求新的错误状态、草稿和布局证据；当前完整源码回归正在运行，完整包内、实际安装和本候选安装器／便携包仍待完成。Windows 应用仍未签名，托管流水线的账户付款／额度阻塞尚未解除。
+
+### 此前应用的完整分发基线
 
 2026-10-29 最新完整验证：宿主轮询提交 `2ce98bc` 的新完整包内与实际安装各通过 **422 项、75 次正常退出**，无强制结束、非零退出或运行时错误，最长退出分别为 7741ms／6253ms。两轮各 7 次保存检查点等待为 1101–2843ms／1059–1803ms，保留原 5000ms 检查点与 10000ms 原生退出上限；使用新空工作区及原提交验证器，没有外部加载器、调试采样或延迟强制结束。安装验证副本仅固定仓库根路径，原断言保持。1340 个跟踪输入、236 个编译文件、4 个二进制及 13 份附加元数据的冻结哈希一致，11 份运行记录匹配。[本轮完整包内与安装证据](../verification/comparison-poll-distribution-review-result.json)
 
@@ -141,7 +149,7 @@ JPEG 候选的完整打包与实际安装验收尚未通过。首次打包在工
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Recent chats now expand automatically at the visible list boundary while retaining keyboard pagination, composer focus and drafts. All 1,721 unit tests pass. The same application source, compiled files and Windows binaries passed 412 complete desktop checks in each source, packaged and installed runtime, with 75 normal exits per runtime and no forced exits. Silent install/uninstall, data retention, restoration of 16 existing markers, seven portable checks and 11 matching runtime records pass. Release validation now requires the current sidebar and tree evidence; 137 focused policy checks pass, accepting current records and rejecting a previous 412-check record without automatic pagination. This validation-only change retains all application hashes; its installed policy was checked against retained installation evidence. The installer is unsigned. Physical interaction acceptance, complete design alignment and the historical native abort's unique root cause remain unresolved. Hosted workflows are blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Browser failures now distinguish DNS, offline, refused connections, timeouts, certificate errors and other failures, with troubleshooting details and retry. Pending address drafts survive failure and same-URL retry; a crashed blank tab can be replaced. Full unit testing passes 1,800 tests, followed by 215 final focused tests, type checking and a verified Windows build. Source and packaged browser suites each pass 17 checks with four normal exits in total, and 36 current error screenshots were individually reviewed. Complete acceptance now requires 425 checks and current browser-failure evidence; the complete source run is in progress, while complete packaged and installed acceptance remain pending. Earlier 422-check records belong to the previous application. The executable remains unsigned. Physical interaction, other display scales and full design alignment remain separate. Hosted workflows were blocked by account billing or spending limits.
 
 ## 历史证据
 

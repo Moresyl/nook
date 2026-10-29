@@ -1,0 +1,1178 @@
+{
+  "reviewedAt": "2026-10-29T14:24:14.307Z",
+  "applicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6",
+  "scope": "Browser load-failure product change and focused source/packaged acceptance. This is not complete distribution or design acceptance.",
+  "reference": {
+    "packageVersion": "26.930.41038",
+    "entry": "E:/txt/raw/app-asar/.vite/build/early-bootstrap.js",
+    "bootstrap": "bootstrap-BXPOZU-a.js",
+    "consumer": "main-B5_S2vFm.js",
+    "sha256": "e58e0124daa49b216ae8f6a656cc967e82b5b17204206c2c2b7dd38db003d9d6",
+    "record": {
+      "path": "D:/GR/nook-browser-error-reference-2026-10-29.json",
+      "sha256": "eb8f56aed1ab1b818020b11ec64c434ac99de4e4fe93bd929c87f776de7a8e29"
+    },
+    "adopted": [
+      "six error categories",
+      "host-specific summary",
+      "retry",
+      "expandable troubleshooting"
+    ],
+    "adaptations": [
+      "Nook glyph and existing shared controls",
+      "bounded error viewport and keyboard scrolling",
+      "compact spacing in short windows",
+      "whitelisted network error codes only",
+      "no certificate bypass"
+    ]
+  },
+  "verification": {
+    "fullUnit": {
+      "files": 151,
+      "tests": 1800,
+      "passed": true,
+      "timing": "Before final compact-height CSS, summaryVisible release predicate and native geometry-wait refinements; application behavior and contract tests unchanged afterward."
+    },
+    "finalFocusedUnit": {
+      "files": 4,
+      "tests": 215,
+      "passed": true,
+      "scope": "Current classifier, safe rendering, native manager, tab draft state and release gates"
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "coverage": {
+      "lines": {
+        "total": 4709,
+        "covered": 4686,
+        "skipped": 0,
+        "pct": 99.51
+      },
+      "statements": {
+        "total": 7808,
+        "covered": 7585,
+        "skipped": 0,
+        "pct": 97.14
+      },
+      "functions": {
+        "total": 1731,
+        "covered": 1694,
+        "skipped": 0,
+        "pct": 97.86
+      },
+      "branches": {
+        "total": 5481,
+        "covered": 5194,
+        "skipped": 0,
+        "pct": 94.76
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "browserContractCoverage": {
+      "lines": {
+        "total": 15,
+        "covered": 15,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 3,
+        "covered": 3,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 21,
+        "covered": 21,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 26,
+        "covered": 26,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "logs": [
+      {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\coverage-2.log",
+        "sha256": "3011efa6522546104a86420d78703d535e122109a9d2169522ede8514e59e4e7"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\focused-unit-final.log",
+        "sha256": "1bfd9801272a541f599e9c76c584735d09455191b5f77f570e130d2c8c769857"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\typecheck-final.log",
+        "sha256": "7623bc59cb82fe2b2a4a61120d1b7bdb6792c6998aaa36ad7cd161718705fdae"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\build-final.log",
+        "sha256": "13f3b1e3b1e1ae576be496873240f5bbbe55be37d3f4a4d2dc78de9674359561"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\package-audit.log",
+        "sha256": "c98ae602b927dba166c876524b71c43ec8e85f70e6557a4a78b86c9eca28d2d9"
+      }
+    ]
+  },
+  "productInputs": {
+    "frozen": {
+      "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\frozen-inputs.json",
+      "sha256": "9347495af3ea6279ffea37812943bfc25ea21ea350b1d156e5e2f40efbd9cb90"
+    },
+    "changedFiles": 17,
+    "compiledFiles": 236,
+    "executable": {
+      "path": "D:\\GR\\nook-browser-errors\\artifacts\\win-unpacked\\Nook.exe",
+      "sha256": "f45985782a1e4672a6e44650215e17d94eceed5e95aaff6e8c0dc2abb9717a8a"
+    },
+    "archive": {
+      "path": "D:\\GR\\nook-browser-errors\\artifacts\\win-unpacked\\resources\\app.asar",
+      "sha256": "e0e3d8d740222f4bfca53e39840a73a11ae72aa34bbd37032606308f5fe09b54"
+    },
+    "packageAudit": {
+      "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\package-audit-result.json",
+      "sha256": "7b399c62ac011368fab8f411575cfc695618b6b6ac4ff0c0f01ecd5e41e5b6c3"
+    },
+    "productFilesVerified": 239,
+    "dependencyLegalDocuments": 401,
+    "distributionLegalSourceFiles": 20,
+    "signature": "NotSigned"
+  },
+  "runs": [
+    {
+      "variant": "source-final",
+      "checks": 17,
+      "fullDesktopSuite": false,
+      "normalCloseVerified": true,
+      "runtimeErrors": [],
+      "modelRequests": 0,
+      "exits": [
+        {
+          "elapsedMs": 195,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 161,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "result": {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\browser-result.json",
+        "sha256": "91339357f78b4205b3438c2f5c250f9a9b3a7d345a5c3a9d95919878f430ccd0"
+      },
+      "log": {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\run.log",
+        "sha256": "2a7bde361132b273878e038b4698e8baceccb5804ce61b1143f61905a7b61642"
+      },
+      "failures": {
+        "checks": 3,
+        "connectionRefusedVerified": true,
+        "offlineVerified": true,
+        "certificateVerified": true,
+        "timeoutVerified": true,
+        "pendingDraftRetained": true,
+        "retryDraftRetained": true,
+        "detailsKeyboardVerified": true,
+        "sanitizedHostVerified": true,
+        "blankRecoveryVerified": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "region": {
+              "x": 264,
+              "y": 177,
+              "width": 1016,
+              "height": 626,
+              "top": 177,
+              "right": 1280,
+              "bottom": 803,
+              "left": 264
+            },
+            "content": {
+              "x": 469,
+              "y": 232,
+              "width": 600,
+              "height": 523.28125,
+              "top": 232,
+              "right": 1069,
+              "bottom": 755.28125,
+              "left": 469
+            },
+            "documentSize": {
+              "width": 1280,
+              "height": 840,
+              "viewportWidth": 1280,
+              "viewportHeight": 840
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 679,
+            "clientHeight": 626,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "region": {
+              "x": 240,
+              "y": 176.8000030517578,
+              "width": 784,
+              "height": 458.3999938964844,
+              "top": 176.8000030517578,
+              "right": 1024,
+              "bottom": 635.1999969482422,
+              "left": 240
+            },
+            "content": {
+              "x": 329.20001220703125,
+              "y": 64,
+              "width": 600,
+              "height": 523.4000244140625,
+              "top": 64,
+              "right": 929.2000122070312,
+              "bottom": 587.4000244140625,
+              "left": 329.20001220703125
+            },
+            "documentSize": {
+              "width": 1024,
+              "height": 672,
+              "viewportWidth": 1024,
+              "viewportHeight": 672
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 663,
+            "clientHeight": 458,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "region": {
+              "x": 240,
+              "y": 176.6666717529297,
+              "width": 613.3333740234375,
+              "height": 346.66668701171875,
+              "top": 176.6666717529297,
+              "right": 853.3333740234375,
+              "bottom": 523.3333587646484,
+              "left": 240
+            },
+            "content": {
+              "x": 264,
+              "y": -28,
+              "width": 559.3333740234375,
+              "height": 511.34375,
+              "top": -28,
+              "right": 823.3333740234375,
+              "bottom": 483.34375,
+              "left": 264
+            },
+            "documentSize": {
+              "width": 853,
+              "height": 560,
+              "viewportWidth": 853,
+              "viewportHeight": 560
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 567,
+            "clientHeight": 347,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "region": {
+              "x": 220,
+              "y": 177,
+              "width": 540,
+              "height": 326,
+              "top": 177,
+              "right": 760,
+              "bottom": 503,
+              "left": 220
+            },
+            "content": {
+              "x": 244,
+              "y": -71,
+              "width": 486,
+              "height": 533.671875,
+              "top": -71,
+              "right": 730,
+              "bottom": 462.671875,
+              "left": 244
+            },
+            "documentSize": {
+              "width": 760,
+              "height": 540,
+              "viewportWidth": 760,
+              "viewportHeight": 540
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 326,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "region": {
+              "x": 64,
+              "y": 176.8000030517578,
+              "width": 544,
+              "height": 218.40000915527344,
+              "top": 176.8000030517578,
+              "right": 608,
+              "bottom": 395.20001220703125,
+              "left": 64
+            },
+            "content": {
+              "x": 88,
+              "y": -178.40000915527344,
+              "width": 490.3999938964844,
+              "height": 533.7999877929688,
+              "top": -178.40000915527344,
+              "right": 578.3999938964844,
+              "bottom": 355.3999786376953,
+              "left": 88
+            },
+            "documentSize": {
+              "width": 608,
+              "height": 432,
+              "viewportWidth": 608,
+              "viewportHeight": 432
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 218,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "region": {
+              "x": 64,
+              "y": 176.6666717529297,
+              "width": 442.66668701171875,
+              "height": 146.6666717529297,
+              "top": 176.6666717529297,
+              "right": 506.66668701171875,
+              "bottom": 323.3333435058594,
+              "left": 64
+            },
+            "content": {
+              "x": 88,
+              "y": -250.6666717529297,
+              "width": 388.66668701171875,
+              "height": 533.7396240234375,
+              "top": -250.6666717529297,
+              "right": 476.66668701171875,
+              "bottom": 283.0729522705078,
+              "left": 88
+            },
+            "documentSize": {
+              "width": 507,
+              "height": 360,
+              "viewportWidth": 507,
+              "viewportHeight": 360
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 147,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          }
+        ]
+      },
+      "screenshots": [
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-invalid-address-shell.png",
+          "sha256": "143b02ec01d27e8dba24b2c8daab45fbf49e592e6778f90bb717f203bf1a023c"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-load-error-shell.png",
+          "sha256": "4101adccb9f97f883562d34ee38d05598f3a4ea02ac173a6c04cd0653179bbe1"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-refused-shell.png",
+          "sha256": "2e6079a9246ab294837224fcd9bf7ea09603b28663edd38f555fdd00e615b2f0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-offline-shell.png",
+          "sha256": "f3525aa06a64a4ddafa139af8b725600fafefe9058afde6f3bc545358c2bcf3b"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-certificate-shell.png",
+          "sha256": "6400478f84e1c625e0141eb192ffc5e97887e4ed53c63d9ea81d9e38ded16bac"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-timeout-shell.png",
+          "sha256": "e68aff7faafc499af37926785d02ebdc8665d396da8ea0bb954342c00e8835e0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1-shell.png",
+          "sha256": "dde2c28500864adefb698002ec919f186bffd16261b337056caed80fcdf0d70b"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1-content.png",
+          "sha256": "18c391b6b111939c93e5de39ab7ae463423baf05a8a547f214e9c390428019f5"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-light-1-shell.png",
+          "sha256": "2e6079a9246ab294837224fcd9bf7ea09603b28663edd38f555fdd00e615b2f0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-light-1-shell.png",
+          "sha256": "4f727f9c5273d3759378afc24e7ee3b683f72a2b7f125a3f098f350682d3d509"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1.25-shell.png",
+          "sha256": "59171c292c27fc64ac152315af1b2741ceaa2a3af667d1c43ff10edd4cf8ff20"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1.25-content.png",
+          "sha256": "da0ef577754a8da69faf6e877eb1e1db227ac761bdc0d592d329c76447b6b50d"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-light-1.25-shell.png",
+          "sha256": "62971076e2ef93a4f6c79143f06bdac4521c0141407760132571ae2ecb54da92"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-light-1.25-shell.png",
+          "sha256": "f0231528ba4373b285708435f8941322f0ba9694ca646b0c83a92b28f37be324"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1.5-shell.png",
+          "sha256": "45a33d56e5fb116a5afe4c3fbbe226626012e7856e2c7b6fcb0107c0b0b497d2"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-light-1.5-content.png",
+          "sha256": "0105c752c232507a6b4c2bb70c26e8ae99b8674cc51df7802383833cdb882191"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-light-1.5-shell.png",
+          "sha256": "0f735baa3dfd0c5bc3b38445426ffd76c3a4c26ffab0f6e44ab661afb779ed87"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-light-1.5-shell.png",
+          "sha256": "a8b82b9adf20a87840d69335f40795fd2a8d93e4cf84ef3404ea7d1b79e1457c"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1-shell.png",
+          "sha256": "b78ffda7718867e3a3e23a2ffe776abeb18cc0cdfd75f81a951885ac96c17d1f"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1-content.png",
+          "sha256": "38a7862185bcd7455cdaf57903c83abd58b937e763bdd462265174ea3eaa19b7"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-dark-1-shell.png",
+          "sha256": "0dc4f7790da4279b0596fad7d7515872edd194b6e570cd04460aad5b59592bcd"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-dark-1-shell.png",
+          "sha256": "05d129edfc504777ce071d4c41df3dea1f7851e2e9345ef43aead444f731aecb"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1.25-shell.png",
+          "sha256": "2fea6ea526c0b0c54a0f105f212b55dc4b0e194c1fd2def75a38988562542631"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1.25-content.png",
+          "sha256": "23d35b21dd5689f5587d4fdd4f58b11bd1daf55381cdfab33f6e8b585af00af9"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-dark-1.25-shell.png",
+          "sha256": "c43a9461478cebf1d2abf89ce9ab5ed78b8b33c08d9ac8c9b9ace206780829dc"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-dark-1.25-shell.png",
+          "sha256": "d6272000d6aad1cd0cec6cd2493a564e3eb3e5515e22dff467295d0c479c2491"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1.5-shell.png",
+          "sha256": "9ab04775ae5a709943058a0b05945b93121a5aeee39b66048cc7a3dd0284cd51"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-dark-1.5-content.png",
+          "sha256": "695f3ea7bf460321f55b47576e0b675c97e57e7638b58f939db24d75d4760dd0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-dark-1.5-shell.png",
+          "sha256": "1b136a1602baa0c656b1f7df2a922e654423ba449ef7c811b78ae68264af6f1e"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-error-details-dark-1.5-shell.png",
+          "sha256": "eae81097d74a453d506a81b7ae1c4eccda1d37424cb7258658545615371f8648"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-restarted-empty-shell.png",
+          "sha256": "47fd328b065afc662c0f2f654619873e94604227bc9b054395a1dee0e1949680"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-blank-crash-shell.png",
+          "sha256": "3f5cce106dc6b80c23673bbb5d3399f6442a4c1aaf0ce922c79930e4eb8e21fa"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-independent-drafts-shell.png",
+          "sha256": "20c3504505ecb408cbe228f2b1e73db17a39a3a7e0c5ea55b91beb97a0338f2f"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-independent-drafts-content.png",
+          "sha256": "10a1ff44f275c9c5148802122b1f1a8cfd99f37c80ccd5287c206f1531d2ff8e"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-background-failure-shell.png",
+          "sha256": "4f512cd026aa85d4476d0d4984716279f4502f21d16ad558e46826fc63157a16"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-fresh-last-close-shell.png",
+          "sha256": "5713f49687872e3633402a7be720b8e40e2d74d12ef35d7a7c6b7088a4696e99"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-100-shell.png",
+          "sha256": "05a19e0cd9558b3ffa14982777908f2c4699cc36e01c244400537d4d1f61b030"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-100-content.png",
+          "sha256": "261d317371778fcd00341e8c63dcc0d73449f27d072f883eebcfb12ff98508ef"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-125-shell.png",
+          "sha256": "82a8c8ded8a2813e780d7d9f1a295560c9353f8d6c9628a8b04e2bdbab519510"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-125-content.png",
+          "sha256": "1b63e2ae04f04c24f51144d65835b67109833b13eba131fd040a01c7f37c8fbe"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-150-shell.png",
+          "sha256": "779ab75fbd2f9ce22fc92eee9ab37797093d8624b8b765f3932e322e6f8fc685"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-light-150-content.png",
+          "sha256": "be65debeb45a520882cd31ac2c972c9f96f5f6985fede4485f83057dc01cdd85"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-100-shell.png",
+          "sha256": "869fa0efe802c44060c17dfbc745cbd8202827b181bd2363d15fc1997ed4f73f"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-100-content.png",
+          "sha256": "eb256e1a7ea278d35be93e436fc37e202e4c09ae5234a1f7cd3a27441e6e52f5"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-125-shell.png",
+          "sha256": "f75a073a25e296fee2a2e0e7fe1e7dd85866638208a215bc795fd6f7d62b0069"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-125-content.png",
+          "sha256": "6a946f60edda717c4f3d49be7ff195f47fdd004152a977ea624c28b353951c58"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-150-shell.png",
+          "sha256": "dd102a5d0424b00ff3e8dda23c0851bcd436c6ddfcc0b67a3e603a1765aaa014"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\source-final\\screenshots\\browser-tabs-dark-150-content.png",
+          "sha256": "3504190cee8908bb47ec6f569ffab81da7ec1904edd3c9a1271febfe226e3ca0"
+        }
+      ]
+    },
+    {
+      "variant": "packaged-final",
+      "checks": 17,
+      "fullDesktopSuite": false,
+      "normalCloseVerified": true,
+      "runtimeErrors": [],
+      "modelRequests": 0,
+      "exits": [
+        {
+          "elapsedMs": 145,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 156,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "result": {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\browser-result.json",
+        "sha256": "f9b8b4214f40c3c119465d7eeab124404d0e6a56dd39c4e0aaeeda6b17bd17d0"
+      },
+      "log": {
+        "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\run.log",
+        "sha256": "772f295ac067d4eea7a2e7a0b0121649837d15d8b72f25acb98f418f8037c193"
+      },
+      "failures": {
+        "checks": 3,
+        "connectionRefusedVerified": true,
+        "offlineVerified": true,
+        "certificateVerified": true,
+        "timeoutVerified": true,
+        "pendingDraftRetained": true,
+        "retryDraftRetained": true,
+        "detailsKeyboardVerified": true,
+        "sanitizedHostVerified": true,
+        "blankRecoveryVerified": true,
+        "layouts": [
+          {
+            "theme": "light",
+            "zoom": 1,
+            "region": {
+              "x": 264,
+              "y": 177,
+              "width": 1016,
+              "height": 626,
+              "top": 177,
+              "right": 1280,
+              "bottom": 803,
+              "left": 264
+            },
+            "content": {
+              "x": 469,
+              "y": 232,
+              "width": 600,
+              "height": 523.28125,
+              "top": 232,
+              "right": 1069,
+              "bottom": 755.28125,
+              "left": 469
+            },
+            "documentSize": {
+              "width": 1280,
+              "height": 840,
+              "viewportWidth": 1280,
+              "viewportHeight": 840
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 679,
+            "clientHeight": 626,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "light",
+            "zoom": 1.25,
+            "region": {
+              "x": 240,
+              "y": 176.8000030517578,
+              "width": 784,
+              "height": 458.3999938964844,
+              "top": 176.8000030517578,
+              "right": 1024,
+              "bottom": 635.1999969482422,
+              "left": 240
+            },
+            "content": {
+              "x": 329.20001220703125,
+              "y": 64,
+              "width": 600,
+              "height": 523.4000244140625,
+              "top": 64,
+              "right": 929.2000122070312,
+              "bottom": 587.4000244140625,
+              "left": 329.20001220703125
+            },
+            "documentSize": {
+              "width": 1024,
+              "height": 672,
+              "viewportWidth": 1024,
+              "viewportHeight": 672
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 663,
+            "clientHeight": 458,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "light",
+            "zoom": 1.5,
+            "region": {
+              "x": 240,
+              "y": 176.6666717529297,
+              "width": 613.3333740234375,
+              "height": 346.66668701171875,
+              "top": 176.6666717529297,
+              "right": 853.3333740234375,
+              "bottom": 523.3333587646484,
+              "left": 240
+            },
+            "content": {
+              "x": 264,
+              "y": -28,
+              "width": 559.3333740234375,
+              "height": 511.34375,
+              "top": -28,
+              "right": 823.3333740234375,
+              "bottom": 483.34375,
+              "left": 264
+            },
+            "documentSize": {
+              "width": 853,
+              "height": 560,
+              "viewportWidth": 853,
+              "viewportHeight": 560
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 567,
+            "clientHeight": 347,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1,
+            "region": {
+              "x": 220,
+              "y": 177,
+              "width": 540,
+              "height": 326,
+              "top": 177,
+              "right": 760,
+              "bottom": 503,
+              "left": 220
+            },
+            "content": {
+              "x": 244,
+              "y": -71,
+              "width": 486,
+              "height": 533.671875,
+              "top": -71,
+              "right": 730,
+              "bottom": 462.671875,
+              "left": 244
+            },
+            "documentSize": {
+              "width": 760,
+              "height": 540,
+              "viewportWidth": 760,
+              "viewportHeight": 540
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 326,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.25,
+            "region": {
+              "x": 64,
+              "y": 176.8000030517578,
+              "width": 544,
+              "height": 218.40000915527344,
+              "top": 176.8000030517578,
+              "right": 608,
+              "bottom": 395.20001220703125,
+              "left": 64
+            },
+            "content": {
+              "x": 88,
+              "y": -178.40000915527344,
+              "width": 490.3999938964844,
+              "height": 533.7999877929688,
+              "top": -178.40000915527344,
+              "right": 578.3999938964844,
+              "bottom": 355.3999786376953,
+              "left": 88
+            },
+            "documentSize": {
+              "width": 608,
+              "height": 432,
+              "viewportWidth": 608,
+              "viewportHeight": 432
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 218,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          },
+          {
+            "theme": "dark",
+            "zoom": 1.5,
+            "region": {
+              "x": 64,
+              "y": 176.6666717529297,
+              "width": 442.66668701171875,
+              "height": 146.6666717529297,
+              "top": 176.6666717529297,
+              "right": 506.66668701171875,
+              "bottom": 323.3333435058594,
+              "left": 64
+            },
+            "content": {
+              "x": 88,
+              "y": -250.6666717529297,
+              "width": 388.66668701171875,
+              "height": 533.7396240234375,
+              "top": -250.6666717529297,
+              "right": 476.66668701171875,
+              "bottom": 283.0729522705078,
+              "left": 88
+            },
+            "documentSize": {
+              "width": 507,
+              "height": 360,
+              "viewportWidth": 507,
+              "viewportHeight": 360
+            },
+            "contained": true,
+            "overflow": false,
+            "detailsOpen": true,
+            "focusable": true,
+            "scrollHeight": 590,
+            "clientHeight": 147,
+            "summaryVisible": true,
+            "retryVisible": true,
+            "nativeHidden": true,
+            "hostOnly": true
+          }
+        ]
+      },
+      "screenshots": [
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-invalid-address-shell.png",
+          "sha256": "e4e6c9467957e7948a9b10ee9be056bd6dbc50cbae168b2437dcd05020c11ef3"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-load-error-shell.png",
+          "sha256": "cb10a9f856df9f07bd2e91837d4d2e6c77209e6393a7cd8b0405bacc4d420a8f"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-refused-shell.png",
+          "sha256": "bca79f7c5d3538bdee3b615d92036a94e1dce4be482f7f317181382218afbeda"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-offline-shell.png",
+          "sha256": "17495a92392c33b15680463ed48ba0eaeeffbd995ab63084d37c85a82b31320c"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-certificate-shell.png",
+          "sha256": "98ec9bf1f2ab0340f6564765707adb3a6be0e685e966cf97407d4f31d2fe9b56"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-timeout-shell.png",
+          "sha256": "246494c4d70e2dc0ff87b3998c98bc87552a010bfb7d0792595cea0c06638b88"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1-shell.png",
+          "sha256": "533ea1b3fe3602ccbb07100b2310b1af2053869da841108e58cfdf6fc1a42cd5"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1-content.png",
+          "sha256": "18c391b6b111939c93e5de39ab7ae463423baf05a8a547f214e9c390428019f5"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-light-1-shell.png",
+          "sha256": "bca79f7c5d3538bdee3b615d92036a94e1dce4be482f7f317181382218afbeda"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-light-1-shell.png",
+          "sha256": "9641b579ff5f2ec2cd93f0279417df6746db53c31f7cfc24ccb4193414ceb82b"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1.25-shell.png",
+          "sha256": "f83ff9cdea42e7d2daecd5832bc924217588ee80d40a52d1638939b64d3927fe"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1.25-content.png",
+          "sha256": "da0ef577754a8da69faf6e877eb1e1db227ac761bdc0d592d329c76447b6b50d"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-light-1.25-shell.png",
+          "sha256": "20c49ce79137bb9e64c418001216b8e1b8aec99e6896fada20cc30971348b596"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-light-1.25-shell.png",
+          "sha256": "0820b70dffa68c1abfcdd8ff245ecc8007d9793b3a3cb602a586af00e49e2fa8"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1.5-shell.png",
+          "sha256": "5fedb72f49783ecdabf556be9f8fa628d7373c95aa106cb288ba017daf134e61"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-light-1.5-content.png",
+          "sha256": "0105c752c232507a6b4c2bb70c26e8ae99b8674cc51df7802383833cdb882191"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-light-1.5-shell.png",
+          "sha256": "4bb9d3177a3649d76c07a83b808aafc911129584e33eed9dfbb4acb7390a5545"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-light-1.5-shell.png",
+          "sha256": "8aab6f2dd9f79f81d3d51a65c8d0fb2d179add1024217d9b4b62a2a7b1c543d1"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1-shell.png",
+          "sha256": "c9d395799fe895f5a43dbf1b145b4338012afe878f772f923f42af0fb2e7ee14"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1-content.png",
+          "sha256": "38a7862185bcd7455cdaf57903c83abd58b937e763bdd462265174ea3eaa19b7"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-dark-1-shell.png",
+          "sha256": "9d3ebe65ae5380e7ea1812584118979261ec01bdd1cdcc2bc04740ae53eff278"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-dark-1-shell.png",
+          "sha256": "4695538599e8cf37eda608c239497c93401554e7dbcb8ceafd0986c6ad246cdc"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1.25-shell.png",
+          "sha256": "bfcbc83bcccc5765282e1396692862f846c31917f8e2cf08cd7b04f708308b95"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1.25-content.png",
+          "sha256": "23d35b21dd5689f5587d4fdd4f58b11bd1daf55381cdfab33f6e8b585af00af9"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-dark-1.25-shell.png",
+          "sha256": "cfe43abd94f404a03b0479a4ea71fe85ebbb71cfa9237c7717625253f48817dc"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-dark-1.25-shell.png",
+          "sha256": "83cbb325d43c84c10bc8071c0ee56b546bef4785b125fcd49311bf5ab0184f66"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1.5-shell.png",
+          "sha256": "a982d11e35184b2f580d68248e6bafc1b1fc72ba352169c7df4f991f0eac650f"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-dark-1.5-content.png",
+          "sha256": "695f3ea7bf460321f55b47576e0b675c97e57e7638b58f939db24d75d4760dd0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-dark-1.5-shell.png",
+          "sha256": "34b8c980c190903915191799dd4ef47822372ceba74f3a9707727abeaa84d755"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-error-details-dark-1.5-shell.png",
+          "sha256": "b97dbc361eca95013bd46d9a4e86c098b9028efcf57f8e686c6ace932aea9829"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-restarted-empty-shell.png",
+          "sha256": "57794cc5989dbc903c3ccbc1c4d547c4e4be40e9add56f2c3b5522a1061cb74c"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-blank-crash-shell.png",
+          "sha256": "17f7d4495b2b6e3188e1c629111ddb2af76bd457ad08421c6720f85106dd468e"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-independent-drafts-shell.png",
+          "sha256": "45bdc976b04c3eb8913d35bd817f0b2890c2aad79e45d60f460c669b084e64c0"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-independent-drafts-content.png",
+          "sha256": "10a1ff44f275c9c5148802122b1f1a8cfd99f37c80ccd5287c206f1531d2ff8e"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-background-failure-shell.png",
+          "sha256": "fe966bb0e72fb0be2a4c3cff93a71e7fccf51e9556d69d95acf1e73541f0f003"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-fresh-last-close-shell.png",
+          "sha256": "2236d02afa789f5eab3c691c705eb037824f244bf4096744f455bdbf83fc5fa9"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-100-shell.png",
+          "sha256": "38afa8217f40ec34e7b38f5c17f2bf8cc18aec46d3a993b415ef7d0de0e605d4"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-100-content.png",
+          "sha256": "261d317371778fcd00341e8c63dcc0d73449f27d072f883eebcfb12ff98508ef"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-125-shell.png",
+          "sha256": "cf4fa2682c9656f36ca1d9879fbbb4a7da92906f1ceb9db5c6f1846915cc7732"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-125-content.png",
+          "sha256": "1b63e2ae04f04c24f51144d65835b67109833b13eba131fd040a01c7f37c8fbe"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-150-shell.png",
+          "sha256": "1d5c711fe516cb67639097a63c4d729858e4a240663075444268be810760ed38"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-light-150-content.png",
+          "sha256": "be65debeb45a520882cd31ac2c972c9f96f5f6985fede4485f83057dc01cdd85"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-100-shell.png",
+          "sha256": "4f2e8af45affe7f3a8aed55540b5c68b901153a6086bd632ef83cc9535979a4b"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-100-content.png",
+          "sha256": "eb256e1a7ea278d35be93e436fc37e202e4c09ae5234a1f7cd3a27441e6e52f5"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-125-shell.png",
+          "sha256": "4ea7af3162d8ac22d1831c6f1acdda17c1c1bca80fd25acd8f7d51211167c1e3"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-125-content.png",
+          "sha256": "6a946f60edda717c4f3d49be7ff195f47fdd004152a977ea624c28b353951c58"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-150-shell.png",
+          "sha256": "b26cfa67a9566b42dea73d3acd9275333b11dc60eab40f2647f7cf1c91f2bc17"
+        },
+        {
+          "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\packaged-final\\screenshots\\browser-tabs-dark-150-content.png",
+          "sha256": "3504190cee8908bb47ec6f569ffab81da7ec1904edd3c9a1271febfe226e3ca0"
+        }
+      ]
+    }
+  ],
+  "visualReview": {
+    "count": 36,
+    "source": 18,
+    "packaged": 18,
+    "manifest": {
+      "path": "D:\\GR\\nook-browser-error-evidence-2026-10-29\\individually-viewed-screenshots.json",
+      "sha256": "95bfc87b8286ae20d1073ea19d5d5ae85cf23d19498ffed0672bb3b39fa7d2fa"
+    },
+    "scope": "Every current error type sample, blank crash and background failure, plus twelve collapsed/expanded theme/zoom originals per variant. Long details and retry require scrolling in minimum windows; the heading and reason are initially visible. Other screenshots are archived, not individually reviewed here."
+  },
+  "retainedAttempts": {
+    "records": [
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused.log",
+        "sha256": "8525d19a9c8a984a9bc0c836ba8c5aebe60affea7332dab869fdaa690e396f8f"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-2.log",
+        "sha256": "a10c16f724810979ea1aededb5ccc8dc344a1b8e3560caaea21e539de00286cb"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-3.log",
+        "sha256": "c9f38281f81dc0d604c91a52d3bd26210eca8b10ace98c7c4c0ec2b32b5c958c"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-4.log",
+        "sha256": "1b16e18379b6e3bd71df29502561717c4b73a46e7e7888c2da2da0bdb945c67f"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-5.log",
+        "sha256": "0ea49e573d0bd0aa81558fecef9325105a388f133f06f819f14c1b211022e68e"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-6.log",
+        "sha256": "72894b4b0911c27a9951b63a9402d6c5d0bafd7a8bf936e26cd5068af1e998c9"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-source-focused-7.log",
+        "sha256": "1d8fbb37c324d3b9ae73572509ba1f385ed821ebaa77631248cb8bc16924f353"
+      },
+      {
+        "path": "D:/GR/nook-browser-errors-packaged-focused.log",
+        "sha256": "2111c972bf35fb599882453a2b1e0d394b18b6b9844ff2f40bdbc1894345b072"
+      }
+    ],
+    "sourceFocused8": {
+      "path": "D:/GR/nook-browser-errors-source-focused-8.log",
+      "sha256": "3f19bb3d87202f946d046d2d48e2f9417ecbf907b07a38dd3e673b58bfc36ef1"
+    },
+    "scope": "Initial startup timeout, outdated old-text assertion, nearest-edge retry measurement, real sidebar announcement overflow, uninitialized blank-renderer fixture and immediate native geometry observation are retained. Later compact-height polish and explicit summary visibility supersede the intermediate source pass. No original timeout was increased."
+  },
+  "releaseBoundary": {
+    "minimumCompleteDesktopChecks": 425,
+    "completeSourceRun": {
+      "accepted": false,
+      "statusAtReview": {
+        "log": "D:/GR/nook-browser-errors-full-source.log",
+        "status": "running",
+        "startedAt": "2026-10-29T22:21:44.3714856+08:00",
+        "applicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6"
+      }
+    },
+    "completePackagedRun": "pending",
+    "actualInstalledRun": "pending",
+    "setupAndPortableForThisApplication": "pending",
+    "historical422": "Retained for application 6c4486e with verifier 2ce98bc; not accepted for this changed application.",
+    "liveDns": "unit classification only",
+    "nativePhysicalAndOtherDpi": "pending",
+    "hostedPipeline": "Previous head blocked before steps by account billing/spending limit; current head must be checked after push.",
+    "published": false
+  }
+}
