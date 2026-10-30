@@ -37,7 +37,9 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 当前应用候选 `fa561c9`：151 文件／1800 项完整单元通过，最终错误页与发布校验等 4 文件／215 项相关测试通过，类型检查、构建及 239 个产品文件、401 份依赖法律文件、20 份分发法律／源码文件的包审计通过。完整单元发生在最终矮窗口样式与布局校验细化之前，最终相关测试及真实专项覆盖当前版本；覆盖率语句／分支／函数／行为 97.14%／94.76%／97.86%／99.51%，浏览器契约四项均为 100%。源码和包内各 17 项真实 Electron 专项通过，共 4 次正常退出、0 次强制结束、0 运行时错误；36 张当前错误原图逐张查看。真实连接拒绝、本地不受信任证书、Chromium 离线模拟、15 秒超时及初始化后的空白渲染器崩溃均单列，DNS 分类由单元测试验证。[当前来源、哈希、原图及保留失败](../verification/browser-load-error-review-result.json)
 
-本次应用与包已改变，**旧版 422 项不得作为当前完整验收**。发布门槛提高至 425 项并要求新的错误状态、草稿和布局证据；当前完整源码回归正在运行，完整包内、实际安装和本候选安装器／便携包仍待完成。Windows 应用仍未签名，托管流水线的账户付款／额度阻塞尚未解除。
+本次应用与包已改变，**旧版 422 项不得作为当前完整验收**。发布门槛提高至 425 项并要求新的错误状态、草稿和布局证据；这次完整源码运行在 354 项后、工作树列表初始化重启时超过原 10 秒退出期限，41 次正常退出、1 次强制结束（10008ms），因此失败。后续完整包内、便携和实际安装流程未启动；安装器和便携包已生成，实际引导插件审计通过（安装器 6／卸载器 5／便携 2），应用 EXE／ASAR 哈希未变，可执行文件未签名。托管流水线的账户付款／额度阻塞尚未解除。
+
+2026-10-30 从失败工作区副本运行的列表 6 项、设置／列表 16 项诊断通过，共 12 次正常退出；另 20 次不连接 Node 或 Chromium 调试器的真实应用启动／退出通过。非暂停采集工具在正常运行中成功读取本轮主进程、GPU、NetworkService 和渲染器的线程栈，匹配 PDB 标识、两个 PE 导出和 174 个主进程帧。该工具自检不是挂起现场，小范围成功也不能证明原失败已修复；间歇性等待的触发原因仍在定位，原失败与 10 秒期限保留。[失败、原图归档与诊断边界](../verification/browser-exit-narrow-review-result.json)
 
 ### 此前应用的完整分发基线
 
@@ -149,7 +151,7 @@ JPEG 候选的完整打包与实际安装验收尚未通过。首次打包在工
 
 ## English summary
 
-Nook 0.1.0-alpha.1 is not released. Browser failures now distinguish DNS, offline, refused connections, timeouts, certificate errors and other failures, with troubleshooting details and retry. Pending address drafts survive failure and same-URL retry; a crashed blank tab can be replaced. Full unit testing passes 1,800 tests, followed by 215 final focused tests, type checking and a verified Windows build. Source and packaged browser suites each pass 17 checks with four normal exits in total, and 36 current error screenshots were individually reviewed. Complete acceptance now requires 425 checks and current browser-failure evidence; the complete source run is in progress, while complete packaged and installed acceptance remain pending. Earlier 422-check records belong to the previous application. The executable remains unsigned. Physical interaction, other display scales and full design alignment remain separate. Hosted workflows were blocked by account billing or spending limits.
+Nook 0.1.0-alpha.1 is not released. Browser failures now distinguish six causes, offer troubleshooting and retry, preserve pending address drafts, and recover a crashed blank tab. Full unit testing passes 1,800 tests, followed by 215 final focused tests, type checking and a verified Windows build. Source and packaged browser suites each pass 17 checks, and 36 current error screenshots were individually reviewed. Complete source acceptance failed after 354 checks: 41 normal exits and one forced exit after 10,008ms against the original 10-second limit. Downstream packaged, portable and installed runs did not start. Smaller 6- and 16-check probes and 20 launches without debugger connections exited normally; they do not prove a fix. The original failure remains retained and its native cause unproven. Unsigned setup and portable artifacts were built and their bootstrap plugins audited. Earlier 422-check records belong to the previous application. Physical interaction, other display scales, full design alignment and hosted verification remain pending; hosted jobs were rejected before steps by account billing or spending limits.
 
 ## 历史证据
 

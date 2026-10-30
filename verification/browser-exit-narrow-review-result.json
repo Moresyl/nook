@@ -1,0 +1,191 @@
+{
+  "reviewedAt": "2026-10-30T05:40:34.011Z",
+  "status": "original-full-exit-failure-retained-narrow-probes-did-not-reproduce",
+  "applicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6",
+  "headAtReview": "789d9a8c89fbfe36bf7e1a8d086d8a806db1867e",
+  "originalFailure": {
+    "capturedAt": "2026-10-30T05:23:43.508Z",
+    "status": "failed",
+    "applicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6",
+    "passedChecksBeforeFailure": 354,
+    "normalExits": 41,
+    "forcedExits": 1,
+    "failedExitElapsedMs": 10008,
+    "failureSite": "verifyWorktreeOverview initial seed restart",
+    "originalExitDeadlineMs": 10000,
+    "retainedWorkspace": "C:/Users/18468/AppData/Local/Temp/qiyao-electron-eEEQZX",
+    "failedWorkspaceModified": false,
+    "fullAcceptance": false,
+    "productInputHashesMatched": 17,
+    "compiledHashesMatched": 236,
+    "executableAndArchiveHashesMatched": true,
+    "originalLog": {
+      "path": "D:/GR/nook-browser-errors-full-source.log",
+      "sha256": "37aa0b76a90299815d7312417fcf5661bd772cf62c68b8dd38c03f7331bdf22d"
+    },
+    "archive": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\failed-full-source",
+    "downstreamTestsStarted": false,
+    "rootCauseProven": false
+  },
+  "probes": [
+    {
+      "name": "overview-seeded",
+      "checks": 6,
+      "normalExits": 5,
+      "longestExitMs": 1286,
+      "instrumented": true,
+      "originalTenSecondExitLimit": true,
+      "completeAcceptance": false,
+      "log": {
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\overview-seeded.log",
+        "sha256": "e2b8373af39e880df94c6e7a23fcaf56f4bbefb3f2fa3ae9ccdc0de6427abb70"
+      }
+    },
+    {
+      "name": "settings-overview",
+      "checks": 16,
+      "normalExits": 7,
+      "longestExitMs": 427,
+      "instrumented": true,
+      "originalTenSecondExitLimit": true,
+      "completeAcceptance": false,
+      "log": {
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\settings-overview.log",
+        "sha256": "6b677e553276aceb7becf0bd61d4a26f10d7b9484289e0886d6fc82d855337e4"
+      }
+    }
+  ],
+  "withoutDebugger": {
+    "completeAcceptance": false,
+    "realApplicationFreshWorkspaceLaunches": 20,
+    "normalExits": 20,
+    "longestExitMs": 3651,
+    "nativeInspector": false,
+    "chromiumRemoteDebugging": false,
+    "originalTenSecondExitLimit": true,
+    "rawResult": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\no-debugger-lifecycle\\result.json",
+      "sha256": "f46d68b8f3d0cbc825ee2c54f5c629880a4749bd841e5de3cc48f62d29063a81"
+    },
+    "fixture": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\no-debugger-entry.cjs",
+      "sha256": "870d85afa849fd099dc86f0c51c59c2c1694b1412131c4acbf7f24381b435bab"
+    },
+    "harness": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\no-debugger-lifecycle.mjs",
+      "sha256": "1c8e7bdac294dda66f0c391f99144ac1c68428af904bdcf9bf4eb22593397c19"
+    }
+  },
+  "captureToolSelftest": {
+    "beforeCloseWhileApplicationWasRunning": true,
+    "hungApplicationSample": false,
+    "processes": [
+      {
+        "pid": 54472,
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\close-54472-1793338089019\\process-54472.txt",
+        "sha256": "33850876851bdf9551f66b974d9f18048d516d7eca1045f0a85d2c056cb0f5d3",
+        "metadata": {
+          "targetSuspended": false,
+          "pid": 54472,
+          "elapsedMs": 1912.7445,
+          "collectorCompleted": true,
+          "noninvasive": true,
+          "collectorExitCode": 0
+        }
+      },
+      {
+        "pid": 53592,
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\close-54472-1793338089019\\process-53592.txt",
+        "sha256": "df206891984f1358f7ae236e21c3c061ddfc817841263ce0f9d17b671e056c11",
+        "metadata": {
+          "targetSuspended": false,
+          "pid": 53592,
+          "elapsedMs": 1909.8365,
+          "collectorCompleted": true,
+          "noninvasive": true,
+          "collectorExitCode": 0
+        }
+      },
+      {
+        "pid": 34500,
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\close-54472-1793338089019\\process-34500.txt",
+        "sha256": "8e287476ebde10aa48e6b76078beba2096afac68dfdddf13e67b50fadcc0f1b9",
+        "metadata": {
+          "targetSuspended": false,
+          "pid": 34500,
+          "elapsedMs": 1906.5811,
+          "collectorCompleted": true,
+          "noninvasive": true,
+          "collectorExitCode": 0
+        }
+      },
+      {
+        "pid": 83472,
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\close-54472-1793338089019\\process-83472.txt",
+        "sha256": "7e11de0a81b711abef1fd836233458c57ebdd88d7d7e770054de3fa09c5cbf0a",
+        "metadata": {
+          "targetSuspended": false,
+          "pid": 83472,
+          "elapsedMs": 1903.8483,
+          "collectorCompleted": true,
+          "noninvasive": true,
+          "collectorExitCode": 0
+        }
+      }
+    ],
+    "matchedCodeView": {
+      "name": "electron.exe.pdb",
+      "guid": "205ABBCBDFD937F14C4C44205044422E",
+      "age": 1,
+      "symbolKey": "205ABBCBDFD937F14C4C44205044422E1",
+      "url": "https://symbols.electronjs.org/electron.exe.pdb/205ABBCBDFD937F14C4C44205044422E1/electron.exe.pdb"
+    },
+    "mainFrames": 174,
+    "mainThreads": 40,
+    "exportCrossChecks": [
+      {
+        "name": "uv_cond_signal",
+        "rva": "0x30903e0",
+        "exactPeExportAndPdbPublicMatch": true
+      },
+      {
+        "name": "uv_queue_work",
+        "rva": "0x7d8b710",
+        "exactPeExportAndPdbPublicMatch": true
+      }
+    ],
+    "symbolized": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\selftest-main-symbolized.json",
+      "sha256": "e3818d568e8158e4514d5ce216894af577b2628caf20e3e9460e2139333b926c"
+    },
+    "nearestPublicSymbolsOnly": true,
+    "collector": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\capture-process-tree.ps1",
+      "sha256": "5085bb934b2c7ce36b9357d53fadd5fb0346159f7e28164d4a81f43992d9e65e"
+    },
+    "observer": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\observe-close.mjs",
+      "sha256": "cf5f92b4f1fd03cab5655f70b391e7fd830520314fc68c8709f78373f305058f"
+    },
+    "observerDeadlineAndForcedAssertionCheck": {
+      "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\check-observer.mjs",
+      "sha256": "918ba15022886b0a19116501e9442775fe464716de2ae81a824ba8fa1f3d5d06"
+    }
+  },
+  "conclusions": {
+    "originalFailureStillFailed": true,
+    "productChangeMade": false,
+    "nativeExitRootCauseProven": false,
+    "debuggerConnectionsAloneProvenAsCause": false,
+    "lifecycleWorkaroundApplied": false,
+    "originalFailedWorkspaceRetained": true,
+    "productHashesMatched": 17,
+    "compiledHashesMatched": 236,
+    "executableAndArchiveHashesMatched": true
+  },
+  "pending": [
+    "Trace the intermittent native wait during a representative failure",
+    "Fresh complete 425-check source, packaged and installed acceptance",
+    "Hosted verification and publication"
+  ]
+}
