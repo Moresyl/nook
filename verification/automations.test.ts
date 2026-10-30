@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { rm } from 'node:fs/promises';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { automationInputSchema, automationRunSchema, automationSchema, type AutomationInput } from '../contracts/automations';
+import { automationEditDraft } from '../contracts/automation-editing';
 import { emptyWorkspace, workspaceSchema } from '../contracts/workspace';
 import { Automations, nextAutomationRun, type AutomationRunner } from '../desktop/services/automations';
 import { conversationAutomationRunner } from '../desktop/services/automation-runner';
@@ -20,6 +21,35 @@ async function setup(runner?: AutomationRunner, emit = vi.fn(), notify = vi.fn()
   return { vault, service, execute, emit, notify, directory, now: () => now, advance: (milliseconds: number) => { now += milliseconds; } };
 }
 const held: AutomationRunner = async (_task, signal, onThread) => { await onThread('held-thread'); signal.throwIfAborted(); await new Promise<void>((_resolve, reject) => signal.addEventListener('abort', () => reject(new Error('stopped')), { once: true })); return 'complete'; };
+
+describe('expired one-shot rescheduling', () => {
+  it('retains the consumed run on failed save and retry, then executes the new time once with the same task identity', async () => {
+    const { service, vault, execute, now, advance } = await setup();
+    const input = task({ schedule: { kind: 'once', at: now() - 1000 } });
+    await service.save(input);
+    const priorRun = { id: randomUUID(), startedAt: now() - 1000, finishedAt: now() - 500, trigger: 'scheduled' as const, status: 'complete' as const, threadId: 'old-result' };
+    await vault.update(draft => { draft.automations[0]!.runs.push(priorRun); });
+    const original = vault.snapshot().automations[0]!;
+    await expect(service.setEnabled(input.id, true)).rejects.toThrow('Choose a future time');
+    const draft = automationEditDraft(original, 'reschedule', now());
+    vi.spyOn(vault, 'update').mockRejectedValueOnce(new Error('Disk unavailable'));
+    await expect(service.save(draft)).rejects.toThrow('Disk unavailable');
+    expect(vault.snapshot().automations[0]).toEqual(original);
+    await service.save(draft);
+    expect(vault.snapshot().automations).toHaveLength(1);
+    expect(vault.snapshot().automations[0]).toMatchObject({ id: input.id, enabled: true, nextRunAt: now() + 300_000, runs: [priorRun] });
+    expect(execute).not.toHaveBeenCalled();
+    advance(300_000); service.wake();
+    await vi.waitFor(() => {
+      const runs = vault.snapshot().automations[0]!.runs;
+      expect(runs).toHaveLength(2); expect(runs.at(-1)?.status).toBe('complete');
+    });
+    expect(execute).toHaveBeenCalledTimes(1);
+    expect(vault.snapshot().automations[0]).toMatchObject({ id: input.id, enabled: false, runs: [priorRun, { status: 'complete', trigger: 'scheduled' }] });
+    advance(300_000); service.wake();
+    expect(execute).toHaveBeenCalledTimes(1);
+  });
+});
 
 describe('automation contracts and calendar', () => {
   it('migrates old workspaces and rejects forged execution fields, duplicated owners and malformed runs', () => {

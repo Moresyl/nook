@@ -57,7 +57,32 @@ export async function verifyAutomations({ page, application, getApplication, dir
   const scheduled = await page.evaluate(async () => (await window.qiyao.load()).automations.find((task) => task.name === '自动执行时间测试').schedule);
   assert.equal(scheduled.kind, 'once'); assert.equal(scheduled.at, when.at);
   await waitForBridge(page, async () => { const task = (await window.qiyao.load()).automations.find((task) => task.name === '自动执行时间测试'); return task?.runs.at(-1)?.status === 'complete' && !task.enabled; });
-  verified('a real wall-clock one-shot fires automatically once without an execute click and persists its consumed schedule and complete run');
+  const consumed = await page.evaluate(async () => (await window.qiyao.load()).automations.find(task => task.name === '自动执行时间测试'));
+  const onceRow = page.locator(`[data-automation-id="${consumed.id}"]`), rescheduleRequests = fixture.requests.length;
+  await onceRow.getByText('单次计划已到期', { exact: false }).waitFor();
+  assert.equal(await onceRow.getByRole('button', { name: '恢复计划', exact: true }).count(), 0);
+  await page.screenshot({ path: join(screenshots, '65-automation-expired-once-light.png') });
+  await onceRow.getByRole('button', { name: '重新安排', exact: true }).click();
+  dialog = page.getByRole('dialog', { name: '编辑自动任务', exact: true });
+  assert.equal(await dialog.getByLabel('任务名称', { exact: true }).inputValue(), consumed.name);
+  assert.equal(await dialog.getByLabel('工作指令', { exact: true }).inputValue(), consumed.prompt);
+  const rescheduleAt = await dialog.getByLabel('本地执行时间', { exact: true }).evaluate(input => new Date(input.value).getTime());
+  assert.ok(rescheduleAt > Date.now() + 120_000);
+  await page.screenshot({ path: join(screenshots, '66-automation-reschedule-draft-light.png') });
+  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  assert.deepEqual(await page.evaluate(async id => (await window.qiyao.load()).automations.find(task => task.id === id), consumed.id), consumed);
+  await onceRow.getByRole('button', { name: '重新安排', exact: true }).click();
+  dialog = page.getByRole('dialog', { name: '编辑自动任务', exact: true });
+  const futureTime = await dialog.getByLabel('本地执行时间', { exact: true }).evaluate(input => new Date(input.value).getTime());
+  await dialog.getByRole('button', { name: '保存', exact: true }).click(); await dialog.waitFor({ state: 'hidden' });
+  const rescheduled = await page.evaluate(async id => (await window.qiyao.load()).automations.find(task => task.id === id), consumed.id);
+  assert.equal(rescheduled.enabled, true); assert.equal(rescheduled.schedule.at, futureTime); assert.equal(rescheduled.nextRunAt, futureTime);
+  assert.deepEqual(rescheduled.runs, consumed.runs); assert.equal(fixture.requests.length, rescheduleRequests);
+  await onceRow.getByRole('button', { name: '暂停计划', exact: true }).click();
+  await waitForBridge(page, async id => !(await window.qiyao.load()).automations.find(task => task.id === id).enabled, consumed.id);
+  await onceRow.getByRole('button', { name: '恢复计划', exact: true }).waitFor();
+  const rescheduling = { taskId: consumed.id, cancelledDraftPreserved: true, futureTime, originalHistoryPreserved: true, noModelRequestUntilDue: true, pausedAfterCheck: true };
+  verified('a real wall-clock one-shot fires once, then reschedules through a cancellable future-time draft with the same identity/history and no premature model request');
   await application.resize(760, 540); await page.evaluate(async () => { const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'dark' }); }); await page.reload(); await page.getByRole('button', { name: '自动任务', exact: true }).click(); dialog = await create('时区计划测试', 'QIYAO_AUTOMATION_OK'); await dialog.getByLabel('执行时间', { exact: true }).selectOption('cron'); await dialog.getByLabel('Cron 表达式', { exact: true }).fill('0 9 * * MON-FRI'); await dialog.getByLabel('时区', { exact: true }).fill('Invalid/Zone'); const count = fixture.requests.length; await dialog.getByRole('button', { name: '保存', exact: true }).click(); await page.getByText('Cron 表达式或时区无效，或没有未来的执行时间。', { exact: true }).waitFor(); assert.equal(await page.evaluate(async () => (await window.qiyao.load()).automations.some((task) => task.name === '时区计划测试')), false); assert.equal(fixture.requests.length, count); await dialog.getByLabel('时区', { exact: true }).fill('America/New_York'); await dialog.getByText('启用自动计划', { exact: true }).click(); await page.screenshot({ path: join(screenshots, '64-automation-cron-dark-narrow.png') }); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false); await dialog.getByRole('button', { name: '保存', exact: true }).click(); await dialog.waitFor({ state: 'hidden' }); await waitForBridge(page, async () => (await window.qiyao.load()).automations.some((task) => task.name === '时区计划测试' && task.enabled && task.nextRunAt > Date.now()));
   verified('invalid time zones fail before saving or sending; weekday Cron uses an explicit IANA zone and the reference dark minimum-window form stays within its viewport');
   await page.locator('.thread-list').getByRole('button', { name: 'QIYAO_AUTOMATION_OK', exact: true }).first().click(); await page.locator('.thread-title').waitFor(); await page.screenshot({ path: join(screenshots, '65-sidebar-history-dark-narrow.png') });
@@ -73,5 +98,5 @@ export async function verifyAutomations({ page, application, getApplication, dir
   finally { await application.evaluateMain("require('electron').dialog.showOpenDialog=globalThis.qiyaoAutomationOpen; require('electron').dialog.showMessageBox=globalThis.qiyaoAutomationConfirm; delete globalThis.qiyaoAutomationOpen; delete globalThis.qiyaoAutomationConfirm;"); }
   page = await restart(); application = getApplication(); restarted = await page.evaluate(() => window.qiyao.load()); assert.ok(restarted.automations.every((task) => !task.enabled)); assert.deepEqual(fixture.errors, []);
   verified('complete native gzip backup restores task configurations, exact execution history and conversations with every imported schedule paused after real restart');
-  return { page, result: { checkbox, schedulerReads, tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
+  return { page, result: { checkbox, schedulerReads, rescheduling, tasks: restarted.automations.length, requests: fixture.requests.length, cancelledRequests: fixture.cancelled, historyStatuses: restarted.automations.find((task) => task.id === id).runs.map((run) => run.status), scope: 'Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar and expired one-shot rescheduling, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates.' } };
 }
