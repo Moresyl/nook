@@ -568,6 +568,8 @@ kbd { font-family: inherit; font-size: 10px; color: var(--ds-text-tertiary); whi
 .automation-page .list-row { flex-wrap: wrap; }
 .automation-page .row-content { min-width: 140px; }
 .automation-page .row-content span { white-space: normal; overflow-wrap: anywhere; }
+.automation-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.automation-filters [aria-pressed="true"] { background: var(--ds-bg-tertiary); }
 .automation-selections { border: 1px solid var(--ds-border); border-radius: 8px; margin: 16px 0; padding: 12px; }
 .automation-selections .checkbox-label { padding: 4px 0; }
 .automation-prompt { white-space: pre-wrap; overflow-wrap: anywhere; margin: 16px 0; }
