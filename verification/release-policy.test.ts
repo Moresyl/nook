@@ -81,7 +81,7 @@ function proof(): ReleaseProof {
     attachments: { imageExport: imageExportReleaseProof(), pdfOriginal: { textOnlyProtocols: ['responses', 'openai', 'anthropic', 'gemini', 'ollama', 'azure-responses', 'azure-chat', 'azure-deployment'], restartBytesVerified: true, deduplicatedBackupVerified: true, missingFileRestoredVerified: true } },
     memories: memorySettings(), projectPreview: { checks: 10, outsideHttpRequests: 0, editorTabs: editorTabs(), docked: { checks: 5, floatingTransferVerified: true, projectRemovalVerified: true, workbenchReloadVerified: true, staleOwnerCloseVerified: true } },
     promptTransfer: { checks: 5, transferModelRequests: 0, exportModesVerified: true, inertPreviewCancelVerified: true, atomicImportRetryVerified: true, sharedFreshAssociationsVerified: true, zoomKeyboardVerified: true, backupRestartVerified: true, originalDraftRetained: true } };
-  Object.assign(desktop, navigationReleaseProof(), { checks: 425, taskPlans: taskPlanProof() });
+  Object.assign(desktop, navigationReleaseProof(), { checks: 427, taskPlans: taskPlanProof() });
   Object.assign(desktop.browser!, { checks: 17, screenshots: Array.from({ length: 32 }, (_, i) => `browser-${i}.png`), failures: {
     checks: 3, connectionRefusedVerified: true, offlineVerified: true, certificateVerified: true, timeoutVerified: true, pendingDraftRetained: true, retryDraftRetained: true, detailsKeyboardVerified: true, sanitizedHostVerified: true, blankRecoveryVerified: true,
     layouts: ['light', 'dark'].flatMap(theme => [1, 1.25, 1.5].map(zoom => ({ theme, zoom, summaryVisible: true, contained: true, overflow: false, detailsOpen: true, focusable: true, retryVisible: true, nativeHidden: true, hostOnly: true, clientHeight: 180, scrollHeight: 500 }))),
@@ -854,7 +854,7 @@ describe('release version and notes', () => {
 
 describe('Windows release execution evidence', () => {
   it('rejects a prior complete suite and missing or incomplete task-plan evidence', () => {
-    const prior = proof(); prior.desktop.checks = 375; expect(() => verifyRuntimeProof(prior)).toThrow('Complete desktop');
+    for (const checks of [375, 425, 426]) { const prior = proof(); prior.desktop.checks = checks; expect(() => verifyRuntimeProof(prior)).toThrow('Complete desktop'); }
     const absent = proof(); delete absent.desktop.taskPlans; expect(() => verifyRuntimeProof(absent)).toThrow('Complete task-plan');
     const partial = proof(); partial.desktop.taskPlans!.checks = 7; expect(() => verifyRuntimeProof(partial)).toThrow('Complete task-plan');
   });
