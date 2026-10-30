@@ -1,0 +1,72 @@
+{
+  "reviewedOn": "2026-10-30",
+  "applicationUnchangedForDiagnosis": true,
+  "baselineHead": "6babf5a541a8d04dee4e07a9ab4426b3b697aafe",
+  "baselineApplicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6",
+  "diagnosticDirectory": "D:/GR/nook-model-native-minidump-evidence-2026-10-30",
+  "originalNativeDeadlineMs": 10000,
+  "checksBeforeFailure": 4,
+  "firstNormalExitMs": 2420,
+  "originalDeadlineFailureMs": 10011,
+  "lateNaturalExitMs": 14641,
+  "lateExitCode": 0,
+  "lateExitCountsAsPass": false,
+  "allFrozenHashesMatched": true,
+  "dump": {
+    "pid": 62828,
+    "bytes": 198440,
+    "sha256": "b9befad718e8540c9c52d65e2fd48f4e2fa4c3484580a8c6d1f93940e568e259",
+    "captureMs": 366,
+    "threadStacks": 37,
+    "fullHeap": false,
+    "captureTimerMs": 6500,
+    "captureMayBrieflySuspendTarget": true,
+    "captureBeforeDeadlineMayAffectTiming": true,
+    "rawDumpCommitted": false
+  },
+  "symbolEvidence": {
+    "actualSourceExecutableCodeViewMatched": true,
+    "guid": "205ABBCBDFD937F14C4C44205044422E",
+    "age": 1,
+    "peExportCrossChecks": 2,
+    "completePdbLoaded": false,
+    "method": "Exact GUID/age and bounded MSF public-symbol lookup for return-address-minus-one, cross-checked against uv_cond_signal and uv_queue_work. Nearest public names do not prove private function extents or source lines."
+  },
+  "observedMainThread": [
+    "ntdll!NtWaitForSingleObject",
+    "KERNELBASE!WaitForSingleObjectEx",
+    "base::WaitableEvent::Wait +208",
+    "base::internal::TaskTracker::CompleteShutdown +98",
+    "content::BrowserMainLoop::ShutdownThreadsAndCleanUp +1240"
+  ],
+  "observedBackgroundThread": {
+    "index": 5,
+    "name": "ThreadPoolBackgroundWorker",
+    "systemCall": "ntdll!NtWriteFile -> KERNELBASE!WriteFile",
+    "nearbyPublicFrames": ["sql::Database::Close +57", "sql::Database::~Database +27", "content::BtmDatabase::~BtmDatabase +70", "content::BtmStorage::~BtmStorage +40"],
+    "dipsDatabaseBytesAfterExit": 36864
+  },
+  "sourceReferences": [
+    "https://raw.githubusercontent.com/electron/electron/v44.5.1/DEPS",
+    "https://raw.githubusercontent.com/chromium/chromium/152.0.7977.130/content/browser/btm/btm_service_impl.cc",
+    "https://raw.githubusercontent.com/chromium/chromium/152.0.7977.130/content/browser/btm/btm_database.cc",
+    "https://raw.githubusercontent.com/chromium/chromium/152.0.7977.130/sql/database.cc"
+  ],
+  "observation": "The slow-close snapshot shows Chromium TaskTracker shutdown waiting while a background BTM SQLite close is in a native file write. The specific filesystem delay and a product fix remain unproven.",
+  "lateOnlyControl": {
+    "directory": "D:/GR/nook-model-native-minidump-late-evidence-2026-10-30",
+    "captureBeforeDeadline": false,
+    "captureOnlyAfterOriginalFailure": true,
+    "checks": 6,
+    "normalExits": 3,
+    "exitMilliseconds": [2958, 6210, 2093],
+    "originalDeadlineFailures": 0,
+    "allFrozenHashesMatched": true,
+    "newAppDumpCaptured": false,
+    "originalFailureEliminated": false
+  },
+  "privacyFeaturesDisabled": false,
+  "profileFilesDeletedOrChangedForDiagnosis": false,
+  "nativeProductFixProven": false,
+  "completeReleaseAcceptance": false
+}

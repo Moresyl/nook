@@ -34,6 +34,30 @@
     "forcedExits": 0,
     "subsequentCorrection": "Floor the future draft to whole seconds; add a fractional-clock regression test and repeat type, build, complete unit/coverage and real desktop checks."
   },
+  "matchingPackagedApplication": {
+    "testedRepositoryHead": "73aa7d4faf79a714051bc6a1484904d7006f1986",
+    "directory": "D:/GR/nook-automation-schedule/artifacts/win-unpacked",
+    "auditVerifiedAt": "2026-10-30T08:39:42.368Z",
+    "executableSha256": "d273ab563fed44a2221669dfeb8e7b4627d3b2ba82534e09002672de50f7b495",
+    "archiveSha256": "5477b3afc585e39052dddc48de1c0eb828fa3f650ee754ff0bb54ffadca30b6e",
+    "executableBytes": 245726720,
+    "archiveBytes": 494153603,
+    "signature": "NotSigned",
+    "productFiles": 239,
+    "dependencyLegalDocuments": 401,
+    "distributionLegalAndSourceFiles": 20,
+    "nativeFeatureChecks": 10,
+    "nativeFeatureOutcome": "passed",
+    "normalExits": 3,
+    "exitMilliseconds": [403, 226, 138],
+    "forcedExits": 0,
+    "runtimeErrors": [],
+    "allFrozenSourceCompiledExecutableAndArchiveHashesMatched": true,
+    "freshPackagedImagesViewed": 2,
+    "imageHashes": ["d496fecb924c3ab9025e256149cf8020afb11373aba1bd1c3877e9d0da36c8c0", "8f4bc9f5679a96409b6e4d5fca4ae0a7a9e6f7412c12e93ac9d7da262dd1c6a3"],
+    "newInstallerOrPortableCreated": false,
+    "completeDesktopSuitePassed": false
+  },
   "imagesViewed": [
     { "name": "65-automation-expired-once-light.png", "sha256": "aba71d55e33e526b260e54dde08402875818dbdfd406c35eb162c9f468718c72", "observation": "Expired state and reschedule action are readable in the task list." },
     { "name": "66-automation-reschedule-draft-light.png", "sha256": "8f4bc9f5679a96409b6e4d5fca4ae0a7a9e6f7412c12e93ac9d7da262dd1c6a3", "observation": "Original task name and prompt, dialog header and save/cancel footer are visible. The date is below the captured scroll position and was checked through the real input value." }
@@ -64,7 +88,7 @@
   "acceptance": {
     "focusedSourceFeature": true,
     "completeCurrentSourceDesktopSuite": false,
-    "currentPackagedFeature": false,
+    "currentPackagedFeature": true,
     "completeCurrentPackagedSuite": false,
     "currentInstalledAndPortableVerification": false,
     "physicalNativeDialogsAndSystemDpi": false,

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-13T19:31:11.021Z",
+  "verifiedAt": "2026-10-30T08:40:18.450Z",
   "variant": "packaged executable",
   "checks": 10,
   "runtimeErrors": [],
@@ -9,8 +9,118 @@
       "dark"
     ],
     "keyboardAndLabel": true,
+    "repeatedLabelClicks": true,
+    "immediateUncheckedMark": true,
     "persistedSelection": true,
     "disabledAndMixedProbes": true,
+    "markMotion": [
+      {
+        "theme": "light",
+        "drawing": {
+          "before": {
+            "properties": "transform, opacity",
+            "durations": "0.1s, 0.2s",
+            "delays": "0.08s, 0s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          },
+          "after": {
+            "properties": "transform",
+            "durations": "0.1s",
+            "delays": "0.16s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          }
+        },
+        "observed": {
+          "events": [
+            {
+              "type": "transitionstart",
+              "pseudo": "::before",
+              "elapsedSeconds": 0,
+              "observedAt": 911.6000000238419
+            },
+            {
+              "type": "transitionstart",
+              "pseudo": "::after",
+              "elapsedSeconds": 0,
+              "observedAt": 991.8000000119209
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::before",
+              "elapsedSeconds": 0.1,
+              "observedAt": 1010.4000000357628
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::after",
+              "elapsedSeconds": 0.1,
+              "observedAt": 1086.6000000238419
+            }
+          ],
+          "transforms": [
+            "matrix(1, 0, 0, 1, 0, 0)",
+            "matrix(1, 0, 0, 1, 0, 0)"
+          ],
+          "connected": true,
+          "checked": true
+        },
+        "clockAdvanced": false,
+        "timersReplaced": false
+      },
+      {
+        "theme": "dark",
+        "drawing": {
+          "before": {
+            "properties": "transform, opacity",
+            "durations": "0.1s, 0.2s",
+            "delays": "0.08s, 0s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          },
+          "after": {
+            "properties": "transform",
+            "durations": "0.1s",
+            "delays": "0.16s",
+            "transform": "matrix(0, 0, 0, 0, 0, 0)"
+          }
+        },
+        "observed": {
+          "events": [
+            {
+              "type": "transitionstart",
+              "pseudo": "::before",
+              "elapsedSeconds": 0,
+              "observedAt": 803.6999999880791
+            },
+            {
+              "type": "transitionstart",
+              "pseudo": "::after",
+              "elapsedSeconds": 0,
+              "observedAt": 883.3000000119209
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::before",
+              "elapsedSeconds": 0.1,
+              "observedAt": 901.1999999880791
+            },
+            {
+              "type": "transitionend",
+              "pseudo": "::after",
+              "elapsedSeconds": 0.1,
+              "observedAt": 979
+            }
+          ],
+          "transforms": [
+            "matrix(1, 0, 0, 1, 0, 0)",
+            "matrix(1, 0, 0, 1, 0, 0)"
+          ],
+          "connected": true,
+          "checked": true
+        },
+        "clockAdvanced": false,
+        "timersReplaced": false
+      }
+    ],
     "reducedMotion": true,
     "forcedColorsCheckedProbe": true,
     "narrowZoom": 1.5,
@@ -19,12 +129,20 @@
       "checkbox-dark.png",
       "checkbox-dark-narrow.png"
     ],
-    "boundary": "Real automation form and saved selections; disabled and mixed states are temporary DOM probes. Forced colors are emulated, not physical OS accessibility evidence."
+    "boundary": "Real automation form, native keyboard and repeated label clicks, actual pseudo-element transition events and saved selections. Timers and animation clocks are unchanged. Disabled and mixed states are temporary DOM probes. Reduced motion and forced colors are emulated, not physical OS accessibility evidence."
   },
   "schedulerReads": {
     "wakeEvents": 20,
     "workspaceCopies": 0,
     "taskListCopies": 40
+  },
+  "rescheduling": {
+    "taskId": "87e43c67-41d8-4191-82d1-97e792c07f84",
+    "cancelledDraftPreserved": true,
+    "futureTime": 1793349913000,
+    "originalHistoryPreserved": true,
+    "noModelRequestUntilDue": true,
+    "pausedAfterCheck": true
   },
   "tasks": 3,
   "requests": 7,
@@ -37,5 +155,5 @@
     "complete",
     "stopped"
   ],
-  "scope": "Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
+  "scope": "Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar and expired one-shot rescheduling, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
 }
