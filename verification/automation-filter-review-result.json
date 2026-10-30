@@ -1,0 +1,212 @@
+{
+  "reviewedAt": "2026-10-30T09:05:17.090Z",
+  "testedApplicationCommit": "7f98169ae1c682d10315c2f3173359d30cf52ddf",
+  "evidenceDirectory": "D:/GR/nook-automation-filters-evidence-2026-10-30",
+  "behavior": "Derived all/active/paused/ended task filters combine with name/prompt search. Running tasks remain active for stop access. Ended one-shot plans do not imply successful execution. Empty results offer filter reset. Filtering does not alter the saved workspace or request the model.",
+  "reference": {
+    "version": "26.930.41038",
+    "build": "13022",
+    "files": [
+      {
+        "path": "webview/assets/automations-page-e7174a5d0f35.js",
+        "bytes": 102596,
+        "sha256": "15eb7855b43e4622998484054ddd908a381d8cc1de5eb9e648305b3a314ac5fe",
+        "matchesCurrentAsarManifest": true
+      },
+      {
+        "path": "webview/assets/app-shared-e20a5fe9db04.js",
+        "bytes": 7778897,
+        "sha256": "ddb65d8470cdb5b3a44e9f53777b805b263c37441b07367fccd144df6c9ce92b",
+        "matchesCurrentAsarManifest": true
+      }
+    ],
+    "consumerEvidence": [
+      "Actual task page offers all/active/paused/completed through filter menu and toolbar.",
+      "Task page composes status predicates with name/prompt search.",
+      "Local reference tasks use PAUSED versus active; cloud rows import the shared iO/pn function.",
+      "Shared cloud classifier returns completed for non-local non-condition-watch tasks without future runs; otherwise enabled versus paused. It does not inspect successful run results."
+    ],
+    "independentNookMapping": {
+      "default": "all, preserving visibility of newly-created paused tasks",
+      "active": "Enabled plans or tasks with a currently running execution, so stop remains reachable.",
+      "paused": "Disabled recurring plans or disabled one-shot plans whose deadline is still future.",
+      "completed": "Label 已结束: disabled elapsed one-shot with no running execution; no success claim.",
+      "persistence": "Derived view only; no data-schema, scheduler, cloud-account or execution-status change.",
+      "reusedReferenceCodeOrAssets": false
+    }
+  },
+  "verification": {
+    "fullUnitFiles": 154,
+    "fullUnitTests": 1818,
+    "fullUnitOutcome": "passed for the application change",
+    "finalGuardAndAutomationTests": 170,
+    "finalGuardAndAutomationOutcome": "passed after the subsequent release-policy-only change",
+    "coveragePercent": {
+      "lines": 99.51,
+      "statements": 97.14,
+      "functions": 97.86,
+      "branches": 94.78
+    },
+    "filterHelperCoveragePercent": {
+      "lines": 100,
+      "statements": 100,
+      "functions": 100,
+      "branches": 100
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "source": {
+      "at": "2026-10-30T08:58:44.518Z",
+      "head": "7f98169ae1c682d10315c2f3173359d30cf52ddf",
+      "variant": "source",
+      "outcome": {
+        "code": 0,
+        "signal": null
+      },
+      "checks": 12,
+      "allFrozenHashesMatched": true,
+      "normalExits": 3,
+      "forcedExits": 0,
+      "exits": [
+        {
+          "elapsedMs": 1015,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 105,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 138,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "focusedAcceptance": true,
+      "completePackagedAcceptance": false,
+      "fullSourceAcceptance": false
+    },
+    "packaged": {
+      "at": "2026-10-30T09:04:47.254Z",
+      "head": "77a495d88b7fbccddeefd388448e7407f15dd4f2",
+      "variant": "packaged",
+      "outcome": {
+        "code": 0,
+        "signal": null
+      },
+      "checks": 12,
+      "allFrozenHashesMatched": true,
+      "normalExits": 3,
+      "forcedExits": 0,
+      "exits": [
+        {
+          "elapsedMs": 279,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 199,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        },
+        {
+          "elapsedMs": 96,
+          "forced": false,
+          "exitCode": 0,
+          "signalCode": null
+        }
+      ],
+      "focusedAcceptance": true,
+      "completePackagedAcceptance": false,
+      "fullSourceAcceptance": false
+    },
+    "statusFilters": {
+      "defaultAll": true,
+      "combinedSearch": true,
+      "keyboard": true,
+      "emptyRecovery": true,
+      "runningTaskReachable": true,
+      "liveTransitions": true,
+      "minimumWindowDark": true,
+      "noFilterMutationOrRequest": true
+    },
+    "runtimeErrors": []
+  },
+  "matchingPackage": {
+    "directory": "D:\\GR\\nook-automation-filters\\artifacts\\win-unpacked",
+    "executableSha256": "3d2731b999f83ee437c4dde8fa11c3e942caf82440e93dc41cf9e6607d7c57d3",
+    "archiveSha256": "c114fd6b60936fc23ed720c8d525a8a2cbcf448dccc25abbba67f9727feae49e",
+    "executableBytes": 245726720,
+    "archiveBytes": 494154985,
+    "signature": "NotSigned",
+    "auditVerifiedAt": "2026-10-30T09:04:17.323Z",
+    "productFiles": 239,
+    "unpackedFiles": 188,
+    "dependencyVersions": 381,
+    "retainedDocuments": 401,
+    "distributionFiles": 20,
+    "compiledAssetsMatchVerifiedBuild": true
+  },
+  "screenshots": [
+    {
+      "variant": "source",
+      "name": "67-automation-ended-filter-light.png",
+      "bytes": 56674,
+      "sha256": "e0737d673ced454f9b90a2bf324a34b912611cf2b27f726fd446769ec682726e",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "source",
+      "name": "68-automation-active-filter-dark-narrow.png",
+      "bytes": 47171,
+      "sha256": "f2639dae9411226681b1629873bd8d5911aa5a0946a6d78db70aa3940a61a9ca",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "packaged",
+      "name": "67-automation-ended-filter-light.png",
+      "bytes": 56663,
+      "sha256": "6c59ae19408451dc2bc149d1fa42d44508b2efd31d20875ca50c3ad13fcd4338",
+      "visuallyReviewed": true
+    },
+    {
+      "variant": "packaged",
+      "name": "68-automation-active-filter-dark-narrow.png",
+      "bytes": 47319,
+      "sha256": "98709bb92f95b0a5f210b37b950337572c91291057591e502aba3e61c6268d3a",
+      "visuallyReviewed": true
+    }
+  ],
+  "remainingGates": {
+    "currentFullDesktopMinimum": 427,
+    "old425And426CannotPassReleasePolicy": true,
+    "currentFullSourceAcceptance": false,
+    "currentFullPackagedAcceptance": false,
+    "currentInstalledAcceptance": false,
+    "currentPortableAcceptance": false,
+    "newInstallerBuilt": false,
+    "newPortableBuilt": false,
+    "physicalNativeDialogsAndOtherDpi": "not completed",
+    "retainedUnmodifiedBaselineFailure": {
+      "baselineHead": "6babf5a541a8d04dee4e07a9ab4426b3b697aafe",
+      "checksBeforeFailure": 260,
+      "normalExits": 29,
+      "forcedExits": 1,
+      "forcedExitMs": 10004,
+      "originalNativeExitDeadlineMs": 10000
+    },
+    "nativeExitTimeoutFixed": false,
+    "nativeStackEvidence": "verification/native-sqlite-close-review-result.json retains actual BTM SQLite native-write/TaskTracker shutdown observation and its sampling/timing limits.",
+    "completeReferenceAlignment": false,
+    "fullReferenceCapabilities": false,
+    "releasePublished": false,
+    "scope": "Two narrow twelve-check suites do not replace the full 427-check source/package/installed gates. Existing installers and portable executables belong to previous application bytes. CI billing status is tracked separately against the pushed head."
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-30T08:40:18.450Z",
+  "verifiedAt": "2026-10-30T09:04:46.005Z",
   "variant": "packaged executable",
-  "checks": 10,
+  "checks": 12,
   "runtimeErrors": [],
   "checkbox": {
     "themes": [
@@ -36,25 +36,25 @@
               "type": "transitionstart",
               "pseudo": "::before",
               "elapsedSeconds": 0,
-              "observedAt": 911.6000000238419
+              "observedAt": 800.0999999642372
             },
             {
               "type": "transitionstart",
               "pseudo": "::after",
               "elapsedSeconds": 0,
-              "observedAt": 991.8000000119209
+              "observedAt": 871.6999999880791
             },
             {
               "type": "transitionend",
               "pseudo": "::before",
               "elapsedSeconds": 0.1,
-              "observedAt": 1010.4000000357628
+              "observedAt": 890.3999999761581
             },
             {
               "type": "transitionend",
               "pseudo": "::after",
               "elapsedSeconds": 0.1,
-              "observedAt": 1086.6000000238419
+              "observedAt": 980.3000000119209
             }
           ],
           "transforms": [
@@ -89,25 +89,25 @@
               "type": "transitionstart",
               "pseudo": "::before",
               "elapsedSeconds": 0,
-              "observedAt": 803.6999999880791
+              "observedAt": 793.6999999880791
             },
             {
               "type": "transitionstart",
               "pseudo": "::after",
               "elapsedSeconds": 0,
-              "observedAt": 883.3000000119209
+              "observedAt": 858.6999999880791
             },
             {
               "type": "transitionend",
               "pseudo": "::before",
               "elapsedSeconds": 0.1,
-              "observedAt": 901.1999999880791
+              "observedAt": 877.5999999642372
             },
             {
               "type": "transitionend",
               "pseudo": "::after",
               "elapsedSeconds": 0.1,
-              "observedAt": 979
+              "observedAt": 971.3999999761581
             }
           ],
           "transforms": [
@@ -137,12 +137,22 @@
     "taskListCopies": 40
   },
   "rescheduling": {
-    "taskId": "87e43c67-41d8-4191-82d1-97e792c07f84",
+    "taskId": "737c3dae-7ac3-4f2b-b473-9842983cbfee",
     "cancelledDraftPreserved": true,
-    "futureTime": 1793349913000,
+    "futureTime": 1793351380000,
     "originalHistoryPreserved": true,
     "noModelRequestUntilDue": true,
     "pausedAfterCheck": true
+  },
+  "statusFilters": {
+    "defaultAll": true,
+    "combinedSearch": true,
+    "keyboard": true,
+    "emptyRecovery": true,
+    "runningTaskReachable": true,
+    "liveTransitions": true,
+    "minimumWindowDark": true,
+    "noFilterMutationOrRequest": true
   },
   "tasks": 3,
   "requests": 7,
@@ -155,5 +165,5 @@
     "complete",
     "stopped"
   ],
-  "scope": "Actual task UI, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar and expired one-shot rescheduling, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
+  "scope": "Actual task UI, four status filters and combined search/keyboard/empty recovery/live run and plan transitions, real timed execution/provider HTTP/cancellation, engine permissions/context/usage, pause/resume/calendar and expired one-shot rescheduling, read-only system-resume schedule checks without whole-workspace copies, failure/retry, close/restart and complete native backup. Backup dialog boundaries use isolated fixtures; real cloud accounts, operating-system toast delivery, abrupt process termination and maximum-scale performance remain separate gates."
 }
