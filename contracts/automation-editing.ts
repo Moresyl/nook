@@ -8,6 +8,6 @@ export function automationPlanAction(task: Automation, now = Date.now()): 'pause
 export function automationEditDraft(task: Automation, action: 'edit' | 'reschedule' = 'edit', now = Date.now()): AutomationInput {
   const { runs: _runs, createdAt: _created, updatedAt: _updated, nextRunAt: _next, ...input } = task;
   return action === 'reschedule' && input.schedule.kind === 'once'
-    ? { ...input, schedule: { kind: 'once', at: now + 300_000 }, enabled: true }
+    ? { ...input, schedule: { kind: 'once', at: Math.floor((now + 300_000) / 1000) * 1000 }, enabled: true }
     : input;
 }

@@ -41,6 +41,12 @@ describe('automation plan editing', () => {
     expect(automationInputSchema.parse(draft)).toEqual(draft);
   });
 
+  it('prefills whole seconds so the unchanged form saves exactly the time displayed', () => {
+    const draft = automationEditDraft(task(), 'reschedule', now + 105);
+    expect(draft.schedule).toEqual({ kind: 'once', at: now + 300_000 });
+    expect(automationEditDraft(task(), 'reschedule', now + 999).schedule).toEqual(draft.schedule);
+  });
+
   it('never converts an interval or cron plan into a one-shot schedule', () => {
     for (const schedule of [{ kind: 'interval', minutes: 60 }, { kind: 'cron', expression: '0 9 * * *', timezone: 'UTC' }] as const) {
       const original = { ...task(), schedule };
