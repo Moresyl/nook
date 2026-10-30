@@ -1,0 +1,73 @@
+{
+  "reviewedOn": "2026-10-30",
+  "testedApplicationCommit": "a7790de9a1cc2c4861a527118dc90f0ec108d6a4",
+  "behavior": "Expired disabled one-shot plans open a future-time edit draft through 重新安排. Explicit save preserves the task ID and history. Cancel preserves the complete stored task. Draft times use whole seconds to match the form.",
+  "evidenceDirectory": "D:/GR/nook-automation-schedule-evidence-2026-10-30",
+  "verification": {
+    "fullUnitFiles": 153,
+    "fullUnitTests": 1812,
+    "fullUnitOutcome": "passed",
+    "coveragePercent": { "lines": 99.51, "statements": 97.14, "functions": 97.86, "branches": 94.77 },
+    "relatedTests": 34,
+    "editingHelperCoveragePercent": { "lines": 100, "statements": 100, "functions": 100, "branches": 100 },
+    "typecheck": "passed after timestamp precision correction",
+    "build": "passed after timestamp precision correction",
+    "actualSourceDesktopChecks": 10,
+    "actualSourceDesktopOutcome": "passed",
+    "normalExits": 3,
+    "exitMilliseconds": [1434, 634, 168],
+    "forcedExits": 0,
+    "runtimeErrors": [],
+    "allFrozenSourceAndCompiledHashesMatched": true,
+    "cancelPreservedCompleteTask": true,
+    "sameTaskAndExactHistoryAfterSave": true,
+    "savedTimeEqualsDisplayedTime": true,
+    "noPrematureModelRequest": true,
+    "rescheduledPlanPausedAfterCheck": true
+  },
+  "retainedFirstAttempt": {
+    "directory": "focused",
+    "outcome": "failed after 5 checks",
+    "reason": "The draft retained hidden milliseconds: 1793347199105 was stored while the form displayed 1793347199000.",
+    "normalExits": 1,
+    "exitMilliseconds": 7263,
+    "forcedExits": 0,
+    "subsequentCorrection": "Floor the future draft to whole seconds; add a fractional-clock regression test and repeat type, build, complete unit/coverage and real desktop checks."
+  },
+  "imagesViewed": [
+    { "name": "65-automation-expired-once-light.png", "sha256": "aba71d55e33e526b260e54dde08402875818dbdfd406c35eb162c9f468718c72", "observation": "Expired state and reschedule action are readable in the task list." },
+    { "name": "66-automation-reschedule-draft-light.png", "sha256": "8f4bc9f5679a96409b6e4d5fca4ae0a7a9e6f7412c12e93ac9d7da262dd1c6a3", "observation": "Original task name and prompt, dialog header and save/cancel footer are visible. The date is below the captured scroll position and was checked through the real input value." }
+  ],
+  "referenceReview": {
+    "version": "26.930.41038",
+    "build": "13022",
+    "currentManifestFilesMatched": 5,
+    "importAndConsumerTraces": 6,
+    "record": "reference-review.json in the evidence directory",
+    "observedFourWayFilterImplemented": false,
+    "referenceCodeOrBrandAssetsCopied": false,
+    "completeDesignAlignmentClaimed": false
+  },
+  "separateBaselineFullFailure": {
+    "head": "6babf5a541a8d04dee4e07a9ab4426b3b697aafe",
+    "directory": "D:/GR/nook-save-budget-full-source-evidence-2026-10-30",
+    "checksBeforeFailure": 260,
+    "normalExits": 29,
+    "forcedExits": 1,
+    "failedExitMilliseconds": 10004,
+    "location": "verify-model-comparisons.mjs:455, backup import and restart",
+    "nativeDeadlineMilliseconds": 10000,
+    "saveCheckpointDeadlineMilliseconds": 30000,
+    "allFrozenHashesMatched": true,
+    "nativeRootCauseOrFixProven": false
+  },
+  "acceptance": {
+    "focusedSourceFeature": true,
+    "completeCurrentSourceDesktopSuite": false,
+    "currentPackagedFeature": false,
+    "completeCurrentPackagedSuite": false,
+    "currentInstalledAndPortableVerification": false,
+    "physicalNativeDialogsAndSystemDpi": false,
+    "releasePublished": false
+  }
+}
