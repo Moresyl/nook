@@ -1,0 +1,260 @@
+{
+  "reviewedAt": "2026-10-30T09:48:28.762Z",
+  "evidenceDirectory": "D:/GR/nook-automation-filters-evidence-2026-10-30",
+  "applicationCommitUnchanged": "7f98169ae1c682d10315c2f3173359d30cf52ddf",
+  "originalFullSource": {
+    "testedHead": "69589985c5b8e059fadf806dae20139a39d84d7e",
+    "expectedChecks": 427,
+    "outcome": "failed after 264 checks",
+    "normalExits": 31,
+    "forcedExits": 0,
+    "maximumNormalExitMs": 6042,
+    "allFrozenHashesMatched": true,
+    "nativeExitDeadlineMs": 10000,
+    "comparisonSaveDeadlineMs": 30000,
+    "comparisonSaveCheckpoints": [
+      {
+        "elapsedMs": 1918,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 1567,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 2315,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 1868,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 1544,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 1836,
+        "deadlineMs": 30000
+      },
+      {
+        "elapsedMs": 1727,
+        "deadlineMs": 30000
+      }
+    ],
+    "modelComparisonBackupRestoreRestartPassedThisRun": true,
+    "failure": "The owned MCP subscription fixture did not finish initialization before its configured 5000ms timeout. The connection returned error; no protocol stdout was observed before timeout. The later subscription-capability assertion consequently failed.",
+    "originalConnection": {
+      "startedAt": 1793352905144,
+      "completedAt": 1793352910155,
+      "status": "error",
+      "error": "Could not connect. Check the program, endpoint and credentials, then retry.",
+      "resourceSubscriptionsSupported": false
+    },
+    "originalProcesses": [
+      {
+        "requestedAt": 1793352905152,
+        "pid": 54316,
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "stdinBytes": 301,
+        "stdinWrites": 2,
+        "piped": {
+          "stdin": true,
+          "stdout": true,
+          "stderr": true
+        },
+        "startup": [],
+        "spawnedAt": 1793352905523,
+        "firstStdinWriteAt": 1793352905524,
+        "lastStdinWriteAt": 1793352910154,
+        "stdinBackpressure": false
+      }
+    ],
+    "archive": "full-source-v1/failed",
+    "copiedResultFilesMayIncludeHistoricalRecords": true
+  },
+  "independentStartupMeasurement": {
+    "originalFailureRetained": true,
+    "measurementMaximumMs": 30000,
+    "originalDeadlineMs": 5000,
+    "results": [
+      {
+        "attempt": 1,
+        "startedAt": 1793353100129,
+        "pid": 81452,
+        "markers": [
+          {
+            "phase": "node-entry",
+            "at": 1793353100164
+          },
+          {
+            "phase": "stdin-listener-ready",
+            "at": 1793353106033
+          }
+        ],
+        "stdoutBytes": 351,
+        "stderrBytes": 128,
+        "initialized": true,
+        "resourcesListed": true,
+        "spawnedAt": 1793353100133,
+        "firstStdoutAt": 1793353106045,
+        "initializedAt": 1793353106045,
+        "resourcesListedAt": 1793353106048,
+        "exitCode": 0,
+        "signal": null,
+        "elapsedMs": 5931,
+        "initializeMs": 5916,
+        "withinOriginal5000Ms": false
+      },
+      {
+        "attempt": 2,
+        "startedAt": 1793353106060,
+        "pid": 61364,
+        "markers": [
+          {
+            "phase": "node-entry",
+            "at": 1793353106099
+          },
+          {
+            "phase": "stdin-listener-ready",
+            "at": 1793353106205
+          }
+        ],
+        "stdoutBytes": 351,
+        "stderrBytes": 128,
+        "initialized": true,
+        "resourcesListed": true,
+        "spawnedAt": 1793353106065,
+        "firstStdoutAt": 1793353106210,
+        "initializedAt": 1793353106211,
+        "resourcesListedAt": 1793353106215,
+        "exitCode": 0,
+        "signal": null,
+        "elapsedMs": 163,
+        "initializeMs": 151,
+        "withinOriginal5000Ms": true
+      },
+      {
+        "attempt": 3,
+        "startedAt": 1793353106223,
+        "pid": 56376,
+        "markers": [
+          {
+            "phase": "node-entry",
+            "at": 1793353106263
+          },
+          {
+            "phase": "stdin-listener-ready",
+            "at": 1793353106375
+          }
+        ],
+        "stdoutBytes": 351,
+        "stderrBytes": 128,
+        "initialized": true,
+        "resourcesListed": true,
+        "spawnedAt": 1793353106230,
+        "firstStdoutAt": 1793353106382,
+        "initializedAt": 1793353106382,
+        "resourcesListedAt": 1793353106388,
+        "exitCode": 0,
+        "signal": null,
+        "elapsedMs": 174,
+        "initializeMs": 159,
+        "withinOriginal5000Ms": true
+      }
+    ],
+    "interpretation": "The same owned fixture needed 5916ms for the first initialization and 151/159ms for later runs. This is consistent with slow first module loading exceeding the fixture timeout; it does not prove every connection failure has that cause.",
+    "optionalStartupObserverUsed": true,
+    "actualProtocolInitializeAndResourceList": true,
+    "modelRequests": 0
+  },
+  "verifierOnlyChange": {
+    "file": "scripts/verify-mcp-resource-subscriptions.mjs",
+    "configuredTestServerTimeoutMs": 30000,
+    "scope": "The subscription fixture server configuration uses 30 seconds for connection and protocol operations. Failed initialization is reported before checking subscription capability. The receipt includes actual connection elapsed time and configured timeout.",
+    "productionDefaultTimeoutMsUnchanged": 60000,
+    "productionCustomTimeoutsUnchanged": true,
+    "nativeExitDeadlineMsUnchanged": 10000,
+    "applicationSourcesCompiledAssetsAndBinaryHashesUnchanged": true,
+    "relatedConnectionAndSubscriptionTests": 23,
+    "relatedOutcome": "passed",
+    "syntaxCheck": "passed"
+  },
+  "actualFocusedRetries": [
+    {
+      "at": "2026-10-30T09:42:31.290Z",
+      "head": "69589985c5b8e059fadf806dae20139a39d84d7e",
+      "variant": "source",
+      "outcome": {
+        "code": 1,
+        "signal": null
+      },
+      "checks": 4,
+      "applicationUnchanged": true,
+      "allFrozenHashesMatched": true,
+      "normalExits": 0,
+      "forcedExits": 1,
+      "exits": [
+        {
+          "elapsedMs": 10006,
+          "forced": true,
+          "exitCode": null,
+          "signalCode": null
+        }
+      ],
+      "completeFocusedAcceptance": false,
+      "completeSourceAcceptance": false,
+      "completePackagedAcceptance": false,
+      "originalFullFailureRetained": true,
+      "connectionElapsedMs": 257,
+      "connected": true,
+      "resourceSubscriptionsSupported": true
+    },
+    {
+      "at": "2026-10-30T09:44:51.098Z",
+      "head": "69589985c5b8e059fadf806dae20139a39d84d7e",
+      "variant": "packaged",
+      "outcome": {
+        "code": 1,
+        "signal": null
+      },
+      "checks": 4,
+      "applicationUnchanged": true,
+      "allFrozenHashesMatched": true,
+      "normalExits": 0,
+      "forcedExits": 1,
+      "exits": [
+        {
+          "elapsedMs": 10013,
+          "forced": true,
+          "exitCode": null,
+          "signalCode": null
+        }
+      ],
+      "completeFocusedAcceptance": false,
+      "completeSourceAcceptance": false,
+      "completePackagedAcceptance": false,
+      "originalFullFailureRetained": true,
+      "connectionElapsedMs": 188,
+      "connected": true,
+      "resourceSubscriptionsSupported": true
+    }
+  ],
+  "focusedOutcome": "Both variants connected and passed four functional checks, then failed the required normal restart because shutdown exceeded the original native 10-second deadline. Neither six-check suite passed.",
+  "retainedNativeFailure": {
+    "sourceForcedExitMs": 10006,
+    "packagedForcedExitMs": 10013,
+    "causeOfTheseTwoNativeTimeoutsProven": false,
+    "previousThreadStackReview": "verification/native-sqlite-close-review-result.json"
+  },
+  "acceptance": {
+    "fullSource": false,
+    "fullPackaged": false,
+    "installed": false,
+    "portable": false,
+    "nativeExitFixed": false,
+    "released": false
+  },
+  "scope": "The original 264-check failure, both focused timeout failures, full raw logs and failed profiles remain archived. No new application build, installer or portable executable was created for this verifier-only change. Existing task-filter source/package twelve-check receipts remain separate evidence."
+}

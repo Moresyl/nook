@@ -13,6 +13,7 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   const profileUri = `fixture://profiles/${encodeURIComponent('订阅中文用户')}`;
   const captures = []; const draft = 'MCP_SUBSCRIPTION_KEEP_DRAFT 中文 <literal>';
   const fixture = join(root, 'verification/mcp-fixture.mjs');
+  const startupTimeoutMs = 30_000;
   const observer = process.env.QIYAO_TEST_MCP_STARTUP_DIAGNOSTICS ? pathToFileURL(join(root, 'verification/mcp-startup-observer.mjs')).href : undefined;
   await application.evaluateMain(`
     globalThis.nookMcpProcessObservations = [];
@@ -47,15 +48,15 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
     require('node:module').syncBuiltinESMExports();
   `);
   let connection;
-  try { connection = await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command, observer }) => {
+  try { connection = await page.evaluate(async ({ id, unsupportedId, name, unsupportedName, fixture, command, observer, startupTimeoutMs }) => {
     const args = observer ? ['--import', observer, fixture] : [fixture];
     for (const [serverId, serverName, serverArgs] of [[id, name, args], [unsupportedId, unsupportedName, [...args, '--no-subscriptions']]]) {
-      await window.qiyao.saveMcpServer({ id: serverId, name: serverName, transport: 'stdio', command, args: serverArgs, enabled: true, timeout: 5000 }, { env: {} });
+      await window.qiyao.saveMcpServer({ id: serverId, name: serverName, transport: 'stdio', command, args: serverArgs, enabled: true, timeout: startupTimeoutMs }, { env: {} });
     }
     const state = await window.qiyao.load(); await window.qiyao.savePreferences({ ...state.preferences, theme: 'light' });
     const startedAt = Date.now(); const connected = await window.qiyao.mcpConnect(id);
     return { startedAt, completedAt: Date.now(), status: connected.status, error: connected.error, resourceSubscriptionsSupported: connected.resourceSubscriptionsSupported };
-  }, { id, unsupportedId, name, unsupportedName, fixture, command: process.execPath, observer }); }
+  }, { id, unsupportedId, name, unsupportedName, fixture, command: process.execPath, observer, startupTimeoutMs }); }
   finally {
     const processes = await application.evaluateMain(`
       require('node:child_process').spawn = globalThis.nookMcpPriorSpawn;
@@ -66,6 +67,7 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
     console.log('MCP subscription process observations', JSON.stringify(processes));
   }
   console.log('MCP subscription connection observations', JSON.stringify(connection));
+  assert.equal(connection.status, 'connected', `MCP fixture initialization failed after ${connection.completedAt - connection.startedAt}ms with a ${startupTimeoutMs}ms configured timeout`);
   await page.reload(); await page.keyboard.press('Control+n'); await page.getByLabel('消息', { exact: true }).fill(draft);
   const dialog = () => page.getByRole('dialog');
   const preview = () => page.getByLabel('MCP 内容预览', { exact: true });
@@ -188,5 +190,5 @@ export async function verifyMcpResourceSubscriptions({ page, application, getApp
   await page.keyboard.press('Escape'); assert.equal(await dialog().isVisible(), false); assert.equal(await page.getByLabel('消息', { exact: true }).inputValue(), draft);
   assert.equal(modelRequests(), beforeRequests);
   verified('live subscription controls remain keyboard-accessible in the real dark minimum window at 100/125/150 percent zoom, Escape retains the opener draft and the complete suite makes no model request');
-  return { page, result: { checks: 6, screenshots: captures, modelRequests: 0, scopedReadMs, scopedReadIterations: 8, workspaceCopiesDuringScopedReads: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true } };
+  return { page, result: { checks: 6, screenshots: captures, modelRequests: 0, startup: { timeoutMs: startupTimeoutMs, elapsedMs: connection.completedAt - connection.startedAt, status: connection.status, observerEnabled: Boolean(observer) }, scopedReadMs, scopedReadIterations: 8, workspaceCopiesDuringScopedReads: 0, realNotificationsVerified: true, explicitDraftInsertionVerified: true, delayedUnsubscribeFiltered: true, templateSelectionVerified: true, disconnectRestartVerified: true, unsupportedServerVerified: true, zoomKeyboardVerified: true, originalDraftRetained: true } };
 }
