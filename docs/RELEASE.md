@@ -41,6 +41,8 @@ Windows x64 候选版本 **0.1.0-alpha.1**，尚未发布。Nook 是用于对话
 
 2026-10-30 从失败工作区副本运行的列表 6 项、设置／列表 16 项诊断通过，共 12 次正常退出；另 20 次不连接 Node 或 Chromium 调试器的真实应用启动／退出通过。非暂停采集工具在正常运行中成功读取本轮主进程、GPU、NetworkService 和渲染器的线程栈，匹配 PDB 标识、两个 PE 导出和 174 个主进程帧。该工具自检不是挂起现场，小范围成功也不能证明原失败已修复；间歇性等待的触发原因仍在定位，原失败与 10 秒期限保留。[失败、原图归档与诊断边界](../verification/browser-exit-narrow-review-result.json)
 
+2026-10-30 保存与退出后续诊断：完整源码诊断在 259 项后于旧 5 秒重命名检查点失败，30 次退出均正常。失败副本的重放在超时时捕获到主文件 `writeFile` 已完成、`FileHandle.sync()` 至少等待 4454ms 且仍未完成，主文件重命名尚未调用；这是保存检查点的现场，不能解释为原生退出已修复。磁盘等待现明确调整为 30 秒，与现有比较响应等待一致；保留真实同步、重命名 EIO、忙碌控件、完整回滚、零请求和重试检查，以及 25ms 宿主轮询和原 10 秒退出上限。30 项相关单元、类型和受控真实同步延迟 8 秒的源码 6 项专项通过，首个检查点 9922ms。包内专项的 7 个保存检查点均通过，但在 4 项后恢复重启时超过原 10 秒退出期限而失败（10015ms）。应用、编译输出及二进制未改，原生根因未证明；该轮复制的历史包内结果未被采纳，完整当前 425 项分发验收仍未完成。[本轮来源、政策变化及失败](../verification/comparison-save-durability-budget-review-result.json)
+
 ### 此前应用的完整分发基线
 
 2026-10-29 最新完整验证：宿主轮询提交 `2ce98bc` 的新完整包内与实际安装各通过 **422 项、75 次正常退出**，无强制结束、非零退出或运行时错误，最长退出分别为 7741ms／6253ms。两轮各 7 次保存检查点等待为 1101–2843ms／1059–1803ms，保留原 5000ms 检查点与 10000ms 原生退出上限；使用新空工作区及原提交验证器，没有外部加载器、调试采样或延迟强制结束。安装验证副本仅固定仓库根路径，原断言保持。1340 个跟踪输入、236 个编译文件、4 个二进制及 13 份附加元数据的冻结哈希一致，11 份运行记录匹配。[本轮完整包内与安装证据](../verification/comparison-poll-distribution-review-result.json)
@@ -152,6 +154,8 @@ JPEG 候选的完整打包与实际安装验收尚未通过。首次打包在工
 ## English summary
 
 Nook 0.1.0-alpha.1 is not released. Browser failures now distinguish six causes, offer troubleshooting and retry, preserve pending address drafts, and recover a crashed blank tab. Full unit testing passes 1,800 tests, followed by 215 final focused tests, type checking and a verified Windows build. Source and packaged browser suites each pass 17 checks, and 36 current error screenshots were individually reviewed. Complete source acceptance failed after 354 checks: 41 normal exits and one forced exit after 10,008ms against the original 10-second limit. Downstream packaged, portable and installed runs did not start. Smaller 6- and 16-check probes and 20 launches without debugger connections exited normally; they do not prove a fix. The original failure remains retained and its native cause unproven. Unsigned setup and portable artifacts were built and their bootstrap plugins audited. Earlier 422-check records belong to the previous application. Physical interaction, other display scales, full design alignment and hosted verification remain pending; hosted jobs were rejected before steps by account billing or spending limits.
+
+A separate verifier update allows 30 seconds for the held-rename checkpoint after a real durable write; the native exit limit remains 10 seconds. An observed five-second failure was still waiting in primary FileHandle.sync. Thirty focused unit tests, type checking and six source checks with an added eight-second real-sync delay pass. The packaged probe passes all seven save checkpoints but fails after four checks on a 10,015ms forced exit after backup restore. Production bytes are unchanged, both original failures remain failed, and complete current acceptance is pending.
 
 ## 历史证据
 

@@ -1,0 +1,216 @@
+{
+  "reviewedAt": "2026-10-30T06:39:33.818Z",
+  "applicationCommit": "fa561c9748b0f4e9d964bd697dddce619253d6b6",
+  "scope": "Verification-only disk-wait policy change; production code, durable synchronization and native exit deadline are unchanged.",
+  "policy": {
+    "oldHeldRenameDeadlineMs": 5000,
+    "newHeldRenameDeadlineMs": 30000,
+    "hostPollIntervalMs": 25,
+    "mainDebuggerOperationDeadlineMs": 5000,
+    "nativeExitDeadlineMs": 10000,
+    "reason": "An actual failed checkpoint snapshot captured completed primary writeFile and pending FileHandle.sync with FSReqPromise before primary rename. The fixture must allow durable disk work before holding rename; its bound now matches the existing comparison-response budget.",
+    "preserved": [
+      "real staged file write and sync",
+      "held primary rename with EIO",
+      "disabled close/settings/send controls",
+      "Escape protection",
+      "exact primary history and in-memory state rollback",
+      "zero model requests on save failure",
+      "successful identical retry",
+      "native non-forced exit assertion"
+    ],
+    "applicationPerformanceImprovementClaimed": false,
+    "originalFailuresReclassified": false
+  },
+  "evidence": {
+    "originalNativeFailure": {
+      "checks": 354,
+      "normalExits": 41,
+      "forcedExits": 1,
+      "elapsedMs": 10008,
+      "review": {
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\failure-review.json",
+        "sha256": "6912d851096c2950e2014ee99b17b88c2ceff2ab1971ba0f82d2e3e8804ac523"
+      },
+      "stillFailed": true
+    },
+    "completeDiagnosticFailure": {
+      "checks": 259,
+      "normalExits": 30,
+      "forcedExits": 0,
+      "longestExitMs": 3186,
+      "site": "original five-second held-rename checkpoint",
+      "review": {
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\full-diagnostic-failed\\review.json",
+        "sha256": "a433ef08625c5427ad9776906935d5f8ac0e2b97cecfb20452b610f506787bb7"
+      },
+      "stillFailed": true
+    },
+    "durableSyncFailure": {
+      "checks": 3,
+      "normalExits": 2,
+      "forcedExits": 0,
+      "pendingPrimarySyncObservedForAtLeastMs": 4454,
+      "actualFullSyncDurationKnown": false,
+      "review": {
+        "path": "D:\\GR\\nook-browser-error-exit-investigation-2026-10-30\\compare-save-failed\\review.json",
+        "sha256": "6b515d89bf87d43801a9e86a87381e9657f8e2f9e261dede3094dfa5121aae1b"
+      },
+      "stillFailed": true,
+      "provesSeparateNativeExitCause": false
+    },
+    "sourceControlledDelay": {
+      "checks": 6,
+      "normalExits": 3,
+      "forcedExits": 0,
+      "actualPrimarySyncCalled": true,
+      "insertedDelayMs": 8000,
+      "checkpointEntriesMs": [
+        9922,
+        1045,
+        976,
+        1645,
+        1462,
+        1027,
+        1334
+      ],
+      "controlledSync": {
+        "injected": true,
+        "delayMs": 8000,
+        "startedAt": 1793341496448,
+        "syncCompleted": true,
+        "finishedAt": 1793341505194
+      },
+      "review": {
+        "path": "D:\\GR\\nook-comparison-save-budget-retry-evidence-2026-10-30\\source-review.json",
+        "sha256": "d22900b17af6c9b25d0b9f3d5e45193b7ba5cf0d7eb7a28b164c2094abd671ab"
+      },
+      "log": {
+        "path": "D:\\GR\\nook-comparison-save-budget-retry-evidence-2026-10-30\\source.log",
+        "sha256": "510f217c1b6dec95814e2aa691e819aded665ab531552d48a9776a45c9120bea"
+      },
+      "instrumented": true,
+      "fullAcceptance": false
+    },
+    "packagedFailure": {
+      "checks": 4,
+      "checkpointEntriesMs": [
+        1488,
+        1799,
+        1703,
+        1122,
+        1718,
+        3677,
+        4889
+      ],
+      "normalExits": 1,
+      "forcedExits": 1,
+      "failedExitMs": 10015,
+      "site": "restart after actual comparison JSON/gzip export and restore",
+      "review": {
+        "path": "D:\\GR\\nook-comparison-save-budget-retry-evidence-2026-10-30\\packaged-review.json",
+        "sha256": "0e162ca1d9338d430d1ded178579a82ac2562a3a43519624cca6920524006c7c"
+      },
+      "log": {
+        "path": "D:\\GR\\nook-comparison-save-budget-retry-evidence-2026-10-30\\packaged.log",
+        "sha256": "487c76c77189681d07f60513c074768a413f0fe4dc2f5d2da2afb85dc4201391"
+      },
+      "loaderUsed": false,
+      "fullAcceptance": false,
+      "copiedPackagedResultAdopted": false,
+      "copiedResultBoundary": "The pre-existing packaged-result JSON copied after failure is historical and is not proof of this run."
+    },
+    "initialControlledLoaderFailure": {
+      "checks": 0,
+      "applicationStarted": false,
+      "reason": "ReferenceError in external loader; corrected in a separate v2 file",
+      "root": "D:/GR/nook-comparison-save-budget-evidence-2026-10-30",
+      "stillFailed": true
+    },
+    "units": {
+      "command": "pnpm exec vitest run verification/comparison-save-checkpoint.test.ts verification/model-comparisons.test.ts",
+      "files": 2,
+      "tests": 30,
+      "passed": true,
+      "completedToolSession": 34614,
+      "cases": [
+        "immediate checkpoint",
+        "disk wait beyond five seconds",
+        "never-entered bounded timeout",
+        "late debugger response rejected",
+        "debugger failure propagated without timer leak"
+      ]
+    },
+    "typeCheck": {
+      "command": "pnpm check",
+      "passed": true,
+      "completedToolSession": 83444,
+      "priorFailedSession": 83395,
+      "correction": "Two test matchers check the error object without accessing an Error-or-result union property."
+    },
+    "runtimeVerifierInputs": [
+      {
+        "path": "D:\\GR\\nook-browser-errors\\scripts\\verify-model-comparisons.mjs",
+        "sha256": "7443a90a11f1a1f69d78142135a612a61355a235873e8c2ca903abdef28b1767"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-errors\\scripts\\comparison-save-checkpoint.mjs",
+        "sha256": "d781d4875227b2290672de6d9bd52f4b9875499a3e067be176449c9a15d1763e"
+      },
+      {
+        "path": "D:\\GR\\nook-browser-errors\\scripts\\comparison-save-checkpoint.d.mts",
+        "sha256": "73e45309975f3b0e8094972587b23237b3f06ef3509f9261cb939233f380f138"
+      }
+    ],
+    "currentUnitTest": {
+      "path": "D:\\GR\\nook-browser-errors\\verification\\comparison-save-checkpoint.test.ts",
+      "sha256": "f97a05d658d68815791901cba7f5ee82288ed85941f78716420b006cf5e2ecca"
+    },
+    "unitTestDifferenceSinceNativeRun": "Only two typed error assertions changed from direct .message access to toMatchObject; the runtime verifier and helper match the native-run frozen hashes.",
+    "productInputHashesMatched": 17,
+    "compiledHashesMatched": 236,
+    "executableAndArchiveHashesMatched": true,
+    "newNativeCollector": {
+      "status": "replay-passed-without-hung-stack",
+      "toolSession": 96496,
+      "root": "D:/GR/nook-model-native-replay-evidence-2026-10-30",
+      "captureAfterMs": [
+        3000,
+        6500
+      ],
+      "collectorBudgetMs": 4000,
+      "noninvasive": true,
+      "targetSuspended": false,
+      "checks": 6,
+      "normalExits": 3,
+      "forcedExits": 0,
+      "exitTimesMs": [362, 3774, 2789],
+      "allFrozenHashesMatched": true,
+      "observationalTimerTriggers": 1,
+      "stackCaptures": 0,
+      "observerResult": "Owned parent already exited.",
+      "review": {
+        "path": "D:/GR/nook-model-native-replay-evidence-2026-10-30/review.json",
+        "sha256": "04d933a30d0a901b05f29a9799ecda1626f86b394d78cc7a9151b2e8f0370d88"
+      },
+      "fullAcceptance": false,
+      "boundary": "Earlier slow-exit capture close-76984-1793340742203 did not obtain stacks: debugger startup completed after the targets exited. Those files are not a hung-process trace."
+    }
+  },
+  "conclusions": {
+    "productionChanged": false,
+    "durabilityRemoved": false,
+    "nativeExitRootCauseProven": false,
+    "nativeExitFixed": false,
+    "completeCurrentSource425": false,
+    "completeCurrentPackaged425": false,
+    "completeCurrentInstalled425": false,
+    "portable7Run": false,
+    "hostedPublished": false
+  },
+  "pending": [
+    "Capture the reproduced native exit wait and identify actual blocked threads and descendants",
+    "Fresh complete source, packaged and installed acceptance plus portable checks",
+    "Hosted verification and publication"
+  ]
+}
