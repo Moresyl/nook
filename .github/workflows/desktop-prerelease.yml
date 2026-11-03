@@ -52,6 +52,7 @@ jobs:
           git fetch --no-tags --depth=1 origin "$RELEASE_CHECKS_COMMIT"
           git show "$RELEASE_CHECKS_COMMIT:verification/atomic-json.test.ts" > verification/atomic-json.test.ts
           git show "$RELEASE_CHECKS_COMMIT:licenses/supplements.json" > licenses/supplements.json
+          git archive "$RELEASE_CHECKS_COMMIT" licenses/supplements | tar -x
       - name: Install pinned dependencies on the native architecture
         env:
           EXPECTED_ARCH: ${{ matrix.arch }}
