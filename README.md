@@ -2,7 +2,7 @@
 
 本地 AI 工作台。连接模型，处理资料，推进项目。
 
-> Windows x64 桌面应用，尚未正式发布。
+> [下载 0.1.0-alpha.1 预发布版](https://github.com/Moresyl/nook/releases/tag/v0.1.0-alpha.1)。Windows x64 已提供下载；macOS、Linux 文件以 Release 实际附件为准。
 
 ![Nook 浅色主题首页](docs/images/nook-home.png)
 
@@ -22,7 +22,9 @@
 
 ## 开始使用
 
-目前请从源码运行。需要 Node.js 24、pnpm 10.32.1；项目操作另需 Git，Windows 终端使用 PowerShell。
+从 [GitHub Releases](https://github.com/Moresyl/nook/releases/tag/v0.1.0-alpha.1) 下载对应系统的文件。Windows ZIP 必须完整解压，再运行文件夹中的 `Nook.exe`。当前为未签名的 Alpha，存在间歇性退出超时，完整桌面验收尚未通过；安装与平台已知问题见 Release 说明。
+
+从源码运行需要 Node.js 24、pnpm 10.32.1；项目操作另需 Git，Windows 终端使用 PowerShell。
 
 ```sh
 pnpm install
