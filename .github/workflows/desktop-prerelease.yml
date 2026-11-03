@@ -9,6 +9,11 @@ on:
         description: Existing prerelease tag
         required: true
         default: v0.1.0-alpha.1
+      platform:
+        description: Native platforms to build
+        type: choice
+        options: [all, linux, mac]
+        default: all
 
 permissions:
   contents: read
@@ -18,19 +23,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - runner: macos-15-intel
-            platform: mac
-            arch: x64
-          - runner: macos-14
-            platform: mac
-            arch: arm64
-          - runner: ubuntu-24.04
-            platform: linux
-            arch: x64
-          - runner: ubuntu-24.04-arm
-            platform: linux
-            arch: arm64
+        include: >-
+          ${{ fromJSON(inputs.platform == 'linux' &&
+          '[{"runner":"ubuntu-24.04","platform":"linux","arch":"x64"},{"runner":"ubuntu-24.04-arm","platform":"linux","arch":"arm64"}]' ||
+          inputs.platform == 'mac' &&
+          '[{"runner":"macos-15-intel","platform":"mac","arch":"x64"},{"runner":"macos-14","platform":"mac","arch":"arm64"}]' ||
+          '[{"runner":"macos-15-intel","platform":"mac","arch":"x64"},{"runner":"macos-14","platform":"mac","arch":"arm64"},{"runner":"ubuntu-24.04","platform":"linux","arch":"x64"},{"runner":"ubuntu-24.04-arm","platform":"linux","arch":"arm64"}]') }}
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 60
     permissions:
@@ -78,7 +76,7 @@ jobs:
         run: pnpm exec electron-builder --mac dmg zip --${{ matrix.arch }} --publish never -c.npmRebuild=true -c.mac.icon=identity/qiyao.png '-c.artifactName=Nook-${version}-mac-${arch}.${ext}'
       - name: Package Linux
         if: matrix.platform == 'linux'
-        run: pnpm exec electron-builder --linux AppImage deb --${{ matrix.arch }} --publish never -c.npmRebuild=true -c.linux.icon=identity/qiyao.png -c.linux.category=Development '-c.artifactName=Nook-${version}-linux-${arch}.${ext}'
+        run: pnpm exec electron-builder --linux AppImage deb --${{ matrix.arch }} --publish never -c.npmRebuild=true -c.linux.icon=identity/qiyao.png -c.linux.category=Development '-c.linux.maintainer=Moresyl <85490079+Moresyl@users.noreply.github.com>' '-c.artifactName=Nook-${version}-linux-${arch}.${ext}'
       - name: Upload only completed native build assets to the existing prerelease
         env:
           GH_TOKEN: ${{ github.token }}
