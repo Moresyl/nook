@@ -47,10 +47,11 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '24'
-      - name: Apply the corrected platform simulation in the test harness only
+      - name: Apply corrected test harness and native dependency license supplements
         run: |
           git fetch --no-tags --depth=1 origin "$RELEASE_CHECKS_COMMIT"
           git show "$RELEASE_CHECKS_COMMIT:verification/atomic-json.test.ts" > verification/atomic-json.test.ts
+          git show "$RELEASE_CHECKS_COMMIT:licenses/supplements.json" > licenses/supplements.json
       - name: Install pinned dependencies on the native architecture
         env:
           EXPECTED_ARCH: ${{ matrix.arch }}
