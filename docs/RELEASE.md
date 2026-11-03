@@ -2,7 +2,7 @@
 
 **0.1.0-alpha.1 已公开预发布**：[下载与已知问题](https://github.com/Moresyl/nook/releases/tag/v0.1.0-alpha.1)。Nook 是用于对话、资料阅读和项目开发的本地 AI 工作台。
 
-Windows x64 ZIP 已上传并核对远端 SHA-256；macOS Intel／Apple Silicon 与 Linux x64／ARM64 产物以 Release 附件为准。原生构建公开单元测试报告，该 Alpha 允许测试失败后继续打包，不代表平台完整验收通过。已知退出超时仍未修复，原有 Windows 稳定版验收门槛保持不变。
+Windows x64 ZIP、macOS Intel／Apple Silicon 的 DMG 与 ZIP、Linux x64／ARM64 的 AppImage 与 DEB 均已上传，附带各平台 SHA-256 清单。原生构建公开单元测试报告，两个 macOS 架构各有 145 项失败；该 Alpha 允许测试失败后继续打包，不代表平台完整验收通过。已知退出超时仍未修复，本标签 Windows 托管完整桌面测试也在剪贴板夹具处失败；原有稳定版验收门槛保持不变。具体结果与来源以 Release 说明及 `release-verification.json` 为准。
 
 ## 稳定版验收历史
 

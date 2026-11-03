@@ -2,7 +2,7 @@
 
 本地 AI 工作台。连接模型，处理资料，推进项目。
 
-> [下载 0.1.0-alpha.1 预发布版](https://github.com/Moresyl/nook/releases/tag/v0.1.0-alpha.1)。Windows x64 已提供下载；macOS、Linux 文件以 Release 实际附件为准。
+> [下载 0.1.0-alpha.1 预发布版](https://github.com/Moresyl/nook/releases/tag/v0.1.0-alpha.1)：Windows x64、macOS Intel／Apple Silicon、Linux x64／ARM64。
 
 ![Nook 浅色主题首页](docs/images/nook-home.png)
 
