@@ -20,13 +20,19 @@ describe('durable atomic JSON replacement', () => {
     await atomicJson(path, { text: 'UTF-8 文本' }); expect(JSON.parse(await readFile(path, 'utf8'))).toEqual({ text: 'UTF-8 文本' }); expect(await readdir(directory)).toEqual(['data.json']);
   });
   it.each(['EPERM', 'EACCES', 'EBUSY'])('recovers a transient Windows rename failure (%s) without replacing the original prematurely', async (code) => {
+    const descriptor = Object.getOwnPropertyDescriptor(process, 'platform')!; Object.defineProperty(process, 'platform', { value: 'win32' });
+    try {
     const { directory, path } = await fixture(); const actual = await vi.importActual<typeof import('node:fs/promises')>('node:fs/promises');
     vi.mocked(rename).mockRejectedValueOnce(Object.assign(new Error('Locked'), { code })).mockImplementationOnce(async (...args) => { expect(JSON.parse(await readFile(path, 'utf8'))).toEqual({ before: true }); await actual.rename(...args); });
     await atomicJson(path, { after: true }); expect(rename).toHaveBeenCalledTimes(2); expect(await readdir(directory)).toEqual(['data.json']); expect(JSON.parse(await readFile(path, 'utf8'))).toEqual({ after: true });
+    } finally { Object.defineProperty(process, 'platform', descriptor); }
   });
   it('bounds persistent sharing failures, removes its temporary file and retains the original', async () => {
+    const descriptor = Object.getOwnPropertyDescriptor(process, 'platform')!; Object.defineProperty(process, 'platform', { value: 'win32' });
+    try {
     const { directory, path } = await fixture(); vi.mocked(rename).mockRejectedValue(Object.assign(new Error('Sensitive path and content'), { code: 'EPERM' }));
     await expect(atomicJson(path, { after: true })).rejects.toThrow('Local data could not be saved'); expect(rename).toHaveBeenCalledTimes(7); expect(JSON.parse(await readFile(path, 'utf8'))).toEqual({ before: true }); expect(await readdir(directory)).toEqual(['data.json']);
+    } finally { Object.defineProperty(process, 'platform', descriptor); }
   });
   it('does not retry disk-full errors and permits a subsequent successful write', async () => {
     const { directory, path } = await fixture(); vi.mocked(rename).mockRejectedValueOnce(Object.assign(new Error('Sensitive content'), { code: 'ENOSPC' }));
